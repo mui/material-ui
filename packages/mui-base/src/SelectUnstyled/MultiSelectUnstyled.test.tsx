@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
-import { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import MultiSelectUnstyled, { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
@@ -20,7 +19,7 @@ describe('MultiSelectUnstyled', () => {
   const { render } = createRenderer();
 
   const componentToTest = (
-    <MultiSelectUnstyled defaultListboxOpen>
+    <MultiSelectUnstyled defaultListboxOpen multiple>
       <OptionGroupUnstyled label="Group">
         <OptionUnstyled value={1}>1</OptionUnstyled>
       </OptionGroupUnstyled>
@@ -53,7 +52,7 @@ describe('MultiSelectUnstyled', () => {
     ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
-        const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
+        const { getByRole } = render(<MultiSelectUnstyled multiple slots={{ root: 'div' }} />);
         const select = getByRole('combobox');
         act(() => {
           select.focus();
@@ -68,7 +67,7 @@ describe('MultiSelectUnstyled', () => {
 
     it(`opens the dropdown when the " " key is let go on the button`, () => {
       // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<MultiSelectUnstyled slots={{ root: 'div' }} />);
+      const { getByRole } = render(<MultiSelectUnstyled multiple slots={{ root: 'div' }} />);
       const select = getByRole('combobox');
       act(() => {
         select.focus();
@@ -84,7 +83,7 @@ describe('MultiSelectUnstyled', () => {
       ['Enter', ' '].forEach((key) =>
         it(`selects a highlighted item using the "${key}" key`, () => {
           const { getByRole } = render(
-            <MultiSelectUnstyled>
+            <MultiSelectUnstyled multiple>
               <OptionUnstyled value={1}>1</OptionUnstyled>
               <OptionUnstyled value={2}>2</OptionUnstyled>
             </MultiSelectUnstyled>,
@@ -108,7 +107,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('closes the listbox without selecting an option when "Escape" is pressed', () => {
       const { getByRole, queryByRole } = render(
-        <MultiSelectUnstyled defaultValue={[1]}>
+        <MultiSelectUnstyled multiple defaultValue={[1]}>
           <OptionUnstyled value={1}>1</OptionUnstyled>
           <OptionUnstyled value={2}>2</OptionUnstyled>
         </MultiSelectUnstyled>,
@@ -145,7 +144,7 @@ describe('MultiSelectUnstyled', () => {
 
       const { getByText } = render(
         <form onSubmit={handleSubmit}>
-          <MultiSelectUnstyled defaultValue={[2, 3]} name="test-select">
+          <MultiSelectUnstyled multiple defaultValue={[2, 3]} name="test-select">
             <OptionUnstyled value={1}>1</OptionUnstyled>
             <OptionUnstyled value={2}>2</OptionUnstyled>
             <OptionUnstyled value={3}>3</OptionUnstyled>
@@ -178,6 +177,7 @@ describe('MultiSelectUnstyled', () => {
       const { getByText } = render(
         <form onSubmit={handleSubmit}>
           <MultiSelectUnstyled
+            multiple
             defaultValue={[2, 3]}
             name="test-select"
             getSerializedValue={customFormValueProvider}
@@ -215,7 +215,7 @@ describe('MultiSelectUnstyled', () => {
 
       const { getByText } = render(
         <form onSubmit={handleSubmit}>
-          <MultiSelectUnstyled defaultValue={[options[1].value]} name="test-select">
+          <MultiSelectUnstyled multiple defaultValue={[options[1].value]} name="test-select">
             {options.map((o) => (
               <OptionUnstyled key={o.value.firstName} value={o.value}>
                 {o.label}
@@ -238,7 +238,7 @@ describe('MultiSelectUnstyled', () => {
       const handleChange = spy();
 
       const { getByRole, getByText } = render(
-        <MultiSelectUnstyled defaultValue={[1]} onChange={handleChange}>
+        <MultiSelectUnstyled multiple defaultValue={[1]} onChange={handleChange}>
           <OptionUnstyled value={1}>One</OptionUnstyled>
           <OptionUnstyled value={2}>Two</OptionUnstyled>
         </MultiSelectUnstyled>,
@@ -271,7 +271,7 @@ describe('MultiSelectUnstyled', () => {
         return (
           <div>
             <button onClick={() => setValue([1, 2])}>Update value</button>
-            <MultiSelectUnstyled value={value} onChange={handleChange}>
+            <MultiSelectUnstyled value={value} multiple onChange={handleChange}>
               <OptionUnstyled value={1}>1</OptionUnstyled>
               <OptionUnstyled value={2}>2</OptionUnstyled>
             </MultiSelectUnstyled>
@@ -292,6 +292,7 @@ describe('MultiSelectUnstyled', () => {
     it('renders the selected values using the renderValue prop', () => {
       const { getByRole } = render(
         <MultiSelectUnstyled
+          multiple
           defaultValue={[1, 2]}
           renderValue={(values) => values.map((v) => `${v.label} (${v.value})`).join(', ')}
         >
@@ -305,7 +306,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('renders the selected values as comma-separated list of labels if renderValue is not provided', () => {
       const { getByRole } = render(
-        <MultiSelectUnstyled defaultValue={[1, 2]}>
+        <MultiSelectUnstyled multiple defaultValue={[1, 2]}>
           <OptionUnstyled value={1}>One</OptionUnstyled>
           <OptionUnstyled value={2}>Two</OptionUnstyled>
         </MultiSelectUnstyled>,
@@ -319,7 +320,7 @@ describe('MultiSelectUnstyled', () => {
   describe('a11y attributes', () => {
     it('should have the `combobox` role', () => {
       render(
-        <MultiSelectUnstyled>
+        <MultiSelectUnstyled multiple>
           <OptionUnstyled value={1}>One</OptionUnstyled>
         </MultiSelectUnstyled>,
       );
@@ -329,7 +330,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('should have the aria-haspopup listbox', () => {
       render(
-        <MultiSelectUnstyled>
+        <MultiSelectUnstyled multiple>
           <OptionUnstyled value={1}>One</OptionUnstyled>
         </MultiSelectUnstyled>,
       );
@@ -339,7 +340,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('should have the aria-expanded attribute', () => {
       render(
-        <MultiSelectUnstyled>
+        <MultiSelectUnstyled multiple>
           <OptionUnstyled value={1}>One</OptionUnstyled>
         </MultiSelectUnstyled>,
       );
@@ -349,7 +350,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('should have the aria-expanded attribute set to true when the listbox is open', () => {
       render(
-        <MultiSelectUnstyled>
+        <MultiSelectUnstyled multiple>
           <OptionUnstyled value={1}>One</OptionUnstyled>
         </MultiSelectUnstyled>,
       );
@@ -364,7 +365,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('should have the aria-controls attribute', () => {
       render(
-        <MultiSelectUnstyled>
+        <MultiSelectUnstyled multiple>
           <OptionUnstyled value={1}>One</OptionUnstyled>
         </MultiSelectUnstyled>,
       );
@@ -384,7 +385,7 @@ describe('MultiSelectUnstyled', () => {
 
     it('should have the aria-activedescendant attribute', () => {
       render(
-        <MultiSelectUnstyled>
+        <MultiSelectUnstyled multiple>
           <OptionUnstyled value={1}>One</OptionUnstyled>
         </MultiSelectUnstyled>,
       );
@@ -412,6 +413,7 @@ describe('MultiSelectUnstyled', () => {
             Update value
           </button>
           <MultiSelectUnstyled
+            multiple
             value={value}
             onChange={(_, v) => setValue(v)}
             slotProps={{
@@ -443,7 +445,7 @@ describe('MultiSelectUnstyled', () => {
   it('closes the listbox without selecting an option when focus is lost', () => {
     const { getByRole, getByTestId } = render(
       <div>
-        <MultiSelectUnstyled defaultValue={[1]}>
+        <MultiSelectUnstyled multiple defaultValue={[1]}>
           <OptionUnstyled value={1}>1</OptionUnstyled>
           <OptionUnstyled value={2}>2</OptionUnstyled>
         </MultiSelectUnstyled>
@@ -473,7 +475,7 @@ describe('MultiSelectUnstyled', () => {
 
   it('focuses the listbox after it is opened', () => {
     const { getByRole } = render(
-      <MultiSelectUnstyled>
+      <MultiSelectUnstyled multiple>
         <OptionUnstyled value={1}>1</OptionUnstyled>
       </MultiSelectUnstyled>,
     );

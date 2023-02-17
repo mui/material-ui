@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
 import {
   SelectOption,
+  SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
 } from './useSelect.types';
@@ -52,25 +53,27 @@ export interface SelectUnstyledCommonProps {
   onListboxOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
+export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends boolean>
+  extends SelectUnstyledCommonProps {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue?: TValue | null;
+  defaultValue?: SelectValue<TValue, Multiple>;
   /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,
    * so that the selected value can be posted with a form.
    */
   getSerializedValue?: (
-    option: SelectOption<TValue> | null,
+    option: SelectValue<SelectOption<TValue>, Multiple>,
   ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  multiple?: Multiple;
   /**
    * Callback fired when an option is selected.
    */
   onChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TValue | null,
+    value: SelectValue<TValue, Multiple>,
   ) => void;
   /**
    * A function used to convert the option label to a string.
@@ -83,7 +86,7 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
   /**
    * Function that customizes the rendering of the selected value.
    */
-  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+  renderValue?: (option: SelectValue<SelectOption<TValue>, Multiple>) => React.ReactNode;
   /**
    * The props used for each slot inside the Input.
    * @default {}
@@ -92,17 +95,17 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
     root?: SlotComponentProps<
       'button',
       SelectUnstyledRootSlotPropsOverrides,
-      SelectUnstyledOwnerState<TValue>
+      SelectUnstyledOwnerState<TValue, Multiple>
     >;
     listbox?: SlotComponentProps<
       'button',
       SelectUnstyledListboxSlotPropsOverrides,
-      SelectUnstyledOwnerState<TValue>
+      SelectUnstyledOwnerState<TValue, Multiple>
     >;
     popper?: SlotComponentProps<
       typeof PopperUnstyled,
       SelectUnstyledPopperSlotPropsOverrides,
-      SelectUnstyledOwnerState<TValue>
+      SelectUnstyledOwnerState<TValue, Multiple>
     >;
   };
   /**
@@ -113,78 +116,80 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
   slots?: {
     root?: React.ElementType;
     listbox?: React.ElementType;
-    popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
+    popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue, Multiple>>;
   };
   /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value?: TValue | null;
+  value?: SelectValue<TValue, Multiple>;
 }
 
 export interface SelectUnstyledTypeMap<
   TValue extends {},
+  Multiple extends boolean,
   P = {},
   D extends React.ElementType = 'button',
 > {
-  props: P & SelectUnstyledOwnProps<TValue>;
+  props: P & SelectUnstyledOwnProps<TValue, Multiple>;
   defaultComponent: D;
 }
 
 export type SelectUnstyledProps<
   TValue extends {},
-  D extends React.ElementType = SelectUnstyledTypeMap<TValue>['defaultComponent'],
-> = OverrideProps<SelectUnstyledTypeMap<TValue, {}, D>, D> & {
+  Multiple extends boolean,
+  D extends React.ElementType = SelectUnstyledTypeMap<TValue, Multiple>['defaultComponent'],
+> = OverrideProps<SelectUnstyledTypeMap<TValue, Multiple, {}, D>, D> & {
   component?: D;
 };
 
 // OverridableComponent cannot be used below as SelectUnstyled's props are generic.
 export interface SelectUnstyledType {
-  <TValue extends {}, C extends React.ElementType>(
+  <TValue extends {}, C extends React.ElementType, Multiple extends boolean = false>(
     props: {
       /**
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
       component: C;
-    } & OverrideProps<SelectUnstyledTypeMap<TValue>, C>,
+    } & OverrideProps<SelectUnstyledTypeMap<TValue, Multiple>, C>,
   ): JSX.Element | null;
-  <TValue extends {}>(
-    props: DefaultComponentProps<SelectUnstyledTypeMap<TValue>>,
+  <TValue extends {}, Multiple extends boolean = false>(
+    props: DefaultComponentProps<SelectUnstyledTypeMap<TValue, Multiple>>,
   ): JSX.Element | null;
   propTypes?: any;
 }
 
-export interface SelectUnstyledOwnerState<TValue extends {}>
-  extends SelectUnstyledOwnProps<TValue> {
+export interface SelectUnstyledOwnerState<TValue extends {}, Multiple extends boolean>
+  extends SelectUnstyledOwnProps<TValue, Multiple> {
   active: boolean;
   disabled: boolean;
   focusVisible: boolean;
   open: boolean;
 }
 
-export type SelectUnstyledRootSlotProps<TValue extends {}> = Simplify<
+export type SelectUnstyledRootSlotProps<TValue extends {}, Multiple extends boolean> = Simplify<
   UseSelectButtonSlotProps & {
     className?: string;
     children?: React.ReactNode;
-    ownerState: SelectUnstyledOwnerState<TValue>;
+    ownerState: SelectUnstyledOwnerState<TValue, Multiple>;
   }
 >;
 
-export type SelectUnstyledListboxSlotProps<TValue extends {}> = Simplify<
+export type SelectUnstyledListboxSlotProps<TValue extends {}, Multiple extends boolean> = Simplify<
   UseSelectListboxSlotProps & {
     className?: string;
     children?: React.ReactNode;
-    ownerState: SelectUnstyledOwnerState<TValue>;
+    ownerState: SelectUnstyledOwnerState<TValue, Multiple>;
   }
 >;
 
-export type SelectUnstyledPopperSlotProps<TValue extends {}> = {
+export type SelectUnstyledPopperSlotProps<TValue extends {}, Multiple extends boolean> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
   className?: string;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;
-  ownerState: SelectUnstyledOwnerState<TValue>;
+  ownerState: SelectUnstyledOwnerState<TValue, Multiple>;
   placement: PopperUnstyledProps['placement'];
 };

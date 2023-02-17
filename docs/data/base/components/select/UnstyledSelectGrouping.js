@@ -164,19 +164,6 @@ function CustomSelect(props) {
   return <SelectUnstyled {...props} slots={slots} />;
 }
 
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
   const slots = {
     root: StyledGroupRoot,

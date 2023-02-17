@@ -394,6 +394,7 @@ describe('SelectUnstyled', () => {
         <form onSubmit={handleSubmit}>
           <SelectUnstyled
             defaultValue={2}
+            multiple={false}
             name="test-select"
             getSerializedValue={customFormValueProvider}
           >

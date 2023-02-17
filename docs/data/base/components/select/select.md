@@ -1,7 +1,7 @@
 ---
 product: base
 title: Unstyled React Select components and hook
-components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
+components: SelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 hooks: useSelect
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 A select is a UI element that gives users a list of options to choose from.
 
-MUI Base offers two components to replace the native HTML `<select>` tag: Unstyled Select and Unstyled Multi-Select.
+MUI Base offers a components to replace the native HTML `<select>` tag: Unstyled Select.
 It also includes Unstyled Option for creating the options on the list, and Unstyled Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -93,14 +93,14 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 The Unstyled Multi-Select component lets your users select multiple options from the list.
 
 ```js
-import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
+import SelectUnstyled from '@mui/base/SelectUnstyled';
 ```
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
-The Select and Multi-Select components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within an Unstyled Popper.
+The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within an Unstyled Popper.
 Unstyled Option renders as an `<li>`:
 
 ```html
