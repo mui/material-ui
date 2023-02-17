@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
-import { useButton } from '../ButtonUnstyled';
+import useButton from '../useButton';
 import {
   SelectOption,
   UseSelectButtonSlotProps,
@@ -18,9 +18,9 @@ import {
   defaultListboxReducer,
   ActionTypes,
   UseListboxParameters,
-} from '../ListboxUnstyled';
+} from '../useListbox';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from './defaultOptionStringifier';
+import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
 import useSelectChangeNotifiers from './useSelectChangeNotifiers';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;

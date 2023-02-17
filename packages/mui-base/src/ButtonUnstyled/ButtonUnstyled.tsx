@@ -9,7 +9,7 @@ import {
   ButtonUnstyledTypeMap,
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
-import useButton from './useButton';
+import useButton from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 
@@ -129,48 +129,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If `true`, allows a disabled button to receive focus.
-   * @default false
-   */
-  focusableWhenDisabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  href: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
-  /**
    * The props used for each slot inside the Button.
    * @default {}
    */
@@ -185,10 +143,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
-  /**
-   * @ignore
-   */
-  to: PropTypes.string,
 } as any;
 
 export default ButtonUnstyled;

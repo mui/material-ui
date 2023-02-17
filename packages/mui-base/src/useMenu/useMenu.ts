@@ -6,7 +6,7 @@ import {
   useListbox,
   ActionTypes,
   ListboxReducerAction,
-} from '../ListboxUnstyled';
+} from '../useListbox';
 import {
   MenuItemMetadata,
   MenuItemState,
@@ -14,7 +14,7 @@ import {
   UseMenuParameters,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
-import useMenuChangeNotifiers from './useMenuChangeNotifiers';
+import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
 
 function stateReducer(
   state: ListboxState<string>,
