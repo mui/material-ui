@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
 import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import { SelectOption } from '../useSelect';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
@@ -15,6 +14,7 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
+import { SelectOption } from '../useSelect';
 
 describe('MultiSelectUnstyled', () => {
   const mount = createMount();
