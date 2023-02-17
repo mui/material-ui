@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import {
+import useListbox, {
   defaultListboxReducer,
   ListboxState,
-  useListbox,
   ActionTypes,
   ListboxReducerAction,
 } from '../useListbox';
