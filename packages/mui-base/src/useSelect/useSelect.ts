@@ -12,9 +12,8 @@ import {
   UseSelectSingleParameters,
   UseSelectSingleResult,
 } from './useSelect.types';
-import {
+import useListbox, {
   ListboxReducer,
-  useListbox,
   defaultListboxReducer,
   ActionTypes,
   UseListboxParameters,
