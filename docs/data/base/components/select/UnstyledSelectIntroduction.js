@@ -38,6 +38,40 @@ const Button = React.forwardRef(function Button(props, ref) {
   );
 });
 
+Button.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.shape({
+    active: PropTypes.bool.isRequired,
+    autoFocus: PropTypes.bool,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    defaultListboxOpen: PropTypes.bool,
+    defaultValue: PropTypes.any,
+    disabled: PropTypes.bool.isRequired,
+    focusVisible: PropTypes.bool.isRequired,
+    getSerializedValue: PropTypes.func,
+    listboxId: PropTypes.string,
+    listboxOpen: PropTypes.bool,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onListboxOpenChange: PropTypes.func,
+    open: PropTypes.bool.isRequired,
+    optionStringifier: PropTypes.func,
+    renderValue: PropTypes.func,
+    slotProps: PropTypes.shape({
+      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
+    slots: PropTypes.shape({
+      listbox: PropTypes.elementType,
+      popper: PropTypes.func,
+      root: PropTypes.elementType,
+    }),
+    value: PropTypes.any,
+  }).isRequired,
+};
+
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
