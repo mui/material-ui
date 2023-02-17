@@ -6,7 +6,7 @@ import {
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
+} from '@mui/base/useAutocomplete';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';

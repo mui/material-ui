@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useBadge } from '@mui/base/BadgeUnstyled';
+import useBadge from '@mui/base/useBadge';
 import { useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

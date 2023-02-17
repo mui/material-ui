@@ -4,7 +4,8 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
