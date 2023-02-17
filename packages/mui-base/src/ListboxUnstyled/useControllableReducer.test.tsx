@@ -29,6 +29,7 @@ describe('useControllableReducer', () => {
         disabledItemsFocusable: false,
         optionComparer: (a, b) => a === b,
         optionStringifier: (option) => option,
+        selectionLimit: null,
       };
 
       function TestComponent() {
@@ -61,6 +62,7 @@ describe('useControllableReducer', () => {
         disabledItemsFocusable: false,
         optionComparer: (a, b) => a === b,
         optionStringifier: (option) => option,
+        selectionLimit: null,
       };
 
       function TestComponent() {
@@ -102,6 +104,7 @@ describe('useControllableReducer', () => {
           optionStringifier: (option) => option,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
+          selectionLimit: null,
         };
 
         const propsRef = React.useRef(props);
@@ -141,6 +144,7 @@ describe('useControllableReducer', () => {
           optionStringifier: (option) => option,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
+          selectionLimit: null,
         };
 
         const propsRef = React.useRef(props);

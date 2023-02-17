@@ -22,6 +22,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
       const result = defaultReducer(state, action);
@@ -46,6 +47,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
 
@@ -71,6 +73,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
         option: 'two',
       };
@@ -79,7 +82,32 @@ describe('useListbox defaultReducer', () => {
       expect(result.selectedValue).to.deep.equal(['two']);
     });
 
-    it('add the clicked value to the selection if selectMultiple is set', () => {
+    it('replaces the selectedValue with the clicked value if selectionLimit = 1', () => {
+      const state: ListboxState<string> = {
+        highlightedValue: 'a',
+        selectedValue: ['one'],
+      };
+
+      const action: ListboxReducerAction<string> = {
+        type: ActionTypes.optionClick,
+        event: {} as any, // not relevant
+        props: {
+          options: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          isOptionDisabled: () => false,
+          optionComparer: (o, v) => o === v,
+          optionStringifier: (option) => option,
+          selectionLimit: 1,
+        },
+        option: 'two',
+      };
+
+      const result = defaultReducer(state, action);
+      expect(result.selectedValue).to.deep.equal(['two']);
+    });
+
+    it('add the clicked value to the selection if selectionLimit is not set', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
         selectedValue: ['one'],
@@ -95,6 +123,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
         option: 'two',
       };
@@ -103,7 +132,7 @@ describe('useListbox defaultReducer', () => {
       expect(result.selectedValue).to.deep.equal(['one', 'two']);
     });
 
-    it('remove the clicked value from the selection if selectMultiple is set and it was selected already', () => {
+    it('remove the clicked value from the selection if selectionLimit is not set and it was selected already', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'three',
         selectedValue: ['one', 'two'],
@@ -119,6 +148,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
         option: 'two',
       };
@@ -148,6 +178,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
         };
 
@@ -175,6 +206,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
         };
 
@@ -202,6 +234,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
         };
 
@@ -229,6 +262,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
         };
 
@@ -254,6 +288,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => true,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
         };
 
@@ -281,6 +316,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
         };
 
@@ -288,7 +324,33 @@ describe('useListbox defaultReducer', () => {
         expect(result.selectedValue).to.deep.equal(['two']);
       });
 
-      it('add the highlighted value to the selection if selectMultiple is set', () => {
+      it('replaces the selectedValue with the highlighted value if selectionLimit = 1', () => {
+        const state: ListboxState<string> = {
+          highlightedValue: 'two',
+          selectedValue: ['one'],
+        };
+
+        const action: ListboxReducerAction<string> = {
+          type: ActionTypes.keyDown,
+          event: {
+            key: 'Enter',
+          } as any,
+          props: {
+            options: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            isOptionDisabled: () => false,
+            optionComparer: (o, v) => o === v,
+            optionStringifier: (option) => option,
+            selectionLimit: 1,
+          },
+        };
+
+        const result = defaultReducer(state, action);
+        expect(result.selectedValue).to.deep.equal(['two']);
+      });
+
+      it('add the highlighted value to the selection if selectionLimit is not set', () => {
         const state: ListboxState<string> = {
           highlightedValue: 'two',
           selectedValue: ['one'],
@@ -306,6 +368,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            selectionLimit: null,
           },
           option: 'two',
         };
@@ -334,6 +397,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
 
@@ -358,6 +422,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
 
@@ -382,6 +447,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
 
@@ -406,6 +472,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
 
@@ -427,9 +494,10 @@ describe('useListbox defaultReducer', () => {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: true,
           disabledItemsFocusable: false,
-          isOptionDisabled: (_, i) => i === 1,
+          isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          selectionLimit: null,
         },
       };
 

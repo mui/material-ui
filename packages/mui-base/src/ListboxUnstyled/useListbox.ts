@@ -36,6 +36,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     options,
     stateReducer: externalReducer,
     value: valueParam,
+    selectionLimit = null,
   } = props;
 
   const id = useId(idProp);
@@ -56,6 +57,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       isOptionDisabled,
       optionComparer,
       optionStringifier,
+      selectionLimit,
     },
     [props],
   );

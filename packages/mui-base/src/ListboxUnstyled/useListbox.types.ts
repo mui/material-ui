@@ -5,7 +5,8 @@ type UseListboxStrictParametersRequiredKeys =
   | 'disableListWrap'
   | 'disabledItemsFocusable'
   | 'optionComparer'
-  | 'optionStringifier';
+  | 'optionStringifier'
+  | 'selectionLimit';
 
 export type UseListboxParametersWithDefaults<TOption> = Omit<
   UseListboxParameters<TOption>,
@@ -168,6 +169,11 @@ export interface UseListboxParameters<TOption> {
    * Array of options to be rendered in the list.
    */
   options: TOption[];
+  /**
+   * Maximum number of options that can be selected at once.
+   * Set to `null` to disable the limit.
+   */
+  selectionLimit?: number | null;
   /**
    * Custom state reducer function. It calculates the new state (highlighted and selected options)
    * based on the previous one and the performed action.

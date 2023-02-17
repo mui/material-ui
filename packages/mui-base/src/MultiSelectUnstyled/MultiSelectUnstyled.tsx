@@ -151,7 +151,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     getButtonProps,
     getListboxProps,
     value,
-  } = useSelect<TValue>({
+  } = useSelect({
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
