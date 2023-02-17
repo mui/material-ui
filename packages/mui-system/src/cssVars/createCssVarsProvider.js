@@ -153,6 +153,7 @@ export default function createCssVarsProvider(options) {
             theme[schemeKey] = scheme[schemeKey];
           }
         });
+        theme.vars.palette = theme.palette;
         if (theme.palette) {
           theme.palette.colorScheme = key;
         }
