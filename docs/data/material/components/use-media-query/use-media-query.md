@@ -94,9 +94,9 @@ describe('MyTests', () => {
 ## Client-side only rendering
 
 To perform the server-side hydration, the hook needs to render twice.
-A first time with `false`, the value of the server, and a second time with the resolved value.
-This double pass rendering cycle comes with a drawback. It's slower.
-You can set the `noSsr` option to `true` if you are doing **client-side only** rendering.
+A first time with `defaultMatches`, the value of the server, and a second time with the resolved value.
+This double pass rendering cycle comes with a drawback: it's slower.
+You can set the `noSsr` option to `true` if you use the returned value **only** client-side.
 
 ```js
 const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
@@ -115,6 +115,10 @@ const theme = createTheme({
   },
 });
 ```
+
+:::info
+Note that `noSsr` has no effects when using the `createRoot()` API (the client side only API introduced in React 18).
+:::
 
 ## Server-side rendering
 
@@ -201,14 +205,14 @@ You can reproduce the same behavior with a `useWidth` hook:
 
 - `options.defaultMatches` (_bool_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
-  we return a default matches during the first mount. The default value is `false`.
+  it returns a default matches during the first mount. The default value is `false`.
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. This can be used for handling an iframe content window.
 - `options.noSsr` (_bool_ [optional]): Defaults to `false`.
   To perform the server-side hydration, the hook needs to render twice.
-  A first time with `false`, the value of the server, and a second time with the resolved value.
-  This double pass rendering cycle comes with a drawback. It's slower.
-  You can set this option to `true` if you are doing **client-side only** rendering.
-- `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
+  A first time with `defaultMatches`, the value of the server, and a second time with the resolved value.
+  This double pass rendering cycle comes with a drawback: it's slower.
+  You can set this option to `true` if you use the returned value **only** client-side.
+- `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_, it's used when rendering server-side.
 
 Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
