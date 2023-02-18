@@ -340,7 +340,7 @@ export default function useAutocomplete<
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): UseAutocompleteReturnValue<T, Multiple, DisableClearable, FreeSolo>;
 
-export interface RenderedOption<T> {
+export interface UseAutocompleteRenderedOption<T> {
   option: T;
   index: number;
 }
@@ -391,7 +391,9 @@ export interface UseAutocompleteReturnValue<
    * @param renderedOption option rendered on the Autocomplete
    * @returns props that should be spread on the li element
    */
-  getOptionProps: (renderedOption: RenderedOption<T>) => React.HTMLAttributes<HTMLLIElement>;
+  getOptionProps: (
+    renderedOption: UseAutocompleteRenderedOption<T>,
+  ) => React.HTMLAttributes<HTMLLIElement>;
   /**
    * Id for the Autocomplete.
    */
