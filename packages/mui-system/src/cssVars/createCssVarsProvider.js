@@ -108,14 +108,14 @@ export default function createCssVarsProvider(options) {
     }
 
     const calculatedMode = (() => {
-      if (!mode) {
-        // This scope occurs on the server
-        if (defaultMode === 'system') {
-          return designSystemMode;
-        }
-        return defaultMode;
+      if (mode) {
+        return mode;
       }
-      return mode;
+      // This scope occurs on the server
+      if (defaultMode === 'system') {
+        return designSystemMode;
+      }
+      return defaultMode;
     })();
     const calculatedColorScheme = (() => {
       if (!colorScheme) {

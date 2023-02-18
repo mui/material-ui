@@ -50,9 +50,9 @@ describe('Joy <Box />', () => {
 
     it('get custom className', () => {
       const { container, rerender } = render(<Box />);
-      expect(container.firstChild).to.have.class('JoyBox-root');
+      expect(container.firstChild).to.have.class('MuiBox-root');
 
-      ClassNameGenerator.configure((name) => name.replace('Joy', 'Company'));
+      ClassNameGenerator.configure((name) => name.replace('Mui', 'Company'));
 
       rerender(<Box />);
 

@@ -144,7 +144,7 @@ Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate match
 For instance on the server-side:
 
 ```js
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';

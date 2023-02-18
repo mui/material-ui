@@ -49,10 +49,10 @@ function setColor(obj: any, key: string, defaultValue: any) {
   obj[key] = obj[key] || defaultValue;
 }
 
-export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
+export const createGetCssVar = (cssVarPrefix = 'md') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'md', ...input } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);

@@ -40,7 +40,6 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   ...(ownerState.fontSize &&
     ownerState.fontSize !== 'inherit' && {
       fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,

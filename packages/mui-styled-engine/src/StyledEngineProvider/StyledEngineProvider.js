@@ -5,11 +5,14 @@ import createCache from '@emotion/cache';
 
 // prepend: true moves MUI styles to the top of the <head> so they're loaded first.
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
-const cache = createCache({ key: 'css', prepend: true });
+let cache;
+if (typeof document === 'object') {
+  cache = createCache({ key: 'css', prepend: true });
+}
 
 export default function StyledEngineProvider(props) {
   const { injectFirst, children } = props;
-  return injectFirst ? <CacheProvider value={cache}>{children}</CacheProvider> : children;
+  return injectFirst && cache ? <CacheProvider value={cache}>{children}</CacheProvider> : children;
 }
 
 StyledEngineProvider.propTypes = {
