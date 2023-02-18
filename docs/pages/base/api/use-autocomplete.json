@@ -246,5 +246,5 @@
   },
   "name": "useAutocomplete",
   "filename": "/packages/mui-base/src/AutocompleteUnstyled/useAutocomplete.js",
-  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>"
+  "demos": "<ul></ul>"
 }
