@@ -38,24 +38,5 @@
     "selectOnFocus": "If <code>true</code>, the input's text is selected on focus.\nIt helps the user clear the selected value.",
     "value": "The value of the autocomplete.\n\nThe value must have reference equality with the option in order to be selected.\nYou can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
   },
-  "returnValueDescriptions": {
-    "getRootProps": "Resolver for the root slot's props.",
-    "getInputProps": "Resolver for the input element's props.",
-    "getInputLabelProps": "Resolver for the input label element's props.",
-    "getClearProps": "Resolver for the <code>clear<code> button element's props.",
-    "getPopupIndicatorProps": "Resolver for the popup icon's props.",
-    "getTagProps": "A tag props getter.",
-    "getListboxProps": "Resolver for the listbox component's props.",
-    "getOptionProps": "Resolver for the rendered option element's props.",
-    "id": "Id for the Autocomplete.",
-    "inputValue": "The input value.",
-    "value": "The value of the autocomplete.",
-    "dirty": "If <code>true<code>, the component has valid values selected.",
-    "popupOpen": "If <code>true<code>, the popup is open on the component.",
-    "focused": "If <code>true<code>, the component is focused.",
-    "anchorEl": "An HTML element that is used to set the position of the component.",
-    "setAnchorEl": "Setter for the component <code>anchorEl<code>.",
-    "focusedTag": "Index of the focused tag for the component.",
-    "groupedOptions": "The options to render. It's either <code>T[]<code> or <code>AutocompleteGroupedOption<T>[]<code> if the groupBy prop is provided."
-  }
+  "returnValueDescriptions": {}
 }
