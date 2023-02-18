@@ -9,11 +9,11 @@ import { useSpring, animated } from '@react-spring/web';
 
 const Fade = React.forwardRef(function Fade(props, ref) {
   const {
-    in: open,
     children,
+    in: open,
+    onClick,
     onEnter,
     onExited,
-    onClick,
     ownerState,
     ...other
   } = props;
