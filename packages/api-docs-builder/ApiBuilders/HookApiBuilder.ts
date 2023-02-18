@@ -474,7 +474,7 @@ const extractInfoFromInterface = (
   return result;
 };
 
-const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) => {
+export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -545,6 +545,4 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
   }
 
   return reactApi;
-};
-
-export default generateHookApi;
+}

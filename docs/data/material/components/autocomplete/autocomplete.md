@@ -2,6 +2,7 @@
 product: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
+hooks: useAutocomplete
 githubLabel: 'component: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
