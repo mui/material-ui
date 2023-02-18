@@ -338,14 +338,14 @@ export default function useAutocomplete<
   FreeSolo extends boolean | undefined = false,
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
-): UseAutoCompleteReturnValue<T, Multiple, DisableClearable, FreeSolo>;
+): UseAutocompleteReturnValue<T, Multiple, DisableClearable, FreeSolo>;
 
 export interface RenderedOption<T> {
   option: T;
   index: number;
 }
 
-export interface UseAutoCompleteReturnValue<
+export interface UseAutocompleteReturnValue<
   T,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
