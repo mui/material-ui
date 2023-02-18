@@ -926,7 +926,15 @@ Slider.propTypes /* remove-proptypes */ = {
    * If an array, it should contain objects with `value` and an optional `label` keys.
    * @default false
    */
-  marks: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  marks: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.node,
+        value: PropTypes.number.isRequired,
+      }),
+    ),
+    PropTypes.bool,
+  ]),
   /**
    * The maximum allowed value of the slider.
    * Should not be equal to min.
