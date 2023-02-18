@@ -42,6 +42,12 @@ function MyAutocomplete<
   renderInput={() => null}
 />;
 
+<Autocomplete
+  options={['1', '2', '3']}
+  ListboxProps={{ sx: { height: '10px' } }}
+  renderInput={() => null}
+/>;
+
 <MyAutocomplete
   options={['1', '2', '3']}
   onChange={(event, value) => {
