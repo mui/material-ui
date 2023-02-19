@@ -14,6 +14,7 @@ import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
+import ModalOverflowContext from '../ModalOverflow/ModalOverflowContext';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
@@ -127,6 +128,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
+  const modalOverflow = React.useContext(ModalOverflowContext);
+
   const ownerState = {
     ...props,
     color,
@@ -134,6 +137,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     layout,
     size,
     variant,
+    modalOverflow,
   };
 
   const classes = useUtilityClasses(ownerState);

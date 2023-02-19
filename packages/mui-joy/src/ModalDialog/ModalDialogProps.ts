@@ -48,4 +48,10 @@ export type ModalDialogProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalDialogTypeMap<P, D>, D>;
 
-export interface ModalDialogOwnerState extends ApplyColorInversion<ModalDialogProps> {}
+export interface ModalDialogOwnerState extends ApplyColorInversion<ModalDialogProps> {
+  /**
+   * If `true`, ModalOverflow is a parent of this modal dialog.
+   * The max-height will be removed to let the modal dialog to overflow the screen.
+   */
+  modalOverflow?: boolean;
+}
