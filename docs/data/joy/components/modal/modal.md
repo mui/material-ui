@@ -82,6 +82,22 @@ It will apply spacing to the elements that have `aria-labelledby` or `aria-descr
 
 {{"demo": "BasicModalDialog.js"}}
 
+#### Variant
+
+The `ModalDialog` supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+
+The `ModalClose`'s variant adapts automatically to have a proper contrast to the `ModalDialog`.
+
+{{"demo": "VariantModalDialog.js"}}
+
+#### Size
+
+The `ModalDialog` comes with 3 sizes, `sm`, `md` (default), and `lg`.
+
+The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog` unless it is specified in each component directly.
+
+{{"demo": "SizeModalDialog.js"}}
+
 #### Layout
 
 The `ModalDialog`'s layout can be:
@@ -126,23 +142,17 @@ declare module '@mui/joy/ModalDialog' {
 }
 ```
 
-#### Variant
+#### Vertical scroll
 
-The `ModalDialog` supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+By default, `ModalDialog` will not overflow the screen when the content's height is bigger than the viewport.
 
-The `ModalClose`'s variant adapts automatically to have a proper contrast to the `ModalDialog`.
+You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content's container.
 
-{{"demo": "VariantModalDialog.js"}}
-
-#### Size
-
-The `ModalDialog` comes with 3 sizes, `sm`, `md` (default), and `lg`.
-
-The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog` unless it is specified in each component directly.
-
-{{"demo": "SizeModalDialog.js"}}
+{{"demo": "DialogVerticalScroll.js"}}
 
 ### Modal overflow
+
+Use `ModalOverflow` component to let the `ModalDialog` overflows the viewport in vertical axis. The whole modal dialog will be scrollable when its content is larger that the viewport's height.
 
 {{"demo": "ModalDialogOverflow.js"}}
 
@@ -151,14 +161,6 @@ The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog`
 Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) that interrupts the user's workflow.
 
 {{"demo": "AlertDialogModal.js"}}
-
-### Vertical scroll
-
-By default, `ModalDialog` will not overflow the screen when the content is longer than the viewport.
-
-You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content.
-
-{{"demo": "DialogVerticalScroll.js"}}
 
 ### Nested modals
 
