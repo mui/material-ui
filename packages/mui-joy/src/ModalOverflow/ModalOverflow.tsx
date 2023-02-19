@@ -26,6 +26,7 @@ export const ModalOverflowRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalOverflowOwnerState }>({
+  '--ModalOverflow-paddingY': '1.5rem',
   position: 'absolute',
   top: 0,
   right: 0,
@@ -34,6 +35,9 @@ export const ModalOverflowRoot = styled('div', {
   height: '100%',
   overflow: 'hidden auto',
   outline: 'none',
+  display: 'flex',
+  flexDirection: 'column', // required for fullscreen ModalDialog, using `row` cannot be achieved.
+  padding: 'var(--ModalOverflow-paddingY) 0', // let's not create `size` prop to only control the `padding`.
 });
 
 const ModalOverflow = React.forwardRef(function ModalOverflow(inProps, ref) {
@@ -42,7 +46,7 @@ const ModalOverflow = React.forwardRef(function ModalOverflow(inProps, ref) {
     name: 'JoyModalOverflow',
   });
 
-  const { children, onMouseDown, ...other } = props;
+  const { children, onClick, ...other } = props;
 
   const onClose = React.useContext(CloseModalContext);
 
@@ -59,11 +63,11 @@ const ModalOverflow = React.forwardRef(function ModalOverflow(inProps, ref) {
     additionalProps: {
       role: 'presentation',
       tabIndex: -1,
-      onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
+      onClick: (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
           onClose?.(event, 'backdropClick');
         }
-        onMouseDown?.(event);
+        onClick?.(event);
       },
     },
   });
