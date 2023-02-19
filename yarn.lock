@@ -1788,21 +1788,21 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@lerna/child-process@6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@lerna/child-process/-/child-process-6.5.0.tgz#8a0d37453f2163c3a1737493d328399a53e4cc5b"
-  integrity sha512-ZuN3eivyzkaCCT4MNwHW5FuJ0Zu4kPFCnx7NXcGisca4a7Urjs3odZN1Tf9ZoYcPCf2I9DKfHj2bfnS0SHpMIg==
+"@lerna/child-process@6.5.1":
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/@lerna/child-process/-/child-process-6.5.1.tgz#da9161ba00e8d67fa7241a709703e5cc5e4a5e5e"
+  integrity sha512-QfyleXSD9slh4qM54wDaqKVPvtUH1NJMgsFc9BabqSHO1Ttpandv1EAvTCN9Lu73RbCX3LJpn+BfJmnjHbjCyw==
   dependencies:
     chalk "^4.1.0"
     execa "^5.0.0"
     strong-log-transformer "^2.1.0"
 
-"@lerna/create@6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@lerna/create/-/create-6.5.0.tgz#b8350e145968f17c4b785c50c0cba49079c192e8"
-  integrity sha512-EbYXW6W/khXDXhA15HETcU7toq2zxuqalBw9MZzHWj3sEBQsTd/un56qzIRMWUuHy8CO7FxJIdPItYI8QPop4A==
+"@lerna/create@6.5.1":
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/@lerna/create/-/create-6.5.1.tgz#326b5d26c247bfc9e2d8728aa1f69419840cec8c"
+  integrity sha512-ejERJnfA36jEuKrfM+94feLiyf2/hF2NoG923N0rE4rsmvRFPr1XLVPvAKleXW+Gdi/t1p410lJ7NKaLRMYCYw==
   dependencies:
-    "@lerna/child-process" "6.5.0"
+    "@lerna/child-process" "6.5.1"
     dedent "^0.7.0"
     fs-extra "^9.1.0"
     init-package-json "^3.0.2"
@@ -10127,13 +10127,13 @@ lazystream@^1.0.0:
   dependencies:
     readable-stream "^2.0.5"
 
-lerna@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-6.5.0.tgz#c46f179ecf88d6a55010ced0a0ccdacdf9d3fcd2"
-  integrity sha512-2GbRXeQLFf9KwxRXd+AgEEzKat4DbvVnXtSVDkpgzIzITXtYPThxqzYhhaHUhBSM9Rq7TcJ1XLbArS2qIvlazg==
+lerna@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-6.5.1.tgz#eb89698e5b2891f5681f39d980f63d0519fc464f"
+  integrity sha512-Va1bysubwWdoWZ1ncKcoTGBXNAu/10/TwELb550TTivXmEWjCCdek4eX0BNLTEYKxu3tpV2UEeqVisUiWGn4WA==
   dependencies:
-    "@lerna/child-process" "6.5.0"
-    "@lerna/create" "6.5.0"
+    "@lerna/child-process" "6.5.1"
+    "@lerna/create" "6.5.1"
     "@npmcli/arborist" "5.3.0"
     "@npmcli/run-script" "4.1.7"
     "@nrwl/devkit" ">=15.5.2 < 16"
@@ -10166,6 +10166,7 @@ lerna@^6.5.0:
     inquirer "^8.2.4"
     is-ci "2.0.0"
     is-stream "2.0.0"
+    js-yaml "^4.1.0"
     libnpmaccess "6.0.3"
     libnpmpublish "6.0.4"
     load-json-file "6.2.0"
