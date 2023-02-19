@@ -1,9 +1,18 @@
 import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
 import { useButton } from '../ButtonUnstyled';
-import { UseTabParameters, UseTabRootSlotProps } from './useTab.types';
+import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
-
-const useTab = (parameters: UseTabParameters) => {
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ *
+ * API:
+ *
+ * - [useTab API](https://mui.com/base/api/use-tab/)
+ */
+function useTab(parameters: UseTabParameters): UseTabReturnValue {
   const { value: valueProp, onChange, onClick, onFocus } = parameters;
 
   const { getRootProps: getRootPropsButton, ...otherButtonProps } = useButton(parameters);
@@ -84,6 +93,6 @@ const useTab = (parameters: UseTabParameters) => {
     ...otherButtonProps,
     selected,
   };
-};
+}
 
 export default useTab;

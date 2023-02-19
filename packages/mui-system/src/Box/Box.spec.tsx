@@ -48,7 +48,7 @@ function ComponentPropTest() {
 
 function ThemeCallbackTest() {
   <Box sx={{ background: (theme) => theme.palette.primary.main }} />;
-  <Box sx={{ ':hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
+  <Box sx={{ '&:hover': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box sx={{ '& .some-class': (theme) => ({ background: theme.palette.primary.main }) }} />;
   <Box maxWidth={(theme) => theme.breakpoints.values.sm} />;
 }

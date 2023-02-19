@@ -9,21 +9,22 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
-import { CardProps, CardTypeMap } from './CardProps';
+import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import { CardRowContext } from './CardContext';
 
-const useUtilityClasses = (ownerState: CardProps) => {
-  const { size, variant, color, row } = ownerState;
+const useUtilityClasses = (ownerState: CardOwnerState) => {
+  const { size, variant, color, orientation } = ownerState;
 
   const slots = {
     root: [
       'root',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      row && 'row',
     ],
   };
 
@@ -34,15 +35,15 @@ const CardRoot = styled('div', {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
   {
     // a context variable for any child component
     '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-borderWidth)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth)) / 2))',
+      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth))',
+    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // Link, Radio, Checkbox integration
     '--internal-action-radius': resolveSxValue(
       { theme, ownerState },
@@ -50,10 +51,10 @@ const CardRoot = styled('div', {
       'var(--Card-radius)',
     ),
     // CardCover integration
-    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
     // Divider integration
     '--Divider-inset': 'calc(-1 * var(--Card-padding))',
     ...(ownerState.size === 'sm' && {
@@ -71,17 +72,17 @@ const CardRoot = styled('div', {
     }),
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.shadow.sm,
     backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
-    // TODO: discuss the theme transition.
-    // This value is copied from mui-material Sheet.
-    transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: ownerState.row ? 'row' : 'column',
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ownerState.color !== 'context' &&
+    ownerState.invertedColors &&
+    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
 const Card = React.forwardRef(function Card(inProps, ref) {
@@ -92,28 +93,31 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
+    invertedColors = false,
     size = 'md',
     variant = 'plain',
     children,
-    row = false,
+    orientation = 'vertical',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     color,
     component,
-    row,
+    orientation,
     size,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <CardRowContext.Provider value={row}>
+  const result = (
+    <CardRowContext.Provider value={orientation === 'horizontal'}>
       <CardRoot
         as={component}
         ownerState={ownerState}
@@ -129,9 +133,9 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           if (isMuiElement(child, ['Divider'])) {
             extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const orientation = row ? 'vertical' : 'horizontal';
+            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
             extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : orientation;
+              'orientation' in child.props ? child.props.orientation : dividerOrientation;
           }
           if (index === 0) {
             extraProps['data-first-child'] = '';
@@ -144,6 +148,11 @@ const Card = React.forwardRef(function Card(inProps, ref) {
       </CardRoot>
     </CardRowContext.Provider>
   );
+
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {
@@ -174,10 +183,15 @@ Card.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, flex direction is set to 'row'.
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
    * @default false
    */
-  row: PropTypes.bool,
+  invertedColors: PropTypes.bool,
+  /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.

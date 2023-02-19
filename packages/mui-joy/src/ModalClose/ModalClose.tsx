@@ -6,15 +6,16 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { useThemeProps, styled } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
-import { ModalCloseProps, ModalCloseTypeMap } from './ModalCloseProps';
+import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
 import CloseModalContext from '../Modal/CloseModalContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolean }) => {
+const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
   const { variant, color, disabled, focusVisible, size } = ownerState;
 
   const slots = {
@@ -35,7 +36,7 @@ export const ModalCloseRoot = styled(StyledIconButton, {
   name: 'JoyModalClose',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalCloseProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--IconButton-size': '28px',
   }),
@@ -79,9 +80,10 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const closeModalContext = React.useContext(CloseModalContext);
   const modalDialogVariantColor = React.useContext(ModalDialogVariantColorContext);
-  const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
   const variant =
     inProps.variant ?? modalDialogVariantMapping[modalDialogVariantColor?.variant!] ?? variantProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, modalDialogVariantColor?.color ?? colorProp);
 
   const modalDialogSize = React.useContext(ModalDialogSizeContext);
   const size = inProps.size ?? modalDialogSize ?? sizeProp;

@@ -7,6 +7,7 @@ import { useTabsList } from '@mui/base/TabsListUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
@@ -54,14 +55,15 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     component = 'div',
     children,
     variant = 'soft',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     size: sizeProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
-  const row = orientation === 'horizontal';
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
@@ -71,7 +73,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
-    row,
     nesting: false,
   };
 
@@ -94,7 +95,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   return (
     // @ts-ignore conflicted ref types
     <TabListRoot {...tabsListRootProps}>
-      <ListProvider row={row} nested>
+      <ListProvider row={orientation === 'horizontal'} nested>
         {processedChildren}
       </ListProvider>
     </TabListRoot>

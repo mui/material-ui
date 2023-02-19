@@ -22,6 +22,10 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'header',
       testVariantProps: { hideBackdrop: true },
+      slots: {
+        root: { expectedClassName: classes.root },
+        backdrop: { expectedClassName: classes.backdrop },
+      },
       skip: [
         'classesRoot',
         'rootClass', // portal, can't determine the root
@@ -113,7 +117,7 @@ describe('<Modal />', () => {
         <Modal
           onClose={onClose}
           open
-          componentsProps={{
+          slotProps={{
             backdrop: { 'data-testid': 'backdrop' } as any,
           }}
         >
@@ -146,7 +150,7 @@ describe('<Modal />', () => {
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          componentsProps={{ backdrop: { 'data-testid': 'backdrop' } as any }}
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } as any }}
         >
           <div />
         </ModalWithDisabledBackdropClick>,

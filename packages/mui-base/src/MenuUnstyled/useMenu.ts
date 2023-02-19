@@ -2,10 +2,10 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   defaultListboxReducer,
-  ListboxAction,
   ListboxState,
   useListbox,
   ActionTypes,
+  ListboxReducerAction,
 } from '../ListboxUnstyled';
 import {
   MenuItemMetadata,
@@ -14,10 +14,11 @@ import {
   UseMenuParameters,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
+import useMenuChangeNotifiers from './useMenuChangeNotifiers';
 
 function stateReducer(
   state: ListboxState<string>,
-  action: ListboxAction<string>,
+  action: ListboxReducerAction<string>,
 ): ListboxState<string> {
   if (
     action.type === ActionTypes.blur ||
@@ -42,7 +43,16 @@ function stateReducer(
 
   return newState;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ *
+ * API:
+ *
+ * - [useMenu API](https://mui.com/base/api/use-menu/)
+ */
 export default function useMenu(parameters: UseMenuParameters = {}) {
   const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
 
@@ -67,6 +77,8 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     });
   }, []);
 
+  const { notifyHighlightChanged, registerHighlightChangeHandler } = useMenuChangeNotifiers();
+
   const {
     getOptionState,
     getOptionProps,
@@ -83,6 +95,10 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     stateReducer,
     disabledItemsFocusable: true,
   });
+
+  React.useEffect(() => {
+    notifyHighlightChanged(highlightedOption);
+  }, [highlightedOption, notifyHighlightChanged]);
 
   const highlightFirstItem = React.useCallback(() => {
     if (Object.keys(menuItems).length > 0) {
@@ -143,22 +159,33 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     };
   };
 
-  const getItemState = (id: string): MenuItemState => {
-    const { disabled, highlighted } = getOptionState(id);
-    return { disabled, highlighted };
-  };
+  const getItemState = React.useCallback(
+    (id: string): MenuItemState => {
+      const { disabled, highlighted } = getOptionState(id);
+      return { disabled, highlighted };
+    },
+    [getOptionState],
+  );
 
   React.useDebugValue({ menuItems, highlightedOption });
 
+  const contextValue = React.useMemo(
+    () => ({
+      getItemProps: getOptionProps,
+      getItemState,
+      registerHighlightChangeHandler,
+      registerItem,
+      unregisterItem,
+    }),
+    [getOptionProps, getItemState, registerHighlightChangeHandler, registerItem, unregisterItem],
+  );
+
   return {
-    registerItem,
-    unregisterItem,
-    menuItems,
+    contextValue,
     getListboxProps,
-    getItemState,
-    getItemProps: getOptionProps,
     highlightedOption,
     highlightFirstItem,
     highlightLastItem,
+    menuItems,
   };
 }

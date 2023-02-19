@@ -5,14 +5,14 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
+import { LANGUAGES_IGNORE_PAGES } from 'docs/config';
 
 /**
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/nextjs/src/Link.js
- * - /examples/nextjs-with-typescript/src/Link.tsx
+ * - /examples/material-next/src/Link.js
+ * - /examples/material-next-ts/src/Link.tsx
  */
 
 // Add support for the sx prop for consistency with the other branches.

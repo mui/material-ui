@@ -1,6 +1,6 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type ModalDialogSlot = 'root';
 
@@ -48,4 +48,4 @@ export type ModalDialogProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalDialogTypeMap<P, D>, D>;
 
-export interface ModalDialogOwnerState extends ModalDialogProps {}
+export interface ModalDialogOwnerState extends ApplyColorInversion<ModalDialogProps> {}

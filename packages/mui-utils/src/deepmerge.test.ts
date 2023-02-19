@@ -45,4 +45,19 @@ describe('deepmerge', () => {
       bar: 'test',
     });
   });
+
+  it('should deep clone source key object if target key does not exist', () => {
+    const foo = { foo: { baz: 'test' } };
+    const bar = {};
+
+    const result = deepmerge(bar, foo);
+
+    expect(result).to.deep.equal({ foo: { baz: 'test' } });
+
+    // @ts-ignore
+    result.foo.baz = 'new test';
+
+    expect(result).to.deep.equal({ foo: { baz: 'new test' } });
+    expect(foo).to.deep.equal({ foo: { baz: 'test' } });
+  });
 });

@@ -63,11 +63,6 @@
       "matchPackagePatterns": ["@mui/x-*"]
     },
     {
-      "groupName": "react-spring",
-      "matchPackageNames": ["react-spring"],
-      "allowedVersions": "< 9.0.0"
-    },
-    {
       "groupName": "React",
       "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
@@ -107,6 +102,14 @@
     {
       "matchDepTypes": ["action"],
       "pinDigests": true
+    },
+    {
+      "groupName": "GitHub Actions",
+      "matchManagers": ["github-actions"]
+    },
+    {
+      "groupName": "@definitelytyped tools",
+      "matchPackagePatterns": ["@definitelytyped/*"]
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],

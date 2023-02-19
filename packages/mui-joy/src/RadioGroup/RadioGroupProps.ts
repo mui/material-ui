@@ -45,10 +45,10 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     /**
-     * If `true`, flex direction is set to 'row'.
-     * @default false
+     * The component orientation.
+     * @default 'vertical'
      */
-    row?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component.
      * @default 'md'

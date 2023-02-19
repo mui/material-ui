@@ -2,8 +2,9 @@
 product: base
 title: Unstyled React Slider component and hook
 components: SliderUnstyled
+hooks: useSlider
 githubLabel: 'component: slider'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 ---
 
 # Unstyled Slider
@@ -13,11 +14,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 
 ## Introduction
 
-The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
+The Unstyled Slider component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSliderIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -44,7 +45,7 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 ### Anatomy
 
-The `SliderUnstyled` component is composed of a root `<span>` that houses several interior `<span>` elements:
+The Unstyled Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
 
 - rail: the full length of the slider
 - track: the section of the slider that's active
@@ -131,7 +132,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 import { useSlider } from '@mui/base/SliderUnstyled';
 ```
 
-The `useSlider` hook lets you apply the functionality of `SliderUnstyled` to a fully custom component.
+The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -174,9 +175,21 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 {{"demo": "RangeSlider.js"}}
 
+### Value label
+
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
+
+- always
+- only when hovering over the thumb (using CSS)
+- while interacting with the thumb (hovering or dragging)
+
+The following demo shows how to render the value label when the mouse is hovering over the thumb:
+
+{{"demo": "LabeledValuesSlider.js"}}
+
 ## Accessibility
 
-See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/) for complete details on accessibility best practices.
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:

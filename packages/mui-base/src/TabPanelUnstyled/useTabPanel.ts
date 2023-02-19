@@ -1,7 +1,16 @@
 import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
-import { UseTabPanelParameters } from './useTabPanel.types';
-
-const useTabPanel = (parameters: UseTabPanelParameters) => {
+import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ *
+ * API:
+ *
+ * - [useTabPanel API](https://mui.com/base/api/use-tab-panel/)
+ */
+function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
   const { value } = parameters;
 
   const context = useTabContext();
@@ -25,6 +34,6 @@ const useTabPanel = (parameters: UseTabPanelParameters) => {
     hidden,
     getRootProps,
   };
-};
+}
 
 export default useTabPanel;

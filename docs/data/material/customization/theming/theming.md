@@ -80,7 +80,7 @@ declare module '@mui/material/styles' {
 
 The community has built great tools to build a theme:
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## Accessing the theme in a component
@@ -119,7 +119,7 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 :::warning
-Note: Only the first argument (`options`) is being processed by the `createTheme` function.
+Only the first argument (`options`) is processed by the `createTheme` function.
 If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
 :::
 

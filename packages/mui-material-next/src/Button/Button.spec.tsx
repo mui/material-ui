@@ -14,11 +14,11 @@ const FakeIcon = <div>Icon</div>;
 const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
-    <Button color="inherit">Contrast</Button>
+    <Button color="secondary">Secondary</Button>
     <Button disabled>Disabled</Button>
     <Button href="#link-button">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="contained">Contained</Button>
+    <Button variant="filled">Contained</Button>
     <Button variant="outlined" aria-label="add">
       Outlined
     </Button>

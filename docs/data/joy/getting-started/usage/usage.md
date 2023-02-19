@@ -31,7 +31,7 @@ In the Quickstart example above, you can see that the Button component is nested
 This provider unlocks a whole host of customization options powered by CSS variables.
 See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
 
-:::warning
+:::error
 `<CssVarsProvider />` is _required_ when working with Joy UI components.
 :::
 

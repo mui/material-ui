@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
 import {
@@ -11,6 +10,7 @@ import {
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
+import useOption from './useOption';
 
 function useUtilityClasses(ownerState: OptionState) {
   const { disabled, highlighted, selected } = ownerState;
@@ -32,7 +32,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const {
     children,
     component,
-    disabled,
+    disabled = false,
     label,
     slotProps = {},
     slots = {},
@@ -47,51 +47,27 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const Root = component || slots.root || 'li';
 
-  const selectOption = {
-    value,
-    label: label || children,
+  const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
-  };
-
-  const optionState = selectContext.getOptionState(selectOption);
-  const optionProps = selectContext.getOptionProps(selectOption);
-  const listboxRef = selectContext.listboxRef;
+    value,
+    optionRef: ref,
+  });
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
-    ...optionState,
+    disabled,
+    highlighted,
+    index,
+    selected,
   };
-
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const handleRef = useForkRef(ref, optionRef);
-
-  React.useEffect(() => {
-    // Scroll to the currently highlighted option
-    if (optionState.highlighted) {
-      if (!listboxRef.current || !optionRef.current) {
-        return;
-      }
-      const listboxClientRect = listboxRef.current.getBoundingClientRect();
-      const optionClientRect = optionRef.current.getBoundingClientRect();
-
-      if (optionClientRect.top < listboxClientRect.top) {
-        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
-      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
-        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
-      }
-    }
-  }, [optionState.highlighted, listboxRef]);
 
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
+    getSlotProps: getRootProps,
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
-    additionalProps: {
-      ...optionProps,
-      ref: handleRef,
-    },
     className: classes.root,
     ownerState,
   });

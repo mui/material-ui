@@ -27,13 +27,11 @@ export function createFilterOptions<T>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
-export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends
-  | undefined
-  | false
-  ? DisableClearable extends true
-    ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
-    : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>
-  : Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>;
+export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends true
+  ? Array<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : DisableClearable extends true
+  ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
 
 export interface UseAutocompleteProps<
   T,
@@ -294,6 +292,13 @@ export interface UseAutocompleteProps<
   value?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
 }
 
+export interface UseAutocompleteParameters<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+> extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {}
+
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
 
 export type AutocompleteChangeReason =
@@ -320,12 +325,17 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-
+/**
+ *
+ * API:
+ *
+ * - [useAutocomplete API](https://mui.com/base/api/use-autocomplete/)
+ */
 export default function useAutocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {

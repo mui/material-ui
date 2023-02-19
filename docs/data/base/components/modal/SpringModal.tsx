@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import { Box, styled, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,

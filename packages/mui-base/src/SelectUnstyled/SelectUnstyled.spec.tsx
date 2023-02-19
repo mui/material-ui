@@ -7,7 +7,7 @@ import {
   PopperUnstyled,
 } from '@mui/base';
 
-const SelectUnstyledComponentsPropsOverridesTest = (
+const SelectUnstyledSlotPropsOverridesTest = (
   <SelectUnstyled
     slotProps={{
       root: {
@@ -59,7 +59,7 @@ function InvalidPopper({ requiredProp }: { requiredProp: string }) {
   return <div />;
 }
 
-const SelectUnstyledComponentsOverridesUsingInvalidComponentTest = (
+const SelectUnstyledSlotsOverridesUsingInvalidComponentTest = (
   <SelectUnstyled
     slots={{
       // @ts-expect-error - provided a component that requires a prop SelectUnstyled does not provide
@@ -68,7 +68,7 @@ const SelectUnstyledComponentsOverridesUsingInvalidComponentTest = (
   />
 );
 
-const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
+const SelectUnstyledSlotsOverridesUsingHostComponentTest = (
   <SelectUnstyled
     slots={{
       // @ts-expect-error - provided a host element instead of a component

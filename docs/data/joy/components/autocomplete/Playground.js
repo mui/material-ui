@@ -27,12 +27,22 @@ export default function Playground() {
     <Box>
       <Box
         sx={{
-          pt: 2,
-          pb: 1,
-          bgcolor: 'background.surface',
+          mt: 3,
+          pt: 4,
           position: 'sticky',
           top: 'var(--MuiDocs-header-height)',
           zIndex: 2,
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'rgba(62, 80, 96, 0.3)'
+              : theme.palette.neutral[100],
+
+          borderRadius: 'xs',
+          background: (theme) =>
+            theme.palette.mode === 'dark'
+              ? 'rgba(0,30,60, 0.95)'
+              : theme.palette.primary[50],
         }}
       >
         <FormControl sx={{ width: 300, mx: 'auto' }}>
@@ -43,8 +53,8 @@ export default function Playground() {
             {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
           />
         </FormControl>
-        <Divider sx={{ mt: 3, mb: 2 }} />
-        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+        <Divider sx={{ mt: 4, mb: 2 }} />
+        <Box sx={{ display: 'flex', alignItems: 'baseline', mb: 2 }}>
           <Typography
             id="flags-playground"
             level="body3"
@@ -52,6 +62,7 @@ export default function Playground() {
               textTransform: 'uppercase',
               fontWeight: 'lg',
               letterSpacing: 'md',
+              px: 2,
             }}
           >
             Flags {flags.length ? `(${flags.length})` : ''}

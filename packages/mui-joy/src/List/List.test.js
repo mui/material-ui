@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -23,6 +23,8 @@ describe('Joy <List />', () => {
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<List />, { muiName: 'JoyList', classes });
 
   it('should have root className', () => {
     const { container } = render(<List />);
@@ -50,7 +52,7 @@ describe('Joy <List />', () => {
     expect(container.firstChild).to.have.class(classes.sizeMd);
   });
 
-  it('should have nesting classes', () => {
+  it('should have `nesting` classes', () => {
     const { getByRole } = render(
       <ListItem nested>
         <List />
@@ -59,9 +61,9 @@ describe('Joy <List />', () => {
     expect(getByRole('list')).to.have.class(classes.nesting);
   });
 
-  it('should have row classes', () => {
-    const { getByRole } = render(<List row />);
-    expect(getByRole('list')).to.have.class(classes.row);
+  it('should have `orientation` classes', () => {
+    const { getByRole } = render(<List orientation="horizontal" />);
+    expect(getByRole('list')).to.have.class(classes.horizontal);
   });
 
   describe('MenuList - integration', () => {

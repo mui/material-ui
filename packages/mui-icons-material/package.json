@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.10.14",
+  "version": "5.11.9",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -39,9 +39,9 @@
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
-    "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
-    "src:icons": "cd ../../ && cross-env UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{js,ts,tsx}'",
+    "src:download": "node ./scripts/download.mjs",
+    "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && yarn build:lib:clean",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{mjs,js,ts,tsx}'",
     "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
@@ -56,7 +56,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.20.1"
+    "@babel/runtime": "^7.20.13"
   },
   "devDependencies": {
     "fs-extra": "^10.1.0",

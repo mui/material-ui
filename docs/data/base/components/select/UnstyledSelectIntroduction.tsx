@@ -39,7 +39,7 @@ const Button = React.forwardRef(function Button<TValue extends {}>(
   return (
     <button type="button" {...other} ref={ref}>
       {other.children}
-      {ownerState.open ? <UnfoldMoreRoundedIcon /> : <UnfoldMoreRoundedIcon />}
+      <UnfoldMoreRoundedIcon />
     </button>
   );
 });

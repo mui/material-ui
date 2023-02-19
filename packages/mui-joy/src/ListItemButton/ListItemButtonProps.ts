@@ -5,8 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
-import { ListItemButtonClasses } from './listItemButtonClasses';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ListItemButtonSlot = 'root';
 
@@ -38,10 +37,6 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemButtonClasses>;
-    /**
      * If `true`, the component is disabled.
      * @default false
      */
@@ -61,7 +56,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     orientation?: 'horizontal' | 'vertical';
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;
@@ -94,7 +89,7 @@ export type ListItemButtonProps<
   },
 > = OverrideProps<ListItemButtonTypeMap<P, D>, D>;
 
-export interface ListItemButtonOwnerState extends ListItemButtonProps {
+export interface ListItemButtonOwnerState extends ApplyColorInversion<ListItemButtonProps> {
   /**
    * If `true`, the element's focus is visible.
    */

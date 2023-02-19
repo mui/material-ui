@@ -40,11 +40,39 @@
     }
   },
   "name": "TablePaginationUnstyled",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": [
+      "root",
+      "toolbar",
+      "spacer",
+      "selectLabel",
+      "selectRoot",
+      "select",
+      "selectIcon",
+      "input",
+      "menuItem",
+      "displayedRows",
+      "actions"
+    ],
+    "globalClasses": {
+      "root": "MuiTablePagination-root",
+      "toolbar": "MuiTablePagination-toolbar",
+      "spacer": "MuiTablePagination-spacer",
+      "selectLabel": "MuiTablePagination-selectLabel",
+      "selectRoot": "MuiTablePagination-selectRoot",
+      "select": "MuiTablePagination-select",
+      "selectIcon": "MuiTablePagination-selectIcon",
+      "input": "MuiTablePagination-input",
+      "menuItem": "MuiTablePagination-menuItem",
+      "displayedRows": "MuiTablePagination-displayedRows",
+      "actions": "MuiTablePagination-actions"
+    },
+    "name": null
+  },
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-table-pagination/\">Unstyled table pagination</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-table-pagination/\">Unstyled Table Pagination</a></li></ul>",
   "cssComponent": false
 }

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
+import { SxConfig, SxProps, CSSObject } from '@mui/system';
 import { ThemeOptions, Theme } from './createTheme';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
@@ -34,6 +35,8 @@ export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 export interface Opacity {
   inputPlaceholder: number;
   inputUnderline: number;
+  switchTrackDisabled: number;
+  switchTrack: number;
 }
 
 export type Overlays = [
@@ -389,6 +392,18 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
+
+  // Default theme tokens
+  spacing: Theme['spacing'];
+  breakpints: Theme['breakpoints'];
+  shape: Theme['shape'];
+  typography: Theme['typography'];
+  transitions: Theme['transitions'];
+  shadows: Theme['shadows'];
+  mixins: Theme['mixins'];
+  zIndex: Theme['zIndex'];
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
 }
 
 /**

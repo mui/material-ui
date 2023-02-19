@@ -2,7 +2,7 @@
 product: joy-ui
 title: React Radio Group component
 githubLabel: 'component: radio'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 ---
 
 # Radio Group
@@ -15,9 +15,9 @@ The `Radio` component is the one to be used when you want to allow users to sele
 To allow multiple selection, use the `Checkbox` instead.
 For more in-depth about when to use each, visit [the NNg's documentation](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/).
 
-{{"demo": "RadioUsage.js", "hideToolbar": true}}
+{{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
 :::
 
@@ -90,7 +90,7 @@ You can also use it directly in the `RadioGroup` component as it will automatica
 {{"demo": "OverlayRadio.js"}}
 
 :::info
-💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
+Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
 :::
 
 ### Icon
@@ -119,7 +119,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 ```jsx
 <Radio
   value="radioA"
-  componentsProps={{
+  slotProps={{
     input: {
       'aria-label': 'Radio A',
     },
@@ -127,7 +127,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radio/) for more details.
 
 ## Common examples
 
@@ -139,7 +139,7 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 
 A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-groups) that demonstrate the composition of the components.
 
-{{"demo": "ExampleTiers.js", "bg": true}}
+{{"demo": "ExampleTiers.js"}}
 
 ### Alignment buttons
 

@@ -8,6 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
@@ -40,14 +41,15 @@ const TabRoot = styled(StyledListItemButton, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
+    ...(!ownerState.row &&
+      ownerState.orientation === 'horizontal' && {
+        justifyContent: 'flex-start',
+      }),
     ...(ownerState.selected && {
-      boxShadow: theme.vars.shadow.sm,
+      boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
       ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.body,
-        '&:hover': {
-          backgroundColor: theme.vars.palette.background.body,
-        },
+        backgroundColor: theme.vars.palette.background.surface,
       }),
     }),
   };
@@ -72,9 +74,11 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     component = 'button',
     orientation = 'horizontal',
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(tabRef, ref);

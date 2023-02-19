@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
@@ -23,7 +24,6 @@ import { StyledIconButton } from '../IconButton/IconButton';
 // default render components
 import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
-import { IconButtonOwnerState } from '../IconButton';
 import {
   StyledInputRoot,
   StyledInputHtml,
@@ -45,6 +45,7 @@ import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
 import useSlot from '../utils/useSlot';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
@@ -59,15 +60,6 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
     <List>{params.children}</List>
   </ListItem>
 );
-
-const defaultModifiers = [
-  {
-    name: 'offset',
-    options: {
-      offset: [0, 4],
-    },
-  },
-];
 
 const defaultVariantMapping = {
   plain: 'plain',
@@ -106,7 +98,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   return composeClasses(slots, getAutocompleteUtilityClass, {});
 };
 
-const AutocompleteRoot = styled(StyledInputRoot, {
+const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   name: 'JoyAutocomplete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -142,19 +134,15 @@ const AutocompleteWrapper = styled('div', {
   alignItems: 'center',
   flexWrap: 'wrap',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingInlineStart: 0,
-    paddingBlockStart:
-      'calc(var(--_Input-paddingBlock) - max(var(--Autocomplete-wrapper-gap), 0px))',
-    paddingBlockEnd: 'var(--_Input-paddingBlock)',
+    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapper-gap))',
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
         marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart:
-          'calc(-1 * min(var(--Autocomplete-wrapper-gap), var(--_Input-paddingBlock)))',
+        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'var(--Input-gap)',
+          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
         },
       }),
   },
@@ -166,7 +154,7 @@ const AutocompleteWrapper = styled('div', {
   },
 }));
 
-const AutocompleteInput = styled(StyledInputHtml, {
+const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   name: 'JoyAutocomplete',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
@@ -181,13 +169,13 @@ const AutocompleteInput = styled(StyledInputHtml, {
   }),
 }));
 
-const AutocompleteStartDecorator = styled(StyledInputStartDecorator, {
+const AutocompleteStartDecorator = styled(StyledInputStartDecorator as unknown as 'span', {
   name: 'JoyAutocomplete',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: OwnerState }>({});
 
-const AutocompleteEndDecorator = styled(StyledInputEndDecorator, {
+const AutocompleteEndDecorator = styled(StyledInputEndDecorator as unknown as 'span', {
   name: 'JoyAutocomplete',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
@@ -200,11 +188,11 @@ const AutocompleteEndDecorator = styled(StyledInputEndDecorator, {
   }),
 }));
 
-const AutocompleteClearIndicator = styled(StyledIconButton, {
+const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
-})<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(!ownerState.hasPopupIcon && {
     marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   }),
@@ -212,11 +200,11 @@ const AutocompleteClearIndicator = styled(StyledIconButton, {
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
 
-const AutocompletePopupIndicator = styled(StyledIconButton, {
+const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button', {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
   ...(ownerState.popupOpen && {
@@ -286,7 +274,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const props = useThemeProps({
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyAutocomplete',
   });
@@ -344,10 +332,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   } = props;
   const other = excludeUseAutocompleteParams(otherProps);
 
+  const { getColor } = useColorInversion(variant);
   const formControl = React.useContext(FormControlContext);
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
   const disabled = disabledProp ?? formControl?.disabled ?? false;
 
   const {
@@ -416,7 +405,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             key={index}
             size={size}
             variant="soft"
-            color="neutral"
+            color={color === 'context' ? undefined : 'neutral'}
             endDecorator={<ChipDelete {...getCustomizedTagProps({ index })} />}
           >
             {getOptionLabel(option)}
@@ -484,7 +473,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       name,
       readOnly,
       disabled,
-      required,
+      required: required ?? formControl?.required,
       type,
       'aria-invalid': error || undefined,
       'aria-label': ariaLabel,
@@ -539,6 +528,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disabled,
       'aria-label': popupOpen ? closeText : openText,
       title: popupOpen ? closeText : openText,
+      type: 'button',
     },
   });
 
@@ -551,12 +541,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
       variant: mergedProps.variant || 'outlined',
-      color: mergedProps.variant || 'neutral',
+      color: mergedProps.color || 'neutral',
+      disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
       anchorEl,
       open: popupOpen,
-      modifiers: defaultModifiers,
       style: anchorEl
         ? {
             width: anchorEl.clientWidth,
@@ -616,6 +606,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getSlotOwnerState: (mergedProps) => ({
       variant: mergedProps.variant || 'plain',
       color: mergedProps.color || 'neutral',
+      disableColorInversion: !listboxProps.disablePortal,
     }),
     additionalProps: {
       as: 'li',
@@ -639,6 +630,60 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(listboxProps.modifiers || []),
+    ],
+    [listboxProps.modifiers],
+  );
+
+  let popup = null;
+  if (anchorEl) {
+    popup = (
+      <ListProvider nested>
+        <SlotListbox
+          {...listboxProps}
+          className={clsx(
+            listboxProps.className,
+            listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
+          )}
+          modifiers={modifiers}
+        >
+          {groupedOptions.map((option, index) => {
+            if (groupBy) {
+              const typedOption = option as AutocompleteGroupedOption;
+              return renderGroup({
+                key: String(typedOption.key),
+                group: typedOption.group,
+                children: typedOption.options.map((option2, index2) =>
+                  renderListOption(option2, typedOption.index + index2),
+                ),
+              });
+            }
+            return renderListOption(option, index);
+          })}
+          {loading && groupedOptions.length === 0 ? (
+            <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
+          ) : null}
+          {groupedOptions.length === 0 && !freeSolo && !loading ? (
+            <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
+          ) : null}
+        </SlotListbox>
+      </ListProvider>
+    );
+
+    if (!listboxProps.disablePortal) {
+      // For portal popup, the children should not inherit color inversion from the upper parent.
+      popup = <ColorInversion.Provider value={undefined}>{popup}</ColorInversion.Provider>;
+    }
+  }
+
   return (
     <React.Fragment>
       <SlotRoot {...rootProps}>
@@ -658,32 +703,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           <SlotPopupIndicator {...popupIndicatorProps}>{popupIcon}</SlotPopupIndicator>
         ) : null}
       </SlotRoot>
-      {anchorEl ? (
-        // `nested` is for grouped options use case.
-        <ListProvider nested>
-          <SlotListbox {...listboxProps}>
-            {groupedOptions.map((option, index) => {
-              if (groupBy) {
-                const typedOption = option as AutocompleteGroupedOption;
-                return renderGroup({
-                  key: String(typedOption.key),
-                  group: typedOption.group,
-                  children: typedOption.options.map((option2, index2) =>
-                    renderListOption(option2, typedOption.index + index2),
-                  ),
-                });
-              }
-              return renderListOption(option, index);
-            })}
-            {loading && groupedOptions.length === 0 ? (
-              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
-            ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
-            ) : null}
-          </SlotListbox>
-        </ListProvider>
-      ) : null}
+      {popup}
     </React.Fragment>
   );
 }) as AutocompleteComponent;
@@ -748,41 +768,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-  /**
-   * Replace the default slots.
-   */
-  components: PropTypes.shape({
-    clearIndicator: PropTypes.elementType,
-    endDecorator: PropTypes.elementType,
-    input: PropTypes.elementType,
-    limitTag: PropTypes.elementType,
-    listbox: PropTypes.elementType,
-    loading: PropTypes.elementType,
-    noOptions: PropTypes.elementType,
-    option: PropTypes.elementType,
-    popupIndicator: PropTypes.elementType,
-    root: PropTypes.elementType,
-    startDecorator: PropTypes.elementType,
-    wrapper: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    limitTag: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
@@ -992,7 +977,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   popupIcon: PropTypes.node,
   /**
-   * If `true`, the component becomes read-only. It is also supported in multiple tags where the tag cannot be deleted.
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
    * @default false
    */
   readOnly: PropTypes.bool,

@@ -18,19 +18,11 @@ As of Q4 2022, compatibility is at 90%.
 Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
 :::
 
-## Usage
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import AspectRatio from '@mui/joy/AspectRatio';
-
-export default function MyApp() {
-  return <AspectRatio />;
-}
 ```
-
-## Basics
 
 The Aspect Ratio component wraps around the content that it resizes.
 The element to be resized must be the first direct child.
@@ -38,55 +30,18 @@ The default ratio is `16/9`.
 
 {{"demo": "BasicRatio.js"}}
 
-## Anatomy
-
-The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
-
-```html
-<div class="JoyAspectRatio-root">
-  <div class="JoyAspectRatio-content">
-    <some-element data-first-child>
-      This is how an Aspect Ratio component renders in the DOM.
-    </some-element>
-  </div>
-</div>
-```
-
-### Overriding the root slot
-
-Use the `component` prop to override the root slot with a custom element.
-For example, the following code snippet replaces the default `<div>` with a `<section>`:
-
-```jsx
-<AspectRatio component="section" />
-```
-
-### Overriding interior slots
-
-Use the `components` prop to override any interior slots in addition to the root:
-
-<AspectRatio components={{ Content: 'article' }} />
-
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
-
-Use the `componentsProps` prop to pass custom props to internal slots.
-The following code snippet applies a CSS class called `my-content` to the content slot:
-
-<AspectRatio componentsProps={{ content: { className: 'my-content' } }} />
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (root) while `components` slot names are capitalized (Root).
-:::
-
 ## Customization
 
 ### Variants
 
-The Aspect Ratio component supports the four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "VariantsRatio.js"}}
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
 
 ### Ratio
 
@@ -120,13 +75,13 @@ This is useful when the Aspect Ratio component wraps dynamic-width content, as s
 
 {{"demo": "MinMaxRatio.js"}}
 
-### Usage inside a flex row
+## Usage inside a flex row
 
 When the Aspect Ratio component is a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the content:
 
 {{"demo": "FlexRowRatio.js"}}
 
-### Usage with Next.js Image component
+## Usage with Next.js Image
 
 The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
 The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
@@ -150,7 +105,7 @@ function App() {
 
 ### Mobile carousel
 
-:::info
+:::warning
 In designs like this, make sure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
 :::
 
@@ -161,3 +116,17 @@ In designs like this, make sure to assign a `minWidth` value to prevent the Aspe
 This is a simple illustration of how to use Aspect Ratio with list components:
 
 {{"demo": "ListStackRatio.js"}}
+
+## Anatomy
+
+The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
+
+```html
+<div class="MuiAspectRatio-root">
+  <div class="MuiAspectRatio-content">
+    <some-element data-first-child>
+      <!-- Aspect Ratio contents -->
+    </some-element>
+  </div>
+</div>
+```

@@ -95,6 +95,17 @@ describe('<FormControl />', () => {
 
       expect(getByRole('textbox')).to.have.attribute('disabled');
     });
+
+    it('should inherit required from FormControl', () => {
+      const { getByRole } = render(
+        <FormControl required>
+          <FormLabel>label</FormLabel>
+          <Input />
+        </FormControl>,
+      );
+
+      expect(getByRole('textbox')).to.have.attribute('required');
+    });
   });
 
   describe('Textarea', () => {
@@ -139,6 +150,17 @@ describe('<FormControl />', () => {
 
       expect(getByLabelText('label')).to.have.attribute('disabled');
     });
+
+    it('should inherit required from FormControl', () => {
+      const { getByRole } = render(
+        <FormControl required>
+          <FormLabel>label</FormLabel>
+          <Textarea minRows={2} />
+        </FormControl>,
+      );
+
+      expect(getByRole('textbox', { name: 'label' })).to.have.attribute('required');
+    });
   });
 
   describe('Select', () => {
@@ -162,7 +184,7 @@ describe('<FormControl />', () => {
       );
 
       const label = container.querySelector('label');
-      expect(getByRole('button')).to.have.attribute('aria-labelledby', label?.id);
+      expect(getByRole('combobox')).to.have.attribute('aria-labelledby', label?.id);
     });
 
     it('should inherit color prop from FormControl', () => {
@@ -241,6 +263,16 @@ describe('<FormControl />', () => {
 
       expect(getByTestId('checkbox')).to.have.class(checkboxClasses.disabled);
       expect(getByLabelText('label')).to.have.attribute('disabled');
+    });
+
+    it('should inherit required from FormControl', () => {
+      const { getByLabelText } = render(
+        <FormControl required>
+          <Checkbox label="label" data-testid="checkbox" />
+        </FormControl>,
+      );
+
+      expect(getByLabelText('label')).to.have.attribute('required');
     });
   });
 
@@ -328,6 +360,16 @@ describe('<FormControl />', () => {
       expect(getByTestId('radio')).to.have.class(radioClasses.disabled);
       expect(getByLabelText('label')).to.have.attribute('disabled');
     });
+
+    it('should inherit required from FormControl', () => {
+      const { getByLabelText } = render(
+        <FormControl required>
+          <Radio label="label" data-testid="radio" />
+        </FormControl>,
+      );
+
+      expect(getByLabelText('label')).to.have.attribute('required');
+    });
   });
 
   describe('Switch', () => {
@@ -411,6 +453,17 @@ describe('<FormControl />', () => {
     });
 
     it('should inherit disabled from FormControl', () => {
+      const { getByRole } = render(
+        <FormControl disabled>
+          <FormLabel>label</FormLabel>
+          <Autocomplete options={[]} />
+        </FormControl>,
+      );
+
+      expect(getByRole('combobox')).to.have.attribute('disabled');
+    });
+
+    it('should inherit required from FormControl', () => {
       const { getByRole } = render(
         <FormControl disabled>
           <FormLabel>label</FormLabel>

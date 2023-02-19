@@ -17,10 +17,16 @@ describe('<StepLabel />', () => {
     render,
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { error: true },
+    testLegacyComponentsProp: true,
     slots: {
       label: { expectedClassName: classes.label },
     },
-    skip: ['componentProp', 'componentsProp', 'slotsProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('label content', () => {

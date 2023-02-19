@@ -8,6 +8,7 @@ import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { getInitColorSchemeScript as getMuiInitColorSchemeScript } from '@mui/material/styles';
+import { getInitColorSchemeScript as getJoyInitColorSchemeScript } from '@mui/joy/styles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -145,7 +146,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {getMuiInitColorSchemeScript()}
+          {getMuiInitColorSchemeScript({ defaultMode: 'system' })}
+          {getJoyInitColorSchemeScript({ defaultMode: 'system' })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger

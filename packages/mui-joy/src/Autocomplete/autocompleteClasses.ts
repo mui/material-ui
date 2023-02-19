@@ -53,6 +53,8 @@ export interface AutocompleteClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -72,10 +74,10 @@ export interface AutocompleteClasses {
 export type AutocompleteClassKey = keyof AutocompleteClasses;
 
 export function getAutocompleteUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyAutocomplete', slot);
+  return generateUtilityClass('MuiAutocomplete', slot);
 }
 
-const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAutocomplete', [
+const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAutocomplete', [
   'root',
   'wrapper',
   'input',
@@ -102,6 +104,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAuto
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

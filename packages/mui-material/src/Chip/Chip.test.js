@@ -174,6 +174,29 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.filledPrimary);
     });
 
+    it('should not be focused when a deletable chip is disabled and skipFocusWhenDisabled is true', () => {
+      const { getByTestId } = render(
+        <Chip
+          label="My Chip"
+          disabled
+          data-testid="chip"
+          skipFocusWhenDisabled
+          onDelete={() => {}}
+        />,
+      );
+
+      const chip = getByTestId('chip');
+
+      simulatePointerDevice();
+      act(() => {
+        fireEvent.keyDown(document.body, { key: 'Tab' });
+      });
+
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.property('tabIndex', -1);
+      expect(chip).not.to.have.class(classes.focusVisible);
+    });
+
     it('should render with the root and filled clickable secondary class', () => {
       const { getByRole } = render(
         <Chip color="secondary" label="My Chip" onClick={() => {}} variant="filled" />,
@@ -424,10 +447,7 @@ describe('<Chip />', () => {
 
     it('should unfocus when a esc key is pressed', () => {
       const handleBlur = spy();
-      const handleKeydown = spy();
-      const { getByRole } = render(
-        <Chip onBlur={handleBlur} onClick={() => {}} onKeyDown={handleKeydown} />,
-      );
+      const { getByRole } = render(<Chip onBlur={handleBlur} onClick={() => {}} />);
       const chip = getByRole('button');
       act(() => {
         chip.focus();

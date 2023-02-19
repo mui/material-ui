@@ -2,23 +2,24 @@
 product: base
 title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
+hooks: useMenu, useMenuItem
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
 
 # Unstyled Menu
 
-<p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
+<p class="description">The Menu components provide your users with a list of options on temporary surfaces.</p>
 
 ## Introduction
 
-The `MenuUnstyled` component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
+The Unstyled Menu component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
 It renders an unordered list (`<ul>`) by default.
 
-Use `MenuItemUnstyled` to add items to the menu.
+Use the Unstyled Menu Item to add items to the menu.
 These are rendered as `<li>` elements.
 
-{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -44,18 +45,18 @@ export default function MyApp() {
 
 ### Basics
 
-`MenuUnstyled` serves as a replacement for the native HTML `<ul>`, and `MenuItemUnstyled` corresponds to the `<li>` tag.
+The Unstyled Menu serves as a replacement for the native HTML `<ul>`, and the Unstyled Menu Item corresponds to the `<li>` tag.
 
-The following demo shows how to create and style a menu component.
-Click **Dashboard** to view the menu—notice that it uses the built-in [`PopperUnstyled`](/base/react-popper/) component to visually break out of its parent container:
+The following demo shows how to create and style a Menu component.
+Click **Dashboard** to view the menu—notice that it uses the built-in [Unstyled Popper](/base/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 
 ### Anatomy
 
-The `MenuUnstyled` component is composed of a root slot that renders a `PopperUnstyled` `<div>` by default.
+The Unstyled Menu component is composed of a root slot that renders an Unstyled Popper `<div>` by default.
 It contains one interior listbox `<ul>` slot.
-`MenuItemUnstyled` has a single root `<li>` slot.
+The Unstyled Menu Item has a single root `<li>` slot.
 
 ```html
 <div class="MuiMenuUnstyled-root">
@@ -97,11 +98,11 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 ### CSS classes
 
-`MenuUnstyled` can set the following class:
+Unstyled Menu can set the following class:
 
 - `Mui-expanded` - set when the menu is open; this class is set on both Root and Popper slots
 
-`MenuItemUnstyled` can set the following classes:
+Unstyled Menu Item can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
 - `Mui-focusVisible` - set when the MenuItem is highlighted via keyboard navigation.
@@ -114,7 +115,7 @@ import { useMenu } from '@mui/base/MenuUnstyled';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 ```
 
-The `useMenu` and `useMenuItem` hooks let you apply the functionality of the menu components to fully custom components.
+The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu components to fully custom components.
 They return props to be placed on the custom components, along with fields representing the components' internal states.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -130,16 +131,16 @@ The following demo shows how to build a menu using hooks:
 
 {{"demo": "UseMenu.js"}}
 
-Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create a `MenuUnstyled` component that contains menu items built with the `useMenuItem` hook.
+Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create an Unstyled Menu component that contains menu items built with the `useMenuItem` hook.
 
 ## Customization
 
 ### Wrapping MenuItems
 
-`MenuItemUnstyled` components don't have to be direct children of a `MenuUnstyled` component.
+Unstyled Menu Item components don't have to be direct children of a Unstyled Menu component.
 You can wrap them in any component needed to achieve the desired appearance.
 
-In addition to `MenuItemUnstyled` components, the `MenuUnstyled` component can also contain non-interactive children, such as helper text.
+In addition to Unstyled Menu Item components, the Unstyled Menu component can also contain non-interactive children, such as helper text.
 
 The following demo shows an example of a menu with items grouped under non-interactive headers, along with helper text that displays the **Current zoom level**:
 

@@ -41,7 +41,7 @@ export default function useForwardedInput<Output>(
     onClick,
     onChange,
     onFocus,
-    required,
+    required: required ?? formControl?.required,
     value,
   });
 

@@ -111,6 +111,19 @@ describe('<Menu />', () => {
 
       expect(screen.getByTestId('paper')).to.have.class('bar');
     });
+
+    it('should be able to change the Popover root element style when Menu classes prop is also provided', () => {
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          data-testid="popover"
+          classes={{ paper: 'bar' }}
+          PopoverClasses={{ root: 'foo' }}
+        />,
+      );
+      expect(screen.getByTestId('popover')).to.have.class('foo');
+    });
   });
 
   it('should pass onClose prop to Popover', () => {

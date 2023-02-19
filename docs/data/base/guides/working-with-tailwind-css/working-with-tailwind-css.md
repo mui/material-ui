@@ -22,7 +22,7 @@ Here's what it will look like in the end:
 {{"demo": "PlayerFinal.js", "hideToolbar": true, "bg": true}}
 
 :::info
-💡 All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
+All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
 :::
 
 ## Setting up the project
@@ -243,7 +243,7 @@ You should now see the player rendered on the page, but the component is not yet
 
 ### Create the Slider component
 
-Let's start by giving life to the slider with the `SliderUnstyled` component from MUI Base.
+Let's start by giving life to the slider with the Unstyled Slider component from MUI Base.
 First, create a new file called `Slider.tsx`.
 Copy and paste the code below into the file:
 
@@ -375,7 +375,7 @@ This is useful if you want to style the component based on some internal state.
 ## Adding a custom focus selector to the buttons
 
 To finish this guide off, let's see how you can add custom styles based on a component's internal state.
-We'll create a custom `Button` component that uses the `focusVisible` state from the MUI Base `ButtonUnstyled` to apply a cyan ring around it.
+We'll create a custom Button component that uses the `focusVisible` state from the MUI Base Unstyled Button to apply a cyan ring around it.
 
 This is what it'll look like:
 
@@ -503,4 +503,4 @@ These are the things we covered in this guide:
 We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `slotProps` prop.
 
-Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css) example project.
+Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/base-cra-tailwind-ts) example project.

@@ -10,19 +10,19 @@ import {
   unstable_useId as useId,
 } from '@mui/utils';
 import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
-import { WithCommonProps } from '@mui/base/utils/mergeSlotProps';
-import { MUIStyledCommonProps } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
-import {
-  TooltipComponentsPropsOverrides,
-  TooltipProps,
-  TooltipOwnerState,
-  TooltipTypeMap,
-} from './TooltipProps';
+import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
+
+// Create a function to prevent typescript-to-proptypes from generating `slots` and `slotProps` proptypes.
+const excludeSlotsAndSlotProps = <T extends { slots?: any; slotProps?: any }>(props: T) => {
+  const { slots, slotProps, ...otherProps } = props;
+  return otherProps;
+};
 
 const useUtilityClasses = (ownerState: TooltipOwnerState) => {
   const { arrow, variant, color, size, placement, touch } = ownerState;
@@ -71,7 +71,7 @@ const TooltipRoot = styled('div', {
     zIndex: 1500,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.shadow.sm,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
     lineHeight: theme.vars.lineHeight.sm,
@@ -148,7 +148,7 @@ const TooltipArrow = styled('span', {
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRightColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       borderRadius: `0px 2px 0px 0px`,
-      boxShadow: `var(--variant-borderWidth) calc(-1 * var(--variant-borderWidth)) 0px 0px ${variantStyle.borderColor}`,
+      boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
       transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
     },
@@ -172,6 +172,7 @@ const TooltipArrow = styled('span', {
 
 let hystersisOpen = false;
 let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
+let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
@@ -214,8 +215,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     children,
     className,
     arrow = false,
-    components = {},
-    componentsProps = {},
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
@@ -231,13 +230,19 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onClose,
     onOpen,
     open: openProp,
+    disablePortal,
+    direction,
+    keepMounted,
+    modifiers: modifiersProp,
     placement = 'bottom',
     title,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const [childNode, setChildNode] = React.useState<HTMLElement>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
@@ -459,7 +464,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     open = false;
   }
 
-  const positionRef = React.useRef({ x: 0, y: 0 });
   const popperRef = React.useRef(null);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
@@ -468,7 +472,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onMouseMove(event);
     }
 
-    positionRef.current = { x: event.clientX, y: event.clientY };
+    cursorPosition = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current) {
       (popperRef.current as { update: () => void }).update();
@@ -492,7 +496,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const childrenProps = {
     ...nameOrDescProps,
-    ...other,
+    ...excludeSlotsAndSlotProps(other),
     ...children.props,
     className: clsx(className, children.props.className),
     onTouchStart: detectTouchStart,
@@ -539,8 +543,63 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
-  const popperOptions = React.useMemo(() => {
-    const tooltipModifiers = [
+  const ownerState = {
+    ...props,
+    arrow,
+    disableInteractive,
+    placement,
+    touch: ignoreNonTouchEvents.current,
+    color,
+    variant,
+    size,
+  };
+
+  const classes = useUtilityClasses(ownerState);
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      id,
+      popperRef,
+      placement,
+      anchorEl: followCursor
+        ? {
+            getBoundingClientRect: () =>
+              ({
+                top: cursorPosition.y,
+                left: cursorPosition.x,
+                right: cursorPosition.x,
+                bottom: cursorPosition.y,
+                width: 0,
+                height: 0,
+              } as DOMRect),
+          }
+        : childNode,
+      open: childNode ? open : false,
+      disablePortal,
+      keepMounted,
+      direction,
+      ...interactiveWrapperListeners,
+    },
+    ref: null,
+    className: classes.root,
+    elementType: PopperUnstyled,
+    externalForwardedProps: other,
+    ownerState,
+    internalForwardedProps: {
+      component: TooltipRoot,
+    },
+  });
+
+  const [SlotArrow, arrowProps] = useSlot('arrow', {
+    ref: setArrowRef,
+    className: classes.arrow,
+    elementType: TooltipArrow,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const modifiers = React.useMemo(
+    () => [
       {
         name: 'arrow',
         enabled: Boolean(arrowRef),
@@ -557,84 +616,27 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           offset: [0, 10],
         },
       },
-    ];
+      ...(rootProps.modifiers || []),
+    ],
+    [arrowRef, rootProps.modifiers],
+  );
 
-    return {
-      modifiers: tooltipModifiers,
-    };
-  }, [arrowRef]);
-
-  const ownerState = {
-    ...props,
-    arrow,
-    disableInteractive,
-    placement,
-    touch: ignoreNonTouchEvents.current,
-    color,
-    variant,
-    size,
-  };
-
-  const classes = useUtilityClasses(ownerState);
-
-  const RootComponent = components.Root ?? TooltipRoot;
-  const ArrowComponent = components.Arrow ?? TooltipArrow;
-
-  const rootProps = useSlotProps({
-    elementType: RootComponent,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    className: clsx(classes.root, componentsProps.root?.className),
-  });
-
-  const tooltipArrowProps = useSlotProps({
-    elementType: ArrowComponent,
-    externalSlotProps: componentsProps.arrow as WithCommonProps<
-      React.HTMLProps<HTMLSpanElement> & MUIStyledCommonProps & TooltipComponentsPropsOverrides
-    >,
-    ownerState,
-    className: clsx(classes.arrow, componentsProps.arrow?.className),
-  });
+  const result = (
+    <SlotRoot {...rootProps} modifiers={modifiers}>
+      {title}
+      {arrow ? <SlotArrow {...arrowProps} /> : null}
+    </SlotRoot>
+  );
 
   return (
     <React.Fragment>
       {React.isValidElement(children) && React.cloneElement(children, childrenProps)}
-      <PopperUnstyled
-        component={RootComponent}
-        placement={placement}
-        anchorEl={
-          followCursor
-            ? {
-                getBoundingClientRect: () =>
-                  ({
-                    top: positionRef.current.y,
-                    left: positionRef.current.x,
-                    right: positionRef.current.x,
-                    bottom: positionRef.current.y,
-                    width: 0,
-                    height: 0,
-                  } as DOMRect),
-              }
-            : childNode
-        }
-        popperRef={popperRef}
-        open={childNode ? open : false}
-        id={id}
-        {...interactiveWrapperListeners}
-        {...rootProps}
-        popperOptions={popperOptions}
-        ownerState={ownerState}
-      >
-        {title}
-        {arrow ? (
-          <TooltipArrow
-            {...tooltipArrowProps}
-            className={clsx(classes.arrow, componentsProps.arrow?.className)}
-            ref={setArrowRef}
-            ownerState={ownerState}
-          />
-        ) : null}
-      </PopperUnstyled>
+      {disablePortal ? (
+        result
+      ) : (
+        // For portal popup, the children should not inherit color inversion from the upper parent.
+        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
+      )}
     </React.Fragment>
   );
 }) as OverridableComponent<TooltipTypeMap>;
@@ -661,34 +663,18 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
-  /**
-   * The components used for each slot inside the Tooltip.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Arrow: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.root` prop values win over `RootProps` if both are applied.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    arrow: PropTypes.object,
-    root: PropTypes.object,
-  }),
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
    * @default false
    */
   describeChild: PropTypes.bool,
+  /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
   /**
    * Do not respond to focus-visible events.
    * @default false
@@ -705,6 +691,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableInteractive: PropTypes.bool,
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: PropTypes.bool,
   /**
    * Do not respond to long press touch events.
    * @default false
@@ -737,6 +728,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
+  /**
    * The number of milliseconds to wait before hiding the tooltip.
    * This prop won't impact the leave touch delay (`leaveTouchDelay`).
    * @default 0
@@ -747,6 +745,38 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 1500
    */
   leaveTouchDelay: PropTypes.number,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
   /**
    * Callback fired when the component requests to be closed.
    *
@@ -785,10 +815,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['lg', 'md', 'sm']),
-    PropTypes.string,
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -805,10 +832,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'soft'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Tooltip;

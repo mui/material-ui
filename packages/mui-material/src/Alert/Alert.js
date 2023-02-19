@@ -61,10 +61,7 @@ const AlertRoot = styled(Paper, {
         [`& .${alertClasses.icon}`]: theme.vars
           ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
           : {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].main
-                  : theme.palette[color].light,
+              color: theme.palette[color].main,
             },
       }),
     ...(color &&
@@ -76,10 +73,7 @@ const AlertRoot = styled(Paper, {
         [`& .${alertClasses.icon}`]: theme.vars
           ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
           : {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].main
-                  : theme.palette[color].light,
+              color: theme.palette[color].main,
             },
       }),
     ...(color &&
@@ -95,11 +89,7 @@ const AlertRoot = styled(Paper, {
                 theme.palette.mode === 'dark'
                   ? theme.palette[color].dark
                   : theme.palette[color].main,
-              color: theme.palette.getContrastText(
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].dark
-                  : theme.palette[color].main,
-              ),
+              color: theme.palette.getContrastText(theme.palette[color].main),
             }),
       }),
   };

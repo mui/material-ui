@@ -20,32 +20,25 @@ export default function AlertDialogModal() {
       >
         Discard
       </Button>
-      <Modal
-        aria-labelledby="alert-dialog-modal-title"
-        aria-describedby="alert-dialog-modal-description"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <ModalDialog variant="outlined" role="alertdialog">
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <ModalDialog
+          variant="outlined"
+          role="alertdialog"
+          aria-labelledby="alert-dialog-modal-title"
+          aria-describedby="alert-dialog-modal-description"
+        >
           <Typography
             id="alert-dialog-modal-title"
             component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
             startDecorator={<WarningRoundedIcon />}
           >
             Confirmation
           </Typography>
-          <Divider sx={{ my: 2 }} />
-          <Typography
-            id="alert-dialog-modal-description"
-            textColor="text.tertiary"
-            mb={3}
-          >
+          <Divider />
+          <Typography id="alert-dialog-modal-description" textColor="text.tertiary">
             Are you sure you want to discard all of your notes?
           </Typography>
-          <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+          <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end', pt: 2 }}>
             <Button variant="plain" color="neutral" onClick={() => setOpen(false)}>
               Cancel
             </Button>

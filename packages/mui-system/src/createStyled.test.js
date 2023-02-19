@@ -4,7 +4,6 @@ import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
-import sx from './sx';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
@@ -294,12 +293,13 @@ describe('createStyled', () => {
         components: {
           MuiButton: {
             styleOverrides: {
-              root: sx({
-                pt: 10,
-              }),
-              icon: ({ ownerState }) => [
+              root: ({ theme }) =>
+                theme.unstable_sx({
+                  pt: 10,
+                }),
+              icon: ({ ownerState, theme }) => [
                 ownerState.color === 'primary' &&
-                  sx({
+                  theme.unstable_sx({
                     mr: 10,
                   }),
               ],

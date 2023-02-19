@@ -21,6 +21,8 @@ export interface MenuListClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Classname applied to the root element if `variant="outlined"`. */
@@ -34,10 +36,10 @@ export interface MenuListClasses {
 export type MenuListClassKey = keyof MenuListClasses;
 
 export function getMenuListUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenuList', slot);
+  return generateUtilityClass('MuiMenuList', slot);
 }
 
-const menuClasses: MenuListClasses = generateUtilityClasses('JoyMenuList', [
+const menuClasses: MenuListClasses = generateUtilityClasses('MuiMenuList', [
   'root',
   'nested',
   'sizeSm',
@@ -49,6 +51,7 @@ const menuClasses: MenuListClasses = generateUtilityClasses('JoyMenuList', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

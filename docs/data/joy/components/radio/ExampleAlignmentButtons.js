@@ -11,7 +11,7 @@ export default function ExampleAlignmentButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
     <RadioGroup
-      row
+      orientation="horizontal"
       aria-label="Alignment"
       name="alignment"
       variant="outlined"
@@ -55,7 +55,7 @@ export default function ExampleAlignmentButtons() {
               }[item]
             }
             variant={alignment === item ? 'solid' : 'plain'}
-            componentsProps={{
+            slotProps={{
               input: { 'aria-label': item },
               action: {
                 sx: { borderRadius: 0, transition: 'none' },

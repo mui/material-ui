@@ -167,8 +167,27 @@ module.exports = {
       ...baseStyleRules['no-restricted-syntax'],
       {
         message:
-          "Do not import default from React. Use a namespace import (import * as React from 'react';) instead.",
-        selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+          "Do not import default or named exports from React. Use a namespace import (import * as React from 'react';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react"] ImportDefaultSpecifier, ImportDeclaration[source.value="react"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom/client';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom/client"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/client"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOMServer. Use a namespace import (import * as ReactDOM from 'react-dom/server';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom/server"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/server"] ImportSpecifier',
       },
     ],
 
@@ -185,6 +204,7 @@ module.exports = {
     {
       files: [
         // matching the pattern of the test runner
+        '*.test.mjs',
         '*.test.js',
         '*.test.mjs',
         '*.test.ts',
@@ -419,7 +439,7 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs'],
+      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },

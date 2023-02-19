@@ -7,18 +7,21 @@ import {
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import { useSlider } from '@mui/base/SliderUnstyled';
-import { useSlotProps } from '@mui/base/utils';
+import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-import { SliderProps, SliderTypeMap, SliderOwnerState } from './SliderProps';
+import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
 const valueToPercent = (value: number, min: number, max: number) =>
   ((value - min) * 100) / (max - min);
 
-const Identity = (x: any) => x;
-
+function Identity(x: any) {
+  return x;
+}
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
-  const { disabled, dragging, marked, orientation, track, color, size } = ownerState;
+  const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -29,18 +32,20 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
+      variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
     rail: ['rail'],
     track: ['track'],
+    thumb: ['thumb', disabled && 'disabled'],
+    input: ['input'],
     mark: ['mark'],
     markActive: ['markActive'],
     markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
     valueLabelOpen: ['valueLabelOpen'],
-    thumb: ['thumb', disabled && 'disabled'],
     active: ['active'],
     focusVisible: ['focusVisible'],
   };
@@ -49,7 +54,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
 };
 
 const sliderColorVariables =
-  ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SliderOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' | 'Active' } = {}) => {
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
@@ -113,11 +118,6 @@ const SliderRoot = styled('span', {
         color: theme.vars.palette.text.tertiary,
         ...getColorVariables({ state: 'Disabled' }),
       },
-      [`&.${sliderClasses.dragging}`]: {
-        [`& .${sliderClasses.track}, & .${sliderClasses.thumb}`]: {
-          transition: 'none',
-        },
-      },
       boxSizing: 'border-box',
       display: 'inline-block',
       position: 'relative',
@@ -153,7 +153,7 @@ const SliderRail = styled('span', {
         : 'var(--Slider-rail-background)',
     border:
       ownerState.track === 'inverted'
-        ? 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)'
+        ? 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)'
         : 'initial',
     borderRadius: 'var(--Slider-track-radius)',
     ...(ownerState.orientation === 'horizontal' && {
@@ -189,14 +189,11 @@ const SliderTrack = styled('span', {
       border:
         ownerState.track === 'inverted'
           ? 'initial'
-          : 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+          : 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
       backgroundColor:
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
           : 'var(--Slider-track-background)',
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-      transition:
-        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
@@ -229,14 +226,11 @@ const SliderThumb = styled('span', {
   justifyContent: 'center',
   width: 'var(--Slider-thumb-width)',
   height: 'var(--Slider-thumb-size)',
-  border: 'var(--variant-borderWidth) solid var(--Slider-track-borderColor)',
+  border: 'var(--variant-borderWidth, 0px) solid var(--Slider-track-borderColor)',
   borderRadius: 'var(--Slider-thumb-radius)',
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',
   backgroundColor: 'var(--Slider-thumb-background)',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-  transition:
-    'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   [theme.focus.selector]: theme.focus.default,
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
@@ -248,6 +242,7 @@ const SliderThumb = styled('span', {
   }),
   '&::before': {
     // use pseudo element to create thumb's ring
+    boxSizing: 'border-box',
     content: '""',
     display: 'block',
     position: 'absolute',
@@ -266,7 +261,7 @@ const SliderMark = styled('span', {
   name: 'JoySlider',
   slot: 'Mark',
   overridesResolver: (props, styles) => styles.mark,
-})<{ ownerState: SliderOwnerState & { percent: number } }>(({ ownerState }) => {
+})<{ ownerState: SliderOwnerState & { percent?: number } }>(({ ownerState }) => {
   return {
     position: 'absolute',
     width: 'var(--Slider-mark-size)',
@@ -332,7 +327,7 @@ const SliderValueLabel = styled('span', {
     'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(0)',
   position: 'absolute',
   backgroundColor: theme.vars.palette.background.tooltip,
-  boxShadow: theme.vars.shadow.sm,
+  boxShadow: theme.shadow.sm,
   borderRadius: theme.vars.radius.xs,
   color: '#fff',
   '&::before': {
@@ -399,8 +394,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
-    component,
-    componentsProps = {},
+    className,
     classes: classesProp,
     disableSwap = false,
     disabled = false,
@@ -423,11 +417,13 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     isRtl = false,
-    color = 'primary',
+    color: colorProp = 'primary',
     size = 'md',
     variant = 'solid',
     ...other
   } = props;
+  const { getColor } = useColorInversion('solid');
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -476,75 +472,76 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
     elementType: SliderRoot,
-    getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    getSlotProps: getRootProps,
     ownerState,
-    className: classes.root,
   });
 
-  const railProps = useSlotProps({
-    elementType: SliderRail,
-    externalSlotProps: componentsProps.rail,
-    ownerState,
+  const [SlotRail, railProps] = useSlot('rail', {
     className: classes.rail,
+    elementType: SliderRail,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const trackProps = useSlotProps({
-    elementType: SliderTrack,
-    externalSlotProps: componentsProps.track,
+  const [SlotTrack, trackProps] = useSlot('track', {
     additionalProps: {
       style: trackStyle,
     },
-    ownerState,
     className: classes.track,
+    elementType: SliderTrack,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const markProps = useSlotProps({
-    elementType: SliderMark,
-    externalSlotProps: componentsProps.mark,
-    ownerState,
+  const [SlotMark, markProps] = useSlot('mark', {
     className: classes.mark,
+    elementType: SliderMark,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const markLabelProps = useSlotProps({
-    elementType: SliderMarkLabel,
-    externalSlotProps: componentsProps.markLabel,
-    ownerState,
+  const [SlotMarkLabel, markLabelProps] = useSlot('markLabel', {
     className: classes.markLabel,
+    elementType: SliderMarkLabel,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      'aria-hidden': true,
+    },
   });
 
-  const thumbProps = useSlotProps({
-    elementType: SliderThumb,
-    getSlotProps: getThumbProps,
-    externalSlotProps: componentsProps.thumb,
-    ownerState,
+  const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
+    elementType: SliderThumb,
+    externalForwardedProps: other,
+    getSlotProps: getThumbProps,
+    ownerState,
   });
 
-  const inputProps = useSlotProps({
+  const [SlotInput, inputProps] = useSlot('input', {
+    className: classes.input,
     elementType: SliderInput,
+    externalForwardedProps: other,
     getSlotProps: getHiddenInputProps,
-    externalSlotProps: componentsProps.input,
     ownerState,
   });
 
-  const valueLabelProps = useSlotProps({
-    elementType: SliderValueLabel,
-    externalSlotProps: componentsProps.valueLabel,
-    ownerState,
+  const [SlotValueLabel, valueLabelProps] = useSlot('valueLabel', {
     className: classes.valueLabel,
+    elementType: SliderValueLabel,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <SliderRoot {...rootProps}>
-      <SliderRail {...railProps} />
-      <SliderTrack {...trackProps} />
+    <SlotRoot {...rootProps}>
+      <SlotRail {...railProps} />
+      <SlotTrack {...trackProps} />
       {marks
         .filter((mark) => mark.value >= min && mark.value <= max)
         .map((mark, index) => {
@@ -568,28 +565,28 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
 
           return (
             <React.Fragment key={mark.value}>
-              <SliderMark
+              <SlotMark
                 data-index={index}
                 {...markProps}
+                {...(!isHostComponent(SlotMark) && {
+                  ownerState: { ...markProps.ownerState, percent },
+                })}
                 style={{ ...style, ...markProps.style }}
-                ownerState={{ ...ownerState, percent }}
                 className={clsx(markProps.className, {
                   [classes.markActive]: markActive,
                 })}
               />
               {mark.label != null ? (
-                <SliderMarkLabel
-                  aria-hidden
+                <SlotMarkLabel
                   data-index={index}
                   {...markLabelProps}
-                  ownerState={ownerState}
                   style={{ ...style, ...markLabelProps.style }}
                   className={clsx(classes.markLabel, markLabelProps.className, {
                     [classes.markLabelActive]: markActive,
                   })}
                 >
                   {mark.label}
-                </SliderMarkLabel>
+                </SlotMarkLabel>
               ) : null}
             </React.Fragment>
           );
@@ -598,7 +595,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
         return (
-          <SliderThumb
+          <SlotThumb
             key={index}
             data-index={index}
             {...thumbProps}
@@ -612,7 +609,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
               ...thumbProps.style,
             }}
           >
-            <SliderInput
+            <SlotInput
               data-index={index}
               aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-valuenow={scale(value)}
@@ -623,7 +620,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
               {...inputProps}
             />
             {valueLabelDisplay !== 'off' ? (
-              <SliderValueLabel
+              <SlotValueLabel
                 {...valueLabelProps}
                 className={clsx(valueLabelProps.className, {
                   [classes.valueLabelOpen]:
@@ -633,12 +630,12 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
                 {typeof valueLabelFormat === 'function'
                   ? valueLabelFormat(scale(value), index)
                   : valueLabelFormat}
-              </SliderValueLabel>
+              </SlotValueLabel>
             ) : null}
-          </SliderThumb>
+          </SlotThumb>
         );
       })}
-    </SliderRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<SliderTypeMap>;
 
@@ -664,6 +661,10 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
@@ -671,25 +672,6 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the Slider.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    valueLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -720,7 +702,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   getAriaValueText: PropTypes.func,
   /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
+   * If `true` the Slider will be rendered right-to-left (with the lowest value on the right-hand side).
    * @default false
    */
   isRtl: PropTypes.bool,
@@ -783,7 +765,11 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -846,7 +832,11 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**

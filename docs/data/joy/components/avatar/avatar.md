@@ -12,38 +12,20 @@ githubLabel: 'component: avatar'
 
 The Avatar component can be used to display graphical information about a user in places such as menus, tables, and chats.
 
-{{"demo": "AvatarUsage.js", "hideToolbar": true}}
+{{"demo": "AvatarUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Avatar from '@mui/joy/Avatar';
-
-export default function MyApp() {
-  return <Avatar />;
-}
 ```
-
-## Basics
 
 By default, the Avatar component displays a generic Person Icon.
-Wrap it around a string to display plain text, or use the `src` prop to display an image.
+You can replace this icon with a text string or an image.
 
-## Anatomy
-
-The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
-
-```html
-<div class="JoyAvatar-root">
-  <!-- Avatar contents -->
-</div>
-```
-
-## Customization
+{{"demo": "BasicAvatars.js"}}
 
 ### Text Avatar
 
@@ -59,7 +41,7 @@ Make sure to to write a meaningful description for the `alt` prop.
 
 {{"demo": "ImageAvatars.js"}}
 
-### Image fallbacks
+#### Image fallbacks
 
 If an error occurs while loading the Avatar's image, it will fall back to the following alternatives (in this order):
 
@@ -69,39 +51,36 @@ If an error occurs while loading the Avatar's image, it will fall back to the fo
 
 {{"demo": "FallbackAvatars.js"}}
 
+## Customization
+
 ### Variants
 
-The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `soft` (default), `solid`, `outlined`, and `plain`.
+The Avatar component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AvatarVariants.js"}}
 
-:::success
-To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
 :::
 
 ### Sizes
 
-The Avatar component comes in three sizes: `sm`, `md` (the default), and `lg`:
+The Avatar component comes in three sizes: `sm`, `md` (default), and `lg`:
 
 {{"demo": "AvatarSizes.js"}}
 
-:::success
+:::info
 To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-## Usage with the Badge
-
-Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually communicate more complex information about a user's status:
-
-{{"demo": "BadgeAvatars.js"}}
-
-## Usage with the Avatar Group
-
-Use the Avatar Group component to group multiple Avatars together.
+## Usage with Avatar Group
 
 ```jsx
 import AvatarGroup from '@mui/joy/AvatarGroup';
 ```
+
+Use the Avatar Group component to group multiple Avatars together.
 
 {{"demo": "GroupedAvatars.js"}}
 
@@ -135,11 +114,21 @@ You can reverse the overlapping order by reversing the order of the Avatars and 
 
 To render the Avatar Group vertically, add the CSS `writing-mode: vertical-rl` property and rotate the interior element (if one is present) by -90 degrees.
 
-:::info
+:::success
 This approach is preferable because it preserves the overlapping offset between Avatars; the alternative—`flexDirection: column`—does not.
 :::
 
 {{"demo": "VerticalAvatarGroup.js"}}
+
+## Usage with Badge
+
+```jsx
+import Badge from '@mui/joy/Badge';
+```
+
+Combine the Avatar component with the [Badge](/joy-ui/react-badge/) to visually communicate more complex information about a user's status:
+
+{{"demo": "BadgeAvatars.js"}}
 
 ## CSS variable playground
 
@@ -147,3 +136,13 @@ Play around with the CSS variables available to the Avatar component to see how 
 You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
+
+## Anatomy
+
+The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
+
+```html
+<div class="MuiAvatar-root">
+  <!-- Avatar contents -->
+</div>
+```

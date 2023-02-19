@@ -41,6 +41,46 @@ describe('useButton', () => {
         fireEvent.keyUp(button, { key: ' ' });
         expect(button).not.to.have.class('active');
       });
+
+      it('is set when clicked on an element inside the button', () => {
+        function TestComponent() {
+          const buttonRef = React.useRef(null);
+          const { active, getRootProps } = useButton({ ref: buttonRef });
+
+          return (
+            <button {...getRootProps()} className={active ? 'active' : ''}>
+              <span>Click here</span>
+            </button>
+          );
+        }
+
+        const { getByText, getByRole } = render(<TestComponent />);
+        const span = getByText('Click here');
+        const button = getByRole('button');
+        fireEvent.mouseDown(span);
+        expect(button).to.have.class('active');
+      });
+
+      it('is unset when mouse button is released above another element', () => {
+        function TestComponent() {
+          const buttonRef = React.useRef(null);
+          const { active, getRootProps } = useButton({ ref: buttonRef });
+
+          return (
+            <div data-testid="parent">
+              <button {...getRootProps()} className={active ? 'active' : ''} />
+            </div>
+          );
+        }
+
+        const { getByRole, getByTestId } = render(<TestComponent />);
+        const button = getByRole('button');
+        const background = getByTestId('parent');
+        fireEvent.mouseDown(button);
+        expect(button).to.have.class('active');
+        fireEvent.mouseUp(background);
+        expect(button).not.to.have.class('active');
+      });
     });
 
     describe('when using a span element', () => {

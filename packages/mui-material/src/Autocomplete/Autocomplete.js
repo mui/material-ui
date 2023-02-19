@@ -178,6 +178,20 @@ const AutocompleteRoot = styled('div', {
   [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
   },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 16,
+      paddingBottom: 17,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
+    },
+  },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
     textOverflow: 'ellipsis',
@@ -280,6 +294,7 @@ const AutocompleteListbox = styled('div', {
   padding: '8px 0',
   maxHeight: '40vh',
   overflow: 'auto',
+  position: 'relative',
   [`& .${autocompleteClasses.option}`]: {
     minHeight: 48,
     display: 'flex',
@@ -528,6 +543,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
     return renderOption({ ...optionProps, className: classes.option }, option, {
       selected: optionProps['aria-selected'],
+      index,
       inputValue,
     });
   };

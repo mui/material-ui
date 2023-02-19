@@ -1,16 +1,12 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
 var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
 var _jsxRuntime = require("react/jsx-runtime");
-
 var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("circle", {
   cx: "10",
   cy: "9",
@@ -20,5 +16,4 @@ var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("c
 }, "1"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "m22.88 5.24-1.41-1.41c-1.95 1.95-1.95 5.12 0 7.07l1.41-1.41c-1.17-1.17-1.17-3.08 0-4.25z"
 }, "2")], 'SpatialTrackingSharp');
-
 exports.default = _default;

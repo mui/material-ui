@@ -12,7 +12,11 @@ import extractEventHandlers from '../utils/extractEventHandlers';
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/base/react-snackbar/)
+ * - [Unstyled Snackbar](https://mui.com/base/react-snackbar/#hook)
+ *
+ * API:
+ *
+ * - [useSnackbar API](https://mui.com/base/api/use-snackbar/)
  */
 export default function useSnackbar(parameters: UseSnackbarParameters) {
   const {

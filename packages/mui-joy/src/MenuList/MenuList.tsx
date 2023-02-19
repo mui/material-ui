@@ -6,12 +6,13 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
+import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
-const useUtilityClasses = (ownerState: MenuListProps) => {
+const useUtilityClasses = (ownerState: MenuListOwnerState) => {
   const { variant, color, size } = ownerState;
   const slots = {
     root: [
@@ -26,7 +27,7 @@ const useUtilityClasses = (ownerState: MenuListProps) => {
 };
 
 const MenuListRoot = styled(StyledList, {
-  name: 'MuiMenuList',
+  name: 'JoyMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
@@ -50,7 +51,7 @@ const MenuListRoot = styled(StyledList, {
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiMenuList',
+    name: 'JoyMenuList',
   });
 
   const {
@@ -60,19 +61,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     children,
     size = 'md',
     variant = 'outlined',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
   });
@@ -109,22 +104,19 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const contextValue = React.useMemo(
+  const menuContextValue = React.useMemo(
     () =>
       ({
-        registerItem,
-        unregisterItem,
-        getItemState,
-        getItemProps,
+        ...contextValue,
         getListboxProps,
         open: true,
       } as MenuUnstyledContextType),
-    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+    [contextValue, getListboxProps],
   );
 
   return (
     <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>

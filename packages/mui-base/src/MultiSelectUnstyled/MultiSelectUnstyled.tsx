@@ -135,19 +135,21 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+    },
+    [setListboxOpen, onListboxOpenChange],
+  );
 
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
     value,
   } = useSelect<TValue>({
     buttonRef: handleButtonRef,
@@ -221,11 +223,10 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const context: SelectUnstyledContextType = React.useMemo(
     () => ({
-      getOptionProps,
-      getOptionState,
+      ...contextValue,
       listboxRef,
     }),
-    [getOptionProps, getOptionState],
+    [contextValue],
   );
 
   return (

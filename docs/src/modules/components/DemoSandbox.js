@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { create } from 'jss';
@@ -176,7 +176,7 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {canonicalAs.startsWith('/joy-ui') ? (
+      {canonicalAs.startsWith('/joy-ui/') ? (
         children
       ) : (
         <StylesProvider jss={jss}>

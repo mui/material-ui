@@ -7,8 +7,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "disablePointerEvents": { "type": { "name": "bool" } },
-    "disableTypography": { "type": { "name": "bool" } },
+    "disablePointerEvents": { "type": { "name": "bool" }, "default": "false" },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

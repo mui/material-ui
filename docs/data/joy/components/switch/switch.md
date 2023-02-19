@@ -15,9 +15,9 @@ Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"demo": "SwitchUsage.js", "hideToolbar": true}}
+{{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -63,7 +63,7 @@ To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
 
 ### Track child
 
-Target the track's children using the `componentsProps` prop to display a text inside of it.
+Target the track's children using the `slotProps` prop to display a text inside of it.
 
 {{"demo": "ExampleTrackChild.js"}}
 
@@ -92,18 +92,18 @@ Here are a few tips to make sure you have an accessible switch component:
 - The `Switch` will render with the `checkbox` role as opposed to `switch`.
   This is mainly because the latter isn't widely supported yet.
   However, if you believe your audience will support it, make sure to test with assistive technology.
-  Use the `componentsProps` prop to change the role:
+  Use the `slotProps` prop to change the role:
 
   ```jsx
-  <Switch componentsProps={{ input: { role: 'switch' } }}>
+  <Switch slotProps={{ input: { role: 'switch' } }}>
   ```
 
 - Every form control component should have proper labels.
   This includes radio buttons, checkboxes, and switches.
   In most cases, this is done using the `<label>` element.
-  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `componentsProps` prop.
+  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
   ```jsx
-  <Switch value="checkedA" componentsProps={{ 'aria-label': 'Switch A' }} />
+  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
   ```
 
 ## Common examples

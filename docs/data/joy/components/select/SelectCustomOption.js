@@ -9,7 +9,7 @@ export default function SelectCustomOption() {
   return (
     <Select
       defaultValue="1"
-      componentsProps={{
+      slotProps={{
         listbox: {
           sx: {
             '--List-decorator-size': '44px',

@@ -10,6 +10,7 @@ import autocompleteOptionClasses, {
   getAutocompleteOptionUtilityClass,
 } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
+import { useColorInversion } from '../styles/ColorInversion';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
   const { color, variant } = ownerState;
@@ -28,13 +29,12 @@ const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
 export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li')<{
   ownerState: AutocompleteOptionOwnerState;
 }>(({ theme, ownerState }) => ({
-  '&:not(:hover)': {
-    transition: 'none', // prevent flicker when using keyboard arrows to move between options
-  },
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
-    color: theme.vars.palette.primary.softColor,
-    backgroundColor: theme.vars.palette.primary.softBg,
+    color: theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']?.color,
+    backgroundColor:
+      theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']
+        ?.backgroundColor,
     fontWeight: theme.vars.fontWeight.md,
   },
   [`&.${autocompleteOptionClasses.focused}:not([aria-selected="true"]):not(:hover)`]: {
@@ -59,11 +59,13 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
   const {
     children,
     component = 'li',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'plain',
     className,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
