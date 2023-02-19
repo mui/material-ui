@@ -142,6 +142,10 @@ The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog`
 
 {{"demo": "SizeModalDialog.js"}}
 
+### Modal overflow
+
+{{"demo": "ModalDialogOverflow.js"}}
+
 ### Alert Dialog
 
 Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) that interrupts the user's workflow.

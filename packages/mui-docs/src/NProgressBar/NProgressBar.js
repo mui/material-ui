@@ -48,7 +48,7 @@ function NProgressBar(props) {
             left: 0,
             right: 0,
             height: 2,
-            zIndex: (theme.vars || theme).zIndex.tooltip,
+            zIndex: (theme.vars || theme).zIndex?.tooltip,
             backgroundColor: (theme.vars || theme).palette.primary[200],
             ...theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primary[700],
