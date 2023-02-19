@@ -42,6 +42,7 @@ function MyAutocomplete<
   renderInput={() => null}
 />;
 
+// Tests presence of sx prop in ListboxProps
 <Autocomplete
   options={['1', '2', '3']}
   ListboxProps={{ sx: { height: '10px' } }}
