@@ -74,7 +74,7 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Dialog
+### Modal Dialog
 
 To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
 
@@ -151,6 +151,14 @@ The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog`
 Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) that interrupts the user's workflow.
 
 {{"demo": "AlertDialogModal.js"}}
+
+### Vertical scroll
+
+By default, `ModalDialog` will not overflow the screen when the content is longer than the viewport.
+
+You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content.
+
+{{"demo": "DialogVerticalScroll.js"}}
 
 ### Nested modals
 
