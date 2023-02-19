@@ -56,7 +56,7 @@
     "@types/css-mediaquery": "^0.1.1",
     "@types/json2mq": "^0.2.0",
     "@types/markdown-to-jsx": "^7.0.1",
-    "@types/react-dom": "^18.0.10",
+    "@types/react-dom": "^18.0.11",
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.4",
     "@types/react-window": "^1.8.5",
