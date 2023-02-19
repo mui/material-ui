@@ -1,24 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { Box, styled } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/base/ButtonUnstyled';
 
 const BackdropUnstyled = React.forwardRef((props, ref) => {
-  const { open, className, ...other } = props;
+  const { open, ...other } = props;
   return (
-    <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
-      ref={ref}
-      {...other}
-    />
+    <Fade in={open}>
+      <div ref={ref} {...other} />
+    </Fade>
   );
 });
 
 BackdropUnstyled.propTypes = {
-  className: PropTypes.string.isRequired,
   open: PropTypes.bool,
 };
 
@@ -73,10 +69,10 @@ export default function TransitionsModal() {
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
       >
-        <Fade in={open} timeout={300}>
+        <Fade in={open}>
           <Box sx={style}>
             <h2 id="transition-modal-title">Text in a modal</h2>
-            <span id="transition-modal-description" style={{ marginTop: '16px' }}>
+            <span id="transition-modal-description" style={{ marginTop: 16 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </span>
           </Box>

@@ -162,9 +162,6 @@ const SelectRoot = styled('div', {
       ...(ownerState.size === 'sm' && {
         fontSize: theme.vars.fontSize.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&::before': {
         boxSizing: 'border-box',
         content: '""',
@@ -218,6 +215,7 @@ const SelectButton = styled('button', {
   flex: 1,
   fontFamily: 'inherit',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
@@ -419,22 +417,24 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-    if (!isOpen) {
-      onClose?.();
-    }
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose, onListboxOpenChange, setListboxOpen],
+  );
 
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
     value,
   } = useSelect({
     buttonRef,
@@ -558,12 +558,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const context = React.useMemo(
     () => ({
-      getOptionProps,
-      getOptionState,
-      listboxRef,
+      ...contextValue,
       color,
     }),
-    [color, getOptionProps, getOptionState],
+    [color, contextValue],
   );
 
   const modifiers = React.useMemo(

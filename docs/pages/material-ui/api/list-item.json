@@ -6,11 +6,13 @@
     },
     "autoFocus": {
       "type": { "name": "bool" },
+      "default": "false",
       "deprecated": true,
       "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
     },
     "button": {
       "type": { "name": "bool" },
+      "default": "false",
       "deprecated": true,
       "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
     },
@@ -31,18 +33,20 @@
       "deprecated": true
     },
     "ContainerProps": { "type": { "name": "object" }, "default": "{}", "deprecated": true },
-    "dense": { "type": { "name": "bool" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
     "disabled": {
       "type": { "name": "bool" },
+      "default": "false",
       "deprecated": true,
       "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
     },
-    "disableGutters": { "type": { "name": "bool" } },
-    "disablePadding": { "type": { "name": "bool" } },
-    "divider": { "type": { "name": "bool" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "disablePadding": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
     "secondaryAction": { "type": { "name": "node" } },
     "selected": {
       "type": { "name": "bool" },
+      "default": "false",
       "deprecated": true,
       "deprecationInfo": "checkout <a href=\"/material-ui/api/list-item-button/\">ListItemButton</a> instead"
     },

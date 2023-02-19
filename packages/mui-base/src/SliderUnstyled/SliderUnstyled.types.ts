@@ -2,7 +2,6 @@ import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/ty
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
-import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import {
   UseSliderHiddenInputProps,
   UseSliderRootSlotProps,
@@ -22,18 +21,17 @@ export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   scale: (value: number) => number;
   step: number | null;
   track: 'normal' | false | 'inverted';
-  valueLabelDisplay: 'on' | 'auto' | 'off';
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 }
 
-export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children: React.ReactElement;
-  index: number;
-  open: boolean;
-  value: number;
-}
-
-export interface SliderUnstyledComponentsPropsOverrides {}
+export interface SliderUnstyledRootSlotPropsOverrides {}
+export interface SliderUnstyledTrackSlotPropsOverrides {}
+export interface SliderUnstyledRailSlotPropsOverrides {}
+export interface SliderUnstyledThumbSlotPropsOverrides {}
+export interface SliderUnstyledMarkSlotPropsOverrides {}
+export interface SliderUnstyledMarkLabelSlotPropsOverrides {}
+export interface SliderUnstyledValueLabelSlotPropsOverrides {}
+export interface SliderUnstyledInputSlotPropsOverrides {}
 
 export interface SliderUnstyledOwnProps {
   /**
@@ -147,43 +145,42 @@ export interface SliderUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledRootSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     track?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledTrackSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     rail?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledRailSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     thumb?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledThumbSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     mark?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledMarkSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     markLabel?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledMarkLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
-      SliderUnstyledComponentsPropsOverrides,
+      React.ElementType,
+      SliderUnstyledValueLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
-
     input?: SlotComponentProps<
       'input',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledInputSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
   };
@@ -229,15 +226,6 @@ export interface SliderUnstyledOwnProps {
    * For ranged sliders, provide an array with two values.
    */
   value?: number | number[];
-  /**
-   * Controls when the value label is displayed:
-   *
-   * - `auto` the value label will display when the thumb is hovered or focused.
-   * - `on` will display persistently.
-   * - `off` will never display.
-   * @default 'off'
-   */
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
   /**
    * The format function the value label's value.
    *
@@ -328,7 +316,6 @@ export type SliderUnstyledValueLabelSlotProps = {
   open?: boolean;
   ownerState: SliderUnstyledOwnerState;
   valueLabel?: string | React.ReactNode;
-  valueLabelDisplay?: 'on' | 'auto' | 'off';
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 };
 

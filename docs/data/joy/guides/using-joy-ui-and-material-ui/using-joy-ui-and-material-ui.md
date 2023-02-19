@@ -25,13 +25,16 @@ For this case, the Material UI theme should override the Joy UI's.
 ```js
 import { deepmerge } from '@mui/utils';
 import {
-  useColorScheme,
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendMuiTheme,
+  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
-import { extendTheme as extendJoyTheme } from '@mui/joy/styles';
+import {
+  extendTheme as extendJoyTheme,
+  shouldSkipGeneratingVar as joyShouldSkipGeneratingVar,
+} from '@mui/joy/styles';
 
-const joyTheme = extendJoyTheme({
+const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
   // This is required to point to `var(--mui-*)` because we are using
   // `CssVarsProvider` from Material UI.
   cssVarPrefix: 'mui',
@@ -83,15 +86,27 @@ const joyTheme = extendJoyTheme({
 // Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)`
 // because some of the values in the Joy UI theme refers to CSS variables and
 // not raw colors.
-const muiTheme = extendMuiTheme();
+const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme();
 
 // You can use your own `deepmerge` function.
 // muiTheme will deeply merge to joyTheme.
-const theme = deepmerge(joyTheme, muiTheme);
+const mergedTheme = (deepmerge(joyTheme, muiTheme) as unknown) as ReturnType<
+  typeof extendMuiTheme
+>;
+
+mergedTheme.unstable_sxConfig = {
+  ...joySxConfig,
+  ...muiSxConfig
+};
 
 export default function App() {
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider
+      theme={mergedTheme}
+      shouldSkipGeneratingVar={(keys) =>
+        muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)
+      }
+    >
       ...Material UI and Joy UI components
     </CssVarsProvider>
   );
@@ -110,15 +125,18 @@ This setup uses the `CssVarsProvider` component from Joy UI and configures the M
 
 ```js
 import { deepmerge } from '@mui/utils';
-import { experimental_extendTheme as extendMuiTheme } from '@mui/material/styles';
+import {
+  experimental_extendTheme as extendMuiTheme,
+  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
+} from '@mui/material/styles';
 import colors from '@mui/joy/colors';
 import {
   extendTheme as extendJoyTheme,
   CssVarsProvider,
-  useColorScheme,
+  shouldSkipGeneratingVar as joyShouldSkipGeneratingVar,
 } from '@mui/joy/styles';
 
-const muiTheme = extendMuiTheme({
+const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
   // This is required to point to `var(--joy-*)` because we are using
   // `CssVarsProvider` from Joy UI.
   cssVarPrefix: 'joy',
@@ -184,15 +202,27 @@ const muiTheme = extendMuiTheme({
   },
 });
 
-const joyTheme = extendJoyTheme();
+const { unstable_sxConfig: joySxConfig, ...joyTheme} = extendJoyTheme();
 
 // You can use your own `deepmerge` function.
 // joyTheme will deeply merge to muiTheme.
-const theme = deepmerge(muiTheme, joyTheme);
+const mergedTheme = (deepmerge(muiTheme, joyTheme) as unknown) as ReturnType<
+  typeof extendJoyTheme
+>;
+
+mergedTheme.unstable_sxConfig = {
+  ...muiSxConfig,
+  ...joySxConfig
+};
 
 export default function App() {
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider
+      theme={mergedTheme}
+      shouldSkipGeneratingVar={(keys) =>
+        muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)
+      }
+    >
       ...Material UI and Joy UI components
     </CssVarsProvider>
   );
@@ -287,3 +317,32 @@ declare module '@mui/material/styles' {
   }
 }
 ```
+
+## Caveat
+
+Both libraries have the same class name prefix:
+
+```js
+import MaterialTypography, {
+  typographyClasses as muiTypographyClasses,
+} from '@mui/material/Typography';
+import JoyTypography, {
+  typographyClasses as joyTyographyClasses,
+} from '@mui/joy/Typography';
+import Stack from '@mui/material/Stack';
+
+<Stack
+  sx={{
+    // similar to `& .${joyTyographyClasses.root}`
+    [`& .${muiTypographyClasses.root}`]: {
+      color: 'red',
+    },
+  }}
+>
+  {/* Both components are red. */}
+  <MaterialTypography>Red</MaterialTypography>
+  <JoyTypography>Red</JoyTypography>
+</Stack>;
+```
+
+However, the class name prefix are the same

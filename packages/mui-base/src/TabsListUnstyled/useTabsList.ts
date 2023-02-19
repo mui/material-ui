@@ -6,7 +6,11 @@ import {
 import { isFragment } from 'react-is';
 import { useTabContext } from '../TabsUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
-import { UseTabsListParameters, UseTabsListRootSlotProps } from './useTabsList.types';
+import {
+  UseTabsListParameters,
+  UseTabsListReturnValue,
+  UseTabsListRootSlotProps,
+} from './useTabsList.types';
 import { EventHandlers } from '../utils';
 
 const nextItem = (list: Element | null, item: Element | null): Element | null => {
@@ -67,8 +71,18 @@ const moveFocus = (
     }
   }
 };
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ *
+ * API:
+ *
+ * - [useTabsList API](https://mui.com/base/api/use-tabs-list/)
+ */
 
-const useTabsList = (parameters: UseTabsListParameters) => {
+function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
   const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
 
   const tabsListRef = React.createRef<any>();
@@ -198,6 +212,6 @@ const useTabsList = (parameters: UseTabsListParameters) => {
     processChildren,
     getRootProps,
   };
-};
+}
 
 export default useTabsList;

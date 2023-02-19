@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
@@ -102,9 +101,6 @@ const TextareaRoot = styled('div', {
         fontSize: theme.vars.fontSize.sm,
         lineHeight: theme.vars.lineHeight.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -284,12 +280,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     className: [classes.textarea, inputStateClasses],
     elementType: TextareaInput,
     internalForwardedProps: {
+      ...propsToForward,
       minRows,
       maxRows,
     },
     externalForwardedProps: other,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
+    getSlotProps: getInputProps,
     ownerState,
   });
 

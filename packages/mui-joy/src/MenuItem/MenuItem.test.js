@@ -25,6 +25,7 @@ const testContext = {
   registerItem: () => {},
   unregisterItem: () => {},
   open: false,
+  registerHighlightChangeHandler: () => () => {},
 };
 
 function Wrapper({ children }) {

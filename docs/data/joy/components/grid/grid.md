@@ -151,7 +151,7 @@ Then use `justifyContent` and/or `alignItems` to adjust the position of the cont
 The Grid component is composed of a single root `<div>` element:
 
 ```html
-<div class="JoyGrid-root">
+<div class="MuiGrid-root">
   <!-- Grid contents -->
 </div>
 ```

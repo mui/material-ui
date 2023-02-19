@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { ActionTypes, ListboxAction, ListboxState } from './useListbox.types';
+import { ActionTypes, ListboxReducerAction, ListboxState } from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
 
 describe('useListbox defaultReducer', () => {
@@ -11,10 +11,19 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.setValue,
         value: 'foo',
         event: null,
+        props: {
+          options: ['foo', 'bar'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          isOptionDisabled: () => false,
+          optionComparer: (o, v) => o === v,
+          optionStringifier: (option) => option,
+          multiple: false,
+        },
       };
       const result = defaultReducer(state, action);
       expect(result.selectedValue).to.equal('foo');
@@ -28,7 +37,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.blur,
         event: {} as any, // not relevant
         props: {
@@ -54,7 +63,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.optionClick,
         event: {} as any, // not relevant
         props: {
@@ -79,7 +88,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: ['one'],
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.optionClick,
         event: {} as any, // not relevant
         props: {
@@ -104,7 +113,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: ['one', 'two'],
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.optionClick,
         event: {} as any, // not relevant
         props: {
@@ -132,7 +141,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: null,
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Home',
@@ -160,7 +169,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: null,
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'End',
@@ -188,7 +197,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: null,
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowUp',
@@ -216,7 +225,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: null,
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
@@ -242,7 +251,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: null,
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
@@ -270,7 +279,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: null,
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Enter',
@@ -296,7 +305,7 @@ describe('useListbox defaultReducer', () => {
           selectedValue: ['one'],
         };
 
-        const action: ListboxAction<string> = {
+        const action: ListboxReducerAction<string> = {
           type: ActionTypes.optionClick,
           event: {
             key: 'Enter',
@@ -326,7 +335,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'th',
         event: {} as React.KeyboardEvent,
@@ -351,7 +360,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'z',
         event: {} as React.KeyboardEvent,
@@ -376,7 +385,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
@@ -401,7 +410,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
@@ -426,7 +435,7 @@ describe('useListbox defaultReducer', () => {
         selectedValue: null,
       };
 
-      const action: ListboxAction<string> = {
+      const action: ListboxReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'one',
         event: {} as React.KeyboardEvent,

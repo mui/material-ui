@@ -1,13 +1,12 @@
 import * as React from 'react';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { alpha } from '@mui/material/styles';
 
 export default function AppFrameBanner() {
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
-      href={ROUTES.careers} // Fix me!
+      href="https://next.mui.com/x/whats-new/"
       target="_blank"
       variant="caption"
       sx={(theme) => ({
@@ -40,8 +39,7 @@ export default function AppFrameBanner() {
         },
       })}
     >
-      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
-      more!&nbsp;
+      🚀 MUI X v6-beta is out! Discover what&apos;s new and get started now!
       <br />
     </Link>
   ) : null;

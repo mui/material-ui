@@ -72,6 +72,7 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
             display: 'flex',
             flexWrap: 'wrap',
             gap: 2,
+            '& > *': { flex: 1 },
           }}
         >
           {data.map((item) => renderField(item))}
@@ -179,21 +180,7 @@ export default function JoyVariablesDemo(props: {
                       variant="outlined"
                       value={Number(`${resolvedValue}`?.replace('px', '')) || ''}
                       slotProps={{
-                        input: {
-                          onKeyDown: (event) => {
-                            if (
-                              (event.ctrlKey || event.metaKey) &&
-                              event.key.toLowerCase() === 'z'
-                            ) {
-                              setSx((prevSx) => {
-                                const newSx = { ...prevSx };
-                                delete newSx[item.var];
-                                return newSx;
-                              });
-                            }
-                          },
-                          ...resolvedInputAttributes,
-                        },
+                        input: { ...resolvedInputAttributes },
                       }}
                       endDecorator={
                         <React.Fragment>
@@ -222,6 +209,15 @@ export default function JoyVariablesDemo(props: {
                         </React.Fragment>
                       }
                       type="number"
+                      onKeyDown={(event) => {
+                        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+                          setSx((prevSx) => {
+                            const newSx = { ...prevSx };
+                            delete newSx[item.var];
+                            return newSx;
+                          });
+                        }
+                      }}
                       onChange={(event) => {
                         const { value } = event.target;
                         setSx((prevSx) => {
@@ -234,7 +230,7 @@ export default function JoyVariablesDemo(props: {
                           return {
                             ...prevSx,
                             [item.var]:
-                              typeof resolvedValue === 'string' ? `${value}px` : Number(value),
+                              typeof resolvedValue === 'number' ? Number(value) : `${value}px`,
                           };
                         });
                       }}
