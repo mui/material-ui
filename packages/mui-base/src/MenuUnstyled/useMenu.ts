@@ -179,7 +179,14 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
       unregisterItem,
       open,
     }),
-    [getOptionProps, getItemState, registerHighlightChangeHandler, registerItem, unregisterItem, open],
+    [
+      getOptionProps,
+      getItemState,
+      registerHighlightChangeHandler,
+      registerItem,
+      unregisterItem,
+      open,
+    ],
   );
 
   return {
