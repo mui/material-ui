@@ -13,7 +13,7 @@ export interface SelectUnstyledRootSlotPropsOverrides {}
 export interface SelectUnstyledListboxSlotPropsOverrides {}
 export interface SelectUnstyledPopperSlotPropsOverrides {}
 
-export interface SelectUnstyledCommonProps {
+export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends boolean> {
   /**
    * If `true`, the select element is focused during the first mount
    * @default false
@@ -22,15 +22,27 @@ export interface SelectUnstyledCommonProps {
   children?: React.ReactNode;
   className?: string;
   /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen?: boolean;
+  /**
+   * The default selected value. Use when the component is not controlled.
+   */
+  defaultValue?: SelectValue<TValue, Multiple>;
+  /**
    * If `true`, the select is disabled.
    * @default false
    */
   disabled?: boolean;
   /**
-   * If `true`, the select will be initially open.
-   * @default false
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
    */
-  defaultListboxOpen?: boolean;
+  getSerializedValue?: (
+    option: SelectValue<SelectOption<TValue>, Multiple>,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
   /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.
@@ -42,37 +54,16 @@ export interface SelectUnstyledCommonProps {
    */
   listboxOpen?: boolean;
   /**
-   * Name of the element. For example used by the server to identify the fields in form submits.
-   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
-   */
-  name?: string;
-  /**
-   * Callback fired when the component requests to be opened.
-   * Use in controlled mode (see listboxOpen).
-   */
-  onListboxOpenChange?: (isOpen: boolean) => void;
-}
-
-export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends boolean>
-  extends SelectUnstyledCommonProps {
-  /**
-   * The default selected value. Use when the component is not controlled.
-   */
-  defaultValue?: SelectValue<TValue, Multiple>;
-  /**
-   * A function to convert the currently selected value to a string.
-   * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
-   */
-  getSerializedValue?: (
-    option: SelectValue<SelectOption<TValue>, Multiple>,
-  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
-  /**
    * If `true`, selecting multiple values is allowed.
    *
    * @default false
    */
   multiple?: Multiple;
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name?: string;
   /**
    * Callback fired when an option is selected.
    */
@@ -80,6 +71,11 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: SelectValue<TValue, Multiple>,
   ) => void;
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange?: (isOpen: boolean) => void;
   /**
    * A function used to convert the option label to a string.
    * It's useful when labels are elements and need to be converted to plain text
