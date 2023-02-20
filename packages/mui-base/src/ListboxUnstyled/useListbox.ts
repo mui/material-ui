@@ -21,7 +21,11 @@ const defaultOptionStringifier = <TOption>(option: TOption) =>
   typeof option === 'string' ? option : String(option);
 
 /**
- * @ignore - do not document.
+ * @ignore - internal hook.
+ *
+ * The useListbox is a lower-level utility that is used to build a listbox component.
+ * It's used to manage the state of the listbox and its options.
+ * Contains the logic for keyboard navigation, selection, and focus management.
  */
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
