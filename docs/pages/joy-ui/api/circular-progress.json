@@ -33,6 +33,22 @@
   },
   "name": "CircularProgress",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    { "name": "progress", "description": "", "class": ".MuiCircularProgress-progress" },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiCircularProgress-root"
+    },
+    {
+      "name": "svg",
+      "description": "The component used to render the svg.",
+      "default": "'svg'",
+      "class": ".MuiCircularProgress-svg"
+    },
+    { "name": "track", "description": "", "class": ".MuiCircularProgress-track" }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/CircularProgress/CircularProgress.tsx",

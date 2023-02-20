@@ -35,6 +35,38 @@
   },
   "name": "Chip",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "action",
+      "description": "The component used to render the action.",
+      "default": "'button'",
+      "class": ".MuiChip-action"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiChip-endDecorator"
+    },
+    {
+      "name": "label",
+      "description": "The component used to render the label.",
+      "default": "'span'",
+      "class": ".MuiChip-label"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiChip-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiChip-startDecorator"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Chip/Chip.tsx",

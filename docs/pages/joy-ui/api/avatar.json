@@ -34,6 +34,26 @@
   },
   "name": "Avatar",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "fallback",
+      "description": "The component used to render the fallback.",
+      "default": "'svg'",
+      "class": ".MuiAvatar-fallback"
+    },
+    {
+      "name": "img",
+      "description": "The component used to render the img.",
+      "default": "'img'",
+      "class": ".MuiAvatar-img"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiAvatar-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Avatar/Avatar.tsx",

@@ -29,5 +29,9 @@
     "title": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "arrow": "The component used to render the arrow.",
+    "root": "The component used to render the root."
+  }
 }

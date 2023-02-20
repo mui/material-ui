@@ -88,6 +88,80 @@
   },
   "name": "Autocomplete",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "clearIndicator",
+      "description": "The component used to render the clear indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-clearIndicator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-endDecorator"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiAutocomplete-input"
+    },
+    {
+      "name": "limitTag",
+      "description": "The component used to render the limit tag.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-limitTag"
+    },
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": ".MuiAutocomplete-listbox"
+    },
+    {
+      "name": "loading",
+      "description": "The component used to render the loading.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-loading"
+    },
+    {
+      "name": "noOptions",
+      "description": "The component used to render the no-options.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-noOptions"
+    },
+    {
+      "name": "option",
+      "description": "The component used to render the option.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-option"
+    },
+    {
+      "name": "popupIndicator",
+      "description": "The component used to render the popup indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-popupIndicator"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-startDecorator"
+    },
+    {
+      "name": "wrapper",
+      "description": "The component used to render the wrapper.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-wrapper"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Autocomplete/Autocomplete.tsx",

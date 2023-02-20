@@ -52,5 +52,19 @@
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "clearIndicator": "The component used to render the clear indicator.",
+    "endDecorator": "The component used to render the end decorator.",
+    "input": "The component used to render the input.",
+    "limitTag": "The component used to render the limit tag.",
+    "listbox": "The component used to render the listbox.",
+    "loading": "The component used to render the loading.",
+    "noOptions": "The component used to render the no-options.",
+    "option": "The component used to render the option.",
+    "popupIndicator": "The component used to render the popup indicator.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator.",
+    "wrapper": "The component used to render the wrapper."
+  }
 }

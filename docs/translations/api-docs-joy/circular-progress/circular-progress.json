@@ -9,5 +9,11 @@
     "value": "The value of the progress indicator for the determinate variant. Value between 0 and 100.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "progress": "",
+    "root": "The component used to render the root.",
+    "svg": "The component used to render the svg.",
+    "track": ""
+  }
 }
