@@ -6,12 +6,25 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TooltipSlot = 'root' | 'arrow';
 
+export interface TooltipSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the arrow.
+   * @default 'span'
+   */
+  arrow: React.ElementType;
+}
+
 export interface TooltipPropsVariantOverrides {}
 export interface TooltipPropsColorOverrides {}
 export interface TooltipPropsSizeOverrides {}
 
 export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TooltipSlot,
+  TooltipSlots,
   {
     root: SlotProps<
       'div',

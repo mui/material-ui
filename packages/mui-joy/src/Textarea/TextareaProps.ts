@@ -5,12 +5,35 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
+export interface TextareaSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the textarea.
+   * @default 'textarea'
+   */
+  textarea: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'div'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'div'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface TextareaPropsVariantOverrides {}
 export interface TextareaPropsColorOverrides {}
 export interface TextareaPropsSizeOverrides {}
 
 export type TextareaSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TextareaSlot,
+  TextareaSlots,
   {
     root: SlotProps<'div', {}, TextareaOwnerState>;
     textarea: SlotProps<'textarea', {}, TextareaOwnerState>;

@@ -5,11 +5,24 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AspectRatioSlot = 'root' | 'content';
 
+export interface AspectRatioSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the content.
+   * @default 'div'
+   */
+  content: React.ElementType;
+}
+
 export interface AspectRatioPropsColorOverrides {}
 export interface AspectRatioPropsVariantOverrides {}
 
 export type AspectRatioSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AspectRatioSlot,
+  AspectRatioSlots,
   {
     root: SlotProps<'div', {}, AspectRatioOwnerState>;
     content: SlotProps<'div', {}, AspectRatioOwnerState>;
