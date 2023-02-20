@@ -90,11 +90,8 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 
 ### Multi-select
 
-The Unstyled Multi-Select component lets your users select multiple options from the list.
-
-```js
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-```
+The Unstyled Select component lets your users select multiple options from the list.
+Set the `multiple` prop to turn on the multi-selection mode.
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
