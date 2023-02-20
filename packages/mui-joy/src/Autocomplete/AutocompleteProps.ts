@@ -25,7 +25,7 @@ export type AutocompleteSlot =
   | 'loading'
   | 'noOptions'
   | 'limitTag';
-  
+
 export interface AutocompleteSlots {
   /**
    * The component used to render the root.
