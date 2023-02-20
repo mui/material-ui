@@ -1534,6 +1534,22 @@ describe('<Autocomplete />', () => {
       ]);
     });
 
+    it('skip warn if value does not exist in options list and disableOptionEqualToValueWarning is true', () => {
+      const value = 'value outside of options';
+      const options = ['val from previous server fetch'];
+
+      expect(() => {
+        render(
+          <Autocomplete
+            value={value}
+            options={options}
+            renderInput={(params) => <TextField {...params} />}
+            disableOptionEqualToValueWarning
+          />,
+        );
+      }).not.toWarnDev();
+    });
+
     it('warn if groups options are not sorted', () => {
       const data = [
         { group: 1, value: 'A' },
