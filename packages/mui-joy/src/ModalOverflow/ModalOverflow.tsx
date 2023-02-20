@@ -89,10 +89,9 @@ ModalOverflow.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * @ignore
    */
-  component: PropTypes.elementType,
+  onClick: PropTypes.func,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
