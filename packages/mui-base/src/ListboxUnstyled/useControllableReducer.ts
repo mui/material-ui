@@ -69,16 +69,10 @@ function useStateChangeDetection<TOption>(
     }
 
     const previousState = getControlledState(internalPreviousState, propsRef.current);
-    const { optionComparer } = propsRef.current;
+    const { optionComparer, onChange } = propsRef.current;
 
     const previousSelectedValues = (previousState?.selectedValue ?? []) as TOption[];
     const nextSelectedValues = nextState.selectedValue as TOption[];
-    const onChange = propsRef.current.onChange as
-      | ((
-          e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-          value: TOption[],
-        ) => void)
-      | undefined;
 
     if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
       onChange?.(lastActionRef.current.event, nextSelectedValues);
