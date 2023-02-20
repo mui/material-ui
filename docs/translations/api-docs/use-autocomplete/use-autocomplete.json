@@ -14,6 +14,7 @@
     "disabled": "If <code>true</code>, the component is disabled.",
     "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
     "disableListWrap": "If <code>true</code>, the list box in the popup will not wrap focus.",
+    "disableOptionEqualToValueWarning": "Disable warning when options are not equal to value",
     "filterOptions": "A function that determines the filtered options to be rendered on search.",
     "filterSelectedOptions": "If <code>true</code>, hide the selected options from the list box.",
     "freeSolo": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",

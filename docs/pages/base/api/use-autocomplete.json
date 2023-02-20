@@ -50,6 +50,10 @@
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
+    "disableOptionEqualToValueWarning": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
     "filterOptions": {
       "type": {
         "name": "(options: T[], state: FilterOptionsState&lt;T&gt) =&gt T[]",
