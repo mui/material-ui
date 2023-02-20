@@ -93,6 +93,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     inset,
     row,
     orientation,
+    component,
     role,
   };
 
