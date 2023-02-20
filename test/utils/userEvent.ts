@@ -25,8 +25,8 @@ export function keyPress(target: Element, options: { key: string }): void {
     fireEvent.keyDown(target, options);
     fireEvent.keyUp(target, options);
   } else {
-    keyDown(target, options);
-    keyUp(target, options);
+    keyDown(target, options as unknown as Event);
+    keyUp(target, options as unknown as Event);
     act(() => {});
   }
 }

@@ -23,7 +23,7 @@ export const getHtml = ({ title, language }: { title: string; language: string }
 export const getRootIndex = (product?: 'joy-ui' | 'base') => {
   if (product === 'joy-ui') {
     return `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   }
   if (product === 'base') {
     return `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
@@ -49,7 +49,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 );`;
   }
   return `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 

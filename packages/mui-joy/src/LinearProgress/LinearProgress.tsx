@@ -117,7 +117,6 @@ const LinearProgressRoot = styled('div', {
       ? {
           '&::before': {
             left: 'var(--_LinearProgress-padding)',
-            transition: 'inline-size 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
             inlineSize:
               'calc(var(--LinearProgress-percent) * 1% - 2 * var(--_LinearProgress-padding))',
           },

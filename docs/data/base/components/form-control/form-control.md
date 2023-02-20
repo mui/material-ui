@@ -86,7 +86,7 @@ This way, you don't have to implement both in your custom input—Unstyled Form 
 `useFormControlUnstyledContext` returns an object with the following fields:
 
 | Name       | Type    | Description                                                                                                                                                                         |
-| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :--------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `disabled` | boolean | Represents the value of the FormControlUnstyled's `disabled` prop.                                                                                                                  |
 | `error`    | boolean | Represents the value of the Unstyled Form Control component's `error` prop. Note that it is not calculated automatically (i.e. it's not set when `required: true` and `value: ''`). |
 | `filled`   | boolean | Set to `true` if `value` is not empty.                                                                                                                                              |
@@ -97,7 +97,7 @@ This way, you don't have to implement both in your custom input—Unstyled Form 
 The following callbacks are also part of the returned object—they are meant to be used when creating custom inputs:
 
 | Name       | Type                      | Description                                                   |
-| ---------- | ------------------------- | ------------------------------------------------------------- |
+| :--------- | :------------------------ | :------------------------------------------------------------ |
 | `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
 | `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
 | `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
