@@ -104,6 +104,7 @@ export default function useAutocomplete(props) {
     includeInputInList = false,
     inputValue: inputValueProp,
     isOptionEqualToValue = (option, value) => option === value,
+    disableOptionEqualToValueWarning = false,
     multiple = false,
     onChange,
     onClose,
@@ -253,7 +254,7 @@ export default function useAutocomplete(props) {
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
   if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options.length > 0) {
+    if (value !== null && !freeSolo && options.length > 0 && !disableOptionEqualToValueWarning) {
       const missingValue = (multiple ? value : [value]).filter(
         (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
       );
