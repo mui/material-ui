@@ -98,18 +98,10 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     className: classes.listbox,
   });
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      ...contextValue,
-      open,
-    }),
-    [contextValue, open],
-  );
-
   return (
     <Root {...rootProps}>
       <Listbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={menuContextValue}>
+        <MenuUnstyledContext.Provider value={contextValue}>
           {children}
         </MenuUnstyledContext.Provider>
       </Listbox>
