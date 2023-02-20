@@ -202,6 +202,11 @@ export interface UseAutocompleteProps<
    */
   isOptionEqualToValue?: (option: T, value: T) => boolean;
   /**
+   * Disable warning when options are not equal to value
+   * @default false
+   */
+  disableOptionEqualToValueWarning?: boolean;
+  /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
    */
