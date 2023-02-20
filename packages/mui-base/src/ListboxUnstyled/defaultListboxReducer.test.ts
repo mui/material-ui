@@ -8,7 +8,7 @@ describe('useListbox defaultReducer', () => {
     it("assigns the provided value to the state's selectedValue", () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -26,7 +26,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.deep.equal(['foo']);
+      expect(result.selectedValues).to.deep.equal(['foo']);
     });
   });
 
@@ -34,7 +34,7 @@ describe('useListbox defaultReducer', () => {
     it('resets the highlightedIndex', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -60,7 +60,7 @@ describe('useListbox defaultReducer', () => {
     it('sets the selectedValue to the clicked value', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -79,13 +79,13 @@ describe('useListbox defaultReducer', () => {
       };
 
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.deep.equal(['two']);
+      expect(result.selectedValues).to.deep.equal(['two']);
     });
 
     it('replaces the selectedValue with the clicked value if selectionLimit = 1', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
-        selectedValue: ['one'],
+        selectedValues: ['one'],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -104,13 +104,13 @@ describe('useListbox defaultReducer', () => {
       };
 
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.deep.equal(['two']);
+      expect(result.selectedValues).to.deep.equal(['two']);
     });
 
     it('add the clicked value to the selection if selectionLimit is not set', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: ['one'],
+        selectedValues: ['one'],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -129,13 +129,13 @@ describe('useListbox defaultReducer', () => {
       };
 
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.deep.equal(['one', 'two']);
+      expect(result.selectedValues).to.deep.equal(['one', 'two']);
     });
 
     it('remove the clicked value from the selection if selectionLimit is not set and it was selected already', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'three',
-        selectedValue: ['one', 'two'],
+        selectedValues: ['one', 'two'],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -154,7 +154,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const result = defaultReducer(state, action);
-      expect(result.selectedValue).to.deep.equal(['one']);
+      expect(result.selectedValues).to.deep.equal(['one']);
     });
   });
 
@@ -163,7 +163,7 @@ describe('useListbox defaultReducer', () => {
       it('highlights the first non-disabled option if the first is disabled', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: [],
+          selectedValues: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -191,7 +191,7 @@ describe('useListbox defaultReducer', () => {
       it('highlights the last non-disabled option if the last is disabled', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: [],
+          selectedValues: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -219,7 +219,7 @@ describe('useListbox defaultReducer', () => {
       it('wraps the highlight around omitting disabled items', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: [],
+          selectedValues: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -247,7 +247,7 @@ describe('useListbox defaultReducer', () => {
       it('wraps the highlight around omitting disabled items', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: [],
+          selectedValues: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -273,7 +273,7 @@ describe('useListbox defaultReducer', () => {
       it('does not highlight any option if all are disabled', () => {
         const state: ListboxState<string> = {
           highlightedValue: null,
-          selectedValue: [],
+          selectedValues: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -301,7 +301,7 @@ describe('useListbox defaultReducer', () => {
       it('selects the highlighted option', () => {
         const state: ListboxState<string> = {
           highlightedValue: 'two',
-          selectedValue: [],
+          selectedValues: [],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -321,13 +321,13 @@ describe('useListbox defaultReducer', () => {
         };
 
         const result = defaultReducer(state, action);
-        expect(result.selectedValue).to.deep.equal(['two']);
+        expect(result.selectedValues).to.deep.equal(['two']);
       });
 
       it('replaces the selectedValue with the highlighted value if selectionLimit = 1', () => {
         const state: ListboxState<string> = {
           highlightedValue: 'two',
-          selectedValue: ['one'],
+          selectedValues: ['one'],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -347,13 +347,13 @@ describe('useListbox defaultReducer', () => {
         };
 
         const result = defaultReducer(state, action);
-        expect(result.selectedValue).to.deep.equal(['two']);
+        expect(result.selectedValues).to.deep.equal(['two']);
       });
 
       it('add the highlighted value to the selection if selectionLimit is not set', () => {
         const state: ListboxState<string> = {
           highlightedValue: 'two',
-          selectedValue: ['one'],
+          selectedValues: ['one'],
         };
 
         const action: ListboxReducerAction<string> = {
@@ -374,7 +374,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const result = defaultReducer(state, action);
-        expect(result.selectedValue).to.deep.equal(['one', 'two']);
+        expect(result.selectedValues).to.deep.equal(['one', 'two']);
       });
     });
   });
@@ -383,7 +383,7 @@ describe('useListbox defaultReducer', () => {
     it('should navigate to next match', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'two',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -408,7 +408,7 @@ describe('useListbox defaultReducer', () => {
     it('should not move highlight when no matched options', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -433,7 +433,7 @@ describe('useListbox defaultReducer', () => {
     it('should highlight first match that is not disabled', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -458,7 +458,7 @@ describe('useListbox defaultReducer', () => {
     it('should move highlight to disabled items if disabledItemsFocusable=true', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'one',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {
@@ -483,7 +483,7 @@ describe('useListbox defaultReducer', () => {
     it('should not move highlight when disabled wrap and match is before highlighted option', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'three',
-        selectedValue: [],
+        selectedValues: [],
       };
 
       const action: ListboxReducerAction<string> = {

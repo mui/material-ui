@@ -194,7 +194,7 @@ function handleOptionSelection<TOption>(
     isOptionDisabled = () => false,
     selectionLimit,
   } = props;
-  const { selectedValue } = state;
+  const { selectedValues } = state;
 
   const optionIndex = props.options.findIndex((o) => props.optionComparer(option, o));
 
@@ -203,10 +203,10 @@ function handleOptionSelection<TOption>(
   }
 
   // if the option is already selected, remove it from the selection, otherwise add it
-  const newSelectedValues = toggleSelection(option, selectedValue, selectionLimit, optionComparer);
+  const newSelectedValues = toggleSelection(option, selectedValues, selectionLimit, optionComparer);
 
   return {
-    selectedValue: newSelectedValues,
+    selectedValues: newSelectedValues,
     highlightedValue: option,
   };
 }
@@ -368,14 +368,14 @@ function handleOptionsChange<TOption>(
       : options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
 
   // exclude selected values that are no longer in the options
-  const selectedValues = state.selectedValue ?? [];
+  const selectedValues = state.selectedValues ?? [];
   const newSelectedValues = selectedValues.filter((selectedValue) =>
     options.some((option) => optionComparer(option, selectedValue)),
   );
 
   return {
     highlightedValue: newHighlightedOption,
-    selectedValue: newSelectedValues,
+    selectedValues: newSelectedValues,
   };
 }
 
@@ -395,7 +395,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.setValue:
       return {
         ...state,
-        selectedValue: action.value,
+        selectedValues: action.value,
       };
     case ActionTypes.setHighlight:
       return {

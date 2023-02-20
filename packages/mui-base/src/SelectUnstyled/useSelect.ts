@@ -201,7 +201,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
           ) {
             return {
               ...newState,
-              selectedValue: newState.highlightedValue != null ? [newState.highlightedValue] : [],
+              selectedValues: newState.highlightedValue != null ? [newState.highlightedValue] : [],
             };
           }
 
@@ -212,7 +212,8 @@ function useSelect<TValue, Multiple extends boolean = false>(
         case ActionTypes.optionsChange:
           return {
             ...newState,
-            highlightedValue: newState.selectedValue.length > 0 ? newState.selectedValue[0] : null,
+            highlightedValue:
+              newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
           };
 
         default:

@@ -71,8 +71,8 @@ function useStateChangeDetection<TOption>(
     const previousState = getControlledState(internalPreviousState, propsRef.current);
     const { optionComparer, onChange } = propsRef.current;
 
-    const previousSelectedValues = (previousState?.selectedValue ?? []) as TOption[];
-    const nextSelectedValues = nextState.selectedValue as TOption[];
+    const previousSelectedValues = previousState?.selectedValues ?? [];
+    const nextSelectedValues = nextState.selectedValues as TOption[];
 
     if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
       onChange?.(lastActionRef.current.event, nextSelectedValues);
@@ -94,7 +94,7 @@ function useStateChangeDetection<TOption>(
 
     lastActionRef.current = null;
   }, [
-    nextState.selectedValue,
+    nextState.selectedValues,
     nextState.highlightedValue,
     internalPreviousState,
     propsRef,
@@ -114,11 +114,11 @@ export default function useControllableReducer<TOption>(
 
   const actionRef = React.useRef<ListboxAction<TOption> | null>(null);
 
-  const initialSelectedValue = (value === undefined ? defaultValue : value) ?? [];
+  const initialSelectedValues = (value === undefined ? defaultValue : value) ?? [];
 
   const initialState = {
     highlightedValue: null,
-    selectedValue: initialSelectedValue,
+    selectedValues: initialSelectedValues,
   };
 
   const combinedReducer = React.useCallback(

@@ -69,7 +69,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
 
-  const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
+  const [{ highlightedValue, selectedValues: selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
     propsWithDefaults,

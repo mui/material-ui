@@ -100,7 +100,7 @@ export type ListboxReducerAction<T> = ListboxAction<T> & {
 
 export interface ListboxState<TOption> {
   highlightedValue: TOption | null;
-  selectedValue: TOption[];
+  selectedValues: TOption[];
 }
 
 export type ListboxReducer<TOption> = (
