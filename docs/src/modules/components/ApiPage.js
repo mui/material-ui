@@ -67,7 +67,7 @@ function SlotsTable(props) {
         <tr>
           <th align="left">{t('api-docs.name')}</th>
           <th align="left">{t('api-docs.defaultClass')}</th>
-          <th align="left">{t('api-docs.default')}</th>
+          <th align="left">{t('api-docs.defaultValue')}</th>
           <th align="left">{t('api-docs.description')}</th>
         </tr>
       </thead>
