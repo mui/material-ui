@@ -12,7 +12,7 @@ import Typography from '@mui/joy/Typography';
 
 export default function BasicModalDialog() {
   const [open, setOpen] = React.useState('');
-  const [overflow, setOverflow] = React.useState(false);
+  const [overflow, setOverflow] = React.useState(true);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
