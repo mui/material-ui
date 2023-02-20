@@ -398,6 +398,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     disabled = false,
     disabledItemsFocusable = false,
     disableListWrap = false,
+    disableOptionEqualToValueWarning = false,
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
@@ -807,6 +808,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableListWrap: PropTypes.bool,
+  /**
+   * Disable warning when options are not equal to value
+   * @default false
+   */
+  disableOptionEqualToValueWarning: PropTypes.bool,
   /**
    * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false

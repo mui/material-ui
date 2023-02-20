@@ -35,6 +35,7 @@
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
     "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
+    "disableOptionEqualToValueWarning": { "type": { "name": "bool" }, "default": "false" },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
     "filterOptions": { "type": { "name": "func" } },
     "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
