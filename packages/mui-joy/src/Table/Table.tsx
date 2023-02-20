@@ -259,7 +259,7 @@ const TableRoot = styled('table', {
         top: 0,
       },
       [tableSelector.getHeaderCell()]: {
-        zIndex: 10,
+        zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
