@@ -24,7 +24,7 @@ export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwn
  * @example CreateSlotsAndSlotProps<'root' | 'decorator', { root: ..., decorator: ... }>
  */
 export type CreateSlotsAndSlotProps<Slots, K extends Record<keyof Slots, any>> = {
-  slots?: Slots;
+  slots?: Partial<Slots>;
   slotProps?: {
     [P in keyof K]?: K[P];
   };
