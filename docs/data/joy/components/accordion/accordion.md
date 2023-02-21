@@ -10,14 +10,16 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 <p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
 
 :::success
-Joy Accordion component is still in development but it should not block you from using Joy UI!
+Joy Accordion component is still **in development** but it should not block you from using Joy UI!
 
-The examples below demonstrate the featuring between Joy UI and headless libraries such as [Radix UI](https://www.radix-ui.com/docs/primitives/overview/introduction) and [Headless UI](https://headlessui.com/).
+The examples below demonstrate the featuring between Joy UI and popular headless libraries.
 :::
+
+If you need Joy UI Accordion, please upvote [this issue](https://github.com/mui/material-ui/issues/36281). It will help us prioritize the next component that we should work on.
 
 ## Integration
 
-Joy [`List`](/joy-ui/react-list/) components is perfect to form accordions because they are the vertically stacked and have the same size.
+Joy [`List`](/joy-ui/react-list/) components are perfect for building accordions because they are vertically stacked with the same size.
 
 - **List**: Wraps the accordions and set `component="div"` to remove it from the accessibility tree.
 - **ListItemButton**: The accordion header that can toggle the visibility of the content.
