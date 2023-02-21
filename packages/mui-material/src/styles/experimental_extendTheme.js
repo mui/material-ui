@@ -61,6 +61,7 @@ export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(c
 
 export const defaultShouldSkipGeneratingVar = (keys) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 export default function extendTheme(options = {}, ...args) {

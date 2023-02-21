@@ -38,8 +38,9 @@ const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
 }) as Overlays;
 
-export const defaultShouldSkipGeneratingVar = (keys: string[]) =>
+export const defaultShouldSkipGeneratingVar = (keys) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 function assignNode(obj: any, keys: string[]) {
