@@ -169,6 +169,14 @@ export default function ApiPage(props) {
     slots: componentSlots,
   } = pageContent;
 
+  const isJoyComponent = filename.includes('mui-joy');
+  const defaultPropsLink = isJoyComponent
+    ? '/joy-ui/customization/themed-components/#default-props'
+    : '/material-ui/customization/theme-components/#default-props';
+  const styleOverridesLink = isJoyComponent
+    ? '/joy-ui/customization/themed-components/#style-overrides'
+    : '/material-ui/customization/theme-components/#global-style-overrides';
+
   const {
     componentDescription,
     componentDescriptionToc = [],
@@ -279,15 +287,18 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentStyles.name && (
+        {(componentStyles.name || isJoyComponent) && (
           <React.Fragment>
             <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.styleOverrides').replace(
-                  /{{componentStyles\.name}}/,
-                  componentStyles.name,
-                ),
+                __html: t('api-docs.styleOverrides')
+                  .replace(
+                    /{{componentStyles\.name}}/,
+                    isJoyComponent ? `Joy${componentName}` : componentStyles.name,
+                  )
+                  .replace(/{{defaultPropsLink}}/, defaultPropsLink)
+                  .replace(/{{styleOverridesLink}}/, styleOverridesLink),
               }}
             />
           </React.Fragment>

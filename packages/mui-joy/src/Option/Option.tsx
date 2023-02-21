@@ -32,7 +32,16 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
     },
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/joy-ui/api/option/)
+ */
 const Option = React.forwardRef(function Option(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
