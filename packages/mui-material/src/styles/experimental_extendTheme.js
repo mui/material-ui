@@ -378,8 +378,12 @@ export default function extendTheme(options = {}, ...args) {
 
   const colorSchemesCss = {};
 
-  Object.keys(theme.colorSchemes).forEach((key) => {
-    const { css, vars } = cssVarsParser(theme, {
+  const { colorSchemes, ...restTheme } = theme;
+  Object.keys(colorSchemes).forEach((key) => {
+    const t = { ...restTheme, ...colorSchemes[key] };
+    delete t.colorSchemes;
+    
+    const { css, vars } = cssVarsParser(t, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
     });
@@ -396,16 +400,12 @@ export default function extendTheme(options = {}, ...args) {
   };
 
   // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
-  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
+  const { css: rootCss, vars: rootVars } = cssVarsParser(restTheme, {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
   });
 
-  theme.vars = {
-    ...rootVars,
-    // This includes palette, opacity etc.
-    ...theme.vars.colorSchemes.light,
-  };
+  theme.vars = deepmerge(theme.vars, rootVars);
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

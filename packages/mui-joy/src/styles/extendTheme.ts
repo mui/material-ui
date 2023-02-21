@@ -266,7 +266,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tooltip: getCssVarColor('palette-neutral-800'),
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
-      // TODO: resolve this variable
       divider: `rgba(${getCssVarColor('palette-neutral-mainChannel')} / 0.28)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
@@ -353,10 +352,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level2: getCssVarColor('palette-neutral-700'),
         level3: getCssVarColor('palette-neutral-600'),
         tooltip: getCssVarColor('palette-neutral-600'),
-        // TODO: resolve this value
         backdrop: `rgba(${getCssVarColor('palette-neutral-darkChannel')} / 0.5)`,
       },
-      // TODO: resolve this value
       divider: `rgba(${getCssVarColor('palette-neutral-mainChannel')} / 0.24)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
@@ -424,9 +421,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
         outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness', '2px')})`,
-        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVar(
+        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVarColor(
           'palette-focusVisible',
-          defaultColors.primary[500]
         )}`,
       },
     },
@@ -521,7 +517,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         lightColorSystem.shadowChannel,
       )} / 0.29)`,
     },
-    // TODO: Resolve the rest of the variables
     zIndex: {
       badge: 1,
       table: 10,
@@ -536,7 +531,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontSize: getCssVar('fontSize-xl7', fontSize.xl7),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       display2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
@@ -544,7 +539,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontSize: getCssVar('fontSize-xl6', fontSize.xl6),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
@@ -552,7 +547,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       h2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
@@ -560,65 +555,65 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       h3: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       h4: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       h5: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-xl', fontSize.xl),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       h6: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       body1: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-md', fontSize.md),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-primary'),
+        color: getCssVar('palette-text-primary'),
       },
       body2: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-sm', fontSize.sm),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-secondary'),
+        color: getCssVar('palette-text-secondary'),
       },
       body3: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-tertiary'),
+        color: getCssVar('palette-text-tertiary'),
       },
       body4: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs2', fontSize.xs2),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-tertiary'),
+        color: getCssVar('palette-text-tertiary'),
       },
       body5: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs3', fontSize.xs3),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVarColor('palette-text-tertiary'),
+        color: getCssVar('palette-text-tertiary'),
       },
     },
   };
@@ -684,7 +679,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   const colorSchemesCss: Record<string, any> = {};
   Object.keys(colorSchemes).forEach((key) => {
-    const { css, vars } = cssVarsParser(theme, {
+    // @ts-ignore
+    const t = { ...theme, ...colorSchemes[key] };
+    // @ts-ignore - we don't want colorSchemes variables generated
+    delete t.colorSchemes;
+    const { css, vars } = cssVarsParser(t, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
     });
@@ -699,11 +698,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
-  const { css: rootCss, vars: rootVars } = cssVarsParser(theme, {
+  const { css: rootCss, vars: rootVars } = cssVarsParser(mergedScales, {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
   });
-  theme.vars = rootVars as unknown as Theme['vars'];
+  theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
 
   /**
    * Color channels generation
