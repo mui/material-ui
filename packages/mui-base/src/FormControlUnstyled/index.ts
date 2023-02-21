@@ -6,6 +6,7 @@ export type {
   FormControlUnstyledProps,
   FormControlUnstyledRootSlotPropsOverrides,
   FormControlUnstyledState,
+  UseFormControlUnstyledContextReturnValue
 } from './FormControlUnstyled.types';
 
 export { default as formControlUnstyledClasses } from './formControlUnstyledClasses';

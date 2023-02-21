@@ -92,3 +92,5 @@ export type FormControlUnstyledRootSlotProps = {
   className?: string;
   ownerState: FormControlUnstyledOwnerState;
 };
+
+export type UseFormControlUnstyledContextReturnValue = FormControlUnstyledState | undefined
