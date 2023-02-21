@@ -218,7 +218,16 @@ const RadioIcon = styled('span', {
   backgroundColor: 'currentColor',
   transform: ownerState.checked ? 'scale(1)' : 'scale(0)',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio Group](https://mui.com/joy-ui/react-radio/)
+ *
+ * API:
+ *
+ * - [Radio API](https://mui.com/joy-ui/api/radio/)
+ */
 const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -463,7 +472,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
    * This prop is useful for composing Radio with ListItem component.
-   * @default false;
+   * @default false
    */
   overlay: PropTypes.bool,
   /**

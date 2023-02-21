@@ -89,7 +89,16 @@ export const IconButtonRoot = styled(StyledIconButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Button](https://mui.com/joy-ui/react-button/)
+ *
+ * API:
+ *
+ * - [IconButton API](https://mui.com/joy-ui/api/icon-button/)
+ */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -199,6 +208,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   focusVisibleClassName: PropTypes.string,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

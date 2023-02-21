@@ -181,7 +181,16 @@ const CheckboxLabel = styled('label', {
 
 const defaultCheckedIcon = <CheckIcon />;
 const defaultIndeterminateIcon = <IndeterminateIcon />;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Checkbox](https://mui.com/joy-ui/react-checkbox/)
+ *
+ * API:
+ *
+ * - [Checkbox API](https://mui.com/joy-ui/api/checkbox/)
+ */
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -404,7 +413,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
-   * @default <IndeterminateCheckBoxIcon />
+   * @default <IndeterminateIcon />
    */
   indeterminateIcon: PropTypes.node,
   /**

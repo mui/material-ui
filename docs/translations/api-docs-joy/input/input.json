@@ -1,0 +1,15 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "className": "Class name applied to the root element.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "endDecorator": "Trailing adornment for this input.",
+    "error": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "fullWidth": "If <code>true</code>, the button will take up the full width of its container.",
+    "size": "The size of the component.",
+    "startDecorator": "Leading adornment for this input.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {}
+}

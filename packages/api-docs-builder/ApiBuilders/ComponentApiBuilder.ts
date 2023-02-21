@@ -324,7 +324,11 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiPage = (
+  apiPagesDirectory: string,
+  translationPagesDirectory: string,
+  reactApi: ReactApi,
+) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -369,12 +373,12 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
   };
 
   writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
+    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
   writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
+    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
     `import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
@@ -387,7 +391,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
+    '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
     false,
     /${kebabCase(reactApi.name)}.*.json$/,
   );
@@ -565,6 +569,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
                   }
                 }
               });
+
               return false;
             },
           });
@@ -612,8 +617,9 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.styles = await parseStyles({ project, componentName: reactApi.name });
   reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+  reactApi.styles = parseStyles({ project, componentName: reactApi.name });
+
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = reactApi.muiName;
   }
@@ -630,8 +636,12 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    const translationPagesDirectory =
+      reactApi.apiPathname.indexOf('/joy-ui/') === 0
+        ? 'docs/translations/api-docs-joy'
+        : 'docs/translations/api-docs';
+    generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
+    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);
