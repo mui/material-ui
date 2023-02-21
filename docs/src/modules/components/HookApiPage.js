@@ -52,6 +52,8 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
+const nonDefaultHooks = ['useFormControlUnstyledContext'];
+
 export default function ApiPage(props) {
   const { descriptions, disableAd = false, pageContent } = props;
   const t = useTranslate();
@@ -126,7 +128,10 @@ export default function ApiPage(props) {
         <Heading hash="import" />
         <HighlightedCode
           code={`
-import ${hookName} from '${source.split('/').slice(0, -1).join('/')}';`}
+import ${nonDefaultHooks.includes(hookName) ? `{ ${hookName} }` : hookName} from '${source
+            .split('/')
+            .slice(0, -1)
+            .join('/')}';`}
           language="jsx"
         />
         {/* TODO: Add this once the hooks are in dedicated folders */}
