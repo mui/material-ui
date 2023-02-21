@@ -102,7 +102,6 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
  * API:
  *
  * - [Badge API](https://mui.com/material-ui/api/badge/)
- * - inherits [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

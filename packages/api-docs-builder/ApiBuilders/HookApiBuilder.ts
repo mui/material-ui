@@ -264,12 +264,19 @@ const attachTable = (
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
-
+      const typeDescription = (propDescriptor.typeStr ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
       return {
         [propName]: {
           type: {
-            name: propDescriptor.typeStr,
-            description: propDescriptor.description ?? undefined,
+            // The docgen generates this structure for the components. For consistency in the structure
+            // we are adding the same value in both the name and the description
+            name: typeDescription,
+            description: typeDescription,
           },
           default: defaultValue,
           // undefined values are not serialized => saving some bytes

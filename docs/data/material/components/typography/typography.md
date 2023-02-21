@@ -88,7 +88,7 @@ It's important to realize that the style of a typography component is independen
 </Typography>;
 ```
 
-- You can change the mapping [globally using the theme](/material-ui/customization/theme-components/#default-props):
+- You can change the mapping [globally using the theme](/material-ui/customization/typography/#adding-amp-disabling-variants):
 
 ```js
 const theme = createTheme({

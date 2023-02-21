@@ -29,9 +29,6 @@ const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
 export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li')<{
   ownerState: AutocompleteOptionOwnerState;
 }>(({ theme, ownerState }) => ({
-  '&:not(:hover)': {
-    transition: 'none', // prevent flicker when using keyboard arrows to move between options
-  },
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
     color: theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']?.color,

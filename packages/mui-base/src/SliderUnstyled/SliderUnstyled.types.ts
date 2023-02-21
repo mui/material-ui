@@ -24,7 +24,14 @@ export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 }
 
-export interface SliderUnstyledComponentsPropsOverrides {}
+export interface SliderUnstyledRootSlotPropsOverrides {}
+export interface SliderUnstyledTrackSlotPropsOverrides {}
+export interface SliderUnstyledRailSlotPropsOverrides {}
+export interface SliderUnstyledThumbSlotPropsOverrides {}
+export interface SliderUnstyledMarkSlotPropsOverrides {}
+export interface SliderUnstyledMarkLabelSlotPropsOverrides {}
+export interface SliderUnstyledValueLabelSlotPropsOverrides {}
+export interface SliderUnstyledInputSlotPropsOverrides {}
 
 export interface SliderUnstyledOwnProps {
   /**
@@ -138,43 +145,42 @@ export interface SliderUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledRootSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     track?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledTrackSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     rail?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledRailSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     thumb?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledThumbSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     mark?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledMarkSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     markLabel?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledMarkLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     valueLabel?: SlotComponentProps<
       React.ElementType,
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledValueLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
-
     input?: SlotComponentProps<
       'input',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledInputSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
   };
