@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseButtonRootSlotProps } from '../ButtonUnstyled';
+import { UseButtonRootSlotProps } from '../useButton';
 
 export interface UseTabParameters {
   /**

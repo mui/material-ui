@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import {
+import useListbox, {
   defaultListboxReducer,
   ListboxState,
-  useListbox,
   ActionTypes,
   ListboxReducerAction,
-} from '../ListboxUnstyled';
+} from '../useListbox';
 import {
   MenuItemMetadata,
   MenuItemState,
@@ -14,7 +13,7 @@ import {
   UseMenuParameters,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
-import useMenuChangeNotifiers from './useMenuChangeNotifiers';
+import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
 
 function stateReducer(
   state: ListboxState<string>,

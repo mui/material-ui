@@ -68,7 +68,7 @@ const TooltipRoot = styled('div', {
       padding: theme.spacing(0.75, 1),
       fontSize: theme.vars.fontSize.md,
     }),
-    zIndex: 1500,
+    zIndex: theme.vars.zIndex.tooltip,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
     boxShadow: theme.shadow.sm,

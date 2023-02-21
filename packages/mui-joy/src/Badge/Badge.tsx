@@ -121,7 +121,7 @@ const BadgeBadge = styled('span', {
     minHeight: 'var(--Badge-minHeight)',
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
-    zIndex: 1,
+    zIndex: theme.vars.zIndex.badge,
     backgroundColor: theme.vars.palette.background.surface,
     [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
     [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],

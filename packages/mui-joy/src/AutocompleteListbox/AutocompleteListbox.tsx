@@ -60,7 +60,7 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
-    zIndex: 1200,
+    zIndex: theme.vars.zIndex.popup,
     overflow: 'auto',
     maxHeight: '40vh',
     position: 'relative', // to make sure that the listbox is positioned for grouped options to work.

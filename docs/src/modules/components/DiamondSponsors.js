@@ -80,7 +80,7 @@ export default function DiamondSponsors() {
           data-ga-event-category="sponsor"
           data-ga-event-action="drawer"
           data-ga-event-label="octopus"
-          href="https://www.octopus.com/?utm_source=materialui&utm_medium=referral"
+          href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >

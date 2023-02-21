@@ -5,7 +5,7 @@ import {
   SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
-} from './useSelect.types';
+} from '../useSelect';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
 

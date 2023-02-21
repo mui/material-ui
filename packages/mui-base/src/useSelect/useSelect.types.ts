@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { UseButtonRootSlotProps } from '../ButtonUnstyled';
-import {
-  OptionState,
-  UseListboxOptionSlotProps,
-  UseListboxRootSlotProps,
-} from '../ListboxUnstyled';
+import { UseButtonRootSlotProps } from '../useButton';
+import { OptionState, UseListboxOptionSlotProps, UseListboxRootSlotProps } from '../useListbox';
 import { EventHandlers } from '../utils/types';
 import { SelectChangeNotifiers } from './useSelectChangeNotifiers';
 

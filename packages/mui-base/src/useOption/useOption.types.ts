@@ -1,4 +1,4 @@
-import { UseSelectOptionSlotProps } from '../SelectUnstyled';
+import { UseSelectOptionSlotProps } from '../useSelect';
 import { EventHandlers } from '../utils';
 
 export interface UseOptionParameters<Value> {

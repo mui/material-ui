@@ -12,12 +12,11 @@ import PopperUnstyled, {
   PopperUnstyledTypeMap,
 } from '@mui/base/PopperUnstyled';
 import {
-  useSelect,
   SelectUnstyledContext,
   flattenOptionGroups,
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
-import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
+import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -242,7 +241,7 @@ const SelectListbox = styled(StyledList, {
     minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
     outline: 0,
     boxShadow: theme.shadow.md,
-    zIndex: 1000,
+    zIndex: theme.vars.zIndex.popup,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
