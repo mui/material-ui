@@ -755,7 +755,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
           >
             <ThumbSlot
               data-index={index}
-              data-focusvisible={focusedThumbIndex === index}
               {...thumbProps}
               className={clsx(classes.thumb, thumbProps.className, {
                 [classes.active]: active === index,
