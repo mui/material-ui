@@ -138,32 +138,23 @@ const styles = `
 const Menu = React.forwardRef(function Menu(props, ref) {
   const { children, onClose, open, ...other } = props;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-  } = useMenu({
+  const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
     onClose,
     open,
   });
 
-  const contextValue = React.useMemo(
+  const menuContextValue = React.useMemo(
     () => ({
-      registerItem,
-      unregisterItem,
-      getItemState,
-      getItemProps,
+      ...contextValue,
       open: true,
     }),
-    [getItemProps, getItemState, registerItem, unregisterItem],
+    [contextValue],
   );
 
   return (
     <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         {children}
       </MenuUnstyledContext.Provider>
     </ul>

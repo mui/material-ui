@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  unstable_useControlled as useControlled,
-  unstable_useForkRef as useForkRef,
-  unstable_useId as useId,
-} from '@mui/utils';
+import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { useButton } from '../ButtonUnstyled';
 import {
   SelectOption,
@@ -25,6 +21,7 @@ import {
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
+import useSelectChangeNotifiers from './useSelectChangeNotifiers';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
@@ -41,12 +38,13 @@ function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMu
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const {
     buttonRef: buttonRefProp,
-    defaultValue,
+    defaultValue: defaultValueProp,
     disabled = false,
     listboxId: listboxIdProp,
     listboxRef: listboxRefProp,
     multiple = false,
     onChange,
+    onHighlightChange,
     onOpenChange,
     open = false,
     options,
@@ -60,12 +58,18 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const listboxId = useId(listboxIdProp);
 
-  const [value, setValue] = useControlled({
-    controlled: valueProp,
-    default: defaultValue,
-    name: 'SelectUnstyled',
-    state: 'value',
-  });
+  let defaultValue = defaultValueProp;
+  if (valueProp === undefined && defaultValueProp === undefined) {
+    defaultValue = multiple ? [] : null;
+  }
+
+  const optionsMap = React.useMemo(() => {
+    const map = new Map<TValue, SelectOption<TValue>>();
+    options.forEach((option) => {
+      map.set(option.value, option);
+    });
+    return map;
+  }, [options]);
 
   // prevents closing the listbox on keyUp right after opening it
   const ignoreEnterKeyUp = React.useRef(false);
@@ -85,6 +89,13 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   }, [listboxFocusRequested]);
 
   const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
+
+  const {
+    notifySelectionChanged,
+    notifyHighlightChanged,
+    registerHighlightChangeHandler,
+    registerSelectionChangeHandler,
+  } = useSelectChangeNotifiers<TValue>();
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -146,7 +157,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       ignoreEnterKeyUp.current = false;
     };
 
-  const createHandleListboxItemClick =
+  const createHandleListboxItemClick = React.useCallback(
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
       otherHandlers?.onClick?.(event);
       if (event.defaultPrevented) {
@@ -156,7 +167,9 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       if (!multiple) {
         onOpenChange?.(false);
       }
-    };
+    },
+    [multiple, onOpenChange],
+  );
 
   const createHandleListboxBlur =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
@@ -166,34 +179,37 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       }
     };
 
-  const listboxReducer: ListboxReducer<SelectOption<TValue>> = (state, action) => {
-    const newState = defaultListboxReducer(state, action);
+  const listboxReducer: ListboxReducer<TValue> = React.useCallback(
+    (state, action) => {
+      const newState = defaultListboxReducer(state, action);
 
-    // change selection when listbox is closed
-    if (
-      action.type === ActionTypes.keyDown &&
-      !open &&
-      (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
-    ) {
-      return {
-        ...newState,
-        selectedValue: newState.highlightedValue,
-      };
-    }
+      // change selection when listbox is closed
+      if (
+        action.type === ActionTypes.keyDown &&
+        !open &&
+        (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown')
+      ) {
+        return {
+          ...newState,
+          selectedValue: newState.highlightedValue,
+        };
+      }
 
-    if (
-      action.type === ActionTypes.blur ||
-      action.type === ActionTypes.setValue ||
-      action.type === ActionTypes.optionsChange
-    ) {
-      return {
-        ...newState,
-        highlightedValue: newState.selectedValue as SelectOption<TValue>,
-      };
-    }
+      if (
+        action.type === ActionTypes.blur ||
+        action.type === ActionTypes.setValue ||
+        action.type === ActionTypes.optionsChange
+      ) {
+        return {
+          ...newState,
+          highlightedValue: newState.selectedValue as TValue,
+        };
+      }
 
-    return newState;
-  };
+      return newState;
+    },
+    [open],
+  );
 
   const {
     getRootProps: getButtonRootProps,
@@ -204,15 +220,29 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     ref: handleButtonRef,
   });
 
-  const selectedOption = React.useMemo(
-    () =>
-      props.multiple
-        ? props.options.filter((o) => (value as TValue[]).includes(o.value))
-        : props.options.find((o) => o.value === value) ?? null,
-    [props.multiple, props.options, value],
+  const optionValues = React.useMemo(() => options.map((o) => o.value), [options]);
+
+  let useListboxParameters: UseListboxParameters<TValue>;
+
+  const isOptionDisabled = React.useCallback(
+    (valueToCheck: TValue) => {
+      const option = optionsMap.get(valueToCheck);
+      return option?.disabled ?? false;
+    },
+    [optionsMap],
   );
 
-  let useListboxParameters: UseListboxParameters<SelectOption<TValue>>;
+  const stringifyOption = React.useCallback(
+    (valueToCheck: TValue) => {
+      const option = optionsMap.get(valueToCheck);
+      if (!option) {
+        return '';
+      }
+
+      return optionStringifier(option);
+    },
+    [optionsMap, optionStringifier],
+  );
 
   if (props.multiple) {
     const onChangeMultiple = onChange as (
@@ -220,19 +250,20 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       value: TValue[],
     ) => void;
     useListboxParameters = {
+      defaultValue: defaultValue as TValue[],
       id: listboxId,
-      isOptionDisabled: (o) => o?.disabled ?? false,
-      optionComparer: (o, v) => o?.value === v?.value,
+      isOptionDisabled,
       listboxRef: handleListboxRef,
       multiple: true,
-      onChange: (e, newOptions) => {
-        const newValues = newOptions.map((o) => o.value);
-        setValue(newValues);
+      onChange: (e, newValues) => {
         onChangeMultiple?.(e, newValues);
       },
-      options,
-      optionStringifier,
-      value: selectedOption as SelectOption<TValue>[],
+      onHighlightChange: (e, newValue) => {
+        onHighlightChange?.(e, newValue ?? null);
+      },
+      options: optionValues,
+      optionStringifier: stringifyOption,
+      value: valueProp as TValue[],
     };
   } else {
     const onChangeSingle = onChange as (
@@ -240,19 +271,21 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       value: TValue | null,
     ) => void;
     useListboxParameters = {
+      defaultValue: defaultValue as TValue | null,
       id: listboxId,
-      isOptionDisabled: (o) => o?.disabled ?? false,
-      optionComparer: (o, v) => o?.value === v?.value,
+      isOptionDisabled,
       listboxRef: handleListboxRef,
       multiple: false,
-      onChange: (e, option: SelectOption<TValue> | null) => {
-        setValue(option?.value ?? null);
-        onChangeSingle?.(e, option?.value ?? null);
+      onChange: (e, newValue: TValue | null) => {
+        onChangeSingle?.(e, newValue);
       },
-      options,
-      optionStringifier,
+      onHighlightChange: (e, newValue) => {
+        onHighlightChange?.(e, newValue);
+      },
+      options: optionValues,
+      optionStringifier: stringifyOption,
       stateReducer: listboxReducer,
-      value: selectedOption as SelectOption<TValue> | null,
+      value: valueProp as TValue | null,
     };
   }
 
@@ -261,8 +294,16 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     getOptionProps: getListboxOptionProps,
     getOptionState,
     highlightedOption,
-    selectedOption: listboxSelectedOption,
+    selectedOption,
   } = useListbox(useListboxParameters);
+
+  React.useEffect(() => {
+    notifySelectionChanged(selectedOption);
+  }, [selectedOption, notifySelectionChanged]);
+
+  React.useEffect(() => {
+    notifyHighlightChanged(highlightedOption);
+  }, [highlightedOption, notifyHighlightChanged]);
 
   const getButtonProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
@@ -290,21 +331,40 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       onKeyUp: createHandleListboxKeyUp(otherHandlers),
     });
 
-  const getOptionProps = <TOther extends EventHandlers>(
-    option: SelectOption<TValue>,
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectOptionSlotProps<TOther> => {
-    return getListboxOptionProps(option, {
-      ...otherHandlers,
-      onClick: createHandleListboxItemClick(otherHandlers),
-    });
-  };
+  const getOptionProps = React.useCallback(
+    <TOther extends EventHandlers>(
+      optionValue: TValue,
+      otherHandlers: TOther = {} as TOther,
+    ): UseSelectOptionSlotProps<TOther> => {
+      return getListboxOptionProps(optionValue, {
+        ...otherHandlers,
+        onClick: createHandleListboxItemClick(otherHandlers),
+      });
+    },
+    [getListboxOptionProps, createHandleListboxItemClick],
+  );
 
   React.useDebugValue({
-    selectedOption: listboxSelectedOption,
+    selectedOption,
     highlightedOption,
     open,
   });
+
+  const contextValue = React.useMemo(
+    () => ({
+      listboxRef,
+      getOptionProps,
+      getOptionState,
+      registerHighlightChangeHandler,
+      registerSelectionChangeHandler,
+    }),
+    [
+      getOptionProps,
+      getOptionState,
+      registerHighlightChangeHandler,
+      registerSelectionChangeHandler,
+    ],
+  );
 
   return {
     buttonActive,
@@ -312,10 +372,10 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
+    contextValue,
     open,
-    value,
+    value: selectedOption,
+    highlightedOption,
   };
 }
 

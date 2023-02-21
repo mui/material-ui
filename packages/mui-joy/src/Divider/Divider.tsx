@@ -17,7 +17,7 @@ const useUtilityClasses = (ownerState: DividerOwnerState) => {
   return composeClasses(slots, getDividerUtilityClass, {});
 };
 
-const DividerRoot = styled('hr', {
+export const DividerRoot = styled('hr', {
   name: 'JoyDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -143,10 +143,6 @@ Divider.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

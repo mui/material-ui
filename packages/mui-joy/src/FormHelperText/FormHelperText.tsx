@@ -86,10 +86,6 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */

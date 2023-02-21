@@ -129,7 +129,7 @@ Alternatively, you can do this manually by targeting the input slot—see [inner
 The Input component is composed of a root `<div>` with an `<input>` nested inside:
 
 ```html
-<div class="JoyInput-root">
-  <input class="JoyInput-input" />
+<div class="MuiInput-root">
+  <input class="MuiInput-input" />
 </div>
 ```

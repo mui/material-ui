@@ -176,7 +176,6 @@ const SwitchThumb = styled('span', {
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchOwnerState }>({
   '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
-  transition: 'left 0.2s',
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',

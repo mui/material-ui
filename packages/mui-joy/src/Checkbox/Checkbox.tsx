@@ -97,9 +97,6 @@ const CheckboxCheckbox = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       flexShrink: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
@@ -130,15 +127,13 @@ const CheckboxAction = styled('span', {
     borderRadius: `var(--Checkbox-action-radius, ${
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
+    textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon

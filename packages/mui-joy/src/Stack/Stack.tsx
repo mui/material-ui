@@ -6,7 +6,6 @@ import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
 
 const Stack = createStack({
-  componentName: 'JoyStack',
   createStyledComponent: styled('div', {
     name: 'JoyStack',
     slot: 'Root',

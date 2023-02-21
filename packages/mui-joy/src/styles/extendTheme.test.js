@@ -21,6 +21,7 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'zIndex',
         'typography',
         'colorInversionConfig',
         'variants',
