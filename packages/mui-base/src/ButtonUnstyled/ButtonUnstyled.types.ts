@@ -32,9 +32,15 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: ButtonUnstyledSlots;
+}
+
+export interface ButtonUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default props.href || props.to ? 'a' : 'button'
+   */
+  root?: React.ElementType;
 }
 
 export type ButtonUnstyledProps<

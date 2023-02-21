@@ -35,23 +35,14 @@ export interface TablePaginationUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    actions?: React.ElementType;
-    select?: React.ElementType;
-    selectLabel?: React.ElementType;
-    menuItem?: React.ElementType;
-    displayedRows?: React.ElementType;
-    toolbar?: React.ElementType;
-    spacer?: React.ElementType;
-  };
+  slots?: TablePaginationUnstyledSlots;
   /**
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
   slotProps?: {
     root?: SlotComponentProps<
-      'div',
+      'td',
       TablePaginationUnstyledRootSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
@@ -164,6 +155,49 @@ export interface TablePaginationUnstyledOwnProps {
    * Id of the select element within the pagination.
    */
   selectId?: string;
+}
+
+export interface TablePaginationUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'td'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the actions.
+   * @default TablePaginationActionsUnstyled
+   */
+  actions?: React.ElementType;
+  /**
+   * The component used to render the select.
+   * @default 'select'
+   */
+  select?: React.ElementType;
+  /**
+   * The component used to render the select label.
+   * @default 'p'
+   */
+  selectLabel?: React.ElementType;
+  /**
+   * The component used to render the menu item.
+   * @default 'option'
+   */
+  menuItem?: React.ElementType;
+  /**
+   * The component used to render the displayed rows.
+   * @default 'p'
+   */
+  displayedRows?: React.ElementType;
+  /**
+   * The component used to render the toolbar.
+   * @default 'div'
+   */
+  toolbar?: React.ElementType;
+  /**
+   * The component used to render the spacer.
+   * @default 'div'
+   */
+  spacer?: React.ElementType;
 }
 
 export interface TablePaginationUnstyledTypeMap<P = {}, D extends React.ElementType = 'td'> {
