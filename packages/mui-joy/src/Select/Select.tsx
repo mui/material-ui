@@ -216,6 +216,7 @@ const SelectButton = styled('button', {
   fontFamily: 'inherit',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+  overflow: 'auto',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
@@ -239,9 +240,9 @@ const SelectListbox = styled(StyledList, {
       theme.vars.palette.background.popup,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
-    maxHeight: 300, 
+    minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
+    maxHeight: '44vh', // the best value from what I tried so far which does not cause screen flicker when listbox is open.
     overflow: 'auto',
-    width: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
     outline: 0,
     boxShadow: theme.shadow.md,
     zIndex: theme.vars.zIndex.popup,
