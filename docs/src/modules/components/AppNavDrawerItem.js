@@ -204,6 +204,7 @@ export default function AppNavDrawerItem(props) {
     icon,
     legacy,
     newFeature,
+    comingSoon,
     linkProps,
     onClick,
     openImmediately,
@@ -271,6 +272,7 @@ export default function AppNavDrawerItem(props) {
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
+        {comingSoon && <Chip label="Coming soon" sx={sxChip('warning')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
@@ -286,6 +288,7 @@ export default function AppNavDrawerItem(props) {
 
 AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
+  comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   icon: PropTypes.string,

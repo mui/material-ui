@@ -239,6 +239,7 @@ function reduceChildRoutes(context) {
         href={firstChild.pathname}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -266,6 +267,7 @@ function reduceChildRoutes(context) {
         href={page.pathname}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
