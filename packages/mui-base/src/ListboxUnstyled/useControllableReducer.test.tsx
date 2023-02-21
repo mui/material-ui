@@ -82,7 +82,7 @@ describe('useControllableReducer', () => {
       const reducer = spy((state: ListboxState<string>) => {
         return {
           ...state,
-          selectedValue: ['b'],
+          selectedValues: ['b'],
         };
       });
 
@@ -114,6 +114,7 @@ describe('useControllableReducer', () => {
       }
 
       render(<TestComponent />);
+      expect(handleChange.called).to.equal(true);
       expect(handleChange.getCalls()[0].args[1]).to.deep.equal(['b']);
       expect(handleHighlightChange.notCalled).to.equal(true);
     });
