@@ -36,10 +36,10 @@
   },
   "sandboxes": [
     "material-ui-issue-latest-s2dsx",
-    "github/mui/material-ui/tree/HEAD/examples/create-react-app",
-    "github/mui/material-ui/tree/HEAD/examples/create-react-app-with-typescript",
-    "github/mui/material-ui/tree/HEAD/examples/joy-cra-typescript",
-    "github/mui/material-ui/tree/HEAD/examples/base-cra-typescript"
+    "/examples/material-cra",
+    "/examples/material-cra-ts",
+    "/examples/joy-cra-ts",
+    "/examples/base-cra-ts"
   ],
   "silent": true
 }

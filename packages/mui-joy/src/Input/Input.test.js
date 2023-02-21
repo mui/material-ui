@@ -7,6 +7,7 @@ import {
   createRenderer,
   screen,
   act,
+  fireEvent,
 } from 'test/utils';
 import Input, { inputClasses as classes } from '@mui/joy/Input';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -33,6 +34,11 @@ describe('Joy <Input />', () => {
   }));
 
   describeJoyColorInversion(<Input />, { muiName: 'JoyInput', classes });
+
+  it('should have placeholder', () => {
+    const { getByPlaceholderText } = render(<Input placeholder="Placeholder" />);
+    expect(getByPlaceholderText('Placeholder')).toBeVisible();
+  });
 
   it('should have error classes', () => {
     const { container } = render(<Input error />);
@@ -71,10 +77,10 @@ describe('Joy <Input />', () => {
     it('should reset the focused state if getting disabled', () => {
       const handleBlur = spy();
       const handleFocus = spy();
-      const { container, setProps } = render(<Input onBlur={handleBlur} onFocus={handleFocus} />);
+      const { getByRole, setProps } = render(<Input onBlur={handleBlur} onFocus={handleFocus} />);
 
       act(() => {
-        container.querySelector('input').focus();
+        getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
 
@@ -82,6 +88,56 @@ describe('Joy <Input />', () => {
       expect(handleBlur.callCount).to.equal(1);
       // check if focus not initiated again
       expect(handleFocus.callCount).to.equal(1);
+    });
+  });
+
+  describe('slotProps: input', () => {
+    it('`onKeyDown` and `onKeyUp` should work', () => {
+      const handleKeyDown = spy();
+      const handleKeyUp = spy();
+      const { getByRole } = render(
+        <Input slotProps={{ input: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />,
+      );
+
+      act(() => {
+        getByRole('textbox').focus();
+      });
+      fireEvent.keyDown(getByRole('textbox'));
+      fireEvent.keyUp(getByRole('textbox'));
+
+      expect(handleKeyDown.callCount).to.equal(1);
+      expect(handleKeyUp.callCount).to.equal(1);
+    });
+
+    it('should call focus and blur', () => {
+      const handleBlur = spy();
+      const handleFocus = spy();
+      const { getByRole } = render(
+        <Input slotProps={{ input: { onFocus: handleFocus, onBlur: handleBlur } }} />,
+      );
+
+      act(() => {
+        getByRole('textbox').focus();
+      });
+      expect(handleFocus.callCount).to.equal(1);
+      act(() => {
+        getByRole('textbox').blur();
+      });
+      expect(handleFocus.callCount).to.equal(1);
+    });
+
+    it('should override outer handlers', () => {
+      const handleFocus = spy();
+      const handleSlotFocus = spy();
+      const { getByRole } = render(
+        <Input onFocus={handleFocus} slotProps={{ input: { onFocus: handleSlotFocus } }} />,
+      );
+
+      act(() => {
+        getByRole('textbox').focus();
+      });
+      expect(handleFocus.callCount).to.equal(0);
+      expect(handleSlotFocus.callCount).to.equal(1);
     });
   });
 });

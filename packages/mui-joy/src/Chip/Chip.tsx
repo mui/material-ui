@@ -89,8 +89,6 @@ const ChipRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       whiteSpace: 'nowrap',
-      transition:
-        'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
@@ -151,8 +149,6 @@ const ChipAction = styled('button', {
     backgroundColor: 'initial',
     textDecoration: 'none',
     borderRadius: 'inherit',
-    transition:
-      'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],

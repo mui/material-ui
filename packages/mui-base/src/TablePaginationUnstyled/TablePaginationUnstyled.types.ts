@@ -12,7 +12,14 @@ export interface LabelDisplayedRowsArgs {
 
 export type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
-export interface TablePaginationUnstyledComponentsPropsOverrides {}
+export interface TablePaginationUnstyledRootSlotPropsOverrides {}
+export interface TablePaginationUnstyledActionsSlotPropsOverrides {}
+export interface TablePaginationUnstyledSelectSlotPropsOverrides {}
+export interface TablePaginationUnstyledSelectLabelSlotPropsOverrides {}
+export interface TablePaginationUnstyledMenuItemSlotPropsOverrides {}
+export interface TablePaginationUnstyledDisplayedRowsSlotPropsOverrides {}
+export interface TablePaginationUnstyledToolbarSlotPropsOverrides {}
+export interface TablePaginationUnstyledSpacerSlotPropsOverrides {}
 
 export interface TablePaginationUnstyledOwnProps {
   /**
@@ -45,42 +52,42 @@ export interface TablePaginationUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledRootSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     actions?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledActionsSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     select?: SlotComponentProps<
       'select',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledSelectSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     selectLabel?: SlotComponentProps<
       'p',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledSelectLabelSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     menuItem?: SlotComponentProps<
       'option',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledMenuItemSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     displayedRows?: SlotComponentProps<
       'p',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledDisplayedRowsSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     toolbar?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledToolbarSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
     spacer?: SlotComponentProps<
       'div',
-      TablePaginationUnstyledComponentsPropsOverrides,
+      TablePaginationUnstyledSpacerSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
   };

@@ -132,7 +132,7 @@ const CODES = {
 };
 
 export default function CoreComponents() {
-  const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);
+  const [demo, setDemo] = React.useState<(typeof DEMOS)[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {
     [DEMOS[0]]: <SmartButtonRounded fontSize="small" />,

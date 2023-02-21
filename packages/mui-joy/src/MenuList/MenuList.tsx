@@ -67,15 +67,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
   });
@@ -112,22 +104,19 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const contextValue = React.useMemo(
+  const menuContextValue = React.useMemo(
     () =>
       ({
-        registerItem,
-        unregisterItem,
-        getItemState,
-        getItemProps,
+        ...contextValue,
         getListboxProps,
         open: true,
       } as MenuUnstyledContextType),
-    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+    [contextValue, getListboxProps],
   );
 
   return (
     <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>

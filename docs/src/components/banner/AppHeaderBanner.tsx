@@ -7,21 +7,21 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 function getSurveyMessage() {
   return (
     <React.Fragment>
-    🚀&nbsp;Influence the future of MUI!&nbsp;&nbsp;Please take a few minutes for the&nbsp;
-    <Link
-      href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
-      target="_blank"
-      color="inherit"
-      underline="always"
-      sx={{
-        '&:hover': {
-          opacity: 0.9,
-        },
-      }}
-    >
-      MUI Developer survey 2022 →
-    </Link>
-  </React.Fragment>
+      🚀&nbsp;Influence the future of MUI!&nbsp;&nbsp;Please take a few minutes for the&nbsp;
+      <Link
+        href="https://www.surveymonkey.com/r/mui-developer-survey-2022?source=website"
+        target="_blank"
+        color="inherit"
+        underline="always"
+        sx={{
+          '&:hover': {
+            opacity: 0.9,
+          },
+        }}
+      >
+        MUI Developer survey 2022 →
+      </Link>
+    </React.Fragment>
   );
 }
 

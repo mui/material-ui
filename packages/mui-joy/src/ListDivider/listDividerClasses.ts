@@ -18,10 +18,10 @@ export interface ListDividerClasses {
 export type ListDividerClassKey = keyof ListDividerClasses;
 
 export function getListDividerUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyListDivider', slot);
+  return generateUtilityClass('MuiListDivider', slot);
 }
 
-const listDividerClasses: ListDividerClasses = generateUtilityClasses('JoyListDivider', [
+const listDividerClasses: ListDividerClasses = generateUtilityClasses('MuiListDivider', [
   'root',
   'insetGutter',
   'insetStartDecorator',

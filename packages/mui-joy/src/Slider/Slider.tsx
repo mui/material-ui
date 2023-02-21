@@ -115,11 +115,6 @@ const SliderRoot = styled('span', {
         color: theme.vars.palette.text.tertiary,
         ...getColorVariables({ state: 'Disabled' }),
       },
-      [`&.${sliderClasses.dragging}`]: {
-        [`& .${sliderClasses.track}, & .${sliderClasses.thumb}`]: {
-          transition: 'none',
-        },
-      },
       boxSizing: 'border-box',
       display: 'inline-block',
       position: 'relative',
@@ -196,9 +191,6 @@ const SliderTrack = styled('span', {
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
           : 'var(--Slider-track-background)',
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-      transition:
-        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
@@ -236,9 +228,6 @@ const SliderThumb = styled('span', {
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',
   backgroundColor: 'var(--Slider-thumb-background)',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-  transition:
-    'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   [theme.focus.selector]: theme.focus.default,
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',

@@ -43,13 +43,7 @@ export default function SizeModalDialog() {
           size={open || undefined}
         >
           <ModalClose />
-          <Typography
-            id="size-modal-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
-          >
+          <Typography id="size-modal-title" component="h2">
             Modal Dialog
           </Typography>
           <Typography id="size-modal-description" level="inherit">

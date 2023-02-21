@@ -34,10 +34,10 @@ export interface FormControlClasses {
 export type FormControlClassKey = keyof FormControlClasses;
 
 export function getFormControlUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyFormControl', slot);
+  return generateUtilityClass('MuiFormControl', slot);
 }
 
-const formControlClasses: FormControlClasses = generateUtilityClasses('JoyFormControl', [
+const formControlClasses: FormControlClasses = generateUtilityClasses('MuiFormControl', [
   'root',
   'error',
   'disabled',

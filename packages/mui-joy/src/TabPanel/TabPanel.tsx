@@ -55,9 +55,9 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const { orientation } = useTabContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
 
-  const { children, value, component, size: sizeProp, ...other } = props;
+  const { children, value = 0, component, size: sizeProp, ...other } = props;
 
-  const { hidden, getRootProps } = useTabPanel(props);
+  const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
   const size = sizeProp ?? tabsSize;
 
@@ -118,8 +118,9 @@ TabPanel.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
+   * @default 0
    */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
 export default TabPanel;

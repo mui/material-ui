@@ -21,24 +21,25 @@ describe('useControllableReducer', () => {
       });
 
       const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
+      const props: UseListboxPropsWithDefaults<string> = {
+        options: ['a', 'b', 'c'],
+        defaultValue: 'a',
+        isOptionDisabled: () => false,
+        disableListWrap: false,
+        disabledItemsFocusable: false,
+        optionComparer: (a, b) => a === b,
+        optionStringifier: (option) => option,
+        multiple: false,
+      };
+
       function TestComponent() {
-        const props: UseListboxPropsWithDefaults<string> = {
-          options: ['a', 'b', 'c'],
-          defaultValue: 'a',
-          isOptionDisabled: () => false,
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          optionComparer: (a, b) => a === b,
-          optionStringifier: (option) => option,
-          multiple: false,
-        };
-        const [, dispatch] = useControllableReducer(reducer, undefined, props);
+        const [, dispatch] = useControllableReducer(reducer, undefined, { current: props });
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
 
       render(<TestComponent />);
-      expect(reducer.getCalls()[0].args[1]).to.equal(actionToDispatch);
+      expect(reducer.getCalls()[0].args[1]).to.deep.equal({ ...actionToDispatch, props });
     });
 
     it('calls the provided external reducer', () => {
@@ -53,25 +54,28 @@ describe('useControllableReducer', () => {
       });
 
       const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
+      const props: UseListboxPropsWithDefaults<string> = {
+        options: ['a', 'b', 'c'],
+        defaultValue: 'a',
+        isOptionDisabled: () => false,
+        disableListWrap: false,
+        disabledItemsFocusable: false,
+        optionComparer: (a, b) => a === b,
+        optionStringifier: (option) => option,
+        multiple: false,
+      };
+
       function TestComponent() {
-        const props: UseListboxPropsWithDefaults<string> = {
-          options: ['a', 'b', 'c'],
-          defaultValue: 'a',
-          isOptionDisabled: () => false,
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          optionComparer: (a, b) => a === b,
-          optionStringifier: (option) => option,
-          multiple: false,
-        };
-        const [, dispatch] = useControllableReducer(internalReducer, externalReducer, props);
+        const [, dispatch] = useControllableReducer(internalReducer, externalReducer, {
+          current: props,
+        });
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
 
       render(<TestComponent />);
       expect(internalReducer.notCalled).to.equal(true);
-      expect(externalReducer.getCalls()[0].args[1]).to.equal(actionToDispatch);
+      expect(externalReducer.getCalls()[0].args[1]).to.deep.equal({ ...actionToDispatch, props });
     });
 
     it('calls onChange when the reducer returns a modified selected value', () => {
@@ -82,7 +86,10 @@ describe('useControllableReducer', () => {
         };
       });
 
-      const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
+      const actionToDispatch = {
+        type: ActionTypes.keyDown as const,
+        event: null as unknown as React.KeyboardEvent, // not relevant here
+      };
       const handleChange = spy();
       const handleHighlightChange = spy();
 
@@ -99,7 +106,9 @@ describe('useControllableReducer', () => {
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
         };
-        const [, dispatch] = useControllableReducer(reducer, undefined, props);
+
+        const propsRef = React.useRef(props);
+        const [, dispatch] = useControllableReducer(reducer, undefined, propsRef);
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
@@ -118,9 +127,8 @@ describe('useControllableReducer', () => {
       });
 
       const actionToDispatch = {
-        type: ActionTypes.setHighlight as const,
-        highlight: 'b',
-        event: null,
+        type: ActionTypes.keyDown as const,
+        event: null as unknown as React.KeyboardEvent, // not relevant here
       };
       const handleChange = spy();
       const handleHighlightChange = spy();
@@ -138,7 +146,9 @@ describe('useControllableReducer', () => {
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
         };
-        const [, dispatch] = useControllableReducer(reducer, undefined, props);
+
+        const propsRef = React.useRef(props);
+        const [, dispatch] = useControllableReducer(reducer, undefined, propsRef);
         React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
         return null;
       }
