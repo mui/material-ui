@@ -41,13 +41,14 @@ const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
 export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOwnerState }>(
   ({ theme, ownerState }) => [
     {
-      ...(ownerState.selected && {
+      [`&.${listItemButtonClasses.selected}`]: {
         '--List-decorator-color': 'initial',
-      }),
-      ...(ownerState.disabled && {
+        fontWeight: theme.vars.fontWeight.md,
+      },
+      [`&.${listItemButtonClasses.disabled}`]: {
         '--List-decorator-color':
           theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
-      }),
+      },
       WebkitTapHighlightColor: 'transparent',
       boxSizing: 'border-box',
       position: 'relative',
@@ -81,17 +82,14 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       minInlineSize: 0,
       fontSize: 'var(--List-item-fontSize)',
       fontFamily: theme.vars.fontFamily.body,
-      ...(ownerState.selected && {
-        fontWeight: theme.vars.fontWeight.md,
-      }),
       [theme.focus.selector]: theme.focus.default,
     },
     {
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      ...(!ownerState.selected && {
+      [`&:not(.${listItemButtonClasses.selected})`]: {
         '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-      }),
+      },
     },
     {
       [`&.${listItemButtonClasses.disabled}`]:

@@ -12,7 +12,7 @@ import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
-import { getListItemUtilityClass } from './listItemClasses';
+import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
@@ -98,13 +98,13 @@ const ListItemRoot = styled('li', {
     minBlockSize: 'var(--List-item-minHeight)',
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
-    ...(ownerState.sticky && {
+    [`&.${listItemClasses.sticky}`]: {
       // sticky in list item can be found in grouped options
       position: 'sticky',
       top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
       background: 'var(--List-item-stickyBackground)',
-    }),
+    },
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
