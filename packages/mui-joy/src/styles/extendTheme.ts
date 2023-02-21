@@ -113,7 +113,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     const index = tokens[2];
 
     // @ts-ignore
-    return getCssVar(cssVar, defaultColors[color][parseInt(index)]);
+    return getCssVar(cssVar, defaultColors[color][index]);
   }
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -267,7 +267,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
       // TODO: resolve this variable
-      divider: `rgba(${getCssVar('palette-neutral-mainChannel')} / 0.28)`,
+      divider: `rgba(${getCssVarColor('palette-neutral-mainChannel')} / 0.28)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -354,14 +354,22 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level3: getCssVarColor('palette-neutral-600'),
         tooltip: getCssVarColor('palette-neutral-600'),
         // TODO: resolve this value
-        backdrop: `rgba(${getCssVar('palette-neutral-darkChannel')} / 0.5)`,
+        backdrop: `rgba(${getCssVarColor('palette-neutral-darkChannel')} / 0.5)`,
       },
       // TODO: resolve this value
-      divider: `rgba(${getCssVar('palette-neutral-mainChannel')} / 0.24)`,
+      divider: `rgba(${getCssVarColor('palette-neutral-mainChannel')} / 0.24)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
+  };
+
+  const fontFamilyFallback = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+  const fontFamily = {
+    body: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    display: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
+    fallback: fontFamilyFallback,
   };
 
   const defaultScales = {
@@ -384,13 +392,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       xl6: '3.75rem',
       xl7: '4.5rem',
     },
-    fontFamily: {
-      body: `"Public Sans", ${getCssVar('fontFamily-fallback')}`,
-      display: `"Public Sans", ${getCssVar('fontFamily-fallback')}`,
-      code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
-      fallback:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-    },
+    fontFamily,
     fontWeight: {
       xs: 200,
       sm: 300,
@@ -405,7 +407,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
         outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness', '2px')})`,
-        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVar('palette-focusVisible', lightColorSystem.palette.focusVisible)}`,
+        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVarColor('palette-focusVisible')}`,
       },
     },
     lineHeight: {
@@ -467,94 +469,94 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     // TODO: Resolve the rest of the variables
     typography: {
       display1: {
-        fontFamily: getCssVar('fontFamily-display'),
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl'),
         fontSize: getCssVar('fontSize-xl7'),
         lineHeight: getCssVar('lineHeight-sm'),
         letterSpacing: getCssVar('letterSpacing-sm'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       display2: {
-        fontFamily: getCssVar('fontFamily-display'),
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl'),
         fontSize: getCssVar('fontSize-xl6'),
         lineHeight: getCssVar('lineHeight-sm'),
         letterSpacing: getCssVar('letterSpacing-sm'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       h1: {
-        fontFamily: getCssVar('fontFamily-display'),
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg'),
         fontSize: getCssVar('fontSize-xl5'),
         lineHeight: getCssVar('lineHeight-sm'),
         letterSpacing: getCssVar('letterSpacing-sm'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       h2: {
-        fontFamily: getCssVar('fontFamily-display'),
+        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg'),
         fontSize: getCssVar('fontSize-xl4'),
         lineHeight: getCssVar('lineHeight-sm'),
         letterSpacing: getCssVar('letterSpacing-sm'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       h3: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md'),
         fontSize: getCssVar('fontSize-xl3'),
         lineHeight: getCssVar('lineHeight-sm'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       h4: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md'),
         fontSize: getCssVar('fontSize-xl2'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       h5: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md'),
         fontSize: getCssVar('fontSize-xl'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       h6: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md'),
         fontSize: getCssVar('fontSize-lg'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       body1: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-md'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-primary'),
+        color: getCssVarColor('palette-text-primary'),
       },
       body2: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-sm'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-secondary'),
+        color: getCssVarColor('palette-text-secondary'),
       },
       body3: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-tertiary'),
+        color: getCssVarColor('palette-text-tertiary'),
       },
       body4: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs2'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-tertiary'),
+        color: getCssVarColor('palette-text-tertiary'),
       },
       body5: {
-        fontFamily: getCssVar('fontFamily-body'),
+        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs3'),
         lineHeight: getCssVar('lineHeight-md'),
-        color: getCssVar('palette-text-tertiary'),
+        color: getCssVarColor('palette-text-tertiary'),
       },
     },
   };
