@@ -5,7 +5,7 @@
     "inset": {
       "type": {
         "name": "union",
-        "description": "'gutter'<br>&#124;&nbsp;'startDecorator'<br>&#124;&nbsp;'startContent'<br>&#124;&nbsp;string"
+        "description": "'context'<br>&#124;&nbsp;'gutter'<br>&#124;&nbsp;'startDecorator'<br>&#124;&nbsp;'startContent'<br>&#124;&nbsp;string"
       },
       "default": "'context'"
     },

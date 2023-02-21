@@ -5,8 +5,8 @@
     "className": { "type": { "name": "string" } },
     "color": {
       "type": {
-        "name": "union",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "default": "'neutral'"
     },
@@ -22,10 +22,7 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "size": {
-      "type": {
-        "name": "union",
-        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
-      },
+      "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
       "default": "'md'"
     },
     "sx": {
@@ -43,8 +40,8 @@
     },
     "variant": {
       "type": {
-        "name": "union",
-        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+        "name": "enum",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
       },
       "default": "'solid'"
     }
