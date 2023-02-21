@@ -6,6 +6,7 @@
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
       }
     },
+    "autoFocus": { "type": { "name": "bool" } },
     "color": {
       "type": {
         "name": "union",
@@ -13,13 +14,18 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
+    "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endDecorator": { "type": { "name": "node" } },
     "getSerializedValue": { "type": { "name": "func" } },
     "indicator": { "type": { "name": "node" } },
+    "listboxId": { "type": { "name": "string" } },
+    "listboxOpen": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
+    "onListboxOpenChange": { "type": { "name": "func" } },
     "placeholder": { "type": { "name": "node" } },
     "renderValue": { "type": { "name": "func" } },
     "size": {
