@@ -99,7 +99,7 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
       SelectUnstyledOwnerState<TValue, Multiple>
     >;
     listbox?: SlotComponentProps<
-      'button',
+      'ul',
       SelectUnstyledListboxSlotPropsOverrides,
       SelectUnstyledOwnerState<TValue, Multiple>
     >;
@@ -114,16 +114,30 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    listbox?: React.ElementType;
-    popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue, Multiple>>;
-  };
+  slots?: SelectUnstyledSlots<TValue, Multiple>;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
   value?: SelectValue<TValue, Multiple>;
+}
+
+export interface SelectUnstyledSlots<TValue extends {}, Multiple extends boolean> {
+  /**
+   * The component used to render the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
+  /**
+   * The component used to render the popper.
+   * @default PopperUnstyled
+   */
+  popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue, Multiple>>;
 }
 
 export interface SelectUnstyledTypeMap<

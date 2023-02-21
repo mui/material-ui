@@ -55,7 +55,7 @@ export interface SelectStaticProps {
   className?: string;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
@@ -121,7 +121,7 @@ export interface SelectStaticProps {
   sx?: SxProps;
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'outlined'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }

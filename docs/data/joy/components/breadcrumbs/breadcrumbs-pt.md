@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Breadcrumbs component
+components: Breadcrumbs
 ---
 
 # Breadcrumbs

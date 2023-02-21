@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
+import { SliderUnstyledClasses, SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -36,6 +36,10 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
   props: P &
     Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
     SliderSlotsAndSlotProps & {
+      /**
+       * Override or extend the styles applied to the component.
+       */
+      classes?: Partial<SliderUnstyledClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'primary'

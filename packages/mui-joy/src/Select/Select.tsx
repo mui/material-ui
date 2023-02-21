@@ -304,7 +304,16 @@ const SelectIndicator = styled('span', {
     marginInlineStart: 'calc(var(--Select-gap) / 2)',
   },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Select API](https://mui.com/joy-ui/api/select/)
+ */
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
@@ -660,7 +669,7 @@ Select.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -764,7 +773,7 @@ Select.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

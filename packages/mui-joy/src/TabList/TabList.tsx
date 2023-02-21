@@ -42,7 +42,16 @@ const TabListRoot = styled(StyledList, {
   '--List-divider-gap': '0px',
   ...scopedVariables,
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabList API](https://mui.com/joy-ui/api/tab-list/)
+ */
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({
     props: inProps,

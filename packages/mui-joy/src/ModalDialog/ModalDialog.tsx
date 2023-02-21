@@ -107,7 +107,16 @@ const ModalDialogRoot = styled(SheetRoot, {
     },
   },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalDialog API](https://mui.com/joy-ui/api/modal-dialog/)
+ */
 const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalDialogProps>({
     props: inProps,
@@ -224,7 +233,7 @@ ModalDialog.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

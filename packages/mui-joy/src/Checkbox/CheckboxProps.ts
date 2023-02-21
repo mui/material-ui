@@ -54,7 +54,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
       indeterminate?: boolean;
       /**
        * The icon to display when the component is indeterminate.
-       * @default <IndeterminateCheckBoxIcon />
+       * @default <IndeterminateIcon />
        */
       indeterminateIcon?: React.ReactNode;
       /**
