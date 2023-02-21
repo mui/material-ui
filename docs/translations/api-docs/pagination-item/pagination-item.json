@@ -10,7 +10,7 @@
     "selected": "If <code>true</code> the pagination item is selected.",
     "shape": "The shape of the pagination item.",
     "size": "The size of the component.",
-    "slots": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "slots": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "type": "The type of pagination item.",
     "variant": "The variant to use."

@@ -421,11 +421,11 @@ const attachTranslations = (reactApi: ReactApi) => {
 
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
-      } else if (propName === 'slots') {
-        description += ' See <a href="#slots">Slots API</a> below for more details.';
       } else if (propName === 'sx') {
         description +=
           ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
+      } else if (propName === 'slots' && !reactApi.apiPathname.startsWith('/material-ui')) {
+        description += ' See <a href="#slots">Slots API</a> below for more details.';
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
