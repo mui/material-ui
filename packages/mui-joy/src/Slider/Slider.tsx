@@ -6,16 +6,13 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import useSlider from '@mui/base/useSlider';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
-
-const valueToPercent = (value: number, min: number, max: number) =>
-  ((value - min) * 100) / (max - min);
 
 function Identity(x: any) {
   return x;
