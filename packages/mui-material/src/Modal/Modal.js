@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
 import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
@@ -8,10 +9,6 @@ import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
 export const modalClasses = modalUnstyledClasses;
-
-const extendUtilityClasses = (ownerState) => {
-  return ownerState.classes;
-};
 
 const ModalRoot = styled('div', {
   name: 'MuiModal',
@@ -62,6 +59,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
+    classes,
+    className,
     closeAfterTransition = false,
     children,
     component,
@@ -102,8 +101,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     exited,
   };
 
-  const classes = extendUtilityClasses(ownerState);
-
   const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
   const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
 
@@ -120,17 +117,23 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         root: () => ({
           ...resolveComponentProps(rootSlotProps, ownerState),
           ...(!isHostComponent(RootSlot) && { as: component, theme }),
+          className: clsx(
+            className,
+            rootSlotProps?.className,
+            classes?.root,
+            !ownerState.open && ownerState.exited && classes?.hidden,
+          ),
         }),
         backdrop: () => ({
           ...BackdropProps,
           ...resolveComponentProps(backdropSlotProps, ownerState),
+          className: clsx(backdropSlotProps?.className, classes?.backdrop),
         }),
       }}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
       ref={ref}
       {...other}
-      classes={classes}
       {...commonProps}
     >
       {children}
@@ -171,6 +174,10 @@ Modal.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false

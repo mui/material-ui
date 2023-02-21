@@ -21,7 +21,7 @@ function Identity(x) {
 }
 
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
-  const { disabled, dragging, marked, orientation, track, classes } = ownerState;
+  const { disabled, dragging, marked, orientation, track } = ownerState;
 
   const slots = {
     root: [
@@ -46,7 +46,7 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
     focusVisible: ['focusVisible'],
   };
 
-  return composeClasses(slots, useClassNamesOverride(getSliderUtilityClass), classes);
+  return composeClasses(slots, useClassNamesOverride(getSliderUtilityClass));
 };
 
 /**
@@ -68,7 +68,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     'aria-labelledby': ariaLabelledby,
     className,
     component,
-    classes: classesProp,
     disableSwap = false,
     disabled = false,
     getAriaLabel,
@@ -101,7 +100,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   > = {
     ...props,
     marks: marksProp,
-    classes: classesProp,
     disabled,
     isRtl,
     defaultValue,
@@ -274,7 +272,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
           <Thumb
             key={index}
             data-index={index}
-            data-focusvisible={focusedThumbIndex === index}
             {...thumbProps}
             className={clsx(classes.thumb, thumbProps.className, {
               [classes.active]: active === index,
@@ -359,10 +356,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */
