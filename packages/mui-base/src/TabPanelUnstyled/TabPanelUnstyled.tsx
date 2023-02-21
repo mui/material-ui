@@ -4,7 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUnstyledUtilityClass } from './tabPanelUnstyledClasses';
-import useTabPanel from './useTabPanel';
+import useTabPanel from '../useTabPanel/useTabPanel';
 import {
   TabPanelUnstyledProps,
   TabPanelUnstyledRootSlotProps,

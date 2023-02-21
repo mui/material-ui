@@ -10,7 +10,7 @@ import {
   InputUnstyledRootSlotProps,
   InputUnstyledTypeMap,
 } from './InputUnstyled.types';
-import useInput from './useInput';
+import useInput from '../useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';

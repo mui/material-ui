@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -176,7 +176,6 @@ const SwitchThumb = styled('span', {
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchOwnerState }>({
   '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
-  transition: 'left 0.2s',
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',

@@ -49,9 +49,9 @@ const ModalRoot = styled('div', {
   name: 'JoyModal',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
   position: 'fixed',
-  zIndex: 9999,
+  zIndex: theme.vars.zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,

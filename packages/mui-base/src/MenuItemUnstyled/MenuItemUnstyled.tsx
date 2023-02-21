@@ -7,7 +7,7 @@ import {
   MenuItemUnstyledTypeMap,
 } from './MenuItemUnstyled.types';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
-import useMenuItem from './useMenuItem';
+import useMenuItem from '../useMenuItem';
 import composeClasses from '../composeClasses';
 import useSlotProps from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OptionState } from '../ListboxUnstyled';
+import { OptionState } from '../useListbox';
 import { EventHandlers } from '../utils';
-import { UseSelectOptionSlotProps } from './useSelect.types';
-import { SelectChangeNotifiers } from './useSelectChangeNotifiers';
+import { UseSelectOptionSlotProps } from '../useSelect';
+import { SelectChangeNotifiers } from '../useSelect/useSelectChangeNotifiers';
 
 export interface SelectUnstyledContextType {
   getOptionState: (value: any) => OptionState;

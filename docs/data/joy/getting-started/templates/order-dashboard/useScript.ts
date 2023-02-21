@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import * as React from 'react';
 
 export type UseScriptStatus = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -19,7 +19,7 @@ function getScriptNode(src: string) {
 }
 
 function useScript(src: string): UseScriptStatus {
-  const [status, setStatus] = useState<UseScriptStatus>(() => {
+  const [status, setStatus] = React.useState<UseScriptStatus>(() => {
     if (typeof window === 'undefined') {
       // SSR Handling - always return 'loading'
       return 'loading';
@@ -28,7 +28,7 @@ function useScript(src: string): UseScriptStatus {
     return cachedScriptStatuses[src] ?? 'loading';
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const cachedScriptStatus = cachedScriptStatuses[src];
     if (cachedScriptStatus === 'ready' || cachedScriptStatus === 'error') {
       // If the script is already cached, set its status immediately

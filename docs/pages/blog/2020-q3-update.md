@@ -105,7 +105,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
   You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [Emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/material-cra-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
   The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or Emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 

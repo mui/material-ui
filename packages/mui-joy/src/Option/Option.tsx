@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/base/composeClasses';
-import { useOption } from '@mui/base/OptionUnstyled';
+import useOption from '@mui/base/useOption';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';

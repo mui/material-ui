@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { create } from 'jss';

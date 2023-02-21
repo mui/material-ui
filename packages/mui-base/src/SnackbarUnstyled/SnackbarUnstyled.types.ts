@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
-import { UseSnackbarParameters } from './useSnackbar.types';
+import { UseSnackbarParameters } from '../useSnackbar';
 import { SlotComponentProps } from '../utils';
 
 export interface SnackbarUnstyledRootSlotPropsOverrides {}

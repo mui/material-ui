@@ -7,7 +7,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
   Mark,
-} from './useSlider.types';
+} from '../useSlider';
 
 export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;

@@ -10,7 +10,7 @@ import {
   TabUnstyledRootSlotProps,
   TabUnstyledOwnerState,
 } from './TabUnstyled.types';
-import useTab from './useTab';
+import useTab from '../useTab';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 

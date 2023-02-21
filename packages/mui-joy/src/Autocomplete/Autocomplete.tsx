@@ -9,11 +9,10 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import {
-  useAutocomplete,
+import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
+} from '@mui/base/useAutocomplete';
 import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';

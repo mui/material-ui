@@ -23,6 +23,6 @@
   },
   "returnValue": {},
   "name": "useSwitch",
-  "filename": "/packages/mui-base/src/SwitchUnstyled/useSwitch.ts",
+  "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
   "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Unstyled Switch</a></li></ul>"
 }

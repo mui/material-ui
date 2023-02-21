@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OptionState } from '../ListboxUnstyled';
+import { OptionState } from '../useListbox';
 import composeClasses from '../composeClasses';
 import {
   OptionUnstyledProps,
@@ -10,7 +10,7 @@ import {
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
-import useOption from './useOption';
+import useOption from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: OptionState) {

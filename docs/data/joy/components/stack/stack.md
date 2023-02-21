@@ -111,7 +111,7 @@ In order for the item to stay within the container you need to set `min-width: 0
 The Stack component is composed of a single root `<div>` element:
 
 ```html
-<div class="JoyStack-root">
+<div class="MuiStack-root">
   <!-- Stack contents -->
 </div>
 ```
