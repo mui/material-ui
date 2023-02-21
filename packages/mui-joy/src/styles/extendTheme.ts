@@ -113,7 +113,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     const index = tokens[2];
 
     // @ts-ignore
-    return getCssVar(cssVar, defaultColors[color][index]);
+    return getCssVar(cssVar, defaultColors[color]?.[index]);
   };
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -424,8 +424,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
         outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness', '2px')})`,
-        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVarColor(
+        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVar(
           'palette-focusVisible',
+          defaultColors.primary[500]
         )}`,
       },
     },
