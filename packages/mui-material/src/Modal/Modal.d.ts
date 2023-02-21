@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base';
-import { ModalUnstyledTypeMap } from '@mui/base/ModalUnstyled';
+import { ModalUnstyledTypeMap, ModalUnstyledClasses } from '@mui/base/ModalUnstyled';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
@@ -35,6 +35,14 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
      * @deprecated Use `slotProps.backdrop` instead.
      */
     BackdropProps?: Partial<BackdropProps>;
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    classes?: Partial<ModalUnstyledClasses>;
+    /**
+     * @ignore
+     */
+    className?: string;
     /**
      * The components used for each slot inside.
      *

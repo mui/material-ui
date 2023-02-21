@@ -3,7 +3,6 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
@@ -62,45 +61,7 @@
     }
   },
   "name": "SliderUnstyled",
-  "styles": {
-    "classes": [
-      "root",
-      "marked",
-      "vertical",
-      "disabled",
-      "dragging",
-      "rail",
-      "track",
-      "trackFalse",
-      "trackInverted",
-      "thumb",
-      "active",
-      "focusVisible",
-      "mark",
-      "markActive",
-      "markLabel",
-      "markLabelActive"
-    ],
-    "globalClasses": {
-      "root": "MuiSlider-root",
-      "marked": "MuiSlider-marked",
-      "vertical": "MuiSlider-vertical",
-      "disabled": "Mui-disabled",
-      "dragging": "MuiSlider-dragging",
-      "rail": "MuiSlider-rail",
-      "track": "MuiSlider-track",
-      "trackFalse": "MuiSlider-trackFalse",
-      "trackInverted": "MuiSlider-trackInverted",
-      "thumb": "MuiSlider-thumb",
-      "active": "Mui-active",
-      "focusVisible": "Mui-focusVisible",
-      "mark": "MuiSlider-mark",
-      "markActive": "MuiSlider-markActive",
-      "markLabel": "MuiSlider-markLabel",
-      "markLabelActive": "MuiSlider-markLabelActive"
-    },
-    "name": null
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "input",

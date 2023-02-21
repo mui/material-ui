@@ -25,12 +25,16 @@
   },
   "classDescriptions": {
     "root": {
-      "description": "Styles applied to the root element."
+      "description": "Class name applied to the root element."
     },
     "hidden": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the <code>Modal</code> has exited"
+    },
+    "backdrop": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the backdrop element"
     }
   }
 }
