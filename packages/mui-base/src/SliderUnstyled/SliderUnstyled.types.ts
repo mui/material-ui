@@ -1,7 +1,6 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
-import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import {
   UseSliderHiddenInputProps,
   UseSliderRootSlotProps,
@@ -46,10 +45,6 @@ export interface SliderUnstyledOwnProps {
    * A string value that provides a user-friendly name for the current value of the slider.
    */
   'aria-valuetext'?: string;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<SliderUnstyledClasses>;
   /**
    * The default value. Use when the component is not controlled.
    */

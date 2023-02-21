@@ -40,35 +40,7 @@
     }
   },
   "name": "TablePaginationUnstyled",
-  "styles": {
-    "classes": [
-      "root",
-      "toolbar",
-      "spacer",
-      "selectLabel",
-      "selectRoot",
-      "select",
-      "selectIcon",
-      "input",
-      "menuItem",
-      "displayedRows",
-      "actions"
-    ],
-    "globalClasses": {
-      "root": "MuiTablePagination-root",
-      "toolbar": "MuiTablePagination-toolbar",
-      "spacer": "MuiTablePagination-spacer",
-      "selectLabel": "MuiTablePagination-selectLabel",
-      "selectRoot": "MuiTablePagination-selectRoot",
-      "select": "MuiTablePagination-select",
-      "selectIcon": "MuiTablePagination-selectIcon",
-      "input": "MuiTablePagination-input",
-      "menuItem": "MuiTablePagination-menuItem",
-      "displayedRows": "MuiTablePagination-displayedRows",
-      "actions": "MuiTablePagination-actions"
-    },
-    "name": null
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "actions",

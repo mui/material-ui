@@ -74,6 +74,19 @@ describe('<Modal />', () => {
     });
   });
 
+  describe('prop: classes', () => {
+    it('adds custom classes to the component', () => {
+      const { getByTestId } = render(
+        <Modal data-testid="Portal" open classes={{ root: 'custom-root', hidden: 'custom-hidden' }}>
+          <div />
+        </Modal>,
+      );
+      expect(getByTestId('Portal')).to.have.class(classes.root);
+      expect(getByTestId('Portal')).to.have.class('custom-root');
+      expect(getByTestId('Portal')).not.to.have.class('custom-hidden');
+    });
+  });
+
   describe('prop: open', () => {
     it('should not render the children by default', () => {
       const { queryByTestId } = render(

@@ -506,7 +506,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     componentsProps = {},
     color = 'primary',
     classes: classesProp,
-    // eslint-disable-next-line react/prop-types
     className,
     disableSwap = false,
     disabled = false,
@@ -641,6 +640,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       ...ownerState,
       ...thumbSlotProps?.ownerState,
     },
+    className: classes.thumb,
   });
 
   const valueLabelProps = useSlotProps({
@@ -664,6 +664,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     elementType: MarkLabelSlot,
     externalSlotProps: markLabelSlotProps,
     ownerState,
+    className: classes.markLabel,
   });
 
   const inputSliderProps = useSlotProps({
@@ -830,6 +831,10 @@ Slider.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the

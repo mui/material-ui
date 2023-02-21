@@ -2,7 +2,6 @@ import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/ty
 import * as React from 'react';
 import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
-import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
 export interface ModalUnstyledRootSlotPropsOverrides {}
 export interface ModalUnstyledBackdropSlotPropsOverrides {}
@@ -12,10 +11,6 @@ export interface ModalUnstyledOwnProps {
    * A single child content element.
    */
   children: React.ReactElement;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<ModalUnstyledClasses>;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
