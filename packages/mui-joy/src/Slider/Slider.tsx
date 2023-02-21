@@ -15,7 +15,7 @@ import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
 // @ts-ignore
-function Identity(x: any) {
+function Identity(x) {
   return x;
 }
 
