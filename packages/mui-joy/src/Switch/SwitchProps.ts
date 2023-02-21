@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
