@@ -162,9 +162,6 @@ const SelectRoot = styled('div', {
       ...(ownerState.size === 'sm' && {
         fontSize: theme.vars.fontSize.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&::before': {
         boxSizing: 'border-box',
         content: '""',
@@ -245,7 +242,7 @@ const SelectListbox = styled(StyledList, {
     minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
     outline: 0,
     boxShadow: theme.shadow.md,
-    zIndex: 1000,
+    zIndex: theme.vars.zIndex.popup,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),

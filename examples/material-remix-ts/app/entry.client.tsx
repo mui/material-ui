@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { startTransition } from 'react';
-import { hydrateRoot } from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { RemixBrowser } from 'remix';
 import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
@@ -14,7 +12,7 @@ interface ClientCacheProviderProps {
   children: React.ReactNode;
 }
 function ClientCacheProvider({ children }: ClientCacheProviderProps) {
-  const [cache, setCache] = useState(createEmotionCache());
+  const [cache, setCache] = React.useState(createEmotionCache());
 
   const clientStyleContextValue = React.useMemo(
     () => ({
@@ -33,8 +31,8 @@ function ClientCacheProvider({ children }: ClientCacheProviderProps) {
 }
 
 const hydrate = () => {
-  startTransition(() => {
-    hydrateRoot(
+  React.startTransition(() => {
+    ReactDOM.hydrateRoot(
       document,
       <ClientCacheProvider>
         <ThemeProvider theme={theme}>

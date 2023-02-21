@@ -431,6 +431,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         'shadowChannel',
       )} / 0.27), 21px 52.3px 74px -1.2px rgba(${getCssVar('shadowChannel')} / 0.29)`,
     },
+    zIndex: {
+      badge: 1,
+      table: 10,
+      popup: 1000,
+      modal: 1300,
+      tooltip: 1500,
+    },
     typography: {
       display1: {
         fontFamily: getCssVar('fontFamily-display'),

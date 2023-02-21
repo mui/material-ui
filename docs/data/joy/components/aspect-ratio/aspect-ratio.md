@@ -122,8 +122,8 @@ This is a simple illustration of how to use Aspect Ratio with list components:
 The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
 
 ```html
-<div class="JoyAspectRatio-root">
-  <div class="JoyAspectRatio-content">
+<div class="MuiAspectRatio-root">
+  <div class="MuiAspectRatio-content">
     <some-element data-first-child>
       <!-- Aspect Ratio contents -->
     </some-element>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderToString } from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { RemixServer } from 'remix';
 import type { EntryContext } from 'remix';
 import createEmotionCache from './src/createEmotionCache';
@@ -31,7 +31,7 @@ export default function handleRequest(
   }
 
   // Render the component to a string.
-  const html = renderToString(<MuiRemixServer />);
+  const html = ReactDOMServer.renderToString(<MuiRemixServer />);
 
   // Grab the CSS from emotion
   const { styles } = extractCriticalToChunks(html);

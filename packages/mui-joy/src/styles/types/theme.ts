@@ -26,6 +26,7 @@ import {
   DefaultLetterSpacing,
 } from './typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './variants';
+import { DefaultZIndex, ZIndex } from './zIndex';
 import { MergeDefault } from './utils';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
@@ -64,6 +65,7 @@ export interface ThemeScales {
   fontWeight: FontWeight;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
+  zIndex: ZIndex;
 }
 export type ThemeScalesOptions = MergeDefault<
   ThemeScales,
@@ -75,6 +77,7 @@ export type ThemeScalesOptions = MergeDefault<
     fontWeight: DefaultFontWeight;
     lineHeight: DefaultLineHeight;
     letterSpacing: DefaultLetterSpacing;
+    zIndex: DefaultZIndex;
   }
 >;
 

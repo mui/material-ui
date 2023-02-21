@@ -464,6 +464,35 @@ describe('[Joy] CssVarsProvider', () => {
       expect(screen.getByTestId('shadow-ring').textContent).to.equal('var(--joy-shadowRing)');
       expect(screen.getByTestId('shadow-channel').textContent).to.equal('var(--joy-shadowChannel)');
     });
+
+    it('zIndex', () => {
+      function Vars() {
+        const theme = useTheme();
+        return (
+          <div>
+            <div data-testid="zIndex-badge">{theme.vars.zIndex.badge}</div>
+            <div data-testid="zIndex-table">{theme.vars.zIndex.table}</div>
+            <div data-testid="zIndex-popup">{theme.vars.zIndex.popup}</div>
+            <div data-testid="zIndex-modal">{theme.vars.zIndex.modal}</div>
+            <div data-testid="zIndex-tooltip">{theme.vars.zIndex.tooltip}</div>
+          </div>
+        );
+      }
+
+      render(
+        <CssVarsProvider>
+          <Vars />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('zIndex-badge').textContent).to.equal('var(--joy-zIndex-badge)');
+      expect(screen.getByTestId('zIndex-table').textContent).to.equal('var(--joy-zIndex-table)');
+      expect(screen.getByTestId('zIndex-popup').textContent).to.equal('var(--joy-zIndex-popup)');
+      expect(screen.getByTestId('zIndex-modal').textContent).to.equal('var(--joy-zIndex-modal)');
+      expect(screen.getByTestId('zIndex-tooltip').textContent).to.equal(
+        'var(--joy-zIndex-tooltip)',
+      );
+    });
   });
 
   describe('Color Inversion', () => {

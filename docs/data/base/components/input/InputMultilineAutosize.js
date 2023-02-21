@@ -44,7 +44,12 @@ const StyledInputElement = styled('input')(
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
@@ -69,7 +74,12 @@ const StyledTextareaElement = styled(TextareaAutosize)(
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );

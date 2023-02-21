@@ -1,5 +1,50 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.10
+
+<!-- generated comparing v5.11.9..master -->
+
+_Feb 20, 2023_
+
+A big thanks to the 11 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.10`
+
+- &#8203;<!-- 22 -->[Avatar] Fix ownerState usage with styleOverrides when fallback is used (#36228) @sai6855
+- &#8203;<!-- 21 -->[Badge][material] Replace `BadgeUnstyled` with `useBadge` hook (#36158) @hbjORbj
+- &#8203;<!-- 03 -->[Switch] Fix DOM warning when `type` isn't `checkbox` or `radio` (#36170) @dani-mp
+- &#8203;<!-- 02 -->[TextareaAutosize] Convert code to TypeScript (#35862) @sai6855
+- &#8203;<!-- 01 -->[useMediaQuery] Fix behavior of noSsr with React 18 (#36056) @oliviertassinari
+
+### `@mui/joy@5.0.0-alpha.68`
+
+- &#8203;<!-- 05 -->[Joy] Add `zIndex` to theme (#36236) @siriwatknp
+- &#8203;<!-- 04 -->[Joy] Remove transition from all components (#35952) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 20 -->[docs][base] Fix base Input demos for Safari (#36213) @mj12albert
+- &#8203;<!-- 16 -->[docs] Fix 301 links @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Fix modal transition demos (#36137) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Update links to pt examples (#36237) @Aleff13
+- &#8203;<!-- 13 -->[docs] Update custom Typography variants example (#36185) @mj12albert
+- &#8203;<!-- 12 -->[docs] Change markdown numbering syntax (#36187) @mj12albert
+- &#8203;<!-- 11 -->[docs] Fix switch alignment in `Disabled tree items` section in Tree View docs (#36217) @PunitSoniME
+- &#8203;<!-- 10 -->[docs] Standardize example names (#36112) @samuelsycamore
+- &#8203;<!-- 09 -->[docs] Fix typo @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Fix markdown table alignments (#36136) @oliviertassinari
+- &#8203;<!-- 07 -->[docs] Small color tweaks to the docs search bar (#36160) @danilo-leal
+- &#8203;<!-- 06 -->[docs][joy] Update class name prefixes in the `Anatomy` section (#36210) @ZeeshanTamboli
+
+### Core
+
+- &#8203;<!-- 19 -->[core] Migrate nprogress to emotion (#36181) @siriwatknp
+- &#8203;<!-- 18 -->[core] Enforce namespace import for ReactDOM (#36208) @mj12albert
+- &#8203;<!-- 17 -->[core] Fix deploy preview links (#36203) @siriwatknp
+
+All contributors of this release in alphabetical order: @Aleff13, @dani-mp, @danilo-leal, @hbjORbj, @mj12albert, @oliviertassinari, @PunitSoniME, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.11.9
 
 <!-- generated comparing v5.11.8..master -->
