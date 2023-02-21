@@ -4,11 +4,10 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
-- We're a remote company, we prefer asynchronous communication over meetings.
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- **Level**: [4 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
+- We're a **remote** company, operating mostly asynchronously.
 
 ## About the company
 
@@ -19,7 +18,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
@@ -37,7 +36,7 @@ XXXXXX
 
 XXXXXX
 
-Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 ## About the role
 

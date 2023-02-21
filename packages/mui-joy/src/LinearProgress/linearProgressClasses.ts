@@ -38,10 +38,10 @@ export interface LinearProgressClasses {
 export type LinearProgressClassKey = keyof LinearProgressClasses;
 
 export function getLinearProgressUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyLinearProgress', slot);
+  return generateUtilityClass('MuiLinearProgress', slot);
 }
 
-const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('JoyLinearProgress', [
+const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('MuiLinearProgress', [
   'root',
   'determinate',
   'colorPrimary',

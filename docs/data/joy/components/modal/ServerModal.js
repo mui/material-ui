@@ -34,13 +34,7 @@ export default function ServerModal() {
           aria-describedby="server-modal-description"
           layout="center"
         >
-          <Typography
-            id="server-modal-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
-          >
+          <Typography id="server-modal-title" component="h2">
             Server-side modal
           </Typography>
           <Typography id="server-modal-description" textColor="text.tertiary">

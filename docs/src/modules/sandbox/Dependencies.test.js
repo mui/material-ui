@@ -158,6 +158,24 @@ import 'exceljs';
     });
   });
 
+  it('should handle @types correctly', () => {
+    const { dependencies } = SandboxDependencies({
+      raw: `import utils from '../utils';`,
+      codeVariant: 'TS',
+    });
+
+    expect(dependencies).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
+      '@types/react-dom': 'latest',
+      '@types/react': 'latest',
+      typescript: 'latest',
+    });
+  });
+
   it('should handle multilines', () => {
     const source = `
 import * as React from 'react';
@@ -338,7 +356,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 
 // Icons import
@@ -435,7 +453,7 @@ export default function EmailExample() {
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}

@@ -54,12 +54,12 @@ function setColor(obj: any, key: string, defaultValue: any) {
   obj[key] = obj[key] || defaultValue;
 }
 
-export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
+export const createGetCssVar = (cssVarPrefix = 'md') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
   const {
     colorSchemes: colorSchemesInput = {},
-    cssVarPrefix = 'mui',
+    cssVarPrefix = 'md',
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     ...input
   } = options;

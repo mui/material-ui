@@ -44,13 +44,13 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
     ...other
   } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({
+  const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
     disabled: disabledProp,
     ref,
     label,
   });
 
-  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible };
+  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible, highlighted };
 
   const classes = getUtilityClasses(ownerState);
 

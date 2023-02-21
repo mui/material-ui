@@ -159,6 +159,9 @@ export * from './Switch';
 export { default as Tab } from './Tab';
 export * from './Tab';
 
+export { default as Table } from './Table';
+export * from './Table';
+
 export { default as TabList } from './TabList';
 export * from './TabList';
 
@@ -172,7 +175,6 @@ export { default as Textarea } from './Textarea';
 export * from './Textarea';
 
 export { default as TextField } from './TextField';
-export * from './TextField';
 
 export { default as Tooltip } from './Tooltip';
 export * from './Tooltip';

@@ -17,8 +17,9 @@ import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 const valueToPercent = (value: number, min: number, max: number) =>
   ((value - min) * 100) / (max - min);
 
-const Identity = (x: any) => x;
-
+function Identity(x: any) {
+  return x;
+}
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
 
@@ -117,11 +118,6 @@ const SliderRoot = styled('span', {
         color: theme.vars.palette.text.tertiary,
         ...getColorVariables({ state: 'Disabled' }),
       },
-      [`&.${sliderClasses.dragging}`]: {
-        [`& .${sliderClasses.track}, & .${sliderClasses.thumb}`]: {
-          transition: 'none',
-        },
-      },
       boxSizing: 'border-box',
       display: 'inline-block',
       position: 'relative',
@@ -198,9 +194,6 @@ const SliderTrack = styled('span', {
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
           : 'var(--Slider-track-background)',
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-      transition:
-        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
@@ -238,9 +231,6 @@ const SliderThumb = styled('span', {
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',
   backgroundColor: 'var(--Slider-thumb-background)',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-  transition:
-    'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   [theme.focus.selector]: theme.focus.default,
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
@@ -775,7 +765,11 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -838,7 +832,11 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**

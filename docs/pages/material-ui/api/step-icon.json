@@ -1,9 +1,9 @@
 {
   "props": {
-    "active": { "type": { "name": "bool" } },
+    "active": { "type": { "name": "bool" }, "default": "false" },
     "classes": { "type": { "name": "object" } },
-    "completed": { "type": { "name": "bool" } },
-    "error": { "type": { "name": "bool" } },
+    "completed": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "sx": {
       "type": {

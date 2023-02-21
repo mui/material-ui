@@ -102,6 +102,7 @@ const CircularProgressRoot = styled('span', {
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexShrink: 0, // prevent from shrinking when CircularProgress is in a flex container.
     position: 'relative',
     color,
     ...(ownerState.children && {
@@ -178,17 +179,11 @@ const CircularProgressProgress = styled('circle', {
     transform: 'rotate(-90deg)', // to initially appear at the top-center of the circle.
   },
   ({ ownerState }) =>
-    ownerState.determinate
-      ? {
-          transition: 'stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms', // copy from Material UI CircularProgress
-        }
-      : css`
-          animation: var(
-              --CircularProgress-circulation,
-              0.8s linear 0s infinite normal none running
-            )
-            ${circulate};
-        `,
+    !ownerState.determinate &&
+    css`
+      animation: var(--CircularProgress-circulation, 0.8s linear 0s infinite normal none running)
+        ${circulate};
+    `,
 );
 
 /**

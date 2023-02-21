@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -98,9 +97,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         ...(ownerState.size === 'sm' && {
           fontSize: theme.vars.fontSize.sm,
         }),
-        // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-        transition:
-          'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         '&:before': {
           boxSizing: 'border-box',
           content: '""',
@@ -262,7 +258,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component = 'div',
     formControl,
     focused,
     error: errorProp = false,
@@ -305,14 +300,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: InputRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -325,23 +319,23 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     }),
     className: [classes.input, inputStateClasses],
     elementType: InputInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalForwardedProps,
+    getSlotProps: getInputProps,
+    internalForwardedProps: propsToForward,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: InputStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: InputEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 

@@ -21,6 +21,7 @@ import {
   TypographySystem,
 } from './typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './variants';
+import { ZIndex } from './zIndex';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -58,6 +59,7 @@ export interface ThemeScales {
   fontWeight: FontWeight;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
+  zIndex: ZIndex;
 }
 
 interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {

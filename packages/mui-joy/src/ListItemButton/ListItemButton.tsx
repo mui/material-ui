@@ -79,9 +79,6 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
       flexShrink: 0,
       minInlineSize: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontSize: 'var(--List-item-fontSize)',
       fontFamily: theme.vars.fontFamily.body,
       ...(ownerState.selected && {
@@ -89,9 +86,13 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       }),
       [theme.focus.selector]: theme.focus.default,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(!ownerState.selected && {
+        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      }),
+    },
     {
       [`&.${listItemButtonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
@@ -205,10 +206,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

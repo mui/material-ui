@@ -41,14 +41,15 @@ const TabRoot = styled(StyledListItemButton, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
+    ...(!ownerState.row &&
+      ownerState.orientation === 'horizontal' && {
+        justifyContent: 'flex-start',
+      }),
     ...(ownerState.selected && {
       boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
       ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
-        '&:hover': {
-          backgroundColor: theme.vars.palette.background.surface,
-        },
       }),
     }),
   };

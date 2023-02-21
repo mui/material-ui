@@ -13,7 +13,7 @@
       }
     },
     "TooltipClasses": { "type": { "name": "object" } },
-    "tooltipOpen": { "type": { "name": "bool" } },
+    "tooltipOpen": { "type": { "name": "bool" }, "default": "false" },
     "tooltipPlacement": {
       "type": {
         "name": "enum",

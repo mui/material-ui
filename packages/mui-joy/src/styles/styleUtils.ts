@@ -34,7 +34,12 @@ export const resolveSxValue = (
           return `${value}px`;
         }
         parsedValue = theme.vars?.radius[value as keyof typeof theme.vars.radius] || value;
+      } else {
+        parsedValue = value;
       }
+    }
+    if (typeof value === 'function') {
+      parsedValue = value(theme);
     }
   }
   return parsedValue || defaultValue;

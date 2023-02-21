@@ -1,4 +1,4 @@
-import pagesApi from './pagesApi';
+import pagesApi from 'docs/data/system/pagesApi';
 
 const pages = [
   {

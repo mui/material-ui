@@ -1,7 +1,7 @@
 {
   "props": {
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "node" } },
     "slotProps": {
       "type": {

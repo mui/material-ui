@@ -12,8 +12,6 @@ githubLabel: 'component: chip'
 
 Chips are most frequently used in two main use cases: as pills of informative content or as filtering options.
 
-The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
-
 {{"demo": "ChipUsage.js", "hideToolbar": true}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -62,7 +60,7 @@ Doing so will automatically change the rendered HTML tag from `<div>` to `<a>`.
 
 ### Clickable
 
-To make chips clikcable, pass a function to the `onClick` prop.
+To make chips clickable, pass a function to the `onClick` prop.
 
 {{"demo": "ClickableChip.js"}}
 
