@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createRenderer } from 'test/utils';
 import { expect } from 'chai';
-import { useInput } from '@mui/base/InputUnstyled';
+import useInput from './useInput';
 
 describe('useInput', () => {
   const { render } = createRenderer();

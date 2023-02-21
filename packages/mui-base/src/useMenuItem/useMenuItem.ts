@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { EventHandlers } from '../utils/types';
 import { MenuUnstyledContext } from '../MenuUnstyled';
-import { useButton } from '../ButtonUnstyled';
+import useButton from '../useButton';
 import { UseMenuItemParameters } from './useMenuItem.types';
 import useForcedRerendering from '../utils/useForcedRerendering';
 

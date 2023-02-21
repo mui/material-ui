@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
-import { Mark } from '@mui/base/SliderUnstyled';
+import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';

@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import {
-  SelectOption,
-  UseSelectButtonSlotProps,
-  UseSelectListboxSlotProps,
-} from './useSelect.types';
+import { SelectOption, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
 

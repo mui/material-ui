@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -376,10 +376,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -456,10 +453,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['sm', 'md', 'lg']),
-    PropTypes.string,
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -485,10 +479,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'solid'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Checkbox;

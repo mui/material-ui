@@ -92,7 +92,7 @@ The following code snippet applies a CSS class called `my-badge` to the badge sl
 ## Hook
 
 ```jsx
-import { useBadge } from '@mui/base/BadgeUnstyled';
+import useBadge from '@mui/base/useBadge';
 ```
 
 The `useBadge` hook lets you apply the functionality of a badge to a fully custom component.

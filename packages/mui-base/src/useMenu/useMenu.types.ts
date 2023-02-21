@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseListboxRootSlotProps } from '../ListboxUnstyled';
+import { UseListboxRootSlotProps } from '../useListbox';
 
 export interface MenuItemMetadata {
   id: string;
