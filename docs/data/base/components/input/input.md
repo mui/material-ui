@@ -85,7 +85,7 @@ The following code snippet applies a CSS class called `my-input` to the input sl
 ## Hook
 
 ```js
-import { useInput } from '@mui/base/InputUnstyled';
+import useInput from '@mui/base/useInput';
 ```
 
 The `useInput` hook lets you apply the functionality of an input to a fully custom component.

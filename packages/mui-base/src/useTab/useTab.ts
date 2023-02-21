@@ -1,5 +1,5 @@
 import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
-import { useButton } from '../ButtonUnstyled';
+import useButton from '../useButton';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
 /**

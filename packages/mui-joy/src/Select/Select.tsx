@@ -12,12 +12,11 @@ import PopperUnstyled, {
   PopperUnstyledTypeMap,
 } from '@mui/base/PopperUnstyled';
 import {
-  useSelect,
   SelectUnstyledContext,
   flattenOptionGroups,
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
-import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
+import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
