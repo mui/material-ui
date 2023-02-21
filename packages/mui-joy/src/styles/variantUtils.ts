@@ -172,7 +172,7 @@ export const createSoftInversion = (
     const color = tokens[1];
     const value = tokens[2];
     return getCssVarDefault(cssVar, theme.palette[color][value]);
-  }
+  };
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
       DefaultColorPalette,
@@ -333,7 +333,7 @@ export const createSolidInversion = (theme: ThemeFragment) => {
     const color = tokens[1];
     const value = tokens[2];
     return getCssVarDefault(cssVar, theme.palette[color][value]);
-  }
+  };
 
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [

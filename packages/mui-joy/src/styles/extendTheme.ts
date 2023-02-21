@@ -105,16 +105,16 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       white: '#FFF',
       black: '#09090D',
     },
-  }
+  };
 
   const getCssVarColor = (cssVar: string) => {
-    const tokens = cssVar.split("-");
+    const tokens = cssVar.split('-');
     const color = tokens[1];
     const index = tokens[2];
 
     // @ts-ignore
     return getCssVar(cssVar, defaultColors[color][index]);
-  }
+  };
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVarColor(`palette-${color}-600`),
@@ -364,7 +364,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shadowChannel: '0 0 0',
   };
 
-  const fontFamilyFallback = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+  const fontFamilyFallback =
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
   const fontFamily = {
     body: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
     display: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
@@ -423,7 +424,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
         outlineOffset: `var(--focus-outline-offset, ${getCssVar('focus-thickness', '2px')})`,
-        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVarColor('palette-focusVisible')}`,
+        outline: `${getCssVar('focus-thickness', '2px')} solid ${getCssVarColor(
+          'palette-focusVisible',
+        )}`,
       },
     },
     lineHeight,
@@ -436,43 +439,86 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       xl: '20px',
     },
     shadow: {
-      xs: `${getCssVar('shadowRing', lightColorSystem.shadowRing)}, 0 1px 2px 0 rgba(${getCssVar('shadowChannel', lightColorSystem.shadowChannel)} / 0.12)`,
-      sm: `${getCssVar('shadowRing', lightColorSystem.shadowRing)}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+      xs: `${getCssVar('shadowRing', lightColorSystem.shadowRing)}, 0 1px 2px 0 rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.12)`,
+      sm: `${getCssVar(
+        'shadowRing',
+        lightColorSystem.shadowRing,
+      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.11), 0.5px 1.3px 1.8px -0.6px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.18), 1.1px 2.7px 3.8px -1.2px rgba(${getCssVar('shadowChannel', lightColorSystem.shadowChannel)} / 0.26)`,
-      md: `${getCssVar('shadowRing', lightColorSystem.shadowRing)}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.18), 1.1px 2.7px 3.8px -1.2px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.26)`,
+      md: `${getCssVar(
+        'shadowRing',
+        lightColorSystem.shadowRing,
+      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.12), 1.1px 2.8px 3.9px -0.4px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.17), 2.4px 6.1px 8.6px -0.8px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(${getCssVar('shadowChannel', lightColorSystem.shadowChannel)} / 0.29)`,
-      lg: `${getCssVar('shadowRing', lightColorSystem.shadowRing)}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.29)`,
+      lg: `${getCssVar(
+        'shadowRing',
+        lightColorSystem.shadowRing,
+      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar('shadowChannel', lightColorSystem.shadowChannel)} / 0.21)`,
-      xl: `${getCssVar('shadowRing', lightColorSystem.shadowRing)}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.21)`,
+      xl: `${getCssVar(
+        'shadowRing',
+        lightColorSystem.shadowRing,
+      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.21), 10.2px 25.5px 36px -0.9px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
       )} / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(${getCssVar(
-        'shadowChannel', lightColorSystem.shadowChannel
-      )} / 0.27), 21px 52.3px 74px -1.2px rgba(${getCssVar('shadowChannel', lightColorSystem.shadowChannel)} / 0.29)`,
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.27), 21px 52.3px 74px -1.2px rgba(${getCssVar(
+        'shadowChannel',
+        lightColorSystem.shadowChannel,
+      )} / 0.29)`,
     },
     // TODO: Resolve the rest of the variables
     zIndex: {
@@ -707,8 +753,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
   theme.getColorSchemeSelector = () => '&';
 
-  const createVariantInput = { getCssVar, palette: lightColorSystem.palette}
-  theme.variants = deepmerge(
+  const createVariantInput = { getCssVar, palette: lightColorSystem.palette };
+  (theme.variants = deepmerge(
     {
       plain: createVariant('plain', createVariantInput),
       plainHover: createVariant('plainHover', createVariantInput),
@@ -728,9 +774,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       solidDisabled: createVariant('solidDisabled', createVariantInput),
     },
     variantsInput,
-  ),
-  // @ts-ignore - this needs to be fixed
-  theme.palette = theme.colorSchemes.light.palette;
+  )),
+    // @ts-ignore - this needs to be fixed
+    (theme.palette = theme.colorSchemes.light.palette);
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
   theme.colorInversion =

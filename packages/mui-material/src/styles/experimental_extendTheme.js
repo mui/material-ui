@@ -122,7 +122,7 @@ export default function extendTheme(options = {}, ...args) {
       const color = tokens[1];
       const colorToken = tokens[2];
       return getCssVar(cssVar, palette[color][colorToken]);
-    }
+    };
 
     // attach black & white channels to common node
     if (key === 'light') {
@@ -202,7 +202,11 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeLighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBg', safeLighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBg', safeLighten(palette.warning.main, 0.62));
-      setColor(palette.Skeleton, 'bg', `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`);
+      setColor(
+        palette.Skeleton,
+        'bg',
+        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
+      );
       setColor(palette.Slider, 'primaryTrack', safeLighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', safeLighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', safeLighten(palette.error.main, 0.62));
@@ -286,7 +290,11 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', safeDarken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBg', safeDarken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBg', safeDarken(palette.warning.main, 0.5));
-      setColor(palette.Skeleton, 'bg', `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`);
+      setColor(
+        palette.Skeleton,
+        'bg',
+        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
+      );
       setColor(palette.Slider, 'primaryTrack', safeDarken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', safeDarken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', safeDarken(palette.error.main, 0.5));
