@@ -17,13 +17,7 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    thumb?: React.ElementType;
-    input?: React.ElementType;
-    track?: React.ElementType | null;
-  };
-
+  slots?: SwitchUnstyledSlots;
   /**
    * The props used for each slot inside the Switch.
    * @default {}
@@ -50,6 +44,29 @@ export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
       SwitchUnstyledOwnerState
     >;
   };
+}
+
+export interface SwitchUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb?: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track?: React.ElementType | null;
 }
 
 export interface SwitchUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {

@@ -57,6 +57,56 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
+function SlotsTable(props) {
+  const { componentSlots, slotDescriptions } = props;
+  const t = useTranslate();
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th align="left">{t('api-docs.name')}</th>
+          <th align="left">{t('api-docs.defaultClass')}</th>
+          <th align="left">{t('api-docs.defaultValue')}</th>
+          <th align="left">{t('api-docs.description')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {componentSlots.map(({ class: className, name, default: defaultValue }) => {
+          return (
+            <tr key={name}>
+              <td align="left" width="15%">
+                <span className="slot-name">{name}</span>
+              </td>
+              <td align="left" width="25%">
+                <span
+                  className="slot-defaultClass"
+                  dangerouslySetInnerHTML={{ __html: className }}
+                />
+              </td>
+              <td align="left" width="25%">
+                {defaultValue && <span className="slot-default">{defaultValue}</span>}
+              </td>
+              <td
+                align="left"
+                width="35%"
+                dangerouslySetInnerHTML={{
+                  __html: slotDescriptions[name] || '',
+                }}
+              />
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+SlotsTable.propTypes = {
+  componentSlots: PropTypes.array.isRequired,
+  slotDescriptions: PropTypes.object.isRequired,
+};
+
 function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
@@ -64,6 +114,7 @@ function getTranslatedHeader(t, header) {
     'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
+    slots: t('api-docs.slots'),
     css: 'CSS',
   };
 
@@ -115,6 +166,7 @@ export default function ApiPage(props) {
     props: componentProps,
     spread,
     styles: componentStyles,
+    slots: componentSlots,
   } = pageContent;
 
   const {
@@ -122,6 +174,7 @@ export default function ApiPage(props) {
     componentDescriptionToc = [],
     classDescriptions,
     propDescriptions,
+    slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
@@ -152,6 +205,7 @@ export default function ApiPage(props) {
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
+    componentSlots?.length > 0 && createTocEntry('slots'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -277,6 +331,13 @@ import { ${componentName} } from '${source}';`}
             <span
               dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
             />
+          </React.Fragment>
+        ) : null}
+        {componentSlots?.length ? (
+          <React.Fragment>
+            <Heading hash="slots" />
+            <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <br />
           </React.Fragment>
         ) : null}
       </MarkdownElement>
