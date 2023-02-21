@@ -22,6 +22,7 @@ describe('defaultTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'zIndex',
         'typography',
         'variants',
         'colorInversion',

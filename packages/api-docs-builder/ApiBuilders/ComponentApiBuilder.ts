@@ -91,7 +91,10 @@ export function writePrettifiedFile(
  * why the source includes relative url. We transform them to absolute urls with
  * this method.
  */
-async function computeApiDescription(api: ReactApi, options: { host: string }): Promise<string> {
+export async function computeApiDescription(
+  api: { description: ReactApi['description'] },
+  options: { host: string },
+): Promise<string> {
   const { host } = options;
   const file = await remark()
     .use(function docsLinksAttacher() {
@@ -278,7 +281,7 @@ function extractClassConditions(descriptions: any) {
  * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
  * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGitHubPath(filepath: string): string {
+export function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 

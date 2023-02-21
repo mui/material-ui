@@ -11,7 +11,20 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
 
-export const TypographyContext = React.createContext(false);
+/**
+ * @internal
+ * For creating nested Typography to have inherit level (unless an explicit `level` prop is provided)
+ * and change the HTML tag to `span` (unless an explicit `component` prop is provided).
+ */
+export const TypographyNestedContext = React.createContext(false);
+
+/**
+ * @internal
+ * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
+ *
+ * This is used in components, e.g. Table, to inherit the parent's size by default.
+ */
+export const TypographyInheritContext = React.createContext(false);
 
 const useUtilityClasses = (ownerState: TypographyOwnerState) => {
   const { gutterBottom, noWrap, level, color, variant } = ownerState;
@@ -69,14 +82,14 @@ const TypographyRoot = styled('span', {
   margin: 'var(--Typography-margin, 0px)',
   ...(ownerState.nesting
     ? {
-        display: 'inline',
+        display: 'inline', // looks better than `inline-block` when using with `variant` prop.
       }
     : {
-        fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inherited.
-        display: 'block',
+        fontFamily: theme.vars.fontFamily.body, // for nested typography, the font family will be inheriting.
+        display: 'block', // don't rely on user agent, always `block`.
       }),
   ...((ownerState.startDecorator || ownerState.endDecorator) && {
-    display: 'flex',
+    display: 'flex', // should not be used as a default because it does not work well with `noWrap`.
     alignItems: 'center',
     ...(ownerState.nesting && {
       display: 'inline-flex',
@@ -141,7 +154,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     name: 'JoyTypography',
   });
 
-  const nesting = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyNestedContext);
+  const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as TypographyProps;
 
@@ -161,7 +175,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, variant ? colorProp ?? 'neutral' : colorProp);
 
-  const level = nesting ? inProps.level || 'inherit' : levelProp;
+  const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
   const component =
     componentProp ||
@@ -206,7 +220,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   });
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyNestedContext.Provider value>
       <SlotRoot {...rootProps}>
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
@@ -215,7 +229,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         {children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
-    </TypographyContext.Provider>
+    </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<TypographyTypeMap>;
 

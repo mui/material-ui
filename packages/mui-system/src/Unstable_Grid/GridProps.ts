@@ -161,7 +161,18 @@ export interface GridBaseProps extends Breakpoints {
 }
 
 export interface GridOwnerState extends GridBaseProps {
-  nested: boolean;
+  /**
+   * The level of the grid starts from `0`
+   * and increases when the grid nests inside another grid regardless of container or item.
+   *
+   * ```js
+   * <Grid> // level 0
+   *   <Grid> // level 1
+   *     <Grid> // level 2
+   *   <Grid> // level 1
+   * ```
+   */
+  level: number;
   gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
   gridOffset: Partial<Record<Breakpoint, GridSize>>;
 }

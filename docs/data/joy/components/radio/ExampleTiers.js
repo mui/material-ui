@@ -1,6 +1,5 @@
 import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
@@ -16,36 +15,24 @@ export default function ExampleTiers() {
         p: 1,
       }}
     >
-      <RadioGroup
-        name="tiers"
-        sx={{ gap: 1, '& > div': { p: 1, flexDirection: 'row', gap: 2 } }}
-      >
+      <RadioGroup name="tiers" sx={{ gap: 1, '& > div': { p: 1 } }}>
         <FormControl size="sm">
-          <Radio overlay value="small" />
-          <div>
-            <FormLabel>Small</FormLabel>
-            <FormHelperText>
-              For light background jobs like sending email
-            </FormHelperText>
-          </div>
+          <Radio overlay value="small" label="Small" />
+          <FormHelperText>
+            For light background jobs like sending email
+          </FormHelperText>
         </FormControl>
         <FormControl>
-          <Radio overlay value="medium" />
-          <div>
-            <FormLabel>Medium</FormLabel>
-            <FormHelperText>
-              For tasks like image resizing, exporting PDFs, etc.
-            </FormHelperText>
-          </div>
+          <Radio overlay value="medium" label="Medium" />
+          <FormHelperText>
+            For tasks like image resizing, exporting PDFs, etc.
+          </FormHelperText>
         </FormControl>
         <FormControl size="lg">
-          <Radio overlay value="large" />
-          <div>
-            <FormLabel>Large</FormLabel>
-            <FormHelperText>
-              For intensive tasks like video encoding, etc.
-            </FormHelperText>
-          </div>
+          <Radio overlay value="large" label="Large" />
+          <FormHelperText>
+            For intensive tasks like video encoding, etc.
+          </FormHelperText>
         </FormControl>
       </RadioGroup>
     </Sheet>

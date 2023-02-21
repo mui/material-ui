@@ -172,21 +172,13 @@ function Demo({
         className="mui-default-theme"
         sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        {props.theme ? (
-          <CssVarsProvider disableStyleSheetGeneration theme={props.theme}>
-            {React.cloneElement(children, {
-              ...(control && {
-                [control.prop]: propValue,
-              }),
-            })}
-          </CssVarsProvider>
-        ) : (
-          React.cloneElement(children, {
+        <CssVarsProvider theme={props.theme}>
+          {React.cloneElement(children, {
             ...(control && {
               [control.prop]: propValue,
             }),
-          })
-        )}
+          })}
+        </CssVarsProvider>
       </Box>
       <Typography fontWeight="semiBold" variant="body2">
         {name}
