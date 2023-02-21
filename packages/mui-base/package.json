@@ -53,8 +53,8 @@
   "dependencies": {
     "@babel/runtime": "^7.20.13",
     "@emotion/is-prop-valid": "^1.2.0",
-    "@mui/types": "^7.2.3",
-    "@mui/utils": "^5.11.9",
+    "@mui/types": "workspace:*",
+    "@mui/utils": "workspace:*",
     "@popperjs/core": "^2.11.6",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",

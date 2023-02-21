@@ -243,3 +243,24 @@ These great services sponsor MUI's core infrastructure:
 <img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
+
+- https://dev.to/andreychernykh/yarn-npm-to-pnpm-migration-guide-2n04
+
+- ```
+  pnpm import
+   ERR_PNPM_INVALID_OVERRIDE_SELECTOR  Cannot parse the "**/@babel/core" selector in the overrides
+  ```
+
+  => remove `**/` everywhere?
+
+- added `.npmrc` with
+
+  ```
+  auto-install-peers = true
+  ```
+
+- replace workspace dependencies versions in package.json files with `workspace:*`
+
+- scripts:
+
+  - `yarn workspace docs dev` => `pnpm --dir ./docs dev`

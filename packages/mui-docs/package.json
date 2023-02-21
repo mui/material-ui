@@ -34,7 +34,7 @@
     "test": "exit 0"
   },
   "peerDependencies": {
-    "@mui/material": "^5.0.0",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0"
   },
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.13",
-    "@mui/utils": "^5.11.9",
+    "@mui/utils": "workspace:*",
     "nprogress": "^0.2.0"
   },
   "publishConfig": {
