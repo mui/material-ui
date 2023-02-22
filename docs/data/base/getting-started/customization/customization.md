@@ -4,7 +4,7 @@
 
 With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style.
 
-This document reviews several methods of customization that are available: applying custom CSS rules, overriding default subcomponent slots, customizing the slots' props, and using hooks to build fully custom components.
+This document reviews several methods of customization that are available: applying custom CSS rules, overriding default subcomponent slots, customizing the slot props, and using hooks to build fully custom components.
 
 ## Applying custom CSS rules
 
@@ -52,9 +52,9 @@ In this case, `MyCustomThumb` component receives the `ownerState` object with th
 
 You can use this object to style your component.
 
-## Customizing slots' props
+## Customizing slot props
 
-The `slotProps` prop may be used to customize the props of the inner components.
+Use the `slotProps` prop to customize the inner component props.
 The most common use case is setting a class name, but you can set any prop, including event handlers.
 
 The following example shows how to add a custom class to two of the Unstyled Switch's slots:
@@ -76,15 +76,15 @@ function Switch(props: SwitchUnstyledProps) {
 
 The `switch:thumb` and `switch:class` are added unconditionally—they will always be present on the Switch component.
 
-Often, you may need to apply a class only when a component is in a particular state.
-A good example may be adding `on` and `off` classes to the Switch based on its checked state.
+You may need to apply a class only when a component is in a particular state.
+A good example is adding `on` and `off` classes to a Switch based on its checked state, as shown in the demo below:
 
 {{"demo": "SlotPropsCallback.js", "defaultCodeOpen": true}}
 
-Here, instead of providing an object with props to apply to a slot, we supply a callback.
-Its only parameter is `ownerState` - an object that describes the state of the "owner component"—the Unstyled Switch in this case.
+Here, instead of an object with props, the root slot receives a callback function.
+Its only parameter is `ownerState`, which is an object that describes the state of the "owner component"—the Unstyled Switch in this case.
 The `ownerState` holds all the props of the owner component (with defaults applied where applicable) and is augmented with the internal state of the component.
-In the case of SelectUnstyled, the additional information include the `checked`, `disabled`, `focusVisible`, and `readOnly` boolean fields.
+In the case of the Unstyled Select, the additional information includes the `checked`, `disabled`, `focusVisible`, and `readOnly` boolean fields.
 
 ## Creating custom components using hooks
 
@@ -121,24 +121,24 @@ The `getInputProps` function can be used to get the props to place on an HTML `<
 The multitude of options can be overwhelming, especially if you're new to MUI Base.
 How to decide which one to use, then?
 
-The first decision to make is whether to use unstyled components vs. hooks.
+The first decision to make is whether to use unstyled components or hooks.
 Hooks are better suited for making component libraries that can be further customized.
 For example, our own Joy UI is implemented using hooks from MUI Base.
-We also use hooks in several Material UI components and we intend to use them more extensively in the future.
+Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
 
-If you don't need to make your component library customizable (e.g. you don't expose the `slotProps`), the unstyled components may be a better option thanks to their simplicity.
-After choosing unstyled components, there is one more decision to make - how to style them.
+If you don't need to make your component library customizable (for instance, by exposing `slotProps`), then the unstyled components may be a better option thanks to their simplicity.
+After choosing unstyled components, there is one more decision to make: how to style them.
 The answer depends on the styling solution used in the project:
 
 ### Plain CSS, Sass, Less
 
-...or anything else that compiles to CSS
+...or anything else that compiles to CSS:
 
 You can either [style the components using the built-in classes](#applying-custom-css-rules) or [specify your own classes](#customizing-slots-props) and reference them in your stylesheets.
 
 ### CSS Modules
 
-The simplest approach here is to [specify custom classes using the `slotProps`](#customizing-slots-props).
+When working with [CSS Modules](https://github.com/css-modules/css-modules), the simplest approach is to [specify custom classes using `slotProps`](#customizing-slots-props), as shown below:
 
 ```tsx
 import clsx from 'clsx';
@@ -165,7 +165,7 @@ In this example we're using the [clsx](https://www.npmjs.com/package/clsx) utili
 
 ### Tailwind CSS
 
-Similarly to CSS Modules, the most straightforward way is the [`slotProps` customization](#customizing-slots-props).
+Use [`slotProps`](#customizing-slots-props) to apply custom styles using [Tailwind CSS](https://www.tailwindcss.com/), as shown below:
 
 ```tsx
 export default function Switch(props) {
@@ -191,7 +191,7 @@ See our [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css
 
 ### Styled components
 
-If you use a CSS-in-JS solution with a styled-components-like API (such as MUI System or Emotion), it's the most convenient to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo above](#overriding-subcomponent-slots).
+If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/overview/) or [Emotion](https://emotion.sh/docs/introduction), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo above](#overriding-subcomponent-slots).
 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
