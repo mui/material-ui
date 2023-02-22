@@ -136,8 +136,7 @@ export default function ExampleIOSList() {
                     transition: 'width 0.2s, left 0.2s',
                   },
                   '&:hover': {
-                    '--Switch-trackBackground':
-                      theme.vars.palette.background.level3,
+                    '--Switch-trackBackground': theme.vars.palette.background.level3,
                   },
                   '&:active': {
                     '--Switch-thumbWidth': '32px',
