@@ -146,7 +146,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 ## Hook
 
 ```js
-import { useSelect } from '@mui/base/SelectUnstyled';
+import useSelect from '@mui/base/useSelect';
 ```
 
 The `useSelect` hook lets you apply the functionality of a select to a fully custom component.

@@ -42,6 +42,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
     focusVisibleClassName?: string;
     /**
      * The size of the component.
+     * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', IconButtonPropsSizeOverrides>;
     /**

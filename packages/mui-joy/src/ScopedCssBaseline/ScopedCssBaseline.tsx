@@ -60,7 +60,16 @@ const ScopedCssBaselineRoot = styled('div', {
     ...colorSchemeStyles,
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [CSS Baseline](https://mui.com/joy-ui/react-css-baseline/)
+ *
+ * API:
+ *
+ * - [ScopedCssBaseline API](https://mui.com/joy-ui/api/scoped-css-baseline/)
+ */
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps<typeof inProps & ScopedCssBaselineProps>({
     props: inProps,
@@ -108,7 +117,6 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * Disable `color-scheme` CSS property.
-   *
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false

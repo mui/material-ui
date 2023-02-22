@@ -6,7 +6,7 @@ import {
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
+} from '@mui/base/useAutocomplete';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
@@ -121,7 +121,7 @@ type AutocompleteOwnProps<
     autoFocus?: boolean;
     /**
      * The icon to display in place of the default clear icon.
-     * @default <ClearIcon fontSize="small" />
+     * @default <ClearIcon fontSize="md" />
      */
     clearIcon?: React.ReactNode;
     /**
@@ -156,6 +156,7 @@ type AutocompleteOwnProps<
     /**
      * If `true`, the `input` will indicate an error.
      * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+     * @default false
      */
     error?: boolean;
     /**
@@ -170,11 +171,11 @@ type AutocompleteOwnProps<
     /**
      * The label to display when the tags are truncated (`limitTags`).
      *
-     * @param {number} more The number of truncated tags.
+     * @param {string | number} more The number of truncated tags.
      * @returns {ReactNode}
-     * @default (more) => `+${more}`
+     * @default (more: string | number) => `+${more}`
      */
-    getLimitTagsText?: (more: number) => React.ReactNode;
+    getLimitTagsText?: (more: string | number) => React.ReactNode;
     /**
      * If `true`, the component is in a loading state.
      * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
