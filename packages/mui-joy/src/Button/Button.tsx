@@ -92,9 +92,9 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--CircularProgress-size': 'var(--Icon-fontSize)',
+      '--CircularProgress-size': 'var(--Icon-fontSize)', // must be `px` unit, otherwise the CircularProgress is broken
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': '20px',
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
@@ -102,7 +102,7 @@ export const ButtonRoot = styled('button', {
         paddingInline: '0.75rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Icon-fontSize': '24px', // control the SvgIcon font-size
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -110,7 +110,7 @@ export const ButtonRoot = styled('button', {
         paddingInline: '1rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': '28px',
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
         fontSize: theme.vars.fontSize.md,

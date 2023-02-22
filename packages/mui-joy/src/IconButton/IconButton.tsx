@@ -38,21 +38,21 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       '--Icon-margin': 'initial', // reset the icon's margin.
       '--CircularProgress-size': 'var(--Icon-fontSize)',
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 32px) / 1.6)', // 1.25rem by default
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
         paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 40px) / 1.667)', // 1.5rem by default
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
         paddingInline: '0.25rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 48px) / 1.714)', // 1.75rem by default
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,

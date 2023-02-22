@@ -2,7 +2,7 @@ import * as React from 'react';
 import { keyframes } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
-import Chip from '@mui/joy/Chip';
+import CircularProgress from '@mui/joy/CircularProgress';
 
 const circulate = keyframes({
   '0%': {
@@ -60,11 +60,7 @@ export default function DecoratorExamples() {
         underline="none"
         variant="soft"
         color="success"
-        endDecorator={
-          <Chip color="success" size="sm" sx={{ borderRadius: '3px', mr: '2px' }}>
-            HIRING!
-          </Chip>
-        }
+        endDecorator={<CircularProgress />}
         sx={{ '--Link-gap': '0.5rem', pr: 0, pl: 1 }}
       >
         Careers
