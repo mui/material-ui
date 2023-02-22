@@ -155,7 +155,7 @@ return (
   </Select>
 ```
 
-...or place a `muiSkipListHighlight` prop on each instance of your component.
+Option 2: Place a `muiSkipListHighlight` prop on each instance of your component.
 The prop doesn't have to be forwarded to the ListSubheader, nor present in the underlying DOM element.
 It just has to be placed on a component that's used as a subheader.
 
