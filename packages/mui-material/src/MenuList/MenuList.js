@@ -232,6 +232,17 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         activeItemIndex = index;
       }
     }
+
+    if (
+      activeItemIndex === index &&
+      (child.props.disabled || child.props.muiSkipListHighlight || child.type.muiSkipListHighlight)
+    ) {
+      activeItemIndex += 1;
+      if (activeItemIndex >= children.length) {
+        // there are no focusable items within the list.
+        activeItemIndex = -1;
+      }
+    }
   });
 
   const items = React.Children.map(children, (child, index) => {
