@@ -63,7 +63,16 @@ export const SheetRoot = styled('div', {
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Sheet](https://mui.com/joy-ui/react-sheet/)
+ *
+ * API:
+ *
+ * - [Sheet API](https://mui.com/joy-ui/api/sheet/)
+ */
 const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,

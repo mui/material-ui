@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Tooltip component
+components: Tooltip
 githubLabel: 'component: tooltip'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---

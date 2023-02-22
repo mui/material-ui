@@ -39,7 +39,7 @@ export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'di
      * The value of the progress indicator for the determinate variant.
      * Value between 0 and 100.
      *
-     * For indeterminate, @default 25
+     * @default determinate ? 0 : 25
      */
     value?: number;
     /**
