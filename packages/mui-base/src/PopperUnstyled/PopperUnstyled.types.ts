@@ -100,9 +100,7 @@ export interface PopperUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: PopperUnstyledSlots;
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
@@ -110,6 +108,14 @@ export interface PopperUnstyledOwnProps {
   transition?: boolean;
 
   ownerState?: any;
+}
+
+export interface PopperUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export type PopperUnstyledOwnerState = Omit<PopperUnstyledOwnProps, 'ownerState'>;

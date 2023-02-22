@@ -68,16 +68,30 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    listbox?: React.ElementType;
-    popper?: React.ComponentType<MultiSelectUnstyledPopperSlotProps<TValue>>;
-  };
+  slots?: MultiSelectUnstyledSlots<TValue>;
   /**
    * The selected values.
    * Set to an empty array to deselect all options.
    */
   value?: TValue[];
+}
+
+export interface MultiSelectUnstyledSlots<TValue extends {}> {
+  /**
+   * The component used to render the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
+  /**
+   * The component used to render the popper.
+   * @default PopperUnstyled
+   */
+  popper?: React.ComponentType<MultiSelectUnstyledPopperSlotProps<TValue>>;
 }
 
 export interface MultiSelectUnstyledTypeMap<

@@ -13,6 +13,7 @@ import {
   getBaseHookInfo,
   getSystemComponentInfo,
   extractApiPage,
+  getJoyComponentInfo,
 } from './buildApiUtils';
 import generateComponentApi, {
   writePrettifiedFile,
@@ -155,6 +156,20 @@ const SETTINGS: Settings[] = [
   },
   {
     output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
+    },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'joy',
+        rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+        entryPointPath: 'src/index.ts',
+      }),
+    ],
+    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
+    getComponentInfo: getJoyComponentInfo,
+  },
+  {
+    output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
     },
     getProjects: () => [
@@ -192,8 +207,13 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         (component) => {
           if (
             component.filename.includes('ThemeProvider') ||
-            (component.filename.includes('mui-material') &&
-              component.filename.includes('CssVarsProvider'))
+            component.filename.includes('CssVarsProvider') ||
+            (component.filename.includes('mui-joy') &&
+              // Box's demo isn't ready
+              // Container's demo isn't ready
+              // Grid has problem with react-docgen
+              // Stack has problem with react-docgen
+              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/))
           ) {
             return false;
           }

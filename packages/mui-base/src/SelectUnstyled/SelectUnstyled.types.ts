@@ -106,16 +106,30 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    listbox?: React.ElementType;
-    popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
-  };
+  slots?: SelectUnstyledSlots<TValue>;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
   value?: TValue | null;
+}
+
+export interface SelectUnstyledSlots<TValue extends {}> {
+  /**
+   * The component used to render the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
+  /**
+   * The component used to render the popper.
+   * @default PopperUnstyled
+   */
+  popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue>>;
 }
 
 export interface SelectUnstyledTypeMap<

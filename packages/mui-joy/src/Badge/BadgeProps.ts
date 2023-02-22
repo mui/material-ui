@@ -37,6 +37,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
       anchorOrigin?: BadgeOrigin;
       /**
        * The content rendered within the badge.
+       * @default ''
        */
       badgeContent?: React.ReactNode;
       /**
