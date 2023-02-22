@@ -376,32 +376,41 @@ export default function extendTheme(options = {}, ...args) {
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
-  const colorSchemesCss = {};
-
   const { colorSchemes, ...restTheme } = theme;
   Object.keys(colorSchemes).forEach((key) => {
     const t = { ...restTheme, ...colorSchemes[key] };
     delete t.colorSchemes;
 
-    const { css, vars } = cssVarsParser(t, {
+    const { vars } = cssVarsParser(t, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
+      addDefaultValues: true,
     });
     theme.vars = deepmerge(theme.vars, vars);
-    colorSchemesCss[key] = css;
   });
 
-  const { css: rootCss, vars: rootVars } = cssVarsParser(restTheme, {
+  const { vars: rootVars } = cssVarsParser(restTheme, {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    addDefaultValues: true,
   });
 
   // Used in the CssVarsProvider for injecting the CSS variables
   theme.generateCssVars = (colorScheme) => {
     if (!colorScheme) {
-      return rootCss;
+      return cssVarsParser(restTheme, {
+        prefix: cssVarPrefix,
+        shouldSkipGeneratingVar,
+      });
     }
-    return colorSchemesCss[colorScheme];
+
+    const t = { ...theme, ...colorSchemes[colorScheme] };
+    delete t.colorSchemes;
+
+    return cssVarsParser(t, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
   };
 
   theme.vars = deepmerge(theme.vars, rootVars);

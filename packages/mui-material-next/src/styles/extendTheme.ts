@@ -447,8 +447,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
-  const colorSchemesCss: Record<string, any> = {};
-
   const { colorSchemes, ...restTheme } = theme;
   Object.keys(colorSchemes).forEach((key) => {
     // @ts-ignore
@@ -459,22 +457,33 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     const { css, vars } = cssVarsParser(t, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
+      addDefaultValues: true,
     });
     theme.vars = deepmerge(theme.vars, vars);
-    colorSchemesCss[key] = css;
   });
 
-  const { css: rootCss, vars: rootVars } = cssVarsParser(restTheme, {
+  const { vars: rootVars } = cssVarsParser(restTheme, {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
+    addDefaultValues: true,
   });
 
   // Used in the CssVarsProvider for injecting the CSS variables
-  theme.generateCssVars = (colorScheme) => {
+  theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
     if (!colorScheme) {
-      return rootCss;
+      return cssVarsParser(restTheme, {
+        prefix: cssVarPrefix,
+        shouldSkipGeneratingVar,
+      })
     }
-    return colorSchemesCss[colorScheme];
+    // @ts-ignore
+    const t = { ...theme, ...colorSchemes[colorScheme] };
+    // @ts-ignore - we don't want colorSchemes variables generated
+    delete t.colorSchemes;
+    return cssVarsParser(t, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
   };
 
   theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];

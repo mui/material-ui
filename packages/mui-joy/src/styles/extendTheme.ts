@@ -266,7 +266,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tooltip: getCssVarColor('palette-neutral-800'),
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
-      divider: `rgba(${getCssVarColor('palette-neutral-mainChannel')} / 0.28)`,
+      divider: `rgba(${getCssVar('palette-neutral-mainChannel', colorChannel(defaultColors.neutral[500]))} / 0.28)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -354,7 +354,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tooltip: getCssVarColor('palette-neutral-600'),
         backdrop: `rgba(${getCssVarColor('palette-neutral-darkChannel')} / 0.5)`,
       },
-      divider: `rgba(${getCssVarColor('palette-neutral-mainChannel')} / 0.24)`,
+      divider: `rgba(${getCssVar('palette-neutral-mainChannel', colorChannel(defaultColors.neutral[500]))} / 0.24)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -368,6 +368,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     display: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
     code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fallback: fontFamilyFallback,
+    ...scalesInput.fontFamily,
   };
 
   const fontWeight = {
@@ -378,6 +379,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     xl: 700,
     xl2: 800,
     xl3: 900,
+    ...scalesInput.fontWeight,
   };
 
   const fontSize = {
@@ -394,18 +396,21 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     xl5: '3rem',
     xl6: '3.75rem',
     xl7: '4.5rem',
+    ...scalesInput.fontSize,
   };
 
   const lineHeight = {
     sm: 1.25,
     md: 1.5,
     lg: 1.7,
+    ...scalesInput.lineHeight,
   };
 
   const letterSpacing = {
     sm: '-0.01em',
     md: '0.083em',
     lg: '0.125em',
+    ...scalesInput.letterSpacing,
   };
 
   const defaultScales = {
@@ -622,8 +627,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ? deepmerge(defaultScales, scalesInput)
     : defaultScales;
 
-  const { palette: firstColorSchemePalette } = Object.entries(colorSchemes)[0][1];
-
   const theme = {
     colorSchemes,
     ...mergedScales,
@@ -676,38 +679,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
-  const colorSchemesCss: Record<string, any> = {};
-  Object.keys(colorSchemes).forEach((key) => {
-    // @ts-ignore
-    const t = { ...theme, ...colorSchemes[key] };
-    // @ts-ignore - we don't want colorSchemes variables generated
-    delete t.colorSchemes;
-    const { css, vars } = cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-    });
-    theme.vars = deepmerge(theme.vars, vars);
-    colorSchemesCss[key] = css;
-  });
-
-  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
-  const { css: rootCss, vars: rootVars } = cssVarsParser(mergedScales, {
-    prefix: cssVarPrefix,
-    shouldSkipGeneratingVar,
-  });
-
-  theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
-    if (!colorScheme) {
-      return rootCss;
-    }
-    return colorSchemesCss[colorScheme];
-  };
-
-  theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
-
   /**
-   * Color channels generation
-   */
+   Color channels generation
+  */
   function attachColorChannels(
     supportedColorScheme: SupportedColorScheme,
     palette: Record<ColorPaletteProp, PaletteRange>,
@@ -733,7 +707,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       }
     });
   }
-
+   // Set the channels
   (
     Object.entries(theme.colorSchemes) as Array<
       [SupportedColorScheme, { palette: Record<ColorPaletteProp, PaletteRange> }]
@@ -741,6 +715,49 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   ).forEach(([supportedColorScheme, colorSystem]) => {
     attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
+
+  Object.keys(colorSchemes).forEach((key) => {
+    // @ts-ignore
+    const t = { ...theme, ...colorSchemes[key] };
+    // @ts-ignore - we don't want colorSchemes variables generated
+    delete t.colorSchemes;
+    const { vars } = cssVarsParser(t, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+      addDefaultValues: true,
+    });
+    if(key === 'light') {
+      theme.vars = deepmerge(theme.vars, vars);
+    }
+    
+  });
+
+  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
+  const { vars: rootVars } = cssVarsParser(mergedScales, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+    addDefaultValues: true,
+  });
+
+  theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
+    if (!colorScheme) {
+      return cssVarsParser(mergedScales, {
+        prefix: cssVarPrefix,
+        shouldSkipGeneratingVar,
+      })
+    }
+    // @ts-ignore
+    const t = { ...theme, ...colorSchemes[colorScheme] };
+    // @ts-ignore - we don't want colorSchemes variables generated
+    delete t.colorSchemes;
+    return cssVarsParser(t, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
+  };
+
+  theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
+
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
@@ -777,8 +794,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
-  // @ts-ignore - this needs to be fixed
-  theme.palette = theme.colorSchemes.light.palette;
+  // @ts-ignore
+  theme.palette = lightColorSystem.palette;
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
   theme.colorInversion =
