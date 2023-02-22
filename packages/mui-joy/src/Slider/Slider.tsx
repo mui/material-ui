@@ -616,6 +616,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
               ...style,
               // So the non active thumb doesn't show its label on hover.
               pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
+              ...thumbProps.style,
             }}
           >
             <SlotInput
