@@ -127,6 +127,67 @@ Display categories with the `ListSubheader` component or the native `<optgroup>`
 
 {{"demo": "GroupedSelect.js"}}
 
+:::warning
+If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
+
+You have two options for solving this:
+Option 1: Define a static boolean field called `muiSkipListHighlight` on your component function, and set it to `true`:
+
+```tsx
+function MyListSubheader(props: ListSubheaderProps) {
+  return <ListSubheader {...props} />;
+}
+
+MyListSubheader.muiSkipListHighlight = true;
+export default MyListSubheader;
+
+// elsewhere:
+
+return (
+  <Select>
+    <MyListSubheader>Group 1</MyListSubheader>
+    <MenuItem value={1}>Option 1</MenuItem>
+    <MenuItem value={2}>Option 2</MenuItem>
+    <MyListSubheader>Group 2</MyListSubheader>
+    <MenuItem value={3}>Option 3</MenuItem>
+    <MenuItem value={4}>Option 4</MenuItem>
+    {/* ... */}
+  </Select>
+```
+
+Option 2: Place a `muiSkipListHighlight` prop on each instance of your component.
+The prop doesn't have to be forwarded to the ListSubheader, nor present in the underlying DOM element.
+It just has to be placed on a component that's used as a subheader.
+
+```tsx
+export default function MyListSubheader(
+  props: ListSubheaderProps & { muiSkipListHighlight: boolean },
+) {
+  const { muiSkipListHighlight, ...other } = props;
+  return <ListSubheader {...other} />;
+}
+
+// elsewhere:
+
+return (
+  <Select>
+    <MyListSubheader muiSkipListHighlight>Group 1</MyListSubheader>
+    <MenuItem value={1}>Option 1</MenuItem>
+    <MenuItem value={2}>Option 2</MenuItem>
+    <MyListSubheader muiSkipListHighlight>Group 2</MyListSubheader>
+    <MenuItem value={3}>Option 3</MenuItem>
+    <MenuItem value={4}>Option 4</MenuItem>
+    {/* ... */}
+  </Select>
+);
+```
+
+We recommend the first option as it doesn't require updating all the usage sites of the component.
+
+Keep in mind this is **only necessary** if you wrap the ListSubheader in a custom component.
+If you use the ListSubheader directly, **no additional code is required**.
+:::
+
 ## Accessibility
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label.
