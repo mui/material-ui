@@ -773,7 +773,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
   theme.getColorSchemeSelector = () => '&';
 
-  const createVariantInput = { getCssVar, palette: lightColorSystem.palette };
+  const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
     {
       plain: createVariant('plain', createVariantInput),
@@ -797,7 +797,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   );
 
   // @ts-ignore
-  theme.palette = lightColorSystem.palette;
+  theme.palette = theme.colorSchemes.light.palette;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
@@ -806,8 +806,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       ? colorInversionInput
       : deepmerge(
           {
-            soft: createSoftInversion(theme),
-            solid: createSolidInversion(theme),
+            soft: createSoftInversion(theme, true),
+            solid: createSolidInversion(theme, true),
           },
           colorInversionInput || {},
           { clone: false },
