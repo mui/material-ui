@@ -48,3 +48,40 @@ Force push if necessary.
 ### Announce
 
 Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
+
+## Deploy documentation without a release
+
+Sometimes it is necessary to deploy the selected commit(s) without
+deploying all the changes that have been merged into the main branch
+since the previous release (e.g. publishing a blog post or releasing
+urgent docs updates).
+
+To do so, follow these steps:
+
+1. Add the `material-ui-docs` remote if you haven't done this already:
+
+   ```sh
+   git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
+   ```
+
+2. Check out the `latest` branch from `material-ui-docs` remote:
+
+   ```sh
+   git checkout --track material-ui-docs/latest
+   ```
+
+3. Cherry-pick and commit the commit(s) that you want to include in the new deployment:
+
+   ```sh
+   git cherry-pick <commit>
+   ```
+
+   This will commit the changes to your local `latest` branch if there are no conflicts.
+
+   In case of conflicts you will need to resolve them and commit the changes manually.
+
+4. Push the changes to the `material-ui-docs` remote:
+
+   ```sh
+   git push
+   ```
