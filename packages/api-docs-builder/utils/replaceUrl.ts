@@ -37,7 +37,7 @@ export const replaceComponentLinks = (url: string) => {
     url = url.replace(/\/components\/(.*)/, '/material-ui/$1');
   } else {
     url = url.replace(/\/components\/(.*)/, '/material-ui/react-$1');
-    if (!url.match(/\/react-(tabs|breadcrumbs|stacked-snackbars)/)) {
+    if (!url.match(/\/react-(tabs|breadcrumbs)/)) {
       url = url
         .replace(/(react-[-a-z]+)(x|ch)es([^a-z-])/, '$1$2$3')
         .replace(/(react-[-a-z]+)s([^a-z-])/, '$1$2')

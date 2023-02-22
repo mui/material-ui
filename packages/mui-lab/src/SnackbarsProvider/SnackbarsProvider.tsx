@@ -63,7 +63,7 @@ export type CloseSnackbarRef = { close: (key: string) => () => void };
  *
  * Demos:
  *
- * - [Stacked snackbars](https://mui.com/material-ui/react-stacked-snackbars/)
+ * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *

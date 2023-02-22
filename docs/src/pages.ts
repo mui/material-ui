@@ -156,7 +156,6 @@ const pages: readonly MuiPage[] = [
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/components/masonry' },
-          { pathname: '/components/stacked-snackbars' },
           { pathname: '/components/timeline' },
           { pathname: '/components/tree-view' },
         ],

@@ -199,13 +199,6 @@ describe('replaceUrl', () => {
       `/material-ui/react-tabs/#main-content`,
     );
 
-    expect(replaceComponentLinks(`/components/stacked-snackbars/`)).to.equal(
-      `/material-ui/react-stacked-snackbars/`,
-    );
-    expect(replaceComponentLinks(`/components/stacked-snackbars/#main-content`)).to.equal(
-      `/material-ui/react-stacked-snackbars/#main-content`,
-    );
-
     expect(replaceComponentLinks(`/components/transitions/`)).to.equal(`/material-ui/transitions/`);
     expect(replaceComponentLinks(`/components/pickers/`)).to.equal(`/material-ui/pickers/`);
     expect(replaceComponentLinks(`/components/about-the-lab/`)).to.equal(
