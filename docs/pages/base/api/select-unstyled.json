@@ -31,6 +31,26 @@
   },
   "name": "SelectUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": ".MuiSelect-listbox"
+    },
+    {
+      "name": "popper",
+      "description": "The component used to render the popper.",
+      "default": "PopperUnstyled",
+      "class": ".MuiSelect-popper"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'button'",
+      "class": ".MuiSelect-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/SelectUnstyled/SelectUnstyled.tsx",

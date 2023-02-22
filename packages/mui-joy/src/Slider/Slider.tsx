@@ -6,7 +6,7 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -14,12 +14,11 @@ import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
-const valueToPercent = (value: number, min: number, max: number) =>
-  ((value - min) * 100) / (max - min);
-
-function Identity(x: any) {
+// @ts-ignore
+function Identity(x) {
   return x;
 }
+
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
 
@@ -384,7 +383,16 @@ const SliderInput = styled('input', {
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState?: SliderOwnerState }>({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Slider](https://mui.com/joy-ui/react-slider/)
+ *
+ * API:
+ *
+ * - [Slider API](https://mui.com/joy-ui/api/slider/)
+ */
 const Slider = React.forwardRef(function Slider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

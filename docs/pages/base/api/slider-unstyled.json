@@ -3,7 +3,6 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
@@ -62,45 +61,56 @@
     }
   },
   "name": "SliderUnstyled",
-  "styles": {
-    "classes": [
-      "root",
-      "marked",
-      "vertical",
-      "disabled",
-      "dragging",
-      "rail",
-      "track",
-      "trackFalse",
-      "trackInverted",
-      "thumb",
-      "active",
-      "focusVisible",
-      "mark",
-      "markActive",
-      "markLabel",
-      "markLabelActive"
-    ],
-    "globalClasses": {
-      "root": "MuiSlider-root",
-      "marked": "MuiSlider-marked",
-      "vertical": "MuiSlider-vertical",
-      "disabled": "Mui-disabled",
-      "dragging": "MuiSlider-dragging",
-      "rail": "MuiSlider-rail",
-      "track": "MuiSlider-track",
-      "trackFalse": "MuiSlider-trackFalse",
-      "trackInverted": "MuiSlider-trackInverted",
-      "thumb": "MuiSlider-thumb",
-      "active": "Mui-active",
-      "focusVisible": "Mui-focusVisible",
-      "mark": "MuiSlider-mark",
-      "markActive": "MuiSlider-markActive",
-      "markLabel": "MuiSlider-markLabel",
-      "markLabelActive": "MuiSlider-markLabelActive"
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiSlider-input"
     },
-    "name": null
-  },
+    {
+      "name": "mark",
+      "description": "The component used to render the mark.",
+      "default": "'span'",
+      "class": ".MuiSlider-mark"
+    },
+    {
+      "name": "markLabel",
+      "description": "The component used to render the mark label.",
+      "default": "'span'",
+      "class": ".MuiSlider-markLabel"
+    },
+    {
+      "name": "rail",
+      "description": "The component used to render the rail.",
+      "default": "'span'",
+      "class": ".MuiSlider-rail"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiSlider-root"
+    },
+    {
+      "name": "thumb",
+      "description": "The component used to render the thumb.",
+      "default": "'span'",
+      "class": ".MuiSlider-thumb"
+    },
+    {
+      "name": "track",
+      "description": "The component used to render the track.",
+      "default": "'span'",
+      "class": ".MuiSlider-track"
+    },
+    {
+      "name": "valueLabel",
+      "description": "The component used to render the value label.",
+      "class": ".MuiSlider-valueLabel"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.tsx",

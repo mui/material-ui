@@ -2,7 +2,7 @@ import { OverrideProps, Simplify } from '@mui/types';
 import * as React from 'react';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseTabRootSlotProps } from './useTab.types';
+import { UseTabRootSlotProps } from '../useTab';
 
 interface TabUnstyledRootSlotPropsOverrides {}
 
@@ -17,20 +17,26 @@ export interface TabUnstyledOwnProps
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
   /**
-   * The components used for each slot inside the Tab.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: {
-    root?: React.ElementType;
-  };
-  /**
    * The props used for each slot inside the Tab.
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', TabUnstyledRootSlotPropsOverrides, TabUnstyledOwnerState>;
+    root?: SlotComponentProps<'button', TabUnstyledRootSlotPropsOverrides, TabUnstyledOwnerState>;
   };
+  /**
+   * The components used for each slot inside the Tab.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: TabUnstyledSlots;
+}
+
+export interface TabUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
 }
 
 export type TabUnstyledProps<

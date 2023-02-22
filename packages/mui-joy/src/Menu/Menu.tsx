@@ -4,7 +4,8 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -51,7 +52,17 @@ const MenuRoot = styled(StyledList, {
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [Menu API](https://mui.com/joy-ui/api/menu/)
+ * - inherits [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ */
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
@@ -193,6 +204,7 @@ Menu.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
@@ -259,6 +271,7 @@ Menu.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -274,7 +287,7 @@ Menu.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

@@ -111,8 +111,8 @@ Unstyled Menu Item can set the following classes:
 ## Hooks
 
 ```jsx
-import { useMenu } from '@mui/base/MenuUnstyled';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import useMenu from '@mui/base/useMenu';
+import useMenuItem from '@mui/base/useMenuItem';
 ```
 
 The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu components to fully custom components.

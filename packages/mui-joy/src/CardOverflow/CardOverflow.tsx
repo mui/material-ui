@@ -87,7 +87,16 @@ const CardOverflowRoot = styled('div', {
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardOverflow API](https://mui.com/joy-ui/api/card-overflow/)
+ */
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
