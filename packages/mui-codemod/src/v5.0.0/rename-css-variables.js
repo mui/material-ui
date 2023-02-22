@@ -75,19 +75,19 @@ export default function transformer(file) {
     file.source
       // from `--<Component>-<slot>-<property>` to `--<Component>-<slot><Property>`
       .replace(
-        /--([a-zA-Z]+)-([a-zA-Z]+)-([a-zA-Z]+)/gm,
-        (matched, capture1, capture2, capture3) => {
-          if (!JoyComponents.includes(capture1)) {
+        /--([a-zA-Z]+)([-_])([a-zA-Z]+)-([a-zA-Z]+)/gm,
+        (matched, capture1, capture2, capture3, capture4) => {
+          if (!JoyComponents.includes(capture1) && !['internal', 'unstable'].includes(capture1)) {
             return matched;
           }
           // turn `--List-item-...` and `--List-divider-...` to `--ListItem-...` and `--ListDivider-...`
-          if (capture1 === 'List' && ['divider', 'item'].includes(capture2)) {
-            return `--${capture1}${capitalize(capture2)}-${capture3}`;
+          if (capture1 === 'List' && ['divider', 'item'].includes(capture3)) {
+            return `--${capture1}${capitalize(capture3)}-${capture4}`;
           }
-          return `--${capture1}-${capture2}${capitalize(capture3)}`;
+          return `--${capture1}${capture2}${capture3}${capitalize(capture4)}`;
         },
       )
-      // from `--unstable_...` to `--unstable_...`
-      .replace(/--unstable_/gm, '--unstable_')
+      // from `--internal-...` to `--unstable_...`
+      .replace(/--internal-/gm, '--unstable_')
   );
 }
