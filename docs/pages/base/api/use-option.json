@@ -22,6 +22,6 @@
     "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useOption",
-  "filename": "/packages/mui-base/src/OptionUnstyled/useOption.ts",
+  "filename": "/packages/mui-base/src/useOption/useOption.ts",
   "demos": "<ul></ul>"
 }

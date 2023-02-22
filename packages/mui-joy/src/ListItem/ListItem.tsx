@@ -133,7 +133,16 @@ const ListItemEndAction = styled('div', {
   right: 0,
   transform: 'translate(var(--List-item-endActionTranslateX), -50%)',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItem API](https://mui.com/joy-ui/api/list-item/)
+ */
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

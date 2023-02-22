@@ -13,8 +13,7 @@ import {
   SelectUnstyledType,
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
-import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelect.types';
+import useSelect, { SelectChild, SelectOption } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext } from './SelectUnstyledContext';

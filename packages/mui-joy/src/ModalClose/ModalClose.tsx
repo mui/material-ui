@@ -4,7 +4,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { useThemeProps, styled } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledIconButton } from '../IconButton/IconButton';
@@ -62,7 +62,16 @@ const modalDialogVariantMapping = {
   soft: 'soft',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalClose API](https://mui.com/joy-ui/api/modal-close/)
+ */
 const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalCloseProps>({
     props: inProps,

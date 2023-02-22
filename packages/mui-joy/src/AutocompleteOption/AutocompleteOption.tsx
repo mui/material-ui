@@ -49,7 +49,16 @@ const AutocompleteOptionRoot = styled(StyledAutocompleteOption, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [AutocompleteOption API](https://mui.com/joy-ui/api/autocomplete-option/)
+ */
 const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

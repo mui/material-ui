@@ -1,0 +1,37 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "arrow": "If <code>true</code>, adds an arrow to the tooltip.",
+    "children": "Tooltip reference element.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
+    "direction": "Direction of the text.",
+    "disableFocusListener": "Do not respond to focus-visible events.",
+    "disableHoverListener": "Do not respond to hover events.",
+    "disableInteractive": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
+    "disablePortal": "The <code>children</code> will be under the DOM hierarchy of the parent component.",
+    "disableTouchListener": "Do not respond to long press touch events.",
+    "enterDelay": "The number of milliseconds to wait before showing the tooltip. This prop won&#39;t impact the enter touch delay (<code>enterTouchDelay</code>).",
+    "enterNextDelay": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
+    "enterTouchDelay": "The number of milliseconds a user must touch the element before showing the tooltip.",
+    "followCursor": "If <code>true</code>, the tooltip follow the cursor over the wrapped element.",
+    "id": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id.",
+    "keepMounted": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Popper.",
+    "leaveDelay": "The number of milliseconds to wait before hiding the tooltip. This prop won&#39;t impact the leave touch delay (<code>leaveTouchDelay</code>).",
+    "leaveTouchDelay": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
+    "modifiers": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>.",
+    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
+    "onOpen": "Callback fired when the component requests to be open.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
+    "open": "If <code>true</code>, the component is shown.",
+    "placement": "Tooltip placement.",
+    "size": "The size of the component.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "title": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "arrow": "The component used to render the arrow.",
+    "root": "The component used to render the root."
+  }
+}

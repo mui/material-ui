@@ -2,7 +2,7 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from './useMenu.types';
+import { UseMenuListboxSlotProps } from '../useMenu';
 
 export interface MenuUnstyledRootSlotPropsOverrides {}
 export interface MenuUnstyledListboxSlotPropsOverrides {}
@@ -64,10 +64,20 @@ export interface MenuUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    listbox?: React.ElementType;
-  };
+  slots?: MenuUnstyledSlots;
+}
+
+export interface MenuUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default PopperUnstyled
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
 }
 
 export interface MenuUnstyledTypeMap<P = {}, D extends React.ElementType = 'ul'> {
