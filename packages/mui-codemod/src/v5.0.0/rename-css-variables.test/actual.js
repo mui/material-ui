@@ -1,12 +1,12 @@
 <div>
-  <List sx={{ py: 'var(--List-divider-gap)' }} />
-  <ListItem sx={{ '--List-item-minHeight': '20px' }} />
+  <List sx={{ py: 'var(--ListDivider-gap)' }} />
+  <ListItem sx={{ '--ListItem-minHeight': '20px' }} />
   <Input
     sx={{
-      '--Input-decorator-childHeight': '10px',
+      '--Input-decoratorChildHeight': '10px',
     }}
   />
-  <Autocomplete sx={{ '--Autocomplete-wrapper-gap': '10px' }} />
-  <Switch sx={{ '--Switch-track-width': '40px' }} />
-  <Item sx={{ py: 'var(--internal-action-radius)' }} />
+  <Autocomplete sx={{ '--Autocomplete-wrapperGap': '10px' }} />
+  <Switch sx={{ '--Switch-trackWidth': '40px' }} />
+  <Item sx={{ py: 'var(--unstable_action-radius)' }} />
 </div>;

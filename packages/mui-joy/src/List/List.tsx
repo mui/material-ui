@@ -36,34 +36,34 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
-        '--List-divider-gap': '0.25rem',
-        '--List-item-minHeight': '2rem',
-        '--List-item-paddingY': '0.25rem',
-        '--List-item-paddingX': '0.5rem',
-        '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
+        '--ListDivider-gap': '0.25rem',
+        '--ListItem-minHeight': '2rem',
+        '--ListItem-paddingY': '0.25rem',
+        '--ListItem-paddingX': '0.5rem',
+        '--ListItem-fontSize': theme.vars.fontSize.sm,
+        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
         '--Icon-fontSize': '1.125rem',
       };
     }
     if (size === 'md') {
       return {
-        '--List-divider-gap': '0.375rem',
-        '--List-item-minHeight': '2.5rem',
-        '--List-item-paddingY': '0.375rem',
-        '--List-item-paddingX': '0.75rem',
-        '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
+        '--ListDivider-gap': '0.375rem',
+        '--ListItem-minHeight': '2.5rem',
+        '--ListItem-paddingY': '0.375rem',
+        '--ListItem-paddingX': '0.75rem',
+        '--ListItem-fontSize': theme.vars.fontSize.md,
+        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
         '--Icon-fontSize': '1.25rem',
       };
     }
     if (size === 'lg') {
       return {
-        '--List-divider-gap': '0.5rem',
-        '--List-item-minHeight': '3rem',
-        '--List-item-paddingY': '0.5rem',
-        '--List-item-paddingX': '1rem',
-        '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
+        '--ListDivider-gap': '0.5rem',
+        '--ListItem-minHeight': '3rem',
+        '--ListItem-paddingY': '0.5rem',
+        '--ListItem-paddingX': '1rem',
+        '--ListItem-fontSize': theme.vars.fontSize.md,
+        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
         '--Icon-fontSize': '1.5rem',
       };
     }
@@ -74,13 +74,13 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       // instanceSize is the specified size of the rendered element <List size="sm" />
       // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
       ...applySizeVars(ownerState.instanceSize),
-      '--List-item-paddingRight': 'var(--List-item-paddingX)',
-      '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
+      '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
+      '--ListItem-paddingLeft': 'var(--NestedList-item-paddingLeft)',
       // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-      '--List-itemButton-marginBlock': '0px',
-      '--List-itemButton-marginInline': '0px',
-      '--List-item-marginBlock': '0px',
-      '--List-item-marginInline': '0px',
+      '--List-itemButtonMarginBlock': '0px',
+      '--List-itemButtonMarginInline': '0px',
+      '--ListItem-marginBlock': '0px',
+      '--ListItem-marginInline': '0px',
       padding: 0,
       marginInlineStart: 'var(--NestedList-marginLeft)',
       marginInlineEnd: 'var(--NestedList-marginRight)',
@@ -90,19 +90,19 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
-      '--List-decorator-color': theme.vars.palette.text.tertiary,
+      '--List-decoratorColor': theme.vars.palette.text.tertiary,
       '--List-nestedInsetStart': '0px',
-      '--List-item-paddingLeft': 'var(--List-item-paddingX)',
-      '--List-item-paddingRight': 'var(--List-item-paddingX)',
+      '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
+      '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
       // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
-      '--internal-child-radius':
+      '--unstable_child-radius':
         'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-      '--List-item-radius': 'var(--internal-child-radius)',
+      '--ListItem-radius': 'var(--unstable_child-radius)',
       // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-      '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
-      '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
+      '--ListItem-startActionTranslateX': 'calc(0.5 * var(--ListItem-paddingLeft))',
+      '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
       margin: 'initial',
-      // --List-padding is not declared to let list uses --List-divider-gap by default.
+      // --List-padding is not declared to let list uses --ListDivider-gap by default.
       ...(ownerState.orientation === 'horizontal'
         ? {
             ...(ownerState.wrap
@@ -112,12 +112,12 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
                   marginBlockStart: 'calc(-1 * var(--List-gap))',
                 }
               : {
-                  paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+                  paddingInline: 'var(--List-padding, var(--ListDivider-gap))',
                   paddingBlock: 'var(--List-padding)',
                 }),
           }
         : {
-            paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
+            paddingBlock: 'var(--List-padding, var(--ListDivider-gap))',
             paddingInline: 'var(--List-padding)',
           }),
     },

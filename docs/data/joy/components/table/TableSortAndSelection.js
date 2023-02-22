@@ -211,8 +211,8 @@ function EnhancedTableToolbar(props) {
         ...(numSelected > 0 && {
           bgcolor: 'background.level1',
         }),
-        borderTopLeftRadius: 'var(--internal-action-radius)',
-        borderTopRightRadius: 'var(--internal-action-radius)',
+        borderTopLeftRadius: 'var(--unstable_action-radius)',
+        borderTopRightRadius: 'var(--unstable_action-radius)',
       }}
     >
       {numSelected > 0 ? (

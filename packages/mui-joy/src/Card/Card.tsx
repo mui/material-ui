@@ -43,9 +43,9 @@ const CardRoot = styled('div', {
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    '--unstable_action-margin': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // Link, Radio, Checkbox integration
-    '--internal-action-radius': resolveSxValue(
+    '--unstable_action-radius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',

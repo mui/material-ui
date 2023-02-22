@@ -109,38 +109,38 @@ const SelectRoot = styled('div', {
                 ownerState.color === 'neutral' ? 'primary' : ownerState.color!
               ]?.[500],
           }),
-      '--Select-indicator-color': variantStyle?.backgroundColor
+      '--Select-indicatorColor': variantStyle?.backgroundColor
         ? variantStyle?.color
         : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
-        '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.5rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Select-minHeight': '2.5rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Select-minHeight': '3rem',
         '--Select-paddingInline': '1rem',
-        '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--Select-decorator-childOffset':
-        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
+      '--Select-decoratorChildOffset':
+        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2), var(--Select-paddingInline))',
       '--_Select-paddingBlock':
-        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2, 0px)',
-      '--Select-decorator-childRadius':
+        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2, 0px)',
+      '--Select-decoratorChildRadius':
         'max(var(--Select-radius) - var(--variant-borderWidth, 0px) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) + var(--variant-borderWidth, 0px), var(--Select-radius) / 2))',
-      '--Button-minHeight': 'var(--Select-decorator-childHeight)',
-      '--IconButton-size': 'var(--Select-decorator-childHeight)',
-      '--Button-radius': 'var(--Select-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Select-decorator-childRadius)',
+      '--Button-minHeight': 'var(--Select-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Select-decoratorChildHeight)',
+      '--Button-radius': 'var(--Select-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
@@ -176,13 +176,13 @@ const SelectRoot = styled('div', {
         margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
       [`&.${selectClasses.focusVisible}`]: {
-        '--Select-indicator-color': variantStyle?.color,
+        '--Select-indicatorColor': variantStyle?.color,
         '&::before': {
           boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
         },
       },
       [`&.${selectClasses.disabled}`]: {
-        '--Select-indicator-color': 'inherit',
+        '--Select-indicatorColor': 'inherit',
       },
     },
     {
@@ -233,11 +233,11 @@ const SelectListbox = styled(StyledList, {
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.popup,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
     maxHeight: '44vh', // the best value from what I tried so far which does not cause screen flicker when listbox is open.
@@ -256,8 +256,8 @@ const SelectStartDecorator = styled('span', {
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
+  '--Button-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
   display: 'inherit',
   alignItems: 'center',
@@ -275,8 +275,8 @@ const SelectEndDecorator = styled('span', {
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-    '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
     '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
     display: 'inherit',
     alignItems: 'center',
@@ -298,7 +298,7 @@ const SelectIndicator = styled('span', {
   ...(ownerState.size === 'lg' && {
     '--Icon-fontSize': '1.5rem',
   }),
-  color: 'var(--Select-indicator-color)',
+  color: 'var(--Select-indicatorColor)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',

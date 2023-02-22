@@ -47,12 +47,12 @@ export const SheetRoot = styled('div', {
     theme.vars.palette.background.surface;
   return [
     {
-      '--List-item-stickyBackground': resolvedBg, // for sticky List
+      '--ListItem-stickyBackground': resolvedBg, // for sticky List
       '--Sheet-background': resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
-        '--internal-action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
+        '--unstable_action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       }),
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',

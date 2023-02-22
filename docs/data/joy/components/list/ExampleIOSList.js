@@ -44,8 +44,8 @@ export default function ExampleIOSList() {
           },
           '--List-radius': '8px',
           '--List-gap': '1rem',
-          '--List-divider-gap': '0px',
-          '--List-item-paddingY': '0.5rem',
+          '--ListDivider-gap': '0px',
+          '--ListItem-paddingY': '0.5rem',
           // override global variant tokens
           '--joy-palette-neutral-plainHoverBg': 'rgba(0 0 0 / 0.08)',
           '--joy-palette-neutral-plainActiveBg': 'rgba(0 0 0 / 0.12)',
@@ -59,7 +59,7 @@ export default function ExampleIOSList() {
         })}
       >
         <ListItem nested>
-          <List aria-label="Personal info" sx={{ '--List-decorator-size': '72px' }}>
+          <List aria-label="Personal info" sx={{ '--List-decoratorSize': '72px' }}>
             <ListItem>
               <ListItemDecorator>
                 <Avatar size="lg" sx={{ '--Avatar-size': '60px' }}>
@@ -127,25 +127,25 @@ export default function ExampleIOSList() {
                 size="lg"
                 color="success"
                 sx={(theme) => ({
-                  '--Switch-thumb-shadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
-                  '--Switch-thumb-size': '27px',
-                  '--Switch-track-width': '51px',
-                  '--Switch-track-height': '31px',
-                  '--Switch-track-background': theme.vars.palette.background.level3,
+                  '--Switch-thumbShadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
+                  '--Switch-thumbSize': '27px',
+                  '--Switch-trackWidth': '51px',
+                  '--Switch-trackHeight': '31px',
+                  '--Switch-trackBackground': theme.vars.palette.background.level3,
                   [`& .${switchClasses.thumb}`]: {
                     transition: 'width 0.2s, left 0.2s',
                   },
                   '&:hover': {
-                    '--Switch-track-background':
+                    '--Switch-trackBackground':
                       theme.vars.palette.background.level3,
                   },
                   '&:active': {
-                    '--Switch-thumb-width': '32px',
+                    '--Switch-thumbWidth': '32px',
                   },
                   [`&.${switchClasses.checked}`]: {
-                    '--Switch-track-background': 'rgb(48 209 88)',
+                    '--Switch-trackBackground': 'rgb(48 209 88)',
                     '&:hover': {
-                      '--Switch-track-background': 'rgb(48 209 88)',
+                      '--Switch-trackBackground': 'rgb(48 209 88)',
                     },
                   },
                 })}

@@ -13,11 +13,11 @@ export default function CircularProgressVariables() {
           helperText: 'Supports only `px` unit',
         },
         {
-          var: '--CircularProgress-track-thickness',
+          var: '--CircularProgress-trackThickness',
           defaultValue: '6px',
         },
         {
-          var: '--CircularProgress-progress-thickness',
+          var: '--CircularProgress-progressThickness',
           defaultValue: '6px',
         },
       ]}

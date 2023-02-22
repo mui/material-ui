@@ -87,7 +87,7 @@ export default function transformer(file) {
           return `--${capture1}-${capture2}${capitalize(capture3)}`;
         },
       )
-      // from `--internal-...` to `--unstable_...`
-      .replace(/--internal-/gm, '--unstable_')
+      // from `--unstable_...` to `--unstable_...`
+      .replace(/--unstable_/gm, '--unstable_')
   );
 }
