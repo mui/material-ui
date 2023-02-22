@@ -37,6 +37,20 @@
   },
   "name": "AspectRatio",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "content",
+      "description": "The component used to render the content.",
+      "default": "'div'",
+      "class": ".MuiAspectRatio-content"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiAspectRatio-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/AspectRatio/AspectRatio.tsx",

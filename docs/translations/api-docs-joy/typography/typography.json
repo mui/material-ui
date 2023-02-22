@@ -14,5 +14,10 @@
     "textColor": "The system color.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "endDecorator": "The component used to render the end decorator.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator."
+  }
 }

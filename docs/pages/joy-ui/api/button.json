@@ -49,6 +49,32 @@
   },
   "name": "Button",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiButton-endDecorator"
+    },
+    {
+      "name": "loadingIndicatorCenter",
+      "description": "The component used to render the loading indicator center.",
+      "default": "'span'",
+      "class": ".MuiButton-loadingIndicatorCenter"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'button'",
+      "class": ".MuiButton-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiButton-startDecorator"
+    }
+  ],
   "spread": false,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Button/Button.tsx",

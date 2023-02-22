@@ -20,5 +20,13 @@
     "value": "The value of the component. The DOM API casts this to a string.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component used to render the action.",
+    "icon": "The component used to render the icon.",
+    "input": "The component used to render the input.",
+    "label": "The component used to render the label.",
+    "radio": "The component used to render the radio.",
+    "root": "The component used to render the root."
+  }
 }

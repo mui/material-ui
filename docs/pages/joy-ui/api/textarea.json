@@ -32,6 +32,32 @@
   },
   "name": "Textarea",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-endDecorator"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiTextarea-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-startDecorator"
+    },
+    {
+      "name": "textarea",
+      "description": "The component used to render the textarea.",
+      "default": "'textarea'",
+      "class": ".MuiTextarea-textarea"
+    }
+  ],
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",

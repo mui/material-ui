@@ -29,6 +29,26 @@
   },
   "name": "ListItem",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "endAction",
+      "description": "The component used to render the end action.",
+      "default": "'div'",
+      "class": ".MuiListItem-endAction"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'li'",
+      "class": ".MuiListItem-root"
+    },
+    {
+      "name": "startAction",
+      "description": "The component used to render the start action.",
+      "default": "'div'",
+      "class": ".MuiListItem-startAction"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/ListItem/ListItem.tsx",

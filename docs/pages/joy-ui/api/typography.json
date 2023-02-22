@@ -39,6 +39,26 @@
   },
   "name": "Typography",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiTypography-endDecorator"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'a'",
+      "class": ".MuiTypography-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiTypography-startDecorator"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-joy/src/Typography/Typography.tsx",
