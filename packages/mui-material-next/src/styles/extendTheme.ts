@@ -455,13 +455,18 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     const t = { ...restTheme, ...colorSchemes[key] };
     // @ts-ignore - we don't want colorSchemes variables generated
     delete t.colorSchemes;
-    
+
     const { css, vars } = cssVarsParser(t, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
     });
     theme.vars = deepmerge(theme.vars, vars);
     colorSchemesCss[key] = css;
+  });
+
+  const { css: rootCss, vars: rootVars } = cssVarsParser(restTheme, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
   });
 
   // Used in the CssVarsProvider for injecting the CSS variables
@@ -471,12 +476,6 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     }
     return colorSchemesCss[colorScheme];
   };
-
-  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
-  const { css: rootCss, vars: rootVars } = cssVarsParser(restTheme, {
-    prefix: cssVarPrefix,
-    shouldSkipGeneratingVar,
-  });
 
   theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
 

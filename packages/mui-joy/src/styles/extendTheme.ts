@@ -623,7 +623,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     : defaultScales;
 
   const { palette: firstColorSchemePalette } = Object.entries(colorSchemes)[0][1];
-  const variantInput = { palette: firstColorSchemePalette, cssVarPrefix, getCssVar };
 
   const theme = {
     colorSchemes,
@@ -690,6 +689,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     theme.vars = deepmerge(theme.vars, vars);
     colorSchemesCss[key] = css;
   });
+
+  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
+  const { css: rootCss, vars: rootVars } = cssVarsParser(mergedScales, {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  });
+
   theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
     if (!colorScheme) {
       return rootCss;
@@ -697,11 +703,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     return colorSchemesCss[colorScheme];
   };
 
-  // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
-  const { css: rootCss, vars: rootVars } = cssVarsParser(mergedScales, {
-    prefix: cssVarPrefix,
-    shouldSkipGeneratingVar,
-  });
   theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
 
   /**
@@ -754,7 +755,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   theme.getColorSchemeSelector = () => '&';
 
   const createVariantInput = { getCssVar, palette: lightColorSystem.palette };
-  (theme.variants = deepmerge(
+  theme.variants = deepmerge(
     {
       plain: createVariant('plain', createVariantInput),
       plainHover: createVariant('plainHover', createVariantInput),
@@ -774,9 +775,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       solidDisabled: createVariant('solidDisabled', createVariantInput),
     },
     variantsInput,
-  )),
-    // @ts-ignore - this needs to be fixed
-    (theme.palette = theme.colorSchemes.light.palette);
+  );
+
+  // @ts-ignore - this needs to be fixed
+  theme.palette = theme.colorSchemes.light.palette;
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
   theme.colorInversion =
