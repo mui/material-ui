@@ -42,8 +42,8 @@ type Partial3Level<T> = {
 };
 
 export interface ColorSystemOptions extends Partial3Level<ColorSystem> {
-  shadowRing: string;
-  shadowChannel: string;
+  shadowRing?: string;
+  shadowChannel?: string;
 }
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
