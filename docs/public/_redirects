@@ -400,6 +400,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /r/legal-* https://mui-store.netlify.app/r/legal-:splat 200
 
 ## MUI X
+## Once MUI X v6 is released, we want next.mui.com/x/* to redirect to mui.com/x/*
+## TODO: remove this redirect once we start deploying v7 docs to next.mui.com/x/*
+/x/* https://mui.com/x/:splat 302!
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
 /static/x/* https://docs-next--material-ui-x.netlify.app/static/x/:splat 200
