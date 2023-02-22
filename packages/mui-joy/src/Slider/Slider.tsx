@@ -6,7 +6,7 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -14,12 +14,11 @@ import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
-const valueToPercent = (value: number, min: number, max: number) =>
-  ((value - min) * 100) / (max - min);
-
-function Identity(x: any) {
+// @ts-ignore
+function Identity(x) {
   return x;
 }
+
 const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, variant, color, size } = ownerState;
 
@@ -118,11 +117,6 @@ const SliderRoot = styled('span', {
         color: theme.vars.palette.text.tertiary,
         ...getColorVariables({ state: 'Disabled' }),
       },
-      [`&.${sliderClasses.dragging}`]: {
-        [`& .${sliderClasses.track}, & .${sliderClasses.thumb}`]: {
-          transition: 'none',
-        },
-      },
       boxSizing: 'border-box',
       display: 'inline-block',
       position: 'relative',
@@ -199,9 +193,6 @@ const SliderTrack = styled('span', {
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
           : 'var(--Slider-track-background)',
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-      transition:
-        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
@@ -239,9 +230,6 @@ const SliderThumb = styled('span', {
   boxShadow: 'var(--Slider-thumb-shadow)',
   color: 'var(--Slider-thumb-color)',
   backgroundColor: 'var(--Slider-thumb-background)',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-  transition:
-    'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   [theme.focus.selector]: theme.focus.default,
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
@@ -395,7 +383,16 @@ const SliderInput = styled('input', {
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState?: SliderOwnerState }>({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Slider](https://mui.com/joy-ui/react-slider/)
+ *
+ * API:
+ *
+ * - [Slider API](https://mui.com/joy-ui/api/slider/)
+ */
 const Slider = React.forwardRef(function Slider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

@@ -30,6 +30,6 @@
   },
   "returnValue": {},
   "name": "useTabs",
-  "filename": "/packages/mui-base/src/TabsUnstyled/useTabs.ts",
+  "filename": "/packages/mui-base/src/useTabs/useTabs.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
 }

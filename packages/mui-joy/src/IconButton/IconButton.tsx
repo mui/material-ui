@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -72,9 +72,6 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -92,7 +89,16 @@ export const IconButtonRoot = styled(StyledIconButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Button](https://mui.com/joy-ui/react-button/)
+ *
+ * API:
+ *
+ * - [IconButton API](https://mui.com/joy-ui/api/icon-button/)
+ */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -202,6 +208,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   focusVisibleClassName: PropTypes.string,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

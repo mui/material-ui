@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { flushSync } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@mui/utils';
 import { useThemeProps } from '@mui/system';
@@ -239,7 +239,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
     claimedSwipeInstance = null;
     touchDetected.current = false;
-    flushSync(() => {
+    ReactDOM.flushSync(() => {
       setMaybeSwiping(false);
     });
 
@@ -308,7 +308,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // this is because Safari Mobile will not fire any mouse events (still fires touch though) if the DOM changes during mousemove.
       // so do this change on first touchmove instead of touchstart
       if (force || !(disableDiscovery && allowSwipeInChildren)) {
-        flushSync(() => {
+        ReactDOM.flushSync(() => {
           setMaybeSwiping(true);
         });
       }

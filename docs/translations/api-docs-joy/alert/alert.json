@@ -1,0 +1,13 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "endDecorator": "Element placed after the children.",
+    "role": "The ARIA role attribute of the element.",
+    "size": "The size of the component.",
+    "startDecorator": "Element placed before the children.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {}
+}

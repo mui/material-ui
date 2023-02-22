@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Avatar component
+components: Avatar, AvatarGroup, SvgIcon
 githubLabel: 'component: avatar'
 ---
 
@@ -142,7 +143,7 @@ You can use these to customize the component with both the `sx` prop and the the
 The Avatar component is composed of a root `<div>` that may wrap around an `<svg>`, an `<img>`, or a string:
 
 ```html
-<div class="JoyAvatar-root">
+<div class="MuiAvatar-root">
   <!-- Avatar contents -->
 </div>
 ```

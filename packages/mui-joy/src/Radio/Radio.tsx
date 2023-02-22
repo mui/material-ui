@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -120,9 +120,6 @@ const RadioRadio = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       flexShrink: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
@@ -161,9 +158,6 @@ const RadioAction = styled('span', {
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon
@@ -222,11 +216,18 @@ const RadioIcon = styled('span', {
   borderRadius: 'inherit',
   color: 'inherit',
   backgroundColor: 'currentColor',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-  transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   transform: ownerState.checked ? 'scale(1)' : 'scale(0)',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio Group](https://mui.com/joy-ui/react-radio/)
+ *
+ * API:
+ *
+ * - [Radio API](https://mui.com/joy-ui/api/radio/)
+ */
 const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -471,7 +472,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
    * This prop is useful for composing Radio with ListItem component.
-   * @default false;
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
