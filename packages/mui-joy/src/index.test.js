@@ -19,7 +19,7 @@ describe('@mui/joy', () => {
     );
   });
 
-  it('should', async () => {
+  it('should export all exports from sub folders', async () => {
     const files = await glob('packages/mui-joy/src/*/index.ts');
     const joyUIIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
 
