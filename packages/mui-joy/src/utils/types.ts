@@ -19,9 +19,9 @@ export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwn
       Record<string, unknown>);
 
 /**
- * Use T to make sure that K contains all of the keys of T
+ * Use the keys of `Slots` to make sure that K contains all of the keys
  *
- * @example CreateSlotsAndSlotProps<'root' | 'decorator', { root: ..., decorator: ... }>
+ * @example CreateSlotsAndSlotProps<{ root: React.ElementType, decorator: React.ElementType }, { root: ..., decorator: ... }>
  */
 export type CreateSlotsAndSlotProps<Slots, K extends Record<keyof Slots, any>> = {
   slots?: Partial<Slots>;
