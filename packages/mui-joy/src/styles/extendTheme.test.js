@@ -32,7 +32,7 @@ describe('extendTheme', () => {
         'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
-        'generateCssVars'
+        'generateCssVars',
       ]).to.includes(field);
     });
   });
@@ -77,7 +77,7 @@ describe('extendTheme', () => {
   });
 
   it('should accept custom fontSize value', () => {
-    const theme = extendTheme({ fontSize: { md: '2rem' }});
+    const theme = extendTheme({ fontSize: { md: '2rem' } });
     expect(theme.cssVarPrefix).to.equal('joy');
     expect(theme.typography.body1.fontSize).to.equal('var(--joy-fontSize-md, 2rem)');
   });

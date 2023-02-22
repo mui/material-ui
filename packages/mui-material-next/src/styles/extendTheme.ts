@@ -474,7 +474,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
       return cssVarsParser(restTheme, {
         prefix: cssVarPrefix,
         shouldSkipGeneratingVar,
-      })
+      });
     }
     // @ts-ignore
     const t = { ...theme, ...colorSchemes[colorScheme] };

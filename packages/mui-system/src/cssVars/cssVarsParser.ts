@@ -140,7 +140,12 @@ export default function cssVarsParser<T extends Record<string, any>>(
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
-          assignNestedKeys(vars, keys, `var(${cssVar}${addDefaultValues ? `, ${value}` : ''})`, arrayKeys);
+          assignNestedKeys(
+            vars,
+            keys,
+            `var(${cssVar}${addDefaultValues ? `, ${value}` : ''})`,
+            arrayKeys,
+          );
         }
       }
     },

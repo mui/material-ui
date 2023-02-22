@@ -156,7 +156,7 @@ export default function createCssVarsProvider(options) {
           }
         });
         theme.vars = deepmerge(theme.vars, vars);
-        if(theme.palette) {
+        if (theme.palette) {
           theme.palette.colorScheme = key;
         }
       }

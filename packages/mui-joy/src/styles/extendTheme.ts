@@ -266,7 +266,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tooltip: getCssVarColor('palette-neutral-800'),
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
-      divider: `rgba(${getCssVar('palette-neutral-mainChannel', colorChannel(defaultColors.neutral[500]))} / 0.28)`,
+      divider: `rgba(${getCssVar(
+        'palette-neutral-mainChannel',
+        colorChannel(defaultColors.neutral[500]),
+      )} / 0.28)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -354,7 +357,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tooltip: getCssVarColor('palette-neutral-600'),
         backdrop: `rgba(${getCssVarColor('palette-neutral-darkChannel')} / 0.5)`,
       },
-      divider: `rgba(${getCssVar('palette-neutral-mainChannel', colorChannel(defaultColors.neutral[500]))} / 0.24)`,
+      divider: `rgba(${getCssVar(
+        'palette-neutral-mainChannel',
+        colorChannel(defaultColors.neutral[500]),
+      )} / 0.24)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
     shadowRing: '0 0 #000',
@@ -707,7 +713,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       }
     });
   }
-   // Set the channels
+  // Set the channels
   (
     Object.entries(theme.colorSchemes) as Array<
       [SupportedColorScheme, { palette: Record<ColorPaletteProp, PaletteRange> }]
@@ -726,10 +732,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       shouldSkipGeneratingVar,
       addDefaultValues: true,
     });
-    if(key === 'light') {
+    if (key === 'light') {
       theme.vars = deepmerge(theme.vars, vars);
     }
-    
   });
 
   // May be this should be moved into `@mui/system` so that Material UI 2,3 can reuse this logic.
@@ -744,7 +749,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       return cssVarsParser(mergedScales, {
         prefix: cssVarPrefix,
         shouldSkipGeneratingVar,
-      })
+      });
     }
     // @ts-ignore
     const t = { ...theme, ...colorSchemes[colorScheme] };
@@ -757,7 +762,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   };
 
   theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
-
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
