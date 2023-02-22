@@ -744,23 +744,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     addDefaultValues: true,
   });
 
-  theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
-    if (!colorScheme) {
-      return cssVarsParser(mergedScales, {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-      });
-    }
-    // @ts-ignore
-    const t = { ...theme, ...colorSchemes[colorScheme] };
-    // @ts-ignore - we don't want colorSchemes variables generated
-    delete t.colorSchemes;
-    return cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-    });
-  };
-
   theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
 
   theme.unstable_sxConfig = {
@@ -800,6 +783,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   // @ts-ignore
   theme.palette = lightColorSystem.palette;
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
   theme.colorInversion =

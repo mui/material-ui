@@ -32,7 +32,7 @@ describe('extendTheme', () => {
         'colorInversion',
         'unstable_sxConfig',
         'unstable_sx',
-        'generateCssVars',
+        'shouldSkipGeneratingVar',
       ]).to.includes(field);
     });
   });

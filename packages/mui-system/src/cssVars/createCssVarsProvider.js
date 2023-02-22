@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import { GlobalStyles } from '@mui/styled-engine';
 import { deepmerge } from '@mui/utils';
+import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
+import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import systemGetInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
@@ -70,7 +71,7 @@ export default function createCssVarsProvider(options) {
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
-    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
+    const { colorSchemes = {}, components = {}, cssVarPrefix, shouldSkipGeneratingVar = (() => false), ...restThemeProp } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -126,12 +127,19 @@ export default function createCssVarsProvider(options) {
       return colorScheme;
     })();
 
+    // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
+    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    });
+
     // 3. Start composing the theme object
     const theme = {
       ...restThemeProp,
       components,
       colorSchemes,
       cssVarPrefix,
+      vars: rootVars,
       getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
@@ -141,7 +149,11 @@ export default function createCssVarsProvider(options) {
     const defaultColorSchemeStyleSheet = {};
     const otherColorSchemesStyleSheet = {};
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = theme.generateCssVars(key);
+      const { css, vars } = cssVarsParser(scheme, {
+        prefix: cssVarPrefix,
+        shouldSkipGeneratingVar,
+      });
+      theme.vars = deepmerge(theme.vars, vars);
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
         Object.keys(scheme).forEach((schemeKey) => {
@@ -155,7 +167,6 @@ export default function createCssVarsProvider(options) {
             theme[schemeKey] = scheme[schemeKey];
           }
         });
-        theme.vars = deepmerge(theme.vars, vars);
         if (theme.palette) {
           theme.palette.colorScheme = key;
         }
@@ -249,9 +260,6 @@ export default function createCssVarsProvider(options) {
     if (disableStyleSheetGeneration || (nested && upperTheme?.cssVarPrefix === cssVarPrefix)) {
       shouldGenerateStyleSheet = false;
     }
-
-    const { css: rootCss, vars: rootVars } = theme.generateCssVars();
-    theme.vars = deepmerge(theme.vars, rootVars);
 
     const element = (
       <React.Fragment>

@@ -395,24 +395,7 @@ export default function extendTheme(options = {}, ...args) {
     addDefaultValues: true,
   });
 
-  // Used in the CssVarsProvider for injecting the CSS variables
-  theme.generateCssVars = (colorScheme) => {
-    if (!colorScheme) {
-      return cssVarsParser(restTheme, {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-      });
-    }
-
-    const t = { ...theme, ...colorSchemes[colorScheme] };
-    delete t.colorSchemes;
-
-    return cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-    });
-  };
-
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
   theme.vars = deepmerge(theme.vars, rootVars);
 
   theme.unstable_sxConfig = {

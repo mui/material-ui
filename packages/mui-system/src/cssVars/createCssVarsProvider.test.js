@@ -190,9 +190,9 @@ describe('createCssVarsProvider', () => {
               },
             },
           },
+          shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
         },
         defaultColorScheme: 'light',
-        shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
       });
       function Consumer() {
         const theme = useTheme();

@@ -38,7 +38,7 @@ const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
 }) as Overlays;
 
-export const defaultShouldSkipGeneratingVar = (keys) =>
+export const defaultShouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
   !!keys[0].match(/sxConfig$/) || // ends with sxConfig
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
@@ -454,7 +454,7 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     // @ts-ignore - we don't want colorSchemes variables generated
     delete t.colorSchemes;
 
-    const { css, vars } = cssVarsParser(t, {
+    const { vars } = cssVarsParser(t, {
       prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
       addDefaultValues: true,
@@ -468,25 +468,8 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     addDefaultValues: true,
   });
 
-  // Used in the CssVarsProvider for injecting the CSS variables
-  theme.generateCssVars = (colorScheme?: SupportedColorScheme) => {
-    if (!colorScheme) {
-      return cssVarsParser(restTheme, {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-      });
-    }
-    // @ts-ignore
-    const t = { ...theme, ...colorSchemes[colorScheme] };
-    // @ts-ignore - we don't want colorSchemes variables generated
-    delete t.colorSchemes;
-    return cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-    });
-  };
-
   theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
