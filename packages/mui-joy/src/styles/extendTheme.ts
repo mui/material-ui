@@ -796,8 +796,12 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     variantsInput,
   );
 
-  // @ts-ignore
-  theme.palette = theme.colorSchemes.light.palette;
+  theme.palette = {
+    ...theme.colorSchemes.light.palette,
+    mode: 'light',
+    colorScheme: 'light',
+  };
+
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider

@@ -31,6 +31,7 @@ describe('defaultTheme', () => {
         'getColorSchemeSelector',
         'unstable_sxConfig',
         'unstable_sx',
+        'shouldSkipGeneratingVar',
       ]).to.includes(field);
     });
   });
