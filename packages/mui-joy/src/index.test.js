@@ -4,9 +4,9 @@
  * import the entire lib for coverage reporting
  */
 import { expect } from 'chai';
-import * as joy from './index';
 import fs from 'fs';
 import glob from 'fast-glob';
+import * as joy from './index';
 
 describe('@mui/joy', () => {
   it('should have exports', () => {
@@ -19,23 +19,22 @@ describe('@mui/joy', () => {
     );
   });
 
-  describe('r', () => {
-    it('ds', async () => {
-      const files = await glob('packages/mui-joy/src/*/index.ts'); // use fast-glob to get all 'index.js' files recursively
-      const mainIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
-      for (const file of files) {
-        const content = fs.readFileSync(file, 'utf-8'); // read file content synchronously
-        const hasDefaultExport = /export { default }/.test(content); // check if file has default export
-        const hasAll = /export \* from /.test(content); // check if file has default export
-        const [, , , folder] = file.split('/');
+  it('should', async () => {
+    const files = await glob('packages/mui-joy/src/*/index.ts');
+    const joyUIIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
 
-        if (hasDefaultExport) {
-          expect(mainIndexFile).to.include(`export { default as ${folder} } from './${folder}'`);
-        }
-        if (hasAll) {
-          expect(mainIndexFile).to.include(`export * from './${folder}'`);
-        }
+    for (const file of files) {
+      const content = fs.readFileSync(file, 'utf-8');
+      const hasDefaultExport = /export { default }/.test(content);
+      const hasNamedExport = /export \* from /.test(content);
+      const [, , , folder] = file.split('/');
+
+      if (hasDefaultExport) {
+        expect(joyUIIndexFile).to.include(`export { default as ${folder} } from './${folder}'`);
       }
-    });
+      if (hasNamedExport) {
+        expect(joyUIIndexFile).to.include(`export * from './${folder}'`);
+      }
+    }
   });
 });
