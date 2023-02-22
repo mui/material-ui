@@ -71,7 +71,13 @@ export default function createCssVarsProvider(options) {
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
-    const { colorSchemes = {}, components = {}, cssVarPrefix, shouldSkipGeneratingVar = (() => false), ...restThemeProp } = themeProp;
+    const {
+      colorSchemes = {},
+      components = {},
+      cssVarPrefix,
+      shouldSkipGeneratingVar = () => false,
+      ...restThemeProp
+    } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
