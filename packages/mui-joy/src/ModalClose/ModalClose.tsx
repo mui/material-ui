@@ -62,7 +62,16 @@ const modalDialogVariantMapping = {
   soft: 'soft',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalClose API](https://mui.com/joy-ui/api/modal-close/)
+ */
 const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalCloseProps>({
     props: inProps,

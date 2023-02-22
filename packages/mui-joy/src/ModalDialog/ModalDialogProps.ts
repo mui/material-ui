@@ -36,7 +36,7 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'plain'
+     * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, ModalDialogPropsVariantOverrides>;
   };

@@ -87,6 +87,10 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     classes?: Partial<SliderClasses>;
     /**
+     * @ignore
+     */
+    className?: string;
+    /**
      * The default value. Use when the component is not controlled.
      */
     defaultValue?: number | number[];

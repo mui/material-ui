@@ -63,6 +63,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
       fullWidth?: boolean;
       /**
        * The size of the component.
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonPropsSizeOverrides>;
       /**

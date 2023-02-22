@@ -45,7 +45,16 @@ const TabPanelRoot = styled('div', {
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabPanel API](https://mui.com/joy-ui/api/tab-panel/)
+ */
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

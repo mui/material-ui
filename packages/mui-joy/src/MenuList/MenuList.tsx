@@ -48,7 +48,16 @@ const MenuListRoot = styled(StyledList, {
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuList API](https://mui.com/joy-ui/api/menu-list/)
+ */
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -165,6 +174,7 @@ MenuList.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -180,7 +190,7 @@ MenuList.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

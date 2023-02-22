@@ -37,7 +37,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       children: React.ReactElement;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
+       * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, TooltipPropsColorOverrides>;
       /**
@@ -152,7 +152,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       title: React.ReactNode;
       /**
        * The variant to use.
-       * @default 'soft'
+       * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, TooltipPropsVariantOverrides>;
     };

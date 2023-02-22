@@ -65,7 +65,16 @@ const chipVariantMapping = {
   soft: 'solid',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [ChipDelete API](https://mui.com/joy-ui/api/chip-delete/)
+ */
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipDeleteProps>({
     props: inProps,
