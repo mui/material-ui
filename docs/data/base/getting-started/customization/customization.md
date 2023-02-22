@@ -63,10 +63,10 @@ The following example shows how to add a custom class to two of the Unstyled Swi
 function Switch(props: SwitchUnstyledProps) {
   const slotProps = {
     thumb: {
-      className: 'switch:thumb',
+      className: 'my-thumb',
     },
     track: {
-      className: 'switch:track',
+      className: 'my-track',
     },
   };
 
