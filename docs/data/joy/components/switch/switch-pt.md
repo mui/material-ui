@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Switch component
+components: Switch
 githubLabel: 'component: switch'
 unstyled: /base/react-switch/
 ---

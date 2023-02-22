@@ -259,7 +259,7 @@ const TableRoot = styled('table', {
         top: 0,
       },
       [tableSelector.getHeaderCell()]: {
-        zIndex: 10,
+        zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
@@ -268,7 +268,16 @@ const TableRoot = styled('table', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Table](https://mui.com/joy-ui/react-table/)
+ *
+ * API:
+ *
+ * - [Table API](https://mui.com/joy-ui/api/table/)
+ */
 const Table = React.forwardRef(function Table(inProps, ref) {
   const props = useThemeProps<typeof inProps & TableProps>({
     props: inProps,

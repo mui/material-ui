@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SelectOption, SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type { SelectOption } from '@mui/base/SelectUnstyled';
+export type { SelectOption } from '@mui/base/useSelect';
 
 export type SelectSlot =
   | 'root'
@@ -48,7 +49,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   }>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
@@ -89,7 +90,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   sx?: SxProps;
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'outlined'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }

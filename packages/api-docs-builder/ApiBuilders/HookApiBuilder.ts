@@ -1,5 +1,4 @@
 import * as ts from 'typescript';
-import * as prettier from 'prettier';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
@@ -12,7 +11,12 @@ import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
 import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
-import { HookInfo } from '../buildApiUtils';
+import {
+  getSymbolDescription,
+  getSymbolJSDocTags,
+  HookInfo,
+  stringifySymbol,
+} from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
 
@@ -23,52 +27,6 @@ interface ParsedProperty {
   required: boolean;
   typeStr: string;
 }
-
-export const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
-  symbol
-    .getDocumentationComment(project.checker)
-    .flatMap((comment) => comment.text.split('\n'))
-    .filter((line) => !line.startsWith('TODO'))
-    .join('\n');
-
-export const formatType = (rawType: string) => {
-  if (!rawType) {
-    return '';
-  }
-
-  const prefix = 'type FakeType = ';
-  const signatureWithTypeName = `${prefix}${rawType}`;
-
-  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
-    printWidth: 999,
-    singleQuote: true,
-    semi: false,
-    trailingComma: 'none',
-    parser: 'typescript',
-  });
-
-  return prettifiedSignatureWithTypeName.slice(prefix.length).replace(/\n$/, '');
-};
-
-export const getSymbolJSDocTags = (symbol: ts.Symbol) =>
-  Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
-
-export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) => {
-  let rawType: string;
-
-  const declaration = symbol.declarations?.[0];
-  if (declaration && ts.isPropertySignature(declaration)) {
-    rawType = declaration.type?.getText() ?? '';
-  } else {
-    rawType = project.checker.typeToString(
-      project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
-      symbol.valueDeclaration,
-      ts.TypeFormatFlags.NoTruncation,
-    );
-  }
-
-  return formatType(rawType);
-};
 
 const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
   name: propertySymbol.name,

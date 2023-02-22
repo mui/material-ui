@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
@@ -54,7 +54,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
       indeterminate?: boolean;
       /**
        * The icon to display when the component is indeterminate.
-       * @default <IndeterminateCheckBoxIcon />
+       * @default <IndeterminateIcon />
        */
       indeterminateIcon?: React.ReactNode;
       /**

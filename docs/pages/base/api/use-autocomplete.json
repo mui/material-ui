@@ -245,6 +245,6 @@
     }
   },
   "name": "useAutocomplete",
-  "filename": "/packages/mui-base/src/AutocompleteUnstyled/useAutocomplete.js",
+  "filename": "/packages/mui-base/src/useAutocomplete/useAutocomplete.js",
   "demos": "<ul></ul>"
 }
