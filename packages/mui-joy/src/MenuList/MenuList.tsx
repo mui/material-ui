@@ -4,7 +4,8 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
@@ -67,15 +68,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
   });
@@ -112,22 +105,19 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const contextValue = React.useMemo(
+  const menuContextValue = React.useMemo(
     () =>
       ({
-        registerItem,
-        unregisterItem,
-        getItemState,
-        getItemProps,
+        ...contextValue,
         getListboxProps,
         open: true,
       } as MenuUnstyledContextType),
-    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+    [contextValue, getListboxProps],
   );
 
   return (
     <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>

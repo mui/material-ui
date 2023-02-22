@@ -68,7 +68,7 @@ const TooltipRoot = styled('div', {
       padding: theme.spacing(0.75, 1),
       fontSize: theme.vars.fontSize.md,
     }),
-    zIndex: 1500,
+    zIndex: theme.vars.zIndex.tooltip,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
     boxShadow: theme.shadow.sm,
@@ -172,6 +172,7 @@ const TooltipArrow = styled('span', {
 
 let hystersisOpen = false;
 let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
+let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
@@ -463,7 +464,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     open = false;
   }
 
-  const positionRef = React.useRef({ x: 0, y: 0 });
   const popperRef = React.useRef(null);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
@@ -472,7 +472,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onMouseMove(event);
     }
 
-    positionRef.current = { x: event.clientX, y: event.clientY };
+    cursorPosition = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current) {
       (popperRef.current as { update: () => void }).update();
@@ -565,10 +565,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         ? {
             getBoundingClientRect: () =>
               ({
-                top: positionRef.current.y,
-                left: positionRef.current.x,
-                right: positionRef.current.x,
-                bottom: positionRef.current.y,
+                top: cursorPosition.y,
+                left: cursorPosition.x,
+                right: cursorPosition.x,
+                bottom: cursorPosition.y,
                 width: 0,
                 height: 0,
               } as DOMRect),

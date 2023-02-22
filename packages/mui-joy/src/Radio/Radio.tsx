@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioOwnerState) => {
@@ -61,16 +61,19 @@ const RadioRoot = styled('span', {
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
         '--Radio-gap': '0.375rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
         '--Radio-gap': '0.5rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
         '--Radio-gap': '0.625rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
         fontSize: theme.vars.fontSize.lg,
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
@@ -117,9 +120,6 @@ const RadioRadio = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       flexShrink: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
@@ -148,6 +148,7 @@ const RadioAction = styled('span', {
 })<{ ownerState: RadioOwnerState }>(({ theme, ownerState }) => [
   {
     position: 'absolute',
+    textAlign: 'left', // prevent text-align inheritance
     borderRadius: `var(--Radio-action-radius, ${
       // Automatic radius adjustment when composing with ListItem or Sheet
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
@@ -157,9 +158,6 @@ const RadioAction = styled('span', {
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon
@@ -218,8 +216,6 @@ const RadioIcon = styled('span', {
   borderRadius: 'inherit',
   color: 'inherit',
   backgroundColor: 'currentColor',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-  transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   transform: ownerState.checked ? 'scale(1)' : 'scale(0)',
 }));
 
@@ -383,7 +379,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       {label && (
         <SlotLabel {...labelProps}>
           {/* Automatically adjust the Typography to render `span` */}
-          <TypographyContext.Provider value>{label}</TypographyContext.Provider>
+          <TypographyNestedContext.Provider value>{label}</TypographyNestedContext.Provider>
         </SlotLabel>
       )}
     </SlotRoot>

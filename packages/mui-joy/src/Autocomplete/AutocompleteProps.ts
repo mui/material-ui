@@ -6,7 +6,7 @@ import {
   AutocompleteInputChangeReason,
   AutocompleteValue,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
+} from '@mui/base/useAutocomplete';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
@@ -284,6 +284,14 @@ type AutocompleteOwnProps<
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
   };
 
+/**
+ * AutocompleteProps signature:
+ * @template T
+ * @param {string | object} T The option structure, must be a string or an object (by default, only accepts objects with { label: string } )
+ * @param {boolean | undefined} Multiple If your component is set with property multiple as true
+ * @param {boolean | undefined} DisableClearable If your component is set with property disableClearable as true
+ * @param {boolean | undefined} FreeSolo If your component is set with property freeSolo as true
+ */
 export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined,

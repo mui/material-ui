@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
@@ -128,9 +128,6 @@ export const ButtonRoot = styled('button', {
       justifyContent: 'center',
       position: 'relative',
       textDecoration: 'none', // prevent user agent underline when used as anchor
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.lg,
       lineHeight: 1,
@@ -147,8 +144,6 @@ export const ButtonRoot = styled('button', {
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         [`&.${buttonClasses.loading}`]: {
-          transition:
-            'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           color: 'transparent',
         },
       }),

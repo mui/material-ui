@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
+import useOption from '@mui/base/useOption';
 import { useSlotProps } from '@mui/base/utils';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -43,7 +42,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const {
     component = 'li',
     children,
-    disabled,
+    disabled = false,
     value,
     label,
     variant = 'plain',
@@ -52,63 +51,36 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   } = props;
 
   const row = React.useContext(RowListContext);
-  const selectContext = React.useContext(SelectUnstyledContext);
 
-  if (!selectContext) {
-    throw new Error('OptionUnstyled must be used within a SelectUnstyled');
-  }
-
-  const selectOption = {
-    value,
-    label: label || children,
+  const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
-  };
-
-  const optionState = selectContext.getOptionState(selectOption);
-  const optionProps = selectContext.getOptionProps(selectOption);
-  const listboxRef = selectContext.listboxRef;
+    value,
+    optionRef: ref,
+  });
 
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, optionState.selected ? 'primary' : colorProp);
+  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
   const ownerState = {
     ...props,
-    ...optionState,
+    disabled,
+    selected,
+    highlighted,
+    index,
     component,
     variant,
     color,
     row,
   };
 
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const handleRef = useForkRef(ref, optionRef);
-
-  React.useEffect(() => {
-    // Scroll to the currently highlighted option
-    if (optionState.highlighted) {
-      if (!listboxRef.current || !optionRef.current) {
-        return;
-      }
-      const listboxClientRect = listboxRef.current.getBoundingClientRect();
-      const optionClientRect = optionRef.current.getBoundingClientRect();
-
-      if (optionClientRect.top < listboxClientRect.top) {
-        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
-      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
-        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
-      }
-    }
-  }, [optionState.highlighted, listboxRef]);
-
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
+    getSlotProps: getRootProps,
     elementType: OptionRoot,
     externalSlotProps: {},
     externalForwardedProps: other,
     additionalProps: {
-      ...optionProps,
-      ref: handleRef,
       as: component,
     },
     className: classes.root,

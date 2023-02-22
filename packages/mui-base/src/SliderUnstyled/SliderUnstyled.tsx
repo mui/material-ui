@@ -6,7 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
-import useSlider, { valueToPercent } from './useSlider';
+import useSlider, { valueToPercent } from '../useSlider';
 import useSlotProps from '../utils/useSlotProps';
 import {
   SliderUnstyledOwnerState,
@@ -274,7 +274,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
           <Thumb
             key={index}
             data-index={index}
-            data-focusvisible={focusedThumbIndex === index}
             {...thumbProps}
             className={clsx(classes.thumb, thumbProps.className, {
               [classes.active]: active === index,

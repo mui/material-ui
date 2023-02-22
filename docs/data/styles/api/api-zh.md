@@ -115,7 +115,7 @@ export default function MyComponent(props) {
 这是一个处理服务器端渲染的类助手（class helper）。 [你可以遵循本指南的实用方法](/material-ui/guides/server-rendering/)
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();

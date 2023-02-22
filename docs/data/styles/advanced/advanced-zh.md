@@ -376,7 +376,7 @@ const jss = create({
 这个例子返回一个HTML字符串，并在使用前将所需的关键CSS内联。
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 function render() {

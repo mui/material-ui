@@ -4,7 +4,8 @@ import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
-export interface ModalUnstyledComponentsPropsOverrides {}
+export interface ModalUnstyledRootSlotPropsOverrides {}
+export interface ModalUnstyledBackdropSlotPropsOverrides {}
 
 export interface ModalUnstyledOwnProps {
   /**
@@ -103,14 +104,10 @@ export interface ModalUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      ModalUnstyledComponentsPropsOverrides,
-      ModalUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', ModalUnstyledRootSlotPropsOverrides, ModalUnstyledOwnerState>;
     backdrop?: SlotComponentProps<
       'div',
-      ModalUnstyledComponentsPropsOverrides,
+      ModalUnstyledBackdropSlotPropsOverrides,
       ModalUnstyledOwnerState
     >;
   };
@@ -119,10 +116,19 @@ export interface ModalUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    backdrop?: React.ElementType;
-  };
+  slots?: ModalUnstyledSlots;
+}
+
+export interface ModalUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the backdrop.
+   */
+  backdrop?: React.ElementType;
 }
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

@@ -4,7 +4,8 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -45,7 +46,7 @@ const MenuRoot = styled(StyledList, {
     ...scopedVariables,
     boxShadow: theme.shadow.md,
     overflow: 'auto',
-    zIndex: 1300, // the same value as Material UI Menu. TODO: revisit the appropriate value later.
+    zIndex: theme.vars.zIndex.popup,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
@@ -77,15 +78,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     open,
     onClose,
     listboxId: id,
@@ -144,20 +137,17 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
-  const contextValue: MenuUnstyledContextType = React.useMemo(
+  const menuContextValue: MenuUnstyledContextType = React.useMemo(
     () => ({
-      registerItem,
-      unregisterItem,
-      getItemState,
-      getItemProps,
+      ...contextValue,
       open,
     }),
-    [getItemProps, getItemState, open, registerItem, unregisterItem],
+    [contextValue, open],
   );
 
   const result = (
     <PopperUnstyled {...rootProps} modifiers={modifiers}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>
           {disablePortal ? (
             children

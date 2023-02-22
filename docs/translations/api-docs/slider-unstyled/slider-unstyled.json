@@ -21,7 +21,7 @@
     "orientation": "The component orientation.",
     "scale": "A transformation function, to change the scale of the slider.<br><br><strong>Signature:</strong><br><code>function(x: any) =&gt; any</code><br>",
     "slotProps": "The props used for each slot inside the Slider.",
-    "slots": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component.",
+    "slots": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details.",
     "step": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop.",
     "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
     "track": "The track presentation:<br>- <code>normal</code> the track will render a bar representing the slider value. - <code>inverted</code> the track will render a bar representing the remaining slider value. - <code>false</code> the track will render without a bar.",
@@ -100,5 +100,15 @@
       "nodeName": "the mark label element",
       "conditions": "active (depending on the value)"
     }
+  },
+  "slotDescriptions": {
+    "input": "The component used to render the input.",
+    "mark": "The component used to render the mark.",
+    "markLabel": "The component used to render the mark label.",
+    "rail": "The component used to render the rail.",
+    "root": "The component used to render the root.",
+    "thumb": "The component used to render the thumb.",
+    "track": "The component used to render the track.",
+    "valueLabel": "The component used to render the value label."
   }
 }

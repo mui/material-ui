@@ -1,122 +1,14 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { exactProp } from '@mui/utils';
-import { alpha, styled } from '@mui/material/styles';
-import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
-
-const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
-
-const Wrapper = styled('div')({
-  overflow: 'hidden',
-});
-const Table = styled('table')(({ theme }) => {
-  const contentColor =
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 1)
-      : 'rgba(255, 255, 255, 1)';
-  const contentColorTransparent =
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 0)
-      : 'rgba(255, 255, 255, 0)';
-  const shadowColor = theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.2)';
-  return {
-    borderRadius: 10,
-    background: `
-  linear-gradient(to right, ${contentColor} 5%, ${contentColorTransparent}),
-  linear-gradient(to right, ${contentColorTransparent}, ${contentColor} 100%) 100%,
-  linear-gradient(to right, ${shadowColor}, rgba(0, 0, 0, 0) 5%),
-  linear-gradient(to left, ${shadowColor}, rgba(0, 0, 0, 0) 5%)`,
-    backgroundAttachment: 'local, local, scroll, scroll',
-    // the above background create thin line on the left and right sides of the table
-    // as a workaround, use negative margin with overflow `hidden` on the parent
-    marginLeft: -1,
-    marginRight: -1,
-  };
-});
-
-function PropsTable(props) {
-  const { componentProps, propDescriptions } = props;
-  const t = useTranslate();
-
-  return (
-    <Wrapper>
-      <Table>
-        <thead>
-          <tr>
-            <th align="left">{t('api-docs.name')}</th>
-            <th align="left">{t('api-docs.type')}</th>
-            <th align="left">{t('api-docs.default')}</th>
-            <th align="left">{t('api-docs.description')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(componentProps).map(([propName, propData]) => {
-            const typeDescription = propData.type.description || propData.type.name;
-            const propDefault = propData.default;
-            return (
-              propData.description !== '@ignore' && (
-                <tr key={propName}>
-                  <td align="left">
-                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
-                      {propName}
-                      {propData.required && (
-                        <sup>
-                          <Asterisk title="required">*</Asterisk>
-                        </sup>
-                      )}
-                    </span>
-                  </td>
-                  <td align="left">
-                    <span
-                      className="prop-type"
-                      dangerouslySetInnerHTML={{ __html: typeDescription }}
-                    />
-                  </td>
-                  <td align="left">
-                    {propDefault && <span className="prop-default">{propDefault}</span>}
-                  </td>
-                  <td align="left">
-                    {propData.deprecated && (
-                      <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                        <strong>{t('api-docs.deprecated')}</strong>
-                        {propData.deprecationInfo && ' - '}
-                        {propData.deprecationInfo && (
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: propData.deprecationInfo,
-                            }}
-                          />
-                        )}
-                      </Alert>
-                    )}
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: propDescriptions[propName] || '',
-                      }}
-                    />
-                  </td>
-                </tr>
-              )
-            );
-          })}
-        </tbody>
-      </Table>
-    </Wrapper>
-  );
-}
-
-PropsTable.propTypes = {
-  componentProps: PropTypes.object.isRequired,
-  propDescriptions: PropTypes.object.isRequired,
-};
 
 function ClassesTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -165,6 +57,56 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
+function SlotsTable(props) {
+  const { componentSlots, slotDescriptions } = props;
+  const t = useTranslate();
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th align="left">{t('api-docs.name')}</th>
+          <th align="left">{t('api-docs.defaultClass')}</th>
+          <th align="left">{t('api-docs.defaultValue')}</th>
+          <th align="left">{t('api-docs.description')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {componentSlots.map(({ class: className, name, default: defaultValue }) => {
+          return (
+            <tr key={name}>
+              <td align="left" width="15%">
+                <span className="slot-name">{name}</span>
+              </td>
+              <td align="left" width="25%">
+                <span
+                  className="slot-defaultClass"
+                  dangerouslySetInnerHTML={{ __html: className }}
+                />
+              </td>
+              <td align="left" width="25%">
+                {defaultValue && <span className="slot-default">{defaultValue}</span>}
+              </td>
+              <td
+                align="left"
+                width="35%"
+                dangerouslySetInnerHTML={{
+                  __html: slotDescriptions[name] || '',
+                }}
+              />
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+SlotsTable.propTypes = {
+  componentSlots: PropTypes.array.isRequired,
+  slotDescriptions: PropTypes.object.isRequired,
+};
+
 function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
@@ -172,6 +114,7 @@ function getTranslatedHeader(t, header) {
     'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
+    slots: t('api-docs.slots'),
     css: 'CSS',
   };
 
@@ -223,6 +166,7 @@ export default function ApiPage(props) {
     props: componentProps,
     spread,
     styles: componentStyles,
+    slots: componentSlots,
   } = pageContent;
 
   const {
@@ -230,6 +174,7 @@ export default function ApiPage(props) {
     componentDescriptionToc = [],
     classDescriptions,
     propDescriptions,
+    slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
@@ -260,6 +205,7 @@ export default function ApiPage(props) {
     componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
+    componentSlots?.length > 0 && createTocEntry('slots'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -348,7 +294,7 @@ import { ${componentName} } from '${source}';`}
         )}
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-        <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
+        <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
         <br />
         {cssComponent && (
           <React.Fragment>
@@ -385,6 +331,13 @@ import { ${componentName} } from '${source}';`}
             <span
               dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
             />
+          </React.Fragment>
+        ) : null}
+        {componentSlots?.length ? (
+          <React.Fragment>
+            <Heading hash="slots" />
+            <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <br />
           </React.Fragment>
         ) : null}
       </MarkdownElement>

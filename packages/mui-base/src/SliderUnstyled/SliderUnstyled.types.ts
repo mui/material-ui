@@ -7,7 +7,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
   Mark,
-} from './useSlider.types';
+} from '../useSlider';
 
 export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   disabled: boolean;
@@ -24,7 +24,14 @@ export interface SliderUnstyledOwnerState extends SliderUnstyledOwnProps {
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 }
 
-export interface SliderUnstyledComponentsPropsOverrides {}
+export interface SliderUnstyledRootSlotPropsOverrides {}
+export interface SliderUnstyledTrackSlotPropsOverrides {}
+export interface SliderUnstyledRailSlotPropsOverrides {}
+export interface SliderUnstyledThumbSlotPropsOverrides {}
+export interface SliderUnstyledMarkSlotPropsOverrides {}
+export interface SliderUnstyledMarkLabelSlotPropsOverrides {}
+export interface SliderUnstyledValueLabelSlotPropsOverrides {}
+export interface SliderUnstyledInputSlotPropsOverrides {}
 
 export interface SliderUnstyledOwnProps {
   /**
@@ -138,43 +145,42 @@ export interface SliderUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledRootSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     track?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledTrackSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     rail?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledRailSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     thumb?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledThumbSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     mark?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledMarkSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     markLabel?: SlotComponentProps<
       'span',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledMarkLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
     valueLabel?: SlotComponentProps<
       React.ElementType,
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledValueLabelSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
-
     input?: SlotComponentProps<
       'input',
-      SliderUnstyledComponentsPropsOverrides,
+      SliderUnstyledInputSlotPropsOverrides,
       SliderUnstyledOwnerState
     >;
   };
@@ -183,16 +189,7 @@ export interface SliderUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    track?: React.ElementType;
-    rail?: React.ElementType;
-    thumb?: React.ElementType;
-    mark?: React.ElementType;
-    markLabel?: React.ElementType;
-    valueLabel?: React.ElementType;
-    input?: React.ElementType;
-  };
+  slots?: SliderUnstyledSlots;
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -234,6 +231,48 @@ export interface SliderUnstyledOwnProps {
    * }
    */
   valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
+}
+
+export interface SliderUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track?: React.ElementType;
+  /**
+   * The component used to render the rail.
+   * @default 'span'
+   */
+  rail?: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb?: React.ElementType;
+  /**
+   * The component used to render the mark.
+   * @default 'span'
+   */
+  mark?: React.ElementType;
+  /**
+   * The component used to render the mark label.
+   * @default 'span'
+   */
+  markLabel?: React.ElementType;
+  /**
+   * The component used to render the value label.
+   */
+  valueLabel?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
 }
 
 export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
@@ -278,7 +317,6 @@ export type SliderUnstyledRailSlotProps = {
 
 export type SliderUnstyledThumbSlotProps = UseSliderThumbSlotProps & {
   'data-index': number;
-  'data-focusvisible': boolean;
   children: React.ReactNode;
   className?: string;
   ownerState: SliderUnstyledOwnerState;
