@@ -10,12 +10,35 @@ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIndicatorCenter';
 
+export interface ButtonSlots {
+  /**
+   * The component used to render the root.
+   * @default 'button'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+  /**
+   * The component used to render the loading indicator center.
+   * @default 'span'
+   */
+  loadingIndicatorCenter: React.ElementType;
+}
+
 export interface ButtonPropsVariantOverrides {}
 export interface ButtonPropsColorOverrides {}
 export interface ButtonPropsSizeOverrides {}
 
 export type ButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ButtonSlot,
+  ButtonSlots,
   {
     root: SlotProps<'button', {}, ButtonOwnerState>;
     startDecorator: SlotProps<'span', {}, ButtonOwnerState>;

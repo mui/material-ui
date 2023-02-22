@@ -19,5 +19,13 @@
     "value": "The selected value. Set to <code>null</code> to deselect all options.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "button": "The component used to render the button.",
+    "endDecorator": "The component used to render the end decorator.",
+    "indicator": "The component used to render the indicator.",
+    "listbox": "The component used to render the listbox.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator."
+  }
 }

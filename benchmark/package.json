@@ -14,7 +14,7 @@
     "@chakra-ui/system": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@mdx-js/react": "^2.2.1",
+    "@mdx-js/react": "^2.3.0",
     "@mui/material": "^5.11.10",
     "@mui/styles": "^5.11.9",
     "@mui/system": "^5.11.9",

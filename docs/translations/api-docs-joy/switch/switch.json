@@ -14,5 +14,14 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component used to render the action.",
+    "endDecorator": "The component used to render the end decorator.",
+    "input": "The component used to render the input.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator.",
+    "thumb": "The component used to render the thumb.",
+    "track": "The component used to render the track."
+  }
 }
