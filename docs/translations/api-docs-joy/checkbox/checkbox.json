@@ -22,5 +22,12 @@
     "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value.",
     "variant": "The variant to use."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component used to render the action.",
+    "checkbox": "The component used to render the checkbox.",
+    "input": "The component used to render the input.",
+    "label": "The component used to render the label.",
+    "root": "The component used to render the root."
+  }
 }

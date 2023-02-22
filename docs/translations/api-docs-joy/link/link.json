@@ -13,5 +13,10 @@
     "underline": "Controls when the link should have an underline.",
     "variant": "Applies the theme link styles."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "endDecorator": "The component used to render the end decorator.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator."
+  }
 }

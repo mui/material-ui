@@ -12,6 +12,20 @@
   },
   "name": "FormLabel",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "asterisk",
+      "description": "The component used to render the asterisk.",
+      "default": "'span'",
+      "class": ".MuiFormLabel-asterisk"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'label'",
+      "class": ".MuiFormLabel-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-joy/src/FormLabel/FormLabel.tsx",

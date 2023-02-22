@@ -5,8 +5,21 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type FormLabelSlot = 'root' | 'asterisk';
 
+export interface FormLabelSlots {
+  /**
+   * The component used to render the root.
+   * @default 'label'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the asterisk.
+   * @default 'span'
+   */
+  asterisk: React.ElementType;
+}
+
 export type FormLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  FormLabelSlot,
+  FormLabelSlots,
   {
     root: SlotProps<'label', {}, FormLabelOwnerState>;
     asterisk: SlotProps<'span', {}, FormLabelOwnerState>;
