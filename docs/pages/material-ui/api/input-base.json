@@ -90,7 +90,12 @@
       "inputAdornedEnd",
       "inputHiddenLabel"
     ],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
+    "globalClasses": {
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "readOnly": "Mui-readOnly"
+    },
     "name": "MuiInputBase"
   },
   "spread": true,
