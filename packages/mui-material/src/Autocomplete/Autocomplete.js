@@ -178,6 +178,20 @@ const AutocompleteRoot = styled('div', {
   [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
   },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 16,
+      paddingBottom: 17,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
+    },
+  },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
     textOverflow: 'ellipsis',
@@ -280,6 +294,7 @@ const AutocompleteListbox = styled('div', {
   padding: '8px 0',
   maxHeight: '40vh',
   overflow: 'auto',
+  position: 'relative',
   [`& .${autocompleteClasses.option}`]: {
     minHeight: 48,
     display: 'flex',
@@ -424,6 +439,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderTags,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
+    slotProps = {},
     value: valueProp,
     ...other
   } = props;
@@ -527,9 +543,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
     return renderOption({ ...optionProps, className: classes.option }, option, {
       selected: optionProps['aria-selected'],
+      index,
       inputValue,
     });
   };
+
+  const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
+  const paperSlotProps = slotProps.paper ?? componentsProps.paper;
+  const popperSlotProps = slotProps.popper ?? componentsProps.popper;
+  const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
   return (
     <React.Fragment>
@@ -558,11 +580,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       aria-label={clearText}
                       title={clearText}
                       ownerState={ownerState}
-                      {...componentsProps.clearIndicator}
-                      className={clsx(
-                        classes.clearIndicator,
-                        componentsProps.clearIndicator?.className,
-                      )}
+                      {...clearIndicatorSlotProps}
+                      className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
                     >
                       {clearIcon}
                     </AutocompleteClearIndicator>
@@ -575,11 +594,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       aria-label={popupOpen ? closeText : openText}
                       title={popupOpen ? closeText : openText}
                       ownerState={ownerState}
-                      {...componentsProps.popupIndicator}
-                      className={clsx(
-                        classes.popupIndicator,
-                        componentsProps.popupIndicator?.className,
-                      )}
+                      {...popupIndicatorSlotProps}
+                      className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
                     >
                       {popupIcon}
                     </AutocompletePopupIndicator>
@@ -607,14 +623,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           role="presentation"
           anchorEl={anchorEl}
           open={popupOpen}
-          {...componentsProps.popper}
-          className={clsx(classes.popper, componentsProps.popper?.className)}
+          {...popperSlotProps}
+          className={clsx(classes.popper, popperSlotProps?.className)}
         >
           <AutocompletePaper
             ownerState={ownerState}
             as={PaperComponent}
-            {...componentsProps.paper}
-            className={clsx(classes.paper, componentsProps.paper?.className)}
+            {...paperSlotProps}
+            className={clsx(classes.paper, paperSlotProps?.className)}
           >
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
@@ -1054,6 +1070,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

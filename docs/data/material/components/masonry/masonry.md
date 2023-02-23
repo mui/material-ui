@@ -62,7 +62,7 @@ This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `
 support server-side rendering.
 
 :::info
-**Note**: `defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
+`defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
 :::
 
 {{"demo": "SSRMasonry.js", "bg": true}}

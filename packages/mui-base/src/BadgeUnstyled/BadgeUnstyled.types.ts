@@ -2,7 +2,8 @@ import * as React from 'react';
 import { OverrideProps, OverridableTypeMap, OverridableComponent } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-export interface BadgeUnstyledComponentsPropsOverrides {}
+export interface BadgeUnstyledRootSlotPropsOverrides {}
+export interface BadgeUnstyledBadgeSlotPropsOverrides {}
 
 export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
   badgeContent: React.ReactNode;
@@ -12,31 +13,6 @@ export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
 };
 
 export interface BadgeUnstyledOwnProps {
-  /**
-   * The components used for each slot inside the Badge.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Badge?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Badge.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'span',
-      BadgeUnstyledComponentsPropsOverrides,
-      BadgeUnstyledOwnerState
-    >;
-    badge?: SlotComponentProps<
-      'span',
-      BadgeUnstyledComponentsPropsOverrides,
-      BadgeUnstyledOwnerState
-    >;
-  };
   /**
    * The content rendered within the badge.
    */
@@ -56,10 +32,41 @@ export interface BadgeUnstyledOwnProps {
    */
   max?: number;
   /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'span', BadgeUnstyledRootSlotPropsOverrides, BadgeUnstyledOwnerState>;
+    badge?: SlotComponentProps<
+      'span',
+      BadgeUnstyledBadgeSlotPropsOverrides,
+      BadgeUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Badge.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: BadgeUnstyledSlots;
+  /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false
    */
   showZero?: boolean;
+}
+
+export interface BadgeUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the badge.
+   * @default 'span'
+   */
+  badge?: React.ElementType;
 }
 
 export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {

@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
@@ -39,10 +40,19 @@ const TextareaRoot = styled('div', {
     {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
+      '--Textarea-placeholderColor': 'inherit',
       '--Textarea-placeholderOpacity': 0.5,
-      '--Textarea-focusedThickness': '2px',
-      '--Textarea-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '--Textarea-focusedThickness': theme.vars.focus.thickness,
+      ...(ownerState.color === 'context'
+        ? {
+            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Textarea-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
@@ -66,10 +76,10 @@ const TextareaRoot = styled('div', {
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--internal-paddingBlock':
-        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
+      '--_Textarea-paddingBlock':
+        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
       '--Textarea-decorator-childRadius':
-        'max((var(--Textarea-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Textarea-radius) - var(--variant-borderWidth)) / 2))',
+        'max(var(--Textarea-radius) - var(--variant-borderWidth, 0px) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) + var(--variant-borderWidth, 0px), var(--Textarea-radius) / 2))',
       '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
       '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
       '--Button-radius': 'var(--Textarea-decorator-childRadius)',
@@ -84,9 +94,6 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       lineHeight: theme.vars.lineHeight.md,
@@ -94,9 +101,6 @@ const TextareaRoot = styled('div', {
         fontSize: theme.vars.fontSize.sm,
         lineHeight: theme.vars.lineHeight.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -109,23 +113,21 @@ const TextareaRoot = styled('div', {
         bottom: 0,
         zIndex: 1,
         borderRadius: 'inherit',
-        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
     },
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${textareaClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${textareaClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
         },
@@ -138,7 +140,7 @@ const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
   overridesResolver: (props, styles) => styles.textarea,
-})<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   resize: 'none',
   border: 'none', // remove the native textarea width
   minWidth: 0, // remove the native textarea width
@@ -156,16 +158,28 @@ const TextareaInput = styled(TextareaAutosize, {
   lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor: 'currentColor',
   },
   '&::-webkit-input-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-    color: 'inherit',
   },
-  '&::-moz-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
-}));
+  '&::-moz-placeholder': {
+    // Firefox 19+
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+  '&:-ms-input-placeholder': {
+    // IE11
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+  '&::-ms-input-placeholder': {
+    // Edge
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+});
 
 const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',
@@ -177,6 +191,7 @@ const TextareaStartDecorator = styled('div', {
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockEnd: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
 }));
 
 const TextareaEndDecorator = styled('div', {
@@ -189,8 +204,18 @@ const TextareaEndDecorator = styled('div', {
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockStart: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea](https://mui.com/joy-ui/react-textarea/)
+ *
+ * API:
+ *
+ * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
+ */
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -203,14 +228,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component,
-    componentsProps = {},
+    formControl,
     focused,
-    formControlContext,
-    error: errorState,
-    disabled: disabledState,
-    size = 'md',
-    color = 'neutral',
+    error: errorProp = false,
+    disabled: disabledProp = false,
+    size: sizeProp = 'md',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
     endDecorator,
@@ -219,60 +242,86 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
+
   const ownerState = {
     ...props,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: TextareaRoot,
-    getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    ownerState,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: [classes.root, rootStateClasses],
+    elementType: TextareaRoot,
+    externalForwardedProps: other,
+    getSlotProps: getRootProps,
+    ownerState,
   });
 
-  const textareaProps = useSlotProps({
+  const [SlotTextarea, textareaProps] = useSlot('textarea', {
+    additionalProps: {
+      id: formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
+    },
+    className: [classes.textarea, inputStateClasses],
     elementType: TextareaInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: {
+    internalForwardedProps: {
+      ...propsToForward,
       minRows,
       maxRows,
     },
+    externalForwardedProps: other,
+    getSlotProps: getInputProps,
     ownerState,
-    className: [classes.textarea, inputStateClasses],
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: TextareaStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: TextareaEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <TextareaRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {startDecorator && (
-        <TextareaStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </TextareaStartDecorator>
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {/* @ts-ignore onChange conflicts with html input */}
-      <TextareaInput {...textareaProps} />
-      {endDecorator && (
-        <TextareaEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </TextareaEndDecorator>
-      )}
-    </TextareaRoot>
+      <SlotTextarea {...textareaProps} />
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </SlotRoot>
   );
 }) as OverridableComponent<TextareaTypeMap>;
 
@@ -294,15 +343,9 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the Input.
-   * @default {}
+   * @ignore
    */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  disabled: PropTypes.bool,
   /**
    * Trailing adornment for this input.
    */
@@ -310,6 +353,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**

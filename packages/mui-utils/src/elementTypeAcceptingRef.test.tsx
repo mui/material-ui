@@ -122,7 +122,9 @@ describe('elementTypeAcceptingRef', () => {
     }
 
     it('rejects function components', () => {
-      const Component = () => null;
+      function Component() {
+        return null;
+      }
 
       assertFail(Component, 'Did you accidentally provide a plain function component instead?');
     });

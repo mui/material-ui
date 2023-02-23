@@ -56,7 +56,7 @@ export default function InstagramPost() {
       </Box>
       <CardOverflow>
         <AspectRatio>
-          <img src="/static/images/cards/yosemite.jpeg" alt="" />
+          <img src="/static/images/cards/yosemite.jpeg" alt="" loading="lazy" />
         </AspectRatio>
       </CardOverflow>
       <Box sx={{ display: 'flex', alignItems: 'center', mx: -1, my: 1 }}>

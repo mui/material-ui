@@ -1,58 +1,62 @@
 # Automatic adjustment
 
-<p class="description">Joy UI components adapt to one another when composed together to ensure the best look and feel.</p>
+<p class="description">Joy UI components adapt to one another to ensure consistency across your app without the need to micromanage your CSS.</p>
 
-When composing a UI of multiple, especially nested, components, oftentime you get small inconsistencies between them.
-That's probably when you'll be adjusting pixels by a few nudges here and there to get them just right.
-Over time, these small and arbitrary changes build up to become a problem.
+Joy UI components automatically adjust their styles and DOM structure relative to one another to ensure consistent sizing, spacing, and semantically appropriate HTML throughout your app.
 
-That's why we've built Joy UI to heavily rely on CSS variables, assigning to them the heavy lifting for these small adjustments.
-It saves you time and ensures consistency.
-Let's look through a few examples:
+This makes it much faster and more efficient for you to apply pixel-perfect adjustments to your UI without having to worry to about minor inconsistencies between components.
 
-## Examples of style adjustments
+## Style adjustments
+
+Joy UI components adapt their styles relative to the context in which they're rendered.
+You can see a few examples of this below.
 
 ### Input
 
-When using icons or buttons within an `Input`, Joy UI will automatically adjust their size.
+When using icons or buttons within an Input component, Joy UI automatically adjusts their size:
 
 {{"demo": "InputIntegration.js"}}
 
-If you customize their CSS variables, Joy UI secures that their spacing and radii follow those of the input.
+If you customize their respective CSS variables, Joy UI ensures that their spacing and radii follow those of the Input:
 
 {{"demo": "InputVariables.js"}}
 
 ### List
 
 Nested lists are a common source of frustration when it comes to styling.
-Joy UI's meaningful variables take care of that for you.
+Joy UI's meaningful variables are intended to simplify this process.
 
-Play around with different presets to see which CSS variables are customized.
+Play around with different presets in the demo below to see which CSS variables are customized:
 
 {{"demo": "ListThemes.js"}}
 
-## Ensuring semantic HTML
+## Structure adjustments
 
-Joy UI components will also adapt the HTML tag that a given component is rendered with based on the context that they are in.
-For example:
+Joy UI components adjust their DOM structure based on their context to ensure that the appropriate HTML tags are used.
+Check out a few examples below:
 
-- This nested `Typography` component will automatically render as a `span` when in this situation (which is the correct markup):
+### Typography
 
-  ```js
-  <Typography> // 👈 the parent Typography, by default, renders as a <p>
-    This is a very
-      <Typography fontWeight="lg">important</Typography> // automatically renders as <span>
-    message.
-  </Typography>
-  ```
+The Typography component renders as a `<p>` tag by default.
+When a second Typography component is nested inside, it will automatically render as a `<span>`, which is the correct markup in this situation:
 
-- The `ListItem` component, which is by default a `li` tag, will render as a `div` if its parent `List` is not rendered as one of these options: `ul`, `ol`, and/or `menu`－following then, the correct semantics:
+```js
+<Typography> // the parent Typography renders as a <p>
+  This is a very
+    <Typography fontWeight="lg">important</Typography> // the child renders as a <span>
+  message.
+</Typography>
+```
 
-  ```js
-  // in cases that you want the same styles as list but not the `ul` tag.
-  <List component="div">
-    <ListItem> // automatically rendering as <div>
-      ...
-    </ListItem>
-  </List>
-  ```
+### List Item
+
+The List Item component renders as an `<li>` tag by default.
+If its parent List component is not a `<menu>`, `<ul>`, or `<ol>`, then the List Item will correct itself and render as a `<div>` instead.
+
+```js
+<List component="div">
+  <ListItem> // automatically renders as a <div>
+    ...
+  </ListItem>
+</List>
+```

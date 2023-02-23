@@ -38,7 +38,7 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      */
     divider?: boolean;
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;
@@ -54,7 +54,7 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
  *
  * Demos:
  *
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *

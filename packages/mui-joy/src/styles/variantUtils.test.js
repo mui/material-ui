@@ -1,11 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
-import {
-  isVariantPalette,
-  createVariantStyle,
-  createVariant,
-  createContainedOverrides,
-} from './variantUtils';
+import { isVariantPalette, createVariantStyle, createVariant } from './variantUtils';
 import { createGetCssVar } from './extendTheme';
 
 describe('variant utils', () => {
@@ -79,7 +73,6 @@ describe('variant utils', () => {
           anyHoverColor: 'var(--any-token)',
         }),
       ).to.deep.include({
-        cursor: 'pointer',
         color: 'var(--any-token)',
       });
     });
@@ -90,7 +83,6 @@ describe('variant utils', () => {
           anyHoverBg: 'var(--any-token)',
         }),
       ).to.deep.include({
-        cursor: 'pointer',
         backgroundColor: 'var(--any-token)',
       });
     });
@@ -101,7 +93,6 @@ describe('variant utils', () => {
           anyHoverBorder: 'var(--any-token)',
         }),
       ).to.deep.include({
-        cursor: 'pointer',
         borderColor: 'var(--any-token)',
       });
     });
@@ -235,7 +226,6 @@ describe('variant utils', () => {
       },
       outlinedHover: {
         primary: {
-          cursor: 'pointer',
           color: 'var(--any-token)',
           borderColor: 'var(--any-token)',
           backgroundColor: 'var(--any-token)',
@@ -286,7 +276,6 @@ describe('variant utils', () => {
       color: 'var(--joy-variant-plainColor)',
     });
     expect(createVariantStyle('plainHover', vars)).to.deep.include({
-      cursor: 'pointer',
       color: 'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
       backgroundColor: 'var(--joy-variant-plainHoverBg)',
     });
@@ -335,7 +324,6 @@ describe('variant utils', () => {
 
       const softHoverResult = createVariant('softHover', theme);
       expect(softHoverResult.customColor).to.deep.include({
-        cursor: 'pointer',
         color: 'var(--joy-palette-customColor-softHoverColor)',
       });
     });
@@ -356,41 +344,6 @@ describe('variant utils', () => {
       });
       expect(createVariant('solid').context).to.deep.include({
         backgroundColor: 'var(--variant-solidBg)',
-      });
-    });
-  });
-
-  describe('createContainedOverrides', () => {
-    it('automatically create solid overrides if the variable is in the correct format', () => {
-      const result = createContainedOverrides({
-        prefix: 'foo',
-        getCssVar: createGetCssVar('foo'),
-        palette: {
-          primary: {
-            plainColor: '',
-          },
-          secondary: {
-            softBg: '',
-          },
-          alternate: {
-            solidBg: '',
-          },
-        },
-      });
-      // partially check the result
-      sinon.assert.match(result, {
-        primary: {
-          '--foo-palette-text-primary': '#fff',
-          '--variant-plainColor': 'var(--foo-palette-primary-100)',
-        },
-        secondary: {
-          '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-          '--variant-softBg': 'rgba(255 255 255 / 0.12)',
-        },
-        alternate: {
-          '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-          '--variant-solidBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
-        },
       });
     });
   });

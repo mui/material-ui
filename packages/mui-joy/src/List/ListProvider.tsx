@@ -7,7 +7,7 @@ import NestedListContext from './NestedListContext';
  * This variables should be used in a List to create a scope
  * that will not inherit variables from the upper scope.
  *
- * Used in `Menu`, `MenuList`, `TabList`, `Select` to communicate with nested List.
+ * Used in `Menu`, `MenuList`, `TabList`, `Select`, and `Autocomplete` to communicate with nested List.
  *
  * e.g. menu group:
  * <Menu>
@@ -26,7 +26,7 @@ export const scopedVariables = {
   '--List-item-marginInline': '0px',
 };
 
-export interface ListProviderProps {
+interface ListProviderProps {
   /**
    * If `undefined`, there is no effect.
    * If `true` or `false`, affects the nested List styles.
@@ -46,13 +46,11 @@ export interface ListProviderProps {
   wrap?: boolean;
 }
 
-// internal component
-const ListProvider = ({
-  children,
-  nested,
-  row = false,
-  wrap = false,
-}: React.PropsWithChildren<ListProviderProps>) => {
+/**
+ * @ignore - internal component.
+ */
+function ListProvider(props: React.PropsWithChildren<ListProviderProps>) {
+  const { children, nested, row = false, wrap = false } = props;
   const baseProviders = (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
@@ -71,6 +69,6 @@ const ListProvider = ({
     return baseProviders;
   }
   return <NestedListContext.Provider value={nested}>{baseProviders}</NestedListContext.Provider>;
-};
+}
 
 export default ListProvider;

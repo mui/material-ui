@@ -21,7 +21,7 @@ export interface FormControlLabelProps
   componentsProps?: {
     /**
      * Props applied to the Typography wrapper of the passed label.
-     * This is unused if disableTpography is true.
+     * This is unused if disableTypography is true.
      * @default {}
      */
     typography?: TypographyProps;
@@ -60,6 +60,18 @@ export interface FormControlLabelProps
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    /**
+     * Props applied to the Typography wrapper of the passed label.
+     * This is unused if disableTypography is true.
+     * @default {}
+     */
+    typography?: TypographyProps;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -75,9 +87,9 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/material-ui/react-checkbox/)
- * - [Radio buttons](https://mui.com/material-ui/react-radio-button/)
- * - [Switches](https://mui.com/material-ui/react-switch/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
+ * - [Switch](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *

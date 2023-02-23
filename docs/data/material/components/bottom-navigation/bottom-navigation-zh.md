@@ -3,7 +3,7 @@ product: material-ui
 title: Bottom navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'
-materialDesign: https://material.io/components/bottom-navigation
+materialDesign: https://m2.material.io/components/bottom-navigation
 ---
 
 # Bottom navigation

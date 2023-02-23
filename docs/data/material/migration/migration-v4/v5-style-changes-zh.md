@@ -267,8 +267,8 @@ The `theme.palette.type` key was renamed to `theme.palette.mode`, to better foll
 
 ```diff
  import { createTheme } from '@mui/material/styles';
--const theme = createTheme({palette: { type: 'dark' }}),
-+const theme = createTheme({palette: { mode: 'dark' }}),
+-const theme = createTheme({ palette: { type: 'dark' } }),
++const theme = createTheme({ palette: { mode: 'dark' } }),
 ```
 
 ### Change default theme.palette.info colors
@@ -276,7 +276,7 @@ The `theme.palette.type` key was renamed to `theme.palette.mode`, to better foll
 The default `theme.palette.info` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
-  info = {
+ info = {
 -  main: cyan[500],
 +  main: lightBlue[700], // lightBlue[400] in "dark" mode
 
@@ -285,7 +285,7 @@ The default `theme.palette.info` colors were changed to pass the AA accessibilit
 
 -  dark: cyan[700],
 +  dark: lightBlue[900], // lightBlue[700] in "dark" mode
-  }
+ }
 ```
 
 ### Change default theme.palette.success colors
@@ -293,7 +293,7 @@ The default `theme.palette.info` colors were changed to pass the AA accessibilit
 The default `theme.palette.success` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
-  success = {
+ success = {
 -  main: green[500],
 +  main: green[800], // green[400] in "dark" mode
 
@@ -302,7 +302,7 @@ The default `theme.palette.success` colors were changed to pass the AA accessibi
 
 -  dark: green[700],
 +  dark: green[900], // green[700] in "dark" mode
-  }
+ }
 ```
 
 ### Change default theme.palette.warning colors
@@ -310,7 +310,7 @@ The default `theme.palette.success` colors were changed to pass the AA accessibi
 The default `theme.palette.warning` colors were changed to pass the AA accesibility standard contrast ratio in both light and dark modes.
 
 ```diff
-  warning = {
+ warning = {
 -  main: orange[500],
 +  main: '#ED6C02', // orange[400] in "dark" mode
 
@@ -319,7 +319,7 @@ The default `theme.palette.warning` colors were changed to pass the AA accesibil
 
 -  dark: orange[700],
 +  dark: orange[900], // orange[700] in "dark" mode
-  }
+ }
 ```
 
 ### Restore theme.palette.text.hint key (if needed)
@@ -327,7 +327,7 @@ The default `theme.palette.warning` colors were changed to pass the AA accesibil
 The `theme.palette.text.hint` key was unused in Material UI components, and has been removed. If you depend on it, you can add it back:
 
 ```diff
-  import { createTheme } from '@mui/material/styles';
+ import { createTheme } from '@mui/material/styles';
 
 -const theme = createTheme(),
 +const theme = createTheme({

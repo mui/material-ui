@@ -1,8 +1,10 @@
 import { OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
-export interface OptionGroupUnstyledComponentsPropsOverrides {}
+export interface OptionGroupUnstyledRootSlotPropsOverrides {}
+export interface OptionGroupUnstyledLabelSlotPropsOverrides {}
+export interface OptionGroupUnstyledListSlotPropsOverrides {}
 
 export interface OptionGroupUnstyledOwnProps {
   /**
@@ -21,32 +23,46 @@ export interface OptionGroupUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Label?: React.ElementType;
-    List?: React.ElementType;
-  };
+  slots?: OptionGroupUnstyledSlots;
   /**
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'li',
-      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledRootSlotPropsOverrides,
       OptionGroupUnstyledOwnerState
     >;
     label?: SlotComponentProps<
       'span',
-      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledLabelSlotPropsOverrides,
       OptionGroupUnstyledOwnerState
     >;
     list?: SlotComponentProps<
       'ul',
-      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledListSlotPropsOverrides,
       OptionGroupUnstyledOwnerState
     >;
   };
+}
+
+export interface OptionGroupUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the label.
+   * @default 'span'
+   */
+  label?: React.ElementType;
+  /**
+   * The component used to render the list.
+   * @default 'ul'
+   */
+  list?: React.ElementType;
 }
 
 export interface OptionGroupUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {

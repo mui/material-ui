@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Button component
+components: Button, IconButton, LoadingButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 unstyled: /base/react-button/
@@ -8,34 +9,65 @@ unstyled: /base/react-button/
 
 # Button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
 ## Introduction
 
 Buttons communicate actions that users can take.
+The Joy UI Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
-{{"demo": "ButtonUsage.js", "hideToolbar": true}}
+{{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Button from '@mui/joy/Button';
-
-export default function MyApp() {
-  return <Button>My button</Button>;
-}
 ```
+
+The Joy UI Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+
+The demo below shows the three basic states available to the Button: default, disabled, and loading.
+
+{{"demo": "BasicButtons.js"}}
+
+### Disabled
+
+Use the `disabled` prop to disable interaction and focus:
+
+{{"demo": "ButtonDisabled.js"}}
+
+### Loading
+
+Add the `loading` prop to show the Button's loading state.
+The Button is [disabled](#disabled) as long as it's loading.
+See [Loading indicator](#loading-indicator) and [Loading position](#loading-position) for customization options.
+
+{{"demo": "ButtonLoading.js"}}
+
+## Customization
 
 ### Variants
 
-The button component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
-Choose one of them depending on the button's action importance.
+The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Sizes
+
+The Button component comes in three sizes: `sm`, `md` (default), and `lg`.
+
+{{"demo": "ButtonSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Colors
 
@@ -44,58 +76,80 @@ Play around combining different colors with different variants.
 
 {{"demo": "ButtonColors.js"}}
 
-### Sizes
+### Decorators
 
-The button components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
-
-{{"demo": "ButtonSizes.js"}}
-
-### Disabled
-
-Use the `disabled` prop to disable interaction and focus.
-
-{{"demo": "ButtonDisabled.js"}}
-
-### With icons
-
-Use the `startIcon` and/or `endIcon` props to add supporting icons to the button.
+Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Button:
 
 {{"demo": "ButtonIcons.js"}}
 
-### Icon button
+### Loading indicator
 
-Use the `IconButton` component if you want width and height to be the same while not having a label.
-Every prop previously covered are available for this component as well.
+The default loading indicator uses the [Circular Progress](/joy-ui/react-circular-progress/) component.
+Use the `loadingIndicator` prop to replace it with a custom indicator, as shown below:
+
+{{"demo": "ButtonLoadingIndicator.js"}}
+
+### Loading position
+
+The `loadingPosition` prop sets the position of the Button's loading indicator.
+It supports three values:
+
+- `center` (default): The loading indicator is nested inside the `loadingIndicatorCenter` slot and replaces the Button's contents when in the loading state.
+- `start`: The loading indicator replaces the [starting decorator](#decorators) when the Button is in the loading state.
+- `end`: The loading indicator replaces the [ending decorator](#decorators) when the Button is in the loading state.
+
+{{"demo": "ButtonLoadingPosition.js"}}
+
+## Icon Button
 
 ```jsx
 import IconButton from '@mui/joy/IconButton';
 ```
 
+Use the Icon Button component for a square button to house an icon with no text content.
+
 {{"demo": "IconButtons.js"}}
 
-:::info
-**♿️ Accessibility tip**: Make sure to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button.
-It helps screen readers to properly identify the component.
+## Link Button
+
+Buttons let users take actions, but if that action is to navigate to a new page, then an anchor tag is generally preferable over a button tag.
+
+If you need the style of a button with the functionality of a link, then you can use the `component` prop to replace the default `<button>` with an `<a>`, as shown below:
+
+{{"demo": "ButtonLink.js"}}
+
+## CSS variable playground
+
+Play around with the CSS variables available to the Button and Icon Button components to see how the design changes.
+You can use these to customize the components with both the `sx` prop and the theme.
+
+### Button
+
+{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+
+### Icon Button
+
+{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+
+## Accessibility
+
+All Buttons must have a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) so their purpose can be understood by users who require assistive technology.
+
+This is especially important for [Icon Buttons](#icon-button) because they don't contain any text.
+For example, an Icon Button that displays a `<FavoriteBorder />` icon might have a label that looks like this:
 
 ```js
-<IconButton aria-label="Add to favorite">
+<IconButton aria-label="Add to favorites">
   <FavoriteBorder />
 </IconButton>
 ```
 
-:::
+## Anatomy
 
-### As a link
+The Button component is composed of a single root `<button>` element that wraps around its contents:
 
-You can also use the button component as a link by assigning a value of `a` to the `component` prop.
-Since links are the most appropriate component for navigating through pages, that's useful when you want the same button design for a link.
-
-Doing so will automatically change the rendered HTML tag from `<button>` to `<a>`.
-
-{{"demo": "ButtonLink.js"}}
-
-## CSS Variables
-
-{{"demo": "ButtonVariables.js", "hideToolbar": true}}
-
-{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
+```html
+<button class="MuiButton-root" type="button">
+  <!-- Button contents -->
+</button>
+```

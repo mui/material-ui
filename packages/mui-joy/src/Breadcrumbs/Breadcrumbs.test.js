@@ -17,6 +17,10 @@ describe('<Breadcrumbs />', () => {
     refInstanceof: window.HTMLElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      ol: { expectedClassName: classes.ol },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
 

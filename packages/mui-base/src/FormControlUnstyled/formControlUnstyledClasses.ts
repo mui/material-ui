@@ -19,11 +19,11 @@ export interface FormControlUnstyledClasses {
 export type FormControlUnstyledClassKey = keyof FormControlUnstyledClasses;
 
 export function getFormControlUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseFormControl', slot);
+  return generateUtilityClass('MuiFormControl', slot);
 }
 
 const formControlUnstyledClasses: FormControlUnstyledClasses = generateUtilityClasses(
-  'BaseFormControl',
+  'MuiFormControl',
   ['root', 'disabled', 'error', 'filled', 'focused', 'required'],
 );
 

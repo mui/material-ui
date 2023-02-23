@@ -1,6 +1,7 @@
 ---
 product: system
 title: React Stack component
+components: Stack
 githubLabel: 'component: Stack'
 ---
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import { OptionState } from '../ListboxUnstyled';
-import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
+import { OptionState } from '../useListbox';
+import { UseSelectOptionSlotProps } from '../useSelect';
 import { SlotComponentProps } from '../utils';
 
-export interface OptionUnstyledComponentsPropsOverrides {}
+export interface OptionUnstyledRootSlotPropsOverrides {}
 
 export interface OptionUnstyledOwnProps<TValue> {
   /**
@@ -19,29 +19,35 @@ export interface OptionUnstyledOwnProps<TValue> {
   disabled?: boolean;
   className?: string;
   /**
+   * The props used for each slot inside the OptionUnstyled.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'li',
+      OptionUnstyledRootSlotPropsOverrides,
+      OptionUnstyledOwnerState<TValue>
+    >;
+  };
+  /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the OptionUnstyled.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'li',
-      OptionUnstyledComponentsPropsOverrides,
-      OptionUnstyledOwnerState<TValue>
-    >;
-  };
+  slots?: OptionUnstyledSlots;
   /**
    * A text representation of the option's content.
    * Used for keyboard text navigation matching.
    */
   label?: string;
+}
+
+export interface OptionUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
 }
 
 export interface OptionUnstyledTypeMap<TValue, P = {}, D extends React.ElementType = 'li'> {

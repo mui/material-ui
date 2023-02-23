@@ -1,28 +1,52 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import {
   ColorPaletteProp,
-  TypographySystem,
-  VariantProp,
   SxProps,
   SystemProps,
+  ApplyColorInversion,
+  TypographySystem,
+  VariantProp,
+  TextColor,
 } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
+
+export interface LinkSlots {
+  /**
+   * The component used to render the root.
+   * @default 'a'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
 
 export interface LinkPropsVariantOverrides {}
 
 export interface LinkPropsColorOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'a', { sx?: SxProps }, LinkOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
-}
+export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  LinkSlots,
+  {
+    root: SlotProps<'a', {}, LinkOwnerState>;
+    startDecorator: SlotProps<'span', {}, LinkOwnerState>;
+    endDecorator: SlotProps<'span', {}, LinkOwnerState>;
+  }
+>;
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
+    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -33,11 +57,6 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'primary'
        */
       color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
-      /**
-       * The props used for each slot inside the Input.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
       /**
        * If `true`, the component is disabled.
        * @default false
@@ -61,7 +80,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        * The system color.
        */
-      textColor?: SystemProps['color'];
+      textColor?: TextColor;
       /**
        * Element placed before the children.
        */
@@ -92,13 +111,14 @@ export type LinkProps<
   },
 > = OverrideProps<LinkTypeMap<P, D>, D>;
 
-export interface LinkOwnerState extends LinkProps {
+export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
   /**
    * If `true`, the element's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
-   * If `true`, the element is rendered by a Typography component.
+   * @internal
+   * If `true`, the element is rendered inside a Typography component.
    */
-  nested: boolean;
+  nesting: boolean;
 }

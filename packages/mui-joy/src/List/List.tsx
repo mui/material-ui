@@ -7,34 +7,32 @@ import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
 import ListProvider from './ListProvider';
+import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
-  const { variant, color, size, nesting, row, instanceSize } = ownerState;
+  const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       !instanceSize && !nesting && size && `size${capitalize(size)}`,
       instanceSize && `size${capitalize(instanceSize)}`,
       nesting && 'nesting',
-      row && 'row',
     ],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
 };
 
-export const ListRoot = styled('ul', {
-  name: 'JoyList',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
   function applySizeVars(size: ListProps['size']) {
     if (size === 'sm') {
       return {
@@ -43,7 +41,7 @@ export const ListRoot = styled('ul', {
         '--List-item-paddingY': '0.25rem',
         '--List-item-paddingX': '0.5rem',
         '--List-item-fontSize': theme.vars.fontSize.sm,
-        '--List-decorator-size': ownerState.row ? '1.5rem' : '2rem',
+        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
         '--Icon-fontSize': '1.125rem',
       };
     }
@@ -54,7 +52,7 @@ export const ListRoot = styled('ul', {
         '--List-item-paddingY': '0.375rem',
         '--List-item-paddingX': '0.75rem',
         '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.row ? '1.75rem' : '2.5rem',
+        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
         '--Icon-fontSize': '1.25rem',
       };
     }
@@ -65,7 +63,7 @@ export const ListRoot = styled('ul', {
         '--List-item-paddingY': '0.5rem',
         '--List-item-paddingX': '1rem',
         '--List-item-fontSize': theme.vars.fontSize.md,
-        '--List-decorator-size': ownerState.row ? '2.25rem' : '3rem',
+        '--List-decorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
         '--Icon-fontSize': '1.5rem',
       };
     }
@@ -87,6 +85,7 @@ export const ListRoot = styled('ul', {
       marginInlineStart: 'var(--NestedList-marginLeft)',
       marginInlineEnd: 'var(--NestedList-marginRight)',
       marginBlockStart: 'var(--List-gap)',
+      marginBlockEnd: 'initial', // reset user agent stylesheet.
     },
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
@@ -95,20 +94,20 @@ export const ListRoot = styled('ul', {
       '--List-nestedInsetStart': '0px',
       '--List-item-paddingLeft': 'var(--List-item-paddingX)',
       '--List-item-paddingRight': 'var(--List-item-paddingX)',
+      // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
       '--internal-child-radius':
-        'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
-      // If --List-padding is 0, the --List-item-radius will be 0.
-      '--List-item-radius': 'min(calc(var(--List-padding) * 999), var(--internal-child-radius))',
+        'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
+      '--List-item-radius': 'var(--internal-child-radius)',
       // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
       '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
       '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
       margin: 'initial',
       // --List-padding is not declared to let list uses --List-divider-gap by default.
-      ...(ownerState.row
+      ...(ownerState.orientation === 'horizontal'
         ? {
             ...(ownerState.wrap
               ? {
-                  padding: 'var(--List-padding)',
+                  padding: 'var(--List-padding)', // Fallback is not needed for row-wrap List
                   marginInlineStart: 'calc(-1 * var(--List-gap))',
                   marginBlockStart: 'calc(-1 * var(--List-gap))',
                 }
@@ -123,10 +122,11 @@ export const ListRoot = styled('ul', {
           }),
     },
     {
+      boxSizing: 'border-box',
       borderRadius: 'var(--List-radius)',
       listStyle: 'none',
       display: 'flex',
-      flexDirection: ownerState.row ? 'row' : 'column',
+      flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
       ...(ownerState.wrap && {
         flexWrap: 'wrap',
       }),
@@ -137,10 +137,26 @@ export const ListRoot = styled('ul', {
   ];
 });
 
+const ListRoot = styled(StyledList, {
+  name: 'JoyList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [List API](https://mui.com/joy-ui/api/list/)
+ */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
   const menuContext = React.useContext(MenuUnstyledContext);
   const selectContext = React.useContext(SelectUnstyledContext);
+  const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -150,27 +166,39 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     className,
     children,
-    size = 'md',
-    row = false,
+    size: sizeProp,
+    orientation = 'vertical',
     wrap = false,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     role: roleProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
+  const size = sizeProp || (inProps.size ?? 'md');
 
-  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
+  let role;
+  if (menuContext || selectContext) {
+    role = 'group';
+  }
+  if (radioGroupContext) {
+    role = 'presentation';
+  }
+  if (roleProp) {
+    role = roleProp;
+  }
 
   const ownerState = {
+    ...props,
     instanceSize: inProps.size,
     size,
     nesting,
-    row,
+    orientation,
     wrap,
     variant,
     color,
     role,
-    ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -182,12 +210,13 @@ const List = React.forwardRef(function List(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       role={role}
+      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
       {...other}
     >
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
-        <ListProvider row={row} wrap={wrap}>
+        <ListProvider row={orientation === 'horizontal'} wrap={wrap}>
           {children}
         </ListProvider>
       </ComponentListContext.Provider>
@@ -222,14 +251,14 @@ List.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, display the list in horizontal direction.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components).
    * @default 'md'

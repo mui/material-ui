@@ -3,8 +3,8 @@ product: material-ui
 title: React Tabs（选项卡）组件
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
-materialDesign: https://material.io/components/tabs
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
+materialDesign: https://m2.material.io/components/tabs
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 unstyled: /base/react-tabs/
 ---
 
@@ -24,7 +24,7 @@ A basic example with tab panels.
 
 ## 实验性的 API
 
-`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 
 {{"demo": "LabTabs.js"}}
 
@@ -132,7 +132,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
 
 您需要采取以下步骤，来为无障碍技术提供一些必要的信息：
 

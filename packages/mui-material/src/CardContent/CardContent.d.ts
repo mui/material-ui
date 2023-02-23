@@ -25,7 +25,7 @@ export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'>
  *
  * Demos:
  *
- * - [Cards](https://mui.com/material-ui/react-card/)
+ * - [Card](https://mui.com/material-ui/react-card/)
  *
  * API:
  *

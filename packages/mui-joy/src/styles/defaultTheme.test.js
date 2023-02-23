@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { getThemeWithVars } from './defaultTheme';
 
-describe('extendTheme', () => {
+describe('defaultTheme', () => {
   it('the output contains required fields', () => {
     const result = getThemeWithVars();
     Object.keys(result).forEach((field) => {
@@ -22,10 +22,16 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'zIndex',
         'typography',
         'variants',
+        'colorInversion',
+        'colorInversionConfig',
         'vars',
         'cssVarPrefix',
+        'getColorSchemeSelector',
+        'unstable_sxConfig',
+        'unstable_sx',
       ]).to.includes(field);
     });
   });

@@ -12,7 +12,7 @@ export const easing = {
   sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
 };
 
-// Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
+// Follow https://m2.material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
 // to learn when use what timing
 export const duration = {
   shortest: 150,

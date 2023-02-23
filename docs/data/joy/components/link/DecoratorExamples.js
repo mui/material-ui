@@ -13,7 +13,7 @@ const circulate = keyframes({
   },
 });
 
-export default function LinkScales() {
+export default function DecoratorExamples() {
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}
@@ -61,7 +61,7 @@ export default function LinkScales() {
         variant="soft"
         color="success"
         endDecorator={
-          <Chip color="success" size="sm" sx={{ borderRadius: 'xs' }}>
+          <Chip color="success" size="sm" sx={{ borderRadius: '3px', mr: '2px' }}>
             HIRING!
           </Chip>
         }

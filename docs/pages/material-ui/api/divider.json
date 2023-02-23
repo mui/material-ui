@@ -1,11 +1,11 @@
 {
   "props": {
-    "absolute": { "type": { "name": "bool" } },
+    "absolute": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "flexItem": { "type": { "name": "bool" } },
-    "light": { "type": { "name": "bool" } },
+    "flexItem": { "type": { "name": "bool" }, "default": "false" },
+    "light": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
@@ -56,6 +56,6 @@
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-material/src/Divider/Divider.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Dividers</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-divider/\">Divider</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
   "cssComponent": false
 }

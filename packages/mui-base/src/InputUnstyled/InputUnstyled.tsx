@@ -10,14 +10,14 @@ import {
   InputUnstyledRootSlotProps,
   InputUnstyledTypeMap,
 } from './InputUnstyled.types';
-import useInput from './useInput';
+import useInput from '../useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 
 /**
  *
  * Demos:
  *
- * - [Input](https://mui.com/base/react-input/)
+ * - [Unstyled Input](https://mui.com/base/react-input/)
  *
  * API:
  *
@@ -35,8 +35,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     autoFocus,
     className,
     component,
-    components = {},
-    componentsProps = {},
     defaultValue,
     disabled,
     endAdornment,
@@ -57,6 +55,8 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     value,
     type: typeProp,
     rows,
+    slotProps = {},
+    slots = {},
     minRows,
     maxRows,
     ...other
@@ -123,11 +123,11 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     type,
   };
 
-  const Root = component ?? components.Root ?? 'div';
+  const Root = component ?? slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref: forwardedRef,
@@ -135,13 +135,12 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
     className: [classes.root, rootStateClasses, className],
   });
-
-  const Input = multiline ? components.Textarea ?? 'textarea' : components.Input ?? 'input';
+  const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: componentsProps.input,
+    externalSlotProps: slotProps.input,
     additionalProps: {
       rows: multiline ? rows : undefined,
       ...(multiline &&
@@ -216,24 +215,6 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Textarea: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -247,7 +228,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the `input` will indicate an error.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
@@ -314,6 +295,24 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.number,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for this input.
    */

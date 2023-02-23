@@ -1,31 +1,27 @@
 import * as React from 'react';
-import Box from '@mui/joy/Box';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
-import Typography from '@mui/joy/Typography';
 
 export default function RadioButtonsGroup() {
   return (
-    <Box>
-      <Typography
-        id="demo-radio-buttons-group-label"
-        level="body3"
-        textTransform="uppercase"
-        fontWeight="xl"
-        sx={{ letterSpacing: '0.15rem' }}
-        mb={2}
-      >
-        Gender
-      </Typography>
-      <RadioGroup
-        aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue="female"
-        name="radio-buttons-group"
-      >
-        <Radio value="female" label="Female" />
+    <FormControl>
+      <FormLabel>Gender</FormLabel>
+      <RadioGroup defaultValue="female" name="radio-buttons-group" sx={{ my: 1 }}>
+        <Radio
+          value="female"
+          label="Female"
+          slotProps={{ input: { 'aria-describedby': 'female-helper-text' } }}
+        />
+        <FormHelperText id="female-helper-text">
+          A helper text for this radio.
+        </FormHelperText>
         <Radio value="male" label="Male" />
         <Radio value="other" label="Other" />
       </RadioGroup>
-    </Box>
+      <FormHelperText>This is a helper text.</FormHelperText>
+    </FormControl>
   );
 }

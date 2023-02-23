@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, Theme } from '@mui/material/styles';
+import {
+  experimental_extendTheme as extendTheme,
+  Experimental_CssVarsProvider as CssVarsProvider,
+} from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -55,8 +58,9 @@ import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 
-const ToggleButtons = () => {
+function ToggleButtons() {
   const [alignment, setAlignment] = React.useState('left');
   return (
     <ToggleButtonGroup
@@ -81,9 +85,9 @@ const ToggleButtons = () => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-};
+}
 
-const TabsDemo = () => {
+function TabsDemo() {
   const [index, setIndex] = React.useState(0);
   return (
     <Paper>
@@ -99,9 +103,9 @@ const TabsDemo = () => {
       </Tabs>
     </Paper>
   );
-};
+}
 
-const BadgeVisibilityDemo = () => {
+function BadgeVisibilityDemo() {
   const [count, setCount] = React.useState(1);
   return (
     <Paper
@@ -145,9 +149,9 @@ const BadgeVisibilityDemo = () => {
       </div>
     </Paper>
   );
-};
+}
 
-const SwitchToggleDemo = () => {
+function SwitchToggleDemo() {
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
   return (
     <Box
@@ -158,9 +162,9 @@ const SwitchToggleDemo = () => {
       <ToggleButtons />
     </Box>
   );
-};
+}
 
-const SlideDemo = () => {
+function SlideDemo() {
   const [value, setValue] = React.useState([30, 60]);
   return (
     <Stack spacing={2} direction="row" alignItems="center">
@@ -181,7 +185,30 @@ const SlideDemo = () => {
       />
     </Stack>
   );
-};
+}
+
+const { palette: lightPalette } = getDesignTokens('light');
+const { palette: darkPalette } = getDesignTokens('dark');
+
+const customTheme = extendTheme({
+  cssVarPrefix: 'hero',
+  colorSchemes: {
+    light: {
+      palette: {
+        ...(lightPalette?.primary && { primary: lightPalette?.primary }),
+        ...(lightPalette?.grey && { grey: lightPalette?.grey }),
+        ...(lightPalette?.background && { background: lightPalette?.background }),
+      },
+    },
+    dark: {
+      palette: {
+        ...(darkPalette?.primary && { primary: darkPalette?.primary }),
+        ...(darkPalette?.grey && { grey: darkPalette?.grey }),
+        ...(darkPalette?.background && { background: darkPalette?.background }),
+      },
+    },
+  },
+});
 
 export default function Hero() {
   return (
@@ -191,26 +218,29 @@ export default function Hero() {
           <Typography
             fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
+            sx={(theme) => ({
+              color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+              '& > *': { mr: 1 },
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
-            <IconImage name="product-core" /> MUI Core
+            <IconImage width={28} height={28} name="product-core" /> MUI Core
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Ready to use components, <br />
             <GradientText>free forever</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of components, ready-to-use, free forever, and with accessibility
-            always in mind. We&apos;ve built the foundational UI blocks for your design system so
-            you don&apos;t have to.
+            Get a growing list of React components, ready-to-use, free forever, and with
+            accessibility always in mind. We&apos;ve built the foundational UI blocks for your
+            design system so you don&apos;t have to.
           </Typography>
-          <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
+          <GetStartedButtons />
         </Box>
       }
       rightSx={{
@@ -220,18 +250,7 @@ export default function Hero() {
         overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
-        <ThemeProvider
-          theme={(theme: Theme) =>
-            createTheme({
-              palette: {
-                mode: theme.palette.mode,
-                primary: theme.palette.primary,
-                grey: theme.palette.grey,
-                background: theme.palette.background,
-              },
-            })
-          }
-        >
+        <CssVarsProvider theme={customTheme}>
           <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
             <Stepper activeStep={1}>
               <Step>
@@ -433,7 +452,7 @@ export default function Hero() {
               </Card>
             </Stack>
           </Box>
-        </ThemeProvider>
+        </CssVarsProvider>
       }
     />
   );

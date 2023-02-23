@@ -17,16 +17,7 @@ import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
-import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import NoSsr from '@mui/material/NoSsr';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
-import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import { useRouter } from 'next/router';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.mui.com/project/material-ui-docs/';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '20px 0 10px',
@@ -54,13 +45,15 @@ function AppSettingsDrawer(props) {
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
-  const userLanguage = useUserLanguage();
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-  const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   React.useEffect(() => {
-    const initialMode = getCookie('paletteMode') || 'system';
+    // syncing with homepage, can be removed once all pages are migrated to CSS variables
+    let initialMode = 'system';
+    try {
+      initialMode = localStorage.getItem('mui-mode') || initialMode;
+    } catch (error) {
+      // do nothing
+    }
     setMode(initialMode);
   }, [preferredMode]);
 
@@ -72,10 +65,10 @@ function AppSettingsDrawer(props) {
     setMode(paletteMode);
 
     if (paletteMode === 'system') {
-      document.cookie = `paletteMode=;path=/;max-age=31536000`;
+      localStorage.setItem('mui-mode', 'system'); // syncing with homepage, can be removed once all pages are migrated to CSS variables
       changeTheme({ paletteMode: preferredMode });
     } else {
-      document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
       changeTheme({ paletteMode });
     }
   };
@@ -86,11 +79,6 @@ function AppSettingsDrawer(props) {
     }
 
     changeTheme({ direction });
-  };
-
-  const handleLanguageClick = (language) => () => {
-    document.cookie = `userLanguage=${language.code};path=/;max-age=31536000`;
-    onClose();
   };
 
   return (
@@ -183,41 +171,6 @@ function AppSettingsDrawer(props) {
             {t('settings.rtl')}
           </IconToggleButton>
         </ToggleButtonGroup>
-        <Heading gutterBottom>{t('settings.language')}</Heading>
-        <NoSsr defer>
-          <List>
-            {LANGUAGES_LABEL.map((language) => (
-              <ListItemButton
-                component="a"
-                divider
-                data-no-markdown-link="true"
-                href={language.code === 'en' ? canonicalAs : `/${language.code}${canonicalAs}`}
-                key={language.code}
-                onClick={handleLanguageClick(language)}
-                selected={userLanguage === language.code}
-                lang={language.code}
-                hrefLang={language.code}
-              >
-                {language.text}
-              </ListItemButton>
-            ))}
-            <ListItemButton
-              component="a"
-              href={
-                userLanguage === 'en'
-                  ? `${CROWDIN_ROOT_URL}`
-                  : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-              }
-              rel="noopener nofollow"
-              target="_blank"
-              key={userLanguage}
-              lang={userLanguage}
-              hrefLang="en"
-            >
-              {t('appFrame.helpToTranslate')}
-            </ListItemButton>
-          </List>
-        </NoSsr>
         <Heading gutterBottom>{t('settings.color')}</Heading>
         <Button
           component="a"

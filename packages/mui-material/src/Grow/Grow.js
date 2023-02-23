@@ -59,8 +59,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const theme = useTheme();
 
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, children.ref, ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {

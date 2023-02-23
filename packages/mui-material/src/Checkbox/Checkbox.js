@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
@@ -86,6 +87,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
+    className,
     ...other
   } = props;
 
@@ -116,6 +118,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       })}
       ownerState={ownerState}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
       classes={classes}
     />
@@ -141,6 +144,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
@@ -156,10 +163,12 @@ Checkbox.propTypes /* remove-proptypes */ = {
   defaultChecked: PropTypes.bool,
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -201,6 +210,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**

@@ -1,77 +1,123 @@
 ---
 product: joy-ui
 title: React Breadcrumbs component
+components: Breadcrumbs
+githubLabel: 'component: breadcrumbs'
 ---
 
 # Breadcrumbs
 
-<p class="description">Breadcrumbs consist of a list of links that help a user visualize a page's location within the hierarchical structure of a website, and allow navigation up to any of its "ancestors".</p>
+<p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
 ## Introduction
 
-The `Breadcrumbs` shows where in the site hierarchy the user is.
+The Breadcrumbs component consists of a list of links that show the user the hierarchy of a given page in relation to the app's structure.
+It provides a simple visual aid for better context and ease of navigation between higher- and lower-level pages.
 
-{{"demo": "BreadcrumbsUsage.js", "hideToolbar": true}}
+{{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
-
-export default function MyApp() {
-  return <Breadcrumbs />;
-}
 ```
 
-### Basic usage
-
-`Breadcrumbs` is a navigation component that is designed to be used with [`Link`](/joy-ui/react-link/) and [`Typography`](/joy-ui/react-typography/).
+The Breadcrumbs component acts as a wrapper for navigation links.
+It's designed to be used with the [Link and Typography components](#usage-with-link-and-typography), as shown below:
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
-You can add an icon as a decorator to the [`Link`](/joy-ui/react-link/) and mix it with the `color` prop.
+## Customization
 
-{{"demo": "BreadcrumbsWithIcon.js"}}
+### Sizes
 
-### Separator
+The Breadcrumbs component comes in three sizes: `sm`, `md` (default), and `lg`:
 
-You can pass an icon component to the prop `separator`.
+{{"demo": "BreadcrumbsSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
+### Separators
+
+By default, the Breadcrumbs component inserts a forward slash (/) between each navigation item.
+Use the `separator` prop to define a custom separator, which can be a character or a symbol as well as an icon:
 
 {{"demo": "SeparatorBreadcrumbs.js"}}
 
-### Accessibility
+## Usage with Link and Typography
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+```jsx
+import Link from '@mui/joy/Link';
+```
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+```jsx
+import Typography from '@mui/joy/Typography';
+```
 
-The accessibility of this component relies on:
+The Breadcrumbs component doesn't accept common Joy UI style props like `variant`, `color`, `startDecorator`, or `endDecorator`—but [Link](/joy-ui/react-link/) and [Typography](/joy-ui/react-typography/) do.
+As such, most custom styles that affect the content should be applied directly to those components rather than Breadcrumbs.
 
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
-- The link to the current page has `aria-current` set to page.
+The demo below shows how to add an icon to the Link with `startDecorator` and change the color with the `color` prop:
 
-## CSS Variables
-
-Play around with one of the CSS variables available in the breadcrumbs component to see how the design changes.
-
-{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
+{{"demo": "BreadcrumbsWithIcon.js"}}
 
 ## Common examples
 
-### Collapsed Breadcrumbs
+### Condensed Breadcrumbs
 
-You can change the color of the links. You can learn more about them in [`Link`](/joy-ui/react-link/).
+When the page hierarchy is deeply nested, you may want to condense multiple levels into one.
+The demo below only displays a few previous levels until you click the ellipsis to show the full hierarchy:
 
-{{"demo": "CollapsedBreadcrumbs.js"}}
+{{"demo": "CondensedBreadcrumbs.js"}}
 
-### With [`Menu`](/joy-ui/react-menu/)
+### Condensed with Menu
 
-You can use the Joy `Breadcrumbs` component together with the MUI Joy [`Menu`](/joy-ui/react-menu/) component.
+```jsx
+import Menu from '@mui/joy/Menu';
+```
+
+As an alternative to the behavior of the condensed demo above, consider adding a [Menu](/joy-ui/react-menu/) component to display the condensed links in a dropdown list:
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
+
+## CSS variable playground
+
+Play around with the CSS variables available to the Breadcrumbs component to see how the design changes.
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+
+Be sure to add an informative `aria-label` description to the Breadcrumbs component.
+
+The following features are included to optimize the component's baseline accessibility:
+
+- The set of links is structured using an ordered list (`<ol>`).
+- Visual separators between links are hidden with `aria-hidden` to prevent screen readers from announcing them.
+- A `<nav>` element with an `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it's easy to locate with assistive technology.
+- The link to the current page has `aria-current` set to `page`.
+
+## Anatomy
+
+The Breadcrumbs component is composed of a root `<nav>` that wraps around an `<ol>`, with list items corresponding to the trail of links and their separators:
+
+```html
+<nav aria-label="breadcrumbs" class="MuiBreadcrumbs-root">
+  <ol class="MuiBreadcrumbs-ol">
+    <li class="MuiBreadcrumbs-li">
+      <!-- Link or Typography -->
+    </li>
+    <li aria-hidden="true" class="MuiBreadcrumbs-separator">/</li>
+    <li class="MuiBreadcrumbs-li css-1rqbcrs-MuiBreadcrumbs-ol">
+      <!-- Link or Typography -->
+    </li>
+  </ol>
+</nav>
+```

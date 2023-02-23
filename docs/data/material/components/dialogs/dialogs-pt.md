@@ -3,8 +3,8 @@ product: material-ui
 title: Componente Diálogo para React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
-materialDesign: https://material.io/components/dialogs
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+materialDesign: https://m2.material.io/components/dialogs
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Diálogo
@@ -78,7 +78,7 @@ Você pode definir uma largura máxima usando um enumerador na propriedade `maxW
 
 ## Tela cheia responsiva
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery).
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/).
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';

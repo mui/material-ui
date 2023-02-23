@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useTabsList } from '@mui/base/TabsListUnstyled';
+import useTabsList from '@mui/base/useTabsList';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { ListRoot } from '../List/List';
+import { useColorInversion } from '../styles/ColorInversion';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
@@ -29,18 +30,28 @@ const useUtilityClasses = (ownerState: TabListOwnerState) => {
   return composeClasses(slots, getTabListUtilityClass, {});
 };
 
-const TabListRoot = styled(ListRoot, {
+const TabListRoot = styled(StyledList, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListOwnerState }>({
+})<{ ownerState: TabListOwnerState }>(({ theme }) => ({
   flexGrow: 'initial',
+  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
   ...scopedVariables,
-});
-
+}));
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabList API](https://mui.com/joy-ui/api/tab-list/)
+ */
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({
     props: inProps,
@@ -53,14 +64,15 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     component = 'div',
     children,
     variant = 'soft',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     size: sizeProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
-  const row = orientation === 'horizontal';
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
@@ -70,7 +82,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
-    row,
     nesting: false,
   };
 
@@ -93,7 +104,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   return (
     // @ts-ignore conflicted ref types
     <TabListRoot {...tabsListRootProps}>
-      <ListProvider row={row} nested>
+      <ListProvider row={orientation === 'horizontal'} nested>
         {processedChildren}
       </ListProvider>
     </TabListRoot>

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useThemeProps } from '../styles';
+import useThemeProps from '../styles/useThemeProps';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
 import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
@@ -41,6 +42,7 @@ const AspectRatioRoot = styled('div', {
             maxHeight || '9999px'
           })`
         : `calc(100% / (${ownerState.ratio}))`,
+    borderRadius: 'var(--AspectRatio-radius)',
     flexDirection: 'column',
     margin: 'var(--AspectRatio-margin)',
   };
@@ -54,7 +56,7 @@ const AspectRatioContent = styled('div', {
   {
     flex: 1,
     position: 'relative',
-    borderRadius: 'var(--AspectRatio-radius)',
+    borderRadius: 'inherit',
     height: 0,
     paddingBottom: 'var(--AspectRatio-paddingBottom)',
     overflow: 'hidden',
@@ -82,6 +84,16 @@ const AspectRatioContent = styled('div', {
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
 
+/**
+ *
+ * Demos:
+ *
+ * - [Aspect Ratio](https://mui.com/joy-ui/react-aspect-ratio/)
+ *
+ * API:
+ *
+ * - [AspectRatio API](https://mui.com/joy-ui/api/aspect-ratio/)
+ */
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
     props: inProps,
@@ -89,21 +101,20 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   });
 
   const {
-    component = 'div',
     children,
-    componentsProps = {},
     ratio = '16 / 9',
     minHeight,
     maxHeight,
     objectFit = 'cover',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'soft',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
-    component,
     minHeight,
     maxHeight,
     objectFit,
@@ -114,35 +125,31 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: AspectRatioRoot,
-    ownerState,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: AspectRatioRoot,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const contentProps = useSlotProps({
-    elementType: AspectRatioContent,
-    ownerState,
-    externalSlotProps: componentsProps.content,
+  const [SlotContent, contentProps] = useSlot('content', {
     className: classes.content,
+    elementType: AspectRatioContent,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <AspectRatioRoot {...rootProps}>
-      <AspectRatioContent {...contentProps}>
+    <SlotRoot {...rootProps}>
+      <SlotContent {...contentProps}>
         {React.Children.map(children, (child, index) =>
           index === 0 && React.isValidElement(child)
-            ? React.cloneElement(child, { 'data-first-child': '' })
+            ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
             : child,
         )}
-      </AspectRatioContent>
-    </AspectRatioRoot>
+      </SlotContent>
+    </SlotRoot>
   );
 }) as OverridableComponent<AspectRatioTypeMap>;
 
@@ -162,19 +169,6 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the AspectRatio.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * The maximum calculated height of the element (not the CSS height).
    */
   maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -184,6 +178,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
   minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The CSS object-fit value of the first-child.
+   * @default 'cover'
    */
   objectFit: PropTypes.oneOf([
     '-moz-initial',

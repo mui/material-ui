@@ -3,14 +3,14 @@ product: material-ui
 title: Componentes React para progresso circular, linear
 components: CircularProgress, LinearProgress
 githubLabel: 'component: CircularProgress'
-materialDesign: https://material.io/components/progress-indicators
+materialDesign: https://m2.material.io/components/progress-indicators
 ---
 
 # Progresso
 
 <p class="description">Indicadores de progresso comumente conhecidos como spinners, expressam um tempo de espera não especificado ou exibem a duração de um processo.</p>
 
-[Indicadores de progresso](https://material.io/design/components/progress-indicators.html) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações.
+[Indicadores de progresso](https://m2.material.io/components/progress-indicators) informam aos usuários sobre o estado de processos em progresso, como o carregamento de um aplicativo, envio de um formulário, ou atualizações.
 
 - O indicador circular **determinado** preenche a faixa circular invisível com cor, a medida que o indicador se move de 0 a 360 graus.
 - Indicador **indeterminado** demonstra um tempo de espera não especificado.

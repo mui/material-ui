@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useTab } from '@mui/base/TabUnstyled';
+import useTab from '@mui/base/useTab';
 import { useSlotProps } from '@mui/base/utils';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
@@ -31,7 +32,7 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
   return composeClasses(slots, getTabUtilityClass, {});
 };
 
-const TabRoot = styled(ListItemButtonRoot, {
+const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -40,19 +41,29 @@ const TabRoot = styled(ListItemButtonRoot, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
+    ...(!ownerState.row &&
+      ownerState.orientation === 'horizontal' && {
+        justifyContent: 'flex-start',
+      }),
     ...(ownerState.selected && {
-      boxShadow: theme.vars.shadow.sm,
+      boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
-      ...(!variantStyle.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.body,
-        '&:hover': {
-          backgroundColor: theme.vars.palette.background.body,
-        },
+      ...(!variantStyle?.backgroundColor && {
+        backgroundColor: theme.vars.palette.background.surface,
       }),
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tab API](https://mui.com/joy-ui/api/tab/)
+ */
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -72,9 +83,11 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     component = 'button',
     orientation = 'horizontal',
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(tabRef, ref);

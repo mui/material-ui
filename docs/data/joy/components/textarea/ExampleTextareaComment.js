@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import IconButton from '@mui/joy/IconButton';
@@ -17,7 +18,7 @@ export default function TextareaValidator() {
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   return (
-    <Box sx={{ p: 2 }}>
+    <FormControl>
       <FormLabel>Your comment</FormLabel>
       <Textarea
         placeholder="Type something here…"
@@ -83,6 +84,6 @@ export default function TextareaValidator() {
           fontStyle: italic ? 'italic' : 'initial',
         }}
       />
-    </Box>
+    </FormControl>
   );
 }

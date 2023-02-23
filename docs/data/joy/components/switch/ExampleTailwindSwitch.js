@@ -33,7 +33,7 @@ export default function ExampleTailwindSwitch() {
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
         sx={(theme) => ({
-          '--Switch-thumb-shadow': `0 0 0 1px ${theme.vars.palette.divider}, 0 1px 4px 0 rgb(0 0 0 / 0.3), 0 1px 2px 0px rgb(0 0 0 / 0.3)`,
+          '--Switch-thumb-shadow': `0 0 0 1px ${theme.vars.palette.background.level3}, 0 1px 4px 0 rgb(0 0 0 / 0.3), 0 1px 2px 0px rgb(0 0 0 / 0.3)`,
           '--Switch-thumb-size': '18px',
           '--Switch-track-width': '36px',
           '--Switch-track-height': '14px',

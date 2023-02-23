@@ -9,9 +9,11 @@ const TestOverride = React.forwardRef<HTMLDivElement, { x?: number }>((props, re
   <div ref={ref} />
 ));
 
-const FakeIcon = () => <div>Icon</div>;
+function FakeIcon() {
+  return <div>Icon</div>;
+}
 
-const ButtonTest = () => (
+const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
     <Button color="inherit">Contrast</Button>
@@ -86,9 +88,9 @@ const ButtonTest = () => (
 );
 
 const ReactRouterLinkTest = () => {
-  const ButtonLink = (props: ButtonProps<typeof ReactRouterLink>) => (
-    <Button {...props} component={ReactRouterLink} />
-  );
+  function ButtonLink(props: ButtonProps<typeof ReactRouterLink>) {
+    return <Button {...props} component={ReactRouterLink} />;
+  }
 
   const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 

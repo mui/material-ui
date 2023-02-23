@@ -8,7 +8,7 @@ export default function TextareaValidator() {
       <Textarea
         placeholder="Type in here…"
         error
-        defaultValue="Oh no!, something is definitely wrong."
+        defaultValue="Oh no! Something is definitely wrong."
       />
     </Box>
   );

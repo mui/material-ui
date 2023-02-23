@@ -1,9 +1,18 @@
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import experimental_extendTheme, { SupportedColorScheme } from './experimental_extendTheme';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  SxProps,
+  unstable_styleFunctionSx as styleFunctionSx,
+} from '@mui/system';
+import experimental_extendTheme, {
+  SupportedColorScheme,
+  CssVarsTheme,
+} from './experimental_extendTheme';
 import createTypography from './createTypography';
+import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
   (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 const defaultTheme = experimental_extendTheme();
@@ -24,9 +33,17 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
         typography: createTypography(theme.palette, theme.typography),
       };
 
+      newTheme.unstable_sx = function sx(props: SxProps<CssVarsTheme>) {
+        return styleFunctionSx({
+          sx: props,
+          theme: this,
+        });
+      };
+
       return newTheme;
     },
     shouldSkipGeneratingVar,
+    excludeVariablesFromRoot,
   });
 
 export {

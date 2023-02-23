@@ -1,24 +1,10 @@
 {
   "props": {
-    "autoFocus": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ Listbox?: elementType, Popper?: elementType, Root?: elementType }"
-      },
-      "default": "{}"
-    },
-    "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
-      },
-      "default": "{}"
-    },
-    "defaultListboxOpen": { "type": { "name": "bool" } },
+    "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "getSerializedValue": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
@@ -27,14 +13,48 @@
     "onListboxOpenChange": { "type": { "name": "func" } },
     "optionStringifier": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
     "renderValue": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    },
     "value": { "type": { "name": "any" } }
   },
   "name": "SelectUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": ".MuiSelect-listbox"
+    },
+    {
+      "name": "popper",
+      "description": "The component used to render the popper.",
+      "default": "PopperUnstyled",
+      "class": ".MuiSelect-popper"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'button'",
+      "class": ".MuiSelect-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/SelectUnstyled/SelectUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-select/\">Unstyled Select</a></li></ul>",
   "cssComponent": false
 }

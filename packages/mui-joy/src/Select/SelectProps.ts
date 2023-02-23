@@ -1,10 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ListProps } from '../List/ListProps';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export type { SelectOption } from '@mui/base/useSelect';
 
 export type SelectSlot =
   | 'root'
@@ -14,24 +16,62 @@ export type SelectSlot =
   | 'indicator'
   | 'listbox';
 
+export interface SelectSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the button.
+   * @default 'button'
+   */
+  button: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+  /**
+   * The component used to render the indicator.
+   * @default 'span'
+   */
+  indicator: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox: React.ElementType;
+}
+
 export interface SelectPropsVariantOverrides {}
-
 export interface SelectPropsColorOverrides {}
-
 export interface SelectPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, SelectOwnerState<any>>;
-  button?: SlotComponentProps<'button', { sx?: SxProps }, SelectOwnerState<any>>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
-  indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
-  listbox?: SlotComponentProps<
-    'ul',
-    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & ListProps,
-    SelectOwnerState<any>
-  >;
-}
+export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SelectSlots,
+  {
+    root: SlotProps<'div', {}, SelectOwnerState<any>>;
+    button: SlotProps<'button', {}, SelectOwnerState<any>>;
+    startDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    endDecorator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    indicator: SlotProps<'span', {}, SelectOwnerState<any>>;
+    listbox: SlotProps<
+      'ul',
+      {
+        color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
+        variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
+        size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
+      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      SelectOwnerState<any>
+    >;
+  }
+>;
 
 export interface SelectStaticProps extends SelectUnstyledCommonProps {
   /**
@@ -42,14 +82,9 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   }>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps?: ComponentsProps;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -88,33 +123,46 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   sx?: SxProps;
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'outlined'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }
 
-export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
-  /**
-   * The default selected value. Use when the component is not controlled.
-   */
-  defaultValue?: TValue | null;
+export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
+  SelectSlotsAndSlotProps & {
+    /**
+     * The default selected value. Use when the component is not controlled.
+     */
+    defaultValue?: TValue | null;
 
-  /**
-   * Callback fired when an option is selected.
-   */
-  onChange?: (value: TValue | null) => void;
-  /**
-   * Function that customizes the rendering of the selected value.
-   */
-  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
-  /**
-   * The selected value.
-   * Set to `null` to deselect all options.
-   */
-  value?: TValue | null;
-}
+    /**
+     * A function to convert the currently selected value to a string.
+     * Used to set a value of a hidden input associated with the select,
+     * so that the selected value can be posted with a form.
+     */
+    getSerializedValue?: (
+      option: SelectOption<TValue> | null,
+    ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+    /**
+     * Callback fired when an option is selected.
+     */
+    onChange?: (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue | null,
+    ) => void;
+    /**
+     * Function that customizes the rendering of the selected value.
+     */
+    renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+    /**
+     * The selected value.
+     * Set to `null` to deselect all options.
+     */
+    value?: TValue | null;
+  };
 
-export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}>
+  extends ApplyColorInversion<SelectOwnProps<TValue>> {
   /**
    * If `true`, the select button is active.
    */
@@ -126,7 +174,7 @@ export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
   /**
    * If `true`, the select button's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
   /**
    * If `true`, the select dropdown is open.
    */

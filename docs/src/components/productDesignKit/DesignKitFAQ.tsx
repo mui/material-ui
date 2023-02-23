@@ -152,15 +152,18 @@ export default function DesignKitFAQ() {
           {renderItem(4)}
           <Paper
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               pt: 2,
               pb: 1,
               px: 2,
               borderStyle: 'dashed',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
-            }}
+              borderColor: 'grey.300',
+              bgcolor: 'white',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.400',
+                bgcolor: 'primaryDark.800',
+              }),
+            })}
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
