@@ -179,6 +179,12 @@ describe('<Rating />', () => {
 
       expect(screen.getByRole('img')).toHaveAccessibleName('Stars: 2');
     });
+
+    it('should have readOnly class applied', () => {
+      render(<Rating readOnly value={2} />);
+
+      expect(screen.getByRole('img')).to.have.class(classes.readOnly);
+    })
   });
 
   describe('<form> integration', () => {
