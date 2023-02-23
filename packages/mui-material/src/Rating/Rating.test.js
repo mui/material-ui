@@ -184,7 +184,7 @@ describe('<Rating />', () => {
       render(<Rating readOnly value={2} />);
 
       expect(screen.getByRole('img')).to.have.class(classes.readOnly);
-    })
+    });
   });
 
   describe('<form> integration', () => {
