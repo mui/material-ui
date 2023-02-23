@@ -22,14 +22,14 @@ This new product brings you one step closer to this long term goal. It enables d
 ### Frequent requests
 
 Over the last few months, we have seen a growing number of designers asking for these Sketch symbols.
-For instance, there is a [StackOverflow question](https://stackoverflow.com/questions/38834629/material-ui-sketch-files) with over 4,000 views. It has been a common request on Twitter: [one](https://twitter.com/TimoMajerski/status/1144503789619224578), [two](https://twitter.com/jonminori/status/1141121330156310528), [three](https://twitter.com/ProfessorXavior/status/1196522875706056705), [etc](https://twitter.com/JeffreyKaine/status/1133435042259120132).
+For instance, there is a [Stack Overflow question](https://stackoverflow.com/questions/38834629/material-ui-sketch-files) with over 4,000 views. It has been a common request on Twitter: [one](https://twitter.com/TimoMajerski/status/1144503789619224578), [two](https://twitter.com/jonminori/status/1141121330156310528), [three](https://twitter.com/ProfessorXavior/status/1196522875706056705), [etc](https://twitter.com/JeffreyKaine/status/1133435042259120132).
 
 ### No great alternatives
 
 For a long time, we have ignored the problem. We were recommending users to try alternatives out. However, we realized that it wasn't a great answer. There were no good solutions out there:
 
 - **Sketch** has [some symbols](https://i.stack.imgur.com/vEEAA.png) for Material Design. Unfortunately, they cover <30% of the components available in MUI, use an outdated version of the specification, and focus on mobile (leaving desktop behind).
-- **Material Design** had a [Sketch plugin](https://material.io/resources/theme-editor/).
+- **Material Design** had a [Sketch plugin](https://m2.material.io/resources/theme-editor/).
   Unfortunately, it was recently retired, was supporting fewer components than MUI, and didn't use the same wording/structure as MUI that made it harder to move from design to implementation.
 - Anything else is paid.
 

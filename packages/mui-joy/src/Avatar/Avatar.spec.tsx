@@ -1,5 +1,6 @@
-import Avatar from '@mui/joy/Avatar';
 import * as React from 'react';
+import Avatar, { AvatarOwnerState } from '@mui/joy/Avatar';
+import { expectType } from '@mui/types';
 
 <Avatar />;
 
@@ -32,3 +33,51 @@ import * as React from 'react';
 
 // @ts-expect-error there is no size `xl2`
 <Avatar size="xl2" />;
+
+<Avatar
+  slots={{
+    root: 'div',
+    img: 'div',
+    fallback: 'div',
+  }}
+/>;
+
+<Avatar
+  slotProps={{
+    root: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    img: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+    fallback: {
+      component: 'div',
+      'data-testid': 'test',
+    },
+  }}
+/>;
+
+<Avatar
+  slotProps={{
+    root: (ownerState) => {
+      expectType<AvatarOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    img: (ownerState) => {
+      expectType<AvatarOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+    fallback: (ownerState) => {
+      expectType<AvatarOwnerState, typeof ownerState>(ownerState);
+      return {
+        'data-testid': 'test',
+      };
+    },
+  }}
+/>;

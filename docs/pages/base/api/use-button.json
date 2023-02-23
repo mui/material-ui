@@ -1,0 +1,62 @@
+{
+  "parameters": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "focusableWhenDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "href": { "type": { "name": "string", "description": "string" } },
+    "onFocusVisible": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "ref": { "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" } },
+    "tabIndex": {
+      "type": {
+        "name": "NonNullable&lt;React.HTMLAttributes&lt;any&gt[&#39;tabIndex&#39;]&gt",
+        "description": "NonNullable&lt;React.HTMLAttributes&lt;any&gt[&#39;tabIndex&#39;]&gt"
+      }
+    },
+    "to": { "type": { "name": "string", "description": "string" } },
+    "type": {
+      "type": {
+        "name": "React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt[&#39;type&#39;]",
+        "description": "React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt[&#39;type&#39;]"
+      },
+      "default": "'button'"
+    }
+  },
+  "returnValue": {
+    "active": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "disabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focusVisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseButtonRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseButtonRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
+    "setFocusVisible": {
+      "type": {
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt&gt",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt&gt"
+      },
+      "required": true
+    }
+  },
+  "name": "useButton",
+  "filename": "/packages/mui-base/src/ButtonUnstyled/useButton.ts",
+  "demos": "<ul><li><a href=\"/base/react-button/#hook\">Unstyled Button</a></li></ul>"
+}

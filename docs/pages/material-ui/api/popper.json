@@ -8,13 +8,17 @@
       }
     },
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
-    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "direction": {
-      "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
-      "default": "'ltr'"
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
     },
-    "disablePortal": { "type": { "name": "bool" } },
-    "keepMounted": { "type": { "name": "bool" } },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "modifiers": {
       "type": {
         "name": "arrayOf",
@@ -36,13 +40,21 @@
       "default": "{}"
     },
     "popperRef": { "type": { "name": "custom", "description": "ref" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "transition": { "type": { "name": "bool" } }
+    "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Popper",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
@@ -50,6 +62,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popper/Popper.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menus</a></li>\n<li><a href=\"/material-ui/react-popper/\">Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menu</a></li>\n<li><a href=\"/material-ui/react-popper/\">Popper</a></li></ul>",
   "cssComponent": false
 }

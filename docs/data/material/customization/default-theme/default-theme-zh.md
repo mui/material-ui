@@ -8,8 +8,16 @@
 
 {{"demo": "DefaultTheme.js", "hideToolbar": true, "bg": "inline"}}
 
-> 提示：你可以在浏览器控制台中尝试文档主题对象，鉴于在所有的文档页面上，您都可以获取 `theme` 变量。 请注意，**本文档站点正在使用自定义主题**。
+:::info
+💡**Tip:**
+
+you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages.
+:::
+
+:::warning
+Please note that **the documentation site is using a custom theme**.
+:::
 
 <!-- #default-branch-switch -->
 
-If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.js`](https://github.com/mui/material-ui/blob/HEAD/packages/mui-material/src/styles/createTheme.js), and the related imports which `createTheme` uses.
+If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.js`](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/createTheme.js), and the related imports which `createTheme` uses.

@@ -32,8 +32,8 @@ describe('composeClasses', () => {
         },
       ),
     ).to.deep.equal({
-      root: 'MuiTest-root standardOverride MuiTest-standard',
-      slot: 'slotOverride MuiTest-slot',
+      root: 'MuiTest-root MuiTest-standard standardOverride',
+      slot: 'MuiTest-slot slotOverride',
     });
   });
 
@@ -51,8 +51,8 @@ describe('composeClasses', () => {
         },
       ),
     ).to.deep.equal({
-      root: 'MuiTest-root standardOverride MuiTest-standard',
-      slot: 'slotOverride MuiTest-slot',
+      root: 'MuiTest-root MuiTest-standard standardOverride',
+      slot: 'MuiTest-slot slotOverride',
     });
   });
 });

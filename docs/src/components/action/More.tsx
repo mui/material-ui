@@ -27,27 +27,36 @@ export default (function More(props: ButtonBaseProps) {
           props.onFocusVisible(event);
         }
       }}
-      sx={{
-        p: 2,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        cursor: 'pointer',
-        borderRadius: 1,
-        height: '100%',
-        border: '2px dashed',
-        transitionProperty: 'all',
-        transitionDuration: '150ms',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-        '&:hover, &:focus': {
-          borderColor: 'primary.main',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'primary.50'),
-          '@media (hover: none)': {
-            bgcolor: 'transparent',
+      sx={[
+        {
+          p: 2,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          cursor: 'pointer',
+          borderRadius: 1,
+          height: '100%',
+          border: '2px dashed',
+          transitionProperty: 'all',
+          transitionDuration: '150ms',
+          borderColor: 'grey.200',
+          '&:hover, &:focus': {
+            borderColor: 'primary.main',
+            bgcolor: 'primary.50',
+            '@media (hover: none)': {
+              bgcolor: 'transparent',
+            },
           },
         },
-        ...props.sx,
-      }}
+        (theme) =>
+          theme.applyDarkStyles({
+            borderColor: 'primaryDark.500',
+            '&:hover, &:focus': {
+              bgcolor: 'primaryDark.700',
+            },
+          }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
     >
       <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
         <AddCircleOutlineRounded color="primary" fontSize="small" />

@@ -276,6 +276,7 @@ export interface MuiRenderResult extends RenderResult<typeof queries & typeof cu
 }
 
 export interface MuiRenderToStringResult {
+  container: HTMLElement;
   hydrate(): MuiRenderResult;
 }
 
@@ -372,7 +373,6 @@ function createClock(defaultMode: 'fake' | 'real', config: ClockConfig): Clock {
         // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
         // Technically we'd want to reset all modules between tests but we don't have that technology.
         // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
-        // @ts-expect-error Requires https://github.com/DefinitelyTyped/DefinitelyTyped/pull/57290
         shouldClearNativeTimers: true,
       });
     }
@@ -441,6 +441,11 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    */
   clock?: 'fake' | 'real';
   clockConfig?: ClockConfig;
+  /**
+   * To disable SSR warnings when using CSS pseudo selectors, e.g. :first-child
+   * https://github.com/emotion-js/emotion/issues/1105#issuecomment-1058225197
+   */
+  emotionCompat?: true;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -449,6 +454,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
+    emotionCompat,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
@@ -513,6 +519,10 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     profiler = new UsedProfiler(test);
 
     emotionCache = createEmotionCache({ key: 'emotion-client-render' });
+
+    if (emotionCompat) {
+      emotionCache.compat = true;
+    }
 
     serverContainer = document.createElement('div');
     document.body.appendChild(serverContainer);

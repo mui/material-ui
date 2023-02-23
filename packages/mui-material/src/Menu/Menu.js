@@ -158,7 +158,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   return (
     <MenuRoot
-      classes={PopoverClasses}
       onClose={onClose}
       anchorOrigin={{
         vertical: 'bottom',
@@ -180,6 +179,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       ownerState={ownerState}
       {...other}
+      classes={PopoverClasses}
     >
       <MenuMenuList
         onKeyDown={handleListKeyDown}

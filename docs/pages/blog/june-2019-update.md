@@ -8,7 +8,7 @@ tags: ['Company']
 
 Here are the most significant improvements in June:
 
-- 💄 We have introduced a new [ButtonGroup](/material-ui/react-button/#grouped-buttons) component.
+- 💄 We have introduced a new [ButtonGroup](/material-ui/react-button-group/) component.
   ![ButtonGroup](/static/blog/june-2019-update/button-group.png)
 
 - 💄 The [Slider](/material-ui/react-slider/) component has been overhauled and enhanced with range support. It was also moved from the lab to the core.
@@ -25,9 +25,9 @@ But this summary is just scratching the surface. We have accepted 198 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- We will keep working on a new Tree view component.
+- We will keep working on a new Tree View component.
   You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
-  ![Tree view](/static/blog/may-2019-update/tree-view.png)
+  ![Tree View](/static/blog/may-2019-update/tree-view.png)
 
 - We will work on a new Rating component.
   You can already [preview it](https://deploy-preview-16455--material-ui.netlify.app/components/rating/).

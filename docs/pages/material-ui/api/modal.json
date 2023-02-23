@@ -6,39 +6,53 @@
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
-      "deprecationInfo": "Use <code>components.Backdrop</code> instead."
+      "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "BackdropProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>componentsProps.backdrop</code> instead."
+      "deprecationInfo": "Use <code>slotProps.backdrop</code> instead."
     },
     "classes": { "type": { "name": "object" } },
-    "closeAfterTransition": { "type": { "name": "bool" } },
+    "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ backdrop?: object, root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disableAutoFocus": { "type": { "name": "bool" } },
-    "disableEnforceFocus": { "type": { "name": "bool" } },
-    "disableEscapeKeyDown": { "type": { "name": "bool" } },
-    "disablePortal": { "type": { "name": "bool" } },
-    "disableRestoreFocus": { "type": { "name": "bool" } },
-    "disableScrollLock": { "type": { "name": "bool" } },
-    "hideBackdrop": { "type": { "name": "bool" } },
-    "keepMounted": { "type": { "name": "bool" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "onBackdropClick": {
       "type": { "name": "func" },
       "deprecated": true,
       "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
     },
     "onClose": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

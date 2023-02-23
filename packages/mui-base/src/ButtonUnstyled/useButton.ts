@@ -1,15 +1,35 @@
 import * as React from 'react';
 import {
-  unstable_setRef as setRef,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
+import {
+  UseButtonParameters,
+  UseButtonReturnValue,
+  UseButtonRootSlotProps,
+} from './useButton.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
-
-export default function useButton(parameters: UseButtonParameters) {
-  const { disabled = false, focusableWhenDisabled, href, ref, tabIndex, to, type } = parameters;
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Button](https://mui.com/base/react-button/#hook)
+ *
+ * API:
+ *
+ * - [useButton API](https://mui.com/base/api/use-button/)
+ */
+export default function useButton(parameters: UseButtonParameters): UseButtonReturnValue {
+  const {
+    disabled = false,
+    focusableWhenDisabled,
+    href,
+    ref: externalRef,
+    tabIndex,
+    to,
+    type,
+  } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
   const [active, setActive] = React.useState<boolean>(false);
@@ -84,19 +104,18 @@ export default function useButton(parameters: UseButtonParameters) {
   };
 
   const createHandleMouseDown = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget && !disabled) {
+    if (!disabled) {
       setActive(true);
+      document.addEventListener(
+        'mouseup',
+        () => {
+          setActive(false);
+        },
+        { once: true },
+      );
     }
 
     otherHandlers.onMouseDown?.(event);
-  };
-
-  const createHandleMouseUp = (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget) {
-      setActive(false);
-    }
-
-    otherHandlers.onMouseUp?.(event);
   };
 
   const createHandleKeyDown = (otherHandlers: EventHandlers) => (event: React.KeyboardEvent) => {
@@ -148,13 +167,11 @@ export default function useButton(parameters: UseButtonParameters) {
     }
   };
 
-  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(ref, handleOwnRef);
-
-  const updateRef = (instance: HTMLElement | null) => {
+  const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
     setHostElementName(instance?.tagName ?? '');
-    setRef(handleRef, instance);
-  };
+  }, []);
+
+  const handleRef = useForkRef(updateHostElementName, externalRef, focusVisibleRef, buttonRef);
 
   interface AdditionalButtonProps {
     type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
@@ -208,8 +225,7 @@ export default function useButton(parameters: UseButtonParameters) {
       onKeyUp: createHandleKeyUp(externalEventHandlers),
       onMouseDown: createHandleMouseDown(externalEventHandlers),
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
-      onMouseUp: createHandleMouseUp(externalEventHandlers),
-      ref: updateRef as React.Ref<any>,
+      ref: handleRef,
     };
   };
 

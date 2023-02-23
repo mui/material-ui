@@ -146,7 +146,11 @@ const AutocompleteRoot = styled('div', {
     },
   },
   [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    padding: 6,
+    // Don't specify paddingRight, as it overrides the default value set when there is only
+    // one of the popup or clear icon as the specificity is equal so the latter one wins
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
       padding: '2.5px 4px 2.5px 6px',
     },
@@ -175,6 +179,20 @@ const AutocompleteRoot = styled('div', {
   },
   [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 16,
+      paddingBottom: 17,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
+    },
   },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
@@ -278,6 +296,7 @@ const AutocompleteListbox = styled('div', {
   padding: '8px 0',
   maxHeight: '40vh',
   overflow: 'auto',
+  position: 'relative',
   [`& .${autocompleteClasses.option}`]: {
     minHeight: 48,
     display: 'flex',
@@ -422,6 +441,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderTags,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
+    slotProps = {},
     value: valueProp,
     ...other
   } = props;
@@ -472,7 +492,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = (params) => ({
-      className: clsx(classes.tag),
+      className: classes.tag,
       disabled,
       ...getTagProps(params),
     });
@@ -527,9 +547,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
     return renderOption({ ...optionProps, className: classes.option }, option, {
       selected: optionProps['aria-selected'],
+      index,
       inputValue,
     });
   };
+
+  const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
+  const paperSlotProps = slotProps.paper ?? componentsProps.paper;
+  const popperSlotProps = slotProps.popper ?? componentsProps.popper;
+  const popupIndicatorSlotProps = slotProps.popupIndicator ?? componentsProps.popupIndicator;
 
   return (
     <React.Fragment>
@@ -558,11 +584,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       aria-label={clearText}
                       title={clearText}
                       ownerState={ownerState}
-                      {...componentsProps.clearIndicator}
-                      className={clsx(
-                        classes.clearIndicator,
-                        componentsProps.clearIndicator?.className,
-                      )}
+                      {...clearIndicatorSlotProps}
+                      className={clsx(classes.clearIndicator, clearIndicatorSlotProps?.className)}
                     >
                       {clearIcon}
                     </AutocompleteClearIndicator>
@@ -574,8 +597,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       disabled={disabled}
                       aria-label={popupOpen ? closeText : openText}
                       title={popupOpen ? closeText : openText}
-                      className={clsx(classes.popupIndicator)}
                       ownerState={ownerState}
+                      {...popupIndicatorSlotProps}
+                      className={clsx(classes.popupIndicator, popupIndicatorSlotProps?.className)}
                     >
                       {popupIcon}
                     </AutocompletePopupIndicator>
@@ -585,7 +609,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             }),
           },
           inputProps: {
-            className: clsx(classes.input),
+            className: classes.input,
             disabled,
             readOnly,
             ...getInputProps(),
@@ -595,7 +619,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       {expanded ? (
         <AutocompletePopper
           as={PopperComponent}
-          className={clsx(classes.popper)}
           disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
@@ -603,13 +626,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           ownerState={ownerState}
           role="presentation"
           anchorEl={anchorEl}
-          open
+          open={popupOpen}
+          {...popperSlotProps}
+          className={clsx(classes.popper, popperSlotProps?.className)}
         >
           <AutocompletePaper
             ownerState={ownerState}
             as={PaperComponent}
-            {...componentsProps.paper}
-            className={clsx(classes.paper, componentsProps.paper?.className)}
+            {...paperSlotProps}
+            className={clsx(classes.paper, paperSlotProps?.className)}
           >
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
@@ -743,6 +768,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
     paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -1047,6 +1074,16 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

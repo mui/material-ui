@@ -2,12 +2,12 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "node" }, "required": true },
     "classes": { "type": { "name": "object" } },
-    "defaultExpanded": { "type": { "name": "bool" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableGutters": { "type": { "name": "bool" } },
+    "defaultExpanded": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "expanded": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
-    "square": { "type": { "name": "bool" } },
+    "square": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

@@ -29,7 +29,6 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
-          name: 'BasicButtons Material Demo',
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
@@ -54,7 +53,7 @@ describe('CodeSandbox', () => {
       },
       'index.js': {
         content:
-          "import * as React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
       },
     });
   });
@@ -71,7 +70,6 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
-          name: 'BasicButtons Material Demo',
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
@@ -103,7 +101,7 @@ describe('CodeSandbox', () => {
       },
       'index.tsx': {
         content:
-          "import * as React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
       },
       'tsconfig.json': {
         content:

@@ -17,18 +17,16 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
+import materialPkgJson from '../../../../packages/mui-material/package.json';
+import joyPkgJson from '../../../../packages/mui-joy/package.json';
+import basePkgJson from '../../../../packages/mui-base/package.json';
+import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
@@ -94,26 +92,28 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-const ProductIdentifier = ({ name, metadata, versionSelector }) => (
-  <Box sx={{ flexGrow: 1 }}>
-    <Typography
-      sx={(theme) => ({
-        ml: 1,
-        color: theme.palette.grey[600],
-        fontSize: theme.typography.pxToRem(11),
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: '.08rem',
-      })}
-    >
-      {metadata}
-    </Typography>
-    <Box sx={{ display: 'flex' }}>
-      <ProductDrawerButton productName={name} />
-      {versionSelector}
+function ProductIdentifier({ name, metadata, versionSelector }) {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Typography
+        sx={(theme) => ({
+          ml: 1,
+          color: theme.palette.grey[600],
+          fontSize: theme.typography.pxToRem(11),
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '.08rem',
+        })}
+      >
+        {metadata}
+      </Typography>
+      <Box sx={{ display: 'flex' }}>
+        <ProductDrawerButton productName={name} />
+        {versionSelector}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+}
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
@@ -159,6 +159,7 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.45, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
+  boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
   flexGrow: 1,
   flexDirection: 'row',
@@ -179,6 +180,7 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
     paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
@@ -208,7 +210,7 @@ function renderNavItems(options) {
  * @param {import('docs/src/pages').MuiPage} context.page
  */
 function reduceChildRoutes(context) {
-  const { onClose, activePage, items, depth, t } = context;
+  const { onClose, activePageParents, items, depth, t } = context;
   let { page } = context;
   if (page.inSideNav === false) {
     return items;
@@ -217,10 +219,9 @@ function reduceChildRoutes(context) {
   const title = pageToTitleI18n(page, t);
 
   if (page.children && page.children.length >= 1) {
-    const topLevel = activePage
-      ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
-        page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
-      : false;
+    const topLevel =
+      activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
+
     let firstChild = page.children[0];
 
     if (firstChild.subheader && firstChild.children) {
@@ -237,6 +238,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={firstChild.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -246,7 +248,7 @@ function reduceChildRoutes(context) {
         {renderNavItems({
           onClose,
           pages: page.children,
-          activePage,
+          activePageParents,
           depth: subheader ? depth : depth + 1,
           t,
         })}
@@ -263,6 +265,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -281,7 +284,7 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 
 export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
-  const { activePage, pages } = React.useContext(PageContext);
+  const { activePageParents, pages } = React.useContext(PageContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const userLanguage = useUserLanguage();
@@ -290,15 +293,16 @@ export default function AppNavDrawer(props) {
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const isProductScoped = isNewLocation(router.asPath);
-    const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+    const { canonicalAs } = pathnameToLanguage(router.asPath);
 
-    const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
+    const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions = [], sx) => {
+    const renderVersionSelector = (versions, sx) => {
       if (!versions?.length) {
         return null;
       }
+
+      const currentVersion = versions.find((version) => version.current) || versions[0];
       return (
         <React.Fragment>
           <Button
@@ -326,30 +330,11 @@ export default function AppNavDrawer(props) {
                   width: 18,
                   height: 18,
                 },
-                ...(!isProductScoped && {
-                  px: 1,
-                  py: 0.4,
-                  border: `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[200]
-                  }`,
-                  '&:hover': {
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[600]
-                        : theme.palette.grey[300],
-                    background:
-                      theme.palette.mode === 'dark'
-                        ? alpha(theme.palette.primaryDark[700], 0.4)
-                        : theme.palette.grey[50],
-                  },
-                }),
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >
-            {versions[0].text}
+            {currentVersion.text}
           </Button>
           <Menu
             id="mui-version-menu"
@@ -393,14 +378,15 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref onClick={onClose}>
+          <NextLink href="/" passHref legacyBehavior>
             <Box
               component="a"
+              onClick={onClose}
               aria-label={t('goToHome')}
               sx={{
                 pr: '12px',
                 mr: '4px',
-                borderRight: isProductScoped ? '1px solid' : '0px',
+                borderRight: '1px solid',
                 borderColor: (theme) =>
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.primary[100], 0.08)
@@ -410,19 +396,7 @@ export default function AppNavDrawer(props) {
               <SvgMuiLogo width={30} />
             </Box>
           </NextLink>
-          {!isProductScoped &&
-            renderVersionSelector(
-              [
-                { text: `v${process.env.LIB_VERSION}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ],
-              { mr: 2 },
-            )}
-          {asPathWithoutLang.startsWith('/material-ui/') && (
+          {canonicalAs.startsWith('/material-ui/') && (
             <ProductIdentifier
               name="Material UI"
               metadata="MUI Core"
@@ -439,7 +413,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/joy-ui/') && (
+          {canonicalAs.startsWith('/joy-ui/') && (
             <ProductIdentifier
               name="Joy UI"
               metadata="MUI Core"
@@ -448,7 +422,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
+          {canonicalAs.startsWith('/system/') && (
             <ProductIdentifier
               name="MUI System"
               metadata="MUI Core"
@@ -462,7 +436,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/base/') && (
+          {canonicalAs.startsWith('/base/') && (
             <ProductIdentifier
               name="MUI Base"
               metadata="MUI Core"
@@ -471,35 +445,76 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {
-            // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
-            (asPathWithoutLang.startsWith('/x/advanced-components') ||
-              asPathWithoutLang.startsWith('/x/introduction')) && (
-              <ProductIdentifier name="Advanced components" metadata="MUI X" />
-            )
-          }
-          {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
-            asPathWithoutLang.startsWith('/x/api/data-grid')) && (
+          {canonicalAs.startsWith('/x/introduction/') && (
+            <ProductIdentifier name="Advanced components" metadata="MUI X" />
+          )}
+          {(canonicalAs.startsWith('/x/react-data-grid/') ||
+            canonicalAs.startsWith('/x/api/data-grid/')) && (
             <ProductIdentifier
               name="Data Grid"
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
-                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                {
+                  text: 'v6-next',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
+                {
+                  text: 'v5',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
                 { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
               ])}
             />
           )}
-          {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
-            asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
+          {(canonicalAs.startsWith('/x/react-date-pickers/') ||
+            canonicalAs.startsWith('/x/api/date-pickers/')) && (
             <ProductIdentifier
               name="Date pickers"
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATE_PICKERS_VERSION is set from the X repo
-                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+                {
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v6-next`,
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
+                {
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v5`,
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
               ])}
             />
+          )}
+          {canonicalAs.startsWith('/toolpad/') && (
+            <ProductIdentifier name="Toolpad" metadata="MUI Toolpad" />
           )}
         </ToolbarDiv>
         <Divider
@@ -514,7 +529,7 @@ export default function AppNavDrawer(props) {
         {navItems}
       </React.Fragment>
     );
-  }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
+  }, [activePageParents, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>

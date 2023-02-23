@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import type { Theme } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
+import Autocomplete from '@mui/joy/Autocomplete';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
-import ListDivider from '@mui/joy/ListDivider';
+import ListSubheader from '@mui/joy/ListSubheader';
+import Divider from '@mui/joy/Divider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
@@ -41,7 +42,7 @@ import teamTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
 
-const ColorSchemeToggle = () => {
+function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -67,41 +68,23 @@ const ColorSchemeToggle = () => {
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
-};
+}
 
 function TeamNav() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px' }}>
-      <ListItem nested sx={{ p: 0 }}>
-        <Box
-          sx={{
-            mb: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography
-            id="nav-list-browse"
-            textColor="neutral.500"
-            fontWeight={700}
-            sx={{
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '.1rem',
-            }}
-          >
-            Browse
-          </Typography>
+    <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
+      <ListItem nested>
+        <ListSubheader>
+          Browse
           <IconButton
             size="sm"
             variant="plain"
             color="primary"
-            sx={{ '--IconButton-size': '24px' }}
+            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
           >
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
-        </Box>
+        </ListSubheader>
         <List
           aria-labelledby="nav-list-browse"
           sx={{
@@ -130,7 +113,12 @@ function TeamNav() {
                 <ArticleRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Policies</ListItemContent>
-              <Chip variant="soft" size="sm" sx={{ borderRadius: 'sm' }}>
+              <Chip
+                variant="soft"
+                color="info"
+                size="sm"
+                sx={{ borderRadius: 'sm' }}
+              >
                 Beta
               </Chip>
             </ListItemButton>
@@ -145,14 +133,7 @@ export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
     <CssVarsProvider disableTransitionOnChange theme={teamTheme}>
-      <GlobalStyles<Theme>
-        styles={(theme) => ({
-          body: {
-            margin: 0,
-            fontFamily: theme.vars.fontFamily.body,
-          },
-        })}
-      />
+      <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
           <TeamNav />
@@ -194,7 +175,7 @@ export default function TeamExample() {
               Team
             </Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
@@ -310,7 +291,37 @@ export default function TeamExample() {
               </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
-              <TextField placeholder="Position, skills, etc…" />
+              <Autocomplete
+                placeholder="Position, skills, etc…"
+                options={[
+                  {
+                    category: 'Position',
+                    title: 'Frontend engineer',
+                  },
+                  {
+                    category: 'Position',
+                    title: 'Backend engineer',
+                  },
+                  {
+                    category: 'Position',
+                    title: 'Product manager',
+                  },
+                  {
+                    category: 'Skill',
+                    title: 'JavaScript',
+                  },
+                  {
+                    category: 'Skill',
+                    title: 'TypeScript',
+                  },
+                  {
+                    category: 'Skill',
+                    title: 'Project management',
+                  },
+                ]}
+                groupBy={(option) => option.category}
+                getOptionLabel={(option) => option.title}
+              />
               <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
                 <Chip
                   variant="soft"
@@ -323,7 +334,7 @@ export default function TeamExample() {
               </Box>
             </Box>
           </Box>
-          <ListDivider component="hr" />
+          <Divider />
           <Box sx={{ p: 2 }}>
             <Box
               sx={{
@@ -345,7 +356,24 @@ export default function TeamExample() {
               </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
-              <TextField placeholder="Search for a city" />
+              <Autocomplete
+                placeholder="Position, skills, etc…"
+                options={[
+                  // some of Thailand provinces
+                  'Bangkok',
+                  'Amnat Charoen',
+                  'Ang Thong',
+                  'Bueng Kan',
+                  'Buriram',
+                  'Chachoengsao',
+                  'Chai Nat',
+                  'Chaiyaphum',
+                  'Chanthaburi',
+                  'Chiang Mai',
+                  'Chiang Rai',
+                  'Chonburi',
+                ]}
+              />
               <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
                 <Slider
                   valueLabelFormat={(value) => `${value} km`}
@@ -358,7 +386,7 @@ export default function TeamExample() {
               </Box>
             </Box>
           </Box>
-          <ListDivider component="hr" />
+          <Divider />
           <Box sx={{ p: 2 }}>
             <Box
               sx={{
@@ -388,7 +416,7 @@ export default function TeamExample() {
               </RadioGroup>
             </Box>
           </Box>
-          <ListDivider component="hr" />
+          <Divider />
           <Box sx={{ p: 2 }}>
             <Box
               sx={{
@@ -425,7 +453,6 @@ export default function TeamExample() {
                 component="li"
                 variant="outlined"
                 sx={{
-                  bgcolor: 'background.componentBg',
                   borderRadius: 'sm',
                   p: 2,
                   listStyle: 'none',
@@ -442,8 +469,8 @@ export default function TeamExample() {
                     <Typography level="body3">UI Designer</Typography>
                   </Box>
                 </Box>
-                <ListDivider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-width': '48px' }}>
+                <Divider component="div" sx={{ my: 2 }} />
+                <List sx={{ '--List-decorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -464,7 +491,7 @@ export default function TeamExample() {
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography level="body2">Senior designer</Typography>
+                      <Typography fontSize="sm">Senior designer</Typography>
                       <Typography level="body3">Dribbble</Typography>
                     </ListItemContent>
                     <Typography level="body2">2015-now</Typography>
@@ -477,7 +504,7 @@ export default function TeamExample() {
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography level="body2">Desinger</Typography>
+                      <Typography fontSize="sm">Designer</Typography>
                       <Typography level="body3">Pinterest</Typography>
                     </ListItemContent>
                     <Typography level="body2">2012-2015</Typography>
@@ -486,12 +513,12 @@ export default function TeamExample() {
                 <Button
                   size="sm"
                   variant="plain"
-                  endIcon={<KeyboardArrowRightRoundedIcon fontSize="small" />}
+                  endDecorator={<KeyboardArrowRightRoundedIcon fontSize="small" />}
                   sx={{ px: 1, mt: 1 }}
                 >
                   Expand
                 </Button>
-                <ListDivider component="div" sx={{ my: 2 }} />
+                <Divider component="div" sx={{ my: 2 }} />
                 <Typography fontSize="sm">Skills tags:</Typography>
                 <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
                   <Chip

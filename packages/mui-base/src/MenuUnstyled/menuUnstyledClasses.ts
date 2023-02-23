@@ -10,10 +10,10 @@ export interface MenuUnstyledClasses {
 export type MenuUnstyledClassKey = keyof MenuUnstyledClasses;
 
 export function getMenuUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenuUnstyled', slot);
+  return generateUtilityClass('MuiMenu', slot);
 }
 
-const menuUnstyledClasses: MenuUnstyledClasses = generateUtilityClasses('MuiMenuUnstyled', [
+const menuUnstyledClasses: MenuUnstyledClasses = generateUtilityClasses('MuiMenu', [
   'root',
   'listbox',
   'expanded',

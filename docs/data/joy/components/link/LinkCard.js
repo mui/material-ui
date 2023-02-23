@@ -10,7 +10,7 @@ export default function Links() {
   return (
     <Card
       sx={{
-        bgcolor: 'background.level1',
+        bgcolor: 'background.body',
         '&:hover, &:focus-within': {
           bgcolor: 'background.level2',
         },
@@ -32,7 +32,7 @@ export default function Links() {
               Joy UI
             </Link>
           </Typography>
-          <Typography level="body2">Spark joy components</Typography>
+          <Typography level="body2">Components that spark joy!</Typography>
         </div>
       </Box>
       <Typography level="body2" display="flex" alignItems="center" gap={0.5}>

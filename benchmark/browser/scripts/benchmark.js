@@ -155,6 +155,18 @@ async function run() {
         path: './noop/index.js',
       },
       {
+        name: 'Grid (html)',
+        path: './grid-simple/index.js',
+      },
+      {
+        name: 'Grid System',
+        path: './grid-system/index.js',
+      },
+      {
+        name: 'Grid Material UI',
+        path: './grid-material-ui/index.js',
+      },
+      {
         name: 'Table',
         path: './table-cell/index.js',
       },

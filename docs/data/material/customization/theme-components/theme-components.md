@@ -100,13 +100,13 @@ const finalTheme = createTheme({
 
 The `sx` prop acts as a shortcut for defining custom styles that access the theme object.
 This prop lets you write inline styles using a superset of CSS.
-Learn more about [the concept behind the `sx` prop](/system/the-sx-prop/) and [how `sx` differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
+Learn more about [the concept behind the `sx` prop](/system/getting-started/the-sx-prop/) and [how `sx` differs from the `styled` utility](/system/styled/#difference-with-the-sx-prop).
 
 You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation.
 This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
 :::info
-**Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
 :::
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
@@ -116,18 +116,20 @@ const finalTheme = createTheme({
   components: {
     MuiChip: {
       styleOverrides: {
-        root: sx({
-          px: 1,
-          py: 0.25,
-          borderRadius: 1,
-        }),
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            px: 1,
+            py: 0.25,
+            borderRadius: 1,
+          }),
         label: {
           padding: 'initial',
         },
-        icon: sx({
-          mr: 0.5,
-          ml: '-2px',
-        }),
+        icon: ({ theme }) =>
+          theme.unstable_sx({
+            mr: 0.5,
+            ml: '-2px',
+          }),
       },
     },
   },

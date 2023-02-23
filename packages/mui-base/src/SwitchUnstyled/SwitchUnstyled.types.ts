@@ -1,62 +1,70 @@
-import { Simplify } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
 
-export interface SwitchUnstyledComponentsPropsOverrides {}
+export interface SwitchUnstyledRootSlotPropsOverrides {}
+export interface SwitchUnstyledThumbSlotPropsOverrides {}
+export interface SwitchUnstyledInputSlotPropsOverrides {}
+export interface SwitchUnstyledTrackSlotPropsOverrides {}
 
-export interface SwitchUnstyledProps extends UseSwitchParameters {
+export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   /**
    * Class name applied to the root element.
    */
   className?: string;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Thumb?: React.ElementType;
-    Input?: React.ElementType;
-    Track?: React.ElementType | null;
+  slots?: {
+    root?: React.ElementType;
+    thumb?: React.ElementType;
+    input?: React.ElementType;
+    track?: React.ElementType | null;
   };
 
   /**
    * The props used for each slot inside the Switch.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledRootSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
     thumb?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledThumbSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
     input?: SlotComponentProps<
       'input',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledInputSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
     track?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledTrackSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
   };
 }
 
+export interface SwitchUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & SwitchUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type SwitchUnstyledProps<
+  D extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],
+> = OverrideProps<SwitchUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
+
 export type SwitchUnstyledOwnerState = Simplify<
-  SwitchUnstyledProps & {
+  SwitchUnstyledOwnProps & {
     checked: boolean;
     disabled: boolean;
     focusVisible: boolean;

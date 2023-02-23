@@ -1,9 +1,21 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { EventHandlers } from '../utils/types';
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import { useButton } from '../ButtonUnstyled';
 import { UseMenuItemParameters } from './useMenuItem.types';
+import useForcedRerendering from '../utils/useForcedRerendering';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ *
+ * API:
+ *
+ * - [useMenuItem API](https://mui.com/base/api/use-menu-item/)
+ */
 export default function useMenuItem(props: UseMenuItemParameters) {
   const { disabled = false, ref, label } = props;
 
@@ -17,7 +29,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     throw new Error('MenuItemUnstyled must be used within a MenuUnstyled');
   }
 
-  const { registerItem, unregisterItem, open } = menuContext;
+  const { registerItem, unregisterItem, open, registerHighlightChangeHandler } = menuContext;
 
   React.useEffect(() => {
     if (id === undefined) {
@@ -55,24 +67,40 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
   const { highlighted } = itemState ?? { highlighted: false };
 
+  const rerender = useForcedRerendering();
+
   React.useEffect(() => {
+    function updateHighlightedState(highlightedItemId: string | null) {
+      if (highlightedItemId === id && !highlighted) {
+        rerender();
+      } else if (highlightedItemId !== id && highlighted) {
+        rerender();
+      }
+    }
+
+    return registerHighlightChangeHandler(updateHighlightedState);
+  });
+
+  React.useEffect(() => {
+    // TODO: this should be handled by the MenuButton
     requestFocus(highlighted && open);
   }, [highlighted, open]);
 
   if (id === undefined) {
     return {
-      getRootProps: (other?: Record<string, any>) => ({
+      getRootProps: (other?: EventHandlers) => ({
         ...other,
         ...getButtonProps(other),
         role: 'menuitem',
       }),
       disabled: false,
       focusVisible,
+      highlighted: false,
     };
   }
 
   return {
-    getRootProps: (other?: Record<string, any>) => {
+    getRootProps: (other?: EventHandlers) => {
       const optionProps = menuContext.getItemProps(id, other);
 
       return {
@@ -85,5 +113,6 @@ export default function useMenuItem(props: UseMenuItemParameters) {
     },
     disabled: itemState?.disabled ?? false,
     focusVisible,
+    highlighted,
   };
 }

@@ -1,19 +1,30 @@
 import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
 export interface CheckboxPropsVariantOverrides {}
-
 export interface CheckboxPropsColorOverrides {}
-
 export interface CheckboxPropsSizeOverrides {}
+
+export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CheckboxSlot,
+  {
+    root: SlotProps<'span', {}, CheckboxOwnerState>;
+    checkbox: SlotProps<'span', {}, CheckboxOwnerState>;
+    action: SlotProps<'span', {}, CheckboxOwnerState>;
+    input: SlotProps<'input', {}, CheckboxOwnerState>;
+    label: SlotProps<'label', {}, CheckboxOwnerState>;
+  }
+>;
 
 export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    UseSwitchParameters & {
+    UseSwitchParameters &
+    CheckboxSlotsAndSlotProps & {
       /**
        * The icon to display when the component is checked.
        * @default <CheckIcon />
@@ -23,22 +34,6 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * Class name applied to the root element.
        */
       className?: string;
-      /**
-       * The component used for the Root slot.
-       * Either a string to use a HTML element or a component.
-       */
-      component?: React.ElementType;
-      /**
-       * The props used for each slot inside the Input.
-       * @default {}
-       */
-      componentsProps?: {
-        root?: React.ComponentPropsWithRef<'span'>;
-        action?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
-        checkbox?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
-        input?: React.ComponentPropsWithRef<'input'> & { sx?: SxProps };
-        label?: React.ComponentPropsWithRef<'label'> & { sx?: SxProps };
-      };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
@@ -94,6 +89,11 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The icon when `checked` is false.
        */
       uncheckedIcon?: React.ReactNode;
+      /**
+       * The value of the component. The DOM API casts this to a string.
+       * The browser uses "on" as the default value.
+       */
+      value?: React.AllHTMLAttributes<HTMLInputElement>['value'];
     };
   defaultComponent: D;
 }
@@ -104,3 +104,10 @@ export type CheckboxProps<
     component?: React.ElementType;
   },
 > = OverrideProps<CheckboxTypeMap<P, D>, D>;
+
+export interface CheckboxOwnerState extends ApplyColorInversion<CheckboxProps> {
+  /**
+   * If `true`, the checkbox's focus is visible.
+   */
+  focusVisible?: boolean;
+}

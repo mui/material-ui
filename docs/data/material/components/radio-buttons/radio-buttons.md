@@ -1,15 +1,15 @@
 ---
 product: material-ui
-title: Radio buttons React component
+title: React Radio Group component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
-materialDesign: https://material.io/components/selection-controls#radio-buttons
-waiAria: https://www.w3.org/TR/wai-aria-practices/#radiobutton
+materialDesign: https://m2.material.io/components/selection-controls#radio-buttons
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 ---
 
-# Radio
+# Radio Group
 
-<p class="description">Radio buttons allow the user to select one option from a set.</p>
+<p class="description">The Radio Group allows the user to select one option from a set.</p>
 
 Use radio buttons when the user needs to see all available options.
 If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
@@ -101,7 +101,7 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
 
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.

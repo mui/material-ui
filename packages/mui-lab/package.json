@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.87",
+  "version": "5.0.0-alpha.120",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -29,12 +29,12 @@
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files ",
-    "build:legacy": "node ../../scripts/build legacy",
-    "build:modern": "node ../../scripts/build modern",
-    "build:node": "node ../../scripts/build node",
-    "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "node ../../scripts/buildTypes",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build:modern": "node ../../scripts/build.mjs modern",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.{js,ts,tsx}'",
@@ -45,10 +45,6 @@
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
-    "date-fns": "^2.25.0",
-    "dayjs": "^1.10.7",
-    "luxon": "^1.28.0 || ^2.0.0",
-    "moment": "^2.29.1",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
@@ -61,39 +57,17 @@
     },
     "@emotion/styled": {
       "optional": true
-    },
-    "date-fns": {
-      "optional": true
-    },
-    "dayjs": {
-      "optional": true
-    },
-    "luxon": {
-      "optional": true
-    },
-    "moment": {
-      "optional": true
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@mui/base": "5.0.0-alpha.86",
-    "@mui/system": "^5.8.5",
-    "@mui/utils": "^5.8.4",
-    "@mui/x-date-pickers": "5.0.0-alpha.1",
-    "clsx": "^1.1.1",
+    "@babel/runtime": "^7.20.13",
+    "@mui/base": "5.0.0-alpha.118",
+    "@mui/system": "^5.11.9",
+    "@mui/types": "^7.2.3",
+    "@mui/utils": "^5.11.9",
+    "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
-    "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.2",
-    "rifm": "^0.12.1"
-  },
-  "devDependencies": {
-    "@mui/types": "^7.1.4",
-    "@types/luxon": "^2.3.2",
-    "date-fns": "^2.28.0",
-    "dayjs": "^1.11.3",
-    "luxon": "^1.21.3 || ^2.x",
-    "moment": "^2.29.3"
+    "react-is": "^18.2.0"
   },
   "sideEffects": false,
   "publishConfig": {

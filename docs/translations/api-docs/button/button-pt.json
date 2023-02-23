@@ -14,7 +14,7 @@
     "href": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node.",
     "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
     "startIcon": "Elemento colocado antes dos filhos.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "A variante a usar."
   },
   "classDescriptions": {
@@ -41,6 +41,26 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
     },
+    "textSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"success\"</code>"
+    },
+    "textError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"error\"</code>"
+    },
+    "textInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"info\"</code>"
+    },
+    "textWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"warning\"</code>"
+    },
     "outlined": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
@@ -61,6 +81,26 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
+    "outlinedSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
+    },
+    "outlinedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
+    },
+    "outlinedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
+    },
+    "outlinedWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
+    },
     "contained": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
@@ -80,6 +120,26 @@
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "containedSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"success\"</code>"
+    },
+    "containedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"info\"</code>"
+    },
+    "containedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"error\"</code>"
+    },
+    "containedWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"warning\"</code>"
     },
     "disableElevation": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",

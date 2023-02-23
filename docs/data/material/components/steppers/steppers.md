@@ -3,7 +3,7 @@ product: material-ui
 title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: stepper'
-materialDesign: https://material.io/archive/guidelines/components/steppers.html
+materialDesign: https://m1.material.io/components/steppers.html
 ---
 
 # Stepper
@@ -18,8 +18,8 @@ Steppers may display a transient feedback message after a step is saved.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-:::warning
-**Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them.
+:::info
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
 ## Horizontal stepper
@@ -84,7 +84,7 @@ If you need to make the content available to search engines or render expensive 
 
 ## Mobile stepper
 
-This component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+This component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://m1.material.io/components/steppers.html#steppers-types-of-steps) for its inspiration.
 
 The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 

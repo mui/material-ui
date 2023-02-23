@@ -38,18 +38,24 @@ export default function HeroContainer({
               ref={rightRef}
               id="hero-container-right-area"
               aria-hidden="true"
-              sx={{
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-                minWidth: '50vw',
-                minHeight: 500,
-                height: 'calc(100vh - 120px)',
-                maxHeight: { md: 700, xl: 1000 },
-                borderBottomLeftRadius: 10,
-                transition: 'max-height 0.3s',
-                position: 'relative',
-                overflow: 'hidden',
-                ...rightSx,
-              }}
+              sx={[
+                {
+                  bgcolor: 'grey.50',
+                  minWidth: '50vw',
+                  minHeight: 500,
+                  height: 'calc(100vh - 120px)',
+                  maxHeight: { md: 700, xl: 1000 },
+                  borderBottomLeftRadius: 10,
+                  transition: 'max-height 0.3s',
+                  position: 'relative',
+                  overflow: 'hidden',
+                },
+                (theme) =>
+                  theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.900',
+                  }),
+                ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
+              ]}
             >
               {right}
             </Box>

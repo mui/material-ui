@@ -1,12 +1,17 @@
 import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import extendTheme from './extendTheme';
-import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import extendTheme, { CssVarsThemeOptions } from './extendTheme';
+import { createSoftInversion, createSolidInversion } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
+const shouldSkipGeneratingVar = (keys: string[]) =>
+  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
+  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
+  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
+  (keys[0] === 'focus' && keys[1] !== 'thickness');
+
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme,
-  Theme
+  DefaultColorScheme | ExtendedColorScheme
 >({
   theme: extendTheme(),
   attribute: 'data-joy-color-scheme',
@@ -16,43 +21,21 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     light: 'light',
     dark: 'dark',
   },
-  prefix: 'joy',
   resolveTheme: (mergedTheme: Theme) => {
-    mergedTheme.variants = deepmerge(
+    const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
+    mergedTheme.colorInversion = deepmerge(
       {
-        plain: createVariant('plain', mergedTheme),
-        plainHover: createVariant('plainHover', mergedTheme),
-        plainActive: createVariant('plainActive', mergedTheme),
-        plainDisabled: createVariant('plainDisabled', mergedTheme),
-        outlined: createVariant('outlined', mergedTheme),
-        outlinedHover: createVariant('outlinedHover', mergedTheme),
-        outlinedActive: createVariant('outlinedActive', mergedTheme),
-        outlinedDisabled: createVariant('outlinedDisabled', mergedTheme),
-        soft: createVariant('soft', mergedTheme),
-        softHover: createVariant('softHover', mergedTheme),
-        softActive: createVariant('softActive', mergedTheme),
-        softDisabled: createVariant('softDisabled', mergedTheme),
-        solid: createVariant('solid', mergedTheme),
-        solidHover: createVariant('solidHover', mergedTheme),
-        solidActive: createVariant('solidActive', mergedTheme),
-        solidDisabled: createVariant('solidDisabled', mergedTheme),
-
-        // variant overrides
-        plainOverrides: createTextOverrides(mergedTheme),
-        outlinedOverrides: createTextOverrides(mergedTheme),
-        softOverrides: createTextOverrides(mergedTheme),
-        solidOverrides: createContainedOverrides(mergedTheme),
-      } as typeof mergedTheme.variants,
-      mergedTheme.variants,
+        soft: createSoftInversion(mergedTheme),
+        solid: createSolidInversion(mergedTheme),
+      },
+      typeof colorInversionInput === 'function'
+        ? colorInversionInput(mergedTheme)
+        : colorInversionInput,
       { clone: false },
     );
     return mergedTheme;
   },
-  shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' ||
-    keys[0] === 'variants' ||
-    keys[0] === 'focus' ||
-    keys[0] === 'breakpoints',
+  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };

@@ -10,7 +10,6 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Sheet from '@mui/joy/Sheet';
 import HomeRounded from '@mui/icons-material/HomeRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Person from '@mui/icons-material/Person';
@@ -137,46 +136,45 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
           disablePortal
           keepMounted
         >
-          <Sheet
+          <List
+            role="menu"
+            aria-label="About"
             variant="outlined"
-            sx={{ my: 2, boxShadow: 'md', borderRadius: 'sm' }}
+            sx={{
+              my: 2,
+              boxShadow: 'md',
+              borderRadius: 'sm',
+              '--List-radius': '8px',
+              '--List-padding': '4px',
+              '--List-divider-gap': '4px',
+              '--List-decorator-size': '32px',
+            }}
           >
-            <List
-              role="menu"
-              aria-label="About"
-              sx={{
-                '--List-radius': '8px',
-                '--List-padding': '4px',
-                '--List-divider-gap': '4px',
-                '--List-decorator-width': '32px',
-              }}
-            >
-              <ListItem role="none">
-                <ListItemButton role="menuitem" {...getTargetProps(0)}>
-                  <ListItemDecorator>
-                    <Apps />
-                  </ListItemDecorator>
-                  Overview
-                </ListItemButton>
-              </ListItem>
-              <ListItem role="none">
-                <ListItemButton role="menuitem" {...getTargetProps(1)}>
-                  <ListItemDecorator>
-                    <Person />
-                  </ListItemDecorator>
-                  Administration
-                </ListItemButton>
-              </ListItem>
-              <ListItem role="none">
-                <ListItemButton role="menuitem" {...getTargetProps(2)}>
-                  <ListItemDecorator>
-                    <FactCheck />
-                  </ListItemDecorator>
-                  Facts
-                </ListItemButton>
-              </ListItem>
-            </List>
-          </Sheet>
+            <ListItem role="none">
+              <ListItemButton role="menuitem" {...getTargetProps(0)}>
+                <ListItemDecorator>
+                  <Apps />
+                </ListItemDecorator>
+                Overview
+              </ListItemButton>
+            </ListItem>
+            <ListItem role="none">
+              <ListItemButton role="menuitem" {...getTargetProps(1)}>
+                <ListItemDecorator>
+                  <Person />
+                </ListItemDecorator>
+                Administration
+              </ListItemButton>
+            </ListItem>
+            <ListItem role="none">
+              <ListItemButton role="menuitem" {...getTargetProps(2)}>
+                <ListItemDecorator>
+                  <FactCheck />
+                </ListItemDecorator>
+                Facts
+              </ListItemButton>
+            </ListItem>
+          </List>
         </PopperUnstyled>
       </Box>
     </ClickAwayListener>
@@ -250,47 +248,47 @@ const AdmissionsMenu = React.forwardRef(
             disablePortal
             keepMounted
           >
-            <Sheet
+            <List
+              role="menu"
+              aria-label="About"
               variant="outlined"
-              sx={{ my: 2, boxShadow: 'md', borderRadius: 'sm', minWidth: 180 }}
+              sx={{
+                my: 2,
+                boxShadow: 'md',
+                borderRadius: 'sm',
+                minWidth: 180,
+                '--List-radius': '8px',
+                '--List-padding': '4px',
+                '--List-divider-gap': '4px',
+              }}
             >
-              <List
-                role="menu"
-                aria-label="About"
-                sx={{
-                  '--List-radius': '8px',
-                  '--List-padding': '4px',
-                  '--List-divider-gap': '4px',
-                }}
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(0)}>
+                  <ListItemContent>Apply</ListItemContent>
+                  <Chip size="sm" variant="soft" color="danger">
+                    Last 2 days!
+                  </Chip>
+                </ListItemButton>
+              </ListItem>
+              <ListDivider />
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(1)}>
+                  Visit
+                </ListItemButton>
+              </ListItem>
+              <ListItem
+                role="none"
+                endAction={
+                  <IconButton variant="outlined" color="neutral" size="sm">
+                    <BookmarkAdd />
+                  </IconButton>
+                }
               >
-                <ListItem role="none">
-                  <ListItemButton role="menuitem" {...getTargetProps(0)}>
-                    <ListItemContent>Apply</ListItemContent>
-                    <Chip size="sm" variant="soft" color="danger">
-                      Last 2 days!
-                    </Chip>
-                  </ListItemButton>
-                </ListItem>
-                <ListDivider />
-                <ListItem role="none">
-                  <ListItemButton role="menuitem" {...getTargetProps(1)}>
-                    Visit
-                  </ListItemButton>
-                </ListItem>
-                <ListItem
-                  role="none"
-                  endAction={
-                    <IconButton variant="outlined" color="neutral" size="sm">
-                      <BookmarkAdd />
-                    </IconButton>
-                  }
-                >
-                  <ListItemButton role="menuitem" {...getTargetProps(2)}>
-                    Photo tour
-                  </ListItemButton>
-                </ListItem>
-              </List>
-            </Sheet>
+                <ListItemButton role="menuitem" {...getTargetProps(2)}>
+                  Photo tour
+                </ListItemButton>
+              </ListItem>
+            </List>
           </PopperUnstyled>
         </Box>
       </ClickAwayListener>
@@ -305,7 +303,7 @@ export default function ExampleNavigationMenu() {
     <Box sx={{ minHeight: 190 }}>
       <List
         role="menubar"
-        row
+        orientation="horizontal"
         sx={{
           '--List-radius': '8px',
           '--List-padding': '4px',

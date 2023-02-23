@@ -11,7 +11,11 @@ import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types'
  *
  * Demos:
  *
- * - [Switches](https://mui.com/components/switches/)
+ * - [Unstyled Switch](https://mui.com/base/react-switch/#hook)
+ *
+ * API:
+ *
+ * - [useSwitch API](https://mui.com/base/api/use-switch/)
  */
 export default function useSwitch(props: UseSwitchParameters) {
   const {

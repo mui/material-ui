@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemContentProps, ListItemContentTypeMap } from './ListItemContentProps';
+import { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
 import { getListItemContentUtilityClass } from './listItemContentClasses';
 
 const useUtilityClasses = () => {
@@ -19,7 +19,7 @@ const ListItemContentRoot = styled('div', {
   name: 'JoyListItemContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemContentProps }>({
+})<{ ownerState: ListItemContentOwnerState }>({
   flex: '1 1 auto',
   minWidth: 0,
 });
@@ -60,10 +60,6 @@ ListItemContent.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

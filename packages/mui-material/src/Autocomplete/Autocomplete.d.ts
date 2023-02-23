@@ -53,6 +53,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
+  index: number;
   selected: boolean;
 }
 
@@ -121,6 +122,8 @@ export interface AutocompleteProps<
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
     paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
   };
   /**
    * If `true`, the component is disabled.
@@ -258,6 +261,16 @@ export interface AutocompleteProps<
    */
   size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    clearIndicator?: Partial<IconButtonProps>;
+    paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -275,7 +288,7 @@ export interface AutocompleteProps<
  */
 export default function Autocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;

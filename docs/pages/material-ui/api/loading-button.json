@@ -2,8 +2,8 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" } },
-    "loading": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingIndicator": {
       "type": { "name": "node" },
       "default": "<CircularProgress color=\"inherit\" size={16} />"
@@ -94,6 +94,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/material-ui/api/button/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Buttons</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",
   "cssComponent": false
 }

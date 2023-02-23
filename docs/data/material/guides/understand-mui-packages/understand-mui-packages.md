@@ -34,7 +34,7 @@ The following chart illustrates how MUI's packages are related to one another:
 <img src="/static/images/packages/mui-packages.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X."/>
 
 In this article, we'll only cover the MUI Core packages.
-Check the [MUI X overview](/x/advanced-components/) for more information about our collection of advanced components.
+Visit the [MUI X Overview](/x/introduction/) for more information about our collection of advanced components.
 
 ## Component libraries
 
@@ -77,7 +77,7 @@ const Root = styled('span')(`
 `);
 
 export default function CustomSwitch() {
-  const label = { componentsProps: { input: { 'aria-label': 'Demo switch' } } };
+  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
 
   return <SwitchUnstyled component={Root} {...label} />;
 }
@@ -102,7 +102,7 @@ See the [Styled engine guide](/material-ui/guides/styled-engine/) for more detai
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 
 :::warning
-⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
+Prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
 This package is now deprecated and will be removed in the future.
 Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
 :::

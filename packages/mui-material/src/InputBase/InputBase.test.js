@@ -21,7 +21,16 @@ describe('<InputBase />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
     testVariantProps: { size: 'small' },
-    skip: ['componentProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      // can't test with DOM element as InputBase places an ownerState prop on it unconditionally.
+      root: { expectedClassName: classes.root, testWithElement: null },
+      input: { expectedClassName: classes.input, testWithElement: null },
+    },
+    skip: [
+      'componentProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render an <input /> inside the div', () => {
@@ -119,6 +128,16 @@ describe('<InputBase />', () => {
         getByRole('textbox').focus();
       });
       expect(handleFocus.called).to.equal(false);
+    });
+  });
+
+  describe('prop: readonly', () => {
+    it('should render a readonly <input />', () => {
+      const { getByRole } = render(<InputBase readOnly />);
+      const input = getByRole('textbox');
+      expect(input).to.have.class(classes.input);
+      expect(input).to.have.class(classes.readOnly);
+      expect(input).to.have.property('readOnly');
     });
   });
 
@@ -520,7 +539,7 @@ describe('<InputBase />', () => {
 
       it('should not warn when toggling between inputs', () => {
         // this will ensure that unregistering was called during unmount
-        const ToggleFormInputs = () => {
+        function ToggleFormInputs() {
           const [flag, setFlag] = React.useState(true);
 
           return (
@@ -537,7 +556,7 @@ describe('<InputBase />', () => {
               </button>
             </FormControl>
           );
-        };
+        }
 
         const { getByText } = render(<ToggleFormInputs />);
         expect(() => {

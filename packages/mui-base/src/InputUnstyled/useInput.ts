@@ -7,9 +7,19 @@ import {
   UseInputInputSlotProps,
   UseInputParameters,
   UseInputRootSlotProps,
+  UseInputReturnValue,
 } from './useInput.types';
-
-export default function useInput(parameters: UseInputParameters) {
+/**
+ *
+ * Demos:
+ *
+ * - [Unstyled Input](https://mui.com/base/react-input/#hook)
+ *
+ * API:
+ *
+ * - [useInput API](https://mui.com/base/api/use-input/)
+ */
+export default function useInput(parameters: UseInputParameters): UseInputReturnValue {
   const {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
@@ -19,6 +29,7 @@ export default function useInput(parameters: UseInputParameters) {
     onFocus,
     required: requiredProp = false,
     value: valueProp,
+    inputRef: inputRefProp,
   } = parameters;
 
   const formControlContext: FormControlUnstyledState | undefined = useFormControlUnstyledContext();
@@ -66,7 +77,7 @@ export default function useInput(parameters: UseInputParameters) {
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
           [
-            'MUI: You have provided a `components.Input` to the input component',
+            'MUI: You have provided a `slots.input` to the input component',
             'that does not correctly handle the `ref` prop.',
             'Make sure the `ref` prop is called with a HTMLInputElement.',
           ].join('\n'),
@@ -76,7 +87,7 @@ export default function useInput(parameters: UseInputParameters) {
   }, []);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleInputRef = useForkRef(inputRef, handleInputRefWarning);
+  const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
 
   const [focused, setFocused] = React.useState(false);
 
@@ -130,7 +141,7 @@ export default function useInput(parameters: UseInputParameters) {
         if (element == null) {
           throw new MuiError(
             'MUI: Expected valid input target. ' +
-              'Did you use a custom `components.Input` and forget to forward refs? ' +
+              'Did you use a custom `slots.input` and forget to forward refs? ' +
               'See https://mui.com/r/input-component-ref-interface for more info.',
           );
         }

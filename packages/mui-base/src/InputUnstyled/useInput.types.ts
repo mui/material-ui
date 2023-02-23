@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormControlUnstyledState } from '../FormControlUnstyled';
 
 export interface UseInputParameters {
   /**
@@ -11,7 +12,7 @@ export interface UseInputParameters {
    */
   disabled?: boolean;
   /**
-   * If `true`, the `input` will indicate an error.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
@@ -28,7 +29,7 @@ export interface UseInputParameters {
   value?: unknown;
 }
 
-interface UseInputRootSlotOwnProps {
+export interface UseInputRootSlotOwnProps {
   onClick: React.MouseEventHandler | undefined;
 }
 
@@ -38,7 +39,7 @@ export type UseInputRootSlotProps<TOther = {}> = Omit<
 > &
   UseInputRootSlotOwnProps;
 
-interface UseInputInputSlotOwnProps {
+export interface UseInputInputSlotOwnProps {
   'aria-invalid': React.AriaAttributes['aria-invalid'];
   defaultValue: string | number | readonly string[] | undefined;
   ref: React.Ref<HTMLInputElement>;
@@ -52,3 +53,50 @@ interface UseInputInputSlotOwnProps {
 
 export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInputSlotOwnProps> &
   UseInputInputSlotOwnProps;
+
+export interface UseInputReturnValue {
+  /**
+   * If `true`, the component will be disabled.
+   * @default false
+   */
+  disabled: boolean;
+  /**
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
+   * @default false
+   */
+  error: boolean;
+  /**
+   * If `true`, the `input` will be focused.
+   * @default false
+   */
+  focused: boolean;
+  /**
+   * Return value from the `useFormControlUnstyledContext` hook.
+   */
+  formControlContext: FormControlUnstyledState | undefined;
+  /**
+   * Resolver for the input slot's props.
+   * @param externalProps props for the input slot
+   * @returns props that should be spread on the input slot
+   */
+  getInputProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseInputInputSlotProps<TOther>;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseInputRootSlotProps<TOther>;
+  /**
+   * If `true`, the `input` will indicate that it's required.
+   * @default false
+   */
+  required: boolean;
+  /**
+   * The `value` of the `input` element.
+   */
+  value: unknown;
+}

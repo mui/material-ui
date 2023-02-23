@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
+
+export interface TabsPropsIndicatorColorOverrides {}
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
   props: P & {
@@ -49,7 +52,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      * Determines the color of the indicator.
      * @default 'primary'
      */
-    indicatorColor?: 'secondary' | 'primary';
+    indicatorColor?: OverridableStringUnion<
+      'secondary' | 'primary',
+      TabsPropsIndicatorColorOverrides
+    >;
     /**
      * Callback fired when the value changes.
      *

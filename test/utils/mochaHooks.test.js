@@ -8,7 +8,7 @@ import { createRenderer, act } from './createRenderer';
 describe('mochaHooks', () => {
   // one block per hook.
   describe('afterEach', () => {
-    describe('throws on unexpected console.(warn|error) in afterEach', function suite() {
+    describe('on unexpected console.(warn|error) in afterEach', function suite() {
       const mochaHooks = createMochaHooks(Mocha);
 
       beforeEach(function beforeEachHook() {
@@ -20,7 +20,7 @@ describe('mochaHooks', () => {
         });
       });
 
-      it('', () => {
+      it('throws an error', () => {
         console.warn('unexpected warning');
         console.error('unexpected error');
       });
@@ -45,7 +45,7 @@ describe('mochaHooks', () => {
     });
 
     // TODO: May not be relevant in React 18
-    describe('dedupes missing act() warnings by component', () => {
+    describe('when having missing act() warnings by component', () => {
       const mochaHooks = createMochaHooks(Mocha);
       // missing act warnings only happen in StrictMode
       const { render } = createRenderer({ strict: true });
@@ -59,7 +59,7 @@ describe('mochaHooks', () => {
         });
       });
 
-      it('', () => {
+      it('dedupes them', () => {
         const Child = React.forwardRef(function Child() {
           React.useEffect(() => {});
           React.useEffect(() => {});

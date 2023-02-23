@@ -47,8 +47,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 
   const enableStrictModeCompat = true;
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, children.ref, ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {

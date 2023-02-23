@@ -8,7 +8,7 @@
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       }
     },
-    "disableAnimation": { "type": { "name": "bool" } },
+    "disableAnimation": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },
@@ -16,7 +16,10 @@
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
     "size": {
-      "type": { "name": "enum", "description": "'normal'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'normal'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'normal'"
     },
     "sx": {
@@ -61,6 +64,6 @@
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/material-ui/api/form-label/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text fields</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }
