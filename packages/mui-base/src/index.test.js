@@ -21,6 +21,7 @@ describe('@mui/base', () => {
   it('should contain all exports from sub folders', async () => {
     const files = await glob('packages/mui-base/src/*/index.{ts,js}');
     const muiBaseIndexFile = fs.readFileSync('packages/mui-base/src/index.js', 'utf-8');
+
     files.forEach((file) => {
       const content = fs.readFileSync(file, 'utf-8');
       const hasDefaultExport = /export { default }/.test(content);

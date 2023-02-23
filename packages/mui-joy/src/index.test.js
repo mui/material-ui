@@ -22,6 +22,7 @@ describe('@mui/joy', () => {
   it('should contain all exports from sub folders', async () => {
     const files = await glob('packages/mui-joy/src/*/index.{ts,js}');
     const muiJoyIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
+
     files.forEach((file) => {
       const content = fs.readFileSync(file, 'utf-8');
       const hasDefaultExport = /export { default }/.test(content);
