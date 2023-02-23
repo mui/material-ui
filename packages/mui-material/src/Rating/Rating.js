@@ -504,7 +504,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       className={clsx(
         classes.root,
         {
-          // TODO v6: remove this class as it duplicates with the gloabl state class Mui-readOnly
+          // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
           'MuiRating-readOnly': readOnly,
         },
         className,
