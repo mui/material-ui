@@ -164,12 +164,12 @@ const blacklist = [
   'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
   // TODO: See if we can revert this change
-  'docs-joy-components-badge/BadgeAlignment', // Timeout after CssVarsProvider was removed
-  'docs-joy-components-grid/InteractiveGrid', // Timeout after CssVarsProvider was removed
-  'docs-joy-components-grid/SpacingGrid', // Timeout after CssVarsProvider was removed
-  'docs-joy-components-stack/InteractiveStack', // Timeout after CssVarsProvider was removed
-  'docs-joy-customization-default-theme-viewer/JoyDefaultTheme', // Timeout after CssVarsProvider was removed
-  'docs-joy-main-features-automatic-adjustment/ListThemes', // Timeout after CssVarsProvider was removed
+  'docs-joy-components-badge/BadgeAlignment.png', // Timeout after CssVarsProvider was removed
+  'docs-joy-components-grid/InteractiveGrid.png', // Timeout after CssVarsProvider was removed
+  'docs-joy-components-grid/SpacingGrid.png', // Timeout after CssVarsProvider was removed
+  'docs-joy-components-stack/InteractiveStack.png', // Timeout after CssVarsProvider was removed
+  'docs-joy-customization-default-theme-viewer/JoyDefaultTheme.png', // Timeout after CssVarsProvider was removed
+  'docs-joy-main-features-automatic-adjustment/ListThemes.png', // Timeout after CssVarsProvider was removed
   /^docs-guides-.*/, // No public components
 ];
 
