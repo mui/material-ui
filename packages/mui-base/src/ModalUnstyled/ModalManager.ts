@@ -20,10 +20,12 @@ function isOverflowing(container: Element): boolean {
 }
 
 export function ariaHidden(element: Element, show: boolean): void {
-  if (show) {
-    element.setAttribute('aria-hidden', 'true');
-  } else {
-    element.removeAttribute('aria-hidden');
+  if(element){
+    if (show) {
+      element.setAttribute('aria-hidden', 'true');
+    } else {
+      element.removeAttribute('aria-hidden');
+    }
   }
 }
 
