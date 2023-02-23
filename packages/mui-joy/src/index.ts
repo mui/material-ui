@@ -36,6 +36,8 @@ export * from './Breadcrumbs';
 export { default as Button } from './Button';
 export * from './Button';
 
+export * from './className';
+
 export { default as Card } from './Card';
 export * from './Card';
 
@@ -187,3 +189,5 @@ export * from './Tooltip';
 
 export { default as Typography } from './Typography';
 export * from './Typography';
+
+export * from './utils';

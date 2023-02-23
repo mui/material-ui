@@ -17,6 +17,11 @@ export * from './FocusTrap';
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
+export { default as generateUtilityClass } from './generateUtilityClass';
+export * from './generateUtilityClass';
+
+export { default as generateUtilityClasses } from './generateUtilityClasses';
+
 export { default as InputUnstyled } from './InputUnstyled';
 export * from './InputUnstyled';
 
@@ -42,6 +47,7 @@ export { default as OptionUnstyled } from './OptionUnstyled';
 export * from './OptionUnstyled';
 
 export { default as PopperUnstyled } from './PopperUnstyled';
+export * from './PopperUnstyled';
 
 export { default as Portal } from './Portal';
 export * from './Portal';

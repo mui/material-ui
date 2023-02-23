@@ -19,57 +19,51 @@ describe('@mui/base', () => {
     );
   });
   it('should contain all exports from sub folders', async () => {
-    const files = await glob('packages/mui-base/src/*/index.{ts,js}');
-    const muiBaseIndexFile = fs.readFileSync('packages/mui-base/src/index.js', 'utf-8');
+    const files = await glob('packages/mui-joy/src/*/index.{ts,js}');
+    const muiJoyIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
 
     files.forEach((file) => {
       const content = fs.readFileSync(file, 'utf-8');
 
       const [, , , folder] = file.split('/');
-      const defaultExport = `export { default } from './${folder}'`;
+
       const hasDefaultExport =
-        new RegExp(defaultExport).test(content) ||
-        /^export\s*\{\s*\w+\s*as\s+default\s*\}\s*from\s*/.test(content);
+        new RegExp(`export { default } from './${folder}'`).test(content) ||
+        /^export { \b\w+\b as default } from/.test(content) ||
+        new RegExp(`export default ${folder}`).test(content);
 
       const hasNamedExport =
         /export \* from /.test(content) ||
         /export { default as /.test(content) ||
-        /^export {\b\w+\b} from/.test(content);
+        /export { (?!default\b)\w+\b } from/.test(content) ||
+        /export {\n {2}default as /.test(content) ||
+        /export type {/.test(content);
 
-      if (folder === 'ButtonUnstyled') {
-        console.log(content.split(';')[1]);
-        console.log(
-          content.split(';').findIndex((line) =>
-            line.includes(`export { 
-              default as}`),
-          ),
-        );
-      }
-      if (folder === 'composeClasses') {
-        return;
-      }
-      const defaultExportStatement = `export { default as ${folder} } from './${folder}'`;
+      const exportStatement = /export { default as \b\w+\b } /;
+      const filePath = new RegExp(`from './${folder}'`);
+      const defaultExportStatement = new RegExp(`${exportStatement.source}${filePath.source}`);
+
       if (hasDefaultExport) {
-        expect(muiBaseIndexFile).to.include(
+        expect(muiJoyIndexFile).to.match(
           defaultExportStatement,
-          `${defaultExportStatement} is missing from index file`,
+          `default export for file ${folder} is missing`,
         );
       } else {
-        expect(muiBaseIndexFile).to.not.include(
+        expect(muiJoyIndexFile).to.not.match(
           defaultExportStatement,
-          `${defaultExportStatement} is missing from index file`,
+          `Invalid export statement is found for ${folder} file in index file`,
         );
       }
       const namedExportStatement = `export * from './${folder}'`;
       if (hasNamedExport) {
-        expect(muiBaseIndexFile).to.include(
+        expect(muiJoyIndexFile).to.include(
           namedExportStatement,
           `${namedExportStatement} is missing from index file`,
         );
       } else {
-        expect(muiBaseIndexFile).to.not.include(
+        expect(muiJoyIndexFile).to.not.include(
           namedExportStatement,
-          `${namedExportStatement} is missing from index file`,
+          `Invalid named export is found for ${folder} in index file`,
         );
       }
     });

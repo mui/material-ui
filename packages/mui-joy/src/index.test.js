@@ -25,17 +25,47 @@ describe('@mui/joy', () => {
 
     files.forEach((file) => {
       const content = fs.readFileSync(file, 'utf-8');
-      const hasDefaultExport = /export { default }/.test(content);
-      const hasNamedExport = /export \* from /.test(content);
+
       const [, , , folder] = file.split('/');
 
+      const hasDefaultExport =
+        new RegExp(`export { default } from './${folder}'`).test(content) ||
+        /^export { \b\w+\b as default } from/.test(content) ||
+        new RegExp(`export default ${folder}`).test(content);
+
+      const hasNamedExport =
+        /export \* from /.test(content) ||
+        /export { default as /.test(content) ||
+        /export { (?!default\b)\w+\b } from/.test(content) ||
+        /export {\n {2}default as /.test(content) ||
+        /export type {/.test(content);
+
+      const exportStatement = /export { default as \b\w+\b } /;
+      const filePath = new RegExp(`from './${folder}'`);
+      const defaultExportStatement = new RegExp(`${exportStatement.source}${filePath.source}`);
+
       if (hasDefaultExport) {
-        const line = `export { default as ${folder} } from './${folder}'`;
-        expect(muiJoyIndexFile).to.include(line, `${line} is missing from index file`);
+        expect(muiJoyIndexFile).to.match(
+          defaultExportStatement,
+          `default export for file ${folder} is missing`,
+        );
+      } else {
+        expect(muiJoyIndexFile).to.not.match(
+          defaultExportStatement,
+          `Invalid export statement is found for ${folder} file in index file`,
+        );
       }
+      const namedExportStatement = `export * from './${folder}'`;
       if (hasNamedExport) {
-        const line = `export * from './${folder}'`;
-        expect(muiJoyIndexFile).to.include(line, `${line} is missing from index file`);
+        expect(muiJoyIndexFile).to.include(
+          namedExportStatement,
+          `${namedExportStatement} is missing from index file`,
+        );
+      } else {
+        expect(muiJoyIndexFile).to.not.include(
+          namedExportStatement,
+          `Invalid named export is found for ${folder} in index file`,
+        );
       }
     });
   });
