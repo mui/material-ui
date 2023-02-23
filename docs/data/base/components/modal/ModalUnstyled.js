@@ -65,7 +65,7 @@ export default function ModalUnstyledDemo() {
         aria-describedby="unstyled-modal-description"
         open={open}
         onClose={handleClose}
-        components={{ Backdrop }}
+        slots={{ backdrop: Backdrop }}
       >
         <Box sx={style}>
           <h2 id="unstyled-modal-title">Text in a modal</h2>

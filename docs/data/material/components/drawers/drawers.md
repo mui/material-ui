@@ -3,7 +3,7 @@ product: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
-materialDesign: https://material.io/components/navigation-drawer
+materialDesign: https://m2.material.io/components/navigation-drawer
 ---
 
 # Drawer
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 Navigation drawers (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
 
-[Side sheets](https://material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
+[Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -57,28 +57,29 @@ You can configure the `SwipeableDrawer` to have a visible edge when closed.
 If you are on a desktop, you can toggle the drawer with the "OPEN" button.
 If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
 
-{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "disableLiveEdit": true, "height": 400, "maxWidth": 300}}
 
 ### Keep mounted
 
-To ensure a temporary drawer is not unmounted, specify the `ModalProps` prop like:
+The Modal used internally by the Swipeable Drawer has the `keepMounted` prop set by default.
+This means that the contents of the drawer are always present in the DOM.
+
+You can change this default behavior with the `ModalProps` prop, but you may encounter issues with `keepMounted: false` in React 18.
 
 ```jsx
 <Drawer
   variant="temporary"
   ModalProps={{
-    keepMounted: true,
+    keepMounted: false,
   }}
 />
 ```
-
-More details in the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Responsive drawer
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
-{{"demo": "ResponsiveDrawer.js", "iframe": true}}
+{{"demo": "ResponsiveDrawer.js", "iframe": true, "disableLiveEdit": true}}
 
 ## Persistent drawer
 

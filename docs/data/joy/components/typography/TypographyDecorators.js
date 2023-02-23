@@ -4,7 +4,7 @@ import Typography from '@mui/joy/Typography';
 import Chip from '@mui/joy/Chip';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
-export default function TypographyScales() {
+export default function TypographyDecorators() {
   return (
     <Box>
       <Typography startDecorator={<InfoOutlined />} mb={2}>

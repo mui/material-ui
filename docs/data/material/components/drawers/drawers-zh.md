@@ -3,7 +3,7 @@ product: material-ui
 title: React Drawer（抽屉）组件
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
-materialDesign: https://material.io/components/navigation-drawer
+materialDesign: https://m2.material.io/components/navigation-drawer
 ---
 
 # Drawer（抽屉）
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 用户能够通过 Navigation drawers（或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
-[Side sheets](https://material.io/components/sheets-side) 主要在平板和桌面上作为辅助侧边栏使用。
+[Side sheets](https://m2.material.io/components/sheets-side) 主要在平板和桌面上作为辅助侧边栏使用。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -50,7 +50,7 @@ const iOS =
 
 如果你使用的是桌面设备，那么可以点击 "OPEN" 按钮来切换抽屉的显示。 如果你使用的设备是手机，那么可以在 CodeSandbox（“编辑”图标）中打开该演示，并尝试滑动抽屉。
 
-{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "disableLiveEdit": true, "height": 400, "maxWidth": 300}}
 
 ### 全高导航栏
 
@@ -71,7 +71,7 @@ More details in the [Modal performance section](/material-ui/react-modal/#perfor
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
-{{"demo": "ResponsiveDrawer.js", "iframe": true}}
+{{"demo": "ResponsiveDrawer.js", "iframe": true, "disableLiveEdit": true}}
 
 ## 持久的抽屉
 

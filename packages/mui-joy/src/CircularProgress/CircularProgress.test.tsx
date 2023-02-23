@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import CircularProgress, { circularProgressClasses as classes } from '@mui/joy/CircularProgress';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -17,8 +17,26 @@ describe('<CircularProgress />', () => {
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { determinate: true },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      svg: { expectedClassName: classes.svg, testWithElement: 'svg' },
+      track: {
+        expectedClassName: classes.track,
+      },
+      progress: { expectedClassName: classes.progress },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<CircularProgress />, { muiName: 'JoyCircularProgress', classes });
+
+  describe('prop: determinate', () => {
+    it('should render a determinate circular progress', () => {
+      const { getByRole } = render(<CircularProgress determinate />);
+
+      expect(getByRole('progressbar')).to.have.class(classes.determinate);
+    });
+  });
 
   describe('prop: variant', () => {
     it('soft by default', () => {

@@ -277,6 +277,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     renderSuffix,
     rows,
     size,
+    slotProps = {},
+    slots = {},
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -501,11 +503,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root || InputBaseRoot;
-  const rootProps = componentsProps.root || {};
+  const Root = slots.root || components.Root || InputBaseRoot;
+  const rootProps = slotProps.root || componentsProps.root || {};
 
-  const Input = components.Input || InputBaseComponent;
-  inputProps = { ...inputProps, ...componentsProps.input };
+  const Input = slots.input || components.Input || InputBaseComponent;
+  inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
 
   return (
     <React.Fragment>
@@ -603,8 +605,11 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -612,7 +617,12 @@ InputBase.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -712,6 +722,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
+   * Callback fired when the `input` doesn't satisfy its constraints.
+   */
+  onInvalid: PropTypes.func,
+  /**
    * @ignore
    */
   onKeyDown: PropTypes.func,
@@ -748,6 +762,29 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

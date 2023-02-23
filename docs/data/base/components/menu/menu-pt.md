@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
 
 # Unstyled menu
@@ -99,7 +99,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 `MenuItemUnstyled` can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
-- `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation. This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
+- `Mui-focusVisible` - set when the MenuItem is highlighted via keyboard navigation. This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
 
 ## Hooks
 

@@ -6,9 +6,13 @@
       "type": { "name": "shape", "description": "{ label?: object }" },
       "default": "{}"
     },
-    "error": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "optional": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ label?: object }" },
+      "default": "{}"
+    },
     "StepIconComponent": { "type": { "name": "elementType" } },
     "StepIconProps": { "type": { "name": "object" } },
     "sx": {

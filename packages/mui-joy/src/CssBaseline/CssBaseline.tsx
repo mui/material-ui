@@ -2,12 +2,22 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/system';
 import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
+import { Components } from '../styles/components';
 import { CssBaselineProps } from './CssBaselineProps';
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
+ *
+ * Demos:
+ *
+ * - [CSS Baseline](https://mui.com/joy-ui/react-css-baseline/)
+ *
+ * API:
+ *
+ * - [CssBaseline API](https://mui.com/joy-ui/api/css-baseline/)
  */
-function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps) {
+function CssBaseline(props: CssBaselineProps) {
+  const { children, disableColorScheme = false } = props;
   return (
     <React.Fragment>
       <GlobalStyles
@@ -23,6 +33,9 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
               };
             });
           }
+          const defaultTypographyLevel =
+            (theme as unknown as { components: Components<Theme> }).components?.JoyTypography
+              ?.defaultProps?.level ?? 'body1';
           return {
             html: {
               WebkitFontSmoothing: 'antialiased',
@@ -42,7 +55,8 @@ function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps)
             body: {
               margin: 0, // Remove the margin in all browsers.
               color: theme.vars.palette.text.primary,
-              ...(theme.typography.body1 as any),
+              fontFamily: theme.vars.fontFamily.body,
+              ...(theme.typography as any)[defaultTypographyLevel],
               backgroundColor: theme.vars.palette.background.body,
               '@media print': {
                 // Save printer ink.

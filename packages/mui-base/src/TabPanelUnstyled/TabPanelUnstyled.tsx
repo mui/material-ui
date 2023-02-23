@@ -4,7 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUnstyledUtilityClass } from './tabPanelUnstyledClasses';
-import useTabPanel from './useTabPanel';
+import useTabPanel from '../useTabPanel/useTabPanel';
 import {
   TabPanelUnstyledProps,
   TabPanelUnstyledRootSlotProps,
@@ -34,7 +34,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
   props,
   ref,
 ) {
-  const { children, value, components = {}, componentsProps = {}, component, ...other } = props;
+  const { children, component, value, slotProps = {}, slots = {}, ...other } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
@@ -45,11 +45,11 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabPanelRoot: React.ElementType = component ?? components.Root ?? 'div';
+  const TabPanelRoot: React.ElementType = component ?? slots.root ?? 'div';
   const tabPanelRootProps: WithOptionalOwnerState<TabPanelUnstyledRootSlotProps> = useSlotProps({
     elementType: TabPanelRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       role: 'tabpanel',
@@ -77,19 +77,19 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside the TabPanel.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
    * The components used for each slot inside the TabPanel.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the TabPanel.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
   }),
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.

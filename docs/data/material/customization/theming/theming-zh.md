@@ -77,7 +77,7 @@ declare module '@mui/material/styles' {
 The community has built great tools to build a theme:
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 MUI 组件库主题的工具。 这其中包括基本的网站模板，并且展示各种组件以及它们如何受到主题的影响
-- [Material 调色板生成器](https://material.io/inline-tools/color/)：您可以在 Material 调色板生成器中输入的任何颜色，它将帮您生成一系列的颜色组合。
+- [Material 调色板生成器](https://m2.material.io/inline-tools/color/)：您可以在 Material 调色板生成器中输入的任何颜色，它将帮您生成一系列的颜色组合。
 
 ## 访问一个组件中的主题
 

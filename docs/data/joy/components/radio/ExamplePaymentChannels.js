@@ -9,7 +9,7 @@ import Typography from '@mui/joy/Typography';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 
 export default function ExamplePaymentChannels() {
-  const [row, setRow] = React.useState(false);
+  const [orientation, setOrientation] = React.useState('vertical');
   return (
     <Box sx={{ minWidth: 240 }}>
       <Box
@@ -33,8 +33,10 @@ export default function ExamplePaymentChannels() {
           component="label"
           size="sm"
           endDecorator="Row view"
-          checked={row}
-          onChange={(event) => setRow(event.target.checked)}
+          checked={orientation === 'horizontal'}
+          onChange={(event) =>
+            setOrientation(event.target.checked ? 'horizontal' : 'vertical')
+          }
           sx={{
             [`&&:not(.${switchClasses.checked})`]: {
               '--Switch-track-background': (theme) =>
@@ -52,10 +54,11 @@ export default function ExamplePaymentChannels() {
         <List
           component="div"
           variant="outlined"
-          row={row}
+          orientation={orientation}
           sx={{
             borderRadius: 'sm',
             boxShadow: 'sm',
+            bgcolor: 'background.body',
           }}
         >
           {['Credit Card', 'Paypal', 'QR Code'].map((value, index) => (

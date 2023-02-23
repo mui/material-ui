@@ -11,7 +11,7 @@ import {
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
-import useSnackbar from './useSnackbar';
+import useSnackbar from '../useSnackbar';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = () => {
@@ -25,7 +25,7 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Unstyled snackbar](https://mui.com/base/react-snackbar/)
+ * - [Unstyled Snackbar](https://mui.com/base/react-snackbar/)
  *
  * API:
  *
@@ -39,8 +39,6 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     autoHideDuration = null,
     children,
     component,
-    components = {},
-    componentsProps = {},
     disableWindowBlurListener = false,
     exited = true,
     onBlur,
@@ -50,6 +48,8 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     onMouseLeave,
     open,
     resumeHideDuration,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -67,13 +67,13 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
 
   const ownerState: SnackbarUnstyledOwnerState = props;
 
-  const Root = component || components.Root || 'div';
+  const Root = component || slots.root || 'div';
 
   const rootProps: WithOptionalOwnerState<SnackbarUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     additionalProps: {
       ref,
     },
@@ -85,7 +85,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     Omit<SnackbarUnstyledClickAwayListenerSlotProps, 'children'>
   > = useSlotProps({
     elementType: ClickAwayListener,
-    externalSlotProps: componentsProps.clickAwayListener,
+    externalSlotProps: slotProps.clickAwayListener,
     additionalProps: {
       onClickAway,
     },
@@ -129,38 +129,6 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Snackbar.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Snackbar.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    clickAwayListener: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element.isRequired,
-        disableReactTree: PropTypes.bool,
-        mouseEvent: PropTypes.oneOf([
-          'onClick',
-          'onMouseDown',
-          'onMouseUp',
-          'onPointerDown',
-          'onPointerUp',
-          false,
-        ]),
-        onClickAway: PropTypes.func,
-        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-      }),
-    ]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
@@ -209,6 +177,38 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration: PropTypes.number,
+  /**
+   * The props used for each slot inside the Snackbar.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clickAwayListener: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func,
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+    ]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Snackbar.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
 } as any;
 
 export default SnackbarUnstyled;

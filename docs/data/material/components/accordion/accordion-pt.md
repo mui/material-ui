@@ -3,7 +3,7 @@ product: material-ui
 title: Componente de Acordeão React
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
-materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
+materialDesign: https://m1.material.io/components/expansion-panels.html
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
@@ -16,7 +16,7 @@ Um acordeão é um contêiner leve que pode estar sozinho ou conectado em uma su
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 :::info
-**Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
+**Note:** Accordions are no longer documented in the [Material Design guidelines](https://m2.material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
 :::
 
 ## Acordeão básico

@@ -4,10 +4,7 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import acceptLanguage from 'accept-language';
-import { useRouter } from 'next/router';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import pages from 'docs/src/pages';
+import generalPages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -16,14 +13,8 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
-import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { LANGUAGES, LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
-import {
-  UserLanguageProvider,
-  useSetUserLanguage,
-  useUserLanguage,
-} from 'docs/src/modules/utils/i18n';
+import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
@@ -35,42 +26,6 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-
-// Set the locales that the documentation automatically redirects to.
-acceptLanguage.languages(LANGUAGES);
-
-function LanguageNegotiation() {
-  const setUserLanguage = useSetUserLanguage();
-  const router = useRouter();
-  const userLanguage = useUserLanguage();
-
-  useEnhancedEffect(() => {
-    const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-
-    // Only consider a redirection if coming to the naked folder.
-    if (userLanguageUrl === 'en') {
-      const preferedLanguage =
-        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-        acceptLanguage.get(navigator.language) ||
-        userLanguage;
-
-      if (
-        userLanguage !== preferedLanguage &&
-        !process.env.BUILD_ONLY_ENGLISH_LOCALE &&
-        !LANGUAGES_IGNORE_PAGES(router.pathname)
-      ) {
-        window.location =
-          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-      }
-    }
-
-    if (userLanguage !== userLanguageUrl) {
-      setUserLanguage(userLanguageUrl);
-    }
-  }, [router.pathname, router.asPath, setUserLanguage, userLanguage]);
-
-  return null;
-}
 
 let reloadInterval;
 
@@ -187,18 +142,22 @@ function AppWrapper(props) {
     }
   }, []);
 
-  let productPages = pages;
-  if (product === 'base') {
-    productPages = basePages;
-  } else if (product === 'material-ui') {
-    productPages = materialPages;
-  } else if (product === 'joy-ui') {
-    productPages = joyPages;
-  } else if (product === 'system') {
-    productPages = systemPages;
-  }
+  const pageContextValue = React.useMemo(() => {
+    let pages = generalPages;
+    if (product === 'base') {
+      pages = basePages;
+    } else if (product === 'material-ui') {
+      pages = materialPages;
+    } else if (product === 'joy-ui') {
+      pages = joyPages;
+    } else if (product === 'system') {
+      pages = systemPages;
+    }
 
-  const activePage = findActivePage(productPages, router.pathname);
+    const { activePage, activePageParents } = findActivePage(pages, router.pathname);
+
+    return { activePage, activePageParents, pages };
+  }, [product, router.pathname]);
 
   let fonts = [];
   if (asPathWithoutLang.match(/onepirate/)) {
@@ -216,10 +175,9 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <LanguageNegotiation />
         <CodeCopyProvider>
           <CodeVariantProvider>
-            <PageContext.Provider value={{ activePage, pages: productPages }}>
+            <PageContext.Provider value={pageContextValue}>
               <ThemeProvider>
                 <DocsStyledEngineProvider cacheLtr={emotionCache}>
                   {children}

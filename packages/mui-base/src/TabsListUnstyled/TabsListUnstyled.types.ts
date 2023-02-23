@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { UseTabsListRootSlotProps } from './useTabsList.types';
+import { UseTabsListRootSlotProps } from '../useTabsList';
 import { SlotComponentProps } from '../utils';
 
-interface TabsListUnstyledComponentsPropsOverrides {}
+interface TabsListUnstyledRootSlotPropsOverrides {}
 
 export interface TabsListUnstyledOwnProps {
   /**
@@ -12,24 +12,30 @@ export interface TabsListUnstyledOwnProps {
   children?: React.ReactNode;
   className?: string;
   /**
+   * The props used for each slot inside the TabsList.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'div',
+      TabsListUnstyledRootSlotPropsOverrides,
+      TabsListUnstyledOwnerState
+    >;
+  };
+  /**
    * The components used for each slot inside the TabsList.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-  };
+  slots?: TabsListUnstyledSlots;
+}
+
+export interface TabsListUnstyledSlots {
   /**
-   * The props used for each slot inside the TabsList.
-   * @default {}
+   * The component used to render the root.
+   * @default 'div'
    */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'div',
-      TabsListUnstyledComponentsPropsOverrides,
-      TabsListUnstyledOwnerState
-    >;
-  };
+  root?: React.ElementType;
 }
 
 export interface TabsListUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

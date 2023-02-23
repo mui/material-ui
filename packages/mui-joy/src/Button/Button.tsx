@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
@@ -127,11 +128,8 @@ export const ButtonRoot = styled('button', {
       justifyContent: 'center',
       position: 'relative',
       textDecoration: 'none', // prevent user agent underline when used as anchor
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
+      fontWeight: theme.vars.fontWeight.lg,
       lineHeight: 1,
       ...(ownerState.fullWidth && {
         width: '100%',
@@ -146,15 +144,22 @@ export const ButtonRoot = styled('button', {
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         [`&.${buttonClasses.loading}`]: {
-          transition:
-            'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           color: 'transparent',
         },
       }),
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Button](https://mui.com/joy-ui/react-button/)
+ *
+ * API:
+ *
+ * - [Button API](https://mui.com/joy-ui/api/button/)
+ */
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -164,9 +169,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const {
     children,
     action,
-    component = 'button',
-    componentsProps = {},
-    color = 'primary',
+    color: colorProp = 'primary',
     variant = 'solid',
     size = 'md',
     fullWidth = false,
@@ -178,6 +181,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disabled,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -189,7 +194,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress color={color} thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3} />
+    <CircularProgress
+      {...(color !== 'context' && { color })}
+      thickness={{ sm: 2, md: 3, lg: 4 }[size] || 3}
+    />
   );
 
   React.useImperativeHandle(
@@ -205,7 +213,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const ownerState = {
     ...props,
-    component,
     color,
     fullWidth,
     variant,
@@ -218,60 +225,60 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: ButtonRoot,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: classes.root,
+    elementType: ButtonRoot,
+    externalForwardedProps: other,
+    getSlotProps: getRootProps,
+    ownerState,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: ButtonStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: ButtonStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: ButtonEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: ButtonEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const loadingIndicatorCenterProps = useSlotProps({
-    elementType: ButtonLoadingCenter,
-    externalSlotProps: componentsProps.loadingIndicatorCenter,
-    ownerState,
-    className: classes.loadingIndicatorCenter,
-  });
+  const [SlotLoadingIndicatorCenter, loadingIndicatorCenterProps] = useSlot(
+    'loadingIndicatorCenter',
+    {
+      className: classes.loadingIndicatorCenter,
+      elementType: ButtonLoadingCenter,
+      externalForwardedProps: other,
+      ownerState,
+    },
+  );
 
   return (
-    <ButtonRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {(startDecorator || (loading && loadingPosition === 'start')) && (
-        <ButtonStartDecorator {...startDecoratorProps}>
+        <SlotStartDecorator {...startDecoratorProps}>
           {loading && loadingPosition === 'start' ? loadingIndicator : startDecorator}
-        </ButtonStartDecorator>
+        </SlotStartDecorator>
       )}
 
       {children}
       {loading && loadingPosition === 'center' && (
-        <ButtonLoadingCenter {...loadingIndicatorCenterProps}>
+        <SlotLoadingIndicatorCenter {...loadingIndicatorCenterProps}>
           {loadingIndicator}
-        </ButtonLoadingCenter>
+        </SlotLoadingIndicatorCenter>
       )}
 
       {(endDecorator || (loading && loadingPosition === 'end')) && (
-        <ButtonEndDecorator {...endDecoratorProps}>
+        <SlotEndDecorator {...endDecoratorProps}>
           {loading && loadingPosition === 'end' ? loadingIndicator : endDecorator}
-        </ButtonEndDecorator>
+        </SlotEndDecorator>
       )}
-    </ButtonRoot>
+    </SlotRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
 
@@ -303,21 +310,6 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -354,6 +346,7 @@ Button.propTypes /* remove-proptypes */ = {
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

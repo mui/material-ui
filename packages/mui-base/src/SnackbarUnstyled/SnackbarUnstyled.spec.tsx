@@ -15,6 +15,6 @@ const Root = React.forwardRef(
   },
 );
 
-const SnackbarUnstyledWithCustomRoot = (props: SnackbarUnstyledProps) => {
-  return <SnackbarUnstyled {...props} components={{ Root }} />;
-};
+function SnackbarUnstyledWithCustomRoot(props: SnackbarUnstyledProps) {
+  return <SnackbarUnstyled {...props} slots={{ root: Root }} />;
+}

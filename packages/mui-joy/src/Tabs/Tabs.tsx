@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
+import useTabs from '@mui/base/useTabs';
+import { TabsContext } from '@mui/base/TabsUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
@@ -45,9 +47,19 @@ const TabsRoot = styled(SheetRoot, {
   flexDirection: 'column',
   ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'row',
+    alignItems: 'flex-start',
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tabs API](https://mui.com/joy-ui/api/tabs/)
+ */
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -57,19 +69,21 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const {
     children,
     value: valueProp,
-    defaultValue,
+    defaultValue: defaultValueProp,
     orientation = 'horizontal',
     direction = 'ltr',
     component,
     onChange,
     selectionFollowsFocus,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     size = 'md',
     ...other
   } = props;
-
-  const { tabsContextValue } = useTabs({ ...props, orientation });
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
+  const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
+  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,
@@ -151,6 +165,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   selectionFollowsFocus: PropTypes.bool,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),

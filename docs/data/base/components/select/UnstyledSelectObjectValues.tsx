@@ -154,14 +154,14 @@ const Pre = styled('pre')(
 );
 
 function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
-  const components: SelectUnstyledProps<TValue>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<TValue>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 interface Character {

@@ -2,6 +2,7 @@ import { deepmerge } from '@mui/utils';
 import extendTheme from './extendTheme';
 import type { CssVarsThemeOptions, ColorSystemOptions } from './extendTheme';
 import type { Theme, RuntimeColorSystem } from './types';
+import { createSoftInversion, createSolidInversion } from './variantUtils';
 
 export const getThemeWithVars = (
   themeInput?: Omit<CssVarsThemeOptions, 'colorSchemes'> & ColorSystemOptions,
@@ -16,7 +17,9 @@ export const getThemeWithVars = (
     lineHeight,
     radius,
     shadow,
+    zIndex,
     palette: paletteInput,
+    colorInversion: colorInversionInput,
     ...restTheme
   } = extendTheme(themeInput);
   const colorSchemePalette = deepmerge(
@@ -29,7 +32,7 @@ export const getThemeWithVars = (
     ...palette
   } = colorSchemePalette as RuntimeColorSystem['palette'];
 
-  return {
+  const theme = {
     focus,
     fontFamily,
     fontSize,
@@ -38,6 +41,7 @@ export const getThemeWithVars = (
     lineHeight,
     radius,
     shadow,
+    zIndex,
     ...restTheme,
     colorSchemes: {
       ...colorSchemes,
@@ -58,9 +62,19 @@ export const getThemeWithVars = (
       radius,
       shadow,
       palette,
+      zIndex,
     },
     getColorSchemeSelector: () => '&',
   } as unknown as Theme;
+
+  theme.colorInversion = deepmerge(
+    {
+      soft: createSoftInversion(theme),
+      solid: createSolidInversion(theme),
+    },
+    colorInversionInput,
+  );
+  return theme;
 };
 
 const defaultTheme = getThemeWithVars();

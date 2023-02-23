@@ -13,11 +13,16 @@ function createLoading(sx: BoxProps['sx']) {
   return function Loading() {
     return (
       <Box
-        sx={{
-          borderRadius: 1,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-          ...sx,
-        }}
+        sx={[
+          (theme) => ({
+            borderRadius: 1,
+            bgcolor: 'grey.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+            }),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
       />
     );
   };
@@ -118,7 +123,7 @@ export default function Hero() {
             with Material UI, our fully-loaded component library, or bring your own design system to
             our production-ready components.
           </Typography>
-          <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
+          <GetStartedButtons />
         </Box>
       }
       rightSx={{

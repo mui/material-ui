@@ -140,14 +140,14 @@ const Paragraph = styled('p')(
 );
 
 function CustomSelect(props: SelectUnstyledProps<number>) {
-  const components: SelectUnstyledProps<number>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<number>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 export default function UnstyledSelectsMultiple() {

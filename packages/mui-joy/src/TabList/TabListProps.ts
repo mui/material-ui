@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type TabListSlot = 'root';
 
-export interface TabListColorOverrides {}
+export interface TabListPropsColorOverrides {}
 
-export interface TabListVariantOverrides {}
+export interface TabListPropsVariantOverrides {}
 
-export interface TabListSizeOverrides {}
+export interface TabListPropsSizeOverrides {}
 
 export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -16,7 +16,7 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<ColorPaletteProp, TabListColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, TabListPropsColorOverrides>;
     /**
      * Used to render icon or text elements inside the TabList if `src` is not set.
      * This can be an element, or just a string.
@@ -25,7 +25,7 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * The size of the component.
      */
-    size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListSizeOverrides>;
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -34,7 +34,7 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'soft'
      */
-    variant?: OverridableStringUnion<VariantProp, TabListVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, TabListPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
@@ -44,7 +44,7 @@ export type TabListProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabListTypeMap<P, D>, D>;
 
-export type TabListOwnerState = TabListProps & {
+export interface TabListOwnerState extends ApplyColorInversion<TabListProps> {
   /**
    * If `true`, the Tabs' direction is "rtl".
    */
@@ -53,4 +53,4 @@ export type TabListOwnerState = TabListProps & {
    * The orientation of the Tabs.
    */
   orientation: 'horizontal' | 'vertical';
-};
+}

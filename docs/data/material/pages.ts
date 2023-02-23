@@ -1,5 +1,5 @@
-import pagesApi from './pagesApi';
-import { MuiPage } from '../../src/MuiPage';
+import pagesApi from 'docs/data/material/pagesApi';
+import { MuiPage } from 'docs/src/MuiPage';
 
 const pages: MuiPage[] = [
   {
@@ -21,12 +21,6 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/react-',
-    scopePathnames: [
-      '/material-ui/icons',
-      '/material-ui/material-icons',
-      '/material-ui/about-the-lab',
-      '/material-ui/transitions',
-    ],
     title: 'Components',
     icon: 'ToggleOnIcon',
     children: [
@@ -48,8 +42,8 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-slider' },
           { pathname: '/material-ui/react-switch' },
           { pathname: '/material-ui/react-text-field', title: 'Text Field' },
-          { pathname: '/material-ui/react-transfer-list' },
-          { pathname: '/material-ui/react-toggle-button' },
+          { pathname: '/material-ui/react-transfer-list', title: 'Transfer List' },
+          { pathname: '/material-ui/react-toggle-button', title: 'Toggle Button' },
         ],
       },
       {
@@ -85,7 +79,7 @@ const pages: MuiPage[] = [
         subheader: 'surfaces',
         children: [
           { pathname: '/material-ui/react-accordion' },
-          { pathname: '/material-ui/react-app-bar' },
+          { pathname: '/material-ui/react-app-bar', title: 'App Bar' },
           { pathname: '/material-ui/react-card' },
           { pathname: '/material-ui/react-paper' },
         ],
@@ -94,13 +88,13 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/navigation',
         subheader: 'navigation',
         children: [
-          { pathname: '/material-ui/react-bottom-navigation' },
+          { pathname: '/material-ui/react-bottom-navigation', title: 'Bottom Navigation' },
           { pathname: '/material-ui/react-breadcrumbs' },
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
           { pathname: '/material-ui/react-menu' },
           { pathname: '/material-ui/react-pagination' },
-          { pathname: '/material-ui/react-speed-dial' },
+          { pathname: '/material-ui/react-speed-dial', title: 'Speed Dial' },
           { pathname: '/material-ui/react-stepper' },
           { pathname: '/material-ui/react-tabs' },
         ],
@@ -114,7 +108,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-grid' },
           { pathname: '/material-ui/react-grid2', title: 'Grid v2', newFeature: true },
           { pathname: '/material-ui/react-stack' },
-          { pathname: '/material-ui/react-image-list' },
+          { pathname: '/material-ui/react-image-list', title: 'Image List' },
           { pathname: '/material-ui/react-hidden' },
         ],
       },
@@ -122,14 +116,14 @@ const pages: MuiPage[] = [
         pathname: '/material-ui/components/utils',
         subheader: 'utils',
         children: [
-          { pathname: '/material-ui/react-click-away-listener', title: 'Click-away listener' },
+          { pathname: '/material-ui/react-click-away-listener', title: 'Click-Away Listener' },
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
           { pathname: '/material-ui/react-modal' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
           { pathname: '/material-ui/react-popover' },
           { pathname: '/material-ui/react-popper' },
           { pathname: '/material-ui/react-portal' },
-          { pathname: '/material-ui/react-textarea-autosize' },
+          { pathname: '/material-ui/react-textarea-autosize', title: 'Textarea Autosize' },
           { pathname: '/material-ui/transitions' },
           { pathname: '/material-ui/react-use-media-query', title: 'useMediaQuery' },
         ],
@@ -138,8 +132,8 @@ const pages: MuiPage[] = [
         pathname: '/mui-x', // the pathname does not matter here because the links to MUI X are outbound.
         subheader: 'MUI X',
         children: [
-          { pathname: '/x/react-data-grid', title: 'Data grid' },
-          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time pickers' },
+          { pathname: '/x/react-data-grid', title: 'Data Grid' },
+          { pathname: '/x/react-date-pickers/getting-started', title: 'Date & Time Pickers' },
         ],
       },
       {
@@ -149,7 +143,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
-          { pathname: '/material-ui/react-tree-view' },
+          { pathname: '/material-ui/react-tree-view', title: 'Tree View' },
         ],
       },
     ],
@@ -165,7 +159,7 @@ const pages: MuiPage[] = [
     icon: 'CreateIcon',
     children: [
       {
-        pathname: '/material-ui/customization',
+        pathname: '/material-ui/customization/theme',
         subheader: '/material-ui/customization/theme',
         children: [
           { pathname: '/material-ui/customization/theming' },
@@ -178,7 +172,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/customization/z-index', title: 'z-index' },
           { pathname: '/material-ui/customization/transitions' },
           { pathname: '/material-ui/customization/theme-components', title: 'Components' },
-          { pathname: '/material-ui/customization/default-theme' },
+          { pathname: '/material-ui/customization/default-theme', title: 'Default theme viewer' },
         ],
       },
       { pathname: '/material-ui/customization/how-to-customize' },
@@ -187,7 +181,7 @@ const pages: MuiPage[] = [
   },
   {
     pathname: '/material-ui/guides',
-    title: 'How To Guides',
+    title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
       { pathname: '/material-ui/guides/api', title: 'API design approach' },
@@ -208,7 +202,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/material-ui/guides/flow' },
       { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
     ],
   },
@@ -230,7 +223,11 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
           {
             pathname: '/material-ui/experimental-api/css-theme-variables/migration',
-            title: 'Migrating to CSS theme variables',
+            title: 'Migrating to CSS variables',
+          },
+          {
+            pathname: '/material-ui/experimental-api/css-variables',
+            title: 'TODO merge with other pages',
           },
         ],
       },
@@ -260,7 +257,7 @@ const pages: MuiPage[] = [
         title: 'Migrating to Grid v2',
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/v5',
         subheader: 'Upgrade to v5',
         children: [
           {
@@ -286,7 +283,7 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/material-ui/migration',
+        pathname: '/material-ui/migration/earlier',
         subheader: 'Earlier versions',
         children: [
           { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },

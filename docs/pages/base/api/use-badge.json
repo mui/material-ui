@@ -1,0 +1,12 @@
+{
+  "parameters": {
+    "badgeContent": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } },
+    "invisible": { "type": { "name": "boolean", "description": "boolean" } },
+    "max": { "type": { "name": "number", "description": "number" } },
+    "showZero": { "type": { "name": "boolean", "description": "boolean" } }
+  },
+  "returnValue": {},
+  "name": "useBadge",
+  "filename": "/packages/mui-base/src/useBadge/useBadge.ts",
+  "demos": "<ul><li><a href=\"/base/react-badge/#hook\">Unstyled badge</a></li></ul>"
+}

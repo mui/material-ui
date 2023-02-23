@@ -3,7 +3,7 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
-export default function TypographyScales() {
+export default function DecoratorExamples() {
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}
@@ -11,6 +11,7 @@ export default function TypographyScales() {
       <Typography
         startDecorator={
           <Box
+            component="span"
             sx={{
               bgcolor: 'neutral.400',
               width: '0.5em',
@@ -48,12 +49,8 @@ export default function TypographyScales() {
         variant="soft"
         color="danger"
         startDecorator="🚨"
-        py={1}
-        px={1}
-        borderRadius="xs"
-        display="inline-flex"
         fontSize="sm"
-        sx={{ '--Typography-gap': '0.5rem' }}
+        sx={{ '--Typography-gap': '0.5rem', p: 1 }}
       >
         Simple alert using only Typography.
       </Typography>

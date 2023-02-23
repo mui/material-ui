@@ -39,7 +39,7 @@ const Button = React.forwardRef(function Button<TValue extends {}>(
   return (
     <button type="button" {...other} ref={ref}>
       {other.children}
-      {ownerState.open ? <UnfoldMoreRoundedIcon /> : <UnfoldMoreRoundedIcon />}
+      <UnfoldMoreRoundedIcon />
     </button>
   );
 });
@@ -147,14 +147,14 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue extends {}>(
   props: SelectUnstyledProps<TValue>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 export default function UnstyledSelectIntroduction() {

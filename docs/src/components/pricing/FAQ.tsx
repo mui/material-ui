@@ -277,14 +277,17 @@ export default function FAQ() {
           {renderItem(7)}
           <Paper
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               p: 2,
               textAlign: 'center',
               borderStyle: 'dashed',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
-            }}
+              borderColor: 'grey.300',
+              bgcolor: 'white',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.400',
+                bgcolor: 'primaryDark.800',
+              }),
+            })}
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">

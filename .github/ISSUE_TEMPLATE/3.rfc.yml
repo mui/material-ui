@@ -1,7 +1,7 @@
 name: RFC 💬
 description: Request for comments for your proposal.
 title: '[RFC] '
-labels: ['RFC']
+labels: ['status: needs triage', 'RFC']
 body:
   - type: markdown
     attributes:

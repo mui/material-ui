@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React para Dicas
 components: Tooltip
 githubLabel: 'component: tooltip'
-materialDesign: https://material.io/components/tooltips
+materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
-Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exibem um rótulo de texto identificando o elemento, como uma descrição de sua função.
+Quando ativada, [dicas](https://m2.material.io/design/components/tooltips.html) exibem um rótulo de texto identificando o elemento, como uma descrição de sua função.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

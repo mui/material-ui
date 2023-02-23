@@ -2,8 +2,8 @@ import * as React from 'react';
 import SelectUnstyled, {
   SelectUnstyledProps,
   selectUnstyledClasses,
-  SelectOption,
 } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
@@ -131,14 +131,14 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 function CustomSelect(props: SelectUnstyledProps<number>) {
-  const components: SelectUnstyledProps<number>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<number>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 function renderValue(option: SelectOption<number> | null) {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { createPortal } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -15,18 +15,19 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import SearchIcon from '@mui/icons-material/Search';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
-import { LANGUAGES_SSR } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR } from 'docs/config';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
 
-const SearchButton = styled('button')(({ theme }) => {
-  return {
+const SearchButton = styled('button')(({ theme }) => [
+  {
     minHeight: 34,
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: theme.spacing(1),
+    margin: 0,
+    paddingLeft: theme.spacing(0.6),
     [theme.breakpoints.only('xs')]: {
       backgroundColor: 'transparent',
       padding: 0,
@@ -37,31 +38,32 @@ const SearchButton = styled('button')(({ theme }) => {
       },
     },
     [theme.breakpoints.up('sm')]: {
-      minWidth: 200,
+      minWidth: 150,
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : theme.palette.grey[50],
-    color: theme.palette.text.secondary,
+    backgroundColor: (theme.vars || theme).palette.grey[50],
+    color: (theme.vars || theme).palette.text.secondary,
     fontSize: theme.typography.pxToRem(14),
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
-    }`,
+    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
     borderRadius: 10,
     cursor: 'pointer',
     transitionProperty: 'all',
     transitionDuration: '150ms',
     '&:hover': {
-      background:
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[700], 0.4)
-          : alpha(theme.palette.grey[100], 0.7),
-      borderColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[300],
+      background: (theme.vars || theme).palette.grey[100],
+      borderColor: (theme.vars || theme).palette.grey[300],
     },
-  };
-});
+  },
+  theme.applyDarkStyles({
+    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+    borderColor: (theme.vars || theme).palette.primaryDark[700],
+    '&:hover': {
+      background: (theme.vars || theme).palette.primaryDark[700],
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
+    },
+  }),
+]);
 
 const SearchLabel = styled('span')(({ theme }) => {
   return {
@@ -76,12 +78,14 @@ const Shortcut = styled('div')(({ theme }) => {
     fontWeight: 700,
     lineHeight: '20px',
     marginLeft: theme.spacing(0.5),
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
-    }`,
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
-    padding: theme.spacing(0, 0.8),
-    borderRadius: 5,
+    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
+    backgroundColor: '#FFF',
+    padding: theme.spacing(0, 0.5),
+    borderRadius: 7,
+    ...theme.applyDarkStyles({
+      borderColor: (theme.vars || theme).palette.primaryDark[600],
+      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+    }),
   };
 });
 
@@ -141,11 +145,9 @@ function NewStartScreen() {
             {category.name}
           </div>
           {items.map(({ name, href }) => (
-            <NextLink key={name} href={href}>
-              <a href={href} className="DocSearch-NewStartScreenItem">
-                {name}
-                <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
-              </a>
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
+              {name}
+              <KeyboardArrowRightRounded className="DocSearch-NewStartScreenItemIcon" />
             </NextLink>
           ))}
         </div>
@@ -293,12 +295,12 @@ export default function AppSearch() {
       <SearchButton ref={searchButtonRef} onClick={onOpen}>
         <SearchIcon
           fontSize="small"
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[500],
-          }}
+          sx={(theme) => ({
+            color: 'primary.500',
+            ...theme.applyDarkStyles({
+              color: 'primary.300',
+            }),
+          })}
         />
         <SearchLabel>{search}</SearchLabel>
         <Shortcut>
@@ -307,7 +309,7 @@ export default function AppSearch() {
         </Shortcut>
       </SearchButton>
       {isOpen &&
-        createPortal(
+        ReactDOM.createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
             appId={'TZGZ85B9TB'}

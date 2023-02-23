@@ -2,17 +2,25 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
-    "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
     }
   },
   "name": "TabsListUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiTabsList-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsListUnstyled/TabsListUnstyled.tsx",

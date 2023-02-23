@@ -3,7 +3,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "disableGutters": { "type": { "name": "bool" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -28,6 +28,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Toolbar/Toolbar.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App bar</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App Bar</a></li></ul>",
   "cssComponent": false
 }

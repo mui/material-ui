@@ -13,7 +13,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "deleteIcon": { "type": { "name": "element" } },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "element" } },
     "label": { "type": { "name": "node" } },
     "onDelete": { "type": { "name": "func" } },
@@ -24,6 +24,7 @@
       },
       "default": "'medium'"
     },
+    "skipFocusWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

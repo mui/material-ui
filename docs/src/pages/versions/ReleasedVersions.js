@@ -26,12 +26,7 @@ function ReleasedVersions() {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Link
-                  variant="body2"
-                  color="secondary"
-                  rel="nofollow"
-                  href={doc.url}
-                >
+                <Link variant="body2" rel="nofollow" href={doc.url}>
                   Documentation
                 </Link>
               </TableCell>
@@ -40,7 +35,6 @@ function ReleasedVersions() {
                 doc.version.indexOf('pre-release') === -1 ? (
                   <Link
                     variant="body2"
-                    color="secondary"
                     rel="nofollow"
                     href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
                   >

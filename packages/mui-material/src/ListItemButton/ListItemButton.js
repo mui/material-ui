@@ -141,11 +141,14 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    alignItems,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      alignItems,
+      disableGutters,
+    }),
+    [alignItems, context.dense, dense, disableGutters],
+  );
 
   const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {

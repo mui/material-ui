@@ -2,15 +2,15 @@
 
 <p class="description">颜色承载了不同的寓意。 Out of the box you get access to all colors in the Material Design guidelines.</p>
 
-Material Design [颜色系统](https://material.io/design/color/) 可用于创建反映您的品牌或风格的颜色主题。
+Material Design [颜色系统](https://m2.material.io/design/color/) 可用于创建反映您的品牌或风格的颜色主题。
 
 ## 选取颜色
 
 ### 官方的色彩工具
 
-Material Design 团队也搭建了一个非常棒的调色板配置工具： [material.io/resources/color/](https://material.io/resources/color/)。 您可以用它来为 UI 创建调色板，以及检测任何颜色组合的无障碍水平。
+Material Design 团队也搭建了一个非常棒的调色板配置工具： [material.io/resources/color/](https://m2.material.io/resources/color/)。 您可以用它来为 UI 创建调色板，以及检测任何颜色组合的无障碍水平。
 
-<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="官方的色彩工具" style="width: 574px" />
 </a>
 
@@ -42,7 +42,7 @@ const theme = createTheme({
 
 ### 练习
 
-若想用 Material-UI 文档来测试 [material.io/design/color](https://material.io/design/color/) 的配色方案，只需使用下面的调色板和滑块来选取颜色即可。 另外，您也可以在主要（Primary）和次要（Secondary）文本字段中输入十六进制（hex）值。
+若想用 Material-UI 文档来测试 [material.io/design/color](https://m2.material.io/design/color/) 的配色方案，只需使用下面的调色板和滑块来选取颜色即可。 另外，您也可以在主要（Primary）和次要（Secondary）文本字段中输入十六进制（hex）值。
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
 
@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 ### 社区提供的一些工具
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 Material-UI 组件库主题的工具。 包括基本的网站模板，并且展示各种组件及其受主题影响的方式。
-- [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
+- [Material palette generator](https://m2.material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。
 
 ## 2014 Material Design 调色板
 

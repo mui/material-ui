@@ -36,6 +36,13 @@ describe('<SvgIcon />', () => {
           {props.children}
         </svg>
       ),
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: ({ className }) => <svg className={className} data-testid="custom" />,
+          testWithElement: null,
+        },
+      },
       skip: ['themeVariants', 'classesRoot', 'componentsProp'],
     }),
   );
@@ -108,11 +115,13 @@ describe('<SvgIcon />', () => {
   });
 
   describe('prop: inheritViewBox', () => {
-    const CustomSvg = (props) => (
-      <svg viewBox="-4 -4 24 24" {...props}>
-        {path}
-      </svg>
-    );
+    function CustomSvg(props) {
+      return (
+        <svg viewBox="-4 -4 24 24" {...props}>
+          {path}
+        </svg>
+      );
+    }
 
     it('should render with the default viewBox if neither inheritViewBox nor viewBox are provided', () => {
       const { container } = render(<SvgIcon component={CustomSvg} />);

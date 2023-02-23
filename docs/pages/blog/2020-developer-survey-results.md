@@ -199,7 +199,7 @@ Decreasing pain:
 Growing pains:
 
 - ∞: Forms is a new item. It seems that we should at least work more closely with react-hook-form, formik, and react-final-form.
-- ∞: Charts is a new item. Material Design even has a page dedicated to [date visualization](https://material.io/design/communication/data-visualization.html).
+- ∞: Charts is a new item. Material Design even has a page dedicated to [date visualization](https://m2.material.io/design/communication/data-visualization.html).
 - x5: Custom themes.
 - x5: Simpler customization. We have improved customizability this year by introducing global class names and reducing the CSS specificity of some selectors. However, it seems that we are now tapping into a new audience. We need to do better.
 - x1.5: Animations.

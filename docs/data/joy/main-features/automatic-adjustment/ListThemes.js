@@ -109,7 +109,7 @@ export default function ButtonThemes() {
           <FormLabel htmlFor="list-theme">Change the preset:</FormLabel>
           <Select
             size="sm"
-            componentsProps={{
+            slotProps={{
               button: {
                 id: 'list-theme',
               },

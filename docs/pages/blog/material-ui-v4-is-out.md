@@ -33,7 +33,7 @@ This release is influenced by two major factors. First, following the Developer 
 
 ### Customization
 
-The Material Design team at Google has made the customization of their design system framework a core feature: [Material Theming](https://material.io/design/material-theming/overview.html). It's an important dimension of the library for us. Since the release of v1, we have been improving the component customization demos, release after release. We demonstrate a wide range of different designs:
+The Material Design team at Google has made the customization of their design system framework a core feature: [Material Theming](https://m2.material.io/design/material-theming/overview.html). It's an important dimension of the library for us. Since the release of v1, we have been improving the component customization demos, release after release. We demonstrate a wide range of different designs:
 
 ![Demo1](/static/blog/material-ui-v4-is-out/demo1.png)
 
@@ -163,7 +163,7 @@ import {
 
 <p class="blog-description">Fine level tracking</p>
 
-- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui/material-ui/blob/HEAD/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
+- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui/material-ui/blob/HEAD/examples/material-preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
 - **Runtime performance**. We have heard that some people struggle with the runtime cost of using Material UI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
 
 ### Preparing for the future

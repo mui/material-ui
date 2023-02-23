@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useMenu, MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
+import useMenuItem from '@mui/base/useMenuItem';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { GlobalStyles } from '@mui/system';
 import clsx from 'clsx';
@@ -138,29 +139,23 @@ const styles = `
 const Menu = React.forwardRef(function Menu(props, ref) {
   const { children, onClose, open, ...other } = props;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-  } = useMenu({
+  const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
     onClose,
     open,
   });
 
-  const contextValue = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    open: true,
-  };
+  const menuContextValue = React.useMemo(
+    () => ({
+      ...contextValue,
+      open: true,
+    }),
+    [contextValue],
+  );
 
   return (
     <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         {children}
       </MenuUnstyledContext.Provider>
     </ul>

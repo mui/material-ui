@@ -1,10 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
-import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
+import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
 import { SlotComponentProps } from '../utils';
 
-export interface InputUnstyledComponentsPropsOverrides {}
+export interface InputUnstyledRootSlotPropsOverrides {}
+export interface InputUnstyledInputSlotPropsOverrides {}
 
 export interface SingleLineInputUnstyledProps {
   /**
@@ -57,7 +58,7 @@ export interface MultiLineInputUnstyledProps {
 }
 
 export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInputUnstyledProps) &
-  UseInputParameters & {
+  Omit<UseInputParameters, 'error'> & {
     'aria-describedby'?: string;
     'aria-label'?: string;
     'aria-labelledby'?: string;
@@ -76,35 +77,14 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      */
     className?: string;
     /**
-     * The components used for each slot inside the InputBase.
-     * Either a string to use a HTML element or a component.
-     * @default {}
-     */
-    components?: {
-      Root?: React.ElementType;
-      Input?: React.ElementType;
-      Textarea?: React.ElementType;
-    };
-    /**
-     * The props used for each slot inside the Input.
-     * @default {}
-     */
-    componentsProps?: {
-      root?: SlotComponentProps<
-        'div',
-        InputUnstyledComponentsPropsOverrides,
-        InputUnstyledOwnerState
-      >;
-      input?: SlotComponentProps<
-        'input',
-        InputUnstyledComponentsPropsOverrides,
-        InputUnstyledOwnerState
-      >;
-    };
-    /**
      * Trailing adornment for this input.
      */
     endAdornment?: React.ReactNode;
+    /**
+     * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+     * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+     */
+    error?: boolean;
     /**
      * The id of the `input` element.
      */
@@ -125,6 +105,28 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      */
     readOnly?: boolean;
     /**
+     * The props used for each slot inside the Input.
+     * @default {}
+     */
+    slotProps?: {
+      root?: SlotComponentProps<
+        'div',
+        InputUnstyledRootSlotPropsOverrides,
+        InputUnstyledOwnerState
+      >;
+      input?: SlotComponentProps<
+        'input',
+        InputUnstyledInputSlotPropsOverrides,
+        InputUnstyledOwnerState
+      >;
+    };
+    /**
+     * The components used for each slot inside the InputBase.
+     * Either a string to use a HTML element or a component.
+     * @default {}
+     */
+    slots?: InputUnstyledSlots;
+    /**
      * Leading adornment for this input.
      */
     startAdornment?: React.ReactNode;
@@ -133,6 +135,24 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      */
     value?: unknown;
   };
+
+export interface InputUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component used to render the textarea.
+   * @default 'textarea'
+   */
+  textarea?: React.ElementType;
+}
 
 export interface InputUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & InputUnstyledOwnProps;
@@ -147,7 +167,7 @@ export type InputUnstyledProps<
 };
 
 export type InputUnstyledOwnerState = Simplify<
-  Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> & {
+  Omit<InputUnstyledProps, 'component' | 'slots' | 'slotProps'> & {
     formControlContext: FormControlUnstyledState | undefined;
     focused: boolean;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;

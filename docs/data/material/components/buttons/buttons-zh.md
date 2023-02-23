@@ -2,7 +2,7 @@
 product: material-ui
 title: React Button（按钮）组件
 components: Button, IconButton, ButtonBase, LoadingButton
-materialDesign: https://material.io/components/buttons
+materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 unstyled: /base/react-button/
@@ -29,13 +29,13 @@ unstyled: /base/react-button/
 
 ### 文本按钮
 
-[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. 在卡片中，文本按钮有助于强调卡片的内容。 在卡片中，文本按钮有助于强调卡片的内容。
+[Text buttons](https://m2.material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. 在卡片中，文本按钮有助于强调卡片的内容。 在卡片中，文本按钮有助于强调卡片的内容。
 
 {{"demo": "TextButtons.js"}}
 
 ### 实心按钮
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
+[实心按钮](https://m2.material.io/components/buttons#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
 {{"demo": "ContainedButtons.js"}}
 
@@ -45,7 +45,7 @@ unstyled: /base/react-button/
 
 ### 描边按钮
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
+[Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 

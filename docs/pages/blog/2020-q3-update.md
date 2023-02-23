@@ -19,7 +19,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-focus-trap/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
   <video style="max-height: 416px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
@@ -105,7 +105,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
   You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [Emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/material-cra-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
   The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or Emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 

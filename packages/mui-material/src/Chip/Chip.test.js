@@ -12,8 +12,9 @@ import {
 } from 'test/utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
+import defaultTheme from '../styles/defaultTheme';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();
@@ -171,6 +172,29 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.clickableColorPrimary);
       expect(chip).to.have.class(classes.filled);
       expect(chip).to.have.class(classes.filledPrimary);
+    });
+
+    it('should not be focused when a deletable chip is disabled and skipFocusWhenDisabled is true', () => {
+      const { getByTestId } = render(
+        <Chip
+          label="My Chip"
+          disabled
+          data-testid="chip"
+          skipFocusWhenDisabled
+          onDelete={() => {}}
+        />,
+      );
+
+      const chip = getByTestId('chip');
+
+      simulatePointerDevice();
+      act(() => {
+        fireEvent.keyDown(document.body, { key: 'Tab' });
+      });
+
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.property('tabIndex', -1);
+      expect(chip).not.to.have.class(classes.focusVisible);
     });
 
     it('should render with the root and filled clickable secondary class', () => {
@@ -423,10 +447,7 @@ describe('<Chip />', () => {
 
     it('should unfocus when a esc key is pressed', () => {
       const handleBlur = spy();
-      const handleKeydown = spy();
-      const { getByRole } = render(
-        <Chip onBlur={handleBlur} onClick={() => {}} onKeyDown={handleKeydown} />,
-      );
+      const { getByRole } = render(<Chip onBlur={handleBlur} onClick={() => {}} />);
       const chip = getByRole('button');
       act(() => {
         chip.focus();
@@ -593,6 +614,24 @@ describe('<Chip />', () => {
       const { getByTestId } = render(<Chip icon={<span data-testid="test-icon" />} />);
 
       expect(getByTestId('test-icon')).to.have.class(classes.icon);
+    });
+
+    it("should not override the icon's custom color", () => {
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Chip icon={<CheckBox data-testid="test-icon" color="success" />} />,
+          <Chip icon={<CheckBox data-testid="test-icon2" color="success" />} color="error" />,
+        </React.Fragment>,
+      );
+
+      expect(getByTestId('test-icon')).to.have.class('MuiChip-iconColorSuccess');
+      expect(getByTestId('test-icon2')).to.have.class('MuiChip-iconColorSuccess');
+      expect(getByTestId('test-icon')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.success.main),
+      });
+      expect(getByTestId('test-icon2')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.success.main),
+      });
     });
   });
 

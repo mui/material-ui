@@ -39,7 +39,7 @@ export default function ListUsage() {
         {
           propName: 'children',
           defaultValue: `<ListItemDecorator><Home /></ListItemDecorator>
-  Home
+  <ListItemContent>Home</ListItemContent>
   <KeyboardArrowRight />`,
         },
       ]}

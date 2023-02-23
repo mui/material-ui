@@ -11,11 +11,17 @@ export default function TabsPricingExample() {
       size="sm"
       aria-label="Pricing plan"
       defaultValue={0}
-      sx={{ width: 343, '--Tabs-gap': '0px' }}
+      sx={(theme) => ({
+        width: 343,
+        '--Tabs-gap': '0px',
+        borderRadius: 'lg',
+        boxShadow: 'sm',
+        overflow: 'auto',
+        border: `1px solid ${theme.vars.palette.divider}`,
+      })}
     >
       <TabList
-        variant="outlined"
-        sx={(theme) => ({
+        sx={{
           '--List-item-radius': '0px',
           borderRadius: 0,
           [`& .${tabClasses.root}`]: {
@@ -35,21 +41,18 @@ export default function TabsPricingExample() {
               height: 2,
               bgcolor: 'primary.400',
             },
-            '&:not(:first-of-type)': {
-              borderLeft: `1px solid ${theme.vars.palette.divider}`,
-            },
             [`&.${tabClasses.focusVisible}`]: {
               outlineOffset: '-3px',
             },
           },
-        })}
+        }}
       >
         <Tab sx={{ py: 1.5 }}>Community</Tab>
         <Tab>Pro</Tab>
         <Tab>Premium</Tab>
       </TabList>
-      <TabPanel value={0}>
-        <Typography level="inherit" mt={2}>
+      <TabPanel value={0} sx={{ p: 3 }}>
+        <Typography level="inherit">
           Get started with the industry-standard React UI library, MIT-licensed.
         </Typography>
         <Typography textColor="success.400" fontSize="xl3" fontWeight="xl" my={1}>
@@ -59,8 +62,8 @@ export default function TabsPricingExample() {
           </Typography>
         </Typography>
       </TabPanel>
-      <TabPanel value={1}>
-        <Typography level="inherit" mt={2}>
+      <TabPanel value={1} sx={{ p: 3 }}>
+        <Typography level="inherit">
           Best for professional developers building enterprise or data-rich
           applications.
         </Typography>
@@ -71,8 +74,8 @@ export default function TabsPricingExample() {
           </Typography>
         </Typography>
       </TabPanel>
-      <TabPanel value={2}>
-        <Typography level="inherit" mt={2}>
+      <TabPanel value={2} sx={{ p: 3 }}>
+        <Typography level="inherit">
           The most advanced features for data-rich applications, as well as the
           highest priority for support.
         </Typography>

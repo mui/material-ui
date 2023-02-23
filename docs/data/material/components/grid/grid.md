@@ -3,20 +3,20 @@ product: material-ui
 title: React Grid component
 components: Grid
 githubLabel: 'component: Grid'
-materialDesign: https://material.io/design/layout/understanding-layout.html
+materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
 
 # Grid
 
 <p class="description">The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.</p>
 
-The [grid](https://material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+The [grid](https://m2.material.io/design/layout/responsive-layout-grid.html) creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
 Material Design's responsive UI is based on a 12-column grid layout.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## How it works
@@ -70,7 +70,7 @@ It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/
 ## Responsive values
 
 You can switch the props' value based on the active breakpoint.
-For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+For instance, we can implement the ["recommended"](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
@@ -84,7 +84,7 @@ Responsive values is supported by:
 - all the [other props](#system-props) of the system
 
 :::warning
-⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
+When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
 For instance, this is not working. The grid item misses the value for `md`:
 
 ```jsx

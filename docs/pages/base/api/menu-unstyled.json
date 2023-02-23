@@ -8,23 +8,37 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": { "name": "shape", "description": "{ Listbox?: elementType, Root?: elementType }" },
-      "default": "{}"
-    },
-    "componentsProps": {
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ listbox?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
-    "keepMounted": { "type": { "name": "bool" } },
-    "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } }
+    "slots": {
+      "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
+      "default": "{}"
+    }
   },
   "name": "MenuUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": ".MuiMenu-listbox"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "PopperUnstyled",
+      "class": ".MuiMenu-root"
+    }
+  ],
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",

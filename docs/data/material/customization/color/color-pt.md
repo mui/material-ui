@@ -2,15 +2,15 @@
 
 <p class="description">Transmita significado através da cor. Out of the box you get access to all colors in the Material Design guidelines.</p>
 
-O [sistema de cores](https://material.io/design/color/) do Material Design pode ser usado para criar um tema que reflete sua marca ou estilo.
+O [sistema de cores](https://m2.material.io/design/color/) do Material Design pode ser usado para criar um tema que reflete sua marca ou estilo.
 
 ## Escolhendo cores
 
 ### Ferramenta oficial de cores
 
-A equipe do Material Design também criou uma ferramenta de configuração de paleta incrível: [material.io/resources/color/](https://material.io/resources/color/). Isso pode ajudar você a criar uma paleta de cores para sua UI, bem como medir o nível de acessibilidade de qualquer combinação de cores.
+A equipe do Material Design também criou uma ferramenta de configuração de paleta incrível: [material.io/resources/color/](https://m2.material.io/resources/color/). Isso pode ajudar você a criar uma paleta de cores para sua UI, bem como medir o nível de acessibilidade de qualquer combinação de cores.
 
-<a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Ferramenta oficial de cores" style="width: 574px" />
 </a>
 
@@ -42,7 +42,7 @@ const theme = createTheme({
 
 ### Área de exemplos
 
-Para testar um esquema de cores do [material.io/design/color](https://material.io/design/color/) com a documentação do Material-UI, simplesmente selecione as cores usando a paleta e os controles deslizantes abaixo. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primary e Secondary.
+Para testar um esquema de cores do [material.io/design/color](https://m2.material.io/design/color/) com a documentação do Material-UI, simplesmente selecione as cores usando a paleta e os controles deslizantes abaixo. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primary e Secondary.
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
 
@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 ### Ferramentas da comunidade
 
 - [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
-- [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
+- [Material palette generator](https://m2.material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
 ## Paletas de cores Material Design 2014
 

@@ -46,13 +46,15 @@ you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-
 ```css
 /* two classes are more specific than the default single class selector */
 .uglySwitch .MuiSwitch-thumb {
-  background-color: 'green';
+  background-color: green;
 }
+
 .uglySwitch .MuiTouchRipple-root {
-  border: 'solid red 2px';
+  border: 2px solid red;
 }
+
 .uglySwitch .MuiSwitch-track {
-  background-color: 'orange';
+  background-color: orange;
   opacity: 1;
 }
 ```
@@ -257,14 +259,14 @@ By adding this prop to the default filter panel, we can derive a customized pane
 ```jsx
 import { GridFilterPanel } from '@mui/x-data-grid';
 
-const CustomFilterPanel = (props) => (
-  <GridFilterPanel {...props} columnsSort="asc" />
-);
+function CustomFilterPanel(props) {
+  return <GridFilterPanel {...props} columnsSort="asc" />;
+}
 ```
 
 But this strategy of adding props to customize components is a bit verbose.
-So we added a way to pass props to an existing component using `componentsProps`.
-You can pass props to every slot on `components` using `componentsProps`.
+So we added a way to pass props to an existing component using `slotProps`.
+You can pass props to every slot on `slots` using `slotProps`.
 
 Here's how to pass `columnsSort='asc'` to the filter panel slot:
 

@@ -15,11 +15,11 @@ import RadioGroupContext from './RadioGroupContext';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
-  const { row, size, variant, color } = ownerState;
+  const { orientation, size, variant, color } = ownerState;
   const slots = {
     root: [
       'root',
-      row && 'row',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
@@ -44,11 +44,20 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
-  flexDirection: ownerState.row ? 'row' : 'column',
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio Group](https://mui.com/joy-ui/react-radio/)
+ *
+ * API:
+ *
+ * - [RadioGroup API](https://mui.com/joy-ui/api/radio-group/)
+ */
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -68,7 +77,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     color = 'neutral',
     variant = 'plain',
     size = 'md',
-    row = false,
+    orientation = 'vertical',
     role = 'radiogroup',
     ...other
   } = props;
@@ -80,7 +89,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   });
 
   const ownerState = {
-    row,
+    orientation,
     size,
     variant,
     color,
@@ -89,14 +98,6 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValueState(event.target.value);
-
-    if (onChange) {
-      onChange(event);
-    }
-  };
 
   const name = useId(nameProp);
 
@@ -114,18 +115,27 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     }, [registerEffect]);
   }
 
+  const contextValue = React.useMemo(
+    () => ({
+      disableIcon,
+      overlay,
+      orientation,
+      size,
+      name,
+      value,
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValueState(event.target.value);
+
+        if (onChange) {
+          onChange(event);
+        }
+      },
+    }),
+    [disableIcon, name, onChange, overlay, orientation, setValueState, size, value],
+  );
+
   return (
-    <RadioGroupContext.Provider
-      value={{
-        disableIcon,
-        overlay,
-        row,
-        size,
-        name,
-        value,
-        onChange: handleChange,
-      }}
-    >
+    <RadioGroupContext.Provider value={contextValue}>
       <RadioGroupRoot
         ref={ref}
         role={role}
@@ -172,6 +182,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
@@ -188,6 +199,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   defaultValue: PropTypes.any,
   /**
    * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
+   * @default false
    */
   disableIcon: PropTypes.bool,
   /**
@@ -203,18 +215,19 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The component orientation.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * If `true`, flex direction is set to 'row'.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'
@@ -237,6 +250,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
   /**
    * The variant to use.
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

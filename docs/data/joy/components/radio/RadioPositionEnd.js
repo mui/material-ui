@@ -20,8 +20,12 @@ export default function RadioPositionEnd() {
           '--List-decorator-size': '32px',
         }}
       >
-        {['Individual', 'Team', 'Interprise'].map((item, index) => (
-          <ListItem variant="outlined" key={item}>
+        {['Individual', 'Team', 'Enterprise'].map((item, index) => (
+          <ListItem
+            variant="outlined"
+            key={item}
+            sx={{ boxShadow: 'sm', bgcolor: 'background.body' }}
+          >
             <ListItemDecorator>
               {[<Person />, <People />, <Apartment />][index]}
             </ListItemDecorator>
@@ -30,7 +34,7 @@ export default function RadioPositionEnd() {
               value={item}
               label={item}
               sx={{ flexGrow: 1, flexDirection: 'row-reverse' }}
-              componentsProps={{
+              slotProps={{
                 action: ({ checked }) => ({
                   sx: (theme) => ({
                     ...(checked && {

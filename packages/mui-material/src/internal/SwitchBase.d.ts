@@ -19,9 +19,13 @@ export interface SwitchBaseProps
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked?: boolean;
+  /**
+   * If `true`, the component is disabled.
+   */
   disabled?: boolean;
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple?: boolean;
   /**
@@ -65,6 +69,7 @@ export interface SwitchBaseProps
   readOnly?: boolean;
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required?: boolean;
   tabIndex?: number;

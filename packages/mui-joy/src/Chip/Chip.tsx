@@ -1,15 +1,17 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import useButton from '@mui/base/useButton';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -39,48 +41,48 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   return [
     {
-      '--Chip-radius': '1.5rem',
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
-      '--internal-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'min(calc(var(--Chip-paddingInline) - (var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--Chip-decorator-childRadius':
-        'max(var(--Chip-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Chip-radius) / 2))',
+        'max(var(--_Chip-radius) - var(--variant-borderWidth, 0px) - var(--_Chip-paddingBlock), min(var(--_Chip-paddingBlock) + var(--variant-borderWidth, 0px), var(--_Chip-radius) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
       '--Avatar-size': 'var(--Chip-decorator-childHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--internal-action-radius': 'var(--Chip-radius)', // to be used with Radio or Checkbox
+      '--internal-action-radius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.125rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 1.5rem) / 1.714)', // 0.875rem by default
-        '--Chip-minHeight': '1.5rem',
+          'calc(min(1.125rem, var(--_Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.714)', // 0.875rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 1.5rem)',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
-        '--Chip-decorator-childHeight': 'min(1.375rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2rem) / 1.778)', // 1.125rem by default
-        '--Chip-minHeight': '2rem',
+        '--Chip-decorator-childHeight': 'min(1.375rem, var(--_Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 1.778)', // 1.125rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
-        '--Chip-decorator-childHeight': 'min(1.75rem, var(--Chip-minHeight))',
-        '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2.5rem) / 2)', // 1.25rem by default
-        '--Chip-minHeight': '2.5rem',
+        '--Chip-decorator-childHeight': 'min(1.75rem, var(--_Chip-minHeight))',
+        '--Icon-fontSize': 'calc(var(--_Chip-minHeight) / 2)', // 1.25rem by default
+        '--_Chip-minHeight': 'var(--Chip-minHeight, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
       }),
-      minHeight: 'var(--Chip-minHeight)',
+      '--_Chip-radius': 'var(--Chip-radius, 1.5rem)',
+      '--_Chip-paddingBlock':
+        'max((var(--_Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+      minHeight: 'var(--_Chip-minHeight)',
       paddingInline: 'var(--Chip-paddingInline)',
-      borderRadius: 'var(--Chip-radius)',
+      borderRadius: 'var(--_Chip-radius)',
       position: 'relative',
       fontWeight: theme.vars.fontWeight.md,
       fontFamily: theme.vars.fontFamily.body,
@@ -88,13 +90,11 @@ const ChipRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       whiteSpace: 'nowrap',
-      transition:
-        'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
       [`&.${chipClasses.disabled}`]: {
-        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+        color: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       },
     },
     ...(!ownerState.clickable
@@ -108,7 +108,7 @@ const ChipRoot = styled('div', {
       : [
           {
             '--variant-borderWidth': '0px',
-            color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+            color: theme.variants[ownerState.variant!]?.[ownerState.color!]?.color,
           },
         ]),
   ];
@@ -119,9 +119,11 @@ const ChipLabel = styled('span', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: ChipOwnerState }>(({ ownerState }) => ({
-  display: 'inherit',
-  alignItems: 'center',
+  display: 'inline-block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   order: 1,
+  minInlineSize: 0,
   flexGrow: 1,
   ...(ownerState.clickable && {
     zIndex: 1,
@@ -142,13 +144,12 @@ const ChipAction = styled('button', {
     bottom: 0,
     right: 0,
     border: 'none',
+    cursor: 'pointer',
     padding: 'initial',
     margin: 'initial',
     backgroundColor: 'initial',
     textDecoration: 'none',
     borderRadius: 'inherit',
-    transition:
-      'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -193,15 +194,22 @@ const ChipEndDecorator = styled('span', {
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [Chip API](https://mui.com/joy-ui/api/chip/)
  */
 const Chip = React.forwardRef(function Chip(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipProps>({ props: inProps, name: 'JoyChip' });
   const {
     children,
     className,
-    componentsProps = {},
-    color = 'primary',
-    component,
+    color: colorProp = 'primary',
+    slotProps = {},
     onClick,
     disabled = false,
     size = 'md',
@@ -210,11 +218,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     endDecorator,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
-  const clickable = !!onClick || !!componentsProps.action;
+  const clickable = !!onClick || !!slotProps.action;
   const ownerState: ChipOwnerState = {
     ...props,
-    component,
     disabled,
     size,
     color,
@@ -224,9 +233,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   };
 
   const resolvedActionProps =
-    typeof componentsProps.action === 'function'
-      ? componentsProps.action(ownerState)
-      : componentsProps.action;
+    typeof slotProps.action === 'function' ? slotProps.action(ownerState) : slotProps.action;
   const actionRef = React.useRef<HTMLElement | null>(null);
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
@@ -237,65 +244,73 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   ownerState.focusVisible = focusVisible;
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, slotProps };
 
-  const labelProps = useSlotProps({
-    elementType: ChipLabel,
-    externalSlotProps: componentsProps.label,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ChipRoot,
+    externalForwardedProps,
     ownerState,
+  });
+
+  const [SlotLabel, labelProps] = useSlot('label', {
     className: classes.label,
+    elementType: ChipLabel,
+    externalForwardedProps,
+    ownerState,
   });
 
   // @ts-ignore internal logic.
   const id = useId(labelProps.id);
 
-  const actionProps = useSlotProps({
+  const [SlotAction, actionProps] = useSlot('action', {
+    className: classes.action,
     elementType: ChipAction,
+    externalForwardedProps,
+    ownerState,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.action,
     additionalProps: {
       'aria-labelledby': id,
       as: resolvedActionProps?.component,
       onClick,
     },
-    ownerState,
-    className: classes.action,
   });
 
-  const startDecoratorProps = useSlotProps({
-    elementType: ChipStartDecorator,
-    externalSlotProps: componentsProps.startDecorator,
-    ownerState,
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
+    elementType: ChipStartDecorator,
+    externalForwardedProps,
+    ownerState,
   });
 
-  const endDecoratorProps = useSlotProps({
-    elementType: ChipEndDecorator,
-    externalSlotProps: componentsProps.endDecorator,
-    ownerState,
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
+    elementType: ChipEndDecorator,
+    externalForwardedProps,
+    ownerState,
   });
+
+  const chipContextValue = React.useMemo(
+    () => ({ disabled, variant, color: color === 'context' ? undefined : color }),
+    [color, disabled, variant],
+  );
 
   return (
-    <ChipContext.Provider value={{ disabled, variant, color }}>
-      <ChipRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        ownerState={ownerState}
-        {...other}
-      >
-        {clickable && <ChipAction {...actionProps} />}
+    <ChipContext.Provider value={chipContextValue}>
+      <SlotRoot {...rootProps}>
+        {clickable && <SlotAction {...actionProps} />}
 
         {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
-        <ChipLabel {...labelProps} id={id}>
+        <SlotLabel {...labelProps} id={id}>
           {children}
-        </ChipLabel>
+        </SlotLabel>
         {startDecorator && (
-          <ChipStartDecorator {...startDecoratorProps}>{startDecorator}</ChipStartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        {endDecorator && <ChipEndDecorator {...endDecoratorProps}>{endDecorator}</ChipEndDecorator>}
-      </ChipRoot>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+      </SlotRoot>
     </ChipContext.Provider>
   );
 }) as OverridableComponent<ChipTypeMap>;
@@ -322,22 +337,6 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -359,6 +358,16 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * Element placed before the children.
    */

@@ -4,7 +4,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabContext } from '@mui/base/TabsUnstyled';
-import { useTabPanel } from '@mui/base/TabPanelUnstyled';
+import useTabPanel from '@mui/base/useTabPanel';
 import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
@@ -12,10 +12,10 @@ import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
-  const { hidden, size } = ownerState;
+  const { hidden, size, orientation } = ownerState;
 
   const slots = {
-    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`],
+    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`, orientation],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, {});
@@ -45,7 +45,16 @@ const TabPanelRoot = styled('div', {
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabPanel API](https://mui.com/joy-ui/api/tab-panel/)
+ */
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -55,9 +64,9 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const { orientation } = useTabContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
 
-  const { children, value, component, size: sizeProp, ...other } = props;
+  const { children, value = 0, component, size: sizeProp, ...other } = props;
 
-  const { hidden, getRootProps } = useTabPanel(props);
+  const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
   const size = sizeProp ?? tabsSize;
 
@@ -104,7 +113,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -115,8 +127,9 @@ TabPanel.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
+   * @default 0
    */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
 export default TabPanel;

@@ -39,7 +39,7 @@ const Thumb = React.forwardRef(function Thumb(
   props: SliderUnstyledThumbSlotProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { 'data-index': index, 'data-focusvisible': focusVisible, ownerState, ...other } = props;
+  const { 'data-index': index, ownerState, ...other } = props;
   return <div data-track={ownerState.track} {...other} ref={ref} />;
 });
 
@@ -75,10 +75,17 @@ const Input = React.forwardRef(function Input(
   return <input data-track={ownerState.track} {...other} ref={ref} />;
 });
 
-const styledSlider = <SliderUnstyled components={{ Root, Track, Rail, Thumb, Mark, MarkLabel }} />;
+const styledSlider = (
+  <SliderUnstyled
+    slots={{ root: Root, track: Track, rail: Rail, thumb: Thumb, mark: Mark, markLabel: MarkLabel }}
+  />
+);
 
-const PolymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>
