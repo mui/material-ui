@@ -48,22 +48,22 @@
     },
     "formControlContext": {
       "type": {
-        "name": "FormControlUnstyledState | undefined",
-        "description": "FormControlUnstyledState | undefined"
+        "name": "FormControlState | undefined",
+        "description": "FormControlState | undefined"
       },
       "required": true
     },
     "getInputProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputInputSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputInputSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputInputSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputInputSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputRootSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputRootSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },

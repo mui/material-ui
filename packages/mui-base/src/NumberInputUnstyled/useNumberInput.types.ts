@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormControlUnstyledState } from '../FormControlUnstyled';
+import { FormControlState } from '../FormControl';
 
 export type UseNumberInputChangeHandler = (
   e: React.KeyboardEvent<HTMLInputElement>,
@@ -37,6 +37,16 @@ export interface UseNumberInputParameters {
   required?: boolean;
   value?: unknown;
 }
+
+export interface UseNumberInputRootSlotOwnProps {
+  onClick: React.MouseEventHandler | undefined;
+}
+
+export type UseNumberInputRootSlotProps<TOther = {}> = Omit<
+  TOther,
+  keyof UseNumberInputRootSlotOwnProps | 'onBlur' | 'onChange' | 'onFocus'
+> &
+  UseNumberInputRootSlotOwnProps;
 
 export interface UseNumberInputInputSlotOwnProps {
   defaultValue: number | undefined;
@@ -77,9 +87,9 @@ export interface UseNumberInputReturnValue {
    */
   focused: boolean;
   /**
-   * Return value from the `useFormControlUnstyledContext` hook.
+   * Return value from the `useFormControlContext` hook.
    */
-  formControlContext: FormControlUnstyledState | undefined;
+  formControlContext: FormControlState | undefined;
   /**
    * Resolver for the input slot's props.
    * @param externalProps props for the input slot

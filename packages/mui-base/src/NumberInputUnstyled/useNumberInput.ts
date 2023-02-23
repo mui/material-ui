@@ -7,6 +7,7 @@ import {
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
   UseNumberInputParameters,
+  UseNumberInputRootSlotProps,
   UseNumberInputInputSlotProps,
   UseNumberInputChangeHandler,
   UseNumberInputReturnValue,
@@ -14,7 +15,7 @@ import {
 import clamp from './clamp';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
-type EventHandlers = {
+type UseNumberInputEventHandlers = {
   onBlur?: React.FocusEventHandler;
   onChange?: UseNumberInputChangeHandler;
   onFocus?: React.FocusEventHandler;
@@ -91,7 +92,7 @@ export default function useNumberInput(
   }, [formControlContext, disabledProp, focused, onBlur]);
 
   const handleFocus =
-    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLInputElement>) => {
+    (otherHandlers: UseNumberInputEventHandlers) => (event: React.FocusEvent<HTMLInputElement>) => {
       // Fix a bug with IE11 where the focus/blur events are triggered
       // while the component is disabled.
       if (formControlContext && formControlContext?.disabled) {
@@ -108,7 +109,7 @@ export default function useNumberInput(
     };
 
   const handleChange =
-    (otherHandlers: EventHandlers) =>
+    (otherHandlers: UseNumberInputEventHandlers) =>
     (event: React.FocusEvent<HTMLInputElement>, val: number | undefined) => {
       // 1. clamp the number
       // 2. setInputValue(clamped_value)
@@ -161,7 +162,7 @@ export default function useNumberInput(
   };
 
   const handleBlur =
-    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLInputElement>) => {
+    (otherHandlers: UseNumberInputEventHandlers) => (event: React.FocusEvent<HTMLInputElement>) => {
       const val = parseInput(event.currentTarget.value);
 
       if (val === '' || val === '-') {
@@ -179,10 +180,33 @@ export default function useNumberInput(
       setFocused(false);
     };
 
+  const handleClick =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLInputElement>) => {
+      if (inputRef.current && event.currentTarget === event.target) {
+        inputRef.current.focus();
+      }
+
+      otherHandlers.onClick?.(event);
+    };
+
+  const getRootProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseNumberInputRootSlotProps<TOther> => {
+    const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
+    const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
+
+    return {
+      ...externalProps,
+      ...externalEventHandlers,
+      onClick: handleClick(externalEventHandlers),
+    };
+  };
+
   const getInputProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputInputSlotProps<TOther> => {
-    const propsEventHandlers: EventHandlers = {
+    const propsEventHandlers: UseNumberInputEventHandlers = {
       onBlur,
       onChange,
       onFocus,
@@ -230,7 +254,7 @@ export default function useNumberInput(
     getInputProps,
     // getIncrementButtonProps,
     // getDecrementButtonProps,
-    // getRootProps,
+    getRootProps,
     required: requiredProp,
     value: focused ? inputValue : value,
     // private and could be thrown out later

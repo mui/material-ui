@@ -1,11 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
+import classes from './numberInputUnstyledClasses';
 import useNumberInput from './useNumberInput';
 import {
-  NumberInputUnstyledProps,
   NumberInputUnstyledOwnerState,
+  NumberInputUnstyledProps,
+  NumberInputUnstyledRootSlotProps,
+  NumberInputUnstyledInputSlotProps,
+  NumberInputUnstyledTypeMap,
 } from './NumberInputUnstyled.types';
-import { EventHandlers, useSlotProps } from '../utils';
+import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 /**
  *
  * Demos:
@@ -18,43 +23,105 @@ import { EventHandlers, useSlotProps } from '../utils';
  */
 const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
   props: NumberInputUnstyledProps,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  forwardedRef: // TODO: this is for the root slot later
-  React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
-  // set up ALL the props
-  const { id, slotProps = {}, slots = {} } = props;
+  const {
+    className,
+    component,
+    defaultValue,
+    disabled,
+    error,
+    id,
+    max,
+    min,
+    onBlur,
+    onChange,
+    onFocus,
+    placeholder,
+    required,
+    step,
+    value,
+    slotProps = {},
+    slots = {},
+    ...rest
+  } = props;
 
-  const { getInputProps } = useNumberInput(props);
+  const {
+    getRootProps,
+    getInputProps,
+    focused,
+    error: errorState,
+    disabled: disabledState,
+    formControlContext,
+  } = useNumberInput({
+    min,
+    max,
+    step,
+    defaultValue,
+    disabled,
+    error,
+    onFocus,
+    onChange,
+    onBlur,
+    required,
+    value,
+  });
 
   const ownerState: NumberInputUnstyledOwnerState = {
     ...props,
-    type: 'text',
+    disabled: disabledState,
+    error: errorState,
+    focused,
+    formControlContext: undefined,
+  };
+
+  const rootStateClasses = {
+    [classes.disabled]: disabledState,
+    [classes.error]: errorState,
+    [classes.focused]: focused,
+    [classes.formControl]: Boolean(formControlContext),
+  };
+
+  const inputStateClasses = {
+    [classes.disabled]: disabledState,
   };
 
   const propsToForward = {
     id,
+    placeholder,
   };
 
-  // define the root slot
+  const Root = component ?? slots.root ?? 'div';
+  const rootProps: WithOptionalOwnerState<NumberInputUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: rest,
+    additionalProps: {
+      ref: forwardedRef,
+    },
+    ownerState,
+    className: [classes.root, rootStateClasses, className],
+  });
 
-  // root -> useSlotProps
-
-  // define the input slot
   const Input = slots.input ?? 'input';
 
-  const inputProps = useSlotProps({
+  const inputProps: WithOptionalOwnerState<NumberInputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: slotProps.input,
     additionalProps: {},
     ownerState,
+    className: [classes.input, inputStateClasses],
   });
 
-  // input -> useSlotProps
-  return <Input type="text" {...inputProps} />;
-});
+  return (
+    <Root {...rootProps}>
+      <Input {...inputProps} />
+    </Root>
+  );
+}) as OverridableComponent<NumberInputUnstyledTypeMap>;
 
 NumberInputUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -66,15 +133,67 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
+  /**
+   * If `true`, the component is disabled.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
+   */
+  error: PropTypes.bool,
+  /**
    * The id of the `input` element.
    */
   id: PropTypes.string,
   /**
-   * The props used for each slot inside the Input.
+   * @ignore
+   */
+  max: PropTypes.number,
+  /**
+   * @ignore
+   */
+  min: PropTypes.number,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  placeholder: PropTypes.string,
+  /**
+   * If `true`, the `input` element is required.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  required: PropTypes.bool,
+  /**
+   * The props used for each slot inside the NumberInput.
    * @default {}
    */
   slotProps: PropTypes.shape({
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside the InputBase.
@@ -83,7 +202,16 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     input: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
+  /**
+   * @ignore
+   */
+  step: PropTypes.number,
+  /**
+   * @ignore
+   */
+  value: PropTypes.any,
 } as any;
 
 export default NumberInputUnstyled;
