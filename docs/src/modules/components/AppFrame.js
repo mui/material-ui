@@ -154,7 +154,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 export default function AppFrame(props) {
-  const { children, disableDrawer = false, className, BannerComponent } = props;
+  const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -239,8 +239,4 @@ AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,
-};
-
-AppFrame.defaultProps = {
-  BannerComponent: AppFrameBanner,
 };
