@@ -55,7 +55,7 @@ Visit the [Style library interoperability](/material-ui/guides/interoperability/
 
 States like _hover_, _focus_, _disabled_ and _selected_, are styled with a higher CSS specificity. To customize them, you'll need to **increase specificity**.
 
-Here is an example with the _disable_ state and the `Button` component using a pseudo-class (`:disabled`):
+Here is an example with the _disabled_ state and the `Button` component using a pseudo-class (`:disabled`):
 
 ```css
 .Button {
