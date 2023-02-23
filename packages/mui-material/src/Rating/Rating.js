@@ -50,7 +50,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
       disabled && 'disabled',
       focusVisible && 'focusVisible',
-      readOnly && 'readyOnly',
+      readOnly && 'readOnly',
     ],
     label: ['label', 'pristine'],
     labelEmptyValue: [emptyValueFocused && 'labelEmptyValueActive'],
