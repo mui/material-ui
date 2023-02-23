@@ -271,7 +271,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
-        colorChannel(defaultColors.neutral[500]),
+        colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
       )} / 0.28)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
@@ -358,11 +358,14 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level2: getCssVarColor('palette-neutral-700'),
         level3: getCssVarColor('palette-neutral-600'),
         tooltip: getCssVarColor('palette-neutral-600'),
-        backdrop: `rgba(${getCssVarColor('palette-neutral-darkChannel')} / 0.5)`,
+        backdrop: `rgba(${getCssVar(
+          'palette-neutral-darkChannel',
+          colorChannel(defaultColors.neutral[800]), // should be the same index as in `attachColorChannels`
+        )} / 0.5)`,
       },
       divider: `rgba(${getCssVar(
         'palette-neutral-mainChannel',
-        colorChannel(defaultColors.neutral[500]),
+        colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
       )} / 0.24)`,
       focusVisible: getCssVarColor('palette-primary-500'),
     },
