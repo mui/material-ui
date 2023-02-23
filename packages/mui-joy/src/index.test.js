@@ -19,22 +19,21 @@ describe('@mui/joy', () => {
     );
   });
 
-  it('should export all exports from sub folders', async () => {
-    const files = await glob('packages/mui-joy/src/*/index.ts');
-    const joyUIIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
-
-    for (const file of files) {
+  it('should contain all exports from sub folders', async () => {
+    const files = await glob('packages/mui-joy/src/*/index.{ts,js}');
+    const muiJoyIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
+    files.forEach((file) => {
       const content = fs.readFileSync(file, 'utf-8');
       const hasDefaultExport = /export { default }/.test(content);
       const hasNamedExport = /export \* from /.test(content);
       const [, , , folder] = file.split('/');
 
       if (hasDefaultExport) {
-        expect(joyUIIndexFile).to.include(`export { default as ${folder} } from './${folder}'`);
+        expect(muiJoyIndexFile).to.include(`export { default as ${folder} } from './${folder}'`);
       }
       if (hasNamedExport) {
-        expect(joyUIIndexFile).to.include(`export * from './${folder}'`);
+        expect(muiJoyIndexFile).to.include(`export * from './${folder}'`);
       }
-    }
+    });
   });
 });

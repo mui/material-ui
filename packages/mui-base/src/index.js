@@ -7,10 +7,12 @@ export { default as ButtonUnstyled } from './ButtonUnstyled';
 export * from './ButtonUnstyled';
 
 export { default as ClickAwayListener } from './ClickAwayListener';
+export * from './ClickAwayListener';
 
 export { default as unstable_composeClasses } from './composeClasses';
 
 export { default as FocusTrap } from './FocusTrap';
+export * from './FocusTrap';
 
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
@@ -31,6 +33,7 @@ export { default as MultiSelectUnstyled } from './MultiSelectUnstyled';
 export * from './MultiSelectUnstyled';
 
 export { default as NoSsr } from './NoSsr';
+export * from './NoSsr';
 
 export { default as OptionGroupUnstyled } from './OptionGroupUnstyled';
 export * from './OptionGroupUnstyled';
@@ -41,6 +44,7 @@ export * from './OptionUnstyled';
 export { default as PopperUnstyled } from './PopperUnstyled';
 
 export { default as Portal } from './Portal';
+export * from './Portal';
 
 export { default as SelectUnstyled } from './SelectUnstyled';
 export * from './SelectUnstyled';
@@ -70,6 +74,7 @@ export { default as TabUnstyled } from './TabUnstyled';
 export * from './TabUnstyled';
 
 export { default as TextareaAutosize } from './TextareaAutosize';
+export * from './TextareaAutosize';
 
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
