@@ -616,7 +616,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {expanded ? (
+      {anchorEl ? (
         <AutocompletePopper
           as={PopperComponent}
           disablePortal={disablePortal}
