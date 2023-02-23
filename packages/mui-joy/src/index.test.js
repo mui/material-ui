@@ -29,10 +29,12 @@ describe('@mui/joy', () => {
       const [, , , folder] = file.split('/');
 
       if (hasDefaultExport) {
-        expect(muiJoyIndexFile).to.include(`export { default as ${folder} } from './${folder}'`);
+        const line = `export { default as ${folder} } from './${folder}'`;
+        expect(muiJoyIndexFile).to.include(line, `${line} is missing from index file`);
       }
       if (hasNamedExport) {
-        expect(muiJoyIndexFile).to.include(`export * from './${folder}'`);
+        const line = `export * from './${folder}'`;
+        expect(muiJoyIndexFile).to.include(line, `${line} is missing from index file`);
       }
     });
   });
