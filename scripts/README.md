@@ -64,24 +64,30 @@ To do so, follow these steps:
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
 
-2. Check out the `latest` branch from `material-ui-docs` remote:
+2. Switch to the `latest` branch from `material-ui-docs` remote:
 
    ```sh
-   git checkout --track material-ui-docs/latest
+   git switch --detach material-ui-docs/latest
    ```
 
-3. Cherry-pick and commit the commit(s) that you want to include in the new deployment:
+3. Cherry-pick the commit(s) that you want to include in the new deployment:
 
    ```sh
    git cherry-pick <commit>
    ```
 
-   This will commit the changes to your local `latest` branch if there are no conflicts.
+   It will commit the changes if there are no conflicts.
 
    In case of conflicts you will need to resolve them and commit the changes manually.
 
 4. Push the changes to the `material-ui-docs` remote:
 
    ```sh
-   git push
+   git push material-ui-docs HEAD:latest
+   ```
+
+5. Switch from detached `HEAD` back to your last checked out branch:
+
+   ```sh
+   git checkout -
    ```
