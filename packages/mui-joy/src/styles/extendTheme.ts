@@ -441,7 +441,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         outline: `${getCssVar(
           'focus-thickness',
           scalesInput.focus?.thickness ?? '2px',
-        )} solid ${getCssVarColor('palette-focusVisible')}`,
+        )} solid ${getCssVar('palette-focusVisible', defaultColors.primary[500])}`,
       },
     },
     lineHeight,
