@@ -71,7 +71,7 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "expanded": {
-      "description": "State class applied to the root element if the Popper is displayed"
+      "description": "State class applied to the root element if the options list is displayed."
     },
     "focused": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
