@@ -732,26 +732,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
 
-  let lightColorSchemeVars = {};
-
-  Object.keys(colorSchemes).forEach((key) => {
-    // @ts-ignore
-    const t = { ...theme, ...colorSchemes[key] };
-    // @ts-ignore - we don't want colorSchemes variables generated
-    delete t.colorSchemes;
-    const { vars } = cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-      addDefaultValues: true,
-    });
-    if (key === 'light') {
-      lightColorSchemeVars = vars;
-    }
-    theme.vars = deepmerge(theme.vars, vars);
-  });
-
   // light color scheme vars should be merged last so that they will win
-  theme.vars = deepmerge(theme.vars, lightColorSchemeVars);
+  Object.entries({ ...theme.colorSchemes, light: theme.colorSchemes.light }).forEach(
+    ([, scheme]) => {
+      const { vars } = cssVarsParser(scheme, {
+        prefix: cssVarPrefix,
+        shouldSkipGeneratingVar,
+        addDefaultValues: true,
+      });
+      theme.vars = deepmerge(theme.vars, vars);
+    },
+  );
 
   const { vars: rootVars } = cssVarsParser(mergedScales, {
     prefix: cssVarPrefix,
