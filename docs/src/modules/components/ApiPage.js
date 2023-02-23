@@ -190,7 +190,7 @@ export default function ApiPage(props) {
   const slotExtraDescription = extendVariantsLink
     ? t('api-docs.slotDescription').replace(/{{extendVariantsLink}}/, extendVariantsLink)
     : '';
-  if (slotExtraDescription) {
+  if (slotExtraDescription && slotDescriptions) {
     slotDescriptions.map((slotDescription) => `${slotDescription} ${slotExtraDescription}`);
   }
 
