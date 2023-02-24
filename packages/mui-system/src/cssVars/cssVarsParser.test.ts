@@ -359,7 +359,7 @@ describe('cssVarsParser', () => {
     });
 
     it('should add a fallback value', () => {
-      const { vars } = cssVarsParser(
+      const { varsWithDefaults } = cssVarsParser(
         {
           palette: {
             primary: {
@@ -369,9 +369,8 @@ describe('cssVarsParser', () => {
             },
           },
         },
-        { addDefaultValues: true },
       );
-      expect(vars).to.deep.equal({
+      expect(varsWithDefaults).to.deep.equal({
         palette: {
           primary: {
             main: 'var(--palette-primary-main, #000)',
