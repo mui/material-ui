@@ -19,7 +19,7 @@ export default function VirtualElementPopper() {
     if (
       !selection ||
       selection.anchorOffset === selection.focusOffset ||
-      selection.rangeCount <= 0
+      selection.rangeCount < 1
     ) {
       handleClose();
       return;
