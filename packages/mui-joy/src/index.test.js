@@ -22,12 +22,12 @@ describe('@mui/joy', () => {
 
   it('should contain all exports from sub folders', async () => {
     const files = await glob('packages/mui-joy/src/*/index.{ts,js}');
-    const muiJoyIndexFile = fs.readFileSync('packages/mui-joy/src/index.js', 'utf-8');
+    const muiJoyIndexFile = fs.readFileSync('packages/mui-joy/src/index.ts', 'utf-8');
 
-    files.forEach((file) => {
-      const [, , , folder] = file.split('/');
+    files.forEach((fileName) => {
+      const [, , , folder] = fileName.split('/');
 
-      const exports = getExports(file);
+      const exports = getExports(fs.readFileSync(fileName, 'utf-8'), fileName);
 
       const allExportsCount = exports.all.length;
       let namedExportsCount = exports.named.length;

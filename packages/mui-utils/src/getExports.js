@@ -1,16 +1,15 @@
-import { readFileSync } from 'fs';
 import { parseSync } from '@babel/core';
 import traverse from '@babel/traverse';
 
-const getExports = (file) => {
+const getExports = (file, fileName) => {
   const exports = {
     all: [],
     named: [],
     default: [],
   };
 
-  const ast = parseSync(readFileSync(file, 'utf8'), {
-    filename: file,
+  const ast = parseSync(file, {
+    filename: fileName,
   });
 
   traverse(ast, {

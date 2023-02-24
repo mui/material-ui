@@ -24,10 +24,10 @@ describe('@mui/base', () => {
     const files = await glob('packages/mui-base/src/*/index.{ts,js}');
     const muiBaseIndexFile = fs.readFileSync('packages/mui-base/src/index.js', 'utf-8');
 
-    files.forEach((file) => {
-      const [, , , folder] = file.split('/');
+    files.forEach((fileName) => {
+      const [, , , folder] = fileName.split('/');
 
-      const exports = getExports(file);
+      const exports = getExports(fs.readFileSync(fileName, 'utf-8'), fileName);
 
       const allExportsCount = exports.all.length;
       let namedExportsCount = exports.named.length;
