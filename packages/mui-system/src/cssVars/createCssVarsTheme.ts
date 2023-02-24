@@ -12,11 +12,10 @@ function createCssVarsTheme<T extends Theme>(theme: T) {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
   };
-  const { vars, generateCssVars } = prepareCssVars({ colorSchemes, ...otherTheme }, parserConfig);
+
   return {
     ...theme,
-    vars,
-    generateCssVars,
+    ...prepareCssVars({ colorSchemes, ...otherTheme }, parserConfig),
   };
 }
 
