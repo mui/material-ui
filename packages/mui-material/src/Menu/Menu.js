@@ -41,7 +41,7 @@ const MenuRoot = styled(Popover, {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const MenuPaper = styled(Paper, {
+const wrapPaper = Component => styled(Component, {
   name: 'MuiMenu',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -53,6 +53,8 @@ const MenuPaper = styled(Paper, {
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
 });
+
+const MenuPaper = wrapPaper(Paper);
 
 const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
@@ -78,6 +80,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     transitionDuration = 'auto',
     TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
+    components,
     ...other
   } = props;
 
@@ -156,6 +159,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   });
 
+  const PaperComponent = components?.Paper ? wrapPaper(components.Paper) : MenuPaper;
+
   return (
     <MenuRoot
       onClose={onClose}
@@ -165,13 +170,13 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
-        component: MenuPaper,
         ...PaperProps,
         classes: {
           ...PaperProps.classes,
           root: classes.paper,
         },
       }}
+      components={{ Paper: PaperComponent }}
       className={classes.root}
       open={open}
       ref={ref}
@@ -225,6 +230,14 @@ Menu.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * The components used for some slots inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Paper: PropTypes.elementType,
+  }),
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not

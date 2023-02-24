@@ -92,6 +92,16 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    */
   PaperProps?: Partial<PaperProps>;
   /**
+   * The components used for some slots inside the Popover.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Paper?: React.ElementType;
+    Backdrop?: React.ElementType;
+    Root?: React.ElementType;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;

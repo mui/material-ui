@@ -22,6 +22,10 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Paper?: elementType, Backdrop?: elementType, Root?: elementType; }" },
+      "default": "{}"
+    },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },

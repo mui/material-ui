@@ -107,6 +107,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     children,
     className,
     container: containerProp,
+    components = {},
     elevation = 8,
     marginThreshold = 16,
     open,
@@ -137,6 +138,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const PopoverElementPaper = components.Paper || PopoverPaper;
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -377,7 +380,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         timeout={transitionDuration}
         {...TransitionProps}
       >
-        <PopoverPaper
+        <PopoverElementPaper
           elevation={elevation}
           {...PaperProps}
           ref={handlePaperRef}
@@ -386,7 +389,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           ownerState={ownerState}
         >
           {children}
-        </PopoverPaper>
+        </PopoverElementPaper>
       </TransitionComponent>
     </PopoverRoot>
   );
@@ -487,6 +490,14 @@ Popover.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The components used for some slots inside the Popover.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Paper: PropTypes.elementType,
+  }),
   /**
    * An HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
