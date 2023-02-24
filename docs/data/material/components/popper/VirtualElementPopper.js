@@ -16,7 +16,11 @@ export default function VirtualElementPopper() {
     const selection = window.getSelection();
 
     // Resets when the selection has a length of 0
-    if (!selection || selection.anchorOffset === selection.focusOffset) {
+    if (
+      !selection ||
+      selection.anchorOffset === selection.focusOffset ||
+      selection.rangeCount <= 0
+    ) {
       handleClose();
       return;
     }
