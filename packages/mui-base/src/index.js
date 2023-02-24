@@ -9,6 +9,8 @@ export * from './ButtonUnstyled';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export * from './ClickAwayListener';
 
+export * from './className';
+
 export { default as unstable_composeClasses } from './composeClasses';
 
 export { default as FocusTrap } from './FocusTrap';
