@@ -173,7 +173,7 @@ export const createSoftInversion = (
         const tokens = cssVar.split('-');
         const color = tokens[1];
         const value = tokens[2];
-        return getCssVarDefault(cssVar, theme.palette[color][value]);
+        return getCssVarDefault(cssVar, theme.palette?.[color]?.[value]);
       }
     : getCssVarDefault;
   Object.entries(theme.palette).forEach((entry) => {
