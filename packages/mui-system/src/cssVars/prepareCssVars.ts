@@ -3,7 +3,6 @@ import cssVarsParser from './cssVarsParser';
 
 export interface DefaultCssVarsTheme {
   colorSchemes: Record<string, any>;
-  vars?: any;
 }
 
 function prepareCssVars<T extends DefaultCssVarsTheme>(
@@ -20,7 +19,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme>(
     css: rootCss,
     varsWithDefaults: rootVarsWithDefaults,
   } = cssVarsParser(otherTheme, parserConfig);
-  let themeVars = rootVarsWithDefaults as unknown as T['vars'];
+  let themeVars = rootVarsWithDefaults;
 
   const colorSchemesMap: Record<string, any> = {};
   const { light, ...otherColorSchemes } = colorSchemes;
