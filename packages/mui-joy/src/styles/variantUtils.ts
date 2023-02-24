@@ -185,72 +185,6 @@ export const createSoftInversion = (
       result[color] = {
         '--Badge-ringColor': getCssVar(`palette-${color}-softBg`),
         [cssVarPrefixVar('--shadowChannel')]: getCssVar(`palette-${color}-darkChannel`),
-        [theme.getColorSchemeSelector('light')]: {
-          [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
-          [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.1)`,
-          [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.08)`,
-          [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.2)`,
-          [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.32)`,
-          [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.48)`,
-          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
-          [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
-            `palette-${color}-darkChannel`,
-          )} / 0.8)`,
-          [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
-            `palette-${color}-darkChannel`,
-          )} / 0.68)`,
-          [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.32)`,
-          '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
-          '--variant-plainHoverColor': getCssVar(`palette-${color}-600`),
-          '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
-          '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
-          '--variant-plainDisabledColor': `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.6)`,
-
-          '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
-          '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
-          '--variant-outlinedHoverColor': getCssVar(`palette-${color}-600`),
-          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
-          '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
-          '--variant-outlinedDisabledColor': `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.6)`,
-          '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.12)`,
-
-          '--variant-softColor': getCssVar(`palette-${color}-600`),
-          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
-          '--variant-softHoverColor': getCssVar(`palette-${color}-700`),
-          '--variant-softHoverBg': getCssVar(`palette-${color}-200`),
-          '--variant-softActiveBg': getCssVar(`palette-${color}-300`),
-          '--variant-softDisabledColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.6)`,
-          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
-
-          '--variant-solidColor': getCssVar('palette-common-white'),
-          '--variant-solidBg': getCssVar(`palette-${color}-600`),
-          '--variant-solidHoverColor': getCssVar('palette-common-white'),
-          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
-          '--variant-solidActiveBg': getCssVar(`palette-${color}-500`),
-          '--variant-solidDisabledColor': `rgba(${getCssVar(
-            `palette-${color}-mainChannel`,
-          )} / 0.6)`,
-          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
-        },
         [theme.getColorSchemeSelector('dark')]: {
           [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-300`),
           [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
@@ -319,6 +253,73 @@ export const createSoftInversion = (
             `palette-${color}-mainChannel`,
           )} / 0.72)`,
           '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+        },
+        // `light` (default color scheme) should come last in case that `theme.getColorSchemeSelector()` return the same value
+        [theme.getColorSchemeSelector('light')]: {
+          [cssVarPrefixVar('--palette-focusVisible')]: getCssVar(`palette-${color}-500`),
+          [cssVarPrefixVar('--palette-background-body')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.1)`,
+          [cssVarPrefixVar('--palette-background-surface')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.08)`,
+          [cssVarPrefixVar('--palette-background-level1')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.2)`,
+          [cssVarPrefixVar('--palette-background-level2')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.32)`,
+          [cssVarPrefixVar('--palette-background-level3')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.48)`,
+          [cssVarPrefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-700`),
+          [cssVarPrefixVar('--palette-text-secondary')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.8)`,
+          [cssVarPrefixVar('--palette-text-tertiary')]: `rgba(${getCssVar(
+            `palette-${color}-darkChannel`,
+          )} / 0.68)`,
+          [cssVarPrefixVar('--palette-divider')]: `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.32)`,
+          '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
+          '--variant-plainHoverColor': getCssVar(`palette-${color}-600`),
+          '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
+          '--variant-plainDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+
+          '--variant-outlinedColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
+          '--variant-outlinedBorder': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.4)`,
+          '--variant-outlinedHoverColor': getCssVar(`palette-${color}-600`),
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
+          '--variant-outlinedDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+          '--variant-outlinedDisabledBorder': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.12)`,
+
+          '--variant-softColor': getCssVar(`palette-${color}-600`),
+          '--variant-softBg': `rgba(${getCssVar(`palette-${color}-lightChannel`)} / 0.72)`,
+          '--variant-softHoverColor': getCssVar(`palette-${color}-700`),
+          '--variant-softHoverBg': getCssVar(`palette-${color}-200`),
+          '--variant-softActiveBg': getCssVar(`palette-${color}-300`),
+          '--variant-softDisabledColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.6)`,
+          '--variant-softDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
+
+          '--variant-solidColor': getCssVar('palette-common-white'),
+          '--variant-solidBg': getCssVar(`palette-${color}-600`),
+          '--variant-solidHoverColor': getCssVar('palette-common-white'),
+          '--variant-solidHoverBg': getCssVar(`palette-${color}-500`),
+          '--variant-solidActiveBg': getCssVar(`palette-${color}-500`),
+          '--variant-solidDisabledColor': `rgba(${getCssVar(
+            `palette-${color}-mainChannel`,
+          )} / 0.6)`,
+          '--variant-solidDisabledBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.08)`,
         },
       };
     }
