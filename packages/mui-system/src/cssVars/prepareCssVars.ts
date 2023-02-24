@@ -5,7 +5,7 @@ export interface DefaultCssVarsTheme {
   colorSchemes: Record<string, any>;
 }
 
-function prepareCssVars<T extends DefaultCssVarsTheme>(
+function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars>(
   theme: T,
   parserConfig?: {
     prefix?: string;
@@ -19,7 +19,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme>(
     css: rootCss,
     varsWithDefaults: rootVarsWithDefaults,
   } = cssVarsParser(otherTheme, parserConfig);
-  let themeVars = rootVarsWithDefaults;
+  let themeVars = rootVarsWithDefaults as unknown as ThemeVars;
 
   const colorSchemesMap: Record<string, any> = {};
   const { light, ...otherColorSchemes } = colorSchemes;

@@ -18,7 +18,7 @@ import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales, SxProps } from './types';
+import { Theme, ThemeCssVar, ThemeScales, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
@@ -743,7 +743,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shouldSkipGeneratingVar,
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme>(
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,

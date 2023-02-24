@@ -5,12 +5,12 @@ interface Theme extends DefaultCssVarsTheme {
   shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
 }
 
-function createCssVarsTheme<T extends Theme>(theme: T) {
+function createCssVarsTheme<T extends Theme, ThemeVars>(theme: T) {
   const { colorSchemes, cssVarPrefix, shouldSkipGeneratingVar, ...otherTheme } = theme;
 
   return {
     ...theme,
-    ...prepareCssVars(
+    ...prepareCssVars<T, ThemeVars>(
       { colorSchemes, ...otherTheme },
       {
         prefix: cssVarPrefix,
