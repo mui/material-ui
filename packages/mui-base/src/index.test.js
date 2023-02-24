@@ -36,6 +36,7 @@ describe('@mui/base', () => {
       exports.named.forEach((namedExport) => {
         const defaultIndex = namedExport
           .get('specifiers')
+          // exports such as "export { default } from './Tooltip';" is also considered as default export
           .findIndex((specifier) => specifier.get('exported').node.name === 'default');
         if (defaultIndex > -1) {
           defaultExportsCount += 1;
@@ -43,6 +44,7 @@ describe('@mui/base', () => {
         }
       });
 
+      // below regex is to support exports like "export { default as unstable_composeClasses } from './composeClasses';"
       const exportStatement = /export { default as \b\w+\b } /;
       const filePath = new RegExp(`from './${folder}'`);
       const defaultExportStatement = new RegExp(`${exportStatement.source}${filePath.source}`);
