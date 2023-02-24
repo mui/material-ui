@@ -7,6 +7,7 @@ import { expect } from 'chai';
 import glob from 'fast-glob';
 import fs from 'fs';
 import * as MaterialUI from './index';
+import getJSExports from '../../mui-codemod/src/util/getJSExports';
 
 describe('@mui/base', () => {
   it('should have exports', () => {
@@ -67,5 +68,10 @@ describe('@mui/base', () => {
         );
       }
     });
+  });
+
+  it('d', () => {
+   // console.log(getJSExports(require.resolve('@mui/joy/Alert')));
+    console.log(getJSExports(require.resolve('@mui/joy/Alert')).size);
   });
 });

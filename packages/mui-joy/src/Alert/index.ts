@@ -1,4 +1,16 @@
-export { default } from './Alert';
-export * from './alertClasses';
+
+
 export { default as alertClasses } from './alertClasses';
-export * from './AlertProps';
+
+export { createFilterOptions } from '@mui/base/useAutocomplete';
+
+export type {
+    PopperPlacementType,
+    PopperUnstyledTransitionProps,
+    PopperUnstyledChildrenProps,
+    PopperUnstyledOwnProps,
+    PopperUnstyledOwnerState,
+    PopperUnstyledTypeMap,
+    PopperUnstyledProps,
+    PopperUnstyledRootSlotProps,
+  } from '@mui/base/PopperUnstyled';
