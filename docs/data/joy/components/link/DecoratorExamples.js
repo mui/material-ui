@@ -60,8 +60,13 @@ export default function DecoratorExamples() {
         underline="none"
         variant="soft"
         color="success"
-        endDecorator={<CircularProgress />}
-        sx={{ '--Link-gap': '0.5rem', pr: 0, pl: 1 }}
+        endDecorator={
+          <CircularProgress
+            color="success"
+            thickness={2}
+            sx={{ '--CircularProgress-size': '16px' }}
+          />
+        }
       >
         Careers
       </Link>
