@@ -75,7 +75,6 @@ export default function createCssVarsProvider(options) {
       components = {},
       generateCssVars = () => ({ vars: {}, css: {} }),
       cssVarPrefix,
-      shouldSkipGeneratingVar = () => false,
       ...restThemeProp
     } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);

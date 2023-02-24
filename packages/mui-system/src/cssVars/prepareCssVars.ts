@@ -33,7 +33,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme>(
     // light color scheme vars should be merged last to set as default
     const { css, vars, varsWithDefaults } = cssVarsParser(light, parserConfig);
     themeVars = deepmerge(themeVars, varsWithDefaults);
-    colorSchemesMap['light'] = { css, vars };
+    colorSchemesMap.light = { css, vars };
   }
 
   const generateCssVars = (colorScheme?: string) => {
