@@ -359,17 +359,15 @@ describe('cssVarsParser', () => {
     });
 
     it('should add a fallback value', () => {
-      const { varsWithDefaults } = cssVarsParser(
-        {
-          palette: {
-            primary: {
-              main: '#000',
-              alias: 'var(--palette-primary-main)',
-              alias2: 'var(--palette-primary-alias)',
-            },
+      const { varsWithDefaults } = cssVarsParser({
+        palette: {
+          primary: {
+            main: '#000',
+            alias: 'var(--palette-primary-main)',
+            alias2: 'var(--palette-primary-alias)',
           },
         },
-      );
+      });
       expect(varsWithDefaults).to.deep.equal({
         palette: {
           primary: {

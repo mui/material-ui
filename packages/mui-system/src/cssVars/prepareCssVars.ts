@@ -3,7 +3,7 @@ import cssVarsParser from './cssVarsParser';
 
 export interface DefaultCssVarsTheme {
   colorSchemes: Record<string, any>;
-  vars: any;
+  vars?: any;
 }
 
 function prepareCssVars<T extends DefaultCssVarsTheme>(
