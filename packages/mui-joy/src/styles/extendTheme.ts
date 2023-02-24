@@ -735,25 +735,27 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
 
-  // light color scheme vars should be merged last so that they will win
-  Object.entries({ ...theme.colorSchemes, light: theme.colorSchemes.light }).forEach(
-    ([, scheme]) => {
-      const { vars } = cssVarsParser(scheme, {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-        addDefaultValues: true,
-      });
-      theme.vars = deepmerge(theme.vars, vars);
-    },
-  );
-
-  const { vars: rootVars } = cssVarsParser(mergedScales, {
+  // ===============================================================
+  // Create `theme.vars` that contain `var(--*)` as values
+  // ===============================================================
+  const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
     addDefaultValues: true,
+  };
+  const { vars: rootVars } = cssVarsParser(mergedScales, parserConfig);
+  theme.vars = rootVars as unknown as Theme['vars'];
+  const { light, ...otherColorSchemes } = colorSchemes;
+  Object.entries(otherColorSchemes || {}).forEach(([, scheme]) => {
+    const { vars } = cssVarsParser(scheme, parserConfig);
+    theme.vars = deepmerge(theme.vars, vars);
   });
-
-  theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
+  if (light) {
+    // light color scheme vars should be merged last to set as default
+    const { vars } = cssVarsParser(light, parserConfig);
+    theme.vars = deepmerge(theme.vars, vars);
+  }
+  // ===============================================================
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
