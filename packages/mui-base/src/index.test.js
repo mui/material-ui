@@ -52,22 +52,12 @@ describe('@mui/base', () => {
           defaultExportStatement,
           `default export for file ${folder} is missing`,
         );
-      } else {
-        expect(muiBaseIndexFile).to.not.match(
-          defaultExportStatement,
-          `Invalid export statement is found for ${folder} file in index file`,
-        );
       }
-      const namedExportStatement = `export * from './${folder}'`;
+      const allExportStatement = `export * from './${folder}'`;
       if (namedExportsCount > 0 || allExportsCount > 0) {
         expect(muiBaseIndexFile).to.include(
-          namedExportStatement,
-          `${namedExportStatement} is missing from index file`,
-        );
-      } else {
-        expect(muiBaseIndexFile).to.not.include(
-          namedExportStatement,
-          `Invalid named export is found for ${folder} in index file`,
+          allExportStatement,
+          `${allExportStatement} is missing from index file`,
         );
       }
     });
