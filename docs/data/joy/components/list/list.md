@@ -6,11 +6,22 @@ githubLabel: 'component: list'
 
 # Lists
 
-<p class="description">Lists are continuous, vertical indexes of text or images.</p>
+<p class="description">Use lists as an organizational tool to enhance the readability and organization of content.</p>
 
 ## Introduction
 
-Joy UI provides four list-related components:
+The `List` component is a versatile tool that presents information in a concise, easy-to-follow format through a continuous, vertical index of text or images.
+
+{{"demo": "ListUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
+## Basics
+
+```jsx
+import List from '@mui/joy/List';
+```
+
+The `List` component is made up of several individual pieces that, when combined, create a customized list to suit the needs of your project.
+The list-related components wrap around content for specific purposes. An overview of the individual components within the Joy UI's `List` component are:
 
 - [`List`](#basic-usage): A wrapper for list items (defaulting as `ul`).
 - [`ListItem`](#basic-usage): A common list item (default as `li`).
@@ -20,54 +31,71 @@ Joy UI provides four list-related components:
 - [`ListDivider`](#divider): A separator between list items.
 - [`ListSubheader`](#nested-list): A label for a nested list.
 
-{{"demo": "ListUsage.js", "hideToolbar": true, "bg": "gradient"}}
+## Customization
 
-## Component
+### System Props
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
-
-```jsx
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-
-export default function MyApp() {
-  return (
-    <List aria-label="basic-list">
-      <ListItem>Hello, world!</ListItem>
-      <ListItem>Bye bye, world!</ListItem>
-    </List>
-  );
-}
-```
-
-### Basic usage
-
-Use the `List` and `ListItem` components to create a basic, non-interactive, list.
-Make sure to use a meaningful name that describe the content of the list in the `aria-labelledby` prop.
-
-{{"demo": "BasicList.js"}}
+The List component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft`, `outlined`, and `plain`.
 
 ### Sizes
 
-Use the `size` prop to control font-size and general list density.
+The `size` prop comes in three sizes: `sm`, `md`, and `lg`.
+It controls the font-size and general density of the list.
 
 {{"demo": "SizesList.js"}}
 
 :::info
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+If you are looking to add more sizes to the component, you can check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
-### Decorator
+### Colors
 
-Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
+Every palette included in the theme is available via the `color` prop.
 
-It comes with a minimum set width that you can adjust via the `--List-decorator-size` CSS variable within the `List` component.
+### Decorators
+
+By default, the List component does not apply any specific list style types by default.
+If you'd like to add supporting icons or elements to the list item, you can use the `ListItemDecorator` prop.
 
 {{"demo": "DecoratedList.js"}}
 
+:::info
+The `ListItemDecorator` comes with a minimum set width that can be adjusted using the `--list-decorator-size` CSS variable within the `List` component.
+:::
+
+### Horizontal list
+
+To show a list in a horizontal direction, you can use the `orientation="horizontal"` prop on the `List` component.
+
+{{"demo": "HorizontalList.js"}}
+
+:::warning
+While nested lists will not work in a horizontal direction, you can create a custom pop-up component to achieve a similar effect (see the [Navigation menu](#navigation-menu) example).
+:::
+
+### Semantic elements
+
+If you would like to control which HTML tag should be rendered in a one-off situation, you can use the `component` prop.
+
+```js
+<List component="ol">
+```
+
+In the example below, we're rendering the `List` component as an HTML `<nav>` element.
+
+{{"demo": "NavList.js"}}
+
+:::info
+**Tip**: The `ListItem` component is optional in this case.
+If used, it will automatically change the semantic element from the default `li` to `div`.
+:::
+
+## Basic Usage
+
 ### Ellipsis content
 
-When dealing with long content, use the `ListItemComponent` together with `<Typography noWrap>` to show ellipsis.
+When working with longer content in a `List` component, you can use the `ListItem` component in combination with `<Typography noWrap>` to display an ellipsis when the content exceeds the available space.
+This can help to keep the list items visually consistent and prevent text from overflowing outside of the list item's container.
 
 {{"demo": "EllipsisList.js"}}
 
@@ -75,39 +103,40 @@ When dealing with long content, use the `ListItemComponent` together with `<Typo
 
 The `ListDivider` component comes with four `inset` patterns:
 
-- Default (without providing the `inset` prop): stretches from edge to edge of the list.
-- `inset="gutter"`: from the start of the decorator to the end of the content.
-- `inset="startDecorator"`: from the start of the decorator to the end of the list.
-- `inset="startContent"`: from the start of the content to the end of the list.
+- Default (no `inset` prop provided): stretches form one edge of the list to the other.
+- `inset="gutter"`: from the start of `ListItemDecorator` to the end of the content.
+- `inset="startDecorator"`: from the start of `ListItemDecorator` to the end of the edge of the container.
+- `inset="startContent"`: from the start of the content to the edge of the container.
 
 {{"demo": "DividedList.js"}}
 
-For horizontal list, only `inset="gutter"` works on list divider.
+If you're using a horizontal list, only `inset="gutter"` will work as the list divider.
 
 {{"demo": "HorizontalDividedList.js"}}
 
 ### Sticky item
 
-To have a sticky list item, use a `List` as a child of the `Sheet` component.
-Then, on the item you wish to stick, add the `sticky` prop.
+To have a sticky list item, you can use `List` as a child of the `Sheet` component.
+On the item you wish to stick, you can then add the `sticky` prop.
 
-The `Sheet` component automatically adjusts the `sticky` list item to have the same background so that the content does not overflow when scroll.
-It works by default on both light and dark modes.
+The `Sheet` component automatically adjusts the `sticky` list item to have the same background so that content does not overflow when scrolling.
 
 {{"demo": "StickyList.js"}}
 
+:::info
+By default, this works on both light and dark modes.
+:::
+
 ### Nested list
 
-Use the `nested` prop, within the `ListItem` component, to create a nested list.
-Note that layout and spacing of the nested list remain intact, as if it isn't nested.
-
-The nested list inherits the list `size` and a few other CSS variables, such as `--List-radius` and `--List-item-radius` from the root `List` component to adjust the design consistently.
+Within the `ListItem` component, you can create a nested list using the `nested` prop.
+The nested list will inherit the list `size` as well as other CSS variables like `--List-radius` and `--List-item-radius` from the root `List` component to adjust the design consistently.
+The layout and spacing of the nested list will remain intact, however, as if it isn't nested.
 
 {{"demo": "NestedList.js"}}
 
 :::info
-By default, nested lists stick to the left of the root list.
-To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${value}`:
+Nested lists will stick to the left of the root list, by default. If you need to add spacing to the start of the nested list you can use `--List-nestedInsetStart: ${value}`.
 
 ```js
 <List sx={{ '--List-nestedInsetStart': '1rem' }}> {/* This is the root List */}
@@ -115,48 +144,18 @@ To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${
 
 :::
 
-### Horizontal list
+### Interactive list items
 
-To show a list in a horizontal direction, use the `orientation="horizontal"` prop on the `List` component.
-
-:::warning
-Nested lists don't work in the horizontal direction.
-To do that, create a custom pop-up component instead (see the [Navigation menu](#navigation-menu) example).
-:::
-
-{{"demo": "HorizontalList.js"}}
-
-### Changing the semantic element
-
-To control which HTML tag should be rendered in a given, one-off, situation, use the `component` prop.
-
-```js
-<List component="ol">
-```
-
-#### Non-list
-
-In the example below, we're rendering a `List` as a HTML `<nav>` element.
-
-:::info
-**Tip**: The `ListItem` component is optional in this case－if used, it will change the semantic element from the default `li` to `div` automatically.
-:::
-
-{{"demo": "NavList.js"}}
-
-### Actionable
-
-To make a list item interactive, use `ListItemButton` **inside** a `ListItem`.
+To make a list item interactive, you can use `ListItemButton` _inside_ a `ListItem`.
 
 {{"demo": "ActionableList.js"}}
-
-### Secondary action
 
 To add a secondary action to the `ListItemButton`, wrap it in a `ListItem` component and then add the desired start or end action elements to it.
 
 {{"demo": "SecondaryList.js"}}
 
-The `ListItemButton` and the secondary action render as siblings, that way, the semantic rendered element is appropriately adjusted.
+:::info
+The `ListItemButton` and the secondary action render as siblings so that the rendered semantic element is appropriately adjusted.
 
 ```js
 <ul>                    {/* List */}
@@ -165,24 +164,16 @@ The `ListItemButton` and the secondary action render as siblings, that way, the 
     <button>            {/* IconButton */}
 ```
 
-### Selected
-
-Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
-It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
-
-:::info
-A selected `ListItemButton` does not apply `:hover` and `:active` global variant styles.
 :::
+
+The `selected` prop in the `ListItemButton` component can be used to indicate whether an item is currently selected or not.
+When the item is selected, it applies `color="primary"` and a few extra styles, such as font weight, to visually communicate the selected state.
 
 {{"demo": "SelectedList.js"}}
 
-## CSS variables
-
-Play around with all the CSS variables available in the list component to see how the design changes.
-
-You can use those to customize the component on both the `sx` prop and the theme.
-
-{{"demo": "ListVariables.js", "hideToolbar": true}}
+:::info
+A selected `ListItemButton` does not apply `:hover` or `:active` global variant styles.
+:::
 
 ## Common examples
 
@@ -213,3 +204,32 @@ This example uses a combination of horizontal and vertical lists to form the nav
 It also supports keyboard navigation, inspired by the [Roving UX](https://github.com/argyleink/roving-ux) technique.
 
 {{"demo": "ExampleNavigationMenu.js"}}
+
+## CSS variables
+
+Play around with all the CSS variables available in the list component to see how the design changes.
+
+You can use these to customize the component with both the `sx` prop and the theme.
+
+{{"demo": "ListVariables.js", "hideToolbar": true}}
+
+## Accessibility
+
+To ensure the `List` component is accessible, here are some factors you should consider:
+
+- Use the appropriate HTML semantic element for the list (eg. `ol` or `ul`), to ensure assistive technologies can correctly interpret the list structure.
+- Make sure to use a meaningful name that describes the content of the list in the `aria-labelledby` prop.
+- Use `role` attributes to provide additional information about the purpose of the list and its items.
+  For example, use `role="list"` for the list and `role="listitem"` for each list item.
+
+## Anatomy
+
+The `List` component, by default, is composed of a root `<ul>` element that contains one or more child `<li>` elements.
+
+```html
+<ul class="MuiList-root">
+  <li class="MuiListItem-root">
+    <!-- List item content --->
+  </li>
+</ul>
+```
