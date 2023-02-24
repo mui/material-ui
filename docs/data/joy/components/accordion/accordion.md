@@ -7,25 +7,25 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 # Accordion
 
-<p class="description">The accordion component allows the user to show and hide sections of related content on a page.</p>
+<p class="description">Accordions let users show and hide sections of related content on a page.</p>
 
 :::success
-Joy Accordion component is still **in development** but it should not block you from using Joy UI!
+The Joy Accordion component is still in development, but this should not prevent you from adopting Joy UI today.
 
-The examples below demonstrate the featuring between Joy UI and popular headless libraries.
+This document shows how construct an accordion with existing Joy UI components combined with popular headless UI libraries.
 :::
 
-If you need Joy UI Accordion, please upvote [this issue](https://github.com/mui/material-ui/issues/36281). It will help us prioritize the next component that we should work on.
+If you're in need of a Joy UI Accordion, please upvote [this issue](https://github.com/mui/material-ui/issues/36281) to help us prioritize the next batch of new components.
 
 ## Integration
 
-Joy [`List`](/joy-ui/react-list/) components are perfect for building accordions because they are vertically stacked with the same size.
+Joy UI's [List](/joy-ui/react-list/) components are perfect for building accordions because they stack vertically with an equal width.
 
-- **List**: Wraps the accordions and set `component="div"` to remove it from the accessibility tree.
-- **ListItemButton**: The accordion header that can toggle the visibility of the content.
-- **ListItem**: The content container.
+- `<List />` - Wraps the accordion and sets `component="div"` to remove it from the accessibility tree.
+- `<ListItemButton />` - The accordion header that toggles the visibility of the content.
+- `<ListItem />` - The content container.
 
-### Radix UI
+### With Radix UI
 
 - [installation](https://www.radix-ui.com/docs/primitives/components/accordion#installation)
 - [documentation](https://www.radix-ui.com/docs/primitives/components/accordion)
@@ -37,7 +37,7 @@ Joy [`List`](/joy-ui/react-list/) components are perfect for building accordions
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Headless UI
+### With Headless UI
 
 - [installation](https://headlessui.com/react/disclosure#installation)
 - [documentation](https://headlessui.com/react/disclosure)
