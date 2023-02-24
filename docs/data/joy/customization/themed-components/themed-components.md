@@ -116,7 +116,9 @@ extendTheme({
 
 The following code snippet illustrates how to provide additional colors to a component beyond `primary`, `success`, `info`, `danger`, `neutral`, and `warning`.
 
-The example below extends the Button colors to include `secondary` and `tertiary` values:
+Note that by creating new colors, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which gives you fine-grained control over CSS properties like `color`, `background`, and `border`.
+
+The example below extends the Button colors to include `secondary` value:
 
 ```js
 extendTheme({
@@ -124,15 +126,9 @@ extendTheme({
     JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          ...(ownerState.size === 'secondary' && {
+          ...(ownerState.color === 'secondary' && {
             color: theme.vars.palette.text.secondary,
             backgroundColor: theme.vars.palette.background.level1,
-            opacity: 0.9,
-          }),
-          ...(ownerState.size === 'tertiary' && {
-            color: theme.vars.palette.text.tertiary,
-            backgroundColor: theme.vars.palette.background.level2,
-            opacity: 0.9,
           }),
         }),
       },
