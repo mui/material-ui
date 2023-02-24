@@ -32,6 +32,7 @@ describe('defaultTheme', () => {
         'unstable_sxConfig',
         'unstable_sx',
         'shouldSkipGeneratingVar',
+        'generateCssVars',
       ]).to.includes(field);
     });
   });

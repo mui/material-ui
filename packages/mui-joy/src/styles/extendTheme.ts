@@ -5,7 +5,7 @@ import {
   createBreakpoints,
   createSpacing,
   colorChannel,
-  unstable_cssVarsParser as cssVarsParser,
+  unstable_prepareCssVars as prepareCssVars,
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
   SxConfig,
@@ -741,22 +741,15 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    addDefaultValues: true,
   };
-  const { vars: rootVars } = cssVarsParser(mergedScales, parserConfig);
-  theme.vars = rootVars as unknown as Theme['vars'];
-  const { light, ...otherColorSchemes } = colorSchemes;
-  Object.entries(otherColorSchemes || {}).forEach(([, scheme]) => {
-    const { vars } = cssVarsParser(scheme, parserConfig);
-    theme.vars = deepmerge(theme.vars, vars);
-  });
-  if (light) {
-    // light color scheme vars should be merged last to set as default
-    const { vars } = cssVarsParser(light, parserConfig);
-    theme.vars = deepmerge(theme.vars, vars);
-  }
-  // ===============================================================
 
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme>(
+    // @ts-ignore property truDark is missing from colorSchemes
+    { colorSchemes, ...mergedScales },
+    parserConfig,
+  );
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...themeOptions?.unstable_sxConfig,

@@ -7,7 +7,7 @@ import {
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
-  unstable_cssVarsParser as cssVarsParser,
+  unstable_prepareCssVars as prepareCssVars,
   SxProps,
 } from '@mui/system';
 import {
@@ -447,28 +447,14 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
-  const { colorSchemes, ...restTheme } = theme;
-  Object.keys(colorSchemes).forEach((key) => {
-    // @ts-ignore
-    const t = { ...restTheme, ...colorSchemes[key] };
-    // @ts-ignore - we don't want colorSchemes variables generated
-    delete t.colorSchemes;
-
-    const { vars } = cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-      addDefaultValues: true,
-    });
-    theme.vars = deepmerge(theme.vars, vars);
-  });
-
-  const { vars: rootVars } = cssVarsParser(restTheme, {
+  const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    addDefaultValues: true,
-  });
+  };
 
-  theme.vars = deepmerge(theme.vars, rootVars) as unknown as Theme['vars'];
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme>(theme, parserConfig);
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {

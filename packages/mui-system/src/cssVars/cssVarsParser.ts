@@ -124,12 +124,12 @@ export default function cssVarsParser<T extends Record<string, any>>(
   options?: {
     prefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
-    addDefaultValues?: boolean;
   },
 ) {
-  const { prefix, shouldSkipGeneratingVar, addDefaultValues = false } = options || {};
+  const { prefix, shouldSkipGeneratingVar } = options || {};
   const css = {} as Record<string, string | number>;
   const vars = {} as NestedRecord<string>;
+  const varsWithDefaults = {};
 
   walkObjectDeep(
     theme,
@@ -140,17 +140,13 @@ export default function cssVarsParser<T extends Record<string, any>>(
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
-          assignNestedKeys(
-            vars,
-            keys,
-            `var(${cssVar}${addDefaultValues ? `, ${value}` : ''})`,
-            arrayKeys,
-          );
+          assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
+          assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${value})`, arrayKeys);
         }
       }
     },
     (keys) => keys[0] === 'vars', // skip 'vars/*' paths
   );
 
-  return { css, vars };
+  return { css, vars, varsWithDefaults };
 }

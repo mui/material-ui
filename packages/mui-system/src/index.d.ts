@@ -167,6 +167,7 @@ export * from './ThemeProvider';
 export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
+export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
 export * from './cssVars';
 
 export { default as responsivePropType } from './responsivePropType';

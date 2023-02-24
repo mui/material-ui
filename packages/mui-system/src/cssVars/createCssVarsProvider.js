@@ -4,7 +4,6 @@ import MuiError from '@mui/utils/macros/MuiError.macro';
 import { deepmerge } from '@mui/utils';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
-import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
 import systemGetInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
@@ -74,6 +73,7 @@ export default function createCssVarsProvider(options) {
     const {
       colorSchemes = {},
       components = {},
+      generateCssVars = () => ({ vars: {}, css: {} }),
       cssVarPrefix,
       shouldSkipGeneratingVar = () => false,
       ...restThemeProp
@@ -134,10 +134,7 @@ export default function createCssVarsProvider(options) {
     })();
 
     // 2. Create CSS variables and store them in objects (to be generated in stylesheets in the final step)
-    const { css: rootCss, vars: rootVars } = cssVarsParser(restThemeProp, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-    });
+    const { css: rootCss, vars: rootVars } = generateCssVars();
 
     // 3. Start composing the theme object
     const theme = {
@@ -155,10 +152,7 @@ export default function createCssVarsProvider(options) {
     const defaultColorSchemeStyleSheet = {};
     const otherColorSchemesStyleSheet = {};
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const { css, vars } = cssVarsParser(scheme, {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-      });
+      const { css, vars } = generateCssVars(key);
       theme.vars = deepmerge(theme.vars, vars);
       if (key === calculatedColorScheme) {
         // 4.1 Merge the selected color scheme to the theme
@@ -202,6 +196,8 @@ export default function createCssVarsProvider(options) {
         ] = css;
       }
     });
+
+    theme.vars = deepmerge(theme.vars, rootVars);
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.

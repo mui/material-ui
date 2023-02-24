@@ -8,7 +8,7 @@ import {
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
-  unstable_cssVarsParser as cssVarsParser,
+  unstable_prepareCssVars as prepareCssVars,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
@@ -376,28 +376,15 @@ export default function extendTheme(options = {}, ...args) {
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
-  const { colorSchemes, ...restTheme } = theme;
-  Object.keys(colorSchemes).forEach((key) => {
-    const t = { ...restTheme, ...colorSchemes[key] };
-    delete t.colorSchemes;
-
-    const { vars } = cssVarsParser(t, {
-      prefix: cssVarPrefix,
-      shouldSkipGeneratingVar,
-      addDefaultValues: true,
-    });
-    theme.vars = deepmerge(theme.vars, vars);
-  });
-
-  const { vars: rootVars } = cssVarsParser(restTheme, {
+  const parserConfig = {
     prefix: cssVarPrefix,
     shouldSkipGeneratingVar,
-    addDefaultValues: true,
-  });
+  };
+  const { vars: themeVars, generateCssVars } = prepareCssVars(theme, parserConfig);
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
-  theme.vars = deepmerge(theme.vars, rootVars);
-
   theme.unstable_sxConfig = {
     ...defaultSxConfig,
     ...input?.unstable_sxConfig,
