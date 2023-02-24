@@ -11,27 +11,9 @@ const getJSExports = memoize((file) => {
   });
 
   traverse(ast, {
-    // ExportAllDeclaration:(a)=>{
-    //   result.add(a)
-    // }
-    ExportNamedDeclaration: (a) => {
-      const specifiers = a.get('specifiers');
-
-      const source = a.get('source').node.value;
-      console.log(
-        specifiers
-          .find((specifier) => {
-            console.log(specifier.get('exported').node.name);
-            return specifier.get('exported').node.name === 'createFilterOptions';
-          })
-          ?.get('local').node.name,
-      );
-
-      result.add(a);
+    ExportSpecifier: ({ node: { exported } }) => {
+      result.add(exported.name);
     },
-    // ExportDefaultDeclaration: (a) => {
-    //   result.add(a);
-    // },
   });
 
   return result;
