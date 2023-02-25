@@ -25,5 +25,19 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    it('should be idempotent', () => {
+      const actual = transform(
+        {
+          source: read('./rename-css-variables.test/expected.js'),
+          path: require.resolve('./rename-css-variables.test/expected.js'),
+        },
+        { jscodeshift },
+        {},
+      );
+
+      const expected = read('./rename-css-variables.test/expected.js');
+      expect(actual).to.equal(expected, 'The transformed version should be correct');
+    });
   });
 });
