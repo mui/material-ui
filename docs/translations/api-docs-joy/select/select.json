@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "action": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "defaultValue": "The default selected value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",
@@ -13,11 +13,11 @@
     "onClose": "Triggered when focus leaves the menu and the menu should close.",
     "placeholder": "Text to show when there is no selected value.",
     "renderValue": "Function that customizes the rendering of the selected value.",
-    "size": "The size of the component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "startDecorator": "Leading adornment for the select.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The selected value. Set to <code>null</code> to deselect all options.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {},
   "slotDescriptions": {

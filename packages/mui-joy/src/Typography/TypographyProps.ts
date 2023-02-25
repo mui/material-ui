@@ -109,7 +109,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        */
       variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
     };

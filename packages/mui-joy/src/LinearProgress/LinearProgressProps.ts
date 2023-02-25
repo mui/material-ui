@@ -43,7 +43,7 @@ export interface LinearProgressTypeMap<P = {}, D extends React.ElementType = 'di
      */
     value?: number;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'soft'
      */
     variant?: OverridableStringUnion<VariantProp, LinearProgressPropsVariantOverrides>;

@@ -430,6 +430,22 @@ const attachTranslations = (reactApi: ReactApi) => {
           ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
       } else if (propName === 'slots' && !reactApi.apiPathname.startsWith('/material-ui')) {
         description += ' See <a href="#slots">Slots API</a> below for more details.';
+      } else if (reactApi.apiPathname.startsWith('/joy-ui')) {
+        switch (propName) {
+          case 'size':
+            description +=
+              ' To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.';
+            break;
+          case 'color':
+            description +=
+              ' To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.';
+            break;
+          case 'variant':
+            description +=
+              ' To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.';
+            break;
+          default:
+        }
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
