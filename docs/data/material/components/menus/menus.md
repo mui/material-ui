@@ -4,7 +4,7 @@ title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base/react-menu/
 ---
 

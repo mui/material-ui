@@ -109,7 +109,7 @@ We will see how this is passed along in the `renderFullPage` function.
 ```jsx
 import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
@@ -186,7 +186,7 @@ Let's take a look at the client file:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
@@ -215,9 +215,9 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
 
-- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
+- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/material-express-ssr)
+- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/material-gatsby)
+- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts))
 
 ## Troubleshooting
 

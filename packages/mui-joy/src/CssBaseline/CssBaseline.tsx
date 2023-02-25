@@ -7,8 +7,17 @@ import { CssBaselineProps } from './CssBaselineProps';
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
+ *
+ * Demos:
+ *
+ * - [CSS Baseline](https://mui.com/joy-ui/react-css-baseline/)
+ *
+ * API:
+ *
+ * - [CssBaseline API](https://mui.com/joy-ui/api/css-baseline/)
  */
-function CssBaseline({ children, disableColorScheme = false }: CssBaselineProps) {
+function CssBaseline(props: CssBaselineProps) {
+  const { children, disableColorScheme = false } = props;
   return (
     <React.Fragment>
       <GlobalStyles

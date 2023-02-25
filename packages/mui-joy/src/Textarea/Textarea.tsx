@@ -101,9 +101,6 @@ const TextareaRoot = styled('div', {
         fontSize: theme.vars.fontSize.sm,
         lineHeight: theme.vars.lineHeight.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -209,7 +206,16 @@ const TextareaEndDecorator = styled('div', {
   color: theme.vars.palette.text.tertiary,
   cursor: 'initial',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea](https://mui.com/joy-ui/react-textarea/)
+ *
+ * API:
+ *
+ * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
+ */
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -347,6 +353,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**

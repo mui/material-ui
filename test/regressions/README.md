@@ -48,7 +48,7 @@ A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixt
 For development `yarn test:regressions:dev` and `yarn test:regressions:run --watch` in separate terminals is recommended.
 
 | command                        | description                                                                                                           |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | `yarn test:regressions`        | Full run                                                                                                              |
 | `yarn test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
 | `yarn test:regressions:run`    | Runs the tests (requires `yarn test:regressions:dev` or `yarn test:regressions:build`+`yarn test:regressions:server`) |

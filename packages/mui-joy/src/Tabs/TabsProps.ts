@@ -21,6 +21,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
       color?: OverridableStringUnion<ColorPaletteProp, TabsPropsColorOverrides>;
       /**
        * The size of the component.
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabsPropsSizeOverrides>;
       /**

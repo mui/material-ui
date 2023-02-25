@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MenuItemMetadata, MenuItemState } from './useMenu.types';
+import { MenuItemMetadata, MenuItemState } from '../useMenu';
 
 export interface MenuUnstyledContextType {
   registerItem: (id: string, metadata: MenuItemMetadata) => void;
@@ -10,6 +10,7 @@ export interface MenuUnstyledContextType {
     otherHandlers?: Record<string, React.EventHandler<any>>,
   ) => Record<string, any>;
   open: boolean;
+  registerHighlightChangeHandler: (handler: (itemId: string | null) => void) => void;
 }
 
 const MenuUnstyledContext = React.createContext<MenuUnstyledContextType | null>(null);

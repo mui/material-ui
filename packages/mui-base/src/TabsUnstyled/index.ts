@@ -8,6 +8,4 @@ export * from './tabsUnstyledClasses';
 
 export * from './TabsUnstyled.types';
 
-export { default as useTabs } from './useTabs';
-
 export * from './useTabs.types';

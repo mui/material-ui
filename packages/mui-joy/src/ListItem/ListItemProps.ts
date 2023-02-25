@@ -5,11 +5,29 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
 
+export interface ListItemSlots {
+  /**
+   * The component used to render the root.
+   * @default 'li'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the start action.
+   * @default 'div'
+   */
+  startAction: React.ElementType;
+  /**
+   * The component used to render the end action.
+   * @default 'div'
+   */
+  endAction: React.ElementType;
+}
+
 export interface ListItemPropsVariantOverrides {}
 export interface ListItemPropsColorOverrides {}
 
 export type ListItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ListItemSlot,
+  ListItemSlots,
   {
     root: SlotProps<'li', {}, ListItemOwnerState>;
     startAction: SlotProps<'div', {}, ListItemOwnerState>;

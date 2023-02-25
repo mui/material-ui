@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import useButton from '@mui/base/useButton';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -64,7 +65,16 @@ const chipVariantMapping = {
   soft: 'solid',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [ChipDelete API](https://mui.com/joy-ui/api/chip-delete/)
+ */
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipDeleteProps>({
     props: inProps,

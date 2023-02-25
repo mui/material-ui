@@ -197,6 +197,30 @@ describe('<Slider />', () => {
     expect(handleChange.args[1][1]).to.deep.equal(22);
   });
 
+  describe('prop: classes', () => {
+    it('adds custom classes to the component', () => {
+      const selectedClasses = ['root', 'rail', 'track', 'mark'];
+      const customClasses = selectedClasses.reduce((acc, curr) => {
+        acc[curr] = `custom-${curr}`;
+        return acc;
+      }, {});
+
+      const { container } = render(
+        <Slider
+          marks={[{ value: 0 }, { value: 20 }, { value: 30 }]}
+          defaultValue={0}
+          classes={customClasses}
+        />,
+      );
+
+      expect(container.firstChild).to.have.class(classes.root);
+      expect(container.firstChild).to.have.class('custom-root');
+      selectedClasses.slice(1).forEach((className, index) => {
+        expect(container.firstChild.children[index]).to.have.class(`custom-${className}`);
+      });
+    });
+  });
+
   describe('prop: orientation', () => {
     it('should render with the vertical classes', () => {
       const { container, getByRole } = render(<Slider orientation="vertical" value={0} />);

@@ -179,17 +179,11 @@ const CircularProgressProgress = styled('circle', {
     transform: 'rotate(-90deg)', // to initially appear at the top-center of the circle.
   },
   ({ ownerState }) =>
-    ownerState.determinate
-      ? {
-          transition: 'stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms', // copy from Material UI CircularProgress
-        }
-      : css`
-          animation: var(
-              --CircularProgress-circulation,
-              0.8s linear 0s infinite normal none running
-            )
-            ${circulate};
-        `,
+    !ownerState.determinate &&
+    css`
+      animation: var(--CircularProgress-circulation, 0.8s linear 0s infinite normal none running)
+        ${circulate};
+    `,
 );
 
 /**
@@ -198,6 +192,14 @@ const CircularProgressProgress = styled('circle', {
  * If the progress bar is describing the loading progress of a particular region of a page,
  * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
  * attribute to `true` on that region until it has finished loading.
+ *
+ * Demos:
+ *
+ * - [Circular Progress](https://mui.com/joy-ui/react-circular-progres/)
+ *
+ * API:
+ *
+ * - [CircularProgress API](https://mui.com/joy-ui/api/circular-progress/)
  */
 const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
   const props = useThemeProps<typeof inProps & CircularProgressProps>({
@@ -338,7 +340,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
    *
-   * For indeterminate, @default 25
+   * @default determinate ? 0 : 25
    */
   value: PropTypes.number,
   /**

@@ -5,12 +5,30 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AvatarSlot = 'root' | 'img' | 'fallback';
 
+export interface AvatarSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the img.
+   * @default 'img'
+   */
+  img: React.ElementType;
+  /**
+   * The component used to render the fallback.
+   * @default 'svg'
+   */
+  fallback: React.ElementType;
+}
+
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
 export interface AvatarPropsSizeOverrides {}
 
 export type AvatarSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AvatarSlot,
+  AvatarSlots,
   {
     root: SlotProps<'div', {}, AvatarOwnerState>;
     img: SlotProps<'img', {}, AvatarOwnerState>;

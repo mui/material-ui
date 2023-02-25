@@ -1,0 +1,27 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "checked": "If <code>true</code>, the component is checked.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "defaultChecked": "The default checked state. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "endDecorator": "The element that appears at the end of the switch.",
+    "onChange": "Callback fired when the state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string). You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean).",
+    "readOnly": "If <code>true</code>, the component is read only.",
+    "required": "If <code>true</code>, the <code>input</code> element is required.",
+    "size": "The size of the component.",
+    "startDecorator": "The element that appears at the end of the switch.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component used to render the action.",
+    "endDecorator": "The component used to render the end decorator.",
+    "input": "The component used to render the input.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator.",
+    "thumb": "The component used to render the thumb.",
+    "track": "The component used to render the track."
+  }
+}

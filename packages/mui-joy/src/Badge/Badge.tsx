@@ -121,8 +121,7 @@ const BadgeBadge = styled('span', {
     minHeight: 'var(--Badge-minHeight)',
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
-    zIndex: 1,
-    transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    zIndex: theme.vars.zIndex.badge,
     backgroundColor: theme.vars.palette.background.surface,
     [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
     [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
@@ -131,13 +130,19 @@ const BadgeBadge = styled('span', {
     [`&.${badgeClasses.invisible}`]: {
       transform: `scale(0) ${translateX} ${translateY}`,
     },
-    ...(ownerState.invisible && {
-      transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    }),
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Badge](https://mui.com/joy-ui/react-badge/)
+ *
+ * API:
+ *
+ * - [Badge API](https://mui.com/joy-ui/api/badge/)
+ */
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'JoyBadge' });
   const {
@@ -235,6 +240,7 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The content rendered within the badge.
+   * @default ''
    */
   badgeContent: PropTypes.node,
   /**

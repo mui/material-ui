@@ -11,7 +11,7 @@ import {
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
-import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
+import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
@@ -428,6 +428,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         'shadowChannel',
       )} / 0.27), 21px 52.3px 74px -1.2px rgba(${getCssVar('shadowChannel')} / 0.29)`,
     },
+    zIndex: {
+      badge: 1,
+      table: 10,
+      popup: 1000,
+      modal: 1300,
+      tooltip: 1500,
+    },
     typography: {
       display1: {
         fontFamily: getCssVar('fontFamily-display'),
@@ -605,7 +612,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   /**
    * Color channels generation
    */
-  function attachColorChannels(palette: Record<ColorPaletteProp, PaletteRange>) {
+  function attachColorChannels(
+    supportedColorScheme: SupportedColorScheme,
+    palette: Record<ColorPaletteProp, PaletteRange>,
+  ) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
         // Need type casting due to module augmentation inside the repo
@@ -613,6 +623,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         light: '200' as keyof PaletteRange,
         dark: '800' as keyof PaletteRange,
       };
+      if (supportedColorScheme === 'dark') {
+        channelMapping.main = '400';
+      }
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);
       }
@@ -627,10 +640,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   (
     Object.entries(theme.colorSchemes) as Array<
-      [string, { palette: Record<ColorPaletteProp, PaletteRange> }]
+      [SupportedColorScheme, { palette: Record<ColorPaletteProp, PaletteRange> }]
     >
-  ).forEach(([, colorSystem]) => {
-    attachColorChannels(colorSystem.palette);
+  ).forEach(([supportedColorScheme, colorSystem]) => {
+    attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
 
   theme.unstable_sxConfig = {
