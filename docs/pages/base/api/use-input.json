@@ -1,40 +1,77 @@
 {
   "parameters": {
-    "defaultValue": {
+    "defaultValue": { "type": { "name": "unknown", "description": "unknown" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "error": { "type": { "name": "boolean", "description": "boolean" } },
+    "inputRef": {
       "type": {
-        "name": "unknown",
-        "description": "The default value. Use when the component is not controlled."
+        "name": "React.Ref&lt;HTMLInputElement&gt",
+        "description": "React.Ref&lt;HTMLInputElement&gt"
       }
     },
-    "disabled": {
+    "onBlur": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "onChange": {
       "type": {
-        "name": "boolean",
-        "description": "If `true`, the component is disabled.\nThe prop defaults to the value (`false`) inherited from the parent FormControl component."
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt"
       }
+    },
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
+    "onFocus": {
+      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" } },
+    "value": { "type": { "name": "unknown", "description": "unknown" } }
+  },
+  "returnValue": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
     },
     "error": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focused": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "formControlContext": {
       "type": {
-        "name": "boolean",
-        "description": "If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.\nThe prop defaults to the value (`false`) inherited from the parent FormControl component."
-      }
+        "name": "FormControlUnstyledState | undefined",
+        "description": "FormControlUnstyledState | undefined"
+      },
+      "required": true
     },
-    "inputRef": { "type": { "name": "React.Ref<HTMLInputElement>", "description": "" } },
-    "onBlur": { "type": { "name": "React.FocusEventHandler", "description": "" } },
-    "onChange": {
-      "type": { "name": "React.ChangeEventHandler<HTMLInputElement>", "description": "" }
+    "getInputProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputInputSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputInputSlotProps&lt;TOther&gt"
+      },
+      "required": true
     },
-    "onClick": { "type": { "name": "React.MouseEventHandler", "description": "" } },
-    "onFocus": { "type": { "name": "React.FocusEventHandler", "description": "" } },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
     "required": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the `input` element is required.\nThe prop defaults to the value (`false`) inherited from the parent FormControl component."
-      }
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
     },
-    "value": { "type": { "name": "unknown", "description": "" } }
+    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
   },
-  "returnValue": {},
   "name": "useInput",
-  "filename": "/packages/mui-base/src/InputUnstyled/useInput.ts",
+  "filename": "/packages/mui-base/src/useInput/useInput.ts",
   "demos": "<ul><li><a href=\"/base/react-input/#hook\">Unstyled Input</a></li></ul>"
 }

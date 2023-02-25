@@ -1,12 +1,21 @@
 import { createStack } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { StackTypeMap } from './StackProps';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
+import { StackTypeMap } from './StackProps';
 
+/**
+ *
+ * Demos:
+ *
+ * - [Stack](https://mui.com/joy-ui/react-stack/)
+ *
+ * API:
+ *
+ * - [Stack API](https://mui.com/joy-ui/api/stack/)
+ */
 const Stack = createStack({
-  componentName: 'JoyStack',
   createStyledComponent: styled('div', {
     name: 'JoyStack',
     slot: 'Root',
@@ -24,6 +33,11 @@ Stack.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.

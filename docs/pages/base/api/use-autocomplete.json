@@ -1,237 +1,152 @@
 {
   "parameters": {
     "options": {
-      "type": { "name": "ReadonlyArray<T>", "description": "Array of options." },
+      "type": { "name": "ReadonlyArray&lt;T&gt", "description": "ReadonlyArray&lt;T&gt" },
       "required": true
     },
-    "autoComplete": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the portion of the selected suggestion that has not been typed by the user,\nknown as the completion string, appears inline after the input cursor in the textbox.\nThe inline completion string is visually highlighted and has a selected state."
-      },
-      "default": "false"
-    },
+    "autoComplete": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "autoHighlight": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the first option is automatically highlighted."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
-    "autoSelect": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the selected option becomes the value of the input\nwhen the Autocomplete loses focus unless the user chooses\na different option or changes the character string in the input."
-      },
-      "default": "false"
-    },
+    "autoSelect": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "blurOnSelect": {
       "type": {
-        "name": "'touch' | 'mouse' | true | false",
-        "description": "Control if the input should be blurred when an option is selected:\n\n- `false` the input is not blurred.\n- `true` the input is always blurred.\n- `touch` the input is blurred after a touch event.\n- `mouse` the input is blurred after a mouse event."
+        "name": "&#39;touch&#39; | &#39;mouse&#39; | true | false",
+        "description": "&#39;touch&#39; | &#39;mouse&#39; | true | false"
       },
       "default": "false"
     },
     "clearOnBlur": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the input's text is cleared on blur if no value is selected.\n\nSet to `true` if you want to help the user enter a new value.\nSet to `false` if you want to help the user resume their search."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "!props.freeSolo"
     },
     "clearOnEscape": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, clear all values when the user presses escape and the popup is closed."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
-    "componentName": {
-      "type": {
-        "name": "string",
-        "description": "The component name that is using this hook. Used for warnings."
-      }
-    },
+    "componentName": { "type": { "name": "string", "description": "string" } },
     "defaultValue": {
       "type": {
-        "name": "AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>",
-        "description": "The default value. Use when the component is not controlled."
+        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt",
+        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt"
       },
       "default": "props.multiple ? [] : null"
     },
     "disableClearable": {
-      "type": {
-        "name": "DisableClearable",
-        "description": "If `true`, the input can't be cleared."
-      },
+      "type": { "name": "DisableClearable", "description": "DisableClearable" },
       "default": "false"
     },
     "disableCloseOnSelect": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the popup won't close when a value is selected."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
-    "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the component is disabled." },
-      "default": "false"
-    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "disabledItemsFocusable": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, will allow focus on disabled items."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
     "disableListWrap": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the list box in the popup will not wrap focus."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
     "filterOptions": {
       "type": {
-        "name": "(options: T[], state: FilterOptionsState<T>) => T[]",
-        "description": "A function that determines the filtered options to be rendered on search."
+        "name": "(options: T[], state: FilterOptionsState&lt;T&gt) =&gt T[]",
+        "description": "(options: T[], state: FilterOptionsState&lt;T&gt) =&gt T[]"
       }
     },
     "filterSelectedOptions": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, hide the selected options from the list box."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
-    "freeSolo": {
-      "type": {
-        "name": "FreeSolo",
-        "description": "If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options."
-      },
-      "default": "false"
-    },
+    "freeSolo": { "type": { "name": "FreeSolo", "description": "FreeSolo" }, "default": "false" },
     "getOptionDisabled": {
-      "type": {
-        "name": "(option: T) => boolean",
-        "description": "Used to determine the disabled state for a given option."
-      }
+      "type": { "name": "(option: T) =&gt boolean", "description": "(option: T) =&gt boolean" }
     },
     "getOptionLabel": {
       "type": {
-        "name": "(option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string",
-        "description": "Used to determine the string value for a given option.\nIt's used to fill the input (and the list box options if `renderOption` is not provided).\n\nIf used in free solo mode, it must accept both the type of the options and a string."
+        "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt) =&gt string",
+        "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt) =&gt string"
       },
       "default": "(option) => option.label ?? option"
     },
     "groupBy": {
-      "type": {
-        "name": "(option: T) => string",
-        "description": "If provided, the options will be grouped under the returned string.\nThe groupBy value is also used as the text for group headings when `renderGroup` is not provided."
-      }
+      "type": { "name": "(option: T) =&gt string", "description": "(option: T) =&gt string" }
     },
     "handleHomeEndKeys": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the component handles the \"Home\" and \"End\" keys when the popup is open.\nIt should move focus to the first option and last option, respectively."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "!props.freeSolo"
     },
-    "id": {
-      "type": {
-        "name": "string",
-        "description": "This prop is used to help implement the accessibility logic.\nIf you don't provide an id it will fall back to a randomly generated one."
-      }
-    },
+    "id": { "type": { "name": "string", "description": "string" } },
     "includeInputInList": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the highlight can move to the input."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false"
     },
-    "inputValue": { "type": { "name": "string", "description": "The input value." } },
+    "inputValue": { "type": { "name": "string", "description": "string" } },
     "isOptionEqualToValue": {
       "type": {
-        "name": "(option: T, value: T) => boolean",
-        "description": "Used to determine if the option represents the given value.\nUses strict equality by default.\n⚠️ Both arguments need to be handled, an option can only match with one value."
+        "name": "(option: T, value: T) =&gt boolean",
+        "description": "(option: T, value: T) =&gt boolean"
       }
     },
-    "multiple": {
-      "type": {
-        "name": "Multiple",
-        "description": "If `true`, `value` must be an array and the menu will support multiple selections."
-      },
-      "default": "false"
-    },
+    "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails<T>) => void",
-        "description": "Callback fired when the value changes."
+        "name": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt) =&gt void",
+        "description": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt) =&gt void"
       }
     },
     "onClose": {
       "type": {
-        "name": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) => void",
-        "description": "Callback fired when the popup requests to be closed.\nUse in controlled mode (see open)."
+        "name": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) =&gt void",
+        "description": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) =&gt void"
       }
     },
     "onHighlightChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) => void",
-        "description": "Callback fired when the highlight option changes."
+        "name": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt void",
+        "description": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt void"
       }
     },
     "onInputChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => void",
-        "description": "Callback fired when the input value changes."
+        "name": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) =&gt void",
+        "description": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) =&gt void"
       }
     },
     "onOpen": {
       "type": {
-        "name": "(event: React.SyntheticEvent) => void",
-        "description": "Callback fired when the popup requests to be opened.\nUse in controlled mode (see open)."
+        "name": "(event: React.SyntheticEvent) =&gt void",
+        "description": "(event: React.SyntheticEvent) =&gt void"
       }
     },
-    "open": { "type": { "name": "boolean", "description": "If `true`, the component is shown." } },
-    "openOnFocus": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the popup will open on input focus."
-      },
-      "default": "false"
-    },
-    "readOnly": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted."
-      },
-      "default": "false"
-    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } },
+    "openOnFocus": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "selectOnFocus": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, the input's text is selected on focus.\nIt helps the user clear the selected value."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "!props.freeSolo"
     },
     "unstable_classNamePrefix": {
-      "type": { "name": "string", "description": "" },
+      "type": { "name": "string", "description": "string" },
       "default": "'Mui'"
     },
     "unstable_isActiveElementInListbox": {
-      "type": { "name": "(listbox: React.RefObject<HTMLElement>) => boolean", "description": "" }
+      "type": {
+        "name": "(listbox: React.RefObject&lt;HTMLElement&gt) =&gt boolean",
+        "description": "(listbox: React.RefObject&lt;HTMLElement&gt) =&gt boolean"
+      }
     },
     "value": {
       "type": {
-        "name": "AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>",
-        "description": "The value of the autocomplete.\n\nThe value must have reference equality with the option in order to be selected.\nYou can customize the equality behavior with the `isOptionEqualToValue` prop."
+        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt",
+        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt"
       }
     }
   },
   "returnValue": {},
   "name": "useAutocomplete",
-  "filename": "/packages/mui-base/src/AutocompleteUnstyled/useAutocomplete.js",
+  "filename": "/packages/mui-base/src/useAutocomplete/useAutocomplete.js",
   "demos": "<ul></ul>"
 }

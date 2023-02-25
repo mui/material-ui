@@ -29,9 +29,6 @@ const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
 export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li')<{
   ownerState: AutocompleteOptionOwnerState;
 }>(({ theme, ownerState }) => ({
-  '&:not(:hover)': {
-    transition: 'none', // prevent flicker when using keyboard arrows to move between options
-  },
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
     color: theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']?.color,
@@ -52,7 +49,16 @@ const AutocompleteOptionRoot = styled(StyledAutocompleteOption, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [AutocompleteOption API](https://mui.com/joy-ui/api/autocomplete-option/)
+ */
 const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

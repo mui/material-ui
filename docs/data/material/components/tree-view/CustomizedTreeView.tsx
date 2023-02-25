@@ -4,8 +4,7 @@ import { alpha, styled } from '@mui/material/styles';
 import TreeView from '@mui/lab/TreeView';
 import TreeItem, { TreeItemProps, treeItemClasses } from '@mui/lab/TreeItem';
 import Collapse from '@mui/material/Collapse';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 import { TransitionProps } from '@mui/material/transitions';
 
 function MinusSquare(props: SvgIconProps) {

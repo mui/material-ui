@@ -5,8 +5,26 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AlertSlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface AlertSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AlertSlot,
+  AlertSlots,
   {
     root: SlotProps<'div', {}, AlertOwnerState>;
     startDecorator: SlotProps<'span', {}, AlertOwnerState>;

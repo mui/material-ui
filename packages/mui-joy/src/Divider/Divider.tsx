@@ -17,7 +17,7 @@ const useUtilityClasses = (ownerState: DividerOwnerState) => {
   return composeClasses(slots, getDividerUtilityClass, {});
 };
 
-const DividerRoot = styled('hr', {
+export const DividerRoot = styled('hr', {
   name: 'JoyDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -87,7 +87,16 @@ const DividerRoot = styled('hr', {
         blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
       }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Divider](https://mui.com/joy-ui/react-divider/)
+ *
+ * API:
+ *
+ * - [Divider API](https://mui.com/joy-ui/api/divider/)
+ */
 const Divider = React.forwardRef(function Divider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -143,10 +152,6 @@ Divider.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

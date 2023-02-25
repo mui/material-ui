@@ -4,7 +4,7 @@ title: Unstyled React Select components and hook
 components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 hooks: useSelect
 githubLabel: 'component: select'
-waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
 
 # Unstyled Select
@@ -18,7 +18,7 @@ A select is a UI element that gives users a list of options to choose from.
 MUI Base offers two components to replace the native HTML `<select>` tag: Unstyled Select and Unstyled Multi-Select.
 It also includes Unstyled Option for creating the options on the list, and Unstyled Option Group for grouping those options.
 
-{{"demo": "UnstyledSelectIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSelectIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 
@@ -146,7 +146,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 ## Hook
 
 ```js
-import { useSelect } from '@mui/base/SelectUnstyled';
+import useSelect from '@mui/base/useSelect';
 ```
 
 The `useSelect` hook lets you apply the functionality of a select to a fully custom component.

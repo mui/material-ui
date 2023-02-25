@@ -13,12 +13,30 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface LinkSlots {
+  /**
+   * The component used to render the root.
+   * @default 'a'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface LinkPropsVariantOverrides {}
 
 export interface LinkPropsColorOverrides {}
 
 export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  LinkSlot,
+  LinkSlots,
   {
     root: SlotProps<'a', {}, LinkOwnerState>;
     startDecorator: SlotProps<'span', {}, LinkOwnerState>;
@@ -99,7 +117,8 @@ export interface LinkOwnerState extends ApplyColorInversion<LinkProps> {
    */
   focusVisible?: boolean;
   /**
-   * If `true`, the element is rendered by a Typography component.
+   * @internal
+   * If `true`, the element is rendered inside a Typography component.
    */
-  nested: boolean;
+  nesting: boolean;
 }

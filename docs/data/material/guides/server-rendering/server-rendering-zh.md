@@ -107,7 +107,7 @@ With this we are creating a new Emotion cache instance and using this to extract
 ```jsx
 import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
@@ -150,7 +150,7 @@ app.use(handleRender);
 const port = 3000;
 app.listen(port); import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@mui/core/CssBaseline';
 import { ThemeProvider } from '@mui/core/styles';
 import createEmotionServer from '@emotion/server/create-instance';
@@ -220,7 +220,7 @@ The client-side is straightforward. All we need to do is use the same cache conf
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import CssBaseline from '@mui/core/CssBaseline';
 import { ThemeProvider } from '@mui/core/styles';
 import { CacheProvider } from '@emotion/react';

@@ -4,7 +4,7 @@ title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 hooks: useMenu, useMenuItem
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
 
 # Unstyled Menu
@@ -19,7 +19,7 @@ It renders an unordered list (`<ul>`) by default.
 Use the Unstyled Menu Item to add items to the menu.
 These are rendered as `<li>` elements.
 
-{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -111,8 +111,8 @@ Unstyled Menu Item can set the following classes:
 ## Hooks
 
 ```jsx
-import { useMenu } from '@mui/base/MenuUnstyled';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import useMenu from '@mui/base/useMenu';
+import useMenuItem from '@mui/base/useMenuItem';
 ```
 
 The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu components to fully custom components.
