@@ -83,7 +83,8 @@ And the adoption speed across versions is very encouraging.
 Over 40% of users are already using the beta versions.
 
 <img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; aspect-ratio: 168/89;" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
-<p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
+
+<p class="blog-description">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
 
 ## Installation and migration from `@mui/lab`
 

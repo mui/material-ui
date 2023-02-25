@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, keyframes, css } from '@mui/system';
-import SnackbarUnstyled, { SnackbarCloseReason } from '@mui/base/SnackbarUnstyled';
+import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 const blue = {
   50: '#F0F7FF',

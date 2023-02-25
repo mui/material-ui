@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -13,12 +13,50 @@ export type SwitchSlot =
   | 'startDecorator'
   | 'endDecorator';
 
+export interface SwitchSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb: React.ElementType;
+  /**
+   * The component used to render the action.
+   * @default 'div'
+   */
+  action: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface SwitchPropsVariantOverrides {}
 export interface SwitchPropsColorOverrides {}
 export interface SwitchPropsSizeOverrides {}
 
 export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  SwitchSlot,
+  SwitchSlots,
   {
     root: SlotProps<'div', {}, SwitchOwnerState>;
     thumb: SlotProps<'span', {}, SwitchOwnerState>;

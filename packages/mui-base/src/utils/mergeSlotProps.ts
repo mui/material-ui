@@ -1,3 +1,4 @@
+import * as React from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';

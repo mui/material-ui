@@ -53,13 +53,7 @@ export default function PropertiesTable(props) {
         </thead>
         <tbody>
           {Object.entries(properties).map(([propName, propData]) => {
-            let typeName = propData.type.name;
-            typeName = typeName
-              .replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt')
-              .replace(/"/g, '&quot;')
-              .replace(/'/g, '&#39;');
+            const typeName = propData.type.description || propData.type.name;
             const propDefault = propData.default;
             return (
               propData.description !== '@ignore' && (

@@ -1,0 +1,20 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "endAction": "The element to display at the end of ListItem.",
+    "nested": "If <code>true</code>, the component can contain NestedList.",
+    "startAction": "The element to display at the start of ListItem.",
+    "sticky": "If <code>true</code>, the component has sticky position (with top = 0).",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The variant to use."
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "endAction": "The component used to render the end action.",
+    "root": "The component used to render the root.",
+    "startAction": "The component used to render the start action."
+  }
+}

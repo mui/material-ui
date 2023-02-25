@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SelectOption, SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type { SelectOption } from '@mui/base/SelectUnstyled';
+export type { SelectOption } from '@mui/base/useSelect';
 
 export type SelectSlot =
   | 'root'
@@ -15,12 +16,45 @@ export type SelectSlot =
   | 'indicator'
   | 'listbox';
 
+export interface SelectSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the button.
+   * @default 'button'
+   */
+  button: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+  /**
+   * The component used to render the indicator.
+   * @default 'span'
+   */
+  indicator: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox: React.ElementType;
+}
+
 export interface SelectPropsVariantOverrides {}
 export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
 export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  SelectSlot,
+  SelectSlots,
   {
     root: SlotProps<'div', {}, SelectOwnerState<any>>;
     button: SlotProps<'button', {}, SelectOwnerState<any>>;
@@ -48,7 +82,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   }>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
@@ -89,7 +123,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   sx?: SxProps;
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'outlined'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }

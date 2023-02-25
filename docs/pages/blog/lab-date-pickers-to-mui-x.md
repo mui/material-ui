@@ -20,7 +20,7 @@ This means we'll be dedicating even more time and effort to these complex compon
 
 Date and time pickers are interface controls that enable the user to select a date (or time) from a menu.
 
-<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Date and time picker component" />
+<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px;" alt="Date and time picker component" />
 
 <p class="blog-description">Date and time pickers using the default Material UI design</p>
 
@@ -76,8 +76,9 @@ Follow the [migration steps](/x/react-date-pickers/migration-lab/) by updating t
 +import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
 -import { DatePicker, DateRangePicker } from '@mui/lab';
-+import { DatePicker } from '@mui/x-date-pickers'; // DatePicker is also available in `@mui/x-date-pickers-pro`
++import { DatePicker } from '@mui/x-date-pickers';
 +import { DateRangePicker } from '@mui/x-date-pickers-pro';
+ // DatePicker is also available in `@mui/x-date-pickers-pro`
 ```
 
 We have prepared a codemod to help you migrate your codebase from `@mui/lab` to `@mui/x-date-pickers` or `@mui/x-date-pickers-pro`:

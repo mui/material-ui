@@ -47,7 +47,7 @@ Here are the components we will work on being supported in the MUI ecosystem:
 - ⏳ Planning to build
 
 | Name                       | Product  | Status |
-| :------------------------- | -------- | ------ |
+| :------------------------- | :------- | :----- |
 | Advanced Layout            | MUI X    | ⏳     |
 | Carousel                   | MUI X    | ⏳     |
 | Charts                     | MUI X    | ⏳     |
