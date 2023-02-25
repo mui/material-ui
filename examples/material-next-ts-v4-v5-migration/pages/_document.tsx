@@ -1,32 +1,42 @@
 import * as React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentProps,
+  DocumentContext,
+} from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang="en">
-        <Head>
-          {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          {/* Inject MUI styles first to match with the prepend: true configuration. */}
-          {(this.props as any).emotionStyleTags}
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
+interface MyDocumentProps extends DocumentProps {
+  emotionStyleTags: EmotionJSX.Element[];
+}
+
+export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
+  return (
+    <Html lang="en">
+      <Head>
+        {/* PWA primary color */}
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+        {/* Inject MUI styles first to match with the prepend: true configuration. */}
+        {emotionStyleTags}
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
 }
 
 // You can find a benchmark of the available CSS minifiers under
@@ -51,7 +61,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
-MyDocument.getInitialProps = async (ctx) => {
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   // Resolution order
   //
   // On the server:
