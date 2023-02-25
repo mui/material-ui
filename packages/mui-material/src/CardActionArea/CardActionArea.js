@@ -25,6 +25,7 @@ const CardActionAreaRoot = styled(ButtonBase, {
 })(({ theme }) => ({
   display: 'block',
   textAlign: 'inherit',
+  borderRadius: 'inherit',
   width: '100%',
   [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: (theme.vars || theme).palette.action.hoverOpacity,
