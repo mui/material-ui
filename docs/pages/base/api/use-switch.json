@@ -22,33 +22,21 @@
     "required": { "type": { "name": "boolean", "description": "boolean" } }
   },
   "returnValue": {
-    "checked": {
-      "type": { "name": "boolean", "description": "If `true`, the component will be checked." },
-      "required": true
-    },
-    "disabled": {
-      "type": { "name": "boolean", "description": "If `true`, the component will be disabled." },
-      "required": true
-    },
+    "checked": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "focusVisible": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, it indicates that the component is being focused using keyboard."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
       "required": true
     },
     "getInputProps": {
       "type": {
-        "name": "(otherProps?: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps",
-        "description": "Function to get the props to place on an HTML `input` to make the switch accessible."
+        "name": "(otherProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps",
+        "description": "(otherProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps"
       },
       "required": true
     },
-    "readOnly": {
-      "type": { "name": "boolean", "description": "If `true`, the component will be read only." },
-      "required": true
-    }
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useSwitch",
   "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
