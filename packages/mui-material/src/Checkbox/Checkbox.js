@@ -219,7 +219,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.oneOf(['large', 'medium', 'small']),
     PropTypes.string,
   ]),
   /**
