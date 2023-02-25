@@ -21,15 +21,15 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "<TOther extends Record<string, ((event: any) => void) | undefined> = {}>(externalProps?: TOther) => UseSnackbarRootSlotProps<TOther>",
-        "description": "Resolver for the root slot's props."
+        "name": "&lt;TOther extends Record&lt;string, ((event: any) =&gt void) | undefined&gt = {}&gt(externalProps?: TOther) =&gt UseSnackbarRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, ((event: any) =&gt void) | undefined&gt = {}&gt(externalProps?: TOther) =&gt UseSnackbarRootSlotProps&lt;TOther&gt"
       },
       "required": true
     },
     "onClickAway": {
       "type": {
-        "name": "(event: React.SyntheticEvent<any> | Event) => void",
-        "description": "Callback fired when a \"click away\" event is detected."
+        "name": "(event: React.SyntheticEvent&lt;any&gt | Event) =&gt void",
+        "description": "(event: React.SyntheticEvent&lt;any&gt | Event) =&gt void"
       },
       "required": true
     }
