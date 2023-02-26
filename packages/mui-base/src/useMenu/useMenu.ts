@@ -7,14 +7,14 @@ import useListbox, {
   ListboxReducerAction,
 } from '../useListbox';
 import {
-  MenuItemMetadata,
-  MenuItemState,
   UseMenuListboxSlotProps,
   UseMenuParameters,
+  UseMenuReturnType,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
 import { type MenuUnstyledContextType } from '../MenuUnstyled';
+import { MenuItemMetadata, MenuItemState } from './menuItem.types';
 
 function stateReducer(
   state: ListboxState<string>,
@@ -53,7 +53,7 @@ function stateReducer(
  *
  * - [useMenu API](https://mui.com/base/api/use-menu/)
  */
-export default function useMenu(parameters: UseMenuParameters = {}) {
+export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnType {
   const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
 
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
