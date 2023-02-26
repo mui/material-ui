@@ -1,18 +1,6 @@
 import * as React from 'react';
 import { UseListboxRootSlotProps } from '../useListbox';
 
-export interface MenuItemMetadata {
-  id: string;
-  disabled: boolean;
-  label?: string;
-  ref: React.RefObject<HTMLElement>;
-}
-
-export interface MenuItemState {
-  disabled: boolean;
-  highlighted: boolean;
-}
-
 export interface UseMenuParameters {
   open?: boolean;
   onClose?: () => void;
