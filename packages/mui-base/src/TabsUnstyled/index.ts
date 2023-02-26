@@ -7,5 +7,3 @@ export { default as tabsUnstyledClasses } from './tabsUnstyledClasses';
 export * from './tabsUnstyledClasses';
 
 export * from './TabsUnstyled.types';
-
-export * from './useTabs.types';
