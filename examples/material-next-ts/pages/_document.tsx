@@ -8,12 +8,13 @@ import Document, {
   DocumentContext,
 } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
+import { AppType } from 'next/app';
 import theme, { roboto } from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
+import { MyAppProps } from './_app';
 
 interface MyDocumentProps extends DocumentProps {
-  emotionStyleTags: EmotionJSX.Element[];
+  emotionStyleTags: JSX.Element;
 }
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
@@ -68,7 +69,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App: any) =>
+      enhanceApp: (App: React.ComponentType<React.ComponentProps<AppType> & MyAppProps>) =>
         function EnhanceApp(props) {
           return <App emotionCache={cache} {...props} />;
         },
