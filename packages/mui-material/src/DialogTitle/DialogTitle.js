@@ -33,11 +33,11 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     name: 'MuiDialogTitle',
   });
 
-  const { className, id: idProp, ...other } = props;
+  const { ariaLabelledby: idProp, className, id, ...other } = props;
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
-  const { titleId: id = idProp } = React.useContext(DialogContext);
+  const { titleId: ariaLabelledby = idProp } = React.useContext(DialogContext);
 
   return (
     <DialogTitleRoot
@@ -46,7 +46,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       variant="h6"
-      id={id}
+      id={id || ariaLabelledby}
       {...other}
     />
   );
@@ -57,6 +57,10 @@ DialogTitle.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  ariaLabelledby: PropTypes.string,
   /**
    * The content of the component.
    */
