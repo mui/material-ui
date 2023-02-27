@@ -6,17 +6,14 @@ interface Theme extends DefaultCssVarsTheme {
 }
 
 function createCssVarsTheme<T extends Theme, ThemeVars>(theme: T) {
-  const { colorSchemes, cssVarPrefix, shouldSkipGeneratingVar, ...otherTheme } = theme;
+  const { cssVarPrefix, shouldSkipGeneratingVar, ...otherTheme } = theme;
 
   return {
     ...theme,
-    ...prepareCssVars<T, ThemeVars>(
-      { colorSchemes, ...otherTheme },
-      {
-        prefix: cssVarPrefix,
-        shouldSkipGeneratingVar,
-      },
-    ),
+    ...prepareCssVars<Omit<T, 'shouldSkipGeneratingVar' | 'cssVarPrefix'>, ThemeVars>(otherTheme, {
+      prefix: cssVarPrefix,
+      shouldSkipGeneratingVar,
+    }),
   };
 }
 
