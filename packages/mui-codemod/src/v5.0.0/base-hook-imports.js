@@ -73,9 +73,11 @@ export default function transformer(file, api, options) {
         }
 
         const importName = elementNode.imported.name;
+        const localName = elementNode.local.name;
+
         if (hookName === importName) {
           // hook
-          specifiersForHook.push(j.importDefaultSpecifier(j.identifier(hookName)));
+          specifiersForHook.push(j.importDefaultSpecifier(j.identifier(localName)));
         } else if (
           // types that no longer exist in `...Unstyled`
           list.includes(importName) ||
