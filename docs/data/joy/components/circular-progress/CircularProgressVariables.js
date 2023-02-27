@@ -10,7 +10,7 @@ export default function CircularProgressVariables() {
         {
           var: '--CircularProgress-size',
           defaultValue: '40px',
-          helperText: 'Supports only `px` unit'
+          helperText: 'Supports only `px` unit',
         },
         {
           var: '--CircularProgress-track-thickness',
