@@ -437,6 +437,7 @@ const teamMembers: Array<Profile> = [
     twitter: 'mj12albert',
   },
   {
+    src: '/static/branding/about/mikaila.png',
     name: 'Mikaila Read',
     title: 'Senior People & Culture Partner',
     location: 'Newcastle Upon Tyne, UK',
