@@ -27,6 +27,10 @@ Joy UI's [List](/joy-ui/react-list/) components are perfect for building accordi
 
 ### With Radix UI
 
+Use Joy UI List components as a starting point and pass Radix—Accordion to `component` prop. The component's styles remain the same with the enhancement of Radix Accordion's functionalities.
+
+Animation is created by targeting a CSS variable, `--radix-accordion-content-height`, provided by Radix Accordion. In this demo, it uses `@mui/system` keyframes API, same as [emotion's keyframes](https://emotion.sh/docs/keyframes), to build the animation stylesheet.
+
 - [installation](https://www.radix-ui.com/docs/primitives/components/accordion#installation)
 - [documentation](https://www.radix-ui.com/docs/primitives/components/accordion)
 
@@ -38,6 +42,8 @@ Joy UI's [List](/joy-ui/react-list/) components are perfect for building accordi
    ></iframe>
 
 ### With Headless UI
+
+Use Joy UI List components as a starting point and pass Headless UI—Accordion to `component` prop. Headless UI does not provide an API to create animation so you have to use other libraries or build it yourself.
 
 - [installation](https://headlessui.com/react/disclosure#installation)
 - [documentation](https://headlessui.com/react/disclosure)
