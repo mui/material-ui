@@ -14732,17 +14732,17 @@ styled-system@^5.1.5:
     "@styled-system/variant" "^5.1.5"
     object-assign "^4.1.1"
 
-stylelint-config-recommended@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-5.0.0.tgz#fb5653f495a60b4938f2ad3e77712d9e1039ae78"
-  integrity sha512-c8aubuARSu5A3vEHLBeOSJt1udOdS+1iue7BmJDTSXoCBmfEQmmWX+59vYIj3NQdJBY6a/QRv1ozVFpaB9jaqA==
+stylelint-config-recommended@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-10.0.1.tgz#25a8828acf6cde87dac6db2950c8c4ed82a69ae1"
+  integrity sha512-TQ4xQ48tW4QSlODcti7pgSRqBZcUaBzuh0jPpfiMhwJKBPkqzTIAU+IrSWL/7BgXlOM90DjB7YaNgFpx8QWhuA==
 
-stylelint-config-standard@^22.0.0:
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-22.0.0.tgz#c860be9a13ebbc1b084456fa10527bf13a44addf"
-  integrity sha512-uQVNi87SHjqTm8+4NIP5NMAyY/arXrBgimaaT7skvRfE9u3JKXRK9KBkbr4pVmeciuCcs64kAdjlxfq6Rur7Hw==
+stylelint-config-standard@^30.0.1:
+  version "30.0.1"
+  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-30.0.1.tgz#a84d57c240c37f7db47023ab9d2e64c49090e1eb"
+  integrity sha512-NbeHOmpRQhjZh5XB1B/S4MLRWvz4xxAxeDBjzl0tY2xEcayNhLbaRGF0ZQzq+DQZLCcPpOHeS2Ru1ydbkhkmLg==
   dependencies:
-    stylelint-config-recommended "^5.0.0"
+    stylelint-config-recommended "^10.0.1"
 
 stylelint-processor-styled-components@^1.10.0:
   version "1.10.0"
