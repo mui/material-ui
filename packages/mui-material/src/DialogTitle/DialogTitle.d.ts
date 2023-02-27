@@ -10,6 +10,7 @@ export interface DialogTitleTypeMap<
   D extends React.ElementType = TypographyTypeMap['defaultComponent'],
 > {
   props: P & {
+    ariaLabelledby?: string;
     /**
      * The content of the component.
      */
