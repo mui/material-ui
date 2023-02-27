@@ -452,7 +452,10 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
     shouldSkipGeneratingVar,
   };
 
-  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, Theme['vars']>(theme, parserConfig);
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, Theme['vars']>(
+    theme,
+    parserConfig,
+  );
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
