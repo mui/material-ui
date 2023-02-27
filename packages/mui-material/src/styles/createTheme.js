@@ -1,4 +1,4 @@
-import { deepmerge, globalStateClassesMapping } from '@mui/utils';
+import { deepmerge } from '@mui/utils';
 import {
   createTheme as systemCreateTheme,
   unstable_defaultSxConfig as defaultSxConfig,
@@ -49,7 +49,18 @@ function createTheme(options = {}, ...args) {
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   if (process.env.NODE_ENV !== 'production') {
-    const stateClasses = Object.keys(globalStateClassesMapping);
+    const stateClasses = [
+      'active',
+      'checked',
+      'completed',
+      'disabled',
+      'error',
+      'expanded',
+      'focused',
+      'focusVisible',
+      'required',
+      'selected',
+    ];
 
     const traverse = (node, component) => {
       let key;
