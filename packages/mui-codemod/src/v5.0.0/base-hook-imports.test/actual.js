@@ -5,3 +5,4 @@ import { useInput } from '@mui/base/InputUnstyled';
 import { useSelect, SelectOption, SelectChild, isOptionGroup, SelectOptionGroup } from '@mui/base/SelectUnstyled';
 import { UseOptionReturnValue } from '@mui/base/OptionUnstyled';
 import useListbox from '@mui/base/ListboxUnstyled/useListbox';
+import { useSwitch as useBaseSwitch } from '@mui/base/SwitchUnstyled';
