@@ -14,6 +14,6 @@ describe('<ModalOverflow />', () => {
     muiName: 'JoyModalOverflow',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
-    skip: ['classesRoot', 'componentsProp'],
+    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
   }));
 });

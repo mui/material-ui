@@ -12,6 +12,7 @@ import {
 } from './ModalOverflowProps';
 import CloseModalContext from '../Modal/CloseModalContext';
 import ModalOverflowContext from './ModalOverflowContext';
+import modalDialogClasses from '../ModalDialog/modalDialogClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -38,8 +39,32 @@ export const ModalOverflowRoot = styled('div', {
   display: 'flex',
   flexDirection: 'column', // required for fullscreen ModalDialog, using `row` cannot be achieved.
   padding: 'var(--ModalOverflow-paddingY) 0', // let's not create `size` prop to only control the `padding`.
+  [`& .${modalDialogClasses.layoutCenter}`]: {
+    position: 'relative',
+    margin: 'auto', // to make the dialog stay at center when content does not overflow the screen.
+    height: 'max-content', // height is based on content, otherwise `margin: auto` will take place.
+    maxHeight: 'unset',
+    transform: 'none',
+    top: 'unset',
+    left: 'unset',
+  },
+  [`& .${modalDialogClasses.layoutFullscreen}`]: {
+    position: 'relative',
+    width: '100%',
+    margin: 'calc(-1 * var(--ModalOverflow-paddingY)) 0',
+    flex: 1,
+  },
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalOverflow API](https://mui.com/joy-ui/api/modal-overflow/)
+ */
 const ModalOverflow = React.forwardRef(function ModalOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalOverflowProps>({
     props: inProps,

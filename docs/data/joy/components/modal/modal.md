@@ -1,7 +1,7 @@
 ---
 product: joy-ui
 title: React Modal component
-components: Modal, ModalClose, ModalDialog
+components: Modal, ModalClose, ModalDialog, ModalOverflow
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---

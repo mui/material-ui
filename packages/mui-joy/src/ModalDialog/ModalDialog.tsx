@@ -14,7 +14,6 @@ import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
-import ModalOverflowContext from '../ModalOverflow/ModalOverflowContext';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
@@ -76,41 +75,23 @@ const ModalDialogRoot = styled(SheetRoot, {
   padding: 'var(--ModalDialog-padding)',
   minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
   outline: 0,
+  position: 'absolute',
   display: 'flex',
   flexDirection: 'column',
   ...(ownerState.layout === 'fullscreen' && {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     border: 0,
     borderRadius: 0,
-    ...(ownerState.modalOverflow
-      ? {
-          position: 'relative',
-          width: '100%',
-          margin: 'calc(-1 * var(--ModalOverflow-paddingY)) 0',
-          flex: 1,
-        }
-      : {
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-        }),
   }),
   ...(ownerState.layout === 'center' && {
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     maxWidth: 'calc(100vw - 2 * var(--ModalDialog-padding))',
-    ...(ownerState.modalOverflow
-      ? {
-          position: 'relative',
-          margin: 'auto', // to make the dialog stay at center when content does not overflow the screen.
-          height: 'max-content', // height is based on content, otherwise `margin: auto` will take place.
-        }
-      : {
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
-        }),
+    maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
     '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
@@ -159,8 +140,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const modalOverflow = React.useContext(ModalOverflowContext);
-
   const ownerState = {
     ...props,
     color,
@@ -168,7 +147,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     layout,
     size,
     variant,
-    modalOverflow,
   };
 
   const classes = useUtilityClasses(ownerState);
