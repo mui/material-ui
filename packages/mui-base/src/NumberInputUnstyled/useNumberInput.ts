@@ -9,6 +9,7 @@ import {
   UseNumberInputParameters,
   UseNumberInputInputSlotProps,
   UseNumberInputChangeHandler,
+  UseNumberInputReturnValue,
 } from './useNumberInput.types';
 import clamp from './clamp';
 import extractEventHandlers from '../utils/extractEventHandlers';
@@ -31,7 +32,9 @@ const parseInput = (v: string): string => {
  *
  * - [useNumberInput API](https://mui.com/base/api/use-number-input/)
  */
-export default function useNumberInput(parameters: UseNumberInputParameters) {
+export default function useNumberInput(
+  parameters: UseNumberInputParameters,
+): UseNumberInputReturnValue {
   const {
     // number
     min,
@@ -41,9 +44,9 @@ export default function useNumberInput(parameters: UseNumberInputParameters) {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
     error: errorProp = false,
-    onFocus,
-    onChange,
     onBlur,
+    onChange,
+    onFocus,
     required: requiredProp = false,
     value: valueProp,
     inputRef: inputRefProp,
@@ -196,14 +199,25 @@ export default function useNumberInput(parameters: UseNumberInputParameters) {
       onBlur: handleBlur(externalEventHandlers),
     };
 
+    const displayValue = (focused ? inputValue : value) ?? '';
+
     return {
       ...mergedEventHandlers,
+      type: 'text',
       // TODO: check to see if SR support is still weird
       role: 'spinbutton',
+      'aria-invalid': errorProp || undefined,
       defaultValue: defaultValueProp as number | undefined,
       ref: handleInputRef,
-      value: ((focused ? inputValue : value) ?? '') as number | undefined,
+      value: displayValue as number | undefined,
+      'aria-valuenow': displayValue as number | undefined,
+      'aria-valuetext': String(displayValue),
+      'aria-valuemin': min,
+      'aria-valuemax': max,
+      autoComplete: 'off',
+      autoCorrect: 'off',
       required: requiredProp,
+      'aria-disabled': disabledProp,
       disabled: disabledProp,
     };
   };

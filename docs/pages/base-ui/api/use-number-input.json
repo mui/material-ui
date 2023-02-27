@@ -30,7 +30,54 @@
     "step": { "type": { "name": "number", "description": "number" } },
     "value": { "type": { "name": "unknown", "description": "unknown" } }
   },
-  "returnValue": {},
+  "returnValue": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "error": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focused": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "formControlContext": {
+      "type": {
+        "name": "FormControlUnstyledState | undefined",
+        "description": "FormControlUnstyledState | undefined"
+      },
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputInputSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputInputSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseNumberInputRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
+    "inputValue": {
+      "type": { "name": "string | undefined", "description": "string | undefined" },
+      "required": true
+    },
+    "required": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
+  },
   "name": "useNumberInput",
   "filename": "/packages/mui-base/src/NumberInputUnstyled/useNumberInput.ts",
   "demos": "<ul></ul>"
