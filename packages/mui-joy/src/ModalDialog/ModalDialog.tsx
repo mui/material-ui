@@ -76,6 +76,8 @@ const ModalDialogRoot = styled(SheetRoot, {
   minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
   outline: 0,
   position: 'absolute',
+  display: 'flex',
+  flexDirection: 'column',
   ...(ownerState.layout === 'fullscreen' && {
     top: 0,
     left: 0,
@@ -88,6 +90,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {
     '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
