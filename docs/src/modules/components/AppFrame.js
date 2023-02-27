@@ -154,7 +154,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 export default function AppFrame(props) {
-  const { children, disableDrawer = false, className } = props;
+  const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -200,7 +200,7 @@ export default function AppFrame(props) {
           </NextLink>
           <GrowingDiv />
           <Stack direction="row" spacing="10px">
-            <AppFrameBanner />
+            <BannerComponent />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -235,6 +235,7 @@ export default function AppFrame(props) {
 }
 
 AppFrame.propTypes = {
+  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,
