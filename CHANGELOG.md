@@ -27,7 +27,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - &#8203;<!-- 29 -->[base] Remove `classes` prop from the Base components that have it (#36157) @hbjORbj
-  These are the components affected by this change: ModalUnstyled, SliderUnstyled, TablePaginationUnstyled and TablePaginationActionsUnstyled. You can replace the `classes` prop by providing the class name prop directly to the prop, for e.g.:
+  These are the components affected by this change: ModalUnstyled, SliderUnstyled, TablePaginationUnstyled and TablePaginationActionsUnstyled.
+  You can replace the `classes` prop by providing the class name prop directly to the prop via `slotProps`. Below is an example of how the migration should look like:
 
   ```diff
    <TablePaginationUnstyled
@@ -37,12 +38,15 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   ```
 
 - &#8203;<!-- 28 -->[base] Move hooks to their own directories (#36235) @hbjORbj
-  This is an e.g. of how the migration should look like:
+  Base hooks (e.g., `useSelect`) are no longer exported from `{Component}Unstyled` directories and instead they have their own directories.
+  Below is an example of how the migration should look like:
 
   ```diff
   -import { useBadge } from '@mui/base/BadgeUnstyled';
   +import useBadge from '@mui/base/useBadge';
   ```
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-hook-imports) to help with the migration.
 
 #### Changes
 
