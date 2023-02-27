@@ -407,7 +407,7 @@ export interface UseAutocompleteReturnValue<
    */
   value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
-   * If `true`, the component has valid values selected.
+   * If `true`, the component input has some values.
    * @default false
    */
   dirty: boolean;
