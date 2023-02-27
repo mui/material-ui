@@ -16,12 +16,45 @@ export type SelectSlot =
   | 'indicator'
   | 'listbox';
 
+export interface SelectSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the button.
+   * @default 'button'
+   */
+  button: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+  /**
+   * The component used to render the indicator.
+   * @default 'span'
+   */
+  indicator: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox: React.ElementType;
+}
+
 export interface SelectPropsVariantOverrides {}
 export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
 export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  SelectSlot,
+  SelectSlots,
   {
     root: SlotProps<'div', {}, SelectOwnerState<any>>;
     button: SlotProps<'button', {}, SelectOwnerState<any>>;
@@ -89,7 +122,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   sx?: SxProps;
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
