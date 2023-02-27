@@ -13,7 +13,7 @@ export type GlobalStateSlot =
   | 'required'
   | 'selected';
 
-const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
+export const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
   active: 'active',
   checked: 'checked',
   completed: 'completed',
