@@ -58,10 +58,6 @@ DialogTitle.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
    * The content of the component.
    */
   children: PropTypes.node,
