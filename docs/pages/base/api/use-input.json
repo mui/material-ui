@@ -72,6 +72,6 @@
     "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
   },
   "name": "useInput",
-  "filename": "/packages/mui-base/src/InputUnstyled/useInput.ts",
+  "filename": "/packages/mui-base/src/useInput/useInput.ts",
   "demos": "<ul><li><a href=\"/base/react-input/#hook\">Unstyled Input</a></li></ul>"
 }

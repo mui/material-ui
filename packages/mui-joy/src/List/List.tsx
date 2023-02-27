@@ -142,7 +142,16 @@ const ListRoot = styled(StyledList, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [List API](https://mui.com/joy-ui/api/list/)
+ */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
   const menuContext = React.useContext(MenuUnstyledContext);
@@ -157,7 +166,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     className,
     children,
-    size = inProps.size ?? 'md',
+    size: sizeProp,
     orientation = 'vertical',
     wrap = false,
     variant = 'plain',
@@ -167,6 +176,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
+  const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
   if (menuContext || selectContext) {
@@ -266,7 +276,7 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

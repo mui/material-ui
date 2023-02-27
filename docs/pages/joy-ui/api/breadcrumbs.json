@@ -1,0 +1,53 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "separator": { "type": { "name": "node" }, "default": "'/'" },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
+      "default": "'md'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "Breadcrumbs",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "li",
+      "description": "The component used to render the li.",
+      "default": "'li'",
+      "class": ".MuiBreadcrumbs-li"
+    },
+    {
+      "name": "ol",
+      "description": "The component used to render the ol.",
+      "default": "'ol'",
+      "class": ".MuiBreadcrumbs-ol"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'nav'",
+      "class": ".MuiBreadcrumbs-root"
+    },
+    {
+      "name": "separator",
+      "description": "The component used to render the separator.",
+      "default": "'li'",
+      "class": ".MuiBreadcrumbs-separator"
+    }
+  ],
+  "spread": true,
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/mui-joy/src/Breadcrumbs/Breadcrumbs.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-breadcrumbs/\">Breadcrumbs</a></li></ul>",
+  "cssComponent": false
+}

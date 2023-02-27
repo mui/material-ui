@@ -11,24 +11,40 @@ export type {
   PaletteRangeOverrides,
   PaletteRange,
   PaletteText,
+  PaletteTextOverrides,
   PaletteBackground,
+  PaletteBackgroundOverrides,
+  PaletteCommon,
+  PaletteCommonOverrides,
   PalettePrimary,
+  PalettePrimaryOverrides,
   PaletteNeutral,
+  PaletteNeutralOverrides,
   PaletteDanger,
+  PaletteDangerOverrides,
   PaletteInfo,
+  PaletteInfoOverrides,
   PaletteSuccess,
+  PaletteSuccessOverrides,
   PaletteWarning,
+  PaletteWarningOverrides,
   Palette,
+  PaletteOverrides,
 } from './types/colorSystem';
 export type { Focus } from './types/focus';
-export type { Radius } from './types/radius';
-export type { Shadow } from './types/shadow';
+export type { Radius, RadiusOverrides } from './types/radius';
+export type { Shadow, ShadowOverrides } from './types/shadow';
 export type {
   FontFamily,
+  FontFamilyOverrides,
   FontSize,
+  FontSizeOverrides,
   FontWeight,
+  FontWeightOverrides,
   LetterSpacing,
+  LetterSpacingOverrides,
   LineHeight,
+  LineHeightOverrides,
   TypographySystem,
   TypographySystemOverrides,
 } from './types/typography';

@@ -31,6 +31,26 @@
   },
   "name": "MultiSelectUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": ".MuiMultiSelect-listbox"
+    },
+    {
+      "name": "popper",
+      "description": "The component used to render the popper.",
+      "default": "PopperUnstyled",
+      "class": ".MuiMultiSelect-popper"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'button'",
+      "class": ".MuiMultiSelect-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/MultiSelectUnstyled/MultiSelectUnstyled.tsx",

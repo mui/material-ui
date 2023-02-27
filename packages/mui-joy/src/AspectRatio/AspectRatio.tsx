@@ -84,6 +84,16 @@ const AspectRatioContent = styled('div', {
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
 
+/**
+ *
+ * Demos:
+ *
+ * - [Aspect Ratio](https://mui.com/joy-ui/react-aspect-ratio/)
+ *
+ * API:
+ *
+ * - [AspectRatio API](https://mui.com/joy-ui/api/aspect-ratio/)
+ */
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
     props: inProps,
@@ -168,6 +178,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
   minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The CSS object-fit value of the first-child.
+   * @default 'cover'
    */
   objectFit: PropTypes.oneOf([
     '-moz-initial',
@@ -197,7 +208,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

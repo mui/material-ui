@@ -25,7 +25,7 @@ export interface ModalCloseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ModalClosePropsVariantOverrides>;

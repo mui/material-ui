@@ -129,7 +129,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 ## Hook
 
 ```js
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider from '@mui/base/useSlider';
 ```
 
 The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.

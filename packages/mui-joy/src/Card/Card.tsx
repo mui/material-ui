@@ -85,6 +85,16 @@ const CardRoot = styled('div', {
     theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [Card API](https://mui.com/joy-ui/api/card/)
+ */
 const Card = React.forwardRef(function Card(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardProps>({
     props: inProps,
@@ -210,7 +220,7 @@ Card.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
