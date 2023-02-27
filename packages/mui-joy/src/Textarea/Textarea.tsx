@@ -206,7 +206,16 @@ const TextareaEndDecorator = styled('div', {
   color: theme.vars.palette.text.tertiary,
   cursor: 'initial',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea](https://mui.com/joy-ui/react-textarea/)
+ *
+ * API:
+ *
+ * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
+ */
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -344,6 +353,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -376,7 +386,7 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

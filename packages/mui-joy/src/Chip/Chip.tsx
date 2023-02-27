@@ -1,7 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import useButton from '@mui/base/useButton';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
@@ -193,6 +194,14 @@ const ChipEndDecorator = styled('span', {
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [Chip API](https://mui.com/joy-ui/api/chip/)
  */
 const Chip = React.forwardRef(function Chip(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipProps>({ props: inProps, name: 'JoyChip' });
@@ -372,7 +381,7 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

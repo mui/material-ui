@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Radio button component
+components: Radio, RadioGroup
 githubLabel: 'component: radio'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 ---

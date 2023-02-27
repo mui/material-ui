@@ -69,13 +69,13 @@ function NProgressBar(props) {
               borderRadius: '100%',
               animation: `${muiNProgressPulse} 2s ease-out 0s infinite`,
             },
-            '& .nprogress-bar > div:first-child': {
+            '& .nprogress-bar > div:first-of-type': {
               opacity: 0.6,
               width: 20,
               right: 0,
               clip: 'rect(-6px,22px,14px,10px)',
             },
-            '& .nprogress-bar > div:last-child': {
+            '& .nprogress-bar > div:last-of-type': {
               opacity: 0.6,
               width: 180,
               right: -80,

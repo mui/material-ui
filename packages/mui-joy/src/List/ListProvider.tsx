@@ -26,7 +26,7 @@ export const scopedVariables = {
   '--List-item-marginInline': '0px',
 };
 
-export interface ListProviderProps {
+interface ListProviderProps {
   /**
    * If `undefined`, there is no effect.
    * If `true` or `false`, affects the nested List styles.
@@ -46,13 +46,11 @@ export interface ListProviderProps {
   wrap?: boolean;
 }
 
-// internal component
-function ListProvider({
-  children,
-  nested,
-  row = false,
-  wrap = false,
-}: React.PropsWithChildren<ListProviderProps>) {
+/**
+ * @ignore - internal component.
+ */
+function ListProvider(props: React.PropsWithChildren<ListProviderProps>) {
+  const { children, nested, row = false, wrap = false } = props;
   const baseProviders = (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>

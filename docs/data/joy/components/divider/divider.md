@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Divider component
+components: Divider
 githubLabel: 'component: divider'
 ---
 

@@ -12,12 +12,11 @@ import PopperUnstyled, {
   PopperUnstyledTypeMap,
 } from '@mui/base/PopperUnstyled';
 import {
-  useSelect,
   SelectUnstyledContext,
   flattenOptionGroups,
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
-import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
+import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -216,6 +215,7 @@ const SelectButton = styled('button', {
   fontFamily: 'inherit',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+  overflow: 'auto',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
@@ -240,9 +240,11 @@ const SelectListbox = styled(StyledList, {
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
+    maxHeight: '44vh', // the best value from what I tried so far which does not cause screen flicker when listbox is open.
+    overflow: 'auto',
     outline: 0,
     boxShadow: theme.shadow.md,
-    zIndex: 1000,
+    zIndex: theme.vars.zIndex.popup,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
@@ -305,7 +307,16 @@ const SelectIndicator = styled('span', {
     marginInlineStart: 'calc(var(--Select-gap) / 2)',
   },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Select API](https://mui.com/joy-ui/api/select/)
+ */
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
@@ -652,7 +663,7 @@ Select.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -730,8 +741,8 @@ Select.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
-   * @default 'solid'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

@@ -54,4 +54,32 @@ describe('Joy <ListDivider />', () => {
       expect(screen.getByRole('presentation')).not.to.have.attribute('aria-orientation');
     });
   });
+
+  describe('semantics', () => {
+    it('should be `li` with role `separator` by default', () => {
+      render(<ListDivider />);
+
+      expect(screen.getByRole('separator')).to.have.tagName('li');
+    });
+
+    it('should still be `li` if List is a `ul` with role `menu`', () => {
+      render(
+        <List role="menu">
+          <ListDivider />
+        </List>,
+      );
+
+      expect(screen.getByRole('separator')).to.have.tagName('li');
+    });
+
+    it('should be `div` if `List` is not one of `ol, ul, menu`', () => {
+      const { container } = render(
+        <List component="div" role="menu">
+          <ListDivider />
+        </List>,
+      );
+      expect(screen.queryByRole('separator')).to.equal(null);
+      expect(container.firstChild.firstChild).to.have.tagName('div');
+    });
+  });
 });
