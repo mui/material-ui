@@ -2,7 +2,7 @@ const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const list = [
+const movedTypeExports = [
   // Slider
   'Mark',
   // Select
@@ -80,13 +80,13 @@ export default function transformer(file, api, options) {
           specifiersForHook.push(j.importDefaultSpecifier(j.identifier(localName)));
         } else if (
           // types that no longer exist in `...Unstyled`
-          list.includes(importName) ||
+          movedTypeExports.includes(importName) ||
           (importName.startsWith(capitalize(hookName)) &&
             (importName.endsWith('SlotProps') ||
               importName.endsWith('Parameters') ||
               importName.endsWith('ReturnValue')))
         ) {
-          specifiersForHook.push(j.importSpecifier(j.identifier(importName)));
+          specifiersForHook.push(j.importSpecifier(j.identifier(importName), elementNode.local));
         } else {
           filteredSpecifiers.push(elementNode);
         }
