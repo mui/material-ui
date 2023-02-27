@@ -411,6 +411,7 @@
     "/joy-ui/react-circular-progress": "Circular Progress",
     "/joy-ui/react-linear-progress": "Linear Progress",
     "/joy-ui/react-modal": "Modal",
+    "/joy-ui/react-accordion": "Accordion",
     "/joy-ui/react-card": "Card",
     "/joy-ui/react-sheet": "Sheet",
     "/joy-ui/react-breadcrumbs": "Breadcrumbs",
