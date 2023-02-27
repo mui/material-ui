@@ -13,12 +13,50 @@ export type SwitchSlot =
   | 'startDecorator'
   | 'endDecorator';
 
+export interface SwitchSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb: React.ElementType;
+  /**
+   * The component used to render the action.
+   * @default 'div'
+   */
+  action: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface SwitchPropsVariantOverrides {}
 export interface SwitchPropsColorOverrides {}
 export interface SwitchPropsSizeOverrides {}
 
 export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  SwitchSlot,
+  SwitchSlots,
   {
     root: SlotProps<'div', {}, SwitchOwnerState>;
     thumb: SlotProps<'span', {}, SwitchOwnerState>;
@@ -57,7 +95,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;

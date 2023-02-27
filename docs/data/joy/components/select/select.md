@@ -96,6 +96,46 @@ const App = () => (
 );
 ```
 
+### Listbox
+
+#### Maximum height
+
+To change the listbox's maximum height, use `slotProps` prop to target listbox slot:
+
+```jsx
+<Select
+  slotProps={{
+    listbox: {
+      sx: {
+        maxHeight: '300px',
+      },
+    },
+  }}
+>
+  ...
+</Select>
+```
+
+#### Minimum width
+
+By default, the listbox's width is equal to Select's button or the maximum content of its children. You can control the minimum width by using `slotProps` prop to target listbox slot.
+
+{{"demo": "SelectMinWidth.js"}}
+
+:::success
+To control the placement of the listbox, use `placement`:
+
+```js
+<Select
+  slotProps={{
+    // the left-edge of the listbox will align with button.
+    listbox: { placement: 'bottom-start' },
+  }}
+>
+```
+
+:::
+
 ### `Option` component
 
 The `Option` component is used for the chooseable options within the select.

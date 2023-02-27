@@ -5,13 +5,17 @@
     "badgeContent": "The content rendered within the badge.",
     "badgeInset": "The inset of the badge. Support shorthand syntax as described in <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/inset\">https://developer.mozilla.org/en-US/docs/Web/CSS/inset</a>.",
     "children": "The badge will be added relative to this node.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "invisible": "If <code>true</code>, the badge is invisible.",
     "max": "Max count to show.",
     "showZero": "Controls whether the badge is hidden when <code>badgeContent</code> is zero.",
-    "size": "The size of the component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "badge": "The component used to render the badge.",
+    "root": "The component used to render the root."
+  }
 }

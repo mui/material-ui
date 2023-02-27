@@ -8,7 +8,7 @@
     "clearIcon": "The icon to display in place of the default clear icon.",
     "clearText": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
     "closeText": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
     "disabled": "If <code>true</code>, the component is disabled.",
@@ -45,12 +45,26 @@
     "renderOption": "Render the option, use <code>getOptionLabel</code> by default.<br><br><strong>Signature:</strong><br><code>function(props: object, option: T, state: object) =&gt; ReactNode</code><br><em>props:</em> The props to apply on the li element.<br><em>option:</em> The option to render.<br><em>state:</em> The state of the component.",
     "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function, ownerState: object) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.<br><em>ownerState:</em> The state of the Autocomplete component.",
     "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
-    "size": "The size of the component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "startDecorator": "Leading adornment for this input.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "type": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "clearIndicator": "The component used to render the clear indicator.",
+    "endDecorator": "The component used to render the end decorator.",
+    "input": "The component used to render the input.",
+    "limitTag": "The component used to render the limit tag.",
+    "listbox": "The component used to render the listbox.",
+    "loading": "The component used to render the loading.",
+    "noOptions": "The component used to render the no-options.",
+    "option": "The component used to render the option.",
+    "popupIndicator": "The component used to render the popup indicator.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator.",
+    "wrapper": "The component used to render the wrapper."
+  }
 }

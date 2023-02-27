@@ -100,6 +100,8 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   );
 });
 
+ListSubheader.muiSkipListHighlight = true;
+
 ListSubheader.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |

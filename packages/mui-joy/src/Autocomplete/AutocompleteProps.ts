@@ -26,6 +26,69 @@ export type AutocompleteSlot =
   | 'noOptions'
   | 'limitTag';
 
+export interface AutocompleteSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the wrapper.
+   * @default 'div'
+   */
+  wrapper: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+  /**
+   * The component used to render the clear indicator.
+   * @default 'button'
+   */
+  clearIndicator: React.ElementType;
+  /**
+   * The component used to render the popup indicator.
+   * @default 'button'
+   */
+  popupIndicator: React.ElementType;
+  /**
+   * The component used to render the listbox.
+   * @default 'ul'
+   */
+  listbox: React.ElementType;
+  /**
+   * The component used to render the option.
+   * @default 'li'
+   */
+  option: React.ElementType;
+  /**
+   * The component used to render the loading.
+   * @default 'li'
+   */
+  loading: React.ElementType;
+  /**
+   * The component used to render the no-options.
+   * @default 'li'
+   */
+  noOptions: React.ElementType;
+  /**
+   * The component used to render the limit tag.
+   * @default 'span'
+   */
+  limitTag: React.ElementType;
+}
+
 export interface AutocompletePropsVariantOverrides {}
 
 export interface AutocompletePropsColorOverrides {}
@@ -60,7 +123,7 @@ export interface AutocompleteRenderGroupParams {
 }
 
 export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AutocompleteSlot,
+  AutocompleteSlots,
   {
     root: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
     wrapper: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
@@ -279,7 +342,7 @@ type AutocompleteOwnProps<
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;

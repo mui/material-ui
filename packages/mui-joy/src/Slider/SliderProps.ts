@@ -14,8 +14,51 @@ export type SliderSlot =
   | 'valueLabel'
   | 'input';
 
+export interface SliderSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track: React.ElementType;
+  /**
+   * The component used to render the rail.
+   * @default 'span'
+   */
+  rail: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb: React.ElementType;
+  /**
+   * The component used to render the mark.
+   * @default 'span'
+   */
+  mark: React.ElementType;
+  /**
+   * The component used to render the mark label.
+   * @default 'span'
+   */
+  markLabel: React.ElementType;
+  /**
+   * The component used to render the value label.
+   * @default 'span'
+   */
+  valueLabel: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+}
+
 export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  SliderSlot,
+  SliderSlots,
   {
     root: SlotProps<'span', {}, SliderOwnerState>;
     track: SlotProps<'span', {}, SliderOwnerState>;
@@ -65,7 +108,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
        */
       valueLabelDisplay?: 'on' | 'auto' | 'off';
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
