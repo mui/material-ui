@@ -7,12 +7,12 @@ A typical release goes like this:
 ### Prerequisites
 
 1. You must be a member of the `@mui` org in npm to publish the release
-1. Set up your npm authToken by logging into npm (`npm login`) . This will save a token to `~/.npmrc` as a line that looks
+2. Set up your npm authToken by logging into npm (`npm login`) . This will save a token to `~/.npmrc` as a line that looks
    like this:
    ```text
    //registry.npmjs.org/:_authToken=npm_000000000000000000000000000000000000
    ```
-1. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
+3. Make sure you have added the `material-ui-docs` remote to deploy the documentation:
    ```sh
    git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
    ```
@@ -25,20 +25,20 @@ The following steps must be proposed as a pull request.
    The output must be prepended to the top level `CHANGELOG.md`
    `yarn release:changelog --help` for more information.
 
-1. Clean the generated changelog, to match the format of https://github.com/mui/material-ui/releases.
-1. Update the root `/package.json`'s version
-1. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
-1. Open PR with changes and wait for review and green CI
-1. Merge PR once CI is green and it has been approved
+2. Clean the generated changelog, to match the format of https://github.com/mui/material-ui/releases.
+3. Update the root `/package.json`'s version
+4. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
+5. Open PR with changes and wait for review and green CI
+6. Merge PR once CI is green and it has been approved
 
 ### Release
 
 1. Checkout merge commit of the merged PR
-1. `yarn`
-1. `yarn release:build`
-1. `yarn release:publish`
+2. `yarn`
+3. `yarn release:build`
+4. `yarn release:publish`
    You need your 2FA device.
-1. `yarn release:tag`
+5. `yarn release:tag`
 
 ### Documentation
 

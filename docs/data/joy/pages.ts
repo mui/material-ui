@@ -1,3 +1,5 @@
+import pagesApi from './pagesApi';
+
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
@@ -94,6 +96,12 @@ const pages = [
     ],
   },
   {
+    title: 'Component API',
+    pathname: '/joy-ui/api',
+    icon: 'CodeIcon',
+    children: pagesApi,
+  },
+  {
     pathname: '/joy-ui/customization',
     icon: 'CreateIcon',
     children: [
@@ -101,6 +109,7 @@ const pages = [
       { pathname: '/joy-ui/customization/dark-mode' },
       { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
       {
+        pathname: '/joy-ui/customization/theme',
         subheader: 'Theme',
         pathname: '/joy-ui/customization/theme',
         children: [
