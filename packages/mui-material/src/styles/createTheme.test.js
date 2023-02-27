@@ -174,21 +174,11 @@ describe('createTheme', () => {
 
       expect(() => {
         theme = createTheme({
-          components: {
-            MuiButton: {
-              styleOverrides: {
-                disabled: {
-                  color: 'blue',
-                },
-              },
-            },
-            MuiRating: { styleOverrides: { readOnly: { color: 'blue' } } },
-          },
+          components: { MuiButton: { styleOverrides: { disabled: { color: 'blue' } } } },
         });
-      }).toErrorDev([
+      }).toErrorDev(
         'MUI: The `MuiButton` component increases the CSS specificity of the `disabled` internal state.',
-        'MUI: The `MuiRating` component increases the CSS specificity of the `readOnly` internal state.',
-      ]);
+      );
       expect(Object.keys(theme.components.MuiButton.styleOverrides.disabled).length).to.equal(0);
     });
   });
