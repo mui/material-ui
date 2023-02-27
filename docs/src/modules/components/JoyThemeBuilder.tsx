@@ -652,12 +652,7 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
       <Modal open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
         <ModalDialog
           aria-labelledby="color-palettes-modal"
-          sx={{
-            '--ModalDialog-minWidth': '700px',
-            maxHeight: '94vh',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
+          sx={{ '--ModalDialog-minWidth': '700px' }}
         >
           <ModalClose />
           <Typography id="color-palettes-modal" component="h2">
@@ -940,6 +935,7 @@ function GlobalVariantTokenCreator({
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
   if (!open) {
     return (
       <Button
@@ -968,8 +964,8 @@ function GlobalVariantTokenCreator({
         size="sm"
         onChange={(event, newValue) => {
           setName(newValue as string);
+          inputRef.current?.focus();
         }}
-        slotProps={{ listbox: { sx: { minWidth: 'min-content' } } }}
       >
         {availableTokens.map((item) => (
           <Option key={item} value={item}>
@@ -986,10 +982,14 @@ function GlobalVariantTokenCreator({
         slotProps={{
           listbox: {
             disablePortal: true,
+            placement: 'bottom-start',
             sx: {
               minWidth: 'max-content',
               maxHeight: 160,
             },
+          },
+          input: {
+            ref: inputRef,
           },
         }}
         renderOption={(optionProps, data) => (
@@ -998,6 +998,14 @@ function GlobalVariantTokenCreator({
             {data}
           </AutocompleteOption>
         )}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            if (name) {
+              onChange(name, (event.target as EventTarget & HTMLInputElement).value);
+              setOpen(false);
+            }
+          }
+        }}
         onChange={(event, newValue) => setColor(newValue || '')}
         onInputChange={(event, newValue) => setColor(newValue)}
         sx={{ flex: 1 }}
