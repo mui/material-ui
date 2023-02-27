@@ -10,8 +10,8 @@ import {
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
 import { Focus } from './focus';
-import { Shadow } from './shadow';
-import { Radius } from './radius';
+import { DefaultShadow, Shadow } from './shadow';
+import { DefaultRadius, Radius } from './radius';
 import {
   FontFamily,
   FontSize,
@@ -19,9 +19,15 @@ import {
   LineHeight,
   LetterSpacing,
   TypographySystem,
+  DefaultFontFamily,
+  DefaultFontSize,
+  DefaultFontWeight,
+  DefaultLineHeight,
+  DefaultLetterSpacing,
 } from './typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './variants';
-import { ZIndex } from './zIndex';
+import { DefaultZIndex, ZIndex } from './zIndex';
+import { MergeDefault } from './utils';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -61,6 +67,19 @@ export interface ThemeScales {
   letterSpacing: LetterSpacing;
   zIndex: ZIndex;
 }
+export type ThemeScalesOptions = MergeDefault<
+  ThemeScales,
+  {
+    radius: DefaultRadius;
+    shadow: DefaultShadow;
+    fontFamily: DefaultFontFamily;
+    fontSize: DefaultFontSize;
+    fontWeight: DefaultFontWeight;
+    lineHeight: DefaultLineHeight;
+    letterSpacing: DefaultLetterSpacing;
+    zIndex: DefaultZIndex;
+  }
+>;
 
 interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
   palette: Omit<ColorSystem['palette'], 'mode'>;

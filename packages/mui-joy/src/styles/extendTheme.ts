@@ -14,14 +14,15 @@ import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
-import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
+import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
 import { Focus } from './types/focus';
-import { TypographySystem, FontSize } from './types/typography';
+import { TypographySystemOptions, FontSize } from './types/typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScales, SxProps, ThemeVars } from './types';
+import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
+import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -41,13 +42,15 @@ type Partial3Level<T> = {
   };
 };
 
-export interface ColorSystemOptions extends Partial3Level<ColorSystem> {
+export type ColorSystemOptions = Partial3Level<
+  MergeDefault<ColorSystem, { palette: PaletteOptions }>
+> & {
   shadowRing?: string;
   shadowChannel?: string;
-}
+};
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
+export interface CssVarsThemeOptions extends Partial2Level<ThemeScalesOptions> {
   /**
    * Prefix of the generated CSS variables
    * @default 'joy'
@@ -60,7 +63,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
    */
   cssVarPrefix?: string;
   focus?: Partial<Focus>;
-  typography?: Partial<TypographySystem>;
+  typography?: Partial<TypographySystemOptions>;
   variants?: Partial2Level<Variants>;
   colorInversion?:
     | Partial2Level<ColorInversion>
@@ -703,17 +706,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   */
   function attachColorChannels(
     supportedColorScheme: SupportedColorScheme,
-    palette: Record<ColorPaletteProp, PaletteRange>,
+    palette: Pick<Palette, ColorPaletteProp>,
   ) {
     (Object.keys(palette) as Array<ColorPaletteProp>).forEach((key) => {
       const channelMapping = {
-        // Need type casting due to module augmentation inside the repo
-        main: '500' as keyof PaletteRange,
-        light: '200' as keyof PaletteRange,
-        dark: '800' as keyof PaletteRange,
-      };
+        main: '500',
+        light: '200',
+        dark: '800',
+      } as const;
       if (supportedColorScheme === 'dark') {
-        channelMapping.main = '400';
+        // @ts-ignore internal
+        channelMapping.main = 400;
       }
       if (!palette[key].mainChannel && palette[key][channelMapping.main]) {
         palette[key].mainChannel = colorChannel(palette[key][channelMapping.main]);
@@ -729,7 +732,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   // Set the channels
   (
     Object.entries(theme.colorSchemes) as Array<
-      [SupportedColorScheme, { palette: Record<ColorPaletteProp, PaletteRange> }]
+      [SupportedColorScheme, { palette: Pick<Palette, ColorPaletteProp> }]
     >
   ).forEach(([supportedColorScheme, colorSystem]) => {
     attachColorChannels(supportedColorScheme, colorSystem.palette);

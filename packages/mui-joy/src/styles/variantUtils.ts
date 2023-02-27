@@ -1,6 +1,6 @@
 import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
+import { DefaultColorPalette, PaletteVariant } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
@@ -56,7 +56,7 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
  */
 export const createVariantStyle = (
   name: string,
-  palette: Partial<PaletteRange> | undefined,
+  palette: Partial<PaletteVariant> | undefined,
   getCssVar?: (variantVar: keyof PaletteVariant) => string,
 ) => {
   const result: CSSObject = {};

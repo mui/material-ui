@@ -14,6 +14,7 @@ import {
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
+import { type MenuUnstyledContextType } from '../MenuUnstyled';
 
 function stateReducer(
   state: ListboxState<string>,
@@ -168,15 +169,23 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
 
   React.useDebugValue({ menuItems, highlightedOption });
 
-  const contextValue = React.useMemo(
+  const contextValue: MenuUnstyledContextType = React.useMemo(
     () => ({
       getItemProps: getOptionProps,
       getItemState,
       registerHighlightChangeHandler,
       registerItem,
       unregisterItem,
+      open,
     }),
-    [getOptionProps, getItemState, registerHighlightChangeHandler, registerItem, unregisterItem],
+    [
+      getOptionProps,
+      getItemState,
+      registerHighlightChangeHandler,
+      registerItem,
+      unregisterItem,
+      open,
+    ],
   );
 
   return {
