@@ -10,6 +10,7 @@ import {
 } from 'test/utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -271,6 +272,39 @@ describe('<Menu />', () => {
         !strictModeDoubleLoggingSupressed &&
           "MUI: The Menu component doesn't accept a Fragment as a child.",
       ]);
+    });
+  });
+
+  it('Applies style-overrides to paper', () => {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiMenu: { styleOverrides: { paper: { borderRadius: 4 } } },
+        MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } }
+      }
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          PaperProps={{
+            'data-testid': 'paper'
+          }}
+        />
+      </ThemeProvider>
+    );
+
+    const paper = screen.getByTestId("paper");
+    expect(paper).toHaveComputedStyle({
+      borderTopLeftRadius: '4px',
+      borderBottomLeftRadius: '4px',
+      borderTopRightRadius: '4px',
+      borderBottomRightRadius: '4px',
     });
   });
 });
