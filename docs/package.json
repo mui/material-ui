@@ -50,7 +50,7 @@
     "@mui/x-date-pickers": "6.0.0-alpha.14",
     "@mui/x-date-pickers-pro": "6.0.0-alpha.14",
     "@mui/x-license-pro": "6.0.0-alpha.14",
-    "@react-spring/web": "^9.6.1",
+    "@react-spring/web": "^9.7.1",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/css-mediaquery": "^0.1.1",
