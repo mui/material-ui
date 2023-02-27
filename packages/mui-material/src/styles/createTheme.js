@@ -49,6 +49,8 @@ function createTheme(options = {}, ...args) {
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   if (process.env.NODE_ENV !== 'production') {
+
+    // TODO v6: Refactor to use globalStateClassesMapping from @mui/utils once `readOnly` state class is used in Rating component.  
     const stateClasses = [
       'active',
       'checked',
