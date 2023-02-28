@@ -4,7 +4,7 @@ import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 import { SlotComponentProps } from '../utils';
 import { UseTabRootSlotProps } from '../useTab';
 
-interface TabUnstyledRootSlotPropsOverrides {}
+export interface TabUnstyledRootSlotPropsOverrides {}
 
 export interface TabUnstyledOwnProps
   extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'slots' | 'slotProps'> {

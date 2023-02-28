@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-interface TabsUnstyledRootSlotPropsOverrides {}
+export interface TabsUnstyledRootSlotPropsOverrides {}
 
 type TabsUnstyledOrientation = 'horizontal' | 'vertical';
 
