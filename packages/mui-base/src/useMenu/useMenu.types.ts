@@ -11,7 +11,7 @@ export interface UseMenuParameters {
   listboxRef?: React.Ref<any>;
 }
 
-export interface UseMenuReturnType {
+export interface UseMenuReturnValue {
   /**
    * The value for the menu context.
    */
