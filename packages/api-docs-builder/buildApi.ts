@@ -14,6 +14,7 @@ import {
   getSystemComponentInfo,
   extractApiPage,
   getJoyComponentInfo,
+  updateComponentPages,
 } from './buildApiUtils';
 import generateComponentApi, {
   writePrettifiedFile,
@@ -284,6 +285,9 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     writePrettifiedFile(apiPagesManifestPath, source);
     return Promise.resolve();
   }, Promise.resolve());
+
+  // update the component pages to show the API tabs
+  updateComponentPages();
 
   if (grep === null) {
     const componentApis = allBuilds

@@ -1,15 +1,15 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import * as pageProps from 'docs/data/base/components/tabs/tabs.md?@mui/markdown';
+import * as pageProps from 'docs/data/base/components/button/button.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import tabApiJsonPageContent from './api/tab-unstyled.json';
-import tabsApiJsonPageContent from './api/tabs-unstyled.json';
-import tabsListApiJsonPageContent from './api/tabs-list-unstyled.json';
-import tabPanelApiJsonPageContent from './api/tab-panel-unstyled.json';
+import TabPanelUnstyledApiJsonPageContent from './api/tab-panel-unstyled.json';
+import TabUnstyledApiJsonPageContent from './api/tab-unstyled.json';
+import TabsListUnstyledApiJsonPageContent from './api/tabs-list-unstyled.json';
+import TabsUnstyledApiJsonPageContent from './api/tabs-unstyled.json';
 import useTabApiJsonPageContent from './api/use-tab.json';
+import useTabPanelApiJsonPageContent from './api/use-tab-panel.json';
 import useTabsApiJsonPageContent from './api/use-tabs.json';
 import useTabsListApiJsonPageContent from './api/use-tabs-list.json';
-import useTabPanelApiJsonPageContent from './api/use-tab-panel.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -17,33 +17,33 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const tabApiReq = require.context(
-    'docs/translations/api-docs/tab-unstyled',
-    false,
-    /tab-unstyled.*.json$/,
-  );
-  const tabApiDescriptions = mapApiPageTranslations(tabApiReq);
-
-  const tabsApiReq = require.context(
-    'docs/translations/api-docs/tabs-unstyled',
-    false,
-    /tabs-unstyled.*.json$/,
-  );
-  const tabsApiDescriptions = mapApiPageTranslations(tabsApiReq);
-
-  const tabsListApiReq = require.context(
-    'docs/translations/api-docs/tabs-list-unstyled',
-    false,
-    /tabs-list-unstyled.*.json$/,
-  );
-  const tabsListApiDescriptions = mapApiPageTranslations(tabsListApiReq);
-
-  const tabPanelApiReq = require.context(
+  const TabPanelUnstyledApiReq = require.context(
     'docs/translations/api-docs/tab-panel-unstyled',
     false,
     /tab-panel-unstyled.*.json$/,
   );
-  const tabPanelApiDescriptions = mapApiPageTranslations(tabPanelApiReq);
+  const TabPanelUnstyledApiDescriptions = mapApiPageTranslations(TabPanelUnstyledApiReq);
+
+  const TabUnstyledApiReq = require.context(
+    'docs/translations/api-docs/tab-unstyled',
+    false,
+    /tab-unstyled.*.json$/,
+  );
+  const TabUnstyledApiDescriptions = mapApiPageTranslations(TabUnstyledApiReq);
+
+  const TabsListUnstyledApiReq = require.context(
+    'docs/translations/api-docs/tabs-list-unstyled',
+    false,
+    /tabs-list-unstyled.*.json$/,
+  );
+  const TabsListUnstyledApiDescriptions = mapApiPageTranslations(TabsListUnstyledApiReq);
+
+  const TabsUnstyledApiReq = require.context(
+    'docs/translations/api-docs/tabs-unstyled',
+    false,
+    /tabs-unstyled.*.json$/,
+  );
+  const TabsUnstyledApiDescriptions = mapApiPageTranslations(TabsUnstyledApiReq);
 
   const useTabApiReq = require.context(
     'docs/translations/api-docs/use-tab',
@@ -51,6 +51,13 @@ Page.getInitialProps = () => {
     /use-tab.*.json$/,
   );
   const useTabApiDescriptions = mapApiPageTranslations(useTabApiReq);
+
+  const useTabPanelApiReq = require.context(
+    'docs/translations/api-docs/use-tab-panel',
+    false,
+    /use-tab-panel.*.json$/,
+  );
+  const useTabPanelApiDescriptions = mapApiPageTranslations(useTabPanelApiReq);
 
   const useTabsApiReq = require.context(
     'docs/translations/api-docs/use-tabs',
@@ -66,37 +73,30 @@ Page.getInitialProps = () => {
   );
   const useTabsListApiDescriptions = mapApiPageTranslations(useTabsListApiReq);
 
-  const useTabPanelApiReq = require.context(
-    'docs/translations/api-docs/use-tab-panel',
-    false,
-    /use-tab-panel.*.json$/,
-  );
-  const useTabPanelApiDescriptions = mapApiPageTranslations(useTabPanelApiReq);
-
   return {
     componentsApiDescriptions: {
-      tab: tabApiDescriptions,
-      tabs: tabsApiDescriptions,
-      tabsList: tabsListApiDescriptions,
-      tabPanel: tabPanelApiDescriptions,
+      TabPanelUnstyled: TabPanelUnstyledApiDescriptions,
+      TabUnstyled: TabUnstyledApiDescriptions,
+      TabsListUnstyled: TabsListUnstyledApiDescriptions,
+      TabsUnstyled: TabsUnstyledApiDescriptions,
     },
     componentsApiPageContents: {
-      tab: tabApiJsonPageContent,
-      tabs: tabsApiJsonPageContent,
-      tabsList: tabsListApiJsonPageContent,
-      tabPanel: tabPanelApiJsonPageContent,
+      TabPanelUnstyled: TabPanelUnstyledApiJsonPageContent,
+      TabUnstyled: TabUnstyledApiJsonPageContent,
+      TabsListUnstyled: TabsListUnstyledApiJsonPageContent,
+      TabsUnstyled: TabsUnstyledApiJsonPageContent,
     },
     hooksApiDescriptions: {
       useTab: useTabApiDescriptions,
-      useTabs: useTabsApiDescriptions,
       useTabPanel: useTabPanelApiDescriptions,
+      useTabs: useTabsApiDescriptions,
       useTabsList: useTabsListApiDescriptions,
     },
     hooksApiPageContents: {
       useTab: useTabApiJsonPageContent,
+      useTabPanel: useTabPanelApiJsonPageContent,
       useTabs: useTabsApiJsonPageContent,
       useTabsList: useTabsListApiJsonPageContent,
-      useTabPanel: useTabPanelApiJsonPageContent,
     },
   };
 };

@@ -2,8 +2,8 @@ import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import * as pageProps from 'docs/data/base/components/button/button.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import componentApiJsonPageContent from './api/button-unstyled.json';
-import hookApiJsonPageContent from './api/use-button.json';
+import ButtonUnstyledApiJsonPageContent from './api/button-unstyled.json';
+import useButtonApiJsonPageContent from './api/use-button.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -11,24 +11,24 @@ export default function Page(props) {
 }
 
 Page.getInitialProps = () => {
-  const componentApiReq = require.context(
+  const ButtonUnstyledApiReq = require.context(
     'docs/translations/api-docs/button-unstyled',
     false,
     /button-unstyled.*.json$/,
   );
-  const componentApiDescriptions = mapApiPageTranslations(componentApiReq);
+  const ButtonUnstyledApiDescriptions = mapApiPageTranslations(ButtonUnstyledApiReq);
 
-  const hookApiReq = require.context(
+  const useButtonApiReq = require.context(
     'docs/translations/api-docs/use-button',
     false,
     /use-button.*.json$/,
   );
-  const hookApiDescriptions = mapApiPageTranslations(hookApiReq);
+  const useButtonApiDescriptions = mapApiPageTranslations(useButtonApiReq);
 
   return {
-    componentsApiDescriptions: { button: componentApiDescriptions },
-    componentsApiPageContents: { button: componentApiJsonPageContent },
-    hooksApiDescriptions: { useButton: hookApiDescriptions },
-    hooksApiPageContents: { useButton: hookApiJsonPageContent },
+    componentsApiDescriptions: { ButtonUnstyled: ButtonUnstyledApiDescriptions },
+    componentsApiPageContents: { ButtonUnstyled: ButtonUnstyledApiJsonPageContent },
+    hooksApiDescriptions: { useButton: useButtonApiDescriptions },
+    hooksApiPageContents: { useButton: useButtonApiJsonPageContent },
   };
 };

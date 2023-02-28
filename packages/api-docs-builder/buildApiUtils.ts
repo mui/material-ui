@@ -8,6 +8,7 @@ import { getLineFeed } from '@mui-internal/docs-utilities';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import findPagesMarkdownNew from './utils/findPagesMarkdown';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
+import { writePrettifiedFile } from './ApiBuilders/ComponentApiBuilder';
 
 const systemComponents = fs
   .readdirSync(path.resolve('packages', 'mui-system', 'src'))
@@ -513,3 +514,111 @@ export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) =
 
   return formatType(rawType);
 };
+
+export function updateComponentPages() {
+  findPagesMarkdownNew().forEach((markdown) => {
+    const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+    const markdownHeaders = getHeaders(markdownContent) as any;
+    const pathnameTokens = markdown.pathname.split('/');
+    const productName = pathnameTokens[1];
+    const componentName = pathnameTokens[3];
+
+    // For now only update the base pages (button & tabs) to test the correctness
+    if (productName === 'base' && (componentName === 'button' || componentName === 'tabs')) {
+      const { components, hooks } = markdownHeaders;
+
+      let importStatements = '';
+      components.forEach((component: string) => {
+        const componentNameKebabCase = kebabCase(component);
+        importStatements += `import ${component}ApiJsonPageContent from './api/${componentNameKebabCase}.json';`;
+      });
+
+      hooks.forEach((hook: string) => {
+        const hookNameKebabCase = kebabCase(hook);
+        importStatements += `import ${hook}ApiJsonPageContent from './api/${hookNameKebabCase}.json';`;
+      });
+
+      let initialProps = `
+      Page.getInitialProps = () => {
+        `;
+
+      components.forEach((component: string) => {
+        const componentNameKebabCase = kebabCase(component);
+        initialProps += `
+        const ${component}ApiReq = require.context(
+          'docs/translations/api-docs/${componentNameKebabCase}',
+          false,
+          /${componentNameKebabCase}.*.json$/,
+        );
+        const ${component}ApiDescriptions = mapApiPageTranslations(${component}ApiReq);
+        `;
+      });
+
+      hooks.forEach((hook: string) => {
+        const hookNameKebabCase = kebabCase(hook);
+        initialProps += `
+        const ${hook}ApiReq = require.context(
+          'docs/translations/api-docs/${hookNameKebabCase}',
+          false,
+          /${hookNameKebabCase}.*.json$/,
+        );
+        const ${hook}ApiDescriptions = mapApiPageTranslations(${hook}ApiReq);
+        `;
+      });
+
+      initialProps += `
+        return {
+
+          componentsApiDescriptions: { `;
+      components.forEach((component: string) => {
+        initialProps += `${component} : ${component}ApiDescriptions ,`;
+      });
+
+      initialProps += `},
+          componentsApiPageContents: { `;
+
+      components.forEach((component: string) => {
+        initialProps += `${component} : ${component}ApiJsonPageContent ,`;
+      });
+      initialProps += ` },
+          hooksApiDescriptions: { `;
+
+      hooks.forEach((hook: string) => {
+        initialProps += `${hook} : ${hook}ApiDescriptions ,`;
+      });
+
+      initialProps += ` },
+          hooksApiPageContents: { `;
+
+      hooks.forEach((hook: string) => {
+        initialProps += `${hook} : ${hook}ApiJsonPageContent ,`;
+      });
+
+      initialProps += ` },
+        };`;
+
+      initialProps += `};`;
+
+      const source = `
+import * as React from 'react';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
+import * as pageProps from 'docs/data/base/components/button/button.md?@mui/markdown';
+import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+${importStatements}
+
+export default function Page(props) {
+  const { userLanguage, ...other } = props;
+  return <MarkdownDocs {...pageProps} {...other} />;
+}
+
+${initialProps}
+      `;
+
+      const pagePath = path.join(
+        process.cwd(),
+        `docs/pages/${productName}/react-${componentName}.js`,
+      );
+      writePrettifiedFile(pagePath, source);
+    }
+  });
+}
