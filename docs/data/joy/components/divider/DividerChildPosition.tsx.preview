@@ -12,5 +12,5 @@
   step={1}
   valueLabelDisplay="on"
   valueLabelFormat={(value) => `${value}%`}
-  onChange={(event, value) => setPosition(value as number)}
+  onChange={(event, value) => setPosition(value)}
 />
