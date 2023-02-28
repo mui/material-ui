@@ -2904,33 +2904,30 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-  
+
       const root = container.querySelector(`.${classes.root}`);
-  
+
       expect(root).not.to.have.class(classes.expanded);
-  
+
       const textbox = screen.getByRole('combobox');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
-  
+
       expect(root).to.have.class(classes.expanded);
     });
 
     it('when listbox having no options is opened', () => {
       const { container } = render(
-        <Autocomplete
-          options={[]}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
+        <Autocomplete options={[]} renderInput={(params) => <TextField {...params} autoFocus />} />,
       );
-  
+
       const root = container.querySelector(`.${classes.root}`);
-  
+
       expect(root).not.to.have.class(classes.expanded);
-  
+
       const textbox = screen.getByRole('combobox');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
 
       expect(root).to.have.class(classes.expanded);
-    })
-  })
+    });
+  });
 });
