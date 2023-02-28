@@ -41,6 +41,7 @@
   "returnValueDescriptions": {
     "anchorEl": "An HTML element that is used to set the position of the component.",
     "dirty": "If <code>true</code>, the component input has some values.",
+    "expanded": "If <code>true</code>, the listbox is being displayed.",
     "focused": "If <code>true</code>, the component is focused.",
     "focusedTag": "Index of the focused tag for the component.",
     "getClearProps": "Resolver for the <code>clear</code> button element's props.",

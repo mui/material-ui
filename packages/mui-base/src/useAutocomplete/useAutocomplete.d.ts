@@ -412,6 +412,11 @@ export interface UseAutocompleteReturnValue<
    */
   dirty: boolean;
   /**
+   * If `true`, the listbox is being displayed.
+   * @default false
+   */
+  expanded: boolean;
+  /**
    * If `true`, the popup is open on the component.
    * @default false
    */

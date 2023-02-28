@@ -1151,6 +1151,7 @@ export default function useAutocomplete(props) {
     inputValue,
     value,
     dirty,
+    expanded: popupOpen && anchorEl,
     popupOpen,
     focused: focused || focusedTag !== -1,
     anchorEl,
