@@ -6,7 +6,7 @@ import Slider from '@mui/joy/Slider';
 import Sheet from '@mui/joy/Sheet';
 
 export default function DividerChildPosition() {
-  const [position, setPosition] = React.useState(50);
+  const [position, setPosition] = React.useState<number | Array<number>>(50);
   return (
     <Box sx={{ width: '100%' }}>
       <Stack spacing={1} sx={{ fontSize: 'sm' }}>
@@ -23,7 +23,7 @@ export default function DividerChildPosition() {
         step={1}
         valueLabelDisplay="on"
         valueLabelFormat={(value) => `${value}%`}
-        onChange={(event, value) => setPosition(value as number)}
+        onChange={(event, value) => setPosition(value)}
       />
     </Box>
   );
