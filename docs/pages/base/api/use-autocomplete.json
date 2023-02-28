@@ -145,8 +145,106 @@
       }
     }
   },
-  "returnValue": {},
+  "returnValue": {
+    "anchorEl": {
+      "type": { "name": "null | HTMLElement", "description": "null | HTMLElement" },
+      "required": true
+    },
+    "dirty": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focused": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focusedTag": {
+      "type": { "name": "number", "description": "number" },
+      "default": "-1",
+      "required": true
+    },
+    "getClearProps": {
+      "type": {
+        "name": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt",
+        "description": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt"
+      },
+      "required": true
+    },
+    "getInputLabelProps": {
+      "type": {
+        "name": "() =&gt Omit&lt;React.HTMLAttributes&lt;HTMLLabelElement&gt, &#39;color&#39;&gt",
+        "description": "() =&gt Omit&lt;React.HTMLAttributes&lt;HTMLLabelElement&gt, &#39;color&#39;&gt"
+      },
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "() =&gt React.InputHTMLAttributes&lt;HTMLInputElement&gt",
+        "description": "() =&gt React.InputHTMLAttributes&lt;HTMLInputElement&gt"
+      },
+      "required": true
+    },
+    "getListboxProps": {
+      "type": {
+        "name": "() =&gt React.HTMLAttributes&lt;HTMLUListElement&gt",
+        "description": "() =&gt React.HTMLAttributes&lt;HTMLUListElement&gt"
+      },
+      "required": true
+    },
+    "getOptionProps": {
+      "type": {
+        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt) =&gt React.HTMLAttributes&lt;HTMLLIElement&gt",
+        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt) =&gt React.HTMLAttributes&lt;HTMLLIElement&gt"
+      },
+      "required": true
+    },
+    "getPopupIndicatorProps": {
+      "type": {
+        "name": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt",
+        "description": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt"
+      },
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "(externalProps?: any) =&gt React.HTMLAttributes&lt;HTMLDivElement&gt",
+        "description": "(externalProps?: any) =&gt React.HTMLAttributes&lt;HTMLDivElement&gt"
+      },
+      "required": true
+    },
+    "getTagProps": {
+      "type": { "name": "AutocompleteGetTagProps", "description": "AutocompleteGetTagProps" },
+      "required": true
+    },
+    "groupedOptions": {
+      "type": {
+        "name": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt&gt",
+        "description": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt&gt"
+      },
+      "required": true
+    },
+    "id": { "type": { "name": "string", "description": "string" }, "required": true },
+    "inputValue": { "type": { "name": "string", "description": "string" }, "required": true },
+    "popupOpen": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "setAnchorEl": {
+      "type": { "name": "() =&gt void", "description": "() =&gt void" },
+      "required": true
+    },
+    "value": {
+      "type": {
+        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt",
+        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt"
+      },
+      "required": true
+    }
+  },
   "name": "useAutocomplete",
-  "filename": "/packages/mui-base/src/AutocompleteUnstyled/useAutocomplete.js",
+  "filename": "/packages/mui-base/src/useAutocomplete/useAutocomplete.js",
   "demos": "<ul></ul>"
 }

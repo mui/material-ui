@@ -10,6 +10,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
+import { TypographySystem } from '../styles/types';
 
 /**
  * @internal
@@ -143,7 +144,16 @@ const defaultVariantMapping: Record<string, string> = {
   body5: 'span',
   inherit: 'p',
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Typography](https://mui.com/joy-ui/react-typography/)
+ *
+ * API:
+ *
+ * - [Typography API](https://mui.com/joy-ui/api/typography/)
+ */
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const {
     color: colorProp,
@@ -164,7 +174,18 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     gutterBottom = false,
     noWrap = false,
     level: levelProp = 'body1',
-    levelMapping = {},
+    levelMapping = {
+      h1: 'h1',
+      h2: 'h2',
+      h3: 'h3',
+      h4: 'h4',
+      h5: 'h5',
+      h6: 'h6',
+      body1: 'p',
+      body2: 'p',
+      body3: 'p',
+      inherit: 'p',
+    } as Partial<Record<keyof TypographySystem | 'inherit', string>>,
     children,
     endDecorator,
     startDecorator,
@@ -315,7 +336,7 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   textColor: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
