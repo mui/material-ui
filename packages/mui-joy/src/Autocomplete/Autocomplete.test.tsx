@@ -766,16 +766,19 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
-    it('kk', () => {
+    it('temp test', () => {
       const handleOpen = spy();
 
-      render(<Autocomplete onOpen={handleOpen} onClick={handleOpen} options={['one', 'two', 'three']} />);
+      render(
+        <Autocomplete onOpen={handleOpen} onClick={handleOpen} options={['one', 'two', 'three']} />,
+      );
 
       const textbox = screen.getByRole('combobox');
-console.log(textbox.getBoundingClientRect())
+      const { top, left } = textbox.getBoundingClientRect();
+      console.log(textbox.getBoundingClientRect());
       fireEvent.click(textbox, {
-        clientX: 20,
-        clientY: 20,
+        clientX: left + 5,
+        clientY: top + 5,
       });
       console.log(handleOpen.callCount);
     });
