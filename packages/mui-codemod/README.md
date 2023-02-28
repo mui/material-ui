@@ -62,6 +62,19 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `base-hook-imports`
+
+Updates the sources of the imports of the MUI Base hooks to adapt to the new directories of the hooks.
+
+```diff
+-  import { useBadge } from '@mui/base/BadgeUnstyled';
++  import useBadge from '@mui/base/useBadge';
+```
+
+```sh
+npx @mui/codemod v5.0.0/base-hook-imports <path>
+```
+
 #### `joy-rename-classname-prefix`
 
 Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
