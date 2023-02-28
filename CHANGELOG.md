@@ -55,6 +55,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 09 -->[MenuUnstyled] Remove extra useMemo (#36265) @ivp-dev
 - &#8203;<!-- 31 -->[base] Export all slot prop overrides interfaces (#36323) @michaldudak
 
+### `@mui/codemod@5.11.11`
+
+- &#8203;<!-- 35 -->[base] Codemod for hook directory migration (#36295) @hbjORbj
+
 ### `@mui/joy@5.0.0-alpha.69`
 
 - &#8203;<!-- 15 -->[Joy] Able to remove default tokens from theme types (#36006) @siriwatknp
