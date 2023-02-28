@@ -168,7 +168,6 @@ export default class MyDocument extends Document {
               __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){
-                  console.log({a: arguments });
                   dataLayer.push(arguments);}
                 window.gtag = gtag;
                 gtag('js', new Date());
