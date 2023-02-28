@@ -33,8 +33,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
   ```diff
    <TablePaginationUnstyled
-  -   classes={{ toolbar: '.toolbar-classname', menuItem: 'menuItem-classname' }}
-  +   slotProps={{ toolbar: { className: '.toolbar-classname' }, menuItem: { className: 'menuItem-classname'}}}
+  -   classes={{ toolbar: 'toolbar-classname', menuItem: 'menuItem-classname' }}
+  +   slotProps={{ toolbar: { className: 'toolbar-classname' }, menuItem: { className: 'menuItem-classname'}}}
    />
   ```
 
