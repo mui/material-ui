@@ -16,7 +16,6 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
-    "@next/font": "latest",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
