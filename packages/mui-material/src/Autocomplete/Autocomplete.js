@@ -458,6 +458,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionProps,
     value,
     dirty,
+    expanded,
     id,
     popupOpen,
     focused,
@@ -470,7 +471,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
-  const expanded = popupOpen && anchorEl;
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
