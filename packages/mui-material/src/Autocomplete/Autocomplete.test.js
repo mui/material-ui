@@ -2895,4 +2895,42 @@ describe('<Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
   });
+
+  describe('should apply the expanded class', () => {
+    it('when listbox having options is opened', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+  
+      const root = container.querySelector(`.${classes.root}`);
+  
+      expect(root).not.to.have.class(classes.expanded);
+  
+      const textbox = screen.getByRole('combobox');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
+  
+      expect(root).to.have.class(classes.expanded);
+    });
+
+    it('when listbox having no options is opened', () => {
+      const { container } = render(
+        <Autocomplete
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+  
+      const root = container.querySelector(`.${classes.root}`);
+  
+      expect(root).not.to.have.class(classes.expanded);
+  
+      const textbox = screen.getByRole('combobox');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
+
+      expect(root).to.have.class(classes.expanded);
+    })
+  })
 });
