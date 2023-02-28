@@ -50,7 +50,6 @@ describe('useNumberInput', () => {
       act(() => {
         input.focus();
         fireEvent.change(document.activeElement!, { target: { value: 2 } });
-        input.blur();
       });
 
       expect(handleChange.callCount).to.equal(1);

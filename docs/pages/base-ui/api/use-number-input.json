@@ -12,12 +12,15 @@
     "max": { "type": { "name": "number", "description": "number" } },
     "min": { "type": { "name": "number", "description": "number" } },
     "onBlur": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+      "type": {
+        "name": "React.FocusEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.FocusEventHandler&lt;HTMLInputElement&gt;"
+      }
     },
     "onChange": {
       "type": {
-        "name": "UseNumberInputChangeHandler",
-        "description": "UseNumberInputChangeHandler"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "onClick": {
@@ -25,6 +28,9 @@
     },
     "onFocus": {
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    },
+    "onValueChange": {
+      "type": { "name": "(value: number) =&gt; void", "description": "(value: number) =&gt; void" }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },
     "step": { "type": { "name": "number", "description": "number" } },

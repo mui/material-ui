@@ -37,6 +37,7 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
     onBlur,
     onChange,
     onFocus,
+    onValueChange,
     placeholder,
     required,
     step,
@@ -63,6 +64,7 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
     onFocus,
     onChange,
     onBlur,
+    onValueChange,
     required,
     value,
   });
@@ -86,7 +88,7 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
     [classes.disabled]: disabledState,
   };
 
-  const propsToForward = {
+  const propsForwardedToInputSlot = {
     id,
     placeholder,
   };
@@ -109,7 +111,7 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
   const inputProps: WithOptionalOwnerState<NumberInputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
+      getInputProps({ ...otherHandlers, ...propsForwardedToInputSlot }),
     externalSlotProps: slotProps.input,
     additionalProps: {},
     ownerState,
@@ -178,6 +180,10 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onValueChange: PropTypes.func,
   /**
    * @ignore
    */

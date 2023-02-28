@@ -9,17 +9,10 @@ import {
   UseNumberInputParameters,
   UseNumberInputRootSlotProps,
   UseNumberInputInputSlotProps,
-  UseNumberInputChangeHandler,
   UseNumberInputReturnValue,
 } from './useNumberInput.types';
 import clamp from './clamp';
 import extractEventHandlers from '../utils/extractEventHandlers';
-
-type UseNumberInputEventHandlers = {
-  onBlur?: React.FocusEventHandler;
-  onChange?: UseNumberInputChangeHandler;
-  onFocus?: React.FocusEventHandler;
-};
 
 // TODO
 // 1 - make a proper parser
@@ -48,6 +41,7 @@ export default function useNumberInput(
     onBlur,
     onChange,
     onFocus,
+    onValueChange,
     required: requiredProp = false,
     value: valueProp,
     inputRef: inputRefProp,
@@ -92,7 +86,8 @@ export default function useNumberInput(
   }, [formControlContext, disabledProp, focused, onBlur]);
 
   const handleFocus =
-    (otherHandlers: UseNumberInputEventHandlers) => (event: React.FocusEvent<HTMLInputElement>) => {
+    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
+    (event: React.FocusEvent<HTMLInputElement>) => {
       // Fix a bug with IE11 where the focus/blur events are triggered
       // while the component is disabled.
       if (formControlContext && formControlContext?.disabled) {
@@ -102,21 +97,21 @@ export default function useNumberInput(
 
       otherHandlers.onFocus?.(event);
 
+      if (event.defaultPrevented) {
+        return;
+      }
+
       if (formControlContext && formControlContext.onFocus) {
         formControlContext?.onFocus?.();
       }
       setFocused(true);
     };
 
-  const handleChange =
-    (otherHandlers: UseNumberInputEventHandlers) =>
-    (event: React.FocusEvent<HTMLInputElement>, val: number | undefined) => {
+  const handleValueChange =
+    () => (event: React.FocusEvent<HTMLInputElement>, val: number | undefined) => {
       // 1. clamp the number
       // 2. setInputValue(clamped_value)
-      // 3. call onChange(event, returnValue)
-
-      // console.log('handleChange', val);
-
+      // 3. call onValueChange(newValue)
       let newValue;
 
       if (val === undefined) {
@@ -128,50 +123,61 @@ export default function useNumberInput(
       }
 
       setValue(newValue);
+      // TODO: integration with formControlContext
+      //       OR: (event, newValue) similar to SelectUnstyled
+      // formControlContext?.onValueChange?.(newValue);
 
-      formControlContext?.onChange?.(event /* newValue */);
-      // TODO: pass an (optional) "newValue" to formControlContext.onChange, this will make FormControl work with Select too
-
-      // @ts-ignore
-      otherHandlers.onChange?.(event, newValue);
+      if (newValue) {
+        onValueChange?.(newValue);
+      }
     };
 
-  const handleInputChange = () => (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!isControlled) {
-      const element = event.target || inputRef.current;
-      if (element == null) {
-        throw new MuiError(
-          'MUI: Expected valid input target. ' +
-            'Did you use a custom `slots.input` and forget to forward refs? ' +
-            'See https://mui.com/r/input-component-ref-interface for more info.',
-        );
+  const handleInputChange =
+    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        const element = event.target || inputRef.current;
+        if (element == null) {
+          throw new MuiError(
+            'MUI: Expected valid input target. ' +
+              'Did you use a custom `slots.input` and forget to forward refs? ' +
+              'See https://mui.com/r/input-component-ref-interface for more info.',
+          );
+        }
       }
-    }
 
-    const val = parseInput(event.currentTarget.value);
-
-    if (val === '' || val === '-') {
-      setInputValue(val);
-      setValue(undefined);
-    }
-
-    if (val.match(/^-?\d+?$/)) {
-      setInputValue(val);
-      setValue(parseInt(val, 10));
-    }
-  };
-
-  const handleBlur =
-    (otherHandlers: UseNumberInputEventHandlers) => (event: React.FocusEvent<HTMLInputElement>) => {
       const val = parseInput(event.currentTarget.value);
 
       if (val === '' || val === '-') {
-        handleChange(otherHandlers)(event, undefined);
-      } else {
-        handleChange(otherHandlers)(event, parseInt(val, 10));
+        setInputValue(val);
+        setValue(undefined);
       }
 
+      if (val.match(/^-?\d+?$/)) {
+        setInputValue(val);
+        setValue(parseInt(val, 10));
+      }
+
+      // TODO:
+      // 1 - move up to allow developers to skip?
+      // 2 - preventDefault if val contains an invalid char?
+      formControlContext?.onChange?.(event);
+
+      otherHandlers.onChange?.(event);
+    };
+
+  const handleBlur =
+    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      const val = parseInput(event.currentTarget.value);
+
       otherHandlers.onBlur?.(event);
+
+      if (val === '' || val === '-') {
+        handleValueChange()(event, undefined);
+      } else {
+        handleValueChange()(event, parseInt(val, 10));
+      }
 
       if (formControlContext && formControlContext.onBlur) {
         formControlContext.onBlur();
@@ -193,7 +199,13 @@ export default function useNumberInput(
   const getRootProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
+    const propsEventHandlers = extractEventHandlers(parameters, [
+      'onBlur',
+      'onChange',
+      'onFocus',
+      'onValueChange',
+    ]);
+
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     return {
@@ -206,7 +218,7 @@ export default function useNumberInput(
   const getInputProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputInputSlotProps<TOther> => {
-    const propsEventHandlers: UseNumberInputEventHandlers = {
+    const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
       onBlur,
       onChange,
       onFocus,
@@ -218,8 +230,7 @@ export default function useNumberInput(
       ...externalProps,
       ...externalEventHandlers,
       onFocus: handleFocus(externalEventHandlers),
-      // TODO: will I ever need the other handlers?
-      onChange: handleInputChange(/* externalEventHandlers */),
+      onChange: handleInputChange(externalEventHandlers),
       onBlur: handleBlur(externalEventHandlers),
     };
 

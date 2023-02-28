@@ -25,10 +25,11 @@ export interface UseNumberInputParameters {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error?: boolean;
-  onBlur?: React.FocusEventHandler;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler;
-  onChange?: UseNumberInputChangeHandler;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
+  onValueChange?: (value: number) => void;
   inputRef?: React.Ref<HTMLInputElement>;
   /**
    * If `true`, the `input` element is required.
@@ -58,7 +59,7 @@ export interface UseNumberInputInputSlotOwnProps {
   'aria-valuenow': React.AriaAttributes['aria-valuenow'];
   'aria-valuetext': React.AriaAttributes['aria-valuetext'];
   onBlur: React.FocusEventHandler;
-  onChange: UseNumberInputChangeHandler;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
   required: boolean;
   disabled: boolean;
