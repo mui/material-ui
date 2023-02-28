@@ -24,7 +24,7 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import Card from '@mui/joy/Card';
-import CardContent from '@mui/joy/CardContent';
+import CardCover from '@mui/joy/CardCover';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -1341,67 +1341,129 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
 
 type RecordValue<T> = T extends Record<string | number | symbol, infer U> ? U : never;
 
+function literalToObject(literal: string | null | undefined) {
+  if (!literal) {
+    return {};
+  }
+  const lines = literal.split('\n');
+  const result: Record<string, any> = {};
+  const parent: Array<Record<string, any>> = [];
+  let nested: Record<string, any> | null | undefined = null;
+
+  lines.forEach((line) => {
+    const trimmedLine = line.trim();
+    if (!trimmedLine.match(/}/)) {
+      const [key, value] = trimmedLine.split(':');
+      if (value && value.match(/{/)) {
+        if (!nested) {
+          result[key] = {};
+          nested = result[key];
+        } else {
+          parent.push(nested);
+          nested[key] = {};
+          nested = nested[key];
+        }
+      } else if (key && !key.trim().match(/^(\/\/|\/\*)/) && value && nested) {
+        try {
+          const trimmedValue = value.trim().replace(/,$/, '');
+          if (trimmedValue === 'undefined') {
+            nested[key] = undefined;
+          }
+          if (trimmedValue === 'null') {
+            nested[key] = null;
+          }
+          if (trimmedValue.match(/^('|")/)) {
+            nested[key] = trimmedValue.slice(1, -1);
+          }
+        } catch (error) {
+          // igore error
+        }
+      }
+    } else {
+      nested = parent.pop();
+    }
+  });
+
+  return result;
+}
+
 function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
   const [open, setOpen] = React.useState(false);
   const templates = extractTemplates(cache);
   const names = Object.keys(templates);
-  const renderItem = (name: string, item: RecordValue<typeof templates>) => (
-    <Card
-      component="li"
-      size="sm"
-      variant="soft"
-      key={name}
-      sx={{
-        boxShadow: 'none',
-      }}
-    >
-      <AspectRatio ratio="2">
-        <Box
-          sx={(theme) => ({
-            background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
-            transition: '0.3s',
-            [theme.getColorSchemeSelector('dark')]: {
-              background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+  const renderItem = (name: string, item: RecordValue<typeof templates>) => {
+    const themeFileName =
+      Object.keys(item.files).find((file) => file.match(/theme\.(ts|tsx|js)/)) || 'theme.ts';
+    const themeFile = item.files[themeFileName];
+    const customTheme = literalToObject(themeFile?.match(/extendTheme\({(.*)}\)/s)?.[1]);
+    const mergedData = deepmerge(customTheme, data);
+    const newFiles = {
+      ...item.files,
+      [themeFileName]: generateThemeCode(mergedData),
+    };
+    return (
+      <Card component="li" size="sm" variant="outlined" key={name} sx={{ '--Card-padding': '0px' }}>
+        <AspectRatio ratio="2">
+          <Box
+            sx={(theme) => ({
+              background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
+              transition: '0.3s',
+              [theme.getColorSchemeSelector('dark')]: {
+                background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+              },
+            })}
+          />
+        </AspectRatio>
+        <CardCover
+          sx={{
+            opacity: 0,
+            transition: '0.2s',
+            '&:hover, &:focus-within': {
+              opacity: 1,
+              bgcolor: 'rgba(0 0 0 / 0.72)',
+              boxShadow: 'md',
             },
-          })}
-        />
-      </AspectRatio>
-      <CardContent sx={{ mt: 1, px: 1 }}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <Link
-          component="button"
-          fontSize="lg"
-          fontWeight="lg"
-          color="neutral"
-          textColor="text.primary"
-          overlay
-          onClick={() => {
-            const { files } = codeSandbox.createJoyTemplate({
-              ...item,
-              githubLocation: '',
-              title: `Joy UI - Custom theme`,
-              codeVariant: 'TS',
-            });
-            const parameters = compress({ files });
-
-            // ref: https://codesandbox.io/docs/api/#define-api
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.target = '_blank';
-            form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-            addHiddenInput(form, 'parameters', parameters);
-            addHiddenInput(form, 'query', 'file=/App.tsx');
-            document.body.appendChild(form);
-            form.submit();
-            document.body.removeChild(form);
           }}
-          endDecorator={<ArrowOutwardIcon />}
         >
-          {startCase(name)}
-        </Link>
-      </CardContent>
-    </Card>
-  );
+          <div>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <Link
+              component="button"
+              fontSize="xl"
+              fontWeight="xl"
+              color="neutral"
+              textColor="#fff"
+              overlay
+              onClick={() => {
+                const { files } = codeSandbox.createJoyTemplate({
+                  ...item,
+                  files: newFiles,
+                  githubLocation: '',
+                  title: `Joy UI - Custom theme`,
+                  codeVariant: 'TS',
+                });
+                const parameters = compress({ files });
+
+                // ref: https://codesandbox.io/docs/api/#define-api
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.target = '_blank';
+                form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+                addHiddenInput(form, 'parameters', parameters);
+                addHiddenInput(form, 'query', 'file=/App.tsx');
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+              }}
+              endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
+            >
+              {startCase(name)}
+            </Link>
+          </div>
+        </CardCover>
+      </Card>
+    );
+  };
   return (
     <React.Fragment>
       {React.cloneElement(children, {
@@ -1414,11 +1476,15 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
         <ModalDialog
           size="lg"
           aria-labelledby="templates-dialog"
-          sx={{ '--ModalDialog-minWidth': '1000px' }}
+          aria-describedby="templates-dialog-description"
+          sx={{ '--ModalDialog-minWidth': '1200px' }}
         >
           <ModalClose />
-          <Typography level="h2" id="templates-dialog" sx={{ fontSize: '24px' }}>
-            Get started with our crafted templates
+          <Typography level="h2" id="templates-dialog">
+            Clone a template sandbox
+          </Typography>
+          <Typography id="templates-dialog-description" textColor="text.secondary" fontSize="md">
+            Click on one of these template to see start a sandbox with your custom theme.
           </Typography>
 
           <List
