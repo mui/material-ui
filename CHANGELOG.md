@@ -21,6 +21,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 05 -->[Slider] Remove unnecessary `data-focusvisible` attribute (#36091) @ZeeshanTamboli
 - &#8203;<!-- 04 -->[Snackbar] Replace component logic with `useSnackbar` hook (#36272) @ZeeshanTamboli
 - &#8203;<!-- 03 -->[TextField] Fix floating label position (#36246) @oliviertassinari
+- &#8203;<!-- 13 -->[TextField] Fix floating label position (#36288) @oliviertassinari
 
 ### `@mui/base@5.0.0-alpha.119`
 
@@ -52,6 +53,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 31 -->[Autocomplete] Add docs interface for the hook (#36242) @HeVictor
 - &#8203;<!-- 09 -->[MenuUnstyled] Remove extra useMemo (#36265) @ivp-dev
+- &#8203;<!-- 31 -->[base] Export all slot prop overrides interfaces (#36323) @michaldudak
 
 ### `@mui/joy@5.0.0-alpha.69`
 
