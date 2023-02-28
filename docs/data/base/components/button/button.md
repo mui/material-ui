@@ -81,7 +81,7 @@ Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its p
 ## Hook
 
 ```js
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 ```
 
 The `useButton` hook lets you apply the functionality of a button to a fully custom component.

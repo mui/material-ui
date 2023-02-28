@@ -54,9 +54,6 @@ export const SheetRoot = styled('div', {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
         '--internal-action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       }),
-      // TODO: discuss the theme transition.
-      // This value is copied from mui-material Sheet.
-      transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
@@ -66,7 +63,16 @@ export const SheetRoot = styled('div', {
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Sheet](https://mui.com/joy-ui/react-sheet/)
+ *
+ * API:
+ *
+ * - [Sheet API](https://mui.com/joy-ui/api/sheet/)
+ */
 const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,
@@ -150,7 +156,7 @@ Sheet.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

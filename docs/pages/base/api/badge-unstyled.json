@@ -20,6 +20,20 @@
   },
   "name": "BadgeUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "badge",
+      "description": "The component used to render the badge.",
+      "default": "'span'",
+      "class": ".MuiBadge-badge"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiBadge-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.tsx",

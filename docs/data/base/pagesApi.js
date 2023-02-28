@@ -41,6 +41,7 @@ module.exports = [
   { pathname: '/base/api/use-input' },
   { pathname: '/base/api/use-menu' },
   { pathname: '/base/api/use-menu-item' },
+  { pathname: '/base/api/use-option' },
   { pathname: '/base/api/use-select' },
   { pathname: '/base/api/use-slider' },
   { pathname: '/base/api/use-snackbar' },

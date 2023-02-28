@@ -83,6 +83,14 @@ export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * You may specify a single timeout for all transitions, or individually with an object.
        */
       transitionDuration?: TransitionProps['timeout'];
+      /**
+       * The component used for the transition.
+       * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+       * @default Fade
+       */
+      TransitionComponent?: React.JSXElementConstructor<
+        TransitionProps & { children: React.ReactElement<any, any> }
+      >;
     };
   defaultComponent: D;
 }

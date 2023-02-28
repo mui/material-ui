@@ -81,6 +81,7 @@ const ActionsDiv = styled('div')(({ theme }) => ({
 function AppLayoutDocs(props) {
   const router = useRouter();
   const {
+    BannerComponent,
     children,
     description,
     disableAd = false,
@@ -112,7 +113,7 @@ function AppLayoutDocs(props) {
   }
 
   return (
-    <AppFrame>
+    <AppFrame BannerComponent={BannerComponent}>
       <GlobalStyles
         styles={{
           ':root': {
@@ -150,6 +151,7 @@ function AppLayoutDocs(props) {
 }
 
 AppLayoutDocs.propTypes = {
+  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,

@@ -1,5 +1,6 @@
 const straightQuotes = require('./packages/markdownlint-rule-mui/straight-quotes');
 const gitDiff = require('./packages/markdownlint-rule-mui/git-diff');
+const tableAlignment = require('./packages/markdownlint-rule-mui/table-alignment');
 
 // https://github.com/DavidAnson/markdownlint#rules--aliases
 module.exports = {
@@ -31,8 +32,9 @@ module.exports = {
     MD052: false, // MD052/reference-links-images. Many false positives in the changelog.
     straightQuotes: true,
     gitDiff: true,
+    tableAlignment: true,
   },
-  customRules: [straightQuotes, gitDiff],
+  customRules: [straightQuotes, gitDiff, tableAlignment],
   ignores: [
     'CHANGELOG.old.md',
     '**/node_modules/**',

@@ -18,6 +18,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
     component?: React.ElementType;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
      */
     color?: RadioProps['color'];
     /**
@@ -26,6 +27,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
     defaultValue?: any;
     /**
      * The radio's `disabledIcon` prop. If specified, the value is passed down to every radios under this element.
+     * @default false
      */
     disableIcon?: boolean;
     /**
@@ -35,6 +37,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
     name?: string;
     /**
      * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
+     * @default false
      */
     overlay?: boolean;
     /**
@@ -63,7 +66,8 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     value?: any;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'plain'
      */
     variant?: RadioProps['variant'];
   };

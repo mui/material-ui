@@ -97,9 +97,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         ...(ownerState.size === 'sm' && {
           fontSize: theme.vars.fontSize.sm,
         }),
-        // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-        transition:
-          'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         '&:before': {
           boxSizing: 'border-box',
           content: '""',
@@ -248,7 +245,16 @@ const InputEndDecorator = styled(StyledInputEndDecorator, {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [Input API](https://mui.com/joy-ui/api/input/)
+ */
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -402,6 +408,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -462,7 +469,7 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
