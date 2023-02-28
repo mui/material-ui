@@ -766,23 +766,6 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
-    it('temp test', () => {
-      const handleOpen = spy();
-
-      render(
-        <Autocomplete onOpen={handleOpen} onClick={handleOpen} options={['one', 'two', 'three']} />,
-      );
-
-      const textbox = screen.getByRole('combobox');
-      const { top, left } = textbox.getBoundingClientRect();
-      console.log(textbox.getBoundingClientRect());
-      fireEvent.click(textbox, {
-        clientX: left + 5,
-        clientY: top + 5,
-      });
-      console.log(handleOpen.callCount);
-    });
-
     it('does not clear the textbox on Escape', () => {
       const handleChange = spy();
       render(
