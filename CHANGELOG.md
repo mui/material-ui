@@ -8,7 +8,7 @@ _Feb 27, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 📚 added API documentation for the slots by @hbjORbj, for e.g. [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/#slots)
+- 📚 added API documentation for the slots in MUI Base and Joy UI by @hbjORbj, for e.g. [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/#slots)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.11`
