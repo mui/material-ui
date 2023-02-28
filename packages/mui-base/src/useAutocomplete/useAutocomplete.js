@@ -1000,13 +1000,6 @@ export default function useAutocomplete(props) {
     }
   };
 
-  // Prevent input blur when interacting with the combobox
-  const handleMouseDown = (event) => {
-    if (event.target.getAttribute('id') !== id) {
-      event.preventDefault();
-    }
-  };
-
   // Focus the input when interacting with the combobox
   const handleClick = () => {
     inputRef.current.focus();
@@ -1026,6 +1019,14 @@ export default function useAutocomplete(props) {
     if (inputValue === '' || !open) {
       handlePopupIndicator(event);
     }
+  };
+
+  // Prevent input blur when interacting with the combobox
+  const handleMouseDown = (event) => {
+    if (event.target.getAttribute('id') !== id) {
+      event.preventDefault();
+    }
+    handleInputMouseDown();
   };
 
   let dirty = freeSolo && inputValue.length > 0;
