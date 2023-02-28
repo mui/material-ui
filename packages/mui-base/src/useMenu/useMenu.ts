@@ -6,11 +6,7 @@ import useListbox, {
   ActionTypes,
   ListboxReducerAction,
 } from '../useListbox';
-import {
-  UseMenuListboxSlotProps,
-  UseMenuParameters,
-  UseMenuReturnType,
-} from './useMenu.types';
+import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnType } from './useMenu.types';
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
 import { type MenuUnstyledContextType } from '../MenuUnstyled';

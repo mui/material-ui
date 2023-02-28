@@ -11,7 +11,7 @@ export interface UseMenuParameters {
   listboxRef?: React.Ref<any>;
 }
 
-export interface UseMenuReturnType{
+export interface UseMenuReturnType {
   /**
    * The value for the menu context.
    */
@@ -22,8 +22,8 @@ export interface UseMenuReturnType{
    * @returns props that should be spread on the listbox component
    */
   getListboxProps: <TOther extends EventHandlers>(
-    otherHandlers: TOther,
-  ) => UseMenuListboxSlotProps
+    otherHandlers?: TOther,
+  ) => UseMenuListboxSlotProps;
   /**
    * The highlighted option in the menu listbox.
    */
