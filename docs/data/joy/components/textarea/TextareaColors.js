@@ -14,25 +14,25 @@ export default function TextareaColors() {
       }}
     >
       <Textarea
-        label="Primary"
+        name="Primary"
         placeholder="Type in here…"
         variant="outlined"
         color="primary"
       />
       <Textarea
-        label="Neutral"
+        name="Neutral"
         placeholder="Type in here…"
         variant="outlined"
         color="neutral"
       />
       <Textarea
-        label="Danger"
+        name="Danger"
         placeholder="Type in here…"
         variant="outlined"
         color="danger"
       />
       <Textarea
-        label="Warning"
+        name="Warning"
         placeholder="Type in here…"
         variant="outlined"
         color="warning"

@@ -13,10 +13,10 @@ export default function TextareaVariants() {
         flexWrap: 'wrap',
       }}
     >
-      <Textarea label="Solid" placeholder="Type in here…" variant="solid" />
-      <Textarea label="Soft" placeholder="Type in here…" variant="soft" />
-      <Textarea label="Outlined" placeholder="Type in here…" variant="outlined" />
-      <Textarea label="Plain" placeholder="Type in here…" variant="plain" />
+      <Textarea name="Solid" placeholder="Type in here…" variant="solid" />
+      <Textarea name="Soft" placeholder="Type in here…" variant="soft" />
+      <Textarea name="Outlined" placeholder="Type in here…" variant="outlined" />
+      <Textarea name="Plain" placeholder="Type in here…" variant="plain" />
     </Box>
   );
 }
