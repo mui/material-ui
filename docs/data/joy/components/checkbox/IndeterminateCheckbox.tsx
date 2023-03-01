@@ -5,15 +5,15 @@ import Checkbox from '@mui/joy/Checkbox';
 export default function IndeterminateCheckbox() {
   const [checked, setChecked] = React.useState([true, false]);
 
-  const handleChange1 = (event) => {
+  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([event.target.checked, event.target.checked]);
   };
 
-  const handleChange2 = (event) => {
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([event.target.checked, checked[1]]);
   };
 
-  const handleChange3 = (event) => {
+  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([checked[0], event.target.checked]);
   };
 

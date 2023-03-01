@@ -9,7 +9,7 @@ import Sheet from '@mui/joy/Sheet';
 
 export default function ExampleFilterMemberCheckbox() {
   const [members, setMembers] = React.useState([false, true, false]);
-  const toggleMember = (index) => (event) => {
+  const toggleMember = (index: number) => (event:React.ChangeEvent<HTMLInputElement>) => {
     const newMembers = [...members];
     newMembers[index] = event.target.checked;
     setMembers(newMembers);

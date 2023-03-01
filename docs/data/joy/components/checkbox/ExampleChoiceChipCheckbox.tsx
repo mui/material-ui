@@ -8,7 +8,7 @@ import Sheet from '@mui/joy/Sheet';
 import Done from '@mui/icons-material/Done';
 
 export default function ExampleChoiceChipCheckbox() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<string[]>([]);
   return (
     <Sheet
       variant="outlined"

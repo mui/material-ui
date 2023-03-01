@@ -8,7 +8,7 @@ import TvIcon from '@mui/icons-material/Tv';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 
 export default function ExampleButtonCheckbox() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<string[]>([]);
   return (
     <List
       variant="outlined"
