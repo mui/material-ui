@@ -213,6 +213,25 @@ module.exports = withDocsInfra({
       });
     }
 
+    function traverseComponentPages(pages2, docsTab) {
+      pages2.forEach((page) => {
+        if (page.pathname.startsWith('/base/react-') && !page.children) {
+          map[`${page.pathname}/${docsTab}`] = {
+            page: page.pathname,
+            query: {
+              ...map[page.pathname].query,
+              docsTab,
+            }
+          }
+          return;
+        }
+
+        if (page.children) {
+          traverseComponentPages(page.children, docsTab);
+        }
+      });
+    }
+
     // We want to speed-up the build of pull requests.
     // For this, consider only English language on deploy previews, except for crowdin PRs.
     if (buildOnlyEnglishLocale) {
@@ -227,6 +246,11 @@ module.exports = withDocsInfra({
       });
     }
 
+    ['demos', 'component-api', 'hook-api'].forEach((docsTab) => {
+      traverseComponentPages(pages, docsTab)
+    });
+
+    console.log(map['/base/react-button'])
     return map;
   },
   // rewrites has no effect when run `next export` for production

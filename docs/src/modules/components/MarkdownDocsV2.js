@@ -41,7 +41,7 @@ JoyModeObserver.propTypes = {
 export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const [activeTab, setActiveTabState] = React.useState(router.query.docsTab ?? '');
+  const [activeTab, setActiveTabState] = React.useState(router.query.docsTab ?? 'demos');
 
   let hash;
   if (router.asPath.indexOf('#') >= 0) {
@@ -240,7 +240,7 @@ export default function MarkdownDocs(props) {
           </Wrapper>
         )}
         {commonElements}
-        <Box {...(activeTab !== '' && { sx: { display: 'none' }, 'aria-hidden': true })}>
+        <Box {...((activeTab !== '' && activeTab !== 'demos') && { sx: { display: 'none' }, 'aria-hidden': true })}>
           {rendered.slice(i, rendered.length - 1).map((renderedMarkdownOrDemo, index) => (
             <MarkdownElement
               key={`demos-section-${index}`}
