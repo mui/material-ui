@@ -112,6 +112,22 @@ export const colorChannel = (color) => {
     .map((val, idx) => (decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val))
     .join(' ');
 };
+
+/**
+ * Returns a numeric alpha value from the input color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()
+ * @returns {number} - The alpha value for the color, that can be used in rgba or hsla colors
+ */
+export const colorAlpha = (color) => {
+  const decomposedColor = decomposeColor(color);
+  if (decomposedColor.values.length < 4) {
+    return 1;
+  }
+
+  return parseFloat(decomposedColor.values[3]);
+};
+
 export const private_safeColorChannel = (color, warning) => {
   try {
     return colorChannel(color);

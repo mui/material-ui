@@ -12,6 +12,7 @@ import {
   getLuminance,
   lighten,
   colorChannel,
+  colorAlpha,
 } from '@mui/system';
 
 describe('utils/colorManipulator', () => {
@@ -420,6 +421,17 @@ describe('utils/colorManipulator', () => {
 
     it("doesn't modify CSS4 color when coefficient is 0", () => {
       expect(lighten('color(display-p3 1 0 0)', 0)).to.equal('color(display-p3 1 0 0)');
+    });
+  });
+
+  describe('colorAlpha', () => {
+    it('returns 1 when an opaque color is provided', () => {
+      expect(colorAlpha('#000')).to.equal(1);
+    });
+
+    it('returns the alpha value when a transparent color is provided', () => {
+      expect(colorAlpha('#000000ff')).to.equal(0);
+      expect(colorAlpha('rgba(0,0,0,.5)')).to.equal(.5);
     });
   });
 

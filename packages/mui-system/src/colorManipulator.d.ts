@@ -11,6 +11,7 @@ export function rgbToHex(color: string): string;
 export function hslToRgb(color: string): string;
 export function decomposeColor(color: string): ColorObject;
 export function colorChannel(color: string): string;
+export function colorAlpha(color: string): number;
 export function private_safeColorChannel(color: string, warning?: string): string;
 export function recomposeColor(color: ColorObject): string;
 export function getContrastRatio(foreground: string, background: string): number;
