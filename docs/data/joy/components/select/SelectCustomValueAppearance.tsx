@@ -12,12 +12,12 @@ export default function SelectCustomValueAppearance() {
     { name: 'Eric', role: 'PM', status: '2days ago' },
     { name: 'Smith', role: 'Engineer', status: 'secs ago' },
     { name: 'Erika', role: 'Designer', status: '10hrs ago' },
-  ];
+  ] as const;
   const colors = {
     PM: 'success',
     Engineer: 'primary',
     Designer: 'warning',
-  };
+  } as const;
   return (
     <Select
       defaultValue="Eric"

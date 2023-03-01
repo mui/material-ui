@@ -21,7 +21,7 @@ export default function SelectGroupedOptions() {
     Land: 'neutral',
     Water: 'primary',
     Air: 'success',
-  };
+  } as const;
   return (
     <Select
       placeholder="Choose your animal"
@@ -57,7 +57,7 @@ export default function SelectGroupedOptions() {
                   <React.Fragment>
                     <Chip
                       size="sm"
-                      color={colors[name]}
+                      color={colors[name as keyof typeof group]}
                       sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
                     >
                       {name}

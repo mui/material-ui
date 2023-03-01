@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Select from '@mui/joy/Select';
+import Select, { SelectStaticProps } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import IconButton from '@mui/joy/IconButton';
 import CloseRounded from '@mui/icons-material/CloseRounded';
 
 export default function SelectBasic() {
-  const [value, setValue] = React.useState('dog');
-  const action = React.useRef(null);
+  const [value, setValue] = React.useState<string | null>('dog');
+  const action: SelectStaticProps['action'] = React.useRef(null);
   return (
     <Select
       action={action}
