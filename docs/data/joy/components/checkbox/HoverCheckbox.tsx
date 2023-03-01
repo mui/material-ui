@@ -16,7 +16,7 @@ export default function HoverCheckbox() {
                   opacity: 0.32,
                 },
               }
-            : {},
+            : undefined,
         }),
       }}
     />
