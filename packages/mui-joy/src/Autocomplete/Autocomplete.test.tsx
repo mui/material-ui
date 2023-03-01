@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import {
   describeConformance,
   createRenderer,
@@ -764,6 +764,27 @@ describe('Joy <Autocomplete />', () => {
         expect(handleOpen.callCount).to.equal(2);
         expect(textbox).not.to.have.attribute('aria-activedescendant');
       });
+    });
+
+    it('should open popup when clicked on borders of root element', () => {
+      const handleOpen = spy();
+      render(<Autocomplete onOpen={handleOpen} options={['one']} />);
+      const textbox = document.querySelector('.MuiAutocomplete-root')!;
+
+      stub(textbox, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+        x: 0,
+        y: 0,
+        right: 0,
+        top: 0,
+        toJSON() {},
+      }));
+      fireEvent.mouseDown(textbox, { clientX: 0, clientY: 0 });
+
+      expect(handleOpen.callCount).to.equal(1);
     });
 
     it('does not clear the textbox on Escape', () => {

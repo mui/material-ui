@@ -9,7 +9,7 @@ import {
   screen,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Chip, { chipClasses } from '@mui/material/Chip';
@@ -965,6 +965,33 @@ describe('<Autocomplete />', () => {
         expect(handleOpen.callCount).to.equal(2);
         expect(textbox).not.to.have.attribute('aria-activedescendant');
       });
+    });
+
+    it('should open popup when clicked on borders of root element', () => {
+      const handleOpen = spy();
+      render(
+        <Autocomplete
+          onOpen={handleOpen}
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = document.querySelector('.MuiAutocomplete-root');
+
+      stub(textbox, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+        x: 0,
+        y: 0,
+        right: 0,
+        top: 0,
+        toJSON() {},
+      }));
+      fireEvent.mouseDown(textbox, { clientX: 0, clientY: 0 });
+
+      expect(handleOpen.callCount).to.equal(1);
     });
 
     it('does not clear the textbox on Escape', () => {
