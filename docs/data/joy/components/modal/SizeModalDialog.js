@@ -7,7 +7,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function SizeModalDialog() {
-  const [open, setOpen] = React.useState('');
+  const [open, setOpen] = React.useState(undefined);
   return (
     <React.Fragment>
       <Stack direction="row" alignItems="center" spacing={1}>
@@ -36,7 +36,7 @@ export default function SizeModalDialog() {
           Large
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen('')}>
+      <Modal open={!!open} onClose={() => setOpen(undefined)}>
         <ModalDialog
           aria-labelledby="size-modal-title"
           aria-describedby="size-modal-description"

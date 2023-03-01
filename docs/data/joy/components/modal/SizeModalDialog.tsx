@@ -3,11 +3,13 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
-import ModalDialog, {ModalDialogProps} from '@mui/joy/ModalDialog';
+import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function SizeModalDialog() {
-    const [open, setOpen] = React.useState<ModalDialogProps['size'] | undefined>(undefined);
+  const [open, setOpen] = React.useState<ModalDialogProps['size'] | undefined>(
+    undefined,
+  );
   return (
     <React.Fragment>
       <Stack direction="row" alignItems="center" spacing={1}>

@@ -12,7 +12,7 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
-  const [open, setOpen] = React.useState('');
+  const [open, setOpen] = React.useState(undefined);
   const [scroll, setScroll] = React.useState(true);
   return (
     <React.Fragment>
@@ -28,7 +28,7 @@ export default function DialogVerticalScroll() {
           Full screen
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen('')}>
+      <Modal open={!!open} onClose={() => setOpen(undefined)}>
         <ModalDialog
           aria-labelledby="dialog-vertical-scroll-title"
           aria-describedby="dialog-vertical-scroll-description"

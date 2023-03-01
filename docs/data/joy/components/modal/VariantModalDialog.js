@@ -7,7 +7,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function VariantModalDialog() {
-  const [open, setOpen] = React.useState('');
+  const [open, setOpen] = React.useState(undefined);
   return (
     <React.Fragment>
       <Stack direction="row" alignItems="center" spacing={1}>
@@ -28,7 +28,7 @@ export default function VariantModalDialog() {
           Solid
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen('')}>
+      <Modal open={!!open} onClose={() => setOpen(undefined)}>
         <ModalDialog
           aria-labelledby="variant-modal-title"
           aria-describedby="variant-modal-description"

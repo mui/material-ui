@@ -7,7 +7,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function LayoutModalDialog() {
-  const [open, setOpen] = React.useState('');
+  const [open, setOpen] = React.useState(undefined);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
@@ -22,7 +22,7 @@ export default function LayoutModalDialog() {
           Full screen
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen('')}>
+      <Modal open={!!open} onClose={() => setOpen(undefined)}>
         <ModalDialog
           aria-labelledby="layout-modal-title"
           aria-describedby="layout-modal-description"
