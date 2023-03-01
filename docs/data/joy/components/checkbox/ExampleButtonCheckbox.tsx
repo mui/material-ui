@@ -47,7 +47,7 @@ export default function ExampleButtonCheckbox() {
             checked={value.includes(item)}
             color="neutral"
             variant={value.includes(item) ? 'outlined' : 'plain'}
-            onChange={(event) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               if (event.target.checked) {
                 setValue((val) => [...val, item]);
               } else {

@@ -45,7 +45,7 @@ export default function ExampleChoiceChipCheckbox() {
                   label={item}
                   checked={value.includes(item)}
                   variant={value.includes(item) ? 'soft' : 'outlined'}
-                  onChange={(event) => {
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.checked) {
                       setValue((val) => [...val, item]);
                     } else {
