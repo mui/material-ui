@@ -18,6 +18,10 @@ export interface NumberInputUnstyledClasses {
   error: string;
   /** Class name applied to the input element. */
   input: string;
+  /** Class name applied to the increment button element. */
+  incrementButton: string;
+  /** Class name applied to the decrement button element. */
+  decrementButton: string;
 }
 
 export type NumberInputUnstyledClassKey = keyof NumberInputUnstyledClasses;
@@ -35,6 +39,8 @@ const numberInputUnstyledClasses: NumberInputUnstyledClasses = generateUtilityCl
     'disabled',
     'error',
     'input',
+    'incrementButton',
+    'decrementButton',
     // 'adornedStart',
     // 'adornedEnd',
   ],

@@ -11,9 +11,13 @@
     "error": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute.",
     "focused": "If <code>true</code>, the <code>input</code> will be focused.",
     "formControlContext": "Return value from the <code>useFormControlContext</code> hook.",
+    "getDecrementButtonProps": "Resolver for the decrement button slot's props.",
+    "getIncrementButtonProps": "Resolver for the increment button slot's props.",
     "getInputProps": "Resolver for the input slot's props.",
     "getRootProps": "Resolver for the root slot's props.",
     "inputValue": "The dirty <code>value</code> of the <code>input</code> element when it is in focus.",
+    "isDecrementDisabled": "If <code>true</code>, the decrement button will be disabled.\ne.g. when the <code>value</code> is already at <code>min</code>",
+    "isIncrementDisabled": "If <code>true</code>, the increment button will be disabled.\ne.g. when the <code>value</code> is already at <code>max</code>",
     "required": "If <code>true</code>, the <code>input</code> will indicate that it's required.",
     "value": "The clamped <code>value</code> of the <code>input</code> element."
   }

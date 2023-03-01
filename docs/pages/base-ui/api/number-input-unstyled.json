@@ -9,12 +9,15 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ decrementButton?: func<br>&#124;&nbsp;object, incrementButton?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ decrementButton?: elementType, incrementButton?: elementType, input?: elementType, root?: elementType }"
+      },
       "default": "{}"
     }
   },

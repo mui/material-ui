@@ -9,6 +9,8 @@ import {
   UseNumberInputParameters,
   UseNumberInputRootSlotProps,
   UseNumberInputInputSlotProps,
+  UseNumberInputIncrementButtonSlotProps,
+  UseNumberInputDecrementButtonSlotProps,
   UseNumberInputReturnValue,
 } from './useNumberInput.types';
 import clamp from './clamp';
@@ -30,11 +32,9 @@ export default function useNumberInput(
   parameters: UseNumberInputParameters,
 ): UseNumberInputReturnValue {
   const {
-    // number
     min,
     max,
     step,
-    //
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
     error: errorProp = false,
@@ -108,7 +108,8 @@ export default function useNumberInput(
     };
 
   const handleValueChange =
-    () => (event: React.FocusEvent<HTMLInputElement>, val: number | undefined) => {
+    () =>
+    (event: React.FocusEvent<HTMLInputElement> | React.PointerEvent, val: number | undefined) => {
       // 1. clamp the number
       // 2. setInputValue(clamped_value)
       // 3. call onValueChange(newValue)
@@ -127,8 +128,10 @@ export default function useNumberInput(
       //       OR: (event, newValue) similar to SelectUnstyled
       // formControlContext?.onValueChange?.(newValue);
 
-      if (newValue) {
+      if (typeof newValue === 'number' && !Number.isNaN(newValue)) {
         onValueChange?.(newValue);
+      } else {
+        onValueChange?.(undefined);
       }
     };
 
@@ -196,6 +199,28 @@ export default function useNumberInput(
       otherHandlers.onClick?.(event);
     };
 
+  const handleStep =
+    (direction: 'up' | 'down') =>
+    (
+      event: React.PointerEvent, // TODO: this could also be a keyboard event: arrow up/down or enter on the button
+    ) => {
+      let newValue;
+
+      if (typeof value === 'number') {
+        newValue = {
+          up: value + (step ?? 1),
+          down: value - (step ?? 1),
+        }[direction];
+      } else {
+        // no value
+        newValue = {
+          up: min ?? 0,
+          down: max ?? 0,
+        }[direction];
+      }
+      handleValueChange()(event, newValue);
+    };
+
   const getRootProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputRootSlotProps<TOther> => {
@@ -257,17 +282,51 @@ export default function useNumberInput(
     };
   };
 
+  const isIncrementDisabled =
+    typeof value === 'number' ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false;
+
+  const getIncrementButtonProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseNumberInputIncrementButtonSlotProps<TOther> => {
+    return {
+      ...externalProps,
+      // the button should be tab-able if the input is readonly
+      tabIndex: -1,
+      disabled: isIncrementDisabled,
+      'aria-disabled': isIncrementDisabled,
+      onClick: handleStep('up'),
+    };
+  };
+
+  const isDecrementDisabled =
+    typeof value === 'number' ? value <= (min ?? Number.MIN_SAFE_INTEGER) : false;
+
+  const getDecrementButtonProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseNumberInputDecrementButtonSlotProps<TOther> => {
+    return {
+      ...externalProps,
+      // the button should be tab-able if the input is readonly
+      tabIndex: -1,
+      disabled: isDecrementDisabled,
+      'aria-disabled': isDecrementDisabled,
+      onClick: handleStep('down'),
+    };
+  };
+
   return {
     disabled: disabledProp,
     error: errorProp,
     focused,
     formControlContext,
     getInputProps,
-    // getIncrementButtonProps,
-    // getDecrementButtonProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
     getRootProps,
     required: requiredProp,
     value: focused ? inputValue : value,
+    isIncrementDisabled,
+    isDecrementDisabled,
     // private and could be thrown out later
     inputValue,
   };

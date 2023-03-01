@@ -8,6 +8,8 @@ import {
   NumberInputUnstyledProps,
   NumberInputUnstyledRootSlotProps,
   NumberInputUnstyledInputSlotProps,
+  NumberInputUnstyledIncrementButtonSlotProps,
+  NumberInputUnstyledDecrementButtonSlotProps,
   NumberInputUnstyledTypeMap,
 } from './NumberInputUnstyled.types';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
@@ -50,10 +52,14 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
   const {
     getRootProps,
     getInputProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
     focused,
     error: errorState,
     disabled: disabledState,
     formControlContext,
+    isIncrementDisabled,
+    isDecrementDisabled,
   } = useNumberInput({
     min,
     max,
@@ -88,6 +94,16 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
     [classes.disabled]: disabledState,
   };
 
+  const incrementButtonStateClasses = {
+    [classes.disabled]: isIncrementDisabled,
+    // TODO: focusable if input is readonly
+  };
+
+  const decrementButtonStateClasses = {
+    [classes.disabled]: isDecrementDisabled,
+    // TODO: focusable if input is readonly
+  };
+
   const propsForwardedToInputSlot = {
     id,
     placeholder,
@@ -107,20 +123,42 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
   });
 
   const Input = slots.input ?? 'input';
-
   const inputProps: WithOptionalOwnerState<NumberInputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsForwardedToInputSlot }),
     externalSlotProps: slotProps.input,
-    additionalProps: {},
+    // additionalProps: {},
     ownerState,
     className: [classes.input, inputStateClasses],
   });
 
+  const IncrementButton = slots.incrementButton ?? 'button';
+  const incrementButtonProps: WithOptionalOwnerState<NumberInputUnstyledIncrementButtonSlotProps> =
+    useSlotProps({
+      elementType: IncrementButton,
+      getSlotProps: getIncrementButtonProps,
+      externalSlotProps: slotProps.incrementButton,
+      ownerState,
+      className: [classes.incrementButton, incrementButtonStateClasses],
+    });
+
+  const DecrementButton = slots.decrementButton ?? 'button';
+  const decrementButtonProps: WithOptionalOwnerState<NumberInputUnstyledDecrementButtonSlotProps> =
+    useSlotProps({
+      elementType: DecrementButton,
+      getSlotProps: getDecrementButtonProps,
+      externalSlotProps: slotProps.decrementButton,
+      // additionalProps: {},
+      ownerState,
+      className: [classes.decrementButton, decrementButtonStateClasses],
+    });
+
   return (
     <Root {...rootProps}>
+      <DecrementButton {...decrementButtonProps}>-</DecrementButton>
       <Input {...inputProps} />
+      <IncrementButton {...incrementButtonProps}>+</IncrementButton>
     </Root>
   );
 }) as OverridableComponent<NumberInputUnstyledTypeMap>;
@@ -198,6 +236,8 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    decrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    incrementButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -207,6 +247,8 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    decrementButton: PropTypes.elementType,
+    incrementButton: PropTypes.elementType,
     input: PropTypes.elementType,
     root: PropTypes.elementType,
   }),

@@ -29,7 +29,7 @@ export interface UseNumberInputParameters {
   onClick?: React.MouseEventHandler;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
-  onValueChange?: (value: number) => void;
+  onValueChange?: (value: number | undefined) => void;
   inputRef?: React.Ref<HTMLInputElement>;
   /**
    * If `true`, the `input` element is required.
@@ -71,6 +71,28 @@ export type UseNumberInputInputSlotProps<TOther = {}> = Omit<
 > &
   UseNumberInputInputSlotOwnProps;
 
+export interface UseNumberInputIncrementButtonSlotOwnProps {
+  'aria-disabled': React.AriaAttributes['aria-disabled'];
+  disabled: boolean;
+}
+
+export type UseNumberInputIncrementButtonSlotProps<TOther = {}> = Omit<
+  TOther,
+  keyof UseNumberInputIncrementButtonSlotOwnProps
+> &
+  UseNumberInputIncrementButtonSlotOwnProps;
+
+export interface UseNumberInputDecrementButtonSlotOwnProps {
+  'aria-disabled': React.AriaAttributes['aria-disabled'];
+  disabled: boolean;
+}
+
+export type UseNumberInputDecrementButtonSlotProps<TOther = {}> = Omit<
+  TOther,
+  keyof UseNumberInputDecrementButtonSlotOwnProps
+> &
+  UseNumberInputDecrementButtonSlotOwnProps;
+
 export interface UseNumberInputReturnValue {
   /**
    * If `true`, the component will be disabled.
@@ -91,6 +113,22 @@ export interface UseNumberInputReturnValue {
    * Return value from the `useFormControlContext` hook.
    */
   formControlContext: FormControlState | undefined;
+  /**
+   * Resolver for the decrement button slot's props.
+   * @param externalProps props for the decrement button slot
+   * @returns props that should be spread on the decrement button slot
+   */
+  getDecrementButtonProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseNumberInputDecrementButtonSlotProps<TOther>;
+  /**
+   * Resolver for the increment button slot's props.
+   * @param externalProps props for the increment button slot
+   * @returns props that should be spread on the increment button slot
+   */
+  getIncrementButtonProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseNumberInputIncrementButtonSlotProps<TOther>;
   /**
    * Resolver for the input slot's props.
    * @param externalProps props for the input slot
@@ -120,4 +158,16 @@ export interface UseNumberInputReturnValue {
    * The dirty `value` of the `input` element when it is in focus.
    */
   inputValue: string | undefined;
+  /**
+   * If `true`, the increment button will be disabled.
+   * e.g. when the `value` is already at `max`
+   * @default false
+   */
+  isIncrementDisabled: boolean;
+  /**
+   * If `true`, the decrement button will be disabled.
+   * e.g. when the `value` is already at `min`
+   * @default false
+   */
+  isDecrementDisabled: boolean;
 }

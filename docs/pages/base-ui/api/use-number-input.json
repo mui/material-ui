@@ -30,7 +30,10 @@
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
     },
     "onValueChange": {
-      "type": { "name": "(value: number) =&gt; void", "description": "(value: number) =&gt; void" }
+      "type": {
+        "name": "(value: number | undefined) =&gt; void",
+        "description": "(value: number | undefined) =&gt; void"
+      }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },
     "step": { "type": { "name": "number", "description": "number" } },
@@ -59,6 +62,20 @@
       },
       "required": true
     },
+    "getDecrementButtonProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputDecrementButtonSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputDecrementButtonSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
+    "getIncrementButtonProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputIncrementButtonSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputIncrementButtonSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
     "getInputProps": {
       "type": {
         "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseNumberInputInputSlotProps&lt;TOther&gt;",
@@ -75,6 +92,16 @@
     },
     "inputValue": {
       "type": { "name": "string | undefined", "description": "string | undefined" },
+      "required": true
+    },
+    "isDecrementDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "isIncrementDisabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
       "required": true
     },
     "required": {
