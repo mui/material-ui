@@ -215,8 +215,8 @@ module.exports = withDocsInfra({
 
     function traverseComponentPages(pages2, docsTab) {
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/base/react-') && !page.children) {
-          map[`${page.pathname}/${docsTab}`] = {
+        if (page.pathname.endsWith('[docsTab]') && !page.children) {
+          map[`${page.pathname.replace('[docsTab]', docsTab)}`] = {
             page: page.pathname,
             query: {
               ...map[page.pathname].query,
@@ -250,7 +250,8 @@ module.exports = withDocsInfra({
       traverseComponentPages(pages, docsTab)
     });
 
-    console.log(map['/base/react-button'])
+    console.log(map)
+
     return map;
   },
   // rewrites has no effect when run `next export` for production
