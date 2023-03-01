@@ -1008,8 +1008,12 @@ export default function useAutocomplete(props) {
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = () => {
+  const handleClick = (event) => {
     inputRef.current.focus();
+
+    if (event.type === 'click' || inputValue === '') {
+      handlePopupIndicator(event);
+    }
 
     if (
       selectOnFocus &&
@@ -1020,12 +1024,6 @@ export default function useAutocomplete(props) {
     }
 
     firstFocus.current = false;
-  };
-
-  const handleInputMouseDown = (event) => {
-    if (inputValue === '' || !open) {
-      handlePopupIndicator(event);
-    }
   };
 
   let dirty = freeSolo && inputValue.length > 0;
@@ -1088,7 +1086,6 @@ export default function useAutocomplete(props) {
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
-      onMouseDown: handleInputMouseDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
