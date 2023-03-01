@@ -976,7 +976,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const root = document.querySelector('.MuiAutocomplete-root');
+      const root = document.querySelector(`.${classes.root}`);
 
       fireEvent.mouseDown(root, { clientX: 0, clientY: 0 });
 

@@ -769,7 +769,8 @@ describe('Joy <Autocomplete />', () => {
     it('should open popup when clicked on borders of root element', () => {
       const handleOpen = spy();
       render(<Autocomplete onOpen={handleOpen} options={['one']} />);
-      const root = document.querySelector('.MuiAutocomplete-root')!;
+
+      const root = document.querySelector(`.${classes.root}`)!;
 
       fireEvent.mouseDown(root, { clientX: 0, clientY: 0 });
 
