@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { configure, fireEvent, getConfig } from '@testing-library/react';
-import { FireFunction } from 'test/utils/createRenderer';
 
 const noWrapper = (callback: () => void) => callback();
 
@@ -46,32 +45,32 @@ function withMissingActWarningsIgnored(callback: () => void) {
 // Note that using `fireEvent` from `@testing-library/dom` would not work since /react configures both `fireEvent` to use `act` as a wrapper.
 // -----------------------------------------
 
-export function click(...args: Parameters<FireFunction>) {
+export function click(...args: Parameters<(typeof fireEvent)['click']>) {
   return withMissingActWarningsIgnored(() => {
     fireEvent.click(...args);
   });
 }
 
-export function keyDown(...args: Parameters<FireFunction>) {
+export function keyDown(...args: Parameters<(typeof fireEvent)['keyDown']>) {
   return withMissingActWarningsIgnored(() => {
     fireEvent.keyDown(...args);
   });
 }
 
-export function keyUp(...args: Parameters<FireFunction>) {
+export function keyUp(...args: Parameters<(typeof fireEvent)['keyUp']>) {
   return withMissingActWarningsIgnored(() => {
     fireEvent.keyUp(...args);
   });
 }
 
-export function mouseDown(...args: Parameters<FireFunction>) {
+export function mouseDown(...args: Parameters<(typeof fireEvent)['mouseDown']>) {
   return withMissingActWarningsIgnored(() => {
     fireEvent.mouseDown(...args);
   });
 }
 
-export function mouseUp(...args: Parameters<FireFunction>) {
+export function mouseUp(...args: Parameters<(typeof fireEvent)['mouseUp']>) {
   return withMissingActWarningsIgnored(() => {
-    fireEvent.mouseDown(...args);
+    fireEvent.mouseUp(...args);
   });
 }
