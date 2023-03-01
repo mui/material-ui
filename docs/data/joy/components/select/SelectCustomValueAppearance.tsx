@@ -13,7 +13,6 @@ export default function SelectCustomValueAppearance() {
     { name: 'Smith', role: 'Engineer', status: 'secs ago' },
     { name: 'Erika', role: 'Designer', status: '10hrs ago' },
   ];
-
   const colors = {
     PM: 'success',
     Engineer: 'primary',
