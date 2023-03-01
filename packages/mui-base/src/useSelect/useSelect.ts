@@ -282,12 +282,12 @@ function useSelect<TValue, Multiple extends boolean = false>(
     getOptionProps: getListboxOptionProps,
     getOptionState,
     highlightedOption,
-    selectedOption,
+    selectedOptions,
   } = useListbox(useListboxParameters);
 
   React.useEffect(() => {
-    notifySelectionChanged(selectedOption);
-  }, [selectedOption, notifySelectionChanged]);
+    notifySelectionChanged(selectedOptions);
+  }, [selectedOptions, notifySelectionChanged]);
 
   React.useEffect(() => {
     notifyHighlightChanged(highlightedOption);
@@ -333,7 +333,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
   );
 
   React.useDebugValue({
-    selectedOption,
+    selectedOptions,
     highlightedOption,
     open,
   });
@@ -363,7 +363,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
       getListboxProps,
       contextValue,
       open,
-      value: selectedOption as SelectValue<TValue, Multiple>,
+      value: selectedOptions as SelectValue<TValue, Multiple>,
       highlightedOption,
     };
   }
@@ -376,7 +376,10 @@ function useSelect<TValue, Multiple extends boolean = false>(
     getListboxProps,
     contextValue,
     open,
-    value: (selectedOption.length > 0 ? selectedOption[0] : null) as SelectValue<TValue, Multiple>,
+    value: (selectedOptions.length > 0 ? selectedOptions[0] : null) as SelectValue<
+      TValue,
+      Multiple
+    >,
     highlightedOption,
   };
 }

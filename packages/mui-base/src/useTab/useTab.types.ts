@@ -3,57 +3,28 @@ import { UseButtonRootSlotProps } from '../useButton';
 
 export interface UseTabParameters {
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * The value of the tab.
+   * It's used to associate the tab with a tab panel(s) with the same value.
    */
-  value?: number | string;
+  value: number | string;
   /**
-   * Callback invoked when new value is being set.
+   * If `true`, the tab will be disabled.
    */
-  onChange?: (event: React.SyntheticEvent, value: number | string) => void;
-  onClick?: React.MouseEventHandler;
   disabled?: boolean;
-  onFocus?: React.FocusEventHandler;
-  ref: React.Ref<any>;
+  /**
+   * Ref to the DOM element associated with the tab.
+   */
+  ref?: React.Ref<any>;
 }
 
-interface UseTabRootSlotEventHandlers {
-  onClick?: React.MouseEventHandler;
-  onFocus?: React.FocusEventHandler;
-}
-
-export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<
-  UseTabRootSlotEventHandlers & TOther
-> & {
+export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<TOther> & {
   'aria-controls': React.AriaAttributes['aria-controls'];
   'aria-selected': React.AriaAttributes['aria-selected'];
-  disabled: boolean;
   id: string | undefined;
   role: React.AriaRole;
 };
 
 export interface UseTabReturnValue {
-  /**
-   * If `true`, the tab will be selected.
-   */
-  selected: boolean;
-  /**
-   * If `true`, the tab's focus will be visible.
-   */
-  focusVisible: boolean;
-  /**
-   * Callback for setting the `focusVisible` param.
-   */
-  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  /**
-   * If `true`, the component will be disabled.
-   * @default false
-   */
-  disabled: boolean;
-  /**
-   * If `true`, the component will be active.
-   * @default false
-   */
-  active: boolean;
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
@@ -62,4 +33,25 @@ export interface UseTabReturnValue {
   getRootProps: <TOther extends Record<string, any> = {}>(
     externalProps?: TOther,
   ) => UseTabRootSlotProps<TOther>;
+  /**
+   * If `true`, the tab is active (as in `:active` pseudo-class; in other words, pressed).
+   */
+  active: boolean;
+  /**
+   * If `true`, the tab is highlighted.
+   */
+  highlighted: boolean;
+  /**
+   * 0-based index of the tab in the list of tabs.
+   */
+  index: number;
+  /**
+   * If `true`, the tab is selected.
+   */
+  selected: boolean;
+  /**
+   * Total number of tabs in the nearest parent TabsList.
+   * This can be used to determine if the tab is the last one to style it accordingly.
+   */
+  totalTabsCount: number;
 }

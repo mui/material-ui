@@ -5,7 +5,7 @@ import defaultReducer from './defaultListboxReducer';
 
 describe('useListbox defaultReducer', () => {
   describe('action: setControlledValue', () => {
-    it("assigns the provided value to the state's selectedValue", () => {
+    it("assigns the provided value to the state's selectedValues", () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
         selectedValues: [],
@@ -59,7 +59,7 @@ describe('useListbox defaultReducer', () => {
   });
 
   describe('action: optionClick', () => {
-    it('sets the selectedValue to the clicked value', () => {
+    it('sets the selectedValues to the clicked value', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
         selectedValues: [],
@@ -85,7 +85,7 @@ describe('useListbox defaultReducer', () => {
       expect(result.selectedValues).to.deep.equal(['two']);
     });
 
-    it('replaces the selectedValue with the clicked value if selectionLimit = 1', () => {
+    it('replaces the selectedValues with the clicked value if selectionLimit = 1', () => {
       const state: ListboxState<string> = {
         highlightedValue: 'a',
         selectedValues: ['one'],
@@ -336,7 +336,7 @@ describe('useListbox defaultReducer', () => {
         expect(result.selectedValues).to.deep.equal(['two']);
       });
 
-      it('replaces the selectedValue with the highlighted value if selectionLimit = 1', () => {
+      it('replaces the selectedValues with the highlighted value if selectionLimit = 1', () => {
         const state: ListboxState<string> = {
           highlightedValue: 'two',
           selectedValues: ['one'],

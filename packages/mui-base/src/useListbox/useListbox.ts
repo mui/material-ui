@@ -34,6 +34,9 @@ export interface ListContextValue<Item> {
 }
 
 export const ListContext = React.createContext<ListContextValue<any> | null>(null);
+if (process.env.NODE_ENV !== 'production') {
+  ListContext.displayName = 'ListContext';
+}
 
 /**
  * @ignore - internal hook.
@@ -110,7 +113,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     [props],
   );
 
-  const [{ highlightedValue, selectedValues: selectedValue }, dispatch] = useControllableReducer(
+  const [{ highlightedValue, selectedValues }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
     propsWithDefaults,
@@ -126,14 +129,14 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   React.useEffect(() => {
     // if a controlled value changes, we need to update the state to keep things in sync
-    if (valueParam !== undefined && valueParam !== selectedValue) {
+    if (valueParam !== undefined && valueParam !== selectedValues) {
       dispatch({
         type: ActionTypes.setValue,
         event: null,
         value: valueParam,
       });
     }
-  }, [valueParam, selectedValue, dispatch]);
+  }, [valueParam, selectedValues, dispatch]);
 
   const highlightedIndex = React.useMemo(() => {
     return highlightedValue == null
@@ -142,7 +145,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   }, [highlightedValue, options, optionComparer]);
 
   // introducing refs to avoid recreating the getOptionState function on each change.
-  const latestSelectedValue = useLatest(selectedValue);
+  const latestSelectedValues = useLatest(selectedValues);
   const latestHighlightedIndex = useLatest(highlightedIndex);
   const latestHighlightedValue = useLatest(highlightedValue);
   const previousOptions = React.useRef<TOption[]>([]);
@@ -170,8 +173,8 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   } = useListChangeNotifiers<TOption>();
 
   React.useEffect(() => {
-    notifySelectionChanged(selectedValue);
-  }, [selectedValue, notifySelectionChanged]);
+    notifySelectionChanged(selectedValues);
+  }, [selectedValues, notifySelectionChanged]);
 
   React.useEffect(() => {
     notifyHighlightChanged(highlightedValue);
@@ -312,7 +315,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const getOptionState = React.useCallback(
     (option: TOption): OptionState => {
       const index = options.findIndex((opt) => optionComparer(opt, option));
-      const selected = (latestSelectedValue.current ?? []).some(
+      const selected = (latestSelectedValues.current ?? []).some(
         (value) => value != null && optionComparer(option, value),
       );
 
@@ -326,7 +329,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         selected,
       };
     },
-    [options, isOptionDisabled, optionComparer, latestSelectedValue, latestHighlightedIndex],
+    [options, isOptionDisabled, optionComparer, latestSelectedValues, latestHighlightedIndex],
   );
 
   const firstFocusableOption = React.useMemo(() => {
@@ -356,7 +359,8 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         return undefined;
       }
 
-      if (latestHighlightedValue.current == null) {
+      // TODO: check if using highlightedValue instead of latestHighlightedValue.current does not kill performance
+      if (highlightedValue == null) {
         return option === firstFocusableOption ? 0 : -1;
       }
 
@@ -370,7 +374,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
       return 0;
     },
-    [focusManagement, disabledItemsFocusable, firstFocusableOption, latestHighlightedValue],
+    [focusManagement, disabledItemsFocusable, firstFocusableOption, highlightedValue],
   );
 
   const getOptionProps = React.useCallback(
@@ -419,7 +423,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   React.useDebugValue({
     highlightedOption: highlightedValue,
-    selectedOption: selectedValue,
+    selectedOptions: selectedValues,
   });
 
   return {
@@ -427,7 +431,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     getOptionProps,
     getOptionState,
     highlightedOption: highlightedValue,
-    selectedOption: selectedValue,
+    selectedOptions: selectedValues,
     setSelectedValue,
     setHighlightedValue,
     contextValue,
@@ -502,5 +506,6 @@ export function useListItem<Item>(parameters: UseListItemParameters<Item>) {
       ref: handleRef,
     }),
     getItemState: () => getItemState(item),
+    ref: handleRef,
   };
 }

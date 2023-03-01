@@ -1,76 +1,23 @@
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-} from '@mui/utils';
-import { isFragment } from 'react-is';
 import { useTabContext } from '../TabsUnstyled';
-import extractEventHandlers from '../utils/extractEventHandlers';
 import {
+  TabsListContextValue,
   UseTabsListParameters,
   UseTabsListReturnValue,
   UseTabsListRootSlotProps,
 } from './useTabsList.types';
 import { EventHandlers } from '../utils';
+import { useCompoundParent } from '../utils/useCompound';
+import { TabMetadata } from '../useTabs/useTabs';
+import useListbox, {
+  ActionTypes,
+  defaultListboxReducer,
+  ListboxReducer,
+  UseListboxParameters,
+} from '../useListbox';
 
-const nextItem = (list: Element | null, item: Element | null): Element | null => {
-  if (!list) {
-    return null;
-  }
+export const TabsListContext = React.createContext<TabsListContextValue | null>(null);
 
-  if (list === item) {
-    return list.firstChild as Element | null;
-  }
-  if (item && item.nextElementSibling) {
-    return item.nextElementSibling;
-  }
-  return list.firstChild as Element | null;
-};
-
-const previousItem = (list: Element | null, item: Element | null): Element | null => {
-  if (!list) {
-    return null;
-  }
-
-  if (list === item) {
-    return list.lastChild as Element | null;
-  }
-  if (item && item.previousElementSibling) {
-    return item.previousElementSibling;
-  }
-  return list.lastChild as Element | null;
-};
-
-const moveFocus = (
-  list: Element | null,
-  currentFocus: Element | null,
-  traversalFunction: (list: Element | null, currentFocus: Element | null) => Element | null,
-) => {
-  let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus);
-
-  while (list && nextFocus) {
-    // Prevent infinite loop.
-    if (nextFocus === list.firstChild) {
-      if (wrappedOnce) {
-        return;
-      }
-      wrappedOnce = true;
-    }
-
-    // Same logic as useAutocomplete.js
-    const nextFocusDisabled =
-      (nextFocus as any).disabled || nextFocus.getAttribute('aria-disabled') === 'true';
-
-    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
-      // Move to the next element.
-      nextFocus = traversalFunction(list, nextFocus);
-    } else {
-      (nextFocus as any).focus();
-      return;
-    }
-  }
-};
 /**
  *
  * Demos:
@@ -83,134 +30,135 @@ const moveFocus = (
  */
 
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
-  const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
+  const { ref: externalRef } = parameters;
 
-  const tabsListRef = React.createRef<any>();
-  const handleRef = useForkRef(tabsListRef, ref);
+  const {
+    direction = 'ltr',
+    onSelected,
+    orientation = 'horizontal',
+    value,
+    selectionFollowsFocus,
+  } = useTabContext();
 
-  const context = useTabContext();
-  if (context === null) {
-    throw new Error('No TabContext provided');
-  }
+  const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
+    string | number,
+    TabMetadata
+  >();
 
-  const { value, orientation = 'horizontal', direction = 'ltr' } = context;
+  const subitemKeys = React.useMemo(() => Array.from(subitems.keys()), [subitems]);
+
+  const getTabElement = React.useCallback(
+    (tabValue: string | number) => {
+      if (tabValue == null) {
+        return null;
+      }
+
+      return subitems.get(tabValue)?.ref.current ?? null;
+    },
+    [subitems],
+  );
 
   const isRtl = direction === 'rtl';
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    const list = tabsListRef.current;
-    const currentFocus = ownerDocument(list).activeElement;
-    // Keyboard navigation assumes that [role="tab"] are siblings
-    // though we might warn in the future about nested, interactive elements
-    // as a a11y violation
-    const role = currentFocus?.getAttribute('role');
-    if (role !== 'tab') {
-      return;
+  let listOrientation: UseListboxParameters<any>['orientation'];
+  if (orientation === 'vertical') {
+    listOrientation = 'vertical';
+  } else {
+    listOrientation = isRtl ? 'horizontal-rtl' : 'horizontal-ltr';
+  }
+
+  const stateReducer: ListboxReducer<string | number> = React.useCallback(
+    (state, action) => {
+      const newState = defaultListboxReducer(state, action);
+
+      if (action.type === ActionTypes.optionsChange) {
+        return {
+          ...newState,
+          highlightedValue: newState.selectedValues[0] ?? null,
+        };
+      }
+
+      if (action.type === ActionTypes.setValue && action.value != null) {
+        return {
+          ...newState,
+          highlightedValue: action.value[0],
+        };
+      }
+
+      if (selectionFollowsFocus && newState.highlightedValue != null) {
+        return {
+          ...newState,
+          selectedValues: [newState.highlightedValue],
+        };
+      }
+
+      return newState;
+    },
+    [selectionFollowsFocus],
+  );
+
+  const listboxValue = React.useMemo(() => {
+    if (value == null) {
+      return [];
     }
 
-    let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
-    let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
-    if (orientation === 'horizontal' && isRtl) {
-      // swap previousItemKey with nextItemKey
-      previousItemKey = 'ArrowRight';
-      nextItemKey = 'ArrowLeft';
-    }
+    return [value];
+  }, [value]);
 
-    switch (event.key) {
-      case previousItemKey:
-        event.preventDefault();
-        moveFocus(list, currentFocus, previousItem);
-        break;
-      case nextItemKey:
-        event.preventDefault();
-        moveFocus(list, currentFocus, nextItem);
-        break;
-      case 'Home':
-        event.preventDefault();
-        moveFocus(list, null, nextItem);
-        break;
-      case 'End':
-        event.preventDefault();
-        moveFocus(list, null, previousItem);
-        break;
-      default:
-        break;
-    }
-  };
+  const handleChange = React.useCallback(
+    (
+      e:
+        | React.FocusEvent<Element, Element>
+        | React.KeyboardEvent<Element>
+        | React.MouseEvent<Element, MouseEvent>
+        | null,
+      newValue: (string | number)[],
+    ) => {
+      onSelected(e, newValue[0] ?? null);
+    },
+    [onSelected],
+  );
 
-  const createHandleKeyDown =
-    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      handleKeyDown(event);
-      otherHandlers.onKeyDown?.(event);
-    };
+  const {
+    getRootProps: getListboxRootProps,
+    selectedOptions,
+    highlightedOption,
+    contextValue: listContextValue,
+  } = useListbox({
+    disabledItemsFocusable: !selectionFollowsFocus,
+    focusManagement: 'DOM',
+    getOptionElement: getTabElement,
+    isOptionDisabled: (option) => subitems.get(option)?.disabled ?? false,
+    listboxRef: externalRef,
+    onChange: handleChange,
+    options: subitemKeys,
+    orientation: listOrientation,
+    selectionLimit: 1,
+    stateReducer,
+    value: listboxValue,
+  });
 
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseTabsListRootSlotProps<TOther> => {
-    const propsEventHandlers = extractEventHandlers(parameters);
-    const externalEventHandlers = { ...propsEventHandlers, ...otherHandlers };
-
-    const ownEventHandlers = {
-      onKeyDown: createHandleKeyDown(externalEventHandlers),
-    };
-
-    const mergedEventHandlers = {
-      ...externalEventHandlers,
-      ...ownEventHandlers,
-    };
     return {
-      'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledBy,
+      ...otherHandlers,
+      ...getListboxRootProps(otherHandlers),
       'aria-orientation': orientation === 'vertical' ? 'vertical' : undefined,
       role: 'tablist',
-      ref: handleRef,
-      ...mergedEventHandlers,
     };
   };
-
-  const processChildren = React.useCallback(() => {
-    const valueToIndex = new Map();
-
-    let childIndex = 0;
-
-    const processedChildren = React.Children.map(children, (child) => {
-      if (!React.isValidElement(child)) {
-        return null;
-      }
-
-      if (process.env.NODE_ENV !== 'production') {
-        if (isFragment(child)) {
-          console.error(
-            [
-              "MUI: The Tabs component doesn't accept a Fragment as a child.",
-              'Consider providing an array instead.',
-            ].join('\n'),
-          );
-        }
-      }
-
-      const childValue = child.props.value === undefined ? childIndex : child.props.value;
-      valueToIndex.set(childValue, childIndex);
-
-      childIndex += 1;
-
-      return React.cloneElement(child, {
-        value: childValue,
-        ...((childIndex === 1 && value === false && !child.props.tabIndex) || value === childValue
-          ? { tabIndex: 0 }
-          : { tabIndex: -1 }),
-      });
-    });
-
-    return processedChildren;
-  }, [children, value]);
 
   return {
     isRtl,
     orientation,
-    value,
-    processChildren,
+    selectedValue: selectedOptions[0] ?? null,
+    highlightedValue: highlightedOption,
     getRootProps,
+    contextValue: {
+      ...compoundComponentContextValue,
+      ...listContextValue,
+    },
   };
 }
 

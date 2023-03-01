@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
 import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
+import useCompoundParent from '../utils/useCompound';
+
+export interface TabMetadata {
+  disabled: boolean;
+  ref: React.RefObject<HTMLElement>;
+}
 
 /**
  *
@@ -32,21 +38,29 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   const idPrefix = useId();
 
   const onSelected = React.useCallback(
-    (e: React.SyntheticEvent, newValue: string | number | false) => {
+    (event: React.SyntheticEvent | null, newValue: string | number | null) => {
       setValue(newValue);
-      if (onChange) {
-        onChange(e, newValue);
-      }
+      onChange?.(event, newValue);
     },
     [onChange, setValue],
   );
 
-  const tabsContextValue = React.useMemo(() => {
-    return { idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus };
-  }, [idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus]);
+  const { subitems: tabPanels, ...compoundComponentContextValue } = useCompoundParent<
+    string | number,
+    string
+  >();
 
   return {
-    tabsContextValue,
+    tabPanels,
+    contextValue: {
+      idPrefix,
+      value,
+      onSelected,
+      orientation,
+      direction,
+      selectionFollowsFocus,
+      ...compoundComponentContextValue,
+    },
   };
 }
 

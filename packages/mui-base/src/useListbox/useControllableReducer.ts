@@ -18,7 +18,7 @@ function getControlledState<TOption>(
   props: UseListboxParametersWithDefaults<TOption>,
 ) {
   if (props.value !== undefined) {
-    return { ...internalState, selectedValue: props.value };
+    return { ...internalState, selectedValues: props.value };
   }
 
   return internalState;

@@ -8,11 +8,11 @@ export interface TabsContextValue {
   /**
    * The currently selected tab's value.
    */
-  value: number | string | false;
+  value: number | string | null;
   /**
    * Callback for setting new value.
    */
-  onSelected: (event: React.SyntheticEvent, value: number | string | false) => void;
+  onSelected: (event: React.SyntheticEvent | null, value: number | string | null) => void;
   /**
    * The component orientation (layout flow direction).
    */
@@ -37,11 +37,13 @@ if (process.env.NODE_ENV !== 'production') {
   Context.displayName = 'TabsContext';
 }
 
-/**
- * @returns {unknown}
- */
 export function useTabContext() {
-  return React.useContext(Context);
+  const context = React.useContext(Context);
+  if (context == null) {
+    throw new Error('No TabsContext provided');
+  }
+
+  return context;
 }
 
 export function getPanelId(context: TabsContextValue, value: number | string | false) {

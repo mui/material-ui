@@ -29,6 +29,7 @@ describe('useControllableReducer', () => {
         disabledItemsFocusable: false,
         optionComparer: (a, b) => a === b,
         optionStringifier: (option) => option,
+        orientation: 'vertical',
         selectionLimit: null,
       };
 
@@ -62,6 +63,7 @@ describe('useControllableReducer', () => {
         disabledItemsFocusable: false,
         optionComparer: (a, b) => a === b,
         optionStringifier: (option) => option,
+        orientation: 'vertical',
         selectionLimit: null,
       };
 
@@ -104,6 +106,7 @@ describe('useControllableReducer', () => {
           optionStringifier: (option) => option,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
+          orientation: 'vertical',
           selectionLimit: null,
         };
 
@@ -145,6 +148,7 @@ describe('useControllableReducer', () => {
           optionStringifier: (option) => option,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
+          orientation: 'vertical',
           selectionLimit: null,
         };
 

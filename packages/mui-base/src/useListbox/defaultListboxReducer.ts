@@ -431,8 +431,6 @@ export default function defaultListboxReducer<TOption>(
 ): Readonly<ListboxState<TOption>> {
   const { type } = action;
 
-  console.log('reducer called', type, action);
-
   switch (type) {
     case ActionTypes.keyDown:
       return handleKeyDown(action.event, state, action.props);

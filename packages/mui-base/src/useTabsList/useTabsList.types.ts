@@ -1,13 +1,23 @@
 import * as React from 'react';
+import { OptionState, UseListboxOptionSlotProps } from '../useListbox';
+import { EventHandlers } from '../utils';
+import { TabsListProviderValue } from './TabsListProvider';
+
+export interface TabsListContextValue {
+  getTabProps: <TOther extends EventHandlers = {}>(
+    tabValue: string | number,
+    otherHandlers?: TOther,
+  ) => UseListboxOptionSlotProps;
+  getTabState: (tabValue: string | number) => OptionState;
+}
 
 export interface UseTabsListParameters {
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
   ref: React.Ref<unknown>;
+  value?: string | number | null;
+  defaultValue?: string | number | null;
+  onChange?: (event: React.SyntheticEvent | null, value: string | number | null) => void;
+  orientation?: 'horizontal' | 'vertical';
+  direction?: 'ltr' | 'rtl';
 }
 
 export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
@@ -21,6 +31,10 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
 
 export interface UseTabsListReturnValue {
   /**
+   * The value of the currently highlighted `Tab`.
+   */
+  highlightedValue: string | number | null;
+  /**
    * If `true`, it will indicate that the text's direction in right-to-left.
    * @default false
    */
@@ -33,14 +47,7 @@ export interface UseTabsListReturnValue {
   /**
    * The value of the currently selected `Tab`.
    */
-  value: string | number | false;
-  /**
-   * Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation.
-   */
-  processChildren: () =>
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
-    | null
-    | undefined;
+  selectedValue: string | number | null;
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
@@ -49,4 +56,8 @@ export interface UseTabsListReturnValue {
   getRootProps: <TOther extends Record<string, any> = {}>(
     externalProps?: TOther,
   ) => UseTabsListRootSlotProps<TOther>;
+  /**
+   * The value to be passed to the TabListProvider above all the tabs.
+   */
+  contextValue: TabsListProviderValue;
 }
