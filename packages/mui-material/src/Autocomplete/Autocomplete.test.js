@@ -9,7 +9,7 @@ import {
   screen,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
-import { spy, stub } from 'sinon';
+import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Chip, { chipClasses } from '@mui/material/Chip';
@@ -978,17 +978,6 @@ describe('<Autocomplete />', () => {
       );
       const root = document.querySelector('.MuiAutocomplete-root');
 
-      stub(root, 'getBoundingClientRect').callsFake(() => ({
-        width: 100,
-        height: 10,
-        bottom: 10,
-        left: 0,
-        x: 0,
-        y: 0,
-        right: 0,
-        top: 0,
-        toJSON() {},
-      }));
       fireEvent.mouseDown(root, { clientX: 0, clientY: 0 });
 
       expect(handleOpen.callCount).to.equal(1);
