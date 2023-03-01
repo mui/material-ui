@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useMessageBus from '../utils/useMessageBus';
 
-const HIGHLIGHT_CHANGE_TOPIC = 'menu:change-highlight';
+const HIGHLIGHT_CHANGE_TOPIC = Symbol('menu:change-highlight');
 
 export interface MenuChangeNotifiers {
   /**

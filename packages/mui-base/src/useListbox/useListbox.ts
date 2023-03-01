@@ -14,11 +14,26 @@ import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 import useLatest from '../utils/useLatest';
 import useTextNavigation from '../utils/useTextNavigation';
+import useForcedRerendering from '../utils/useForcedRerendering';
+import useListChangeNotifiers from './useListChangeNotifiers';
 
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
 const defaultOptionStringifier = <TOption>(option: TOption) =>
   typeof option === 'string' ? option : String(option);
+
+export interface ListContextValue<Item> {
+  getItemProps: <TOther extends EventHandlers = {}>(
+    item: Item,
+    otherHandlers?: TOther,
+  ) => UseListboxOptionSlotProps<TOther>;
+  getItemState: (item: Item) => OptionState;
+  registerHighlightChangeHandler: (handler: (item: Item | null) => void) => () => void;
+  registerSelectionChangeHandler: (handler: (items: Item | Item[] | null) => void) => () => void;
+  focusManagement: UseListboxParameters<Item>['focusManagement'];
+}
+
+export const ListContext = React.createContext<ListContextValue<any> | null>(null);
 
 /**
  * @ignore - internal hook.
@@ -35,9 +50,12 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     id: idProp,
     isOptionDisabled = defaultIsOptionDisabled,
     listboxRef: externalListboxRef,
+    onHighlightChange,
     optionComparer = defaultOptionComparer,
     optionStringifier = defaultOptionStringifier,
     options,
+    getOptionElement,
+    orientation = 'vertical',
     stateReducer: externalReducer,
     value: valueParam,
     selectionLimit = null,
@@ -52,6 +70,30 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
+  const listboxRef = React.useRef<HTMLUListElement>(null);
+  const handleRef = useForkRef(externalListboxRef, listboxRef);
+
+  const handleHighlightChange = React.useCallback(
+    (
+      event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TOption | null,
+      reason: ActionTypes,
+    ) => {
+      onHighlightChange?.(event, value, reason);
+
+      if (
+        focusManagement === 'DOM' &&
+        value != null &&
+        (reason === ActionTypes.optionClick ||
+          reason === ActionTypes.keyDown ||
+          reason === ActionTypes.textNavigation)
+      ) {
+        getOptionElement?.(value)?.focus();
+      }
+    },
+    [getOptionElement, onHighlightChange, focusManagement],
+  );
+
   const propsWithDefaults: React.RefObject<UseListboxParametersWithDefaults<TOption>> = useLatest(
     {
       ...props,
@@ -59,15 +101,14 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       disableListWrap,
       focusManagement,
       isOptionDisabled,
+      onHighlightChange: handleHighlightChange,
       optionComparer,
       optionStringifier,
+      orientation,
       selectionLimit,
     },
     [props],
   );
-
-  const listboxRef = React.useRef<HTMLUListElement>(null);
-  const handleRef = useForkRef(externalListboxRef, listboxRef);
 
   const [{ highlightedValue, selectedValues: selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
@@ -103,6 +144,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   // introducing refs to avoid recreating the getOptionState function on each change.
   const latestSelectedValue = useLatest(selectedValue);
   const latestHighlightedIndex = useLatest(highlightedIndex);
+  const latestHighlightedValue = useLatest(highlightedValue);
   const previousOptions = React.useRef<TOption[]>([]);
 
   React.useEffect(() => {
@@ -119,6 +161,21 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
     previousOptions.current = options;
   }, [options, optionComparer, dispatch]);
+
+  const {
+    notifySelectionChanged,
+    notifyHighlightChanged,
+    registerHighlightChangeHandler,
+    registerSelectionChangeHandler,
+  } = useListChangeNotifiers<TOption>();
+
+  React.useEffect(() => {
+    notifySelectionChanged(selectedValue);
+  }, [selectedValue, notifySelectionChanged]);
+
+  React.useEffect(() => {
+    notifyHighlightChanged(highlightedValue);
+  }, [highlightedValue, notifyHighlightChanged]);
 
   const setSelectedValue = React.useCallback(
     (values: TOption[]) => {
@@ -187,7 +244,13 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         return;
       }
 
-      const keysToPreventDefault = ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];
+      const keysToPreventDefault = ['Home', 'End', 'PageUp', 'PageDown'];
+
+      if (orientation === 'vertical') {
+        keysToPreventDefault.push('ArrowUp', 'ArrowDown');
+      } else {
+        keysToPreventDefault.push('ArrowLeft', 'ArrowRight');
+      }
 
       if (focusManagement === 'activeDescendant') {
         // When the child element is focused using the activeDescendant attribute,
@@ -217,8 +280,8 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         return;
       }
 
-      if (listboxRef.current?.contains(document.activeElement)) {
-        // focus is within the listbox
+      if (listboxRef.current?.contains(event.relatedTarget)) {
+        // focus remains within the listbox
         return;
       }
 
@@ -266,10 +329,35 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     [options, isOptionDisabled, optionComparer, latestSelectedValue, latestHighlightedIndex],
   );
 
+  const firstFocusableOption = React.useMemo(() => {
+    if (focusManagement === 'activeDescendant') {
+      // options are not focusable when using activeDescendant
+      return undefined;
+    }
+
+    if (disabledItemsFocusable) {
+      return options[0];
+    }
+
+    for (let i = 0; i < options.length; i += 1) {
+      const option = options[i];
+      const optionState = getOptionState(option);
+      if (!optionState.disabled) {
+        return option;
+      }
+    }
+
+    return undefined;
+  }, [options, disabledItemsFocusable, getOptionState, focusManagement]);
+
   const getOptionTabIndex = React.useCallback(
-    (optionState: OptionState) => {
+    (option: TOption, optionState: OptionState) => {
       if (focusManagement === 'activeDescendant') {
         return undefined;
+      }
+
+      if (latestHighlightedValue.current == null) {
+        return option === firstFocusableOption ? 0 : -1;
       }
 
       if (!optionState.highlighted) {
@@ -282,7 +370,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
       return 0;
     },
-    [focusManagement, disabledItemsFocusable],
+    [focusManagement, disabledItemsFocusable, firstFocusableOption, latestHighlightedValue],
   );
 
   const getOptionProps = React.useCallback(
@@ -300,7 +388,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         onClick: createHandleOptionClick(option, otherHandlers),
         onPointerOver: createHandleOptionPointerOver(option, otherHandlers),
         role: 'option',
-        tabIndex: getOptionTabIndex(optionState),
+        tabIndex: getOptionTabIndex(option, optionState),
       };
     },
     [
@@ -309,6 +397,23 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       createHandleOptionPointerOver,
       getOptionTabIndex,
       getOptionState,
+    ],
+  );
+
+  const contextValue: ListContextValue<TOption> = React.useMemo(
+    () => ({
+      getItemProps: getOptionProps,
+      getItemState: getOptionState,
+      registerHighlightChangeHandler,
+      registerSelectionChangeHandler,
+      focusManagement,
+    }),
+    [
+      getOptionProps,
+      getOptionState,
+      registerHighlightChangeHandler,
+      registerSelectionChangeHandler,
+      focusManagement,
     ],
   );
 
@@ -325,5 +430,77 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     selectedOption: selectedValue,
     setSelectedValue,
     setHighlightedValue,
+    contextValue,
+  };
+}
+
+export interface UseListItemParameters<Item> {
+  item: Item;
+  ref?: React.Ref<HTMLElement>;
+}
+
+export function useListItem<Item>(parameters: UseListItemParameters<Item>) {
+  const { item, ref: externalRef } = parameters;
+
+  const itemRef = React.useRef<HTMLElement>(null);
+  const handleRef = useForkRef(itemRef, externalRef);
+
+  const listContext = React.useContext(ListContext);
+  if (!listContext) {
+    throw new Error('useListItem must be used within a ListProvider');
+  }
+
+  const {
+    getItemProps,
+    getItemState,
+    registerHighlightChangeHandler,
+    registerSelectionChangeHandler,
+  } = listContext;
+
+  const itemState = getItemState(item);
+  const { highlighted, selected } = itemState;
+
+  const rerender = useForcedRerendering();
+
+  React.useEffect(() => {
+    function updateHighlightedState(highlightedItem: Item | null) {
+      if (highlightedItem === item && !highlighted) {
+        rerender();
+      } else if (highlightedItem !== item && highlighted) {
+        rerender();
+      }
+    }
+
+    return registerHighlightChangeHandler(updateHighlightedState);
+  });
+
+  React.useEffect(() => {
+    function updateSelectedState(selectedItems: Item | Item[] | null) {
+      if (!selected) {
+        if (Array.isArray(selectedItems)) {
+          if (selectedItems.includes(item)) {
+            rerender();
+          }
+        } else if (selectedItems === item) {
+          rerender();
+        }
+      } else if (Array.isArray(selectedItems)) {
+        if (!selectedItems.includes(item)) {
+          rerender();
+        }
+      } else if (selectedItems !== item) {
+        rerender();
+      }
+    }
+
+    return registerSelectionChangeHandler(updateSelectedState);
+  }, [registerSelectionChangeHandler, rerender, selected, item]);
+
+  return {
+    getItemProps: <TOther extends EventHandlers = {}>(otherHandlers?: TOther) => ({
+      ...getItemProps(item, otherHandlers),
+      ref: handleRef,
+    }),
+    getItemState: () => getItemState(item),
   };
 }

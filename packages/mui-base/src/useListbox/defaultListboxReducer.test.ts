@@ -22,6 +22,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };
@@ -47,6 +48,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };
@@ -73,6 +75,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
         option: 'two',
@@ -98,6 +101,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: 1,
         },
         option: 'two',
@@ -123,6 +127,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
         option: 'two',
@@ -148,6 +153,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
         option: 'two',
@@ -178,6 +184,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
         };
@@ -206,6 +213,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
         };
@@ -234,6 +242,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
         };
@@ -262,6 +271,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: (_, index) => index === 0 || index === 4,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
         };
@@ -288,6 +298,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => true,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
         };
@@ -316,6 +327,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
         };
@@ -342,6 +354,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: 1,
           },
         };
@@ -368,6 +381,7 @@ describe('useListbox defaultReducer', () => {
             isOptionDisabled: () => false,
             optionComparer: (o, v) => o === v,
             optionStringifier: (option) => option,
+            orientation: 'vertical',
             selectionLimit: null,
           },
           option: 'two',
@@ -397,6 +411,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };
@@ -422,6 +437,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };
@@ -447,6 +463,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };
@@ -472,6 +489,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: (_, i) => i === 1,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };
@@ -497,6 +515,7 @@ describe('useListbox defaultReducer', () => {
           isOptionDisabled: () => false,
           optionComparer: (o, v) => o === v,
           optionStringifier: (option) => option,
+          orientation: 'vertical',
           selectionLimit: null,
         },
       };

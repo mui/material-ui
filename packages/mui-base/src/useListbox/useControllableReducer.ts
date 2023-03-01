@@ -75,7 +75,7 @@ function useStateChangeDetection<TOption>(
     const nextSelectedValues = nextState.selectedValues as TOption[];
 
     if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
-      onChange?.(lastActionRef.current.event, nextSelectedValues);
+      onChange?.(lastActionRef.current.event, nextSelectedValues, lastActionRef.current.type);
     }
 
     // Fires the highlightChange event when reducer returns changed `highlightedValue`.
@@ -89,6 +89,7 @@ function useStateChangeDetection<TOption>(
       propsRef.current?.onHighlightChange?.(
         lastActionRef.current.event,
         nextState.highlightedValue,
+        lastActionRef.current.type,
       );
     }
 

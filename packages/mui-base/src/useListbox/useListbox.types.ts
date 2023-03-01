@@ -5,6 +5,7 @@ type UseListboxStrictParametersRequiredKeys =
   | 'disableListWrap'
   | 'disabledItemsFocusable'
   | 'optionComparer'
+  | 'orientation'
   | 'optionStringifier'
   | 'selectionLimit';
 
@@ -125,6 +126,12 @@ export interface UseListboxParameters<TOption> {
   disableListWrap?: boolean;
   focusManagement?: FocusManagementType;
   /**
+   * A function that returns the DOM element associated with an option.
+   *
+   * @param option Option to get the DOM element for.
+   */
+  getOptionElement?: (option: TOption) => HTMLElement | null;
+  /**
    * Id attribute of the listbox.
    */
   id?: string;
@@ -143,6 +150,7 @@ export interface UseListboxParameters<TOption> {
   onChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: TOption[],
+    reason: ActionTypes,
   ) => void;
   /**
    * Callback fired when the highlighted option changes.
@@ -150,6 +158,7 @@ export interface UseListboxParameters<TOption> {
   onHighlightChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     option: TOption | null,
+    reason: ActionTypes,
   ) => void;
   /**
    * A function that tests equality between two options.
@@ -169,6 +178,11 @@ export interface UseListboxParameters<TOption> {
    * Array of options to be rendered in the list.
    */
   options: TOption[];
+  /**
+   * Orientation of the items in the listbox.
+   * Determines the actions that are performed when arrow keys are pressed.
+   */
+  orientation?: 'horizontal-ltr' | 'horizontal-rtl' | 'vertical';
   /**
    * Maximum number of options that can be selected at once.
    * Set to `null` to disable the limit.

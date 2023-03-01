@@ -217,6 +217,7 @@ function handleKeyDown<TOption>(
   parameters: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const previouslySelectedValue = state.highlightedValue;
+  const { orientation } = parameters;
 
   switch (event.key) {
     case 'Home':
@@ -244,18 +245,50 @@ function handleKeyDown<TOption>(
       };
 
     case 'ArrowUp':
-      // TODO: extend current selection with Shift modifier
+      if (orientation !== 'vertical') {
+        break;
+      }
+
       return {
         ...state,
         highlightedValue: moveHighlight(previouslySelectedValue, -1, parameters),
       };
 
     case 'ArrowDown':
-      // TODO: extend current selection with Shift modifier
+      if (orientation !== 'vertical') {
+        break;
+      }
+
       return {
         ...state,
         highlightedValue: moveHighlight(previouslySelectedValue, 1, parameters),
       };
+
+    case 'ArrowLeft': {
+      if (orientation === 'vertical') {
+        break;
+      }
+
+      const offset = orientation === 'horizontal-ltr' ? -1 : 1;
+
+      return {
+        ...state,
+        highlightedValue: moveHighlight(previouslySelectedValue, offset, parameters),
+      };
+    }
+
+    case 'ArrowRight': {
+      if (orientation === 'vertical') {
+        break;
+      }
+
+      const offset = orientation === 'horizontal-ltr' ? 1 : -1;
+
+      return {
+        ...state,
+        highlightedValue: moveHighlight(previouslySelectedValue, offset, parameters),
+      };
+    }
 
     case 'Enter':
     case ' ':
@@ -272,7 +305,14 @@ function handleKeyDown<TOption>(
   return state;
 }
 
-function handleBlur<TOption>(state: ListboxState<TOption>): ListboxState<TOption> {
+function handleBlur<TOption>(
+  state: ListboxState<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
+): ListboxState<TOption> {
+  if (props.focusManagement === 'DOM') {
+    return state;
+  }
+
   return {
     ...state,
     highlightedValue: null,
@@ -357,15 +397,21 @@ function handleTextNavigation<TOption>(
 
 function handleOptionsChange<TOption>(
   options: TOption[],
+  previousOptions: TOption[],
   state: ListboxState<TOption>,
   props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
-  const { optionComparer } = props;
+  const { optionComparer, focusManagement } = props;
 
-  const newHighlightedOption =
-    state.highlightedValue == null
-      ? null
-      : options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
+  let newHighlightedOption: TOption | null = null;
+
+  if (state.highlightedValue != null) {
+    newHighlightedOption =
+      options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
+  } else if (focusManagement === 'DOM' && previousOptions.length === 0) {
+    // TODO: exclude disabled options
+    newHighlightedOption = options[0] ?? null;
+  }
 
   // exclude selected values that are no longer in the options
   const selectedValues = state.selectedValues ?? [];
@@ -385,13 +431,15 @@ export default function defaultListboxReducer<TOption>(
 ): Readonly<ListboxState<TOption>> {
   const { type } = action;
 
+  console.log('reducer called', type, action);
+
   switch (type) {
     case ActionTypes.keyDown:
       return handleKeyDown(action.event, state, action.props);
     case ActionTypes.optionClick:
       return handleOptionSelection(action.option, state, action.props);
     case ActionTypes.blur:
-      return handleBlur(state);
+      return handleBlur(state, action.props);
     case ActionTypes.setValue:
       return {
         ...state,
@@ -405,7 +453,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.textNavigation:
       return handleTextNavigation(state, action.searchString, action.props);
     case ActionTypes.optionsChange:
-      return handleOptionsChange(action.options, state, action.props);
+      return handleOptionsChange(action.options, action.previousOptions, state, action.props);
     default:
       return state;
   }
