@@ -17,9 +17,26 @@ import Apps from '@mui/icons-material/Apps';
 import FactCheck from '@mui/icons-material/FactCheck';
 import BookmarkAdd from '@mui/icons-material/BookmarkAdd';
 
-const useRovingIndex = (options) => {
-  const { initialActiveIndex = 0, vertical = false, handlers = {} } = options || {};
-  const [activeIndex, setActiveIndex] = React.useState(initialActiveIndex);
+type Options = {
+  initialActiveIndex: null | number;
+  vertical: boolean;
+  handlers?: {
+    onKeyDown: (
+      event: React.KeyboardEvent<HTMLAnchorElement>,
+      fns: { setActiveIndex: React.Dispatch<React.SetStateAction<number>> },
+    ) => void;
+  };
+};
+
+const useRovingIndex = (options?: Options) => {
+  const {
+    initialActiveIndex = 0,
+    vertical = false,
+    handlers = {
+      onKeyDown: () => {},
+    },
+  } = options || {};
+  const [activeIndex, setActiveIndex] = React.useState<number>(initialActiveIndex!);
   const targetRefs = React.useRef([]);
   const targets = targetRefs.current;
   const focusNext = () => {
@@ -45,7 +62,7 @@ const useRovingIndex = (options) => {
       }
     },
     tabIndex: activeIndex === index ? 0 : -1,
-    onKeyDown: (e) => {
+    onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => {
       if (Number.isInteger(activeIndex)) {
         if (e.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
           focusNext();
@@ -76,7 +93,7 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
     initialActiveIndex: null,
     vertical: true,
     handlers: {
-      onKeyDown: (event, fns) => {
+      onKeyDown: (event: React.KeyboardEvent<HTMLAnchorElement>, fns) => {
         if (event.key.match(/(ArrowDown|ArrowUp|ArrowLeft|ArrowRight)/)) {
           event.preventDefault();
         }

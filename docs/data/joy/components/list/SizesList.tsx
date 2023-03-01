@@ -19,7 +19,7 @@ export default function SizesList() {
         '& > *': { minWidth: 0, flexBasis: 200 },
       }}
     >
-      {['sm', 'md', 'lg'].map((size) => (
+      {(['sm', 'md', 'lg'] as const).map((size) => (
         <Box key={size}>
           <Typography level="body3" mb={2}>
             <code>size=&quot;{size}&quot;</code>
