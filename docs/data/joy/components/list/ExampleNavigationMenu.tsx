@@ -22,8 +22,10 @@ type Options = {
   vertical: boolean;
   handlers?: {
     onKeyDown: (
-      event: React.KeyboardEvent<HTMLAnchorElement>,
-      fns: { setActiveIndex: React.Dispatch<React.SetStateAction<number>> },
+      event:
+        | React.KeyboardEvent<HTMLAnchorElement>
+        | React.KeyboardEvent<HTMLDivElement>,
+      fns: { setActiveIndex: React.Dispatch<React.SetStateAction<number | null>> },
     ) => void;
   };
 };
@@ -36,11 +38,13 @@ const useRovingIndex = (options?: Options) => {
       onKeyDown: () => {},
     },
   } = options || {};
-  const [activeIndex, setActiveIndex] = React.useState<number>(initialActiveIndex!);
-  const targetRefs = React.useRef([]);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(
+    initialActiveIndex!,
+  );
+  const targetRefs = React.useRef<Array<HTMLDivElement | HTMLAnchorElement>>([]);
   const targets = targetRefs.current;
   const focusNext = () => {
-    let newIndex = activeIndex + 1;
+    let newIndex = activeIndex! + 1;
     if (newIndex >= targets.length) {
       newIndex = 0;
     }
@@ -48,21 +52,25 @@ const useRovingIndex = (options?: Options) => {
     setActiveIndex(newIndex);
   };
   const focusPrevious = () => {
-    let newIndex = activeIndex - 1;
+    let newIndex = activeIndex! - 1;
     if (newIndex < 0) {
       newIndex = targets.length - 1;
     }
     targets[newIndex]?.focus();
     setActiveIndex(newIndex);
   };
-  const getTargetProps = (index) => ({
-    ref: (ref) => {
+  const getTargetProps = (index: number) => ({
+    ref: (ref: HTMLDivElement | HTMLAnchorElement) => {
       if (ref) {
         targets[index] = ref;
       }
     },
     tabIndex: activeIndex === index ? 0 : -1,
-    onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    onKeyDown: (
+      e:
+        | React.KeyboardEvent<HTMLDivElement>
+        | React.KeyboardEvent<HTMLAnchorElement>,
+    ) => {
       if (Number.isInteger(activeIndex)) {
         if (e.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
           focusNext();
@@ -85,6 +93,12 @@ const useRovingIndex = (options?: Options) => {
     focusNext,
     focusPrevious,
   };
+};
+
+type AboutMenuProps = {
+  focusNext: () => void;
+  focusPrevious: () => void;
+  onMouseEnter: () => void;
 };
 
 const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref) => {
