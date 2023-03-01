@@ -976,9 +976,9 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const textbox = document.querySelector('.MuiAutocomplete-root');
+      const root = document.querySelector('.MuiAutocomplete-root');
 
-      stub(textbox, 'getBoundingClientRect').callsFake(() => ({
+      stub(root, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         height: 10,
         bottom: 10,
@@ -989,7 +989,7 @@ describe('<Autocomplete />', () => {
         top: 0,
         toJSON() {},
       }));
-      fireEvent.mouseDown(textbox, { clientX: 0, clientY: 0 });
+      fireEvent.mouseDown(root, { clientX: 0, clientY: 0 });
 
       expect(handleOpen.callCount).to.equal(1);
     });
