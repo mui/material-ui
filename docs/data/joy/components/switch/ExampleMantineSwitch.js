@@ -9,6 +9,7 @@ export default function ExampleMantineSwitch() {
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={(theme) => ({
+        display: 'inherit',
         '--Switch-thumb-size': '14px',
         '--Switch-thumb-shadow': 'inset 0 0 0 1px #dee2e6',
         '--Switch-track-width': '38px',
