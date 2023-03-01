@@ -60,17 +60,13 @@ const useRovingIndex = (options?: Options) => {
     setActiveIndex(newIndex);
   };
   const getTargetProps = (index: number) => ({
-    ref: (ref: HTMLDivElement | HTMLAnchorElement) => {
+    ref: (ref: HTMLDivElement) => {
       if (ref) {
         targets[index] = ref;
       }
     },
     tabIndex: activeIndex === index ? 0 : -1,
-    onKeyDown: (
-      e:
-        | React.KeyboardEvent<HTMLDivElement>
-        | React.KeyboardEvent<HTMLAnchorElement>,
-    ) => {
+    onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (Number.isInteger(activeIndex)) {
         if (e.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
           focusNext();
