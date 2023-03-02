@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import scStyled from 'styled-components';
 import { createRenderer } from 'test/utils';
 import styled from '@mui/styled-engine-sc';
 
@@ -37,6 +38,10 @@ describe('styled', () => {
 
   it("should not allow styled-components's APIs: .attrs", () => {
     expect(typeof styled('span').attrs).to.equal('undefined');
+  });
+
+  it('has primitive', () => {
+    expect(styled.div).to.equal(scStyled.div);
   });
 
   // The babel-plugin-styled-components depends on the withConfig option to be defined

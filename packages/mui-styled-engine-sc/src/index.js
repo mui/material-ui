@@ -36,6 +36,10 @@ export default function styled(tag, options) {
   return stylesFactory;
 }
 
+Object.keys(scStyled).forEach((tag) => {
+  styled[tag] = scStyled[tag];
+});
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const internal_processStyles = (tag, processor) => {
   // Styled-components attaches an instance to `componentStyle`.
