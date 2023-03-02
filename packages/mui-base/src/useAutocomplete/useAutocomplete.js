@@ -376,11 +376,7 @@ export default function useAutocomplete(props) {
     //
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (
-      listboxNode.scrollHeight > listboxNode.clientHeight &&
-      reason !== 'mouse' &&
-      reason !== 'touch'
-    ) {
+    if (listboxNode.scrollHeight > listboxNode.clientHeight && reason !== 'mouse') {
       const element = option;
 
       const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
