@@ -31,6 +31,13 @@ function createGetParentSpacing(ownerState: Props['ownerState']) {
   };
 }
 
+function getParentColumns(ownerState: Props['ownerState']) {
+  if (ownerState.level === 0) {
+    return `var(--Grid-columns)`;
+  }
+  return `var(--Grid-columns${ownerState.level - 1 || ''})`;
+}
+
 export const filterBreakpointKeys = (breakpointsKeys: Breakpoint[], responsiveKeys: string[]) =>
   breakpointsKeys.filter((key: string) => responsiveKeys.includes(key));
 
@@ -112,7 +119,7 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
         style = {
           flexGrow: 0,
           flexBasis: 'auto',
-          width: `calc(100% * ${value} / var(--Grid-columns)${
+          width: `calc(100% * ${value} / ${getParentColumns(ownerState)}${
             isNestedContainer(ownerState) ? ` + ${getSelfSpacing('column')}` : ''
           })`,
         };
@@ -137,7 +144,8 @@ export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
       }
       if (typeof value === 'number') {
         style = {
-          marginLeft: value === 0 ? '0px' : `calc(100% * ${value} / var(--Grid-columns))`,
+          marginLeft:
+            value === 0 ? '0px' : `calc(100% * ${value} / ${getParentColumns(ownerState)})`,
         };
       }
       appendStyle(styles, style);
@@ -150,9 +158,11 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
   }
-  const styles = { '--Grid-columns': 12 };
+  const styles = isNestedContainer(ownerState)
+    ? { [`--Grid-columns${ownerState.level || ''}`]: getParentColumns(ownerState) }
+    : { '--Grid-columns': 12 };
   traverseBreakpoints<number>(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
-    appendStyle(styles, { '--Grid-columns': value });
+    appendStyle(styles, { [`--Grid-columns${ownerState.level || ''}`]: value });
   });
   return styles;
 };
