@@ -60,7 +60,7 @@ const useRovingIndex = (options?: Options) => {
     setActiveIndex(newIndex);
   };
   const getTargetProps = (index: number) => ({
-    ref: (ref: HTMLAnchorElement) => {
+    ref: (ref: HTMLAnchorElement | HTMLDivElement | null) => {
       if (ref) {
         targets[index] = ref;
       }
