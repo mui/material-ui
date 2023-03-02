@@ -14,11 +14,12 @@ export default function ComponentPageTabs(props) {
     setActiveTab,
     children,
   } = props;
+  const router = useRouter();
 
   return (
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Tabs
-        value={activeTab === '' ? 'demos' : activeTab}
+        value={activeTab}
         onChange={(e, value) => setActiveTab(value)}
         sx={{
           position: 'sticky',
@@ -43,9 +44,23 @@ export default function ComponentPageTabs(props) {
           zIndex: 1000,
         }}
       >
-        <Tab label="Demos" value="demos" />
-        <Tab label="Component API" value="component-api" />
-        {headers.hooks && headers.hooks.length > 0 && <Tab label="Hook API" value="hook-api" />}
+        <Tab as={Link} shallow href={{ pathname: router.pathname }} label="Demos" value="" />
+        <Tab
+          as={Link}
+          shallow
+          href={{ pathname: router.pathname, query: { docsTab: 'component-api' } }}
+          label="Component API"
+          value="component-api"
+        />
+        {headers.hooks && headers.hooks.length > 0 && (
+          <Tab
+            as={Link}
+            shallow
+            href={{ pathname: router.pathname, query: { docsTab: 'hook-api' } }}
+            label="Hook API"
+            value="hook-api"
+          />
+        )}
       </Tabs>
       {children}
     </Box>

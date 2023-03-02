@@ -12,10 +12,14 @@ export default function Page(props) {
 
 export const getStaticPaths = () => {
   return {
-    paths: [{ params: { docsTab: 'demos' }}, { params: { docsTab: 'component-api' } }, { params: { docsTab: 'hook-api' } }],
+    paths: [
+      { params: { docsTab: '' } },
+      { params: { docsTab: 'component-api' } },
+      { params: { docsTab: 'hook-api' } },
+    ],
     fallback: false, // can also be true or 'blocking'
-  }
-}
+  };
+};
 
 export const getStaticProps = () => {
   const ButtonUnstyledApiReq = require.context(
@@ -38,6 +42,6 @@ export const getStaticProps = () => {
       componentsApiPageContents: { ButtonUnstyled: ButtonUnstyledApiJsonPageContent },
       hooksApiDescriptions: { useButton: useButtonApiDescriptions },
       hooksApiPageContents: { useButton: useButtonApiJsonPageContent },
-    }
+    },
   };
 };

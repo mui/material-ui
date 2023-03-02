@@ -41,7 +41,7 @@ JoyModeObserver.propTypes = {
 export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const [activeTab, setActiveTabState] = React.useState(router.query.docsTab ?? 'demos');
+  const [activeTab, setActiveTabState] = React.useState(router.query.docsTab);
 
   let hash;
   if (router.asPath.indexOf('#') >= 0) {
@@ -50,22 +50,6 @@ export default function MarkdownDocs(props) {
   const setActiveTab = (newValue) => {
     const value = newValue ?? '';
     setActiveTabState(newValue);
-    router
-      .push(
-        `${router.pathname}/${newValue !== '' ? `?docsTab=${newValue}` : ''}${
-          hash ? `#${hash}` : ''
-        }`,
-        undefined,
-        {
-          shallow: true,
-        },
-      )
-      .catch((e) => {
-        // workaround for https://github.com/vercel/next.js/issues/37362
-        if (!e.cancelled) {
-          throw e;
-        }
-      });
   };
 
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -240,7 +224,7 @@ export default function MarkdownDocs(props) {
           </Wrapper>
         )}
         {commonElements}
-        <Box {...((activeTab !== '' && activeTab !== 'demos') && { sx: { display: 'none' }, 'aria-hidden': true })}>
+        <Box {...(activeTab !== '' && { sx: { display: 'none' }, 'aria-hidden': true })}>
           {rendered.slice(i, rendered.length - 1).map((renderedMarkdownOrDemo, index) => (
             <MarkdownElement
               key={`demos-section-${index}`}

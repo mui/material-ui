@@ -213,25 +213,6 @@ module.exports = withDocsInfra({
       });
     }
 
-    function traverseComponentPages(pages2, docsTab) {
-      pages2.forEach((page) => {
-        if (page.pathname.endsWith('[docsTab]') && !page.children) {
-          map[`${page.pathname.replace('[docsTab]', docsTab)}`] = {
-            page: page.pathname,
-            query: {
-              ...map[page.pathname].query,
-              docsTab,
-            }
-          }
-          return;
-        }
-
-        if (page.children) {
-          traverseComponentPages(page.children, docsTab);
-        }
-      });
-    }
-
     // We want to speed-up the build of pull requests.
     // For this, consider only English language on deploy previews, except for crowdin PRs.
     if (buildOnlyEnglishLocale) {
@@ -245,12 +226,6 @@ module.exports = withDocsInfra({
         traverse(pages, userLanguage);
       });
     }
-
-    ['demos', 'component-api', 'hook-api'].forEach((docsTab) => {
-      traverseComponentPages(pages, docsTab)
-    });
-
-    console.log(map)
 
     return map;
   },
