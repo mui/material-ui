@@ -109,12 +109,7 @@ const AboutMenu = React.forwardRef(
       initialActiveIndex: null,
       vertical: true,
       handlers: {
-        onKeyDown: (
-          event:
-            | React.KeyboardEvent<HTMLAnchorElement>
-            | React.KeyboardEvent<HTMLDivElement>,
-          fns,
-        ) => {
+        onKeyDown: (event, fns) => {
           if (event.key.match(/(ArrowDown|ArrowUp|ArrowLeft|ArrowRight)/)) {
             event.preventDefault();
           }
