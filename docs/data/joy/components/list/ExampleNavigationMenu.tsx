@@ -211,9 +211,16 @@ const AboutMenu = React.forwardRef(
   },
 );
 
+type AdmissionsMenuProps = {
+  focusNext: () => void;
+  focusPrevious: () => void;
+  onMouseEnter?: (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLAnchorElement>) => void;
+};
+
 const AdmissionsMenu = React.forwardRef(
-  ({ focusNext, focusPrevious, ...props }, ref) => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+  ({ focusNext, focusPrevious, ...props }: AdmissionsMenuProps, ref) => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLAnchorElement | null>(null);
     const { targets, setActiveIndex, getTargetProps } = useRovingIndex({
       initialActiveIndex: null,
       vertical: true,
