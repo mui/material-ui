@@ -13,7 +13,6 @@ export default function Page(props) {
 export const getStaticPaths = () => {
   return {
     paths: [
-      { params: { docsTab: '' } },
       { params: { docsTab: 'component-api' } },
       { params: { docsTab: 'hook-api' } },
     ],
