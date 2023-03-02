@@ -168,6 +168,7 @@ export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult 
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
 export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
+export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export * from './cssVars';
 
 export { default as responsivePropType } from './responsivePropType';
