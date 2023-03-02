@@ -15,7 +15,7 @@ tags: ['MUI X', 'News']
 
 ## Data Grid
 
-- [ApiRef now available for all users](/x/react-data-grid/api-object/).
+- [ApiRef now available for all users](/x/react-data-grid/api-object/)
 
 Manage pagination, scrolling, state, and other attributes through the Data Grid’s API object—previously available only in commercial plans, now accessible to all.
 The ApiRef enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid’s features.
@@ -59,9 +59,9 @@ Now they are officially stable.
 
 ## Date and Time Pickers
 
-- [Overhaul in the documentation.](/x/react-date-pickers/)
+- [Overhaul in the documentation](/x/react-date-pickers/)
 
-The Date Pickers documentation has drastically improved during pre-release, and it now features a more comprehensible navigation structure and many new examples.
+The Date and Time Pickers documentation has drastically improved during pre-release, and it now features a more comprehensible navigation structure and many new examples.
 
 - [Improved layout customization](/x/react-date-pickers/custom-layout/)
 
@@ -91,7 +91,7 @@ export default function CustomStaticDatePicker() {
 }
 ```
 
-- [Fields: the new default input for Pickers](/x/react-date-pickers/fields/).
+- [Fields: the new default input for Pickers](/x/react-date-pickers/fields/)
 
 These rich text fields are specialized for date and time logic and offer quick navigation and isolated interaction within each section of a date value.
 
@@ -101,7 +101,7 @@ These rich text fields are specialized for date and time logic and offer quick n
 
 - [Shortcuts for picking specific dates in a calendar](/x/react-date-pickers/shortcuts/)
 
-Add quick and customizable shortcuts for your users. Particularly useful for Date Ranges.
+Add quick and customizable shortcuts for your users. Particularly useful for date ranges.
 Display them on the left, right, bottom, or top.
 
 <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
@@ -148,9 +148,9 @@ Here’s a list of what you can expect to be delivered in the following months.
 ## Date Pickers
 
 - Time Picker replacement for Clock
-- Time Range
-- Date Time Range
-- Month Range
+- Time Range Picker
+- Date Time Range Picker
+- Ability to select a month range in the Date Range Picker
 - Support for Joy UI
 
 ## Data Grid
@@ -171,13 +171,13 @@ You can get more details of our next steps in [MUI X public roadmap](https://git
 
 # Decoupling versions from MUI Core
 
-We’re officially decoupling MUI X’s versioning from MUI Core (including Material UI). We understand that this may cause confusion, so we’d like to explain the main reasons why we’re moving in this direction.
+We’re officially decoupling MUI X’s versioning from MUI Core (including `@mui/material`). We understand that this may cause confusion, so we’d like to explain the main reasons why we’re moving in this direction.
 
 1. Soften migration pains with a yearly release cycle.
 
    The MUI X codebase is very dynamic, and the constant development of new features often requires more breaking changes. With a yearly release, we aim to deliver those in smaller, more digestible sizes, in a time window that you can rely on to make your plans and prepare for updates.
 
-2. We aim to support not only Material UI but also Joy UI, and in the future, MUI Base as well.
+2. We aim to support not only Material UI but also Joy UI, and in the future, as well as MUI Base.
 
 # Feedback
 
