@@ -9,9 +9,17 @@ import { replaceComponentLinks } from './utils/replaceUrl';
 import findPagesMarkdownNew from './utils/findPagesMarkdown';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
-const systemComponents = fs
-  .readdirSync(path.resolve('packages', 'mui-system', 'src'))
-  .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
+let systemComponents: string[] | undefined;
+// making the resolution lazy to avoid issues when importing something irrelevant from this file (i.e. `getSymbolDescription`)
+// the eager resolution results in errors when consuming externally (i.e. `mui-x`)
+function getSystemComponents() {
+  if (!systemComponents) {
+    systemComponents = fs
+      .readdirSync(path.resolve('packages', 'mui-system', 'src'))
+      .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
+  }
+  return systemComponents;
+}
 
 function getMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
@@ -128,7 +136,6 @@ const migratedBaseComponents = [
   'MenuItemUnstyled',
   'MenuUnstyled',
   'ModalUnstyled',
-  'MultiSelectUnstyled',
   'NoSsr',
   'OptionGroupUnstyled',
   'OptionUnstyled',
@@ -171,7 +178,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/material-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/material-ui/api`),
-    isSystemComponent: systemComponents.includes(name),
+    isSystemComponent: getSystemComponents().includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -282,7 +289,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
-    isSystemComponent: systemComponents.includes(name),
+    isSystemComponent: getSystemComponents().includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -390,7 +397,7 @@ export const getJoyComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/joy-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/joy-ui/api`),
-    isSystemComponent: systemComponents.includes(name),
+    isSystemComponent: getSystemComponents().includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;

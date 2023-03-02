@@ -2896,6 +2896,41 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('should apply the expanded class', () => {
+    it('when listbox having options is opened', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+
+      expect(root).not.to.have.class(classes.expanded);
+
+      const textbox = screen.getByRole('combobox');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
+
+      expect(root).to.have.class(classes.expanded);
+    });
+
+    it('when listbox having no options is opened', () => {
+      const { container } = render(
+        <Autocomplete options={[]} renderInput={(params) => <TextField {...params} autoFocus />} />,
+      );
+
+      const root = container.querySelector(`.${classes.root}`);
+
+      expect(root).not.to.have.class(classes.expanded);
+
+      const textbox = screen.getByRole('combobox');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
+
+      expect(root).to.have.class(classes.expanded);
+    });
+  });
+
   // https://github.com/mui/material-ui/issues/36212
   it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {

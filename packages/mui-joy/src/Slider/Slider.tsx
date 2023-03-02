@@ -848,7 +848,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

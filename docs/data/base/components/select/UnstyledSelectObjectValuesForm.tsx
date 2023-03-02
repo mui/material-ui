@@ -155,8 +155,10 @@ const Button = styled('button')`
   }
 `;
 
-function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
-  const slots: SelectUnstyledProps<TValue>['slots'] = {
+function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+  props: SelectUnstyledProps<TValue, Multiple>,
+) {
+  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
     popper: StyledPopper,

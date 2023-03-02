@@ -57,7 +57,11 @@
       "iconActive",
       "decimal"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
+    "globalClasses": {
+      "readOnly": "Mui-readOnly",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    },
     "name": "MuiRating"
   },
   "spread": true,

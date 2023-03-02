@@ -63,7 +63,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TablePropsVariantOverrides>;
