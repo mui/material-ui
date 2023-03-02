@@ -1029,7 +1029,8 @@ export default function useAutocomplete(props) {
       if (open) {
         handlePopupIndicator(event);
         return;
-      }if(!open){
+      }
+      if (!open) {
         return;
       }
     }
