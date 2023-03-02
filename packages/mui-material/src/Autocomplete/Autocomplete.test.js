@@ -831,7 +831,7 @@ describe('<Autocomplete />', () => {
       // reflected aria-haspopup is `listbox`
       // this assertion can fail if the value is `listbox`
       expect(textbox).not.to.have.attribute('aria-haspopup');
-      
+
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
       expect(textbox).to.have.attribute('aria-autocomplete', 'list');
