@@ -85,7 +85,6 @@ function MyCustomLayout(props) {
     </PickersLayoutRoot>
   );
 }
-
 export default function CustomStaticDatePicker() {
   return <StaticDatePicker slots={{ layout: MyCustomLayout }} />;
 }
