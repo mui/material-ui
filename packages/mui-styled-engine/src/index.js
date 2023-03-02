@@ -26,6 +26,10 @@ export default function styled(tag, options) {
   return stylesFactory;
 }
 
+Object.keys(emStyled).forEach((tag) => {
+  styled[tag] = emStyled[tag];
+});
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const internal_processStyles = (tag, processor) => {
   // Emotion attaches all the styles as `__emotion_styles`.
