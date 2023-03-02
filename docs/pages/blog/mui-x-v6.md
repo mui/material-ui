@@ -26,7 +26,7 @@ function CustomDataGrid(props) {
 
   return (
     <div>
-      <Button onClick={() => apiRef.current.setPage(1)}>Go to page 1</Button>
+      <Button onClick={() => apiRef.current.setPage(0)}>Go to page first page</Button>
       <DataGrid apiRef={apiRef} {...other} />
     </div>
   );
