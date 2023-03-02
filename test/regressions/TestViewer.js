@@ -4,6 +4,7 @@ import { useFakeTimers } from 'sinon';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import JoyBox from '@mui/joy/Box';
+import { CssVarsProvider } from '@mui/joy/styles';
 
 function TestViewer(props) {
   const { children } = props;
@@ -71,13 +72,15 @@ function TestViewer(props) {
       />
       <React.Suspense fallback={<div aria-busy />}>
         {window.location.pathname.startsWith('/docs-joy') ? (
-          <JoyBox
-            aria-busy={!ready}
-            data-testid="testcase"
-            sx={{ bgcolor: 'background.body', display: 'inline-block', p: 1 }}
-          >
-            {children}
-          </JoyBox>
+          <CssVarsProvider>
+            <JoyBox
+              aria-busy={!ready}
+              data-testid="testcase"
+              sx={{ bgcolor: 'background.body', display: 'inline-block', p: 1 }}
+            >
+              {children}
+            </JoyBox>
+          </CssVarsProvider>
         ) : (
           <Box
             aria-busy={!ready}
