@@ -22,9 +22,7 @@ type Options = {
   vertical: boolean;
   handlers?: {
     onKeyDown: (
-      event:
-        | React.KeyboardEvent<HTMLAnchorElement>
-        | React.KeyboardEvent<HTMLDivElement>,
+      event: React.KeyboardEvent<HTMLAnchorElement>,
       fns: { setActiveIndex: React.Dispatch<React.SetStateAction<number | null>> },
     ) => void;
   };
@@ -41,7 +39,7 @@ const useRovingIndex = (options?: Options) => {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(
     initialActiveIndex!,
   );
-  const targetRefs = React.useRef<Array<HTMLDivElement | HTMLAnchorElement>>([]);
+  const targetRefs = React.useRef<Array<HTMLAnchorElement>>([]);
   const targets = targetRefs.current;
   const focusNext = () => {
     let newIndex = activeIndex! + 1;
@@ -66,11 +64,7 @@ const useRovingIndex = (options?: Options) => {
       }
     },
     tabIndex: activeIndex === index ? 0 : -1,
-    onKeyDown: (
-      e:
-        | React.KeyboardEvent<HTMLDivElement>
-        | React.KeyboardEvent<HTMLAnchorElement>,
-    ) => {
+    onKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>) => {
       if (Number.isInteger(activeIndex)) {
         if (e.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
           focusNext();
