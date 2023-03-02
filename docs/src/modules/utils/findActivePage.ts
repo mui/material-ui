@@ -10,11 +10,13 @@ export default function findActivePage(
   const traverse = (parent: MuiPage) => {
     (parent.children || []).forEach((child) => {
       map[child.pathname] = child;
-      if (mapParent[child.pathname]) {
+      if (!child.query && mapParent[child.pathname]) {
         throw new Error(`Duplicated pathname ${child.pathname} in pages`);
       }
 
-      mapParent[child.pathname] = parent;
+      if (!child.query) {
+        mapParent[child.pathname] = parent;
+      }
       traverse(child);
     });
   };
