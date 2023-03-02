@@ -114,7 +114,7 @@ Editing a date range is even easier now with the new drag-and-drop interface. Ch
     <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
 
-- Removed clock view on desktop Time Pickers
+#### Removed clock view on desktop Time Pickers
 
 Many users complained, and we completely agree, the clock view is not the ideal time-picking experience on Desktop, so we removed it as a default view.
 You can still use the Clock if you like to, but a replacement UI for the time picker is coming shortly after this release.
