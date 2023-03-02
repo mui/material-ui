@@ -60,7 +60,7 @@ const useRovingIndex = (options?: Options) => {
     setActiveIndex(newIndex);
   };
   const getTargetProps = (index: number) => ({
-    ref: (ref: HTMLAnchorElement | HTMLDivElement | null) => {
+    ref: (ref: HTMLAnchorElement | null) => {
       if (ref) {
         targets[index] = ref;
       }
@@ -103,7 +103,10 @@ type AboutMenuProps = {
 };
 
 const AboutMenu = React.forwardRef(
-  ({ focusNext, focusPrevious, ...props }: AboutMenuProps, ref) => {
+  (
+    { focusNext, focusPrevious, ...props }: AboutMenuProps,
+    ref: React.ForwardedRef<HTMLAnchorElement>,
+  ) => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLAnchorElement | null>(null);
     const { targets, setActiveIndex, getTargetProps } = useRovingIndex({
       initialActiveIndex: null,
@@ -223,7 +226,10 @@ type AdmissionsMenuProps = {
 };
 
 const AdmissionsMenu = React.forwardRef(
-  ({ focusNext, focusPrevious, ...props }: AdmissionsMenuProps, ref) => {
+  (
+    { focusNext, focusPrevious, ...props }: AdmissionsMenuProps,
+    ref: React.ForwardedRef<HTMLAnchorElement>,
+  ) => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLAnchorElement | null>(null);
     const { targets, setActiveIndex, getTargetProps } = useRovingIndex({
       initialActiveIndex: null,
