@@ -154,20 +154,10 @@ function AppWrapper(props) {
       pages = systemPages;
     }
 
-    let hash;
-    if (router.asPath.indexOf('#') >= 0) {
-      hash = router.asPath.split('#')[1];
-    }
-
-    const { activePage, activePageParents } = findActivePage(
-      pages,
-      router.pathname,
-      router.query,
-      hash,
-    );
+    const { activePage, activePageParents } = findActivePage(pages, router.pathname);
 
     return { activePage, activePageParents, pages };
-  }, [product, router.pathname, router.query, router.asPath]);
+  }, [product, router.pathname]);
 
   let fonts = [];
   if (asPathWithoutLang.match(/onepirate/)) {

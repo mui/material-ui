@@ -253,36 +253,34 @@ export default function AppNavDrawerItem(props) {
 
   return (
     <StyledLi {...other} depth={depth}>
-      <NoSsr>
-        {/* Fix overloading with prefetch={false}, only prefetch on hover */}
-        <Item
-          component={subheader ? DeadLink : Link}
-          depth={depth}
-          hasIcon={hasIcon}
-          href={href}
-          prefetch={false}
-          subheader={subheader}
-          activeClassName={expandable ? null : 'app-drawer-active'}
-          className={topLevel ? 'algolia-lvl0' : null}
-          onClick={handleClick}
-          {...linkProps}
-        >
-          {iconElement}
-          {title}
-          {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
-          {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
-          {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
-          {newFeature && <Chip label="New" sx={sxChip('success')} />}
-          {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
-        </Item>
-        {expandable ? (
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            {children}
-          </Collapse>
-        ) : (
-          children
-        )}
-      </NoSsr>
+      {/* Fix overloading with prefetch={false}, only prefetch on hover */}
+      <Item
+        component={subheader ? DeadLink : Link}
+        depth={depth}
+        hasIcon={hasIcon}
+        href={href}
+        prefetch={false}
+        subheader={subheader}
+        activeClassName={expandable ? null : 'app-drawer-active'}
+        className={topLevel ? 'algolia-lvl0' : null}
+        onClick={handleClick}
+        {...linkProps}
+      >
+        {iconElement}
+        {title}
+        {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
+        {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
+        {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
+        {newFeature && <Chip label="New" sx={sxChip('success')} />}
+        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+      </Item>
+      {expandable ? (
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          {children}
+        </Collapse>
+      ) : (
+        children
+      )}
     </StyledLi>
   );
 }

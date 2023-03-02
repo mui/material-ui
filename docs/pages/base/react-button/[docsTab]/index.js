@@ -12,10 +12,7 @@ export default function Page(props) {
 
 export const getStaticPaths = () => {
   return {
-    paths: [
-      { params: { docsTab: 'component-api' } },
-      { params: { docsTab: 'hook-api' } },
-    ],
+    paths: [{ params: { docsTab: 'component-api' } }, { params: { docsTab: 'hook-api' } }],
     fallback: false, // can also be true or 'blocking'
   };
 };
