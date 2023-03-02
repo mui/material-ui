@@ -790,7 +790,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   theme.palette = {
     ...theme.colorSchemes.light.palette,
-    mode: 'light',
     colorScheme: 'light',
   };
 
