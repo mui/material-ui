@@ -26,7 +26,9 @@ function CustomDataGrid(props) {
 
   return (
     <div>
-      <Button onClick={() => apiRef.current.setPage(0)}>Go to page first page</Button>
+      <Button onClick={() => apiRef.current.setPage(0)}>
+        Go to page first page
+      </Button>
       <DataGrid apiRef={apiRef} {...other} />
     </div>
   );
@@ -73,12 +75,10 @@ function MyCustomLayout(props) {
 
   // Put the action bar before the content
   return (
-    <PickersLayoutRoot className={pickersLayoutClasses.root} ownerState={props}>
+    <PickersLayoutRoot className={pickersLayout.root} ownerState={props}>
       {toolbar}
       {actionBar}
-      <PickersLayoutContentWrapper
-        className={pickersLayoutClasses.contentWrapper}
-      >
+      <PickersLayoutContentWrapper className={pickersLayout.contentWrapper}>
         {tabs}
         {content}
       </PickersLayoutContentWrapper>
