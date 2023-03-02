@@ -8,7 +8,7 @@ import Sheet from '@mui/joy/Sheet';
 import Done from '@mui/icons-material/Done';
 
 export default function ExampleChoiceChipCheckbox() {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState<string[]>([]);
   return (
     <Sheet
       variant="outlined"
@@ -37,7 +37,6 @@ export default function ExampleChoiceChipCheckbox() {
                     sx={{ ml: -0.5, mr: 0.5, zIndex: 2, pointerEvents: 'none' }}
                   />
                 )}
-
                 <Checkbox
                   size="sm"
                   disabled={index === 0}
@@ -46,7 +45,7 @@ export default function ExampleChoiceChipCheckbox() {
                   label={item}
                   checked={value.includes(item)}
                   variant={value.includes(item) ? 'soft' : 'outlined'}
-                  onChange={(event) => {
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     if (event.target.checked) {
                       setValue((val) => [...val, item]);
                     } else {
