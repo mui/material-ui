@@ -156,9 +156,9 @@ const NumberInputUnstyled = React.forwardRef(function NumberInputUnstyled(
 
   return (
     <Root {...rootProps}>
-      <DecrementButton {...decrementButtonProps}>-</DecrementButton>
+      <DecrementButton {...decrementButtonProps} />
       <Input {...inputProps} />
-      <IncrementButton {...incrementButtonProps}>+</IncrementButton>
+      <IncrementButton {...incrementButtonProps} />
     </Root>
   );
 }) as OverridableComponent<NumberInputUnstyledTypeMap>;

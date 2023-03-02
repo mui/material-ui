@@ -12,6 +12,11 @@ export interface UseNumberInputParameters {
   max?: number;
   step?: number;
   /**
+   * Multiplier applied to `step` if the shift key is held while incrementing
+   * or decrementing the value. Defaults to `10`.
+   */
+  shiftMultiplier?: number;
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;

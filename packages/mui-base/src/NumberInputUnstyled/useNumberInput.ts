@@ -16,6 +16,8 @@ import {
 import clamp from './clamp';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
+type StepDirection = 'up' | 'down';
+
 // TODO
 // 1 - make a proper parser
 // 2 - accept a parser (func) prop
@@ -35,6 +37,7 @@ export default function useNumberInput(
     min,
     max,
     step,
+    shiftMultiplier = 10,
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
     error: errorProp = false,
@@ -109,7 +112,10 @@ export default function useNumberInput(
 
   const handleValueChange =
     () =>
-    (event: React.FocusEvent<HTMLInputElement> | React.PointerEvent, val: number | undefined) => {
+    (
+      event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
+      val: number | undefined,
+    ) => {
       // 1. clamp the number
       // 2. setInputValue(clamped_value)
       // 3. call onValueChange(newValue)
@@ -200,16 +206,20 @@ export default function useNumberInput(
     };
 
   const handleStep =
-    (direction: 'up' | 'down') =>
-    (
-      event: React.PointerEvent, // TODO: this could also be a keyboard event: arrow up/down or enter on the button
-    ) => {
+    (direction: StepDirection) => (event: React.PointerEvent | React.KeyboardEvent) => {
       let newValue;
 
       if (typeof value === 'number') {
+        const multiplier =
+          event.shiftKey ||
+          (event.nativeEvent instanceof KeyboardEvent &&
+            ((event as React.KeyboardEvent).key === 'PageUp' ||
+              (event as React.KeyboardEvent).key === 'PageDown'))
+            ? shiftMultiplier
+            : 1;
         newValue = {
-          up: value + (step ?? 1),
-          down: value - (step ?? 1),
+          up: value + (step ?? 1) * multiplier,
+          down: value - (step ?? 1) * multiplier,
         }[direction];
       } else {
         // no value
@@ -219,6 +229,35 @@ export default function useNumberInput(
         }[direction];
       }
       handleValueChange()(event, newValue);
+    };
+
+  const handleKeyDown =
+    (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      otherHandlers.onKeyDown?.(event);
+
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'].includes(event.key)) {
+        const direction = {
+          ArrowUp: 'up',
+          ArrowDown: 'down',
+          PageUp: 'up',
+          PageDown: 'down',
+        }[event.key] as StepDirection;
+
+        handleStep(direction)(event);
+      }
+
+      if (event.key === 'Home' && typeof max === 'number') {
+        handleValueChange()(event, max);
+      }
+
+      if (event.key === 'End' && typeof min === 'number') {
+        handleValueChange()(event, min);
+      }
     };
 
   const getRootProps = <TOther extends Record<string, any> = {}>(
@@ -257,6 +296,7 @@ export default function useNumberInput(
       onFocus: handleFocus(externalEventHandlers),
       onChange: handleInputChange(externalEventHandlers),
       onBlur: handleBlur(externalEventHandlers),
+      onKeyDown: handleKeyDown(externalEventHandlers),
     };
 
     const displayValue = (focused ? inputValue : value) ?? '';
