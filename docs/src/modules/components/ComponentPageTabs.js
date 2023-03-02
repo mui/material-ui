@@ -7,6 +7,20 @@ import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { alpha } from '@mui/material/styles';
 
+function openLinkInNewTab(event) {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 || // ignore everything but left-click
+    event.metaKey ||
+    event.ctrlKey ||
+    event.altKey ||
+    event.shiftKey
+  ) {
+    return true;
+  }
+  return false;
+}
+
 export default function ComponentPageTabs(props) {
   const {
     markdown: { headers },
@@ -20,7 +34,7 @@ export default function ComponentPageTabs(props) {
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Tabs
         value={activeTab}
-        onChange={(e, value) => setActiveTab(value)}
+        onChange={(e, value) => { if (!openLinkInNewTab(e) ) { setActiveTab(value) }}}
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
