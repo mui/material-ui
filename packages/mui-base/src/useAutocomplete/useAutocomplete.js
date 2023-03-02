@@ -1021,6 +1021,8 @@ export default function useAutocomplete(props) {
 
     firstFocus.current = false;
 
+    // Check if should open/close combo list upon clear click
+
     const isCloseIconClicked = event.target?.dataset?.testid === 'CloseIcon';
     const isPathClicked = !!event.target?.getElementsByTagName('path').length;
     const shouldClose = isCloseIconClicked || isPathClicked;
