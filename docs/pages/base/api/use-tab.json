@@ -1,14 +1,14 @@
 {
   "parameters": {
     "ref": {
-      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" },
+      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
       "required": true
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: number | string) =&gt void",
-        "description": "(event: React.SyntheticEvent, value: number | string) =&gt void"
+        "name": "(event: React.SyntheticEvent, value: number | string) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: number | string) =&gt; void"
       }
     },
     "onClick": {
@@ -33,16 +33,16 @@
     "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabRootSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabRootSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
     "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "setFocusVisible": {
       "type": {
-        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt&gt",
-        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt&gt"
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;"
       },
       "required": true
     }

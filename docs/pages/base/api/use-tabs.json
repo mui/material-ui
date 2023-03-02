@@ -12,8 +12,8 @@
     },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt void",
-        "description": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt void"
+        "name": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt; void"
       }
     },
     "orientation": {
