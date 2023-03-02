@@ -17,8 +17,8 @@ tags: ['MUI X', 'News']
 
 - [ApiRef now available for all users](/x/react-data-grid/api-object/)
 
-Manage pagination, scrolling, state, and other attributes through the Data Grid’s API object—previously available only in commercial plans, now accessible to all.
-The ApiRef enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid’s features.
+Manage pagination, scrolling, state, and other attributes through the Data Grid's API object—previously available only in commercial plans, now accessible to all.
+The ApiRef enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid's features.
 
 ```tsx
 function CustomDataGrid(props) {
@@ -36,7 +36,7 @@ function CustomDataGrid(props) {
 - [Improved column menu](/x/react-data-grid/column-menu/)
 
 Another significant step in terms of customization but also usability; the v6 column menu now provides support for icons, menu groups, custom items and actions, and more.
-We’ve redesigned this sub-component to make it as extensible as possible.
+We've redesigned this sub-component to make it as extensible as possible.
 
 This is part of an overarching effort throughout the life cycle of v6 to refactor all Data Grid panels.
 
@@ -46,7 +46,7 @@ This is part of an overarching effort throughout the life cycle of v6 to refacto
 
 Select a cell or group of cells like in an Excel sheet.
 Cell selection is a powerful and flexible way to select data in the Data Grid.
-It’s also the base for bulk editing and clipboard importing (coming soon).
+It's also the base for bulk editing and clipboard importing (coming soon).
 
 <video style="margin-bottom: 5px; width: 100%;" autoplay muted loop playsinline >
   <source src="/static/blog/mui-x-v6/cell-selection.mp4" type="video/mp4" />
@@ -54,7 +54,7 @@ It’s also the base for bulk editing and clipboard importing (coming soon).
 
 - Stable [Aggregation](/x/react-data-grid/aggregation/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan) and [Row pinning](/x/react-data-grid/row-pinning/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
-These two features have been previously released in a minor v5 version under the experimentalFeatures flag.
+These two features have been previously released in a minor v5 version under the `experimentalFeatures` flag.
 Now they are officially stable.
 
 ## Date and Time Pickers
@@ -126,7 +126,7 @@ If this is your first try with MUI X, you can jump in the getting started sectio
 - [Data Grid](/x/react-data-grid/getting-started/)
 - [Date Pickers](/x/react-date-pickers/getting-started/)
 
-If you’re coming from previous versions, we recommend you check our migration guide with the complete list of breaking changes:
+If you're coming from previous versions, we recommend you check our migration guide with the complete list of breaking changes:
 
 - [Data Grid](/x/migration/migration-data-grid-v5/)
 - [Date Pickers](/x/migration/migration-pickers-v5/)
@@ -137,13 +137,13 @@ We also provide codemods to automate some of the necessary updates in your codeb
 npx @mui/x-codemod v6.0.0/preset-safe <path>
 ```
 
-# What’s next?
+# What's next?
 
 We operate in a continuous-delivery environment, so the plan is to keep rolling out new features in minor versions.
 
-With the new base established in v6.0.0, we’ll continue our efforts to improve UI/UX, bring more customization abilities, and support new use cases.
+With the new base established in v6.0.0, we'll continue our efforts to improve UI/UX, bring more customization abilities, and support new use cases.
 
-Here’s a list of what you can expect to be delivered in the following months.
+Here's a list of what you can expect to be delivered in the following months.
 
 ## Date Pickers
 
@@ -171,7 +171,7 @@ You can get more details of our next steps in [MUI X public roadmap](https://git
 
 # Decoupling versions from MUI Core
 
-We’re officially decoupling MUI X’s versioning from MUI Core (including `@mui/material`). We understand that this may cause confusion, so we’d like to explain the main reasons why we’re moving in this direction.
+We're officially decoupling MUI X's versioning from MUI Core (including `@mui/material`). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction.
 
 1. Soften migration pains with a yearly release cycle.
 
@@ -181,9 +181,9 @@ We’re officially decoupling MUI X’s versioning from MUI Core (including `@mu
 
 # Feedback
 
-We appreciate all of your feedback throughout the development of this new version. It’s been vital for our process and always will be, so please continue to share your thoughts as we work through our next steps.
+We appreciate all of your feedback throughout the development of this new version. It's been vital for our process and always will be, so please continue to share your thoughts as we work through our next steps.
 
-We’re continuously doing user interviews, so if you’d like to share your pain points and use cases, please [leave your contact](https://forms.gle/vsBv6CLPz9h57xg8A) info.
-As usual, you’re welcome to join the discussion by requesting or commenting on new features, or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
+We're continuously doing user interviews, so if you'd like to share your pain points and use cases, please [leave your contact](https://forms.gle/vsBv6CLPz9h57xg8A) info.
+As usual, you're welcome to join the discussion by requesting or commenting on new features, or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose).
 
 Cheers!
