@@ -37,6 +37,7 @@ export default function ExampleChoiceChipCheckbox() {
                     sx={{ ml: -0.5, mr: 0.5, zIndex: 2, pointerEvents: 'none' }}
                   />
                 )}
+
                 <Checkbox
                   size="sm"
                   disabled={index === 0}

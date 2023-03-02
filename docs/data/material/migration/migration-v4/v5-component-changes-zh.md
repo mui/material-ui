@@ -69,7 +69,7 @@ Move the component from the lab to the core. The component is now stable.
 -import Autocomplete from '@mui/lab/Autocomplete';
 -import useAutocomplete  from '@mui/lab/useAutocomplete';
 +import Autocomplete from '@mui/material/Autocomplete';
-+import useAutoComplete from '@mui/material/useAutocomplete';
++import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 ### Remove debug prop
