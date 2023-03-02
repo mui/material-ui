@@ -145,14 +145,6 @@ With the new base established in v6.0.0, we'll continue our efforts to improve U
 
 Here's a list of what you can expect to be delivered in the following months.
 
-## Date Pickers
-
-- Time Picker replacement for Clock
-- Time Range Picker
-- Date Time Range Picker
-- Ability to select a month range in the Date Range Picker
-- Support for Joy UI
-
 ## Data Grid
 
 - Clipboard importing
@@ -161,6 +153,14 @@ Here's a list of what you can expect to be delivered in the following months.
 - Improved Panels
   - Column Management panel (column visibility, reordering, grouping, pinning, etc).
   - Filtering panel
+- Support for Joy UI
+
+## Date Pickers
+
+- Time Picker replacement for Clock
+- Time Range Picker
+- Date Time Range Picker
+- Ability to select a month range in the Date Range Picker
 - Support for Joy UI
 
 ## Charts 📊
