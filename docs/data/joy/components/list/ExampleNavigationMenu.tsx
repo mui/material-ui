@@ -94,119 +94,122 @@ const useRovingIndex = (options?: Options) => {
 type AboutMenuProps = {
   focusNext: () => void;
   focusPrevious: () => void;
-  onMouseEnter: () => void;
+  onMouseEnter?: (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLAnchorElement>) => void;
 };
 
-const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const { targets, setActiveIndex, getTargetProps } = useRovingIndex({
-    initialActiveIndex: null,
-    vertical: true,
-    handlers: {
-      onKeyDown: (event: React.KeyboardEvent<HTMLAnchorElement>, fns) => {
-        if (event.key.match(/(ArrowDown|ArrowUp|ArrowLeft|ArrowRight)/)) {
-          event.preventDefault();
-        }
-        if (event.key === 'Tab') {
-          setAnchorEl(null);
-          fns.setActiveIndex(null);
-        }
-        if (event.key === 'ArrowLeft') {
-          setAnchorEl(null);
-          focusPrevious();
-        }
-        if (event.key === 'ArrowRight') {
-          setAnchorEl(null);
-          focusNext();
-        }
+const AboutMenu = React.forwardRef(
+  ({ focusNext, focusPrevious, ...props }: AboutMenuProps, ref) => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLAnchorElement | null>(null);
+    const { targets, setActiveIndex, getTargetProps } = useRovingIndex({
+      initialActiveIndex: null,
+      vertical: true,
+      handlers: {
+        onKeyDown: (event: React.KeyboardEvent<HTMLAnchorElement>, fns) => {
+          if (event.key.match(/(ArrowDown|ArrowUp|ArrowLeft|ArrowRight)/)) {
+            event.preventDefault();
+          }
+          if (event.key === 'Tab') {
+            setAnchorEl(null);
+            fns.setActiveIndex(null);
+          }
+          if (event.key === 'ArrowLeft') {
+            setAnchorEl(null);
+            focusPrevious();
+          }
+          if (event.key === 'ArrowRight') {
+            setAnchorEl(null);
+            focusNext();
+          }
+        },
       },
-    },
-  });
+    });
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'about-popper' : undefined;
-  return (
-    <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-      <Box onMouseLeave={() => setAnchorEl(null)}>
-        <ListItemButton
-          aria-haspopup
-          aria-expanded={open ? 'true' : 'false'}
-          ref={ref}
-          {...props}
-          role="menuitem"
-          onKeyDown={(event) => {
-            props.onKeyDown?.(event);
-            if (event.key.match(/(ArrowLeft|ArrowRight|Tab)/)) {
-              setAnchorEl(null);
-            }
-            if (event.key === 'ArrowDown') {
-              event.preventDefault();
-              targets[0]?.focus();
-              setActiveIndex(0);
-            }
-          }}
-          onFocus={(event) => setAnchorEl(event.currentTarget)}
-          onMouseEnter={(event) => {
-            props.onMouseEnter?.(event);
-            setAnchorEl(event.currentTarget);
-          }}
-          sx={(theme) => ({
-            ...(open && theme.variants.plainHover.neutral),
-          })}
-        >
-          About <KeyboardArrowDown />
-        </ListItemButton>
-        <PopperUnstyled
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          disablePortal
-          keepMounted
-        >
-          <List
-            role="menu"
-            aria-label="About"
-            variant="outlined"
-            sx={{
-              my: 2,
-              boxShadow: 'md',
-              borderRadius: 'sm',
-              '--List-radius': '8px',
-              '--List-padding': '4px',
-              '--List-divider-gap': '4px',
-              '--List-decorator-size': '32px',
+    const open = Boolean(anchorEl);
+    const id = open ? 'about-popper' : undefined;
+    return (
+      <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
+        <Box onMouseLeave={() => setAnchorEl(null)}>
+          <ListItemButton
+            aria-haspopup
+            aria-expanded={open ? 'true' : 'false'}
+            ref={ref}
+            {...props}
+            role="menuitem"
+            onKeyDown={(event) => {
+              props.onKeyDown?.(event);
+              if (event.key.match(/(ArrowLeft|ArrowRight|Tab)/)) {
+                setAnchorEl(null);
+              }
+              if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                targets[0]?.focus();
+                setActiveIndex(0);
+              }
             }}
+            onFocus={(event) => setAnchorEl(event.currentTarget)}
+            onMouseEnter={(event) => {
+              props.onMouseEnter?.(event);
+              setAnchorEl(event.currentTarget);
+            }}
+            sx={(theme) => ({
+              ...(open && theme.variants.plainHover.neutral),
+            })}
           >
-            <ListItem role="none">
-              <ListItemButton role="menuitem" {...getTargetProps(0)}>
-                <ListItemDecorator>
-                  <Apps />
-                </ListItemDecorator>
-                Overview
-              </ListItemButton>
-            </ListItem>
-            <ListItem role="none">
-              <ListItemButton role="menuitem" {...getTargetProps(1)}>
-                <ListItemDecorator>
-                  <Person />
-                </ListItemDecorator>
-                Administration
-              </ListItemButton>
-            </ListItem>
-            <ListItem role="none">
-              <ListItemButton role="menuitem" {...getTargetProps(2)}>
-                <ListItemDecorator>
-                  <FactCheck />
-                </ListItemDecorator>
-                Facts
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </PopperUnstyled>
-      </Box>
-    </ClickAwayListener>
-  );
-});
+            About <KeyboardArrowDown />
+          </ListItemButton>
+          <PopperUnstyled
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            disablePortal
+            keepMounted
+          >
+            <List
+              role="menu"
+              aria-label="About"
+              variant="outlined"
+              sx={{
+                my: 2,
+                boxShadow: 'md',
+                borderRadius: 'sm',
+                '--List-radius': '8px',
+                '--List-padding': '4px',
+                '--List-divider-gap': '4px',
+                '--List-decorator-size': '32px',
+              }}
+            >
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(0)}>
+                  <ListItemDecorator>
+                    <Apps />
+                  </ListItemDecorator>
+                  Overview
+                </ListItemButton>
+              </ListItem>
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(1)}>
+                  <ListItemDecorator>
+                    <Person />
+                  </ListItemDecorator>
+                  Administration
+                </ListItemButton>
+              </ListItem>
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(2)}>
+                  <ListItemDecorator>
+                    <FactCheck />
+                  </ListItemDecorator>
+                  Facts
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </PopperUnstyled>
+        </Box>
+      </ClickAwayListener>
+    );
+  },
+);
 
 const AdmissionsMenu = React.forwardRef(
   ({ focusNext, focusPrevious, ...props }, ref) => {
