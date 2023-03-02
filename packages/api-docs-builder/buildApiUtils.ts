@@ -136,7 +136,6 @@ const migratedBaseComponents = [
   'MenuItemUnstyled',
   'MenuUnstyled',
   'ModalUnstyled',
-  'MultiSelectUnstyled',
   'NoSsr',
   'OptionGroupUnstyled',
   'OptionUnstyled',
