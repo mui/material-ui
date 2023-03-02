@@ -578,7 +578,7 @@ describe('<Autocomplete />', () => {
 
       const textbox = getByRole('combobox');
 
-      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
 
       expect(handleClose.callCount).to.equal(0);
@@ -599,7 +599,7 @@ describe('<Autocomplete />', () => {
 
       const textbox = getByRole('combobox');
 
-      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
 
       expect(handleClose.callCount).to.equal(1);
@@ -1179,7 +1179,6 @@ describe('<Autocomplete />', () => {
       expect(combobox).to.have.attribute('aria-expanded', 'true');
       expect(textbox).toHaveFocus();
 
-      fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'false');
 
@@ -1190,12 +1189,10 @@ describe('<Autocomplete />', () => {
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       expect(textbox).not.toHaveFocus();
 
-      fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'true');
       expect(textbox).toHaveFocus();
 
-      fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'false');
     });
@@ -1850,9 +1847,9 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('combobox');
       const combobox = getByRole('combobox');
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'true');
-      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'false');
     });
 
@@ -1899,14 +1896,14 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('combobox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      fireEvent.mouseDown(textbox); // Open listbox
+      fireEvent.click(textbox); // Open listbox
       expect(combobox).to.have.attribute('aria-expanded', 'true');
       const options = getAllByRole('option');
       fireEvent.click(options[0]);
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      fireEvent.mouseDown(textbox); // Open listbox
+      fireEvent.click(textbox); // Open listbox
       expect(combobox).to.have.attribute('aria-expanded', 'true');
-      fireEvent.mouseDown(textbox); // Remain open listbox
+      fireEvent.click(textbox); // Remain open listbox
       expect(combobox).to.have.attribute('aria-expanded', 'true');
     });
 
@@ -1922,9 +1919,7 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('combobox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      fireEvent.mouseDown(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
-      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
       expect(combobox).to.have.attribute('aria-expanded', 'true');
     });
   });
@@ -2815,7 +2810,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
 

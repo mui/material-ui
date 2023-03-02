@@ -766,7 +766,7 @@ export default function useAutocomplete(props) {
   const handleClear = (event) => {
     ignoreFocus.current = true;
     setInputValueState('');
-
+    
     if (onInputChange) {
       onInputChange(event, '', 'clear');
     }
@@ -1011,10 +1011,6 @@ export default function useAutocomplete(props) {
   const handleClick = (event) => {
     inputRef.current.focus();
 
-    if (event.type === 'click' || inputValue === '') {
-      handlePopupIndicator(event);
-    }
-
     if (
       selectOnFocus &&
       firstFocus.current &&
@@ -1024,6 +1020,23 @@ export default function useAutocomplete(props) {
     }
 
     firstFocus.current = false;
+
+    const isCloseIconClicked = event.target?.dataset?.testid === 'CloseIcon';
+    const isPathClicked = !!event.target?.getElementsByTagName('path').length
+    const shouldClose = isCloseIconClicked || isPathClicked;
+
+    if (shouldClose){
+      if (open){
+        handlePopupIndicator(event);
+        return;
+      }else{
+        return;
+      }
+    } 
+
+    if (inputValue === '' || !open) {
+      handlePopupIndicator(event);
+    }
   };
 
   let dirty = freeSolo && inputValue.length > 0;
