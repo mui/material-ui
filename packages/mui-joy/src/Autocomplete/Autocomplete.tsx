@@ -209,6 +209,9 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
+  ...(ownerState.disabled && {
+    opacity: 0.3,
+  }),
 }));
 
 const AutocompleteListbox = styled(StyledAutocompleteListbox, {
