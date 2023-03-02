@@ -10,13 +10,20 @@ export default function findActivePage(
   const traverse = (parent: MuiPage) => {
     (parent.children || []).forEach((child) => {
       map[child.pathname] = child;
-      if (!child.query && mapParent[child.pathname]) {
-        throw new Error(`Duplicated pathname ${child.pathname} in pages`);
+      mapParent[child.pathname] = parent;
+      if (
+        child.pathname.endsWith('/demos') ||
+        child.pathname.endsWith('component-api') ||
+        child.pathname.endsWith('hook-api')
+      ) {
+        const childPathname = child.pathname
+          .replace('/demos', '/[docsTab]')
+          .replace('/component-api', '/[docsTab]')
+          .replace('/hook-api', '/[docsTab]');
+        map[childPathname] = child;
+        mapParent[childPathname] = parent;
       }
 
-      if (!child.query) {
-        mapParent[child.pathname] = parent;
-      }
       traverse(child);
     });
   };
@@ -24,7 +31,6 @@ export default function findActivePage(
   traverse({ pathname: '/', children: currentPages });
 
   const activePage = map[pathname] || null;
-
   const activePageParents = [];
   let traversePage = activePage;
   while (traversePage && traversePage.pathname !== '/') {

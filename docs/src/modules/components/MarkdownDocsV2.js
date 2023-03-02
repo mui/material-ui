@@ -41,7 +41,7 @@ JoyModeObserver.propTypes = {
 export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
+  const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? 'demos');
 
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
@@ -61,7 +61,7 @@ export default function MarkdownDocs(props) {
   const t = useTranslate();
 
   React.useEffect(() => {
-    setActiveTab(router.query.docsTab ?? '');
+    setActiveTab(router.query.docsTab ?? 'demos');
   }, [router.query.docsTab]);
 
   const localizedDoc = docs[userLanguage] || docs.en;
@@ -215,7 +215,7 @@ export default function MarkdownDocs(props) {
           </Wrapper>
         )}
         {commonElements}
-        <Box {...(activeTab !== '' && { sx: { display: 'none' }, 'aria-hidden': true })}>
+        <Box {...(activeTab !== 'demos' && { sx: { display: 'none' }, 'aria-hidden': true })}>
           {rendered.slice(i, rendered.length - 1).map((renderedMarkdownOrDemo, index) => (
             <MarkdownElement
               key={`demos-section-${index}`}

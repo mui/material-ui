@@ -97,11 +97,21 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     pathNameHash = router.asPath.split('#')[1];
   }
 
-  const shouldBeActive =
-    router.pathname === pathname &&
-    (!query ||
-      !query.docsTab ||
-      (query.docsTab === router.query.docsTab && (!hash || hash === pathNameHash)));
+  let restructuredPathname = pathname;
+
+  if (
+    pathname &&
+    (pathname.endsWith('/demos') ||
+      pathname.endsWith('component-api') ||
+      pathname.endsWith('hook-api'))
+  ) {
+    restructuredPathname = pathname
+      .replace('/demos', '/[docsTab]')
+      .replace('/component-api', '/[docsTab]')
+      .replace('/hook-api', '/[docsTab]');
+  }
+
+  const shouldBeActive = router.pathname === pathname || router.pathname === restructuredPathname;
 
   const className = clsx(classNameProps, {
     [activeClassName]: shouldBeActive && activeClassName,
