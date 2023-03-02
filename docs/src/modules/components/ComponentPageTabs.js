@@ -34,7 +34,11 @@ export default function ComponentPageTabs(props) {
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Tabs
         value={activeTab}
-        onChange={(e, value) => { if (!openLinkInNewTab(e) ) { setActiveTab(value) }}}
+        onChange={(e, value) => {
+          if (!openLinkInNewTab(e)) {
+            setActiveTab(value);
+          }
+        }}
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
