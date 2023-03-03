@@ -1023,18 +1023,14 @@ export default function useAutocomplete(props) {
 
     // Check if should open/close combo list upon clear click
 
-    const isCloseIconClicked = event.target?.dataset?.testid === 'CloseIcon';
-    const isPathClicked = !!event.target?.getElementsByTagName('path').length;
-    const shouldClose = isCloseIconClicked || isPathClicked;
+    const shouldClose =
+      event.target?.dataset?.testid === 'CloseIcon' ||
+      event.target?.querySelectorAll('path').length > 0;
 
-    if (shouldClose) {
-      if (open) {
-        handlePopupIndicator(event);
-        return;
-      }
-      if (!open) {
-        return;
-      }
+    if (shouldClose && open) {
+      handlePopupIndicator(event);
+    } else if (shouldClose && !open) {
+      return;
     }
 
     if (inputValue === '' || !open) {
