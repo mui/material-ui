@@ -76,6 +76,7 @@ To set the flag to all stack instances, create a theme with default props:
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import Stack from '@mui/joy/Stack';
 
 const theme = extendTheme({
   components: {

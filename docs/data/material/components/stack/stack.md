@@ -66,11 +66,12 @@ It removes the [known limitation](#limitations) of the default implementation th
 To set the flag to all stack instances, create a theme with default props:
 
 ```js
-import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
 
-const theme = extendTheme({
+const theme = createTheme({
   components: {
-    JoyGrid: {
+    MuiGrid: {
       defaultProps: {
         useFlexGap: true,
       },
@@ -80,9 +81,9 @@ const theme = extendTheme({
 
 function App() {
   return (
-    <CssVarsProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Stack>…</Stack> {/* uses flexbox gap by default */}
-    </CssVarsProvider>
+    </ThemeProvider>
   );
 }
 ```
