@@ -275,7 +275,7 @@ describe('<Menu />', () => {
     });
   });
 
-  describe('should be customizable in theme', () => {
+  describe('should be customizable in theme', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
