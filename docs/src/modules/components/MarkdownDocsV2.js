@@ -164,7 +164,7 @@ export default function MarkdownDocs(props) {
   };
 
   // process the elements before the tabs component
-  while (i <= rendered.length && !done) {
+  while (i < rendered.length && !done) {
     const renderedMarkdownOrDemo = rendered[i];
     if (renderedMarkdownOrDemo.component && renderedMarkdownOrDemo.component.indexOf('Tabs') >= 0) {
       done = true;
