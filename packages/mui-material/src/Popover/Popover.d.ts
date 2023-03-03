@@ -161,3 +161,5 @@ export function getOffsetLeft(
  * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
 export default function Popover(props: PopoverProps): JSX.Element;
+
+export function PopoverPaper(props: PaperProps): JSX.Element;
