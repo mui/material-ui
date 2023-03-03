@@ -1,6 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import Menu, { menuClasses } from '@mui/joy/Menu';
+import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -10,11 +9,24 @@ import Apps from '@mui/icons-material/Apps';
 import Settings from '@mui/icons-material/Settings';
 import Person from '@mui/icons-material/Person';
 
+interface MenuButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  menu: React.ReactElement;
+  open: boolean;
+  onOpen: (
+    event?:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLButtonElement>,
+  ) => void;
+  onLeaveMenu: (callback: () => boolean) => void;
+  label: string;
+}
+
 const modifiers = [
   {
     name: 'offset',
     options: {
-      offset: ({ placement }) => {
+      offset: ({ placement }: any) => {
         if (placement.includes('end')) {
           return [8, 20];
         }
@@ -24,13 +36,21 @@ const modifiers = [
   },
 ];
 
-function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props }) {
-  const buttonRef = React.useRef(null);
+function MenuButton({
+  children,
+  menu,
+  open,
+  onOpen,
+  onLeaveMenu,
+  label,
+  ...props
+}: MenuButtonProps) {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const isOnButton = React.useRef(false);
-  const menuActions = React.useRef(null);
+  const menuActions = React.useRef<any>(null);
   const internalOpen = React.useRef(open);
 
-  const handleButtonKeyDown = (event) => {
+  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     internalOpen.current = open;
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
@@ -97,42 +117,31 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         placement: 'right-start',
         sx: {
           width: 288,
-          [`& .${menuClasses.listbox}`]: {
-            '--List-padding': 'var(--ListDivider-gap)',
-          },
         },
       })}
     </React.Fragment>
   );
 }
 
-MenuButton.propTypes = {
-  children: PropTypes.node,
-  label: PropTypes.string.isRequired,
-  menu: PropTypes.element.isRequired,
-  onLeaveMenu: PropTypes.func.isRequired,
-  onOpen: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-};
-
 export default function MenuIconSideNavExample() {
-  const [menuIndex, setMenuIndex] = React.useState(null);
+  const [menuIndex, setMenuIndex] = React.useState<null | number>(null);
   const itemProps = {
     onClick: () => setMenuIndex(null),
   };
-  const createHandleLeaveMenu = (index) => (getIsOnButton) => {
-    setTimeout(() => {
-      const isOnButton = getIsOnButton();
-      if (!isOnButton) {
-        setMenuIndex((latestIndex) => {
-          if (index === latestIndex) {
-            return null;
-          }
-          return latestIndex;
-        });
-      }
-    }, 200);
-  };
+  const createHandleLeaveMenu =
+    (index: number) => (getIsOnButton: () => boolean) => {
+      setTimeout(() => {
+        const isOnButton = getIsOnButton();
+        if (!isOnButton) {
+          setMenuIndex((latestIndex: null | number) => {
+            if (index === latestIndex) {
+              return null;
+            }
+            return latestIndex;
+          });
+        }
+      }, 200);
+    };
   return (
     <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20, bgcolor: 'background.body' }}>
       <List>

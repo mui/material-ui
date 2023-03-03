@@ -5,13 +5,13 @@ import MenuItem from '@mui/joy/MenuItem';
 import Apps from '@mui/icons-material/Apps';
 
 export default function SelectedMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const createHandleClose = (index) => () => {
+  const createHandleClose = (index: number) => () => {
     setAnchorEl(null);
     if (typeof index === 'number') {
       setSelectedIndex(index);

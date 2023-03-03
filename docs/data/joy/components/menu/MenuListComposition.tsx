@@ -10,17 +10,17 @@ const Popup = styled(PopperUnstyled)({
   zIndex: 1000,
 });
 
-export default function MenuListComposition() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function MenuListComposition(): JSX.Element {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleListKeyDown = (event) => {
+  const handleListKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Tab') {
       setAnchorEl(null);
     } else if (event.key === 'Escape') {
