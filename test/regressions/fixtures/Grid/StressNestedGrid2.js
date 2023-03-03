@@ -3,7 +3,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function StressNestedGrid() {
+export default function StressNestedGrid2() {
   return (
     <Box
       sx={{
@@ -26,8 +26,8 @@ export default function StressNestedGrid() {
         <Grid xs={6}>
           <Paper>xs=6</Paper>
         </Grid>
-        <Box sx={{ p: 2 }}>
-          <Grid container xs={6} spacing={3}>
+        <Box sx={{ p: 2, width: '100%' }}>
+          <Grid container spacing={3}>
             <Grid xs={6}>
               <Paper>xs=6</Paper>
             </Grid>
