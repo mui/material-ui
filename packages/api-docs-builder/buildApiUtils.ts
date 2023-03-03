@@ -523,86 +523,106 @@ export function updateComponentPages() {
     const productName = pathnameTokens[1];
     const componentName = pathnameTokens[3];
 
-    // For now only update the base pages (button & tabs) to test the correctness
-    if (productName === 'base' && (componentName === 'button' || componentName === 'tabs')) {
+    if (productName === 'base' && (markdown.filename.indexOf('\\components\\') >= 0 || markdown.filename.indexOf('/components/') >= 0)) {
       const { components, hooks } = markdownHeaders;
 
       let importStatements = '';
-      components.forEach((component: string) => {
-        const componentNameKebabCase = kebabCase(component);
-        importStatements += `import ${component}ApiJsonPageContent from './api/${componentNameKebabCase}.json';`;
-      });
 
-      hooks.forEach((hook: string) => {
-        const hookNameKebabCase = kebabCase(hook);
-        importStatements += `import ${hook}ApiJsonPageContent from './api/${hookNameKebabCase}.json';`;
-      });
+      if (components) {
+        components.forEach((component: string) => {
+          const componentNameKebabCase = kebabCase(component);
+          importStatements += `import ${component}ApiJsonPageContent from './api/${componentNameKebabCase}.json';`;
+        });
+      }
+
+      if (hooks) {
+        hooks.forEach((hook: string) => {
+          const hookNameKebabCase = kebabCase(hook);
+          importStatements += `import ${hook}ApiJsonPageContent from './api/${hookNameKebabCase}.json';`;
+        });
+      }
 
       let initialProps = `
       Page.getInitialProps = () => {
         `;
 
-      components.forEach((component: string) => {
-        const componentNameKebabCase = kebabCase(component);
-        initialProps += `
-        const ${component}ApiReq = require.context(
-          'docs/translations/api-docs/${componentNameKebabCase}',
-          false,
-          /${componentNameKebabCase}.*.json$/,
-        );
-        const ${component}ApiDescriptions = mapApiPageTranslations(${component}ApiReq);
-        `;
-      });
+      if (components) {
+        components.forEach((component: string) => {
+          const componentNameKebabCase = kebabCase(component);
+          initialProps += `
+          const ${component}ApiReq = require.context(
+            'docs/translations/api-docs/${componentNameKebabCase}',
+            false,
+            /${componentNameKebabCase}.*.json$/,
+          );
+          const ${component}ApiDescriptions = mapApiPageTranslations(${component}ApiReq);
+          `;
+        });
+      }
 
-      hooks.forEach((hook: string) => {
-        const hookNameKebabCase = kebabCase(hook);
-        initialProps += `
-        const ${hook}ApiReq = require.context(
-          'docs/translations/api-docs/${hookNameKebabCase}',
-          false,
-          /${hookNameKebabCase}.*.json$/,
-        );
-        const ${hook}ApiDescriptions = mapApiPageTranslations(${hook}ApiReq);
-        `;
-      });
+      if (hooks) {
+        hooks.forEach((hook: string) => {
+          const hookNameKebabCase = kebabCase(hook);
+          initialProps += `
+          const ${hook}ApiReq = require.context(
+            'docs/translations/api-docs/${hookNameKebabCase}',
+            false,
+            /${hookNameKebabCase}.*.json$/,
+          );
+          const ${hook}ApiDescriptions = mapApiPageTranslations(${hook}ApiReq);
+          `;
+        });
+      }
 
       initialProps += `
         return {
 
           componentsApiDescriptions: { `;
-      components.forEach((component: string) => {
-        initialProps += `${component} : ${component}ApiDescriptions ,`;
-      });
+
+      if (components) {
+        components.forEach((component: string) => {
+          initialProps += `${component} : ${component}ApiDescriptions ,`;
+        });
+      }
 
       initialProps += `},
           componentsApiPageContents: { `;
 
-      components.forEach((component: string) => {
-        initialProps += `${component} : ${component}ApiJsonPageContent ,`;
-      });
+      if (components) {
+        components.forEach((component: string) => {
+          initialProps += `${component} : ${component}ApiJsonPageContent ,`;
+        });
+      }
       initialProps += ` },
           hooksApiDescriptions: { `;
 
-      hooks.forEach((hook: string) => {
-        initialProps += `${hook} : ${hook}ApiDescriptions ,`;
-      });
+      if (hooks) {
+        hooks.forEach((hook: string) => {
+          initialProps += `${hook} : ${hook}ApiDescriptions ,`;
+        });
+      }
 
       initialProps += ` },
           hooksApiPageContents: { `;
 
-      hooks.forEach((hook: string) => {
-        initialProps += `${hook} : ${hook}ApiJsonPageContent ,`;
-      });
+      if (hooks) {
+        hooks.forEach((hook: string) => {
+          initialProps += `${hook} : ${hook}ApiJsonPageContent ,`;
+        });
+      }
 
       initialProps += ` },
         };`;
 
       initialProps += `};`;
 
+      const tokens = markdown.pathname.split('/');
+      const name = tokens[tokens.length - 1];
+      const importStatement = `docs/data${markdown.pathname}/${name}.md`;
       const source = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import * as pageProps from 'docs/data/base/components/button/button.md?@mui/markdown';
+import * as pageProps from '${importStatement}?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 ${importStatements}
 

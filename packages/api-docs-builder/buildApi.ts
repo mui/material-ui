@@ -278,10 +278,57 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       process.exit(1);
     }
 
+    // {
+    //   pathname: '/base/react-button',
+    //   query: { docsTab: 'component-api' },
+    //   hash: 'button-unstyled',
+    //   title: 'ButtonUnstyled',
+    // },
+    // {
+    //   pathname: '/base/react-button',
+    //   query: { docsTab: 'hook-api' },
+    //   hash: 'use-button',
+    //   title: 'useButton',
+    // },
+    // @ts-ignore
+    const apiLinks = [];
+
+    // @ts-ignore there are no failed builds at this point
+    const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
+    if (baseBuilds.length >= 0) {
+      // Generate the pagesApi in the following format
+
+      baseBuilds.forEach((build) => {
+        // @ts-ignore
+        const { value } = build;
+        const { name, demos } = value;
+        let lastIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+
+        const pathname =
+          demos.length > 0
+            ? lastIdx >= 0 ? demos[0].demoPathname.substr(0, demos[0].demoPathname.indexOf('#')) : demos[0].demoPathname
+            : null;
+
+        if (pathname !== null) {
+          apiLinks.push({
+            pathname,
+            query: { docsTab: name.startsWith('use') ? 'hook-api' : 'component-api' },
+            hash: kebabCase(name),
+            title: name,
+          });
+        }
+      });
+    }
+
     // @ts-ignore ignore hooks builds for now
     allBuilds = [...allBuilds, ...builds];
 
-    const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    let source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    if (apiLinks.length > 0) {
+      // @ts-ignore
+      source = `module.exports = ${JSON.stringify(apiLinks)}`;
+    }
+
     writePrettifiedFile(apiPagesManifestPath, source);
     return Promise.resolve();
   }, Promise.resolve());

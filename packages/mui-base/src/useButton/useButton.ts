@@ -18,7 +18,7 @@ import { EventHandlers } from '../utils/types';
  *
  * API:
  *
- * - [useButton API](https://mui.com/base/react-button/?docsTab=hook-api)
+ * - [useButton API](https://mui.com/base/api/use-button/)
  */
 export default function useButton(parameters: UseButtonParameters): UseButtonReturnValue {
   const {
