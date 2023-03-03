@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as React from 'react';
 import { createRenderer, screen, act, fireEvent } from 'test/utils';
-import { useNumberInput, UseNumberInputParameters } from './index';
+import useNumberInput, { UseNumberInputParameters } from './index';
 
 describe('useNumberInput', () => {
   const { render } = createRenderer();

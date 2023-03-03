@@ -113,6 +113,6 @@
     "value": { "type": { "name": "unknown", "description": "unknown" }, "required": true }
   },
   "name": "useNumberInput",
-  "filename": "/packages/mui-base/src/NumberInputUnstyled/useNumberInput.ts",
+  "filename": "/packages/mui-base/src/useNumberInput/useNumberInput.ts",
   "demos": "<ul></ul>"
 }

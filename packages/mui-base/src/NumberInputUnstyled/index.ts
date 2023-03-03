@@ -4,7 +4,3 @@ export { default as numberInputUnstyledClasses } from './numberInputUnstyledClas
 export * from './numberInputUnstyledClasses';
 
 export * from './NumberInputUnstyled.types';
-
-export { default as useNumberInput } from './useNumberInput';
-
-export * from './useNumberInput.types';

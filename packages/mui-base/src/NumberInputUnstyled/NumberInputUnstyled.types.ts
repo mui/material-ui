@@ -5,7 +5,7 @@ import {
   UseNumberInputRootSlotProps,
   UseNumberInputIncrementButtonSlotProps,
   UseNumberInputDecrementButtonSlotProps,
-} from './useNumberInput.types';
+} from '../useNumberInput/useNumberInput.types';
 import { SlotComponentProps } from '../utils';
 
 export interface NumberInputUnstyledRootSlotPropsOverrides {}

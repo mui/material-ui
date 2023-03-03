@@ -107,6 +107,9 @@ export * from './useMenuButton';
 export { default as useMenuItem } from './useMenuItem';
 export * from './useMenuItem';
 
+export { default as useNumberInput } from './useNumberInput';
+export * from './useNumberInput';
+
 export { default as useOption } from './useOption';
 export * from './useOption';
 
