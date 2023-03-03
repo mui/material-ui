@@ -77,7 +77,7 @@ export default function useNumberInput(
   // the "final" value
   const [value, setValue] = React.useState(valueProp ?? defaultValueProp);
   // the (potentially) dirty or invalid input value
-  const [inputValue, setInputValue] = React.useState<string | undefined>(undefined);
+  const [dirtyValue, setInputValue] = React.useState<string | undefined>(undefined);
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
@@ -144,16 +144,17 @@ export default function useNumberInput(
   const handleInputChange =
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!isControlled) {
-        const element = event.target || inputRef.current;
-        if (element == null) {
-          throw new MuiError(
-            'MUI: Expected valid input target. ' +
-              'Did you use a custom `slots.input` and forget to forward refs? ' +
-              'See https://mui.com/r/input-component-ref-interface for more info.',
-          );
-        }
+      if (!isControlled && event.target === null) {
+        throw new MuiError(
+          'MUI: Expected valid input target. ' +
+            'Did you use a custom `slots.input` and forget to forward refs? ' +
+            'See https://mui.com/r/input-component-ref-interface for more info.',
+        );
       }
+
+      formControlContext?.onChange?.(event);
+
+      otherHandlers.onChange?.(event);
 
       const val = parseInput(event.currentTarget.value);
 
@@ -166,13 +167,6 @@ export default function useNumberInput(
         setInputValue(val);
         setValue(parseInt(val, 10));
       }
-
-      // TODO:
-      // 1 - move up to allow developers to skip?
-      // 2 - preventDefault if val contains an invalid char?
-      formControlContext?.onChange?.(event);
-
-      otherHandlers.onChange?.(event);
     };
 
   const handleBlur =
@@ -299,7 +293,7 @@ export default function useNumberInput(
       onKeyDown: handleKeyDown(externalEventHandlers),
     };
 
-    const displayValue = (focused ? inputValue : value) ?? '';
+    const displayValue = (focused ? dirtyValue : value) ?? '';
 
     return {
       ...mergedEventHandlers,
@@ -364,10 +358,10 @@ export default function useNumberInput(
     getDecrementButtonProps,
     getRootProps,
     required: requiredProp,
-    value: focused ? inputValue : value,
+    value: focused ? dirtyValue : value,
     isIncrementDisabled,
     isDecrementDisabled,
     // private and could be thrown out later
-    inputValue,
+    inputValue: dirtyValue,
   };
 }
