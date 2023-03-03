@@ -763,7 +763,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       theme: this,
     });
   };
-  theme.getColorSchemeSelector = () => '&';
+  theme.getColorSchemeSelector = (colorScheme: SupportedColorScheme) =>
+    colorScheme === 'light'
+      ? '&'
+      : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
 
   const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
