@@ -68,8 +68,17 @@ const defaultVariantMapping = {
 };
 
 const useUtilityClasses = (ownerState: OwnerState) => {
-  const { focused, hasClearIcon, hasPopupIcon, popupOpen, variant, color, size, multiple } =
-    ownerState;
+  const {
+    disabled,
+    focused,
+    hasClearIcon,
+    hasPopupIcon,
+    popupOpen,
+    variant,
+    color,
+    size,
+    multiple,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -86,7 +95,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     clearIndicator: ['clearIndicator'],
-    popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
+    popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen', disabled && 'disabled'],
     listbox: ['listbox'],
     option: ['option'],
     loading: ['loading'],
@@ -378,6 +387,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const ownerState = {
     ...props,
     value,
+    disabled,
     focused,
     hasOptions: !!groupedOptions.length,
     hasClearIcon,
