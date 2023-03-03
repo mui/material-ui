@@ -27,6 +27,30 @@ Stack.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * Defines the `flex-direction` style property.
+   * It is applied for all screen sizes.
+   * @default 'column'
+   */
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.object,
+  ]),
+  /**
+   * Add an element between each child.
+   */
+  divider: PropTypes.node,
+  /**
+   * Defines the space between immediate children.
+   * @default 0
+   */
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  /**
    * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -34,6 +58,14 @@ Stack.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * If `true`, the CSS flex `gap` is used instead of the pseudo selector approach.
+   * To enable this flag globally, follow the theme's default props configuration.
+   *
+   * ⚠️ Warning: CSS flex `gap` is not fully supported in some browsers, we recommend to check https://caniuse.com/?search=flex%20gap before using this flag.
+   * @default false
+   */
+  useFlexGap: PropTypes.bool,
 };
 
 export default Stack;
