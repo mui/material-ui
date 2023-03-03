@@ -54,12 +54,6 @@ module.exports = [
     title: 'ModalUnstyled',
   },
   {
-    pathname: '/base/react-select/',
-    query: { docsTab: 'component-api' },
-    hash: 'multi-select-unstyled',
-    title: 'MultiSelectUnstyled',
-  },
-  {
     pathname: '/base/react-no-ssr/',
     query: { docsTab: 'component-api' },
     hash: 'no-ssr',
