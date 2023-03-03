@@ -89,6 +89,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     focusManagement: 'DOM',
     id: listboxId,
     stateReducer,
+    selectionLimit: 0,
     disabledItemsFocusable: true,
   });
 
