@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import { StyledComponent, StyledOptions, StyledTags } from '@emotion/styled';
+import { StyledComponent, StyledOptions, StyledTags as EmotionStyledTags } from '@emotion/styled';
 import { PropsOf } from '@emotion/react';
 
 export * from '@emotion/styled';
@@ -106,7 +106,7 @@ export interface CreateStyledComponent<
   SpecificComponentProps extends {} = {},
   JSXProps extends {} = {},
   T extends object = {},
-> extends StyledTags {
+> {
   (
     ...styles: Array<Interpolation<ComponentProps & SpecificComponentProps & { theme: T }>>
   ): StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
@@ -136,11 +136,21 @@ export interface CreateStyledComponent<
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 }
 
+export type StyledTags<Theme> = {
+  [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
+    {
+      theme?: Theme;
+      as?: React.ElementType;
+    },
+    JSX.IntrinsicElements[Tag]
+  >;
+};
+
 export interface CreateMUIStyled<
   MUIStyledCommonProps extends {},
   MuiStyledOptions,
   Theme extends object,
-> {
+> extends StyledTags<Theme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
