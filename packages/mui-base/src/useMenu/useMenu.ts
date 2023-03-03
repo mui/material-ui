@@ -10,7 +10,7 @@ import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from '
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
 import { type MenuUnstyledContextType } from '../MenuUnstyled';
-import { MenuItemMetadata, MenuItemState } from './menuItem.types';
+import { MenuItemMetadata, MenuItemState } from '../MenuItemUnstyled/MenuItemUnstyled.types';
 
 function stateReducer(
   state: ListboxState<string>,

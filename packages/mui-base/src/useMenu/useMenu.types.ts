@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { MenuItemMetadata } from '../MenuItemUnstyled/MenuItemUnstyled.types';
 import { MenuUnstyledContextType } from '../MenuUnstyled/MenuUnstyledContext';
 import { UseListboxRootSlotProps } from '../useListbox';
 import { EventHandlers } from '../utils/types';
-import { MenuItemMetadata } from './menuItem.types';
 
 export interface UseMenuParameters {
   open?: boolean;
