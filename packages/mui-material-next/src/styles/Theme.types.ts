@@ -246,7 +246,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   };
   palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'];
     ref: {
       palette: MD3Palettes;
       typeface: any;
@@ -260,6 +259,18 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       shape: MD3Shape;
     };
   };
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: Theme['vars'];
+  };
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SystemSxProps<Theme>) => CSSObject;
 }
