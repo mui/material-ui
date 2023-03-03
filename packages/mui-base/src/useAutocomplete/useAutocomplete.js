@@ -1008,7 +1008,7 @@ export default function useAutocomplete(props) {
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = (event) => {
+  const handleClick = () => {
     inputRef.current.focus();
 
     if (
@@ -1020,21 +1020,10 @@ export default function useAutocomplete(props) {
     }
 
     firstFocus.current = false;
+  };
 
-    // Check if should open/close combo list upon clear click
-    const isCloseIconClicked = event.target?.dataset?.testid === 'CloseIcon';
-    const isPathClicked = !!event.target?.getElementsByTagName('path').length;
-    const shouldClose = isCloseIconClicked || isPathClicked;
-
-    if (shouldClose) {
-      if (open) {
-        handlePopupIndicator(event);
-        return;
-      }
-      return;
-    }
-
-    if (inputValue === '' || !open) {
+  const handleInputMouseDown = (event) => {
+    if ((inputValue === '' || !open) && event.buttons === 0) {
       handlePopupIndicator(event);
     }
   };
@@ -1099,6 +1088,7 @@ export default function useAutocomplete(props) {
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
+      onMouseDown: handleInputMouseDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
