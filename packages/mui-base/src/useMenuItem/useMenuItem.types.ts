@@ -1,21 +1,15 @@
 import { EventHandlers } from '../utils/types';
+import { UseButtonRootSlotProps } from '../useButton';
 
 interface UseMenuItemRootSlotOwnProps {
   role: 'menuitem';
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   tabIndex?: number;
-  onClick?: React.MouseEventHandler;
-  onBlur: React.FocusEventHandler;
-  onFocus: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
-  onKeyUp: React.KeyboardEventHandler;
-  onMouseDown: React.MouseEventHandler;
-  onMouseLeave: React.MouseEventHandler;
-  ref: React.Ref<any>;
   id?: string;
 }
 
-export type UseMenuItemRootSlotProps<TOther = {}> = TOther & UseMenuItemRootSlotOwnProps;
+export type UseMenuItemRootSlotProps<TOther = {}> = TOther &
+  UseMenuItemRootSlotOwnProps &
+  UseButtonRootSlotProps<TOther>;
 
 export interface UseMenuItemParameters {
   disabled?: boolean;
