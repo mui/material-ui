@@ -28,6 +28,6 @@ describe('[Joy] ThemeProvider', () => {
       </ThemeProvider>,
     );
 
-    expect(container.firstChild?.textContent).to.equal('100rem');
+    expect(container.firstChild?.textContent).to.equal('var(--joy-fontSize-md, 100rem)');
   });
 });
