@@ -7,9 +7,11 @@ import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { CardProps } from '@mui/joy/Card';
 
 export default function ExamplePaymentChannels() {
-  const [orientation, setOrientation] = React.useState<string>('vertical');
+  const [orientation, setOrientation] =
+    React.useState<CardProps['orientation']>('vertical');
   return (
     <Box sx={{ minWidth: 240 }}>
       <Box
