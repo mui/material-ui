@@ -275,7 +275,7 @@ describe('<Menu />', () => {
     });
   });
 
-  describe.only('should be customizable in theme', () => {
+  describe('should be customizable in theme', () => {
     it('should override Paper styles in Menu taking MuiMenu.paper styles into account', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
