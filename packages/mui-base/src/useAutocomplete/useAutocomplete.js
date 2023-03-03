@@ -1022,14 +1022,15 @@ export default function useAutocomplete(props) {
     firstFocus.current = false;
 
     // Check if should open/close combo list upon clear click
+    const isCloseIconClicked = event.target?.dataset?.testid === 'CloseIcon';
+    const isPathClicked = !!event.target?.getElementsByTagName('path').length;
+    const shouldClose = isCloseIconClicked || isPathClicked;
 
-    const shouldClose =
-      event.target?.dataset?.testid === 'CloseIcon' ||
-      event.target?.querySelectorAll('path').length > 0;
-
-    if (shouldClose && open) {
-      handlePopupIndicator(event);
-    } else if (shouldClose && !open) {
+    if (shouldClose) {
+      if (open) {
+        handlePopupIndicator(event);
+        return;
+      }
       return;
     }
 
