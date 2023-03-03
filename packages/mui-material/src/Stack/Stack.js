@@ -27,30 +27,6 @@ Stack.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
-   * @default 'column'
-   */
-  direction: PropTypes.oneOfType([
-    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
-    PropTypes.object,
-  ]),
-  /**
-   * Add an element between each child.
-   */
-  divider: PropTypes.node,
-  /**
-   * Defines the space between immediate children.
-   * @default 0
-   */
-  spacing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.string,
-  ]),
-  /**
    * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

@@ -1,30 +1,12 @@
 import * as React from 'react';
-import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
+import { SxProps, SystemProps, StackBaseProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
 
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    StackBaseProps &
     SystemProps<Theme> & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * Defines the `flex-direction` style property.
-       * It is applied for all screen sizes.
-       * @default 'column'
-       */
-      direction?: ResponsiveStyleValue<'row' | 'row-reverse' | 'column' | 'column-reverse'>;
-      /**
-       * Defines the space between immediate children.
-       * @default 0
-       */
-      spacing?: ResponsiveStyleValue<number | string>;
-      /**
-       * Add an element between each child.
-       */
-      divider?: React.ReactNode;
       /**
        * The system prop, which allows defining system overrides as well as additional CSS styles.
        */

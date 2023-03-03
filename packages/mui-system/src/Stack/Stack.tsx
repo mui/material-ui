@@ -59,6 +59,14 @@ Stack.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * If `true`, the CSS flex `gap` is used instead of the pseudo selector approach.
+   * To enable this flag globally, follow the theme's default props configuration.
+   *
+   * ⚠️ Warning: CSS flex `gap` is not fully supported in some browsers, we recommend to check https://caniuse.com/?search=flex%20gap before using this flag.
+   * @default false
+   */
+  useFlexGap: PropTypes.bool,
 } as any;
 
 export default Stack;
