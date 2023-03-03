@@ -344,7 +344,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
+Also, you can use as [decorators](https://babeljs.io/docs/babel-plugin-proposal-decorators) like so:
 
 ```jsx
 import * as React from 'react';
