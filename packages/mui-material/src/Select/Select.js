@@ -41,6 +41,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     className,
     defaultOpen = false,
     displayEmpty = false,
+    error,
     IconComponent = ArrowDropDownIcon,
     id,
     input,
@@ -65,7 +66,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['variant'],
+    states: ['variant', 'error'],
   });
 
   const variant = fcs.variant || variantProp;
@@ -91,6 +92,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         inputComponent,
         inputProps: {
           children,
+          error: fcs.error,
           IconComponent,
           variant,
           type: undefined, // We render a select. We can ignore the type provided by the `Input`.
@@ -172,6 +174,11 @@ Select.propTypes /* remove-proptypes */ = {
    * @default false
    */
   displayEmpty: PropTypes.bool,
+  /**
+   * If `true`, the `select input` will indicate an error.
+   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   */
+  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon

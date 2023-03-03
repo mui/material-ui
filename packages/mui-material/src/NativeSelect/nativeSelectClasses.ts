@@ -28,6 +28,8 @@ export interface NativeSelectClasses {
   iconStandard: string;
   /** Styles applied to the underlying native input component. */
   nativeInput: string;
+  /** State class applied to the select component `error` class. */
+  error: string;
 }
 
 export type NativeSelectClassKey = keyof NativeSelectClasses;
@@ -50,6 +52,7 @@ const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNati
   'iconOutlined',
   'iconStandard',
   'nativeInput',
+  'error'
 ]);
 
 export default nativeSelectClasses;
