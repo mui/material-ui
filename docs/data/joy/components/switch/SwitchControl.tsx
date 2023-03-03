@@ -6,7 +6,7 @@ import FormHelperText from '@mui/joy/FormHelperText';
 import Switch from '@mui/joy/Switch';
 
 export default function SwitchLabel() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <FormControl
       orientation="horizontal"
@@ -18,7 +18,9 @@ export default function SwitchLabel() {
       </Box>
       <Switch
         checked={checked}
-        onChange={(event) => setChecked(event.target.checked)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setChecked(event.target.checked)
+        }
         color={checked ? 'success' : 'neutral'}
         variant="outlined"
         endDecorator={checked ? 'On' : 'Off'}

@@ -2,12 +2,14 @@ import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 
 export default function ExampleStrapiSwitch() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <Switch
       color={checked ? 'success' : 'danger'}
       checked={checked}
-      onChange={(event) => setChecked(event.target.checked)}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        setChecked(event.target.checked)
+      }
       sx={{
         '--Switch-thumb-size': '16px',
         '--Switch-track-width': '40px',

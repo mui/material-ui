@@ -1,13 +1,16 @@
 import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Theme } from '@mui/joy';
 
 export default function ExampleIosSwitch() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <Switch
       checked={checked}
-      onChange={(event) => setChecked(event.target.checked)}
-      sx={(theme) => ({
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        setChecked(event.target.checked)
+      }
+      sx={(theme: Theme) => ({
         '--Switch-thumb-shadow': '0 3px 7px 0 rgba(0 0 0 / 0.12)',
         '--Switch-thumb-size': '27px',
         '--Switch-track-width': '51px',

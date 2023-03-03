@@ -10,5 +10,5 @@
     <WavesRoundedIcon sx={{ color: dark ? 'primary.500' : 'text.tertiary' }} />
   }
   checked={dark}
-  onChange={(event) => setDark(event.target.checked)}
+  onChange={(event:React.ChangeEvent<HTMLInputElement>) => setDark(event.target.checked)}
 />

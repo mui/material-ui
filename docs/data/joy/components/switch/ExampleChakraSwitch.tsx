@@ -1,13 +1,16 @@
 import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Theme } from '@mui/joy';
 
 export default function ExampleChakraSwitch() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <Switch
       checked={checked}
-      onChange={(event) => setChecked(event.target.checked)}
-      sx={(theme) => ({
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        setChecked(event.target.checked)
+      }
+      sx={(theme: Theme) => ({
         '--Switch-thumb-size': '16px',
         '--Switch-track-width': '34px',
         '--Switch-track-height': '20px',
