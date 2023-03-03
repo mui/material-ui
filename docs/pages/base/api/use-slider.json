@@ -41,7 +41,80 @@
     "tabIndex": { "type": { "name": "number", "description": "number" } },
     "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
   },
-  "returnValue": {},
+  "returnValue": {
+    "active": {
+      "type": {
+        "name": "number",
+        "description": "number"
+      }
+    },
+    "axis": {
+      "type": {
+        "name": "'horizontal' | 'vertical' | 'horizontal-reverse'",
+        "description": ""
+      }
+    },
+    "axisProps": {
+      "type": {
+        "name": "{ [key in Axes]: AxisProps<key> }"
+      }
+    },
+    "dragging": {
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "focusedThumbIndex": {
+      "type": {
+        "name": "number"
+      }
+    },
+    "getHiddenInputProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderHiddenInputProps&lt;TOther&gt"
+      }
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderRootSlotProps&lt;TOther&gt"
+      }
+    },
+    "getThumbProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderThumbSlotProps&lt;TOther&gt"
+      }
+    },
+    "marks": {
+      "type": {
+        "name": "{value: number, label?: React.ReactNode}[]"
+      }
+    },
+    "open": {
+      "type": {
+        "name": "number"
+      }
+    },
+    "range": {
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "trackLeap": {
+      "type": {
+        "name": "number"
+      }
+    },
+    "trackOffset": {
+      "type": {
+        "name": "number"
+      }
+    },
+    "values": {
+      "type": {
+        "name": "number[]"
+      }
+    }
+  },
   "name": "useSlider",
   "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
   "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Unstyled Slider</a></li></ul>"
