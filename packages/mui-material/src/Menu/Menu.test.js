@@ -275,12 +275,11 @@ describe('<Menu />', () => {
     });
   });
 
-  describe('should be customizable in theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
-    it('should override Paper styles in Menu taking MuiMenu.paper styles into account', () => {
+  describe('should be customizable in theme', () => {
+    it('should override Paper styles in Menu taking MuiMenu.paper styles into account', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
       const theme = createTheme({
         components: {
           MuiMenu: { styleOverrides: { paper: { borderRadius: 4 } } },
@@ -309,7 +308,11 @@ describe('<Menu />', () => {
       });
     });
 
-    it('should override Paper styles in Menu using styles in MuiPaper slot', () => {
+    it('should override Paper styles in Menu using styles in MuiPaper slot', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       const theme = createTheme({
         components: {
           MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
