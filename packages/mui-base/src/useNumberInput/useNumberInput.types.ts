@@ -7,9 +7,17 @@ export type UseNumberInputChangeHandler = (
 ) => void;
 
 export interface UseNumberInputParameters {
-  // props for number specific features
+  /**
+   * The minimum value.
+   */
   min?: number;
+  /**
+   * The maximum value.
+   */
   max?: number;
+  /**
+   * The amount that the value changes on each increment or decrement.
+   */
   step?: number;
   /**
    * Multiplier applied to `step` if the shift key is held while incrementing
@@ -34,6 +42,10 @@ export interface UseNumberInputParameters {
   onClick?: React.MouseEventHandler;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
+  /**
+   * Callback fired after the value is clamped and changes.
+   * Called with `undefined` when the value is unset.
+   */
   onValueChange?: (value: number | undefined) => void;
   inputRef?: React.Ref<HTMLInputElement>;
   /**
@@ -41,6 +53,9 @@ export interface UseNumberInputParameters {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required?: boolean;
+  /**
+   * The current value. Use when the component is controlled.
+   */
   value?: unknown;
 }
 

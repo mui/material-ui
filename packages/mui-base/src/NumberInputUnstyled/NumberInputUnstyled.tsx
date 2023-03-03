@@ -17,7 +17,7 @@ import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
  *
  * Demos:
  *
- * - [hooks: useNumberInput](https://mui.com/base/react-number-input/)
+ * - [Unstyled Number Input](https://mui.com/base/react-number-input/)
  *
  * API:
  *
@@ -199,11 +199,11 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * @ignore
+   * The maximum value.
    */
   max: PropTypes.number,
   /**
-   * @ignore
+   * The minimum value.
    */
   min: PropTypes.number,
   /**
@@ -219,7 +219,8 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired after the value is clamped and changes.
+   * Called with `undefined` when the value is unset.
    */
   onValueChange: PropTypes.func,
   /**
@@ -253,11 +254,11 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The amount that the value changes on each increment or decrement.
    */
   step: PropTypes.number,
   /**
-   * @ignore
+   * The current value. Use when the component is controlled.
    */
   value: PropTypes.any,
 } as any;

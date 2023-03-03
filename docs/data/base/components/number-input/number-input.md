@@ -2,7 +2,7 @@
 product: base
 title: Unstyled React Number Input component and hook
 components: NumberInputUnstyled
-# hooks: useNumberInput
+hooks: useNumberInput
 githubLabel: 'component: NumberInput'
 ---
 
