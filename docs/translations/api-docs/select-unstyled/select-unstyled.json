@@ -9,6 +9,7 @@
     "getSerializedValue": "A function to convert the currently selected value to a string. Used to set a value of a hidden input associated with the select, so that the selected value can be posted with a form.",
     "listboxId": "<code>id</code> attribute of the listbox element. Also used to derive the <code>id</code> attributes of options.",
     "listboxOpen": "Controls the open state of the select&#39;s listbox.",
+    "multiple": "If <code>true</code>, selecting multiple values is allowed.",
     "name": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server.",
     "onChange": "Callback fired when an option is selected.",
     "onListboxOpenChange": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen).",

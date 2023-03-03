@@ -8,6 +8,7 @@
     "getSerializedValue": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },

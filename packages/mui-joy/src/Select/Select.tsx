@@ -658,9 +658,18 @@ Select.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * If `true`, the select element is focused during the first mount
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
@@ -674,6 +683,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen: PropTypes.bool,
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -701,6 +715,21 @@ Select.propTypes /* remove-proptypes */ = {
    */
   indicator: PropTypes.node,
   /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
+  /**
+   * Controls the open state of the select's listbox.
+   * @default undefined
+   */
+  listboxOpen: PropTypes.bool,
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
+  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -708,6 +737,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange: PropTypes.func,
   /**
    * Text to show when there is no selected value.
    */

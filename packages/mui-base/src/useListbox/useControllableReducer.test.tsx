@@ -7,7 +7,7 @@ import {
   ActionTypes,
   ListboxAction,
   ListboxState,
-  UseListboxPropsWithDefaults,
+  UseListboxParametersWithDefaults,
 } from './useListbox.types';
 
 describe('useControllableReducer', () => {
@@ -20,16 +20,16 @@ describe('useControllableReducer', () => {
         return state;
       });
 
-      const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
-      const props: UseListboxPropsWithDefaults<string> = {
+      const actionToDispatch = { type: ActionTypes.setValue as const, value: ['b'], event: null };
+      const props: UseListboxParametersWithDefaults<string> = {
         options: ['a', 'b', 'c'],
-        defaultValue: 'a',
+        defaultValue: ['a'],
         isOptionDisabled: () => false,
         disableListWrap: false,
         disabledItemsFocusable: false,
         optionComparer: (a, b) => a === b,
         optionStringifier: (option) => option,
-        multiple: false,
+        selectionLimit: null,
       };
 
       function TestComponent() {
@@ -53,16 +53,16 @@ describe('useControllableReducer', () => {
         return state;
       });
 
-      const actionToDispatch = { type: ActionTypes.setValue as const, value: 'b', event: null };
-      const props: UseListboxPropsWithDefaults<string> = {
+      const actionToDispatch = { type: ActionTypes.setValue as const, value: ['b'], event: null };
+      const props: UseListboxParametersWithDefaults<string> = {
         options: ['a', 'b', 'c'],
-        defaultValue: 'a',
+        defaultValue: ['a'],
         isOptionDisabled: () => false,
         disableListWrap: false,
         disabledItemsFocusable: false,
         optionComparer: (a, b) => a === b,
         optionStringifier: (option) => option,
-        multiple: false,
+        selectionLimit: null,
       };
 
       function TestComponent() {
@@ -82,7 +82,7 @@ describe('useControllableReducer', () => {
       const reducer = spy((state: ListboxState<string>) => {
         return {
           ...state,
-          selectedValue: 'b',
+          selectedValues: ['b'],
         };
       });
 
@@ -94,17 +94,17 @@ describe('useControllableReducer', () => {
       const handleHighlightChange = spy();
 
       function TestComponent() {
-        const props: UseListboxPropsWithDefaults<string> = {
+        const props: UseListboxParametersWithDefaults<string> = {
           options: ['a', 'b', 'c'],
-          defaultValue: 'a',
+          defaultValue: ['a'],
           isOptionDisabled: () => false,
           disableListWrap: false,
           disabledItemsFocusable: false,
           optionComparer: (a, b) => a === b,
           optionStringifier: (option) => option,
-          multiple: false,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
+          selectionLimit: null,
         };
 
         const propsRef = React.useRef(props);
@@ -114,7 +114,8 @@ describe('useControllableReducer', () => {
       }
 
       render(<TestComponent />);
-      expect(handleChange.getCalls()[0].args[1]).to.equal('b');
+      expect(handleChange.called).to.equal(true);
+      expect(handleChange.getCalls()[0].args[1]).to.deep.equal(['b']);
       expect(handleHighlightChange.notCalled).to.equal(true);
     });
 
@@ -134,17 +135,17 @@ describe('useControllableReducer', () => {
       const handleHighlightChange = spy();
 
       function TestComponent() {
-        const props: UseListboxPropsWithDefaults<string> = {
+        const props: UseListboxParametersWithDefaults<string> = {
           options: ['a', 'b', 'c'],
-          defaultValue: 'a',
+          defaultValue: ['a'],
           isOptionDisabled: () => false,
           disableListWrap: false,
           disabledItemsFocusable: false,
           optionComparer: (a, b) => a === b,
           optionStringifier: (option) => option,
-          multiple: false,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
+          selectionLimit: null,
         };
 
         const propsRef = React.useRef(props);
