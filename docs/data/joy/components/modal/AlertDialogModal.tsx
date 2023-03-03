@@ -9,7 +9,7 @@ import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import Typography from '@mui/joy/Typography';
 
 export default function AlertDialogModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   return (
     <React.Fragment>
       <Button

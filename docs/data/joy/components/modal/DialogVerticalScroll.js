@@ -12,28 +12,45 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
-  const [open, setOpen] = React.useState(undefined);
+  const [open, setOpen] = React.useState(false);
+  const [layout, setLayout] = React.useState(undefined);
 
   const [scroll, setScroll] = React.useState(true);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
-        <Button variant="outlined" color="neutral" onClick={() => setOpen('center')}>
+        <Button
+          variant="outlined"
+          color="neutral"
+          onClick={() => {
+            setOpen(true);
+            setLayout('center');
+          }}
+        >
           Center
         </Button>
         <Button
           variant="outlined"
           color="neutral"
-          onClick={() => setOpen('fullscreen')}
+          onClick={() => {
+            setOpen(true);
+            setLayout('fullscreen');
+          }}
         >
           Full screen
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen(undefined)}>
+      <Modal
+        open={!!open}
+        onClose={() => {
+          setOpen(false);
+          setLayout(undefined);
+        }}
+      >
         <ModalDialog
           aria-labelledby="dialog-vertical-scroll-title"
           aria-describedby="dialog-vertical-scroll-description"
-          layout={open || undefined}
+          layout={layout}
         >
           <ModalClose />
           <Typography id="dialog-vertical-scroll-title" component="h2">

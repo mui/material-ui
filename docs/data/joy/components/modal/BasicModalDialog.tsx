@@ -10,7 +10,7 @@ import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 
 export default function BasicModalDialog() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   return (
     <React.Fragment>
       <Button
@@ -34,7 +34,7 @@ export default function BasicModalDialog() {
             Fill in the information of the project.
           </Typography>
           <form
-            onSubmit={(event) => {
+            onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               setOpen(false);
             }}

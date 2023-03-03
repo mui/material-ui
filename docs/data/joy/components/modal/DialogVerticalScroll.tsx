@@ -12,29 +12,46 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
-  const [open, setOpen] = React.useState<ModalDialogProps['layout'] | undefined>(
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
     undefined,
   );
-  const [scroll, setScroll] = React.useState(true);
+  const [scroll, setScroll] = React.useState<boolean>(true);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
-        <Button variant="outlined" color="neutral" onClick={() => setOpen('center')}>
+        <Button
+          variant="outlined"
+          color="neutral"
+          onClick={() => {
+            setOpen(true);
+            setLayout('center');
+          }}
+        >
           Center
         </Button>
         <Button
           variant="outlined"
           color="neutral"
-          onClick={() => setOpen('fullscreen')}
+          onClick={() => {
+            setOpen(true);
+            setLayout('fullscreen');
+          }}
         >
           Full screen
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen(undefined)}>
+      <Modal
+        open={!!open}
+        onClose={() => {
+          setOpen(false);
+          setLayout(undefined);
+        }}
+      >
         <ModalDialog
           aria-labelledby="dialog-vertical-scroll-title"
           aria-describedby="dialog-vertical-scroll-description"
-          layout={open || undefined}
+          layout={layout}
         >
           <ModalClose />
           <Typography id="dialog-vertical-scroll-title" component="h2">
@@ -47,7 +64,9 @@ export default function DialogVerticalScroll() {
             <FormLabel>Container overflow</FormLabel>
             <Switch
               checked={scroll}
-              onChange={(event) => setScroll(event.target.checked)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setScroll(event.target.checked)
+              }
               sx={{ ml: 'auto' }}
             />
           </FormControl>
