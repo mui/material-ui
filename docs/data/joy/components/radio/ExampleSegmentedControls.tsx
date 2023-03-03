@@ -5,8 +5,9 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
 
 export default function ExampleSegmentedControls() {
-  const [justify, setJustify] = React.useState('flex-start');
-
+  const [justify, setJustify] = React.useState<'flex-start' | 'flex-end' | 'center'>(
+    'flex-start',
+  );
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
       <Typography id="segmented-controls-example" fontWeight="lg" fontSize="sm">
@@ -17,7 +18,9 @@ export default function ExampleSegmentedControls() {
         aria-labelledby="segmented-controls-example"
         name="justify"
         value={justify}
-        onChange={(event) => setJustify(event.target.value)}
+        onChange={(event) =>
+          setJustify(event.target.value as 'flex-start' | 'flex-end' | 'center')
+        }
         sx={{
           minHeight: 48,
           padding: '4px',

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import FormLabel from '@mui/joy/FormLabel';
-import Radio, { radioClasses } from '@mui/joy/Radio';
+import Radio, { RadioPropsColorOverrides, radioClasses } from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 import Done from '@mui/icons-material/Done';
+import { OverridableStringUnion } from '@mui/types';
+import { ColorPaletteProp } from '@mui/joy';
 
 export default function ExampleProductAttributes() {
   return (
@@ -45,7 +47,12 @@ export default function ExampleProductAttributes() {
               <Radio
                 overlay
                 variant="solid"
-                color={color}
+                color={
+                  color as OverridableStringUnion<
+                    ColorPaletteProp,
+                    RadioPropsColorOverrides
+                  >
+                }
                 checkedIcon={<Done fontSize="xl2" />}
                 value={color}
                 slotProps={{
@@ -60,7 +67,7 @@ export default function ExampleProductAttributes() {
                 sx={{
                   '--joy-focus-outlineOffset': '4px',
                   '--joy-palette-focusVisible': (
-                    theme, // any edits here?
+                    theme: any, // any edits here?
                   ) => theme.vars.palette[color][500],
                   [`& .${radioClasses.action}.${radioClasses.focusVisible}`]: {
                     outlineWidth: '2px',
