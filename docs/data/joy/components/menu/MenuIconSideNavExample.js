@@ -10,6 +10,9 @@ import Apps from '@mui/icons-material/Apps';
 import Settings from '@mui/icons-material/Settings';
 import Person from '@mui/icons-material/Person';
 
+// The Menu is built on top of Popper v2, so it accepts `modifiers` prop that will be passed to the Popper.
+// https://popper.js.org/docs/v2/modifiers/offset/
+
 const modifiers = [
   {
     name: 'offset',
