@@ -75,7 +75,7 @@ const PopoverRoot = styled(Modal, {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-export const PopoverPaper = styled(Paper, {
+const PopoverPaper = styled(Paper, {
   name: 'MuiPopover',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -107,7 +107,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     children,
     className,
     container: containerProp,
-    slots = {},
     elevation = 8,
     marginThreshold = 16,
     open,
@@ -138,8 +137,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const PopoverElementPaper = slots.paper ?? PopoverPaper;
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -380,7 +377,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         timeout={transitionDuration}
         {...TransitionProps}
       >
-        <PopoverElementPaper
+        <PopoverPaper
           elevation={elevation}
           {...PaperProps}
           ref={handlePaperRef}
@@ -389,7 +386,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           ownerState={ownerState}
         >
           {children}
-        </PopoverElementPaper>
+        </PopoverPaper>
       </TransitionComponent>
     </PopoverRoot>
   );
@@ -526,16 +523,6 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
-  }),
-  /**
-   * The components used for each slots inside the Popover.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    backdrop: PropTypes.elementType,
-    paper: PropTypes.elementType,
-    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

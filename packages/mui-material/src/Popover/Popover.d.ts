@@ -19,7 +19,7 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
-export interface PopoverProps extends Omit<StandardProps<ModalProps, 'children'>, 'slots'> {
+export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -92,14 +92,6 @@ export interface PopoverProps extends Omit<StandardProps<ModalProps, 'children'>
    */
   PaperProps?: Partial<PaperProps>;
   /**
-   * The components used for each slots inside the Popover.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots?: ModalProps['slots'] & {
-    paper?: React.ElementType;
-  };
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -161,5 +153,3 @@ export function getOffsetLeft(
  * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
 export default function Popover(props: PopoverProps): JSX.Element;
-
-export function PopoverPaper(props: PaperProps): JSX.Element;

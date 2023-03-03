@@ -5,7 +5,8 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { HTMLElementType } from '@mui/utils';
 import MenuList from '../MenuList';
-import Popover, { PopoverPaper } from '../Popover';
+import Paper from '../Paper';
+import Popover from '../Popover';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
@@ -40,7 +41,7 @@ const MenuRoot = styled(Popover, {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const MenuPaper = styled(PopoverPaper, {
+const MenuPaper = styled(Paper, {
   name: 'MuiMenu',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -164,13 +165,13 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
+        as: MenuPaper,
         ...PaperProps,
         classes: {
           ...PaperProps.classes,
           root: classes.paper,
         },
       }}
-      slots={{ paper: MenuPaper }}
       className={classes.root}
       open={open}
       ref={ref}

@@ -30,13 +30,6 @@
       "type": { "name": "shape", "description": "{ component?: element type }" },
       "default": "{}"
     },
-    "slots": {
-      "type": {
-        "name": "shape",
-        "description": "{ backdrop?: elementType, paper?: elementType, root?: elementType }"
-      },
-      "default": "{}"
-    },
     "sx": {
       "type": {
         "name": "union",
