@@ -13,7 +13,7 @@ import {
   UseNumberInputDecrementButtonSlotProps,
   UseNumberInputReturnValue,
 } from './useNumberInput.types';
-import clamp from './clamp';
+import { clamp, isNumber } from './utils';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
 type StepDirection = 'up' | 'down';
@@ -24,6 +24,7 @@ type StepDirection = 'up' | 'down';
 const parseInput = (v: string): string => {
   return v ? String(v.trim()) : String(v);
 };
+
 /**
  *
  * API:
@@ -134,7 +135,7 @@ export default function useNumberInput(
       //       OR: (event, newValue) similar to SelectUnstyled
       // formControlContext?.onValueChange?.(newValue);
 
-      if (typeof newValue === 'number' && !Number.isNaN(newValue)) {
+      if (isNumber(newValue)) {
         onValueChange?.(newValue);
       } else {
         onValueChange?.(undefined);
@@ -203,7 +204,7 @@ export default function useNumberInput(
     (direction: StepDirection) => (event: React.PointerEvent | React.KeyboardEvent) => {
       let newValue;
 
-      if (typeof value === 'number') {
+      if (isNumber(value)) {
         const multiplier =
           event.shiftKey ||
           (event.nativeEvent instanceof KeyboardEvent &&
@@ -245,11 +246,11 @@ export default function useNumberInput(
         handleStep(direction)(event);
       }
 
-      if (event.key === 'Home' && typeof max === 'number') {
+      if (event.key === 'Home' && isNumber(max)) {
         handleValueChange()(event, max);
       }
 
-      if (event.key === 'End' && typeof min === 'number') {
+      if (event.key === 'End' && isNumber(min)) {
         handleValueChange()(event, min);
       }
     };
@@ -316,8 +317,7 @@ export default function useNumberInput(
     };
   };
 
-  const isIncrementDisabled =
-    typeof value === 'number' ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false;
+  const isIncrementDisabled = isNumber(value) ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false;
 
   const getIncrementButtonProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
@@ -332,8 +332,7 @@ export default function useNumberInput(
     };
   };
 
-  const isDecrementDisabled =
-    typeof value === 'number' ? value <= (min ?? Number.MIN_SAFE_INTEGER) : false;
+  const isDecrementDisabled = isNumber(value) ? value <= (min ?? Number.MIN_SAFE_INTEGER) : false;
 
   const getDecrementButtonProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,

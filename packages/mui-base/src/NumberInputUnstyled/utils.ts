@@ -6,7 +6,7 @@ function simpleClamp(
   return Math.max(min, Math.min(val, max));
 }
 
-export default function clamp(
+export function clamp(
   val: number,
   min: number = Number.MIN_SAFE_INTEGER,
   max: number = Number.MAX_SAFE_INTEGER,
@@ -27,4 +27,8 @@ export default function clamp(
   }
 
   return simpleClamp(val - positivity * Math.abs(remainder), min, max);
+}
+
+export function isNumber(val: unknown): val is number {
+  return typeof val === 'number' && !Number.isNaN(val) && Number.isFinite(val);
 }
