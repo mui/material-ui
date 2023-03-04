@@ -31,6 +31,7 @@
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
     "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
+    "slotDescription": "You can use this slot in <code>slotProps</code> prop or in <code>extendTheme</code> function to customize its style or <a href={{extendVariantsLink}}>extend variants</a>.",
     "type": "Type"
   },
   "albumDescr": "A responsive album / gallery page layout with a hero unit and footer.",

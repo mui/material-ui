@@ -37,7 +37,14 @@ interface ColorInversionProviderProps {
 export function ColorInversionProvider({ children, variant }: ColorInversionProviderProps) {
   const theme = useSystemTheme(defaultTheme);
   return (
-    <ColorInversion.Provider value={variant ? theme.colorInversionConfig[variant] : undefined}>
+    <ColorInversion.Provider
+      value={
+        variant
+          ? // `theme` could come from other emotion/styled-components context.
+            (theme.colorInversionConfig ?? defaultTheme.colorInversionConfig)[variant]
+          : undefined
+      }
+    >
       {children}
     </ColorInversion.Provider>
   );

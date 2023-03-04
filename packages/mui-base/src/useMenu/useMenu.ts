@@ -14,7 +14,7 @@ import {
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
-import { type MenuUnstyledContextType } from '../MenuUnstyled';
+import type { MenuUnstyledContextType } from '../MenuUnstyled';
 
 function stateReducer(
   state: ListboxState<string>,
@@ -93,6 +93,7 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     focusManagement: 'DOM',
     id: listboxId,
     stateReducer,
+    selectionLimit: 0,
     disabledItemsFocusable: true,
   });
 

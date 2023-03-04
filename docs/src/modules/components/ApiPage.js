@@ -176,7 +176,9 @@ export default function ApiPage(props) {
   const styleOverridesLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#style-overrides'
     : '/material-ui/customization/theme-components/#global-style-overrides';
-
+  const extendVariantsLink = isJoyComponent
+    ? '/joy-ui/customization/themed-components/#extend-variants'
+    : '';
   const {
     componentDescription,
     componentDescriptionToc = [],
@@ -185,6 +187,17 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
+  const slotExtraDescription = extendVariantsLink
+    ? t('api-docs.slotDescription').replace(/{{extendVariantsLink}}/, extendVariantsLink)
+    : '';
+  if (slotDescriptions && slotExtraDescription) {
+    Object.keys(slotDescriptions).forEach((slot) => {
+      if (slotDescriptions[slot].match(slotExtraDescription)) {
+        return;
+      }
+      slotDescriptions[slot] += ` ${slotExtraDescription}`;
+    });
+  }
 
   const source = filename
     .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
 import { SelectOption } from '@mui/base/useSelect';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -73,7 +72,7 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface SelectStaticProps extends SelectUnstyledCommonProps {
+export interface SelectStaticProps {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
@@ -81,10 +80,22 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
     focusVisible(): void;
   }>;
   /**
+   * If `true`, the select element is focused during the first mount
+   * @default false
+   */
+  autoFocus?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
+  /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen?: boolean;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -102,9 +113,29 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   indicator?: React.ReactNode;
   /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId?: string;
+  /**
+   * Controls the open state of the select's listbox.
+   * @default undefined
+   */
+  listboxOpen?: boolean;
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name?: string;
+  /**
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose?: () => void;
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange?: (isOpen: boolean) => void;
   /**
    * Text to show when there is no selected value.
    */
@@ -122,7 +153,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   sx?: SxProps;
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
