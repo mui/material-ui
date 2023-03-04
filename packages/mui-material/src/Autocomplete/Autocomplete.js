@@ -704,6 +704,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * In addition of `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighing an option.
    * @default false
    */
   autoSelect: PropTypes.bool,
