@@ -97,6 +97,19 @@ describe('<Autocomplete />', () => {
   });
 
   describe('combobox', () => {
+    it('should not open popup on right click', () => {
+      render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      fireEvent.contextMenu(textbox);
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
     it('should clear the input when blur', () => {
       const { getByRole } = render(
         <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
