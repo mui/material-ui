@@ -9,7 +9,7 @@ import useListbox, {
 import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
-import { type MenuUnstyledContextType } from '../MenuUnstyled';
+import type { MenuUnstyledContextType } from '../MenuUnstyled';
 import { MenuItemMetadata, MenuItemState } from '../MenuItemUnstyled/MenuItemUnstyled.types';
 
 function stateReducer(
