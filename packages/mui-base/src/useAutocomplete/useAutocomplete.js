@@ -1024,9 +1024,10 @@ export default function useAutocomplete(props) {
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = (event) => {
     if (event.target.getAttribute('id') !== id) {
-      // No need to call handleInputMouseDown if click event happened on input element
-      handleInputMouseDown();
       event.preventDefault();
+    }
+    if (event.currentTarget === event.target) {
+      handleInputMouseDown();
     }
   };
 
