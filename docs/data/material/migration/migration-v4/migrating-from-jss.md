@@ -440,7 +440,7 @@ Follow the instructions in the relevant section of the [Breaking changes](/mater
 In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
 By default, TSS is only able to provide the theme.
-If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-global-styleoverrides).
 
 :::warning
 tss-react is _not_ maintained by MUI.
