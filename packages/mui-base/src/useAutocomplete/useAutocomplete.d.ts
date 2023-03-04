@@ -68,7 +68,7 @@ export interface UseAutocompleteProps<
    * a different option or changes the character string in the input.
    *
    * In addition of `freeSolo` mode, the typed value will be the input value
-   * if the Autocomplete loses focus without highlighing an option.
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect?: boolean;
