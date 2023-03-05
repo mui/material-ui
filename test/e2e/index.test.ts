@@ -7,6 +7,8 @@ import type {
   MatcherOptions,
   SelectorMatcherOptions,
 } from '@testing-library/dom';
+import { autocompleteClasses as joyAutocompleteClasses } from '@mui/joy';
+import { autocompleteClasses as materialAutocompleteClasses } from '@mui/material';
 import '../utils/initPlaywrightMatchers';
 
 function sleep(timeoutMS: number): Promise<void> {
@@ -194,26 +196,54 @@ describe('e2e', () => {
   });
 
   describe('<Autocomplete/>', () => {
-    it('shou', async () => {
-      await renderFixture('Autocomplete/HoverAutocomplete');
+    it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
+      await renderFixture('Autocomplete/HoverMaterialAutocomplete');
 
       const combobox = (await page.$('[role="combobox"]'))!;
       await combobox.click();
 
-      await page.mouse.move(100, 100);
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowDown');
+      const dimensions = await page.evaluate(
+        () => document.querySelector('[role="option"]')?.getBoundingClientRect()!,
+      );
+
+      await page.mouse.move(dimensions.left + 10, dimensions.top + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down('ArrowDown'); // moves to 3rd option
+      await page.keyboard.down('ArrowDown'); // moves to 4th option
+
+      await page.waitForTimeout(1000);
 
       const focusedOption = await page.evaluate(() => {
         const listbox = document.querySelector('[role="listbox"]')!;
-        if (listbox) {
-          return listbox.querySelector('.Mui-focused')?.innerHTML;
-        }
-        return null;
+        return listbox.querySelector(`.${materialAutocompleteClasses.focused}`)?.innerHTML;
       });
 
-      expect(focusedOption).to.equal('five');
+      expect(focusedOption).to.equal('four');
+    });
+
+    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
+      await renderFixture('Autocomplete/HoverJoyAutocomplete');
+
+      const combobox = (await page.$('[role="combobox"]'))!;
+      await combobox.click();
+
+      const dimensions = await page.evaluate(
+        () => document.querySelector('[role="option"]')?.getBoundingClientRect()!,
+      );
+
+      await page.mouse.move(dimensions.left + 10, dimensions.top + 10); // moves to 1st option
+      await page.keyboard.down('ArrowDown'); // moves to 2nd option
+      await page.keyboard.down('ArrowDown'); // moves to 3rd option
+      await page.keyboard.down('ArrowDown'); // moves to 4th option
+
+      await page.waitForTimeout(1000);
+
+      const focusedOption = await page.evaluate(() => {
+        const listbox = document.querySelector('[role="listbox"]')!;
+        return listbox.querySelector(`.${joyAutocompleteClasses.focused}`)?.innerHTML;
+      });
+
+      expect(focusedOption).to.equal('four');
     });
   });
 

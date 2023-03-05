@@ -2543,39 +2543,6 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
     });
 
-    // https://github.com/mui/material-ui/issues/35141
-    it('should highlight correct option when initial navigation through options starts from mouse over', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
-      const { getAllByRole, getByRole } = render(
-        <Autocomplete
-          open
-          options={['one', 'two', 'three', 'four', 'five']}
-          renderInput={(params) => <TextField {...params} />}
-          ListboxProps={{ style: { maxHeight: '100px' } }}
-        />,
-      );
-      const firstOption = getAllByRole('option')[0];
-      const textbox = getByRole('combobox');
-      act(() => {
-        textbox.focus();
-      });
-      // move mouse to center of first option
-      const { width, height, top, left } = firstOption.getBoundingClientRect();
-      const x = left + width / 2;
-      const y = top + height / 2;
-      fireEvent.mouseMove(firstOption, { clientX: x, clientY: y });
-      checkHighlightIs(getByRole('listbox'), 'one');
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs(getByRole('listbox'), 'four');
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      checkHighlightIs(getByRole('listbox'), 'five');
-    });
-
     it('should pass to onHighlightChange the correct value after filtering', () => {
       const handleHighlightChange = spy();
       const options = ['one', 'three', 'onetwo'];
