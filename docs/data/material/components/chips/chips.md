@@ -77,6 +77,12 @@ You can use the `size` prop to define a small Chip.
 
 {{"demo": "SizesChips.js"}}
 
+## Multiline chip
+
+By default, `Chip` just displays labels in single line. To use multiline chips you can add `height: 'auto'` to the Chip component and `whiteSpace: 'normal'` to the `label` styles.
+
+{{"demo": "MultilineChips.js"}}
+
 ## Chip array
 
 An example of rendering multiple chips from an array of values.
