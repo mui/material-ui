@@ -1,5 +1,5 @@
 ---
-title: MUI X v6 is ready for production!
+title: Introducing MUI X v6.0.0
 description: Introducing the new major version of the advanced components.
 date: 2023-03-06T00:00:00.000Z
 authors: ['josefreitas']
@@ -18,7 +18,7 @@ tags: ['MUI X', 'News']
 #### [ApiRef now available for all users](/x/react-data-grid/api-object/)
 
 Manage pagination, scrolling, state, and other attributes through the Data Grid's API object—previously available only in commercial plans, now accessible to all.
-The ApiRef enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid's features.
+The `apiRef` enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid's features.
 
 ```tsx
 function CustomDataGrid(props) {
@@ -142,13 +142,13 @@ We operate in a continuous-delivery environment, so the plan is to keep rolling 
 
 With the new base established in v6.0.0, we'll continue our efforts to improve UI/UX, bring more customization abilities, and support new use cases.
 
-Here's a list of what you can expect to be delivered in the following months.
+Here's a list of what you can expect to be delivered in the following months (what is next on our immediate roadmap).
 
 ### Data Grid
 
 - Clipboard importing
 - Filtering on header
-- Row Spanning
+- Row spanning
 - Improved Panels
   - Column Management panel (column visibility, reordering, grouping, pinning, etc).
   - Filtering panel
@@ -156,7 +156,7 @@ Here's a list of what you can expect to be delivered in the following months.
 
 ### Date Pickers
 
-- Time Picker replacement for Clock
+- Time Picker replacement for the clock on desktop
 - Time Range Picker
 - Date Time Range Picker
 - Ability to select a month range in the Date Range Picker
@@ -170,7 +170,7 @@ You can get more details of our next steps in [MUI X public roadmap](https://git
 
 ## Decoupling versions from MUI Core
 
-We're officially decoupling MUI X's versioning from MUI Core (including `@mui/material`). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction.
+We're officially decoupling MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction.
 
 1. Soften migration pains with a yearly release cycle.
 
