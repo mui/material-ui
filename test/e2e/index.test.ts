@@ -193,6 +193,31 @@ describe('e2e', () => {
     });
   });
 
+  describe('<Autocomplete/>', () => {
+    it('shou', async () => {
+      await renderFixture('Autocomplete/HoverAutocomplete');
+
+      const combobox = (await page.$('[role="combobox"]'))!;
+      await combobox.click();
+
+      await page.mouse.move(100, 100);
+      await page.keyboard.down('ArrowDown');
+      await page.keyboard.down('ArrowDown');
+      await page.keyboard.down('ArrowDown');
+      await page.keyboard.down('ArrowDown');
+
+      const focusedOption = await page.evaluate(() => {
+        const listbox = document.querySelector('[role="listbox"]')!;
+        if (listbox) {
+          return listbox.querySelector('.Mui-focused')?.innerHTML;
+        }
+        return null;
+      });
+
+      expect(focusedOption).to.equal('five');
+    });
+  });
+
   describe('<TextareaAutosize />', () => {
     // https://github.com/mui/material-ui/issues/32640
     it('should handle suspense without error', async () => {
