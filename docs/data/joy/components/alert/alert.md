@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Alert component
+components: Alert
 githubLabel: 'component: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
@@ -94,7 +95,7 @@ Here are some factors to consider to ensure that your Alert is accessible:
 The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
 
 ```html
-<div role="alert" class="JoyAlert-root">
+<div role="alert" class="MuiAlert-root">
   <!-- Alert contents -->
 </div>
 ```

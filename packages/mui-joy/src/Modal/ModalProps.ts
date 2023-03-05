@@ -6,8 +6,21 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ModalSlot = 'root' | 'backdrop';
 
+export interface ModalSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the backdrop.
+   * @default 'div'
+   */
+  backdrop: React.ElementType;
+}
+
 export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ModalSlot,
+  ModalSlots,
   {
     root: SlotProps<'div', {}, ModalOwnerState>;
     backdrop: SlotProps<'div', {}, ModalOwnerState>;

@@ -84,7 +84,7 @@ The following code snippet applies a CSS class called `my-thumb` to the thumb sl
 ## Hook
 
 ```js
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 ```
 
 The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.

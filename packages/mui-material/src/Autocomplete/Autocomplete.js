@@ -28,6 +28,7 @@ const useUtilityClasses = (ownerState) => {
   const {
     classes,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
@@ -456,6 +458,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionProps,
     value,
     dirty,
+    expanded,
     id,
     popupOpen,
     focused,
@@ -473,6 +476,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const ownerState = {
     ...props,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,

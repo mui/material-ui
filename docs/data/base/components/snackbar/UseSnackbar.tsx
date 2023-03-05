@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSnackbar } from '@mui/base/SnackbarUnstyled';
+import useSnackbar from '@mui/base/useSnackbar';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { css, keyframes, styled } from '@mui/system';
 

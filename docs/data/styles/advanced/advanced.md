@@ -368,7 +368,7 @@ export default function App() {
 This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 function render() {
@@ -400,15 +400,15 @@ Refer to the plugin's page for setup and usage instructions.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/v4.x/examples/gatsby) for an usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/v4.x/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/v4.x/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 

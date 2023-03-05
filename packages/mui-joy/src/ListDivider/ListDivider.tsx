@@ -5,10 +5,11 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import Divider from '../Divider/Divider';
+import { DividerRoot } from '../Divider/Divider';
 import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
+import ComponentListContext from '../List/ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   const { orientation, inset } = ownerState;
@@ -24,7 +25,7 @@ const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   return composeClasses(slots, getListDividerUtilityClass, {});
 };
 
-const ListDividerRoot = styled(Divider, {
+const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
   name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -62,7 +63,16 @@ const ListDividerRoot = styled(Divider, {
     }),
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListDivider API](https://mui.com/joy-ui/api/list-divider/)
+ */
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -70,34 +80,48 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   });
 
   const row = React.useContext(RowListContext);
+  const listComponent = React.useContext(ComponentListContext);
 
   const {
-    component = 'li',
+    component: componentProp,
+    role: roleProp,
     className,
     children,
     inset = 'context',
-    orientation = row ? 'vertical' : 'horizontal',
+    orientation: orientationProp,
     ...other
   } = props;
 
+  const [listElement] = listComponent?.split(':') || ['', ''];
+  const component =
+    componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : 'li');
+  const role = roleProp || (component === 'li' ? 'separator' : undefined);
+
+  const orientation = orientationProp || (row ? 'vertical' : 'horizontal');
   const ownerState = {
     ...props,
     inset,
     row,
     orientation,
+    component,
+    role,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
     <ListDividerRoot
-      // @ts-ignore
       ref={ref}
-      {...(inset === 'context' && { inset })}
-      component={component}
+      as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      orientation={orientation}
+      role={role}
+      {...(role === 'separator' &&
+        orientation === 'vertical' && {
+          // The implicit aria-orientation of separator is 'horizontal'
+          // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
+          'aria-orientation': 'vertical',
+        })}
       {...other}
     >
       {children}
@@ -115,10 +139,6 @@ ListDivider.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -131,16 +151,21 @@ ListDivider.propTypes /* remove-proptypes */ = {
    * The empty space on the side(s) of the divider in a vertical list.
    *
    * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
+   * @default 'context'
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
+    PropTypes.oneOf(['context', 'gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
   ]),
   /**
    * The component orientation.
    * @default 'horizontal'
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  orientation: PropTypes /* @typescript-to-proptypes-ignore */.oneOf(['horizontal', 'vertical']),
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

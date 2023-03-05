@@ -687,7 +687,7 @@ fireEvent.keyUp = (desiredTarget, options = {}) => {
 
 export function fireTouchChangedEvent(
   target: Element,
-  type: 'touchmove' | 'touchend',
+  type: 'touchstart' | 'touchmove' | 'touchend',
   options: { changedTouches: Array<Pick<TouchInit, 'clientX' | 'clientY'>> },
 ): void {
   const { changedTouches } = options;

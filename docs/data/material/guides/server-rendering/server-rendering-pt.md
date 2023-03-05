@@ -103,7 +103,7 @@ Vamos ver como isso é passado na função `renderFullPage`.
 ```jsx
 import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import createEmotionServer from '@emotion/server/create-instance';
@@ -181,7 +181,7 @@ The client-side is straightforward. All we need to do is use the same cache conf
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CacheProvider } from '@emotion/react';

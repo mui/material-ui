@@ -144,7 +144,7 @@ describe('useMediaQuery', () => {
         expect(getRenderCountRef.current()).to.equal(1);
       });
 
-      it('should render twice if the default value does not match the expectation', () => {
+      it('render API: should render once if the default value does not match the expectation', () => {
         const getRenderCountRef = React.createRef();
         function Test() {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -163,7 +163,7 @@ describe('useMediaQuery', () => {
         expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
 
-      it('should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+      it('render API: should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
         const getRenderCountRef = React.createRef();
         function Test() {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -179,6 +179,47 @@ describe('useMediaQuery', () => {
         }
 
         render(<Test />);
+        expect(screen.getByTestId('matches').textContent).to.equal('false');
+        expect(getRenderCountRef.current()).to.equal(1);
+      });
+
+      it('hydrate API: should render twice if the default value does not match the expectation', () => {
+        const getRenderCountRef = React.createRef();
+        function Test() {
+          const matches = useMediaQuery('(min-width:2000px)', {
+            defaultMatches: true,
+          });
+
+          return (
+            <RenderCounter ref={getRenderCountRef}>
+              <span data-testid="matches">{`${matches}`}</span>
+            </RenderCounter>
+          );
+        }
+
+        const { hydrate } = renderToString(<Test />);
+        hydrate();
+        expect(screen.getByTestId('matches').textContent).to.equal('false');
+        expect(getRenderCountRef.current()).to.equal(2);
+      });
+
+      it('hydrate API: should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+        const getRenderCountRef = React.createRef();
+        function Test() {
+          const matches = useMediaQuery('(min-width:2000px)', {
+            defaultMatches: true,
+            noSsr: true,
+          });
+
+          return (
+            <RenderCounter ref={getRenderCountRef}>
+              <span data-testid="matches">{`${matches}`}</span>
+            </RenderCounter>
+          );
+        }
+
+        const { hydrate } = renderToString(<Test />);
+        hydrate();
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });

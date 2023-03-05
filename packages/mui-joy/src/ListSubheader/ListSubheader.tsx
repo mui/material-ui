@@ -54,7 +54,16 @@ const ListSubheaderRoot = styled('div', {
       : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListSubheader API](https://mui.com/joy-ui/api/list-subheader/)
+ */
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -149,7 +158,7 @@ ListSubheader.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
