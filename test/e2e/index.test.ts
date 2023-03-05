@@ -204,7 +204,6 @@ describe('e2e', () => {
       await page.keyboard.down('ArrowDown');
       await page.keyboard.down('ArrowDown');
       await page.keyboard.down('ArrowDown');
-      await page.keyboard.down('ArrowDown');
 
       const focusedOption = await page.evaluate(() => {
         const listbox = document.querySelector('[role="listbox"]')!;
