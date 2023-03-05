@@ -170,7 +170,7 @@ You can get more details of our next steps in [MUI X public roadmap](https://git
 
 ## Decoupling versions from MUI Core
 
-We're officially decoupling MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction.
+We're officially decoupling MUI X's versioning from MUI Core (including `@mui/material`: Material UI). We understand that this may cause confusion, so we'd like to explain the main reasons why we're moving in this direction.
 
 1. Soften migration pains with a yearly release cycle.
 
