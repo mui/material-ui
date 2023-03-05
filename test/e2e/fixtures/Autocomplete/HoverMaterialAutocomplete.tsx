@@ -5,7 +5,7 @@ function HoverMaterialAutocomplete() {
   return (
     <Autocomplete
       open
-    options={['one', 'two', 'three', 'four', 'five']}
+      options={['one', 'two', 'three', 'four', 'five']}
       sx={{ width: 300 }}
       ListboxProps={{ sx: { height: '100px' } }}
       renderInput={(params) => <TextField {...params} />}

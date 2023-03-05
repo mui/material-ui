@@ -1,19 +1,15 @@
-import { Autocomplete, CssVarsProvider, StyledEngineProvider } from '@mui/joy';
+import { Autocomplete } from '@mui/joy';
 import * as React from 'react';
 
-function HoverMaterialAutocomplete() {
+function HoverJoyAutocomplete() {
   return (
-    <StyledEngineProvider injectFirst>
-      <CssVarsProvider>
-        <Autocomplete
-          open
-          options={['one', 'two', 'three', 'four', 'five']}
-          sx={{ width: 300 }}
-          slotProps={{ listbox: { sx: { height: '100px' } } }}
-        />
-      </CssVarsProvider>
-    </StyledEngineProvider>
+    <Autocomplete
+      open
+      options={['one', 'two', 'three', 'four', 'five']}
+      sx={{ width: 300 }}
+      slotProps={{ listbox: { sx: { height: '100px' } } }}
+    />
   );
 }
 
-export default HoverMaterialAutocomplete;
+export default HoverJoyAutocomplete;
