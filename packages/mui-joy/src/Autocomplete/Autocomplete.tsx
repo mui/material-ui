@@ -9,11 +9,10 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import {
-  useAutocomplete,
+import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
+} from '@mui/base/useAutocomplete';
 import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
@@ -51,8 +50,8 @@ type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 
 
 const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
-const defaultGetOptionLabel = <T extends unknown>(option: T) =>
-  (option as { label: string }).label ?? option;
+// @ts-ignore
+const defaultGetOptionLabel = (option) => option.label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
 const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   <ListItem key={params.key} nested>
@@ -269,7 +268,16 @@ const excludeUseAutocompleteParams = <
   selectOnFocus,
   ...other
 }: T) => other as T;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://mui.com/joy-ui/api/autocomplete/)
+ */
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -746,7 +754,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   autoFocus: PropTypes.bool,
   /**
    * The icon to display in place of the default clear icon.
-   * @default <ClearIcon fontSize="small" />
+   * @default <ClearIcon fontSize="md" />
    */
   clearIcon: PropTypes.node,
   /**
@@ -800,6 +808,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -823,9 +832,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *
-   * @param {number} more The number of truncated tags.
+   * @param {string | number} more The number of truncated tags.
    * @returns {ReactNode}
-   * @default (more) => `+${more}`
+   * @default (more: string | number) => `+${more}`
    */
   getLimitTagsText: PropTypes.func,
   /**
@@ -1053,7 +1062,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

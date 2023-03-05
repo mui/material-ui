@@ -42,6 +42,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
     focusVisibleClassName?: string;
     /**
      * The size of the component.
+     * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', IconButtonPropsSizeOverrides>;
     /**
@@ -53,7 +54,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'soft'
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;

@@ -167,7 +167,16 @@ const LinkRoot = styled('a', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Link](https://mui.com/joy-ui/react-link/)
+ *
+ * API:
+ *
+ * - [Link API](https://mui.com/joy-ui/api/link/)
+ */
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
     color: colorProp = 'primary',

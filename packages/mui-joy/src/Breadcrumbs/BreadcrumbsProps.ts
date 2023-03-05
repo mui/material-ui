@@ -5,10 +5,33 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 
+export interface BreadcrumbsSlots {
+  /**
+   * The component used to render the root.
+   * @default 'nav'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the ol.
+   * @default 'ol'
+   */
+  ol: React.ElementType;
+  /**
+   * The component used to render the li.
+   * @default 'li'
+   */
+  li: React.ElementType;
+  /**
+   * The component used to render the separator.
+   * @default 'li'
+   */
+  separator: React.ElementType;
+}
+
 export interface BreadcrumbsPropsSizeOverrides {}
 
 export type BreadcrumbsSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  BreadcrumbsSlot,
+  BreadcrumbsSlots,
   {
     root: SlotProps<'nav', {}, BreadcrumbsOwnerState>;
     ol: SlotProps<'ol', {}, BreadcrumbsOwnerState>;

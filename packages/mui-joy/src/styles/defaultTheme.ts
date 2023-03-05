@@ -17,6 +17,7 @@ export const getThemeWithVars = (
     lineHeight,
     radius,
     shadow,
+    zIndex,
     palette: paletteInput,
     colorInversion: colorInversionInput,
     ...restTheme
@@ -40,6 +41,7 @@ export const getThemeWithVars = (
     lineHeight,
     radius,
     shadow,
+    zIndex,
     ...restTheme,
     colorSchemes: {
       ...colorSchemes,
@@ -60,6 +62,7 @@ export const getThemeWithVars = (
       radius,
       shadow,
       palette,
+      zIndex,
     },
     getColorSchemeSelector: () => '&',
   } as unknown as Theme;

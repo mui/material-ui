@@ -133,7 +133,16 @@ const ListItemEndAction = styled('div', {
   right: 0,
   transform: 'translate(var(--List-item-endActionTranslateX), -50%)',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItem API](https://mui.com/joy-ui/api/list-item/)
+ */
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -306,7 +315,7 @@ ListItem.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

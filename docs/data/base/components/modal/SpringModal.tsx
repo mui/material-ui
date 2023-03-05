@@ -1,5 +1,4 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { Box, styled, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
@@ -7,16 +6,10 @@ import { useSpring, animated } from '@react-spring/web';
 
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
-  { open?: boolean; className: string }
+  { children: React.ReactElement; open: boolean }
 >((props, ref) => {
-  const { open, className, ...other } = props;
-  return (
-    <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
-      ref={ref}
-      {...other}
-    />
-  );
+  const { open, ...other } = props;
+  return <Fade ref={ref} in={open} {...other} />;
 });
 
 const Modal = styled(ModalUnstyled)`
@@ -43,10 +36,11 @@ const Backdrop = styled(BackdropUnstyled)`
 `;
 
 interface FadeProps {
-  children?: React.ReactElement;
-  in: boolean;
-  onEnter?: () => {};
-  onExited?: () => {};
+  children: React.ReactElement;
+  in?: boolean;
+  onClick?: any;
+  onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
+  onExited?: (node: HTMLElement, isAppearing: boolean) => void;
 }
 
 const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
@@ -56,12 +50,12 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
     to: { opacity: open ? 1 : 0 },
     onStart: () => {
       if (open && onEnter) {
-        onEnter();
+        onEnter(null as any, true);
       }
     },
     onRest: () => {
       if (!open && onExited) {
-        onExited();
+        onExited(null as any, true);
       }
     },
   });
@@ -104,7 +98,7 @@ export default function SpringModal() {
         <Fade in={open}>
           <Box sx={style}>
             <h2 id="spring-modal-title">Text in a modal</h2>
-            <span id="spring-modal-description" style={{ marginTop: '16px' }}>
+            <span id="spring-modal-description" style={{ marginTop: 16 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </span>
           </Box>

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { UseTabPanelRootSlotProps } from './useTabPanel.types';
+import { UseTabPanelRootSlotProps } from '../useTabPanel';
 import { SlotComponentProps } from '../utils';
 
-interface TabPanelUnstyledRootSlotPropsOverrides {}
+export interface TabPanelUnstyledRootSlotPropsOverrides {}
 
 export interface TabPanelUnstyledOwnProps {
   /**
@@ -20,9 +20,7 @@ export interface TabPanelUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: TabPanelUnstyledSlots;
   /**
    * The props used for each slot inside the TabPanel.
    * @default {}
@@ -34,6 +32,14 @@ export interface TabPanelUnstyledOwnProps {
       TabPanelUnstyledOwnerState
     >;
   };
+}
+
+export interface TabPanelUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface TabPanelUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

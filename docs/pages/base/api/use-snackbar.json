@@ -20,6 +20,6 @@
   },
   "returnValue": {},
   "name": "useSnackbar",
-  "filename": "/packages/mui-base/src/SnackbarUnstyled/useSnackbar.ts",
+  "filename": "/packages/mui-base/src/useSnackbar/useSnackbar.ts",
   "demos": "<ul><li><a href=\"/base/react-snackbar/#hook\">Unstyled Snackbar</a></li></ul>"
 }

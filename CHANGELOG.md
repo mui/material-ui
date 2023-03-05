@@ -1,5 +1,139 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.11
+
+<!-- generated comparing v5.11.10..master -->
+
+_Feb 27, 2023_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 📚 added API documentation for the slots in MUI Base and Joy UI by @hbjORbj, for e.g. [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/#slots)
+- other 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.11`
+
+- &#8203;<!-- 30 -->[Autocomplete] Adds `sx` prop to `ListboxProps` type (#36243) @sai6855
+- &#8203;<!-- 11 -->[material] Add global CSS class for `readOnly` prop (#32822) @jrparish
+- &#8203;<!-- 10 -->[Stack][material] Use createStack from the system (#33795) @mnajdova
+- &#8203;<!-- 07 -->[Select] Fix incorrect selecting of first element (#36024) @michaldudak
+- &#8203;<!-- 06 -->[Slider] Miscellaneous improvements (#35941) @ZeeshanTamboli
+- &#8203;<!-- 05 -->[Slider] Remove unnecessary `data-focusvisible` attribute (#36091) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[Snackbar] Replace component logic with `useSnackbar` hook (#36272) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[TextField] Fix floating label position (#36246) @oliviertassinari
+- &#8203;<!-- 13 -->[TextField] Fix floating label position (#36288) @oliviertassinari
+
+### `@mui/base@5.0.0-alpha.119`
+
+#### Breaking changes
+
+- &#8203;<!-- 29 -->[base] Remove `classes` prop from the Base components that have it (#36157) @hbjORbj
+  These are the components affected by this change: ModalUnstyled, SliderUnstyled, TablePaginationUnstyled and TablePaginationActionsUnstyled.
+  You can replace the `classes` prop by providing the class name prop directly to the prop via `slotProps`. Below is an example of how the migration should look like:
+
+  ```diff
+   <TablePaginationUnstyled
+  -   classes={{ toolbar: 'toolbar-classname', menuItem: 'menuItem-classname' }}
+  +   slotProps={{ toolbar: { className: 'toolbar-classname' }, menuItem: { className: 'menuItem-classname'}}}
+   />
+  ```
+
+- &#8203;<!-- 28 -->[base] Move hooks to their own directories (#36235) @hbjORbj
+  Base hooks (e.g., `useSelect`) are no longer exported from `{Component}Unstyled` directories and instead they have their own directories.
+  Below is an example of how the migration should look like:
+
+  ```diff
+  -import { useBadge } from '@mui/base/BadgeUnstyled';
+  +import useBadge from '@mui/base/useBadge';
+  ```
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-hook-imports) to help with the migration.
+
+#### Changes
+
+- &#8203;<!-- 31 -->[Autocomplete] Add docs interface for the hook (#36242) @HeVictor
+- &#8203;<!-- 09 -->[MenuUnstyled] Remove extra useMemo (#36265) @ivp-dev
+- &#8203;<!-- 31 -->[base] Export all slot prop overrides interfaces (#36323) @michaldudak
+
+### `@mui/codemod@5.11.11`
+
+- &#8203;<!-- 35 -->[base] Codemod for hook directory migration (#36295) @hbjORbj
+
+### `@mui/joy@5.0.0-alpha.69`
+
+- &#8203;<!-- 15 -->[Joy] Able to remove default tokens from theme types (#36006) @siriwatknp
+- &#8203;<!-- 14 -->[Joy] Fix modal dialog overflow viewport (#36103) @siriwatknp
+- &#8203;<!-- 13 -->[Joy] Select popup should have max-height (#36156) @Vivek-Prajapatii
+- &#8203;<!-- 12 -->[Joy] Fix `ListDivider` to change semantic based on `List` (#36266) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 27 -->[docs][base] List slots in API documentation (#36104) @hbjORbj
+- &#8203;<!-- 26 -->[docs] Add missing sandbox adapter deps resolving (#36291) @LukasTy
+- &#8203;<!-- 25 -->[docs] Allow to pass navigation bar banner from outside (#36299) @MBilalShafi
+- &#8203;<!-- 24 -->[docs] Fix code on the Working with Tailwind CSS guide (#36090) @mnajdova
+- &#8203;<!-- 23 -->[docs] Remove See Slots Section text from Material UI slots description (#36284) @hbjORbj
+- &#8203;<!-- 22 -->[docs] Fix emotion warning `:first-child` (#36263) @siriwatknp
+- &#8203;<!-- 21 -->[docs][joy] Improve the descriptions of props in API docs (#36307) @hbjORbj
+- &#8203;<!-- 20 -->[docs][joy] List slots in API documentation (#36271) @hbjORbj
+- &#8203;<!-- 19 -->[docs][joy] Build API documentations (#36008) @hbjORbj
+- &#8203;<!-- 18 -->[examples] Update Next.js examples to use built-in font (#36315) @Juneezee
+- &#8203;<!-- 17 -->[examples] Update curl link in `material-next-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
+- &#8203;<!-- 16 -->[examples] Convert Next.js \_document class components to function components (#36109) @ossan-engineer
+
+### Core
+
+- &#8203;<!-- 08 -->[Rating] Add a comment in Rating component to use `readOnly` state class (#36357) @ZeeshanTamboli
+- &#8203;<!-- 02 -->[website] Fix broken links to role levels (#36333) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Sync gold sponsors (#36312) @oliviertassinari
+
+All contributors of this release in alphabetical order: @hbjORbj, @HeVictor, @ivp-dev, @jrparish, @Juneezee, @LukasTy, @MBilalShafi, @michaldudak, @mnajdova, @oliviertassinari, @ossan-engineer, @sai6855, @siriwatknp, @Vivek-Prajapatii, @ZeeshanTamboli
+
+## 5.11.10
+
+<!-- generated comparing v5.11.9..master -->
+
+_Feb 20, 2023_
+
+A big thanks to the 11 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.10`
+
+- &#8203;<!-- 22 -->[Avatar] Fix ownerState usage with styleOverrides when fallback is used (#36228) @sai6855
+- &#8203;<!-- 21 -->[Badge][material] Replace `BadgeUnstyled` with `useBadge` hook (#36158) @hbjORbj
+- &#8203;<!-- 03 -->[Switch] Fix DOM warning when `type` isn't `checkbox` or `radio` (#36170) @dani-mp
+- &#8203;<!-- 02 -->[TextareaAutosize] Convert code to TypeScript (#35862) @sai6855
+- &#8203;<!-- 01 -->[useMediaQuery] Fix behavior of noSsr with React 18 (#36056) @oliviertassinari
+
+### `@mui/joy@5.0.0-alpha.68`
+
+- &#8203;<!-- 05 -->[Joy] Add `zIndex` to theme (#36236) @siriwatknp
+- &#8203;<!-- 04 -->[Joy] Remove transition from all components (#35952) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 20 -->[docs][base] Fix base Input demos for Safari (#36213) @mj12albert
+- &#8203;<!-- 16 -->[docs] Fix 301 links @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Fix modal transition demos (#36137) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Update links to pt examples (#36237) @Aleff13
+- &#8203;<!-- 13 -->[docs] Update custom Typography variants example (#36185) @mj12albert
+- &#8203;<!-- 12 -->[docs] Change markdown numbering syntax (#36187) @mj12albert
+- &#8203;<!-- 11 -->[docs] Fix switch alignment in `Disabled tree items` section in Tree View docs (#36217) @PunitSoniME
+- &#8203;<!-- 10 -->[docs] Standardize example names (#36112) @samuelsycamore
+- &#8203;<!-- 09 -->[docs] Fix typo @oliviertassinari
+- &#8203;<!-- 08 -->[docs] Fix markdown table alignments (#36136) @oliviertassinari
+- &#8203;<!-- 07 -->[docs] Small color tweaks to the docs search bar (#36160) @danilo-leal
+- &#8203;<!-- 06 -->[docs][joy] Update class name prefixes in the `Anatomy` section (#36210) @ZeeshanTamboli
+
+### Core
+
+- &#8203;<!-- 19 -->[core] Migrate nprogress to emotion (#36181) @siriwatknp
+- &#8203;<!-- 18 -->[core] Enforce namespace import for ReactDOM (#36208) @mj12albert
+- &#8203;<!-- 17 -->[core] Fix deploy preview links (#36203) @siriwatknp
+
+All contributors of this release in alphabetical order: @Aleff13, @dani-mp, @danilo-leal, @hbjORbj, @mj12albert, @oliviertassinari, @PunitSoniME, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.11.9
 
 <!-- generated comparing v5.11.8..master -->
