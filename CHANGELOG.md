@@ -18,7 +18,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 24 -->[Dialog] Use the `id` prop provided to the `DialogTitle` component (#36353) @Kundan28
 - &#8203;<!-- 07 -->[Menu] Fix Menu Paper styles overriding in the theme (#36316) @Paatus
 
-### `@mui/lab@5.0.0-alpha.92`
+### `@mui/lab@5.0.0-alpha.122`
 
 - &#8203;<!-- 05 -->[TreeView] Fix Tree View inside shadow root crashes (#36225) @NoFr1ends
 
