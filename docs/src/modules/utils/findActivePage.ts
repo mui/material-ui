@@ -2,10 +2,12 @@ import { MuiPage } from 'docs/src/pages';
 
 export default function findActivePage(
   currentPages: MuiPage[],
-  pathname: string,
+  currentPathname: string,
 ): { activePage: MuiPage | null; activePageParents: MuiPage[] } {
   const map: Record<string, MuiPage> = {};
   const mapParent: Record<string, MuiPage> = {};
+
+  const pathname = currentPathname.replace('/[docsTab]', '');
 
   const traverse = (parent: MuiPage) => {
     (parent.children || []).forEach((child) => {
@@ -32,6 +34,8 @@ export default function findActivePage(
     activePageParents.push(parent);
     traversePage = parent;
   }
+
+  console.log(activePage);
 
   return {
     activePage,

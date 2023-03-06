@@ -30,6 +30,11 @@ export default function ComponentPageTabs(props) {
   } = props;
   const router = useRouter();
 
+  const demosHref = router.pathname.endsWith('[docsTab]') ? router.pathname.replace('[docsTab]', '') : router.pathname;
+  const apiPathname = `${demosHref.endsWith('/') ? demosHref : `${demosHref}/`}`;
+  const componentsHref = `${apiPathname}component-api`;
+  const hooksHref = `${apiPathname}hook-api`;
+
   return (
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Tabs
@@ -62,11 +67,11 @@ export default function ComponentPageTabs(props) {
           zIndex: 1000,
         }}
       >
-        <Tab as={Link} shallow href={{ pathname: router.pathname }} label="Demos" value="" />
+        <Tab as={Link} shallow href={demosHref} label="Demos" value="" />
         <Tab
           as={Link}
           shallow
-          href={{ pathname: router.pathname, query: { docsTab: 'component-api' } }}
+          href={componentsHref}
           label="Component API"
           value="component-api"
         />
@@ -74,7 +79,7 @@ export default function ComponentPageTabs(props) {
           <Tab
             as={Link}
             shallow
-            href={{ pathname: router.pathname, query: { docsTab: 'hook-api' } }}
+            href={hooksHref}
             label="Hook API"
             value="hook-api"
           />
