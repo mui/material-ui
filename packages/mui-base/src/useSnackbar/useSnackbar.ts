@@ -148,7 +148,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
   const getRootProps: UseSnackbarReturnValue['getRootProps'] = <
     TOther extends Parameters<UseSnackbarReturnValue['getRootProps']>[0],
   >(
-    otherHandlers: TOther,
+    otherHandlers: TOther = {} as TOther,
   ) => {
     const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
     const externalEventHandlers = {
