@@ -49,7 +49,7 @@ export default function FirstSidebar() {
         }}
       />
       <MuiLogo />
-      <List sx={{ '--List-item-radius': '8px', '--List-gap': '12px' }}>
+      <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
         <ListItem>
           <ListItemButton>
             <i data-feather="home" />
@@ -90,7 +90,7 @@ export default function FirstSidebar() {
         sx={{
           mt: 'auto',
           flexGrow: 0,
-          '--List-item-radius': '8px',
+          '--ListItem-radius': '8px',
           '--List-gap': '8px',
         }}
       >

@@ -16,8 +16,8 @@ export default function HorizontalDividedList() {
         boxShadow: 'sm',
         flexGrow: 0,
         mx: 'auto',
-        '--List-decorator-size': '48px',
-        '--List-item-paddingY': '1rem',
+        '--List-decoratorSize': '48px',
+        '--ListItem-paddingY': '1rem',
       }}
     >
       <ListItem>

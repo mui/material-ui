@@ -22,7 +22,7 @@ export default function TabsPricingExample() {
     >
       <TabList
         sx={{
-          '--List-item-radius': '0px',
+          '--ListItem-radius': '0px',
           borderRadius: 0,
           [`& .${tabClasses.root}`]: {
             fontWeight: 'lg',

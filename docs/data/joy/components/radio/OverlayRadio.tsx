@@ -41,7 +41,7 @@ export default function OverlayRadio() {
                 mr: -1,
                 mb: 0.5,
                 alignSelf: 'flex-end',
-                '--Radio-action-radius': (theme) => theme.vars.radius.md,
+                '--Radio-actionRadius': (theme) => theme.vars.radius.md,
               }}
             />
             <Avatar alt={`person${num}`} src={`/static/images/avatar/${num}.jpg`} />

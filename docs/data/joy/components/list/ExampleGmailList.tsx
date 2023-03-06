@@ -23,10 +23,10 @@ export default function ExampleGmailList() {
         aria-label="Sidebar"
         sx={{
           // ...applyRadiusOnEdges({ target: 'deepest' | 'nested' }),
-          '--List-item-paddingLeft': '0px',
-          '--List-decorator-size': '64px',
-          '--List-decorator-color': (theme) => theme.vars.palette.text.secondary,
-          '--List-item-minHeight': '32px',
+          '--ListItem-paddingLeft': '0px',
+          '--List-decoratorSize': '64px',
+          '--List-decoratorColor': (theme) => theme.vars.palette.text.secondary,
+          '--ListItem-minHeight': '32px',
           '--List-nestedInsetStart': '13px',
           [`& .${listItemDecoratorClasses.root}`]: {
             justifyContent: 'flex-end',

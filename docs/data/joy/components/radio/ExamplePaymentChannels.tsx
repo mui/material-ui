@@ -40,7 +40,7 @@ export default function ExamplePaymentChannels() {
           }
           sx={{
             [`&&:not(.${switchClasses.checked})`]: {
-              '--Switch-track-background': (theme) =>
+              '--Switch-trackBackground': (theme) =>
                 theme.vars.palette.background.level3,
             },
           }}

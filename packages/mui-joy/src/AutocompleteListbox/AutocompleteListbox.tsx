@@ -50,11 +50,11 @@ export const StyledAutocompleteListbox = styled(StyledList)<{
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.popup,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)',
     ...scopedVariables,
     boxShadow: theme.shadow.md,
     ...(!variantStyle?.backgroundColor && {

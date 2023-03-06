@@ -111,9 +111,9 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Autocomplete-wrapper-gap': '3px',
+  '--Autocomplete-wrapperGap': '3px',
   ...(ownerState.size === 'lg' && {
-    '--Autocomplete-wrapper-gap': '4px',
+    '--Autocomplete-wrapperGap': '4px',
   }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
@@ -142,23 +142,23 @@ const AutocompleteWrapper = styled('div', {
   alignItems: 'center',
   flexWrap: 'wrap',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapper-gap))',
+    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapperGap))',
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
-        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
+        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapperGap), 0px)',
+        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapperGap))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
+          marginInlineStart: 'max(var(--Autocomplete-wrapperGap), var(--Input-gap))',
         },
       }),
   },
   [`& .${chipClasses.root}`]: {
     // TODO: use flexbox `gap` later.
     minWidth: 0,
-    marginInlineStart: 'var(--Autocomplete-wrapper-gap)',
-    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
+    marginInlineStart: 'var(--Autocomplete-wrapperGap)',
+    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
   },
 }));
 
@@ -170,7 +170,7 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   minWidth: 30,
   minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
+    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
     ...(!ownerState.startDecorator && {
       marginInlineStart: 'var(--Input-paddingInline)',
     }),
@@ -202,7 +202,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(!ownerState.hasPopupIcon && {
-    marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
+    marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   }),
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   visibility: ownerState.focused ? 'visible' : 'hidden',
@@ -214,7 +214,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
-  marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
+  marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),

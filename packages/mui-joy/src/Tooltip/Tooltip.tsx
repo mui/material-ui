@@ -52,19 +52,19 @@ const TooltipRoot = styled('div', {
   return {
     ...(ownerState.size === 'sm' && {
       '--Icon-fontSize': '1rem',
-      '--Tooltip-arrow-size': '8px',
+      '--Tooltip-arrowSize': '8px',
       padding: theme.spacing(0.5, 0.625),
       fontSize: theme.vars.fontSize.xs,
     }),
     ...(ownerState.size === 'md' && {
       '--Icon-fontSize': '1.125rem',
-      '--Tooltip-arrow-size': '10px',
+      '--Tooltip-arrowSize': '10px',
       padding: theme.spacing(0.625, 0.75),
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'lg' && {
       '--Icon-fontSize': '1.25rem',
-      '--Tooltip-arrow-size': '12px',
+      '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
       fontSize: theme.vars.fontSize.md,
     }),
@@ -131,9 +131,9 @@ const TooltipArrow = styled('span', {
 })<{ ownerState: TooltipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--unstable_Tooltip-arrow-rotation': 0,
-    width: 'var(--Tooltip-arrow-size)',
-    height: 'var(--Tooltip-arrow-size)',
+    '--unstable_TooltipArrow-rotation': 0,
+    width: 'var(--Tooltip-arrowSize)',
+    height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
     // use psuedo element because Popper controls the `transform` property of the arrow.
     '&:before': {
@@ -142,7 +142,7 @@ const TooltipArrow = styled('span', {
       position: 'absolute',
       width: 0,
       height: 0,
-      border: 'calc(var(--Tooltip-arrow-size) / 2) solid',
+      border: 'calc(var(--Tooltip-arrowSize) / 2) solid',
       borderLeftColor: 'transparent',
       borderBottomColor: 'transparent',
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
@@ -150,22 +150,22 @@ const TooltipArrow = styled('span', {
       borderRadius: `0px 2px 0px 0px`,
       boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
-      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
+      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_TooltipArrow-rotation)))',
     },
     '[data-popper-placement*="bottom"] &': {
-      top: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
+      top: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
     },
     '[data-popper-placement*="top"] &': {
-      '--unstable_Tooltip-arrow-rotation': 2,
-      bottom: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_TooltipArrow-rotation': 2,
+      bottom: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="left"] &': {
-      '--unstable_Tooltip-arrow-rotation': 1,
-      right: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_TooltipArrow-rotation': 1,
+      right: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="right"] &': {
-      '--unstable_Tooltip-arrow-rotation': 3,
-      left: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_TooltipArrow-rotation': 3,
+      left: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
   };
 });

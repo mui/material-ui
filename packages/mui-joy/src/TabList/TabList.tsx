@@ -39,7 +39,7 @@ const TabListRoot = styled(StyledList, {
   '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
-  '--List-divider-gap': '0px',
+  '--ListDivider-gap': '0px',
   ...scopedVariables,
 }));
 /**
