@@ -2958,7 +2958,7 @@ describe('<Autocomplete />', () => {
     act(() => {
       fireEvent.touchStart(options[1]);
       listbox.scrollBy(0, 60);
-      setProps({ options: getOptions(15) });
+      setProps({ options: getOptions(10) });
     });
 
     expect(listbox).to.have.property('scrollTop', 60);
