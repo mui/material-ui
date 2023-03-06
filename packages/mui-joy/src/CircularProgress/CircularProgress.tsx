@@ -56,44 +56,44 @@ const CircularProgressRoot = styled('span', {
     // integration with icon
     '--Icon-fontSize': 'calc(0.4 * var(--_root-size))',
     // public variables
-    '--CircularProgress-track-color': backgroundColor,
-    '--CircularProgress-progress-color': color,
+    '--CircularProgress-trackColor': backgroundColor,
+    '--CircularProgress-progressColor': color,
     '--CircularProgress-percent': ownerState.value, // 0 - 100
     '--CircularProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
-      '--CircularProgress-track-thickness': '3px',
-      '--CircularProgress-progress-thickness': '3px',
+      '--CircularProgress-trackThickness': '3px',
+      '--CircularProgress-progressThickness': '3px',
       '--_root-size': 'var(--CircularProgress-size, 24px)', // use --_root-size to let other components overrides via --CircularProgress-size
     }),
     ...(ownerState.instanceSize === 'sm' && {
       '--CircularProgress-size': '24px',
     }),
     ...(ownerState.size === 'md' && {
-      '--CircularProgress-track-thickness': '6px',
-      '--CircularProgress-progress-thickness': '6px',
+      '--CircularProgress-trackThickness': '6px',
+      '--CircularProgress-progressThickness': '6px',
       '--_root-size': 'var(--CircularProgress-size, 40px)',
     }),
     ...(ownerState.instanceSize === 'md' && {
       '--CircularProgress-size': '40px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--CircularProgress-track-thickness': '8px',
-      '--CircularProgress-progress-thickness': '8px',
+      '--CircularProgress-trackThickness': '8px',
+      '--CircularProgress-progressThickness': '8px',
       '--_root-size': 'var(--CircularProgress-size, 64px)',
     }),
     ...(ownerState.instanceSize === 'lg' && {
       '--CircularProgress-size': '64px',
     }),
     ...(ownerState.thickness && {
-      '--CircularProgress-track-thickness': `${ownerState.thickness}px`,
-      '--CircularProgress-progress-thickness': `${ownerState.thickness}px`,
+      '--CircularProgress-trackThickness': `${ownerState.thickness}px`,
+      '--CircularProgress-progressThickness': `${ownerState.thickness}px`,
     }),
     // internal variables
     '--_thickness-diff':
-      'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
+      'calc(var(--CircularProgress-trackThickness) - var(--CircularProgress-progressThickness))',
     '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth, 0px))',
     '--_outlined-inset':
-      'max(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
+      'max(var(--CircularProgress-trackThickness), var(--CircularProgress-progressThickness))',
     width: 'var(--_root-size)',
     height: 'var(--_root-size)',
     borderRadius: 'var(--_root-size)',
@@ -150,10 +150,10 @@ const CircularProgressTrack = styled('circle', {
 })<{ ownerState: CircularProgressOwnerState }>({
   cx: '50%',
   cy: '50%',
-  r: 'calc(var(--_inner-size) / 2 - var(--CircularProgress-track-thickness) / 2 + min(0px, var(--_thickness-diff) / 2))',
+  r: 'calc(var(--_inner-size) / 2 - var(--CircularProgress-trackThickness) / 2 + min(0px, var(--_thickness-diff) / 2))',
   fill: 'transparent',
-  strokeWidth: 'var(--CircularProgress-track-thickness)',
-  stroke: 'var(--CircularProgress-track-color)',
+  strokeWidth: 'var(--CircularProgress-trackThickness)',
+  stroke: 'var(--CircularProgress-trackColor)',
 });
 
 const CircularProgressProgress = styled('circle', {
@@ -163,14 +163,14 @@ const CircularProgressProgress = styled('circle', {
 })<{ ownerState: CircularProgressOwnerState }>(
   {
     '--_progress-radius':
-      'calc(var(--_inner-size) / 2 - var(--CircularProgress-progress-thickness) / 2 - max(0px, var(--_thickness-diff) / 2))',
+      'calc(var(--_inner-size) / 2 - var(--CircularProgress-progressThickness) / 2 - max(0px, var(--_thickness-diff) / 2))',
     '--_progress-length': 'calc(2 * 3.1415926535 * var(--_progress-radius))', // the circumference around the progress
     cx: '50%',
     cy: '50%',
     r: 'var(--_progress-radius)',
     fill: 'transparent',
-    strokeWidth: 'var(--CircularProgress-progress-thickness)',
-    stroke: 'var(--CircularProgress-progress-color)',
+    strokeWidth: 'var(--CircularProgress-progressThickness)',
+    stroke: 'var(--CircularProgress-progressColor)',
     strokeLinecap: 'var(--CircularProgress-linecap, round)' as 'round', // can't use CSS variable directly, need to cast type.
     strokeDasharray: 'var(--_progress-length)',
     strokeDashoffset:

@@ -8,10 +8,10 @@ The Material Design [color system](https://m2.material.io/design/color/) can be 
 
 ### Official color tool
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/resources/color/).
+The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/inline-tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://m2.material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
+<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
 </a>
 <br />

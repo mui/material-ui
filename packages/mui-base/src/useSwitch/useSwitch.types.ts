@@ -49,3 +49,31 @@ interface UseSwitchInputSlotOwnProps {
 
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
   UseSwitchInputSlotOwnProps;
+
+export interface UseSwitchReturnValue {
+  /**
+   * If `true`, the component will be checked.
+   */
+  checked: boolean;
+  /**
+   * If `true`, the component will be disabled.
+   */
+  disabled: boolean;
+  /**
+   * If `true`, it indicates that the component is being focused using keyboard.
+   * @default false
+   */
+  focusVisible: boolean;
+  /**
+   * Resolver for the input slot's props.
+   * @param externalProps props for the input slot
+   * @returns props that should be spread on the input slot
+   */
+  getInputProps: (
+    externalProps?: React.HTMLAttributes<HTMLInputElement>,
+  ) => UseSwitchInputSlotProps;
+  /**
+   * If `true`, the component will be read only.
+   */
+  readOnly: boolean;
+}
