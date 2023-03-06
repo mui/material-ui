@@ -31,7 +31,7 @@ function stateReducer(
   const newState = defaultListboxReducer(state, action);
 
   if (
-    action.type !== ActionTypes.setHighlight &&
+    action.type === ActionTypes.setHighlight &&
     newState.highlightedValue === null &&
     action.props.options.length > 0
   ) {
