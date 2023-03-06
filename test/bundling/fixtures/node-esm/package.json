@@ -9,14 +9,14 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/styled": "11.10.4",
-    "@mui/material": "5.10.5",
-    "@mui/icons-material": "5.10.3",
-    "@mui/lab": "5.0.0-alpha.99",
-    "@mui/styled-engine": "5.10.5",
-    "@mui/styles": "5.10.3",
-    "@mui/system": "5.10.5",
-    "@mui/utils": "5.10.3",
+    "@emotion/styled": "11.10.6",
+    "@mui/material": "5.11.12",
+    "@mui/icons-material": "5.11.11",
+    "@mui/lab": "5.0.0-alpha.122",
+    "@mui/styled-engine": "5.11.11",
+    "@mui/styles": "5.11.12",
+    "@mui/system": "5.11.12",
+    "@mui/utils": "5.11.12",
     "react-is": "18.2.0"
   }
 }
