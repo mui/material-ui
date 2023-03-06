@@ -2921,4 +2921,37 @@ describe('<Autocomplete />', () => {
       expect(root).to.have.class(classes.expanded);
     });
   });
+
+  // https://github.com/mui/material-ui/issues/36212
+  it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    function getOptions(count) {
+      return Array(count)
+        .fill('item')
+        .map((value, i) => value + i);
+    }
+
+    const { getByRole, getAllByRole, setProps } = render(
+      <Autocomplete
+        open
+        options={getOptions(5)}
+        renderInput={(params) => <TextField {...params} />}
+        ListboxProps={{ style: { maxHeight: '100px' } }}
+      />,
+    );
+    const listbox = getByRole('listbox');
+
+    expect(listbox).to.have.property('scrollTop', 0);
+
+    const options = getAllByRole('option');
+    act(() => {
+      fireEvent.touchStart(options[1]);
+      listbox.scrollBy(0, 60);
+      setProps({ options: getOptions(10) });
+    });
+
+    expect(listbox).to.have.property('scrollTop', 60);
+  });
 });
