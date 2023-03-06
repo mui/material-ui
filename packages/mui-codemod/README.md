@@ -62,6 +62,21 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `rename-css-variables`
+
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables.
+
+```diff
+-  <List sx={{ py: 'var(--List-divider-gap)' }}>
++  <List sx={{ py: 'var(--ListDivider-gap)' }}>
+-  <Switch sx={{ '--Switch-track-width': '40px' }}>
++  <Switch sx={{ '--Switch-trackWidth': '40px' }}>
+```
+
+```sh
+npx @mui/codemod v5.0.0/rename-css-variables <path>
+```
+
 #### `base-hook-imports`
 
 Updates the sources of the imports of the MUI Base hooks to adapt to the new directories of the hooks.
