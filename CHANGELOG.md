@@ -67,6 +67,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 33 -->[docs][joy] Clarify when `CssVarsProvider` is required (#36410) @mnajdova
 - &#8203;<!-- 32 -->MUI X v6 release announcement (#36398) @joserodolfofreitas
 - &#8203;<!-- 23 -->[docs] Add instructions for deploying docs without a release (#36301) @cherniavskii
 - &#8203;<!-- 22 -->[docs] Fix 301 redirections on the docs @oliviertassinari
