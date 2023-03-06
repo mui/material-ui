@@ -18,8 +18,15 @@ import FactCheck from '@mui/icons-material/FactCheck';
 import BookmarkAdd from '@mui/icons-material/BookmarkAdd';
 
 const useRovingIndex = (options) => {
-  const { initialActiveIndex = 0, vertical = false, handlers = {} } = options || {};
+  const {
+    initialActiveIndex = 0,
+    vertical = false,
+    handlers = {
+      onKeyDown: () => {},
+    },
+  } = options || {};
   const [activeIndex, setActiveIndex] = React.useState(initialActiveIndex);
+
   const targetRefs = React.useRef([]);
   const targets = targetRefs.current;
   const focusNext = () => {

@@ -286,7 +286,7 @@ Together, we have accomplished most of the objectives we defined a year ago in t
 
 - **More components.** This is, by far, the most requested improvement dimension of the library. We have identified a few useful components we are interested in building:
   - Layout components
-  - AutoComplete/ ComboBox / Dropdown List / MultiSelect
+  - Autocomplete/ ComboBox / Dropdown List / MultiSelect
   - Slider in core and the support for range values
   - Tree view
   - Dropzone / Upload

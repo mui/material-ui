@@ -435,9 +435,14 @@ const Root = styled('div')(
       },
     },
     '& li': {
+      // tight lists https://spec.commonmark.org/0.30/#tight
       marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
+      },
+      // loose lists https://spec.commonmark.org/0.30/#loose
+      '& > p': {
+        marginBottom: theme.spacing(1),
       },
     },
   }),

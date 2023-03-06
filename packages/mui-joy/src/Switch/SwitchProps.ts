@@ -95,7 +95,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
