@@ -64,7 +64,7 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 #### `rename-css-variables`
 
-Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables.
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
 
 ```diff
 -  <List sx={{ py: 'var(--List-divider-gap)' }}>
