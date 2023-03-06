@@ -495,7 +495,7 @@ export default function AppNavDrawer(props) {
                         current: true,
                       }
                     : {
-                        text: `v6-next`,
+                        text: `v6`,
                         href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },
@@ -507,7 +507,7 @@ export default function AppNavDrawer(props) {
                       }
                     : {
                         text: `v5`,
-                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },
               ])}
