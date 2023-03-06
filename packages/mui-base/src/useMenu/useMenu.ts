@@ -14,7 +14,7 @@ import {
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
 import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
-import { type MenuUnstyledContextType } from '../MenuUnstyled';
+import type { MenuUnstyledContextType } from '../MenuUnstyled';
 
 function stateReducer(
   state: ListboxState<string>,
