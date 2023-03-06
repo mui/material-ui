@@ -62,8 +62,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   Or you can define it directly in the theme prop:
 
   ```diff
-   <CssVarsProvider 
-  +   theme={createCssVarsProvider({ 
+   <CssVarsProvider
+  +   theme={createCssVarsProvider({
   +    // other theme keys
   +    shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1'
   +   })} />
