@@ -91,6 +91,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 #### Changes
 
+- &#8203;<!-- 34 -->[useSnackBar] Add explicit return type (#36052) @sai6855
 - &#8203;<!-- 04 -->[useMenu] Fix `import type` syntax (#36411) @ZeeshanTamboli
 - &#8203;<!-- 03 -->[useSwitch] Add explicit return type (#36050) @sai6855
 
