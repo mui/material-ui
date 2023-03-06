@@ -69,7 +69,9 @@ export interface UseSwitchReturnValue {
    * @param externalProps props for the input slot
    * @returns props that should be spread on the input slot
    */
-  getInputProps: (externalProps: React.HTMLAttributes<HTMLInputElement>) => UseSwitchInputSlotProps;
+  getInputProps: (
+    externalProps?: React.HTMLAttributes<HTMLInputElement>,
+  ) => UseSwitchInputSlotProps;
   /**
    * If `true`, the component will be read only.
    */
