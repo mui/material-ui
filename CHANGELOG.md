@@ -56,7 +56,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   +  }),
      defaultColorScheme: 'light',
   -  shouldSkipGeneratingVar: (keys) => keys[0] === 'typography' && keys[1] === 'h1',
-  });
+   });
   ```
 
   Or you can define it directly in the theme prop:
