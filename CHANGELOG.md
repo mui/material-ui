@@ -9,7 +9,7 @@ _Mar 6, 2023_
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - @michaldudak added the multiselect functionality to SelectUnstyled (#36274)
-- @mnajdova updated `extendTheme` so that it can generate CSS variables with default values. This means that the `CssVarsProvider` is no longer required for Joy UI (for the default styles) (#35739)
+- @mnajdova updated `extendTheme` so that it can generate CSS variables with default values. This means that the `CssVarsProvider` is no longer required for Joy UI when using the default theme (#35739)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.12`
@@ -23,7 +23,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 05 -->[TreeView] Fix Tree View inside shadow root crashes (#36225) @NoFr1ends
 
-### `@mui/material@5.11.12`
+### `@mui/system@5.11.12`
 
 #### Breaking changes
 
@@ -69,7 +69,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   +   })} />
   ```
 
-  We want to clarify that this breaking change is introduced to an experimental API, which isn't against our release policy.
+  This breaking change **only** affects experimental APIs
 
 ### `@mui/base@5.0.0-alpha.120`
 
