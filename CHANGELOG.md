@@ -27,6 +27,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - &#8203;<!-- 27 -->[Select][base] Add the multiselect functionality to SelectUnstyled (#36274) @michaldudak
+
   The MultiSelectUnstyled was removed. The `SelectUnstyled` component with the `multiple` prop should be used instead. Additionally, the SelectUnstyledProps received a second generic parameter: `Multiple extends boolean`. If you deal with strictly single- or multi-select components, you can hard-code this parameter to `false` or `true`, respectively. Below is an example of how the migration should look like:
 
   ```diff
@@ -49,6 +50,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - &#8203;<!-- 09 -->[Joy] Change CSS variables naming for components (#36282) @hbjORbj
+
   Joy UI has new naming standards of the CSS variables for its components. Below is an example of how the migration should look like:
 
   ```diff
