@@ -1,16 +1,21 @@
 import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { DefaultColorPalette, PaletteVariant } from './types/colorSystem';
-import { VariantKey } from './types/variants';
+import {
+  ColorPaletteProp,
+  ColorSystem,
+  DefaultColorPalette,
+  PaletteVariant,
+} from './types/colorSystem';
+import { VariantKey, Variants } from './types/variants';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
   colorPalette &&
   typeof colorPalette === 'object' &&
-  Object.keys(colorPalette).some((value) =>
-    value.match?.(
-      /^(plain(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|soft(Hover|Active|Disabled)?(Color|Bg)|solid(Hover|Active|Disabled)?(Color|Bg))$/,
-    ),
-  );
+  !!Object.keys(colorPalette)
+    .join(',')
+    .match(
+      /(plain(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|soft(Hover|Active|Disabled)?(Color|Bg)|solid(Hover|Active|Disabled)?(Color|Bg))/,
+    );
 
 const assignCss = (target: Record<string, string>, variantVar: string, value: string) => {
   if (variantVar.includes('Color')) {
@@ -22,6 +27,110 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
   if (variantVar.includes('Border')) {
     target.borderColor = value;
   }
+};
+
+export const createVariants = (
+  colorPalette: ColorSystem['palette'],
+  getCssVar: (...args: any[]) => string,
+) => {
+  const result = {} as Variants;
+  (
+    Object.entries({
+      ...colorPalette,
+      context: {
+        plainColor: 'var(--variant-plainColor)',
+        plainHoverColor: `var(--variant-plainHoverColor)`,
+        plainHoverBg: 'var(--variant-plainHoverBg)',
+        plainActiveBg: 'var(--variant-plainActiveBg)',
+        plainDisabledColor: 'var(--variant-plainDisabledColor)',
+
+        outlinedColor: 'var(--variant-outlinedColor)',
+        outlinedBorder: 'var(--variant-outlinedBorder)',
+        outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
+        outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
+        outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
+        outlinedActiveBg: `var(--variant-outlinedActiveBg)`,
+        outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
+        outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
+
+        softColor: 'var(--variant-softColor)',
+        softBg: 'var(--variant-softBg)',
+        softHoverColor: 'var(--variant-softHoverColor)',
+        softHoverBg: 'var(--variant-softHoverBg)',
+        softActiveBg: 'var(--variant-softActiveBg)',
+        softDisabledColor: 'var(--variant-softDisabledColor)',
+        softDisabledBg: 'var(--variant-softDisabledBg)',
+
+        solidColor: 'var(--variant-solidColor)',
+        solidBg: 'var(--variant-solidBg)',
+        solidHoverColor: 'var(--variant-solidHoverColor)',
+        solidHoverBg: 'var(--variant-solidHoverBg)',
+        solidActiveBg: 'var(--variant-solidActiveBg)',
+        solidDisabledColor: 'var(--variant-solidDisabledColor)',
+        solidDisabledBg: 'var(--variant-solidDisabledBg)',
+      },
+    }) as Array<[ColorPaletteProp, PaletteVariant]>
+  ).forEach(([color, palette]) => {
+    if (isVariantPalette(palette)) {
+      (Object.entries(palette) as Array<[string, string | number | null | undefined]>).forEach(
+        ([variantVar, value]) => {
+          if (value) {
+            const matches = variantVar.match(/^(.*)(color|bg|border)$/i);
+            if (matches) {
+              const variantName = matches[1] as keyof Variants;
+              result[variantName] = result[variantName] || {};
+              result[variantName][color] = result[variantName][color] || {};
+              const css: CSSObject = result[variantName][color];
+              let defaultValue;
+              const cssVarMatches = (value as string).match(/^var\(--(.*)\)$/);
+              if ((color as string) !== 'context') {
+                if (cssVarMatches) {
+                  const tokens = cssVarMatches[1].split('-');
+                  const paletteIndex = tokens.indexOf('palette');
+                  const colorToken = tokens[paletteIndex + 1];
+                  const rangeToken = tokens[paletteIndex + 2];
+                  // @ts-ignore internal logic
+                  defaultValue = colorPalette?.[colorToken]?.[rangeToken];
+                } else {
+                  defaultValue = value;
+                }
+              }
+              let cssValue = getCssVar(`palette-${color}-${variantVar}`);
+              if (defaultValue) {
+                cssValue = getCssVar(`palette-${color}-${variantVar}`, defaultValue);
+              }
+              if ((color as string) === 'context') {
+                cssValue = value.toString();
+              }
+
+              if (variantVar.includes('Disabled')) {
+                css.pointerEvents = 'none';
+                css.cursor = 'default';
+              }
+              if (variantVar.match(/(Hover|Active|Disabled)/)) {
+                assignCss(css as any, variantVar, cssValue);
+              } else {
+                // initial state
+                if (!css['--variant-borderWidth']) {
+                  // important to prevent inheritance, otherwise the children will have the wrong styles e.g.
+                  //   <Card variant="outlined">
+                  //     <Typography variant="soft">
+                  css['--variant-borderWidth'] = '0px';
+                }
+                if (variantVar.includes('Border')) {
+                  css['--variant-borderWidth'] = '1px';
+                  css.border = 'var(--variant-borderWidth) solid';
+                }
+                // border color should come later
+                assignCss(css as any, variantVar, cssValue);
+              }
+            }
+          }
+        },
+      );
+    }
+  });
+  return result;
 };
 
 /**

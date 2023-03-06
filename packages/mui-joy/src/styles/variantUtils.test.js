@@ -1,5 +1,10 @@
 import { expect } from 'chai';
-import { isVariantPalette, createVariantStyle, createVariant } from './variantUtils';
+import {
+  isVariantPalette,
+  createVariantStyle,
+  createVariant,
+  createVariants,
+} from './variantUtils';
 import { createGetCssVar } from './extendTheme';
 
 describe('variant utils', () => {
@@ -344,6 +349,91 @@ describe('variant utils', () => {
       });
       expect(createVariant('solid').context).to.deep.include({
         backgroundColor: 'var(--variant-solidBg)',
+      });
+    });
+  });
+
+  describe('createVariants', () => {
+    it('should create plain style', () => {
+      expect(
+        createVariants(
+          {
+            primary: {
+              plainColor: `var(--joy-palette-primary-600)`,
+              plainHoverBg: `var(--joy-palette-primary-100)`,
+              plainActiveBg: `var(--joy-palette-primary-200)`,
+              plainDisabledColor: `var(--joy-palette-primary-200)`,
+            },
+          },
+          createGetCssVar(''),
+        ),
+      ).to.deep.equal({
+        plain: {
+          primary: {
+            '--variant-borderWidth': '0px',
+            color: 'var(--palette-primary-plainColor)',
+          },
+        },
+        plainActive: {
+          primary: {
+            backgroundColor: 'var(--palette-primary-plainActiveBg)',
+          },
+        },
+        plainDisabled: {
+          primary: {
+            color: 'var(--palette-primary-plainDisabledColor)',
+            cursor: 'default',
+            pointerEvents: 'none',
+          },
+        },
+        plainHover: {
+          primary: {
+            backgroundColor: 'var(--palette-primary-plainHoverBg)',
+          },
+        },
+      });
+    });
+
+    it('should create plain style with default values', () => {
+      expect(
+        createVariants(
+          {
+            primary: {
+              100: '100',
+              200: '200',
+              600: '600',
+              plainColor: `var(--joy-palette-primary-600)`,
+              plainHoverBg: `var(--joy-palette-primary-100)`,
+              plainActiveBg: `var(--joy-palette-primary-200)`,
+              plainDisabledColor: `var(--joy-palette-primary-200)`,
+            },
+          },
+          createGetCssVar(''),
+        ),
+      ).to.deep.equal({
+        plain: {
+          primary: {
+            '--variant-borderWidth': '0px',
+            color: 'var(--palette-primary-plainColor, 600)',
+          },
+        },
+        plainActive: {
+          primary: {
+            backgroundColor: 'var(--palette-primary-plainActiveBg, 200)',
+          },
+        },
+        plainDisabled: {
+          primary: {
+            color: 'var(--palette-primary-plainDisabledColor, 200)',
+            cursor: 'default',
+            pointerEvents: 'none',
+          },
+        },
+        plainHover: {
+          primary: {
+            backgroundColor: 'var(--palette-primary-plainHoverBg, 100)',
+          },
+        },
       });
     });
   });
