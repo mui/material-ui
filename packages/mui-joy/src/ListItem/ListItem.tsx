@@ -65,7 +65,7 @@ const ListItemRoot = styled('li', {
   // Base styles
   {
     // Integration with control elements, eg. Checkbox, Radio.
-    '--unstable_action-radius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
+    '--unstable_actionRadius': 'calc(var(--ListItem-radius) - var(--variant-borderWidth, 0px))',
     ...(ownerState.startAction && {
       '--unstable_startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
     }),

@@ -151,7 +151,7 @@ const RadioAction = styled('span', {
     textAlign: 'left', // prevent text-align inheritance
     borderRadius: `var(--Radio-actionRadius, ${
       // Automatic radius adjustment when composing with ListItem or Sheet
-      ownerState.overlay ? 'var(--unstable_action-radius, inherit)' : 'inherit'
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',

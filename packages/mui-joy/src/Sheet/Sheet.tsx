@@ -52,7 +52,7 @@ export const SheetRoot = styled('div', {
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
-        '--unstable_action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
+        '--unstable_actionRadius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       }),
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',

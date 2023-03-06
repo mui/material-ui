@@ -51,7 +51,7 @@ const ChipRoot = styled('div', {
       '--Avatar-radius': 'var(--Chip-decoratorChildRadius)',
       '--Avatar-size': 'var(--Chip-decoratorChildHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--unstable_action-radius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
+      '--unstable_actionRadius': 'var(--_Chip-radius)', // to be used with Radio or Checkbox
       ...(ownerState.size === 'sm' && {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',

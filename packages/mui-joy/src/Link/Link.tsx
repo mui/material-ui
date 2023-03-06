@@ -145,8 +145,8 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--unstable_action-radius, inherit)`,
-              margin: `var(--unstable_action-margin)`,
+              borderRadius: `var(--unstable_actionRadius, inherit)`,
+              margin: `var(--unstable_actionMargin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,

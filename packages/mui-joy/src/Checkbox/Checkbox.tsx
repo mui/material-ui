@@ -125,7 +125,7 @@ const CheckboxAction = styled('span', {
 })<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
     borderRadius: `var(--Checkbox-actionRadius, ${
-      ownerState.overlay ? 'var(--unstable_action-radius, inherit)' : 'inherit'
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',

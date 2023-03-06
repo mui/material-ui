@@ -95,9 +95,9 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
       // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
-      '--unstable_child-radius':
+      '--unstable_childRadius':
         'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-      '--ListItem-radius': 'var(--unstable_child-radius)',
+      '--ListItem-radius': 'var(--unstable_childRadius)',
       // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
       '--ListItem-startActionTranslateX': 'calc(0.5 * var(--ListItem-paddingLeft))',
       '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',

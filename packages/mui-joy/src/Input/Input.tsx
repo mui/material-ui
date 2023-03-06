@@ -192,7 +192,7 @@ export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwner
     '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
     display: 'inherit',
     alignItems: 'center',
-    paddingBlock: 'var(--unstable_Input-paddingBlock)', // for wrapping Autocomplete's tags
+    paddingBlock: 'var(--unstable_InputPaddingBlock)', // for wrapping Autocomplete's tags
     flexWrap: 'wrap', // for wrapping Autocomplete's tags
     marginInlineEnd: 'var(--Input-gap)',
     color: theme.vars.palette.text.tertiary,
