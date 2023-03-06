@@ -146,7 +146,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
   }, [disableWindowBlurListener, handleResume, open]);
 
   const getRootProps: UseSnackbarReturnValue['getRootProps'] = <
-    TOther extends Record<string, React.EventHandler<any> | undefined> = {},
+    TOther extends Parameters<UseSnackbarReturnValue['getRootProps']>[0],
   >(
     otherHandlers: TOther = {} as TOther,
   ) => {
