@@ -193,7 +193,7 @@ function FocusTrap(props: FocusTrapProps): JSX.Element {
 
     return () => {
       // restoreLastFocus()
-      if (!disableRestoreFocus) {
+      if (!disableRestoreFocus && open) {
         // In IE11 it is possible for document.activeElement to be null resulting
         // in nodeToRestore.current being null.
         // Not all elements in IE11 have a focus method.
