@@ -21,7 +21,7 @@ export interface UseMenuItemParameters {
 export interface UseMenuItemReturnValue {
   /**
    * Resolver for the root slot's props.
-   * @param otherHandlers props for the root slot
+   * @param otherHandlers event handlers for the root slot
    * @returns props that should be spread on the root slot
    */
   getRootProps: <TOther extends EventHandlers = {}>(
