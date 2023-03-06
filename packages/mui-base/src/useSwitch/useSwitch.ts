@@ -101,7 +101,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
 
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
-  const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps) => ({
+  const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
