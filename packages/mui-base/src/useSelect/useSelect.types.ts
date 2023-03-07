@@ -30,12 +30,19 @@ export type SelectChangeEventType =
   | React.FocusEvent<Element, Element>
   | null;
 
-interface UseSelectCommonProps<TValue> {
-  buttonRef?: React.Ref<Element>;
+export type SelectValue<Value, Multiple> = Multiple extends true ? Value[] : Value | null;
+
+export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
+  defaultValue?: SelectValue<TValue, Multiple>;
   disabled?: boolean;
+  buttonRef?: React.Ref<Element>;
   listboxId?: string;
   listboxRef?: React.Ref<Element>;
-  onOpenChange?: (open: boolean) => void;
+  multiple?: Multiple;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: SelectValue<TValue, Multiple>,
+  ) => void;
   onHighlightChange?: (
     e:
       | React.MouseEvent<Element, MouseEvent>
@@ -44,34 +51,12 @@ interface UseSelectCommonProps<TValue> {
       | null,
     highlighted: TValue | null,
   ) => void;
+  onOpenChange?: (open: boolean) => void;
   open?: boolean;
   options: SelectOption<TValue>[];
   optionStringifier?: (option: SelectOption<TValue>) => string;
-}
-
-export interface UseSelectSingleParameters<TValue> extends UseSelectCommonProps<TValue> {
-  defaultValue?: TValue | null;
-  multiple?: false;
-  onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TValue | null,
-  ) => void;
-  value?: TValue | null;
-}
-
-export interface UseSelectMultiParameters<TValue> extends UseSelectCommonProps<TValue> {
-  defaultValue?: TValue[];
-  multiple: true;
-  onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TValue[],
-  ) => void;
-  value?: TValue[];
-}
-
-export type UseSelectParameters<TValue> =
-  | UseSelectSingleParameters<TValue>
-  | UseSelectMultiParameters<TValue>;
+  value?: SelectValue<TValue, Multiple>;
+};
 
 interface UseSelectButtonSlotEventHandlers {
   onClick: React.MouseEventHandler;
@@ -103,7 +88,7 @@ export type UseSelectOptionSlotProps<TOther = {}> = UseListboxOptionSlotProps<
   Omit<TOther, keyof UseSelectOptionSlotEventHandlers> & UseSelectOptionSlotEventHandlers
 >;
 
-interface UseSelectCommonResult<TValue> {
+export interface UseSelectResult<TValue, Multiple> {
   buttonActive: boolean;
   buttonFocusVisible: boolean;
   disabled: boolean;
@@ -115,10 +100,10 @@ interface UseSelectCommonResult<TValue> {
   ) => UseSelectListboxSlotProps<TOther>;
   contextValue: {
     getOptionProps: <TOther extends EventHandlers = {}>(
-      option: SelectOption<TValue>,
+      option: TValue,
       otherHandlers?: TOther,
     ) => UseSelectOptionSlotProps<TOther>;
-    getOptionState: (option: SelectOption<TValue>) => OptionState;
+    getOptionState: (option: TValue) => OptionState;
     listboxRef: React.RefObject<HTMLElement>;
     /**
      * Registers a handler for when the highlighted option changes.
@@ -131,14 +116,7 @@ interface UseSelectCommonResult<TValue> {
      */
     registerSelectionChangeHandler: SelectChangeNotifiers<TValue>['registerSelectionChangeHandler'];
   };
-  open: boolean;
   highlightedOption: TValue | null;
-}
-
-export interface UseSelectSingleResult<TValue> extends UseSelectCommonResult<TValue> {
-  value: TValue | null;
-}
-
-export interface UseSelectMultiResult<TValue> extends UseSelectCommonResult<TValue> {
-  value: TValue[];
+  open: boolean;
+  value: SelectValue<TValue, Multiple>;
 }
