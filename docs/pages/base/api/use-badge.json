@@ -1,9 +1,9 @@
 {
   "parameters": {
-    "badgeContent": { "type": { "name": "React.ReactNode", "description": "" } },
-    "invisible": { "type": { "name": "boolean", "description": "" } },
-    "max": { "type": { "name": "number", "description": "" } },
-    "showZero": { "type": { "name": "boolean", "description": "" } }
+    "badgeContent": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } },
+    "invisible": { "type": { "name": "boolean", "description": "boolean" } },
+    "max": { "type": { "name": "number", "description": "number" } },
+    "showZero": { "type": { "name": "boolean", "description": "boolean" } }
   },
   "returnValue": {
     "badgeContent": {
@@ -28,6 +28,6 @@
     }
   },
   "name": "useBadge",
-  "filename": "/packages/mui-base/src/BadgeUnstyled/useBadge.ts",
+  "filename": "/packages/mui-base/src/useBadge/useBadge.ts",
   "demos": "<ul><li><a href=\"/base/react-badge/#hook\">Unstyled badge</a></li></ul>"
 }

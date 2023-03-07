@@ -1,43 +1,35 @@
 {
   "parameters": {
     "defaultValue": {
-      "type": {
-        "name": "string | number | false",
-        "description": "The default value. Use when the component is not controlled."
-      }
+      "type": { "name": "string | number | false", "description": "string | number | false" }
     },
     "direction": {
-      "type": { "name": "'ltr' | 'rtl'", "description": "The direction of the text." },
+      "type": {
+        "name": "&#39;ltr&#39; | &#39;rtl&#39;",
+        "description": "&#39;ltr&#39; | &#39;rtl&#39;"
+      },
       "default": "'ltr'"
     },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: number | string | boolean) => void",
-        "description": "Callback invoked when new value is being set."
+        "name": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt void",
+        "description": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt void"
       }
     },
     "orientation": {
       "type": {
-        "name": "'horizontal' | 'vertical'",
-        "description": "The component orientation (layout flow direction)."
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
       },
       "default": "'horizontal'"
     },
-    "selectionFollowsFocus": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true` the selected tab changes on focus. Otherwise it only\nchanges on activation."
-      }
-    },
+    "selectionFollowsFocus": { "type": { "name": "boolean", "description": "boolean" } },
     "value": {
-      "type": {
-        "name": "string | number | false",
-        "description": "The value of the currently selected `Tab`.\nIf you don't want any selected `Tab`, you can set this prop to `false`."
-      }
+      "type": { "name": "string | number | false", "description": "string | number | false" }
     }
   },
   "returnValue": {},
   "name": "useTabs",
-  "filename": "/packages/mui-base/src/TabsUnstyled/useTabs.ts",
+  "filename": "/packages/mui-base/src/useTabs/useTabs.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
 }

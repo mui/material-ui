@@ -184,14 +184,14 @@ above 0 is considered "good", +50 is "Excellent", and above 70 is considered "wo
 Multiple options were allowed.
 
 | Channel(s)                  | Number |
-| --------------------------- | ------ |
-| Search                      | 344    |
-| Word of mouth               | 112    |
-| Search, Word of mouth       | 47     |
-| Search, Social              | 25     |
-| Social                      | 22     |
-| Blog                        | 14     |
-| Search, Word of mouth, Blog | 11     |
+| :-------------------------- | -----: |
+| Search                      |    344 |
+| Word of mouth               |    112 |
+| Search, Word of mouth       |     47 |
+| Search, Social              |     25 |
+| Social                      |     22 |
+| Blog                        |     14 |
+| Search, Word of mouth, Blog |     11 |
 
 <br /><br />
 <img src="/static/blog/2019-survey/6.png" style="display: block; margin: 0 auto;" alt="Bar chart: 74.3% search, 29.6% word of mouth, 8.2% Social, 4.3% blog." />

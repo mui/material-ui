@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OptionUnstyledProps } from '../OptionUnstyled';
+import { OptionUnstyledProps } from '../OptionUnstyled/OptionUnstyled.types';
 import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
-import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from './useSelect.types';
+import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from '../useSelect';
 
 export function areOptionsEqual<TValue>(
   option1: SelectOption<TValue>,

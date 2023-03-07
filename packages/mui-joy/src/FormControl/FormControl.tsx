@@ -33,7 +33,7 @@ export const FormControlRoot = styled('div', {
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-alignSelf': ownerState.orientation === 'horizontal' ? 'align-items' : 'flex-start',
   '--FormHelperText-margin': '0.375rem 0 0 0',
-  '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
+  '--FormLabel-asteriskColor': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
   ...(ownerState.size === 'sm' && {
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
@@ -63,7 +63,16 @@ export const FormControlRoot = styled('div', {
   position: 'relative', // for keeping the control action area, e.g. Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormControl API](https://mui.com/joy-ui/api/form-control/)
+ */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const props = useThemeProps<typeof inProps & FormControlProps>({
     props: inProps,

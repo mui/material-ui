@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Button component
+components: Button, IconButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 unstyled: /base/react-button/
@@ -148,7 +149,7 @@ For example, an Icon Button that displays a `<FavoriteBorder />` icon might have
 The Button component is composed of a single root `<button>` element that wraps around its contents:
 
 ```html
-<button class="JoyButton-root" type="button">
+<button class="MuiButton-root" type="button">
   <!-- Button contents -->
 </button>
 ```

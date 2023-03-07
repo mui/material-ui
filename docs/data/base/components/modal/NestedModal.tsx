@@ -65,11 +65,11 @@ function ChildModal() {
     <React.Fragment>
       <Button onClick={handleOpen}>Open Child Modal</Button>
       <Modal
-        hideBackdrop
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
+        slots={{ backdrop: Backdrop }}
       >
         <Box sx={[style, { width: '200px' }]}>
           <h2 id="child-modal-title">Text in a child modal</h2>

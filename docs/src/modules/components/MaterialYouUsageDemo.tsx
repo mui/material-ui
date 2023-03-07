@@ -93,11 +93,11 @@ export const prependLinesSpace = (code: string, size: number = 2) => {
   return newCode.join('\n');
 };
 
-function ModeSwitcher({ md2Mode }: { md2Mode: Mode | undefined }) {
-  const { mode, setMode } = useColorScheme();
-  if (md2Mode && mode !== md2Mode) {
-    setMode(md2Mode ?? mode);
-  }
+function ModeSwitcher({ md2Mode }: { md2Mode: Mode }) {
+  const { setMode } = useColorScheme();
+  React.useEffect(() => {
+    setMode(md2Mode);
+  }, [md2Mode, setMode]);
   return null;
 }
 

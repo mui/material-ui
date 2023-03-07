@@ -40,7 +40,16 @@ const AvatarGroupGroupRoot = styled('div', {
   display: 'flex',
   marginInlineStart: 'calc(-1 * var(--AvatarGroup-gap))',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [AvatarGroup API](https://mui.com/joy-ui/api/avatar-group/)
+ */
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarGroupProps>({
     props: inProps,
@@ -122,7 +131,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -1,12 +1,43 @@
 {
   "parameters": {
-    "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
-    "disabled": { "type": { "name": "boolean", "description": "" } },
-    "label": { "type": { "name": "string", "description": "" } },
-    "onClick": { "type": { "name": "React.MouseEventHandler<any>", "description": "" } }
+    "ref": {
+      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "label": { "type": { "name": "string", "description": "string" } },
+    "onClick": {
+      "type": {
+        "name": "React.MouseEventHandler&lt;any&gt",
+        "description": "React.MouseEventHandler&lt;any&gt"
+      }
+    }
   },
-  "returnValue": {},
+  "returnValue": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focusVisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseMenuItemRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseMenuItemRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
+    "highlighted": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    }
+  },
   "name": "useMenuItem",
-  "filename": "/packages/mui-base/src/MenuItemUnstyled/useMenuItem.ts",
+  "filename": "/packages/mui-base/src/useMenuItem/useMenuItem.ts",
   "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Unstyled Menu</a></li></ul>"
 }

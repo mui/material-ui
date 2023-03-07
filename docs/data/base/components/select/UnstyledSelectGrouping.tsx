@@ -157,8 +157,8 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-function CustomSelect(props: SelectUnstyledProps<string>) {
-  const slots: SelectUnstyledProps<string>['slots'] = {
+function CustomSelect(props: SelectUnstyledProps<string, false>) {
+  const slots: SelectUnstyledProps<string, false>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
     popper: StyledPopper,

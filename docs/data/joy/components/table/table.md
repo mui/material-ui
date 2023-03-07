@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Table component
+components: Table
 githubLabel: 'component: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 ---
