@@ -8,35 +8,35 @@ export default function ExampleChakraSwitch() {
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={(theme) => ({
-        '--Switch-thumbSize': '16px',
-        '--Switch-trackWidth': '34px',
-        '--Switch-trackHeight': '20px',
-        '--Switch-trackBackground': '#CBD5E0',
+        '--Switch-thumb-size': '16px',
+        '--Switch-track-width': '34px',
+        '--Switch-track-height': '20px',
+        '--Switch-track-background': '#CBD5E0',
         '&:hover': {
-          '--Switch-trackBackground': '#CBD5E0',
+          '--Switch-track-background': '#CBD5E0',
         },
         [`&.${switchClasses.checked}`]: {
-          '--Switch-trackBackground': '#3182ce',
+          '--Switch-track-background': '#3182ce',
           '&:hover': {
-            '--Switch-trackBackground': '#3182ce',
+            '--Switch-track-background': '#3182ce',
           },
           [`&.${switchClasses.disabled}`]: {
-            '--Switch-trackBackground': '#3182ce',
+            '--Switch-track-background': '#3182ce',
           },
         },
         [`&.${switchClasses.disabled}`]: {
-          '--Switch-trackBackground': '#CBD5E0',
+          '--Switch-track-background': '#CBD5E0',
           opacity: 0.4,
         },
         [theme.getColorSchemeSelector('dark')]: {
-          '--Switch-trackBackground': 'rgba(255, 255, 255, 0.24)',
+          '--Switch-track-background': 'rgba(255, 255, 255, 0.24)',
           [`&.${switchClasses.checked}`]: {
-            '--Switch-trackBackground': '#90cdf4',
+            '--Switch-track-background': '#90cdf4',
             '&:hover': {
-              '--Switch-trackBackground': '#90cdf4',
+              '--Switch-track-background': '#90cdf4',
             },
             [`&.${switchClasses.disabled}`]: {
-              '--Switch-trackBackground': '#3182ce',
+              '--Switch-track-background': '#3182ce',
             },
           },
         },

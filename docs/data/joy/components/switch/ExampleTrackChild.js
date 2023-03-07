@@ -20,9 +20,9 @@ export default function ExampleTrackChild() {
         },
       }}
       sx={{
-        '--Switch-thumbSize': '27px',
-        '--Switch-trackWidth': '64px',
-        '--Switch-trackHeight': '31px',
+        '--Switch-thumb-size': '27px',
+        '--Switch-track-width': '64px',
+        '--Switch-track-height': '31px',
       }}
     />
   );
