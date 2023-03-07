@@ -43,9 +43,9 @@ const CardRoot = styled('div', {
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // Link, Radio, Checkbox integration
-    '--internal-action-radius': resolveSxValue(
+    '--unstable_actionRadius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',
@@ -220,7 +220,7 @@ Card.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

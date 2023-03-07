@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MenuItemMetadata, MenuItemState } from '../useMenu';
+import { MenuItemMetadata, MenuItemState } from '../MenuItemUnstyled/MenuItemUnstyled.types';
 
 export interface MenuUnstyledContextType {
   registerItem: (id: string, metadata: MenuItemMetadata) => void;

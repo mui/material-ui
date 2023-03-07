@@ -103,6 +103,7 @@ const RatingRoot = styled('span', {
   ...(ownerState.size === 'large' && {
     fontSize: theme.typography.pxToRem(30),
   }),
+  // TODO v6: use the .Mui-readOnly global state class
   ...(ownerState.readOnly && {
     pointerEvents: 'none',
   }),

@@ -149,9 +149,9 @@ const RadioAction = styled('span', {
   {
     position: 'absolute',
     textAlign: 'left', // prevent text-align inheritance
-    borderRadius: `var(--Radio-action-radius, ${
+    borderRadius: `var(--Radio-actionRadius, ${
       // Automatic radius adjustment when composing with ListItem or Sheet
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',
@@ -508,7 +508,7 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
