@@ -7,7 +7,6 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function LayoutModalDialog() {
-  const [open, setOpen] = React.useState(false);
   const [layout, setLayout] = React.useState(undefined);
 
   return (
@@ -17,7 +16,6 @@ export default function LayoutModalDialog() {
           variant="outlined"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setLayout('center');
           }}
         >
@@ -27,14 +25,13 @@ export default function LayoutModalDialog() {
           variant="outlined"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setLayout('fullscreen');
           }}
         >
           Full screen
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen(false)}>
+      <Modal open={!!layout} onClose={() => setLayout(undefined)}>
         <ModalDialog
           aria-labelledby="layout-modal-title"
           aria-describedby="layout-modal-description"

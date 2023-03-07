@@ -7,7 +7,6 @@ import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function VariantModalDialog() {
-  const [open, setOpen] = React.useState<boolean>(false);
   const [variant, setVariant] = React.useState<
     ModalDialogProps['variant'] | undefined
   >(undefined);
@@ -18,7 +17,6 @@ export default function VariantModalDialog() {
           variant="plain"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setVariant('plain');
           }}
         >
@@ -28,7 +26,6 @@ export default function VariantModalDialog() {
           variant="outlined"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setVariant('outlined');
           }}
         >
@@ -38,7 +35,6 @@ export default function VariantModalDialog() {
           variant="soft"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setVariant('soft');
           }}
         >
@@ -48,14 +44,13 @@ export default function VariantModalDialog() {
           variant="solid"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setVariant('solid');
           }}
         >
           Solid
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen(false)}>
+      <Modal open={!!variant} onClose={() => setVariant(undefined)}>
         <ModalDialog
           aria-labelledby="variant-modal-title"
           aria-describedby="variant-modal-description"

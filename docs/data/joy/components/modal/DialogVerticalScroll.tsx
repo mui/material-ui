@@ -12,7 +12,6 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
-  const [open, setOpen] = React.useState<boolean>(false);
   const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
     undefined,
   );
@@ -24,7 +23,6 @@ export default function DialogVerticalScroll() {
           variant="outlined"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setLayout('center');
           }}
         >
@@ -34,7 +32,6 @@ export default function DialogVerticalScroll() {
           variant="outlined"
           color="neutral"
           onClick={() => {
-            setOpen(true);
             setLayout('fullscreen');
           }}
         >
@@ -42,9 +39,8 @@ export default function DialogVerticalScroll() {
         </Button>
       </Stack>
       <Modal
-        open={!!open}
+        open={!!layout}
         onClose={() => {
-          setOpen(false);
           setLayout(undefined);
         }}
       >
