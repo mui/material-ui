@@ -131,7 +131,7 @@ const TooltipArrow = styled('span', {
 })<{ ownerState: TooltipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--unstable_TooltipArrow-rotation': 0,
+    '--unstable_TooltipArrowRotation': 0,
     width: 'var(--Tooltip-arrowSize)',
     height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
@@ -150,21 +150,21 @@ const TooltipArrow = styled('span', {
       borderRadius: `0px 2px 0px 0px`,
       boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
-      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_TooltipArrow-rotation)))',
+      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_TooltipArrowRotation)))',
     },
     '[data-popper-placement*="bottom"] &': {
       top: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
     },
     '[data-popper-placement*="top"] &': {
-      '--unstable_TooltipArrow-rotation': 2,
+      '--unstable_TooltipArrowRotation': 2,
       bottom: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="left"] &': {
-      '--unstable_TooltipArrow-rotation': 1,
+      '--unstable_TooltipArrowRotation': 1,
       right: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="right"] &': {
-      '--unstable_TooltipArrow-rotation': 3,
+      '--unstable_TooltipArrowRotation': 3,
       left: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
   };
