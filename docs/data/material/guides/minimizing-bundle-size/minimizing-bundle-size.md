@@ -206,7 +206,9 @@ It will perform the following diffs:
 -import TextField from '@mui/material/TextField';
 +import { Button, TextField } from '@mui/material';
 ```
+
 ### Option three: use a SWC plugin
+
 This option pretty much similar to option two, except for the developer who is using [SWC Compiler](https://swc.rs/). A SWC plugin can be used for transforming the imports: [transform-imports](https://github.com/swc-project/plugins/blob/main/packages/transform-imports/README.md). This plugin can be added to either .swcrc or Webpack configuration.
 
 Here is the example of adding SWC Compiler plugin to Webpack configuration file:
@@ -217,8 +219,7 @@ const webpackConfig = {
   // ...
   module: {
     rules: [
-      ...
-      {
+      ...{
         test: /\.tsx?$/,
         use: [
           {
@@ -249,10 +250,10 @@ const webpackConfig = {
           },
         ],
       },
-    ]
-  }
-}
-module.exports = webpackConfig
+    ],
+  },
+};
+module.exports = webpackConfig;
 ```
 
 ## Available bundles
@@ -289,3 +290,4 @@ This can be used to make separate bundles targeting different browsers.
 If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
 However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
 You don't need any additional polyfills.
+
