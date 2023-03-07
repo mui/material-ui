@@ -290,4 +290,3 @@ This can be used to make separate bundles targeting different browsers.
 If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
 However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
 You don't need any additional polyfills.
-
