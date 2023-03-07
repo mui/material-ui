@@ -15,7 +15,7 @@ export default function CloseModal() {
       <Modal
         aria-labelledby="close-modal-title"
         open={open}
-        onClose={(reason: string) => {
+        onClose={(_event: React.MouseEvent<HTMLButtonElement>, reason: string) => {
           alert(`Reason: ${reason}`);
           setOpen(false);
         }}

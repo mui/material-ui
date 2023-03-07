@@ -7,7 +7,7 @@ import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function SizeModalDialog() {
-  const [open, setOpen] = React.useState<ModalDialogProps['size'] | undefined>(
+  const [size, setSize] = React.useState<ModalDialogProps['size'] | undefined>(
     undefined,
   );
   return (
@@ -17,7 +17,7 @@ export default function SizeModalDialog() {
           variant="outlined"
           color="neutral"
           size="sm"
-          onClick={() => setOpen('sm')}
+          onClick={() => setSize('sm')}
         >
           Small
         </Button>
@@ -25,7 +25,7 @@ export default function SizeModalDialog() {
           variant="outlined"
           color="neutral"
           size="md"
-          onClick={() => setOpen('md')}
+          onClick={() => setSize('md')}
         >
           Medium
         </Button>
@@ -33,23 +33,23 @@ export default function SizeModalDialog() {
           variant="outlined"
           color="neutral"
           size="lg"
-          onClick={() => setOpen('lg')}
+          onClick={() => setSize('lg')}
         >
           Large
         </Button>
       </Stack>
-      <Modal open={!!open} onClose={() => setOpen(undefined)}>
+      <Modal open={!!size} onClose={() => setSize(undefined)}>
         <ModalDialog
           aria-labelledby="size-modal-title"
           aria-describedby="size-modal-description"
-          size={open || undefined}
+          size={size}
         >
           <ModalClose />
           <Typography id="size-modal-title" component="h2">
             Modal Dialog
           </Typography>
           <Typography id="size-modal-description" level="inherit">
-            This is a `{open}` modal dialog.
+            This is a `{size}` modal dialog.
           </Typography>
         </ModalDialog>
       </Modal>

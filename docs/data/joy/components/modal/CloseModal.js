@@ -15,7 +15,7 @@ export default function CloseModal() {
       <Modal
         aria-labelledby="close-modal-title"
         open={open}
-        onClose={(reason) => {
+        onClose={(_event, reason) => {
           alert(`Reason: ${reason}`);
           setOpen(false);
         }}
