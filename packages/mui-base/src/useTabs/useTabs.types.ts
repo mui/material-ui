@@ -1,3 +1,5 @@
+import type { TabsContextValue } from '../TabsUnstyled';
+
 export interface UseTabsParameters {
   /**
    * The value of the currently selected `Tab`.
@@ -30,12 +32,8 @@ export interface UseTabsParameters {
 }
 
 export interface UseTabsReturnValue {
-  tabsContextValue: {
-    idPrefix: string | undefined;
-    value: string | number | false;
-    onSelected: (e: React.SyntheticEvent, newValue: string | number | false) => void;
-    orientation?: 'horizontal' | 'vertical';
-    direction: 'ltr' | 'rtl' | undefined;
-    selectionFollowsFocus: boolean | undefined;
-  };
+  /**
+   * Returns the values to be passed to the tabs context provider.
+   */
+  tabsContextValue: TabsContextValue;
 }

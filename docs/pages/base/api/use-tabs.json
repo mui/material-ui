@@ -30,10 +30,7 @@
   },
   "returnValue": {
     "tabsContextValue": {
-      "type": {
-        "name": "{\n  idPrefix: string | undefined\n  value: string | number | false\n  onSelected: (e: React.SyntheticEvent, newValue: string | number | false) =&gt void\n  orientation?: &#39;horizontal&#39; | &#39;vertical&#39;\n  direction: &#39;ltr&#39; | &#39;rtl&#39; | undefined\n  selectionFollowsFocus: boolean | undefined\n}",
-        "description": "{\n  idPrefix: string | undefined\n  value: string | number | false\n  onSelected: (e: React.SyntheticEvent, newValue: string | number | false) =&gt void\n  orientation?: &#39;horizontal&#39; | &#39;vertical&#39;\n  direction: &#39;ltr&#39; | &#39;rtl&#39; | undefined\n  selectionFollowsFocus: boolean | undefined\n}"
-      },
+      "type": { "name": "TabsContextValue", "description": "TabsContextValue" },
       "required": true
     }
   },
