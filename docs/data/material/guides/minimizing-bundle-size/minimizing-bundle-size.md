@@ -206,6 +206,54 @@ It will perform the following diffs:
 -import TextField from '@mui/material/TextField';
 +import { Button, TextField } from '@mui/material';
 ```
+### Option three: use a SWC plugin
+This option pretty much similar to option two, except for the developer who is using [SWC Compiler](https://swc.rs/). A SWC plugin can be used for transforming the imports: [transform-imports](https://github.com/swc-project/plugins/blob/main/packages/transform-imports/README.md). This plugin can be added to either .swcrc or Webpack configuration.
+
+Here is the example of adding SWC Compiler plugin to Webpack configuration file:
+
+```js
+/* webpack.config.js */
+const webpackConfig = {
+  // ...
+  module: {
+    rules: [
+      ...
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'swc-loader',
+            options: {
+              jsc: {
+                experimental: {
+                  plugins: [
+                    [
+                      require.resolve('@swc/plugin-transform-imports'),
+                      {
+                        '@mui/material': {
+                          transform: '@mui/material/{{member}}',
+                        },
+                        '@mui/icons-material': {
+                          transform: '@mui/icons-material/{{member}}',
+                        },
+                        // For styled, useTheme etc
+                        '@mui/system': {
+                          transform: '@mui/system/{{member}}',
+                        },
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          },
+        ],
+      },
+    ]
+  }
+}
+module.exports = webpackConfig
+```
 
 ## Available bundles
 
