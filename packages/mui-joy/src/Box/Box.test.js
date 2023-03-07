@@ -23,19 +23,28 @@ describe('Joy <Box />', () => {
     refInstanceof: window.HTMLDivElement,
   }));
 
-  it('respects theme from context', () => {
-    const { container } = render(
-      <ThemeProvider
-        theme={{
+  it('respects theme from context', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const theme = extendTheme({
+      colorSchemes: {
+        light: {
           palette: {
             primary: {
               main: 'rgb(255, 0, 0)',
             },
           },
-        }}
-      >
+        },
+      },
+    });
+    const { container } = render(
+      <CssVarsProvider theme={theme}>
         <Box color="primary.main" />
-      </ThemeProvider>,
+      </CssVarsProvider>,
     );
 
     expect(container.firstChild).toHaveComputedStyle({

@@ -39,4 +39,4 @@ Material UI and [MUI Base](/base/getting-started/overview/) feature many of the 
 
 Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/) (or [styled-components](https://styled-components.com/)).
 
-MUI Base, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, Material UI v6 will use MUI Base components and hooks for its foundational structure.
+MUI Base, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use MUI Base components and hooks for its foundational structure.

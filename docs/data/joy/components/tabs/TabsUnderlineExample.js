@@ -11,7 +11,7 @@ export default function TabsUnderlineExample() {
         sx={{
           '--List-padding': '0px',
           '--List-radius': '0px',
-          '--List-item-minHeight': '48px',
+          '--ListItem-minHeight': '48px',
           [`& .${tabClasses.root}`]: {
             boxShadow: 'none',
             fontWeight: 'md',
@@ -19,8 +19,8 @@ export default function TabsUnderlineExample() {
               content: '""',
               display: 'block',
               position: 'absolute',
-              left: 'var(--List-item-paddingLeft)', // change to `0` to stretch to the edge.
-              right: 'var(--List-item-paddingRight)', // change to `0` to stretch to the edge.
+              left: 'var(--ListItem-paddingLeft)', // change to `0` to stretch to the edge.
+              right: 'var(--ListItem-paddingRight)', // change to `0` to stretch to the edge.
               bottom: 0,
               height: 3,
               bgcolor: 'primary.400',
