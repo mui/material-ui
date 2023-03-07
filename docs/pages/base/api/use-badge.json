@@ -1,30 +1,29 @@
 {
   "parameters": {
     "badgeContent": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } },
-    "invisible": { "type": { "name": "boolean", "description": "boolean" } },
-    "max": { "type": { "name": "number", "description": "number" } },
-    "showZero": { "type": { "name": "boolean", "description": "boolean" } }
+    "invisible": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "max": { "type": { "name": "number", "description": "number" }, "default": "99" },
+    "showZero": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" }
   },
   "returnValue": {
     "badgeContent": {
-      "type": {
-        "name": "React.ReactNode",
-        "description": "Defines the content that's displayed inside the badge."
-      }
-    },
-    "invisible": {
-      "type": { "name": "boolean", "description": "Maximum number to be displayed in the badge." },
-      "default": "false"
-    },
-    "max": {
-      "type": { "name": "number", "description": "Maximum number to be displayed in the badge." },
-      "default": "99"
+      "type": { "name": "React.ReactNode", "description": "React.ReactNode" },
+      "required": true
     },
     "displayValue": {
-      "type": {
-        "name": "React.ReactNode",
-        "description": "Value to be displayed in the badge. If badgeContent is greater that `max` it will return `max+`."
-      }
+      "type": { "name": "React.ReactNode", "description": "React.ReactNode" },
+      "default": "badgeContent",
+      "required": true
+    },
+    "invisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "max": {
+      "type": { "name": "number", "description": "number" },
+      "default": "99",
+      "required": true
     }
   },
   "name": "useBadge",
