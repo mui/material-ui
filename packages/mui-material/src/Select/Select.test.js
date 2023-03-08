@@ -1439,62 +1439,6 @@ describe('<Select />', () => {
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
   });
 
-  it('it should override with error style when `select` has `error` state', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
-    const iconStyle = { color: 'red' };
-    const selectStyle = { color: 'pink' };
-    const nativeInputStyle = { border: '1px solid orange' };
-    const rootStyle = { color: 'darkorange' };
-
-    const theme = createTheme({
-      components: {
-        MuiSelect: {
-          styleOverrides: {
-            root: (props) => {
-              return {
-                ...(props.ownerState.error && rootStyle)
-              }
-            },
-            icon: (props) => {
-              return {
-                ...(props.ownerState.error && iconStyle)
-              }
-            },
-            nativeInput: (props) => {
-              return {
-                ...(props.ownerState.error && nativeInputStyle)
-              }
-            },
-            select: (props) => {
-              return {
-                ...(props.ownerState.error && selectStyle)
-              }
-            }
-          },
-        },
-      },
-    });
-
-    const { container, getByTestId } = render(
-      <ThemeProvider theme={theme}>
-        <Select error value="first" data-testid="select">
-          <MenuItem value="first" />
-          <MenuItem value="second" />
-        </Select>
-      </ThemeProvider>,
-    );
-
-    expect(getByTestId('select')).toHaveComputedStyle(rootStyle);
-    expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
-    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
-    expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
-      nativeInputStyle,
-    );
-  });
-
   ['standard', 'outlined', 'filled'].forEach((variant) => {
     it(`variant overrides should work for "${variant}" variant`, function test() {
       const theme = createTheme({
