@@ -342,7 +342,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     required,
     type,
     startDecorator,
-    showLoadingWithOptions = false,
     size: sizeProp = 'md',
     color: colorProp = 'neutral',
     variant = 'outlined',
@@ -691,8 +690,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           {groupedOptions.length === 0 && !freeSolo && !loading ? (
             <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
           ) : null}
-          {loading &&
-          (showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)) ? (
+          {loading && (onScrollToBottom || (!onScrollToBottom && groupedOptions.length === 0)) ? (
             <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
           ) : null}
         </SlotListbox>
@@ -903,9 +901,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` and suggestions if `showLoadingWithOptions` is `true`.
-   * if `showLoadingWithOptions` is `false` only `loadingText` gets displayed
-   * in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions
+   * (only if there are no suggestions to show, e.g. options are empty).
    * @default false
    */
   loading: PropTypes.bool,
@@ -1040,11 +1037,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,
-  /**
-   * If `true` and if `loading` is true, loadingText gets displayed along with options
-   * @default false
-   */
-  showLoadingWithOptions: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'

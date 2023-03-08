@@ -441,7 +441,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderOption: renderOptionProp,
     renderTags,
     selectOnFocus = !props.freeSolo,
-    showLoadingWithOptions = false,
     size = 'medium',
     slotProps = {},
     value: valueProp,
@@ -675,8 +674,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 })}
               </AutocompleteListbox>
             ) : null}
-            {loading &&
-            (showLoadingWithOptions || (!showLoadingWithOptions && groupedOptions.length === 0)) ? (
+            {loading && (onScrollToBottom || (!onScrollToBottom && groupedOptions.length === 0)) ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                 {loadingText}
               </AutocompleteLoading>
@@ -930,9 +928,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   ListboxProps: PropTypes.object,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` and suggestions if `showLoadingWithOptions` is `true`.
-   * if `showLoadingWithOptions` is `false` only `loadingText` gets displayed
-   * in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+   * This shows the `loadingText` in place of suggestions
+   * (only if there are no suggestions to show, e.g. options are empty).
    * @default false
    */
   loading: PropTypes.bool,
@@ -1077,11 +1074,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default !props.freeSolo
    */
   selectOnFocus: PropTypes.bool,
-  /**
-   * If `true` and if `loading` is true, loadingText gets displayed along with options
-   * @default false
-   */
-  showLoadingWithOptions: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'medium'

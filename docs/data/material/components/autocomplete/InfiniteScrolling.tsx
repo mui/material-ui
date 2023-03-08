@@ -24,7 +24,6 @@ export default function InfiniteScrolling() {
       disablePortal
       sx={{ width: 300 }}
       loading={isLoading}
-      showLoadingWithOptions
       renderInput={(params) => <TextField {...params} label="Movie" />}
       onScrollToBottom={handleOnScrollToBottom}
     />

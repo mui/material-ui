@@ -2454,14 +2454,4 @@ describe('Joy <Autocomplete />', () => {
       });
     });
   });
-
-  describe('prop: showLoadingWithOptions', () => {
-    it('should display loading text with options', () => {
-      render(
-        <Autocomplete loading showLoadingWithOptions open options={['one', 'two', 'three']} />,
-      );
-      expect(document.querySelector(`.${classes.loading}`)?.textContent).to.equal('Loading…');
-      expect(screen.getAllByRole('option').length).to.equal(3);
-    });
-  });
 });

@@ -3,6 +3,5 @@
   options={films}
   sx={{ width: 300 }}
   loading={isLoading}
-  showLoadingWithOptions
   onScrollToBottom={handleOnScrollToBottom}
 />

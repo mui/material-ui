@@ -24,7 +24,6 @@ export default function InfiniteScrolling() {
       options={films}
       sx={{ width: 300 }}
       loading={isLoading}
-      showLoadingWithOptions
       onScrollToBottom={handleOnScrollToBottom}
     />
   );

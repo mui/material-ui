@@ -2912,22 +2912,6 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('prop: showLoadingWithOptions', () => {
-    it('should display loading text with options', () => {
-      render(
-        <Autocomplete
-          loading
-          showLoadingWithOptions
-          open
-          options={['one', 'two', 'three']}
-          renderInput={(params) => <TextField {...params} />}
-        />,
-      );
-      expect(document.querySelector(`.${classes.loading}`).textContent).to.equal('Loading…');
-      expect(screen.getAllByRole('option').length).to.equal(3);
-    });
-  });
-
   describe('prop: readOnly', () => {
     it('should make the input readonly', () => {
       render(

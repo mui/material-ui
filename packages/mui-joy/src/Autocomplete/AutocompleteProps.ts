@@ -241,9 +241,8 @@ type AutocompleteOwnProps<
     getLimitTagsText?: (more: string | number) => React.ReactNode;
     /**
      * If `true`, the component is in a loading state.
-     * This shows the `loadingText` and suggestions if `showLoadingWithOptions` is `true`.
-     * if `showLoadingWithOptions` is `false` only `loadingText` gets displayed
-     * in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
+     * This shows the `loadingText` in place of suggestions
+     * (only if there are no suggestions to show, e.g. options are empty).
      * @default false
      */
     loading?: boolean;
@@ -329,11 +328,6 @@ type AutocompleteOwnProps<
       getTagProps: AutocompleteRenderGetTagProps,
       ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo>,
     ) => React.ReactNode;
-    /**
-     * If `true` and if `loading` is true, loadingText gets displayed along with options
-     * @default false
-     */
-    showLoadingWithOptions?: boolean;
     /**
      * If `true`, the `input` element is required.
      * The prop defaults to the value (`false`) inherited from the parent FormControl component.
