@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React Snackbar
 components: Snackbar, SnackbarContent
 githubLabel: 'component: snackbar'
-materialDesign: https://material.io/components/snackbars
+materialDesign: https://m2.material.io/components/snackbars
 waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 ---
 
@@ -11,7 +11,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 <p class="description">Snackbars fornecem mensagens breves sobre os processos de aplicativos. O componente também é conhecido como toast(torrada).</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. They shouldn't interrupt the user experience, and they don't require user input to disappear.
+[Snackbars](https://m2.material.io/components/snackbars) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 Snackbars contêm uma única linha de texto diretamente relacionada à operação realizada. Eles podem conter uma ação de texto, mas não ícones. Você pode usá-los para exibir notificações.
 
@@ -27,7 +27,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 ## Snackbars customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSnackbars.js"}}
 
@@ -59,18 +59,18 @@ Snackbars devem aparecer acima de BAFs (no mobile).
 
 ### Modificando a transição
 
-[Grow](/material-ui/transitions/#grow) é a transição padrão, mas você pode usar uma diferente.
+[Grow](/material-ui/transitions/#grow) is the default transition but you can use a different one.
 
 {{"demo": "TransitionsSnackbar.js"}}
 
 ### Controlando a direção do Slide
 
-Você pode alterar a direção da transição do [Slide](/material-ui/transitions/#slide).
+You can change the direction of the [Slide](/material-ui/transitions/#slide) transition.
 
 Example of making the slide transition to the left:
 
 ```jsx
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;

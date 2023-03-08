@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ChipClasses {
   /** Styles applied to the root element. */
@@ -15,6 +15,8 @@ export interface ChipClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the endDecorator element if supplied. */
@@ -37,6 +39,8 @@ export interface ChipClasses {
   sizeLg: string;
   /** Styles applied to the startDecorator element if supplied. */
   startDecorator: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
   /** Styles applied to the root element if `variant="soft"`. */
@@ -48,10 +52,10 @@ export interface ChipClasses {
 export type ChipClassKey = keyof ChipClasses;
 
 export function getChipUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyChip', slot);
+  return generateUtilityClass('MuiChip', slot);
 }
 
-const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
+const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'root',
   'clickable',
   'colorPrimary',
@@ -60,6 +64,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'disabled',
   'endDecorator',
   'focusVisible',
@@ -71,6 +76,7 @@ const chipClasses: ChipClasses = generateUtilityClasses('JoyChip', [
   'sizeMd',
   'sizeLg',
   'startDecorator',
+  'variantPlain',
   'variantSolid',
   'variantSoft',
   'variantOutlined',

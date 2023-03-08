@@ -18,7 +18,7 @@ export default function RadioChip() {
         <RadioGroup
           name="best-movie"
           aria-labelledby="best-movie"
-          row
+          orientation="horizontal"
           sx={{ flexWrap: 'wrap', gap: 1 }}
         >
           {[
@@ -41,7 +41,6 @@ export default function RadioChip() {
                 startDecorator={
                   checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />
                 }
-                sx={{ '--Chip-radius': '4px' }}
               >
                 <Radio
                   variant="outlined"

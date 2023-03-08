@@ -1,14 +1,16 @@
+import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
-export interface MenuItemUnstyledComponentsPropsOverrides {}
+export interface MenuItemUnstyledRootSlotPropsOverrides {}
 
-export interface MenuItemUnstyledOwnerState extends MenuItemUnstyledProps {
+export interface MenuItemUnstyledOwnerState extends MenuItemUnstyledOwnProps {
   disabled: boolean;
   focusVisible: boolean;
+  highlighted: boolean;
 }
 
-export interface MenuItemUnstyledProps {
+export interface MenuItemUnstyledOwnProps {
   children?: React.ReactNode;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
@@ -17,14 +19,20 @@ export interface MenuItemUnstyledProps {
    * @default false
    */
   disabled?: boolean;
-  component?: React.ElementType;
-  components?: {
-    Root?: React.ElementType;
-  };
-  componentsProps?: {
+  /**
+   * The components used for each slot inside the MenuItem.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: MenuItemUnstyledSlots;
+  /**
+   * The props used for each slot inside the MenuItem.
+   * @default {}
+   */
+  slotProps?: {
     root?: SlotComponentProps<
       'li',
-      MenuItemUnstyledComponentsPropsOverrides,
+      MenuItemUnstyledRootSlotPropsOverrides,
       MenuItemUnstyledOwnerState
     >;
   };
@@ -33,4 +41,35 @@ export interface MenuItemUnstyledProps {
    * Used for keyboard text navigation matching.
    */
   label?: string;
+}
+
+export interface MenuItemUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
+}
+
+export interface MenuItemUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P & MenuItemUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type MenuItemUnstyledProps<
+  D extends React.ElementType = MenuItemUnstyledTypeMap['defaultComponent'],
+> = OverrideProps<MenuItemUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
+
+export interface MenuItemMetadata {
+  id: string;
+  disabled: boolean;
+  label?: string;
+  ref: React.RefObject<HTMLElement>;
+}
+
+export interface MenuItemState {
+  disabled: boolean;
+  highlighted: boolean;
 }

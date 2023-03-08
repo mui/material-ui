@@ -5,8 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
-import { ListItemButtonClasses } from './listItemButtonClasses';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ListItemButtonSlot = 'root';
 
@@ -30,17 +29,13 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     autoFocus?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
+     * @default selected ? 'primary' : 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListItemButtonPropsColorOverrides>;
     /**
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemButtonClasses>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -56,16 +51,17 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     focusVisibleClassName?: string;
     /**
-     * The empty space on the side(s) of the separator.
+     * The content direction flow.
+     * @default 'horizontal'
      */
-    inset?: 'gutter' | 'leftGutter' | 'startAdornment';
+    orientation?: 'horizontal' | 'vertical';
     /**
-     * Use to apply selected styling.
+     * If `true`, the component is selected.
      * @default false
      */
     selected?: boolean;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
@@ -92,6 +88,23 @@ export type ListItemButtonProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemButtonTypeMap<P, D>, D>;
+
+export interface ListItemButtonOwnerState extends ApplyColorInversion<ListItemButtonProps> {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the element is rendered in a horizontal list.
+   * @internal
+   */
+  row?: boolean;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+}
 
 export type ExtendListItemButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendListItemButtonTypeMap<M>, 'a'>,

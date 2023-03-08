@@ -12,6 +12,20 @@ const rule = {
       noNameValue:
         'Unable to resolve `name`. Please hardcode the `name` i.e. use a string literal.',
     },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          customHooks: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
   create(context) {
     const [options = {}] = context.options;
@@ -82,6 +96,20 @@ const rule = {
           while (parent != null && componentName === null) {
             if (parent.type === 'FunctionExpression' || parent.type === 'FunctionDeclaration') {
               componentName = parent.id.name;
+            }
+
+            if (
+              parent.type === 'VariableDeclarator' &&
+              parent.init.type.match(/(CallExpression|TSAsExpression)/)
+            ) {
+              const callee =
+                parent.init.type === 'TSAsExpression'
+                  ? parent.init.expression.callee
+                  : parent.init.callee;
+              if (callee.name.includes(parent.id.name)) {
+                // For component factory, e.g. const Container = createContainer({ ... })
+                componentName = parent.id.name;
+              }
             }
 
             parent = parent.parent;

@@ -1,64 +1,91 @@
 ---
 product: joy-ui
 title: React Aspect Ratio component
+components: AspectRatio
 ---
 
-# Aspect ratio
+# Aspect Ratio
 
-<p class="description">The aspect ratio component shapes the content with the specified ratio.</p>
+<p class="description">The Aspect Ratio component resizes its contents to match the desired ratio.</p>
 
-The default aspect ratio implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio for the content.
-(It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient browser support).
+## Introduction
 
-- The content to fit the area of the aspect ratio component must be its first direct child.
-- It's designed to be composed with other components, e.g. [`Card`](/joy-ui/react-card/).
+Aspect Ratio is a wrapper component for quickly resizing content to conform to your preferred ratio of width to height.
+Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
-## Basic usage
+:::info
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it until browser compatibility increases to at least 94%.
+As of Q4 2022, compatibility is at 90%.
+Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
+:::
 
-The default aspect ratio is `16/9`.
+## Basics
+
+```jsx
+import AspectRatio from '@mui/joy/AspectRatio';
+```
+
+The Aspect Ratio component wraps around the content that it resizes.
+The element to be resized must be the first direct child.
+The default ratio is `16/9`.
 
 {{"demo": "BasicRatio.js"}}
 
-## Ratio
+## Customization
 
-Use the `ratio` prop to change the aspect ratio.
-The value will used by the [CSS `calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc).
+### Variants
+
+The Aspect Ratio component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
+
+{{"demo": "VariantsRatio.js"}}
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Ratio
+
+Use the `ratio` prop to change the aspect ratio, following the pattern `height/width`.
+For example, the demo below uses a ratio of `4/3`, which is a common alternative to the default `16/9`:
 
 {{"demo": "CustomRatio.js"}}
 
-## Media
+:::info
+The `ratio` prop uses the [CSS `calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) function under the hood.
+:::
 
-Place a native html `<img>` or `<video>` as a first direct child of the aspect ratio component.
+### Object fit
 
-Use the `objectFit` prop to change how the media should be resized in order to fit the aspect ratio component.
-It has `object-fit: cover` by default.
+When the content inside the Aspect Ratio component is an image or a video, you can use the `objectFit` prop to control how it's resized.
+
+This prop gives you access to all of the values associated with the CSS `object-fit` property: `cover` (default), `contain`, `fill`, `scaleDown`, `initial`, `inherit`, and `none`.
 
 {{"demo": "MediaRatio.js"}}
 
-## Placeholder
+### Media placeholder
 
-When the media does not exist, you can render a placeholder inside an aspect ratio component. Wrap the placeholder with a `<div>` or `Box` component to center the content.
+Use a `<div>`, or a [Box](/system/react-box/) component paired with an icon, as a fallback when there is no media content provided:
 
 {{"demo": "PlaceholderAspectRatio.js"}}
 
-## Controlling the height
+### Minimum and maximum height
 
-Use `minHeight` and `maxHeight` to set the lower and upper bound of the component's height.
-This is useful when the aspect ratio is used in a component that has dynamic width.
+Use the `minHeight` and `maxHeight` props to set the lower and upper bound for the height of the content.
+This is useful when the Aspect Ratio component wraps dynamic-width content, as shown in the demo below:
 
 {{"demo": "MinMaxRatio.js"}}
 
-## Inside a flex row
+## Usage inside a flex row
 
-When the aspect ratio component is placed as a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the aspect ratio.
+When the Aspect Ratio component is a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the content:
 
 {{"demo": "FlexRowRatio.js"}}
 
-## Integration
+## Usage with Next.js Image
 
-### Next.js Image
-
-The `AspectRatio` component can be used with [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component.
+The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
+The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
 
 ```js
 import Image from 'next/image';
@@ -75,22 +102,32 @@ function App() {
 }
 ```
 
-:::info
-Always use `layout="fill"` on the image component, otherwise you don't need to use aspect ratio because the height is based on the image.
-:::
-
 ## Common examples
 
 ### Mobile carousel
 
-Make sure to keep your content concise given the limited width real estate available.
-Since the texts are short, we can set `white-space: nowrap` to make the title stay in one line.
-The `min-width` CSS property is necessary on the aspect ratio component to prevent it from shrinking to zero.
+:::warning
+In designs like this, make sure to assign a `minWidth` value to prevent the Aspect Ratio component from shrinking.
+:::
 
 {{"demo": "CarouselRatio.js"}}
 
 ### List stack
 
-This is a simple illustration of composing aspect ratio with list components.
+This is a simple illustration of how to use Aspect Ratio with list components:
 
 {{"demo": "ListStackRatio.js"}}
+
+## Anatomy
+
+The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
+
+```html
+<div class="MuiAspectRatio-root">
+  <div class="MuiAspectRatio-content">
+    <some-element data-first-child>
+      <!-- Aspect Ratio contents -->
+    </some-element>
+  </div>
+</div>
+```

@@ -8,7 +8,7 @@ The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, 
 
 ```js
 function transform(value) {
-  return value <= 1 ? `${value * 100}%` : value;
+  return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 ```
 

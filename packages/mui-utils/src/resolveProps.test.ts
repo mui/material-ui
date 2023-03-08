@@ -44,4 +44,51 @@ describe('resolveProps', () => {
       foo: '',
     });
   });
+
+  it('merge components and componentsProps props', () => {
+    expect(
+      resolveProps(
+        { components: { Input: 'Input' }, componentsProps: { input: { className: 'input' } } },
+        {
+          components: { Root: 'Root' },
+          componentsProps: { root: { className: 'root' }, input: { style: { color: 'red' } } },
+        },
+      ),
+    ).to.deep.equal({
+      components: { Root: 'Root', Input: 'Input' },
+      componentsProps: {
+        root: { className: 'root' },
+        input: { className: 'input', style: { color: 'red' } },
+      },
+    });
+  });
+
+  it('merge slots and slotProps props', () => {
+    expect(
+      resolveProps(
+        { slots: { input: 'input' }, slotProps: { input: { className: 'input' } } },
+        {
+          slots: { root: 'root' },
+          slotProps: { root: { className: 'root' }, input: { style: { color: 'red' } } },
+        },
+      ),
+    ).to.deep.equal({
+      slots: { root: 'root', input: 'input' },
+      slotProps: {
+        root: { className: 'root' },
+        input: { className: 'input', style: { color: 'red' } },
+      },
+    });
+  });
+
+  it('should not merge props that are not intended', () => {
+    expect(
+      resolveProps(
+        { notTheSlotProps: { style: { color: 'red' } } },
+        { notTheSlotProps: { className: 'input' } },
+      ),
+    ).to.deep.equal({
+      notTheSlotProps: { className: 'input' },
+    });
+  });
 });

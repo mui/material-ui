@@ -57,7 +57,7 @@ const Div = styled('div')(({ theme }) => ({
 ```
 
 :::warning
-⚠️ The format of the channel tokens is using empty space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
+The format of the channel tokens uses a space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct format
@@ -78,7 +78,7 @@ const Div = styled('div')(({ theme }) => ({
 }));
 ```
 
-:::info
+:::warning
 You can't use `theme.vars` to create an inset shadow because the value refers to the CSS variable, not the actual shadow.
 
 - `theme.vars.shadow.sm` returns `'var(--joy-shadow-sm)'`
@@ -112,13 +112,17 @@ You can use the `.` notation to get the value of an object.
 ## Custom prefix
 
 By default, the generated CSS variables are prefixed with `joy`.
-If you want to change the prefix to something else, provide the `prefix` prop to the `CssVarsProvider`:
+If you want to change the prefix to something else, provide the `cssVarPrefix` to the `extendTheme`:
 
 ```jsx
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 function App() {
-  return <CssVarsProvider prefix="company">...</CssVarsProvider>;
+  return (
+    <CssVarsProvider theme={extendTheme({ cssVarPrefix: 'company' })}>
+      ...
+    </CssVarsProvider>
+  );
 }
 ```
 
@@ -131,7 +135,7 @@ The generated CSS variables will be:
 
 ### Remove the prefix
 
-Specify `""` as a value to `<CssVarsProvider prefix="">`.
+Specify `""` as a value to `extendTheme({ cssVarPrefix: '' })`.
 
 The generated CSS variables will be:
 

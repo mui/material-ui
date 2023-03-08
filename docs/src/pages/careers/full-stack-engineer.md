@@ -1,34 +1,33 @@
-# Full-stack Engineer - Toolpad
+# Full-stack Engineer - Toolpad (future role)
 
 <p class="description">You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
-- Start date: Immediately.
-- Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
-- We're a remote company, we prefer asynchronous communication over meetings.
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
 
 MUI started with Material UI, the most successful React implementation of Google's Material Design.
-It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
+It has gained a large following, not only due to its fidelity to Material Design, but also because of the number of components, its carefully designed component API, its obsession with details, and community engagement.
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for the most popular design tools; and also host [Templates](/templates/), a set of pre-built UI kits.
+We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
-We are a fully distributed team, spread across multiple timezones.
+We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
 For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
-Both our open-source community and our premium products are growing fast (x2-3 YoY).
+Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
 Our mission is to empower as many people as possible to build great UIs, faster.
@@ -54,7 +53,7 @@ The MUI Toolpad application offers a wide variety of engineering challenges. Inc
 Depending on the day, you'll:
 
 - **Help guide architectural decisions**. You'll join us in defining and refining the initial product and also help bring the conversation public as the MVP grows. You'll also interface with other teams at MUI as you'll be building on top of their work.
-- **Contribute to implementing new features**. MUI is a complex codebase. It's built on top of cutting edge web technologies to build the low-code tool for the future.
+- **Contribute to implementing new features**. MUI is a complex codebase. It's built on top of cutting-edge web technologies to build the low-code tool for the future.
 - **Reduce friction**. A large amount of the work on MUI Toolpad is reducing friction and making it easier to use. As our MVP grows, our focus will shift from "making it work" towards "making it easy to work with".
 - **Collaborate with the community**. MUI Toolpad will be open-sourced. As the community grows you'll act as a steward to steer it towards success. This includes reviewing issues, pull requests and questions, and guiding aspiring contributors to make meaningful contributions.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
@@ -102,7 +101,7 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Toolpad&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/4f76b45b-a18e-4bdb-8a34-8bb5a3c9c2ef/application?utm_source=ZNRrPGBkqO)
 
 ## What happens next?
 

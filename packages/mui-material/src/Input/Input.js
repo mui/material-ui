@@ -45,7 +45,7 @@ const InputRoot = styled(InputBaseRoot, {
   const light = theme.palette.mode === 'light';
   let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   if (theme.vars) {
-    bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputTouchBottomLine})`;
+    bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
   }
   return {
     position: 'relative',
@@ -75,9 +75,10 @@ const InputRoot = styled(InputBaseRoot, {
         // See https://github.com/mui/material-ui/issues/31766
         transform: 'scaleX(1) translateX(0)',
       },
-      [`&.${inputClasses.error}:after`]: {
-        borderBottomColor: (theme.vars || theme).palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
+      [`&.${inputClasses.error}`]: {
+        '&:before, &:after': {
+          borderBottomColor: (theme.vars || theme).palette.error.main,
+        },
       },
       '&:before': {
         borderBottom: `1px solid ${bottomLineColor}`,
@@ -92,7 +93,7 @@ const InputRoot = styled(InputBaseRoot, {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      [`&:hover:not(.${inputClasses.disabled}):before`]: {
+      [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
         borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
@@ -121,6 +122,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
+    slotProps,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -130,14 +133,18 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = { disableUnderline };
   const inputComponentsProps = { root: { ownerState } };
 
-  const componentsProps = componentsPropsProp
-    ? deepmerge(componentsPropsProp, inputComponentsProps)
-    : inputComponentsProps;
+  const componentsProps =
+    slotProps ?? componentsPropsProp
+      ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
+      : inputComponentsProps;
+
+  const RootSlot = slots.root ?? components.Root ?? InputRoot;
+  const InputSlot = slots.input ?? components.Input ?? InputInput;
 
   return (
     <InputBase
-      components={{ Root: InputRoot, Input: InputInput, ...components }}
-      componentsProps={componentsProps}
+      slots={{ root: RootSlot, input: InputSlot }}
+      slotProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -179,8 +186,11 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -188,7 +198,12 @@ Input.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -289,6 +304,29 @@ Input.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

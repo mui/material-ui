@@ -3,14 +3,14 @@ product: material-ui
 title: Componente React para Cartão
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 githubLabel: 'component: card'
-materialDesign: https://material.io/components/cards
+materialDesign: https://m2.material.io/components/cards
 ---
 
 # Cartão
 
 <p class="description">Cartões contêm conteúdo e ações sobre um único assunto.</p>
 
-[Cartões](https://material.io/design/components/cards.html) são componentes que exibem conteúdo e ações em um único tópico.
+[Cartões](https://m2.material.io/components/cards) são componentes que exibem conteúdo e ações em um único tópico.
 
 Eles devem ser relevantes, de fácil verificação e apresentar informações úteis. Elementos, como texto e imagens, deve ser colocado sobre eles de uma forma que indica claramente a hierarquia.
 
@@ -44,23 +44,25 @@ Por padrão, nós usamos a combinação de um elemento `<div>` e uma _imagem de 
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
-> ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE11.
+:::warning
+⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
+:::
 
 ## Ação primária
 
-Muitas vezes um cartão permite que os usuários interajam com toda sua superfície para acionar sua ação principal, seja uma expansão, um link para outra tela ou algum outro comportamento. A área de ação do cartão pode ser especificada envolvendo seu conteúdo em um componente `CardActionArea`.
+Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
 
 {{"demo": "ActionAreaCard.js", "bg": true}}
 
-Um cartão também pode oferecer ações suplementares que devem ser desvinculadas da área de ação principal, a fim de evitar sobreposições de eventos.
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
 
 {{"demo": "MultiActionAreaCard.js", "bg": true}}
 
 ## Controles da interface do usuário
 
-Ações suplementares dentro do cartão são explicitamente chamadas usando ícones, texto e controles de interface do usuário, normalmente colocados na parte inferior do cartão.
+Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.
 
-Aqui está um exemplo de um controle de mídia com cartão.
+Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 

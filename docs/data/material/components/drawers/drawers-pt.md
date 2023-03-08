@@ -3,7 +3,7 @@ product: material-ui
 title: Componente Drawer para React
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
-materialDesign: https://material.io/components/navigation-drawer
+materialDesign: https://m2.material.io/components/navigation-drawer
 ---
 
 # Drawer
@@ -12,7 +12,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 A navegação por drawers (ou "barras laterais") fornecem acesso a partes e funcionalidades do aplicativo, como trocar de conta. Eles podem estar permanentemente na tela ou controlados por um ícone de menu de navegação.
 
-[Seções laterais](https://material.io/design/components/sheets-side.html) são áreas complementares usadas principalmente em tablets e computadores.
+[Seções laterais](https://m2.material.io/design/components/sheets-side.html) são áreas complementares usadas principalmente em tablets e computadores.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -50,7 +50,7 @@ Você pode configurar a propriedade `SwipeableDrawer` para visualizar uma borda 
 
 Se você estiver em uma área de trabalho, poderá alternar o drawer com o botão "OPEN". Se estiver pelo celular, abra a demonstração no CodeSandbox (ícone "editar") e deslizar.
 
-{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+{{"demo": "SwipeableEdgeDrawer.js", "iframe": true, "disableLiveEdit": true, "height": 400, "maxWidth": 300}}
 
 ### Navegação em altura total
 
@@ -65,13 +65,13 @@ Para garantir que um drawer temporário não seja desmontado, especifique a prop
 />
 ```
 
-Mais detalhes na [seção de desempenho Modal](/material-ui/react-modal/#performance).
+More details in the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Drawer responsivo
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
-{{"demo": "ResponsiveDrawer.js", "iframe": true}}
+{{"demo": "ResponsiveDrawer.js", "iframe": true, "disableLiveEdit": true}}
 
 ## Drawer persistente
 

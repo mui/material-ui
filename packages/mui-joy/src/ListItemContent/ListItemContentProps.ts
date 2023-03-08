@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { ListItemContentClasses } from './listItemContentClasses';
 
 export type ListItemContentSlot = 'root';
 
@@ -11,10 +10,6 @@ export interface ListItemContentTypeMap<P = {}, D extends React.ElementType = 'd
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemContentClasses>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -29,3 +24,5 @@ export type ListItemContentProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemContentTypeMap<P, D>, D>;
+
+export interface ListItemContentOwnerState extends ListItemContentProps {}

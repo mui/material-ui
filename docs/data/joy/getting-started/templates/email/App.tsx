@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import type { Theme } from '@mui/joy/styles';
+import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 
 // Icons import
@@ -25,7 +24,7 @@ import Navigation from './components/Navigation';
 import Mails from './components/Mails';
 import EmailContent from './components/EmailContent';
 
-const ColorSchemeToggle = () => {
+function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -51,20 +50,13 @@ const ColorSchemeToggle = () => {
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
-};
+}
 
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
-      <GlobalStyles<Theme>
-        styles={(theme) => ({
-          body: {
-            margin: 0,
-            fontFamily: theme.vars.fontFamily.body,
-          },
-        })}
-      />
+      <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
           <Navigation />
@@ -106,7 +98,7 @@ export default function EmailExample() {
               Email
             </Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}

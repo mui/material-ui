@@ -14,11 +14,11 @@
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
+      "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "page": { "type": { "name": "node" } },
-    "selected": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
       "default": "'circular'"
@@ -29,6 +29,13 @@
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {

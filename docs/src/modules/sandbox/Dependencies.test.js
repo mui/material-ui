@@ -158,6 +158,24 @@ import 'exceljs';
     });
   });
 
+  it('should handle @types correctly', () => {
+    const { dependencies } = SandboxDependencies({
+      raw: `import utils from '../utils';`,
+      codeVariant: 'TS',
+    });
+
+    expect(dependencies).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
+      '@types/react-dom': 'latest',
+      '@types/react': 'latest',
+      typescript: 'latest',
+    });
+  });
+
   it('should handle multilines', () => {
     const source = `
 import * as React from 'react';
@@ -240,7 +258,7 @@ import * as Utils from '@mui/utils';
     });
   });
 
-  it('should date adapters', () => {
+  it('should handle date adapters', () => {
     const source = `
 import * as React from 'react';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -273,9 +291,12 @@ import AdapterMoment from '@mui/lab/AdapterMoment';
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDateFnsJalali } from '@mui/x-date-pickers/AdapterDateFnsJalali';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { AdapterMomentHijri } from '@mui/x-date-pickers/AdapterMomentHijri';
+import { AdapterMomentJalaali } from '@mui/x-date-pickers/AdapterMomentJalaali';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';`;
 
@@ -292,9 +313,12 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';`;
       '@mui/material': 'latest',
       '@mui/x-date-pickers': 'latest',
       'date-fns': 'latest',
+      'date-fns-jalali': 'latest',
       dayjs: 'latest',
       luxon: 'latest',
       moment: 'latest',
+      'moment-hijri': 'latest',
+      'moment-jalaali': 'latest',
     });
   });
 
@@ -338,7 +362,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 
 // Icons import
@@ -383,7 +407,7 @@ const ColorSchemeToggle = () => {
     </IconButton>
   );
 };
-    
+
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
@@ -435,7 +459,7 @@ export default function EmailExample() {
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
@@ -11,22 +10,61 @@ import {
   SelectUnstyledPopperSlotProps,
   SelectUnstyledProps,
   SelectUnstyledRootSlotProps,
+  SelectUnstyledType,
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
-import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelect.types';
-import { appendOwnerState } from '../utils';
+import useSelect, { SelectChild, SelectOption, SelectValue } from '../useSelect';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
-import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
+import { SelectUnstyledContext } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
-import { WithOptionalOwnerState } from '../utils/types';
+import defaultOptionStringifier from './defaultOptionStringifier';
 
-function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
-  return selectedOption?.label ?? '';
+function defaultRenderValue<TValue>(
+  selectedOptions: SelectOption<TValue> | SelectOption<TValue>[] | null,
+) {
+  if (Array.isArray(selectedOptions)) {
+    return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+  }
+
+  return selectedOptions?.label ?? '';
 }
 
-function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
+function defaultFormValueProvider<TValue>(
+  selectedOption: SelectOption<TValue> | SelectOption<TValue>[] | null,
+) {
+  if (Array.isArray(selectedOption)) {
+    if (selectedOption.length === 0) {
+      return '';
+    }
+
+    if (
+      selectedOption.every(
+        (o) =>
+          typeof o.value === 'string' ||
+          typeof o.value === 'number' ||
+          typeof o.value === 'boolean',
+      )
+    ) {
+      return selectedOption.map((o) => String(o.value));
+    }
+
+    return JSON.stringify(selectedOption.map((o) => o.value));
+  }
+
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
+}
+
+function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any, any>) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
@@ -46,30 +84,42 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
 
 /**
  * The foundation for building custom-styled select components.
+ *
+ * Demos:
+ *
+ * - [Unstyled Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
-const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
-  props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
-) {
+const SelectUnstyled = React.forwardRef(function SelectUnstyled<
+  TValue extends {},
+  Multiple extends boolean,
+>(props: SelectUnstyledProps<TValue, Multiple>, forwardedRef: React.ForwardedRef<any>) {
   const {
     autoFocus,
     children,
-    className,
     component,
-    components = {},
-    componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
+    getSerializedValue = defaultFormValueProvider,
+    listboxId,
     listboxOpen: listboxOpenProp,
+    multiple = false as Multiple,
+    name,
     onChange,
     onListboxOpenChange,
+    optionStringifier = defaultOptionStringifier,
     renderValue: renderValueProp,
+    slotProps = {},
+    slots = {},
     value: valueProp,
     ...other
   } = props;
 
-  const renderValue = renderValueProp ?? defaultRenderSingleValue;
+  const renderValue = renderValueProp ?? defaultRenderValue;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -88,20 +138,15 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? components.Root ?? 'button';
-  const ListboxRoot = components.Listbox ?? 'ul';
-  const Popper = components.Popper ?? PopperUnstyled;
+  const Button = component ?? slots.root ?? 'button';
+  const ListboxRoot = slots.listbox ?? 'ul';
+  const Popper = slots.popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
-  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
+  const handleButtonRef = useForkRef(forwardedRef, buttonRef, handleButtonRefChange);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -109,10 +154,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+    },
+    [setListboxOpen, onListboxOpenChange],
+  );
 
   const {
     buttonActive,
@@ -120,98 +168,107 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
+    contextValue,
     value,
   } = useSelect({
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
-    listboxId: componentsProps.listbox?.id,
-    listboxRef: handleListboxRef,
-    multiple: false,
+    listboxId,
+    multiple,
+    open: listboxOpen,
     onChange,
     onOpenChange: handleOpenChange,
-    open: listboxOpen,
     options,
+    optionStringifier,
     value: valueProp,
   });
 
-  const ownerState: SelectUnstyledOwnerState<TValue> = {
+  const ownerState: SelectUnstyledOwnerState<TValue, Multiple> = {
     ...props,
     active: buttonActive,
     defaultListboxOpen,
     disabled,
     focusVisible: buttonFocusVisible,
     open: listboxOpen,
+    multiple,
     renderValue,
     value,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
-    return options.find((o) => value === o.value);
-  }, [options, value]);
+  const selectedOption: SelectValue<SelectOption<TValue>, Multiple> = React.useMemo(() => {
+    if (multiple) {
+      if (value == null) {
+        return [] as unknown as SelectValue<SelectOption<TValue>, Multiple>;
+      }
 
-  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = appendOwnerState(
-    Button,
-    {
-      ...getButtonProps(),
-      ...other,
-      ...componentsProps.root,
-      className: clsx(className, componentsProps.root?.className, classes.root),
-    },
-    ownerState,
-  );
+      return options.filter((o) => (value as TValue[]).includes(o.value)) as SelectValue<
+        SelectOption<TValue>,
+        Multiple
+      >;
+    }
 
-  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue>> =
-    appendOwnerState(
-      ListboxRoot,
-      {
-        ...getListboxProps(),
-        ...componentsProps.listbox,
-        className: clsx(componentsProps.listbox?.className, classes.listbox),
+    return (options.find((o) => value === o.value) ?? null) as SelectValue<
+      SelectOption<TValue>,
+      Multiple
+    >;
+  }, [options, value, multiple]);
+
+  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue, Multiple>> =
+    useSlotProps({
+      elementType: Button,
+      getSlotProps: getButtonProps,
+      externalSlotProps: slotProps.root,
+      externalForwardedProps: other,
+      ownerState,
+      className: classes.root,
+    });
+
+  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue, Multiple>> =
+    useSlotProps({
+      elementType: ListboxRoot,
+      getSlotProps: getListboxProps,
+      externalSlotProps: slotProps.listbox,
+      additionalProps: {
+        ref: listboxRef,
       },
       ownerState,
-    );
+      className: classes.listbox,
+    });
 
-  // Popper must be a (non-host) component, therefore ownerState will be present within the props
-  const popperProps: SelectUnstyledPopperSlotProps<TValue> = appendOwnerState(
-    Popper,
-    {
-      open: listboxOpen,
+  const popperProps: SelectUnstyledPopperSlotProps<TValue, Multiple> = useSlotProps({
+    elementType: Popper,
+    externalSlotProps: slotProps.popper,
+    additionalProps: {
       anchorEl: buttonRef.current,
-      placement: 'bottom-start' as const,
       disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom-start' as const,
       role: undefined,
-      ...componentsProps.popper,
-      className: clsx(componentsProps.popper?.className, classes.popper),
     },
     ownerState,
-  ) as SelectUnstyledPopperSlotProps<TValue>;
-
-  const context: SelectUnstyledContextType = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-  };
+    className: classes.popper,
+  });
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
+      <Button {...buttonProps}>{renderValue(selectedOption as any)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
-            <SelectUnstyledContext.Provider value={context}>
+            <SelectUnstyledContext.Provider value={contextValue}>
               {children}
             </SelectUnstyledContext.Provider>
           </ListboxRoot>
         </Popper>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
-});
+}) as SelectUnstyledType;
 
 SelectUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -228,32 +285,10 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    popper: PropTypes.object,
-    root: PropTypes.object,
-  }),
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -262,17 +297,39 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the select is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
+  /**
    * Controls the open state of the select's listbox.
    * @default undefined
    */
   listboxOpen: PropTypes.bool,
+  /**
+   * If `true`, selecting multiple values is allowed.
+   *
+   * @default false
+   */
+  multiple: PropTypes.bool,
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
   /**
    * Callback fired when an option is selected.
    */
@@ -283,27 +340,41 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier: PropTypes.func,
+  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
   /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  value: PropTypes.any,
 } as any;
 
-/**
- * The foundation for building custom-styled select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
- */
-export default SelectUnstyled as <TValue extends {}>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default SelectUnstyled;

@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ChipDeleteClasses {
   /** Styles applied to the root element. */
@@ -19,6 +19,8 @@ export interface ChipDeleteClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="solid"`. */
@@ -30,10 +32,10 @@ export interface ChipDeleteClasses {
 }
 
 export function getChipDeleteUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyChipDelete', slot);
+  return generateUtilityClass('MuiChipDelete', slot);
 }
 
-const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('JoyChipDelete', [
+const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('MuiChipDelete', [
   'root',
   'disabled',
   'focusVisible',
@@ -43,6 +45,7 @@ const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('JoyChipDele
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantSolid',
   'variantSoft',

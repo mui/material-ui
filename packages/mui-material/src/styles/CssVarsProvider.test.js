@@ -31,7 +31,7 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('All CSS vars', () => {
     it('palette', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -52,7 +52,7 @@ describe('[Material UI] CssVarsProvider', () => {
             <div data-testid="palette-common">{JSON.stringify(theme.vars.palette.common)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -150,6 +150,7 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           paper: 'var(--mui-palette-background-paper)',
           default: 'var(--mui-palette-background-default)',
+          defaultChannel: 'var(--mui-palette-background-defaultChannel)',
         }),
       );
       expect(screen.getByTestId('palette-action').textContent).to.equal(
@@ -182,14 +183,14 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('opacity', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
             <div data-testid="opacity">{JSON.stringify(theme.vars.opacity)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -200,7 +201,7 @@ describe('[Material UI] CssVarsProvider', () => {
       expect(screen.getByTestId('opacity').textContent).to.equal(
         JSON.stringify({
           inputPlaceholder: 'var(--mui-opacity-inputPlaceholder)',
-          inputTouchBottomLine: 'var(--mui-opacity-inputTouchBottomLine)',
+          inputUnderline: 'var(--mui-opacity-inputUnderline)',
           switchTrackDisabled: 'var(--mui-opacity-switchTrackDisabled)',
           switchTrack: 'var(--mui-opacity-switchTrack)',
         }),
@@ -208,14 +209,14 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('shape', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
             <div data-testid="shape">{JSON.stringify(theme.vars.shape)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -233,10 +234,10 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Typography', () => {
     it('contain expected typography', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.typography).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -252,10 +253,10 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Spacing', () => {
     it('provides spacing utility', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.spacing(2)}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -269,10 +270,10 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Breakpoints', () => {
     it('provides breakpoint utilities', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.breakpoints.up('sm')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -286,11 +287,11 @@ describe('[Material UI] CssVarsProvider', () => {
 
   describe('Skipped vars', () => {
     it('should not contain `variants` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.variants ? 'variants' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -302,11 +303,11 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('should not contain `typography` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -318,11 +319,11 @@ describe('[Material UI] CssVarsProvider', () => {
     });
 
     it('should not contain `focus` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.focus ? 'focus' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>

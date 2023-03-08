@@ -19,6 +19,7 @@ export default function ExampleFilterMemberCheckbox() {
       variant="outlined"
       sx={{
         p: 2,
+        bgcolor: 'background.body',
         borderRadius: 'sm',
         width: 360,
         maxWidth: '100%',
@@ -60,7 +61,6 @@ export default function ExampleFilterMemberCheckbox() {
             />
           </ListItem>
           <ListItem
-            sx={{ borderRadius: 'sm' }}
             {...(members[1] && {
               variant: 'soft',
               color: 'primary',
@@ -84,6 +84,7 @@ export default function ExampleFilterMemberCheckbox() {
               }
               checked={members[1]}
               onChange={toggleMember(1)}
+              sx={{ color: 'inherit' }}
             />
           </ListItem>
           <ListItem {...(members[2] && { variant: 'soft', color: 'neutral' })}>

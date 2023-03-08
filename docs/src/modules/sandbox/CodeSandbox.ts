@@ -31,12 +31,11 @@ const createReactApp = (demo: {
   };
 
   const { dependencies, devDependencies } = SandboxDependencies(demo, {
-    commitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
 
   files['package.json'] = {
     content: {
-      name: title,
       description,
       dependencies,
       devDependencies,
@@ -67,7 +66,7 @@ const createJoyTemplate = (demo: {
     },
     [`index.${ext}`]: {
       content: `import * as React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/joy/styles';
 import App from './App';
 
@@ -102,13 +101,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       product: 'joy-ui',
     },
     {
-      commitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
     },
   );
 
   files['package.json'] = {
     content: {
-      name: title,
       description,
       dependencies,
       devDependencies,

@@ -1,6 +1,6 @@
 ---
 title: Material UI v1 is out 🎉
-description: Material UI v1 is out 🎉
+description: It has taken us two years to do it, but Material UI v1 has finally arrived!
 date: 2018-05-18T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Company']
@@ -15,7 +15,7 @@ tags: ['Company']
 It has taken us two years to do it, but Material UI v1 has finally arrived!
 We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
-✨✨✨ See the [**1.0.0 Release Note**](https://github.com/mui/material-ui/releases/tag/v1.0.0) on GitHub. ✨✨✨
+✨✨✨ See the **[1.0.0 Release Note](https://github.com/mui/material-ui/releases/tag/v1.0.0)** on GitHub. ✨✨✨
 
 <iframe src="https://codesandbox.io/embed/4j7m47vlm4" width="100%" height="300px" frameborder=0></iframe>
 
@@ -31,7 +31,7 @@ Material UI v1 is our second stab at the execution of [the vision](/material-ui/
 We want Material UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines. Material UI is not only an implementation of the Material Design guidelines, but a general use UI library of components that are needed by many. We are even allowing developers to build non Material themes on top of Material UI components. We will soon open source examples of this.
 
 - **CSS-in-JS**. We have seen [a great potential for **inline-styles** in the past](https://github.com/mui/material-ui/issues/30). It was an opportunity to solve four problems at once: removing the LESS toolchain dependency, allowing dynamic styles, allowing style code splitting and make overrides simpler.
-  Unfortunately, the [**execution didn't deliver**](https://github.com/mui/material-ui/issues/4066). We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
+  Unfortunately, the **[execution didn't deliver](https://github.com/mui/material-ui/issues/4066)**. We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
   Two years ago, we decided to move away [from inline-styles toward **CSS-in-JS**](https://github.com/oliviertassinari/a-journey-toward-better-style). We are very happy with the outcome. We would like to thank [@kof](https://github.com/kof) for the awesome work he has done with [JSS](https://github.com/cssinjs/jss), the internal solution we use. It's allowing us to be [interoperable](/material-ui/guides/interoperability/) with all the other styling solutions.
 
 - **Theme**. You can't have a good customizability story without a good theming story. We have been redesigning the theme. It's a [JavaScript object](/material-ui/customization/default-theme/) that contains all the variables and utility functions you might need to style your components: a palette, a typography, breakpoints helpers, transition helpers, etc.
@@ -48,7 +48,7 @@ We know the ease of use is a critical part of user acquisition. The more user we
 
 - **Isolation**. Our components now work in isolation. You should be able to use a single Material UI component in an existing codebase without any side effect. No global CSS override needed, no bundle size bloat.
 
-- **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/vercel/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with [CodeSandbox](https://codesandbox.io/s/4j7m47vlm4).
+- **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/vercel/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://docsearch.algolia.com/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with CodeSandbox.
 
 - **DOM**. We have focused on providing low-level components, in this v1 rewrite. By low-level, we mean components as close as possible to the underlying DOM structure and as stateless as possible. It should help reduce the mental overhead of using the components, encourage interoperability, and simplify customizability. For instance with the TextField. The component was broken down into 4 components. Our Input exposes the same API than a native input. You can switch one for the other. Leveraging this structural choice, we were able to demonstrate 3 autocomplete integration example with [Downshift](https://github.com/downshift-js/downshift), [react-autosuggest](https://github.com/moroshko/react-autosuggest), and [react-select](https://github.com/JedWatson/react-select).
 
@@ -62,7 +62,7 @@ Many people discover web development through Material UI but it's also used in p
 
 <p class="blog-description">Lighthouse report of the Material UI documentation homepage</p>
 
-- **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://www.argos-ci.com/mui/material-ui) thanks to [Argos-CI](https://www.argos-ci.com/).
+- **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://app.argos-ci.com/mui/material-ui/builds) thanks to [Argos-CI](https://www.argos-ci.com/).
 
 ![An example [BrowserStack](https://www.browserstack.com/) build](https://cdn-images-1.medium.com/max/2000/1*bnWGqotk36ivrYTp3dY7fA.png)
 

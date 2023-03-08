@@ -32,6 +32,7 @@ export type AutocompleteOwnerState<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
   disablePortal: boolean;
+  expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
   hasClearIcon: boolean;
@@ -52,6 +53,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
+  index: number;
   selected: boolean;
 }
 
@@ -120,6 +122,8 @@ export interface AutocompleteProps<
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
     paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
   };
   /**
    * If `true`, the component is disabled.
@@ -157,7 +161,9 @@ export interface AutocompleteProps<
   /**
    * Props applied to the Listbox element.
    */
-  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']>;
+  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
+    sx?: SxProps<Theme>;
+  };
   /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
@@ -257,6 +263,16 @@ export interface AutocompleteProps<
    */
   size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps?: {
+    clearIndicator?: Partial<IconButtonProps>;
+    paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -274,7 +290,7 @@ export interface AutocompleteProps<
  */
 export default function Autocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;

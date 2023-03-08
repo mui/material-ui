@@ -13,6 +13,7 @@ describe('generateUtilityClass', () => {
     expect(generateUtilityClass('MuiTest', 'active')).to.equal('Mui-active');
     expect(generateUtilityClass('MuiTest', 'checked')).to.equal('Mui-checked');
     expect(generateUtilityClass('MuiTest', 'disabled')).to.equal('Mui-disabled');
+    expect(generateUtilityClass('MuiTest', 'readOnly')).to.equal('Mui-readOnly');
     expect(generateUtilityClass('MuiTest', 'error')).to.equal('Mui-error');
     expect(generateUtilityClass('MuiTest', 'focused')).to.equal('Mui-focused');
     expect(generateUtilityClass('MuiTest', 'focusVisible')).to.equal('Mui-focusVisible');
@@ -40,6 +41,7 @@ describe('generateUtilityClass', () => {
       expect(generateUtilityClass('MuiTest', 'active')).to.equal('Mui-active');
       expect(generateUtilityClass('MuiTest', 'checked')).to.equal('Mui-checked');
       expect(generateUtilityClass('MuiTest', 'disabled')).to.equal('Mui-disabled');
+      expect(generateUtilityClass('MuiTest', 'readOnly')).to.equal('Mui-readOnly');
       expect(generateUtilityClass('MuiTest', 'error')).to.equal('Mui-error');
       expect(generateUtilityClass('MuiTest', 'focused')).to.equal('Mui-focused');
       expect(generateUtilityClass('MuiTest', 'focusVisible')).to.equal('Mui-focusVisible');
@@ -47,5 +49,9 @@ describe('generateUtilityClass', () => {
       expect(generateUtilityClass('MuiTest', 'expanded')).to.equal('Mui-expanded');
       expect(generateUtilityClass('MuiTest', 'selected')).to.equal('Mui-selected');
     });
+  });
+
+  it('custom state prefix', () => {
+    expect(generateUtilityClass('JoyButton', 'focusVisible', 'Joy')).to.equal('Joy-focusVisible');
   });
 });

@@ -1,45 +1,51 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
-export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
+export interface TablePaginationActionsUnstyledRootSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledFirstButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledLastButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledNextButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledBackButtonSlotPropsOverrides {}
 
-interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {};
+export interface TablePaginationActionsUnstyledOwnProps {
   count: number;
   /**
    * The components used for each slot inside the TablePagination.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    FirstButton?: React.ElementType;
-    LastButton?: React.ElementType;
-    NextButton?: React.ElementType;
-    BackButton?: React.ElementType;
-    FirstPageIcon?: React.ElementType;
-    LastPageIcon?: React.ElementType;
-    NextPageIcon?: React.ElementType;
-    BackPageIcon?: React.ElementType;
-  };
+  slots?: TablePaginationActionsUnstyledSlots;
   /**
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    firstButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    lastButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    nextButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    backButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
+  slotProps?: {
+    root?: SlotComponentProps<
+      'div',
+      TablePaginationActionsUnstyledRootSlotPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    firstButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledFirstButtonSlotPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    lastButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledLastButtonSlotPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    nextButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledNextButtonSlotPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    backButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledBackButtonSlotPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
   };
   /**
    * Direction of the text.
@@ -62,15 +68,58 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
   showLastButton: boolean;
 }
 
+export interface TablePaginationActionsUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the first button.
+   * @default 'button'
+   */
+  firstButton?: React.ElementType;
+  /**
+   * The component used to render the last button.
+   * @default 'button'
+   */
+  lastButton?: React.ElementType;
+  /**
+   * The component used to render the next button.
+   * @default 'button'
+   */
+  nextButton?: React.ElementType;
+  /**
+   * The component used to render the back button.
+   * @default 'button'
+   */
+  backButton?: React.ElementType;
+  /**
+   * The component used to render the first page icon.
+   * @default FirstPageIconDefault
+   */
+  firstPageIcon?: React.ElementType;
+  /**
+   * The component used to render the last page icon.
+   * @default LastPageIconDefault
+   */
+  lastPageIcon?: React.ElementType;
+  /**
+   * The component used to render the next page icon.
+   * @default NextPageIconDefault
+   */
+  nextPageIcon?: React.ElementType;
+  /**
+   * The component used to render the back page icon.
+   * @default BackPageIconDefault
+   */
+  backPageIcon?: React.ElementType;
+}
+
 export type TablePaginationActionsUnstyledProps<
   D extends React.ElementType = TablePaginationActionsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationActionsUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

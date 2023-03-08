@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface TypographyClasses {
   /** Styles applied to the root element. */
@@ -41,6 +41,8 @@ export interface TypographyClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -54,10 +56,10 @@ export interface TypographyClasses {
 export type TypographyClassKey = keyof TypographyClasses;
 
 export function getTypographyUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTypography', slot);
+  return generateUtilityClass('MuiTypography', slot);
 }
 
-const typographyClasses: TypographyClasses = generateUtilityClasses('JoyTypography', [
+const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypography', [
   'root',
   'h1',
   'h2',
@@ -78,6 +80,7 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('JoyTypograp
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

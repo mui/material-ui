@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CheckboxClasses {
   /** Styles applied to the root element. */
@@ -31,6 +31,8 @@ export interface CheckboxClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -48,10 +50,10 @@ export interface CheckboxClasses {
 export type CheckboxClassKey = keyof CheckboxClasses;
 
 export function getCheckboxUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyCheckbox', slot);
+  return generateUtilityClass('MuiCheckbox', slot);
 }
 
-const checkboxClasses: CheckboxClasses = generateUtilityClasses('JoyCheckbox', [
+const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'root',
   'checkbox',
   'action',
@@ -67,6 +69,7 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('JoyCheckbox', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

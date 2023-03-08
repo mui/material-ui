@@ -10,11 +10,11 @@
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "disableElevation": { "type": { "name": "bool" } },
-    "disableFocusRipple": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableElevation": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
@@ -77,6 +77,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-button-group/\">Button group</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-button-group/\">Button Group</a></li></ul>",
   "cssComponent": false
 }

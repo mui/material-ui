@@ -62,7 +62,6 @@ describe('<TablePaginationUnstyled />', () => {
           testWithElement: 'th',
         },
       },
-      skip: ['componentsPropsCallbacks'], // not implemented yet
     }),
   );
 
@@ -295,7 +294,7 @@ describe('<TablePaginationUnstyled />', () => {
 
   describe('prop: count=-1', () => {
     it('should display the "of more than" text and keep the nextButton enabled', () => {
-      const Test = () => {
+      function Test() {
         const [page, setPage] = React.useState(0);
         return (
           <table>
@@ -308,7 +307,7 @@ describe('<TablePaginationUnstyled />', () => {
                   onPageChange={(_, newPage) => {
                     setPage(newPage);
                   }}
-                  componentsProps={{
+                  slotProps={{
                     displayedRows: {
                       'data-testid': 'displayedRows',
                     } as any,
@@ -318,7 +317,7 @@ describe('<TablePaginationUnstyled />', () => {
             </TableFooter>
           </table>
         );
-      };
+      }
 
       const { getByRole, getByTestId } = render(<Test />);
 
@@ -340,7 +339,7 @@ describe('<TablePaginationUnstyled />', () => {
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
-                componentsProps={{
+                slotProps={{
                   actions: {
                     showFirstButton: true,
                   } as any,
@@ -368,7 +367,7 @@ describe('<TablePaginationUnstyled />', () => {
                 rowsPerPage={10}
                 count={98}
                 onPageChange={handleChangePage}
-                componentsProps={{
+                slotProps={{
                   actions: {
                     showLastButton: true,
                   } as any,
@@ -410,7 +409,7 @@ describe('<TablePaginationUnstyled />', () => {
     });
   });
 
-  describe('prop: componentsProps: select', () => {
+  describe('prop: selectId, labelId', () => {
     it('does allow manual label ids', () => {
       const { container } = render(
         <table>
@@ -422,9 +421,8 @@ describe('<TablePaginationUnstyled />', () => {
                 onPageChange={noop}
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
-                componentsProps={{
-                  select: { id: 'foo', 'aria-labelledby': 'bar' },
-                }}
+                selectId="foo"
+                labelId="bar"
               />
             </TableRow>
           </TableFooter>
@@ -472,7 +470,7 @@ describe('<TablePaginationUnstyled />', () => {
                 rowsPerPage={10}
                 page={0}
                 onPageChange={noop}
-                componentsProps={{
+                slotProps={{
                   select: { 'aria-label': 'rows per page' },
                 }}
               />

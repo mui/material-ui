@@ -12,7 +12,7 @@ There are many ways to support MUI:
   Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
+  [Stack Overflow](https://stackoverflow.com/questions/tagged/mui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
@@ -181,11 +181,11 @@ This command searches the local dependencies and tries to simplify the structure
 If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
-  resolve: {
-+   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
-+   }
-  }
+ resolve: {
++  alias: {
++    '@mui/styles': path.resolve(appFolder, 'node_modules', '@mui/styles'),
++  },
+ },
 ```
 
 ### Usage with Lerna
@@ -369,8 +369,8 @@ You could end up accidentally using two class name generators in a variety of sc
 - You are using `StylesProvider` for a **subset** of your React tree.
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
-:::info
-💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::success
+If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 :::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
@@ -392,14 +392,14 @@ Example of fix:
 -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
-function handleRender(req, res) {
-+ // Create a sheets instance.
-+ const sheets = new ServerStyleSheets();
+ function handleRender(req, res) {
++  // Create a sheets instance.
++  const sheets = new ServerStyleSheets();
 
-  //…
+   //…
 
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
+   // Render the component to a string.
+   const html = ReactDOMServer.renderToString(
 ```
 
 ### [v4] React class name hydration mismatch
@@ -428,14 +428,14 @@ This generator needs to behave identically on the server and on the client. For 
   -// Create a new class name generator.
   -const generateClassName = createGenerateClassName();
 
-  function handleRender(req, res) {
-  + // Create a new class name generator.
-  + const generateClassName = createGenerateClassName();
+   function handleRender(req, res) {
+  +  // Create a new class name generator.
+  +  const generateClassName = createGenerateClassName();
 
-    //…
+     //…
 
-    // Render the component to a string.
-    const html = ReactDOMServer.renderToString(
+     // Render the component to a string.
+     const html = ReactDOMServer.renderToString(
   ```
 
 - You need to verify that your client and server are running the **exactly the same version** of MUI.

@@ -3,6 +3,7 @@ import InputUnstyled, {
   InputUnstyledInputSlotProps,
   InputUnstyledRootSlotProps,
 } from '@mui/base/InputUnstyled';
+import { expectType } from '@mui/types';
 
 const InputRoot = React.forwardRef(function InputRoot(
   props: InputUnstyledRootSlotProps,
@@ -20,4 +21,40 @@ const InputInput = React.forwardRef(function InputInput(
   return <input data-focused={ownerState.focused} {...other} ref={ref} />;
 });
 
-const styledInput = <InputUnstyled components={{ Root: InputRoot, Input: InputInput }} />;
+const styledInput = <InputUnstyled slots={{ root: InputRoot, input: InputInput }} />;
+
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
+
+  return (
+    <div>
+      {/* @ts-expect-error */}
+      <InputUnstyled invalidProp={0} />
+
+      <InputUnstyled component="a" href="#" />
+
+      <InputUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      {/* @ts-expect-error */}
+      <InputUnstyled component={CustomComponent} />
+
+      <InputUnstyled
+        component="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+      />
+
+      <InputUnstyled<'button'>
+        component="button"
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onMouseDown={(e) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+          e.currentTarget.checkValidity();
+        }}
+      />
+    </div>
+  );
+};

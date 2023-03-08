@@ -68,11 +68,11 @@ function ChildModal() {
     <React.Fragment>
       <Button onClick={handleOpen}>Open Child Modal</Button>
       <Modal
-        hideBackdrop
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
+        slots={{ backdrop: Backdrop }}
       >
         <Box sx={[style, { width: '200px' }]}>
           <h2 id="child-modal-title">Text in a child modal</h2>
@@ -103,7 +103,7 @@ export default function NestedModal() {
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
-        components={{ Backdrop }}
+        slots={{ backdrop: Backdrop }}
       >
         <Box sx={style}>
           <h2 id="parent-modal-title">Text in a modal</h2>

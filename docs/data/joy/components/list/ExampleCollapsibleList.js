@@ -31,14 +31,12 @@ export default function ExampleCollapsibleList() {
             '--joy-palette-text-secondary': '#635e69',
             '--joy-palette-primary-plainColor': '#d48cff',
           },
-
           '--List-insetStart': '32px',
-          '--List-item-paddingY': '0px',
-          '--List-item-paddingRight': '16px',
-          '--List-item-paddingLeft': '21px',
-          '--List-item-startActionWidth': '0px',
-          '--List-item-startActionTranslateX': '-50%',
-
+          '--ListItem-paddingY': '0px',
+          '--ListItem-paddingRight': '16px',
+          '--ListItem-paddingLeft': '21px',
+          '--ListItem-startActionWidth': '0px',
+          '--ListItem-startActionTranslateX': '-50%',
           [`& .${listItemButtonClasses.root}`]: {
             borderLeft: '1px solid',
             borderColor: 'divider',
@@ -85,7 +83,7 @@ export default function ExampleCollapsibleList() {
             </IconButton>
           }
         >
-          <ListItemButton>
+          <ListItem>
             <Typography
               level="inherit"
               sx={{
@@ -98,9 +96,9 @@ export default function ExampleCollapsibleList() {
             <Typography component="span" level="body3" sx={{ ml: 1 }}>
               9
             </Typography>
-          </ListItemButton>
+          </ListItem>
           {open && (
-            <List sx={{ '--List-item-paddingY': '8px' }}>
+            <List sx={{ '--ListItem-paddingY': '8px' }}>
               <ListItem>
                 <ListItemButton>Overview</ListItemButton>
               </ListItem>
@@ -136,7 +134,7 @@ export default function ExampleCollapsibleList() {
             </IconButton>
           }
         >
-          <ListItemButton>
+          <ListItem>
             <Typography
               level="inherit"
               sx={{
@@ -149,9 +147,9 @@ export default function ExampleCollapsibleList() {
             <Typography component="span" level="body3" sx={{ ml: 1 }}>
               39
             </Typography>
-          </ListItemButton>
+          </ListItem>
           {open2 && (
-            <List sx={{ '--List-item-paddingY': '8px' }}>
+            <List sx={{ '--ListItem-paddingY': '8px' }}>
               <ListItem>
                 <ListItemButton>Overview</ListItemButton>
               </ListItem>

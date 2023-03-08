@@ -1,6 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
+    "allowSwipeInChildren": "If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer&#39;s children. This can be useful in scenarios where the drawer is partially visible. You can customize it further with a callback that determines which children the user can drag over to open the drawer (for example, to ignore other elements that handle touch move events, like sliders).",
     "children": "The content of the component.",
     "disableBackdropTransition": "Disable the backdrop transition. This can improve the FPS on low-end devices.",
     "disableDiscovery": "If <code>true</code>, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture.",

@@ -1,12 +1,13 @@
 import { OverrideProps, Simplify } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
-import { UseTabRootSlotProps } from './useTab.types';
+import { SlotComponentProps } from '../utils';
+import { UseTabRootSlotProps } from '../useTab';
 
-interface TabUnstyledComponentsPropsOverrides {}
+export interface TabUnstyledRootSlotPropsOverrides {}
 
 export interface TabUnstyledOwnProps
-  extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'components' | 'componentsProps'> {
+  extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'slots' | 'slotProps'> {
   /**
    * You can provide your own value. Otherwise, we fall back to the child position index.
    */
@@ -16,31 +17,32 @@ export interface TabUnstyledOwnProps
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
   /**
+   * The props used for each slot inside the Tab.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<'button', TabUnstyledRootSlotPropsOverrides, TabUnstyledOwnerState>;
+  };
+  /**
    * The components used for each slot inside the Tab.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-  };
+  slots?: TabUnstyledSlots;
+}
+
+export interface TabUnstyledSlots {
   /**
-   * The props used for each slot inside the Tab.
-   * @default {}
+   * The component used to render the root.
+   * @default 'button'
    */
-  componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TabUnstyledComponentsPropsOverrides;
-  };
+  root?: React.ElementType;
 }
 
 export type TabUnstyledProps<
   D extends React.ElementType = TabUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

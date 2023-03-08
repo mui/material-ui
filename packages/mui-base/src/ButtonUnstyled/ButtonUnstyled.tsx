@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -8,7 +9,7 @@ import {
   ButtonUnstyledTypeMap,
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
-import useButton from './useButton';
+import useButton from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 
@@ -31,22 +32,19 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Button](https://mui.com/base/react-button/)
+ * - [Unstyled Button](https://mui.com/base/react-button/)
  *
  * API:
  *
  * - [ButtonUnstyled API](https://mui.com/base/api/button-unstyled/)
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
-  D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
->(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
+  BaseComponentType extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
+>(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const {
     action,
     children,
-    className,
     component,
-    components = {},
-    componentsProps = {},
     disabled,
     focusableWhenDisabled = false,
     onBlur,
@@ -56,6 +54,8 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     onKeyDown,
     onKeyUp,
     onMouseLeave,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -86,21 +86,22 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? components.Root ?? 'button';
+  const defaultElement = other.href || other.to ? 'a' : 'button';
+  const Root: React.ElementType = component ?? slots.root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     additionalProps: {
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root, className],
+    className: classes.root,
   });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OverridableComponent<ButtonUnstyledTypeMap>;
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -123,30 +124,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
-  /**
-   * The components used for each slot inside the Button.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Button.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
+  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -160,7 +141,54 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  href: PropTypes.string,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   onFocusVisible: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * The props used for each slot inside the Button.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Button.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
+  to: PropTypes.string,
 } as any;
 
 export default ButtonUnstyled;

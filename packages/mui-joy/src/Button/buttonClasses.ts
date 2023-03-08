@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ButtonClasses {
   /** Styles applied to the root element. */
@@ -15,6 +15,8 @@ export interface ButtonClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
@@ -35,19 +37,23 @@ export interface ButtonClasses {
   sizeLg: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
-  /** Styles applied to the startIcon element if supplied. */
-  startIcon: string;
-  /** Styles applied to the endIcon element if supplied. */
-  endIcon: string;
+  /** Styles applied to the startDecorator element if supplied. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element if supplied. */
+  endDecorator: string;
+  /** Styles applied to the root element if `loading={true}`. */
+  loading: string;
+  /** Styles applied to the loadingIndicatorCenter element. */
+  loadingIndicatorCenter: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
 
 export function getButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyButton', slot);
+  return generateUtilityClass('MuiButton', slot);
 }
 
-const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
+const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -55,6 +61,7 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',
@@ -65,8 +72,10 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
   'sizeMd',
   'sizeLg',
   'fullWidth',
-  'startIcon',
-  'endIcon',
+  'startDecorator',
+  'endDecorator',
+  'loading',
+  'loadingIndicatorCenter',
 ]);
 
 export default buttonClasses;

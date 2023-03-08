@@ -12,7 +12,7 @@
     },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
-    "disableRipple": { "type": { "name": "bool" } },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "edge": {
       "type": {
         "name": "enum",
@@ -25,7 +25,7 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "onChange": { "type": { "name": "func" } },
-    "required": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",
@@ -65,6 +65,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/material-ui/api/icon-button/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-switch/\">Switches</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer list</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-switch/\">Switch</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>",
   "cssComponent": false
 }

@@ -1,0 +1,3 @@
+<Textarea size="sm" name="Size" placeholder="Small" />
+<Textarea size="md" name="Size" placeholder="Medium" />
+<Textarea size="lg" name="Size" placeholder="Large" />

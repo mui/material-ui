@@ -11,8 +11,6 @@ test('should see legacy styles', async ({ page }) => {
 });
 
 test('should see legacy styles inside system', async ({ page }) => {
-  test.skip(!FEATURE_TOGGLE.enable_product_scope, "Migration haven't started yet");
-
   await page.goto(`/system/styles/basics/`);
 
   await expect(page.locator('h1:has-text("@mui/styles")')).toBeVisible();

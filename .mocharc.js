@@ -1,5 +1,5 @@
 module.exports = {
-  extension: ['js', 'ts', 'tsx'],
+  extension: ['js', 'mjs', 'ts', 'tsx'],
   ignore: [
     '**/build/**',
     '**/node_modules/**',

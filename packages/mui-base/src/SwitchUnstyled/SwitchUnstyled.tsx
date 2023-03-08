@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import useSwitch from './useSwitch';
-import classes from './switchUnstyledClasses';
-import appendOwnerState from '../utils/appendOwnerState';
+import { OverridableComponent } from '@mui/types';
+import composeClasses from '../composeClasses';
+import useSwitch from '../useSwitch';
+import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 import {
   SwitchUnstyledProps,
   SwitchUnstyledOwnerState,
@@ -11,31 +11,46 @@ import {
   SwitchUnstyledRootSlotProps,
   SwitchUnstyledThumbSlotProps,
   SwitchUnstyledTrackSlotProps,
+  SwitchUnstyledTypeMap,
 } from './SwitchUnstyled.types';
-import { WithOptionalOwnerState } from '../utils';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
+
+const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
+  const { checked, disabled, focusVisible, readOnly } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      checked && 'checked',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readOnly',
+    ],
+    thumb: ['thumb'],
+    input: ['input'],
+    track: ['track'],
+  };
+
+  return composeClasses(slots, getSwitchUnstyledUtilityClass, {});
+};
 
 /**
  * The foundation for building custom-styled switches.
  *
  * Demos:
  *
- * - [Switch](https://mui.com/base/react-switch/)
+ * - [Unstyled Switch](https://mui.com/base/react-switch/)
  *
  * API:
  *
  * - [SwitchUnstyled API](https://mui.com/base/api/switch-unstyled/)
  */
-const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
-  props: SwitchUnstyledProps,
-  ref: React.ForwardedRef<any>,
-) {
+const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
+  BaseComponentType extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],
+>(props: SwitchUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const {
     checked: checkedProp,
-    className,
     component,
-    components = {},
-    componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
     onBlur,
@@ -44,7 +59,9 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    ...otherProps
+    slotProps = {},
+    slots = {},
+    ...other
   } = props;
 
   const useSwitchProps = {
@@ -68,62 +85,53 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     readOnly,
   };
 
-  const stateClasses = {
-    [classes.checked]: checked,
-    [classes.disabled]: disabled,
-    [classes.focusVisible]: focusVisible,
-    [classes.readOnly]: readOnly,
-  };
+  const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? components.Root ?? 'span';
-  const rootComponentProps = resolveComponentProps(componentsProps.root, ownerState);
-  const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = appendOwnerState(
-    Root,
-    {
-      ...otherProps,
-      ...rootComponentProps,
-      className: clsx(classes.root, stateClasses, className, rootComponentProps?.className),
+  const Root: React.ElementType = component ?? slots.root ?? 'span';
+  const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
     },
     ownerState,
-  );
+    className: classes.root,
+  });
 
-  const Thumb: React.ElementType = components.Thumb ?? 'span';
-  const thumbComponentProps = resolveComponentProps(componentsProps.thumb, ownerState);
-  const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = appendOwnerState(
-    Thumb,
-    { ...thumbComponentProps, className: clsx(classes.thumb, thumbComponentProps?.className) },
+  const Thumb: React.ElementType = slots.thumb ?? 'span';
+  const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = useSlotProps({
+    elementType: Thumb,
+    externalSlotProps: slotProps.thumb,
     ownerState,
-  );
+    className: classes.thumb,
+  });
 
-  const Input: React.ElementType = components.Input ?? 'input';
-  const inputComponentProps = resolveComponentProps(componentsProps.input, ownerState);
-  const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = appendOwnerState(
-    Input,
-    {
-      ...getInputProps(),
-      ...inputComponentProps,
-      className: clsx(classes.input, inputComponentProps?.className),
-    },
+  const Input: React.ElementType = slots.input ?? 'input';
+  const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = useSlotProps({
+    elementType: Input,
+    getSlotProps: getInputProps,
+    externalSlotProps: slotProps.input,
     ownerState,
-  );
+    className: classes.input,
+  });
 
-  const Track: React.ElementType =
-    components.Track === null ? () => null : components.Track ?? 'span';
-  const trackComponentProps = resolveComponentProps(componentsProps.track, ownerState);
-  const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = appendOwnerState(
-    Track,
-    { ...trackComponentProps, className: clsx(classes.track, trackComponentProps?.className) },
+  const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
+  const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = useSlotProps({
+    elementType: Track,
+    externalSlotProps: slotProps.track,
     ownerState,
-  );
+    className: classes.track,
+  });
 
   return (
-    <Root ref={ref} {...rootProps}>
+    <Root {...rootProps}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
       <Input {...inputProps} />
     </Root>
   );
-});
+}) as OverridableComponent<SwitchUnstyledTypeMap>;
 
 SwitchUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -135,36 +143,14 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    */
   checked: PropTypes.bool,
   /**
-   * Class name applied to the root element.
+   * @ignore
    */
-  className: PropTypes.string,
+  children: PropTypes.node,
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Switch.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Thumb: PropTypes.elementType,
-    Track: PropTypes.oneOfType([PropTypes.elementType, PropTypes.oneOf([null])]),
-  }),
-  /**
-   * The props used for each slot inside the Switch.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -201,6 +187,27 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Switch.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Switch.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.oneOfType([PropTypes.elementType, PropTypes.oneOf([null])]),
+  }),
 } as any;
 
 export default SwitchUnstyled;

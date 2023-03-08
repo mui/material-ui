@@ -1,4 +1,4 @@
-# CSS variables
+# TODO merge with other pages
 
 <p class="description">Learn about the experimental API for using CSS variables with Material UI components.</p>
 
@@ -27,7 +27,7 @@ The structure of this object is nearly identical to the theme structure, the onl
 
 ## Usage
 
-`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the theme.
+`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the `theme.vars`.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -36,6 +36,8 @@ function App() {
   return <CssVarsProvider>...</CssVarsProvider>;
 }
 ```
+
+If you use TypeScript, check out the [theme types setup](#typescript).
 
 ### Customizing components
 
@@ -89,19 +91,19 @@ const theme = experimental_extendTheme({
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 
 ```diff
-- import { ThemeProvider, createTheme } from '@mui/material/styles';
-+ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+-import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 
-function App() {
-  return (
+ function App() {
+   return (
 -    <ThemeProvider theme={createTheme()}>
 -      ...
 -    </ThemeProvider>
 +    <CssVarsProvider>
 +      ...
 +    </CssVarsProvider>
-  )
-}
+   )
+ }
 ```
 
 ### Toggle between light and dark mode
@@ -192,8 +194,32 @@ import React from 'react';
 import { getInitColorSchemeScript } from '@mui/material/styles';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
+  setPreBodyComponents([
+    <React.Fragment key="mui-init-color-scheme-script">
+      {getInitColorSchemeScript()}
+    </React.Fragment>,
+  ]);
 }
+```
+
+### TypeScript
+
+You need to import the theme augmentation to include `theme.vars` and other utilities related to CSS variables to the theme:
+
+```ts
+// this can be the root file of you application
+import type {} from '@mui/material/themeCssVarsAugmentation';
+```
+
+Then, you will be able to access `theme.vars` in any of the styling APIs, for example the `styled`:
+
+```ts
+import { styled } from '@mui/material/styles';
+
+const StyledComponent = styled('button')(({ theme }) => ({
+  // typed-safe
+  color: theme.vars.palette.primary.main,
+}));
 ```
 
 ## API
@@ -217,6 +243,6 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 **options**
 
-- `enableSystem?: boolean`: - If `true` and the selected mode is not `light` or `dark`, the system mode is used
+- `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme

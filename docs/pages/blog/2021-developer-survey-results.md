@@ -151,7 +151,7 @@ And what has decreased:
 
 ### Please rate how much you agree or disagree with the following statements
 
-<img src="/static/blog/2021-developer-survey-results/4.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="I can find most of the components I need (Strongly agree: 45.5%, Agree: 45.9%, Neutral: 6.2%, Disagree: 1.5%, Strongly Disagree 0.8%); I can easily customize the components to match the desired design (Strongly agree: 23.4%, Agree: 46.1%, Neutral: 18.6%, Disagree: 9%, Strongly Disagree 2.9%); I can find the answers to most of my questions in the documentation (Strongly agree: 24.1%, Agree: 50.1%, Neutral: 16.3%, Disagree: 7.6%, Strongly Disagree 1.9%); I find the library's performance to be great (Strongly agree: 26.4%, Agree: 44.3%, Neutral: 22.6%, Disagree: 4.7%, Strongly Disagree 2%); Whenever I needed to get help, I received helpful responses, StackOverflow or GitHub (Strongly agree: 20.9%, Agree: 36.7%, Neutral: 36%, Disagree: 4.6%, Strongly Disagree 1.8%)" />
+<img src="/static/blog/2021-developer-survey-results/4.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="I can find most of the components I need (Strongly agree: 45.5%, Agree: 45.9%, Neutral: 6.2%, Disagree: 1.5%, Strongly Disagree 0.8%); I can easily customize the components to match the desired design (Strongly agree: 23.4%, Agree: 46.1%, Neutral: 18.6%, Disagree: 9%, Strongly Disagree 2.9%); I can find the answers to most of my questions in the documentation (Strongly agree: 24.1%, Agree: 50.1%, Neutral: 16.3%, Disagree: 7.6%, Strongly Disagree 1.9%); I find the library's performance to be great (Strongly agree: 26.4%, Agree: 44.3%, Neutral: 22.6%, Disagree: 4.7%, Strongly Disagree 2%); Whenever I needed to get help, I received helpful responses, Stack Overflow or GitHub (Strongly agree: 20.9%, Agree: 36.7%, Neutral: 36%, Disagree: 4.6%, Strongly Disagree 1.8%)" />
 
 <p class="blog-description">1534 out of 1589 answered.</p>
 
@@ -462,7 +462,8 @@ It's crucial for our docs—and even the code itself—to be easily understood b
 
 <p class="blog-description">1051 out of 1589 answered.</p>
 
-It might be a possible interpration that MUI could be one of the enablers of this high-speed development, which is very encouraging. Shipping 28 apps in a year is already a huge accomplishment but 122 to 494 is just wild!
+Roughly half (47%) of those who responded to this question shipped one app or simply maintained an existing app.
+Impressively, 5% of respondents delivered six or more apps, and more than half of those surpassed 10!
 
 ### Which MUI products do you use in your application?
 
@@ -554,7 +555,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
 
 <p class="blog-description">75 out of 1589 answered.</p>
 
-- **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/columns/#column-pinning).
+- **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/column-pinning/).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
   Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
@@ -658,7 +659,7 @@ This year we saw a considerable bump the use of Next.js (compared with 12.4% in 
 As the MUI Core v5 release is relatively recent, we expect to see many developers still using JSS, and there will probably always be some of you who prefer it.
 
 But the growth of Emotion and styled-components here is noteworthy, because they are what our new styling solution is based on.
-This year we'll be focusing on expanding and refining [MUI System](/system/basics/) to further improve upon this new styling solution.
+This year we'll be focusing on expanding and refining [MUI System](/system/getting-started/the-sx-prop/) to further improve upon this new styling solution.
 
 ### Did you recently migrate to MUI Core v5?
 

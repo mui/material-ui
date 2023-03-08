@@ -27,13 +27,22 @@ const Root = styled('ul')(({ theme }) => ({
   },
 }));
 
+const defaultPackageNames = {
+  'material-ui': '@mui/material',
+  'joy-ui': '@mui/joy',
+  base: '@mui/base',
+  system: '@mui/system',
+};
+
 export default function ComponentLinkHeader(props) {
   const {
-    headers,
-    headers: { packageName = '@mui/material' },
-    options,
+    markdown: { headers },
+    design,
   } = props;
   const t = useTranslate();
+
+  const packageName =
+    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
 
   return (
     <Root>
@@ -115,7 +124,7 @@ export default function ComponentLinkHeader(props) {
           />
         </li>
       ) : null}
-      {options.design !== false ? (
+      {design !== false ? (
         <React.Fragment>
           <li>
             <Chip
@@ -175,6 +184,8 @@ export default function ComponentLinkHeader(props) {
 }
 
 ComponentLinkHeader.propTypes = {
-  headers: PropTypes.object.isRequired,
-  options: PropTypes.object.isRequired,
+  design: PropTypes.bool,
+  markdown: PropTypes.shape({
+    headers: PropTypes.object.isRequired,
+  }).isRequired,
 };

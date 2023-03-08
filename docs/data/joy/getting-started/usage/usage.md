@@ -1,67 +1,52 @@
 # Usage
 
-<p class="description">Learn the basics of working with Joy UI components in three quick steps.</p>
+<p class="description">Learn the basics of working with Joy UI components.</p>
 
-## Installation
+## Quickstart
 
-Install Joy via either npm or yarn using the commands below in your directory of choice.
-
-**npm**
-
-```sh
-npm init react-app spark-joy
-cd spark-joy
-npm install @mui/joy @emotion/react @emotion/styled
-npm start
-```
-
-**yarn**
-
-```sh
-yarn create react-app spark-joy
-cd spark-joy
-yarn add @mui/joy @emotion/react @emotion/styled
-yarn start
-```
-
-## Set up the `CssVarsProvider` component
-
-Go to your `App.js` file and replace it with the code snippet below. You should see the text `Hello from Joy` being rendered on your browser.
+The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy-ui/react-button/) component:
 
 ```jsx
-import { CssVarsProvider } from '@mui/joy/styles';
+import * as React from 'react';
+import Button from '@mui/joy/Button';
 
-function App() {
-  return <CssVarsProvider>Hello from Joy</CssVarsProvider>;
+export default function MyApp() {
+  return <Button variant="solid">Hello World</Button>;
 }
-
-export default App;
 ```
 
-## Render your first component
+You can play around with this code in the interactive Code Sandbox demo below.
+Try changing the `variant` on the Button to `soft` to see how the style changes:
 
-To render any Joy component, make sure you place them inside the `CssVarProvider` element. Let's start off with a button.
+{{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
 
-```diff
-import { CssVarsProvider } from '@mui/joy/styles';
-+ import Button from '@mui/joy/Button';
+### CssVarsProvider
 
-function App() {
-  return (
-    <CssVarsProvider>
-+     <Button>Joy UI</Button>
-    </CssVarsProvider>
-  );
-}
+In the Quickstart example above, you can see that the Button component is nested within `<CssVarsProvider />`.
+This provider unlocks a whole host of customization options powered by CSS variables.
+See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
 
-export default App;
+## Globals
+
+Since Joy UI components are built to function in isolation, they don't require any kind of globally scoped styles.
+For a better user experience and developer experience, we recommend adding the following globals to your app.
+
+### Responsive meta tag
+
+Joy UI is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
+
+To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element:
+
+```html
+<meta name="viewport" content="initial-scale=1, width=device-width" />
 ```
 
-Make sure that your development server is running, save your file, and that's it!
-It's that fast.
-You're now ready to go on exploring Joy and build amazing UIs.
+### CssBaseline
 
-## Next steps
+Joy UI provides an optional [CssBaseline](/joy-ui/react-css-baseline/) component.
+It fixes some inconsistencies across browsers and devices while providing resets that are better tailored to fit Joy UI than alternative global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
 
-- 👩‍💻 [Build your first UI](/joy-ui/getting-started/tutorial/) with Joy.
-- 💎 Learn about Joy's main features.
+### Default font
+
+Joy UI uses the Public Sans font by default.
+See [Installation—Public Sans font](/joy-ui/getting-started/installation/#public-sans-font) for complete details.

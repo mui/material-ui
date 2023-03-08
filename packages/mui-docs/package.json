@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.8.4",
+  "version": "5.11.12",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -24,11 +24,11 @@
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build legacy",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
     "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build node",
-    "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build",
     "test": "exit 0"
@@ -44,8 +44,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@mui/utils": "^5.8.4",
+    "@babel/runtime": "^7.21.0",
+    "@mui/utils": "^5.11.12",
     "nprogress": "^0.2.0"
   },
   "publishConfig": {

@@ -11,7 +11,7 @@ Material UI provides several different ways to customize a component's styles. Y
 
 1. [One-off customization](#1-one-off-customization)
 1. [Reusable component](#2-reusable-component)
-1. [Global theme variation](#3-global-theme-overrides)
+1. [Global theme overrides](#3-global-theme-overrides)
 1. [Global CSS override](#4-global-css-override)
 
 ## 1. One-off customization
@@ -20,7 +20,7 @@ To change the styles of _one single instance_ of a component, you can use one of
 
 ### The `sx` prop
 
-The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases.
+The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases.
 It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
@@ -41,7 +41,7 @@ In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you 
 {{"demo": "DevTools.js"}}
 
 :::warning
-⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+These class names can't be used as CSS selectors because they are unstable.
 :::
 
 ### Overriding styles with class names
@@ -55,7 +55,7 @@ Visit the [Style library interoperability](/material-ui/guides/interoperability/
 
 States like _hover_, _focus_, _disabled_ and _selected_, are styled with a higher CSS specificity. To customize them, you'll need to **increase specificity**.
 
-Here is an example with the _disable_ state and the `Button` component using a pseudo-class (`:disabled`):
+Here is an example with the _disabled_ state and the `Button` component using a pseudo-class (`:disabled`):
 
 ```css
 .Button {
@@ -117,7 +117,7 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | selected      | `.Mui-selected`     |
 
 :::error
-⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
 :::
 
 ```css
@@ -146,7 +146,7 @@ You can do this with **dynamic CSS** or **CSS variables**.
 #### Dynamic CSS
 
 :::warning
-⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+If you are using TypeScript, you will need to update the prop's types of the new component.
 :::
 
 {{"demo": "DynamicCSS.js", "defaultCodeOpen": false}}
@@ -190,8 +190,12 @@ If you are already using the [CssBaseline](/material-ui/react-css-baseline/) com
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
-:::info
-Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+The `styleOverrides` key in the `MuiCssBaseline` component slot also supports callback from which you can access the theme. Here is how you can achieve the same by using this approach.
+
+{{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
+
+:::success
+It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
 :::
 
 ```diff
@@ -200,7 +204,7 @@ Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant
 
 +const inputGlobalStyles = <GlobalStyles styles={...} />;
 
- const Input = (props) => {
+ function Input(props) {
    return (
      <React.Fragment>
 -      <GlobalStyles styles={...} />

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface FormControlUnstyledComponentsPropsOverrides {}
+export interface FormControlUnstyledRootSlotPropsOverrides {}
 
 export interface FormControlUnstyledOwnProps {
   /**
@@ -14,17 +15,6 @@ export interface FormControlUnstyledOwnProps {
    * Class name applied to the root element.
    */
   className?: string;
-  /**
-   * The components used for each slot inside the FormControl.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & FormControlUnstyledComponentsPropsOverrides;
-  };
   defaultValue?: unknown;
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
@@ -42,7 +32,32 @@ export interface FormControlUnstyledOwnProps {
    * @default false
    */
   required?: boolean;
+  /**
+   * The props used for each slot inside the FormControl.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'div',
+      FormControlUnstyledRootSlotPropsOverrides,
+      FormControlUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: FormControlUnstyledSlots;
   value?: unknown;
+}
+
+export interface FormControlUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormControlUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -54,11 +69,6 @@ export type FormControlUnstyledProps<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<FormControlUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 
@@ -68,6 +78,7 @@ export type FormControlUnstyledOwnerState = Simplify<
   Omit<FormControlUnstyledOwnProps, NonOptionalOwnerState> &
     Required<Pick<FormControlUnstyledProps, NonOptionalOwnerState>> & {
       filled: boolean;
+      focused: boolean;
     }
 >;
 
@@ -81,3 +92,9 @@ export type FormControlUnstyledState = Simplify<
     onFocus: () => void;
   }
 >;
+
+export type FormControlUnstyledRootSlotProps = {
+  children: React.ReactNode | ((state: FormControlUnstyledState) => React.ReactNode);
+  className?: string;
+  ownerState: FormControlUnstyledOwnerState;
+};

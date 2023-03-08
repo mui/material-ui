@@ -1,14 +1,13 @@
+import * as React from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
-import omitEventHandlers, { OmitEventHandlers } from './omitEventHandlers';
+import omitEventHandlers from './omitEventHandlers';
 
-export type WithClassName<T> = T & {
+export type WithCommonProps<T> = T & {
   className?: string;
-};
-
-export type WithRef<T> = T & {
+  style?: React.CSSProperties;
   ref?: React.Ref<any>;
 };
 
@@ -23,20 +22,20 @@ export interface MergeSlotPropsParameters<
    * It accepts the event handlers passed into the component by the user
    * and is responsible for calling them where appropriate.
    */
-  getSlotProps?: (other: EventHandlers) => WithClassName<SlotProps>;
+  getSlotProps?: (other: EventHandlers) => WithCommonProps<SlotProps>;
   /**
-   * Props provided to the `componentsProps.*` of the unstyled component.
+   * Props provided to the `slotProps.*` of the unstyled component.
    */
-  externalSlotProps?: WithClassName<ExternalSlotProps>;
+  externalSlotProps?: WithCommonProps<ExternalSlotProps>;
   /**
    * Extra props placed on the unstyled component that should be forwarded to the slot.
    * This should usually be used only for the root slot.
    */
-  externalForwardedProps?: WithClassName<ExternalForwardedProps>;
+  externalForwardedProps?: WithCommonProps<ExternalForwardedProps>;
   /**
    * Additional props to be placed on the slot.
    */
-  additionalProps?: WithClassName<AdditionalProps>;
+  additionalProps?: WithCommonProps<AdditionalProps>;
   /**
    * Extra class name(s) to be placed on the slot.
    */
@@ -51,9 +50,9 @@ export type MergeSlotPropsResult<
 > = {
   props: Simplify<
     SlotProps &
-      OmitEventHandlers<ExternalForwardedProps> &
-      OmitEventHandlers<ExternalSlotProps> &
-      AdditionalProps & { className?: string }
+      ExternalForwardedProps &
+      ExternalSlotProps &
+      AdditionalProps & { className?: string; style?: React.CSSProperties }
   >;
   internalRef: React.Ref<any> | undefined;
 };
@@ -66,7 +65,7 @@ export type MergeSlotPropsResult<
  * 1. The internal props (specified as a getter function to work with get*Props hook result)
  * 2. Additional props (specified internally on an unstyled component)
  * 3. External props specified on the owner component. These should only be used on a root slot.
- * 4. External props specified in the `componentsProps.*` prop.
+ * 4. External props specified in the `slotProps.*` prop.
  * 5. The `className` prop - combined from all the above.
  * @param parameters
  * @returns
@@ -78,7 +77,7 @@ export default function mergeSlotProps<
   AdditionalProps,
 >(
   parameters: MergeSlotPropsParameters<
-    WithRef<SlotProps>,
+    SlotProps,
     ExternalForwardedProps,
     ExternalSlotProps,
     AdditionalProps
@@ -97,20 +96,29 @@ export default function mergeSlotProps<
       additionalProps?.className,
     );
 
+    const mergedStyle = {
+      ...additionalProps?.style,
+      ...externalForwardedProps?.style,
+      ...externalSlotProps?.style,
+    };
+
     const props = {
       ...additionalProps,
       ...externalForwardedProps,
       ...externalSlotProps,
-      className: joinedClasses,
-    } as Simplify<
-      SlotProps &
-        ExternalForwardedProps &
-        ExternalSlotProps &
-        AdditionalProps & { className?: string }
-    >;
+    } as MergeSlotPropsResult<
+      SlotProps,
+      ExternalForwardedProps,
+      ExternalSlotProps,
+      AdditionalProps
+    >['props'];
 
-    if (joinedClasses.length === 0) {
-      delete props.className;
+    if (joinedClasses.length > 0) {
+      props.className = joinedClasses;
+    }
+
+    if (Object.keys(mergedStyle).length > 0) {
+      props.style = mergedStyle;
     }
 
     return {
@@ -127,28 +135,44 @@ export default function mergeSlotProps<
   const otherPropsWithoutEventHandlers = omitEventHandlers(externalForwardedProps);
 
   const internalSlotProps = getSlotProps(eventHandlers);
+
+  // The order of classes is important here.
+  // Emotion (that we use in libraries consuming MUI Base) depends on this order
+  // to properly override style. It requires the most important classes to be last
+  // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
   const joinedClasses = clsx(
+    internalSlotProps?.className,
+    additionalProps?.className,
+    className,
     externalForwardedProps?.className,
     externalSlotProps?.className,
-    className,
-    additionalProps?.className,
-    internalSlotProps?.className,
   );
+
+  const mergedStyle = {
+    ...internalSlotProps?.style,
+    ...additionalProps?.style,
+    ...externalForwardedProps?.style,
+    ...externalSlotProps?.style,
+  };
 
   const props = {
     ...internalSlotProps,
     ...additionalProps,
     ...otherPropsWithoutEventHandlers,
     ...componentsPropsWithoutEventHandlers,
-    className: joinedClasses,
-  } as Simplify<
-    SlotProps &
-      OmitEventHandlers<ExternalForwardedProps> &
-      OmitEventHandlers<ExternalSlotProps> &
-      AdditionalProps & { className?: string }
-  >;
-  if (joinedClasses.length === 0) {
-    delete props.className;
+  } as MergeSlotPropsResult<
+    SlotProps,
+    ExternalForwardedProps,
+    ExternalSlotProps,
+    AdditionalProps
+  >['props'];
+
+  if (joinedClasses.length > 0) {
+    props.className = joinedClasses;
+  }
+
+  if (Object.keys(mergedStyle).length > 0) {
+    props.style = mergedStyle;
   }
 
   return {

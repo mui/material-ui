@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListItemContentClasses {
   /** Styles applied to the root element. */
@@ -8,11 +8,11 @@ export interface ListItemContentClasses {
 export type ListItemContentClassKey = keyof ListItemContentClasses;
 
 export function getListItemContentUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyListItemContent', slot);
+  return generateUtilityClass('MuiListItemContent', slot);
 }
 
 const listItemContentClasses: ListItemContentClasses = generateUtilityClasses(
-  'JoyListItemContent',
+  'MuiListItemContent',
   ['root'],
 );
 

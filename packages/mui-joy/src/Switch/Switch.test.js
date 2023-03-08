@@ -1,38 +1,52 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  describeJoyColorInversion,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+} from 'test/utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('<Switch />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Switch />, () => ({
+  describeConformance(<Switch startDecorator="1" endDecorator="2" />, () => ({
     classes,
     render,
     ThemeProvider,
     muiName: 'JoySwitch',
+    inheritComponent: 'div',
     testDeepOverrides: [
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
       { slotName: 'thumb', slotClassName: classes.thumb },
     ],
-    refInstanceof: window.HTMLSpanElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'classesRoot',
-      'propsSpread',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
+    refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: { expectedClassName: classes.root },
+      thumb: { expectedClassName: classes.thumb },
+      track: { expectedClassName: classes.track },
+      action: { expectedClassName: classes.action },
+      input: { expectedClassName: classes.input },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
+    skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
 
-  it('should pass `componentsProps` down to slots', () => {
+  describeJoyColorInversion(<Switch />, { muiName: 'JoySwitch', classes });
+
+  it('should pass `slotProps` down to slots', () => {
     const { container } = render(
       <Switch
         data-testid="root-switch"
-        componentsProps={{
+        slotProps={{
           thumb: { className: 'custom-thumb' },
           track: { className: 'custom-track' },
           action: { className: 'custom-action' },

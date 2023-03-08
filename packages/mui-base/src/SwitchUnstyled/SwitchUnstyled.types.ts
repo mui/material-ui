@@ -1,62 +1,87 @@
-import { Simplify } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
+import { UseSwitchInputSlotProps, UseSwitchParameters } from '../useSwitch';
 
-export interface SwitchUnstyledComponentsPropsOverrides {}
+export interface SwitchUnstyledRootSlotPropsOverrides {}
+export interface SwitchUnstyledThumbSlotPropsOverrides {}
+export interface SwitchUnstyledInputSlotPropsOverrides {}
+export interface SwitchUnstyledTrackSlotPropsOverrides {}
 
-export interface SwitchUnstyledProps extends UseSwitchParameters {
+export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   /**
    * Class name applied to the root element.
    */
   className?: string;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    Thumb?: React.ElementType;
-    Input?: React.ElementType;
-    Track?: React.ElementType | null;
-  };
-
+  slots?: SwitchUnstyledSlots;
   /**
    * The props used for each slot inside the Switch.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledRootSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
     thumb?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledThumbSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
     input?: SlotComponentProps<
       'input',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledInputSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
     track?: SlotComponentProps<
       'span',
-      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledTrackSlotPropsOverrides,
       SwitchUnstyledOwnerState
     >;
   };
 }
 
+export interface SwitchUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component used to render the thumb.
+   * @default 'span'
+   */
+  thumb?: React.ElementType;
+  /**
+   * The component used to render the track.
+   * @default 'span'
+   */
+  track?: React.ElementType | null;
+}
+
+export interface SwitchUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & SwitchUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type SwitchUnstyledProps<
+  D extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],
+> = OverrideProps<SwitchUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
+
 export type SwitchUnstyledOwnerState = Simplify<
-  SwitchUnstyledProps & {
+  SwitchUnstyledOwnProps & {
     checked: boolean;
     disabled: boolean;
     focusVisible: boolean;
@@ -66,26 +91,26 @@ export type SwitchUnstyledOwnerState = Simplify<
 
 export type SwitchUnstyledRootSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledThumbSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledTrackSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledInputSlotProps = Simplify<
   UseSwitchInputSlotProps & {
     ownerState: SwitchUnstyledOwnerState;
-    className: string;
+    className?: string;
     children?: React.ReactNode;
   }
 >;

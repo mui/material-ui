@@ -1,4 +1,10 @@
-import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@mui/system';
+import {
+  ThemeOptions as SystemThemeOptions,
+  Theme as SystemTheme,
+  SxProps,
+  CSSObject,
+  SxConfig,
+} from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
@@ -9,13 +15,14 @@ import { Components } from './components';
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
-  components?: Components<BaseTheme>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
+  unstable_sxConfig?: SxConfig;
 }
 
 interface BaseTheme extends SystemTheme {
@@ -36,6 +43,8 @@ export {};
  */
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;
+  unstable_sx: (props: SxProps<Theme>) => CSSObject;
+  unstable_sxConfig: SxConfig;
 }
 
 /**

@@ -1,26 +1,26 @@
 ---
 product: material-ui
-title: Componente React para Navegação inferior
+title: Bottom navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'
-materialDesign: https://material.io/components/bottom-navigation
+materialDesign: https://m2.material.io/components/bottom-navigation
 ---
 
-# Navegação inferior
+# Bottom navigation
 
 <p class="description">A barra de navegação inferior permite navegar entre os principais destinos em um aplicativo.</p>
 
-Barras de [navegação inferior](https://material.io/design/components/bottom-navigation.html) apresentam de três a cinco destinos na parte inferior da tela. Cada destino é apresentado por um ícone e opcionalmente um rótulo de texto. Quando um ícone de navegação inferior é pressionado, o usuário é levado ao destino associado com ícone.
+Barras de [navegação inferior](https://m2.material.io/components/bottom-navigation) apresentam de três a cinco destinos na parte inferior da tela. Cada destino é apresentado por um ícone e opcionalmente um rótulo de texto. Quando um ícone de navegação inferior é pressionado, o usuário é levado ao destino associado com ícone.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Navegação inferior
+## Bottom navigation
 
 Se existir **quatro** ou **cinco** ações, exiba os destinos inativos somente com ícone.
 
 {{"demo": "SimpleBottomNavigation.js", "bg": true}}
 
-## Navegação inferior sem rótulo
+## Bottom navigation with no label
 
 Se existir **quatro** ou **cinco** ações, exiba os destinos inativos somente com ícone.
 

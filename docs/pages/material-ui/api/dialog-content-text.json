@@ -15,6 +15,6 @@
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-material/src/DialogContentText/DialogContentText.js",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialogs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
   "cssComponent": false
 }

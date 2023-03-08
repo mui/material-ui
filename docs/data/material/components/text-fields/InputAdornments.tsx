@@ -12,34 +12,10 @@ import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-interface State {
-  amount: string;
-  password: string;
-  weight: string;
-  weightRange: string;
-  showPassword: boolean;
-}
-
 export default function InputAdornments() {
-  const [values, setValues] = React.useState<State>({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -59,8 +35,6 @@ export default function InputAdornments() {
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-weight"
-            value={values.weight}
-            onChange={handleChange('weight')}
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
@@ -73,9 +47,7 @@ export default function InputAdornments() {
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
+            type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -84,7 +56,7 @@ export default function InputAdornments() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -95,8 +67,6 @@ export default function InputAdornments() {
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount"
           />
@@ -115,8 +85,6 @@ export default function InputAdornments() {
         <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
           <FilledInput
             id="filled-adornment-weight"
-            value={values.weight}
-            onChange={handleChange('weight')}
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="filled-weight-helper-text"
             inputProps={{
@@ -129,9 +97,7 @@ export default function InputAdornments() {
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
             id="filled-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
+            type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -140,7 +106,7 @@ export default function InputAdornments() {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -150,8 +116,6 @@ export default function InputAdornments() {
           <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
           <FilledInput
             id="filled-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>
@@ -169,8 +133,6 @@ export default function InputAdornments() {
         <FormControl variant="standard" sx={{ m: 1, mt: 3, width: '25ch' }}>
           <Input
             id="standard-adornment-weight"
-            value={values.weight}
-            onChange={handleChange('weight')}
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="standard-weight-helper-text"
             inputProps={{
@@ -183,9 +145,7 @@ export default function InputAdornments() {
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
+            type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -193,7 +153,7 @@ export default function InputAdornments() {
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
                 >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             }
@@ -203,8 +163,6 @@ export default function InputAdornments() {
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
           <Input
             id="standard-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>
