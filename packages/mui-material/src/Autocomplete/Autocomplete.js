@@ -326,27 +326,29 @@ const AutocompleteListbox = styled('div', {
       pointerEvents: 'none',
     },
     [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
     },
     '&[aria-selected="true"]': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        ? theme.vars.palette.action.selectedItemBg
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? theme.vars.palette.action.selectedItemHoverBg
           : alpha(
               theme.palette.primary.main,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
             ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: (theme.vars || theme).palette.action.selected,
+          backgroundColor: theme.vars
+            ? theme.vars.palette.action.selectedItemBg
+            : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
         },
       },
       [`&.${autocompleteClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          ? theme.vars.palette.action.selectedItemFocusBg
           : alpha(
               theme.palette.primary.main,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,

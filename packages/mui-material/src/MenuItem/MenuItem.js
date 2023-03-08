@@ -81,11 +81,11 @@ const MenuItemRoot = styled(ButtonBase, {
   },
   [`&.${menuItemClasses.selected}`]: {
     backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+      ? theme.vars.palette.action.selectedItemBg
       : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     [`&.${menuItemClasses.focusVisible}`]: {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        ? theme.vars.palette.action.selectedItemFocusBg
         : alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -94,7 +94,7 @@ const MenuItemRoot = styled(ButtonBase, {
   },
   [`&.${menuItemClasses.selected}:hover`]: {
     backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+      ? theme.vars.palette.action.selectedItemHoverBg
       : alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -102,12 +102,12 @@ const MenuItemRoot = styled(ButtonBase, {
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        ? theme.vars.palette.action.selectedItemBg
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
   },
   [`&.${menuItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
+    backgroundColor: (theme.vars ?? theme).palette.action.focus,
   },
   [`&.${menuItemClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,

@@ -7,6 +7,7 @@ import {
   experimental_extendTheme as extendTheme,
 } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
+import { alpha, colorAlpha, colorChannel } from '@mui/system';
 
 describe('experimental_extendTheme', () => {
   let originalMatchmedia;
@@ -49,6 +50,147 @@ describe('experimental_extendTheme', () => {
     });
     expect(theme.colorSchemes.light.palette.primary.main).to.equal(deepOrange[500]);
     expect(theme.colorSchemes.light.palette.secondary.main).to.equal(green.A400);
+  });
+
+  describe('should generate action.selectedItemBg colors', () => {
+    it('by default', () => {
+      const { colorSchemes } = extendTheme();
+      Object.keys(colorSchemes).forEach((schemeKey) => {
+        const { palette } = colorSchemes[schemeKey];
+        const { selectedItemBg } = palette.action;
+        expect(selectedItemBg).to.equal(
+          alpha(palette.primary.main, palette.action.selectedOpacity),
+        );
+        expect(palette.action.selectedItemHoverBg).to.equal(
+          `rgba(${colorChannel(selectedItemBg)} / ${
+            colorAlpha(selectedItemBg) + palette.action.hoverOpacity
+          })`,
+        );
+        expect(palette.action.selectedItemFocusBg).to.equal(
+          `rgba(${colorChannel(selectedItemBg)} / ${
+            colorAlpha(selectedItemBg) + palette.action.focusOpacity
+          })`,
+        );
+      });
+    });
+
+    it('when the consumer customizes opacities within palette.action', () => {
+      const customSelectedOpacity = 0.7;
+      const customHoverOpacity = 0.006;
+      const customFocusOpacity = 0.004;
+      const { colorSchemes } = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              action: {
+                selectedOpacity: customSelectedOpacity,
+                hoverOpacity: customHoverOpacity,
+                focusOpacity: customFocusOpacity,
+              },
+            },
+          },
+          dark: {
+            palette: {
+              action: {
+                selectedOpacity: customSelectedOpacity,
+                hoverOpacity: customHoverOpacity,
+                focusOpacity: customFocusOpacity,
+              },
+            },
+          },
+        },
+      });
+
+      Object.keys(colorSchemes).forEach((schemeKey) => {
+        const { palette } = colorSchemes[schemeKey];
+        const { selectedItemBg } = palette.action;
+        expect(selectedItemBg).to.equal(alpha(palette.primary.main, customSelectedOpacity));
+        expect(palette.action.selectedItemHoverBg).to.equal(
+          `rgba(${colorChannel(selectedItemBg)} / ${
+            colorAlpha(selectedItemBg) + customHoverOpacity
+          })`,
+        );
+        expect(palette.action.selectedItemFocusBg).to.equal(
+          `rgba(${colorChannel(selectedItemBg)} / ${
+            colorAlpha(selectedItemBg) + customFocusOpacity
+          })`,
+        );
+      });
+    });
+
+    it('when the consumer customizes selectedItemBg only', () => {
+      const customSelectedItemBg = alpha(deepOrange.A700, 0.25);
+      const { colorSchemes } = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              action: {
+                selectedItemBg: customSelectedItemBg,
+              },
+            },
+          },
+          dark: {
+            palette: {
+              action: {
+                selectedItemBg: customSelectedItemBg,
+              },
+            },
+          },
+        },
+      });
+
+      Object.keys(colorSchemes).forEach((schemeKey) => {
+        const { palette } = colorSchemes[schemeKey];
+        const { selectedItemBg } = palette.action;
+        expect(selectedItemBg).to.equal(customSelectedItemBg);
+        expect(palette.action.selectedItemHoverBg).to.equal(
+          `rgba(${colorChannel(customSelectedItemBg)} / ${
+            colorAlpha(customSelectedItemBg) + palette.action.hoverOpacity
+          })`,
+        );
+        expect(palette.action.selectedItemFocusBg).to.equal(
+          `rgba(${colorChannel(selectedItemBg)} / ${
+            colorAlpha(selectedItemBg) + palette.action.focusOpacity
+          })`,
+        );
+      });
+    });
+
+    it('when the consumer customizes selectedItemBg, selectedItemHoverBg and selectedItemFocusBg', () => {
+      const customSelectedItemBg = alpha(deepOrange.A700, 0.25);
+      const customSelectedItemHoverBg = alpha(deepOrange[600], 0.25);
+      const customSelectedItemFocusBg = alpha(deepOrange[900], 0.25);
+      const { colorSchemes } = extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              action: {
+                selectedItemBg: customSelectedItemBg,
+                selectedItemHoverBg: customSelectedItemHoverBg,
+                selectedItemFocusBg: customSelectedItemFocusBg,
+              },
+            },
+          },
+          dark: {
+            palette: {
+              action: {
+                selectedItemBg: customSelectedItemBg,
+                selectedItemHoverBg: customSelectedItemHoverBg,
+                selectedItemFocusBg: customSelectedItemFocusBg,
+              },
+            },
+          },
+        },
+      });
+
+      Object.keys(colorSchemes).forEach((schemeKey) => {
+        const { palette } = colorSchemes[schemeKey];
+        const { selectedItemBg } = palette.action;
+        expect(selectedItemBg).to.equal(customSelectedItemBg);
+        expect(palette.action.selectedItemHoverBg).to.equal(customSelectedItemHoverBg);
+        expect(palette.action.selectedItemFocusBg).to.equal(customSelectedItemFocusBg);
+      });
+    });
   });
 
   it('should generate color channels', () => {

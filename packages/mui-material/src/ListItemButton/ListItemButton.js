@@ -68,7 +68,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   }),
   '&:hover': {
     textDecoration: 'none',
-    backgroundColor: (theme.vars || theme).palette.action.hover,
+    backgroundColor: (theme.vars ?? theme).palette.action.hover,
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
@@ -76,11 +76,11 @@ const ListItemButtonRoot = styled(ButtonBase, {
   },
   [`&.${listItemButtonClasses.selected}`]: {
     backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+      ? theme.vars.palette.action.selectedItemBg
       : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     [`&.${listItemButtonClasses.focusVisible}`]: {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        ? theme.vars.palette.action.selectedItemFocusBg
         : alpha(
             theme.palette.primary.main,
             theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -89,7 +89,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   },
   [`&.${listItemButtonClasses.selected}:hover`]: {
     backgroundColor: theme.vars
-      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+      ? theme.vars.palette.action.selectedItemHoverBg
       : alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -97,12 +97,12 @@ const ListItemButtonRoot = styled(ButtonBase, {
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        ? theme.vars.palette.action.selectedItemBg
         : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     },
   },
   [`&.${listItemButtonClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars || theme).palette.action.focus,
+    backgroundColor: (theme.vars ?? theme).palette.action.focus,
   },
   [`&.${listItemButtonClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,

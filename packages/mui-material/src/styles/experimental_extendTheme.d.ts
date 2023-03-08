@@ -85,9 +85,38 @@ export interface PaletteColorChannel {
   contrastTextChannel: string;
 }
 
+/**
+ * Colors used to style action elements (CssVarsProvider only).
+ */
+export interface PaletteAction {
+  /**
+   * The background color of a selected item in a list of related actions.
+   *
+   * @default `rgba({@link PalettePrimary.mainChannel} / {@link TypeAction.selectedOpacity})`
+   */
+  selectedItemBg: string;
+  /**
+   * The background color of a selected & hovered item in a list of related actions.
+   *
+   * > Setting this value explicitly is strongly discouraged - this token's primary use case is as a single source of truth for multiple components that utilize the color.
+   *
+   * @default {@link selectedItemBg} with its opacity increased by the value of {@link TypeAction.hoverOpacity}.
+   */
+  selectedItemHoverBg: string;
+  /**
+   * The background color of a selected & focused item in a list of related actions.
+   *
+   * > Setting this value explicitly is strongly discouraged - this token's primary use case is as a single source of truth for multiple components that utilize the color.
+   *
+   * @default {@link selectedItemBg} with its opacity increased by the value of {@link TypeAction.focusOpacity}.
+   */
+  selectedItemFocusBg: string;
+}
+
 export interface PaletteActionChannel {
   activeChannel: string;
   selectedChannel: string;
+  selectedItemBgChannel: string;
 }
 
 export interface PaletteTextChannel {
@@ -243,7 +272,7 @@ export interface CssVarsPalette {
   text: PaletteTextChannel;
   background: PaletteBackgroundChannel;
   dividerChannel: string;
-  action: PaletteActionChannel;
+  action: PaletteActionChannel & PaletteAction;
   Alert: PaletteAlert;
   AppBar: PaletteAppBar;
   Avatar: PaletteAvatar;

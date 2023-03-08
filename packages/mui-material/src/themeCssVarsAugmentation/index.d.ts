@@ -6,6 +6,7 @@ import type {
   PaletteColorChannel,
   PaletteTextChannel,
   PaletteActionChannel,
+  PaletteAction,
 } from '../styles/experimental_extendTheme';
 
 /**
@@ -21,7 +22,7 @@ declare module '@mui/material/styles' {
   interface PaletteColor extends PaletteColorChannel {}
   interface TypeBackground extends PaletteBackgroundChannel {}
   interface TypeText extends PaletteTextChannel {}
-  interface TypeAction extends PaletteActionChannel {}
+  interface TypeAction extends PaletteAction, PaletteActionChannel {}
 
   // The extended Palette should be in sync with `extendTheme`
   interface Palette extends CssVarsPalette {}

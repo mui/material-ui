@@ -9,6 +9,9 @@ import {
   unstable_defaultSxConfig as defaultSxConfig,
   unstable_styleFunctionSx as styleFunctionSx,
   unstable_prepareCssVars as prepareCssVars,
+  alpha,
+  colorAlpha,
+  colorChannel,
 } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
@@ -132,6 +135,26 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.common, 'background', '#000');
       setColor(palette.common, 'onBackground', '#fff');
     }
+
+    // set the default selectedItem values based on the palette's primary color and configured `action.selectedOpacity` value.
+    setColor(
+      palette.action,
+      'selectedItemBg',
+      alpha(palette.primary.main, palette.action.selectedOpacity),
+    );
+    // derive the default selected item hover / focus values based on the value set for `selectedItemBg` above.
+    const selectedItemBgChannel = colorChannel(palette.action.selectedItemBg);
+    const selectedItemBgAlpha = colorAlpha(palette.action.selectedItemBg);
+    setColor(
+      palette.action,
+      'selectedItemHoverBg',
+      `rgba(${selectedItemBgChannel} / ${selectedItemBgAlpha + palette.action.hoverOpacity})`,
+    );
+    setColor(
+      palette.action,
+      'selectedItemFocusBg',
+      `rgba(${selectedItemBgChannel} / ${selectedItemBgAlpha + palette.action.focusOpacity})`,
+    );
 
     // assign component variables
     assignNode(palette, [
