@@ -209,9 +209,11 @@ It will perform the following diffs:
 
 ### Option three: use a SWC plugin
 
-This option pretty much similar to option two, except for the developer who is using [SWC Compiler](https://swc.rs/). A SWC plugin can be used for transforming the imports: [transform-imports](https://github.com/swc-project/plugins/blob/main/packages/transform-imports/README.md). This plugin can be added to either .swcrc or Webpack configuration.
+This option pretty much similar to the option two, except for the developer who is using [SWC Compiler](https://swc.rs/). Use this [plugin](https://github.com/swc-project/plugins/blob/main/packages/transform-imports/README.md):
 
-Here is the example of adding SWC Compiler plugin to Webpack configuration file:
+`yarn add -D @swc/plugin-transform-imports`
+
+Modify your .swcrc or Webpack configuration:
 
 ```js
 /* webpack.config.js */
