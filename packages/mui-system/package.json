@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.9.2",
+  "version": "5.11.12",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -20,19 +20,19 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/system/basics/",
+  "homepage": "https://mui.com/system/getting-started/overview/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
-    "build:legacy": "node ../../scripts/build legacy",
-    "build:modern": "node ../../scripts/build modern",
-    "build:node": "node ../../scripts/build node",
-    "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "node ../../scripts/buildTypes",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build:modern": "node ../../scripts/build.mjs modern",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.{js,ts,tsx}'",
@@ -57,13 +57,13 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@mui/private-theming": "^5.9.1",
-    "@mui/styled-engine": "^5.8.7",
-    "@mui/types": "^7.1.5",
-    "@mui/utils": "^5.9.1",
+    "@babel/runtime": "^7.21.0",
+    "@mui/private-theming": "^5.11.12",
+    "@mui/styled-engine": "^5.11.11",
+    "@mui/types": "^7.2.3",
+    "@mui/utils": "^5.11.12",
     "clsx": "^1.2.1",
-    "csstype": "^3.1.0",
+    "csstype": "^3.1.1",
     "prop-types": "^15.8.1"
   },
   "sideEffects": false,

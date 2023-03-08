@@ -22,7 +22,9 @@ export default function transformer(file, api, options) {
   root
     .find(j.ImportDeclaration)
     .filter(({ node }) =>
-      node.source.value.match(/^@material-ui\/core(\/TextField|\/Select|\/FormControl)?$/),
+      node.source.value.match(
+        /^(@material-ui\/core|@mui\/material)(\/TextField|\/Select|\/FormControl)?$/,
+      ),
     )
     .forEach(({ node }) => {
       node.specifiers.forEach(({ local, imported }) => {

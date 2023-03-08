@@ -53,7 +53,7 @@ You should pass the nonce in the `<style>` tags on the server.
 Then, you must pass this nonce to Emotion's cache so it can add it to subsequent `<style>`.
 
 :::warning
-Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from Emotion and add the `prepend: true` option.
+If you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from Emotion and add the `prepend: true` option.
 :::
 
 ```js

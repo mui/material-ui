@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Slider component
+components: Slider
 githubLabel: 'component: slider'
 unstyled: /base/react-slider/
 ---
@@ -13,7 +14,11 @@ unstyled: /base/react-slider/
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "SliderUsage.js", "hideToolbar": true}}
+{{"demo": "SliderUsage.js", "hideToolbar": true, "bg": "gradient"}}
+
+:::info
+To learn how to add more variants or sizes to the component, check out [Themed components](/joy-ui/customization/themed-components/).
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -46,6 +51,12 @@ You can create custom marks by providing a rich array to the `marks` prop:
 To make the thumb label always visible, toggle on the `valueLabelDisplay` prop.
 
 {{"demo": "AlwaysVisibleLabelSlider.js"}}
+
+### Vertical
+
+Set `orientation="vertical"` to display the vertical slider.
+
+{{"demo": "VerticalSlider.js"}}
 
 ### Keep the label at edges
 

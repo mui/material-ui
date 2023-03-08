@@ -1,0 +1,14 @@
+{
+  "hookDescription": "The basic building block for creating custom snackbar.",
+  "parametersDescriptions": {
+    "autoHideDuration": "The number of milliseconds to wait before automatically calling the\n<code>onClose</code> function. <code>onClose</code> should then set the state of the <code>open</code>\nprop to hide the Snackbar. This behavior is disabled by default with\nthe <code>null</code> value.",
+    "disableWindowBlurListener": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused.",
+    "onClose": "Callback fired when the component requests to be closed.\nTypically <code>onClose</code> is used to set state in the parent component,\nwhich is used to control the <code>Snackbar</code> <code>open</code> prop.\nThe <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>,\nfor example ignoring <code>clickaway</code>.",
+    "open": "If <code>true</code>, the component is shown.",
+    "resumeHideDuration": "The number of milliseconds to wait before dismissing after user interaction.\nIf <code>autoHideDuration</code> prop isn't specified, it does nothing.\nIf <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn't,\nwe default to <code>autoHideDuration / 2</code> ms."
+  },
+  "returnValueDescriptions": {
+    "getRootProps": "Resolver for the root slot's props.",
+    "onClickAway": "Callback fired when a \"click away\" event is detected."
+  }
+}

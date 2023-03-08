@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useTabsList } from '@mui/base/TabsListUnstyled';
+import useTabsList from '@mui/base/useTabsList';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import { useColorInversion } from '../styles/ColorInversion';
+import { StyledList } from '../List/List';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
@@ -29,17 +30,28 @@ const useUtilityClasses = (ownerState: TabListOwnerState) => {
   return composeClasses(slots, getTabListUtilityClass, {});
 };
 
-const TabListRoot = styled(ListRoot, {
+const TabListRoot = styled(StyledList, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListProps }>({
+})<{ ownerState: TabListOwnerState }>(({ theme }) => ({
+  flexGrow: 'initial',
+  '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
-  '--List-divider-gap': '0px',
-  flexGrow: 'initial',
-});
-
+  '--ListDivider-gap': '0px',
+  ...scopedVariables,
+}));
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabList API](https://mui.com/joy-ui/api/tab-list/)
+ */
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({
     props: inProps,
@@ -52,14 +64,15 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     component = 'div',
     children,
     variant = 'soft',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     size: sizeProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
-  const row = orientation === 'horizontal';
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
@@ -69,9 +82,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
-    row,
     nesting: false,
-    scoped: true,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -91,19 +102,12 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const processedChildren = processChildren();
 
   return (
-    <RowListContext.Provider value={row}>
-      {/* @ts-ignore conflicted ref types */}
-      <TabListRoot {...tabsListRootProps}>
-        {React.Children.map(processedChildren, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-              })
-            : child,
-        )}
-      </TabListRoot>
-    </RowListContext.Provider>
+    // @ts-ignore conflicted ref types
+    <TabListRoot {...tabsListRootProps}>
+      <ListProvider row={orientation === 'horizontal'} nested>
+        {processedChildren}
+      </ListProvider>
+    </TabListRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 
@@ -146,7 +150,7 @@ TabList.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

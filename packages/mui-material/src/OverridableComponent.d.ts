@@ -20,8 +20,8 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        */
       component: C;
     } & OverrideProps<M, C>,
-  ): JSX.Element;
-  (props: DefaultComponentProps<M>): JSX.Element;
+  ): JSX.Element | null;
+  (props: DefaultComponentProps<M>): JSX.Element | null;
 }
 
 /**

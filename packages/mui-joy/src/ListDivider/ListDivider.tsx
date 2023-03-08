@@ -5,60 +5,74 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListDividerProps, ListDividerTypeMap } from './ListDividerProps';
+import { DividerRoot } from '../Divider/Divider';
+import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
+import ComponentListContext from '../List/ComponentListContext';
 
-const useUtilityClasses = (ownerState: ListDividerProps) => {
+const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
+  const { orientation, inset } = ownerState;
   const slots = {
-    root: ['root', ownerState.inset && `inset${capitalize(ownerState.inset)}`],
+    root: [
+      'root',
+      orientation,
+      // `insetContext` class is already produced by Divider
+      inset && inset !== 'context' && `inset${capitalize(inset)}`,
+    ],
   };
 
   return composeClasses(slots, getListDividerUtilityClass, {});
 };
 
-const ListDividerRoot = styled('li', {
+const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
   name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListDividerProps & { row: boolean; 'data-first-child'?: boolean } }>(
-  ({ theme, ownerState }) => ({
-    border: 'none', // reset the border for `hr` tag
-    ...(ownerState.row && {
-      borderInlineStart: '1px solid',
-      marginBlock: 0,
-      marginInline: 'var(--List-divider-gap)',
-      ...(ownerState['data-first-child'] === undefined && {
-        // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
-        marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
-      }),
-    }),
-    ...(!ownerState.row && {
-      // by default, the divider line is stretched from edge-to-edge of the List
-      // spacing between ListItem can be controlled by `--List-divider-gap` on the List
-      ...(ownerState['data-first-child'] === undefined && {
-        // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
-        marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
-      }),
-      marginBlockEnd: 'var(--List-divider-gap)',
-      marginInline: 'calc(-1 * var(--List-padding))',
-      ...(ownerState.inset === 'gutter' && {
-        marginInlineStart: 'var(--List-item-paddingLeft)',
-        marginInlineEnd: 'var(--List-item-paddingRight)',
-      }),
-      ...(ownerState.inset === 'startDecorator' && {
-        marginInlineStart: 'var(--List-item-paddingLeft)',
-      }),
-      ...(ownerState.inset === 'startContent' && {
-        marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
-      }),
-      borderBlockEnd: '1px solid',
-    }),
-    borderColor: theme.vars.palette.divider,
-    listStyle: 'none',
+})<{ ownerState: ListDividerOwnerState }>(({ ownerState }) => ({
+  ...(ownerState.inset === 'context' && {
+    '--Divider-inset': 'calc(-1 * var(--List-padding))',
   }),
-);
-
+  ...(ownerState.row && {
+    marginInline: 'var(--ListDivider-gap)',
+    ...(ownerState.inset === 'gutter' && {
+      marginBlock: 'var(--ListItem-paddingY)',
+    }),
+    ...(ownerState['data-first-child'] === undefined && {
+      // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
+      marginInlineStart: 'calc(var(--List-gap) + var(--ListDivider-gap))',
+    }),
+  }),
+  ...(!ownerState.row && {
+    // by default, the divider line is stretched from edge-to-edge of the List
+    // spacing between ListItem can be controlled by `--ListDivider-gap` on the List
+    ...(ownerState['data-first-child'] === undefined && {
+      // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
+      marginBlockStart: 'calc(var(--List-gap) + var(--ListDivider-gap))',
+    }),
+    marginBlockEnd: 'var(--ListDivider-gap)',
+    ...(ownerState.inset === 'gutter' && {
+      marginInlineStart: 'var(--ListItem-paddingLeft)',
+      marginInlineEnd: 'var(--ListItem-paddingRight)',
+    }),
+    ...(ownerState.inset === 'startDecorator' && {
+      marginInlineStart: 'var(--ListItem-paddingLeft)',
+    }),
+    ...(ownerState.inset === 'startContent' && {
+      marginInlineStart: 'calc(var(--ListItem-paddingLeft) + var(--List-decoratorSize))',
+    }),
+  }),
+}));
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListDivider API](https://mui.com/joy-ui/api/list-divider/)
+ */
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -66,13 +80,31 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   });
 
   const row = React.useContext(RowListContext);
+  const listComponent = React.useContext(ComponentListContext);
 
-  const { component, className, children, inset, role = 'separator', ...other } = props;
+  const {
+    component: componentProp,
+    role: roleProp,
+    className,
+    children,
+    inset = 'context',
+    orientation: orientationProp,
+    ...other
+  } = props;
 
+  const [listElement] = listComponent?.split(':') || ['', ''];
+  const component =
+    componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : 'li');
+  const role = roleProp || (component === 'li' ? 'separator' : undefined);
+
+  const orientation = orientationProp || (row ? 'vertical' : 'horizontal');
   const ownerState = {
+    ...props,
     inset,
     row,
-    ...props,
+    orientation,
+    component,
+    role,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -85,7 +117,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
       ownerState={ownerState}
       role={role}
       {...(role === 'separator' &&
-        row && {
+        orientation === 'vertical' && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
@@ -107,10 +139,6 @@ ListDivider.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -120,13 +148,20 @@ ListDivider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The empty space on the side(s) of the divider.
-   * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
+   * The empty space on the side(s) of the divider in a vertical list.
+   *
+   * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
+   * @default 'context'
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
+    PropTypes.oneOf(['context', 'gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
   ]),
+  /**
+   * The component orientation.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes /* @typescript-to-proptypes-ignore */.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */

@@ -153,10 +153,6 @@ const ButtonRoot = styled(ButtonBase, {
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
       }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color === 'secondary' && {
-          border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        }),
       ...(ownerState.variant === 'contained' && {
         color: (theme.vars || theme).palette.action.disabled,
         boxShadow: (theme.vars || theme).shadows[0],
@@ -339,7 +335,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(className, contextProps.className)}
+      className={clsx(contextProps.className, classes.root, className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}

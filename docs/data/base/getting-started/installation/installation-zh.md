@@ -1,19 +1,23 @@
 # 安装
 
-<p class="description">Install MUI Base, the unstyled components & foundation hooks for building accessible UIs.</p>
+<p class="description">Install MUI Base, a robust library of blank ("unstyled") React UI components and low-level hooks.</p>
 
 ## npm
 
-若想安装并写入您的 `package.json` 依赖包，请运行以下命令：
+把专案安装并保存在您的`package.json`,你可以用**npm**执行以下指令
 
 ```sh
-// 用 npm 安装
 npm install @mui/base
+```
 
-// 用 yarn 安装
+或使用**yarn**
+
+```sh
 yarn add @mui/base
 ```
 
 <!-- #react-peer-version -->
 
-请注意，安装是依赖于 [react](https://www.npmjs.com/package/react) 的 17.0.0 及以上版本，和 [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 及以上版本。
+:::warning
+**Note:** [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+:::

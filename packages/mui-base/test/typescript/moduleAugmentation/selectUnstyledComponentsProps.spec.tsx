@@ -1,22 +1,13 @@
 import * as React from 'react';
-import { SelectUnstyled, MultiSelectUnstyled } from '@mui/base';
+import { SelectUnstyled } from '@mui/base';
 
 declare module '@mui/base' {
-  interface SelectUnstyledComponentsPropsOverrides {
+  interface SelectUnstyledRootSlotPropsOverrides {
     variant?: 'one' | 'two';
-  }
-
-  interface MultiSelectUnstyledComponentsPropsOverrides {
-    variant?: 'a' | 'b';
   }
 }
 
-<SelectUnstyled componentsProps={{ root: { variant: 'one' } }} />;
+<SelectUnstyled slotProps={{ root: { variant: 'one' } }} />;
 
 // @ts-expect-error unknown variant
-<SelectUnstyled componentsProps={{ root: { variant: 'three' } }} />;
-
-<MultiSelectUnstyled componentsProps={{ root: { variant: 'a' } }} />;
-
-// @ts-expect-error unknown variant
-<MultiSelectUnstyled componentsProps={{ root: { variant: 'c' } }} />;
+<SelectUnstyled slotProps={{ root: { variant: 'three' } }} />;

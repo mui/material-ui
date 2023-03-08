@@ -480,6 +480,9 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiSvgIcon'];
     variants?: ComponentsVariants['MuiSvgIcon'];
   };
+  MuiSwipeableDrawer?: {
+    defaultProps?: ComponentsProps['MuiSwipeableDrawer'];
+  };
   MuiSwitch?: {
     defaultProps?: ComponentsProps['MuiSwitch'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiSwitch'];

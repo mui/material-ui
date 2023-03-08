@@ -117,7 +117,7 @@ function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if (/Googlebot/.test(navigator.userAgent) || disableAd) {
+  if ((typeof window !== 'undefined' && /Googlebot/.test(navigator.userAgent)) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {

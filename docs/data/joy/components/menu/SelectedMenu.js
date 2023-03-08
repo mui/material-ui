@@ -28,7 +28,7 @@ export default function SelectedMenu() {
         variant="outlined"
         color="neutral"
         onClick={handleClick}
-        startIcon={<Apps />}
+        startDecorator={<Apps />}
       >
         Apps
       </Button>

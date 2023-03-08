@@ -3,8 +3,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "hover": { "type": { "name": "bool" } },
-    "selected": { "type": { "name": "bool" } },
+    "hover": { "type": { "name": "bool" }, "default": "false" },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -22,6 +22,6 @@
   "forwardsRefTo": "HTMLTableRowElement",
   "filename": "/packages/mui-material/src/TableRow/TableRow.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Tables</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
   "cssComponent": false
 }

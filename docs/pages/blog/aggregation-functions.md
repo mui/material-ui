@@ -11,7 +11,7 @@ If you've ever worked with a data-heavy grid, then you understand how important 
 Basic functions like filtering and sorting barely scratch the surface of their needs.
 
 The Premium Data Grid is all about enabling and empowering advanced use cases for data analysis.
-And in that spirit, we’re overjoyed to announce that starting from [v5.15.0](https://github.com/mui/mui-x/releases/tag/v5.15.0), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
+And in that spirit, we're overjoyed to announce that starting from [v5.15.0](https://github.com/mui/mui-x/releases/tag/v5.15.0), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
 ## Wait, what is an aggregation function?
 
@@ -24,7 +24,7 @@ For example, you might have a list of financial transactions, and you want to ge
 
 ## Intuitive end-user experience
 
-The **Sum** function showing a **Total** in summary rows is one of the most common use cases. But users can employ multiple aggregation functions in different columns simultaneously, and even combine with row grouping to aggregate children’s data on each group.
+The **Sum** function showing a **Total** in summary rows is one of the most common use cases. But users can employ multiple aggregation functions in different columns simultaneously, and even combine with row grouping to aggregate children's data on each group.
 
 To make all that work well together, we knew that the focus had to be on creating the best end-user experience possible. The goal was to enable the majority of use cases right out of the box, without any need for significant customization.
 
@@ -71,7 +71,7 @@ const firstAlphabeticalAggregation: GridAggregationFunction<
   <source src="/static/blog/aggregation-functions/with-custom-functions.mp4" type="video/mp4" />
 </video>
 
-## Okay, I’m in! How can I get started?
+## Okay, I'm in! How can I get started?
 
 Aggregation functions are available in `@mui/x-data-grid-premium`, version `5.15.0` or later.
 
@@ -90,11 +90,11 @@ And that's it! That enables the **Aggregation** option on the column menu, which
 
 We already mentioned that you could customize functions and use aggregation with row grouping. But there are a lot of other possibilities to explore!
 
-Please check out the feature’s [full documentation](/x/react-data-grid/aggregation/) to get a better overview of everything it has to offer.
+Please check out the feature's [full documentation](/x/react-data-grid/aggregation/) to get a better overview of everything it has to offer.
 
 ## Row pinning
 
-The Aggregation footer row is powered by another new feature called [Row pinning](/x/react-data-grid/rows/#row-pinning).
+The Aggregation footer row is powered by another new feature called [Row pinning](/x/react-data-grid/row-pinning/).
 It enables you to pin rows to the top or bottom of your data grid.
 Pinned rows are visible at all times while the user scrolls the grid vertically.
 
@@ -104,16 +104,16 @@ Pinned rows are visible at all times while the user scrolls the grid vertically.
 
 Row pinning is available in the Pro and Premium Data Grids.
 
-Check out more details in the [Row pinning documentation](/x/react-data-grid/rows/#row-pinning).
+Check out more details in the [Row pinning documentation](/x/react-data-grid/row-pinning/).
 
 ## Share your feedback 🗣
 
-**And if you’re feeling generous, we’re recruiting users to interview!**
+**And if you're feeling generous, we're recruiting users to interview!**
 
-We hope you’re excited about the new features as we are!
+We hope you're excited about the new features as we are!
 
-As always, we’re happy to hear from you.
+As always, we're happy to hear from you.
 Please feel free to open new issues to report bugs or suggest improvements.
 
-Moreover, we’re planning MUI X v6, and we’d love to hear more about your pain points and use cases.
+Moreover, we're planning MUI X v6, and we'd love to hear more about your pain points and use cases.
 If you want to help steer the direction of our components, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30-minute user interview session.

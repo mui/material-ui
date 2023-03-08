@@ -18,8 +18,15 @@ import FactCheck from '@mui/icons-material/FactCheck';
 import BookmarkAdd from '@mui/icons-material/BookmarkAdd';
 
 const useRovingIndex = (options) => {
-  const { initialActiveIndex = 0, vertical = false, handlers = {} } = options || {};
+  const {
+    initialActiveIndex = 0,
+    vertical = false,
+    handlers = {
+      onKeyDown: () => {},
+    },
+  } = options || {};
   const [activeIndex, setActiveIndex] = React.useState(initialActiveIndex);
+
   const targetRefs = React.useRef([]);
   const targets = targetRefs.current;
   const focusNext = () => {
@@ -146,8 +153,8 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
               borderRadius: 'sm',
               '--List-radius': '8px',
               '--List-padding': '4px',
-              '--List-divider-gap': '4px',
-              '--List-decorator-width': '32px',
+              '--ListDivider-gap': '4px',
+              '--List-decoratorSize': '32px',
             }}
           >
             <ListItem role="none">
@@ -259,7 +266,7 @@ const AdmissionsMenu = React.forwardRef(
                 minWidth: 180,
                 '--List-radius': '8px',
                 '--List-padding': '4px',
-                '--List-divider-gap': '4px',
+                '--ListDivider-gap': '4px',
               }}
             >
               <ListItem role="none">
@@ -303,7 +310,7 @@ export default function ExampleNavigationMenu() {
     <Box sx={{ minHeight: 190 }}>
       <List
         role="menubar"
-        row
+        orientation="horizontal"
         sx={{
           '--List-radius': '8px',
           '--List-padding': '4px',

@@ -3,7 +3,7 @@ product: material-ui
 title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: tooltip'
-materialDesign: https://material.io/components/tooltips
+materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
@@ -47,14 +47,18 @@ If the child is a custom React element, you need to make sure that it spreads it
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   //  Spread the props to the underlying DOM element.
-  return <div {...props} ref={ref}>Bin</div>
+  return (
+    <div {...props} ref={ref}>
+      Bin
+    </div>
+  );
 });
 
 // ...
 
 <Tooltip title="Delete">
-  <MyComponent>
-</Tooltip>
+  <MyComponent />
+</Tooltip>;
 ```
 
 You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
@@ -66,9 +70,13 @@ class MyComponent extends React.Component {
   render() {
     const { innerRef, ...props } = this.props;
     //  Spread the props to the underlying DOM element.
-    return <div {...props} ref={innerRef}>Bin</div>
+    return (
+      <div {...props} ref={innerRef}>
+        Bin
+      </div>
+    );
   }
-};
+}
 
 // Wrap MyComponent to forward the ref as expected by Tooltip
 const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {
@@ -78,8 +86,8 @@ const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, r
 // ...
 
 <Tooltip title="Delete">
-  <WrappedMyComponent>
-</Tooltip>
+  <WrappedMyComponent />
+</Tooltip>;
 ```
 
 ## Triggers
@@ -115,7 +123,7 @@ You can disable this behavior (thus failing the success criterion which is requi
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 :::warning
-⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 :::
 
 {{"demo": "DisabledTooltips.js"}}

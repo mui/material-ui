@@ -1,23 +1,19 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { Box, styled, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/base/ButtonUnstyled';
 
-const BackdropUnstyled = React.forwardRef<
-  HTMLDivElement,
-  { open?: boolean; className: string }
->((props, ref) => {
-  const { open, className, ...other } = props;
-  return (
-    <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
-      ref={ref}
-      {...other}
-    />
-  );
-});
+const BackdropUnstyled = React.forwardRef<HTMLDivElement, { open?: boolean }>(
+  (props, ref) => {
+    const { open, ...other } = props;
+    return (
+      <Fade in={open}>
+        <div ref={ref} {...other} />
+      </Fade>
+    );
+  },
+);
 
 const Modal = styled(ModalUnstyled)`
   position: fixed;
@@ -68,12 +64,12 @@ export default function TransitionsModal() {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        components={{ Backdrop }}
+        slots={{ backdrop: Backdrop }}
       >
-        <Fade in={open} timeout={300}>
+        <Fade in={open}>
           <Box sx={style}>
             <h2 id="transition-modal-title">Text in a modal</h2>
-            <span id="transition-modal-description" style={{ marginTop: '16px' }}>
+            <span id="transition-modal-description" style={{ marginTop: 16 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </span>
           </Box>

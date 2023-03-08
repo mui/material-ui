@@ -22,7 +22,8 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({ foo: 'foo' });
+
+    expect(theme).to.include({ foo: 'foo' });
   });
 
   it('should provide the theme to the styled engine theme context', () => {
@@ -39,6 +40,6 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({ foo: 'foo' });
+    expect(theme).to.include({ foo: 'foo' });
   });
 });

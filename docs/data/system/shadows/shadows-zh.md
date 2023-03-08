@@ -4,14 +4,11 @@
 
 ## 示例
 
-该工具可以让你控制两平面之间沿 z 轴方向的相对深度，或者说距离。 默认情况下的高度为 25。
+该工具可以让你控制两平面之间沿 z 轴方向的相对深度，或者说距离。 By default, there are 25 elevation levels.
 
 {{"demo": "Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ boxShadow: 0 }}>…
-<Box sx={{ boxShadow: 1 }}>…
-<Box sx={{ boxShadow: 2 }}>…
 <Box sx={{ boxShadow: 0 }}>…
 <Box sx={{ boxShadow: 1 }}>…
 <Box sx={{ boxShadow: 2 }}>…
@@ -37,7 +34,7 @@
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
 | 导入名称        | 属性          | CSS 属性       | Theme key |

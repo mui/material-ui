@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
 import IconButton, { iconButtonClasses as classes } from '@mui/joy/IconButton';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -14,8 +14,14 @@ describe('Joy <IconButton />', () => {
     refInstanceof: window.HTMLButtonElement,
     muiName: 'JoyIconButton',
     testVariantProps: { variant: 'solid', color: 'success' },
+    testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+    },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<IconButton />, { muiName: 'JoyIconButton', classes });
 
   it('by default, should render with the root, variantSolid, sizeMd and colorPrimary classes', () => {
     const { getByRole } = render(<IconButton>Hello World</IconButton>);

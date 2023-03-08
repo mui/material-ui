@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs, { tabsClasses as classes } from '@mui/joy/Tabs';
 import SizeTabsContext from './SizeTabsContext';
@@ -16,8 +16,11 @@ describe('Joy <Tabs />', () => {
     muiName: 'JoyTabs',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
+
+  describeJoyColorInversion(<Tabs />, { muiName: 'JoyTabs', classes });
 
   it('prop: variant', () => {
     render(<Tabs variant="outlined" aria-label="Tabs" />);
@@ -30,10 +33,10 @@ describe('Joy <Tabs />', () => {
   });
 
   it('prop: size, send the value through context', () => {
-    const Child = () => {
+    function Child() {
       const size = React.useContext(SizeTabsContext);
       return <div>{size}</div>;
-    };
+    }
     render(
       <Tabs size="sm">
         <Child />

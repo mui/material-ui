@@ -56,9 +56,9 @@ const code = `
         borderRadius: 1,
         display: 'flex',
         typography: 'caption',
-        bgcolor: (theme) => 
+        bgcolor: (theme) =>
           theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50',
-        color: (theme) => 
+        color: (theme) =>
           theme.palette.mode === 'dark' ? '#fff' : 'primary.700',
       }}
     >
@@ -211,7 +211,7 @@ export default function CoreStyling() {
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
-                sx={{
+                sx={(theme) => ({
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -219,69 +219,85 @@ export default function CoreStyling() {
                   p: 2,
                   pr: 3,
                   minHeight: index === 2 ? 280 : 'initial',
-                  bgcolor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                }}
+                  bgcolor: 'grey.100',
+                  ...theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.700',
+                  }),
+                })}
               >
                 {index === 2 && (
                   <React.Fragment>
                     <Box
-                      sx={{
-                        cursor: 'col-resize',
-                        display: 'flex',
-                        alignItems: 'center',
-                        position: 'absolute',
-                        right: 0,
-                        top: 0,
-                        height: '100%',
-                        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.600'),
-                        '&:hover': {
-                          color: (theme) =>
-                            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.700',
+                      sx={[
+                        {
+                          cursor: 'col-resize',
+                          display: 'flex',
+                          alignItems: 'center',
+                          position: 'absolute',
+                          right: 0,
+                          top: 0,
+                          height: '100%',
+                          color: 'grey.600',
+                          '&:hover': {
+                            color: 'grey.700',
+                          },
                         },
-                      }}
+                        (theme) =>
+                          theme.applyDarkStyles({
+                            color: 'grey.500',
+                            '&:hover': {
+                              color: 'grey.300',
+                            },
+                          }),
+                      ]}
                       {...getDragHandlers()}
                     >
                       <DragHandleRounded sx={{ transform: 'rotate(90deg)' }} />
                     </Box>
                     <Box
-                      sx={{
+                      sx={(theme) => ({
                         pointerEvents: 'none',
                         width: '1px',
-                        bgcolor: (theme) =>
-                          theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.400',
+                        bgcolor: 'grey.400',
                         position: 'absolute',
                         left: 345,
                         height: '100%',
-                      }}
+                        ...theme.applyDarkStyles({
+                          bgcolor: 'primaryDark.500',
+                        }),
+                      })}
                     >
                       <Box
-                        sx={{
+                        sx={(theme) => ({
                           position: 'absolute',
                           bottom: 5,
                           typography: 'caption',
                           left: -30,
                           color: 'text.secondary',
                           borderRadius: '2px',
-                          bgcolor: (theme) =>
-                            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+                          bgcolor: 'grey.300',
                           px: 0.5,
-                        }}
+                          ...theme.applyDarkStyles({
+                            bgcolor: 'grey.800',
+                          }),
+                        })}
                       >
                         xs
                       </Box>
                       <Box
-                        sx={{
+                        sx={(theme) => ({
                           position: 'absolute',
                           bottom: 5,
                           typography: 'caption',
                           left: 7,
                           color: 'text.secondary',
                           borderRadius: '2px',
-                          bgcolor: (theme) =>
-                            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+                          bgcolor: 'grey.300',
                           px: 0.5,
-                        }}
+                          ...theme.applyDarkStyles({
+                            bgcolor: 'grey.800',
+                          }),
+                        })}
                       >
                         sm
                       </Box>

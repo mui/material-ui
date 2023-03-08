@@ -126,7 +126,7 @@ The date picker is at the border between the advanced components and the design 
 
 #### Data Grid
 
-- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/rows/#infinite-loading).
+- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/row-updates/#infinite-loading).
 - ⬇️ We have introduced support for [CSV export](/x/react-data-grid/export/#csv-export).
 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />

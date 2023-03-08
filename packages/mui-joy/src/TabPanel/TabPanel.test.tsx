@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { TabsContext, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import useTabs from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabPanel, { tabPanelClasses as classes } from '@mui/joy/TabPanel';
 
-const TabsProvider = ({ children, ...props }: TabsUnstyledProps) => {
+function TabsProvider({ children, ...props }: TabsUnstyledProps) {
   const { tabsContextValue } = useTabs(props);
   return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
-};
+}
 
 describe('Joy <TabPanel />', () => {
   const { render } = createRenderer();
@@ -23,6 +24,7 @@ describe('Joy <TabPanel />', () => {
     muiName: 'JoyTabPanel',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { size: 'sm' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

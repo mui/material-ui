@@ -13,9 +13,10 @@
     "placement": "Popper placement.",
     "popperOptions": "Options provided to the <a href=\"https://popper.js.org/docs/v2/constructors/#options\"><code>Popper.js</code></a> instance.",
     "popperRef": "A ref that points to the used popper instance.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
-    "transition": "Help supporting a react-transition-group/Transition component.",
-    "direction": "Direction of the text."
+    "slotProps": "The props used for each slot inside the Popper.",
+    "slots": "The components used for each slot inside the Popper. Either a string to use a HTML element or a component.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "transition": "Help supporting a react-transition-group/Transition component."
   },
   "classDescriptions": {}
 }

@@ -10,8 +10,8 @@ const caseAllCaps = {
 const defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
- * @see @link{https://material.io/design/typography/the-type-system.html}
- * @see @link{https://material.io/design/typography/understanding-typography.html}
+ * @see @link{https://m2.material.io/design/typography/the-type-system.html}
+ * @see @link{https://m2.material.io/design/typography/understanding-typography.html}
  */
 export default function createTypography(palette, typography) {
   const {

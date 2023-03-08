@@ -91,16 +91,23 @@ Nested components inside a component have:
 
 ### Prop naming
 
-The name of a boolean prop should be chosen based on the **default value**. This choice allows:
+- **Boolean**
 
-- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+  - The default value of a boolean prop should be `false`. This allows for better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
 
-  ```jsx
-  <Input enabled={false} /> ❌
-  <Input disabled /> ✅
-  ```
+    ```jsx
+    ❌ <Input enabled={false} />
+    ✅ <Input disabled />
+    ```
 
-- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
+  - If the name of the boolean is a single word, it should be an adjective or a noun rather than a verb. This is because props describe _states_ and not _actions_. For example an input prop can be controlled by a state, which wouldn't be described with a verb:
+
+    ```jsx
+    const [disabled, setDisabled] = React.useState(false);
+
+    ❌ <Input disable={disabled} />
+    ✅ <Input disabled={disabled} />
+    ```
 
 ### Controlled components
 

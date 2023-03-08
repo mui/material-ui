@@ -1,16 +1,12 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
 var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
 var _jsxRuntime = require("react/jsx-runtime");
-
 var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M16.58 10H7.42c.77 1.76 2.54 3 4.58 3s3.81-1.24 4.58-3z",
   opacity: ".3"
@@ -24,5 +20,4 @@ var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("p
 }, "2"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M9.41 7h1c.15-1.15.23-1.64-.89-2.96-.42-.5-.68-.77-.46-2.04h-.99c-.21 1.11.03 2.05.89 2.96.22.24.79.67.45 2.04zm2.48 0h1c.15-1.15.23-1.64-.89-2.96-.42-.5-.68-.78-.46-2.04h-.99c-.21 1.11.03 2.05.89 2.96.23.24.8.67.45 2.04zm2.52 0h1c.15-1.15.23-1.64-.89-2.96-.42-.5-.68-.77-.46-2.04h-.99c-.21 1.11.03 2.05.89 2.96.22.24.79.67.45 2.04z"
 }, "3")], 'OutdoorGrillTwoTone');
-
 exports.default = _default;

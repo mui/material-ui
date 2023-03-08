@@ -2,16 +2,20 @@
   "props": {
     "onClose": { "type": { "name": "func" }, "required": true },
     "onOpen": { "type": { "name": "func" }, "required": true },
-    "open": { "type": { "name": "bool" }, "required": true },
+    "allowSwipeInChildren": {
+      "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
+      "default": "false"
+    },
     "children": { "type": { "name": "node" } },
-    "disableBackdropTransition": { "type": { "name": "bool" } },
-    "disableDiscovery": { "type": { "name": "bool" } },
+    "disableBackdropTransition": { "type": { "name": "bool" }, "default": "false" },
+    "disableDiscovery": { "type": { "name": "bool" }, "default": "false" },
     "disableSwipeToOpen": {
       "type": { "name": "bool" },
       "default": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)"
     },
     "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
     "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "SwipeAreaProps": { "type": { "name": "object" } },
     "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
     "transitionDuration": {
@@ -28,6 +32,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SwipeableDrawer/SwipeableDrawer.js",
   "inheritance": { "component": "Drawer", "pathname": "/material-ui/api/drawer/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false
 }

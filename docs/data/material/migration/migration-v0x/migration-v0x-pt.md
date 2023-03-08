@@ -1,4 +1,4 @@
-# Migrando da v0.x para v1
+# Migration from v0.x to v1
 
 <p class="description">Sim, v1 foi lançada! Tire proveito de 2 anos de esforço.</p>
 
@@ -10,18 +10,18 @@ A resposta é não. I'm glad you asked! The core concepts haven't changed. Você
 
 ### O que motivou uma mudança tão grande?
 
-Material UI foi iniciado [4 anos atrás](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) iniciou uma tarefa ambiciosa, reconstruindo o Material UI do **zero**, aproveitando esse conhecimento para resolver problemas de longa data. Para citar algumas das principais mudanças:
+Material UI was started [4 years ago](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. Para citar algumas das principais mudanças:
 
-- Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/material-ui/customization/how-to-customize/), melhor desempenho)
+- New styling solution using CSS-in-JS (better [customization](/material-ui/customization/how-to-customize/) power, better performance)
 - Novo tratamento de tema (aninhamento, auto-suporte, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- Melhor [cobertura de teste](/material-ui/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui/material-ui))
-- Suporte completo [a renderização do lado do servidor](/material-ui/guides/server-rendering/)
-- Vasta gama de [navegadores suportados](/material-ui/getting-started/supported-platforms/)
+- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://app.argos-ci.com/mui/material-ui/builds))
+- Full [server-side rendering](/material-ui/guides/server-rendering/) support
+- Wide range of [supported browsers](/material-ui/getting-started/supported-platforms/)
 
 ### Onde devo começar a migração?
 
-1. Comece instalando a versão v1.x do Material UI ao lado da versão v0.x.
+1. Start by installing the v1.x version of Material UI along side the v0.x version.
 
 utilizando o yarn:
 
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocompletar
 
-Material UI, não fornece uma API de alto nível para resolver este problema. Recomendamos que você explore [as soluções que a comunidade construiu](/material-ui/react-autocomplete/).
+Material UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
 
 Execute [o auxiliar de migração](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod) em seu projeto.
 
