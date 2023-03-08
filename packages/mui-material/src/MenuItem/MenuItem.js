@@ -107,7 +107,7 @@ const MenuItemRoot = styled(ButtonBase, {
     },
   },
   [`&.${menuItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars ?? theme).palette.action.focus,
+    backgroundColor: (theme.vars || theme).palette.action.focus,
   },
   [`&.${menuItemClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,

@@ -99,7 +99,7 @@ export const ListItemRoot = styled('div', {
     },
   }),
   [`&.${listItemClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars ?? theme).palette.action.focus,
+    backgroundColor: (theme.vars || theme).palette.action.focus,
   },
   [`&.${listItemClasses.selected}`]: {
     backgroundColor: theme.vars
@@ -130,7 +130,7 @@ export const ListItemRoot = styled('div', {
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: (theme.vars ?? theme).palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',

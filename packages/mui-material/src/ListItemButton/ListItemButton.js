@@ -68,7 +68,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   }),
   '&:hover': {
     textDecoration: 'none',
-    backgroundColor: (theme.vars ?? theme).palette.action.hover,
+    backgroundColor: (theme.vars || theme).palette.action.hover,
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
@@ -102,7 +102,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     },
   },
   [`&.${listItemButtonClasses.focusVisible}`]: {
-    backgroundColor: (theme.vars ?? theme).palette.action.focus,
+    backgroundColor: (theme.vars || theme).palette.action.focus,
   },
   [`&.${listItemButtonClasses.disabled}`]: {
     opacity: (theme.vars || theme).palette.action.disabledOpacity,

@@ -33,7 +33,7 @@ const TableRowRoot = styled('tr', {
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
   [`&.${tableRowClasses.hover}:hover`]: {
-    backgroundColor: (theme.vars ?? theme).palette.action.hover,
+    backgroundColor: (theme.vars || theme).palette.action.hover,
   },
   [`&.${tableRowClasses.selected}`]: {
     backgroundColor: theme.vars
