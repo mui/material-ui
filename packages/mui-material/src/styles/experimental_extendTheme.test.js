@@ -233,6 +233,9 @@ describe('experimental_extendTheme', () => {
 
     expect(theme.colorSchemes.dark.palette.action.selectedChannel).to.equal('255 255 255');
     expect(theme.colorSchemes.light.palette.action.selectedChannel).to.equal('0 0 0');
+
+    expect(theme.colorSchemes.dark.palette.action.selectedItemBgChannel).to.equal('144 202 249');
+    expect(theme.colorSchemes.light.palette.action.selectedItemBgChannel).to.equal('25 118 210');
   });
 
   it('should generate common background, onBackground channels', () => {

@@ -392,6 +392,9 @@ export default function extendTheme(options = {}, ...args) {
           if (colors.selected) {
             setColorChannel(palette[color], 'selected');
           }
+          if (colors.selectedItemBg) {
+            setColorChannel(palette[color], 'selectedItemBg');
+          }
         }
       }
     });

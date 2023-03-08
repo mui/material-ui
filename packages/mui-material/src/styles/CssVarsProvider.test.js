@@ -171,6 +171,7 @@ describe('[Material UI] CssVarsProvider', () => {
           selectedItemFocusBg: 'var(--mui-palette-action-selectedItemFocusBg)',
           activeChannel: 'var(--mui-palette-action-activeChannel)',
           selectedChannel: 'var(--mui-palette-action-selectedChannel)',
+          selectedItemBgChannel: 'var(--mui-palette-action-selectedItemBgChannel)',
         }),
       );
       expect(screen.getByTestId('palette-common').textContent).to.equal(
