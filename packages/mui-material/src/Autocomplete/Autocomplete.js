@@ -326,7 +326,7 @@ const AutocompleteListbox = styled('div', {
       pointerEvents: 'none',
     },
     [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
     '&[aria-selected="true"]': {
       backgroundColor: theme.vars
