@@ -193,7 +193,7 @@ Before you can start using the Google Maps JavaScript API and Places API, you ne
 
 ### Infinite scrolling
 
-This demo shows how to implement Infinite scrolling using `onScrollToBottom` prop.
+The following demo shows how to implement infinite scrolling using the `onScrollToBottom` prop:
 
 {{"demo": "InfiniteScrolling.js"}}
 
