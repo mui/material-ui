@@ -125,7 +125,15 @@ const NativeSelectIcon = styled('svg', {
  * @ignore - internal component.
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
-  const { className, disabled, error, IconComponent, inputRef, variant = 'standard', ...other } = props;
+  const {
+    className,
+    disabled,
+    error,
+    IconComponent,
+    inputRef,
+    variant = 'standard',
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,

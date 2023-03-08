@@ -52,7 +52,7 @@ const nativeSelectClasses: NativeSelectClasses = generateUtilityClasses('MuiNati
   'iconOutlined',
   'iconStandard',
   'nativeInput',
-  'error'
+  'error',
 ]);
 
 export default nativeSelectClasses;
