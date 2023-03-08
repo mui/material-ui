@@ -430,8 +430,8 @@ describe('utils/colorManipulator', () => {
     });
 
     it('returns the alpha value when a transparent color is provided', () => {
-      expect(colorAlpha('#000000ff')).to.equal(0);
-      expect(colorAlpha('rgba(0,0,0,.5)')).to.equal(.5);
+      expect(colorAlpha('rgba(0,0,0,0)')).to.equal(0);
+      expect(colorAlpha('rgba(0,0,0,.5)')).to.equal(0.5);
     });
   });
 
