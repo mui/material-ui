@@ -1849,6 +1849,20 @@
     react-test-renderer "^18.0.0"
     semver "^5.7.0"
 
+"@mui/base@5.0.0-alpha.119":
+  version "5.0.0-alpha.119"
+  resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.119.tgz#923e148ceb84898fdd28da069b7c42635053c128"
+  integrity sha512-XA5zhlYfXi67u613eIF0xRmktkatx6ERy3h+PwrMN5IcWFbgiL1guz8VpdXON+GWb8+G7B8t5oqTFIaCqaSAeA==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    "@emotion/is-prop-valid" "^1.2.0"
+    "@mui/types" "^7.2.3"
+    "@mui/utils" "^5.11.11"
+    "@popperjs/core" "^2.11.6"
+    clsx "^1.2.1"
+    prop-types "^15.8.1"
+    react-is "^18.2.0"
+
 "@mui/x-data-grid-generator@6.0.0-alpha.14":
   version "6.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-6.0.0-alpha.14.tgz#b1df18c118688d2ada5a9d0c2fe7a535c352d2d2"

@@ -25,7 +25,7 @@ export default function ExampleSegmentedControls() {
           borderRadius: 'md',
           bgcolor: 'neutral.softBg',
           '--RadioGroup-gap': '4px',
-          '--Radio-action-radius': '8px',
+          '--Radio-actionRadius': '8px',
         }}
       >
         {['flex-start', 'center', 'flex-end'].map((item) => (

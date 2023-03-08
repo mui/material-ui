@@ -176,8 +176,8 @@ const AboutMenu = React.forwardRef(
                 borderRadius: 'sm',
                 '--List-radius': '8px',
                 '--List-padding': '4px',
-                '--List-divider-gap': '4px',
-                '--List-decorator-size': '32px',
+                '--ListDivider-gap': '4px',
+                '--List-decoratorSize': '32px',
               }}
             >
               <ListItem role="none">
@@ -300,7 +300,7 @@ const AdmissionsMenu = React.forwardRef(
                 minWidth: 180,
                 '--List-radius': '8px',
                 '--List-padding': '4px',
-                '--List-divider-gap': '4px',
+                '--ListDivider-gap': '4px',
               }}
             >
               <ListItem role="none">
