@@ -1,14 +1,25 @@
+import * as ts from 'typescript';
+import * as prettier from 'prettier';
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/markdown';
 import { getLineFeed } from '@mui-internal/docs-utilities';
 import { replaceComponentLinks } from './utils/replaceUrl';
-import findPagesMarkdownNew from './utils/findPagesMarkdown';
+import findPagesMarkdown from './utils/findPagesMarkdown';
+import { TypeScriptProject } from './utils/createTypeScriptProject';
 
-const systemComponents = fs
-  .readdirSync(path.resolve('packages', 'mui-system', 'src'))
-  .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
+let systemComponents: string[] | undefined;
+// making the resolution lazy to avoid issues when importing something irrelevant from this file (i.e. `getSymbolDescription`)
+// the eager resolution results in errors when consuming externally (i.e. `mui-x`)
+function getSystemComponents() {
+  if (!systemComponents) {
+    systemComponents = fs
+      .readdirSync(path.resolve('packages', 'mui-system', 'src'))
+      .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
+  }
+  return systemComponents;
+}
 
 function getMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
@@ -47,6 +58,7 @@ const parseFile = (filename: string) => {
     shouldSkip:
       filename.indexOf('internal') !== -1 ||
       !!src.match(/@ignore - internal component\./) ||
+      !!src.match(/@ignore - internal hook\./) ||
       !!src.match(/@ignore - do not document\./),
     spread: !src.match(/ = exactProp\(/),
     EOL: getLineFeed(src),
@@ -94,6 +106,27 @@ export type ComponentInfo = {
   isSystemComponent?: boolean;
 };
 
+export type HookInfo = {
+  /**
+   * Full path to the file
+   */
+  filename: string;
+  /**
+   * Hook name
+   */
+  name: string;
+  apiPathname: string;
+  readFile: () => {
+    src: string;
+    spread: boolean;
+    shouldSkip: boolean;
+    EOL: string;
+  };
+  getDemos: () => Array<{ name: string; demoPathname: string }>;
+  apiPagesDirectory: string;
+  skipApiGeneration?: boolean;
+};
+
 const migratedBaseComponents = [
   'BadgeUnstyled',
   'ButtonUnstyled',
@@ -103,7 +136,6 @@ const migratedBaseComponents = [
   'MenuItemUnstyled',
   'MenuUnstyled',
   'ModalUnstyled',
-  'MultiSelectUnstyled',
   'NoSsr',
   'OptionGroupUnstyled',
   'OptionUnstyled',
@@ -146,7 +178,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/material-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/material-ui/api`),
-    isSystemComponent: systemComponents.includes(name),
+    isSystemComponent: getSystemComponents().includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -166,7 +198,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => {
+      const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
         const markdownHeaders = getHeaders(markdownContent) as any;
 
@@ -195,6 +227,22 @@ function findBaseDemos(
       demoPathname: page.pathname.match(/material\//)
         ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
         : `${page.pathname.replace('/components/', '/react-')}/`,
+    }));
+}
+
+function findBaseHooksDemos(
+  hookName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; hooks: readonly string[] }>,
+) {
+  return pagesMarkdown
+    .filter((page) => page.hooks && page.hooks.includes(hookName))
+    .map((page) => ({
+      name: page.title,
+      demoPathname: page.pathname.match(/material\//)
+        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+        : `${page.pathname.replace('/components/', '/react-')}/#hook${
+            page.hooks?.length > 1 ? 's' : ''
+          }`,
     }));
 }
 
@@ -241,7 +289,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
-    isSystemComponent: systemComponents.includes(name),
+    isSystemComponent: getSystemComponents().includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -259,7 +307,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
+      const allMarkdowns = findPagesMarkdown()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
@@ -277,6 +325,109 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
           };
         });
       return findBaseDemos(name, allMarkdowns);
+    },
+  };
+};
+
+export const getBaseHookInfo = (filename: string): HookInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the hook name from: ${filename}`);
+  }
+  const result = {
+    filename,
+    name,
+    apiPathname: `/base/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdown()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => {
+          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+          const markdownHeaders = getHeaders(markdownContent) as any;
+
+          return {
+            ...markdown,
+            title: getTitle(markdownContent),
+            hooks: markdownHeaders.hooks as string[],
+          };
+        });
+      return findBaseHooksDemos(name, allMarkdowns);
+    },
+  };
+  return result;
+};
+
+function findJoyUIDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; components: readonly string[] }>,
+) {
+  return pagesMarkdown
+    .filter(
+      (page) => page.pathname.indexOf('/joy/') === 0 && page.components.includes(componentName),
+    )
+    .map((page) => ({
+      name: page.title,
+      demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`).replace(
+        'material-ui',
+        'joy-ui',
+      ),
+    }));
+}
+
+export const getJoyComponentInfo = (filename: string): ComponentInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the component name from: ${filename}`);
+  }
+  return {
+    filename,
+    name,
+    muiName: getMuiName(name),
+    apiPathname: `/joy-ui/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/joy-ui/api`),
+    isSystemComponent: getSystemComponents().includes(name),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+      if (!inheritedComponent) {
+        return null;
+      }
+      return {
+        name: inheritedComponent,
+        apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
+          inheritedComponent,
+        )}/`,
+      };
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdown().map((markdown) => {
+        const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+        const markdownHeaders = getHeaders(markdownContent) as any;
+
+        return {
+          ...markdown,
+          title: getTitle(markdownContent),
+          components: markdownHeaders.components as string[],
+        };
+      });
+      return findJoyUIDemos(name, allMarkdowns).map((info) => ({
+        ...info,
+        demoPathname: info.demoPathname,
+      }));
     },
   };
 };
@@ -302,7 +453,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
       return null;
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
+      const allMarkdowns = findPagesMarkdown()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);
@@ -322,4 +473,50 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
       return findSystemDemos(name, allMarkdowns);
     },
   };
+};
+
+export const formatType = (rawType: string) => {
+  if (!rawType) {
+    return '';
+  }
+
+  const prefix = 'type FakeType = ';
+  const signatureWithTypeName = `${prefix}${rawType}`;
+
+  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
+    printWidth: 999,
+    singleQuote: true,
+    semi: false,
+    trailingComma: 'none',
+    parser: 'typescript',
+  });
+
+  return prettifiedSignatureWithTypeName.slice(prefix.length).replace(/\n$/, '');
+};
+
+export const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
+  symbol
+    .getDocumentationComment(project.checker)
+    .flatMap((comment) => comment.text.split('\n'))
+    .filter((line) => !line.startsWith('TODO'))
+    .join('\n');
+
+export const getSymbolJSDocTags = (symbol: ts.Symbol) =>
+  Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
+
+export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) => {
+  let rawType: string;
+
+  const declaration = symbol.declarations?.[0];
+  if (declaration && ts.isPropertySignature(declaration)) {
+    rawType = declaration.type?.getText() ?? '';
+  } else {
+    rawType = project.checker.typeToString(
+      project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
+      symbol.valueDeclaration,
+      ts.TypeFormatFlags.NoTruncation,
+    );
+  }
+
+  return formatType(rawType);
 };

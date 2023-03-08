@@ -46,11 +46,16 @@ const StyledInputRoot = styled('div')(
 
   &.${inputUnstyledClasses.focused} {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
   &:hover {
     border-color: ${blue[400]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );

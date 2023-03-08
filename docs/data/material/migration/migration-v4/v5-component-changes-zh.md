@@ -69,7 +69,7 @@ Move the component from the lab to the core. The component is now stable.
 -import Autocomplete from '@mui/lab/Autocomplete';
 -import useAutocomplete  from '@mui/lab/useAutocomplete';
 +import Autocomplete from '@mui/material/Autocomplete';
-+import useAutoComplete from '@mui/material/useAutocomplete';
++import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 ### Remove debug prop
@@ -1567,7 +1567,7 @@ This is done to match the most common use cases with Material Design.
 
 ```diff
 -<Tabs />
-+<Tabs indicatorColor="primary" textColor="inherit" />
++<Tabs indicatorColor="secondary" textColor="inherit" />
 ```
 
 ### Update event type (TypeScript)

@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Divider component
+components: Divider
 githubLabel: 'component: divider'
 ---
 
@@ -70,7 +71,7 @@ To control the position of the content, override the CSS variable `--Divider-chi
 
 ## Automatic adjustment
 
-When the `Divider` is a direct child of either a [Card](/joy-ui/react-card/) or [ModalDialog](/joy-ui/react-modal/#dialog), it will automatically adapt to their spacing and orientation.
+When the `Divider` is a direct child of either a [Card](/joy-ui/react-card/) or [ModalDialog](/joy-ui/react-modal/#modal-dialog), it will automatically adapt to their spacing and orientation.
 
 ### Card
 

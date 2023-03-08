@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
@@ -92,9 +92,9 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--CircularProgress-size': 'var(--Icon-fontSize)',
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
@@ -103,6 +103,7 @@ export const ButtonRoot = styled('button', {
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -111,6 +112,7 @@ export const ButtonRoot = styled('button', {
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
+        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
         fontSize: theme.vars.fontSize.md,
@@ -128,9 +130,6 @@ export const ButtonRoot = styled('button', {
       justifyContent: 'center',
       position: 'relative',
       textDecoration: 'none', // prevent user agent underline when used as anchor
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.lg,
       lineHeight: 1,
@@ -147,15 +146,22 @@ export const ButtonRoot = styled('button', {
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       ...(ownerState.loadingPosition === 'center' && {
         [`&.${buttonClasses.loading}`]: {
-          transition:
-            'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           color: 'transparent',
         },
       }),
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Button](https://mui.com/joy-ui/react-button/)
+ *
+ * API:
+ *
+ * - [Button API](https://mui.com/joy-ui/api/button/)
+ */
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -342,6 +348,7 @@ Button.propTypes /* remove-proptypes */ = {
   loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -364,7 +371,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

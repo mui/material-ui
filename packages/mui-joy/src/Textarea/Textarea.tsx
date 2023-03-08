@@ -57,14 +57,14 @@ const TextareaRoot = styled('div', {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
-        '--Textarea-decorator-childHeight': 'min(1.5rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Textarea-minHeight': '2.5rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
-        '--Textarea-decorator-childHeight': 'min(2rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
@@ -72,18 +72,18 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingBlock': 'calc(0.75rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '1rem',
         '--Textarea-gap': '0.75rem',
-        '--Textarea-decorator-childHeight': 'min(2.375rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(2.375rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
       '--_Textarea-paddingBlock':
-        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
-      '--Textarea-decorator-childRadius':
+        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decoratorChildHeight)) / 2, 0px)',
+      '--Textarea-decoratorChildRadius':
         'max(var(--Textarea-radius) - var(--variant-borderWidth, 0px) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) + var(--variant-borderWidth, 0px), var(--Textarea-radius) / 2))',
-      '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
-      '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
-      '--Button-radius': 'var(--Textarea-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Textarea-decorator-childRadius)',
+      '--Button-minHeight': 'var(--Textarea-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Textarea-decoratorChildHeight)',
+      '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
       minHeight: 'var(--Textarea-minHeight)',
@@ -101,9 +101,6 @@ const TextareaRoot = styled('div', {
         fontSize: theme.vars.fontSize.sm,
         lineHeight: theme.vars.lineHeight.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -209,7 +206,16 @@ const TextareaEndDecorator = styled('div', {
   color: theme.vars.palette.text.tertiary,
   cursor: 'initial',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea](https://mui.com/joy-ui/react-textarea/)
+ *
+ * API:
+ *
+ * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
+ */
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -347,6 +353,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -379,7 +386,7 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

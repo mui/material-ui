@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Button component and hook
 components: ButtonUnstyled
+hooks: useButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
@@ -14,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 The Unstyled Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
-{{"demo": "UnstyledButtonIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -78,7 +79,7 @@ Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its p
 ## Hook
 
 ```js
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 ```
 
 The `useButton` hook lets you apply the functionality of a button to a fully custom component.

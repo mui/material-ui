@@ -14,7 +14,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
@@ -72,7 +72,6 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
-      '--CircularProgress-size': '1em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
         fontSize: 'inherit',
@@ -114,7 +113,7 @@ const LinkRoot = styled('a', {
         ? {
             paddingBlock: 'min(0.15em, 4px)',
             paddingInline: '0.375em', // better than left, right because it also works with writing mode.
-            ...(!ownerState.nested && {
+            ...(!ownerState.nesting && {
               marginInline: '-0.375em',
             }),
           }
@@ -146,8 +145,8 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--internal-action-radius, inherit)`,
-              margin: `var(--internal-action-margin)`,
+              borderRadius: `var(--unstable_actionRadius, inherit)`,
+              margin: `var(--unstable_actionMargin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
@@ -167,7 +166,16 @@ const LinkRoot = styled('a', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Link](https://mui.com/joy-ui/react-link/)
+ *
+ * API:
+ *
+ * - [Link API](https://mui.com/joy-ui/api/link/)
+ */
 const Link = React.forwardRef(function Link(inProps, ref) {
   const {
     color: colorProp = 'primary',
@@ -181,7 +189,8 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
-  const nested = React.useContext(TypographyContext);
+  const nesting = React.useContext(TypographyNestedContext);
+  const inheriting = React.useContext(TypographyInheritContext);
 
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
@@ -198,7 +207,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ...other
   } = props;
 
-  const level = nested ? inProps.level || 'inherit' : levelProp;
+  const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
   const {
     isFocusVisibleRef,
@@ -236,7 +245,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     variant,
     level,
     overlay,
-    nested,
+    nesting,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -268,7 +277,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   });
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyNestedContext.Provider value>
       <SlotRoot {...rootProps}>
         {startDecorator && (
           <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
@@ -277,7 +286,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
         {children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
       </SlotRoot>
-    </TypographyContext.Provider>
+    </TypographyNestedContext.Provider>
   );
 }) as OverridableComponent<LinkTypeMap>;
 

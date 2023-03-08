@@ -129,7 +129,7 @@ export default function MyComponent(props) {
 This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
@@ -344,7 +344,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
+Also, you can use as [decorators](https://babeljs.io/docs/babel-plugin-proposal-decorators) like so:
 
 ```jsx
 import * as React from 'react';

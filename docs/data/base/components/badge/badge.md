@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Badge component and hook
 components: BadgeUnstyled
+hooks: useBadge
 githubLabel: 'component: badge'
 ---
 
@@ -16,7 +17,7 @@ It typically sits on or near an element and indicates the status of that element
 
 The Unstyled Badge component creates a badge that is applied to its child element.
 
-{{"demo": "UnstyledBadgeIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledBadgeIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -91,7 +92,7 @@ The following code snippet applies a CSS class called `my-badge` to the badge sl
 ## Hook
 
 ```jsx
-import { useBadge } from '@mui/base/BadgeUnstyled';
+import useBadge from '@mui/base/useBadge';
 ```
 
 The `useBadge` hook lets you apply the functionality of a badge to a fully custom component.

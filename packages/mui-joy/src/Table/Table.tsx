@@ -9,8 +9,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
-import typographyClasses from '../Typography/typographyClasses';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
   const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
@@ -170,20 +169,20 @@ const TableRoot = styled('table', {
         verticalAlign: 'bottom',
         // Automatic radius adjustment with Sheet
         '&:first-child': {
-          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
-          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
       '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
         '&:first-child': {
-          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
-          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
     },
@@ -260,24 +259,25 @@ const TableRoot = styled('table', {
         top: 0,
       },
       [tableSelector.getHeaderCell()]: {
-        zIndex: 1,
+        zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
         top: 'var(--private_TableCell-height)',
       },
     },
-    {
-      // Typography integration
-      [tableSelector.getCell()]: {
-        [`& .${typographyClasses.noWrap}`]: {
-          display: 'block',
-        },
-      },
-    },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Table](https://mui.com/joy-ui/react-table/)
+ *
+ * API:
+ *
+ * - [Table API](https://mui.com/joy-ui/api/table/)
+ */
 const Table = React.forwardRef(function Table(inProps, ref) {
   const props = useThemeProps<typeof inProps & TableProps>({
     props: inProps,
@@ -317,7 +317,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <TypographyContext.Provider value>
+    <TypographyInheritContext.Provider value>
       <TableRoot
         as={component}
         ownerState={ownerState}
@@ -327,7 +327,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
       >
         {children}
       </TableRoot>
-    </TypographyContext.Provider>
+    </TypographyInheritContext.Provider>
   );
 }) as OverridableComponent<TableTypeMap>;
 
@@ -410,7 +410,7 @@ Table.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
