@@ -35,9 +35,10 @@
       "iconFilled",
       "iconOutlined",
       "iconStandard",
-      "nativeInput"
+      "nativeInput",
+      "error"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" },
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiNativeSelect"
   },
   "spread": true,
