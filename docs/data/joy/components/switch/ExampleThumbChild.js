@@ -12,7 +12,7 @@ export default function ExampleThumbChild() {
         },
       }}
       sx={{
-        '--Switch-thumb-size': '28px',
+        '--Switch-thumbSize': '28px',
       }}
     />
   );
