@@ -901,8 +901,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
-   * This shows the `loadingText` in place of suggestions
-   * (only if there are no suggestions to show, e.g. options are empty).
+   * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
    * @default false
    */
   loading: PropTypes.bool,
