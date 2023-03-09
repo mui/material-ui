@@ -10,32 +10,55 @@ const app = new App({
  * @param {object} context
  */
 exports.handler = async (event) => {
-  const { type, payload } = JSON.parse(event.body);
+  try {
+    const { type, payload } = JSON.parse(event.body);
 
-  switch (type) {
-    case 'sendMessage':
-      {
-        const { rating, comment, currentLocationURL, commmentSectionURL, commmentSectionTitle } =
-          payload;
+    if (type === 'sendMessage') {
+      const { rating, comment, currentLocationURL, commmentSectionURL, commmentSectionTitle } =
+        payload;
 
-        const simpleSlackMessage = [
-          `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
-          `>${comment.split('\n').join('\n>')}`,
-          `sent from ${currentLocationURL}${
-            commmentSectionTitle
-              ? ` (from section <${commmentSectionURL}|${commmentSectionTitle})>`
-              : ''
-          }`,
-        ].join('\n\n');
-        app.client.chat.postMessage({
-          channel: 'C041SDSF32L',
-          text: simpleSlackMessage,
-        });
+      const simpleSlackMessage = [
+        `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
+        `>${comment.split('\n').join('\n>')}`,
+        `sent from ${currentLocationURL}${
+          commmentSectionTitle
+            ? ` (from section <${commmentSectionURL}|${commmentSectionTitle})>`
+            : ''
+        }`,
+      ].join('\n\n');
+      app.client.chat.postMessage({
+        channel: 'C041SDSF32L',
+        text: simpleSlackMessage,
+      });
+    } else {
+      const {
+        // user: { username },
+        channel: { id: channelId },
+        callback_id,
+        message_ts,
+        // message,
+      } = JSON.parse(payload);
+
+      if (callback_id === 'delete_action') {
+        app.client.chat
+          .delete({
+            channel: channelId,
+            ts: message_ts,
+            as_user: true,
+          })
+          .catch((error) => {
+            return {
+              statusCode: 500,
+              body: { error },
+            };
+          });
       }
-      break;
-
-    default:
-      break;
+    }
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: { error },
+    };
   }
 
   return {
