@@ -31,3 +31,15 @@ export default function MyApp() {
   return <NumberInputUnstyled />;
 }
 ```
+
+## Hook
+
+```js
+import useNumberInput from '@mui/base/useNumberInput';
+```
+
+## Customization
+
+### Quantity Input
+
+{{"demo": "QuantityInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
