@@ -22,7 +22,7 @@ Additionally, you can pass custom props to interior slots using `slotProps`.
 
 ## The root slot
 
-The root slot represents the component's "primary" element.
+The root slot represents the component's outermost element.
 For simpler components, the root slot is often filled by the native HTML element that the component is intended to replace.
 
 For example, the [Unstyled Button's](/base/react-button/) root slot is a `<button>` element.
@@ -102,7 +102,6 @@ This does not apply to classes or the `style` prop—they will be merged instead
 :::
 
 ## Best practices
-
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
 You can easily break the rules of semantic and accessible HTML if you deviate too far from the default structure—for instance, by unintentionally nesting block-level elements inside of inline elements.
