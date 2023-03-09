@@ -112,7 +112,7 @@ async function postFeedbackOnSlack(data) {
   }
 
   try {
-    await fetch(`https://mui.com/feedback-management/`, {
+    await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       body: JSON.stringify(sentData),
