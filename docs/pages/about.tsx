@@ -391,15 +391,6 @@ const teamMembers: Array<Profile> = [
     github: 'gerdadesign',
   },
   {
-    src: '/static/branding/about/vytautas.png',
-    name: 'Vytautas Butkus',
-    title: 'MUI Toolpad Engineering Manager',
-    location: 'Vilnius, Lithuania',
-    locationCountry: 'lt',
-    about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
-    github: 'bytasv',
-  },
-  {
     src: '/static/branding/about/greg.png',
     name: 'Greg Abaoag',
     title: 'Executive Assistant',
@@ -409,6 +400,7 @@ const teamMembers: Array<Profile> = [
     github: 'gzrae',
   },
   {
+    src: '/static/branding/about/tina.png',
     name: 'Tina Deinekhovska',
     title: 'Business Administrator',
     location: 'London, UK',
@@ -433,6 +425,24 @@ const teamMembers: Array<Profile> = [
     about: 'DIY 🛠️, Learning 📚 and 🏓',
     twitter: 'MBilalShafi',
     github: 'MBilalShafi',
+  },
+  {
+    src: '/static/branding/about/albert.png',
+    name: 'Albert Yu',
+    title: 'MUI Core Engineer',
+    location: 'Hong Kong',
+    locationCountry: 'hk',
+    about: 'Minimalist, dog lover 🏔🐕',
+    github: 'mj12albert',
+    twitter: 'mj12albert',
+  },
+  {
+    src: '/static/branding/about/mikaila.png',
+    name: 'Mikaila Read',
+    title: 'Senior People & Culture Partner',
+    location: 'Newcastle Upon Tyne, UK',
+    locationCountry: 'gb',
+    about: '🧗‍♂️ Amateur indoor climber & ex-philosophy geek',
   },
 ];
 

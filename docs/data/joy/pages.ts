@@ -1,3 +1,5 @@
+import pagesApi from './pagesApi';
+
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
@@ -51,8 +53,9 @@ const pages = [
           { pathname: '/joy-ui/react-chip' },
           { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
-          { pathname: '/joy-ui/react-typography' },
+          { pathname: '/joy-ui/react-table' },
           { pathname: '/joy-ui/react-tooltip' },
+          { pathname: '/joy-ui/react-typography' },
         ],
       },
       {
@@ -93,12 +96,19 @@ const pages = [
     ],
   },
   {
+    title: 'Component API',
+    pathname: '/joy-ui/api',
+    icon: 'CodeIcon',
+    children: pagesApi,
+  },
+  {
     pathname: '/joy-ui/customization',
     icon: 'CreateIcon',
     children: [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
       {
+        pathname: '/joy-ui/customization/theme',
         subheader: 'Theme',
         children: [
           { pathname: '/joy-ui/customization/theme-colors', title: 'Colors' },

@@ -19,6 +19,12 @@ describe('replaceUrl', () => {
     expect(replaceMaterialLinks(`/discover-more/related-projects/`)).to.equal(
       `/material-ui/discover-more/related-projects/`,
     );
+    expect(replaceMaterialLinks(`/experimental-api/css-theme-variables/overview/`)).to.equal(
+      `/material-ui/experimental-api/css-theme-variables/overview/`,
+    );
+    expect(replaceMaterialLinks(`/migration/migration-grid-v2/`)).to.equal(
+      `/material-ui/migration/migration-grid-v2/`,
+    );
   });
 
   it('should not change if links have been updated', () => {

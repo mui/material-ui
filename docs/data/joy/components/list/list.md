@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React List component
+components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
 githubLabel: 'component: list'
 ---
 
@@ -198,7 +199,7 @@ This example uses the start action (a prop of `ListItem`) prop to create a colla
 
 ### Navigation menu
 
-Inspired by the [APG Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html) design pattern.
+Inspired by the [APG Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/examples/menubar-navigation/) design pattern.
 This example uses a combination of horizontal and vertical lists to form the navigation menu bar.
 
 It also supports keyboard navigation, inspired by the [Roving UX](https://github.com/argyleink/roving-ux) technique.

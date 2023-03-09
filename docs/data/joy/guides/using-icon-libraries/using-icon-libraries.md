@@ -18,7 +18,7 @@ yarn add @mui/icons-material @mui/material
 ```
 
 :::warning
-Because `@mui/material` is a required dependency of `@mui/icons-material`, you have add a workaround with yarn resolutions:
+Because `@mui/material` is a required dependency of `@mui/icons-material`, you have to add a workaround with yarn resolutions:
 
 ```json
 {
@@ -76,6 +76,10 @@ If you use TypeScript, you will need to update the TSConfig.
  }
 ```
 
+:::
+
+:::error
+`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
 :::
 
 ### Usage

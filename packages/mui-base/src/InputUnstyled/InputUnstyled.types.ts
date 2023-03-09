@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled';
-import { UseInputParameters, UseInputRootSlotProps } from './useInput.types';
+import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
 import { SlotComponentProps } from '../utils';
 
-export interface InputUnstyledComponentsPropsOverrides {}
+export interface InputUnstyledRootSlotPropsOverrides {}
+export interface InputUnstyledInputSlotPropsOverrides {}
 
 export interface SingleLineInputUnstyledProps {
   /**
@@ -110,12 +111,12 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
     slotProps?: {
       root?: SlotComponentProps<
         'div',
-        InputUnstyledComponentsPropsOverrides,
+        InputUnstyledRootSlotPropsOverrides,
         InputUnstyledOwnerState
       >;
       input?: SlotComponentProps<
         'input',
-        InputUnstyledComponentsPropsOverrides,
+        InputUnstyledInputSlotPropsOverrides,
         InputUnstyledOwnerState
       >;
     };
@@ -124,11 +125,7 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      * Either a string to use a HTML element or a component.
      * @default {}
      */
-    slots?: {
-      root?: React.ElementType;
-      input?: React.ElementType;
-      textarea?: React.ElementType;
-    };
+    slots?: InputUnstyledSlots;
     /**
      * Leading adornment for this input.
      */
@@ -138,6 +135,24 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
      */
     value?: unknown;
   };
+
+export interface InputUnstyledSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component used to render the textarea.
+   * @default 'textarea'
+   */
+  textarea?: React.ElementType;
+}
 
 export interface InputUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & InputUnstyledOwnProps;

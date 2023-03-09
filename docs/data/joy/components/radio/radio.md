@@ -1,8 +1,9 @@
 ---
 product: joy-ui
 title: React Radio Group component
+components: Radio, RadioGroup
 githubLabel: 'component: radio'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 ---
 
 # Radio Group
@@ -127,7 +128,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radio/) for more details.
 
 ## Common examples
 

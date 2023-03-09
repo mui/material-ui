@@ -187,22 +187,23 @@ const Root = styled('div')(
       borderCollapse: 'collapse',
       marginBottom: '20px',
       borderSpacing: 0,
-      '& .prop-name, & .prop-type, & .prop-default': {
-        fontWeight: 400,
-        fontFamily: lightTheme.typography.fontFamilyCode,
-        WebkitFontSmoothing: 'subpixel-antialiased',
-        fontSize: lightTheme.typography.pxToRem(13),
-      },
+      '& .prop-name, & .prop-type, & .prop-default, & .slot-name, & .slot-defaultClass, & .slot-default':
+        {
+          fontWeight: 400,
+          fontFamily: lightTheme.typography.fontFamilyCode,
+          WebkitFontSmoothing: 'subpixel-antialiased',
+          fontSize: lightTheme.typography.pxToRem(13),
+        },
       '& .required': {
         color: '#006500',
       },
       '& .optional': {
         color: '#45529f',
       },
-      '& .prop-type': {
+      '& .prop-type, & .slot-defaultClass': {
         color: '#932981',
       },
-      '& .prop-default': {
+      '& .prop-default, & .slot-default': {
         borderBottom: `1px dotted var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
     },
@@ -434,9 +435,14 @@ const Root = styled('div')(
       },
     },
     '& li': {
+      // tight lists https://spec.commonmark.org/0.30/#tight
       marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
+      },
+      // loose lists https://spec.commonmark.org/0.30/#loose
+      '& > p': {
+        marginBottom: theme.spacing(1),
       },
     },
   }),
@@ -491,10 +497,10 @@ const Root = styled('div')(
         '& .optional': {
           color: '#a5b3ff',
         },
-        '& .prop-type': {
+        '& .prop-type, & .slot-defaultClass': {
           color: '#ffb6ec',
         },
-        '& .prop-default': {
+        '& .prop-default, & .slot-default': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
       },

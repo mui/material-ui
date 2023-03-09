@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SlotComponentProps } from '@mui/base';
-import { Mark } from '@mui/base/SliderUnstyled';
+import { Mark } from '@mui/base/useSlider';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
@@ -86,6 +86,10 @@ export interface SliderTypeMap<D extends React.ElementType = 'span', P = {}> {
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<SliderClasses>;
+    /**
+     * @ignore
+     */
+    className?: string;
     /**
      * The default value. Use when the component is not controlled.
      */

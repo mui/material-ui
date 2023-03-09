@@ -2,7 +2,6 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
@@ -33,11 +32,20 @@
     }
   },
   "name": "ModalUnstyled",
-  "styles": {
-    "classes": ["root", "hidden"],
-    "globalClasses": { "root": "MuiModal-root", "hidden": "MuiModal-hidden" },
-    "name": null
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "backdrop",
+      "description": "The component used to render the backdrop.",
+      "class": ".MuiModal-backdrop"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiModal-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.tsx",

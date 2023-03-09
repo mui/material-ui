@@ -14,7 +14,6 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   components?: {
     Root?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the Popper.
    * @default {}
@@ -67,7 +66,7 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

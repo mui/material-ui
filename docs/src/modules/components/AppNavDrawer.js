@@ -456,14 +456,14 @@ export default function AppNavDrawer(props) {
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
                 {
-                  text: 'v6-alpha',
+                  text: 'v6',
                   ...(process.env.DATA_GRID_VERSION.startsWith('6')
                     ? {
                         text: `v${process.env.DATA_GRID_VERSION}`,
                         current: true,
                       }
                     : {
-                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },
                 {
@@ -474,7 +474,7 @@ export default function AppNavDrawer(props) {
                         current: true,
                       }
                     : {
-                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },
                 { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
@@ -495,7 +495,7 @@ export default function AppNavDrawer(props) {
                         current: true,
                       }
                     : {
-                        text: `v6-alpha`,
+                        text: `v6`,
                         href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },
@@ -507,7 +507,7 @@ export default function AppNavDrawer(props) {
                       }
                     : {
                         text: `v5`,
-                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
                       }),
                 },
               ])}

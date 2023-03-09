@@ -4,7 +4,7 @@ title: React Slider（滑块）组件
 components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://m2.material.io/components/sliders
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 unstyled: /base/react-slider/
 ---
 
@@ -126,7 +126,7 @@ In this example, an input allows a discrete value to be set.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
 
 The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
