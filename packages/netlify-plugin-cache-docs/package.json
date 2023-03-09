@@ -13,6 +13,7 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
+    "@slack/bolt": "^3.12.2",
     "fs-extra": "^10.1.0"
   },
   "engines": {
