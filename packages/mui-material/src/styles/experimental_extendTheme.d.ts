@@ -400,7 +400,7 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
-  generateCssVars: (colorScheme?: string) => {
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
     css: Record<string, string | number>;
     vars: ThemeVars;
   };
