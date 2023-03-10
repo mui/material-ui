@@ -31,7 +31,7 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
    *
    * @default {}
    */
-  slotsProps?: {
+  slotProps?: {
     scrollButtonStart?: React.HTMLProps<HTMLButtonElement>;
     scrollButtonEnd?: React.HTMLAttributes<HTMLButtonElement>;
   };

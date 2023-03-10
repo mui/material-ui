@@ -50,7 +50,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const {
     className,
     slots = {},
-    slotsProps = {},
+    slotProps = {},
     direction,
     orientation,
     disabled,
@@ -68,13 +68,13 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const getIconProps = (icon) => {
     switch (icon) {
       case KeyboardArrowLeft:
-        return { fontSize: 'small', ...slotsProps?.scrollButtonStart };
+        return { fontSize: 'small', ...slotProps?.scrollButtonStart };
       case KeyboardArrowRight:
-        return { fontSize: 'small', ...slotsProps?.scrollButtonEnd };
+        return { fontSize: 'small', ...slotProps?.scrollButtonEnd };
       case ScrollButtonStart:
-        return slotsProps?.scrollButtonStart ?? {};
+        return slotProps?.scrollButtonStart ?? {};
       case ScrollButtonEnd:
-        return slotsProps?.scrollButtonEnd ?? {};
+        return slotProps?.scrollButtonEnd ?? {};
       default:
         return {};
     }
@@ -130,6 +130,18 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
   /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    scrollButtonEnd: PropTypes.object,
+    scrollButtonStart: PropTypes.object,
+  }),
+  /**
    * The components used for ScrollButtonStart, ScrollButtonEnd item type
    *
    * This prop is an alias for the `components` prop, which will be deprecated in the future.
@@ -140,15 +152,6 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
     ScrollButtonEnd: PropTypes.elementType,
     ScrollButtonStart: PropTypes.elementType,
   }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotsProps: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

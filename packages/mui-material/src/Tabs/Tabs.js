@@ -242,7 +242,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     className,
     component = 'div',
     slots = {},
-    slotsProps = {},
+    slotProps = {},
     allowScrollButtonsMobile = false,
     indicatorColor = 'primary',
     onChange,
@@ -502,7 +502,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
         slots={slots}
-        slotsProps={slotsProps}
+        slotProps={slotProps}
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
@@ -515,7 +515,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
         slots={slots}
-        slotsProps={slotsProps}
+        slotProps={slotProps}
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
