@@ -11,7 +11,7 @@ import {
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
-import useSnackbar from './useSnackbar';
+import useSnackbar from '../useSnackbar';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = () => {
@@ -25,7 +25,7 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Unstyled snackbar](https://mui.com/base/react-snackbar/)
+ * - [Unstyled Snackbar](https://mui.com/base/react-snackbar/)
  *
  * API:
  *

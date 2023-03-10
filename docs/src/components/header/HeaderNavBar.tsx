@@ -87,7 +87,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
             pr: 3,
             '&:hover, &:focus': {
               backgroundColor: (theme.vars || theme).palette.grey[50],
-              outline: 'none',
+              outline: 0,
               '@media (hover: none)': {
                 backgroundColor: 'initial',
                 outline: 'initial',
@@ -256,7 +256,6 @@ export default function HeaderNavBar() {
           <div
             role="menuitem"
             tabIndex={0}
-            id="products-menu"
             ref={productsMenuRef}
             aria-haspopup
             aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
@@ -382,7 +381,6 @@ export default function HeaderNavBar() {
           <div
             role="menuitem"
             tabIndex={0}
-            id="products-menu"
             ref={docsMenuRef}
             aria-haspopup
             aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}

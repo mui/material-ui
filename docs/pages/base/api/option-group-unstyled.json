@@ -1,7 +1,7 @@
 {
   "props": {
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "node" } },
     "slotProps": {
       "type": {
@@ -20,6 +20,26 @@
   },
   "name": "OptionGroupUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "label",
+      "description": "The component used to render the label.",
+      "default": "'span'",
+      "class": ".MuiOptionGroup-label"
+    },
+    {
+      "name": "list",
+      "description": "The component used to render the list.",
+      "default": "'ul'",
+      "class": ".MuiOptionGroup-list"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'li'",
+      "class": ".MuiOptionGroup-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionGroupUnstyled/OptionGroupUnstyled.tsx",

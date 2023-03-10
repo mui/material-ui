@@ -8,13 +8,14 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
-import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
+import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalDialogProps) => {
+const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
 
   const slots = {
@@ -34,38 +35,49 @@ const ModalDialogRoot = styled(SheetRoot, {
   name: 'JoyModalDialog',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalDialogProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: ModalDialogOwnerState }>(({ theme, ownerState }) => ({
   // Divider integration
   '--Divider-inset': 'calc(-1 * var(--ModalDialog-padding))',
   '--ModalClose-radius':
-    'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
+    'max((var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.size === 'sm' && {
-    '--ModalDialog-padding': theme.spacing(1.25),
+    '--ModalDialog-padding': theme.spacing(2),
     '--ModalDialog-radius': theme.vars.radius.sm,
-    '--ModalClose-inset': theme.spacing(0.75),
+    '--ModalDialog-gap': theme.spacing(0.75),
+    '--ModalDialog-titleOffset': theme.spacing(0.25),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.25),
+    '--ModalClose-inset': theme.spacing(1.25),
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
-    '--ModalDialog-padding': theme.spacing(2),
+    '--ModalDialog-padding': theme.spacing(2.5),
     '--ModalDialog-radius': theme.vars.radius.md,
-    '--ModalClose-inset': theme.spacing(1),
+    '--ModalDialog-gap': theme.spacing(1.5),
+    '--ModalDialog-titleOffset': theme.spacing(0.25),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.75),
+    '--ModalClose-inset': theme.spacing(1.5),
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalDialog-padding': theme.spacing(3),
     '--ModalDialog-radius': theme.vars.radius.md,
+    '--ModalDialog-gap': theme.spacing(2),
+    '--ModalDialog-titleOffset': theme.spacing(0.75),
+    '--ModalDialog-descriptionOffset': theme.spacing(1),
     '--ModalClose-inset': theme.spacing(1.5),
-    fontSize: theme.vars.fontSize.md,
+    fontSize: theme.vars.fontSize.lg,
   }),
   boxSizing: 'border-box',
-  boxShadow: theme.vars.shadow.md,
+  boxShadow: theme.shadow.md,
   borderRadius: 'var(--ModalDialog-radius)',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: theme.vars.lineHeight.md,
   padding: 'var(--ModalDialog-padding)',
   minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
-  outline: 'none',
+  outline: 0,
   position: 'absolute',
+  display: 'flex',
+  flexDirection: 'column',
   ...(ownerState.layout === 'fullscreen' && {
     top: 0,
     left: 0,
@@ -78,9 +90,36 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
+  [`& [id="${ownerState['aria-labelledby']}"]`]: {
+    '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
+    '--Typography-fontSize': '1.125em',
+    [`& + [id="${ownerState['aria-describedby']}"]`]: {
+      '--private_ModalDialog-descriptionOffset': 'calc(-1 * var(--ModalDialog-descriptionOffset))',
+    },
+  },
+  [`& [id="${ownerState['aria-describedby']}"]`]: {
+    '--Typography-fontSize': '1em',
+    '--Typography-margin':
+      'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 0 0',
+    '&:not(:last-child)': {
+      // create spacing between description and the next element.
+      '--Typography-margin':
+        'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 var(--ModalDialog-gap) 0',
+    },
+  },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalDialog API](https://mui.com/joy-ui/api/modal-dialog/)
+ */
 const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalDialogProps>({
     props: inProps,
@@ -90,13 +129,15 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const {
     className,
     children,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
     variant = 'outlined',
     size = 'md',
     layout = 'center',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -109,7 +150,10 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const contextValue = React.useMemo(() => ({ variant, color }), [color, variant]);
+  const contextValue = React.useMemo(
+    () => ({ variant, color: color === 'context' ? undefined : color }),
+    [color, variant],
+  );
 
   return (
     <ModalDialogSizeContext.Provider value={size}>
@@ -191,8 +235,8 @@ ModalDialog.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
-   * @default 'plain'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

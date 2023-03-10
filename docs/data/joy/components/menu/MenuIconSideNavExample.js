@@ -89,7 +89,7 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         actions: menuActions,
         anchorEl: buttonRef.current,
         modifiers,
-        componentsProps: {
+        slotProps: {
           listbox: {
             id: `nav-example-menu-${label}`,
             'aria-label': label,
@@ -99,7 +99,7 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         sx: {
           width: 288,
           [`& .${menuClasses.listbox}`]: {
-            '--List-padding': 'var(--List-divider-gap)',
+            '--List-padding': 'var(--ListDivider-gap)',
           },
         },
       })}
@@ -126,7 +126,7 @@ export default function MenuIconSideNavExample() {
     }, 200);
   };
   return (
-    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
+    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20, bgcolor: 'background.body' }}>
       <List>
         <ListItem>
           <MenuButton

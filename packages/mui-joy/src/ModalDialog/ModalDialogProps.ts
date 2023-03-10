@@ -1,6 +1,6 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type ModalDialogSlot = 'root';
 
@@ -35,8 +35,8 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     sx?: SxProps;
     /**
-     * The variant to use.
-     * @default 'plain'
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, ModalDialogPropsVariantOverrides>;
   };
@@ -48,4 +48,4 @@ export type ModalDialogProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalDialogTypeMap<P, D>, D>;
 
-export interface ModalDialogOwnerState extends ModalDialogProps {}
+export interface ModalDialogOwnerState extends ApplyColorInversion<ModalDialogProps> {}

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import IconButton from '@mui/joy/IconButton';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
-import CloseRounded from '@mui/icons-material/CloseRounded';
 
 export default function SelectUsage() {
   const [value, setValue] = React.useState(null);
@@ -50,26 +48,6 @@ export default function SelectUsage() {
           action={action}
           value={value}
           onChange={(e, newValue) => setValue(newValue)}
-          {...(value && {
-            endDecorator: (
-              <IconButton
-                size="sm"
-                variant={props.variant}
-                color="neutral"
-                disabled={props.disabled}
-                onMouseDown={(event) => {
-                  event.stopPropagation();
-                }}
-                onClick={() => {
-                  setValue(null);
-                  action.current?.focusVisible();
-                }}
-              >
-                <CloseRounded />
-              </IconButton>
-            ),
-            indicator: null,
-          })}
           sx={{ minWidth: 160, mb: 20 }}
         >
           <Option value="react">React</Option>

@@ -30,6 +30,7 @@ export default function StylingInfo({
   );
   return (
     <Box
+      data-mui-color-scheme="dark"
       {...props}
       sx={{
         position: 'absolute',

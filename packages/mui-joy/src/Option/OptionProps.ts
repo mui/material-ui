@@ -5,8 +5,8 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { OptionState } from '@mui/base/ListboxUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { OptionState } from '@mui/base/useListbox';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type OptionSlot = 'root';
 
@@ -36,7 +36,7 @@ export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     label?: string | React.ReactElement;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, OptionPropsVariantOverrides>;
@@ -64,7 +64,9 @@ export type OptionProps<
   },
 > = OverrideProps<OptionTypeMap<P, D>, D>;
 
-export interface OptionOwnerState extends Omit<OptionProps, 'disabled'>, OptionState {}
+export interface OptionOwnerState
+  extends ApplyColorInversion<Omit<OptionProps, 'disabled'>>,
+    OptionState {}
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,

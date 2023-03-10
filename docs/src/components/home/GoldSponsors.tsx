@@ -20,25 +20,11 @@ const GOLDs = [
     href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
-    name: 'Bit',
-    description: 'A component-driven development platform.',
-    href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
     srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=80 2x',
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/netticasinohex-com/71d7417/logo/40.png',
-    srcSet: 'https://images.opencollective.com/netticasinohex-com/71d7417/logo/80.png 2x',
-    name: 'NettiCasinoHEX',
-    description: 'A real giant among casino guides.',
-    href: 'https://netticasinohex.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors//megafamous.png',
@@ -66,6 +52,13 @@ const GOLDs = [
     name: 'Icons8',
     description: 'Icons, illustrations, design tools, and more.',
     href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/40.png',
+    srcSet: 'https://images.opencollective.com/ridi-corporation/175dcf3/logo/80.png 2x',
+    name: 'RIDI',
+    description: 'Digital content platform for webcomics and more.',
+    href: 'https://ridicorp.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 

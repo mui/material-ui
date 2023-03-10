@@ -10,7 +10,7 @@ import {
   InputUnstyledRootSlotProps,
   InputUnstyledTypeMap,
 } from './InputUnstyled.types';
-import useInput from './useInput';
+import useInput from '../useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 
 /**
@@ -135,7 +135,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     ownerState,
     className: [classes.root, rootStateClasses, className],
   });
-
   const Input = multiline ? slots.textarea ?? 'textarea' : slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
@@ -229,7 +228,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    */
   endAdornment: PropTypes.node,
   /**
-   * If `true`, the `input` will indicate an error.
+   * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,

@@ -24,7 +24,7 @@
       },
       "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",

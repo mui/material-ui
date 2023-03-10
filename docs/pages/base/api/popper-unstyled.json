@@ -13,8 +13,8 @@
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
       "default": "'ltr'"
     },
-    "disablePortal": { "type": { "name": "bool" } },
-    "keepMounted": { "type": { "name": "bool" } },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "modifiers": {
       "type": {
         "name": "arrayOf",
@@ -44,13 +44,13 @@
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
     },
-    "transition": { "type": { "name": "bool" } }
+    "transition": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "PopperUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.js",
+  "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-popper/\">Unstyled Popper</a></li></ul>",
   "cssComponent": false

@@ -24,7 +24,7 @@
     "ruleName": "Nome da regra",
     "slots": "Slots",
     "spreadHint": "Propriedades do componente {{spreadHintElement}} também estão disponíveis.",
-    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\"/material-ui/customization/theme-components/#default-props\">default props</a> or <a href=\"/material-ui/customization/theme-components/#global-style-overrides\">style overrides</a> in the theme.",
+    "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
     "type": "Tipo"
   },
   "albumDescr": "Um álbum responsivo / o leiaute da galeria com ações e um rodapé na página.",
@@ -327,7 +327,6 @@
     "/material-ui/guides/localization": "Localization",
     "/material-ui/guides/content-security-policy": "Content Security Policy",
     "/material-ui/guides/right-to-left": "Right-to-left",
-    "/material-ui/guides/flow": "Flow",
     "/material-ui/guides/shadow-dom": "Shadow DOM",
     "/material-ui/experimental-api": "Experimental APIs",
     "/material-ui/experimental-api/classname-generator": "ClassName generator",

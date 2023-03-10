@@ -123,7 +123,7 @@ For instance, via Google Web Fonts:
 ## CDN
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
-Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/cdn) to get started.
+Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn) to get started.
 
 :::error
 We do _not_ recommend using this approach in production.

@@ -1,5 +1,6 @@
 ---
 product: joy-ui
+components: CssBaseline, ScopedCssBaseline
 githubLabel: 'component: CssBaseline'
 ---
 
@@ -95,7 +96,7 @@ The CSS [`color-scheme`](https://web.dev/color-scheme/) is applied by default to
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
   You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#html-font-size) page.
-- Set the `theme.typography.body1` style on the `<body>` element.
+- Set the default `Typography`'s level (`body1`) style on the `<body>` element. The style comes from `theme.typography.{default typography level prop}`.
 - Set the font-weight to `bold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the default font.
 

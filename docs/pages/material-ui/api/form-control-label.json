@@ -19,6 +19,10 @@
       "default": "'end'"
     },
     "onChange": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ typography?: object }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

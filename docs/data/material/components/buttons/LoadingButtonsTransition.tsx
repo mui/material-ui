@@ -36,7 +36,7 @@ export default function LoadingButtonsTransition() {
           variant="outlined"
           disabled
         >
-          disabled
+          <span>disabled</span>
         </LoadingButton>
         <LoadingButton
           size="small"
@@ -45,7 +45,7 @@ export default function LoadingButtonsTransition() {
           loadingIndicator="Loading…"
           variant="outlined"
         >
-          Fetch data
+          <span>Fetch data</span>
         </LoadingButton>
         <LoadingButton
           size="small"
@@ -55,7 +55,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="end"
           variant="contained"
         >
-          Send
+          <span>Send</span>
         </LoadingButton>
         <LoadingButton
           size="small"
@@ -66,7 +66,7 @@ export default function LoadingButtonsTransition() {
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          Save
+          <span>Save</span>
         </LoadingButton>
       </Box>
 
@@ -77,7 +77,7 @@ export default function LoadingButtonsTransition() {
           variant="outlined"
           disabled
         >
-          disabled
+          <span>disabled</span>
         </LoadingButton>
         <LoadingButton
           onClick={handleClick}
@@ -85,7 +85,7 @@ export default function LoadingButtonsTransition() {
           loadingIndicator="Loading…"
           variant="outlined"
         >
-          Fetch data
+          <span>Fetch data</span>
         </LoadingButton>
         <LoadingButton
           onClick={handleClick}
@@ -94,7 +94,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="end"
           variant="contained"
         >
-          Send
+          <span>Send</span>
         </LoadingButton>
         <LoadingButton
           color="secondary"
@@ -104,7 +104,7 @@ export default function LoadingButtonsTransition() {
           startIcon={<SaveIcon />}
           variant="contained"
         >
-          Save
+          <span>Save</span>
         </LoadingButton>
       </Box>
     </Box>

@@ -2,10 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
@@ -39,22 +40,31 @@ const TextareaRoot = styled('div', {
     {
       '--Textarea-radius': theme.vars.radius.sm,
       '--Textarea-gap': '0.5rem',
+      '--Textarea-placeholderColor': 'inherit',
       '--Textarea-placeholderOpacity': 0.5,
       '--Textarea-focusedThickness': theme.vars.focus.thickness,
-      '--Textarea-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      ...(ownerState.color === 'context'
+        ? {
+            '--Textarea-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Textarea-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
-        '--Textarea-decorator-childHeight': 'min(1.5rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Textarea-minHeight': '2.5rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
-        '--Textarea-decorator-childHeight': 'min(2rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
@@ -62,18 +72,18 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingBlock': 'calc(0.75rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '1rem',
         '--Textarea-gap': '0.75rem',
-        '--Textarea-decorator-childHeight': 'min(2.375rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(2.375rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--internal-paddingBlock':
-        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
-      '--Textarea-decorator-childRadius':
-        'max(var(--Textarea-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Textarea-radius) / 2))',
-      '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
-      '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
-      '--Button-radius': 'var(--Textarea-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Textarea-decorator-childRadius)',
+      '--_Textarea-paddingBlock':
+        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decoratorChildHeight)) / 2, 0px)',
+      '--Textarea-decoratorChildRadius':
+        'max(var(--Textarea-radius) - var(--variant-borderWidth, 0px) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) + var(--variant-borderWidth, 0px), var(--Textarea-radius) / 2))',
+      '--Button-minHeight': 'var(--Textarea-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Textarea-decoratorChildHeight)',
+      '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
       minHeight: 'var(--Textarea-minHeight)',
@@ -91,9 +101,6 @@ const TextareaRoot = styled('div', {
         fontSize: theme.vars.fontSize.sm,
         lineHeight: theme.vars.lineHeight.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -106,7 +113,7 @@ const TextareaRoot = styled('div', {
         bottom: 0,
         zIndex: 1,
         borderRadius: 'inherit',
-        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
     },
     {
@@ -133,7 +140,7 @@ const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
   overridesResolver: (props, styles) => styles.textarea,
-})<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextareaOwnerState }>({
   resize: 'none',
   border: 'none', // remove the native textarea width
   minWidth: 0, // remove the native textarea width
@@ -151,16 +158,28 @@ const TextareaInput = styled(TextareaAutosize, {
   lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
-    WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
+    WebkitTextFillColor: 'currentColor',
   },
   '&::-webkit-input-placeholder': {
+    color: 'var(--Textarea-placeholderColor)',
     opacity: 'var(--Textarea-placeholderOpacity)',
-    color: 'inherit',
   },
-  '&::-moz-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
-}));
+  '&::-moz-placeholder': {
+    // Firefox 19+
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+  '&:-ms-input-placeholder': {
+    // IE11
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+  '&::-ms-input-placeholder': {
+    // Edge
+    color: 'var(--Textarea-placeholderColor)',
+    opacity: 'var(--Textarea-placeholderOpacity)',
+  },
+});
 
 const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',
@@ -187,7 +206,16 @@ const TextareaEndDecorator = styled('div', {
   color: theme.vars.palette.text.tertiary,
   cursor: 'initial',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Textarea](https://mui.com/joy-ui/react-textarea/)
+ *
+ * API:
+ *
+ * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
+ */
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -200,8 +228,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component,
-    componentsProps = {},
     formControl,
     focused,
     error: errorProp = false,
@@ -231,7 +257,8 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, error ? 'danger' : formControl?.color ?? colorProp);
 
   const ownerState = {
     ...props,
@@ -245,52 +272,56 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: TextareaRoot,
-    getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    ownerState,
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     className: [classes.root, rootStateClasses],
+    elementType: TextareaRoot,
+    externalForwardedProps: other,
+    getSlotProps: getRootProps,
+    ownerState,
   });
 
-  const textareaProps = useSlotProps({
-    elementType: TextareaInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: {
-      minRows,
-      maxRows,
-      ...componentsProps.textarea,
-    },
+  const [SlotTextarea, textareaProps] = useSlot('textarea', {
     additionalProps: {
       id: formControl?.htmlFor,
       'aria-describedby': formControl?.['aria-describedby'],
     },
-    ownerState,
     className: [classes.textarea, inputStateClasses],
+    elementType: TextareaInput,
+    internalForwardedProps: {
+      ...propsToForward,
+      minRows,
+      maxRows,
+    },
+    externalForwardedProps: other,
+    getSlotProps: getInputProps,
+    ownerState,
+  });
+
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: TextareaStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: TextareaEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   return (
-    <TextareaRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       {startDecorator && (
-        <TextareaStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </TextareaStartDecorator>
+        <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
 
       {/* @ts-ignore onChange conflicts with html input */}
-      <TextareaInput {...textareaProps} />
-      {endDecorator && (
-        <TextareaEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </TextareaEndDecorator>
-      )}
-    </TextareaRoot>
+      <SlotTextarea {...textareaProps} />
+      {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
+    </SlotRoot>
   );
 }) as OverridableComponent<TextareaTypeMap>;
 
@@ -312,16 +343,6 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * @ignore
    */
   disabled: PropTypes.bool,
@@ -332,6 +353,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -364,7 +386,7 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

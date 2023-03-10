@@ -1,54 +1,71 @@
 ---
 product: joy-ui
 title: React Alert component
+components: Alert
 githubLabel: 'component: alert'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alert
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
 ## Introduction
 
-{{"demo": "AlertUsage.js", "hideToolbar": true}}
+The Alert component can be used to provide important and potentially time-sensitive information in a way that does not interfere with the user's tasks. (Source: [ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).)
+
+:::info
+Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
+Use the Joy UI [Modal](https://mui.com/joy-ui/react-modal/) if you need the behavior of a dialog.
+:::
+
+{{"demo": "AlertUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Alert from '@mui/joy/Alert';
-
-export default function MyApp() {
-  return <Alert />;
-}
 ```
+
+The Alert component wraps around its content, and stretches to fill its enclosing container, as shown below:
+
+{{"demo": "AlertBasic.js"}}
+
+## Customization
 
 ### Variants
 
-The alert component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
+The Alert component supports Joy UI's four [global variants](/joy-ui/main-features/global-variants/): `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "AlertVariants.js"}}
+
+:::info
+To learn how to add your own variants, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+Note that you lose the global variants when you add custom variants.
+:::
+
+### Sizes
+
+The Alert component comes in three sizes: `sm`, `md` (default), and `lg`:
+
+{{"demo": "AlertSizes.js"}}
+
+:::info
+To learn how to add custom sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
-Play around combining different colors with different variants.
+The demo below shows how the values for the `color` prop are affected by the global variants:
 
 {{"demo": "AlertColors.js"}}
 
-### Sizes
-
-The alert components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
-
-{{"demo": "AlertSizes.js"}}
-
 ### Decorators
 
-Use the `startDecorator` and/or `endDecorator` props to insert actionable buttons or icon buttons on the Alert.
+Use the `startDecorator` and `endDecorator` props to append actions and icons to either side of the Alert:
 
 {{"demo": "AlertWithDecorators.js"}}
 
@@ -64,12 +81,21 @@ Use the `startDecorator` and/or `endDecorator` props to insert actionable button
 
 ## Accessibility
 
-Here are a few tips to make sure you have an accessible alert component:
+Here are some factors to consider to ensure that your Alert is accessible:
 
-- When the component is dynamically displayed, the content is automatically announced by most screen readers.
-  At this time, screen readers do not inform users of alerts that are present when the page loads.
+- Because alerts are not intended to interfere with the use of the app, your Alert component should _never_ affect the keyboard focus.
+- If an alert contains an action, that action must have a `tabindex` of `0` so it can be reached by keyboard-only users.
+- Essential alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.
+- Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
+- Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
+- Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.
 
-- Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers.
-  Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
+## Anatomy
 
-- Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
+The Alert component is composed of a single root `<div>` element with its `role` set to `alert`:
+
+```html
+<div role="alert" class="MuiAlert-root">
+  <!-- Alert contents -->
+</div>
+```

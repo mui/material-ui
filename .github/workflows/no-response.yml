@@ -9,6 +9,8 @@ on:
     # Schedule for five minutes after the hour, every hour
     - cron: '5 * * * *'
 
+permissions: {}
+
 jobs:
   noResponse:
     runs-on: ubuntu-latest
@@ -16,7 +18,7 @@ jobs:
       contents: read
       issues: write
     steps:
-      - uses: lee-dohm/no-response@v0.5.0
+      - uses: lee-dohm/no-response@9bb0a4b5e6a45046f00353d5de7d90fb8bd773bb # v0.5.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # Number of days of inactivity before an Issue is closed for lack of response

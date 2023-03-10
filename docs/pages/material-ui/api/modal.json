@@ -14,7 +14,7 @@
       "deprecationInfo": "Use <code>slotProps.backdrop</code> instead."
     },
     "classes": { "type": { "name": "object" } },
-    "closeAfterTransition": { "type": { "name": "bool" } },
+    "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
@@ -28,14 +28,14 @@
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disableAutoFocus": { "type": { "name": "bool" } },
-    "disableEnforceFocus": { "type": { "name": "bool" } },
-    "disableEscapeKeyDown": { "type": { "name": "bool" } },
-    "disablePortal": { "type": { "name": "bool" } },
-    "disableRestoreFocus": { "type": { "name": "bool" } },
-    "disableScrollLock": { "type": { "name": "bool" } },
-    "hideBackdrop": { "type": { "name": "bool" } },
-    "keepMounted": { "type": { "name": "bool" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "onBackdropClick": {
       "type": { "name": "func" },
       "deprecated": true,
@@ -61,7 +61,7 @@
     }
   },
   "name": "Modal",
-  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
+  "styles": { "classes": ["root", "hidden", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Modal/Modal.js",

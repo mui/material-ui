@@ -361,7 +361,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
             !warnedOnceTabPresent &&
             tabMeta &&
             tabMeta.width === 0 &&
-            tabMeta.height === 0
+            tabMeta.height === 0 &&
+            // if the whole Tabs component is hidden, don't warn
+            tabsMeta.clientWidth !== 0
           ) {
             tabsMeta = null;
             console.error(

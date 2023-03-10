@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import clsx from 'clsx';
 import { useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 import { BreadcrumbsProps, BreadcrumbsOwnerState, BreadcrumbsTypeMap } from './BreadcrumbsProps';
@@ -75,66 +75,62 @@ const BreadcrumbsSeparator = styled('li', {
   userSelect: 'none',
   marginInline: 'var(--Breadcrumbs-gap)',
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Breadcrumbs](https://mui.com/joy-ui/react-breadcrumbs/)
+ *
+ * API:
+ *
+ * - [Breadcrumbs API](https://mui.com/joy-ui/api/breadcrumbs/)
+ */
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const props = useThemeProps<typeof inProps & BreadcrumbsProps>({
     props: inProps,
     name: 'JoyBreadcrumbs',
   });
 
-  const {
-    children,
-    className,
-    component = 'nav',
-    componentsProps = {},
-    size = 'md',
-    separator = '/',
-    ...other
-  } = props;
+  const { children, className, size = 'md', separator = '/', ...other } = props;
 
   const ownerState = {
     ...props,
-    component,
     separator,
     size,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
     elementType: BreadcrumbsRoot,
-    externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
     ownerState,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    className: clsx(classes.root, className),
   });
 
-  const olProps = useSlotProps({
-    elementType: BreadcrumbsOl,
-    externalSlotProps: componentsProps.ol,
-    ownerState,
+  const [SlotOl, olProps] = useSlot('ol', {
     className: classes.ol,
+    elementType: BreadcrumbsOl,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const liProps = useSlotProps({
-    elementType: BreadcrumbsLi,
-    externalSlotProps: componentsProps.li,
-    ownerState,
+  const [SlotLi, liProps] = useSlot('li', {
     className: classes.li,
+    elementType: BreadcrumbsLi,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const separatorProps = useSlotProps({
-    elementType: BreadcrumbsSeparator,
-    externalSlotProps: componentsProps.separator,
-    ownerState,
+  const [SlotSeparator, separatorProps] = useSlot('separator', {
     additionalProps: {
       'aria-hidden': true,
     },
     className: classes.separator,
+    elementType: BreadcrumbsSeparator,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   const allItems = React.Children.toArray(children)
@@ -142,29 +138,29 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       return React.isValidElement(child);
     })
     .map((child, index) => (
-      <BreadcrumbsLi key={`child-${index}`} {...liProps}>
+      <SlotLi key={`child-${index}`} {...liProps}>
         {child}
-      </BreadcrumbsLi>
+      </SlotLi>
     ));
 
   return (
-    <BreadcrumbsRoot {...rootProps}>
-      <BreadcrumbsOl {...olProps}>
+    <SlotRoot {...rootProps}>
+      <SlotOl {...olProps}>
         {allItems.reduce((acc: React.ReactNode[], current: React.ReactNode, index: number) => {
           if (index < allItems.length - 1) {
             acc = acc.concat(
               current,
-              <BreadcrumbsSeparator key={`separator-${index}`} {...separatorProps}>
+              <SlotSeparator key={`separator-${index}`} {...separatorProps}>
                 {separator}
-              </BreadcrumbsSeparator>,
+              </SlotSeparator>,
             );
           } else {
             acc.push(current);
           }
           return acc;
         }, [])}
-      </BreadcrumbsOl>
-    </BreadcrumbsRoot>
+      </SlotOl>
+    </SlotRoot>
   );
 }) as OverridableComponent<BreadcrumbsTypeMap>;
 
@@ -181,21 +177,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    li: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    ol: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * Custom separator node.
    * @default '/'

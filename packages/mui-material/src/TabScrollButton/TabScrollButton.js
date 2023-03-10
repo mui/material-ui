@@ -138,6 +138,7 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**

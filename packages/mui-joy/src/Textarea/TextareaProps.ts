@@ -1,25 +1,50 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
+export interface TextareaSlots {
+  /**
+   * The component used to render the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the textarea.
+   * @default 'textarea'
+   */
+  textarea: React.ElementType;
+  /**
+   * The component used to render the start decorator.
+   * @default 'div'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component used to render the end decorator.
+   * @default 'div'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface TextareaPropsVariantOverrides {}
-
 export interface TextareaPropsColorOverrides {}
-
 export interface TextareaPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, TextareaOwnerState>;
-  textarea?: SlotComponentProps<'textarea', { sx?: SxProps }, TextareaOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TextareaOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TextareaOwnerState>;
-}
+export type TextareaSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TextareaSlots,
+  {
+    root: SlotProps<'div', {}, TextareaOwnerState>;
+    textarea: SlotProps<'textarea', {}, TextareaOwnerState>;
+    startDecorator: SlotProps<'div', {}, TextareaOwnerState>;
+    endDecorator: SlotProps<'div', {}, TextareaOwnerState>;
+  }
+>;
 
 export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    TextareaSlotsAndSlotProps &
     Pick<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       | 'autoComplete'
@@ -45,17 +70,13 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides>;
       /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
-      /**
        * Trailing adornment for this input.
        */
       endDecorator?: React.ReactNode;
       /**
        * If `true`, the `input` will indicate an error.
        * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+       * @default false
        */
       error?: boolean;
       /**
@@ -81,7 +102,7 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, TextareaPropsVariantOverrides>;
@@ -96,7 +117,7 @@ export type TextareaProps<
   },
 > = OverrideProps<TextareaTypeMap<P, D>, D>;
 
-export interface TextareaOwnerState extends TextareaProps {
+export interface TextareaOwnerState extends ApplyColorInversion<TextareaProps> {
   /**
    * If `true`, the input is focused.
    */

@@ -5,23 +5,23 @@ components: TablePaginationUnstyled
 githubLabel: 'component: TablePagination'
 ---
 
-# Unstyled table pagination
+# Unstyled Table Pagination
 
-<p class="description">Table pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.</p>
+<p class="description">Table Pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.</p>
 
 ## Introduction
 
-The `TablePaginationUnstyled` component lets you add pagination controls to a table.
+The Unstyled Table Pagination component lets you add pagination controls to a table.
 It controls two properties of its parent table:
 
 - displayed page index
 - number of rows per page
 
-`TablePaginationUnstyled` renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`.
+Table Pagination renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`.
 You can use the `component` or `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 See the [Slot props section](#slot-props) for details.
 
-{{"demo": "UnstyledPaginationIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledPaginationIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -47,13 +47,13 @@ export default function MyApp() {
 
 ### Basics
 
-The following demo shows an example of customized table pagination controls in a table footer that spans the entire row:
+The following demo shows an example of customized pagination controls in a table footer that spans the entire row:
 
 {{"demo": "TableUnstyled.js"}}
 
 ### Anatomy
 
-The `TablePaginationUnstyled` component is composed of a root `<td>` that houses up to ten interior slots:
+The Unstyled Table Pagination component is composed of a root `<td>` that houses up to ten interior slots:
 
 - toolbar
 - spacer
@@ -150,6 +150,6 @@ This prop requires an array of either numbers or objects:
 
 ### Customized look and feel
 
-The following demo shows another example of table pagination controls but with additional style customization:
+The following demo shows another example of pagination controls but with additional style customization:
 
 {{"demo": "TableCustomized.js"}}

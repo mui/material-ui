@@ -1,46 +1,68 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { SxProps } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 
-export interface BreadcrumbsPropsSizeOverrides {}
-
-interface ComponentsProps {
-  root?: SlotComponentProps<'nav', { sx?: SxProps }, BreadcrumbsOwnerState>;
-  ol?: SlotComponentProps<'ol', { sx?: SxProps }, BreadcrumbsOwnerState>;
-  li?: SlotComponentProps<'li', { sx?: SxProps }, BreadcrumbsOwnerState>;
-  separator?: SlotComponentProps<'li', { sx?: SxProps }, BreadcrumbsOwnerState>;
+export interface BreadcrumbsSlots {
+  /**
+   * The component used to render the root.
+   * @default 'nav'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the ol.
+   * @default 'ol'
+   */
+  ol: React.ElementType;
+  /**
+   * The component used to render the li.
+   * @default 'li'
+   */
+  li: React.ElementType;
+  /**
+   * The component used to render the separator.
+   * @default 'li'
+   */
+  separator: React.ElementType;
 }
 
+export interface BreadcrumbsPropsSizeOverrides {}
+
+export type BreadcrumbsSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BreadcrumbsSlots,
+  {
+    root: SlotProps<'nav', {}, BreadcrumbsOwnerState>;
+    ol: SlotProps<'ol', {}, BreadcrumbsOwnerState>;
+    li: SlotProps<'li', {}, BreadcrumbsOwnerState>;
+    separator: SlotProps<'li', {}, BreadcrumbsOwnerState>;
+  }
+>;
+
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * The props used for each slot inside the component.
-     * @default {}
-     */
-    componentsProps?: ComponentsProps;
-    /**
-     * Custom separator node.
-     * @default '/'
-     */
-    separator?: React.ReactNode;
-    /**
-     * The size of the component.
-     * It accepts theme values between 'sm' and 'lg'.
-     * @default 'md'
-     */
-    size?: OverridableStringUnion<'sm' | 'md' | 'lg', BreadcrumbsPropsSizeOverrides>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps;
-  };
+  props: P &
+    BreadcrumbsSlotsAndSlotProps & {
+      /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
+       * Custom separator node.
+       * @default '/'
+       */
+      separator?: React.ReactNode;
+      /**
+       * The size of the component.
+       * It accepts theme values between 'sm' and 'lg'.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', BreadcrumbsPropsSizeOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+    };
   defaultComponent: D;
 }
 

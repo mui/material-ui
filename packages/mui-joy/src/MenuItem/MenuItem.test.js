@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  act,
+  describeConformance,
+  createRenderer,
+  fireEvent,
+  screen,
+  describeJoyColorInversion,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
@@ -18,11 +25,14 @@ const testContext = {
   registerItem: () => {},
   unregisterItem: () => {},
   open: false,
+  registerHighlightChangeHandler: () => () => {},
 };
 
-const Wrapper = ({ children }) => (
-  <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
-);
+function Wrapper({ children }) {
+  return (
+    <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
+  );
+}
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
@@ -49,6 +59,14 @@ describe('Joy <MenuItem />', () => {
     testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
+
+  describeJoyColorInversion(<MenuItem />, {
+    muiName: 'JoyMenuItem',
+    classes,
+    wrapper: (node) => (
+      <MenuUnstyledContext.Provider value={testContext}>{node}</MenuUnstyledContext.Provider>
+    ),
+  });
 
   it('should render with the variant class', () => {
     const { getByRole } = render(<MenuItem variant="outlined" />);

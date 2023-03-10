@@ -5,8 +5,6 @@ export interface LinearProgressClasses {
   root: string;
   /** Styles applied to the root element if `determinate` is true. */
   determinate: string;
-  /** Styles applied to the `progress` element. */
-  progress: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -19,6 +17,8 @@ export interface LinearProgressClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -38,19 +38,19 @@ export interface LinearProgressClasses {
 export type LinearProgressClassKey = keyof LinearProgressClasses;
 
 export function getLinearProgressUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyLinearProgress', slot);
+  return generateUtilityClass('MuiLinearProgress', slot);
 }
 
-const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('JoyLinearProgress', [
+const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('MuiLinearProgress', [
   'root',
   'determinate',
-  'progress',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

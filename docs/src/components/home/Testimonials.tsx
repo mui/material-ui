@@ -18,12 +18,11 @@ function Testimonials() {
     <Box
       data-mui-color-scheme="dark"
       ref={ref}
-      sx={{
-        background: (theme) =>
-          `linear-gradient(85deg, ${(theme.vars || theme).palette.primaryDark[700]} 0%, ${
-            (theme.vars || theme).palette.primaryDark[600]
-          } 100%)`,
-      }}
+      sx={(theme) => ({
+        background: `linear-gradient(85deg, ${(theme.vars || theme).palette.primaryDark[700]} 0%, ${
+          (theme.vars || theme).palette.primaryDark[600]
+        } 100%)`,
+      })}
     >
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Grid container spacing={3} alignItems="center">

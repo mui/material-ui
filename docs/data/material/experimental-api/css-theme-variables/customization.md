@@ -1,4 +1,4 @@
-# Customization
+# CSS theme variables - Customization
 
 <p class="description">A guide for customizing CSS theme variables in Material UI.</p>
 
@@ -179,8 +179,8 @@ Or use `var()` to refer to the CSS variable directly:
 }
 ```
 
-:::info
-💡 If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
+:::warning
+If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefixes), make sure to replace the default `--mui`.
 :::
 
 ### TypeScript
@@ -250,7 +250,7 @@ const Button = styled('button')(({ theme }) => ({
 ```
 
 :::info
-💡 Using this utility is equivalent to writing a plain string `'[data-mui-color-scheme="dark"] &'` if you don't have a custom configuration.
+Using this utility is equivalent to writing a plain string `'[data-mui-color-scheme="dark"] &'` if you don't have a custom configuration.
 :::
 
 ## Force a specific color scheme
@@ -296,6 +296,6 @@ getInitColorSchemeScript({
 });
 ```
 
-:::info
-💡 In development, make sure to clear local storage and refresh the page after you configure the `defaultMode`.
+:::warning
+In development, make sure to clear local storage and refresh the page after you configure the `defaultMode`.
 :::

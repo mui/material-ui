@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type ModalCloseSlot = 'root';
 
@@ -25,7 +25,7 @@ export interface ModalCloseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ModalClosePropsVariantOverrides>;
@@ -38,4 +38,6 @@ export type ModalCloseProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalCloseTypeMap<P, D>, D>;
 
-export interface ModalCloseOwnerState extends ModalCloseProps {}
+export interface ModalCloseOwnerState extends ApplyColorInversion<ModalCloseProps> {
+  focusVisible?: boolean;
+}

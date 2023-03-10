@@ -107,10 +107,10 @@ const getCssValue = (keys: string[], value: string | number) => {
  * }} options.
  *  `prefix`: The prefix of the generated CSS variables. This function does not change the value.
  *
- * @returns {{ css: Object, vars: Object, parsedTheme: typeof theme }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme), and `parsedTheme` is the cloned version of theme.
+ * @returns {{ css: Object, vars: Object }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme).
  *
  * @example
- * const { css, vars, parsedTheme } = parser({
+ * const { css, vars } = parser({
  *   fontSize: 12,
  *   lineHeight: 1.2,
  *   palette: { primary: { 500: 'var(--color)' } }
@@ -118,7 +118,6 @@ const getCssValue = (keys: string[], value: string | number) => {
  *
  * console.log(css) // { '--foo-fontSize': '12px', '--foo-lineHeight': 1.2, '--foo-palette-primary-500': 'var(--color)' }
  * console.log(vars) // { fontSize: 'var(--foo-fontSize)', lineHeight: 'var(--foo-lineHeight)', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
- * console.log(parsedTheme) // { fontSize: 12, lineHeight: 1.2, palette: { primary: { 500: 'var(--color)' } } }
  */
 export default function cssVarsParser<T extends Record<string, any>>(
   theme: T,
@@ -130,7 +129,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
   const { prefix, shouldSkipGeneratingVar } = options || {};
   const css = {} as Record<string, string | number>;
   const vars = {} as NestedRecord<string>;
-  const parsedTheme = {} as T;
+  const varsWithDefaults = {};
 
   walkObjectDeep(
     theme,
@@ -142,12 +141,12 @@ export default function cssVarsParser<T extends Record<string, any>>(
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
           assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
+          assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${value})`, arrayKeys);
         }
       }
-      assignNestedKeys(parsedTheme, keys, value, arrayKeys);
     },
     (keys) => keys[0] === 'vars', // skip 'vars/*' paths
   );
 
-  return { css, vars, parsedTheme };
+  return { css, vars, varsWithDefaults };
 }

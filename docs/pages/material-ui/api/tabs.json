@@ -1,10 +1,10 @@
 {
   "props": {
     "action": { "type": { "name": "custom", "description": "ref" } },
-    "allowScrollButtonsMobile": { "type": { "name": "bool" } },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
     "aria-label": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
-    "centered": { "type": { "name": "bool" } },
+    "centered": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
@@ -63,7 +63,7 @@
       },
       "default": "'standard'"
     },
-    "visibleScrollbar": { "type": { "name": "bool" } }
+    "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tabs",
   "styles": {

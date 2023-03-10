@@ -4,17 +4,18 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { useThemeProps, styled } from '../styles';
-import { IconButtonRoot } from '../IconButton/IconButton';
+import { useColorInversion } from '../styles/ColorInversion';
+import { StyledIconButton } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
-import { ModalCloseProps, ModalCloseTypeMap } from './ModalCloseProps';
+import { ModalCloseProps, ModalCloseOwnerState, ModalCloseTypeMap } from './ModalCloseProps';
 import CloseIcon from '../internal/svg-icons/Close';
 import CloseModalContext from '../Modal/CloseModalContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 
-const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolean }) => {
+const useUtilityClasses = (ownerState: ModalCloseOwnerState) => {
   const { variant, color, disabled, focusVisible, size } = ownerState;
 
   const slots = {
@@ -31,11 +32,11 @@ const useUtilityClasses = (ownerState: ModalCloseProps & { focusVisible?: boolea
   return composeClasses(slots, getModalCloseUtilityClass, {});
 };
 
-export const ModalCloseRoot = styled(IconButtonRoot, {
+export const ModalCloseRoot = styled(StyledIconButton, {
   name: 'JoyModalClose',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalCloseProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: ModalCloseOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--IconButton-size': '28px',
   }),
@@ -61,7 +62,16 @@ const modalDialogVariantMapping = {
   soft: 'soft',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalClose API](https://mui.com/joy-ui/api/modal-close/)
+ */
 const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalCloseProps>({
     props: inProps,
@@ -79,9 +89,10 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const closeModalContext = React.useContext(CloseModalContext);
   const modalDialogVariantColor = React.useContext(ModalDialogVariantColorContext);
-  const color = inProps.color ?? modalDialogVariantColor?.color ?? colorProp;
   const variant =
     inProps.variant ?? modalDialogVariantMapping[modalDialogVariantColor?.variant!] ?? variantProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, modalDialogVariantColor?.color ?? colorProp);
 
   const modalDialogSize = React.useContext(ModalDialogSizeContext);
   const size = inProps.size ?? modalDialogSize ?? sizeProp;
@@ -169,7 +180,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

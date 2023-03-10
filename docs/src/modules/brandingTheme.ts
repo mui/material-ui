@@ -1,4 +1,3 @@
-import { deepmerge } from '@mui/utils';
 import { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
@@ -225,13 +224,14 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     spacing: 10,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
+      // Match VS Code
+      // https://github.com/microsoft/vscode/blob/b38691f611d1ce3ef437c67a1b047c757b7b4e53/src/vs/editor/common/config/editorOptions.ts#L4578-L4580
+      // https://github.com/microsoft/vscode/blob/d950552131d7350a45dac8b59bf179469c36c2ac/src/vs/editor/standalone/browser/standalone-tokens.css#L10
       fontFamilyCode: [
-        'Consolas',
-        'Menlo',
-        'Monaco',
-        'Andale Mono',
-        'Ubuntu Mono',
-        'monospace',
+        'Menlo', // macOS
+        'Consolas', // Windows
+        '"Droid Sans Mono"', // Linux
+        'monospace', // fallback
       ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
@@ -570,30 +570,37 @@ export function getThemedComponents(): ThemeOptions {
           underline: 'none',
         },
         styleOverrides: {
-          root: ({ theme }) => [
-            {
-              color: (theme.vars || theme).palette.primary[600],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[700],
-              },
-              fontWeight: 700,
-              display: 'inline-flex',
-              alignItems: 'center',
-              '&.MuiTypography-body1 > svg': {
-                marginTop: 2,
-              },
-              '& svg:last-child': {
-                marginLeft: 2,
-              },
+          root: {
+            fontWeight: 700,
+            display: 'inline-flex',
+            alignItems: 'center',
+            '&.MuiTypography-body1 > svg': {
+              marginTop: 2,
             },
-            theme.applyDarkStyles({
-              color: (theme.vars || theme).palette.primary[300],
-              '&:hover': {
-                color: (theme.vars || theme).palette.primary[200],
-              },
-            }),
-          ],
+            '& svg:last-child': {
+              marginLeft: 2,
+            },
+          },
         },
+        variants: [
+          {
+            props: { color: 'primary' },
+            style: ({ theme }) => [
+              {
+                color: (theme.vars || theme).palette.primary[600],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[700],
+                },
+              },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+            ],
+          },
+        ],
       },
       MuiChip: {
         styleOverrides: {
@@ -904,5 +911,12 @@ export function getThemedComponents(): ThemeOptions {
   };
 }
 
-const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents());
+export const brandingDarkTheme = createTheme({
+  ...getDesignTokens('dark'),
+  ...getThemedComponents(),
+});
+
+export const brandingLightTheme = createTheme({
+  ...getDesignTokens('light'),
+  ...getThemedComponents(),
+});

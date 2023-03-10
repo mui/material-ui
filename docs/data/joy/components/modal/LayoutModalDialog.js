@@ -29,13 +29,7 @@ export default function LayoutModalDialog() {
           layout={open || undefined}
         >
           <ModalClose />
-          <Typography
-            id="layout-modal-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="0.25em"
-          >
+          <Typography id="layout-modal-title" component="h2">
             Modal Dialog
           </Typography>
           <Typography id="layout-modal-description" textColor="text.tertiary">

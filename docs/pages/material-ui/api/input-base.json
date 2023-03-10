@@ -19,10 +19,10 @@
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
-    "disableInjectingGlobalStyles": { "type": { "name": "bool" } },
+    "disableInjectingGlobalStyles": { "type": { "name": "bool" }, "default": "false" },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "id": { "type": { "name": "string" } },
     "inputComponent": {
       "type": { "name": "custom", "description": "element type" },
@@ -33,7 +33,7 @@
     "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "multiline": { "type": { "name": "bool" } },
+    "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
     "onBlur": { "type": { "name": "func" } },
     "onChange": { "type": { "name": "func" } },
@@ -47,6 +47,14 @@
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       }
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ input?: object, root?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
     },
     "startAdornment": { "type": { "name": "node" } },
     "sx": {
@@ -82,7 +90,12 @@
       "inputAdornedEnd",
       "inputHiddenLabel"
     ],
-    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
+    "globalClasses": {
+      "focused": "Mui-focused",
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "readOnly": "Mui-readOnly"
+    },
     "name": "MuiInputBase"
   },
   "spread": true,

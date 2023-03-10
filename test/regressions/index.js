@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
@@ -27,8 +27,11 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-joy-getting-started-templates/TemplateCollection.png',
-  'docs-joy-core-features-automatic-adjustment/ListThemes.png',
+  'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
+  'docs-joy-core-features-automatic-adjustment/ListThemes.png', // No public components
+  'docs-joy-tools/PaletteThemeViewer.png', // No need for theme tokens
+  'docs-joy-tools/ShadowThemeViewer.png', // No need for theme tokens
+  'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
   'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
   'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
@@ -119,6 +122,7 @@ const blacklist = [
   'docs-components-tree-view/IconExpansionTreeView.png', // Need interaction
   'docs-components-tree-view/MultiSelectTreeView.png', // Need interaction
   'docs-components-use-media-query', // Need to dynamically resize to test
+  'docs-components-buttons/ButtonMaterialYouPlayground.png', // playground
   'docs-customization-breakpoints', // Need to dynamically resize to test
   'docs-customization-color', // Escape viewport
   'docs-customization-default-theme', // Redux isolation

@@ -2,7 +2,7 @@
   "props": {
     "value": { "type": { "name": "any" }, "required": true },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "label": { "type": { "name": "string" } },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -15,6 +15,14 @@
   },
   "name": "OptionUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'li'",
+      "class": ".MuiOption-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionUnstyled/OptionUnstyled.tsx",

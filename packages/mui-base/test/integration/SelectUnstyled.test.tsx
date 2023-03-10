@@ -13,7 +13,7 @@ describe('<SelectUnstyled> integration', () => {
     }
 
     const SelectListbox = React.forwardRef(function SelectListbox(
-      props: SelectUnstyledListboxSlotProps<string>,
+      props: SelectUnstyledListboxSlotProps<string, false>,
       ref: React.ForwardedRef<HTMLUListElement>,
     ) {
       const { ownerState, ...other } = props;
@@ -40,7 +40,7 @@ describe('<SelectUnstyled> integration', () => {
       </SelectUnstyled>,
     );
 
-    const select = getByRole('button');
+    const select = getByRole('combobox');
 
     act(() => {
       select.focus();

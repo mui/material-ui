@@ -20,7 +20,7 @@ export default function TabsBottomNavExample() {
         p: 3,
         py: 5,
         borderRadius: 'sm',
-        bgcolor: `${colors[index]}.400`,
+        bgcolor: `${colors[index]}.600`,
       }}
     >
       <Tabs
@@ -29,8 +29,7 @@ export default function TabsBottomNavExample() {
         value={index}
         onChange={(event, value) => setIndex(value as number)}
         sx={(theme) => ({
-          borderBottomLeftRadius: '1rem',
-          borderBottomRightRadius: '1rem',
+          borderRadius: 'xl',
           maxWidth: 400,
           mx: 'auto',
           boxShadow: theme.shadow.sm,
@@ -49,7 +48,7 @@ export default function TabsBottomNavExample() {
           },
         })}
       >
-        <TabList variant="plain" sx={{ '--List-decorator-size': '28px' }}>
+        <TabList variant="plain" sx={{ '--List-decoratorSize': '28px' }}>
           <Tab
             orientation="vertical"
             {...(index === 0 && { variant: 'soft', color: colors[0] })}

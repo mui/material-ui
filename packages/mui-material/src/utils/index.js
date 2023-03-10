@@ -21,17 +21,19 @@ export { default as useIsFocusVisible } from './useIsFocusVisible';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const unstable_ClassNameGenerator = {
   configure: (generator) => {
-    console.warn(
-      [
-        'MUI: `ClassNameGenerator` import from `@mui/material/utils` is outdated and might cause unexpected issues.',
-        '',
-        "You should use `import { unstable_ClassNameGenerator } from '@mui/material/className'` instead",
-        '',
-        'The detail of the issue: https://github.com/mui/material-ui/issues/30011#issuecomment-1024993401',
-        '',
-        'The updated documentation: https://mui.com/guides/classname-generator/',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(
+        [
+          'MUI: `ClassNameGenerator` import from `@mui/material/utils` is outdated and might cause unexpected issues.',
+          '',
+          "You should use `import { unstable_ClassNameGenerator } from '@mui/material/className'` instead",
+          '',
+          'The detail of the issue: https://github.com/mui/material-ui/issues/30011#issuecomment-1024993401',
+          '',
+          'The updated documentation: https://mui.com/guides/classname-generator/',
+        ].join('\n'),
+      );
+    }
     ClassNameGenerator.configure(generator);
   },
 };

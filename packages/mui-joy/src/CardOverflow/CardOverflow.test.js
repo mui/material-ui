@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import CardOverflow, { cardOverflowClasses as classes } from '@mui/joy/CardOverflow';
@@ -20,6 +20,8 @@ describe('<CardOverflow />', () => {
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<CardOverflow />, { muiName: 'JoyCardOverflow', classes });
 
   describe('prop: variant', () => {
     it('plain by default', () => {

@@ -14,7 +14,6 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   components?: {
     Root?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the Popper.
    * @default {}
@@ -49,10 +48,12 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
-  const { components, componentsProps, slots, slotProps, ...other } = useThemeProps({
+  const props = useThemeProps({
     props: inProps,
     name: 'MuiPopper',
   });
+
+  const { components, componentsProps, slots, slotProps, ...other } = props;
 
   const RootComponent = slots?.root ?? components?.Root;
 
@@ -65,7 +66,7 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -168,6 +169,10 @@ Popper.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  ownerState: PropTypes.any,
   /**
    * Popper placement.
    * @default 'bottom'

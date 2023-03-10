@@ -132,16 +132,19 @@ const faqData = [
     summary: 'What is the policy on redistributing the software?',
     detail: (
       <React.Fragment>
-        The licenses are royalty-free. The licensed entity can use our components without a
-        sublicense in:
+        The commerial licenses are royalty-free. The licensed entity can use the components without
+        a sublicense in:
         <ul>
           <li>Solutions for internal company use</li>
           <li>Hosted applications</li>
           <li>Commercial solutions deployed for end-users</li>
         </ul>
-        Based on the 'Deployment' section of the EULA, you can sublicense the software if it's made
-        part of a larger work. The new licenses must be in writing and substantially the same as
-        these EULA.
+        Based on the{' '}
+        <Link target="_blank" rel="noopener" href="https://mui.com/legal/mui-x-eula/#deployment">
+          'Deployment' section of the EULA
+        </Link>
+        , you can sublicense the software if it's made part of a larger work. The new licenses must
+        be in writing and substantially the same as these EULA.
         <br />
         <br />
         <b>Example 1.</b> Agency 'A' is building two applications for companies 'B' and 'C'. Agency
@@ -277,14 +280,17 @@ export default function FAQ() {
           {renderItem(7)}
           <Paper
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               p: 2,
               textAlign: 'center',
               borderStyle: 'dashed',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
-            }}
+              borderColor: 'grey.300',
+              bgcolor: 'white',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.400',
+                bgcolor: 'primaryDark.800',
+              }),
+            })}
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">

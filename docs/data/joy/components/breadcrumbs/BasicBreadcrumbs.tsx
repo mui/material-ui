@@ -5,10 +5,11 @@ import Typography from '@mui/joy/Typography';
 
 export default function BasicBreadcrumbs() {
   return (
-    <Breadcrumbs separator="›" aria-label="breadcrumbs">
-      {['Fry', 'Leela', 'Bender', 'Linda'].map((item: string) => (
+    <Breadcrumbs aria-label="breadcrumbs">
+      {['Home', 'TV Shows', 'Futurama', 'Characters'].map((item: string) => (
         <Link
-          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          // `preventDefault` is for demo purposes
+          // and is generally not needed in your app
           onClick={(event) => event.preventDefault()}
           key={item}
           underline="hover"
@@ -19,7 +20,7 @@ export default function BasicBreadcrumbs() {
           {item}
         </Link>
       ))}
-      <Typography fontSize="inherit">Amy</Typography>
+      <Typography fontSize="inherit">Dr. Zoidberg</Typography>
     </Breadcrumbs>
   );
 }

@@ -4,10 +4,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const data = [
-  { title: '3.2M', metadata: 'Weekly downloads on npm' },
-  { title: '78k', metadata: 'Stars on GitHub' },
-  { title: '2.4k', metadata: 'Open-source contributors' },
-  { title: '17k', metadata: 'Followers on Twitter' },
+  { title: '4M', metadata: 'Weekly downloads on npm' },
+  { title: '85k', metadata: 'Stars on GitHub' },
+  { title: '2.7k', metadata: 'Open-source contributors' },
+  { title: '18.4k', metadata: 'Followers on Twitter' },
 ];
 
 export default function MuiStatistics() {

@@ -8,7 +8,7 @@
         "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       }
     },
-    "disableAnimation": { "type": { "name": "bool" } },
+    "disableAnimation": { "type": { "name": "bool" }, "default": "false" },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },
@@ -16,7 +16,10 @@
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
     "size": {
-      "type": { "name": "enum", "description": "'normal'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'normal'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'normal'"
     },
     "sx": {

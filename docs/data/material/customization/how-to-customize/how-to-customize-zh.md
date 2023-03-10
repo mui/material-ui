@@ -11,7 +11,7 @@ Material UI provides several different ways to customize a component's styles. Y
 
 1. [一次性定制](#1-one-off-customization)
 1. [Reusable component](#2-reusable-component)
-1. [Global theme variation](#3-global-theme-overrides)
+1. [Global theme overrides](#3-global-theme-overrides)
 1. [Global CSS override](#4-global-css-override)
 
 ## 1. 1. 1. 一次性定制

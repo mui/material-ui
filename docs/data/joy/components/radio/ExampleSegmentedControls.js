@@ -12,7 +12,7 @@ export default function ExampleSegmentedControls() {
         Justify:
       </Typography>
       <RadioGroup
-        row
+        orientation="horizontal"
         aria-labelledby="segmented-controls-example"
         name="justify"
         value={justify}
@@ -23,7 +23,7 @@ export default function ExampleSegmentedControls() {
           borderRadius: 'md',
           bgcolor: 'neutral.softBg',
           '--RadioGroup-gap': '4px',
-          '--Radio-action-radius': '8px',
+          '--Radio-actionRadius': '8px',
         }}
       >
         {['flex-start', 'center', 'flex-end'].map((item) => (
@@ -38,7 +38,7 @@ export default function ExampleSegmentedControls() {
               px: 2,
               alignItems: 'center',
             }}
-            componentsProps={{
+            slotProps={{
               action: ({ checked }) => ({
                 sx: {
                   ...(checked && {

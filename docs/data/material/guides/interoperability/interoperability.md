@@ -134,7 +134,7 @@ export default function PlainCssSliderDeep1() {
 }
 ```
 
-The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
+The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
 **PlainCssSliderDeep2.css**
 
@@ -166,7 +166,7 @@ export default function PlainCssSliderDeep2() {
       <Slider
         defaultValue={30}
         className="slider"
-        componentsProps={{ thumb: { className: 'thumb' } }}
+        slotProps={{ thumb: { className: 'thumb' } }}
       />
     </div>
   );
@@ -289,13 +289,13 @@ export default function GlobalCssSliderDeep() {
 
 ### Change the default styled engine
 
-By default, MUI components come with Emotion as their style engine. If,
+By default, Material UI components come with Emotion as their style engine. If,
 however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
 
 - [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components)
-- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
+- [Create React App with styled-components and typescript](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -334,7 +334,7 @@ The following examples override the slider's `thumb` style in addition to the cu
 
 {{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
-The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
+The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
 ```jsx
 import * as React from 'react';
@@ -342,7 +342,7 @@ import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
 const CustomizedSlider = styled((props) => (
-  <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
+  <Slider slotProps={{ thumb: { className: 'thumb' } }} {...props} />
 ))`
   color: #20b2aa;
 
@@ -368,12 +368,12 @@ export default function StyledComponentsDeep2() {
 ### Theme
 
 By using the MUI theme provider, the theme will be available in the theme context
-of the styled engine too (emotion or styled-components, depending on your configuration).
+of the styled engine too (Emotion or styled-components, depending on your configuration).
 
 :::warning
-⚠️ If you are **already** using a custom theme with styled-components or emotion,
+If you are already using a custom theme with styled-components or Emotion,
 it might not be compatible with MUI's theme specification. If it's not
-compatible, you need to render MUI's ThemeProvider <b>first</b>. This will
+compatible, you need to render MUI's ThemeProvider first. This will
 ensure the theme structures are isolated. This is ideal for the progressive adoption
 of MUI's components in the codebase.
 :::
@@ -546,7 +546,7 @@ export default function CssModulesSliderDeep1() {
 }
 ```
 
-The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
+The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
 **CssModulesSliderDeep2.module.css**
 
@@ -579,7 +579,7 @@ export default function CssModulesSliderDeep2() {
       <Slider
         defaultValue={30}
         className={styles.slider}
-        componentsProps={{ thumb: { className: styles.thumb } }}
+        slotProps={{ thumb: { className: styles.thumb } }}
       />
     </div>
   );
@@ -612,7 +612,7 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 ### Setup
 
-If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css) example project.
+If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
@@ -764,7 +764,7 @@ export default function SliderThumbOverrides() {
       <Slider
         defaultValue={30}
         className="text-teal-600"
-        componentsProps={{ thumb: { className: 'rounded-sm' } }}
+        slotProps={{ thumb: { className: 'rounded-sm' } }}
       />
     </div>
   );
@@ -880,6 +880,6 @@ There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes)
 :::
 
 :::warning
-⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
+**Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
 it's a peer dependency of `@mui/material`.
 :::

@@ -54,6 +54,7 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
   } = options || {};
   return (
     <script
+      key="mui-color-scheme-init"
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
