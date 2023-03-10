@@ -321,10 +321,10 @@ Copy this file and move it to the project directory you want to test in, then ru
 $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 
-:::info
-If you have already installed this package, your changes will not be reflected when you reinstall it.
-As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
-:::
+> **Note**
+> 
+> If you have already installed this package, your changes will not be reflected when you reinstall it.
+> As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
 
 ## Translations
 
