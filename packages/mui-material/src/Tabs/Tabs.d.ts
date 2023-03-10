@@ -50,17 +50,24 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     classes?: Partial<TabsClasses>;
     /**
      * The components used for ScrollButtonStart, ScrollButtonEnd item type
+     *
+     * This prop is an alias for the `components` prop, which will be deprecated in the future.
+     *
      * @default {}
      */
-    components?: {
+    slots?: {
       ScrollButtonStart?: React.ElementType;
       ScrollButtonEnd?: React.ElementType;
     };
     /**
-     * The props used for each slot inside.
+     * The extra props for the slot components.
+     * You can override the existing props or add new ones.
+     *
+     * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+     *
      * @default {}
      */
-    componentsProps?: {
+    slotProps?: {
       scrollButtonStart?: React.HTMLProps<HTMLButtonElement>;
       scrollButtonEnd?: React.HTMLProps<HTMLButtonElement>;
     };

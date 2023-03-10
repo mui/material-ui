@@ -165,17 +165,17 @@ describe('<Tabs />', () => {
     });
   });
 
-  describe('prop: componentProps', () => {
+  describe('prop: slotProps', () => {
     const tabs = (
       <Tabs
         value={0}
         variant="scrollable"
         scrollButtons
-        components={{
+        slots={{
           ScrollButtonStart: ArrowBackIcon,
           ScrollButtonEnd: ArrowForwardIcon,
         }}
-        componentsProps={{
+        slotProps={{
           scrollButtonEnd: { 'data-testid': 'test-label-scrollButtonEnd' },
           scrollButtonStart: { 'data-testid': 'test-label-scrollButtonStart' },
         }}

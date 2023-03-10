@@ -3,11 +3,11 @@
   "propDescriptions": {
     "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "components": "The components used for ScrollButtonStart, ScrollButtonEnd item type",
-    "componentsProps": "The props used for each slot inside.",
     "direction": "The direction the button should indicate.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "orientation": "The component orientation (layout flow direction).",
+    "slots": "The components used for ScrollButtonStart, ScrollButtonEnd item type<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future.",
+    "slotsProps": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {

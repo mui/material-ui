@@ -57,7 +57,7 @@ describe('<TabScrollButton />', () => {
           {...defaultProps}
           direction="left"
           disabled
-          components={{
+          slots={{
             ScrollButtonStart: ArrowBackIcon,
           }}
         />,
@@ -71,7 +71,7 @@ describe('<TabScrollButton />', () => {
           {...defaultProps}
           direction="right"
           disabled
-          components={{
+          slots={{
             ScrollButtonEnd: ArrowForwardIcon,
           }}
         />,

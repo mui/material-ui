@@ -8,20 +8,6 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ ScrollButtonEnd?: elementType, ScrollButtonStart?: elementType }"
-      },
-      "default": "{}"
-    },
-    "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ scrollButtonEnd?: object, scrollButtonStart?: object }"
-      },
-      "default": "{}"
-    },
     "indicatorColor": {
       "type": {
         "name": "union",
@@ -40,6 +26,20 @@
       "default": "'auto'"
     },
     "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ scrollButtonEnd?: object, scrollButtonStart?: object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ ScrollButtonEnd?: elementType, ScrollButtonStart?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",

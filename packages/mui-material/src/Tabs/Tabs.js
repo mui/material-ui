@@ -241,8 +241,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
-    components = {},
-    componentsProps = {},
+    slots = {},
+    slotsProps = {},
     allowScrollButtonsMobile = false,
     indicatorColor = 'primary',
     onChange,
@@ -501,8 +501,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
-        components={components}
-        componentsProps={componentsProps}
+        slots={slots}
+        slotsProps={slotsProps}
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
@@ -514,8 +514,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
-        components={components}
-        componentsProps={componentsProps}
+        slots={slots}
+        slotsProps={slotsProps}
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
@@ -822,22 +822,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for ScrollButtonStart, ScrollButtonEnd item type
-   * @default {}
-   */
-  components: PropTypes.shape({
-    ScrollButtonEnd: PropTypes.elementType,
-    ScrollButtonStart: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    scrollButtonEnd: PropTypes.object,
-    scrollButtonStart: PropTypes.object,
-  }),
-  /**
    * Determines the color of the indicator.
    * @default 'primary'
    */
@@ -879,6 +863,29 @@ Tabs.propTypes /* remove-proptypes */ = {
    * changes on activation.
    */
   selectionFollowsFocus: PropTypes.bool,
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    scrollButtonEnd: PropTypes.object,
+    scrollButtonStart: PropTypes.object,
+  }),
+  /**
+   * The components used for ScrollButtonStart, ScrollButtonEnd item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    ScrollButtonEnd: PropTypes.elementType,
+    ScrollButtonStart: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

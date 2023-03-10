@@ -14,17 +14,24 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
   classes?: Partial<TabScrollButtonClasses>;
   /**
    * The components used for ScrollButtonStart, ScrollButtonEnd item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
-  components?: {
+  slots?: {
     ScrollButtonStart?: React.ElementType;
     ScrollButtonEnd?: React.ElementType;
   };
   /**
-   * The props used for each slot inside.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
-  componentsProps?: {
+  slotsProps?: {
     scrollButtonStart?: React.HTMLProps<HTMLButtonElement>;
     scrollButtonEnd?: React.HTMLAttributes<HTMLButtonElement>;
   };
