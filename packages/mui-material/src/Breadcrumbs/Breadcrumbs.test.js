@@ -103,7 +103,7 @@ describe('<Breadcrumbs />', () => {
   it('should show custom collapsed icon', () => {
     const { getByRole } = render(
       <Breadcrumbs
-        components={{
+        slots={{
           Collapsed: FirstPageIcon,
         }}
         maxItems={2}
@@ -121,7 +121,7 @@ describe('<Breadcrumbs />', () => {
     const { getAllByTestId } = render(
       <Breadcrumbs
         maxItems={2}
-        componentsProps={{ collapsed: { 'data-testid': 'collapsed-test-label' } }}
+        slotProps={{ collapsed: { 'data-testid': 'collapsed-test-label' } }}
       >
         <span>first</span>
         <span>second</span>

@@ -84,10 +84,10 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     children,
     className,
     component = 'nav',
-    components = {
+    slots = {
       Collapsed: MoreHorizIcon,
     },
-    componentsProps = {},
+    slotProps = {},
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
@@ -145,8 +145,8 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       <BreadcrumbCollapsed
         aria-label={expandText}
         key="ellipsis"
-        components={components}
-        componentsProps={componentsProps}
+        slots={slots}
+        slotProps={slotProps}
         onClick={handleClickExpand}
       />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
@@ -220,22 +220,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for Collapsed item type
-   * @default {
-   *   Collapsed: MoreHorizIcon,
-   * }
-   */
-  components: PropTypes.shape({
-    Collapsed: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    collapsed: PropTypes.object,
-  }),
-  /**
    * Override the default label for the expand button.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
@@ -264,6 +248,28 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @default '/'
    */
   separator: PropTypes.node,
+  /**
+   * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    collapsed: PropTypes.object,
+  }),
+  /**
+   * The components used for Collapsed item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {
+   *   Collapsed: MoreHorizIcon,
+   * }
+   */
+  slots: PropTypes.shape({
+    Collapsed: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

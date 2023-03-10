@@ -35,16 +35,16 @@ const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { components, componentsProps, ...otherProps } = props;
+  const { slots, slotProps, ...otherProps } = props;
   const ownerState = props;
 
   return (
     <li>
       <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
         <BreadcrumbCollapsedIcon
-          as={components?.Collapsed ? components.Collapsed : MoreHorizIcon}
+          as={slots?.Collapsed ? slots.Collapsed : MoreHorizIcon}
           ownerState={ownerState}
-          {...componentsProps?.collapsed}
+          {...slotProps?.collapsed}
         />
       </BreadcrumbCollapsedButton>
     </li>
@@ -54,18 +54,24 @@ function BreadcrumbCollapsed(props) {
 BreadcrumbCollapsed.propTypes = {
   /**
    * The components used for Collapsed item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
    * @default {
    *   Collapsed: MoreHorizIcon,
    * }
    */
-  components: PropTypes.shape({
+  slots: PropTypes.shape({
     Collapsed: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
-  componentsProps: PropTypes.shape({
+  slotProps: PropTypes.shape({
     collapsed: PropTypes.object,
   }),
   /**

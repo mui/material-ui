@@ -3,14 +3,6 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": { "name": "shape", "description": "{ Collapsed?: elementType }" },
-      "default": "{\n  Collapsed: MoreHorizIcon,\n}"
-    },
-    "componentsProps": {
-      "type": { "name": "shape", "description": "{ collapsed?: object }" },
-      "default": "{}"
-    },
     "expandText": { "type": { "name": "string" }, "default": "'Show path'" },
     "itemsAfterCollapse": {
       "type": { "name": "custom", "description": "integer" },
@@ -22,6 +14,14 @@
     },
     "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ collapsed?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ Collapsed?: elementType }" },
+      "default": "{\n  Collapsed: MoreHorizIcon,\n}"
+    },
     "sx": {
       "type": {
         "name": "union",

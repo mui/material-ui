@@ -16,18 +16,24 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
     classes?: Partial<BreadcrumbsClasses>;
     /**
      * The components used for Collapsed item type
+     *
+     * This prop is an alias for the `components` prop, which will be deprecated in the future.
+     *
      * @default {
      *   Collapsed: MoreHorizIcon,
      * }
      */
-    components?: {
+    slots?: {
       Collapsed?: React.ElementType;
     };
     /**
      * The props used for each slot inside.
+     *
+     * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+     *
      * @default {}
      */
-    componentsProps?: {
+    slotProps?: {
       /**
        * Props applied to the Collapsed element.
        * @default {}
