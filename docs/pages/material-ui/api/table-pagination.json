@@ -8,20 +8,6 @@
     "backIconButtonProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": {
-        "name": "shape",
-        "description": "{ First?: elementType, Last?: elementType, Next?: elementType, Previous?: elementType }"
-      },
-      "default": "{\n  First: FirstPageIcon,\n  Last: LastPageIcon,\n  Next: KeyboardArrowRight,\n  Previous: KeyboardArrowLeft,\n}"
-    },
-    "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ first?: object, last?: object, next?: object, previous?: object }"
-      },
-      "default": "{}"
-    },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
@@ -43,6 +29,20 @@
     "SelectProps": { "type": { "name": "object" }, "default": "{}" },
     "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
     "showLastButton": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: object, last?: object, next?: object, previous?: object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ First?: elementType, Last?: elementType, Next?: elementType, Previous?: elementType }"
+      },
+      "default": "{\n  First: FirstPageIcon,\n  Last: LastPageIcon,\n  Next: KeyboardArrowRight,\n  Previous: KeyboardArrowLeft,\n}"
+    },
     "sx": {
       "type": {
         "name": "union",

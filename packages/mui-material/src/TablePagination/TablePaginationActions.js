@@ -17,8 +17,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     rowsPerPage,
     showFirstButton,
     showLastButton,
-    components,
-    componentsProps,
+    slots,
+    slotProps,
     ...other
   } = props;
 
@@ -40,10 +40,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
-  const LastIcon = components.Last;
-  const FirstIcon = components.First;
-  const PreviousIcon = components.Previous;
-  const NextIcon = components.Next;
+  const LastIcon = slots.Last;
+  const FirstIcon = slots.First;
+  const PreviousIcon = slots.Previous;
+  const NextIcon = slots.Next;
 
   return (
     <div ref={ref} {...other}>
@@ -55,9 +55,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           title={getItemAriaLabel('first', page)}
         >
           {theme.direction === 'rtl' ? (
-            <LastIcon {...componentsProps?.last} />
+            <LastIcon {...slotProps?.last} />
           ) : (
-            <FirstIcon {...componentsProps?.first} />
+            <FirstIcon {...slotProps?.first} />
           )}
         </IconButton>
       )}
@@ -70,9 +70,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         {...backIconButtonProps}
       >
         {theme.direction === 'rtl' ? (
-          <NextIcon {...componentsProps?.next} />
+          <NextIcon {...slotProps?.next} />
         ) : (
-          <PreviousIcon {...componentsProps?.previous} />
+          <PreviousIcon {...slotProps?.previous} />
         )}
       </IconButton>
       <IconButton
@@ -84,9 +84,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         {...nextIconButtonProps}
       >
         {theme.direction === 'rtl' ? (
-          <PreviousIcon {...componentsProps?.previous} />
+          <PreviousIcon {...slotProps?.previous} />
         ) : (
-          <NextIcon {...componentsProps?.next} />
+          <NextIcon {...slotProps?.next} />
         )}
       </IconButton>
       {showLastButton && (
@@ -97,9 +97,9 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           title={getItemAriaLabel('last', page)}
         >
           {theme.direction === 'rtl' ? (
-            <FirstIcon {...componentsProps?.first} />
+            <FirstIcon {...slotProps?.first} />
           ) : (
-            <LastIcon {...componentsProps?.last} />
+            <LastIcon {...slotProps?.last} />
           )}
         </IconButton>
       )}
@@ -114,6 +114,9 @@ TablePaginationActions.propTypes = {
   backIconButtonProps: PropTypes.object,
   /**
    * The components used for First, Last, Next & Previous item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
    * @default {
    *   First: FirstPageIcon,
    *   Last: LastPageIcon,
@@ -121,7 +124,7 @@ TablePaginationActions.propTypes = {
    *   Previous: KeyboardArrowLeft,
    * }
    */
-  components: PropTypes.shape({
+  slots: PropTypes.shape({
     First: PropTypes.elementType,
     Last: PropTypes.elementType,
     Next: PropTypes.elementType,
@@ -129,9 +132,12 @@ TablePaginationActions.propTypes = {
   }),
   /**
    * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
-  componentsProps: PropTypes.shape({
+  slotProps: PropTypes.shape({
     first: PropTypes.object,
     last: PropTypes.object,
     next: PropTypes.object,

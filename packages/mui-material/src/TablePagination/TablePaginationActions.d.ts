@@ -9,6 +9,9 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   classes?: {};
   /**
    * The components used for First, Last, Next & Previous item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
    * @default {
    *   First: FirstPageIcon,
    *   Last: LastPageIcon,
@@ -16,7 +19,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    *   Previous: KeyboardArrowLeft,
    * }
    */
-  components?: {
+  slots?: {
     First?: React.ElementType;
     Last?: React.ElementType;
     Next?: React.ElementType;
@@ -24,9 +27,12 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   };
   /**
    * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     first?: React.HTMLProps<HTMLButtonElement>;
     last?: React.HTMLProps<HTMLButtonElement>;
     next?: React.HTMLProps<HTMLButtonElement>;

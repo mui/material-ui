@@ -485,7 +485,7 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('prop: components', () => {
+  describe('prop: slots', () => {
     it('should change the icon for First item type', () => {
       const handleChangePage = spy();
       const { getByTestId, getByRole } = render(
@@ -493,7 +493,7 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                components={{ First: ArrowBackIosRounded }}
+                slots={{ First: ArrowBackIosRounded }}
                 showFirstButton
                 showLastButton
                 page={1}
@@ -518,7 +518,7 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                components={{ Last: ArrowForwardIosRounded }}
+                slots={{ Last: ArrowForwardIosRounded }}
                 showFirstButton
                 showLastButton
                 page={1}
@@ -537,7 +537,7 @@ describe('<TablePagination />', () => {
     });
   });
 
-  describe('prop: componentsProps', () => {
+  describe('prop: slotProps', () => {
     it('should render first with custom data test id', () => {
       const handleChangePage = spy();
       const { getAllByTestId } = render(
@@ -545,7 +545,7 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                componentsProps={{ first: { 'data-testid': 'custom-first-test-id' } }}
+                slotProps={{ first: { 'data-testid': 'custom-first-test-id' } }}
                 showFirstButton
                 showLastButton
                 page={1}
@@ -568,7 +568,7 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                componentsProps={{ last: { 'data-testid': 'custom-last-test-id' } }}
+                slotProps={{ last: { 'data-testid': 'custom-last-test-id' } }}
                 showFirstButton
                 showLastButton
                 page={1}

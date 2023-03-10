@@ -148,13 +148,13 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     className,
     colSpan: colSpanProp,
     component = TableCell,
-    components = {
+    slots = {
       First: FirstPageIcon,
       Last: LastPageIcon,
       Next: KeyboardArrowRight,
       Previous: KeyboardArrowLeft,
     },
-    componentsProps = {},
+    slotProps = {},
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
@@ -195,16 +195,16 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          Previous: components.Next || KeyboardArrowRight,
-          Next: components.Previous || KeyboardArrowLeft,
-          Last: components.First || FirstPageIcon,
-          First: components.Last || LastPageIcon,
+          Previous: slots.Next || KeyboardArrowRight,
+          Next: slots.Previous || KeyboardArrowLeft,
+          Last: slots.First || FirstPageIcon,
+          First: slots.Last || LastPageIcon,
         }
       : {
-          Previous: components.Previous || KeyboardArrowLeft,
-          Next: components.Next || KeyboardArrowRight,
-          First: components.First || FirstPageIcon,
-          Last: components.Last || LastPageIcon,
+          Previous: slots.Previous || KeyboardArrowLeft,
+          Next: slots.Next || KeyboardArrowRight,
+          First: slots.First || FirstPageIcon,
+          Last: slots.Last || LastPageIcon,
         };
 
   return (
@@ -276,8 +276,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
           getItemAriaLabel={getItemAriaLabel}
-          components={normalizedIcons}
-          componentsProps={componentsProps}
+          slots={normalizedIcons}
+          slotProps={slotProps}
         />
       </TablePaginationToolbar>
     </TablePaginationRoot>
@@ -316,31 +316,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for First, Last, Next & Previous item type
-   * @default {
-   *   First: FirstPageIcon,
-   *   Last: LastPageIcon,
-   *   Next: KeyboardArrowRight,
-   *   Previous: KeyboardArrowLeft,
-   * }
-   */
-  components: PropTypes.shape({
-    First: PropTypes.elementType,
-    Last: PropTypes.elementType,
-    Next: PropTypes.elementType,
-    Previous: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    first: PropTypes.object,
-    last: PropTypes.object,
-    next: PropTypes.object,
-    previous: PropTypes.object,
-  }),
   /**
    * The total number of rows.
    *
@@ -448,6 +423,37 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showLastButton: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    first: PropTypes.object,
+    last: PropTypes.object,
+    next: PropTypes.object,
+    previous: PropTypes.object,
+  }),
+  /**
+   * The components used for First, Last, Next & Previous item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {
+   *   First: FirstPageIcon,
+   *   Last: LastPageIcon,
+   *   Next: KeyboardArrowRight,
+   *   Previous: KeyboardArrowLeft,
+   * }
+   */
+  slots: PropTypes.shape({
+    First: PropTypes.elementType,
+    Last: PropTypes.elementType,
+    Next: PropTypes.elementType,
+    Previous: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

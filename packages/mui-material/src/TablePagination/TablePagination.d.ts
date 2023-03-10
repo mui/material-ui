@@ -34,6 +34,9 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       classes?: Partial<TablePaginationClasses>;
       /**
        * The components used for First, Last, Next & Previous item type
+       *
+       * This prop is an alias for the `components` prop, which will be deprecated in the future.
+       *
        * @default {
        *   First: FirstPageIcon,
        *   Last: LastPageIcon,
@@ -41,7 +44,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        *   Previous: KeyboardArrowLeft,
        * }
        */
-      components?: {
+      slots?: {
         First?: React.ElementType;
         Last?: React.ElementType;
         Next?: React.ElementType;
@@ -49,9 +52,12 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       };
       /**
        * The props used for each slot inside.
+       *
+       * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+       *
        * @default {}
        */
-      componentsProps?: {
+      slotProps?: {
         first?: React.HTMLProps<HTMLButtonElement>;
         last?: React.HTMLProps<HTMLButtonElement>;
         next?: React.HTMLProps<HTMLButtonElement>;
