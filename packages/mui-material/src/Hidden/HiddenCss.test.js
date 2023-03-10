@@ -5,7 +5,9 @@ import HiddenCss from './HiddenCss';
 import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
 
-const TestChild = () => <div data-testid="test-child">bar</div>;
+function TestChild() {
+  return <div data-testid="test-child">bar</div>;
+}
 
 describe('<HiddenCss />', () => {
   const { render } = createRenderer();

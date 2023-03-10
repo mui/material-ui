@@ -1,10 +1,10 @@
 # Properties
 
-<p class="description">This page lists all of the custom system properties, how are they linked with the theme, and which CSS properties they compute. All other regular CSS properties and selectors are supported too.</p>
+<p class="description">This page lists all of the custom system properties, how they are linked with the theme, and which CSS properties they compute. All other regular CSS properties and selectors are supported too.</p>
 
 ## Properties reference table
 
-Note that this table only lists custom properties, all other regular CSS properties and selectors are supported. You can check out the [legend](/system/properties/#legend) below.
+Note that this table only lists custom properties. All other regular CSS properties and selectors are supported too. You can check out the [legend](/system/properties/#legend) below.
 
 | System key(s)         | CSS property/properties                                                                      | System style function                                        | Theme mapping                                                                                       |
 | :-------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |
@@ -124,7 +124,7 @@ and detail each column:
 
 - **System style function**.
   The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@mui/system`.
-  You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+  You can see an example of using the style functions on the [Custom components page](/system/getting-started/custom-components/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
 - **Theme mapping**.
   Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.

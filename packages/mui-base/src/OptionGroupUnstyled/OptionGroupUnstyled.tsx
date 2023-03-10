@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
@@ -27,7 +27,7 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
@@ -36,17 +36,17 @@ function useUtilityClasses(disabled: boolean) {
 const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
   BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
 >(props: OptionGroupUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<HTMLLIElement>) {
-  const { component, components = {}, disabled = false, componentsProps = {}, ...other } = props;
+  const { component, disabled = false, slotProps = {}, slots = {}, ...other } = props;
 
-  const Root = component || components?.Root || 'li';
-  const Label = components?.Label || 'span';
-  const List = components?.List || 'ul';
+  const Root = component || slots?.root || 'li';
+  const Label = slots?.label || 'span';
+  const List = slots?.list || 'ul';
 
   const classes = useUtilityClasses(disabled);
 
   const rootProps: WithOptionalOwnerState<OptionGroupUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -57,14 +57,14 @@ const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
 
   const labelProps: WithOptionalOwnerState<OptionGroupUnstyledLabelSlotProps> = useSlotProps({
     elementType: Label,
-    externalSlotProps: componentsProps.label,
+    externalSlotProps: slotProps.label,
     ownerState: props,
     className: classes.label,
   });
 
   const listProps: WithOptionalOwnerState<OptionGroupUnstyledListSlotProps> = useSlotProps({
     elementType: List,
-    externalSlotProps: componentsProps.list,
+    externalSlotProps: slotProps.list,
     ownerState: props,
     className: classes.list,
   });
@@ -92,25 +92,6 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the OptionGroupUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Label: PropTypes.elementType,
-    List: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Input.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true` all the options in the group will be disabled.
    * @default false
    */
@@ -119,6 +100,25 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    * The human-readable description of the group.
    */
   label: PropTypes.node,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the OptionGroupUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    label: PropTypes.elementType,
+    list: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
 } as any;
 
 export default OptionGroupUnstyled;

@@ -7,20 +7,23 @@ export function touch(target: Element): void {
   fireEvent.touchEnd(target);
 }
 
-export function mousePress(target: Element): void {
+export const mousePress: (...args: Parameters<(typeof fireEvent)['mouseUp']>) => void = (
+  target,
+  options,
+) => {
   if (React.version.startsWith('18')) {
-    fireEvent.mouseDown(target);
-    fireEvent.mouseUp(target);
-    fireEvent.click(target);
+    fireEvent.mouseDown(target, options);
+    fireEvent.mouseUp(target, options);
+    fireEvent.click(target, options);
   } else {
-    mouseDown(target);
-    mouseUp(target);
-    click(target);
+    mouseDown(target, options);
+    mouseUp(target, options);
+    click(target, options);
     act(() => {});
   }
-}
+};
 
-export function keyPress(target: Element, options: { key: string }): void {
+export function keyPress(target: Element, options: { key: string; [key: string]: any }): void {
   if (React.version.startsWith('18')) {
     fireEvent.keyDown(target, options);
     fireEvent.keyUp(target, options);

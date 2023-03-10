@@ -61,10 +61,7 @@ const AlertRoot = styled(Paper, {
         [`& .${alertClasses.icon}`]: theme.vars
           ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
           : {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].main
-                  : theme.palette[color].light,
+              color: theme.palette[color].main,
             },
       }),
     ...(color &&
@@ -76,10 +73,7 @@ const AlertRoot = styled(Paper, {
         [`& .${alertClasses.icon}`]: theme.vars
           ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
           : {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].main
-                  : theme.palette[color].light,
+              color: theme.palette[color].main,
             },
       }),
     ...(color &&
@@ -95,11 +89,7 @@ const AlertRoot = styled(Paper, {
                 theme.palette.mode === 'dark'
                   ? theme.palette[color].dark
                   : theme.palette[color].main,
-              color: theme.palette.getContrastText(
-                theme.palette.mode === 'dark'
-                  ? theme.palette[color].dark
-                  : theme.palette[color].main,
-              ),
+              color: theme.palette.getContrastText(theme.palette[color].main),
             }),
       }),
   };
@@ -154,11 +144,15 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     className,
     closeText = 'Close',
     color,
+    components = {},
+    componentsProps = {},
     icon,
     iconMapping = defaultIconMapping,
     onClose,
     role = 'alert',
     severity = 'success',
+    slotProps = {},
+    slots = {},
     variant = 'standard',
     ...other
   } = props;
@@ -171,6 +165,12 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const AlertCloseButton = slots.closeButton ?? components.CloseButton ?? IconButton;
+  const AlertCloseIcon = slots.closeIcon ?? components.CloseIcon ?? CloseIcon;
+
+  const closeButtonProps = slotProps.closeButton ?? componentsProps.closeButton;
+  const closeIconProps = slotProps.closeIcon ?? componentsProps.closeIcon;
 
   return (
     <AlertRoot
@@ -196,15 +196,16 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
-          <IconButton
+          <AlertCloseButton
             size="small"
             aria-label={closeText}
             title={closeText}
             color="inherit"
             onClick={onClose}
+            {...closeButtonProps}
           >
-            <CloseIcon fontSize="small" />
-          </IconButton>
+            <AlertCloseIcon fontSize="small" {...closeIconProps} />
+          </AlertCloseButton>
         </AlertAction>
       ) : null}
     </AlertRoot>
@@ -249,6 +250,31 @@ Alert.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
+   * @default {}
+   */
+  components: PropTypes.shape({
+    CloseButton: PropTypes.elementType,
+    CloseIcon: PropTypes.elementType,
+  }),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    closeButton: PropTypes.object,
+    closeIcon: PropTypes.object,
+  }),
+  /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
    * Set to `false` to remove the `icon`.
@@ -282,6 +308,29 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default 'success'
    */
   severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    closeButton: PropTypes.object,
+    closeIcon: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    closeButton: PropTypes.elementType,
+    closeIcon: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

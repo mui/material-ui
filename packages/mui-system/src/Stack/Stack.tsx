@@ -5,6 +5,7 @@ import createStack from './createStack';
  * Demos:
  *
  * - [Stack (Material UI)](https://mui.com/material-ui/react-stack/)
+ * - [Stack (MUI System)](https://mui.com/system/react-stack/)
  *
  * API:
  *
@@ -21,6 +22,11 @@ Stack.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.

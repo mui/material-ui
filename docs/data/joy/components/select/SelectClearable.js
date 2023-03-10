@@ -12,7 +12,7 @@ export default function SelectBasic() {
       action={action}
       value={value}
       placeholder="Favorite pet…"
-      onChange={setValue}
+      onChange={(e, newValue) => setValue(newValue)}
       {...(value && {
         // display the button and remove select indicator
         // when user has selected a value

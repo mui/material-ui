@@ -4,14 +4,16 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
 import { styled, useThemeProps } from '../styles';
-import { ListRoot } from '../List/List';
+import { useColorInversion } from '../styles/ColorInversion';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { MenuListProps, MenuListTypeMap } from './MenuListProps';
+import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
-const useUtilityClasses = (ownerState: MenuListProps) => {
+const useUtilityClasses = (ownerState: MenuListOwnerState) => {
   const { variant, color, size } = ownerState;
   const slots = {
     root: [
@@ -25,31 +27,41 @@ const useUtilityClasses = (ownerState: MenuListProps) => {
   return composeClasses(slots, getMenuListUtilityClass, {});
 };
 
-const MenuListRoot = styled(ListRoot, {
-  name: 'MuiMenuList',
+const MenuListRoot = styled(StyledList, {
+  name: 'JoyMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuListProps; component?: React.ElementType }>(({ theme, ownerState }) => {
+})<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     overflow: 'auto',
-    ...(!variantStyle.backgroundColor && {
+    ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuList API](https://mui.com/joy-ui/api/menu-list/)
+ */
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiMenuList',
+    name: 'JoyMenuList',
   });
 
   const {
@@ -59,19 +71,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     children,
     size = 'md',
     variant = 'outlined',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
   });
@@ -90,9 +96,8 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     variant,
     color,
     size,
-    instanceSize: size,
     nesting: false,
-    orientation: 'vertical' as const,
+    row: false,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -109,18 +114,19 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     className: classes.root,
   });
 
-  const contextValue = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    getListboxProps,
-    open: true,
-  } as MenuUnstyledContextType;
+  const menuContextValue = React.useMemo(
+    () =>
+      ({
+        ...contextValue,
+        getListboxProps,
+        open: true,
+      } as MenuUnstyledContextType),
+    [contextValue, getListboxProps],
+  );
 
   return (
     <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>
@@ -153,7 +159,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -165,6 +174,7 @@ MenuList.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -179,10 +189,13 @@ MenuList.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
-   * @default 'plain'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default MenuList;

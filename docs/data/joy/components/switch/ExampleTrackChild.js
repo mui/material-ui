@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 export default function ExampleTrackChild() {
   return (
     <Switch
-      componentsProps={{
+      slotProps={{
         track: {
           children: (
             <React.Fragment>
@@ -20,9 +20,9 @@ export default function ExampleTrackChild() {
         },
       }}
       sx={{
-        '--Switch-thumb-size': '27px',
-        '--Switch-track-width': '64px',
-        '--Switch-track-height': '31px',
+        '--Switch-thumbSize': '27px',
+        '--Switch-trackWidth': '64px',
+        '--Switch-trackHeight': '31px',
       }}
     />
   );

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ButtonUnstyledProps, useButton } from '@mui/base/ButtonUnstyled';
+import { ButtonUnstyledProps } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
@@ -16,7 +17,7 @@ const CustomButtonRoot = styled('button')`
   font-size: 0.875rem;
   background-color: ${blue[500]};
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;

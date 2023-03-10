@@ -18,7 +18,17 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    */
   classes?: Partial<AvatarGroupClasses>;
   /**
-   * The props used for each slot inside the AvatarGroup.
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps?: {
@@ -30,6 +40,18 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
    * @default 5
    */
   max?: number;
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    additionalAvatar?: React.ComponentPropsWithRef<typeof Avatar> &
+      AvatarGroupComponentsPropsOverrides;
+  };
   /**
    * Spacing between avatars.
    * @default 'medium'
@@ -58,7 +80,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *

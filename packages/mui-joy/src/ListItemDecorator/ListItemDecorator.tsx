@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemDecoratorProps, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
+import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
+import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -19,14 +20,29 @@ const ListItemDecoratorRoot = styled('span', {
   name: 'JoyListItemDecorator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemDecoratorProps }>({
+})<{ ownerState: ListItemDecoratorOwnerState }>(({ ownerState }) => ({
   boxSizing: 'border-box',
   display: 'inline-flex',
   alignItems: 'center',
-  color: `var(--List-decorator-color)`,
-  minInlineSize: 'var(--List-decorator-width)',
-});
-
+  color: `var(--List-decoratorColor)`,
+  ...(ownerState.parentOrientation === 'horizontal'
+    ? {
+        minInlineSize: 'var(--List-decoratorSize)',
+      }
+    : {
+        minBlockSize: 'var(--List-decoratorSize)',
+      }),
+}));
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemDecorator API](https://mui.com/joy-ui/api/list-item-decorator/)
+ */
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -34,8 +50,10 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
   });
 
   const { component, className, children, ...other } = props;
+  const parentOrientation = React.useContext(ListItemButtonOrientationContext);
 
   const ownerState = {
+    parentOrientation,
     ...props,
   };
 
@@ -63,10 +81,6 @@ ListItemDecorator.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

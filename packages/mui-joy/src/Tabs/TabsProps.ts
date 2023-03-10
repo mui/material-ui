@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { TabsUnstyledOwnProps } from '@mui/base/TabsUnstyled';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type TabsSlot = 'root';
 
@@ -13,7 +13,7 @@ export interface TabsPropsSizeOverrides {}
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabsUnstyledOwnProps, 'components' | 'componentsProps'> & {
+    Omit<TabsUnstyledOwnProps, 'slots' | 'slotProps'> & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
@@ -21,6 +21,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
       color?: OverridableStringUnion<ColorPaletteProp, TabsPropsColorOverrides>;
       /**
        * The size of the component.
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabsPropsSizeOverrides>;
       /**
@@ -28,7 +29,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, TabsPropsVariantOverrides>;
@@ -41,7 +42,4 @@ export type TabsProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabsTypeMap<P, D>, D>;
 
-export type TabsOwnerState = TabsProps & {
-  orientation: 'horizontal' | 'vertical';
-  direction: 'ltr' | 'rtl';
-};
+export interface TabsOwnerState extends ApplyColorInversion<TabsProps> {}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type CardOverflowSlot = 'root';
 
@@ -24,7 +24,7 @@ export interface CardOverflowTypeMap<P = {}, D extends React.ElementType = 'div'
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, CardOverflowPropsVariantOverrides>;
@@ -36,3 +36,5 @@ export type CardOverflowProps<
   D extends React.ElementType = CardOverflowTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<CardOverflowTypeMap<P, D>, D>;
+
+export interface CardOverflowOwnerState extends ApplyColorInversion<CardOverflowProps> {}

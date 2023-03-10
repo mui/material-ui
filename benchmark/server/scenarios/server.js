@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import express from 'express';
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
 import { createTheme } from '@mui/material/styles';
 import {

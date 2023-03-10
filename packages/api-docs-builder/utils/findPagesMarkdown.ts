@@ -1,0 +1,48 @@
+import fs from 'fs';
+import path from 'path';
+
+interface MarkdownPage {
+  filename: string;
+  pathname: string;
+}
+
+/**
+ * Returns the markdowns of the documentation in a flat array.
+ */
+export default function findPagesMarkdown(
+  directory: string = path.resolve(__dirname, '../../../docs/data'),
+  pagesMarkdown: MarkdownPage[] = [],
+) {
+  const items = fs.readdirSync(directory);
+
+  items.forEach((item) => {
+    const itemPath = path.resolve(directory, item);
+
+    if (fs.statSync(itemPath).isDirectory()) {
+      findPagesMarkdown(itemPath, pagesMarkdown);
+      return;
+    }
+
+    // Ignore non en-US source markdown.
+    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
+      return;
+    }
+
+    let pathname = itemPath
+      .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+      .replace(/^.*\/data/, '')
+      .replace('.md', '');
+
+    // Remove the last pathname segment.
+    pathname = pathname.split('/').slice(0, 4).join('/');
+
+    pagesMarkdown.push({
+      // Relative location in the path (URL) system.
+      pathname,
+      // Relative location in the file system.
+      filename: itemPath,
+    });
+  });
+
+  return pagesMarkdown;
+}

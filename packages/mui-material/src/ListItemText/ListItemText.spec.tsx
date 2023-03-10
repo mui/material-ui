@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { ListItemText } from '@mui/material';
 
-const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
+const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
+  return <div />;
+};
 
 function typographyPropsTest() {
   // @ts-expect-error

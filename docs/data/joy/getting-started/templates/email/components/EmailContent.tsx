@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import AspectRatio from '@mui/joy/AspectRatio';
-import ListDivider from '@mui/joy/ListDivider';
+import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 
 // Icons import
@@ -25,7 +25,6 @@ export default function EmailContent() {
         borderRadius: 'sm',
         p: 2,
         mb: 3,
-        bgcolor: 'background.componentBg',
       }}
     >
       <Box
@@ -66,7 +65,7 @@ export default function EmailContent() {
           </IconButton>
         </Box>
       </Box>
-      <ListDivider component="hr" sx={{ mt: 2 }} />
+      <Divider sx={{ mt: 2 }} />
       <Box
         sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
@@ -86,7 +85,6 @@ export default function EmailContent() {
             <Typography
               component="span"
               level="body2"
-              textColor="neutral.600"
               sx={{ mr: 1, display: 'inline-block' }}
             >
               From
@@ -99,7 +97,6 @@ export default function EmailContent() {
             <Typography
               component="span"
               level="body2"
-              textColor="neutral.600"
               sx={{ mr: 1, display: 'inline-block' }}
             >
               to
@@ -110,8 +107,8 @@ export default function EmailContent() {
           </Box>
         </Box>
       </Box>
-      <ListDivider component="hr" />
-      <Typography level="body2" textColor="text.secondary" mt={2} mb={2}>
+      <Divider />
+      <Typography level="body2" mt={2} mb={2}>
         Hello, my friend!
         <br />
         <br />
@@ -135,14 +132,8 @@ export default function EmailContent() {
         <br />
         See you soon, Alex Jonnold
       </Typography>
-      <ListDivider component="hr" />
-      <Typography
-        level="body2"
-        fontWeight="md"
-        textColor="text.primary"
-        mt={2}
-        mb={2}
-      >
+      <Divider />
+      <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
         Attachments
       </Typography>
       <Box
@@ -160,7 +151,8 @@ export default function EmailContent() {
         <Card variant="outlined">
           <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
             <img
-              src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=2370"
+              src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80"
+              srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160 2x"
               alt="Yosemite National Park"
             />
           </AspectRatio>
@@ -168,7 +160,8 @@ export default function EmailContent() {
         <Card variant="outlined">
           <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
             <img
-              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=2370"
+              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&h=80"
+              srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&h=160 2x"
               alt="Yosemite National Park"
             />
           </AspectRatio>
@@ -176,13 +169,7 @@ export default function EmailContent() {
         <Card variant="outlined" orientation="horizontal">
           <CardOverflow>
             <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <Box>
                 <FolderIcon />
               </Box>
             </AspectRatio>

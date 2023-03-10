@@ -49,6 +49,7 @@ export default function DiamondSponsors() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
@@ -84,7 +85,6 @@ export default function DiamondSponsors() {
           target="_blank"
         >
           <img
-            width="137"
             height="30"
             src={`/static/sponsors/octopus-${theme.palette.mode}.svg`}
             alt="octopus"
@@ -96,15 +96,14 @@ export default function DiamondSponsors() {
           data-ga-event-category="sponsor"
           data-ga-event-action="drawer"
           data-ga-event-label="doit"
-          href="https://www.doit-intl.com/flexsave/?utm_source=materialui&utm_medium=referral"
+          href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
           <img
-            width="62.4"
             height="26"
-            src="/static/sponsors/doit.svg"
-            alt="doit-intl"
+            src={`/static/sponsors/doit-${theme.palette.mode}.svg`}
+            alt="doit"
             title="Management Platform for Google Cloud and AWS"
             loading="lazy"
           />
@@ -113,12 +112,11 @@ export default function DiamondSponsors() {
           data-ga-event-category="sponsor"
           data-ga-event-action="drawer"
           data-ga-event-label="zesty.io"
-          href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
+          href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
           <img
-            width="93"
             height="26"
             src={
               theme.palette.mode === 'light'

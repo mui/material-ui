@@ -1,23 +1,33 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList from '@mui/joy/MenuList';
 import List from '@mui/joy/List';
 import ListItem, { listItemClasses as classes } from '@mui/joy/ListItem';
+import ListSubheader from '@mui/joy/ListSubheader';
 
 describe('Joy <ListItem />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItem />, () => ({
+  describeConformance(<ListItem startAction="1" endAction="2" />, () => ({
     classes,
     inheritComponent: 'li',
     render,
     ThemeProvider,
     muiName: 'JoyListItem',
     refInstanceof: window.HTMLLIElement,
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      startAction: { expectedClassName: classes.startAction },
+      endAction: { expectedClassName: classes.endAction },
+    },
+    skip: ['componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<ListItem />, { muiName: 'JoyListItem', classes });
 
   it('should have root className', () => {
     const { container } = render(<ListItem />);
@@ -75,6 +85,18 @@ describe('Joy <ListItem />', () => {
       );
 
       expect(screen.getByText('Foo')).to.have.attribute('role', 'none');
+    });
+
+    it('should have role presentation for grouped options', () => {
+      render(
+        <MenuList>
+          <List>
+            <ListItem>Foo</ListItem>
+          </List>
+        </MenuList>,
+      );
+
+      expect(screen.getByRole('group').firstChild).to.have.attribute('role', 'presentation');
     });
   });
 
@@ -148,6 +170,42 @@ describe('Joy <ListItem />', () => {
       );
 
       expect(screen.getByText('Foo')).to.have.attribute('role', 'menuitem');
+    });
+  });
+
+  describe('NestedList', () => {
+    it('the nested list should be labelledby the subheader', () => {
+      const { getByRole, getByTestId } = render(
+        <ListItem nested>
+          <ListSubheader data-testid="subheader">Subheader</ListSubheader>
+          <List />
+        </ListItem>,
+      );
+
+      const subheader = getByTestId('subheader');
+
+      expect(getByRole('list')).to.have.attribute('aria-labelledby', subheader.id);
+    });
+
+    it('the aria-labelledby can be overridden', () => {
+      const { getByRole } = render(
+        <ListItem nested>
+          <ListSubheader data-testid="subheader">Subheader</ListSubheader>
+          <List aria-labelledby={undefined} />
+        </ListItem>,
+      );
+
+      expect(getByRole('list')).not.to.have.attribute('aria-labelledby');
+    });
+
+    it('the nested list should not be labelled without the subheader', () => {
+      const { getByRole } = render(
+        <ListItem nested>
+          <List />
+        </ListItem>,
+      );
+
+      expect(getByRole('list')).not.to.have.attribute('aria-labelledby');
     });
   });
 });

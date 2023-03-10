@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 
 export type TabSlot = 'root';
 
 export interface TabPropsColorOverrides {}
-
 export interface TabPropsVariantOverrides {}
 
 export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
@@ -27,6 +26,11 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * The content direction flow.
+     * @default 'horizontal'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
@@ -39,7 +43,7 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     onChange?: (event: React.SyntheticEvent, value: number | string) => void;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TabPropsVariantOverrides>;
@@ -52,9 +56,25 @@ export type TabProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabTypeMap<P, D>, D>;
 
-export type TabOwnerState = TabProps & {
+export interface TabOwnerState extends ApplyColorInversion<TabProps> {
+  /**
+   * If `true`, the tab is activated by mouse or keyboard.
+   */
   active: boolean;
-  focusVisible: boolean;
+  /**
+   * If `true`, the tab's focus is visible.
+   */
+  focusVisible?: boolean;
+  /**
+   * If `true`, the tab is disabled.
+   */
   disabled: boolean;
+  /**
+   * If `true`, the tab is disabled.
+   */
   selected: boolean;
-};
+  /**
+   * @internal
+   */
+  row: boolean;
+}

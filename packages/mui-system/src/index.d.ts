@@ -119,10 +119,13 @@ export {
   default as unstable_styleFunctionSx,
   unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
+  unstable_defaultSxConfig,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
 
-export { default as experimental_sx } from './sx';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx(): any;
 
 export { default as Box } from './Box';
 export * from './Box';
@@ -163,7 +166,12 @@ export * from './ThemeProvider';
 
 export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
+export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
+export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export * from './cssVars';
+
+export { default as responsivePropType } from './responsivePropType';
 
 export { default as createContainer } from './Container/createContainer';
 export * from './Container/createContainer';

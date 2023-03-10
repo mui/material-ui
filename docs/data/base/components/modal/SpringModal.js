@@ -1,26 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { Box, styled } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 
 const BackdropUnstyled = React.forwardRef((props, ref) => {
-  const { open, className, ...other } = props;
-  return (
-    <div
-      className={clsx({ 'MuiBackdrop-open': open }, className)}
-      ref={ref}
-      {...other}
-    />
-  );
+  const { open, ...other } = props;
+  return <Fade ref={ref} in={open} {...other} />;
 });
 
 BackdropUnstyled.propTypes = {
-  className: PropTypes.string.isRequired,
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
 };
 
 const Modal = styled(ModalUnstyled)`
@@ -53,12 +44,12 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     to: { opacity: open ? 1 : 0 },
     onStart: () => {
       if (open && onEnter) {
-        onEnter();
+        onEnter(null, true);
       }
     },
     onRest: () => {
       if (!open && onExited) {
-        onExited();
+        onExited(null, true);
       }
     },
   });
@@ -71,8 +62,8 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 });
 
 Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
+  in: PropTypes.bool,
   onEnter: PropTypes.func,
   onExited: PropTypes.func,
 };
@@ -103,12 +94,12 @@ export default function SpringModal() {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        components={{ Backdrop }}
+        slots={{ backdrop: Backdrop }}
       >
         <Fade in={open}>
           <Box sx={style}>
             <h2 id="spring-modal-title">Text in a modal</h2>
-            <span id="spring-modal-description" style={{ marginTop: '16px' }}>
+            <span id="spring-modal-description" style={{ marginTop: 16 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </span>
           </Box>

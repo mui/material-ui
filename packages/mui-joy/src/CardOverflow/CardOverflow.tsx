@@ -6,11 +6,16 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
-import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
-import { CardOrientationContext } from '../Card/CardContext';
+import {
+  CardOverflowProps,
+  CardOverflowOwnerState,
+  CardOverflowTypeMap,
+} from './CardOverflowProps';
+import { CardRowContext } from '../Card/CardContext';
 
-const useUtilityClasses = (ownerState: CardOverflowProps) => {
+const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
   const slots = {
     root: [
@@ -28,15 +33,15 @@ const CardOverflowRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: CardOverflowProps & {
-    orientation: 'horizontal' | 'vertical';
+  ownerState: CardOverflowOwnerState & {
+    row: boolean;
     'data-first-child'?: string;
     'data-last-child'?: string;
   };
 }>(({ theme, ownerState }) => {
-  const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth))';
+  const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px))';
   return [
-    ownerState.orientation === 'horizontal'
+    ownerState.row
       ? {
           '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
           marginTop: 'var(--CardOverflow-offset)',
@@ -82,30 +87,41 @@ const CardOverflowRoot = styled('div', {
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardOverflow API](https://mui.com/joy-ui/api/card-overflow/)
+ */
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
     name: 'JoyCardOverflow',
   });
 
-  const orientation = React.useContext(CardOrientationContext);
+  const row = React.useContext(CardRowContext);
 
   const {
     className,
     component = 'div',
     children,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'plain',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
     component,
     color,
     variant,
-    orientation,
+    row,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -141,7 +157,10 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -156,10 +175,13 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default CardOverflow;

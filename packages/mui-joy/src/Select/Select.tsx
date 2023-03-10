@@ -1,31 +1,68 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverrideProps, DefaultComponentProps } from '@mui/types';
+import clsx from 'clsx';
+import { OverridableComponent, OverrideProps, DefaultComponentProps } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import PopperUnstyled, {
+  PopperUnstyledProps,
+  PopperUnstyledTypeMap,
+} from '@mui/base/PopperUnstyled';
 import {
-  useSelect,
   SelectUnstyledContext,
   flattenOptionGroups,
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
-import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
-import { useSlotProps } from '@mui/base/utils';
+import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
 import composeClasses from '@mui/base/composeClasses';
-import { ListRoot } from '../List/List';
+import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
+import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
+import { ListOwnerState } from '../List';
+import FormControlContext from '../FormControl/FormControlContext';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
 }
+
+function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
+}
+
+const defaultModifiers: PopperUnstyledProps['modifiers'] = [
+  {
+    name: 'offset',
+    options: {
+      offset: [0, 4],
+    },
+  },
+  {
+    // popper will have the same width as root element when open
+    name: 'equalWidth',
+    enabled: true,
+    phase: 'beforeWrite',
+    requires: ['computeStyles'],
+    fn: ({ state }) => {
+      state.styles.popper.width = `${state.rects.reference.width}px`;
+    },
+  },
+];
 
 const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
@@ -44,14 +81,7 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     indicator: ['indicator', open && 'expanded'],
-    listbox: [
-      'listbox',
-      open && 'expanded',
-      disabled && 'disabled',
-      variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
-    ],
+    listbox: ['listbox', open && 'expanded', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getSelectUtilityClass, {});
@@ -61,46 +91,56 @@ const SelectRoot = styled('div', {
   name: 'JoySelect',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
       '--Select-radius': theme.vars.radius.sm,
       '--Select-gap': '0.5rem',
       '--Select-placeholderOpacity': 0.5,
-      '--Select-focusedThickness': '2px',
-      '--Select-focusedHighlight':
-        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-      '--Select-indicator-color': theme.vars.palette.text.tertiary,
+      '--Select-focusedThickness': theme.vars.focus.thickness,
+      ...(ownerState.color === 'context'
+        ? {
+            '--Select-focusedHighlight': theme.vars.palette.focusVisible,
+          }
+        : {
+            '--Select-focusedHighlight':
+              theme.vars.palette[
+                ownerState.color === 'neutral' ? 'primary' : ownerState.color!
+              ]?.[500],
+          }),
+      '--Select-indicatorColor': variantStyle?.backgroundColor
+        ? variantStyle?.color
+        : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
-        '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.5rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Select-minHeight': '2.5rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Select-minHeight': '3rem',
         '--Select-paddingInline': '1rem',
-        '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--Select-decorator-childOffset':
-        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
-      '--internal-paddingBlock':
-        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
-      '--Select-decorator-childRadius':
-        'max((var(--Select-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Select-radius) - var(--variant-borderWidth)) / 2))',
-      '--Button-minHeight': 'var(--Select-decorator-childHeight)',
-      '--IconButton-size': 'var(--Select-decorator-childHeight)',
-      '--Button-radius': 'var(--Select-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Select-decorator-childRadius)',
+      '--Select-decoratorChildOffset':
+        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2), var(--Select-paddingInline))',
+      '--_Select-paddingBlock':
+        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2, 0px)',
+      '--Select-decoratorChildRadius':
+        'max(var(--Select-radius) - var(--variant-borderWidth, 0px) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) + var(--variant-borderWidth, 0px), var(--Select-radius) / 2))',
+      '--Button-minHeight': 'var(--Select-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Select-decoratorChildHeight)',
+      '--Button-radius': 'var(--Select-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
@@ -108,8 +148,12 @@ const SelectRoot = styled('div', {
       display: 'flex',
       alignItems: 'center',
       borderRadius: 'var(--Select-radius)',
+      cursor: 'pointer',
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
+      }),
+      ...(ownerState.size && {
+        paddingBlock: { sm: 2, md: 3, lg: 4 }[ownerState.size], // the padding-block act as a minimum spacing between content and root element
       }),
       paddingInline: `var(--Select-paddingInline)`,
       fontFamily: theme.vars.fontFamily.body,
@@ -117,10 +161,7 @@ const SelectRoot = styled('div', {
       ...(ownerState.size === 'sm' && {
         fontSize: theme.vars.fontSize.sm,
       }),
-      // TODO: discuss the transition approach in a separate PR.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      '&:before': {
+      '&::before': {
         boxSizing: 'border-box',
         content: '""',
         display: 'block',
@@ -132,21 +173,17 @@ const SelectRoot = styled('div', {
         bottom: 0,
         zIndex: 1,
         borderRadius: 'inherit',
-        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
+        margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
       [`&.${selectClasses.focusVisible}`]: {
-        '--Select-indicator-color': 'var(--Select-focusedHighlight)',
+        '--Select-indicatorColor': variantStyle?.color,
+        '&::before': {
+          boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
+        },
       },
       [`&.${selectClasses.disabled}`]: {
-        '--Select-indicator-color': 'inherit',
+        '--Select-indicatorColor': 'inherit',
       },
-      ...(ownerState.variant !== 'solid' && {
-        [`&.${selectClasses.focusVisible}`]: {
-          '&:before': {
-            boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
-          },
-        },
-      }),
     },
     {
       // apply global variant styles
@@ -165,7 +202,7 @@ const SelectButton = styled('button', {
 })<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
-  outline: 'none',
+  outline: 0,
   background: 'none',
   padding: 0,
   fontSize: 'inherit',
@@ -175,31 +212,41 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
+  fontFamily: 'inherit',
   cursor: 'pointer',
-  ...(!ownerState.value && {
+  whiteSpace: 'nowrap',
+  overflow: 'auto',
+  ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
 }));
 
-const SelectListbox = styled(ListRoot, {
+const SelectListbox = styled(StyledList, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const variantStyle =
+    ownerState.color === 'context'
+      ? undefined
+      : theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.surface, // for sticky List
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+      theme.vars.palette.background.popup,
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
-    outline: 'none',
-    boxShadow: theme.vars.shadow.md,
-    zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
+    minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
+    maxHeight: '44vh', // the best value from what I tried so far which does not cause screen flicker when listbox is open.
+    overflow: 'auto',
+    outline: 0,
+    boxShadow: theme.shadow.md,
+    zIndex: theme.vars.zIndex.popup,
+    ...(!variantStyle?.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.popup,
     }),
   };
 });
@@ -209,10 +256,9 @@ const SelectStartDecorator = styled('span', {
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
+  '--Button-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   alignItems: 'center',
   marginInlineEnd: 'var(--Select-gap)',
@@ -226,28 +272,52 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
-  display: 'inherit',
-  alignItems: 'center',
-  marginInlineStart: 'var(--Select-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-}));
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
+    '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
+    display: 'inherit',
+    alignItems: 'center',
+    marginInlineStart: 'var(--Select-gap)',
+    color: variantStyle?.color,
+  };
+});
 
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>({
-  color: 'var(--Select-indicator-color)',
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Icon-fontSize': '1.125rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Icon-fontSize': '1.25rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Icon-fontSize': '1.5rem',
+  }),
+  color: 'var(--Select-indicatorColor)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-});
-
-const Select = React.forwardRef(function Select<TValue>(
+  [`.${selectClasses.endDecorator} + &`]: {
+    marginInlineStart: 'calc(var(--Select-gap) / 2)',
+  },
+}));
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Select API](https://mui.com/joy-ui/api/select/)
+ */
+const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
@@ -260,10 +330,10 @@ const Select = React.forwardRef(function Select<TValue>(
     action,
     autoFocus,
     children,
-    componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
+    getSerializedValue = defaultFormValueProvider,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -272,13 +342,13 @@ const Select = React.forwardRef(function Select<TValue>(
     onClose,
     renderValue: renderValueProp,
     value: valueProp,
-    size = 'md',
+    size: sizeProp = 'md',
     variant = 'outlined',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
-    // props to forward to the button (all handlers should go through componentsProps.button)
+    // props to forward to the button (all handlers should go through slotProps.button)
     'aria-describedby': ariaDescribedby,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
@@ -293,6 +363,28 @@ const Select = React.forwardRef(function Select<TValue>(
     id?: string;
     name?: string;
   };
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(
+    inProps.color,
+    formControl?.error ? 'danger' : formControl?.color ?? colorProp,
+  );
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -336,46 +428,24 @@ const Select = React.forwardRef(function Select<TValue>(
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-    if (!isOpen) {
-      onClose?.();
-    }
-  };
-
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      {
-        // popper will have the same width as root element when open
-        name: 'equalWidth',
-        enabled: true,
-        phase: 'beforeWrite',
-        requires: ['computeStyles'],
-        fn: ({ state }) => {
-          state.styles.popper.width = `${state.rects.reference.width}px`;
-        },
-      },
-      ...(componentsProps.listbox?.modifiers || []),
-    ],
-    [componentsProps.listbox?.modifiers],
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose, onListboxOpenChange, setListboxOpen],
   );
 
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
     value,
   } = useSelect({
     buttonRef,
@@ -406,107 +476,153 @@ const Select = React.forwardRef(function Select<TValue>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
-    return options.find((o) => value === o.value);
+  const selectedOption = React.useMemo(() => {
+    return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref: handleRef,
+    className: classes.root,
     elementType: SelectRoot,
+    externalForwardedProps: other,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!listboxOpen && event.target !== buttonRef.current && !event.isPropagationStopped()) {
+        if (
+          !listboxOpen &&
+          !buttonRef.current?.contains(event.target as Node) &&
+          !event.isPropagationStopped()
+        ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
           handleOpenChange(true);
         }
-        handlers.onClick?.(event);
+        handlers.onMouseDown?.(event);
       },
     }),
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref: handleRef,
-    },
     ownerState,
-    className: classes.root,
   });
 
-  const buttonProps = useSlotProps({
-    elementType: SelectButton,
-    getSlotProps: getButtonProps,
-    externalSlotProps: componentsProps.button,
+  const [SlotButton, buttonProps] = useSlot('button', {
     additionalProps: {
-      'aria-describedby': ariaDescribedby,
+      'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledby,
-      id,
+      'aria-labelledby': ariaLabelledby ?? formControl?.labelId,
+      id: id ?? formControl?.htmlFor,
       name,
     },
-    ownerState,
     className: classes.button,
+    elementType: SelectButton,
+    externalForwardedProps: other,
+    getSlotProps: getButtonProps,
+    ownerState,
   });
 
-  const { component: listboxComponent, ...externalListboxProps } = componentsProps.listbox || {};
-  const listboxProps = useSlotProps({
-    elementType: SelectListbox,
-    getSlotProps: getListboxProps,
-    externalSlotProps: externalListboxProps,
+  const [SlotListbox, listboxProps] = useSlot('listbox', {
     additionalProps: {
       ref: listboxRef,
       anchorEl,
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
-      component: SelectListbox,
-      as: listboxComponent,
-      modifiers: cachedModifiers,
     },
+    className: classes.listbox,
+    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    externalForwardedProps: other,
+    getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,
       nesting: false,
-      orientation: 'vertical',
+      row: false,
+      wrap: false,
+    } as SelectOwnerState<any> & ListOwnerState,
+    getSlotOwnerState: (mergedProps) => ({
+      size: mergedProps.size || size,
+      variant: mergedProps.variant || 'outlined',
+      color: mergedProps.color || 'neutral',
+      disableColorInversion: !mergedProps.disablePortal,
+    }),
+    internalForwardedProps: {
+      component: SelectListbox,
     },
-    className: classes.listbox,
   });
 
-  const context = {
-    getOptionProps,
-    getOptionState,
-    listboxRef,
-    color,
-  };
+  const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
+    className: classes.startDecorator,
+    elementType: SelectStartDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
+    className: classes.endDecorator,
+    elementType: SelectEndDecorator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotIndicator, indicatorProps] = useSlot('indicator', {
+    className: classes.indicator,
+    elementType: SelectIndicator,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const context = React.useMemo(
+    () => ({
+      ...contextValue,
+      color,
+    }),
+    [color, contextValue],
+  );
+
+  const modifiers = React.useMemo(
+    () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
+    [listboxProps.modifiers],
+  );
+
+  let result = null;
+  if (anchorEl) {
+    result = (
+      <SlotListbox
+        {...listboxProps}
+        className={clsx(
+          listboxProps.className,
+          listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
+        )}
+        modifiers={modifiers}
+      >
+        <SelectUnstyledContext.Provider value={context}>
+          {/* for building grouped options */}
+          <ListProvider nested>{children}</ListProvider>
+        </SelectUnstyledContext.Provider>
+      </SlotListbox>
+    );
+
+    if (!listboxProps.disablePortal) {
+      result = (
+        // For portal popup, the children should not inherit color inversion from the upper parent.
+        <ColorInversion.Provider value={undefined}>{result}</ColorInversion.Provider>
+      );
+    }
+  }
 
   return (
     <React.Fragment>
-      <SelectRoot {...rootProps}>
+      <SlotRoot {...rootProps}>
         {startDecorator && (
-          <SelectStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-            {startDecorator}
-          </SelectStartDecorator>
+          <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
         )}
 
-        <SelectButton {...buttonProps}>
-          {selectedOptions ? renderValue(selectedOptions) : placeholder}
-        </SelectButton>
-        {endDecorator && (
-          <SelectEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-            {endDecorator}
-          </SelectEndDecorator>
-        )}
+        <SlotButton {...buttonProps}>
+          {selectedOption ? renderValue(selectedOption) : placeholder}
+        </SlotButton>
+        {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
 
-        {indicator && (
-          <SelectIndicator className={classes.indicator} ownerState={ownerState}>
-            {indicator}
-          </SelectIndicator>
-        )}
-      </SelectRoot>
-      {anchorEl && (
-        <PopperUnstyled {...listboxProps}>
-          <SelectUnstyledContext.Provider value={context}>
-            <ListProvider nested>{children}</ListProvider>
-          </SelectUnstyledContext.Provider>
-        </PopperUnstyled>
-      )}
+        {indicator && <SlotIndicator {...indicatorProps}>{indicator}</SlotIndicator>}
+      </SlotRoot>
+      {result}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectComponent;
@@ -542,12 +658,21 @@ Select.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * If `true`, the select element is focused during the first mount
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * @ignore
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -559,18 +684,14 @@ Select.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
-   * @default {}
+   * If `true`, the select will be initially open.
+   * @default false
    */
-  componentsProps: PropTypes.shape({
-    button: PropTypes.object,
-    listbox: PropTypes.object,
-    root: PropTypes.object,
-  }),
+  defaultListboxOpen: PropTypes.bool,
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -581,12 +702,33 @@ Select.propTypes /* remove-proptypes */ = {
    */
   endDecorator: PropTypes.node,
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
+  /**
    * The indicator(*) for the select.
    *    ________________
    *   [ value        * ]
    *    ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
    */
   indicator: PropTypes.node,
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
+  /**
+   * Controls the open state of the select's listbox.
+   * @default undefined
+   */
+  listboxOpen: PropTypes.bool,
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
   /**
    * Callback fired when an option is selected.
    */
@@ -595,6 +737,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange: PropTypes.func,
   /**
    * Text to show when there is no selected value.
    */
@@ -626,10 +773,10 @@ Select.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  value: PropTypes.any,
   /**
-   * The variant to use.
-   * @default 'solid'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

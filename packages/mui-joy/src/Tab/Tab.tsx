@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useTab } from '@mui/base/TabUnstyled';
+import useTab from '@mui/base/useTab';
 import { useSlotProps } from '@mui/base/utils';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
-import ListOrientationContext from '../List/ListOrientationContext';
+import RowListContext from '../List/RowListContext';
+import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
-  const { selected, disabled, focusVisible, variant, color } = ownerState;
+  const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
 
   const slots = {
     root: [
       'root',
+      orientation,
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       selected && 'selected',
@@ -29,7 +32,7 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
   return composeClasses(slots, getTabUtilityClass, {});
 };
 
-const TabRoot = styled(ListItemButtonRoot, {
+const TabRoot = styled(StyledListItemButton, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -38,26 +41,36 @@ const TabRoot = styled(ListItemButtonRoot, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
+    ...(!ownerState.row &&
+      ownerState.orientation === 'horizontal' && {
+        justifyContent: 'flex-start',
+      }),
     ...(ownerState.selected && {
-      boxShadow: theme.vars.shadow.sm,
+      boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
-      ...(!variantStyle.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.body,
-        '&:hover': {
-          backgroundColor: theme.vars.palette.background.body,
-        },
+      ...(!variantStyle?.backgroundColor && {
+        backgroundColor: theme.vars.palette.background.surface,
       }),
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tab API](https://mui.com/joy-ui/api/tab/)
+ */
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyTab',
   });
 
-  const orientation = React.useContext(ListOrientationContext);
+  const row = React.useContext(RowListContext);
 
   const {
     action,
@@ -68,10 +81,13 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     onClick,
     onFocus,
     component = 'button',
+    orientation = 'horizontal',
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(tabRef, ref);
@@ -95,6 +111,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const ownerState = {
     ...props,
     orientation,
+    row,
     active,
     focusVisible,
     disabled,
@@ -118,8 +135,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     className: classes.root,
   });
 
-  // @ts-ignore `onChange` is conflicted
-  return <TabRoot {...tabRootProps}>{children}</TabRoot>;
+  return (
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      {/* @ts-ignore ListItemButton base is div which conflict with TabProps 'button' */}
+      <TabRoot {...tabRootProps}>{children}</TabRoot>
+    </ListItemButtonOrientationContext.Provider>
+  );
 }) as OverridableComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
@@ -173,6 +194,11 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -185,7 +211,7 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

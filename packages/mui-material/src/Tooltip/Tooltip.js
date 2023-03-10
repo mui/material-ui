@@ -212,6 +212,7 @@ const TooltipArrow = styled('span', {
 
 let hystersisOpen = false;
 let hystersisTimer = null;
+let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
@@ -254,6 +255,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     placement = 'bottom',
     PopperComponent: PopperComponentProp,
     PopperProps = {},
+    slotProps = {},
+    slots = {},
     title,
     TransitionComponent: TransitionComponentProp = Grow,
     TransitionProps,
@@ -493,16 +496,13 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [handleClose, open]);
 
-  const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
-  const handleRef = useForkRef(children.ref, handleFocusRef);
+  const handleRef = useForkRef(children.ref, focusVisibleRef, setChildNode, ref);
 
   // There is no point in displaying an empty tooltip.
-  if (title === '') {
+  if (!title && title !== 0) {
     open = false;
   }
 
-  const positionRef = React.useRef({ x: 0, y: 0 });
   const popperRef = React.useRef();
 
   const handleMouseMove = (event) => {
@@ -511,7 +511,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onMouseMove(event);
     }
 
-    positionRef.current = { x: event.clientX, y: event.clientY };
+    cursorPosition = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current) {
       popperRef.current.update();
@@ -626,32 +626,47 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const PopperComponent = components.Popper ?? TooltipPopper;
-  const TransitionComponent = components.Transition ?? TransitionComponentProp ?? Grow;
-  const TooltipComponent = components.Tooltip ?? TooltipTooltip;
-  const ArrowComponent = components.Arrow ?? TooltipArrow;
+  const PopperComponent = slots.popper ?? components.Popper ?? TooltipPopper;
+  const TransitionComponent =
+    slots.transition ?? components.Transition ?? TransitionComponentProp ?? Grow;
+  const TooltipComponent = slots.tooltip ?? components.Tooltip ?? TooltipTooltip;
+  const ArrowComponent = slots.arrow ?? components.Arrow ?? TooltipArrow;
 
   const popperProps = appendOwnerState(
     PopperComponent,
-    { ...PopperProps, ...componentsProps.popper },
+    {
+      ...PopperProps,
+      ...(slotProps.popper ?? componentsProps.popper),
+      className: clsx(
+        classes.popper,
+        PopperProps?.className,
+        (slotProps.popper ?? componentsProps.popper)?.className,
+      ),
+    },
     ownerState,
   );
 
   const transitionProps = appendOwnerState(
     TransitionComponent,
-    { ...TransitionProps, ...componentsProps.transition },
+    { ...TransitionProps, ...(slotProps.transition ?? componentsProps.transition) },
     ownerState,
   );
 
   const tooltipProps = appendOwnerState(
     TooltipComponent,
-    { ...componentsProps.tooltip },
+    {
+      ...(slotProps.tooltip ?? componentsProps.tooltip),
+      className: clsx(classes.tooltip, (slotProps.tooltip ?? componentsProps.tooltip)?.className),
+    },
     ownerState,
   );
 
   const tooltipArrowProps = appendOwnerState(
     ArrowComponent,
-    { ...componentsProps.arrow },
+    {
+      ...(slotProps.arrow ?? componentsProps.arrow),
+      className: clsx(classes.arrow, (slotProps.arrow ?? componentsProps.arrow)?.className),
+    },
     ownerState,
   );
 
@@ -665,10 +680,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           followCursor
             ? {
                 getBoundingClientRect: () => ({
-                  top: positionRef.current.y,
-                  left: positionRef.current.x,
-                  right: positionRef.current.x,
-                  bottom: positionRef.current.y,
+                  top: cursorPosition.y,
+                  left: cursorPosition.x,
+                  right: cursorPosition.x,
+                  bottom: cursorPosition.y,
                   width: 0,
                   height: 0,
                 }),
@@ -681,7 +696,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         transition
         {...interactiveWrapperListeners}
         {...popperProps}
-        className={clsx(classes.popper, PopperProps?.className, componentsProps.popper?.className)}
         popperOptions={popperOptions}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
@@ -690,18 +704,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             {...TransitionPropsInner}
             {...transitionProps}
           >
-            <TooltipComponent
-              {...tooltipProps}
-              className={clsx(classes.tooltip, componentsProps.tooltip?.className)}
-            >
+            <TooltipComponent {...tooltipProps}>
               {title}
-              {arrow ? (
-                <ArrowComponent
-                  {...tooltipArrowProps}
-                  className={clsx(classes.arrow, componentsProps.arrow?.className)}
-                  ref={setArrowRef}
-                />
-              ) : null}
+              {arrow ? <ArrowComponent {...tooltipArrowProps} ref={setArrowRef} /> : null}
             </TooltipComponent>
           </TransitionComponent>
         )}
@@ -733,8 +738,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The components used for each slot inside the Tooltip.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -744,9 +752,12 @@ Tooltip.propTypes /* remove-proptypes */ = {
     Transition: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Tooltip.
-   * Note that `componentsProps.popper` prop values win over `PopperProps`
-   * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -864,6 +875,33 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   PopperProps: PropTypes.object,
   /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    arrow: PropTypes.object,
+    popper: PropTypes.object,
+    tooltip: PropTypes.object,
+    transition: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    arrow: PropTypes.elementType,
+    popper: PropTypes.elementType,
+    tooltip: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -872,9 +910,9 @@ Tooltip.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Tooltip title. Zero-length titles string are never displayed.
+   * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
-  title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
+  title: PropTypes.node,
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.

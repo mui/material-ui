@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import {
+  unstable_createCssVarsProvider as createCssVarsProvider,
+  unstable_createCssVarsTheme as createCssVarsTheme,
+} from '@mui/system';
 
 const { CssVarsProvider } = createCssVarsProvider({
-  theme: {
+  theme: createCssVarsTheme({
     colorSchemes: {
       light: {
         background: {
@@ -15,16 +18,16 @@ const { CssVarsProvider } = createCssVarsProvider({
         },
       },
     },
-  },
+  }),
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
 });
 
-export default function DarkModeSpecificity() {
+export default function ForceColorSchemes() {
   return (
-    <CssVarsProvider modeStorageKey="force-color-schemes">
+    <CssVarsProvider>
       <div
         data-color-scheme="dark"
         style={{

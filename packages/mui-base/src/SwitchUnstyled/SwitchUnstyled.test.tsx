@@ -59,15 +59,13 @@ describe('<SwitchUnstyled />', () => {
         },
       );
 
-      const components = {
-        Root: CustomSlot,
-        Input: CustomSlot,
-        Thumb: CustomSlot,
+      const slots = {
+        root: CustomSlot,
+        input: CustomSlot,
+        thumb: CustomSlot,
       };
 
-      const { getAllByTestId } = render(
-        <SwitchUnstyled defaultChecked disabled components={components} />,
-      );
+      const { getAllByTestId } = render(<SwitchUnstyled defaultChecked disabled slots={slots} />);
       const renderedComponents = getAllByTestId('custom');
 
       expect(renderedComponents.length).to.equal(3);

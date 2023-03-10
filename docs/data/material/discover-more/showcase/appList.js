@@ -82,16 +82,6 @@ const appList = [
     dateAdded: '2018-01-31',
   },
   {
-    title: 'AospExtended Download center',
-    description:
-      'A download center that hosts all the official builds of AospExtended ROM, ' +
-      'for supported devices for different android versions.',
-    image: 'aexdownloadcenter.jpg',
-    link: 'https://downloads.aospextended.com/',
-    similarWebVisits: 200,
-    dateAdded: '2018-01-28',
-  },
-  {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
@@ -387,7 +377,7 @@ const appList = [
     title: 'HiFiveWork',
     description: 'HiFiveWork, the cool tool for leave management',
     image: 'hifivework.png',
-    link: 'https://www.hifivework.com/#/',
+    link: 'https://hifivework.com/',
     dateAdded: '2020-01-08',
   },
   {

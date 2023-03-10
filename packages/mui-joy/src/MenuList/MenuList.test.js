@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
+import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList, { menuListClasses as classes } from '@mui/joy/MenuList';
 
@@ -12,10 +12,14 @@ describe('Joy <MenuList />', () => {
     inheritComponent: 'ul',
     render,
     ThemeProvider,
-    muiName: 'MuiMenuList',
+    muiName: 'JoyMenuList',
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
+    skip: ['componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<MenuList />, { muiName: 'JoyMenuList', classes });
 
   it('should have root className', () => {
     const { container } = render(<MenuList />);
