@@ -28,6 +28,7 @@ import md3State from './state';
 import { elevationLight, elevationDark } from './elevation';
 import createMotions from './motion';
 import md3shape from './shape';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -37,11 +38,6 @@ const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
   const overlay = getOverlayAlpha(index);
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
 }) as Overlays;
-
-export const defaultShouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
-  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
-  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 function assignNode(obj: any, keys: string[]) {
   keys.forEach((k) => {
