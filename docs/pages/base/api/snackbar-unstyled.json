@@ -30,6 +30,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSnackbar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/SnackbarUnstyled/SnackbarUnstyled.tsx",
   "inheritance": null,

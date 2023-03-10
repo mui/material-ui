@@ -21,6 +21,7 @@
   "name": "ClickAwayListener",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "muiName": "MuiClickAwayListener",
   "filename": "/packages/mui-base/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click-Away Listener</a></li></ul>",

@@ -12,6 +12,8 @@
   "name": "ListItemContent",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListItemContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ListItemContent/ListItemContent.tsx",
   "inheritance": null,

@@ -38,6 +38,8 @@
   "name": "List",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyList",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/List/List.tsx",
   "inheritance": null,

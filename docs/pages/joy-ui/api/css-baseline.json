@@ -6,6 +6,7 @@
   "name": "CssBaseline",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "muiName": "JoyCssBaseline",
   "filename": "/packages/mui-joy/src/CssBaseline/CssBaseline.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-css-baseline/\">CSS Baseline</a></li></ul>",

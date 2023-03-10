@@ -7,6 +7,7 @@
   "name": "NoSsr",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "muiName": "MuiNoSsr",
   "filename": "/packages/mui-base/src/NoSsr/NoSsr.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-no-ssr/\">No SSR</a></li></ul>",

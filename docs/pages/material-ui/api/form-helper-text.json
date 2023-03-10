@@ -43,6 +43,8 @@
     "name": "MuiFormHelperText"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormHelperText",
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-material/src/FormHelperText/FormHelperText.js",
   "inheritance": null,

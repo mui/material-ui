@@ -7,6 +7,7 @@
   "name": "Portal",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "muiName": "MuiPortal",
   "filename": "/packages/mui-base/src/Portal/Portal.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-portal/\">Portal</a></li></ul>",

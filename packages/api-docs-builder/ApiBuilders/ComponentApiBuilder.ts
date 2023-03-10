@@ -43,6 +43,11 @@ export interface ReactApi extends ReactDocgenApi {
   description: string;
   spread: boolean | undefined;
   /**
+   * If `true`, the component supports theme default props customization.
+   * If `undefined`, we couldn't infer this information.
+   */
+  themeDefaultProps: boolean | undefined;
+  /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
@@ -358,6 +363,10 @@ const generateApiPage = (
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     spread: reactApi.spread,
+    themeDefaultProps: reactApi.themeDefaultProps,
+    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+      ? reactApi.muiName.replace('Mui', 'Joy')
+      : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
@@ -632,6 +641,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
+  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
   reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });

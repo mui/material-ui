@@ -29,6 +29,7 @@
   "name": "Option",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "muiName": "JoyOption",
   "filename": "/packages/mui-joy/src/Option/Option.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-select/\">Select</a></li></ul>",

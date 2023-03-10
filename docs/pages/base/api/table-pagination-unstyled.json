@@ -92,6 +92,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTablePagination",
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",
   "inheritance": null,

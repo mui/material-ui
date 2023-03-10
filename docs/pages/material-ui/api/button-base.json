@@ -33,6 +33,8 @@
     "name": "MuiButtonBase"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButtonBase",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/ButtonBase/ButtonBase.js",
   "inheritance": null,

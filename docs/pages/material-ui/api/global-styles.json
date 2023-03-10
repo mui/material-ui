@@ -10,6 +10,7 @@
   "name": "GlobalStyles",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "muiName": "MuiGlobalStyles",
   "filename": "/packages/mui-material/src/GlobalStyles/GlobalStyles.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/customization/how-to-customize/\">How to customize</a></li></ul>",

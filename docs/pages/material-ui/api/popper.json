@@ -59,6 +59,8 @@
   "name": "Popper",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popper/Popper.tsx",
   "inheritance": null,

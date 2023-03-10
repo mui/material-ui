@@ -49,6 +49,8 @@
   "name": "PopperUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.tsx",
   "inheritance": null,

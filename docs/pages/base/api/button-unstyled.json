@@ -29,6 +29,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx",
   "inheritance": null,

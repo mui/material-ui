@@ -114,6 +114,7 @@ export interface ParseResult {
   forwardsRefTo: string | undefined;
   inheritComponent: string | undefined;
   spread: boolean | undefined;
+  themeDefaultProps: boolean | undefined;
 }
 
 export default async function parseTest(componentFilename: string): Promise<ParseResult> {
@@ -140,6 +141,7 @@ export default async function parseTest(componentFilename: string): Promise<Pars
     forwardsRefTo: undefined,
     inheritComponent: undefined,
     spread: undefined,
+    themeDefaultProps: undefined,
   };
 
   if (descriptor === null) {
@@ -170,6 +172,7 @@ export default async function parseTest(componentFilename: string): Promise<Pars
   });
 
   result.spread = !skippedTests.includes('propsSpread');
+  result.themeDefaultProps = !skippedTests.includes('themeDefaultProps');
 
   return result;
 }

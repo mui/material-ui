@@ -61,6 +61,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Badge/Badge.tsx",
   "inheritance": null,
