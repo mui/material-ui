@@ -400,6 +400,10 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
+  generateCssVars: (colorScheme?: string) => {
+    css: Record<string, string | number>;
+    vars: ThemeVars;
+  };
 
   // Default theme tokens
   spacing: Theme['spacing'];
