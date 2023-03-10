@@ -178,7 +178,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   );
 
   const start = React.useCallback(
-    (event = {}, options = {}, cb) => {
+    (event = {}, options = {}, cb = () => {}) => {
       const {
         pulsate = false,
         center = centerProp || options.pulsate,

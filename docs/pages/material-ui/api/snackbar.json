@@ -13,7 +13,7 @@
     "classes": { "type": { "name": "object" } },
     "ClickAwayListenerProps": { "type": { "name": "object" } },
     "ContentProps": { "type": { "name": "object" } },
-    "disableWindowBlurListener": { "type": { "name": "bool" } },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "key": { "type": { "name": "custom", "description": "any" } },
     "message": { "type": { "name": "node" } },
     "onClose": { "type": { "name": "func" } },
@@ -53,6 +53,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbars</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
   "cssComponent": false
 }

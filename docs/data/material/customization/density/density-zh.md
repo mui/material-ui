@@ -1,10 +1,10 @@
 # Density 密度
 
-<p class="description">如何为 Material UI 组件设置自定义的密度。</p>
+<p class="description">如何为 Material-UI 组件设置自定义的密度。</p>
 
 ## 使用密度
 
-本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 The Material Design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+本节解释了如何应用密度。 这不包括一些潜在的用例，也不包括在应用程序中使用密度的注意事项。 The Material Design guidelines have a [comprehensive guide](https://m2.material.io/design/layout/applying-density.html) covering these topics in more detail.
 
 ## 实现密度（density）
 
@@ -30,9 +30,9 @@
 
 ## 探索主题的密度
 
-该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material UI 组件上使用后的整体感觉如何。
+该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material-UI 组件上使用后的整体感觉如何。
 
-如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 _不应该_ 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 The [Material Design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
+如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 _不应该_ 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 The [Material Design guidelines](https://m2.material.io/design/layout/applying-density.html) has examples for when not to apply density.
 
 主题配置有以下选项：
 

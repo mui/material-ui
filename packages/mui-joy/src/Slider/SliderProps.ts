@@ -1,8 +1,8 @@
-import { SlotComponentProps } from '@mui/base';
-import { ExtendSliderUnstyledTypeMap, SliderValueLabelUnstyled } from '@mui/base/SliderUnstyled';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { SliderUnstyledClasses, SliderUnstyledOwnProps } from '@mui/base/SliderUnstyled';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SliderSlot =
   | 'root'
@@ -14,63 +14,120 @@ export type SliderSlot =
   | 'valueLabel'
   | 'input';
 
-export interface SliderPropsColorOverrides {}
-
-export interface SliderPropsSizeOverrides {}
-
-export interface SliderComponentsPropsOverrides {}
-
-export interface SliderOwnProps {
+export interface SliderSlots {
   /**
-   * The props used for each slot inside the Slider.
-   * @default {}
+   * The component used to render the root.
+   * @default 'span'
    */
-  componentsProps?: {
-    root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
-      SliderComponentsPropsOverrides,
-      SliderOwnerState
-    >;
-
-    input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
-  };
+  root: React.ElementType;
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * The component used to render the track.
+   * @default 'span'
    */
-  color?: OverridableStringUnion<ColorPaletteProp, SliderPropsColorOverrides>;
+  track: React.ElementType;
   /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
+   * The component used to render the rail.
+   * @default 'span'
    */
-  size?: OverridableStringUnion<'sm' | 'md' | 'lg', SliderPropsSizeOverrides>;
+  rail: React.ElementType;
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
+   * The component used to render the thumb.
+   * @default 'span'
    */
-  sx?: SxProps;
+  thumb: React.ElementType;
+  /**
+   * The component used to render the mark.
+   * @default 'span'
+   */
+  mark: React.ElementType;
+  /**
+   * The component used to render the mark label.
+   * @default 'span'
+   */
+  markLabel: React.ElementType;
+  /**
+   * The component used to render the value label.
+   * @default 'span'
+   */
+  valueLabel: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
 }
 
-export type SliderTypeMap<
-  D extends React.ElementType = 'span',
-  P = {},
-> = ExtendSliderUnstyledTypeMap<{
-  props: P & SliderOwnProps;
+export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SliderSlots,
+  {
+    root: SlotProps<'span', {}, SliderOwnerState>;
+    track: SlotProps<'span', {}, SliderOwnerState>;
+    rail: SlotProps<'span', {}, SliderOwnerState>;
+    thumb: SlotProps<'span', {}, SliderOwnerState>;
+    mark: SlotProps<'span', {}, SliderOwnerState & { percent?: number }>;
+    markLabel: SlotProps<'span', {}, SliderOwnerState>;
+    valueLabel: SlotProps<'span', {}, SliderOwnerState>;
+    input: SlotProps<'input', {}, SliderOwnerState>;
+  }
+>;
+
+export interface SliderPropsVariantOverrides {}
+export interface SliderPropsColorOverrides {}
+export interface SliderPropsSizeOverrides {}
+
+export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
+  props: P &
+    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
+    SliderSlotsAndSlotProps & {
+      /**
+       * Override or extend the styles applied to the component.
+       */
+      classes?: Partial<SliderUnstyledClasses>;
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'primary'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, SliderPropsColorOverrides>;
+      /**
+       * The size of the component.
+       * It accepts theme values between 'sm' and 'lg'.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', SliderPropsSizeOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+      /**
+       * Controls when the value label is displayed:
+       *
+       * - `auto` the value label will display when the thumb is hovered or focused.
+       * - `on` will display persistently.
+       * - `off` will never display.
+       * @default 'off'
+       */
+      valueLabelDisplay?: 'on' | 'auto' | 'off';
+      /**
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+       * @default 'solid'
+       */
+      variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
+    };
   defaultComponent: D;
-}>;
+};
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export type SliderOwnerState = SliderProps & {
+export interface SliderOwnerState extends ApplyColorInversion<SliderProps> {
+  /**
+   * If `true`, the thumb is in dragging state.
+   */
   dragging: boolean;
+  /**
+   * If `true`, some of the marks has `label` property.
+   */
   marked: boolean;
-};
+}

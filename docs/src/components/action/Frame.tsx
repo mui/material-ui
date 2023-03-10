@@ -6,13 +6,19 @@ const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(
     <Box
       ref={ref}
       {...props}
-      sx={{
-        position: 'relative',
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
-        border: '1px solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
-        ...props.sx,
-      }}
+      sx={[
+        (theme) => ({
+          position: 'relative',
+          border: '1px solid',
+          bgcolor: 'grey.100',
+          borderColor: 'grey.200',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.700',
+            borderColor: 'primaryDark.600',
+          }),
+        }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
     />
   );
 });
@@ -28,13 +34,14 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
         bgcolor: 'primaryDark.800',
         border: '1px solid',
         borderColor: 'primaryDark.700',
+        colorScheme: 'dark',
         ...props.sx,
       }}
     />
   );
 });
 
-const Frame = (props: BoxProps) => {
+function Frame(props: BoxProps) {
   return (
     <Box
       {...props}
@@ -53,7 +60,7 @@ const Frame = (props: BoxProps) => {
       }}
     />
   );
-};
+}
 
 Frame.Demo = FrameDemo;
 Frame.Info = FrameInfo;

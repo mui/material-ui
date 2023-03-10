@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
+import { TabsContext, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import useTabs from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabList, { tabListClasses as classes } from '@mui/joy/TabList';
-import ListOrientationContext from '../List/ListOrientationContext';
+import RowListContext from '../List/RowListContext';
 
-const TabsProvider = ({ children, ...props }: TabsUnstyledProps) => {
+function TabsProvider({ children, ...props }: TabsUnstyledProps) {
   const { tabsContextValue } = useTabs(props);
   return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
-};
+}
 
 describe('Joy <TabList />', () => {
   const { render } = createRenderer();
@@ -26,6 +27,12 @@ describe('Joy <TabList />', () => {
     testVariantProps: { variant: 'solid' },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
+
+  describeJoyColorInversion(<TabList />, {
+    muiName: 'JoyTabList',
+    classes,
+    wrapper: (node) => <TabsProvider defaultValue={0}>{node}</TabsProvider>,
+  });
 
   describe('size', () => {
     it('uses size from Tabs', () => {
@@ -78,10 +85,10 @@ describe('Joy <TabList />', () => {
   });
 
   it('provides the correct value to RowListContext', () => {
-    const TabItem = () => {
-      const orientation = React.useContext(ListOrientationContext);
-      return <div>{orientation}</div>;
-    };
+    function TabItem() {
+      const row = React.useContext(RowListContext);
+      return <div>{row ? 'horizontal' : 'vertical'}</div>;
+    }
     render(
       <Tabs orientation="vertical">
         <TabList>

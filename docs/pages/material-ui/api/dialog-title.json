@@ -15,6 +15,6 @@
   "forwardsRefTo": "HTMLHeadingElement",
   "filename": "/packages/mui-material/src/DialogTitle/DialogTitle.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialogs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
   "cssComponent": false
 }

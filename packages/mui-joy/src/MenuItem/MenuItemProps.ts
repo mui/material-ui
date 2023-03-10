@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import { ApplyColorInversion } from '../styles/types';
 import { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
 
 export type MenuItemSlot = 'root';
@@ -24,6 +25,13 @@ export type MenuItemProps<
     component?: React.ElementType;
   },
 > = OverrideProps<MenuItemTypeMap<P, D>, D>;
+
+export interface MenuItemOwnerState extends ApplyColorInversion<MenuItemProps> {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible?: boolean;
+}
 
 export type ExtendMenuItem<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendMenuItemTypeMap<M>, 'a'>,

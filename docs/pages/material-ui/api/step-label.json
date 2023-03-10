@@ -6,9 +6,13 @@
       "type": { "name": "shape", "description": "{ label?: object }" },
       "default": "{}"
     },
-    "error": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "optional": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ label?: object }" },
+      "default": "{}"
+    },
     "StepIconComponent": { "type": { "name": "elementType" } },
     "StepIconProps": { "type": { "name": "object" } },
     "sx": {
@@ -45,6 +49,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/StepLabel/StepLabel.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Steppers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
   "cssComponent": false
 }

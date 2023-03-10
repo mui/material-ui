@@ -4,22 +4,25 @@ import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import IconButton from '@mui/joy/IconButton';
-import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
-import { inputClasses } from '@mui/joy/Input';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import Input, { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 interface DataItem {
   var: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   helperText?: string;
+  inputAttributes?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
-function formatSx(sx: { [k: string]: string }) {
+function formatSx(sx: { [k: string]: string | number }) {
   const lines = Object.keys(sx);
   if (!lines.length) {
     return '';
@@ -34,7 +37,7 @@ interface SlotVariablesProps {
   defaultOpen?: boolean;
 }
 
-const SlotVariables = ({ slot, data, renderField, defaultOpen = false }: SlotVariablesProps) => {
+function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVariablesProps) {
   const [open, setOpen] = React.useState(defaultOpen);
   return (
     <React.Fragment>
@@ -69,6 +72,7 @@ const SlotVariables = ({ slot, data, renderField, defaultOpen = false }: SlotVar
             display: 'flex',
             flexWrap: 'wrap',
             gap: 2,
+            '& > *': { flex: 1 },
           }}
         >
           {data.map((item) => renderField(item))}
@@ -76,21 +80,22 @@ const SlotVariables = ({ slot, data, renderField, defaultOpen = false }: SlotVar
       )}
     </React.Fragment>
   );
-};
+}
 
 export default function JoyVariablesDemo(props: {
   componentName: string;
   childrenAccepted?: boolean;
   data: Array<DataItem | [string, Array<DataItem>, { defaultOpen?: boolean } | undefined]>;
-  renderDemo: (sx: { [k: string]: string }) => React.ReactElement;
+  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement;
   renderCode?: (formattedSx: string) => string;
 }) {
   const { componentName, data = [], childrenAccepted = false, renderCode } = props;
-  const [sx, setSx] = React.useState<{ [k: string]: string }>({});
+  const [sx, setSx] = React.useState<{ [k: string]: string | number }>({});
   return (
     <Box
       sx={{
         m: 0,
+        mt: 2,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
@@ -116,7 +121,7 @@ export default function JoyVariablesDemo(props: {
           {props.renderDemo(sx)}
         </Box>
         <BrandingProvider mode="dark">
-          <HighlighedCode
+          <HighlightedCode
             code={
               renderCode
                 ? renderCode(formatSx(sx))
@@ -134,9 +139,10 @@ export default function JoyVariablesDemo(props: {
           flexBasis: 240,
           flexGrow: 1,
           borderRadius: 'sm',
+          boxShadow: 'sm',
         }}
       >
-        <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
+        <List component="div" sx={{ '--List-padding': '1rem', '--ListDivider-gap': '0px' }}>
           <Box
             sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
           >
@@ -165,74 +171,78 @@ export default function JoyVariablesDemo(props: {
             {data.map((dataItem) => {
               function renderField(item: DataItem) {
                 const resolvedValue = sx[item.var] || item.defaultValue;
+                const resolvedInputAttributes = item.inputAttributes || {};
                 return (
-                  <TextField
-                    key={item.var}
-                    label={item.var}
-                    size="sm"
-                    variant="outlined"
-                    helperText={item.helperText}
-                    value={Number(resolvedValue?.replace('px', '')) || ''}
-                    componentsProps={{
-                      input: {
-                        onKeyDown: (event) => {
-                          if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {
-                            setSx((prevSx) => {
-                              const newSx = { ...prevSx };
-                              delete newSx[item.var];
-                              return newSx;
-                            });
-                          }
-                        },
-                      },
-                    }}
-                    endDecorator={
-                      <React.Fragment>
-                        <Typography level="body3" mr={0.5}>
-                          px
-                        </Typography>
-                        {sx[item.var] && sx[item.var] !== item.defaultValue && (
-                          <IconButton
-                            tabIndex={-1}
-                            variant="plain"
-                            color="neutral"
-                            size="sm"
-                            onClick={() =>
-                              setSx((prevSx) => {
-                                const newSx = { ...prevSx };
-                                delete newSx[item.var];
-                                return newSx;
-                              })
-                            }
-                          >
-                            <ReplayRoundedIcon fontSize="sm" />
-                          </IconButton>
-                        )}
-                      </React.Fragment>
-                    }
-                    type="number"
-                    onChange={(event) => {
-                      const { value } = event.target;
-                      setSx((prevSx) => {
-                        if (!value) {
-                          const newSx = { ...prevSx };
-                          // @ts-ignore
-                          delete newSx[item.var];
-                          return newSx;
+                  <FormControl key={item.var}>
+                    <FormLabel>{item.var}</FormLabel>
+                    <Input
+                      size="sm"
+                      variant="outlined"
+                      value={Number(`${resolvedValue}`?.replace('px', '')) || ''}
+                      slotProps={{
+                        input: { ...resolvedInputAttributes },
+                      }}
+                      endDecorator={
+                        <React.Fragment>
+                          {typeof resolvedValue === 'string' ? (
+                            <Typography level="body3" mr={0.5}>
+                              px
+                            </Typography>
+                          ) : null}
+                          {sx[item.var] && sx[item.var] !== item.defaultValue ? (
+                            <IconButton
+                              tabIndex={-1}
+                              variant="plain"
+                              color="neutral"
+                              size="sm"
+                              onClick={() =>
+                                setSx((prevSx) => {
+                                  const newSx = { ...prevSx };
+                                  delete newSx[item.var];
+                                  return newSx;
+                                })
+                              }
+                            >
+                              <ReplayRoundedIcon fontSize="sm" />
+                            </IconButton>
+                          ) : null}
+                        </React.Fragment>
+                      }
+                      type="number"
+                      onKeyDown={(event) => {
+                        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+                          setSx((prevSx) => {
+                            const newSx = { ...prevSx };
+                            delete newSx[item.var];
+                            return newSx;
+                          });
                         }
-                        return {
-                          ...prevSx,
-                          [item.var]: `${value}px`,
-                        };
-                      });
-                    }}
-                    sx={{
-                      minWidth: 0,
-                      flexGrow: 1,
-                      [`& .${inputClasses.root}`]: { '--Input-paddingInline': '0.5rem' },
-                      [`& .${inputClasses.endDecorator}`]: { alignItems: 'center' },
-                    }}
-                  />
+                      }}
+                      onChange={(event) => {
+                        const { value } = event.target;
+                        setSx((prevSx) => {
+                          if (!value) {
+                            const newSx = { ...prevSx };
+                            // @ts-ignore
+                            delete newSx[item.var];
+                            return newSx;
+                          }
+                          return {
+                            ...prevSx,
+                            [item.var]:
+                              typeof resolvedValue === 'number' ? Number(value) : `${value}px`,
+                          };
+                        });
+                      }}
+                      sx={{
+                        minWidth: 0,
+                        flexGrow: 1,
+                        [`& .${inputClasses.root}`]: { '--Input-paddingInline': '0.5rem' },
+                        [`& .${inputClasses.endDecorator}`]: { alignItems: 'center' },
+                      }}
+                    />
+                    <FormHelperText>{item.helperText}</FormHelperText>
+                  </FormControl>
                 );
               }
               if (Array.isArray(dataItem)) {

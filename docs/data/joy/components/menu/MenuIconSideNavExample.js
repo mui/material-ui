@@ -25,15 +25,7 @@ const modifiers = [
   },
 ];
 
-const MenuButton = ({
-  children,
-  menu,
-  open,
-  onOpen,
-  onLeaveMenu,
-  label,
-  ...props
-}) => {
+function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props }) {
   const buttonRef = React.useRef(null);
   const isOnButton = React.useRef(false);
   const menuActions = React.useRef(null);
@@ -97,7 +89,7 @@ const MenuButton = ({
         actions: menuActions,
         anchorEl: buttonRef.current,
         modifiers,
-        componentsProps: {
+        slotProps: {
           listbox: {
             id: `nav-example-menu-${label}`,
             'aria-label': label,
@@ -107,13 +99,13 @@ const MenuButton = ({
         sx: {
           width: 288,
           [`& .${menuClasses.listbox}`]: {
-            '--List-padding': 'var(--List-divider-gap)',
+            '--List-padding': 'var(--ListDivider-gap)',
           },
         },
       })}
     </React.Fragment>
   );
-};
+}
 
 export default function MenuIconSideNavExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);
@@ -134,7 +126,7 @@ export default function MenuIconSideNavExample() {
     }, 200);
   };
   return (
-    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
+    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20, bgcolor: 'background.body' }}>
       <List>
         <ListItem>
           <MenuButton

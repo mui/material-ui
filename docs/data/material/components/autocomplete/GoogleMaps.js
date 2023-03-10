@@ -6,7 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
-import throttle from 'lodash/throttle';
+import { debounce } from '@mui/material/utils';
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -46,9 +46,9 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle((request, callback) => {
+      debounce((request, callback) => {
         autocompleteService.current.getPlacePredictions(request, callback);
-      }, 200),
+      }, 400),
     [],
   );
 
@@ -102,6 +102,7 @@ export default function GoogleMaps() {
       includeInputInList
       filterSelectedOptions
       value={value}
+      noOptionsText="No locations"
       onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
@@ -113,7 +114,9 @@ export default function GoogleMaps() {
         <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, option) => {
-        const matches = option.structured_formatting.main_text_matched_substrings;
+        const matches =
+          option.structured_formatting.main_text_matched_substrings || [];
+
         const parts = parse(
           option.structured_formatting.main_text,
           matches.map((match) => [match.offset, match.offset + match.length]),
@@ -122,22 +125,18 @@ export default function GoogleMaps() {
         return (
           <li {...props}>
             <Grid container alignItems="center">
-              <Grid item>
-                <Box
-                  component={LocationOnIcon}
-                  sx={{ color: 'text.secondary', mr: 2 }}
-                />
+              <Grid item sx={{ display: 'flex', width: 44 }}>
+                <LocationOnIcon sx={{ color: 'text.secondary' }} />
               </Grid>
-              <Grid item xs>
+              <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
-                  <span
+                  <Box
                     key={index}
-                    style={{
-                      fontWeight: part.highlight ? 700 : 400,
-                    }}
+                    component="span"
+                    sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}
                   >
                     {part.text}
-                  </span>
+                  </Box>
                 ))}
 
                 <Typography variant="body2" color="text.secondary">

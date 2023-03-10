@@ -3,15 +3,19 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
 import { getCardUtilityClass } from './cardClasses';
-import { CardProps, CardTypeMap } from './CardProps';
+import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { CardOrientationContext } from './CardContext';
+import { CardRowContext } from './CardContext';
 
-const useUtilityClasses = (ownerState: CardProps) => {
+const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
 
   const slots = {
@@ -31,26 +35,28 @@ const CardRoot = styled('div', {
   name: 'JoyCard',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CardOwnerState }>(({ theme, ownerState }) => [
   {
     // a context variable for any child component
     '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-borderWidth)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth)) / 2))',
+      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth))',
+    '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // Link, Radio, Checkbox integration
-    '--internal-action-radius': resolveSxValue(
+    '--unstable_actionRadius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',
     ),
     // CardCover integration
-    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
-    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth, 0px))',
+    // Divider integration
+    '--Divider-inset': 'calc(-1 * var(--Card-padding))',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
@@ -66,19 +72,29 @@ const CardRoot = styled('div', {
     }),
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.shadow.sm,
     backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
-    // TODO: discuss the theme transition.
-    // This value is copied from mui-material Sheet.
-    transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
     flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ownerState.color !== 'context' &&
+    ownerState.invertedColors &&
+    theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [Card API](https://mui.com/joy-ui/api/card/)
+ */
 const Card = React.forwardRef(function Card(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardProps>({
     props: inProps,
@@ -87,14 +103,17 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const {
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
+    invertedColors = false,
     size = 'md',
     variant = 'plain',
     children,
     orientation = 'vertical',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -107,8 +126,8 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <CardOrientationContext.Provider value={orientation}>
+  const result = (
+    <CardRowContext.Provider value={orientation === 'horizontal'}>
       <CardRoot
         as={component}
         ownerState={ownerState}
@@ -120,17 +139,30 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           if (!React.isValidElement(child)) {
             return child;
           }
+          const extraProps: Record<string, any> = {};
+          if (isMuiElement(child, ['Divider'])) {
+            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+
+            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+            extraProps.orientation =
+              'orientation' in child.props ? child.props.orientation : dividerOrientation;
+          }
           if (index === 0) {
-            return React.cloneElement(child, { 'data-first-child': '' });
+            extraProps['data-first-child'] = '';
           }
           if (index === React.Children.count(children) - 1) {
-            return React.cloneElement(child, { 'data-last-child': '' });
+            extraProps['data-last-child'] = '';
           }
-          return child;
+          return React.cloneElement(child, extraProps);
         })}
       </CardRoot>
-    </CardOrientationContext.Provider>
+    </CardRowContext.Provider>
   );
+
+  if (invertedColors) {
+    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+  return result;
 }) as OverridableComponent<CardTypeMap>;
 
 Card.propTypes /* remove-proptypes */ = {
@@ -161,13 +193,18 @@ Card.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The flow direction of the content.
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
+  /**
+   * The component orientation.
    * @default 'vertical'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -183,7 +220,7 @@ Card.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

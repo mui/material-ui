@@ -3,6 +3,7 @@
 /inbox* / 301
 /trash / 301
 /spam / 301
+/sign-up / 301
 
 /size-snapshot https://s3.eu-central-1.amazonaws.com/mui-org-ci/artifacts/master/latest/size-snapshot.json 200
 
@@ -217,9 +218,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /pt/components/about-the-lab/ /pt/material-ui/about-the-lab/ 301
 /zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301
-/components/trap-focus/ /base/react-trap-focus/ 301
-/pt/components/trap-focus/ /pt/base/react-trap-focus/ 301
-/zh/components/trap-focus/ /zh/base/react-trap-focus/ 301
+/components/focus-trap/ /base/react-focus-trap/ 301
+/pt/components/focus-trap/ /pt/base/react-focus-trap/ 301
+/zh/components/focus-trap/ /zh/base/react-focus-trap/ 301
 /system/box/ /system/react-box/ 301
 /:lang/system/box/ /:lang/system/react-box/ 301
 ### React plural
@@ -292,9 +293,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/* /material-ui/react-:splat 301
 /pt/components/* /pt/material-ui/react-:splat 301
 /zh/components/* /zh/material-ui/react-:splat 301
-/api/unstable-trap-focus/ /base/api/trap-focus/ 301
-/pt/api/unstable-trap-focus/ /pt/base/api/trap-focus/ 301
-/zh/api/unstable-trap-focus/ /zh/base/api/trap-focus/ 301
+/api/unstable-trap-focus/ /base/api/focus-trap/ 301
+/pt/api/unstable-trap-focus/ /pt/base/api/focus-trap/ 301
+/zh/api/unstable-trap-focus/ /zh/base/api/focus-trap/ 301
 /api/click-away-listener/ /base/api/click-away-listener/ 301
 /pt/api/click-away-listener/ /pt/base/api/click-away-listener/ 301
 /zh/api/click-away-listener/ /zh/base/api/click-away-listener/ 301
@@ -364,6 +365,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /zh/blog/* /blog/:splat 301
 /pt/blog/* /blog/:splat 301
 /:lang/size-snapshot/ /size-snapshot/ 301
+/joy-ui/react-text-field/ /joy-ui/react-input/ 301
 /joy-ui/customization/themed-tokens/ /joy-ui/customization/themed-components/ 301
 /:lang/joy-ui/customization/one-off-styling/ /:lang/joy-ui/customization/approaches/#one-off-customization 301
 /joy-ui/customization/one-off-styling/ /joy-ui/customization/approaches/#one-off-customization 301
@@ -377,16 +379,50 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/joy-ui/core-features/global-variant/ /:langjoy-ui/main-features/global-variants/ 301
 /joy-ui/core-features/automatic-adjustment/ /joy-ui/main-features/automatic-adjustment/ 301
 /:lang/joy-ui/core-features/automatic-adjustment/ /:lang/joy-ui/main-features/automatic-adjustment/ 301
-/joy-ui/core-features/perfect-dark-mode/ /joy-ui/main-features/perfect-dark-mode/ 301
-/:lang/joy-ui/core-features/perfect-dark-mode/ /:lang/joy-ui/main-features/perfect-dark-mode/ 301
+/joy-ui/core-features/perfect-dark-mode/ /joy-ui/main-features/dark-mode-optimization/ 301
+/:lang/joy-ui/core-features/perfect-dark-mode/ /:lang/joy-ui/main-features/dark-mode-optimization/ 301
+/system/basics/ /system/getting-started/overview/ 301
+/:lang/system/basics/ /:lang/system/getting-started/overview/ 301
+/system/the-sx-prop/ /system/getting-started/the-sx-prop/ 301
+/:lang/system/the-sx-prop/ /:lang/system/getting-started/the-sx-prop/ 301
+/system/advanced/ /system/getting-started/custom-components/ 301
+/:lang/system/advanced/ /:lang/system/getting-started/custom-components/ 301
+/base/react-trap-focus/ /base/react-focus-trap/ 301
+/:lang/base/react-trap-focus/ /:lang/base/react-focus-trap/ 301
+/base/api/trap-focus/ /base/api/focus-trap/ 301
+/:lang/base/api/trap-focus/ /:lang/base/api/focus-trap/ 301
+/material-ui/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
+/:lang/material-ui/experimental-api/css-variables/ /:lang/material-ui/experimental-api/css-theme-variables/overview/ 301
+/joy-ui/main-features/perfect-dark-mode/ /joy-ui/main-features/dark-mode-optimization/ 301
+/:lang/joy-ui/main-features/perfect-dark-mode/ /:lang/joy-ui/main-features/dark-mode-optimization/ 301
+/joy-ui/guides/applying-dark-mode/ /joy-ui/customization/dark-mode/ 301
+/:lang/joy-ui/guides/applying-dark-mode/ /:lang/joy-ui/customization/dark-mode/ 301
+/experimental-api/classname-generator/ /material-ui/experimental-api/classname-generator/ 301
+/:lang/experimental-api/classname-generator/ /:lang/material-ui/experimental-api/classname-generator/ 301
+/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
+/:lang/experimental-api/css-variables/ /:lang/material-ui/experimental-api/css-theme-variables/overview/ 301
+/joy-ui/customization/default-theme/ /joy-ui/tools/default-theme-viewer/ 301
+/:lang/joy-ui/customization/default-theme/ /:lang/joy-ui/tools/default-theme-viewer/ 301
+/pt/material-ui/* /material-ui/:splat 301
+/zh/material-ui/* /material-ui/:splat 301
+/pt/joy-ui/* /joy-ui/:splat 301
+/zh/joy-ui/* /joy-ui/:splat 301
+/pt/base/* /base/:splat 301
+/zh/base/* /base/:splat 301
+/pt/system/* /system/:splat 301
+/zh/system/* /system/:splat 301
+/material-ui/guides/flow/ https://v4.mui.com/guides/flow/ 301
+/:lang/material-ui/guides/flow/ https://v4.mui.com/:lang/guides/flow/ 301
 # 2023
 
 # Proxies
 
 ## MUI Store
 /store-asset/* https://mui-store.netlify.app/:splat 200
-/legal/* https://mui-store.netlify.app/legal/:splat 200
 /store/* https://mui-store.netlify.app/store/:splat 200
+/r/store-* https://mui-store.netlify.app/r/store-:splat 200
+/legal/* https://mui-store.netlify.app/legal/:splat 200
+/r/legal-* https://mui-store.netlify.app/r/legal-:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
@@ -402,3 +438,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
+
+### MUI Design kits
+/figma/getting-started/ https://mui-org.notion.site/MUI-for-Figma-docs-4eb22360388047a9a31fc19d300a285e 302

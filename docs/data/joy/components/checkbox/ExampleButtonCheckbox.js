@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
+import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
@@ -11,18 +11,19 @@ export default function ExampleButtonCheckbox() {
   const [value, setValue] = React.useState([]);
   return (
     <List
-      variant="soft"
+      variant="outlined"
       aria-label="Screens"
       role="group"
       orientation="horizontal"
       sx={{
+        bgcolor: 'background.body',
         flexGrow: 0,
         '--List-gap': '8px',
         '--List-padding': '8px',
         '--List-radius': '8px',
       }}
     >
-      {['mobile', 'laptop', 'monitor'].map((item) => (
+      {['Mobile', 'Laptop', 'Monitor'].map((item) => (
         <ListItem key={item}>
           <ListItemDecorator
             sx={{
@@ -33,9 +34,9 @@ export default function ExampleButtonCheckbox() {
           >
             {
               {
-                mobile: <PhoneAndroidIcon />,
-                laptop: <LaptopIcon />,
-                monitor: <TvIcon />,
+                Mobile: <PhoneAndroidIcon />,
+                Laptop: <LaptopIcon />,
+                Monitor: <TvIcon />,
               }[item]
             }
           </ListItemDecorator>
@@ -45,7 +46,7 @@ export default function ExampleButtonCheckbox() {
             label={item}
             checked={value.includes(item)}
             color="neutral"
-            variant="plain"
+            variant={value.includes(item) ? 'outlined' : 'plain'}
             onChange={(event) => {
               if (event.target.checked) {
                 setValue((val) => [...val, item]);
@@ -53,16 +54,13 @@ export default function ExampleButtonCheckbox() {
                 setValue((val) => val.filter((text) => text !== item));
               }
             }}
-            sx={{
-              [`& .${checkboxClasses.action}`]: {
-                bgcolor: value.includes(item) ? 'background.surface' : 'transparent',
-                boxShadow: value.includes(item) ? 'sm' : 'none',
-                '&:hover': {
-                  bgcolor: value.includes(item)
-                    ? 'background.surface'
-                    : 'transparent',
+            slotProps={{
+              action: ({ checked }) => ({
+                sx: {
+                  bgcolor: checked ? 'background.level1' : 'transparent',
+                  boxShadow: checked ? 'sm' : 'none',
                 },
-              },
+              }),
             }}
           />
         </ListItem>

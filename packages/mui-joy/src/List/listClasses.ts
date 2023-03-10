@@ -5,10 +5,6 @@ export interface ListClasses {
   root: string;
   /** Classname applied to the root element if wrapped with nested context. */
   nesting: string;
-  /** Styles applied to the root element, if `orientation="vertical"`. */
-  vertical: string;
-  /** Styles applied to the root element, if `orientation="horizontal"`. */
-  horizontal: string;
   /** Classname applied to the root element if `scoped` is true. */
   scoped: string;
   /** Classname applied to the root element if `size="sm"`. */
@@ -29,6 +25,8 @@ export interface ListClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Classname applied to the root element if `variant="outlined"`. */
@@ -37,19 +35,21 @@ export interface ListClasses {
   variantSoft: string;
   /** Classname applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the root element if `orientation="horizontal"`. */
+  horizontal: string;
+  /** Styles applied to the root element if `orientation="vertical"`. */
+  vertical: string;
 }
 
 export type ListClassKey = keyof ListClasses;
 
 export function getListUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyList', slot);
+  return generateUtilityClass('MuiList', slot);
 }
 
-const listClasses: ListClasses = generateUtilityClasses('JoyList', [
+const listClasses: ListClasses = generateUtilityClasses('MuiList', [
   'root',
   'nesting',
-  'vertical',
-  'horizontal',
   'scoped',
   'sizeSm',
   'sizeMd',
@@ -60,10 +60,13 @@ const listClasses: ListClasses = generateUtilityClasses('JoyList', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'horizontal',
+  'vertical',
 ]);
 
 export default listClasses;

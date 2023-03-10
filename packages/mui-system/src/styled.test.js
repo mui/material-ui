@@ -482,6 +482,47 @@ describe('styled', () => {
       });
     });
 
+    it('should resolve the theme.unstable_sx when used in an array styles', () => {
+      const TestComponent = styled('div')(
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mt: 2,
+          }),
+        ({ theme: userTheme }) =>
+          userTheme.unstable_sx({
+            mb: 2,
+          }),
+      );
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent>Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
+        marginBottom: '16px',
+      });
+    });
+
+    it('should resolve the theme.unstable_sx when used in an pseudo object', () => {
+      const TestComponent = styled('div')(({ theme: userTheme }) => ({
+        '&.test-classname': userTheme.unstable_sx({
+          mt: 2,
+        }),
+      }));
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestComponent className="test-classname">Test</TestComponent>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        marginTop: '16px',
+      });
+    });
+
     it('should respect the skipSx option', () => {
       const testOverridesResolver = (props, styles) => ({
         ...styles.root,
@@ -568,8 +609,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-slot$`);
-      const regExpSC = new RegExp(`MuiComponent-slot.*`);
+      const regExp = /.*-MuiComponent-slot$/;
+      const regExpSC = /MuiComponent-slot.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {
@@ -593,8 +634,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-root$`);
-      const regExpSC = new RegExp(`MuiComponent-root.*`);
+      const regExp = /.*-MuiComponent-root$/;
+      const regExpSC = /MuiComponent-root.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {

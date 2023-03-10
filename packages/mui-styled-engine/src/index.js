@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import emStyled from '@emotion/styled';
 
 export default function styled(tag, options) {
@@ -24,6 +25,15 @@ export default function styled(tag, options) {
 
   return stylesFactory;
 }
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const internal_processStyles = (tag, processor) => {
+  // Emotion attaches all the styles as `__emotion_styles`.
+  // Ref: https://github.com/emotion-js/emotion/blob/16d971d0da229596d6bcc39d282ba9753c9ee7cf/packages/styled/src/base.js#L186
+  if (Array.isArray(tag.__emotion_styles)) {
+    tag.__emotion_styles = processor(tag.__emotion_styles);
+  }
+};
 
 export { ThemeContext, keyframes, css } from '@emotion/react';
 export { default as StyledEngineProvider } from './StyledEngineProvider';

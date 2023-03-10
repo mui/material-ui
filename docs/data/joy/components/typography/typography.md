@@ -1,58 +1,83 @@
 ---
 product: joy-ui
 title: React Typography component
+components: Typography
 githubLabel: 'component: Typography'
 ---
 
 # Typography
 
-<p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
+<p class="description">The Typography component helps present design and content clearly and efficiently.</p>
 
 ## Introduction
 
-The `Typography` component helps you maintain a consistent design by offering a limited set of values to choose while also providing a few convenient props that makes common designs faster to build.
-Joy UI's uses [_Public Sans_](https://fonts.google.com/specimen/Public+Sans?query=public), a Google Font, as the default typeface.
+The Typography component helps maintain a consistent design by providing a limited set of values to choose from and convenient props for building common designs faster.
 
-## Component
-
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+## Basics
 
 ```jsx
 import Typography from '@mui/joy/Typography';
-
-export default function MyApp() {
-  return <Typography>Hello world!</Typography>;
-}
 ```
+
+The Typography component wraps around its content, and displays text with specific typographic styles and properties.
+
+{{"demo": "TypographyBasics.js"}}
+
+### Nested Typography
+
+The Typography component renders as a `<p>` by default.
+Nested Typography components are rendered as `<span>` elements (unless customized by [the `component` prop](#semantic-elements)).
+
+{{"demo": "NestedTypography.js"}}
+
+## Customization
 
 ### System props
 
-As a CSS utility component, `Typography` supports every [`system`](/system/properties/) properties.
+As a CSS utility component, Typography supports every [MUI System](/system/properties/) property.
+These properties can be used to customize the styling of the component and make it fit seamlessly with the overall design.
 
-```jsx
-<Typography textColor="neutral.500" fontSize="sm" fontWeight="lg">
-```
-
-:::info
-💡 **Tip:** The `color` prop is an exception, though!
-It actually refers to the palette being used and not specifically the text color.
-To override that instead, use the `textColor` prop.
+:::warning
+Note that the `color` prop is an exception, it refers to the palette instead of the text color specifically. To set the text color, use the `textColor` prop.
 :::
 
-### Changing the semantic element
-
-To control which HTML tag should be rendered in a given, one-off, situation, use the `component` prop.
-
 ```jsx
-{
-  /* There is already an h1 in the page so let's not duplicate it. */
-}
-<Typography level="h1" component="h2">
-  h1. Heading
-</Typography>;
+
+// Using the neutral color palette that defaults to the 500 value
+<Typography color="neutral" fontSize="sm" fontWeight="lg" />
+
+// Changing the specific element's color to neutral
+<Typography textColor="neutral.300" fontSize="sm" fontWeight="lg" >
+
 ```
 
-To control this in a much more efficient way, change the HTML mapping tags at the theme level.
+### Levels
+
+The `level` prop gives access to a pre-defined scale of typographic values defined in the theme.
+These values include various heading levels (h1, h2, h3, etc.) as well as body text levels (body1, body2, etc) and can be used to apply consistent typography throughout your application.
+Additionally, you can also use the level prop to control the font size, weight, line height, and other typographic properties.
+
+:::warning
+Keep in mind that each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body1" renders as a `<p>`, etc.)
+:::
+
+{{"demo": "TypographyScales.js"}}
+
+### Semantic elements
+
+To customize the semantic element used, you can use the `component` prop.
+This can be useful in situations where you want to use a different semantic element than the one assigned by the `level` prop.
+The component will render as the HTML element defined by `component`, but with the styles assigned to its respective `level`.
+
+```jsx
+// There's already an h1 on the page so let's not add another one.
+
+<Typography level="h1" component="h2">
+  I render as an h2, but I have h1 styles
+</Typography>
+```
+
+In a more efficient way, you can change the HTML mapping tags at the theme level.
 
 ```js
 const theme = extendTheme({
@@ -80,40 +105,15 @@ const theme = extendTheme({
 });
 ```
 
-### Levels
-
-The `Typography` component has access to the typographic level scale defined in the theme.
-Use the `level` prop to control the scale value.
-
-:::info
-**Keep in mind:** each level renders a specific HTML tag (e.g. "h1" renders as an `<h2>` element, "body1" renders as a `<p>`, etc.)
-:::
-
-{{"demo": "TypographyScales.js"}}
-
 ### Decorators
 
-Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the typography.
+Use the `startDecorator` and `endDecorator` props to add supporting icons or elements to the Typography.
 
 {{"demo": "TypographyDecorators.js"}}
 
-### Nested typography
+### Typography scale
 
-Nested `Typography` components will render as a `<span>` tag by default, unless a value for the `component` prop in each component is specified.
-
-```js
-<Typography>
-  Paragraph by default.
-  <Typography fontWeight="lg">I am a span</Typography> {/* render as <span> */}
-  <Typography component="strong">but strong</Typography> {/* render as <strong> */}
-</Typography>
-```
-
-{{"demo": "NestedTypography.js"}}
-
-## Create a new scale
-
-To create your own typographic scale at the theme level, define the keys and values to `theme.typography` node.
+To create a custom typographic scale, you can define the keys and values in the `theme.typography` node at the theme level.
 
 ```js
 extendTheme({
@@ -121,7 +121,7 @@ extendTheme({
     subtitle: {
       fontSize: 'var(--joy-fontSize-lg)',
       fontWeight: 'var(--joy-fontWeight-md)',
-      // CSS selector is also supported!
+      // CSS selectors are also supported!
       '& + p': {
         marginTop: '4px',
       },
@@ -136,15 +136,15 @@ extendTheme({
 });
 ```
 
-You can also access the newly created levels from the `level` prop.
+You can also access the newly created levels from the `level` prop:
 
 ```js
 <Typography level="subtitle">
 <Typography level="label">
 ```
 
-:::info
-**Tip:** When using _TypeScript_, make sure to add module augmentation for the new theme values.
+:::warning
+When using TypeScript, make sure to add module augmentation for the new theme values.
 
 ```ts
 // in your theme or index file
@@ -158,9 +158,9 @@ declare module '@mui/joy/styles' {
 
 :::
 
-## Remove the built-in scale
+#### Removing the default scale
 
-To start fresh with your own typographic scale, assign an `undefined` value to the built-in typography tokens in the theme.
+To remove any unused typographic levels (for example, if you're building your own fully custom scale), you can clear the built-in values by assigning `undefined` to them in the theme.
 
 ```js
 extendTheme({
@@ -179,7 +179,7 @@ extendTheme({
 });
 ```
 
-Make sure to remove them from the types as well if using **TypeScript**.
+When using TypeScript, be sure to also remove the built-in typography tokens from the types.
 
 ```ts
 // in your theme or index file
@@ -202,17 +202,32 @@ declare module '@mui/joy/styles' {
 }
 ```
 
-## Accessibility
-
-Here are a few tips to make sure you have an accessible typography component:
-
-- **Color contrast**: always provide enough contrast between text and background. The minimum recommended [WCAG 2.0 color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) is 4.5:1.
-- **Dynamic units**: use [relative units (rem)](/material-ui/customization/typography/#font-size) for `fontSize` to accommodate the user's settings.
-- **Heading hierarchy**: [don't skip](https://www.w3.org/WAI/tutorials/page-structure/headings/) heading levels.
-  Remember to [separate the semantics from the style](#changing-the-semantic-element).
-
 ## Common examples
 
-Examples showcasing how to compose designs with the `Typography` component and others as decorators.
+The demo below illustrates multiple uses of the Typography component with others as [decorators](#decorators).
 
 {{"demo": "DecoratorExamples.js"}}
+
+## Accessibility
+
+Here are some factors to ensure that your Typography components are accessible:
+
+- Ensure sufficient color contrast between text and background, using a minimum of [WCAG 2.0's color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) of 4.5:1.
+- Use [relative units](/material-ui/customization/typography/#font-size) such as rem for `fontSize` to accommodate the user's settings.
+- Use a consistent [heading hierarchy](https://www.w3.org/WAI/tutorials/page-structure/headings/), and avoid skipping levels.
+- Keep semantics and style separate by using the appropriate semantic elements(#semantic-elements).
+
+## Anatomy
+
+The Typography component is composed of a single root `<p>` that's assigned the `body1` class, unless these defaults are overridden by the [`level`](#levels) and/or [`component`](#semantic-elements) props.
+
+When one Typography component is nested within another, the nested component renders as a `<span>` (unless customized as described above).
+
+```html
+<p class="MuiTypography-root MuiTypography-body1">
+  <!-- Typography content -->
+  <span class="MuiTypography-root MuiTypography-inherit">
+    <!-- Nested Typography content -->
+  </span>
+</p>
+```

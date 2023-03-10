@@ -17,7 +17,7 @@
       },
       "default": "'medium'"
     },
-    "stickyHeader": { "type": { "name": "bool" } },
+    "stickyHeader": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -31,6 +31,6 @@
   "forwardsRefTo": "HTMLTableElement",
   "filename": "/packages/mui-material/src/Table/Table.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Tables</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
   "cssComponent": false
 }

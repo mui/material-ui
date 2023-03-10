@@ -1,8 +1,9 @@
 ---
 product: joy-ui
 title: React Tabs component
+components: Tab, TabList, TabPanel, Tabs
 githubLabel: 'component: tabs'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 unstyled: /base/react-tabs/
 ---
 
@@ -19,7 +20,7 @@ Joy UI provides four tabs-related components:
 - `Tab`: A button to toggle a selected tab.
 - `TabPanel`: A pane that displays on the screen when its value matches with the selected tab.
 
-{{"demo": "TabsUsage.js", "hideToolbar": true}}
+{{"demo": "TabsUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -47,20 +48,24 @@ export default function MyApp() {
 
 ### Basic usage
 
-The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 To target the initially selected tab, specify the `value` prop to the `TabPanel` and use `Tabs`'s `defaultValue`.
 
 {{"demo": "TabsBasic.js"}}
 
-### Variant
+### Variants
 
 Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
 
 :::info
-ℹ️ **Note:** the `TabPanel` component is the only one that doesn't support both global variant and color props.
+A selected `Tab` does not apply `:hover` and `:active` global variant styles.
 :::
 
 {{"demo": "TabsVariants.js"}}
+
+:::info
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
+:::
 
 ### Disabled tab
 
@@ -85,7 +90,7 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 
 ### Accessibility
 
-For ensuring proper accessibility, it's recommended by [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/#wai-aria-roles-states-and-properties-22) to associate a label to the Tabs component.
+For ensuring proper accessibility, it's recommended by [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#wai-aria-roles-states-and-properties-22) to associate a label to the Tabs component.
 To do that, there are two options:
 
 #### Option one
@@ -116,11 +121,15 @@ You can use those to customize the component on both the `sx` prop and the theme
 
 ## Common examples
 
+### Underline tabs
+
+{{"demo": "TabsUnderlineExample.js"}}
+
 ### Pricing tabs
 
 {{"demo": "TabsPricingExample.js"}}
 
-### Page tabs
+### Page tabs with chips
 
 {{"demo": "TabsPageExample.js"}}
 

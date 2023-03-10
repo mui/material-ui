@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Link component
+components: Link
 githubLabel: 'component: link'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
@@ -14,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 The `Link` component represents the HTML `<a>` element.
 It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component, as well as the system props.
 
-{{"demo": "LinkUsage.js", "hideToolbar": true}}
+{{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -87,28 +88,28 @@ Here's how you can use the link component with libraries that also provide their
 
 ### Next.js
 
-Based on the [Links API reference documentation](https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-custom-component-that-wraps-an-a-tag).
+Here is an example with the [Link component](https://nextjs.org/docs/api-reference/next/link) of Next.js:
 
 ```js
 import NextLink from 'next/link';
-import JoyLink from '@mui/joy/Link';
+import Link from '@mui/joy/Link';
 
 <NextLink href="/docs" passHref>
-  <JoyLink>Read doc</JoyLink>
+  <Link>Read doc</Link>
 </NextLink>;
 ```
 
-### React router
+### React Router
 
-Based on the [Link found in React router's latets version](https://reactrouter.com/docs/en/v6/components/link).
+Here is an example with the [Link component](https://reactrouter.com/en/main/components/link) of React Router:
 
 ```js
 import { Link as RouterLink } from 'react-router-dom';
-import JoyLink from '@mui/joy/Link';
+import Link from '@mui/joy/Link';
 
-<JoyLink component={RouterLink} to="/docs">
+<Link component={RouterLink} to="/docs">
   Read doc
-</JoyLink>;
+</Link>;
 ```
 
 ## Common examples

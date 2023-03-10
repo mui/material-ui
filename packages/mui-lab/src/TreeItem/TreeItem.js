@@ -62,36 +62,44 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   cursor: 'pointer',
   WebkitTapHighlightColor: 'transparent',
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: (theme.vars || theme).palette.action.hover,
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
     },
   },
   [`&.${treeItemClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
     backgroundColor: 'transparent',
   },
   [`&.${treeItemClasses.focused}`]: {
-    backgroundColor: theme.palette.action.focus,
+    backgroundColor: (theme.vars || theme).palette.action.focus,
   },
   [`&.${treeItemClasses.selected}`]: {
-    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     '&:hover': {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
     [`&.${treeItemClasses.focused}`]: {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-      ),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
     },
   },
   [`& .${treeItemClasses.iconContainer}`]: {
@@ -264,7 +272,15 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
   function handleFocus(event) {
     // DOM focus stays on the tree which manages focus with aria-activedescendant
     if (event.target === event.currentTarget) {
-      ownerDocument(event.target).getElementById(treeId).focus({ preventScroll: true });
+      let rootElement;
+
+      if (typeof event.target.getRootNode === 'function') {
+        rootElement = event.target.getRootNode();
+      } else {
+        rootElement = ownerDocument(event.target);
+      }
+
+      rootElement.getElementById(treeId).focus({ preventScroll: true });
     }
 
     const unfocusable = !disabledItemsFocusable && disabled;
@@ -360,6 +376,7 @@ TreeItem.propTypes /* remove-proptypes */ = {
   ContentProps: PropTypes.object,
   /**
    * If `true`, the node is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**

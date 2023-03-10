@@ -15,14 +15,14 @@ If you're adding a new test prefer a new component instead of editing existing f
 
 We're using [`playwright`](https://playwright.dev) to replay user actions.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('TrapFocus/OpenTrapFocus')`.
+A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('FocusTrap/OpenFocusTrap')`.
 
 ## Commands
 
 For development `yarn test:e2e:dev` and `yarn test:e2e:run --watch` in separate terminals is recommended.
 
 | command                | description                                                                                   |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
+| :--------------------- | :-------------------------------------------------------------------------------------------- |
 | `yarn test:e2e`        | Full run                                                                                      |
 | `yarn test:e2e:dev`    | Prepares the fixtures to be able to test in watchmode                                         |
 | `yarn test:e2e:run`    | Runs the tests (requires `yarn test:e2e:dev` or `yarn test:e2e:build`+`yarn test:e2e:server`) |

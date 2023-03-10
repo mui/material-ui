@@ -327,7 +327,7 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      describe('hidden tab', () => {
+      describe('hidden tab / tabs', () => {
         let nodeEnv;
 
         before(function test() {
@@ -345,7 +345,11 @@ describe('<Tabs />', () => {
           Object.defineProperty(process.env, 'NODE_ENV', { value: nodeEnv });
         });
 
-        it('should warn if a Tab has display: none', () => {
+        it('should warn if a `Tab` has display: none', function test() {
+          if (isJSDOM) {
+            this.skip();
+          }
+
           expect(() => {
             render(
               <Tabs value="hidden-tab">
@@ -359,6 +363,19 @@ describe('<Tabs />', () => {
               "Make sure the tab item is present in the document or that it's not `display: none`.",
             ].join('\n'),
           ]);
+        });
+
+        it('should not warn if the whole Tabs is hidden', function test() {
+          if (isJSDOM) {
+            this.skip();
+          }
+          expect(() => {
+            render(
+              <Tabs value="demo" style={{ display: 'none' }}>
+                <Tab value="demo" style={{ display: 'none' }} />
+              </Tabs>,
+            );
+          }).not.toErrorDev();
         });
       });
     });

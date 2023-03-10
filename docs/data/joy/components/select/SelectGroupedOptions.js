@@ -25,7 +25,7 @@ export default function SelectGroupedOptions() {
   return (
     <Select
       placeholder="Choose your animal"
-      componentsProps={{
+      slotProps={{
         listbox: {
           component: 'div',
           sx: {
@@ -41,11 +41,10 @@ export default function SelectGroupedOptions() {
         <React.Fragment key={name}>
           {index !== 0 && <ListDivider role="none" />}
           <List
-            role="group"
             aria-labelledby={`select-group-${name}`}
-            sx={{ '--List-decorator-width': '28px' }}
+            sx={{ '--List-decoratorSize': '28px' }}
           >
-            <ListItem role="presentation" id={`select-group-${name}`} sticky>
+            <ListItem id={`select-group-${name}`} sticky>
               <Typography level="body3" textTransform="uppercase" letterSpacing="md">
                 {name} ({animals.length})
               </Typography>

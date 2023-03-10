@@ -2,7 +2,7 @@
 product: material-ui
 components: Link
 githubLabel: 'component: link'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
 # Links
@@ -13,7 +13,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
 
 ## Links simples
 
-O componente Link é construído sobre o componente [Typography](/material-ui/api/typography/). Você pode aproveitar suas propriedades.
+The Link component is built on top of the [Typography](/material-ui/api/typography/) component, meaning that you can use its props.
 
 {{"demo": "Links.js"}}
 
@@ -37,11 +37,11 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Link` fornece uma propriedade para lidar com este caso: `component`. Aqui está um [guia mais detalhado](/material-ui/guides/routing/#link).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. O componente `Link` fornece uma propriedade para lidar com este caso: `component`. Here is a [more detailed guide](/material-ui/guides/routing/#link).
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
 - Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - Para a melhor experiência do usuário, os links devem se destacar do texto na página. For instance, you can keep the default `underline="always"` behavior.

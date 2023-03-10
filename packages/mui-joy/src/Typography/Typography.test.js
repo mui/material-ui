@@ -1,21 +1,30 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import Typography, { typographyClasses as classes } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('<Typography />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Typography />, () => ({
+  describeConformance(<Typography startDecorator="1" endDecorator="2" />, () => ({
     classes,
     inheritComponent: 'p',
     ThemeProvider,
     render,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'JoyTypography',
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { level: 'body3' },
+    testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      startDecorator: { expectedClassName: classes.startDecorator },
+      endDecorator: { expectedClassName: classes.endDecorator },
+    },
+    skip: ['componentsProp', 'classesRoot'],
   }));
+
+  describeJoyColorInversion(<Typography variant="soft" />, { muiName: 'JoyTypography', classes });
 
   it('should render the text', () => {
     const { container } = render(<Typography>Hello</Typography>);

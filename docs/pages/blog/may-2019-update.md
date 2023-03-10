@@ -22,9 +22,9 @@ _(We'll do our best, no guarantee!)_
 
 ![Slider](/static/blog/may-2019-update/slider.png)
 
-- We will work on a new Tree view component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
+- We will work on a new Tree View component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
 
-![Tree view](/static/blog/may-2019-update/tree-view.png)
+![Tree View](/static/blog/may-2019-update/tree-view.png)
 
 - We will add more themes to the [premium theme marketplace](https://mui.com/store/).
 - We will start exploring how we can provide style adapters in v5 (styled-components, JSS, linaria, naked, etc.)

@@ -3,8 +3,8 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "dense": { "type": { "name": "bool" } },
-    "disablePadding": { "type": { "name": "bool" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disablePadding": { "type": { "name": "bool" }, "default": "false" },
     "subheader": { "type": { "name": "node" } },
     "sx": {
       "type": {
@@ -23,6 +23,6 @@
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-material/src/List/List.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer list</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>",
   "cssComponent": false
 }

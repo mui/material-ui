@@ -112,7 +112,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   }),
   ...(ownerState.loadingPosition === 'end' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {

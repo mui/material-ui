@@ -157,7 +157,7 @@ describe('<Input />', () => {
         return <input ref={ref} {...other} />;
       });
 
-      render(<Input components={{ Input: MyInput }} />);
+      render(<Input slots={{ input: MyInput }} />);
 
       expect(typeof injectedProps.onBlur).to.equal('function');
       expect(typeof injectedProps.onFocus).to.equal('function');
@@ -188,32 +188,32 @@ describe('<Input />', () => {
         const triggerChangeRef = React.createRef();
 
         const inputProps = {
-          componentsProps: {
+          slotProps: {
             input: {
               ref: triggerChangeRef,
             },
           },
         };
 
-        /* render(<Input {...inputProps} components={{ Input: BadInputComponent }} />);
+        /* render(<Input {...inputProps} slots={{ input: BadInputComponent }} />);
         expect(true).to.equal(true); */
 
         expect(() => {
-          render(<Input {...inputProps} components={{ Input: BadInputComponent }} />);
+          render(<Input {...inputProps} slots={{ input: BadInputComponent }} />);
         }).toErrorDev([
-          'MUI: You have provided a `components.Input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+          'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') &&
-            'MUI: You have provided a `components.Input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+            'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
         ]);
       });
     });
   });
 
-  describe('prop: componentsProps', () => {
+  describe('prop: slotProps', () => {
     it('should apply the props on the input', () => {
       const inputProps = {
-        componentsProps: {
+        slotProps: {
           input: {
             className: 'foo',
             maxLength: 5,
@@ -230,7 +230,7 @@ describe('<Input />', () => {
     it('should be able to get a ref', () => {
       const inputRef = React.createRef();
       const inputProps = {
-        componentsProps: {
+        slotProps: {
           input: {
             ref: inputRef,
           },
@@ -242,7 +242,7 @@ describe('<Input />', () => {
     });
   });
 
-  describe('prop: components and componentsProps', () => {
+  describe('prop: slots and slotProps', () => {
     it('should call onChange inputProp callback with all params sent from custom input slot', () => {
       const INPUT_VALUE = 'material';
       const OUTPUT_VALUE = 'test';
@@ -267,14 +267,14 @@ describe('<Input />', () => {
       }
 
       const inputProps = {
-        componentsProps: {
+        slotProps: {
           input: {
             onChange: parentHandleChange,
           },
         },
       };
 
-      const { getByRole } = render(<Input components={{ Input: MyInput }} {...inputProps} />);
+      const { getByRole } = render(<Input slots={{ input: MyInput }} {...inputProps} />);
       const textbox = getByRole('textbox');
       fireEvent.change(textbox, { target: { value: INPUT_VALUE } });
 
@@ -306,7 +306,7 @@ describe('<Input />', () => {
     it('should be able to access the native input', () => {
       const inputRef = React.createRef();
       const inputProps = {
-        componentsProps: {
+        slotProps: {
           input: {
             ref: inputRef,
           },
@@ -319,7 +319,7 @@ describe('<Input />', () => {
     it('should be able to access the native textarea', () => {
       const inputRef = React.createRef();
       const inputProps = {
-        componentsProps: {
+        slotProps: {
           input: {
             ref: inputRef,
           },

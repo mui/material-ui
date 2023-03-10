@@ -1,14 +1,14 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "defer": { "type": { "name": "bool" } },
+    "defer": { "type": { "name": "bool" }, "default": "false" },
     "fallback": { "type": { "name": "node" }, "default": "null" }
   },
   "name": "NoSsr",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/mui-base/src/NoSsr/NoSsr.js",
+  "filename": "/packages/mui-base/src/NoSsr/NoSsr.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-no-ssr/\">No ssr</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-no-ssr/\">No SSR</a></li></ul>",
   "cssComponent": false
 }

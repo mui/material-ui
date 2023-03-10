@@ -154,7 +154,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
  *
  * Demos:
  *
- * - [Tables](https://mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *

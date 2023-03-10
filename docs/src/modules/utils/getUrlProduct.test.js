@@ -19,7 +19,7 @@ describe('getUrlProduct', () => {
 
   it('get system', () => {
     expect(getUrlProduct('/system/')).to.equal('system');
-    expect(getUrlProduct('/zh/system/basics/')).to.equal('system');
+    expect(getUrlProduct('/zh/system/getting-started/overview/')).to.equal('system');
   });
 
   it('get data-grid', () => {

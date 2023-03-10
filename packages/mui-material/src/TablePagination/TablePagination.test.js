@@ -9,6 +9,9 @@ import TableRow from '@mui/material/TableRow';
 import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
 import ArrowForwardIosRounded from '@mui/icons-material/ArrowForwardIosRounded';
 import ArrowBackIosRounded from '@mui/icons-material/ArrowBackIosRounded';
+import { inputClasses } from '@mui/material/Input';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { filledInputClasses } from '@mui/material/FilledInput';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -276,7 +279,7 @@ describe('<TablePagination />', () => {
 
   describe('prop: count=-1', () => {
     it('should display the "of more than" text and keep the nextButton enabled', () => {
-      const Test = () => {
+      function Test() {
         const [page, setPage] = React.useState(0);
         return (
           <table>
@@ -294,7 +297,7 @@ describe('<TablePagination />', () => {
             </TableFooter>
           </table>
         );
-      };
+      }
 
       const { container, getByRole } = render(<Test />);
 
@@ -400,6 +403,38 @@ describe('<TablePagination />', () => {
       // will be `getByRole('combobox')` in aria 1.2
       const [combobox] = getAllByRole('button');
       expect(combobox).toHaveAccessibleName('Rows per page: 10');
+    });
+
+    ['standard', 'outlined', 'filled'].forEach((variant) => {
+      it(`should be able to apply the ${variant} variant to select`, () => {
+        const { getAllByRole } = render(
+          <table>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  count={1}
+                  page={0}
+                  onPageChange={noop}
+                  onRowsPerPageChange={noop}
+                  rowsPerPage={10}
+                  SelectProps={{ variant }}
+                />
+              </TableRow>
+            </TableFooter>
+          </table>,
+        );
+
+        const [combobox] = getAllByRole('button');
+        const comboboxContainer = combobox.parentElement;
+
+        if (variant === 'standard') {
+          expect(comboboxContainer).to.have.class(inputClasses.root);
+        } else if (variant === 'outlined') {
+          expect(comboboxContainer).to.have.class(outlinedInputClasses.root);
+        } else if (variant === 'filled') {
+          expect(comboboxContainer).to.have.class(filledInputClasses.root);
+        }
+      });
     });
   });
 
@@ -548,5 +583,26 @@ describe('<TablePagination />', () => {
 
       expect(getAllByTestId('custom-last-test-id')).to.be.lengthOf(1);
     });
+  });
+  it('should not have "variant" attribute on TablePaginationSelect', () => {
+    const { getAllByRole } = render(
+      <table>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              count={1}
+              page={0}
+              onPageChange={noop}
+              onRowsPerPageChange={noop}
+              rowsPerPage={10}
+            />
+          </TableRow>
+        </TableFooter>
+      </table>,
+    );
+
+    const [combobox] = getAllByRole('button');
+
+    expect(combobox.parentElement).not.to.have.attribute('variant');
   });
 });

@@ -28,8 +28,12 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
   cursor: 'pointer',
   '&:focus': {
     // Show that it's not an text input
-    backgroundColor:
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
+    ...(theme.vars
+      ? { backgroundColor: `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.05)` }
+      : {
+          backgroundColor:
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)',
+        }),
     borderRadius: 0, // Reset Chrome style
   },
   // Remove IE11 arrow
@@ -43,7 +47,7 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
     height: 'auto',
   },
   '&:not([multiple]) option, &:not([multiple]) optgroup': {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
   },
   // Bump specificity to allow extending custom inputs
   '&&&': {
@@ -56,9 +60,9 @@ export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
     },
   }),
   ...(ownerState.variant === 'outlined' && {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     '&:focus': {
-      borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
+      borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
     },
     '&&&': {
       paddingRight: 32,
@@ -88,9 +92,9 @@ export const nativeSelectIconStyles = ({ ownerState, theme }) => ({
   right: 0,
   top: 'calc(50% - .5em)', // Center vertically, height is 1em
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   [`&.${nativeSelectClasses.disabled}`]: {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   },
   ...(ownerState.open && {
     transform: 'rotate(180deg)',

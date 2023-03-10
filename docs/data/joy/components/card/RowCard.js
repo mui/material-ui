@@ -3,33 +3,33 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
+import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 
-export default function InteractiveCard() {
+export default function RowCard() {
   return (
     <Card
       orientation="horizontal"
       variant="outlined"
-      sx={{
-        minWidth: '260px',
-        gap: 2,
-        bgcolor: 'background.body',
-      }}
+      sx={{ width: 260, bgcolor: 'background.body' }}
     >
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
-            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&auto=format&fit=crop&w=3387"
+            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
+            srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
+            loading="lazy"
             alt=""
           />
         </AspectRatio>
       </CardOverflow>
-      <CardContent>
+      <CardContent sx={{ px: 2 }}>
         <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
           Yosemite Park
         </Typography>
         <Typography level="body2">California, USA</Typography>
       </CardContent>
+      <Divider />
       <CardOverflow
         variant="soft"
         color="primary"

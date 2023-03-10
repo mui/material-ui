@@ -39,8 +39,9 @@ export default function ContainerResponsive() {
           }}
         >
           <img
+            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2000"
+            loading="lazy"
             alt=""
-            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
           />
         </AspectRatio>
         <Box
@@ -48,7 +49,7 @@ export default function ContainerResponsive() {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            maxWidth: '200px',
+            maxWidth: 200,
           }}
         >
           <Box sx={{ display: 'flex' }}>

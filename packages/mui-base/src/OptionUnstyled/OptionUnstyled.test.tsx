@@ -7,6 +7,7 @@ const dummyGetOptionState = () => ({
   disabled: false,
   highlighted: false,
   selected: false,
+  index: 0,
 });
 
 const dummyGetOptionProps = () => ({
@@ -14,6 +15,7 @@ const dummyGetOptionProps = () => ({
   'aria-selected': false,
   label: '',
   onClick: () => {},
+  onPointerOver: () => {},
   role: 'option',
   value: '',
 });
@@ -31,6 +33,8 @@ describe('OptionUnstyled', () => {
             getOptionState: dummyGetOptionState,
             getOptionProps: dummyGetOptionProps,
             listboxRef: React.createRef(),
+            registerHighlightChangeHandler: () => () => {},
+            registerSelectionChangeHandler: () => () => {},
           }}
         >
           {node}
@@ -44,6 +48,8 @@ describe('OptionUnstyled', () => {
             getOptionState: dummyGetOptionState,
             getOptionProps: dummyGetOptionProps,
             listboxRef: React.createRef(),
+            registerHighlightChangeHandler: () => () => {},
+            registerSelectionChangeHandler: () => () => {},
           }}
         >
           {node}

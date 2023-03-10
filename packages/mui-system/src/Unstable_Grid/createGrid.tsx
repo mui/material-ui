@@ -21,6 +21,7 @@ import {
   generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
+  generateDirectionClasses,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridTypeMap, GridOwnerState } from './GridProps';
@@ -35,7 +36,7 @@ const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div
   overridesResolver: (props, styles) => styles.root,
 });
 
-function useThemePropsDefault<T>(props: T) {
+function useThemePropsDefault<T extends {}>(props: T) {
   return useThemePropsSystem({
     props,
     name: 'MuiGrid',
@@ -57,18 +58,17 @@ export default function createGrid(
     componentName = 'MuiGrid',
   } = options;
 
-  const NestedContext = React.createContext(false);
+  const NestedContext = React.createContext<number>(0);
   const OverflowContext = React.createContext<boolean | undefined>(undefined);
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
-
     const slots = {
       root: [
         'root',
         container && 'container',
-        direction !== 'row' && `direction-xs-${String(direction)}`,
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
+        ...generateDirectionClasses(direction),
         ...generateSizeClassNames(gridSize),
         ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],
@@ -93,7 +93,7 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
-    const nested = React.useContext(NestedContext);
+    const level = React.useContext(NestedContext);
     const overflow = React.useContext(OverflowContext);
     const {
       className,
@@ -110,7 +110,7 @@ export default function createGrid(
     } = props;
     // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
     let disableEqualOverflow = themeDisableEqualOverflow;
-    if (nested && themeDisableEqualOverflow !== undefined) {
+    if (level && themeDisableEqualOverflow !== undefined) {
       disableEqualOverflow = inProps.disableEqualOverflow;
     }
     // collect breakpoints related props because they can be customized from the theme.
@@ -128,15 +128,15 @@ export default function createGrid(
       }
     });
 
-    const columns = inProps.columns ?? (nested ? undefined : columnsProp);
-    const spacing = inProps.spacing ?? (nested ? undefined : spacingProp);
+    const columns = inProps.columns ?? (level ? undefined : columnsProp);
+    const spacing = inProps.spacing ?? (level ? undefined : spacingProp);
     const rowSpacing =
-      inProps.rowSpacing ?? inProps.spacing ?? (nested ? undefined : rowSpacingProp);
+      inProps.rowSpacing ?? inProps.spacing ?? (level ? undefined : rowSpacingProp);
     const columnSpacing =
-      inProps.columnSpacing ?? inProps.spacing ?? (nested ? undefined : columnSpacingProp);
+      inProps.columnSpacing ?? inProps.spacing ?? (level ? undefined : columnSpacingProp);
     const ownerState = {
       ...props,
-      nested,
+      level,
       columns,
       container,
       direction,
@@ -162,8 +162,8 @@ export default function createGrid(
       />
     );
 
-    if (!nested) {
-      result = <NestedContext.Provider value>{result}</NestedContext.Provider>;
+    if (container) {
+      result = <NestedContext.Provider value={level + 1}>{result}</NestedContext.Provider>;
     }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {

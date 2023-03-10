@@ -1,57 +1,62 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface RadioClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the radio element. */
   radio: string;
-  /** Styles applied to the action element. */
+  /** Class name applied to the icon element. */
+  icon: string;
+  /** Class name applied to the action element. */
   action: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the input element. */
   input: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the label element. */
   label: string;
-  /** State class applied to the input component's `checked` class. */
+  /** State class applied to the root, action slots if `checked`. */
   checked: string;
-  /** State class applied to the input component's disabled class. */
+  /** State class applied to the root, action slots if `disabled`. */
   disabled: string;
   /** Class applied to the root element if the switch has visible focus */
   focusVisible: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
 }
 
 export type RadioClassKey = keyof RadioClasses;
 
 export function getRadioUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyRadio', slot);
+  return generateUtilityClass('MuiRadio', slot);
 }
 
-const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
+const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
   'root',
   'radio',
+  'icon',
   'action',
   'input',
   'label',
@@ -64,6 +69,7 @@ const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

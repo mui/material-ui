@@ -12,9 +12,8 @@ import { expectType } from '@mui/types';
 
 <Link
   component="button"
-  // @ts-expect-error Implicit any
   ref={(elem) => {
-    expectType<any, typeof elem>(elem);
+    expectType<HTMLButtonElement | null, typeof elem>(elem);
   }}
 >
   Home

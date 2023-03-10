@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React para Navegação estrutural
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#breadcrumb'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
 ---
 
 # Navegação estrutural
@@ -38,7 +38,7 @@ Nos exemplos a seguir, nós estamos usando dois separadores de string e um ícon
 
 ## Navegação estrutural customizada
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBreadcrumbs.js"}}
 
@@ -48,7 +48,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
 
 Certifique-se de adcionar uma descrição `aria-label` no componente `Breadcrumbs`.
 

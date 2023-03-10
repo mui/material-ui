@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { BadgeUnstyled } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
 
@@ -23,19 +22,31 @@ describe('<Badge />', () => {
   };
 
   describeConformance(
-    <Badge>
+    <Badge badgeContent="1">
       <button />
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       ThemeProvider,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'JoyBadge',
       testVariantProps: { color: 'neutral', variant: 'soft' },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        badge: { expectedClassName: classes.badge },
+      },
       skip: ['classesRoot', 'componentsProp'],
     }),
+  );
+
+  describeJoyColorInversion(
+    <Badge badgeContent="1" slotProps={{ badge: { 'data-testid': 'test-element' } }}>
+      <button />
+    </Badge>,
+    { muiName: 'JoyBadge', classes },
   );
 
   it('renders children and badgeContent', () => {

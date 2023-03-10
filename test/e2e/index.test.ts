@@ -115,9 +115,9 @@ describe('e2e', () => {
     await browser.close();
   });
 
-  describe('<TrapFocus />', () => {
+  describe('<FocusTrap />', () => {
     it('should loop the tab key', async () => {
-      await renderFixture('TrapFocus/OpenTrapFocus');
+      await renderFixture('FocusTrap/OpenFocusTrap');
 
       await expect(screen.getByTestId('root')).toHaveFocus();
 
@@ -138,7 +138,7 @@ describe('e2e', () => {
     });
 
     it('should loop the tab key after activation', async () => {
-      await renderFixture('TrapFocus/DefaultOpenLazyTrapFocus');
+      await renderFixture('FocusTrap/DefaultOpenLazyFocusTrap');
 
       await expect(screen.getByTestId('initial-focus')).toHaveFocus();
 
@@ -153,7 +153,7 @@ describe('e2e', () => {
     });
 
     it('should focus on first focus element after last has received a tab click', async () => {
-      await renderFixture('TrapFocus/OpenTrapFocus');
+      await renderFixture('FocusTrap/OpenFocusTrap');
 
       await page.keyboard.press('Tab');
       await expect(screen.getByText('x')).toHaveFocus();
@@ -161,6 +161,16 @@ describe('e2e', () => {
       await expect(screen.getByText('cancel')).toHaveFocus();
       await page.keyboard.press('Tab');
       await expect(screen.getByText('ok')).toHaveFocus();
+    });
+
+    it('should be able to be tabbed straight through when rendered closed', async () => {
+      await renderFixture('FocusTrap/ClosedFocusTrap');
+
+      await expect(screen.getByText('initial focus')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      await expect(screen.getByText('inside focusable')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      await expect(screen.getByText('final tab target')).toHaveFocus();
     });
   });
 
@@ -180,6 +190,22 @@ describe('e2e', () => {
         'value',
         '5',
       );
+    });
+  });
+
+  describe('<TextareaAutosize />', () => {
+    // https://github.com/mui/material-ui/issues/32640
+    it('should handle suspense without error', async () => {
+      const pageErrors: string[] = [];
+      page.on('pageerror', (err) => pageErrors.push(err.name));
+
+      await renderFixture('TextareaAutosize/TextareaAutosizeSuspense');
+      expect(await page.isVisible('textarea')).to.equal(true);
+      await page.click('button');
+      expect(await page.isVisible('textarea')).to.equal(false);
+      await page.waitForTimeout(200); // Wait for debounce to fire (166)
+
+      expect(pageErrors.length).to.equal(0);
     });
   });
 });

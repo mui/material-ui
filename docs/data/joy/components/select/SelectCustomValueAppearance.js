@@ -13,6 +13,7 @@ export default function SelectCustomValueAppearance() {
     { name: 'Smith', role: 'Engineer', status: 'secs ago' },
     { name: 'Erika', role: 'Designer', status: '10hrs ago' },
   ];
+
   const colors = {
     PM: 'success',
     Engineer: 'primary',
@@ -21,10 +22,10 @@ export default function SelectCustomValueAppearance() {
   return (
     <Select
       defaultValue="Eric"
-      componentsProps={{
+      slotProps={{
         listbox: {
           sx: {
-            '--List-decorator-width': '48px',
+            '--List-decoratorSize': '48px',
           },
         },
       }}
