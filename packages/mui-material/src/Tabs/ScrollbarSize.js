@@ -26,7 +26,7 @@ export default function ScrollbarSize(props) {
   };
 
   React.useEffect(() => {
-    const element = nodeRef.current
+    const element = nodeRef.current;
     const handleResize = debounce(() => {
       const prevHeight = scrollbarHeight.current;
       setMeasurements(element);
@@ -45,7 +45,7 @@ export default function ScrollbarSize(props) {
   }, [onChange]);
 
   React.useEffect(() => {
-    setMeasurements();
+    setMeasurements(nodeRef.current);
     onChange(scrollbarHeight.current);
   }, [onChange]);
 
