@@ -68,7 +68,7 @@ Moreover, notice in the following example that as we edit the day, the component
 **Behavior change alert**
 
 During pre-releases, using up and down arrows to update a date section would essentially update the entire field like you were navigating the calendar.
-For instance, in the previous example, updating the day value from 28 to 1 with the arrow key would also update the month to March.
+In the previous example, updating the day value from 28 to 1 would also update the month to March.
 
 On the stable version, released after the original post, each date section became independent.
 :::
