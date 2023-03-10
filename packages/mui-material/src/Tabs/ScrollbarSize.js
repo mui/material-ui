@@ -21,21 +21,22 @@ export default function ScrollbarSize(props) {
   const scrollbarHeight = React.useRef();
   const nodeRef = React.useRef(null);
 
-  const setMeasurements = () => {
-    scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
+  const setMeasurements = (element) => {
+    scrollbarHeight.current = element.offsetHeight - element.clientHeight;
   };
 
   React.useEffect(() => {
+    const element = nodeRef.current
     const handleResize = debounce(() => {
       const prevHeight = scrollbarHeight.current;
-      setMeasurements();
+      setMeasurements(element);
 
       if (prevHeight !== scrollbarHeight.current) {
         onChange(scrollbarHeight.current);
       }
     });
 
-    const containerWindow = ownerWindow(nodeRef.current);
+    const containerWindow = ownerWindow(element);
     containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
