@@ -191,10 +191,6 @@ export interface AutocompleteProps<
    */
   noOptionsText?: React.ReactNode;
   /**
-   * Callback fired when scroll bar reaches bottom of listbox.
-   */
-  onScrollToBottom?: (event: React.SyntheticEvent) => void;
-  /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).

@@ -121,6 +121,12 @@
         "description": "(event: React.SyntheticEvent) =&gt void"
       }
     },
+    "onScrollToBottom": {
+      "type": {
+        "name": "(event: React.SyntheticEvent) =&gt void",
+        "description": "(event: React.SyntheticEvent) =&gt void"
+      }
+    },
     "open": { "type": { "name": "boolean", "description": "boolean" } },
     "openOnFocus": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
@@ -193,8 +199,8 @@
     },
     "getListboxProps": {
       "type": {
-        "name": "() =&gt React.HTMLAttributes&lt;HTMLUListElement&gt",
-        "description": "() =&gt React.HTMLAttributes&lt;HTMLUListElement&gt"
+        "name": "(listboxProps?: { onScroll?: React.UIEventHandler&lt;HTMLUListElement&gt }) =&gt React.HTMLAttributes&lt;HTMLUListElement&gt",
+        "description": "(listboxProps?: { onScroll?: React.UIEventHandler&lt;HTMLUListElement&gt }) =&gt React.HTMLAttributes&lt;HTMLUListElement&gt"
       },
       "required": true
     },

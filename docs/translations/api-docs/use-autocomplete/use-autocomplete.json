@@ -31,6 +31,7 @@
     "onHighlightChange": "Callback fired when the highlight option changes.",
     "onInputChange": "Callback fired when the input value changes.",
     "onOpen": "Callback fired when the popup requests to be opened.\nUse in controlled mode (see open).",
+    "onScrollToBottom": "Callback fired when scroll bar reaches bottom of listbox.",
     "open": "If <code>true</code>, the component is shown.",
     "openOnFocus": "If <code>true</code>, the popup will open on input focus.",
     "options": "Array of options.",

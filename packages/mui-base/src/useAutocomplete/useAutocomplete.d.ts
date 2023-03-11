@@ -222,7 +222,7 @@ export interface UseAutocompleteProps<
   ) => void;
   /**
    * Callback fired when scroll bar reaches bottom of listbox.
-   * @param {React.SyntheticEvent}
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onScrollToBottom?: (event: React.SyntheticEvent) => void;
   /**
