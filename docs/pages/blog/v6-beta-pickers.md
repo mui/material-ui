@@ -67,10 +67,10 @@ Moreover, notice in the following example that as we edit the day, the component
 :::info
 **Behavior change alert**
 
-During pre-releases, using up and down arrows to update a date section would essentially update the entire field like you were navigating the calendar.
+During pre-releases, using <kbd>Arrow Up</kbd> and <kbd>Arrow Down</kbd> to update a date section would essentially update the entire field like you were navigating the calendar.
 In the previous example, updating the day value from 28 to 1 would also update the month to March.
 
-On the stable version, released after the original post, each date section became independent.
+On the stable version, released after the original post, this behavior [has been changed](https://github.com/mui/mui-x/issues/7934), and each date section became independent.
 :::
 
 For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
