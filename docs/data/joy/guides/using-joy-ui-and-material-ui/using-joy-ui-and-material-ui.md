@@ -24,10 +24,10 @@ For this case, the Material UI theme should override the Joy UI's.
 
 ```js
 import { deepmerge } from '@mui/utils';
-import { unstable_createCssVarsTheme as createCssVarsTheme } from '@mui/system';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendMuiTheme,
+  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
 import {
   extendTheme as extendJoyTheme,
@@ -81,7 +81,6 @@ const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
     lg: `var(--mui-shadowRing), ${muiTheme.shadows[8]}`,
     xl: `var(--mui-shadowRing), ${muiTheme.shadows[12]}`,
   },
-  shouldSkipGeneratingVar: (keys) => joyShouldSkipGeneratingVar(keys),
 });
 
 // Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)`
@@ -89,12 +88,32 @@ const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
 // not raw colors.
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme();
 
-// You can use your own `deepmerge` function.
-// muiTheme will deeply merge to joyTheme.
-const mergedTheme = (deepmerge(joyTheme, muiTheme) as unknown) as ReturnType<
-  typeof extendMuiTheme
->;
-
+const mergedTheme = ({
+  ...joyTheme,
+  ...muiTheme,
+  // You can use your own `deepmerge` function.
+  colorSchemes: deepmerge(joyTheme.colorSchemes, muiTheme.colorSchemes),
+  typography: {
+    ...joyTheme.typography,
+    ...muiTheme.typography
+  },
+  zIndex: {
+    ...joyTheme.zIndex,
+    ...muiTheme.zIndex
+  }
+} as unknown) as ReturnType<typeof extendMuiTheme>;
+mergedTheme.shouldSkipGeneratingVar = (keys) =>
+  joyShouldSkipGeneratingVar(keys) || muiShouldSkipGeneratingVar(keys);
+mergedTheme.generateCssVars = (colorScheme) => ({
+  css: {
+    ...joyTheme.generateCssVars(colorScheme).css,
+    ...muiTheme.generateCssVars(colorScheme).css
+  },
+  vars: (deepmerge(
+    joyTheme.generateCssVars(colorScheme).vars,
+    muiTheme.generateCssVars(colorScheme).vars
+  ) as unknown) as ThemeVars
+});
 mergedTheme.unstable_sxConfig = {
   ...joySxConfig,
   ...muiSxConfig
@@ -102,9 +121,7 @@ mergedTheme.unstable_sxConfig = {
 
 export default function App() {
   return (
-    <CssVarsProvider
-      theme={createCssVarsTheme(mergedTheme)}
-    >
+    <CssVarsProvider theme={mergedTheme}>
       ...Material UI and Joy UI components
     </CssVarsProvider>
   );
@@ -115,7 +132,7 @@ export default function App() {
 
 Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-1jkvm9?file=/demo.tsx)
+[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-vvvv59?file=/demo.tsx)
 
 ## Case B: Material UI in a Joy UI project
 
@@ -123,9 +140,9 @@ This setup uses the `CssVarsProvider` component from Joy UI and configures the M
 
 ```js
 import { deepmerge } from '@mui/utils';
-import { unstable_createCssVarsTheme as createCssVarsTheme } from '@mui/system';
 import {
   experimental_extendTheme as extendMuiTheme,
+  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
 import colors from '@mui/joy/colors';
 import {
@@ -200,15 +217,31 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
   },
 });
 
-const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendJoyTheme({
-  shouldSkipGeneratingVar: (keys) => joyShouldSkipGeneratingVar(keys)
-});
+const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendJoyTheme();
 
-// You can use your own `deepmerge` function.
-// joyTheme will deeply merge to muiTheme.
-const mergedTheme = (deepmerge(muiTheme, joyTheme) as unknown) as ReturnType<
-  typeof extendJoyTheme
->;
+const mergedTheme = ({
+  ...muiTheme,
+  ...joyTheme,
+  colorSchemes: deepmerge(muiTheme.colorSchemes, joyTheme.colorSchemes),
+  typography: {
+    ...muiTheme.typography,
+    ...joyTheme.typography
+  }
+} as unknown) as ReturnType<typeof extendJoyTheme>;
+
+mergedTheme.shouldSkipGeneratingVar = (...params) =>
+  joyShouldSkipGeneratingVar(params[0]) ||
+  muiShouldSkipGeneratingVar(params[0]);
+mergedTheme.generateCssVars = (colorScheme) => ({
+  css: {
+    ...muiTheme.generateCssVars(colorScheme).css,
+    ...joyTheme.generateCssVars(colorScheme).css
+  },
+  vars: deepmerge(
+    muiTheme.generateCssVars(colorScheme).vars,
+    joyTheme.generateCssVars(colorScheme).vars
+  )
+});
 
 mergedTheme.unstable_sxConfig = {
   ...muiSxConfig,
@@ -217,9 +250,7 @@ mergedTheme.unstable_sxConfig = {
 
 export default function App() {
   return (
-    <CssVarsProvider
-      theme={createCssVarsTheme(mergedTheme)}
-    >
+    <CssVarsProvider theme={mergedTheme}>
       ...Material UI and Joy UI components
     </CssVarsProvider>
   );
@@ -230,7 +261,7 @@ export default function App() {
 
 Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-zhcprk?file=/demo.tsx)
+[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-k86j2j?file=/demo.tsx)
 
 ## TypeScript setup
 
