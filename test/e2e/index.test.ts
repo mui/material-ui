@@ -197,7 +197,7 @@ describe('e2e', () => {
     it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
       await renderFixture('Autocomplete/HoverMaterialAutocomplete');
 
-      const combobox = (await page.$('[role="combobox"]'))!;
+      const combobox = (await screen.getByRole('combobox'))!;
       await combobox.click();
 
       const dimensions = await page.evaluate(
@@ -222,7 +222,7 @@ describe('e2e', () => {
     it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
       await renderFixture('Autocomplete/HoverJoyAutocomplete');
 
-      const combobox = (await page.$('[role="combobox"]'))!;
+      const combobox = (await screen.getByRole('combobox'))!;
       await combobox.click();
 
       const dimensions = await page.evaluate(
