@@ -421,7 +421,7 @@ export interface CssVarsTheme extends ColorSystem {
    *  then, keys = ['foo', 'bar']
    *        value = 'var(--test)'
    */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
 }
