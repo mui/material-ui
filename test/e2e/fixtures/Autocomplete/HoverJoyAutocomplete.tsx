@@ -1,5 +1,5 @@
-import { Autocomplete } from '@mui/joy';
 import * as React from 'react';
+import Autocomplete from '@mui/joy/Autocomplete';
 
 function HoverJoyAutocomplete() {
   return (
