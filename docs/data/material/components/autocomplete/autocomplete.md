@@ -228,7 +228,7 @@ The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
 :::warning
-If you are using custom input component to render in Autocomplete, pay much attension for `ref` prop.
+If you are using custom input component to render in Autocomplete, pay much attention for `ref` prop.
 You might need forwardRef for your custom input and you should pass `ref` to `inputRef` when using mui's `TextField`.
 :::
 
