@@ -200,23 +200,22 @@ describe('e2e', () => {
       const combobox = (await screen.getByRole('combobox'))!;
       await combobox.click();
 
-      const dimensions = await page.evaluate(
-        () => document.querySelector('[role="option"]')?.getBoundingClientRect()!,
-      );
+      const firstOption = (await screen.getByText('one'))!;
 
-      await page.mouse.move(dimensions.left + 10, dimensions.top + 10); // moves to 1st option
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
       await page.keyboard.down('ArrowDown'); // moves to 2nd option
       await page.keyboard.down('ArrowDown'); // moves to 3rd option
       await page.keyboard.down('ArrowDown'); // moves to 4th option
 
       await page.waitForTimeout(1000);
 
-      const focusedOption = await page.evaluate(() => {
-        const listbox = document.querySelector('[role="listbox"]')!;
-        return listbox.querySelector(`.Mui-focused`)?.innerHTML;
-      });
+      const listbox = (await screen.getByRole('listbox'))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
+      const focusedOptionText = await focusedOption.innerHTML();
 
-      expect(focusedOption).to.have.text('four');
+      expect(focusedOptionText).to.equal('four');
     });
 
     it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
@@ -225,23 +224,22 @@ describe('e2e', () => {
       const combobox = (await screen.getByRole('combobox'))!;
       await combobox.click();
 
-      const dimensions = await page.evaluate(
-        () => document.querySelector('[role="option"]')?.getBoundingClientRect()!,
-      );
+      const firstOption = (await screen.getByText('one'))!;
 
-      await page.mouse.move(dimensions.left + 10, dimensions.top + 10); // moves to 1st option
+      const dimensions = (await firstOption.boundingBox())!;
+
+      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
       await page.keyboard.down('ArrowDown'); // moves to 2nd option
       await page.keyboard.down('ArrowDown'); // moves to 3rd option
       await page.keyboard.down('ArrowDown'); // moves to 4th option
 
       await page.waitForTimeout(1000);
 
-      const focusedOption = await page.evaluate(() => {
-        const listbox = document.querySelector('[role="listbox"]')!;
-        return listbox.querySelector(`.Joy-focused`)?.innerHTML;
-      });
+      const listbox = (await screen.getByRole('listbox'))!;
+      const focusedOption = (await listbox.$('.Joy-focused'))!;
+      const focusedOptionText = await focusedOption.innerHTML();
 
-      expect(focusedOption).to.have.text('four');
+      expect(focusedOptionText).to.equal('four');
     });
   });
 
