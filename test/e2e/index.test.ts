@@ -7,8 +7,6 @@ import type {
   MatcherOptions,
   SelectorMatcherOptions,
 } from '@testing-library/dom';
-import { autocompleteClasses as materialAutocompleteClasses } from '@mui/material/Autocomplete';
-import { autocompleteClasses as joyAutocompleteClasses } from '@mui/joy/Autocomplete';
 import '../utils/initPlaywrightMatchers';
 
 function sleep(timeoutMS: number): Promise<void> {
@@ -214,7 +212,7 @@ describe('e2e', () => {
       await page.waitForTimeout(1000);
 
       const listbox = (await screen.getByRole('listbox'))!;
-      const focusedOption = (await listbox.$(`.${materialAutocompleteClasses.focused}`))!;
+      const focusedOption = (await listbox.$('.Mui-focused'))!;
       const focusedOptionText = await focusedOption.innerHTML();
 
       expect(focusedOptionText).to.equal('four');
@@ -238,7 +236,7 @@ describe('e2e', () => {
       await page.waitForTimeout(1000);
 
       const listbox = (await screen.getByRole('listbox'))!;
-      const focusedOption = (await listbox.$(`.${joyAutocompleteClasses.focused}`))!;
+      const focusedOption = (await listbox.$('.Joy-focused'))!;
       const focusedOptionText = await focusedOption.innerHTML();
 
       expect(focusedOptionText).to.equal('four');
