@@ -1,36 +1,7 @@
 import * as React from 'react';
 import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
+import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
 
-export interface UseTabsParameters {
-  /**
-   * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
-   */
-  value?: string | number | false;
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue?: string | number | false;
-  /**
-   * The component orientation (layout flow direction).
-   * @default 'horizontal'
-   */
-  orientation?: 'horizontal' | 'vertical';
-  /**
-   * The direction of the text.
-   * @default 'ltr'
-   */
-  direction?: 'ltr' | 'rtl';
-  /**
-   * Callback invoked when new value is being set.
-   */
-  onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
-  /**
-   * If `true` the selected tab changes on focus. Otherwise it only
-   * changes on activation.
-   */
-  selectionFollowsFocus?: boolean;
-}
 /**
  *
  * Demos:
@@ -41,7 +12,7 @@ export interface UseTabsParameters {
  *
  * - [useTabs API](https://mui.com/base/api/use-tabs/)
  */
-function useTabs(parameters: UseTabsParameters) {
+function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   const {
     value: valueProp,
     defaultValue,
