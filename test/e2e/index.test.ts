@@ -216,7 +216,7 @@ describe('e2e', () => {
         return listbox.querySelector(`.Mui-focused`)?.innerHTML;
       });
 
-      expect(focusedOption).to.equal('four');
+      expect(focusedOption).to.have.text('four');
     });
 
     it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
@@ -241,7 +241,7 @@ describe('e2e', () => {
         return listbox.querySelector(`.Joy-focused`)?.innerHTML;
       });
 
-      expect(focusedOption).to.equal('four');
+      expect(focusedOption).to.have.text('four');
     });
   });
 
