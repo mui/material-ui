@@ -1000,6 +1000,12 @@ export default function useAutocomplete(props) {
     }
   };
 
+  const handleInputMouseDown = (event) => {
+    if (inputValue === '' || !open) {
+      handlePopupIndicator(event);
+    }
+  };
+
   // Focus the input when interacting with the combobox
   const handleClick = (event) => {
     inputRef.current.focus();
@@ -1016,12 +1022,6 @@ export default function useAutocomplete(props) {
 
     if (event.currentTarget === event.target) {
       handleInputMouseDown();
-    }
-  };
-
-  const handleInputMouseDown = (event) => {
-    if (inputValue === '' || !open) {
-      handlePopupIndicator(event);
     }
   };
 
