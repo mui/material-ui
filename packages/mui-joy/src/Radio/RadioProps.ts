@@ -6,6 +6,39 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label';
 
+export interface RadioSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the radio.
+   * @default 'span'
+   */
+  radio: React.ElementType;
+  /**
+   * The component used to render the icon.
+   * @default 'span'
+   */
+  icon: React.ElementType;
+  /**
+   * The component used to render the action.
+   * @default 'span'
+   */
+  action: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component used to render the label.
+   * @default 'label'
+   */
+  label: React.ElementType;
+}
+
 export interface RadioPropsVariantOverrides {}
 
 export interface RadioPropsColorOverrides {}
@@ -13,7 +46,7 @@ export interface RadioPropsColorOverrides {}
 export interface RadioPropsSizeOverrides {}
 
 export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  RadioSlot,
+  RadioSlots,
   {
     root: SlotProps<'span', {}, RadioOwnerState>;
     radio: SlotProps<'span', {}, RadioOwnerState>;
@@ -57,7 +90,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
       /**
        * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
        * This prop is useful for composing Radio with ListItem component.
-       * @default false;
+       * @default false
        */
       overlay?: boolean;
       /**
@@ -74,7 +107,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       uncheckedIcon?: React.ReactNode;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, RadioPropsVariantOverrides>;

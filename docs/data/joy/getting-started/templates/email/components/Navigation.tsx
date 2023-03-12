@@ -18,7 +18,7 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 
 export default function EmailNav() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -95,7 +95,7 @@ export default function EmailNav() {
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decorator-size': '32px',
+            '--List-decoratorSize': '32px',
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >

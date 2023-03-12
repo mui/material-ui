@@ -50,7 +50,16 @@ const TabsRoot = styled(SheetRoot, {
     alignItems: 'flex-start',
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tabs API](https://mui.com/joy-ui/api/tabs/)
+ */
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -60,7 +69,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const {
     children,
     value: valueProp,
-    defaultValue = valueProp === undefined ? 0 : undefined,
+    defaultValue: defaultValueProp,
     orientation = 'horizontal',
     direction = 'ltr',
     component,
@@ -73,7 +82,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
-
+  const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
   const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
@@ -156,6 +165,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   selectionFollowsFocus: PropTypes.bool,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -175,7 +185,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

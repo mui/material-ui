@@ -169,20 +169,20 @@ const TableRoot = styled('table', {
         verticalAlign: 'bottom',
         // Automatic radius adjustment with Sheet
         '&:first-child': {
-          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
-          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
       '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
         '&:first-child': {
-          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
-          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
     },
@@ -268,7 +268,16 @@ const TableRoot = styled('table', {
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Table](https://mui.com/joy-ui/react-table/)
+ *
+ * API:
+ *
+ * - [Table API](https://mui.com/joy-ui/api/table/)
+ */
 const Table = React.forwardRef(function Table(inProps, ref) {
   const props = useThemeProps<typeof inProps & TableProps>({
     props: inProps,
@@ -401,7 +410,7 @@ Table.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

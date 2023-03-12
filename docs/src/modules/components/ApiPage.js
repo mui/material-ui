@@ -169,6 +169,16 @@ export default function ApiPage(props) {
     slots: componentSlots,
   } = pageContent;
 
+  const isJoyComponent = filename.includes('mui-joy');
+  const defaultPropsLink = isJoyComponent
+    ? '/joy-ui/customization/themed-components/#default-props'
+    : '/material-ui/customization/theme-components/#default-props';
+  const styleOverridesLink = isJoyComponent
+    ? '/joy-ui/customization/themed-components/#style-overrides'
+    : '/material-ui/customization/theme-components/#global-style-overrides';
+  const extendVariantsLink = isJoyComponent
+    ? '/joy-ui/customization/themed-components/#extend-variants'
+    : '';
   const {
     componentDescription,
     componentDescriptionToc = [],
@@ -177,6 +187,17 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
+  const slotExtraDescription = extendVariantsLink
+    ? t('api-docs.slotDescription').replace(/{{extendVariantsLink}}/, extendVariantsLink)
+    : '';
+  if (slotDescriptions && slotExtraDescription) {
+    Object.keys(slotDescriptions).forEach((slot) => {
+      if (slotDescriptions[slot].match(slotExtraDescription)) {
+        return;
+      }
+      slotDescriptions[slot] += ` ${slotExtraDescription}`;
+    });
+  }
 
   const source = filename
     .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
@@ -279,15 +300,18 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentStyles.name && (
+        {(componentStyles.name || isJoyComponent) && (
           <React.Fragment>
             <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.styleOverrides').replace(
-                  /{{componentStyles\.name}}/,
-                  componentStyles.name,
-                ),
+                __html: t('api-docs.styleOverrides')
+                  .replace(
+                    /{{componentStyles\.name}}/,
+                    isJoyComponent ? `Joy${componentName}` : componentStyles.name,
+                  )
+                  .replace(/{{defaultPropsLink}}/, defaultPropsLink)
+                  .replace(/{{styleOverridesLink}}/, styleOverridesLink),
               }}
             />
           </React.Fragment>

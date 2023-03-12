@@ -8,6 +8,7 @@ export type {
   PopperUnstyledTypeMap,
   PopperUnstyledProps,
   PopperUnstyledRootSlotProps,
+  PopperUnstyledRootSlotPropsOverrides,
 } from './PopperUnstyled.types';
 export {
   default as popperUnstyledClasses,

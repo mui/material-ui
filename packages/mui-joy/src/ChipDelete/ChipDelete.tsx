@@ -37,10 +37,10 @@ const ChipDeleteRoot = styled('button', {
     '--Icon-margin': 'initial', // prevent overrides from parent
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
     cursor: 'pointer',
-    width: 'var(--Chip-delete-size, 2rem)',
-    height: 'var(--Chip-delete-size, 2rem)',
-    borderRadius: 'var(--Chip-delete-radius, 50%)',
-    margin: 'var(--Chip-delete-margin)',
+    width: 'var(--Chip-deleteSize, 2rem)',
+    height: 'var(--Chip-deleteSize, 2rem)',
+    borderRadius: 'var(--Chip-deleteRadius, 50%)',
+    margin: 'var(--Chip-deleteMargin)',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -65,7 +65,16 @@ const chipVariantMapping = {
   soft: 'solid',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [ChipDelete API](https://mui.com/joy-ui/api/chip-delete/)
+ */
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipDeleteProps>({
     props: inProps,
@@ -197,7 +206,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

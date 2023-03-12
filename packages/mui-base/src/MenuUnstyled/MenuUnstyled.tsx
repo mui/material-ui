@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
+import MenuUnstyledContext from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
@@ -99,20 +99,10 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     className: classes.listbox,
   });
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      ...contextValue,
-      open,
-    }),
-    [contextValue, open],
-  );
-
   return (
     <Root {...rootProps}>
       <Listbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={menuContextValue}>
-          {children}
-        </MenuUnstyledContext.Provider>
+        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
       </Listbox>
     </Root>
   );

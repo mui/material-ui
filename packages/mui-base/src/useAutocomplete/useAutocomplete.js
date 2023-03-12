@@ -973,7 +973,12 @@ export default function useAutocomplete(props) {
     });
   };
 
-  const handleOptionTouchStart = () => {
+  const handleOptionTouchStart = (event) => {
+    setHighlightedIndex({
+      event,
+      index: Number(event.currentTarget.getAttribute('data-option-index')),
+      reason: 'touch',
+    });
     isTouch.current = true;
   };
 
@@ -1151,6 +1156,7 @@ export default function useAutocomplete(props) {
     inputValue,
     value,
     dirty,
+    expanded: popupOpen && anchorEl,
     popupOpen,
     focused: focused || focusedTag !== -1,
     anchorEl,
