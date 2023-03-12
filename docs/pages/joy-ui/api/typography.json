@@ -41,12 +41,6 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiTypography-endDecorator"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'a'",
@@ -57,6 +51,12 @@
       "description": "The component used to render the start decorator.",
       "default": "'span'",
       "class": ".MuiTypography-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiTypography-endDecorator"
     }
   ],
   "spread": true,

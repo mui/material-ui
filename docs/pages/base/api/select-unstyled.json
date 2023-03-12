@@ -34,6 +34,12 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'button'",
+      "class": ".MuiSelect-root"
+    },
+    {
       "name": "listbox",
       "description": "The component used to render the listbox.",
       "default": "'ul'",
@@ -44,12 +50,6 @@
       "description": "The component used to render the popper.",
       "default": "PopperUnstyled",
       "class": ".MuiSelect-popper"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'button'",
-      "class": ".MuiSelect-root"
     }
   ],
   "spread": true,

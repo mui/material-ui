@@ -45,16 +45,16 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "input",
-      "description": "The component used to render the input.",
-      "default": "'input'",
-      "class": ".MuiInput-input"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'div'",
       "class": ".MuiInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiInput-input"
     },
     {
       "name": "textarea",

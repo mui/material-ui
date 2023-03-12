@@ -13,8 +13,8 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "endAction": "The component used to render the end action.",
     "root": "The component used to render the root.",
-    "startAction": "The component used to render the start action."
+    "startAction": "The component used to render the start action.",
+    "endAction": "The component used to render the end action."
   }
 }

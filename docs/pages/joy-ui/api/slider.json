@@ -105,10 +105,28 @@
   },
   "slots": [
     {
-      "name": "input",
-      "description": "The component used to render the input.",
-      "default": "'input'",
-      "class": ".MuiSlider-input"
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiSlider-root"
+    },
+    {
+      "name": "track",
+      "description": "The component used to render the track.",
+      "default": "'span'",
+      "class": ".MuiSlider-track"
+    },
+    {
+      "name": "rail",
+      "description": "The component used to render the rail.",
+      "default": "'span'",
+      "class": ".MuiSlider-rail"
+    },
+    {
+      "name": "thumb",
+      "description": "The component used to render the thumb.",
+      "default": "'span'",
+      "class": ".MuiSlider-thumb"
     },
     {
       "name": "mark",
@@ -123,34 +141,16 @@
       "class": ".MuiSlider-markLabel"
     },
     {
-      "name": "rail",
-      "description": "The component used to render the rail.",
-      "default": "'span'",
-      "class": ".MuiSlider-rail"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'span'",
-      "class": ".MuiSlider-root"
-    },
-    {
-      "name": "thumb",
-      "description": "The component used to render the thumb.",
-      "default": "'span'",
-      "class": ".MuiSlider-thumb"
-    },
-    {
-      "name": "track",
-      "description": "The component used to render the track.",
-      "default": "'span'",
-      "class": ".MuiSlider-track"
-    },
-    {
       "name": "valueLabel",
       "description": "The component used to render the value label.",
       "default": "'span'",
       "class": ".MuiSlider-valueLabel"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiSlider-input"
     }
   ],
   "spread": false,

@@ -21,7 +21,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "backdrop": "The component used to render the backdrop.",
-    "root": "The component used to render the root."
+    "root": "The component used to render the root.",
+    "backdrop": "The component used to render the backdrop."
   }
 }

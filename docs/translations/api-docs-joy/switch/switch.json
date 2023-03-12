@@ -16,12 +16,12 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "action": "The component used to render the action.",
-    "endDecorator": "The component used to render the end decorator.",
-    "input": "The component used to render the input.",
     "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator.",
     "thumb": "The component used to render the thumb.",
-    "track": "The component used to render the track."
+    "action": "The component used to render the action.",
+    "input": "The component used to render the input.",
+    "track": "The component used to render the track.",
+    "startDecorator": "The component used to render the start decorator.",
+    "endDecorator": "The component used to render the end decorator."
   }
 }

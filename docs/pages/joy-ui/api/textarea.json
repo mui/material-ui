@@ -34,16 +34,16 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'div'",
-      "class": ".MuiTextarea-endDecorator"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'div'",
       "class": ".MuiTextarea-root"
+    },
+    {
+      "name": "textarea",
+      "description": "The component used to render the textarea.",
+      "default": "'textarea'",
+      "class": ".MuiTextarea-textarea"
     },
     {
       "name": "startDecorator",
@@ -52,10 +52,10 @@
       "class": ".MuiTextarea-startDecorator"
     },
     {
-      "name": "textarea",
-      "description": "The component used to render the textarea.",
-      "default": "'textarea'",
-      "class": ".MuiTextarea-textarea"
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-endDecorator"
     }
   ],
   "spread": false,

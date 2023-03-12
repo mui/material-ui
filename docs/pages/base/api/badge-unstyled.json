@@ -22,16 +22,16 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "badge",
-      "description": "The component used to render the badge.",
-      "default": "'span'",
-      "class": ".MuiBadge-badge"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'span'",
       "class": ".MuiBadge-root"
+    },
+    {
+      "name": "badge",
+      "description": "The component used to render the badge.",
+      "default": "'span'",
+      "class": ".MuiBadge-badge"
     }
   ],
   "spread": true,

@@ -35,12 +35,6 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "progress",
-      "description": "The component used to render the progress.",
-      "default": "'circle'",
-      "class": ".MuiCircularProgress-progress"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'span'",
@@ -57,6 +51,12 @@
       "description": "The component used to render the track.",
       "default": "'circle'",
       "class": ".MuiCircularProgress-track"
+    },
+    {
+      "name": "progress",
+      "description": "The component used to render the progress.",
+      "default": "'circle'",
+      "class": ".MuiCircularProgress-progress"
     }
   ],
   "spread": true,

@@ -35,12 +35,6 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiAlert-endDecorator"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'div'",
@@ -51,6 +45,12 @@
       "description": "The component used to render the start decorator.",
       "default": "'span'",
       "class": ".MuiAlert-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiAlert-endDecorator"
     }
   ],
   "spread": true,

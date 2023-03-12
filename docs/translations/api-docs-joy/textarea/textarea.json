@@ -13,9 +13,9 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "endDecorator": "The component used to render the end decorator.",
     "root": "The component used to render the root.",
+    "textarea": "The component used to render the textarea.",
     "startDecorator": "The component used to render the start decorator.",
-    "textarea": "The component used to render the textarea."
+    "endDecorator": "The component used to render the end decorator."
   }
 }

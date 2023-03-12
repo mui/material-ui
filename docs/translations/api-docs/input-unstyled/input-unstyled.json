@@ -26,8 +26,8 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "input": "The component used to render the input.",
     "root": "The component used to render the root.",
+    "input": "The component used to render the input.",
     "textarea": "The component used to render the textarea."
   }
 }

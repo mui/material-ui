@@ -37,16 +37,10 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "action",
-      "description": "The component used to render the action.",
-      "default": "'button'",
-      "class": ".MuiChip-action"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiChip-endDecorator"
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiChip-root"
     },
     {
       "name": "label",
@@ -55,16 +49,22 @@
       "class": ".MuiChip-label"
     },
     {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'div'",
-      "class": ".MuiChip-root"
+      "name": "action",
+      "description": "The component used to render the action.",
+      "default": "'button'",
+      "class": ".MuiChip-action"
     },
     {
       "name": "startDecorator",
       "description": "The component used to render the start decorator.",
       "default": "'span'",
       "class": ".MuiChip-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiChip-endDecorator"
     }
   ],
   "spread": true,
