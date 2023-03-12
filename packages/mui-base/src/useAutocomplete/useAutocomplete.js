@@ -1001,7 +1001,7 @@ export default function useAutocomplete(props) {
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = () => {
+  const handleClick = (event) => {
     inputRef.current.focus();
 
     if (
@@ -1013,6 +1013,10 @@ export default function useAutocomplete(props) {
     }
 
     firstFocus.current = false;
+
+    if (event.currentTarget === event.target) {
+    handleInputMouseDown();
+     }
   };
 
   const handleInputMouseDown = (event) => {
@@ -1025,9 +1029,6 @@ export default function useAutocomplete(props) {
   const handleMouseDown = (event) => {
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
-    }
-    if (event.currentTarget === event.target) {
-      handleInputMouseDown();
     }
   };
 

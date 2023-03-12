@@ -977,7 +977,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const root = document.querySelector(`.${classes.root}`);
-      fireEvent.mouseDown(root);
+      fireEvent.click(root);
       expect(handleOpen.callCount).to.equal(1);
     });
 
