@@ -18,6 +18,11 @@ const css = `
     background: #007FFF;
   }
 
+  .my-switch.focused .thumb {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+  }
+
   .my-switch .thumb {
     display: block;
     width: 14px;
@@ -51,7 +56,9 @@ const css = `
 export default function SlotPropsCallback() {
   const slotProps = {
     root: (ownerState) => ({
-      className: `my-switch ${ownerState.checked ? 'on' : 'off'}`,
+      className: `my-switch ${ownerState.checked ? 'on' : 'off'} ${
+        ownerState.focusVisible ? 'focused' : ''
+      }`,
     }),
     thumb: { className: 'thumb' },
     input: { className: 'input' },

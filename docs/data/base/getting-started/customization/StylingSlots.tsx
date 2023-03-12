@@ -34,12 +34,12 @@ const Thumb = styled('span')`
   position: relative;
   transition: all 200ms ease;
 
-  &.${switchUnstyledClasses.focusVisible} {
+  .${switchUnstyledClasses.focusVisible} & {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  &.${switchUnstyledClasses.checked} {
+  .${switchUnstyledClasses.checked} & {
     left: 14px;
     top: 3px;
     background-color: #fff;
