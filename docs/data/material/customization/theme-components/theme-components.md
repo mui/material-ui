@@ -4,7 +4,7 @@
 
 ## Theme default props
 
-Every Material UI component has default preset values for each of its props.
+Every Material UI component has default values for each of its props.
 To change these default values, use the `defaultProps` key exposed in the theme's `components` key:
 
 ```js
