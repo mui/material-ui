@@ -84,11 +84,13 @@ See our [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css
 
 #### Styled components
 
-If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/overview/) or [Emotion](https://emotion.sh/docs/introduction), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo above](#overriding-subcomponent-slots).
+If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI System](/system/getting-started/overview/) or [Emotion](https://emotion.sh/docs/introduction)), the best method is to provide the styled subcomponents using the [`slots` prop](#overriding-subcomponent-slots), as shown in the [demo below](#overriding-subcomponent-slots).
 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
 {{"demo": "StylingSlotsSingleComponent.js", "defaultCodeOpen": true}}
+
+---
 
 ### Applying custom CSS rules
 
