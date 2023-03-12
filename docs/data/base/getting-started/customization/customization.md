@@ -19,6 +19,9 @@ Additionally, you can import a `[componentName]Classes` object that describes al
 
 {{"demo": "StylingCustomCss.js", "defaultCodeOpen": true}}
 
+If you don't use these classes, you can clean up the DOM by disabling them.
+See [Disabling default CSS classes](#disabling-default-css-classes) for instructions.
+
 ## Overriding subcomponent slots
 
 If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
@@ -196,3 +199,19 @@ If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
 {{"demo": "StylingSlotsSingleComponent.js", "defaultCodeOpen": true}}
+
+## Disabling default CSS classes
+
+If you don't need the built-in classes on components, you may disable them.
+This will clean up the DOM and can be useful especially if you apply your own classes or style components using a CSS-in-JS solution.
+To do this, wrap your components in a ClassNameConfigurator component (imported from `@mui/base/utils`):
+
+```tsx
+<ClassNameConfigurator disableDefaultClasses>
+  <ButtonUnstyled>I'm classless!</ButtonUnstyled>
+</ClassNameConfigurator>
+```
+
+Inspect the elements in the following demo to see the difference:
+
+{{"demo": "DisabledDefaultClasses.js"}}

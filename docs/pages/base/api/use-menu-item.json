@@ -13,7 +13,30 @@
       }
     }
   },
-  "returnValue": {},
+  "returnValue": {
+    "disabled": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "focusVisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseMenuItemRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseMenuItemRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
+    "highlighted": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    }
+  },
   "name": "useMenuItem",
   "filename": "/packages/mui-base/src/useMenuItem/useMenuItem.ts",
   "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Unstyled Menu</a></li></ul>"

@@ -4,7 +4,7 @@
     "checked": "If <code>true</code>, the component is checked.",
     "checkedIcon": "The icon to display when the component is checked.",
     "className": "Class name applied to the root element.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "defaultChecked": "The default checked state. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "disableIcon": "If <code>true</code>, the checked icon is removed and the selected variant is applied on the <code>action</code> element instead.",
@@ -16,11 +16,18 @@
     "overlay": "If <code>true</code>, the root element&#39;s position is set to initial which allows the action area to fill the nearest positioned parent. This prop is useful for composing Checkbox with ListItem component.",
     "readOnly": "If <code>true</code>, the component is read only.",
     "required": "If <code>true</code>, the <code>input</code> element is required.",
-    "size": "The size of the component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "uncheckedIcon": "The icon when <code>checked</code> is false.",
     "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component used to render the action.",
+    "checkbox": "The component used to render the checkbox.",
+    "input": "The component used to render the input.",
+    "label": "The component used to render the label.",
+    "root": "The component used to render the root."
+  }
 }

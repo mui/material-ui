@@ -124,8 +124,8 @@ const CheckboxAction = styled('span', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
-    borderRadius: `var(--Checkbox-action-radius, ${
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    borderRadius: `var(--Checkbox-actionRadius, ${
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',
@@ -485,7 +485,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

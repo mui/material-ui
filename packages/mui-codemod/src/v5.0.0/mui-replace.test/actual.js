@@ -2,7 +2,7 @@
 import { createTheme, alpha } from '@material-ui/core/styles';
 import { Button, Tooltip } from '@material-ui/core';
 import Alert from '@material-ui/core/Alert';
-import useAutoComplete from '@material-ui/core/useAutocomplete';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 
 // styles
 import { makeStyles } from '@material-ui/styles';

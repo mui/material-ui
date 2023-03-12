@@ -2,14 +2,21 @@
   "componentDescription": "Chips represent complex entities in small blocks, such as a contact.",
   "propDescriptions": {
     "children": "The content of the component.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "endDecorator": "Element placed after the children.",
     "onClick": "Element action click handler.",
-    "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;.",
+    "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "startDecorator": "Element placed before the children.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "action": "The component used to render the action.",
+    "endDecorator": "The component used to render the end decorator.",
+    "label": "The component used to render the label.",
+    "root": "The component used to render the root.",
+    "startDecorator": "The component used to render the start decorator."
+  }
 }

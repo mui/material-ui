@@ -33,10 +33,36 @@
   },
   "name": "CircularProgress",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "progress",
+      "description": "The component used to render the progress.",
+      "default": "'circle'",
+      "class": ".MuiCircularProgress-progress"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiCircularProgress-root"
+    },
+    {
+      "name": "svg",
+      "description": "The component used to render the svg.",
+      "default": "'svg'",
+      "class": ".MuiCircularProgress-svg"
+    },
+    {
+      "name": "track",
+      "description": "The component used to render the track.",
+      "default": "'circle'",
+      "class": ".MuiCircularProgress-track"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/CircularProgress/CircularProgress.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-circular-progres/\">Circular Progress</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-circular-progress/\">Circular Progress</a></li></ul>",
   "cssComponent": false
 }

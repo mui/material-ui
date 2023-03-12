@@ -44,6 +44,44 @@
   },
   "name": "Radio",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "action",
+      "description": "The component used to render the action.",
+      "default": "'span'",
+      "class": ".MuiRadio-action"
+    },
+    {
+      "name": "icon",
+      "description": "The component used to render the icon.",
+      "default": "'span'",
+      "class": ".MuiRadio-icon"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiRadio-input"
+    },
+    {
+      "name": "label",
+      "description": "The component used to render the label.",
+      "default": "'label'",
+      "class": ".MuiRadio-label"
+    },
+    {
+      "name": "radio",
+      "description": "The component used to render the radio.",
+      "default": "'span'",
+      "class": ".MuiRadio-radio"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiRadio-root"
+    }
+  ],
   "spread": false,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Radio/Radio.tsx",

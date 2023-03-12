@@ -6,12 +6,40 @@ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
+export interface CheckboxSlots {
+  /**
+   * The component used to render the root.
+   * @default 'span'
+   */
+  root: React.ElementType;
+  /**
+   * The component used to render the checkbox.
+   * @default 'span'
+   */
+  checkbox: React.ElementType;
+  /**
+   * The component used to render the action.
+   * @default 'span'
+   */
+  action: React.ElementType;
+  /**
+   * The component used to render the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component used to render the label.
+   * @default 'label'
+   */
+  label: React.ElementType;
+}
+
 export interface CheckboxPropsVariantOverrides {}
 export interface CheckboxPropsColorOverrides {}
 export interface CheckboxPropsSizeOverrides {}
 
 export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  CheckboxSlot,
+  CheckboxSlots,
   {
     root: SlotProps<'span', {}, CheckboxOwnerState>;
     checkbox: SlotProps<'span', {}, CheckboxOwnerState>;
@@ -81,7 +109,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, CheckboxPropsVariantOverrides>;

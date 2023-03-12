@@ -48,6 +48,38 @@
   },
   "name": "Checkbox",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "action",
+      "description": "The component used to render the action.",
+      "default": "'span'",
+      "class": ".MuiCheckbox-action"
+    },
+    {
+      "name": "checkbox",
+      "description": "The component used to render the checkbox.",
+      "default": "'span'",
+      "class": ".MuiCheckbox-checkbox"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiCheckbox-input"
+    },
+    {
+      "name": "label",
+      "description": "The component used to render the label.",
+      "default": "'label'",
+      "class": ".MuiCheckbox-label"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'span'",
+      "class": ".MuiCheckbox-root"
+    }
+  ],
   "spread": false,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Checkbox/Checkbox.tsx",

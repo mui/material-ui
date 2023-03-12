@@ -6,6 +6,7 @@
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
       }
     },
+    "autoFocus": { "type": { "name": "bool" } },
     "color": {
       "type": {
         "name": "union",
@@ -13,13 +14,18 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
+    "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endDecorator": { "type": { "name": "node" } },
     "getSerializedValue": { "type": { "name": "func" } },
     "indicator": { "type": { "name": "node" } },
+    "listboxId": { "type": { "name": "string" } },
+    "listboxOpen": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
+    "onListboxOpenChange": { "type": { "name": "func" } },
     "placeholder": { "type": { "name": "node" } },
     "renderValue": { "type": { "name": "func" } },
     "size": {
@@ -45,6 +51,44 @@
   },
   "name": "Select",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "button",
+      "description": "The component used to render the button.",
+      "default": "'button'",
+      "class": ".MuiSelect-button"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiSelect-endDecorator"
+    },
+    {
+      "name": "indicator",
+      "description": "The component used to render the indicator.",
+      "default": "'span'",
+      "class": ".MuiSelect-indicator"
+    },
+    {
+      "name": "listbox",
+      "description": "The component used to render the listbox.",
+      "default": "'ul'",
+      "class": ".MuiSelect-listbox"
+    },
+    {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiSelect-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiSelect-startDecorator"
+    }
+  ],
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Select/Select.tsx",

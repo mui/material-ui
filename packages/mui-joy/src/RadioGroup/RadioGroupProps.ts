@@ -66,7 +66,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      */
     value?: any;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: RadioProps['variant'];
