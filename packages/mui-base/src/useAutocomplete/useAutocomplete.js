@@ -1015,8 +1015,8 @@ export default function useAutocomplete(props) {
     firstFocus.current = false;
 
     if (event.currentTarget === event.target) {
-    handleInputMouseDown();
-     }
+      handleInputMouseDown();
+    }
   };
 
   const handleInputMouseDown = (event) => {
