@@ -35,7 +35,6 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.tsx",

@@ -44,9 +44,10 @@ export interface ReactApi extends ReactDocgenApi {
   spread: boolean | undefined;
   /**
    * If `true`, the component supports theme default props customization.
-   * If `undefined`, we couldn't infer this information.
+   * If `null`, we couldn't infer this information.
+   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
    */
-  themeDefaultProps: boolean | undefined;
+  themeDefaultProps: boolean | undefined | null;
   /**
    * result of path.readFileSync from the `filename` in utf-8
    */
@@ -548,7 +549,10 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeScriptProject) => {
+export default async function generateComponentApi(
+  componentInfo: ComponentInfo,
+  project: TypeScriptProject,
+) {
   const {
     filename,
     name,
@@ -674,6 +678,4 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   }
 
   return reactApi;
-};
-
-export default generateComponentApi;
+}

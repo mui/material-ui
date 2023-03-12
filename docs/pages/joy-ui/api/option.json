@@ -29,6 +29,7 @@
   "name": "Option",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": null,
   "muiName": "JoyOption",
   "filename": "/packages/mui-joy/src/Option/Option.tsx",
   "inheritance": null,

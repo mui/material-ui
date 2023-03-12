@@ -64,7 +64,6 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",

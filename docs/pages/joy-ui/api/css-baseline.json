@@ -6,6 +6,7 @@
   "name": "CssBaseline",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": null,
   "muiName": "JoyCssBaseline",
   "filename": "/packages/mui-joy/src/CssBaseline/CssBaseline.tsx",
   "inheritance": null,

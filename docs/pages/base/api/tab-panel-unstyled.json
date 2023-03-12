@@ -26,7 +26,6 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTabPanel",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabPanelUnstyled/TabPanelUnstyled.tsx",

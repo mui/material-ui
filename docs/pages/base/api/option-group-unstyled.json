@@ -41,7 +41,6 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiOptionGroup",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionGroupUnstyled/OptionGroupUnstyled.tsx",

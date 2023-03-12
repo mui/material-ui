@@ -7,6 +7,7 @@
   "name": "NoSsr",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "themeDefaultProps": null,
   "muiName": "MuiNoSsr",
   "filename": "/packages/mui-base/src/NoSsr/NoSsr.tsx",
   "inheritance": null,

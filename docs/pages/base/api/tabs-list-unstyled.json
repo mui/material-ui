@@ -22,7 +22,6 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTabsList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsListUnstyled/TabsListUnstyled.tsx",

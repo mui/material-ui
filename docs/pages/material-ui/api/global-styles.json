@@ -10,6 +10,7 @@
   "name": "GlobalStyles",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": null,
   "muiName": "MuiGlobalStyles",
   "filename": "/packages/mui-material/src/GlobalStyles/GlobalStyles.js",
   "inheritance": null,

@@ -30,7 +30,6 @@
     }
   ],
   "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/TabUnstyled/TabUnstyled.tsx",
