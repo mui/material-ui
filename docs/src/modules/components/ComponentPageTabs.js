@@ -64,7 +64,7 @@ export default function ComponentPageTabs(props) {
           zIndex: 1000,
         }}
       >
-        <Tab as={Link} shallow href={`${pathname}demos`} label="Demos" value="demos" />
+        <Tab component={Link} shallow href={`${pathname}demos`} label="Demos" value="demos" />
         <Tab
           as={Link}
           shallow
