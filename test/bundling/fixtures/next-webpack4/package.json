@@ -24,6 +24,7 @@
   "devDependencies": {
     "concurrently": "7.6.0",
     "eslint": "7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "playwright": "1.31.2"
   }
 }
