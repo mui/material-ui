@@ -56,10 +56,11 @@ export default function ComponentPageTabs(props) {
           }
         }}
       >
-        <Tab component={Link} shallow href={demosHref} label="Demos" value="" />
+        <Tab component={Link} shallow scroll href={demosHref} label="Demos" value="" />
         <Tab
           component={Link}
           shallow
+          scroll
           href={componentsHref}
           label="Component API"
           value="component-api"
@@ -68,6 +69,7 @@ export default function ComponentPageTabs(props) {
           <Tab
             component={Link}
             shallow
+            scroll
             href={hooksHref}
             label="Hook API"
             value="hook-api"
