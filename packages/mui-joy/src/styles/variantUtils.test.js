@@ -254,29 +254,38 @@ describe('variant utils', () => {
 
   describe('createVariants', () => {
     it('should create plain style', () => {
+      const color = '#054DA7';
+      const hoverBg = '#f9f9f9';
+      const disabledColor = '#e5e5e5';
       const result = createVariants(
         {
           primary: {
+            600: color,
             plainColor: `var(--joy-palette-primary-600)`,
-            plainHoverBg: `var(--joy-palette-primary-100)`,
-            plainActiveBg: `var(--joy-palette-primary-200)`,
-            plainDisabledColor: `var(--joy-palette-primary-200)`,
+            plainHoverBg: `var(--joy-palette-neutral-100)`,
+            plainActiveBg: `var(--joy-palette-unknown-100)`,
+            plainDisabledColor: `var(--joy-palette-divider)`,
           },
+          neutral: {
+            100: hoverBg,
+          },
+          divider: disabledColor,
         },
         createGetCssVar(''),
       );
       expect(result.plain.primary).to.deep.equal({
         '--variant-borderWidth': '0px',
-        color: 'var(--palette-primary-plainColor)',
+        color: `var(--palette-primary-plainColor, ${color})`,
       });
       expect(result.plainHover.primary).to.deep.equal({
-        backgroundColor: 'var(--palette-primary-plainHoverBg)',
+        backgroundColor: `var(--palette-primary-plainHoverBg, ${hoverBg})`,
       });
       expect(result.plainActive.primary).to.deep.equal({
-        backgroundColor: 'var(--palette-primary-plainActiveBg)',
+        // don't add default value if it could not find from the color palette.
+        backgroundColor: `var(--palette-primary-plainActiveBg)`,
       });
       expect(result.plainDisabled.primary).to.deep.equal({
-        color: 'var(--palette-primary-plainDisabledColor)',
+        color: `var(--palette-primary-plainDisabledColor, ${disabledColor})`,
         cursor: 'default',
         pointerEvents: 'none',
       });

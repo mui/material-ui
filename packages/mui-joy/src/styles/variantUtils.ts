@@ -143,15 +143,17 @@ export const createVariants = (
               result[variantName][color] = result[variantName][color] || {};
 
               let defaultValue;
-              const cssVarMatches = (value as string).match(/^var\(--(.*)\)$/);
               if ((color as string) !== 'context') {
+                const cssVarMatches = (value as string).match(/-palette-([^-)]+)-?([^-)]+)?/);
                 if (cssVarMatches) {
-                  const tokens = cssVarMatches[1].split('-');
-                  const paletteIndex = tokens.indexOf('palette');
-                  const colorToken = tokens[paletteIndex + 1];
-                  const rangeToken = tokens[paletteIndex + 2];
-                  // @ts-ignore internal logic
-                  defaultValue = colorPalette?.[colorToken]?.[rangeToken];
+                  const colorToken = cssVarMatches[1];
+                  const rangeToken = cssVarMatches[2];
+                  // try to resolve the value at most two level deep
+                  if (rangeToken) {
+                    defaultValue = (colorPalette as any)[colorToken]?.[rangeToken];
+                  } else {
+                    defaultValue = (colorPalette as any)[colorToken];
+                  }
                 } else {
                   defaultValue = value;
                 }
