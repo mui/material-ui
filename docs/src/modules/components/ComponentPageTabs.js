@@ -66,14 +66,14 @@ export default function ComponentPageTabs(props) {
       >
         <Tab component={Link} shallow href={`${pathname}demos`} label="Demos" value="demos" />
         <Tab
-          as={Link}
+          component={Link}
           shallow
           href={`${pathname}component-api`}
           label="Component API"
           value="component-api"
         />
         {headers.hooks && headers.hooks.length > 0 && (
-          <Tab as={Link} shallow href={`${pathname}hook-api`} label="Hook API" value="hook-api" />
+          <Tab component={Link} shallow href={`${pathname}hook-api`} label="Hook API" value="hook-api" />
         )}
       </Tabs>
       {children}
