@@ -50,7 +50,7 @@ function testOnScrollToBottom({
 
   if (reason === 'mouse') {
     const scrollTop = listbox.scrollHeight - listbox.offsetHeight;
-
+    console.log('log', listbox.scrollTop, listbox.scrollHeight - listbox.offsetHeight);
     if (scrollTop > 0) {
       fireEvent.scroll(listbox, {
         target: {
