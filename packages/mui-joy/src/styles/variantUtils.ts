@@ -185,62 +185,6 @@ const createPrefixVar = (cssVarPrefix: string | undefined | null) => {
     `--${cssVarPrefix ? `${cssVarPrefix}-` : ''}${cssVar.replace(/^--/, '')}`;
 };
 
-// It's used only in extendTheme, so it's safe to always include default values
-// export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
-//   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
-//   if (theme) {
-//     const { getCssVar, palette } = theme;
-//     Object.entries(palette).forEach((entry) => {
-//       const [color, colorPalette] = entry as [
-//         Exclude<DefaultColorPalette, 'context'>,
-//         string | number | Record<string, any>,
-//       ];
-//       if (isVariantPalette(colorPalette) && typeof colorPalette === 'object') {
-//         result = {
-//           ...result,
-//           [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
-//             getCssVar(`palette-${color}-${variantVar}`, palette[color][variantVar]),
-//           ),
-//         };
-//       }
-//     });
-//   }
-
-//   result.context = createVariantStyle(variant, {
-//     plainColor: 'var(--variant-plainColor)',
-//     plainHoverColor: `var(--variant-plainHoverColor)`,
-//     plainHoverBg: 'var(--variant-plainHoverBg)',
-//     plainActiveBg: 'var(--variant-plainActiveBg)',
-//     plainDisabledColor: 'var(--variant-plainDisabledColor)',
-
-//     outlinedColor: 'var(--variant-outlinedColor)',
-//     outlinedBorder: 'var(--variant-outlinedBorder)',
-//     outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
-//     outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
-//     outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
-//     outlinedActiveBg: `var(--variant-outlinedActiveBg)`,
-//     outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
-//     outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
-
-//     softColor: 'var(--variant-softColor)',
-//     softBg: 'var(--variant-softBg)',
-//     softHoverColor: 'var(--variant-softHoverColor)',
-//     softHoverBg: 'var(--variant-softHoverBg)',
-//     softActiveBg: 'var(--variant-softActiveBg)',
-//     softDisabledColor: 'var(--variant-softDisabledColor)',
-//     softDisabledBg: 'var(--variant-softDisabledBg)',
-
-//     solidColor: 'var(--variant-solidColor)',
-//     solidBg: 'var(--variant-solidBg)',
-//     solidHoverColor: 'var(--variant-solidHoverColor)',
-//     solidHoverBg: 'var(--variant-solidHoverBg)',
-//     solidActiveBg: 'var(--variant-solidActiveBg)',
-//     solidDisabledColor: 'var(--variant-solidDisabledColor)',
-//     solidDisabledBg: 'var(--variant-solidDisabledBg)',
-//   });
-//   return result;
-// };
-
 export const createSoftInversion = (
   theme: ThemeFragment & {
     getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;

@@ -21,12 +21,7 @@ import { Variants, ColorInversion, ColorInversionConfig } from './types/variants
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import {
-  createSoftInversion,
-  createSolidInversion,
-  createVariant,
-  createVariants,
-} from './variantUtils';
+import { createSoftInversion, createSolidInversion, createVariants } from './variantUtils';
 import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
@@ -93,7 +88,6 @@ export const createGetCssVar = (cssVarPrefix = 'joy') =>
   systemCreateGetCssVar<ThemeCssVar>(cssVarPrefix);
 
 export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
-  console.time('initialize default scales');
   const {
     cssVarPrefix = 'joy',
     breakpoints,
@@ -653,15 +647,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
   };
 
-  console.timeEnd('initialize default scales');
-
-  console.time('merge scales');
   const { colorSchemes, ...mergedScales } = scalesInput
     ? deepmerge(defaultScales, scalesInput)
     : defaultScales;
-  console.timeEnd('merge scales');
 
-  console.time('theme creation');
   const theme = {
     colorSchemes,
     ...mergedScales,
@@ -713,7 +702,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       solid: ['plain', 'outlined', 'soft', 'solid'],
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
-  console.timeEnd('theme creation');
 
   /**
    Color channels generation
@@ -760,13 +748,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shouldSkipGeneratingVar,
   };
 
-  console.time('prepareCssVars');
   const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  console.timeEnd('prepareCssVars');
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.unstable_sxConfig = {
@@ -784,35 +770,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       ? '&'
       : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
 
-  console.time('create variant');
-  // const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
-  // theme.variants = deepmerge(
-  //   {
-  //     plain: createVariant('plain', createVariantInput),
-  //     plainHover: createVariant('plainHover', createVariantInput),
-  //     plainActive: createVariant('plainActive', createVariantInput),
-  //     plainDisabled: createVariant('plainDisabled', createVariantInput),
-  //     outlined: createVariant('outlined', createVariantInput),
-  //     outlinedHover: createVariant('outlinedHover', createVariantInput),
-  //     outlinedActive: createVariant('outlinedActive', createVariantInput),
-  //     outlinedDisabled: createVariant('outlinedDisabled', createVariantInput),
-  //     soft: createVariant('soft', createVariantInput),
-  //     softHover: createVariant('softHover', createVariantInput),
-  //     softActive: createVariant('softActive', createVariantInput),
-  //     softDisabled: createVariant('softDisabled', createVariantInput),
-  //     solid: createVariant('solid', createVariantInput),
-  //     solidHover: createVariant('solidHover', createVariantInput),
-  //     solidActive: createVariant('solidActive', createVariantInput),
-  //     solidDisabled: createVariant('solidDisabled', createVariantInput),
-  //   },
-  //   variantsInput,
-  // );
   theme.variants = deepmerge(
     createVariants(theme.colorSchemes.light.palette, getCssVar),
     variantsInput,
   );
-  console.log('theme.variants', theme.variants);
-  console.timeEnd('create variant');
 
   theme.palette = {
     ...theme.colorSchemes.light.palette,
@@ -821,7 +782,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
-  console.time('color inversion');
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
   theme.colorInversion =
     typeof colorInversionInput === 'function'
@@ -834,6 +794,5 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
           colorInversionInput || {},
           { clone: false },
         );
-  console.timeEnd('color inversion');
   return theme;
 }
