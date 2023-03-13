@@ -15,9 +15,9 @@ tags: ['MUI X', 'News']
 
 ### Data Grid
 
-#### [ApiRef now available for all users](/x/react-data-grid/api-object/)
+#### [ApiRef moved to the MIT (Community) version](/x/react-data-grid/api-object/)
 
-Manage pagination, scrolling, state, and other attributes through the Data Grid's API object—previously available only in commercial plans, now accessible to all.
+Manage pagination, scrolling, state, and other attributes through the Data Grid's API object—previously only in commercial plans, now available to all users.
 The `apiRef` enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid's features.
 
 ```tsx
@@ -53,6 +53,10 @@ It's also the base for bulk editing and clipboard importing (coming soon).
 <video style="margin-bottom: 5px;" autoplay muted loop playsinline>
   <source src="/static/blog/mui-x-v6/cell-selection.mp4" type="video/mp4" />
 </video>
+
+#### [Use web workers to export data to excel files](/x/react-data-grid/export/#using-a-web-worker). [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+
+Instead of generating the Excel file in the main thread, you can use a web worker in the background to allow interactions with the grid while the data is exported.
 
 #### Stable [Aggregation](/x/react-data-grid/aggregation/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan) and [Row pinning](/x/react-data-grid/row-pinning/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
