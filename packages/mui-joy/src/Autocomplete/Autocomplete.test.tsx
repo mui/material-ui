@@ -58,13 +58,6 @@ function testOnScrollToBottom({
         },
       });
     }
-
-    if (scrollToBottomCallCount > 0) {
-      expect(listbox.scrollTop).to.greaterThan(0);
-    } else {
-      expect(listbox.scrollTop).to.equal(0);
-    }
-    expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
   } else if (reason === 'keyboard') {
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -76,14 +69,15 @@ function testOnScrollToBottom({
       fireEvent.scroll(listbox);
     }
 
-    if (scrollToBottomCallCount > 0) {
-      expect(listbox.scrollTop).to.greaterThan(0);
-    } else {
-      expect(listbox.scrollTop).to.equal(0);
-    }
     checkHighlightIs(listbox, 'five');
-    expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
   }
+
+  if (scrollToBottomCallCount > 0) {
+    expect(listbox.scrollTop).to.greaterThan(0);
+  } else {
+    expect(listbox.scrollTop).to.equal(0);
+  }
+  expect(onScrollToBottom.callCount).to.equal(scrollToBottomCallCount);
 }
 
 describe('Joy <Autocomplete />', () => {
