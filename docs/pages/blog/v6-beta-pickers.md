@@ -58,11 +58,19 @@ Not only can you type the date as text, but you can also use arrow keys to navig
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
-Moreover, notice in the following example that as we increase the month, the component automatically watches for valid values throughout each piece of your date input, like you're navigating in a calendar.
+Moreover, notice in the following example that as we edit the day, the component automatically navigates only in valid values.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
-  <source src="/static/blog/v6-beta-pickers/smart-field.mp4" type="video/mp4" />
+<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
+  <source src="/static/blog/v6-beta-pickers/smart-field-stable.mp4" type="video/mp4" />
 </video>
+
+:::info
+**Behavior change alert**
+
+During pre-releases, using up and down arrows to update a date section would essentially update the entire field like you were navigating the calendar. Updating a day value from 28 to 1 with the arrow key would update other date sections like month and year.
+
+On the stable version, released after the original post, each date section became independent.
+:::
 
 For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
 
