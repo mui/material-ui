@@ -46,6 +46,9 @@ export default function ComponentPageTabs(props) {
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
+          [`& .${tabsClasses.indicator}`]: {
+            transition: 'none'
+          },
           // Make server side styles closer to hydrated
           [`& .${tabClasses.root}`]: {
             overflow: 'visible',
