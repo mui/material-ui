@@ -8,7 +8,7 @@ _Mar 13, 2023_
 
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
-- @michaldudak added option for [disabling the generation](https://mui.com/base/getting-started/customization/#disabling-default-css-classes) of the default classes in MUI Base (#35963)
+- @michaldudak added an option for [disabling the generation](https://mui.com/base/getting-started/customization/#disabling-default-css-classes) of the default classes in MUI Base (#35963)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.13`
