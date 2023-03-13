@@ -1945,14 +1945,14 @@ describe('<Autocomplete />', () => {
           }}
         />,
       );
- 
+
       const textbox = getByRole('combobox');
       const tooltip = getByText('tooltip');
- 
+
       act(() => {
         fireEvent.click(tooltip);
       });
- 
+
       expect(textbox).not.toHaveFocus();
     });
   });

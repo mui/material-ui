@@ -1010,7 +1010,9 @@ export default function useAutocomplete(props) {
     const isToolTipElement = event.target?.parentElement?.getAttribute('role')?.includes('tooltip');
 
     // Prevent input blur if usesr clicked on the tooltip
-    if (isToolTipElement) { return };
+    if (isToolTipElement) {
+      return;
+    }
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
@@ -1021,7 +1023,9 @@ export default function useAutocomplete(props) {
     const isToolTipElement = event.target?.parentElement?.getAttribute('role')?.includes('tooltip');
 
     // Prevent focusing the input if usesr clicked on the tooltip
-    if (isToolTipElement) { return };
+    if (isToolTipElement) {
+      return;
+    }
     inputRef.current.focus();
 
     if (
