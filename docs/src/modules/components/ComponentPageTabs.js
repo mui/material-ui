@@ -1,25 +1,11 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import Tabs, { tabsClasses } from '@mui/material/Tabs';
+import Tab, { tabClasses } from '@mui/material/Tab';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { alpha } from '@mui/material/styles';
-
-function openLinkInNewTab(event) {
-  if (
-    event.defaultPrevented ||
-    event.button !== 0 || // ignore everything but left-click
-    event.metaKey ||
-    event.ctrlKey ||
-    event.altKey ||
-    event.shiftKey
-  ) {
-    return true;
-  }
-  return false;
-}
 
 export default function ComponentPageTabs(props) {
   const {
@@ -39,11 +25,6 @@ export default function ComponentPageTabs(props) {
     <Box className="component-tabs" sx={{ display: 'inline' }}>
       <Tabs
         value={activeTab}
-        onChange={(e, value) => {
-          if (!openLinkInNewTab(e)) {
-            setActiveTab(value);
-          }
-        }}
         sx={{
           position: 'sticky',
           top: 65, // to be positioned below the app bar
@@ -65,11 +46,19 @@ export default function ComponentPageTabs(props) {
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
+          // Make server side styles closer to hydrated
+          [`& .${tabClasses.root}`]: {
+            overflow: 'visible',
+            [`& .${tabsClasses.indicator}`]: {
+              top: '39px',
+              borderRadius: 0,
+            },
+          }
         }}
       >
-        <Tab as={Link} shallow href={demosHref} label="Demos" value="" />
+        <Tab component={Link} shallow href={demosHref} label="Demos" value="" />
         <Tab
-          as={Link}
+          component={Link}
           shallow
           href={componentsHref}
           label="Component API"
@@ -77,7 +66,7 @@ export default function ComponentPageTabs(props) {
         />
         {headers.hooks && headers.hooks.length > 0 && (
           <Tab
-            as={Link}
+            component={Link}
             shallow
             href={hooksHref}
             label="Hook API"
