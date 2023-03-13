@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
-import { TablePaginationActionsUnstyledOwnProps } from './TablePaginationActionsUnstyled.types';
+import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -13,8 +13,7 @@ export interface LabelDisplayedRowsArgs {
 export type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
 export interface TablePaginationUnstyledRootSlotPropsOverrides {}
-export interface TablePaginationUnstyledActionsSlotPropsOverrides
-  extends Partial<TablePaginationActionsUnstyledOwnProps> {}
+export interface TablePaginationUnstyledActionsSlotPropsOverrides {}
 export interface TablePaginationUnstyledSelectSlotPropsOverrides {}
 export interface TablePaginationUnstyledSelectLabelSlotPropsOverrides {}
 export interface TablePaginationUnstyledMenuItemSlotPropsOverrides {}
@@ -44,7 +43,7 @@ export interface TablePaginationUnstyledOwnProps {
       TablePaginationUnstyledOwnerState
     >;
     actions?: SlotComponentProps<
-      'div',
+      typeof TablePaginationActionsUnstyled,
       TablePaginationUnstyledActionsSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
