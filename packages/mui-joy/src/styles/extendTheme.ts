@@ -289,8 +289,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('primary'),
       },
       neutral: {
-        // variants.plain.neutral = { color: '', }
-        // variants.plainHover.neutral = { color: '', backgroundColor: '' }
         ...defaultColors.neutral,
         plainColor: getCssVarColor(`palette-neutral-200`),
         plainHoverColor: getCssVarColor(`palette-neutral-50`),
