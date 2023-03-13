@@ -38,6 +38,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/LinearProgress/LinearProgress.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-linear-progres/\">Linear Progress</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-linear-progress/\">Linear Progress</a></li></ul>",
   "cssComponent": false
 }

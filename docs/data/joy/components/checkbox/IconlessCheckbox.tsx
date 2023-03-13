@@ -17,7 +17,7 @@ export default function IconlessCheckbox() {
           wrap
           sx={{
             '--List-gap': '8px',
-            '--List-item-radius': '20px',
+            '--ListItem-radius': '20px',
           }}
         >
           {[

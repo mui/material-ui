@@ -61,8 +61,8 @@ export default function SecondSidebar() {
       >
         <List
           sx={{
-            '--List-item-radius': '8px',
-            '--List-item-minHeight': '32px',
+            '--ListItem-radius': '8px',
+            '--ListItem-minHeight': '32px',
             '--List-gap': '4px',
           }}
         >

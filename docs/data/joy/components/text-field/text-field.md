@@ -1,7 +1,6 @@
 ---
 product: joy-ui
 title: React Text Field component
-components: TextField
 githubLabel: 'component: text field'
 ---
 
