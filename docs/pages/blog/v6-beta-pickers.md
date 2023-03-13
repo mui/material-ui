@@ -58,6 +58,12 @@ Not only can you type the date as text, but you can also use arrow keys to navig
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
+For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
+
+<video style="margin-bottom:24px" autoplay muted loop playsinline >
+  <source src="/static/blog/v6-beta-pickers/quick-comparison-fields.mp4" type="video/mp4" />
+</video>
+
 Moreover, notice in the following example that as we edit the day, the component automatically navigates only in valid values.
 
 <video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
@@ -72,12 +78,6 @@ In the previous example, updating the day value from 28 to 1 would also update t
 
 On the stable version, released after the original post, this behavior [has been changed](https://github.com/mui/mui-x/issues/7934), and each date section became independent.
 :::
-
-For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
-
-<video style="margin-bottom:24px" autoplay muted loop playsinline>
-  <source src="/static/blog/v6-beta-pickers/quick-comparison-fields.mp4" type="video/mp4" />
-</video>
 
 Please, try it out for yourself in the live demo below.
 
