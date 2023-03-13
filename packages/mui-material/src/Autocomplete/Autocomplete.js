@@ -993,7 +993,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func,
   /**
    * Callback fired when scroll bar reaches bottom of listbox.
-   * @param {React.SyntheticEvent}
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onScrollToBottom: PropTypes.func,
   /**
