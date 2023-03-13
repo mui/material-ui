@@ -9,9 +9,9 @@
     "@emotion/core": "11.0.0",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
-    "@mui/material": "5.11.12",
     "@mui/icons-material": "5.11.11",
     "@mui/lab": "5.0.0-alpha.122",
+    "@mui/material": "5.11.12",
     "@mui/styled-engine": "5.11.11",
     "@mui/styles": "5.11.12",
     "@mui/system": "5.11.12",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "7.6.0",
+    "eslint": "7.32.0",
     "playwright": "1.31.1"
   }
 }

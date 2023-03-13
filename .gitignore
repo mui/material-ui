@@ -21,8 +21,6 @@
 /packages/mui-envinfo/*.tgz
 /packages/mui-icons-material/src/*.js
 /test/bundling/fixtures/*/yarn.lock
-# created by test/bundling/scripts/createFixture
-/test/bundling/fixtures/**/*.fixture.js
 # created by test/bundling/fixtures/gatsby gatsby build
 /test/bundling/fixtures/gatsby/.cache
 /test/bundling/fixtures/gatsby/public
