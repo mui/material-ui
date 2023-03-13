@@ -13,7 +13,8 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 ### `@mui/material@5.11.13`
 
-- &#8203;<!-- 17 -->Export `shouldSkipGeneratingVar` from Material UI (#36489) @siriwatknp
+- &#8203;<!-- 17 -->[material] Export `shouldSkipGeneratingVar` from Material UI (#36489) @siriwatknp
+- &#8203;<!-- 13 -->[core] Bump MUI Base's version in Material UI (#36492) @hbjORbj
 
 ### `@mui/base@5.0.0-alpha.121`
 
@@ -35,10 +36,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - &#8203;<!-- 06 -->[examples] Refactor to have better types in the Next.js + TypeScript examples (#36355) @erikian
 - &#8203;<!-- 02 -->[website] Fix layout shift when loading /blog/mui-x-v6/ @oliviertassinari
 - &#8203;<!-- 01 -->[website] Update stats (#36477) @hrutik7
-
-### Core
-
-- &#8203;<!-- 13 -->[core] Bump MUI Base's version in Material UI (#36492) @hbjORbj
 
 All contributors of this release in alphabetical order: @erikian, @hbjORbj, @HeVictor, @hrutik7, @joserodolfofreitas, @m4theushw, @michaldudak, @oliviertassinari, @rayrw, @sai6855, @siriwatknp, @skevprog
 
