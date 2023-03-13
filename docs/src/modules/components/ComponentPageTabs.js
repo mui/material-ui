@@ -16,7 +16,9 @@ export default function ComponentPageTabs(props) {
   } = props;
   const router = useRouter();
 
-  const demosHref = router.pathname.endsWith('[docsTab]') ? router.pathname.replace('[docsTab]', '') : router.pathname;
+  const demosHref = router.pathname.endsWith('[docsTab]')
+    ? router.pathname.replace('[docsTab]', '')
+    : router.pathname;
   const apiPathname = `${demosHref.endsWith('/') ? demosHref : `${demosHref}/`}`;
   const componentsHref = `${apiPathname}component-api`;
   const hooksHref = `${apiPathname}hook-api`;
@@ -47,7 +49,7 @@ export default function ComponentPageTabs(props) {
           borderColor: 'divider',
           zIndex: 1000,
           [`& .${tabsClasses.indicator}`]: {
-            transition: 'none'
+            transition: 'none',
           },
           // Make server side styles closer to hydrated
           [`& .${tabClasses.root}`]: {
@@ -56,7 +58,7 @@ export default function ComponentPageTabs(props) {
               top: '39px',
               borderRadius: 0,
             },
-          }
+          },
         }}
       >
         <Tab component={Link} shallow scroll href={demosHref} label="Demos" value="" />
@@ -69,14 +71,7 @@ export default function ComponentPageTabs(props) {
           value="component-api"
         />
         {headers.hooks && headers.hooks.length > 0 && (
-          <Tab
-            component={Link}
-            shallow
-            scroll
-            href={hooksHref}
-            label="Hook API"
-            value="hook-api"
-          />
+          <Tab component={Link} shallow scroll href={hooksHref} label="Hook API" value="hook-api" />
         )}
       </Tabs>
       {children}

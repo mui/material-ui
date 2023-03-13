@@ -13,7 +13,7 @@ import { getTranslatedHeader as getHookTranslatedHeader } from 'docs/src/modules
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocsWithoutAppFrame';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';

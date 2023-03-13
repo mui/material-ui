@@ -530,7 +530,11 @@ export function updateComponentPages() {
     const productName = pathnameTokens[1];
     const componentName = pathnameTokens[3];
 
-    if (productName === 'base' && (markdown.filename.indexOf('\\components\\') >= 0 || markdown.filename.indexOf('/components/') >= 0)) {
+    if (
+      productName === 'base' &&
+      (markdown.filename.indexOf('\\components\\') >= 0 ||
+        markdown.filename.indexOf('/components/') >= 0)
+    ) {
       const { components, hooks } = markdownHeaders;
 
       let importStatements = '';

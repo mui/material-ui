@@ -306,7 +306,9 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
 
         const pathname =
           demos.length > 0
-            ? lastIdx >= 0 ? demos[0].demoPathname.substr(0, demos[0].demoPathname.indexOf('#')) : demos[0].demoPathname
+            ? lastIdx >= 0
+              ? demos[0].demoPathname.substr(0, demos[0].demoPathname.indexOf('#'))
+              : demos[0].demoPathname
             : null;
 
         if (pathname !== null) {

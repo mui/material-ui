@@ -35,6 +35,8 @@ export default function findActivePage(
     traversePage = parent;
   }
 
+  console.log(activePage);
+
   return {
     activePage,
     activePageParents,
