@@ -7,22 +7,22 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
-    "@mui/material": "5.10.5",
-    "@mui/icons-material": "5.10.3",
-    "@mui/lab": "5.0.0-alpha.99",
-    "@mui/styled-engine": "5.10.5",
-    "@mui/styles": "5.10.3",
-    "@mui/system": "5.10.5",
-    "@mui/utils": "5.10.3",
-    "gatsby": "4.23.0",
+    "@emotion/react": "11.10.6",
+    "@emotion/styled": "11.10.6",
+    "@mui/material": "5.11.12",
+    "@mui/icons-material": "5.11.11",
+    "@mui/lab": "5.0.0-alpha.122",
+    "@mui/styled-engine": "5.11.11",
+    "@mui/styles": "5.11.12",
+    "@mui/system": "5.11.12",
+    "@mui/utils": "5.11.12",
+    "gatsby": "4.25.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "7.6.0",
     "playwright": "1.31.2"
   }
 }
