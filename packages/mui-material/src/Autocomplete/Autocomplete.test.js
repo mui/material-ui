@@ -19,6 +19,8 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
@@ -1933,7 +1935,7 @@ describe('<Autocomplete />', () => {
                   startAdornment: (
                     <InputAdornment position="end">
                       <Tooltip title="tooltip" open>
-                        <Visibility />
+                        <div>ICON</div>
                       </Tooltip>
                     </InputAdornment>
                   ),
