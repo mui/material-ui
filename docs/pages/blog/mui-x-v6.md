@@ -150,20 +150,20 @@ Here's a list of what you can expect to be delivered in the following months (wh
 
 ### Data Grid
 
-- Clipboard importing
-- Filtering on header
-- Row spanning
+- [Clipboard importing](https://github.com/mui/mui-x/issues/199)
+- [Filtering on header](https://github.com/mui/mui-x/issues/6247)
+- [Row spanning](https://github.com/mui/mui-x/issues/207)
 - Improved Panels
-  - Column Management panel (column visibility, reordering, grouping, pinning, etc).
-  - Filtering panel
+  - [Column Management panel (column visibility, reordering, grouping, pinning, etc)](https://github.com/mui/mui-x/issues/5700).
+  - [Filter panel](https://github.com/mui/mui-x/issues/6419)
 - Support for Joy UI
 
 ### Date Pickers
 
-- Time Picker replacement for the clock on desktop
-- Time Range Picker
-- Date Time Range Picker
-- Ability to select a month range in the Date Range Picker
+- [Time Picker replacement for the clock on desktop](https://github.com/mui/mui-x/issues/4483)
+- [Time Range Picker](https://github.com/mui/mui-x/issues/4460)
+- [Date Time Range Picker](https://github.com/mui/mui-x/issues/4547)
+- [Ability to select a month range in the Date Range Picker](https://github.com/mui/mui-x/issues/4995)
 - Support for Joy UI
 
 ### Charts 📊
