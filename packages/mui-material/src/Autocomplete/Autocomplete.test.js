@@ -1919,6 +1919,40 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseDown(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+
+    it('should not focus when tooltip clicked', () => {
+      const { getByRole, getByText } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => {
+            return (
+              <TextField
+                {...params}
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: (
+                    <InputAdornment position="end">
+                      <Tooltip title="tooltip" open>
+                        <Visibility />
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            );
+          }}
+        />,
+      );
+ 
+      const textbox = getByRole('combobox');
+      const tooltip = getByText('tooltip');
+ 
+      act(() => {
+        fireEvent.click(tooltip);
+      });
+ 
+      expect(textbox).not.toHaveFocus();
+    });
   });
 
   describe('controlled', () => {
