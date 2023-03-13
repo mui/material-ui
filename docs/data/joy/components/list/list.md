@@ -62,7 +62,7 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
 
-It comes with a minimum set width that you can adjust via the `--List-decoratorSize` CSS variable within the `List` component.
+It comes with a minimum set width that you can adjust via the `--ListItemDecorator-size` CSS variable within the `List` component.
 
 {{"demo": "DecoratedList.js"}}
 
