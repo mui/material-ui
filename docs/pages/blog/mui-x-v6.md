@@ -65,9 +65,13 @@ Now they are officially stable.
 
 ### Date and Time Pickers
 
-#### [Overhaul in the documentation](/x/react-date-pickers/)
+#### [Fields: the new default input for Pickers](/x/react-date-pickers/fields/)
 
-The Date and Time Pickers documentation has drastically improved during pre-release, and it now features a more comprehensible navigation structure and many new examples.
+These rich text fields are specialized for date and time logic and offer quick navigation and isolated interaction within each section of a date value.
+
+<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
+  <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
+</video>
 
 #### [Improved layout customization](/x/react-date-pickers/custom-layout/)
 
@@ -94,14 +98,6 @@ export default function CustomStaticDatePicker() {
 }
 ```
 
-#### [Fields: the new default input for Pickers](/x/react-date-pickers/fields/)
-
-These rich text fields are specialized for date and time logic and offer quick navigation and isolated interaction within each section of a date value.
-
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
-  <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
-</video>
-
 #### [Shortcuts for picking specific dates in a calendar](/x/react-date-pickers/shortcuts/)
 
 Add quick and customizable shortcuts for your users. Particularly useful for date ranges.
@@ -116,6 +112,10 @@ Editing a date range is even easier now with the new drag-and-drop interface. Ch
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline>
   <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
+
+#### [Overhaul in the documentation](/x/react-date-pickers/)
+
+The Date and Time Pickers documentation has drastically improved during pre-release, and it now features a more comprehensible navigation structure and many new examples.
 
 #### Removed clock view on desktop Time Pickers
 
