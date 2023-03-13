@@ -54,19 +54,19 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 With the new Fields, the keyboard interaction is a first-class experience.
 Not only can you type the date as text, but you can also use arrow keys to navigate and edit date and time values.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
+<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
 Moreover, notice in the following example that as we increase the month, the component automatically watches for valid values throughout each piece of your date input, like you're navigating in a calendar.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
+<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
   <source src="/static/blog/v6-beta-pickers/smart-field.mp4" type="video/mp4" />
 </video>
 
 For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
 
-<video style="margin-bottom:24px" autoplay muted loop playsinline >
+<video style="margin-bottom:24px" autoplay muted loop playsinline>
   <source src="/static/blog/v6-beta-pickers/quick-comparison-fields.mp4" type="video/mp4" />
 </video>
 
@@ -107,7 +107,7 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
 
 - **Drag to edit**\
   Editing a date range is even easier now with the new drag-and-drop interface. Change `start` and `end` dates at will.
-  <video style="margin-bottom: 24px; max-height: 398px;" autoplay muted loop playsinline >
+  <video style="margin-bottom: 24px; max-height: 398px;" autoplay muted loop playsinline>
     <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
   </video>
 - **Range shortcuts** (available from v6.0.0-beta.1)\

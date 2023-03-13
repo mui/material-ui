@@ -121,7 +121,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
    *  then, keys = ['foo', 'bar']
    *        value = 'var(--test)'
    */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
 }

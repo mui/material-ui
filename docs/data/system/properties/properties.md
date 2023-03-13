@@ -1,10 +1,10 @@
 # Properties
 
-<p class="description">This page lists all of the custom system properties, how are they linked with the theme, and which CSS properties they compute. All other regular CSS properties and selectors are supported too.</p>
+<p class="description">This page lists all of the custom system properties, how they are linked with the theme, and which CSS properties they compute. All other regular CSS properties and selectors are supported too.</p>
 
 ## Properties reference table
 
-Note that this table only lists custom properties, all other regular CSS properties and selectors are supported. You can check out the [legend](/system/properties/#legend) below.
+Note that this table only lists custom properties. All other regular CSS properties and selectors are supported too. You can check out the [legend](/system/properties/#legend) below.
 
 | System key(s)         | CSS property/properties                                                                      | System style function                                        | Theme mapping                                                                                       |
 | :-------------------- | :------------------------------------------------------------------------------------------- | :----------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |

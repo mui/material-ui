@@ -10,6 +10,7 @@ import {
   unstable_styleFunctionSx as styleFunctionSx,
   unstable_prepareCssVars as prepareCssVars,
 } from '@mui/system';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import createThemeWithoutVars from './createTheme';
 import getOverlayAlpha from './getOverlayAlpha';
 
@@ -58,11 +59,6 @@ const silent = (fn) => {
 };
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
-
-export const defaultShouldSkipGeneratingVar = (keys) =>
-  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
-  !!keys[0].match(/sxConfig$/) || // ends with sxConfig
-  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
 
 export default function extendTheme(options = {}, ...args) {
   const {
