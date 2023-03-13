@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { ItemAriaLabelType } from './TablePaginationUnstyled.types';
 import {
   TablePaginationActionsUnstyledButtonSlotProps,
   TablePaginationActionsUnstyledProps,
@@ -21,6 +20,8 @@ function NextPageIconDefault() {
 function BackPageIconDefault() {
   return <span>{'⇽'}</span>;
 }
+
+type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
 function defaultGetAriaLabel(type: ItemAriaLabelType) {
   return `Go to ${type} page`;
