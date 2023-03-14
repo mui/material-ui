@@ -266,25 +266,34 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
 
   React.useEffect(() => {
-    let rowsOnMount = stableSort(rows, getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY));
-    rowsOnMount = rows.slice(0 * DEFAULT_ROWS_PER_PAGE, 0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE);
+    let rowsOnMount = stableSort(
+      rows,
+      getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
+    );
+    rowsOnMount = rows.slice(
+      0 * DEFAULT_ROWS_PER_PAGE,
+      0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
+    );
 
     setVisibleRows(rowsOnMount);
   }, []);
 
-  const handleRequestSort = React.useCallback((
-    event: React.MouseEvent<unknown>,
-    property: keyof Data,
-  ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    const toggledOrderBy = isAsc ? 'desc' : 'asc';
-    setOrder(toggledOrderBy);
-    setOrderBy(property);
+  const handleRequestSort = React.useCallback(
+    (event: React.MouseEvent<unknown>, property: keyof Data) => {
+      const isAsc = orderBy === property && order === 'asc';
+      const toggledOrderBy = isAsc ? 'desc' : 'asc';
+      setOrder(toggledOrderBy);
+      setOrderBy(property);
 
-    const sortedRows = stableSort(rows, getComparator(toggledOrderBy, property));
-    const updatedRows = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-    setVisibleRows(updatedRows);
-  }, [order, orderBy, page, rowsPerPage]);
+      const sortedRows = stableSort(rows, getComparator(toggledOrderBy, property));
+      const updatedRows = sortedRows.slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage,
+      );
+      setVisibleRows(updatedRows);
+    },
+    [order, orderBy, page, rowsPerPage],
+  );
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -318,7 +327,10 @@ export default function EnhancedTable() {
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
 
-    const updatedRows = rows.slice(newPage * rowsPerPage, newPage * rowsPerPage + rowsPerPage);
+    const updatedRows = rows.slice(
+      newPage * rowsPerPage,
+      newPage * rowsPerPage + rowsPerPage,
+    );
     setVisibleRows(updatedRows);
   };
 
@@ -328,7 +340,10 @@ export default function EnhancedTable() {
 
     setPage(0);
 
-    const updatedRows = rows.slice(0 * updatedRowsPerPage, 0 * updatedRowsPerPage + updatedRowsPerPage);
+    const updatedRows = rows.slice(
+      0 * updatedRowsPerPage,
+      0 * updatedRowsPerPage + updatedRowsPerPage,
+    );
     setVisibleRows(updatedRows);
   };
 
