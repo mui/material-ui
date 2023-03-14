@@ -8,6 +8,15 @@ export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const previousAnchorElPosition = React.useRef(undefined);
+
+  React.useEffect(() => {
+    if (anchorEl) {
+      // @ts-expect-error
+      previousAnchorElPosition.current = anchorEl.getBoundingClientRect();
+    }
+  }, [anchorEl]);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -16,11 +25,7 @@ export default function VirtualElementPopper() {
     const selection = window.getSelection();
 
     // Resets when the selection has a length of 0
-    if (
-      !selection ||
-      selection.anchorOffset === selection.focusOffset ||
-      selection.rangeCount < 1
-    ) {
+    if (!selection || selection.anchorOffset === selection.focusOffset) {
       handleClose();
       return;
     }
@@ -29,8 +34,16 @@ export default function VirtualElementPopper() {
       selection.getRangeAt(0).getBoundingClientRect();
 
     setOpen(true);
-    setAnchorEl({
-      getBoundingClientRect,
+
+    setAnchorEl(() => {
+      return {
+        getBoundingClientRect: () => {
+          if (selection.rangeCount === 0 && previousAnchorElPosition.current) {
+            return previousAnchorElPosition.current;
+          }
+          return getBoundingClientRect();
+        },
+      };
     });
   };
 
