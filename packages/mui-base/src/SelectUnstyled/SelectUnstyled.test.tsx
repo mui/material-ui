@@ -18,7 +18,7 @@ import {
   screen,
 } from 'test/utils';
 
-describe('SelectUnstyled', () => {
+describe('<SelectUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 

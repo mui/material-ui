@@ -5,7 +5,7 @@ export interface DefaultCssVarsTheme {
   colorSchemes: Record<string, any>;
 }
 
-function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars>(
+function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<string, any>>(
   theme: T,
   parserConfig?: {
     prefix?: string;
@@ -18,19 +18,20 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars>(
     vars: rootVars,
     css: rootCss,
     varsWithDefaults: rootVarsWithDefaults,
-  } = cssVarsParser(otherTheme, parserConfig);
+  } = cssVarsParser<ThemeVars>(otherTheme, parserConfig);
   let themeVars = rootVarsWithDefaults as unknown as ThemeVars;
 
-  const colorSchemesMap: Record<string, any> = {};
+  const colorSchemesMap: Record<string, { css: Record<string, string | number>; vars: ThemeVars }> =
+    {};
   const { light, ...otherColorSchemes } = colorSchemes;
   Object.entries(otherColorSchemes || {}).forEach(([key, scheme]) => {
-    const { vars, css, varsWithDefaults } = cssVarsParser(scheme, parserConfig);
+    const { vars, css, varsWithDefaults } = cssVarsParser<ThemeVars>(scheme, parserConfig);
     themeVars = deepmerge(themeVars, varsWithDefaults);
     colorSchemesMap[key] = { css, vars };
   });
   if (light) {
     // light color scheme vars should be merged last to set as default
-    const { css, vars, varsWithDefaults } = cssVarsParser(light, parserConfig);
+    const { css, vars, varsWithDefaults } = cssVarsParser<ThemeVars>(light, parserConfig);
     themeVars = deepmerge(themeVars, varsWithDefaults);
     colorSchemesMap.light = { css, vars };
   }
