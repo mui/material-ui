@@ -53,6 +53,16 @@ function BreadcrumbCollapsed(props) {
 
 BreadcrumbCollapsed.propTypes = {
   /**
+   * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    collapsed: PropTypes.object,
+  }),
+  /**
    * The components used for Collapsed item type
    *
    * This prop is an alias for the `components` prop, which will be deprecated in the future.
@@ -63,16 +73,6 @@ BreadcrumbCollapsed.propTypes = {
    */
   slots: PropTypes.shape({
     Collapsed: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    collapsed: PropTypes.object,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
