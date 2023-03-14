@@ -400,6 +400,10 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: ThemeVars;
+  };
 
   // Default theme tokens
   spacing: Theme['spacing'];
@@ -417,7 +421,7 @@ export interface CssVarsTheme extends ColorSystem {
    *  then, keys = ['foo', 'bar']
    *        value = 'var(--test)'
    */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
 }
