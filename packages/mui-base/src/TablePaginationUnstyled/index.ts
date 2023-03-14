@@ -6,5 +6,3 @@ export * from './TablePaginationActionsUnstyled.types';
 
 export { default as tablePaginationUnstyledClasses } from './tablePaginationUnstyledClasses';
 export * from './tablePaginationUnstyledClasses';
-
-export * from './common.types';
