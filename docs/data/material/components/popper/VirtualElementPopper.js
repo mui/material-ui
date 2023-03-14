@@ -30,22 +30,17 @@ export default function VirtualElementPopper() {
       return;
     }
 
-    const getBoundingClientRect = () =>
-      selection.getRangeAt(0).getBoundingClientRect();
+    const getBoundingClientRect = () => {
+      if (selection.rangeCount === 0 && previousAnchorElPosition.current) {
+        setOpen(false);
+        return previousAnchorElPosition.current;
+      }
+      return selection.getRangeAt(0).getBoundingClientRect();
+    };
 
     setOpen(true);
 
-    setAnchorEl(() => {
-      return {
-        getBoundingClientRect: () => {
-          if (selection.rangeCount === 0 && previousAnchorElPosition.current) {
-            setOpen(false);
-            return previousAnchorElPosition.current;
-          }
-          return getBoundingClientRect();
-        },
-      };
-    });
+    setAnchorEl({ getBoundingClientRect });
   };
 
   const id = open ? 'virtual-element-popper' : undefined;
