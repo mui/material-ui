@@ -113,6 +113,10 @@ const headCells = [
   },
 ];
 
+const DEFAULT_ORDER = 'asc';
+const DEFAULT_ORDER_BY = 'calories';
+const DEFAULT_ROWS_PER_PAGE = 5;
+
 function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
@@ -225,18 +229,31 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
+  const [order, setOrder] = React.useState(DEFAULT_ORDER);
+  const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
+  const [selected, setSelected] = React.useState(DEFAULT_ROWS_PER_PAGE);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
+  const [visibleRows, setVisibleRows] = React.useState(null);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const handleRequestSort = (event, property) => {
+  React.useEffect(() => {
+    let rowsOnMount = stableSort(rows, getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY));
+    rowsOnMount = rows.slice(0 * DEFAULT_ROWS_PER_PAGE, 0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE);
+
+    setVisibleRows(rowsOnMount);
+  }, []);
+
+  const handleRequestSort = React.useCallback((event, property) => {
     const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const toggledOrderBy = isAsc ? 'desc' : 'asc';
+    setOrder(toggledOrderBy);
     setOrderBy(property);
-  };
+
+    const sortedRows = stableSort(rows, getComparator(toggledOrderBy, property));
+    const updatedRows = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    setVisibleRows(updatedRows);
+  }, [order, orderBy, page, rowsPerPage]);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -269,11 +286,19 @@ export default function EnhancedTable() {
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+
+    const updatedRows = rows.slice(newPage * rowsPerPage, newPage * rowsPerPage + rowsPerPage);
+    setVisibleRows(updatedRows);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    const updatedRowsPerPage = parseInt(event.target.value, 10);
+    setRowsPerPage(updatedRowsPerPage);
+
     setPage(0);
+
+    const updatedRows = rows.slice(0 * updatedRowsPerPage, 0 * updatedRowsPerPage + updatedRowsPerPage);
+    setVisibleRows(updatedRows);
   };
 
   const handleChangeDense = (event) => {
@@ -305,46 +330,46 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+              {visibleRows
+                ? visibleRows.map((row, index) => {
+                    const isItemSelected = isSelected(row.name);
+                    const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClick(event, row.name)}
+                        role="checkbox"
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.name}
+                        selected={isItemSelected}
                       >
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
-                    </TableRow>
-                  );
-                })}
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            color="primary"
+                            checked={isItemSelected}
+                            inputProps={{
+                              'aria-labelledby': labelId,
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell
+                          component="th"
+                          id={labelId}
+                          scope="row"
+                          padding="none"
+                        >
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="right">{row.calories}</TableCell>
+                        <TableCell align="right">{row.fat}</TableCell>
+                        <TableCell align="right">{row.carbs}</TableCell>
+                        <TableCell align="right">{row.protein}</TableCell>
+                      </TableRow>
+                    );
+                  })
+                : null}
               {emptyRows > 0 && (
                 <TableRow
                   style={{
