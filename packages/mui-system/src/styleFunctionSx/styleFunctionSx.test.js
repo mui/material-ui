@@ -424,11 +424,21 @@ describe('styleFunctionSx', () => {
   it('resolves inherit typography properties', () => {
     const result = styleFunctionSx({
       theme: { typography: createTypography({}, {}) },
-      sx: { fontWeight: 'inherit' },
+      sx: {
+        fontFamily: 'inherit',
+        fontWeight: 'inherit',
+        fontSize: 'inherit',
+        lineHeight: 'inherit',
+        letterSpacing: 'inherit',
+      },
     });
 
     expect(result).deep.equal({
+      fontFamily: 'inherit',
       fontWeight: 'inherit',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
     });
   });
 });
