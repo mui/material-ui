@@ -242,6 +242,7 @@ export default function EnhancedTable() {
       rows,
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
     );
+
     rowsOnMount = rows.slice(
       0 * DEFAULT_ROWS_PER_PAGE,
       0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
@@ -262,6 +263,7 @@ export default function EnhancedTable() {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       );
+
       setVisibleRows(updatedRows);
     },
     [order, orderBy, page, rowsPerPage],
@@ -303,6 +305,7 @@ export default function EnhancedTable() {
       newPage * rowsPerPage,
       newPage * rowsPerPage + rowsPerPage,
     );
+
     setVisibleRows(updatedRows);
   };
 
@@ -316,6 +319,7 @@ export default function EnhancedTable() {
       0 * updatedRowsPerPage,
       0 * updatedRowsPerPage + updatedRowsPerPage,
     );
+
     setVisibleRows(updatedRows);
   };
 
