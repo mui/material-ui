@@ -1,4 +1,4 @@
-# Lead Designer
+# Designer
 
 <p class="description">You will be accountable for MUI's design execution and a small team of designers.</p>
 
