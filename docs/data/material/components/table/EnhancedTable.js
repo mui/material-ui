@@ -231,11 +231,11 @@ EnhancedTableToolbar.propTypes = {
 export default function EnhancedTable() {
   const [order, setOrder] = React.useState(DEFAULT_ORDER);
   const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
-  const [selected, setSelected] = React.useState(DEFAULT_ROWS_PER_PAGE);
+  const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [visibleRows, setVisibleRows] = React.useState(null);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
 
   React.useEffect(() => {
     let rowsOnMount = stableSort(
