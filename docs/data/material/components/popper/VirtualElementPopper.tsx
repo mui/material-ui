@@ -39,6 +39,7 @@ export default function VirtualElementPopper() {
       return {
         getBoundingClientRect: () => {
           if (selection.rangeCount === 0 && previousAnchorElPosition.current) {
+            setOpen(false);
             return previousAnchorElPosition.current;
           }
           return getBoundingClientRect();
