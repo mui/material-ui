@@ -7,6 +7,7 @@ import {
   TablePaginationActionsUnstyledRootSlotProps,
   TablePaginationActionsUnstyledTypeMap,
 } from './TablePaginationActionsUnstyled.types';
+import { ItemAriaLabelType } from './common.types';
 
 function LastPageIconDefault() {
   return <span>{'⇾|'}</span>;
@@ -20,8 +21,6 @@ function NextPageIconDefault() {
 function BackPageIconDefault() {
   return <span>{'⇽'}</span>;
 }
-
-type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
 function defaultGetAriaLabel(type: ItemAriaLabelType) {
   return `Go to ${type} page`;
