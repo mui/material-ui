@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../utils/debounce';
-import { ownerWindow } from '../utils';
+import { ownerWindow, unstable_useEnhancedEffect as useEnhancedEffect } from '../utils';
 
 const styles = {
   width: 99,
@@ -21,22 +21,21 @@ export default function ScrollbarSize(props) {
   const scrollbarHeight = React.useRef();
   const nodeRef = React.useRef(null);
 
-  const setMeasurements = (element) => {
-    scrollbarHeight.current = element.offsetHeight - element.clientHeight;
+  const setMeasurements = () => {
+    scrollbarHeight.current = nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
 
-  React.useEffect(() => {
-    const element = nodeRef.current;
+  useEnhancedEffect(() => {
     const handleResize = debounce(() => {
       const prevHeight = scrollbarHeight.current;
-      setMeasurements(element);
+      setMeasurements();
 
       if (prevHeight !== scrollbarHeight.current) {
         onChange(scrollbarHeight.current);
       }
     });
 
-    const containerWindow = ownerWindow(element);
+    const containerWindow = ownerWindow(nodeRef.current);
     containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
@@ -45,7 +44,7 @@ export default function ScrollbarSize(props) {
   }, [onChange]);
 
   React.useEffect(() => {
-    setMeasurements(nodeRef.current);
+    setMeasurements();
     onChange(scrollbarHeight.current);
   }, [onChange]);
 
