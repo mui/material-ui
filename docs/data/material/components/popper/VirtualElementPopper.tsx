@@ -11,8 +11,12 @@ export default function VirtualElementPopper() {
   const previousAnchorElPosition = React.useRef<DOMRect | undefined>(undefined);
 
   React.useEffect(() => {
-    if (anchorEl && typeof anchorEl === 'object') {
-      previousAnchorElPosition.current = anchorEl.getBoundingClientRect();
+    if (anchorEl) {
+      if (typeof anchorEl === 'object') {
+        previousAnchorElPosition.current = anchorEl.getBoundingClientRect();
+      } else {
+        previousAnchorElPosition.current = anchorEl().getBoundingClientRect();
+      }
     }
   }, [anchorEl]);
 
