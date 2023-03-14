@@ -113,37 +113,6 @@ TablePaginationActions.propTypes = {
    */
   backIconButtonProps: PropTypes.object,
   /**
-   * The components used for First, Last, Next & Previous item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {
-   *   First: FirstPageIcon,
-   *   Last: LastPageIcon,
-   *   Next: KeyboardArrowRight,
-   *   Previous: KeyboardArrowLeft,
-   * }
-   */
-  slots: PropTypes.shape({
-    First: PropTypes.elementType,
-    Last: PropTypes.elementType,
-    Next: PropTypes.elementType,
-    Previous: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    first: PropTypes.object,
-    last: PropTypes.object,
-    next: PropTypes.object,
-    previous: PropTypes.object,
-  }),
-  /**
    * The total number of rows.
    */
   count: PropTypes.number.isRequired,
@@ -184,6 +153,37 @@ TablePaginationActions.propTypes = {
    * If `true`, show the last-page button.
    */
   showLastButton: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    first: PropTypes.object,
+    last: PropTypes.object,
+    next: PropTypes.object,
+    previous: PropTypes.object,
+  }),
+  /**
+   * The components used for First, Last, Next & Previous item type
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {
+   *   First: FirstPageIcon,
+   *   Last: LastPageIcon,
+   *   Next: KeyboardArrowRight,
+   *   Previous: KeyboardArrowLeft,
+   * }
+   */
+  slots: PropTypes.shape({
+    First: PropTypes.elementType,
+    Last: PropTypes.elementType,
+    Next: PropTypes.elementType,
+    Previous: PropTypes.elementType,
+  }),
 };
 
 export default TablePaginationActions;
