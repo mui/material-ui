@@ -61,7 +61,7 @@ Our team walked away with a number of actionable changes and commitments for the
 <img alt="MUI team members sit in a half-U shape as Co-Founder Olivier Tassinari presents the monthly meeting slides." src="/static/blog/2023-chamonix-retreat/monthly-meeting.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
 
 Following our very productive sessions, it was time to relax and refresh ourselves.
-We decided to increase the amount of down-time in our final day together and leave space for serendipitous fun to unfold.
+We decided to increase the amount of downtime on our final day together and leave space for serendipitous fun to unfold.
 
 And guess what: _**it worked!**_
 
