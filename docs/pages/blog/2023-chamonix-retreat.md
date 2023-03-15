@@ -1,11 +1,12 @@
 ---
 title: MUI's team retreat in Chamonix
 description: The MUI team spent five days in the French Alps team-building, problem-solving, and brainstorming. Read all about it!
-date: 2022-03-16T00:00:00.000Z
-authors: ['mikaila']
+date: 2023-03-16T00:00:00.000Z
+authors: ['mikailaread']
 card: true
 tags: ['Company']
 ---
+
 ## Why the Chamonix gathering?
 
 Being a distributed team means everyone at MUI works asynchronously.
@@ -16,9 +17,9 @@ But this way of working can also mean some team members experience very little o
 
 So, what do we do?
 
-MUI is extremely intentional about bridging gaps by bringing our people together every ~8 months (as a minimum). 
+MUI is extremely intentional about bridging gaps by bringing our people together every ~8 months (as a minimum).
 
-*Our team retreats are about providing everyone a more tangible opportunity to feel part of the MUI community and to learn more about each other outside of work.*
+_Our team retreats are about providing everyone a more tangible opportunity to feel part of the MUI community and to learn more about each other outside of work._
 
 It's a time to focus more on who we are as individuals, which creates a wonderful ripple effect on the the ways we work together as a team.
 
@@ -38,7 +39,7 @@ We stayed in the beautiful Helopic Hotel & Spa, which fit our needs perfectly. W
 
 ## What did we do?
 
-We kicked off the week with a number of unique team-building activities, including a mini Winter Olympics, competitive team biathlon, and even axe-throwing. 🎯🪓 
+We kicked off the week with a number of unique team-building activities, including a mini Winter Olympics, competitive team biathlon, and even axe-throwing. 🎯🪓
 
 Engaging in new experiences together gave us an opportunity to learn about each other's strengths and weaknesses, and to develop a better understanding of how our differences influence the ways we might communicate and work together.
 
@@ -56,9 +57,9 @@ Solving challenges and sparking new ideas takes on such a different feel when yo
 
 <img alt="MUI team members sit in a half-U shape as Co-Founder Olivier Tassinari presents the monthly meeting slides." src="/static/blog/2023-chamonix-retreat/monthly-meeting.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
 
-Following our very productive sessions, it was time to relax and refresh ourselves. We decided to increase the amount of down-time in our final day together and leave space for serendipitous fun to unfold. 
+Following our very productive sessions, it was time to relax and refresh ourselves. We decided to increase the amount of down-time in our final day together and leave space for serendipitous fun to unfold.
 
-And guess what: ***********it worked!***********
+And guess what: ****\*\*\*****it worked!****\*\*\*****
 
 One of the most-loved parts of our retreat in team feedback surveys turned out to be a completely unplanned game night. Despite tiring return journeys ahead, an exhausted group of us set up camp in the hotel lobby to play cards and boardgames into the wee hours of the morning. Special bonds formed over some very colourful rounds of Saboteur and terribly-executed magic tricks. 🙃🎩
 
