@@ -104,9 +104,9 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   Joy UI has new naming standards of the CSS variables for its components. Below is an example of how the migration should look like:
 
   ```diff
-  -<List sx={{ py: 'var(--ListDivider-gap)' }}>
+  -<List sx={{ py: 'var(--List-divider-gap)' }}>
   +<List sx={{ py: 'var(--ListDivider-gap)' }}>
-  -<Switch sx={{ '--Switch-trackWidth': '40px' }}>
+  -<Switch sx={{ '--Switch-track-width': '40px' }}>
   +<Switch sx={{ '--Switch-trackWidth': '40px' }}>
   ```
 
