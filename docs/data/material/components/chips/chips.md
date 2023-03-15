@@ -79,7 +79,8 @@ You can use the `size` prop to define a small Chip.
 
 ## Multiline chip
 
-By default, `Chip` just displays labels in single line. To use multiline chips you can add `height: 'auto'` to the Chip component and `whiteSpace: 'normal'` to the `label` styles.
+By default, Chips displays labels only in a single line.
+To have them support multiline content, add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
 
 {{"demo": "MultilineChips.js"}}
 
