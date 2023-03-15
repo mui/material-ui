@@ -8,6 +8,6 @@
   />
   <Autocomplete sx={{ '--Autocomplete-wrapperGap': '10px' }} />
   <Switch sx={{ '--Switch-trackWidth': '40px' }} />
-  <Item sx={{ py: 'var(--unstable_actionRadius)' }} />
-  <Item sx={{ py: 'var(--unstable_actionRadius)' }} />
+  <Item sx={{ py: 'var(--internal-action-radius)' }} />
+  <Item sx={{ py: 'var(--unstable_action-radius)' }} />
 </div>;
