@@ -19,13 +19,13 @@ So, what do we do?
 
 MUI is extremely intentional about bridging gaps by bringing our people together every ~8 months (as a minimum).
 
-_Our team retreats are about providing everyone a more tangible opportunity to feel part of the MUI community and to learn more about each other outside of work._
+_Our team retreats are about providing everyone a more tangible opportunity to feel part of the MUI community and to learn more about each other outside of work._
 
 It's a time to focus more on who we are as individuals, which creates a wonderful ripple effect on the ways we work together as a team.
 
 ## Where did we go?
 
-Photo of the Heliopic Hotel & Spa exterior, via [Assas Hotels](https://www.assas-hotels.com/en/hotel-heliopic-sweet-spa/).
+Photo of the Heliopic Hotel & Spa exterior, via [Assas Hotels](https://www.assas-hotels.com/en/hotel-heliopic-sweet-spa/).
 
 <img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/hotel-exterior.jpeg" style="aspect-ratio: 4/3;margin-bottom: 16px; border-radius: 8px;" loading="lazy" />
 
@@ -87,4 +87,4 @@ To have your say in where we go and what we do, join us now.
 
 [Visit our careers page!](/careers/) 🏃💨
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3; border-radius: 8px;" loading="lazy" />
+<img alt="Members of the MUI team sitting around a large wooden dining table." src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
