@@ -27,7 +27,7 @@ It's a time to focus more on who we are as individuals, which creates a wonderfu
 
 Photo of the Heliopic Hotel & Spa exterior, via [Assas Hotels](https://www.assas-hotels.com/en/hotel-heliopic-sweet-spa/).
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/hotel-exterior.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/hotel-exterior.jpeg" style="aspect-ratio: 4/3;margin-bottom: 16px; border-radius: 8px;" loading="lazy" />
 
 Chamonix is a world capital for outdoor activities, such as mountaineering, skiing, snowboarding, paragliding, hiking, climbing, and so much more!
 
@@ -59,7 +59,7 @@ Solving challenges and sparking new ideas takes on such a different feel when yo
 
 Following our very productive sessions, it was time to relax and refresh ourselves. We decided to increase the amount of down-time in our final day together and leave space for serendipitous fun to unfold.
 
-And guess what: ****\*\*\*****it worked!****\*\*\*****
+And guess what: _**it worked!**_
 
 One of the most-loved parts of our retreat in team feedback surveys turned out to be a completely unplanned game night. Despite tiring return journeys ahead, an exhausted group of us set up camp in the hotel lobby to play cards and boardgames into the wee hours of the morning. Special bonds formed over some very colourful rounds of Saboteur and terribly-executed magic tricks. 🙃🎩
 
@@ -79,4 +79,4 @@ MUI is on track to double in size by the end of this year with lots of open role
 
 [www.mui.com/careers](http://www.mui.com/careers) 🏃💨
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3; border-radius: 8px;" loading="lazy" />
