@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/base';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, SvgIcon, Theme } from '..';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
 export interface TabScrollButtonStartIconSlotPropsOverrides {}
@@ -35,12 +35,12 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
    */
   slotProps?: {
     startScrollButtonIcon?: SlotComponentProps<
-      'svg',
+      typeof SvgIcon,
       TabScrollButtonStartIconSlotPropsOverrides,
       TabScrollButtonOwnerState
     >;
     endScrollButtonIcon?: SlotComponentProps<
-      'svg',
+      typeof SvgIcon,
       TabScrollButtonEndIconSlotPropsOverrides,
       TabScrollButtonOwnerState
     >;

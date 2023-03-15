@@ -7,6 +7,7 @@ import ButtonBase from '../ButtonBase';
 import { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
+import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
 
@@ -77,12 +78,12 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     slotProps?: {
       startScrollButtonIcon?: SlotComponentProps<
-        'svg',
+        typeof SvgIcon,
         TabsStartScrollButtonIconSlotPropsOverrides,
         TabsOwnerState
       >;
       endScrollButtonIcon?: SlotComponentProps<
-        'svg',
+        typeof SvgIcon,
         TabsEndScrollButtonIconSlotPropsOverrides,
         TabsOwnerState
       >;
