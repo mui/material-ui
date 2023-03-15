@@ -25,9 +25,9 @@ Even when there are no more slots available, we accept higher bids.
 via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="spotify" href="https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/96.png" srcset="https://images.opencollective.com/spotify/f37ea28/logo/192.png 2x" alt="Spotify" title="Digital music service that gives you access to millions of songs" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="text-em-all.com" href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://avatars.githubusercontent.com/u/1262264?s=96" srcset="https://avatars.githubusercontent.com/u/1262264?s=192 2x" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="spotify" href="https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/96.png" srcset="https://images.opencollective.com/spotify/f37ea28/logo/192.png 2x" alt="Spotify" title="Music service to access to millions of songs" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="megafamous" href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="dialmycalls" href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png 2x" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/96.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/192.png 2x" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
@@ -94,18 +94,33 @@ Funds donated via OpenCollective are managed transparently and aimed to sustain 
 
 These great services sponsor MUI's core infrastructure:
 
-[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
+<span class="only-light-mode">
+  <img src="/static/readme/github-lightmode.svg" alt="GitHub logo" loading="lazy" width="80" height="43">
+</span>
+<span class="only-dark-mode">
+  <img src="/static/readme/github-darkmode.svg" alt="GitHub logo" loading="lazy" width="80" height="43">
+</span>
 
-GitHub allows us to host the Git repository.
+[GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
-[<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
+<span class="only-light-mode">
+  <img src="/static/readme/netlify-lightmode.svg" alt="Netlify logo" loading="lazy" width="100" height="27" style="margin-top: 1rem;">
+</span>
+<span class="only-dark-mode">
+  <img src="/static/readme/netlify-darkmode.svg" alt="Netlify logo" loading="lazy" width="100" height="27" style="margin-top: 1rem;">
+</span>
 
-Netlify allows us to distribute the documentation.
+[Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
-[<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
+<span class="only-light-mode">
+  <img src="/static/readme/browserstack-lightmode.svg" alt="BrowserStack logo" loading="lazy" width="140" height="25" style="margin-top: 1rem;">
+</span>
+<span class="only-dark-mode">
+  <img src="/static/readme/browserstack-darkmode.svg" alt="BrowserStack logo" loading="lazy" width="140" height="25" style="margin-top: 1rem;">
+</span>
 
-BrowserStack allows us to test in real browsers.
+[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-[<img loading="lazy" alt="CodeCov" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35">](https://about.codecov.io/)
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
 
-CodeCov allows us to monitor the test coverage.
+[CodeCov](https://about.codecov.io/) lets us monitor test coverage.
