@@ -3,13 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
-import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropretiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import Ad from 'docs/src/modules/components/Ad';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -42,38 +39,24 @@ function Heading(props) {
 Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default function HooksApiContent(props) {
-  const { descriptions, disableAd = false, pagesContents } = props;
-  const t = useTranslate();
+  const { descriptions, pagesContents } = props;
   const userLanguage = useUserLanguage();
 
   return Object.keys(pagesContents).map((key) => {
-    const {
-      demos,
-      filename,
-      inheritance,
-      name: hookName,
-      parameters,
-      returnValue,
-    } = pagesContents[key];
+    const { filename, name: hookName, parameters, returnValue } = pagesContents[key];
 
-    const {
-      hookDescription,
-      hookDescriptionToc = [],
-      parametersDescriptions,
-      returnValueDescriptions,
-    } = descriptions[key][userLanguage];
-    const description = t('api-docs.hooksPageDescription').replace(/{{name}}/, hookName);
+    const { hookDescription, parametersDescriptions, returnValueDescriptions } =
+      descriptions[key][userLanguage];
 
     const source = filename
       .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-    // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
-    const apiSourceLocation = filename.replace('.js', '.d.ts');
     const hookNameKebabCase = kebabCase(hookName);
 
     return (
@@ -124,7 +107,6 @@ import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
 
 HooksApiContent.propTypes = {
   descriptions: PropTypes.object.isRequired,
-  disableAd: PropTypes.bool,
   pagesContents: PropTypes.object.isRequired,
 };
 

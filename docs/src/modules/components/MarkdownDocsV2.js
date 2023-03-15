@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import path from 'path';
 import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import { useTheme } from '@mui/system';
@@ -18,13 +17,6 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
-import DemosDocs from 'docs/src/modules/components/DemosDocs';
-
-function noComponent(moduleID) {
-  return function NoComponent() {
-    throw new Error(`No demo component provided for '${moduleID}'`);
-  };
-}
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -79,12 +71,7 @@ export default function MarkdownDocs(props) {
 
   const hooksToc = [];
   Object.keys(hooksApiPageContents).forEach((key) => {
-    const {
-      hookDescription,
-      hookDescriptionToc = [],
-      parametersDescriptions,
-      returnValueDescriptions,
-    } = hooksApiDescriptions[key][userLanguage];
+    const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
     const { name: hookName } = hooksApiPageContents[key];
 
     const hookNameKebabCase = kebabCase(hookName);
@@ -118,12 +105,7 @@ export default function MarkdownDocs(props) {
   const componentsApiToc = [];
 
   Object.keys(componentsApiPageContents).forEach((key) => {
-    const {
-      componentDescription,
-      componentDescriptionToc = [],
-      classDescriptions,
-      propDescriptions,
-    } = componentsApiDescriptions[key][userLanguage];
+    const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
 
     const { name: componentName } = componentsApiPageContents[key];
 
@@ -182,11 +164,20 @@ export default function MarkdownDocs(props) {
         theme={theme}
         demoComponents={demoComponents}
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
         disableAd={disableAd}
       />,
     );
-    i++;
+    i += 1;
+  }
+
+  let activeToc = demosToc;
+
+  if (activeTab === 'hook-api') {
+    activeToc = hooksToc;
+  }
+
+  if (activeTab === 'component-api') {
+    activeToc = componentsApiToc;
   }
 
   return (
@@ -196,13 +187,7 @@ export default function MarkdownDocs(props) {
       disableToc={disableToc}
       location={location}
       title={title}
-      toc={
-        activeTab === 'hook-api'
-          ? hooksToc
-          : activeTab === 'component-api'
-          ? componentsApiToc
-          : demosToc
-      }
+      toc={activeToc}
       hasTabs
     >
       <Provider>
@@ -254,16 +239,16 @@ export default function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  componentsApiDescriptions: PropTypes.object,
+  componentsApiPageContents: PropTypes.object,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  srcComponents: PropTypes.object,
-  componentsApiDescriptions: PropTypes.object,
-  componentsApiPageContents: PropTypes.object,
   hooksApiDescriptions: PropTypes.object,
   hooksApiPageContents: PropTypes.object,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {

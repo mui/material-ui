@@ -156,10 +156,10 @@ AppLayoutDocs.propTypes = {
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
+  hasTabs: PropTypes.bool,
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
-  hasTabs: PropTypes.bool,
 };
 
 if (process.env.NODE_ENV !== 'production') {

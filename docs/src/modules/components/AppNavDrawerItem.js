@@ -7,7 +7,6 @@ import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
 import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
-import NoSsr from '@mui/base/NoSsr';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';

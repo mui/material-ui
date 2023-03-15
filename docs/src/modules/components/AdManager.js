@@ -19,11 +19,12 @@ export default function AdManager({ classSelector = '.description', ...props }) 
   useEnhancedEffect(() => {
     const description = document.querySelector(classSelector);
     setPortal({ placement: 'body-top', element: description });
-  }, []);
+  }, [classSelector]);
 
   return <AdContext.Provider value={portal}>{props.children}</AdContext.Provider>;
 }
 
 AdManager.propTypes = {
   children: PropTypes.node,
+  classSelector: PropTypes.string,
 };

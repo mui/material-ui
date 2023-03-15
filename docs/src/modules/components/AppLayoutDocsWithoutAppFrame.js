@@ -80,7 +80,6 @@ const ActionsDiv = styled('div')(({ theme }) => ({
 function AppLayoutDocs(props) {
   const router = useRouter();
   const {
-    BannerComponent,
     children,
     description,
     disableAd = false,
@@ -112,7 +111,7 @@ function AppLayoutDocs(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       <GlobalStyles
         styles={{
           ':root': {
@@ -145,20 +144,19 @@ function AppLayoutDocs(props) {
         </Main>
       </AdManager>
       <BackToTop />
-    </>
+    </React.Fragment>
   );
 }
 
 AppLayoutDocs.propTypes = {
-  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
+  hasTabs: PropTypes.bool,
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
-  hasTabs: PropTypes.bool,
 };
 
 if (process.env.NODE_ENV !== 'production') {

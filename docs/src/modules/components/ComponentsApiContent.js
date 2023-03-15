@@ -3,12 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
-import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropsTable from 'docs/src/modules/components/PropretiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Ad from 'docs/src/modules/components/Ad';
 
 function ClassesTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -89,17 +87,17 @@ function Heading(props) {
 Heading.propTypes = {
   hash: PropTypes.string.isRequired,
   level: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default function ComponentsApiContent(props) {
-  const { descriptions, disableAd = false, pageContents } = props;
+  const { descriptions, pageContents } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
   return Object.keys(pageContents).map((key) => {
     const {
       cssComponent,
-      demos,
       filename,
       forwardsRefTo,
       inheritance,
@@ -109,22 +107,12 @@ export default function ComponentsApiContent(props) {
       styles: componentStyles,
     } = pageContents[key];
 
-    const {
-      componentDescription,
-      componentDescriptionToc = [],
-      classDescriptions,
-      propDescriptions,
-    } = descriptions[key][userLanguage];
-
-    const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
+    const { classDescriptions, propDescriptions } = descriptions[key][userLanguage];
 
     const source = filename
       .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
       // convert things like `/Table/Table.js` to ``
       .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
-
-    // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
-    const apiSourceLocation = filename.replace('.js', '.d.ts');
 
     // The `ref` is forwarded to the root element.
     let refHint = t('api-docs.refRootElement');
@@ -238,7 +226,6 @@ import { ${componentName} } from '${source}';`}
 
 ComponentsApiContent.propTypes = {
   descriptions: PropTypes.object.isRequired,
-  disableAd: PropTypes.bool,
   pageContents: PropTypes.object.isRequired,
 };
 

@@ -5,7 +5,6 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import * as prettier from 'prettier';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
@@ -13,6 +12,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
+import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -21,11 +21,8 @@ import createDescribeableProp, {
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import parseStyles, { Styles } from '../utils/parseStyles';
-import { ComponentInfo } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlots, { Slot } from '../utils/parseSlots';
-
-const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -64,27 +61,6 @@ export interface ReactApi extends ReactDocgenApi {
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
-
-export function writePrettifiedFile(
-  filename: string,
-  data: string,
-  prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
-  options: object = {},
-) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
-
-  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-    ...options,
-  });
-}
 
 /**
  * Produces markdown of the description that can be hosted anywhere.

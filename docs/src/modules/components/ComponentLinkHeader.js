@@ -12,7 +12,7 @@ import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Root = styled('ul')(({ theme }) => ({
+const Root = styled('ul')({
   margin: 0,
   padding: 0,
   listStyle: 'none',
@@ -22,7 +22,7 @@ const Root = styled('ul')(({ theme }) => ({
   '& .MuiChip-root .MuiChip-iconSmall': {
     marginLeft: 4,
   },
-}));
+});
 
 const defaultPackageNames = {
   'material-ui': '@mui/material',

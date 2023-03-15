@@ -1,18 +1,17 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
 import Link from 'docs/src/modules/components/Link';
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { alpha } from '@mui/material/styles';
 
 export default function ComponentPageTabs(props) {
   const {
-    markdown: { headers },
     activeTab,
-    setActiveTab,
     children,
+    markdown: { headers },
   } = props;
   const router = useRouter();
 
@@ -78,3 +77,13 @@ export default function ComponentPageTabs(props) {
     </Box>
   );
 }
+
+ComponentPageTabs.propTypes = {
+  activeTab: PropTypes.string,
+  children: PropTypes.node,
+  markdown: PropTypes.shape({
+    headers: PropTypes.shape({
+      hooks: PropTypes.array,
+    }),
+  }),
+};

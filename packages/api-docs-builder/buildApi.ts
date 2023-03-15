@@ -15,11 +15,9 @@ import {
   extractApiPage,
   getJoyComponentInfo,
   updateComponentPages,
-} from './buildApiUtils';
-import generateComponentApi, {
   writePrettifiedFile,
-  ReactApi,
-} from './ApiBuilders/ComponentApiBuilder';
+} from './buildApiUtils';
+import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
 import { createTypeScriptProject, TypeScriptProject } from './utils/createTypeScriptProject';
 
@@ -302,14 +300,16 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         // @ts-ignore
         const { value } = build;
         const { name, demos } = value;
-        let lastIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+        const lastIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
 
-        const pathname =
-          demos.length > 0
-            ? lastIdx >= 0
+        let pathname = null;
+
+        if (demos.length > 0) {
+          pathname =
+            lastIdx >= 0
               ? demos[0].demoPathname.substr(0, demos[0].demoPathname.indexOf('#'))
-              : demos[0].demoPathname
-            : null;
+              : demos[0].demoPathname;
+        }
 
         if (pathname !== null) {
           apiLinks.push({

@@ -31,4 +31,5 @@ export default function AdGuest({ classSelector = '.description', ...props }) {
 
 AdGuest.propTypes = {
   children: PropTypes.node,
+  classSelector: PropTypes.string,
 };

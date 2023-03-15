@@ -1,7 +1,15 @@
 import * as React from 'react';
+import path from 'path';
+import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Demo from 'docs/src/modules/components/Demo';
+
+function noComponent(moduleID) {
+  return function NoComponent() {
+    throw new Error(`No demo component provided for '${moduleID}'`);
+  };
+}
 
 export default function MarkdownElementV2({
   renderedMarkdownOrDemo,
@@ -9,7 +17,6 @@ export default function MarkdownElementV2({
   wrapperProps,
   srcComponents,
   activeTab,
-  setActiveTab,
   localizedDoc,
   demos = {},
   location,
@@ -38,7 +45,6 @@ export default function MarkdownElementV2({
     }
     if (name.indexOf('Tabs') >= 0) {
       additionalProps.activeTab = activeTab;
-      additionalProps.setActiveTab = setActiveTab;
     }
 
     return (
@@ -70,7 +76,7 @@ export default function MarkdownElementV2({
       </span>
     );
     return (
-      <div key={index}>
+      <div>
         {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         {warnIcon} Missing demo `{name}` {warnIcon}
       </div>
@@ -99,3 +105,20 @@ export default function MarkdownElementV2({
     />
   );
 }
+
+MarkdownElementV2.propTypes = {
+  activeTab: PropTypes.string,
+  demoComponents: PropTypes.any,
+  demos: PropTypes.any,
+  disableAd: PropTypes.bool,
+  localizedDoc: PropTypes.any,
+  location: PropTypes.string,
+  renderedMarkdownOrDemo: PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.shape({ component: PropTypes.any, demo: PropTypes.any }),
+  ),
+  srcComponents: PropTypes.any,
+  theme: PropTypes.object,
+  WrapperComponent: PropTypes.node,
+  wrapperProps: PropTypes.object,
+};
