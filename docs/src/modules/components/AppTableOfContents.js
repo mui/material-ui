@@ -124,7 +124,6 @@ const shouldShowJobAd = () => {
   return true;
 };
 
-// TODO: Add custom table of contents for the pages containing multiple tabs
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
