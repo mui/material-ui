@@ -21,7 +21,7 @@ MUI is extremely intentional about bridging gaps by bringing our people together
 
 _Our team retreats are about providing everyone a more tangible opportunity to feel part of the MUI community and to learn more about each other outside of work._
 
-It's a time to focus more on who we are as individuals, which creates a wonderful ripple effect on the the ways we work together as a team.
+It's a time to focus more on who we are as individuals, which creates a wonderful ripple effect on the ways we work together as a team.
 
 ## Where did we go?
 
