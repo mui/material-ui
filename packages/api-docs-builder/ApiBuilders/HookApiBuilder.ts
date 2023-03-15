@@ -10,12 +10,13 @@ import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
+import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
