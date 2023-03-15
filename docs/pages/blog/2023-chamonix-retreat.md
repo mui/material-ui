@@ -34,7 +34,7 @@ Chamonix is a world capital for outdoor activities, such as mountaineering, skii
 The Chamonix Mont Blanc valley offers unmatched alpine views, plus a whole host of stunning protected flora and fauna.
 With a bustling city center full of quaint shops and restaurants — there's something for everyone to enjoy.
 
-We stayed in the beautiful Helopic Hotel & Spa, which fit our needs perfectly. With fully-equipped conference rooms, a cosy lobby bar, table-service restaurant, and luxury spa — everything we needed was on-site. (The food was delicious, too!)
+We stayed in the beautiful Helopic Hotel & Spa, which fit our needs perfectly. With fully-equipped conference rooms, a cozy lobby bar, a table-service restaurant, and a luxury spa — everything we needed was on-site. (The food was delicious, too!)
 
 <img alt="A plated apple dessert with three scoops of ice cream." src="/static/blog/2023-chamonix-retreat/dessert.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
 
