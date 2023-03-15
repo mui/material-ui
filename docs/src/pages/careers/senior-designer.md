@@ -80,8 +80,8 @@ It's important you know at least how to talk and read HTML/CSS but amazing if yo
 
 ## Benefits & Compensation
 
-Competitive compensation depends on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay competitive, top market rates, for a person that can cleary exceed the role's expectations.
+Therefore, we consider profile and location.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
 ## Interview steps
