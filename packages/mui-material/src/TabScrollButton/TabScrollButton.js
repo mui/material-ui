@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
@@ -63,22 +63,27 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const ownerState = { isRtl, ...props };
 
   const classes = useUtilityClasses(ownerState);
-  const ScrollButtonStart = slots.ScrollButtonStart ?? KeyboardArrowLeft;
-  const ScrollButtonEnd = slots.ScrollButtonEnd ?? KeyboardArrowRight;
-  const getIconProps = (icon) => {
-    switch (icon) {
-      case KeyboardArrowLeft:
-        return { fontSize: 'small', ...slotProps?.scrollButtonStart };
-      case KeyboardArrowRight:
-        return { fontSize: 'small', ...slotProps?.scrollButtonEnd };
-      case ScrollButtonStart:
-        return slotProps?.scrollButtonStart ?? {};
-      case ScrollButtonEnd:
-        return slotProps?.scrollButtonEnd ?? {};
-      default:
-        return {};
-    }
-  };
+
+  const StartButtonIcon = slots.StartScrollButtonIcon ?? KeyboardArrowLeft;
+  const EndButtonIcon = slots.EndScrollButtonIcon ?? KeyboardArrowRight;
+
+  const startButtonIconProps = useSlotProps({
+    elementType: StartButtonIcon,
+    externalSlotProps: slotProps.startScrollButtonIcon,
+    additionalProps: {
+      fontSize: 'small',
+    },
+    ownerState,
+  });
+
+  const endButtonIconProps = useSlotProps({
+    elementType: EndButtonIcon,
+    externalSlotProps: slotProps.endScrollButtonIcon,
+    additionalProps: {
+      fontSize: 'small',
+    },
+    ownerState,
+  });
 
   return (
     <TabScrollButtonRoot
@@ -91,9 +96,9 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       {...other}
     >
       {direction === 'left' ? (
-        <ScrollButtonStart {...getIconProps(ScrollButtonStart)} />
+        <StartButtonIcon {...startButtonIconProps} />
       ) : (
-        <ScrollButtonEnd {...getIconProps(ScrollButtonEnd)} />
+        <EndButtonIcon {...endButtonIconProps} />
       )}
     </TabScrollButtonRoot>
   );
@@ -132,25 +137,19 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
-    scrollButtonEnd: PropTypes.object,
-    scrollButtonStart: PropTypes.object,
+    endScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for ScrollButtonStart, ScrollButtonEnd item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
-    ScrollButtonEnd: PropTypes.elementType,
-    ScrollButtonStart: PropTypes.elementType,
+    EndScrollButtonIcon: PropTypes.elementType,
+    StartScrollButtonIcon: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

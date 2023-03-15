@@ -29,14 +29,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ scrollButtonEnd?: object, scrollButtonStart?: object }"
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ ScrollButtonEnd?: elementType, ScrollButtonStart?: elementType }"
+        "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
       },
       "default": "{}"
     },

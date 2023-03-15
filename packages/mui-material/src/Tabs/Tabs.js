@@ -3,7 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -241,8 +241,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
-    slots = {},
-    slotProps = {},
     allowScrollButtonsMobile = false,
     indicatorColor = 'primary',
     onChange,
@@ -250,6 +248,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     ScrollButtonComponent = TabScrollButton,
     scrollButtons = 'auto',
     selectionFollowsFocus,
+    slots = {},
+    slotProps = {},
     TabIndicatorProps = {},
     TabScrollButtonProps = {},
     textColor = 'primary',
@@ -287,6 +287,18 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const startScrollButtonIconProps = useSlotProps({
+    elementType: slots.StartScrollButtonIcon,
+    externalSlotProps: slotProps.startScrollButtonIcon,
+    ownerState,
+  });
+
+  const endScrollButtonIconProps = useSlotProps({
+    elementType: slots.EndScrollButtonIcon,
+    externalSlotProps: slotProps.endScrollButtonIcon,
+    ownerState,
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     if (centered && scrollable) {
@@ -501,8 +513,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
-        slots={slots}
-        slotProps={slotProps}
+        slots={{ StartScrollButtonIcon: slots.StartScrollButtonIcon }}
+        slotProps={{ startScrollButtonIcon: startScrollButtonIconProps }}
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
@@ -514,8 +526,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
-        slots={slots}
-        slotProps={slotProps}
+        slots={{ EndScrollButtonIcon: slots.EndScrollButtonIcon }}
+        slotProps={{
+          endScrollButtonIcon: endScrollButtonIconProps,
+        }}
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
@@ -866,25 +880,19 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
-    scrollButtonEnd: PropTypes.object,
-    scrollButtonStart: PropTypes.object,
+    endScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for ScrollButtonStart, ScrollButtonEnd item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
-    ScrollButtonEnd: PropTypes.elementType,
-    ScrollButtonStart: PropTypes.elementType,
+    EndScrollButtonIcon: PropTypes.elementType,
+    StartScrollButtonIcon: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

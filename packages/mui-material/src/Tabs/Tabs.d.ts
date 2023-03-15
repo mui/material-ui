@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import ButtonBase from '../ButtonBase';
@@ -8,6 +9,19 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
 
 export interface TabsPropsIndicatorColorOverrides {}
+
+export interface TabsStartScrollButtonIconSlotPropsOverrides {}
+export interface TabsEndScrollButtonIconSlotPropsOverrides {}
+
+export interface TabsOwnerState extends TabsProps {
+  vertical: boolean;
+  fixed: boolean;
+  hideScrollbar: boolean;
+  scrollableX: boolean;
+  scrollableY: boolean;
+  centered: boolean;
+  scrollButtonsHideMobile: boolean;
+}
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
   props: P & {
@@ -49,27 +63,29 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     classes?: Partial<TabsClasses>;
     /**
-     * The components used for ScrollButtonStart, ScrollButtonEnd item type
-     *
-     * This prop is an alias for the `components` prop, which will be deprecated in the future.
-     *
+     * The components used for each slot inside.
      * @default {}
      */
     slots?: {
-      ScrollButtonStart?: React.ElementType;
-      ScrollButtonEnd?: React.ElementType;
+      StartScrollButtonIcon?: React.ElementType;
+      EndScrollButtonIcon?: React.ElementType;
     };
     /**
      * The extra props for the slot components.
      * You can override the existing props or add new ones.
-     *
-     * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-     *
      * @default {}
      */
     slotProps?: {
-      scrollButtonStart?: React.HTMLProps<HTMLButtonElement>;
-      scrollButtonEnd?: React.HTMLProps<HTMLButtonElement>;
+      startScrollButtonIcon?: SlotComponentProps<
+        'svg',
+        TabsStartScrollButtonIconSlotPropsOverrides,
+        TabsOwnerState
+      >;
+      endScrollButtonIcon?: SlotComponentProps<
+        'svg',
+        TabsEndScrollButtonIconSlotPropsOverrides,
+        TabsOwnerState
+      >;
     };
     /**
      * Determines the color of the indicator.
