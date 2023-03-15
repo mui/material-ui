@@ -1,15 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Theme } from '@mui/joy';
 
 export default function ExampleTailwindSwitch() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <Box sx={{ display: 'flex', gap: 2 }}>
       <Switch
         checked={checked}
-        onChange={(event) => setChecked(event.target.checked)}
-        sx={(theme) => ({
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setChecked(event.target.checked)
+        }
+        sx={(theme: Theme) => ({
           display: 'inherit',
           '--Switch-thumbShadow': theme.vars.shadow.sm,
           '--Switch-thumbSize': '18px',
