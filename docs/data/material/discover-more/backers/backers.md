@@ -17,7 +17,7 @@ The core of MUI is a crowd-funded open-source project, licensed under the permis
 _0/3 slots available_
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
-Please contact us at diamond@mui.com to subscribe to this tier.
+Please contact us at sales@mui.com to subscribe to this tier.
 Even when there are no more slots available, we accept higher bids.
 
 ### Gold 🏆
@@ -25,6 +25,7 @@ Even when there are no more slots available, we accept higher bids.
 via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="spotify" href="https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/96.png" srcset="https://images.opencollective.com/spotify/f37ea28/logo/192.png 2x" alt="Spotify" title="Digital music service that gives you access to millions of songs" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift.com" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=192 2x" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="text-em-all.com" href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://avatars.githubusercontent.com/u/1262264?s=96" srcset="https://avatars.githubusercontent.com/u/1262264?s=192 2x" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="megafamous" href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes" loading="lazy" /></a>

@@ -21,12 +21,7 @@ import { Variants, ColorInversion, ColorInversionConfig } from './types/variants
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import {
-  createSoftInversion,
-  createSolidInversion,
-  createVariant,
-  createVariants,
-} from './variantUtils';
+import { createSoftInversion, createSolidInversion, createVariants } from './variantUtils';
 import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
@@ -93,7 +88,6 @@ export const createGetCssVar = (cssVarPrefix = 'joy') =>
   systemCreateGetCssVar<ThemeCssVar>(cssVarPrefix);
 
 export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
-  console.time('initialize default scales');
   const {
     cssVarPrefix = 'joy',
     breakpoints,
@@ -117,15 +111,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       white: '#FFF',
       black: '#09090D',
     },
-  };
-
-  const getCssVarColor = (cssVar: string) => {
-    const tokens = cssVar.split('-');
-    const color = tokens[1];
-    const index = tokens[2];
-
-    // @ts-ignore
-    return getCssVar(cssVar, defaultColors[color]?.[index]);
   };
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
@@ -278,10 +263,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         tooltip: 'var(--joy-palette-neutral-800)',
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
-      divider: `rgba(${getCssVar(
-        'palette-neutral-mainChannel',
-        colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.28)`,
+      divider: `rgba(var(--joy-palette-neutral-mainChannel, ${colorChannel(
+        defaultColors.neutral[500],
+      )}) / 0.28)`, // should be the same index as in `attachColorChannels`
       focusVisible: 'var(--joy-palette-primary-500)',
     },
     shadowRing: '0 0 #000',
@@ -295,8 +279,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         ...createDarkModeVariantVariables('primary'),
       },
       neutral: {
-        // variants.plain.neutral = { color: '', }
-        // variants.plainHover.neutral = { color: '', backgroundColor: '' }
         ...defaultColors.neutral,
         plainColor: `var(--joy-palette-neutral-200)`,
         plainHoverColor: `var(--joy-palette-neutral-50)`,
@@ -369,15 +351,13 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         level2: 'var(--joy-palette-neutral-700)',
         level3: 'var(--joy-palette-neutral-600)',
         tooltip: 'var(--joy-palette-neutral-600)',
-        backdrop: `rgba(${getCssVar(
-          'palette-neutral-darkChannel',
-          colorChannel(defaultColors.neutral[800]), // should be the same index as in `attachColorChannels`
-        )} / 0.5)`,
+        backdrop: `rgba(var(--joy-palette-neutral-darkChannel, ${colorChannel(
+          defaultColors.neutral[800],
+        )}) / 0.5)`, // should be the same index as in `attachColorChannels`
       },
-      divider: `rgba(${getCssVar(
-        'palette-neutral-mainChannel',
-        colorChannel(defaultColors.neutral[500]), // should be the same index as in `attachColorChannels`
-      )} / 0.24)`,
+      divider: `rgba(var(--joy-palette-neutral-mainChannel, ${colorChannel(
+        defaultColors.neutral[500],
+      )}) / 0.24)`, // should be the same index as in `attachColorChannels`
       focusVisible: 'var(--joy-palette-primary-500)',
     },
     shadowRing: '0 0 #000',
@@ -387,8 +367,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const fontFamilyFallback =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
   const fontFamily = {
-    body: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
-    display: `"Public Sans", ${getCssVar('fontFamily-fallback', fontFamilyFallback)}`,
+    body: `"Public Sans", var(--joy-fontFamily-fallback, ${fontFamilyFallback})`,
+    display: `"Public Sans", var(--joy-fontFamily-fallback, ${fontFamilyFallback})`,
     code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
     fallback: fontFamilyFallback,
     ...scalesInput.fontFamily,
@@ -436,6 +416,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ...scalesInput.letterSpacing,
   };
 
+  const defaultShadowRing =
+    scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing;
+  const defaultShadowChannel =
+    scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel;
   const defaultScales = {
     colorSchemes: {
       light: lightColorSystem,
@@ -448,14 +432,12 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       thickness: '2px',
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
-        outlineOffset: `var(--focus-outline-offset, ${getCssVar(
-          'focus-thickness',
-          scalesInput.focus?.thickness ?? '2px',
-        )})`,
-        outline: `${getCssVar(
-          'focus-thickness',
-          scalesInput.focus?.thickness ?? '2px',
-        )} solid ${getCssVar('palette-focusVisible', defaultColors.primary[500])}`,
+        outlineOffset: `var(--focus-outline-offset, var(--joy-focus-thickness, ${
+          scalesInput.focus?.thickness ?? '2px'
+        }))`,
+        outline: `var(--focus-thickness, ${
+          scalesInput.focus?.thickness ?? '2px'
+        }) solid var(--joy-palette-focusVisible, ${defaultColors.primary[500]})`,
       },
     },
     lineHeight,
@@ -468,89 +450,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       xl: '20px',
     },
     shadow: {
-      xs: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0 1px 2px 0 rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.12)`,
-      sm: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.11), 0.5px 1.3px 1.8px -0.6px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.18), 1.1px 2.7px 3.8px -1.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.26)`,
-      md: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.12), 1.1px 2.8px 3.9px -0.4px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.17), 2.4px 6.1px 8.6px -0.8px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.29)`,
-      lg: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.21)`,
-      xl: `${getCssVar(
-        'shadowRing',
-        scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing,
-      )}, 0.3px 0.8px 1.1px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.16), 4.8px 12px 17px -0.5px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.19), 7px 17.5px 24.7px -0.7px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.21), 10.2px 25.5px 36px -0.9px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.27), 21px 52.3px 74px -1.2px rgba(${getCssVar(
-        'shadowChannel',
-        scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel,
-      )} / 0.29)`,
+      xs: `var(--joy-shadowRing, ${defaultShadowRing}), 0 1px 2px 0 rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.12)`,
+      sm: `var(--joy-shadowRing, ${defaultShadowRing}), 0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.11), 0.5px 1.3px 1.8px -0.6px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.18), 1.1px 2.7px 3.8px -1.2px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.26)`,
+      md: `var(--joy-shadowRing, ${defaultShadowRing}), 0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.12), 1.1px 2.8px 3.9px -0.4px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.17), 2.4px 6.1px 8.6px -0.8px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.23), 5.3px 13.3px 18.8px -1.2px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.29)`,
+      lg: `var(--joy-shadowRing, ${defaultShadowRing}), 0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.21)`,
+      xl: `var(--joy-shadowRing, ${defaultShadowRing}), 0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.21), 10.2px 25.5px 36px -0.9px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.27), 21px 52.3px 74px -1.2px rgba(var(--joy-shadowChannel, ${defaultShadowChannel}) / 0.29)`,
     },
     zIndex: {
       badge: 1,
@@ -561,107 +465,102 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
     typography: {
       display1: {
-        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl7', fontSize.xl7),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-display', ${fontFamily.display})`,
+        fontWeight: `var(--joy-fontWeight-xl', ${fontWeight.xl})`,
+        fontSize: `var(--joy-fontSize-xl7', ${fontSize.xl7})`,
+        lineHeight: `var(--joy-lineHeight-sm', ${lineHeight.sm})`,
+        letterSpacing: `var(--joy-letterSpacing-sm', ${letterSpacing.sm})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       display2: {
-        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl6', fontSize.xl6),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-display', ${fontFamily.display})`,
+        fontWeight: `var(--joy-fontWeight-xl', ${fontWeight.xl})`,
+        fontSize: `var(--joy-fontSize-xl6', ${fontSize.xl6})`,
+        lineHeight: `var(--joy-lineHeight-sm', ${lineHeight.sm})`,
+        letterSpacing: `var(--joy-letterSpacing-sm', ${letterSpacing.sm})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       h1: {
-        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
-        fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-display', ${fontFamily.display})`,
+        fontWeight: `var(--joy-fontWeight-lg', ${fontWeight.lg})`,
+        fontSize: `var(--joy-fontSize-xl5', ${fontSize.xl5})`,
+        lineHeight: `var(--joy-lineHeight-sm', ${lineHeight.sm})`,
+        letterSpacing: `var(--joy-letterSpacing-sm', ${letterSpacing.sm})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       h2: {
-        fontFamily: getCssVar('fontFamily-display', fontFamily.display),
-        fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
-        fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-display', ${fontFamily.display})`,
+        fontWeight: `var(--joy-fontWeight-lg', ${fontWeight.lg})`,
+        fontSize: `var(--joy-fontSize-xl4', ${fontSize.xl4})`,
+        lineHeight: `var(--joy-lineHeight-sm', ${lineHeight.sm})`,
+        letterSpacing: `var(--joy-letterSpacing-sm', ${letterSpacing.sm})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       h3: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
-        lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontWeight: `var(--joy-fontWeight-md', ${fontWeight.md})`,
+        fontSize: `var(--joy-fontSize-xl3', ${fontSize.xl3})`,
+        lineHeight: `var(--joy-lineHeight-sm', ${lineHeight.sm})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       h4: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontWeight: `var(--joy-fontWeight-md', ${fontWeight.md})`,
+        fontSize: `var(--joy-fontSize-xl2', ${fontSize.xl2})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       h5: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-xl', fontSize.xl),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontWeight: `var(--joy-fontWeight-md', ${fontWeight.md})`,
+        fontSize: `var(--joy-fontSize-xl', ${fontSize.xl})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       h6: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-lg', fontSize.lg),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontWeight: `var(--joy-fontWeight-md', ${fontWeight.md})`,
+        fontSize: `var(--joy-fontSize-lg', ${fontSize.lg})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       body1: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-md', fontSize.md),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontSize: `var(--joy-fontSize-md', ${fontSize.md})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-primary', ${lightColorSystem.palette.text.primary})`,
       },
       body2: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-sm', fontSize.sm),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-secondary', lightColorSystem.palette.text.secondary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontSize: `var(--joy-fontSize-sm', ${fontSize.sm})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-secondary', ${lightColorSystem.palette.text.secondary})`,
       },
       body3: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-xs', fontSize.xs),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontSize: `var(--joy-fontSize-xs', ${fontSize.xs})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-tertiary', ${lightColorSystem.palette.text.tertiary})`,
       },
       body4: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-xs2', fontSize.xs2),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontSize: `var(--joy-fontSize-xs2', ${fontSize.xs2})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-tertiary', ${lightColorSystem.palette.text.tertiary})`,
       },
       body5: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-xs3', fontSize.xs3),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
+        fontFamily: `var(--joy-fontFamily-body', ${fontFamily.body})`,
+        fontSize: `var(--joy-fontSize-xs3', ${fontSize.xs3})`,
+        lineHeight: `var(--joy-lineHeight-md', ${lineHeight.md})`,
+        color: `var(--joy-palette-text-tertiary', ${lightColorSystem.palette.text.tertiary})`,
       },
     },
   };
 
-  console.timeEnd('initialize default scales');
-
-  console.time('merge scales');
   const { colorSchemes, ...mergedScales } = scalesInput
     ? deepmerge(defaultScales, scalesInput)
     : defaultScales;
-  console.timeEnd('merge scales');
 
-  console.time('theme creation');
   const theme = {
     colorSchemes,
     ...mergedScales,
@@ -713,7 +612,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       solid: ['plain', 'outlined', 'soft', 'solid'],
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
-  console.timeEnd('theme creation');
 
   /**
    Color channels generation
@@ -760,13 +658,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shouldSkipGeneratingVar,
   };
 
-  console.time('prepareCssVars');
   const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, ThemeVars>(
     // @ts-ignore property truDark is missing from colorSchemes
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  console.timeEnd('prepareCssVars');
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.unstable_sxConfig = {
@@ -784,35 +680,10 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       ? '&'
       : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
 
-  console.time('create variant');
-  // const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
-  // theme.variants = deepmerge(
-  //   {
-  //     plain: createVariant('plain', createVariantInput),
-  //     plainHover: createVariant('plainHover', createVariantInput),
-  //     plainActive: createVariant('plainActive', createVariantInput),
-  //     plainDisabled: createVariant('plainDisabled', createVariantInput),
-  //     outlined: createVariant('outlined', createVariantInput),
-  //     outlinedHover: createVariant('outlinedHover', createVariantInput),
-  //     outlinedActive: createVariant('outlinedActive', createVariantInput),
-  //     outlinedDisabled: createVariant('outlinedDisabled', createVariantInput),
-  //     soft: createVariant('soft', createVariantInput),
-  //     softHover: createVariant('softHover', createVariantInput),
-  //     softActive: createVariant('softActive', createVariantInput),
-  //     softDisabled: createVariant('softDisabled', createVariantInput),
-  //     solid: createVariant('solid', createVariantInput),
-  //     solidHover: createVariant('solidHover', createVariantInput),
-  //     solidActive: createVariant('solidActive', createVariantInput),
-  //     solidDisabled: createVariant('solidDisabled', createVariantInput),
-  //   },
-  //   variantsInput,
-  // );
   theme.variants = deepmerge(
     createVariants(theme.colorSchemes.light.palette, getCssVar),
     variantsInput,
   );
-  console.log('theme.variants', theme.variants);
-  console.timeEnd('create variant');
 
   theme.palette = {
     ...theme.colorSchemes.light.palette,
@@ -821,12 +692,17 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
 
   theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
-  console.time('color inversion');
   // @ts-ignore if the colorInversion is provided as callbacks, it needs to be resolved in the CssVarsProvider
-  theme.colorInversion = {
-    soft: createSoftInversion(theme, true),
-    solid: createSolidInversion(theme, true),
-  };
-  console.timeEnd('color inversion');
+  theme.colorInversion =
+    typeof colorInversionInput === 'function'
+      ? colorInversionInput
+      : deepmerge(
+          {
+            soft: createSoftInversion(theme),
+            solid: createSolidInversion(theme),
+          },
+          colorInversionInput || {},
+          { clone: false },
+        );
   return theme;
 }

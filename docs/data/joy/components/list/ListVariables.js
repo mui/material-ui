@@ -22,11 +22,11 @@ export default function ListVariables() {
         { var: '--List-padding', defaultValue: '0px' },
         { var: '--List-radius', defaultValue: '0px' },
         { var: '--List-gap', defaultValue: '0px' },
-        { var: '--List-item-minHeight', defaultValue: '40px' },
-        { var: '--List-item-paddingY', defaultValue: '6px' },
-        { var: '--List-item-paddingX', defaultValue: '12px' },
-        { var: '--List-decorator-size', defaultValue: '40px' },
-        { var: '--List-divider-gap', defaultValue: '6px' },
+        { var: '--ListItem-minHeight', defaultValue: '40px' },
+        { var: '--ListItem-paddingY', defaultValue: '6px' },
+        { var: '--ListItem-paddingX', defaultValue: '12px' },
+        { var: '--List-decoratorSize', defaultValue: '40px' },
+        { var: '--ListDivider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (
         <List

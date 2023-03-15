@@ -21,7 +21,7 @@ export default function InputIntegration() {
         }
         sx={{
           '--Input-radius': `${radius}px`,
-          '--Input-decorator-childHeight': `${childHeight}px`,
+          '--Input-decoratorChildHeight': `${childHeight}px`,
         }}
       />
       <ListDivider component="hr" />

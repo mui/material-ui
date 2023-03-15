@@ -6,7 +6,7 @@ import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/markdown';
 import { getLineFeed } from '@mui-internal/docs-utilities';
 import { replaceComponentLinks } from './utils/replaceUrl';
-import findPagesMarkdownNew from './utils/findPagesMarkdown';
+import findPagesMarkdown from './utils/findPagesMarkdown';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
 let systemComponents: string[] | undefined;
@@ -198,7 +198,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => {
+      const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
         const markdownHeaders = getHeaders(markdownContent) as any;
 
@@ -307,7 +307,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
+      const allMarkdowns = findPagesMarkdown()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
@@ -345,7 +345,7 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
       return srcInfo;
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
+      const allMarkdowns = findPagesMarkdown()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
@@ -414,7 +414,7 @@ export const getJoyComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => {
+      const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
         const markdownHeaders = getHeaders(markdownContent) as any;
 
@@ -453,7 +453,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
       return null;
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
+      const allMarkdowns = findPagesMarkdown()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);

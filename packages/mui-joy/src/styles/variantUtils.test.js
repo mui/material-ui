@@ -1,10 +1,5 @@
 import { expect } from 'chai';
-import {
-  isVariantPalette,
-  createVariantStyle,
-  createVariant,
-  createVariants,
-} from './variantUtils';
+import { isVariantPalette, createVariantStyle, createVariants } from './variantUtils';
 import { createGetCssVar } from './extendTheme';
 
 describe('variant utils', () => {
@@ -37,33 +32,21 @@ describe('variant utils', () => {
 
   describe('initial state', () => {
     it('[color] should create a variant', () => {
-      expect(
-        createVariantStyle('any', {
-          anyColor: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyColor', 'var(--any-token)')).to.deep.include({
         '--variant-borderWidth': '0px',
         color: 'var(--any-token)',
       });
     });
 
     it('[bg] should create a variant', () => {
-      expect(
-        createVariantStyle('any', {
-          anyBg: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyBg', 'var(--any-token)')).to.deep.include({
         '--variant-borderWidth': '0px',
         backgroundColor: 'var(--any-token)',
       });
     });
 
     it('[border] should create a variant', () => {
-      expect(
-        createVariantStyle('any', {
-          anyBorder: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyBorder', 'var(--any-token)')).to.deep.include({
         '--variant-borderWidth': '1px',
         border: 'var(--variant-borderWidth) solid',
         borderColor: 'var(--any-token)',
@@ -73,31 +56,19 @@ describe('variant utils', () => {
 
   describe('hover state', () => {
     it('[color] should create a variant', () => {
-      expect(
-        createVariantStyle('anyHover', {
-          anyHoverColor: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyHoverColor', 'var(--any-token)')).to.deep.include({
         color: 'var(--any-token)',
       });
     });
 
     it('[bg] should create a variant', () => {
-      expect(
-        createVariantStyle('anyHover', {
-          anyHoverBg: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyHoverBg', 'var(--any-token)')).to.deep.include({
         backgroundColor: 'var(--any-token)',
       });
     });
 
     it('[border] should create a variant', () => {
-      expect(
-        createVariantStyle('anyHover', {
-          anyHoverBorder: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyHoverBorder', 'var(--any-token)')).to.deep.include({
         borderColor: 'var(--any-token)',
       });
     });
@@ -105,31 +76,19 @@ describe('variant utils', () => {
 
   describe('active state', () => {
     it('[color] should create a variant', () => {
-      expect(
-        createVariantStyle('anyActive', {
-          anyActiveColor: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyActiveColor', 'var(--any-token)')).to.deep.include({
         color: 'var(--any-token)',
       });
     });
 
     it('[bg] should create a variant', () => {
-      expect(
-        createVariantStyle('anyActive', {
-          anyActiveBg: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyActiveBg', 'var(--any-token)')).to.deep.include({
         backgroundColor: 'var(--any-token)',
       });
     });
 
     it('[border] should create a variant', () => {
-      expect(
-        createVariantStyle('anyActive', {
-          anyActiveBorder: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyActiveBorder', 'var(--any-token)')).to.deep.include({
         borderColor: 'var(--any-token)',
       });
     });
@@ -137,11 +96,7 @@ describe('variant utils', () => {
 
   describe('disabled state', () => {
     it('[color] should create a variant', () => {
-      expect(
-        createVariantStyle('anyDisabled', {
-          anyDisabledColor: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyDisabledColor', 'var(--any-token)')).to.deep.include({
         color: 'var(--any-token)',
         pointerEvents: 'none',
         cursor: 'default',
@@ -149,11 +104,7 @@ describe('variant utils', () => {
     });
 
     it('[bg] should create a variant', () => {
-      expect(
-        createVariantStyle('anyDisabled', {
-          anyDisabledBg: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyDisabledBg', 'var(--any-token)')).to.deep.include({
         backgroundColor: 'var(--any-token)',
         pointerEvents: 'none',
         cursor: 'default',
@@ -161,11 +112,7 @@ describe('variant utils', () => {
     });
 
     it('[border] should create a variant', () => {
-      expect(
-        createVariantStyle('anyDisabled', {
-          anyDisabledBorder: 'var(--any-token)',
-        }),
-      ).to.deep.include({
+      expect(createVariantStyle({}, 'anyDisabledBorder', 'var(--any-token)')).to.deep.include({
         borderColor: 'var(--any-token)',
         pointerEvents: 'none',
         cursor: 'default',
@@ -174,17 +121,10 @@ describe('variant utils', () => {
   });
 
   it('should have --variant-borderWidth to initial states even without border token', () => {
-    const vars = {
-      anyColor: 'var(--any-token)',
-      anyBg: 'var(--any-token)',
-      anyHoverColor: 'var(--any-token)',
-      anyHoverBg: 'var(--any-token)',
-      anyActiveColor: 'var(--any-token)',
-      anyActiveBg: 'var(--any-token)',
-      anyDisabledColor: 'var(--any-token)',
-      anyDisabledBg: 'var(--any-token)',
-    };
-    expect(createVariantStyle('any', vars)).to.deep.equal({
+    const source = {};
+    createVariantStyle(source, 'anyColor', 'var(--any-token)');
+    createVariantStyle(source, 'anyBg', 'var(--any-token)');
+    expect(source).to.deep.equal({
       '--variant-borderWidth': '0px',
       color: 'var(--any-token)',
       backgroundColor: 'var(--any-token)',
@@ -192,34 +132,37 @@ describe('variant utils', () => {
   });
 
   it('should create a variant with all states', () => {
-    const vars = {
-      outlinedColor: 'var(--any-token)',
-      outlinedBorderColor: 'var(--any-token)',
-      outlinedBg: 'var(--any-token)',
-      outlinedHoverColor: 'var(--any-token)',
-      outlinedHoverBorder: 'var(--any-token)',
-      outlinedHoverBg: 'var(--any-token)',
-      outlinedActiveColor: 'var(--any-token)',
-      outlinedActiveBorder: 'var(--any-token)',
-      outlinedActiveBg: 'var(--any-token)',
-      outlinedDisabledColor: 'var(--any-token)',
-      outlinedDisabledBorder: 'var(--any-token)',
-      outlinedDisabledBg: 'var(--any-token)',
+    const source = {
+      outlined: { primary: {} },
+      outlinedHover: { primary: {} },
+      outlinedActive: { primary: {} },
+      outlinedDisabled: { primary: {} },
     };
-    expect({
-      outlined: {
-        primary: createVariantStyle('outlined', vars),
-      },
-      outlinedHover: {
-        primary: createVariantStyle('outlinedHover', vars),
-      },
-      outlinedActive: {
-        primary: createVariantStyle('outlinedActive', vars),
-      },
-      outlinedDisabled: {
-        primary: createVariantStyle('outlinedDisabled', vars),
-      },
-    }).to.deep.equal({
+    createVariantStyle(source.outlined.primary, 'outlinedColor', 'var(--any-token)');
+    createVariantStyle(source.outlined.primary, 'outlinedBorderColor', 'var(--any-token)');
+    createVariantStyle(source.outlined.primary, 'outlinedBg', 'var(--any-token)');
+
+    createVariantStyle(source.outlinedHover.primary, 'outlinedHoverColor', 'var(--any-token)');
+    createVariantStyle(source.outlinedHover.primary, 'outlinedHoverBorder', 'var(--any-token)');
+    createVariantStyle(source.outlinedHover.primary, 'outlinedHoverBg', 'var(--any-token)');
+
+    createVariantStyle(source.outlinedActive.primary, 'outlinedActiveColor', 'var(--any-token)');
+    createVariantStyle(source.outlinedActive.primary, 'outlinedActiveBorder', 'var(--any-token)');
+    createVariantStyle(source.outlinedActive.primary, 'outlinedActiveBg', 'var(--any-token)');
+
+    createVariantStyle(
+      source.outlinedDisabled.primary,
+      'outlinedDisabledColor',
+      'var(--any-token)',
+    );
+    createVariantStyle(
+      source.outlinedDisabled.primary,
+      'outlinedDisabledBorder',
+      'var(--any-token)',
+    );
+    createVariantStyle(source.outlinedDisabled.primary, 'outlinedDisabledBg', 'var(--any-token)');
+
+    expect(source).to.deep.equal({
       outlined: {
         primary: {
           color: 'var(--any-token)',
@@ -256,182 +199,234 @@ describe('variant utils', () => {
   });
 
   it('should not include invalid value to variant', () => {
-    expect(
-      createVariantStyle('plain', {
-        plainColor: 'var(--any-token)',
-        plainHoverColor: '',
-        plainActiveColor: null,
-        plainDisabledColor: undefined,
-      }),
-    ).to.deep.equal({
+    const source = {};
+    createVariantStyle(source, 'plainColor', 'var(--any-token)');
+    createVariantStyle(source, 'plainHoverColor', '');
+    createVariantStyle(source, 'plainActiveColor', null);
+    createVariantStyle(source, 'plainDisabledColor', undefined);
+    expect(source).to.deep.equal({
       '--variant-borderWidth': '0px',
       color: 'var(--any-token)',
     });
   });
 
   it('create correct context color for plain variant', () => {
-    const vars = {
-      plainColor: 'var(--joy-variant-plainColor)',
-      plainHoverColor: `var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))`,
-      plainHoverBg: 'var(--joy-variant-plainHoverBg)',
-      plainActiveColor: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
-      plainDisabledColor: 'var(--joy-variant-plainDisabledColor)',
+    const source = {
+      plain: {},
+      plainHover: {},
+      plainActive: {},
+      plainDisabled: {},
     };
-    expect(createVariantStyle('plain', vars)).to.deep.include({
+    createVariantStyle(source.plain, 'plainColor', 'var(--joy-variant-plainColor)');
+    createVariantStyle(
+      source.plainHover,
+      'plainHoverColor',
+      'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
+    );
+    createVariantStyle(source.plainHover, 'plainHoverBg', 'var(--joy-variant-plainHoverBg)');
+    createVariantStyle(
+      source.plainActive,
+      'plainActiveColor',
+      'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
+    );
+    createVariantStyle(
+      source.plainDisabled,
+      'plainDisabledColor',
+      'var(--joy-variant-plainDisabledColor)',
+    );
+
+    expect(source.plain).to.deep.include({
       color: 'var(--joy-variant-plainColor)',
     });
-    expect(createVariantStyle('plainHover', vars)).to.deep.include({
+    expect(source.plainHover).to.deep.include({
       color: 'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
       backgroundColor: 'var(--joy-variant-plainHoverBg)',
     });
-    expect(createVariantStyle('plainActive', vars)).to.deep.include({
+    expect(source.plainActive).to.deep.include({
       color: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
     });
-    expect(createVariantStyle('plainDisabled', vars)).to.deep.include({
+    expect(source.plainDisabled).to.deep.include({
       pointerEvents: 'none',
       cursor: 'default',
       color: 'var(--joy-variant-plainDisabledColor)',
     });
   });
 
-  describe('createVariant', () => {
-    it('should create style with properties from palette with default value', () => {
-      const result = createVariant('outlinedActive', {
-        getCssVar: createGetCssVar('joy'),
-        palette: {
-          primary: {
-            outlinedActiveBorder: '#aaa',
-            outlinedActiveBg: null, // background-color will not be created
-          },
-        },
-      });
-      expect(result.primary).to.deep.include({
-        borderColor: 'var(--joy-palette-primary-outlinedActiveBorder, #aaa)',
-      });
-    });
-
-    it('automatically create variant style if the variable is in the correct format', () => {
-      const theme = {
-        getCssVar: createGetCssVar('joy'),
-        palette: {
-          customColor: {
-            softColor: '#aaa',
-            softBg: '#bbb',
-            softHoverColor: '#ccc',
-          },
-        },
-      };
-      const softResult = createVariant('soft', theme);
-      expect(softResult.customColor).to.deep.include({
-        color: 'var(--joy-palette-customColor-softColor, #aaa)',
-        backgroundColor: 'var(--joy-palette-customColor-softBg, #bbb)',
-      });
-
-      const softHoverResult = createVariant('softHover', theme);
-      expect(softHoverResult.customColor).to.deep.include({
-        color: 'var(--joy-palette-customColor-softHoverColor, #ccc)',
-      });
-    });
-
-    it('auto generate "context"', () => {
-      expect(createVariant('plain').context).to.deep.include({
-        color: 'var(--variant-plainColor)',
-      });
-      expect(createVariant('outlined').context).to.deep.include({
-        color: 'var(--variant-outlinedColor)',
-        '--variant-borderWidth': '1px',
-        border: 'var(--variant-borderWidth) solid',
-        borderColor: 'var(--variant-outlinedBorder)',
-      });
-      expect(createVariant('soft').context).to.deep.include({
-        color: 'var(--variant-softColor)',
-        backgroundColor: 'var(--variant-softBg)',
-      });
-      expect(createVariant('solid').context).to.deep.include({
-        backgroundColor: 'var(--variant-solidBg)',
-      });
-    });
-  });
-
   describe('createVariants', () => {
     it('should create plain style', () => {
-      expect(
-        createVariants(
-          {
-            primary: {
-              plainColor: `var(--joy-palette-primary-600)`,
-              plainHoverBg: `var(--joy-palette-primary-100)`,
-              plainActiveBg: `var(--joy-palette-primary-200)`,
-              plainDisabledColor: `var(--joy-palette-primary-200)`,
-            },
-          },
-          createGetCssVar(''),
-        ),
-      ).to.deep.equal({
-        plain: {
+      const color = '#054DA7';
+      const hoverBg = '#f9f9f9';
+      const disabledColor = '#e5e5e5';
+      const result = createVariants(
+        {
           primary: {
-            '--variant-borderWidth': '0px',
-            color: 'var(--palette-primary-plainColor)',
+            600: color,
+            plainColor: `var(--joy-palette-primary-600)`,
+            plainHoverBg: `var(--joy-palette-neutral-100)`,
+            plainActiveBg: `var(--joy-palette-unknown-100)`,
+            plainDisabledColor: `var(--joy-palette-divider)`,
           },
-        },
-        plainActive: {
-          primary: {
-            backgroundColor: 'var(--palette-primary-plainActiveBg)',
+          neutral: {
+            100: hoverBg,
           },
+          divider: disabledColor,
         },
-        plainDisabled: {
-          primary: {
-            color: 'var(--palette-primary-plainDisabledColor)',
-            cursor: 'default',
-            pointerEvents: 'none',
-          },
-        },
-        plainHover: {
-          primary: {
-            backgroundColor: 'var(--palette-primary-plainHoverBg)',
-          },
-        },
+        createGetCssVar(''),
+      );
+      expect(result.plain.primary).to.deep.equal({
+        '--variant-borderWidth': '0px',
+        color: `var(--palette-primary-plainColor, ${color})`,
+      });
+      expect(result.plainHover.primary).to.deep.equal({
+        backgroundColor: `var(--palette-primary-plainHoverBg, ${hoverBg})`,
+      });
+      expect(result.plainActive.primary).to.deep.equal({
+        // don't add default value if it could not find from the color palette.
+        backgroundColor: `var(--palette-primary-plainActiveBg)`,
+      });
+      expect(result.plainDisabled.primary).to.deep.equal({
+        color: `var(--palette-primary-plainDisabledColor, ${disabledColor})`,
+        cursor: 'default',
+        pointerEvents: 'none',
       });
     });
 
     it('should create plain style with default values', () => {
-      expect(
-        createVariants(
-          {
-            primary: {
-              100: '100',
-              200: '200',
-              600: '600',
-              plainColor: `var(--joy-palette-primary-600)`,
-              plainHoverBg: `var(--joy-palette-primary-100)`,
-              plainActiveBg: `var(--joy-palette-primary-200)`,
-              plainDisabledColor: `var(--joy-palette-primary-200)`,
-            },
-          },
-          createGetCssVar(''),
-        ),
-      ).to.deep.equal({
-        plain: {
+      const result = createVariants(
+        {
           primary: {
+            100: '#100',
+            200: '#200',
+            600: '#600',
+            plainColor: `var(--joy-palette-primary-600)`,
+            plainHoverBg: `var(--joy-palette-primary-100)`,
+            plainActiveBg: `var(--joy-palette-primary-200)`,
+            plainDisabledColor: `var(--joy-palette-primary-200)`,
+          },
+        },
+        createGetCssVar(''),
+      );
+      expect(result.plain.primary).to.deep.equal({
+        '--variant-borderWidth': '0px',
+        color: 'var(--palette-primary-plainColor, #600)',
+      });
+      expect(result.plainActive.primary).to.deep.equal({
+        backgroundColor: 'var(--palette-primary-plainActiveBg, #200)',
+      });
+      expect(result.plainDisabled.primary).to.deep.equal({
+        color: 'var(--palette-primary-plainDisabledColor, #200)',
+        cursor: 'default',
+        pointerEvents: 'none',
+      });
+      expect(result.plainHover.primary).to.deep.equal({
+        backgroundColor: 'var(--palette-primary-plainHoverBg, #100)',
+      });
+    });
+
+    it('auto generate "context"', () => {
+      expect(createVariants({}, createGetCssVar(''))).to.deep.equal({
+        outlined: {
+          context: {
+            '--variant-borderWidth': '1px',
+            border: 'var(--variant-borderWidth) solid',
+            borderColor: 'var(--variant-outlinedBorder)',
+            color: 'var(--variant-outlinedColor)',
+          },
+        },
+        outlinedActive: {
+          context: {
+            backgroundColor: 'var(--variant-outlinedActiveBg)',
+          },
+        },
+        outlinedDisabled: {
+          context: {
+            borderColor: 'var(--variant-outlinedDisabledBorder)',
+            color: 'var(--variant-outlinedDisabledColor)',
+            cursor: 'default',
+            pointerEvents: 'none',
+          },
+        },
+        outlinedHover: {
+          context: {
+            backgroundColor: 'var(--variant-outlinedHoverBg)',
+            borderColor: 'var(--variant-outlinedHoverBorder)',
+            color: 'var(--variant-outlinedHoverColor)',
+          },
+        },
+        plain: {
+          context: {
             '--variant-borderWidth': '0px',
-            color: 'var(--palette-primary-plainColor, 600)',
+            color: 'var(--variant-plainColor)',
           },
         },
         plainActive: {
-          primary: {
-            backgroundColor: 'var(--palette-primary-plainActiveBg, 200)',
+          context: {
+            backgroundColor: 'var(--variant-plainActiveBg)',
           },
         },
         plainDisabled: {
-          primary: {
-            color: 'var(--palette-primary-plainDisabledColor, 200)',
+          context: {
+            color: 'var(--variant-plainDisabledColor)',
             cursor: 'default',
             pointerEvents: 'none',
           },
         },
         plainHover: {
-          primary: {
-            backgroundColor: 'var(--palette-primary-plainHoverBg, 100)',
+          context: {
+            backgroundColor: 'var(--variant-plainHoverBg)',
+            color: 'var(--variant-plainHoverColor)',
+          },
+        },
+        soft: {
+          context: {
+            '--variant-borderWidth': '0px',
+            backgroundColor: 'var(--variant-softBg)',
+            color: 'var(--variant-softColor)',
+          },
+        },
+        softActive: {
+          context: {
+            backgroundColor: 'var(--variant-softActiveBg)',
+          },
+        },
+        softDisabled: {
+          context: {
+            backgroundColor: 'var(--variant-softDisabledBg)',
+            color: 'var(--variant-softDisabledColor)',
+            cursor: 'default',
+            pointerEvents: 'none',
+          },
+        },
+        softHover: {
+          context: {
+            backgroundColor: 'var(--variant-softHoverBg)',
+            color: 'var(--variant-softHoverColor)',
+          },
+        },
+        solid: {
+          context: {
+            '--variant-borderWidth': '0px',
+            backgroundColor: 'var(--variant-solidBg)',
+            color: 'var(--variant-solidColor)',
+          },
+        },
+        solidActive: {
+          context: {
+            backgroundColor: 'var(--variant-solidActiveBg)',
+          },
+        },
+        solidDisabled: {
+          context: {
+            backgroundColor: 'var(--variant-solidDisabledBg)',
+            color: 'var(--variant-solidDisabledColor)',
+            cursor: 'default',
+            pointerEvents: 'none',
+          },
+        },
+        solidHover: {
+          context: {
+            backgroundColor: 'var(--variant-solidHoverBg)',
+            color: 'var(--variant-solidHoverColor)',
           },
         },
       });
