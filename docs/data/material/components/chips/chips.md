@@ -91,7 +91,7 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
-{{"demo": "ChipsArray.js", "bg": true}}
+{{"demo": "ChipsArray.js"}}
 
 ## Chip playground
 
