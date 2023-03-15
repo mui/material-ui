@@ -77,6 +77,6 @@ If you can believe it, we're already busy planning our next meet-up. Although we
 
 MUI is on track to double in size by the end of this year with lots of open roles in engineering, design, and product teams. Our target date for the next company retreat is November 2023. To have your say in where we go and what we do, join us now.
 
-[www.mui.com/careers](http://www.mui.com/careers) 🏃💨
+[Visit our careers page!](/careers/) 🏃💨
 
 <img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3; border-radius: 8px;" loading="lazy" />
