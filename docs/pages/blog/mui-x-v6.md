@@ -11,11 +11,36 @@ tags: ['MUI X', 'News']
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
+## Table of Contents
+
+- [✨ Feature highlights ✨](#✨-features-highlights-✨)
+
+  - Data Grid
+
+    - [ApiRef moved to the MIT (Community) version](#apiref-moved-to-the-mit-community-version)
+    - [Improved column menu](#improved-column-menu)
+    - [Cell selection](#cell-selection) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+    - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files). [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+    - [Stable aggregation and row pinning](#stable-aggregation-and-row-pinning)
+
+  - Date and Time pickers
+    - [Fields: the new default input for pickers](#fields-the-new-default-input-for-pickers).
+    - [Improved layout customization](#improved-layout-customization)
+    - [Shortcuts for picking specific dates in a calendar](#shortcuts-for-picking-specific-dates-in-a-calendar)
+    - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+    - [Overhaul in the documentation](#overhaul-in-the-documentation)
+    - [Removed clock view on desktop Time Pickers](#removed-clock-view-on-desktop-time-pickers)
+
+- [Installation and migration](#installation-and-migration)
+- [What's next](#whats-next)
+- [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
+- [Feedback](#feedback)
+
 ## ✨ Features highlights ✨
 
-### Data Grid
+## Data Grid
 
-#### [ApiRef moved to the MIT (Community) version](/x/react-data-grid/api-object/)
+### [ApiRef moved to the MIT (Community) version](/x/react-data-grid/api-object/)
 
 Manage pagination, scrolling, state, and other attributes through the Data Grid's API object—previously only in commercial plans, now available to all users.
 The `apiRef` enables developers to implement a whole new range of customizations that rely on programmatic control of the Grid's features.
@@ -35,7 +60,7 @@ function CustomDataGrid(props) {
 }
 ```
 
-#### [Improved column menu](/x/react-data-grid/column-menu/)
+### [Improved column menu](/x/react-data-grid/column-menu/)
 
 Another significant step in terms of customization but also usability; the v6 column menu now provides support for icons, menu groups, custom items and actions, and more.
 We've redesigned this sub-component to make it as extensible as possible.
@@ -44,7 +69,7 @@ This is part of an overarching effort throughout the life cycle of v6 to refacto
 
 <img src="/static/blog/mui-x-v6/column-menu-custom-action.png" style="margin-bottom: 24px;" loading="lazy" alt="Column menu custom action" width="1636" height="808" />
 
-#### [Cell selection](/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### [Cell selection](/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 Select a cell or group of cells like in an Excel sheet.
 Cell selection is a powerful and flexible way to select data in the Data Grid.
@@ -54,18 +79,18 @@ It's also the base for bulk editing and clipboard importing (coming soon).
   <source src="/static/blog/mui-x-v6/cell-selection.mp4" type="video/mp4" />
 </video>
 
-#### [Use web workers to export data to excel files](/x/react-data-grid/export/#using-a-web-worker). [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
+### [Use web workers to export data to excel files](/x/react-data-grid/export/#using-a-web-worker). [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
 Instead of generating the Excel file in the main thread, you can use a web worker in the background to allow interactions with the grid while the data is exported.
 
-#### Stable [Aggregation](/x/react-data-grid/aggregation/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan) and [Row pinning](/x/react-data-grid/row-pinning/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### Stable [Aggregation](/x/react-data-grid/aggregation/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan) and [Row pinning](/x/react-data-grid/row-pinning/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 These two features have been previously released in a minor v5 version under the `experimentalFeatures` flag.
 Now they are officially stable.
 
-### Date and Time Pickers
+## Date and Time Pickers
 
-#### [Fields: the new default input for Pickers](/x/react-date-pickers/fields/)
+### [Fields: the new default input for Pickers](/x/react-date-pickers/fields/)
 
 These rich text fields are specialized for date and time logic and offer quick navigation and isolated interaction within each section of a date value.
 
@@ -73,7 +98,7 @@ These rich text fields are specialized for date and time logic and offer quick n
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
-#### [Improved layout customization](/x/react-date-pickers/custom-layout/)
+### [Improved layout customization](/x/react-date-pickers/custom-layout/)
 
 Combining the slots concept with the grid layout, you can now rearrange, extend, and customize most of the sub-components used in the Pickers UI.
 
@@ -98,14 +123,14 @@ export default function CustomStaticDatePicker() {
 }
 ```
 
-#### [Shortcuts for picking specific dates in a calendar](/x/react-date-pickers/shortcuts/)
+### [Shortcuts for picking specific dates in a calendar](/x/react-date-pickers/shortcuts/)
 
 Add quick and customizable shortcuts for your users. Particularly useful for date ranges.
 Display them on the left, right, bottom, or top.
 
 <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." width="2222" height="1402" />
 
-#### [Edit date ranges with drag and drop](/x/react-date-pickers/date-range-calendar/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
+### [Edit date ranges with drag and drop](/x/react-date-pickers/date-range-calendar/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 Editing a date range is even easier now with the new drag-and-drop interface. Change `start` and `end` dates at will.
 
@@ -113,11 +138,11 @@ Editing a date range is even easier now with the new drag-and-drop interface. Ch
   <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
 
-#### [Overhaul in the documentation](/x/react-date-pickers/)
+### [Overhaul in the documentation](/x/react-date-pickers/)
 
 The Date and Time Pickers documentation has drastically improved during pre-release, and it now features a more comprehensible navigation structure and many new examples.
 
-#### Removed clock view on desktop Time Pickers
+### Removed clock view on desktop Time Pickers
 
 Many users complained, and we completely agree, the clock view is not the ideal time-picking experience on Desktop, so we removed it as a default view.
 You can still use the Clock if you like to, but a replacement UI for the time picker is coming shortly after this release.
