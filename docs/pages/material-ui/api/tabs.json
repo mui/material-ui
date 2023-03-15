@@ -26,6 +26,20 @@
       "default": "'auto'"
     },
     "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
