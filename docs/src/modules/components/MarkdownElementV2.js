@@ -119,6 +119,6 @@ MarkdownElementV2.propTypes = {
   ),
   srcComponents: PropTypes.any,
   theme: PropTypes.object,
-  WrapperComponent: PropTypes.node,
+  WrapperComponent: PropTypes.elementType,
   wrapperProps: PropTypes.object,
 };

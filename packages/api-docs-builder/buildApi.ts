@@ -276,26 +276,13 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       process.exit(1);
     }
 
-    // {
-    //   pathname: '/base/react-button',
-    //   query: { docsTab: 'component-api' },
-    //   hash: 'button-unstyled',
-    //   title: 'ButtonUnstyled',
-    // },
-    // {
-    //   pathname: '/base/react-button',
-    //   query: { docsTab: 'hook-api' },
-    //   hash: 'use-button',
-    //   title: 'useButton',
-    // },
     // @ts-ignore
     const apiLinks = [];
 
+    // Generate the api links, in a format that would point to the appropriate API tab
     // @ts-ignore there are no failed builds at this point
     const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
     if (baseBuilds.length >= 0) {
-      // Generate the pagesApi in the following format
-
       baseBuilds.forEach((build) => {
         // @ts-ignore
         const { value } = build;
@@ -313,8 +300,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
 
         if (pathname !== null) {
           apiLinks.push({
-            pathname,
-            query: { docsTab: name.startsWith('use') ? 'hook-api' : 'component-api' },
+            pathname: `${pathname}${name.startsWith('use') ? 'hook-api' : 'component-api'}`,
             hash: kebabCase(name),
             title: name,
           });

@@ -30,7 +30,7 @@ JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
 
-export default function MarkdownDocs(props) {
+export default function MarkdownDocsV2(props) {
   const theme = useTheme();
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
@@ -238,7 +238,7 @@ export default function MarkdownDocs(props) {
   );
 }
 
-MarkdownDocs.propTypes = {
+MarkdownDocsV2.propTypes = {
   componentsApiDescriptions: PropTypes.object,
   componentsApiPageContents: PropTypes.object,
   demoComponents: PropTypes.object,
@@ -252,5 +252,5 @@ MarkdownDocs.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
+  MarkdownDocsV2.propTypes = exactProp(MarkdownDocsV2.propTypes);
 }
