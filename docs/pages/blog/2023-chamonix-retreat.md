@@ -40,7 +40,7 @@ We stayed in the beautiful Helopic Hotel & Spa, which fit our needs perfectly. W
 
 ## What did we do?
 
-We kicked off the week with a number of unique team-building activities, including a mini Winter Olympics, competitive team biathlon, and even axe-throwing. 🎯🪓
+We kicked off the week with several unique team-building activities, including a mini Winter Olympics, a competitive team biathlon, and even axe-throwing. 🎯🪓
 
 Engaging in new experiences together gave us an opportunity to learn about each other's strengths and weaknesses, and to develop a better understanding of how our differences influence the ways we might communicate and work together.
 
