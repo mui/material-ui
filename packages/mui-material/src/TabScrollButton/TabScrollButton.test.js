@@ -52,7 +52,7 @@ describe('<TabScrollButton />', () => {
     });
   });
 
-  it('should render with the custom start and end icon', () => {
+  it('should render with the custom start icon', () => {
     const { getAllByTestId } = render(
       <TabScrollButton
         {...defaultProps}
@@ -60,11 +60,25 @@ describe('<TabScrollButton />', () => {
         disabled
         slots={{
           StartScrollButtonIcon: ArrowBackIcon,
+        }}
+      />,
+    );
+
+    expect(getAllByTestId('ArrowBackIcon')).to.have.lengthOf(1);
+  });
+
+  it('should render with the custom end icon', () => {
+    const { getAllByTestId } = render(
+      <TabScrollButton
+        {...defaultProps}
+        direction="right"
+        disabled
+        slots={{
           EndScrollButtonIcon: ArrowForwardIcon,
         }}
       />,
     );
-    expect(getAllByTestId('ArrowBackIcon')).to.have.lengthOf(1);
+
     expect(getAllByTestId('ArrowForwardIcon')).to.have.lengthOf(1);
   });
 });
