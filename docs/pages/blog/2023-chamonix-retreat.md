@@ -66,7 +66,7 @@ We decided to increase the amount of downtime on our final day together and leav
 And guess what: _**it worked!**_
 
 One of the most-loved parts of our retreat in team feedback surveys turned out to be a completely unplanned game night.
-Despite tiring return journeys ahead, an exhausted group of us set up camp in the hotel lobby to play cards and boardgames into the wee hours of the morning.
+Despite tiring return journeys ahead, an exhausted group of us set up camp in the hotel lobby to play cards and board games into the wee hours of the morning.
 Special bonds formed over some very colorful rounds of Saboteur and terribly-executed magic tricks. 🙃🎩
 
 It was just what we needed to close out the retreat with some moments of real connection.
