@@ -60,6 +60,18 @@ ClassesTable.propTypes = {
 function SlotsTable(props) {
   const { componentSlots, slotDescriptions } = props;
   const t = useTranslate();
+  const componentSlotsWithRootAtFront = componentSlots.reduce((acc, curr) => {
+    if (curr.name === 'root') {
+      acc.unshift(curr);
+    } else {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
+  const componentSlotsSorted = [
+    componentSlotsWithRootAtFront[0],
+    ...componentSlotsWithRootAtFront.slice(1).sort((a, b) => a.name - b.name),
+  ];
 
   return (
     <table>
@@ -72,7 +84,7 @@ function SlotsTable(props) {
         </tr>
       </thead>
       <tbody>
-        {componentSlots.map(({ class: className, name, default: defaultValue }) => {
+        {componentSlotsSorted.map(({ class: className, name, default: defaultValue }) => {
           return (
             <tr key={name}>
               <td align="left" width="15%">
