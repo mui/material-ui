@@ -276,8 +276,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       process.exit(1);
     }
 
-    // @ts-ignore
-    const apiLinks = [];
+    const apiLinks: { pathname: string; title: string; hash: string }[] = [];
 
     // Generate the api links, in a format that would point to the appropriate API tab
     // @ts-ignore there are no failed builds at this point
@@ -300,7 +299,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
 
         if (pathname !== null) {
           apiLinks.push({
-            pathname: `${pathname}${name.startsWith('use') ? 'hook-api' : 'component-api'}`,
+            pathname: `${pathname}${name.startsWith('use') ? 'hooks-api' : 'components-api'}`,
             hash: kebabCase(name),
             title: name,
           });
@@ -311,6 +310,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
     // @ts-ignore ignore hooks builds for now
     allBuilds = [...allBuilds, ...builds];
 
+    apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
     let source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
     if (apiLinks.length > 0) {
       // @ts-ignore

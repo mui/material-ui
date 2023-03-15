@@ -172,11 +172,11 @@ export default function MarkdownDocsV2(props) {
 
   let activeToc = demosToc;
 
-  if (activeTab === 'hook-api') {
+  if (activeTab === 'hooks-api') {
     activeToc = hooksToc;
   }
 
-  if (activeTab === 'component-api') {
+  if (activeTab === 'components-api') {
     activeToc = componentsApiToc;
   }
 
@@ -220,14 +220,14 @@ export default function MarkdownDocsV2(props) {
           ))}
         </Box>
         <Box
-          {...(activeTab !== 'component-api' && { sx: { display: 'none' }, 'aria-hidden': true })}
+          {...(activeTab !== 'components-api' && { sx: { display: 'none' }, 'aria-hidden': true })}
         >
           <ComponentsApiContent
             descriptions={componentsApiDescriptions}
             pageContents={componentsApiPageContents}
           />
         </Box>
-        <Box {...(activeTab !== 'hook-api' && { sx: { display: 'none' }, 'aria-hidden': true })}>
+        <Box {...(activeTab !== 'hooks-api' && { sx: { display: 'none' }, 'aria-hidden': true })}>
           <HooksApiContent
             descriptions={hooksApiDescriptions}
             pagesContents={hooksApiPageContents}

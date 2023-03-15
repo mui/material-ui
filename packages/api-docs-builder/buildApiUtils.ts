@@ -714,7 +714,7 @@ Page.getLayout = (page) => {
 
 export const getStaticPaths = () => {
   return {
-    paths: [{ params: { docsTab: 'component-api' } }, { params: { docsTab: 'hook-api' } }],
+    paths: [{ params: { docsTab: 'components-api' } }, { params: { docsTab: 'hooks-api' } }],
     fallback: false, // can also be true or 'blocking'
   };
 };

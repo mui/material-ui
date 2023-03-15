@@ -19,8 +19,8 @@ export default function ComponentPageTabs(props) {
     ? router.pathname.replace('[docsTab]', '')
     : router.pathname;
   const apiPathname = `${demosHref.endsWith('/') ? demosHref : `${demosHref}/`}`;
-  const componentsHref = `${apiPathname}component-api`;
-  const hooksHref = `${apiPathname}hook-api`;
+  const componentsHref = `${apiPathname}components-api`;
+  const hooksHref = `${apiPathname}hooks-api`;
 
   return (
     <Box className="component-tabs" sx={{ display: 'inline' }}>
@@ -67,10 +67,17 @@ export default function ComponentPageTabs(props) {
           scroll
           href={componentsHref}
           label="Component API"
-          value="component-api"
+          value="components-api"
         />
         {headers.hooks && headers.hooks.length > 0 && (
-          <Tab component={Link} shallow scroll href={hooksHref} label="Hook API" value="hook-api" />
+          <Tab
+            component={Link}
+            shallow
+            scroll
+            href={hooksHref}
+            label="Hook API"
+            value="hooks-api"
+          />
         )}
       </Tabs>
       {children}
