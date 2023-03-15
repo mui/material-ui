@@ -18,19 +18,17 @@ export default function findActivePage(
         .replace('/[docsTab]', '')
         .replace('components-api', '')
         .replace('hooks-api', '');
+
       map[childPathname] = child;
 
-      if (
-        (!child.query ||
-          child.pathname.indexOf('componets-api') >= 0 ||
-          child.pathname.indexOf('hooks-api') >= 0) &&
-        mapParent[childPathname]
-      ) {
-        console.log(child.pathname);
+      const isChildApiPathname =
+        child.pathname.indexOf('components-api') >= 0 || child.pathname.indexOf('hooks-api') >= 0;
+
+      if (!isChildApiPathname && mapParent[childPathname]) {
         throw new Error(`Duplicated pathname ${child.pathname} in pages`);
       }
 
-      if (!child.query) {
+      if (!isChildApiPathname) {
         mapParent[childPathname] = parent;
       }
       traverse(child);
