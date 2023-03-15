@@ -61,6 +61,7 @@ Depending on the day, you'll:
 - Migrate from Sendinblue to SendGrid.
 - Oversee our US flip.
 - Develop and implement strategies to support the growth and success of the company
+- Use create [Toolpad apps](https://mui.com/toolpad/) to streamline the operations.
 
 ## About you
 
