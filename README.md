@@ -218,7 +218,7 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
+  <img alt="GitHub logo" src="/docs/public/static/readme/github-lightmode.svg" width="80" height="43">
 </picture>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
@@ -226,7 +226,7 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
-  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
+  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-lightmode.svg" width="100" height="27" style="margin-top: 1rem;">
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
@@ -234,11 +234,11 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
+  <img alt="BrowserStack logo" src="/docs/public/static/readme/browserstack-lightmode.svg" width="140" height="25" style="margin-top: 1rem;">
 </picture>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-<img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.
