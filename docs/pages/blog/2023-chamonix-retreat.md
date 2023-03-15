@@ -27,7 +27,7 @@ It's a time to focus more on who we are as individuals, which creates a wonderfu
 
 Photo of the Heliopic Hotel & Spa exterior, via [Assas Hotels](https://www.assas-hotels.com/en/hotel-heliopic-sweet-spa/).
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/hotel-exterior.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/hotel-exterior.jpeg" style="aspect-ratio: 4/3;margin-bottom: 16px; border-radius: 8px;" loading="lazy" />
 
 Chamonix is a world capital for outdoor activities, such as mountaineering, skiing, snowboarding, paragliding, hiking, climbing, and so much more!
 
@@ -35,7 +35,7 @@ The Chamonix Mont Blanc valley offers unmatched alpine views, plus a whole host 
 
 We stayed in the beautiful Helopic Hotel & Spa, which fit our needs perfectly. With fully-equipped conference rooms, a cosy lobby bar, table-service restaurant, and luxury spa — everything we needed was on-site. (The food was delicious, too!)
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/dessert.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/dessert.jpeg" style="aspect-ratio: 4/3; border-radius: 8px;" loading="lazy" />
 
 ## What did we do?
 
@@ -45,21 +45,21 @@ Engaging in new experiences together gave us an opportunity to learn about each 
 
 It also provided room for team members to share past experiences with one another and gain new perspectives.
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/caterpillar-game.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/caterpillar-game.jpeg" style="aspect-ratio: 4/3; border-radius: 8px; margin-bottom: 16px;" loading="lazy" />
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/biathlon-skiers.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/biathlon-skiers.jpeg" style="aspect-ratio: 4/3;border-radius: 8px; margin-bottom: 16px;" loading="lazy" />
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/biathlon-shooters.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/biathlon-shooters.jpeg" style="aspect-ratio: 4/3; border-radius: 8px; margin-bottom: 16px;" loading="lazy" />
 
 On the work-front, we hosted our monthly team meeting and offered a spread of different topic-based sessions for a "choose your own adventure" feel. People could opt into the sessions they felt most passionate or excited about, which really helped to sustain energy and result in fruitful discussions.
 
 Solving challenges and sparking new ideas takes on such a different feel when you're all in the same time and place! Our team walked away with a number of actionable changes and commitments for the near and far future.
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/monthly-meeting.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/monthly-meeting.jpeg" style="aspect-ratio: 4/3;border-radius: 8px; margin-bottom: 16px; " loading="lazy" />
 
 Following our very productive sessions, it was time to relax and refresh ourselves. We decided to increase the amount of down-time in our final day together and leave space for serendipitous fun to unfold.
 
-And guess what: ****\*\*\*****it worked!****\*\*\*****
+And guess what: _**it worked!**_
 
 One of the most-loved parts of our retreat in team feedback surveys turned out to be a completely unplanned game night. Despite tiring return journeys ahead, an exhausted group of us set up camp in the hotel lobby to play cards and boardgames into the wee hours of the morning. Special bonds formed over some very colourful rounds of Saboteur and terribly-executed magic tricks. 🙃🎩
 
@@ -69,9 +69,9 @@ It was just what we needed to close out the retreat with some moments of real co
 
 If you can believe it, we're already busy planning our next meet-up. Although we haven't decided on an exact location just yet, the team has agreed this much loud and clear: somewhere warm! ☀️😅
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/mountaineers.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/mountaineers.jpeg" style="aspect-ratio: 4/3; margin-bottom: 16px; border-radius: 8px;" loading="lazy" />
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/skiers.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/skiers.jpeg" style="aspect-ratio: 4/3; border-radius: 8px;" loading="lazy" />
 
 ## Join the team
 
@@ -79,4 +79,4 @@ MUI is on track to double in size by the end of this year with lots of open role
 
 [www.mui.com/careers](http://www.mui.com/careers) 🏃💨
 
-<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3;" loading="lazy" />
+<img alt="Wooden architecture exterior of the Heliopic Hotel and Spa" src="/static/blog/2023-chamonix-retreat/team-dinner.jpeg" style="aspect-ratio: 4/3; border-radius: 8px;" loading="lazy" />
