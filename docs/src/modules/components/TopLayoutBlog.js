@@ -89,6 +89,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/13808724',
     github: 'cherniavskii',
   },
+  mikailaread: {
+    name: 'Mikaila Read',
+    avatar: 'https://avatars.githubusercontent.com/u/76401606',
+    github: 'mikailaread',
+  },
 };
 
 const classes = {
