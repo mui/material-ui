@@ -1,4 +1,4 @@
-import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import {
   ColorPaletteProp,
@@ -182,29 +182,13 @@ interface ThemeFragment {
   palette: Record<string, any>;
 }
 
-const createPrefixVar = (cssVarPrefix: string | undefined | null) => {
-  return (cssVar: string) =>
-    `--${cssVarPrefix ? `${cssVarPrefix}-` : ''}${cssVar.replace(/^--/, '')}`;
-};
-
 export const createSoftInversion = (
   theme: ThemeFragment & {
     getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
   },
-  addDefaultValues?: boolean,
 ) => {
-  const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
-  const prefixVar = createPrefixVar(theme.cssVarPrefix);
   const result = {} as Record<DefaultColorPalette, CSSObject>;
 
-  const getCssVar = addDefaultValues
-    ? (cssVar: string) => {
-        const tokens = cssVar.split('-');
-        const color = tokens[1];
-        const value = tokens[2];
-        return getCssVarDefault(cssVar, theme.palette?.[color]?.[value]);
-      }
-    : getCssVarDefault;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
       DefaultColorPalette,
@@ -212,93 +196,93 @@ export const createSoftInversion = (
     ];
     if (isVariantPalette(colorPalette)) {
       result[color] = {
-        '--Badge-ringColor': `var(--palette-${color}-softBg)`,
-        '--joy-shadowChannel': `var(--palette-${color}-darkChannel)`,
+        '--Badge-ringColor': `var(--joy-palette-${color}-softBg)`,
+        '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel)`,
         [theme.getColorSchemeSelector('dark')]: {
-          '--joy-palette-focusVisible': `var(--palette-${color}-300)`,
-          '--joy-palette-background-body': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.1)`,
-          '--joy-palette-background-surface': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.08)`,
-          '--joy-palette-background-level1': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.2)`,
-          '--joy-palette-background-level2': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.4)`,
-          '--joy-palette-background-level3': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.6)`,
-          '--joy-palette-text-primary': `var(--palette-${color}-100)`,
-          '--joy-palette-text-secondary': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.72)`,
-          '--joy-palette-text-tertiary': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.6)`,
-          '--joy-palette-divider': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.2)`,
-          '--variant-plainColor': `rgba(${`var(--palette-${color}-lightChannel)`} / 1)`,
-          '--variant-plainHoverColor': `var(--palette-${color}-50)`,
-          '--variant-plainHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.16)`,
-          '--variant-plainActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--variant-plainDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-300)`,
+          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-mainChannel) / 0.1)`,
+          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-mainChannel) / 0.4)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
+          '--joy-palette-text-primary': `var(--joy-palette-${color}-100)`,
+          '--joy-palette-text-secondary': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
+          '--joy-palette-text-tertiary': `rgba(var(--joy-palette-${color}-lightChannel) / 0.6)`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-lightChannel) / 0.2)`,
+          '--variant-plainColor': `rgba(var(--joy-palette-${color}-lightChannel) / 1)`,
+          '--variant-plainHoverColor': `var(--joy-palette-${color}-50)`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.16)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
 
-          '--variant-outlinedColor': `rgba(${`var(--palette-${color}-lightChannel)`} / 1)`,
-          '--variant-outlinedHoverColor': `var(--palette-${color}-50)`,
+          '--variant-outlinedColor': `rgba(var(--joy-palette-${color}-lightChannel) / 1)`,
+          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-50)`,
           '--variant-outlinedBg': 'initial',
-          '--variant-outlinedBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.4)`,
-          '--variant-outlinedHoverBorder': `var(--palette-${color}-600)`,
-          '--variant-outlinedHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.16)`,
-          '--variant-outlinedActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--variant-outlinedDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
-          '--variant-outlinedDisabledBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.2)`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.4)`,
+          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-600)`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.16)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
 
-          '--variant-softColor': `var(--palette-${color}-100)`,
-          '--variant-softBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.24)`,
+          '--variant-softColor': `var(--joy-palette-${color}-100)`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.24)`,
           '--variant-softHoverColor': '#fff',
-          '--variant-softHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--variant-softActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.48)`,
-          '--variant-softDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
-          '--variant-softDisabledBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
+          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.48)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
 
           '--variant-solidColor': '#fff',
-          '--variant-solidBg': `var(--palette-${color}-500)`,
+          '--variant-solidBg': `var(--joy-palette-${color}-500)`,
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': `var(--palette-${color}-400)`,
-          '--variant-solidActiveBg': `var(--palette-${color}-400)`,
-          '--variant-solidDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
-          '--variant-solidDisabledBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
+          '--variant-solidHoverBg': `var(--joy-palette-${color}-400)`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-400)`,
+          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
         },
         // `light` (default color scheme) should come last in case that `theme.getColorSchemeSelector()` return the same value
         [theme.getColorSchemeSelector('light')]: {
-          '--joy-palette-focusVisible': `var(--palette-${color}-500)`,
-          '--joy-palette-background-body': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.1)`,
-          '--joy-palette-background-surface': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.08)`,
-          '--joy-palette-background-level1': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.2)`,
-          '--joy-palette-background-level2': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--joy-palette-background-level3': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.48)`,
-          '--joy-palette-text-primary': `var(--palette-${color}-700)`,
-          '--joy-palette-text-secondary': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.8)`,
-          '--joy-palette-text-tertiary': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.68)`,
-          '--joy-palette-divider': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--variant-plainColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 1)`,
-          '--variant-plainHoverColor': `var(--palette-${color}-600)`,
-          '--variant-plainHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
-          '--variant-plainActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.24)`,
-          '--variant-plainDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.6)`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-500)`,
+          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-mainChannel) / 0.1)`,
+          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-mainChannel) / 0.48)`,
+          '--joy-palette-text-primary': `var(--joy-palette-${color}-700)`,
+          '--joy-palette-text-secondary': `rgba(var(--joy-palette-${color}-darkChannel) / 0.8)`,
+          '--joy-palette-text-tertiary': `rgba(var(--joy-palette-${color}-darkChannel) / 0.68)`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--variant-plainColor': `rgba(var(--joy-palette-${color}-mainChannel) / 1)`,
+          '--variant-plainHoverColor': `var(--joy-palette-${color}-600)`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.24)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
 
-          '--variant-outlinedColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 1)`,
-          '--variant-outlinedBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.4)`,
-          '--variant-outlinedHoverColor': `var(--palette-${color}-600)`,
-          '--variant-outlinedHoverBorder': `var(--palette-${color}-300)`,
-          '--variant-outlinedHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.24)`,
-          '--variant-outlinedDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.6)`,
-          '--variant-outlinedDisabledBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
+          '--variant-outlinedColor': `rgba(var(--joy-palette-${color}-mainChannel) / 1)`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.4)`,
+          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-600)`,
+          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-300)`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.24)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
+          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
 
-          '--variant-softColor': `var(--palette-${color}-600)`,
-          '--variant-softBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.72)`,
-          '--variant-softHoverColor': `var(--palette-${color}-700)`,
-          '--variant-softHoverBg': `var(--palette-${color}-200)`,
-          '--variant-softActiveBg': `var(--palette-${color}-300)`,
-          '--variant-softDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.6)`,
-          '--variant-softDisabledBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.08)`,
+          '--variant-softColor': `var(--joy-palette-${color}-600)`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
+          '--variant-softHoverColor': `var(--joy-palette-${color}-700)`,
+          '--variant-softHoverBg': `var(--joy-palette-${color}-200)`,
+          '--variant-softActiveBg': `var(--joy-palette-${color}-300)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
 
-          '--variant-solidColor': 'var(--palette-common-white)',
-          '--variant-solidBg': `var(--palette-${color}-600)`,
-          '--variant-solidHoverColor': 'var(--palette-common-white)',
-          '--variant-solidHoverBg': `var(--palette-${color}-500)`,
-          '--variant-solidActiveBg': `var(--palette-${color}-500)`,
-          '--variant-solidDisabledColor': `rgba(${`palette-${color}-mainChannel`} / 0.6)`,
-          '--variant-solidDisabledBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.08)`,
+          '--variant-solidColor': 'var(--joy-palette-common-white)',
+          '--variant-solidBg': `var(--joy-palette-${color}-600)`,
+          '--variant-solidHoverColor': 'var(--joy-palette-common-white)',
+          '--variant-solidHoverBg': `var(--joy-palette-${color}-500)`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-500)`,
+          '--variant-solidDisabledColor': `rgba(palette-${color}-mainChannel) / 6)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
         },
       };
     }
@@ -306,19 +290,8 @@ export const createSoftInversion = (
   return result;
 };
 
-export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: boolean) => {
-  const getCssVarDefault = createGetCssVar(theme.cssVarPrefix);
-  const prefixVar = createPrefixVar(theme.cssVarPrefix);
+export const createSolidInversion = (theme: ThemeFragment) => {
   const result = {} as Record<DefaultColorPalette, CSSObject>;
-
-  const getCssVar = addDefaultValues
-    ? (cssVar: string) => {
-        const tokens = cssVar.split('-');
-        const color = tokens[1];
-        const value = tokens[2];
-        return getCssVarDefault(cssVar, theme.palette[color][value]);
-      }
-    : getCssVarDefault;
 
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -328,100 +301,100 @@ export const createSolidInversion = (theme: ThemeFragment, addDefaultValues?: bo
     if (isVariantPalette(colorPalette)) {
       if (color === 'warning') {
         result.warning = {
-          '--Badge-ringColor': `var(--palette-${color}-solidBg)`,
-          '--joy-shadowChannel': `var(--palette-${color}-darkChannel)`,
-          '--joy-palette-focusVisible': `var(--palette-${color}-700)`,
-          '--joy-palette-background-body': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.16)`,
-          '--joy-palette-background-surface': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.1)`,
-          '--joy-palette-background-popup': `var(--palette-${color}-100)`,
-          '--joy-palette-background-level1': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.2)`,
-          '--joy-palette-background-level2': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.36)`,
-          '--joy-palette-background-level3': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.6)`,
-          '--joy-palette-text-primary': `var(--palette-${color}-900)`,
-          '--joy-palette-text-secondary': `var(--palette-${color}-700)`,
-          '--joy-palette-text-tertiary': `var(--palette-${color}-500)`,
-          '--joy-palette-divider': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.2)`,
+          '--Badge-ringColor': `var(--joy-palette-${color}-solidBg)`,
+          '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel)`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-700)`,
+          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-darkChannel) / 0.16)`,
+          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-darkChannel) / 0.1)`,
+          '--joy-palette-background-popup': `var(--joy-palette-${color}-100)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-darkChannel) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-darkChannel) / 0.36)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-darkChannel) / 0.6)`,
+          '--joy-palette-text-primary': `var(--joy-palette-${color}-900)`,
+          '--joy-palette-text-secondary': `var(--joy-palette-${color}-700)`,
+          '--joy-palette-text-tertiary': `var(--joy-palette-${color}-500)`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-darkChannel) / 0.2)`,
 
-          '--variant-plainColor': `var(--palette-${color}-700)`,
-          '--variant-plainHoverColor': `var(--palette-${color}-800)`,
-          '--variant-plainHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
-          '--variant-plainActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--variant-plainDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
+          '--variant-plainColor': `var(--joy-palette-${color}-700)`,
+          '--variant-plainHoverColor': `var(--joy-palette-${color}-800)`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
 
-          '--variant-outlinedColor': `var(--palette-${color}-700)`,
-          '--variant-outlinedBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.5)`,
-          '--variant-outlinedHoverColor': `var(--palette-${color}-800)`,
-          '--variant-outlinedHoverBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.6)`,
-          '--variant-outlinedHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.32)`,
-          '--variant-outlinedDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
-          '--variant-outlinedDisabledBorder': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.2)`,
+          '--variant-outlinedColor': `var(--joy-palette-${color}-700)`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.5)`,
+          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-800)`,
+          '--variant-outlinedHoverBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
 
-          '--variant-softColor': `var(--palette-${color}-800)`,
-          '--variant-softHoverColor': `var(--palette-${color}-900)`,
-          '--variant-softBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.2)`,
-          '--variant-softHoverBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.28)`,
-          '--variant-softActiveBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.12)`,
-          '--variant-softDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
-          '--variant-softDisabledBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.08)`,
+          '--variant-softColor': `var(--joy-palette-${color}-800)`,
+          '--variant-softHoverColor': `var(--joy-palette-${color}-900)`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
+          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.28)`,
+          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
 
           '--variant-solidColor': '#fff',
-          '--variant-solidBg': `var(--palette-${color}-600)`,
+          '--variant-solidBg': `var(--joy-palette-${color}-600)`,
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': `var(--palette-${color}-700)`,
-          '--variant-solidActiveBg': `var(--palette-${color}-800)`,
-          '--variant-solidDisabledColor': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.72)`,
-          '--variant-solidDisabledBg': `rgba(${`var(--palette-${color}-mainChannel)`} / 0.08)`,
+          '--variant-solidHoverBg': `var(--joy-palette-${color}-700)`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-800)`,
+          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
         };
       } else {
         result[color] = {
           colorScheme: 'dark',
-          '--Badge-ringColor': `var(--palette-${color}-solidBg)`,
-          '--joy-shadowChannel': `var(--palette-${color}-darkChannel)`,
-          '--joy-palette-focusVisible': `var(--palette-${color}-200)`,
+          '--Badge-ringColor': `var(--joy-palette-${color}-solidBg)`,
+          '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel)`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-200)`,
           '--joy-palette-background-body': 'rgba(0 0 0 / 0.1)',
           '--joy-palette-background-surface': 'rgba(0 0 0 / 0.06)',
-          '--joy-palette-background-popup': `var(--palette-${color}-700)`,
-          '--joy-palette-background-level1': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.2)`,
-          '--joy-palette-background-level2': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.36)`,
-          '--joy-palette-background-level3': `rgba(${`var(--palette-${color}-darkChannel)`} / 0.6)`,
-          '--joy-palette-text-primary': `var(--palette-common-white)`,
-          '--joy-palette-text-secondary': `var(--palette-${color}-100)`,
-          '--joy-palette-text-tertiary': `var(--palette-${color}-200)`,
-          '--joy-palette-divider': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.32)`,
+          '--joy-palette-background-popup': `var(--joy-palette-${color}-700)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-darkChannel) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-darkChannel) / 0.36)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-darkChannel) / 0.6)`,
+          '--joy-palette-text-primary': `var(--joy-palette-common-white)`,
+          '--joy-palette-text-secondary': `var(--joy-palette-${color}-100)`,
+          '--joy-palette-text-tertiary': `var(--joy-palette-${color}-200)`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-lightChannel) / 0.32)`,
 
-          '--variant-plainColor': `var(--palette-${color}-50)`,
+          '--variant-plainColor': `var(--joy-palette-${color}-50)`,
           '--variant-plainHoverColor': `#fff`,
-          '--variant-plainHoverBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.12)`,
-          '--variant-plainActiveBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.32)`,
-          '--variant-plainDisabledColor': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.72)`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.12)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
 
-          '--variant-outlinedColor': `var(--palette-${color}-50)`,
-          '--variant-outlinedBorder': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.5)`,
+          '--variant-outlinedColor': `var(--joy-palette-${color}-50)`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-lightChannel) / 0.5)`,
           '--variant-outlinedHoverColor': `#fff`,
-          '--variant-outlinedHoverBorder': `var(--palette-${color}-300`,
-          '--variant-outlinedHoverBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.32)`,
-          '--variant-outlinedDisabledColor': `rgba(${getCssVar(
-            `palette-${color}-lightChannel`,
-          )} / 0.72)`,
+          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-300`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
-          '--variant-softColor': `var(--palette-common-white)`,
-          '--variant-softHoverColor': `var(--palette-common-white)`,
-          '--variant-softBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.24)`,
-          '--variant-softHoverBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.36)`,
-          '--variant-softActiveBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.16)`,
-          '--variant-softDisabledColor': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.72)`,
-          '--variant-softDisabledBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.1)`,
+          '--variant-softColor': `var(--joy-palette-common-white)`,
+          '--variant-softHoverColor': `var(--joy-palette-common-white)`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.24)`,
+          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.36)`,
+          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.16)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.1)`,
 
-          '--variant-solidColor': `var(--palette-${color}-${color === 'neutral' ? '600' : '500'})`,
-          '--variant-solidBg': `var(--palette-common-white)`,
-          '--variant-solidHoverColor': `var(--palette-${color}-700)`,
-          '--variant-solidHoverBg': `var(--palette-common-white)`,
-          '--variant-solidActiveBg': `var(--palette-${color}-200)`,
-          '--variant-solidDisabledColor': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.72)`,
-          '--variant-solidDisabledBg': `rgba(${`var(--palette-${color}-lightChannel)`} / 0.1)`,
+          '--variant-solidColor': `var(--joy-palette-${color}-${
+            color === 'neutral' ? '600' : '500'
+          })`,
+          '--variant-solidBg': `var(--joy-palette-common-white)`,
+          '--variant-solidHoverColor': `var(--joy-palette-${color}-700)`,
+          '--variant-solidHoverBg': `var(--joy-palette-common-white)`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-200)`,
+          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.1)`,
         };
       }
     }
