@@ -12,14 +12,16 @@ const app = new App({
  */
 exports.handler = async (event) => {
   try {
-    fetch(`https://amathjourney.com/api/log/`, {
+    const { type, payload } = JSON.parse(event.body);
+    console.log(JSON.stringify({ type, payload }, null, 2));
+
+    await fetch(`https://amathjourney.com/api/log/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: event.body,
     });
-    // const { type, payload } = JSON.parse(event.body);
 
     // if (type === 'sendMessage') {
     //   const { rating, comment, currentLocationURL, commmentSectionURL, commmentSectionTitle } =
@@ -63,16 +65,10 @@ exports.handler = async (event) => {
     //   }
     // }
   } catch (error) {
-    fetch(`https://amathjourney.com/api/log/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ error }),
-    });
+    console.log({ error });
     return {
       statusCode: 500,
-      body: { error },
+      body: {},
     };
   }
 
