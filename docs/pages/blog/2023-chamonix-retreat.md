@@ -32,7 +32,7 @@ Photo of the Heliopic Hotel & Spa exterior, via [Assas Hotels](https://www.assa
 Chamonix is a world capital for outdoor activities, such as mountaineering, skiing, snowboarding, paragliding, hiking, climbing, and so much more!
 
 The Chamonix Mont Blanc valley offers unmatched alpine views, plus a whole host of stunning protected flora and fauna.
-With a bustling city centre full of quaint shops and restaurants — there's something for everyone to enjoy.
+With a bustling city center full of quaint shops and restaurants — there's something for everyone to enjoy.
 
 We stayed in the beautiful Helopic Hotel & Spa, which fit our needs perfectly. With fully-equipped conference rooms, a cosy lobby bar, table-service restaurant, and luxury spa — everything we needed was on-site. (The food was delicious, too!)
 
