@@ -18,11 +18,20 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   },
   resolveTheme: (mergedTheme: Theme) => {
     const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
+    let defaultColorInversion = {
+      soft: createSoftInversion(mergedTheme),
+      solid: createSolidInversion(mergedTheme),
+    };
+    if (mergedTheme.cssVarPrefix !== 'joy') {
+      defaultColorInversion = JSON.parse(
+        JSON.stringify(defaultColorInversion).replace(
+          /--joy/g,
+          mergedTheme.cssVarPrefix ? `--${mergedTheme.cssVarPrefix}` : '-',
+        ),
+      );
+    }
     mergedTheme.colorInversion = deepmerge(
-      {
-        soft: createSoftInversion(mergedTheme),
-        solid: createSolidInversion(mergedTheme),
-      },
+      defaultColorInversion,
       typeof colorInversionInput === 'function'
         ? colorInversionInput(mergedTheme)
         : colorInversionInput,

@@ -90,10 +90,7 @@ export const createVariantStyle = (
   return source;
 };
 
-export const createVariants = (
-  colorPalette: ColorSystem['palette'],
-  getCssVar: (...args: any[]) => string,
-) => {
+export const createVariants = (colorPalette: ColorSystem['palette'], cssVarPrefix: string) => {
   const result = {} as Variants;
   (
     Object.entries({
@@ -142,26 +139,9 @@ export const createVariants = (
               result[variantName] = result[variantName] || {};
               result[variantName][color] = result[variantName][color] || {};
 
-              let defaultValue;
-              if ((color as string) !== 'context') {
-                const cssVarMatches = (value as string).match(/-palette-([^-)]+)-?([^-)]+)?/);
-                if (cssVarMatches) {
-                  const colorToken = cssVarMatches[1];
-                  const rangeToken = cssVarMatches[2];
-                  // try to resolve the value at most two level deep
-                  if (rangeToken) {
-                    defaultValue = (colorPalette as any)[colorToken]?.[rangeToken];
-                  } else {
-                    defaultValue = (colorPalette as any)[colorToken];
-                  }
-                } else {
-                  defaultValue = value;
-                }
-              }
-              let cssValue = getCssVar(`palette-${color}-${variantVar}`);
-              if (defaultValue) {
-                cssValue = getCssVar(`palette-${color}-${variantVar}`, defaultValue);
-              }
+              let cssValue = `var(--${
+                cssVarPrefix ? `${cssVarPrefix}-` : ''
+              }palette-${color}-${variantVar}, ${value})`;
               if ((color as string) === 'context') {
                 cssValue = value.toString();
               }
@@ -184,6 +164,7 @@ interface ThemeFragment {
 
 export const createSoftInversion = (
   theme: ThemeFragment & {
+    colorSchemes: Record<DefaultColorScheme, ColorSystem>;
     getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
   },
 ) => {
@@ -195,94 +176,240 @@ export const createSoftInversion = (
       string | number | Record<string, any>,
     ];
     if (isVariantPalette(colorPalette)) {
+      const lightColors = theme.colorSchemes.light?.palette?.[color] || {};
+      const darkColors = theme.colorSchemes.dark?.palette?.[color] || {};
       result[color] = {
-        '--Badge-ringColor': `var(--joy-palette-${color}-softBg)`,
-        '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel)`,
+        '--Badge-ringColor': `var(--joy-palette-${color}-softBg${
+          darkColors.softBg ? `, ${darkColors.softBg}` : ''
+        })`,
+        '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel${
+          darkColors.darkChannel ? `, ${darkColors.darkChannel}` : ''
+        })`,
         [theme.getColorSchemeSelector('dark')]: {
-          '--joy-palette-focusVisible': `var(--joy-palette-${color}-300)`,
-          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-mainChannel) / 0.1)`,
-          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
-          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
-          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-mainChannel) / 0.4)`,
-          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
-          '--joy-palette-text-primary': `var(--joy-palette-${color}-100)`,
-          '--joy-palette-text-secondary': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
-          '--joy-palette-text-tertiary': `rgba(var(--joy-palette-${color}-lightChannel) / 0.6)`,
-          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-lightChannel) / 0.2)`,
-          '--variant-plainColor': `rgba(var(--joy-palette-${color}-lightChannel) / 1)`,
-          '--variant-plainHoverColor': `var(--joy-palette-${color}-50)`,
-          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.16)`,
-          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-300${
+            darkColors[300] ? `, ${darkColors[300]}` : ''
+          })`,
+          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.1)`,
+          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.08)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.4)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.6)`,
+          '--joy-palette-text-primary': `var(--joy-palette-${color}-100${
+            // @ts-ignore module augmentation
+            darkColors[100] ? `, ${darkColors[100]}` : ''
+          })`,
+          '--joy-palette-text-secondary': `rgba(var(--joy-palette-${color}-lightChannel${
+            darkColors.lightChannel ? `, ${darkColors.lightChannel}` : ''
+          }) / 0.72)`,
+          '--joy-palette-text-tertiary': `rgba(var(--joy-palette-${color}-lightChannel${
+            darkColors.lightChannel ? `, ${darkColors.lightChannel}` : ''
+          }) / 0.6)`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-lightChannel${
+            darkColors.lightChannel ? `, ${darkColors.lightChannel}` : ''
+          }) / 0.2)`,
+          '--variant-plainColor': `rgba(var(--joy-palette-${color}-lightChannel${
+            darkColors.lightChannel ? `, ${darkColors.lightChannel}` : ''
+          }) / 1)`,
+          '--variant-plainHoverColor': `var(--joy-palette-${color}-50${
+            darkColors[50] ? `, ${darkColors[50]}` : ''
+          })`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.16)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.72)`,
 
-          '--variant-outlinedColor': `rgba(var(--joy-palette-${color}-lightChannel) / 1)`,
-          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-50)`,
+          '--variant-outlinedColor': `rgba(var(--joy-palette-${color}-lightChannel${
+            darkColors.lightChannel ? `, ${darkColors.lightChannel}` : ''
+          }) / 1)`,
+          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-50${
+            darkColors[50] ? `, ${darkColors[50]}` : ''
+          })`,
           '--variant-outlinedBg': 'initial',
-          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.4)`,
-          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-600)`,
-          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.16)`,
-          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
-          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.4)`,
+          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-600${
+            darkColors[600] ? `, ${darkColors[600]}` : ''
+          })`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.16)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.72)`,
+          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.2)`,
 
-          '--variant-softColor': `var(--joy-palette-${color}-100)`,
-          '--variant-softBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.24)`,
+          '--variant-softColor': `var(--joy-palette-${color}-100${
+            // @ts-ignore module augmentation
+            darkColors[100] ? `, ${darkColors[100]}` : ''
+          })`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.24)`,
           '--variant-softHoverColor': '#fff',
-          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.48)`,
-          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
-          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.48)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.72)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.12)`,
 
           '--variant-solidColor': '#fff',
-          '--variant-solidBg': `var(--joy-palette-${color}-500)`,
+          '--variant-solidBg': `var(--joy-palette-${color}-500${
+            darkColors[500] ? `, ${darkColors[500]}` : ''
+          })`,
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': `var(--joy-palette-${color}-400)`,
-          '--variant-solidActiveBg': `var(--joy-palette-${color}-400)`,
-          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
-          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-solidHoverBg': `var(--joy-palette-${color}-400${
+            darkColors[400] ? `, ${darkColors[400]}` : ''
+          })`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-400${
+            darkColors[400] ? `, ${darkColors[400]}` : ''
+          })`,
+          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            darkColors.mainChannel ? `, ${darkColors.mainChannel}` : ''
+          }) / 0.12)`,
         },
         // `light` (default color scheme) should come last in case that `theme.getColorSchemeSelector()` return the same value
         [theme.getColorSchemeSelector('light')]: {
-          '--joy-palette-focusVisible': `var(--joy-palette-${color}-500)`,
-          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-mainChannel) / 0.1)`,
-          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
-          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
-          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-mainChannel) / 0.48)`,
-          '--joy-palette-text-primary': `var(--joy-palette-${color}-700)`,
-          '--joy-palette-text-secondary': `rgba(var(--joy-palette-${color}-darkChannel) / 0.8)`,
-          '--joy-palette-text-tertiary': `rgba(var(--joy-palette-${color}-darkChannel) / 0.68)`,
-          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--variant-plainColor': `rgba(var(--joy-palette-${color}-mainChannel) / 1)`,
-          '--variant-plainHoverColor': `var(--joy-palette-${color}-600)`,
-          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
-          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.24)`,
-          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-500${
+            lightColors[500] ? `, ${lightColors[500]}` : ''
+          })`,
+          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.1)`,
+          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.08)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.48)`,
+          '--joy-palette-text-primary': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--joy-palette-text-secondary': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.8)`,
+          '--joy-palette-text-tertiary': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.68)`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--variant-plainColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 1)`,
+          '--variant-plainHoverColor': `var(--joy-palette-${color}-600${
+            lightColors[600] ? `, ${lightColors[600]}` : ''
+          })`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.12)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.24)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.6)`,
 
-          '--variant-outlinedColor': `rgba(var(--joy-palette-${color}-mainChannel) / 1)`,
-          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.4)`,
-          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-600)`,
-          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-300)`,
-          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.24)`,
-          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
-          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
+          '--variant-outlinedColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 1)`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.4)`,
+          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-600${
+            lightColors[600] ? `, ${lightColors[600]}` : ''
+          })`,
+          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-300${
+            lightColors[300] ? `, ${lightColors[300]}` : ''
+          })`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.24)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.6)`,
+          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.12)`,
 
-          '--variant-softColor': `var(--joy-palette-${color}-600)`,
-          '--variant-softBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
-          '--variant-softHoverColor': `var(--joy-palette-${color}-700)`,
-          '--variant-softHoverBg': `var(--joy-palette-${color}-200)`,
-          '--variant-softActiveBg': `var(--joy-palette-${color}-300)`,
-          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
-          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
+          '--variant-softColor': `var(--joy-palette-${color}-600${
+            lightColors[600] ? `, ${lightColors[600]}` : ''
+          })`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.72)`,
+          '--variant-softHoverColor': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--variant-softHoverBg': `var(--joy-palette-${color}-200${
+            lightColors[200] ? `, ${lightColors[200]}` : ''
+          })`,
+          '--variant-softActiveBg': `var(--joy-palette-${color}-300${
+            lightColors[300] ? `, ${lightColors[300]}` : ''
+          })`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.6)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.08)`,
 
-          '--variant-solidColor': 'var(--joy-palette-common-white)',
-          '--variant-solidBg': `var(--joy-palette-${color}-600)`,
-          '--variant-solidHoverColor': 'var(--joy-palette-common-white)',
-          '--variant-solidHoverBg': `var(--joy-palette-${color}-500)`,
-          '--variant-solidActiveBg': `var(--joy-palette-${color}-500)`,
-          '--variant-solidDisabledColor': `rgba(palette-${color}-mainChannel) / 6)`,
-          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
+          '--variant-solidColor': `#fff`,
+          '--variant-solidBg': `var(--joy-palette-${color}-600${
+            lightColors[600] ? `, ${lightColors[600]}` : ''
+          })`,
+          '--variant-solidHoverColor': `#fff`,
+          '--variant-solidHoverBg': `var(--joy-palette-${color}-500${
+            lightColors[500] ? `, ${lightColors[500]}` : ''
+          })`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-500${
+            lightColors[500] ? `, ${lightColors[500]}` : ''
+          })`,
+          '--variant-solidDisabledColor': `rgba(palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 6)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.08)`,
         },
       };
     }
@@ -290,7 +417,9 @@ export const createSoftInversion = (
   return result;
 };
 
-export const createSolidInversion = (theme: ThemeFragment) => {
+export const createSolidInversion = (
+  theme: ThemeFragment & { colorSchemes: Record<DefaultColorScheme, ColorSystem> },
+) => {
   const result = {} as Record<DefaultColorPalette, CSSObject>;
 
   Object.entries(theme.palette).forEach((entry) => {
@@ -299,102 +428,241 @@ export const createSolidInversion = (theme: ThemeFragment) => {
       string | number | Record<string, any>,
     ];
     if (isVariantPalette(colorPalette)) {
+      const lightColors = theme.colorSchemes.light?.palette?.[color] || {};
       if (color === 'warning') {
         result.warning = {
-          '--Badge-ringColor': `var(--joy-palette-${color}-solidBg)`,
-          '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel)`,
-          '--joy-palette-focusVisible': `var(--joy-palette-${color}-700)`,
-          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-darkChannel) / 0.16)`,
-          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-darkChannel) / 0.1)`,
+          '--Badge-ringColor': `var(--joy-palette-${color}-solidBg${
+            lightColors.solidBg ? `, ${lightColors.solidBg}` : ''
+          })`,
+          '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          })`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--joy-palette-background-body': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.16)`,
+          '--joy-palette-background-surface': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.1)`,
           '--joy-palette-background-popup': `var(--joy-palette-${color}-100)`,
-          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-darkChannel) / 0.2)`,
-          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-darkChannel) / 0.36)`,
-          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-darkChannel) / 0.6)`,
-          '--joy-palette-text-primary': `var(--joy-palette-${color}-900)`,
-          '--joy-palette-text-secondary': `var(--joy-palette-${color}-700)`,
-          '--joy-palette-text-tertiary': `var(--joy-palette-${color}-500)`,
-          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-darkChannel) / 0.2)`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.36)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.6)`,
+          '--joy-palette-text-primary': `var(--joy-palette-${color}-900${
+            lightColors[900] ? `, ${lightColors[900]}` : ''
+          })`,
+          '--joy-palette-text-secondary': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--joy-palette-text-tertiary': `var(--joy-palette-${color}-500${
+            lightColors[500] ? `, ${lightColors[500]}` : ''
+          })`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.2)`,
 
-          '--variant-plainColor': `var(--joy-palette-${color}-700)`,
-          '--variant-plainHoverColor': `var(--joy-palette-${color}-800)`,
-          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
-          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
+          '--variant-plainColor': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--variant-plainHoverColor': `var(--joy-palette-${color}-800${
+            lightColors[800] ? `, ${lightColors[800]}` : ''
+          })`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.12)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.72)`,
 
-          '--variant-outlinedColor': `var(--joy-palette-${color}-700)`,
-          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.5)`,
-          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-800)`,
-          '--variant-outlinedHoverBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.6)`,
-          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.32)`,
-          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
-          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
+          '--variant-outlinedColor': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.5)`,
+          '--variant-outlinedHoverColor': `var(--joy-palette-${color}-800${
+            lightColors[800] ? `, ${lightColors[800]}` : ''
+          })`,
+          '--variant-outlinedHoverBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.6)`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.72)`,
+          '--variant-outlinedDisabledBorder': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.2)`,
 
-          '--variant-softColor': `var(--joy-palette-${color}-800)`,
-          '--variant-softHoverColor': `var(--joy-palette-${color}-900)`,
-          '--variant-softBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.2)`,
-          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.28)`,
-          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.12)`,
-          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
-          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
+          '--variant-softColor': `var(--joy-palette-${color}-800${
+            lightColors[800] ? `, ${lightColors[800]}` : ''
+          })`,
+          '--variant-softHoverColor': `var(--joy-palette-${color}-900${
+            lightColors[900] ? `, ${lightColors[900]}` : ''
+          })`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.2)`,
+          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.28)`,
+          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.12)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.72)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.08)`,
 
           '--variant-solidColor': '#fff',
-          '--variant-solidBg': `var(--joy-palette-${color}-600)`,
+          '--variant-solidBg': `var(--joy-palette-${color}-600${
+            lightColors[600] ? `, ${lightColors[600]}` : ''
+          })`,
           '--variant-solidHoverColor': '#fff',
-          '--variant-solidHoverBg': `var(--joy-palette-${color}-700)`,
-          '--variant-solidActiveBg': `var(--joy-palette-${color}-800)`,
-          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel) / 0.72)`,
-          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel) / 0.08)`,
+          '--variant-solidHoverBg': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-800${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-mainChannel${
+            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          }) / 0.08)`,
         };
       } else {
         result[color] = {
           colorScheme: 'dark',
-          '--Badge-ringColor': `var(--joy-palette-${color}-solidBg)`,
-          '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel)`,
-          '--joy-palette-focusVisible': `var(--joy-palette-${color}-200)`,
+          '--Badge-ringColor': `var(--joy-palette-${color}-solidBg${
+            lightColors.solidBg ? `, ${lightColors.solidBg}` : ''
+          })`,
+          '--joy-shadowChannel': `var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          })`,
+          '--joy-palette-focusVisible': `var(--joy-palette-${color}-200${
+            lightColors[200] ? `, ${lightColors[200]}` : ''
+          })`,
           '--joy-palette-background-body': 'rgba(0 0 0 / 0.1)',
           '--joy-palette-background-surface': 'rgba(0 0 0 / 0.06)',
-          '--joy-palette-background-popup': `var(--joy-palette-${color}-700)`,
-          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-darkChannel) / 0.2)`,
-          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-darkChannel) / 0.36)`,
-          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-darkChannel) / 0.6)`,
-          '--joy-palette-text-primary': `var(--joy-palette-common-white)`,
-          '--joy-palette-text-secondary': `var(--joy-palette-${color}-100)`,
-          '--joy-palette-text-tertiary': `var(--joy-palette-${color}-200)`,
-          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-lightChannel) / 0.32)`,
+          '--joy-palette-background-popup': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--joy-palette-background-level1': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.2)`,
+          '--joy-palette-background-level2': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.36)`,
+          '--joy-palette-background-level3': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.6)`,
+          '--joy-palette-text-primary': `#fff`,
+          '--joy-palette-text-secondary': `var(--joy-palette-${color}-100${
+            // @ts-ignore module augmentation
+            lightColors[100] ? `, ${lightColors[100]}` : ''
+          })`,
+          '--joy-palette-text-tertiary': `var(--joy-palette-${color}-200${
+            lightColors[200] ? `, ${lightColors[200]}` : ''
+          })`,
+          '--joy-palette-divider': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.32)`,
 
-          '--variant-plainColor': `var(--joy-palette-${color}-50)`,
+          '--variant-plainColor': `var(--joy-palette-${color}-50${
+            lightColors[50] ? `, ${lightColors[50]}` : ''
+          })`,
           '--variant-plainHoverColor': `#fff`,
-          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.12)`,
-          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.32)`,
-          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
+          '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.12)`,
+          '--variant-plainActiveBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.32)`,
+          '--variant-plainDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.72)`,
 
-          '--variant-outlinedColor': `var(--joy-palette-${color}-50)`,
-          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-lightChannel) / 0.5)`,
+          '--variant-outlinedColor': `var(--joy-palette-${color}-50${
+            lightColors[50] ? `, ${lightColors[50]}` : ''
+          })`,
+          '--variant-outlinedBorder': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.5)`,
           '--variant-outlinedHoverColor': `#fff`,
-          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-300`,
-          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.12)`,
-          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.32)`,
-          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
+          '--variant-outlinedHoverBorder': `var(--joy-palette-${color}-300${
+            lightColors[300] ? `, ${lightColors[300]}` : ''
+          })`,
+          '--variant-outlinedHoverBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.32)`,
+          '--variant-outlinedDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.72)`,
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
-          '--variant-softColor': `var(--joy-palette-common-white)`,
-          '--variant-softHoverColor': `var(--joy-palette-common-white)`,
-          '--variant-softBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.24)`,
-          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.36)`,
-          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.16)`,
-          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
-          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.1)`,
+          '--variant-softColor': `#fff`,
+          '--variant-softHoverColor': `#fff`,
+          '--variant-softBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.24)`,
+          '--variant-softHoverBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.36)`,
+          '--variant-softActiveBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.16)`,
+          '--variant-softDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.72)`,
+          '--variant-softDisabledBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.1)`,
 
-          '--variant-solidColor': `var(--joy-palette-${color}-${
-            color === 'neutral' ? '600' : '500'
+          '--variant-solidColor': `var(--joy-palette-${color}-500${
+            lightColors[500] ? `, ${lightColors[500]}` : ''
           })`,
-          '--variant-solidBg': `var(--joy-palette-common-white)`,
-          '--variant-solidHoverColor': `var(--joy-palette-${color}-700)`,
-          '--variant-solidHoverBg': `var(--joy-palette-common-white)`,
-          '--variant-solidActiveBg': `var(--joy-palette-${color}-200)`,
-          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel) / 0.72)`,
-          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-lightChannel) / 0.1)`,
+          ...(color === 'neutral' && {
+            '--variant-solidColor': `var(--joy-palette-${color}-600${
+              lightColors[600] ? `, ${lightColors[600]}` : ''
+            })`,
+          }),
+          '--variant-solidBg': `#fff`,
+          '--variant-solidHoverColor': `var(--joy-palette-${color}-700${
+            lightColors[700] ? `, ${lightColors[700]}` : ''
+          })`,
+          '--variant-solidHoverBg': `#fff`,
+          '--variant-solidActiveBg': `var(--joy-palette-${color}-200${
+            lightColors[200] ? `, ${lightColors[200]}` : ''
+          })`,
+          '--variant-solidDisabledColor': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.72)`,
+          '--variant-solidDisabledBg': `rgba(var(--joy-palette-${color}-lightChannel${
+            lightColors.lightChannel ? `, ${lightColors.lightChannel}` : ''
+          }) / 0.1)`,
         };
       }
     }
