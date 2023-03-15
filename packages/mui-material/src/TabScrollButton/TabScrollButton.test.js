@@ -50,33 +50,21 @@ describe('<TabScrollButton />', () => {
       );
       expect(getAllByTestId('KeyboardArrowRightIcon').length).to.equal(1);
     });
+  });
 
-    it('should render with the custom start icon', () => {
-      const { getAllByTestId } = render(
-        <TabScrollButton
-          {...defaultProps}
-          direction="left"
-          disabled
-          slots={{
-            ScrollButtonStart: ArrowBackIcon,
-          }}
-        />,
-      );
-      expect(getAllByTestId('ArrowBackIcon').length).to.equal(1);
-    });
-
-    it('should render with the end icon', () => {
-      const { getAllByTestId } = render(
-        <TabScrollButton
-          {...defaultProps}
-          direction="right"
-          disabled
-          slots={{
-            ScrollButtonEnd: ArrowForwardIcon,
-          }}
-        />,
-      );
-      expect(getAllByTestId('ArrowForwardIcon').length).to.equal(1);
-    });
+  it('should render with the custom start and end icon', () => {
+    const { getAllByTestId } = render(
+      <TabScrollButton
+        {...defaultProps}
+        direction="left"
+        disabled
+        slots={{
+          StartScrollButtonIcon: ArrowBackIcon,
+          EndScrollButtonIcon: ArrowForwardIcon,
+        }}
+      />,
+    );
+    expect(getAllByTestId('ArrowBackIcon')).to.have.lengthOf(1);
+    expect(getAllByTestId('ArrowForwardIcon')).to.have.lengthOf(1);
   });
 });
