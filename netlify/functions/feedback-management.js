@@ -23,12 +23,6 @@ const googleAuth = new JWT({
 
 const service = sheets({ version: 'v4', auth: googleAuth });
 
-const deleteMessage = (data) =>
-  slackClient.chat.delete({
-    channel: data.channel.id,
-    ts: data.message_ts,
-    as_user: true,
-  });
 
 /**
  * @param {object} event
@@ -69,12 +63,14 @@ exports.handler = async (event) => {
           });
         }
         break;
-
       case 'delete_action':
-        deleteMessage(data).catch((error) => {
-          // eslint-disable-next-line no-console
-          console.log(error);
+        await slackClient.chat.delete({
+          channel: data.channel.id,
+          ts: data.message_ts,
+          as_user: true,
+          token: process.env.SLACK_BOT_TOKEN,
         });
+
         break;
       case 'save_message':
         {
@@ -128,7 +124,7 @@ exports.handler = async (event) => {
     }
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log({ error });
+    console.log(JSON.stringify(error, null, 2));
     return {
       statusCode: 500,
       body: JSON.stringify({}),
