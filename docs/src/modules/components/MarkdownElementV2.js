@@ -113,10 +113,10 @@ MarkdownElementV2.propTypes = {
   disableAd: PropTypes.bool,
   localizedDoc: PropTypes.any,
   location: PropTypes.string,
-  renderedMarkdownOrDemo: PropTypes.oneOfType(
+  renderedMarkdownOrDemo: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({ component: PropTypes.any, demo: PropTypes.any }),
-  ),
+  ]),
   srcComponents: PropTypes.any,
   theme: PropTypes.object,
   WrapperComponent: PropTypes.elementType,
