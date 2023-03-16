@@ -599,9 +599,6 @@ export function updateComponentPages() {
         });
       }
 
-      let initialProps = `
-      Page.getInitialProps = () => {
-        `;
       let staticProps = `
       export const getStaticProps = () => {
       `;
@@ -609,7 +606,7 @@ export function updateComponentPages() {
       if (components) {
         components.forEach((component: string) => {
           const componentNameKebabCase = kebabCase(component);
-          const componentApiRef = `
+          staticProps += `
           const ${component}ApiReq = require.context(
             'docs/translations/api-docs/${componentNameKebabCase}',
             false,
@@ -617,15 +614,13 @@ export function updateComponentPages() {
           );
           const ${component}ApiDescriptions = mapApiPageTranslations(${component}ApiReq);
           `;
-          initialProps += componentApiRef;
-          staticProps += componentApiRef;
         });
       }
 
       if (hooks) {
         hooks.forEach((hook: string) => {
           const hookNameKebabCase = kebabCase(hook);
-          const hookApiReq = `
+          staticProps += `
           const ${hook}ApiReq = require.context(
             'docs/translations/api-docs/${hookNameKebabCase}',
             false,
@@ -633,14 +628,8 @@ export function updateComponentPages() {
           );
           const ${hook}ApiDescriptions = mapApiPageTranslations(${hook}ApiReq);
           `;
-          initialProps += hookApiReq;
-          staticProps += hookApiReq;
         });
       }
-
-      initialProps += `
-        return {
-          componentsApiDescriptions: { `;
 
       staticProps += `
         return {
@@ -649,47 +638,36 @@ export function updateComponentPages() {
 
       if (components) {
         components.forEach((component: string) => {
-          initialProps += `${component} : ${component}ApiDescriptions ,`;
           staticProps += `${component} : ${component}ApiDescriptions ,`;
         });
       }
 
-      initialProps += `},
-          componentsApiPageContents: { `;
       staticProps += `},
           componentsApiPageContents: { `;
 
       if (components) {
         components.forEach((component: string) => {
-          initialProps += `${component} : ${component}ApiJsonPageContent ,`;
           staticProps += `${component} : ${component}ApiJsonPageContent ,`;
         });
       }
-      initialProps += ` },
-          hooksApiDescriptions: { `;
+
       staticProps += ` },
           hooksApiDescriptions: { `;
 
       if (hooks) {
         hooks.forEach((hook: string) => {
-          initialProps += `${hook} : ${hook}ApiDescriptions ,`;
           staticProps += `${hook} : ${hook}ApiDescriptions ,`;
         });
       }
 
-      initialProps += ` },
-          hooksApiPageContents: { `;
       staticProps += ` },
           hooksApiPageContents: { `;
 
       if (hooks) {
         hooks.forEach((hook: string) => {
-          initialProps += `${hook} : ${hook}ApiJsonPageContent ,`;
           staticProps += `${hook} : ${hook}ApiJsonPageContent ,`;
         });
       }
-
-      initialProps += `},};};`;
 
       staticProps += ` },},};};`;
 
@@ -701,8 +679,6 @@ import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from '${importStatement}?@mui/markdown';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-${demosTabImportStatements}
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -712,8 +688,6 @@ export default function Page(props) {
 Page.getLayout = (page) => {
   return <AppFrame>{page}</AppFrame>;
 };
-
-${initialProps}
       `;
 
       const tabsApiSource = `

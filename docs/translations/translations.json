@@ -2,7 +2,7 @@
   "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist MUI in your blocker.",
   "api-docs": {
     "componentName": "Component name",
-    "hookName": "Hook name",
+    "componentsApi": "Components API",
     "cssComponent": "As a CSS utility, the {{name}} component also supports all <a href=\"/system/properties/\"><code>system</code></a> properties. You can use them as props directly on the component.",
     "default": "Default",
     "defaultValue": "Default value",
@@ -11,6 +11,8 @@
     "description": "Description",
     "globalClass": "Global class",
     "defaultClass": "Default class",
+    "hookName": "Hook name",
+    "hooksApi": "Hooks API",
     "hooksPageDescription": "API reference docs for the {{name}} hook. Learn about the input parameters and other APIs of this exported module.",
     "import": "Import",
     "importDifference": "You can learn about the difference by <a href=\"/material-ui/guides/minimizing-bundle-size/\">reading this guide on minimizing bundle size</a>.",

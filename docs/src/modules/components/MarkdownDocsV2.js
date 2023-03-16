@@ -43,10 +43,10 @@ export default function MarkdownDocsV2(props) {
     docs,
     demoComponents,
     srcComponents,
-    componentsApiDescriptions,
-    componentsApiPageContents,
-    hooksApiDescriptions,
-    hooksApiPageContents,
+    componentsApiDescriptions = {},
+    componentsApiPageContents = {},
+    hooksApiDescriptions = {},
+    hooksApiPageContents = {},
   } = props;
 
   const userLanguage = useUserLanguage();

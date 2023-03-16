@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
@@ -14,6 +15,7 @@ export default function ComponentPageTabs(props) {
     markdown: { headers },
   } = props;
   const router = useRouter();
+  const t = useTranslate();
 
   const demosHref = router.pathname.endsWith('[docsTab]')
     ? router.pathname.replace('[docsTab]', '')
@@ -60,13 +62,20 @@ export default function ComponentPageTabs(props) {
           },
         }}
       >
-        <Tab component={Link} shallow scroll href={demosHref} label="Demos" value="" />
+        <Tab
+          component={Link}
+          shallow
+          scroll
+          href={demosHref}
+          label={t('api-docs.demos')}
+          value=""
+        />
         <Tab
           component={Link}
           shallow
           scroll
           href={componentsHref}
-          label="Component API"
+          label={t('api-docs.componentsApi')}
           value="components-api"
         />
         {headers.hooks && headers.hooks.length > 0 && (
@@ -75,7 +84,7 @@ export default function ComponentPageTabs(props) {
             shallow
             scroll
             href={hooksHref}
-            label="Hook API"
+            label={t('api-docs.hooksApi')}
             value="hooks-api"
           />
         )}
