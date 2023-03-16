@@ -1,80 +1,134 @@
-const { App } = require('@slack/bolt');
-const fetch = require('node-fetch');
+const { WebClient } = require('@slack/web-api');
+const querystring = require('node:querystring');
+const { JWT } = require('google-auth-library');
+const { sheets } = require('@googleapis/sheets');
 
-const app = new App({
-  signingSecret: process.env.SLACK_SIGNING_SECRET,
-  token: process.env.SLACK_BOT_TOKEN,
+// Slack API
+const slackClient = new WebClient(process.env.SLACK_BOT_TOKEN);
+
+const slackChannels = {
+  'mui-x': 'C04U3R2V9UK',
+  'mui-core': 'C041SDSF32L',
+};
+
+const spreadSheetsIds = {
+  forLater: '1NAUTsIcReVylWPby5K0omXWZpgjd9bjxE8V2J-dwPyc',
+};
+
+const googleAuth = new JWT({
+  email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+  key: process.env.G_SHEET_TOKEN,
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
+
+const service = sheets({ version: 'v4', auth: googleAuth });
+
+const deleteMessage = async (data) => {
+  await slackClient.chat.delete({
+    channel: data.channel.id,
+    ts: data.message_ts,
+    as_user: true,
+  });
+};
 
 /**
  * @param {object} event
  * @param {object} context
  */
 exports.handler = async (event) => {
+  // eslint-disable-next-line no-console
+  console.log('=== event ===');
+  // eslint-disable-next-line no-console
   console.log(event);
   try {
-    const { type, payload } = event.body;
-    console.log(JSON.stringify({ type, payload }, null, 2));
+    const { payload } = querystring.parse(event.body);
+    const data = JSON.parse(decodeURIComponent(payload));
 
-    await fetch(`https://amathjourney.com/api/log/`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: event.body,
-    });
+    switch (data.type) {
+      case 'send_feedback':
+        {
+          // We send the feedback to the appopiate slack channel
+          const { rating, comment, currentLocationURL, commmentSectionURL, commmentSectionTitle } =
+            data;
 
-    // if (type === 'sendMessage') {
-    //   const { rating, comment, currentLocationURL, commmentSectionURL, commmentSectionTitle } =
-    //     payload;
+          const simpleSlackMessage = [
+            `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
+            `>${comment.split('\n').join('\n>')}`,
+            `sent from ${currentLocationURL}${
+              commmentSectionTitle
+                ? ` (from section <${commmentSectionURL}|${commmentSectionTitle})>`
+                : ''
+            }`,
+          ].join('\n\n');
 
-    //   const simpleSlackMessage = [
-    //     `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
-    //     `>${comment.split('\n').join('\n>')}`,
-    //     `sent from ${currentLocationURL}${
-    //       commmentSectionTitle
-    //         ? ` (from section <${commmentSectionURL}|${commmentSectionTitle})>`
-    //         : ''
-    //     }`,
-    //   ].join('\n\n');
-    //   app.client.chat.postMessage({
-    //     channel: 'C041SDSF32L',
-    //     text: simpleSlackMessage,
-    //   });
-    // } else {
-    //   const {
-    //     // user: { username },
-    //     channel: { id: channelId },
-    //     callback_id,
-    //     message_ts,
-    //     // message,
-    //   } = JSON.parse(payload);
+          await slackClient.chat.postMessage({
+            channel: slackChannels['mui-x'],
+            text: simpleSlackMessage,
+            as_user: true,
+          });
+        }
+        break;
 
-    //   if (callback_id === 'delete_action') {
-    //     app.client.chat
-    //       .delete({
-    //         channel: channelId,
-    //         ts: message_ts,
-    //         as_user: true,
-    //       })
-    //       .catch((error) => {
-    //         return {
-    //           statusCode: 500,
-    //           body: { error },
-    //         };
-    //       });
-    //   }
-    // }
+      case 'delete_action':
+        await deleteMessage(data);
+        break;
+      case 'save_message':
+        {
+          const {
+            user: { username },
+            channel: { id: channelId },
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            message_ts,
+            message,
+          } = data;
+          const elements = message?.blocks?.[0]?.elements;
+
+          const quote = message?.text
+            .split('\n\nsent from')[0]
+            .split('\n\n')
+            .slice(1)
+            .join('\n\n')
+            .replace(/&gt;/g, '');
+
+          const links = elements[2].elements
+            .filter((element) => element.type === 'link')
+            .map((element) => element.url);
+
+          service.spreadsheets.values
+            .append({
+              spreadsheetId: spreadSheetsIds.forLater,
+              range: 'Sheet1!A:D',
+              valueInputOption: 'USER_ENTERED',
+              resource: {
+                values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+              },
+            })
+            .then(() => {
+              slackClient.chat.postMessage({
+                channel: channelId,
+                thread_ts: message_ts,
+                as_user: true,
+                text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
+              });
+            });
+        }
+
+        break;
+
+      default:
+        break;
+    }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log({ error });
     return {
       statusCode: 500,
-      body: {},
+      body: JSON.stringify({}),
     };
   }
 
   return {
     statusCode: 200,
-    body: {},
+    body: JSON.stringify({}),
   };
 };

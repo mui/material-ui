@@ -13,8 +13,10 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
+    "@googleapis/sheets": "^4.0.2",
     "@slack/bolt": "^3.12.2",
-    "fs-extra": "^10.1.0"
+    "fs-extra": "^10.1.0",
+    "google-auth-library": "^8.7.0"
   },
   "engines": {
     "node": ">=12.0.0"
