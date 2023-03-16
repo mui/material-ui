@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Menu from '@mui/joy/Menu';
+import Menu, { menuClasses } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -119,6 +119,9 @@ function MenuButton({
         placement: 'right-start',
         sx: {
           width: 288,
+          [`& .${menuClasses.listbox}`]: {
+            '--List-padding': 'var(--ListDivider-gap)',
+          },
         },
       })}
     </React.Fragment>
