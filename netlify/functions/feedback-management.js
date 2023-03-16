@@ -12,14 +12,22 @@ const spreadSheetsIds = {
   forLater: '1NAUTsIcReVylWPby5K0omXWZpgjd9bjxE8V2J-dwPyc',
 };
 
+// Slack API
+const slackClient = new WebClient(process.env.SLACK_BOT_TOKEN);
+
+const googleAuth = new JWT({
+  email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+  key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+});
+
+const service = sheets({ version: 'v4', auth: googleAuth });
+
 /**
  * @param {object} event
  * @param {object} context
  */
 exports.handler = async (event) => {
-  // Slack API
-  const slackClient = new WebClient(process.env.SLACK_BOT_TOKEN);
-
   try {
     const { payload } = querystring.parse(event.body);
     const data = JSON.parse(decodeURIComponent(payload));
@@ -65,14 +73,6 @@ exports.handler = async (event) => {
         break;
       case 'save_message':
         {
-          const googleAuth = new JWT({
-            email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-            key: process.env.G_SHEET_TOKEN,
-            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-          });
-
-          const service = sheets({ version: 'v4', auth: googleAuth });
-
           const {
             user: { username },
             channel: { id: channelId },
