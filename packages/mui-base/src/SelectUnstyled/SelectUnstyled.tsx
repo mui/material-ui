@@ -20,6 +20,7 @@ import { SelectUnstyledContext } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
 import defaultOptionStringifier from './defaultOptionStringifier';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function defaultRenderValue<TValue>(
   selectedOptions: SelectOption<TValue> | SelectOption<TValue>[] | null,
@@ -79,7 +80,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any, any>) {
     popper: ['popper'],
   };
 
-  return composeClasses(slots, getSelectUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getSelectUnstyledUtilityClass));
 }
 
 /**

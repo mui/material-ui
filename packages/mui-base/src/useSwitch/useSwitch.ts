@@ -4,7 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
+import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
 
 /**
  * The basic building block for creating custom switches.
@@ -17,7 +17,7 @@ import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types'
  *
  * - [useSwitch API](https://mui.com/base/react-switch/hooks-api/#use-switch)
  */
-export default function useSwitch(props: UseSwitchParameters) {
+export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnValue {
   const {
     checked: checkedProp,
     defaultChecked,
@@ -101,9 +101,7 @@ export default function useSwitch(props: UseSwitchParameters) {
 
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
-  const getInputProps = (
-    otherProps: React.HTMLAttributes<HTMLInputElement> = {},
-  ): UseSwitchInputSlotProps => ({
+  const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,

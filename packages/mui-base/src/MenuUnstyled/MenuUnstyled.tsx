@@ -14,15 +14,16 @@ import useMenu from '../useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
+function useUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
   const slots = {
     root: ['root', open && 'expanded'],
     listbox: ['listbox', open && 'expanded'],
   };
 
-  return composeClasses(slots, getMenuUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getMenuUnstyledUtilityClass));
 }
 /**
  *
@@ -71,7 +72,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     open,
   };
 
-  const classes = getUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   const Root = component ?? slots.root ?? PopperUnstyled;
   const rootProps: MenuUnstyledRootSlotProps = useSlotProps({

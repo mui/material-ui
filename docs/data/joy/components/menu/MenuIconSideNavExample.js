@@ -99,7 +99,7 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         sx: {
           width: 288,
           [`& .${menuClasses.listbox}`]: {
-            '--List-padding': 'var(--List-divider-gap)',
+            '--List-padding': 'var(--ListDivider-gap)',
           },
         },
       })}

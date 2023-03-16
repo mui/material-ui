@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import OptionGroupUnstyled, { optionGroupUnstyledClasses } from '@mui/base/OptionGroupUnstyled';
 
-describe('OptionGroupUnstyled', () => {
+describe('<OptionGroupUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 

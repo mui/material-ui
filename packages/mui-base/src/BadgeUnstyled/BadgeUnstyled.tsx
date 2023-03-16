@@ -12,6 +12,7 @@ import {
   BadgeUnstyledBadgeSlotProps,
 } from './BadgeUnstyled.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
   const { invisible } = ownerState;
@@ -21,7 +22,7 @@ const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
     badge: ['badge', invisible && 'invisible'],
   };
 
-  return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
+  return composeClasses(slots, useClassNamesOverride(getBadgeUnstyledUtilityClass));
 };
 /**
  *

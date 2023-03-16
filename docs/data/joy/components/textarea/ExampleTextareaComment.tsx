@@ -48,7 +48,7 @@ export default function TextareaValidator() {
               onClose={() => setAnchorEl(null)}
               size="sm"
               placement="bottom-start"
-              sx={{ '--List-decorator-size': '24px' }}
+              sx={{ '--List-decoratorSize': '24px' }}
             >
               {['200', 'normal', 'bold'].map((weight) => (
                 <MenuItem

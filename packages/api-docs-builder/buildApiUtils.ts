@@ -6,7 +6,7 @@ import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/markdown';
 import { getLineFeed } from '@mui-internal/docs-utilities';
 import { replaceComponentLinks } from './utils/replaceUrl';
-import findPagesMarkdownNew from './utils/findPagesMarkdown';
+import findPagesMarkdown from './utils/findPagesMarkdown';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
@@ -221,7 +221,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => {
+      const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
         const markdownHeaders = getHeaders(markdownContent) as any;
 
@@ -322,7 +322,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   }
 
   // resolve demos, so that we can getch the API url
-  const allMarkdowns = findPagesMarkdownNew()
+  const allMarkdowns = findPagesMarkdown()
     .filter((markdown) => {
       if (migratedBaseComponents.some((component) => filename.includes(component))) {
         return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
@@ -339,6 +339,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
         components: markdownHeaders.components as string[],
       };
     });
+
   const demos = findBaseDemos(name, allMarkdowns);
   const apiPath = getApiPath(demos, name);
 
@@ -376,7 +377,7 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
     throw new Error(`Could not find the hook name from: ${filename}`);
   }
 
-  const allMarkdowns = findPagesMarkdownNew()
+  const allMarkdowns = findPagesMarkdown()
     .filter((markdown) => {
       if (migratedBaseComponents.some((component) => filename.includes(component))) {
         return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
@@ -386,6 +387,7 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
     .map((markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
       const markdownHeaders = getHeaders(markdownContent) as any;
+
       return {
         ...markdown,
         title: getTitle(markdownContent),
@@ -394,7 +396,6 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
     });
 
   const demos = findBaseHooksDemos(name, allMarkdowns);
-
   const apiPath = getApiPath(demos, name);
 
   const result = {
@@ -457,7 +458,7 @@ export const getJoyComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => {
+      const allMarkdowns = findPagesMarkdown().map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
         const markdownHeaders = getHeaders(markdownContent) as any;
 
@@ -496,7 +497,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
       return null;
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
+      const allMarkdowns = findPagesMarkdown()
         .filter((markdown) => {
           if (migratedBaseComponents.some((component) => filename.includes(component))) {
             return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);
@@ -565,7 +566,7 @@ export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) =
 };
 
 export function updateComponentPages() {
-  findPagesMarkdownNew().forEach((markdown) => {
+  findPagesMarkdown().forEach((markdown) => {
     const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
     const markdownHeaders = getHeaders(markdownContent) as any;
     const pathnameTokens = markdown.pathname.split('/');

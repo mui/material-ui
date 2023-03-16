@@ -11,6 +11,7 @@ import {
   OptionGroupUnstyledTypeMap,
 } from './OptionGroupUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(disabled: boolean) {
   const slots = {
@@ -19,7 +20,7 @@ function useUtilityClasses(disabled: boolean) {
     list: ['list'],
   };
 
-  return composeClasses(slots, getOptionGroupUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getOptionGroupUnstyledUtilityClass));
 }
 
 /**
