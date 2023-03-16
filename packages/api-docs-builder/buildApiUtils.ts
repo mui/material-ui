@@ -305,7 +305,7 @@ const getApiPath = (demos: Array<{ name: string; demoPathname: string }>, name: 
 
   if (demos && demos.length > 0) {
     // remove the hash from the demoPathname, for e.g. "#hooks"
-    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0]
+    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0];
     apiPath = `${cleanedDemosPathname}${
       name.startsWith('use') ? 'hooks-api' : 'components-api'
     }/#${kebabCase(name)}`;
