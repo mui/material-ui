@@ -17,7 +17,6 @@ export type CardSlotsAndSlotProps = CreateSlotsAndSlotProps<
   CardSlots,
   {
     root: SlotProps<'div', {}, CardOwnerState>;
-    badge: SlotProps<'div', {}, CardOwnerState>;
   }
 >;
 
