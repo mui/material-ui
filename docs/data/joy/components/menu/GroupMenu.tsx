@@ -12,9 +12,9 @@ import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 export default function BasicMenu() {
   const SIZES = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large'];
   const [size, setSize] = React.useState('Medium');
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -66,7 +66,7 @@ export default function BasicMenu() {
         <ListDivider />
         <ListItem nested>
           <List aria-label="Font sizes">
-            {SIZES.map((item) => (
+            {SIZES.map((item: string) => (
               <MenuItem
                 key={item}
                 role="menuitemradio"
