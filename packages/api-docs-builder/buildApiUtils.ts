@@ -580,32 +580,17 @@ export function generateApiPages() {
     ) {
       const { components, hooks } = markdownHeaders;
 
-      let demosTabImportStatements = '';
       let apiTabImportStatements = '';
+      let staticProps = 'export const getStaticProps = () => {';
+      let componentsApiDescriptions = '';
+      let componentsPageContents = '';
+      let hooksApiDescriptions = '';
+      let hooksPageContents = '';
 
       if (components) {
         components.forEach((component: string) => {
           const componentNameKebabCase = kebabCase(component);
-          demosTabImportStatements += `import ${component}ApiJsonPageContent from '../api/${componentNameKebabCase}.json';`;
           apiTabImportStatements += `import ${component}ApiJsonPageContent from '../../api/${componentNameKebabCase}.json';`;
-        });
-      }
-
-      if (hooks) {
-        hooks.forEach((hook: string) => {
-          const hookNameKebabCase = kebabCase(hook);
-          demosTabImportStatements += `import ${hook}ApiJsonPageContent from '../api/${hookNameKebabCase}.json';`;
-          apiTabImportStatements += `import ${hook}ApiJsonPageContent from '../../api/${hookNameKebabCase}.json';`;
-        });
-      }
-
-      let staticProps = `
-      export const getStaticProps = () => {
-      `;
-
-      if (components) {
-        components.forEach((component: string) => {
-          const componentNameKebabCase = kebabCase(component);
           staticProps += `
           const ${component}ApiReq = require.context(
             'docs/translations/api-docs/${componentNameKebabCase}',
@@ -614,12 +599,15 @@ export function generateApiPages() {
           );
           const ${component}ApiDescriptions = mapApiPageTranslations(${component}ApiReq);
           `;
+          componentsApiDescriptions += `${component} : ${component}ApiDescriptions ,`;
+          componentsPageContents += `${component} : ${component}ApiJsonPageContent ,`;
         });
       }
 
       if (hooks) {
         hooks.forEach((hook: string) => {
           const hookNameKebabCase = kebabCase(hook);
+          apiTabImportStatements += `import ${hook}ApiJsonPageContent from '../../api/${hookNameKebabCase}.json';`;
           staticProps += `
           const ${hook}ApiReq = require.context(
             'docs/translations/api-docs/${hookNameKebabCase}',
@@ -628,46 +616,23 @@ export function generateApiPages() {
           );
           const ${hook}ApiDescriptions = mapApiPageTranslations(${hook}ApiReq);
           `;
+          hooksApiDescriptions += `${hook} : ${hook}ApiDescriptions ,`;
+          hooksPageContents += `${hook} : ${hook}ApiJsonPageContent ,`;
         });
       }
 
       staticProps += `
-        return {
-          props: {
-            componentsApiDescriptions: { `;
+      return { props: { componentsApiDescriptions: {`;
+      staticProps += componentsApiDescriptions;
 
-      if (components) {
-        components.forEach((component: string) => {
-          staticProps += `${component} : ${component}ApiDescriptions ,`;
-        });
-      }
+      staticProps += '}, componentsApiPageContents: { ';
+      staticProps += componentsPageContents;
 
-      staticProps += `},
-          componentsApiPageContents: { `;
+      staticProps += '}, hooksApiDescriptions: {';
+      staticProps += hooksApiDescriptions;
 
-      if (components) {
-        components.forEach((component: string) => {
-          staticProps += `${component} : ${component}ApiJsonPageContent ,`;
-        });
-      }
-
-      staticProps += ` },
-          hooksApiDescriptions: { `;
-
-      if (hooks) {
-        hooks.forEach((hook: string) => {
-          staticProps += `${hook} : ${hook}ApiDescriptions ,`;
-        });
-      }
-
-      staticProps += ` },
-          hooksApiPageContents: { `;
-
-      if (hooks) {
-        hooks.forEach((hook: string) => {
-          staticProps += `${hook} : ${hook}ApiJsonPageContent ,`;
-        });
-      }
+      staticProps += '}, hooksApiPageContents: {';
+      staticProps += hooksPageContents;
 
       staticProps += ` },},};};`;
 
