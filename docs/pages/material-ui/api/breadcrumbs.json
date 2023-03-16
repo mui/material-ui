@@ -15,12 +15,12 @@
     "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ collapsed?: object }" },
+      "type": { "name": "shape", "description": "{ collapsedIcon?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ Collapsed?: elementType }" },
-      "default": "{\n  Collapsed: MoreHorizIcon,\n}"
+      "type": { "name": "shape", "description": "{ CollapsedIcon?: elementType }" },
+      "default": "{}"
     },
     "sx": {
       "type": {

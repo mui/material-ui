@@ -35,16 +35,16 @@ const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { slots, slotProps, ...otherProps } = props;
+  const { slots = {}, slotProps = {}, ...otherProps } = props;
   const ownerState = props;
 
   return (
     <li>
       <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
         <BreadcrumbCollapsedIcon
-          as={slots?.Collapsed ? slots.Collapsed : MoreHorizIcon}
+          as={slots.CollapsedIcon}
           ownerState={ownerState}
-          {...slotProps?.collapsed}
+          {...slotProps.collapsedIcon}
         />
       </BreadcrumbCollapsedButton>
     </li>
@@ -53,26 +53,19 @@ function BreadcrumbCollapsed(props) {
 
 BreadcrumbCollapsed.propTypes = {
   /**
-   * The props used for each slot inside.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for the CollapsedIcon slot.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    collapsed: PropTypes.object,
+    collapsedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for Collapsed item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {
-   *   Collapsed: MoreHorizIcon,
-   * }
+   * The components used for each slot inside the BreadcumbCollapsed.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots: PropTypes.shape({
-    Collapsed: PropTypes.elementType,
+    CollapsedIcon: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

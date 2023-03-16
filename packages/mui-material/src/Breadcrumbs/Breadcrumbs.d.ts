@@ -1,8 +1,16 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BreadcrumbsClasses } from './breadcrumbsClasses';
+import SvgIcon from '../SvgIcon';
+
+export interface BreadcrumbsCollapsedIconSlotPropsOverrides {}
+
+export interface BreadcrumbsOwnerState extends BreadcrumbsProps {
+  expanded: boolean;
+}
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
   props: P & {
@@ -15,30 +23,27 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     classes?: Partial<BreadcrumbsClasses>;
     /**
-     * The components used for Collapsed item type
-     *
-     * This prop is an alias for the `components` prop, which will be deprecated in the future.
-     *
-     * @default {
-     *   Collapsed: MoreHorizIcon,
-     * }
+     * The components used for each slot inside the Breadcumb.
+     * Either a string to use a HTML element or a component.
+     * @default {}
      */
     slots?: {
-      Collapsed?: React.ElementType;
+      CollapsedIcon?: React.ElementType;
     };
     /**
-     * The props used for each slot inside.
-     *
-     * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-     *
+     * The props used for each slot inside the Breadcumb.
      * @default {}
      */
     slotProps?: {
       /**
-       * Props applied to the Collapsed element.
+       * Props applied to the CollapsedIcon slot.
        * @default {}
        */
-      collapsed?: React.HTMLProps<HTMLButtonElement>;
+      collapsedIcon?: SlotComponentProps<
+        typeof SvgIcon,
+        BreadcrumbsCollapsedIconSlotPropsOverrides,
+        BreadcrumbsOwnerState
+      >;
     };
     /**
      * Override the default label for the expand button.

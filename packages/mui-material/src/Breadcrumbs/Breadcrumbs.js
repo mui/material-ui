@@ -3,11 +3,10 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
-import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 
@@ -84,9 +83,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     children,
     className,
     component = 'nav',
-    slots = {
-      Collapsed: MoreHorizIcon,
-    },
+    slots = {},
     slotProps = {},
     expandText = 'Show path',
     itemsAfterCollapse = 1,
@@ -110,6 +107,12 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const collapsedIconSlotProps = useSlotProps({
+    elementType: slots.CollapsedIcon,
+    externalSlotProps: slotProps.collapsedIcon,
+    ownerState,
+  });
 
   const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
@@ -145,8 +148,8 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       <BreadcrumbCollapsed
         aria-label={expandText}
         key="ellipsis"
-        slots={slots}
-        slotProps={slotProps}
+        slots={{ CollapsedIcon: slots.CollapsedIcon }}
+        slotProps={{ collapsedIcon: collapsedIconSlotProps }}
         onClick={handleClickExpand}
       />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
@@ -249,26 +252,19 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   separator: PropTypes.node,
   /**
-   * The props used for each slot inside.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside the Breadcumb.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    collapsed: PropTypes.object,
+    collapsedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for Collapsed item type
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
-   * @default {
-   *   Collapsed: MoreHorizIcon,
-   * }
+   * The components used for each slot inside the Breadcumb.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   slots: PropTypes.shape({
-    Collapsed: PropTypes.elementType,
+    CollapsedIcon: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
