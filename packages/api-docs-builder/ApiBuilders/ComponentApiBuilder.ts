@@ -633,7 +633,11 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
         ? 'docs/translations/api-docs-joy'
         : 'docs/translations/api-docs';
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
+
+    // Once we have the tabs API in all projects, we can remove this altogether
+    if (!reactApi.apiPathname.startsWith('/base')) {
+      generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
+    }
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);
