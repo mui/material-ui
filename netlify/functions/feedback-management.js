@@ -11,8 +11,9 @@ const app = new App({
  * @param {object} context
  */
 exports.handler = async (event) => {
+  console.log(event);
   try {
-    const { type, payload } = JSON.parse(event.body);
+    const { type, payload } = event.body;
     console.log(JSON.stringify({ type, payload }, null, 2));
 
     await fetch(`https://amathjourney.com/api/log/`, {
