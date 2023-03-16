@@ -14,7 +14,7 @@ import {
   getSystemComponentInfo,
   extractApiPage,
   getJoyComponentInfo,
-  updateComponentPages,
+  generateApiPages,
   writePrettifiedFile,
 } from './buildApiUtils';
 import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
@@ -322,7 +322,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   }, Promise.resolve());
 
   // update the component pages to show the API tabs
-  updateComponentPages();
+  generateApiPages();
 
   if (grep === null) {
     const componentApis = allBuilds

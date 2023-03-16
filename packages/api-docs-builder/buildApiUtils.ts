@@ -565,7 +565,7 @@ export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) =
   return formatType(rawType);
 };
 
-export function updateComponentPages() {
+export function generateApiPages() {
   findPagesMarkdown().forEach((markdown) => {
     const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
     const markdownHeaders = getHeaders(markdownContent) as any;
