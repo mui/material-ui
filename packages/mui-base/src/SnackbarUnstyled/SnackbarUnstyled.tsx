@@ -29,7 +29,7 @@ const useUtilityClasses = () => {
  *
  * API:
  *
- * - [SnackbarUnstyled API](https://mui.com/base/api/snackbar-unstyled/)
+ * - [SnackbarUnstyled API](https://mui.com/base/react-snackbar/components-api/#snackbar-unstyled)
  */
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   props: SnackbarUnstyledProps,

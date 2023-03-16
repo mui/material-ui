@@ -31,7 +31,7 @@ function useUtilityClasses(disabled: boolean) {
  *
  * API:
  *
- * - [OptionGroupUnstyled API](https://mui.com/base/api/option-group-unstyled/)
+ * - [OptionGroupUnstyled API](https://mui.com/base/react-select/components-api/#option-group-unstyled)
  */
 const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
   BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],

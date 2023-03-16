@@ -300,17 +300,53 @@ function findSystemDemos(componentName: string, pagesMarkdown: ReadonlyArray<Pag
     }));
 }
 
+const getApiPath = (demos: Array<{ name: string; demoPathname: string }>, name: string) => {
+  let apiPath = null;
+
+  if (demos && demos.length > 0) {
+    // remove the hash from the demoPathname, for e.g. "#hooks"
+    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0]
+    apiPath = `${cleanedDemosPathname}${
+      name.startsWith('use') ? 'hooks-api' : 'components-api'
+    }/#${kebabCase(name)}`;
+  }
+
+  return apiPath;
+};
+
 export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
     throw new Error(`Could not find the component name from: ${filename}`);
   }
+
+  // resolve demos, so that we can getch the API url
+  const allMarkdowns = findPagesMarkdownNew()
+    .filter((markdown) => {
+      if (migratedBaseComponents.some((component) => filename.includes(component))) {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      }
+      return true;
+    })
+    .map((markdown) => {
+      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+      const markdownHeaders = getHeaders(markdownContent) as any;
+
+      return {
+        ...markdown,
+        title: getTitle(markdownContent),
+        components: markdownHeaders.components as string[],
+      };
+    });
+  const demos = findBaseDemos(name, allMarkdowns);
+  let apiPath = getApiPath(demos, name);
+
   return {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: `/base/api/${kebabCase(name)}/`,
+    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     isSystemComponent: getSystemComponents().includes(name),
     readFile() {
@@ -329,26 +365,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
             : `/base/api/${kebabCase(inheritedComponent)}/`,
       };
     },
-    getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
-        .filter((markdown) => {
-          if (migratedBaseComponents.some((component) => filename.includes(component))) {
-            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-          }
-          return true;
-        })
-        .map((markdown) => {
-          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-          const markdownHeaders = getHeaders(markdownContent) as any;
-
-          return {
-            ...markdown,
-            title: getTitle(markdownContent),
-            components: markdownHeaders.components as string[],
-          };
-        });
-      return findBaseDemos(name, allMarkdowns);
-    },
+    getDemos: () => demos,
   };
 };
 
@@ -358,35 +375,38 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
   if (!name) {
     throw new Error(`Could not find the hook name from: ${filename}`);
   }
+
+  const allMarkdowns = findPagesMarkdownNew()
+    .filter((markdown) => {
+      if (migratedBaseComponents.some((component) => filename.includes(component))) {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      }
+      return true;
+    })
+    .map((markdown) => {
+      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+      const markdownHeaders = getHeaders(markdownContent) as any;
+      return {
+        ...markdown,
+        title: getTitle(markdownContent),
+        hooks: markdownHeaders.hooks as string[],
+      };
+    });
+
+  const demos = findBaseHooksDemos(name, allMarkdowns);
+
+  let apiPath = getApiPath(demos, name);
+
   const result = {
     filename,
     name,
-    apiPathname: `/base/api/${kebabCase(name)}/`,
+    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
-    getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew()
-        .filter((markdown) => {
-          if (migratedBaseComponents.some((component) => filename.includes(component))) {
-            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-          }
-          return true;
-        })
-        .map((markdown) => {
-          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-          const markdownHeaders = getHeaders(markdownContent) as any;
-
-          return {
-            ...markdown,
-            title: getTitle(markdownContent),
-            hooks: markdownHeaders.hooks as string[],
-          };
-        });
-      return findBaseHooksDemos(name, allMarkdowns);
-    },
+    getDemos: () => demos,
   };
   return result;
 };

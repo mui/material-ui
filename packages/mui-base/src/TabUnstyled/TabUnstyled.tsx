@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean })
  *
  * API:
  *
- * - [TabUnstyled API](https://mui.com/base/api/tab-unstyled/)
+ * - [TabUnstyled API](https://mui.com/base/react-tabs/components-api/#tab-unstyled)
  */
 const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
   const {

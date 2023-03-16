@@ -43,7 +43,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
  *
  * API:
  *
- * - [SwitchUnstyled API](https://mui.com/base/api/switch-unstyled/)
+ * - [SwitchUnstyled API](https://mui.com/base/react-switch/components-api/#switch-unstyled)
  */
 const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   BaseComponentType extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],

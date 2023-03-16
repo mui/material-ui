@@ -246,7 +246,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * API:
  *
- * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ * - [PopperUnstyled API](https://mui.com/base/react-popper/components-api/#popper-unstyled)
  */
 const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   props: PopperUnstyledProps,

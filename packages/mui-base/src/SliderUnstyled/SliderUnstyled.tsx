@@ -56,7 +56,7 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
  *
  * API:
  *
- * - [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
+ * - [SliderUnstyled API](https://mui.com/base/react-slider/components-api/#slider-unstyled)
  */
 const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],

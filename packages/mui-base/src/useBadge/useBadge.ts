@@ -15,7 +15,7 @@ export interface UseBadgeParameters {
  *
  * API:
  *
- * - [useBadge API](https://mui.com/base/api/use-badge/)
+ * - [useBadge API](https://mui.com/base/react-badge/hooks-api/#use-badge)
  */
 export default function useBadge(parameters: UseBadgeParameters) {
   const {
