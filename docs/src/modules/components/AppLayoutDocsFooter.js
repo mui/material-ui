@@ -98,7 +98,7 @@ async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
   const sentData = {
-      type: 'send_feedback',
+    callback_id: 'send_feedback',
       rating,
       comment,
       currentLocationURL: window.location.href,

@@ -46,7 +46,7 @@ exports.handler = async (event) => {
     console.log(JSON.stringify(data, null, 2));
     // eslint-disable-next-line no-console
     console.log('============');
-    switch (data.type) {
+    switch (data.callback_id) {
       case 'send_feedback':
         {
           // We send the feedback to the appopiate slack channel
