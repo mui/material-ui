@@ -2,13 +2,9 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
+import { ActionTypes, ListAction } from './actions.types';
+import { ListState, UseListParametersWithDefaults } from './useListbox.types';
 import useControllableReducer from './useControllableReducer';
-import {
-  ActionTypes,
-  ListboxAction,
-  ListboxState,
-  UseListboxParametersWithDefaults,
-} from './useListbox.types';
 
 describe('useControllableReducer', () => {
   const { render } = createRenderer();
@@ -16,19 +12,19 @@ describe('useControllableReducer', () => {
   describe('dispatch', () => {
     it('calls the provided internal reducer', () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const reducer = spy((state: ListboxState<string>, action: ListboxAction<string>) => {
+      const reducer = spy((state: ListState<string>, action: ListAction<string>) => {
         return state;
       });
 
       const actionToDispatch = { type: ActionTypes.setValue as const, value: ['b'], event: null };
-      const props: UseListboxParametersWithDefaults<string> = {
-        options: ['a', 'b', 'c'],
+      const props: UseListParametersWithDefaults<string> = {
+        items: ['a', 'b', 'c'],
         defaultValue: ['a'],
-        isOptionDisabled: () => false,
+        isItemDisabled: () => false,
         disableListWrap: false,
         disabledItemsFocusable: false,
-        optionComparer: (a, b) => a === b,
-        optionStringifier: (option) => option,
+        itemComparer: (a, b) => a === b,
+        itemStringifier: (item) => item,
         orientation: 'vertical',
         selectionLimit: null,
       };
@@ -45,24 +41,24 @@ describe('useControllableReducer', () => {
 
     it('calls the provided external reducer', () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const internalReducer = spy((state: ListboxState<string>, action: ListboxAction<string>) => {
+      const internalReducer = spy((state: ListState<string>, action: ListAction<string>) => {
         return state;
       });
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const externalReducer = spy((state: ListboxState<string>, action: ListboxAction<string>) => {
+      const externalReducer = spy((state: ListState<string>, action: ListAction<string>) => {
         return state;
       });
 
       const actionToDispatch = { type: ActionTypes.setValue as const, value: ['b'], event: null };
-      const props: UseListboxParametersWithDefaults<string> = {
-        options: ['a', 'b', 'c'],
+      const props: UseListParametersWithDefaults<string> = {
+        items: ['a', 'b', 'c'],
         defaultValue: ['a'],
-        isOptionDisabled: () => false,
+        isItemDisabled: () => false,
         disableListWrap: false,
         disabledItemsFocusable: false,
-        optionComparer: (a, b) => a === b,
-        optionStringifier: (option) => option,
+        itemComparer: (a, b) => a === b,
+        itemStringifier: (item) => item,
         orientation: 'vertical',
         selectionLimit: null,
       };
@@ -81,7 +77,7 @@ describe('useControllableReducer', () => {
     });
 
     it('calls onChange when the reducer returns a modified selected value', () => {
-      const reducer = spy((state: ListboxState<string>) => {
+      const reducer = spy((state: ListState<string>) => {
         return {
           ...state,
           selectedValues: ['b'],
@@ -96,14 +92,14 @@ describe('useControllableReducer', () => {
       const handleHighlightChange = spy();
 
       function TestComponent() {
-        const props: UseListboxParametersWithDefaults<string> = {
-          options: ['a', 'b', 'c'],
+        const props: UseListParametersWithDefaults<string> = {
+          items: ['a', 'b', 'c'],
           defaultValue: ['a'],
-          isOptionDisabled: () => false,
+          isItemDisabled: () => false,
           disableListWrap: false,
           disabledItemsFocusable: false,
-          optionComparer: (a, b) => a === b,
-          optionStringifier: (option) => option,
+          itemComparer: (a, b) => a === b,
+          itemStringifier: (item) => item,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
           orientation: 'vertical',
@@ -123,7 +119,7 @@ describe('useControllableReducer', () => {
     });
 
     it('calls onHighlightChange when the reducer returns a modified highlighted value', () => {
-      const reducer = spy((state: ListboxState<string>) => {
+      const reducer = spy((state: ListState<string>) => {
         return {
           ...state,
           highlightedValue: 'b',
@@ -138,14 +134,14 @@ describe('useControllableReducer', () => {
       const handleHighlightChange = spy();
 
       function TestComponent() {
-        const props: UseListboxParametersWithDefaults<string> = {
-          options: ['a', 'b', 'c'],
+        const props: UseListParametersWithDefaults<string> = {
+          items: ['a', 'b', 'c'],
           defaultValue: ['a'],
-          isOptionDisabled: () => false,
+          isItemDisabled: () => false,
           disableListWrap: false,
           disabledItemsFocusable: false,
-          optionComparer: (a, b) => a === b,
-          optionStringifier: (option) => option,
+          itemComparer: (a, b) => a === b,
+          itemStringifier: (item) => item,
           onChange: handleChange,
           onHighlightChange: handleHighlightChange,
           orientation: 'vertical',

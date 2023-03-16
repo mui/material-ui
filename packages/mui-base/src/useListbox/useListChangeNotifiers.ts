@@ -4,23 +4,23 @@ import useMessageBus from '../utils/useMessageBus';
 const SELECTION_CHANGE_TOPIC = Symbol('change-selection');
 const HIGHLIGHT_CHANGE_TOPIC = Symbol('change-highlight');
 
-export interface ListChangeNotifiers<TValue> {
+export interface ListChangeNotifiers<ItemValue> {
   /**
    * Calls all the registered selection change handlers.
    *
    * @param newValue - The newly selected value(s).
    */
-  notifySelectionChanged: (newValue: TValue[]) => void;
+  notifySelectionChanged: (newValue: ItemValue[]) => void;
   /**
    * Calls all the registered highlight change handlers.
    *
    * @param newValue - The newly highlighted value.
    */
-  notifyHighlightChanged: (newValue: TValue | null) => void;
+  notifyHighlightChanged: (newValue: ItemValue | null) => void;
 
-  registerSelectionChangeHandler: (handler: (newValue: TValue[]) => void) => () => void;
+  registerSelectionChangeHandler: (handler: (newValue: ItemValue[]) => void) => () => void;
 
-  registerHighlightChangeHandler: (handler: (newValue: TValue | null) => void) => () => void;
+  registerHighlightChangeHandler: (handler: (newValue: ItemValue | null) => void) => () => void;
 }
 
 /**

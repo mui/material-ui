@@ -5,7 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { OptionState } from '@mui/base/useListbox';
+import { ListItemState } from '@mui/base/useListbox';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type OptionSlot = 'root';
@@ -66,7 +66,7 @@ export type OptionProps<
 
 export interface OptionOwnerState
   extends ApplyColorInversion<Omit<OptionProps, 'disabled'>>,
-    OptionState {}
+    ListItemState {}
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,

@@ -1,27 +1,28 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { ActionTypes, ListboxReducerAction, ListboxState } from './useListbox.types';
+import { ListReducerAction, ListState } from './useListbox.types';
+import { ActionTypes } from './actions.types';
 import defaultReducer from './defaultListboxReducer';
 
 describe('useListbox defaultReducer', () => {
   describe('action: setControlledValue', () => {
     it("assigns the provided value to the state's selectedValues", () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'a',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.setValue,
-        value: ['foo'],
+        values: ['foo'],
         event: null,
         props: {
-          options: ['foo', 'bar'],
+          items: ['foo', 'bar'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
@@ -33,21 +34,21 @@ describe('useListbox defaultReducer', () => {
 
   describe('action: blur', () => {
     it('resets the highlightedIndex', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'a',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.blur,
         event: {} as any, // not relevant
         props: {
-          options: [],
+          items: [],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
@@ -60,25 +61,25 @@ describe('useListbox defaultReducer', () => {
 
   describe('action: optionClick', () => {
     it('sets the selectedValues to the clicked value', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'a',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
-        type: ActionTypes.optionClick,
+      const action: ListReducerAction<string> = {
+        type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          options: ['one', 'two', 'three'],
+          items: ['one', 'two', 'three'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
-        option: 'two',
+        item: 'two',
       };
 
       const result = defaultReducer(state, action);
@@ -86,25 +87,25 @@ describe('useListbox defaultReducer', () => {
     });
 
     it('replaces the selectedValues with the clicked value if selectionLimit = 1', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'a',
         selectedValues: ['one'],
       };
 
-      const action: ListboxReducerAction<string> = {
-        type: ActionTypes.optionClick,
+      const action: ListReducerAction<string> = {
+        type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          options: ['one', 'two', 'three'],
+          items: ['one', 'two', 'three'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: 1,
         },
-        option: 'two',
+        item: 'two',
       };
 
       const result = defaultReducer(state, action);
@@ -112,25 +113,25 @@ describe('useListbox defaultReducer', () => {
     });
 
     it('add the clicked value to the selection if selectionLimit is not set', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'one',
         selectedValues: ['one'],
       };
 
-      const action: ListboxReducerAction<string> = {
-        type: ActionTypes.optionClick,
+      const action: ListReducerAction<string> = {
+        type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          options: ['one', 'two', 'three'],
+          items: ['one', 'two', 'three'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
-        option: 'two',
+        item: 'two',
       };
 
       const result = defaultReducer(state, action);
@@ -138,25 +139,25 @@ describe('useListbox defaultReducer', () => {
     });
 
     it('remove the clicked value from the selection if selectionLimit is not set and it was selected already', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'three',
         selectedValues: ['one', 'two'],
       };
 
-      const action: ListboxReducerAction<string> = {
-        type: ActionTypes.optionClick,
+      const action: ListReducerAction<string> = {
+        type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          options: ['one', 'two', 'three'],
+          items: ['one', 'two', 'three'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
-        option: 'two',
+        item: 'two',
       };
 
       const result = defaultReducer(state, action);
@@ -167,23 +168,23 @@ describe('useListbox defaultReducer', () => {
   describe('action: keyDown', () => {
     describe('Home key is pressed', () => {
       it('highlights the first non-disabled option if the first is disabled', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: null,
           selectedValues: [],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Home',
           } as any,
           props: {
-            options: ['one', 'two', 'three', 'four', 'five'],
+            items: ['one', 'two', 'three', 'four', 'five'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: (_, index) => index === 0,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: (_, index) => index === 0,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
@@ -196,23 +197,23 @@ describe('useListbox defaultReducer', () => {
 
     describe('End key is pressed', () => {
       it('highlights the last non-disabled option if the last is disabled', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: null,
           selectedValues: [],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'End',
           } as any,
           props: {
-            options: ['one', 'two', 'three', 'four', 'five'],
+            items: ['one', 'two', 'three', 'four', 'five'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: (_, index) => index === 4,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: (_, index) => index === 4,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
@@ -225,23 +226,23 @@ describe('useListbox defaultReducer', () => {
 
     describe('ArrowUp key is pressed', () => {
       it('wraps the highlight around omitting disabled items', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: null,
           selectedValues: [],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowUp',
           } as any,
           props: {
-            options: ['one', 'two', 'three', 'four', 'five'],
+            items: ['one', 'two', 'three', 'four', 'five'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: (_, index) => index === 0 || index === 4,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: (_, index) => index === 0 || index === 4,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
@@ -254,23 +255,23 @@ describe('useListbox defaultReducer', () => {
 
     describe('ArrowDown key is pressed', () => {
       it('wraps the highlight around omitting disabled items', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: null,
           selectedValues: [],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
           props: {
-            options: ['one', 'two', 'three', 'four', 'five'],
+            items: ['one', 'two', 'three', 'four', 'five'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: (_, index) => index === 0 || index === 4,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: (_, index) => index === 0 || index === 4,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
@@ -281,23 +282,23 @@ describe('useListbox defaultReducer', () => {
       });
 
       it('does not highlight any option if all are disabled', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: null,
           selectedValues: [],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
           props: {
-            options: ['one', 'two', 'three', 'four', 'five'],
+            items: ['one', 'two', 'three', 'four', 'five'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: () => true,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: () => true,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
@@ -310,23 +311,23 @@ describe('useListbox defaultReducer', () => {
 
     describe('Enter key is pressed', () => {
       it('selects the highlighted option', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: 'two',
           selectedValues: [],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
           props: {
-            options: ['one', 'two', 'three'],
+            items: ['one', 'two', 'three'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: () => false,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
@@ -337,23 +338,23 @@ describe('useListbox defaultReducer', () => {
       });
 
       it('replaces the selectedValues with the highlighted value if selectionLimit = 1', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: 'two',
           selectedValues: ['one'],
         };
 
-        const action: ListboxReducerAction<string> = {
+        const action: ListReducerAction<string> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
           props: {
-            options: ['one', 'two', 'three'],
+            items: ['one', 'two', 'three'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: () => false,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: 1,
           },
@@ -364,27 +365,27 @@ describe('useListbox defaultReducer', () => {
       });
 
       it('add the highlighted value to the selection if selectionLimit is not set', () => {
-        const state: ListboxState<string> = {
+        const state: ListState<string> = {
           highlightedValue: 'two',
           selectedValues: ['one'],
         };
 
-        const action: ListboxReducerAction<string> = {
-          type: ActionTypes.optionClick,
+        const action: ListReducerAction<string> = {
+          type: ActionTypes.itemClick,
           event: {
             key: 'Enter',
           } as any,
           props: {
-            options: ['one', 'two', 'three'],
+            items: ['one', 'two', 'three'],
             disableListWrap: false,
             disabledItemsFocusable: false,
-            isOptionDisabled: () => false,
-            optionComparer: (o, v) => o === v,
-            optionStringifier: (option) => option,
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
             orientation: 'vertical',
             selectionLimit: null,
           },
-          option: 'two',
+          item: 'two',
         };
 
         const result = defaultReducer(state, action);
@@ -395,22 +396,22 @@ describe('useListbox defaultReducer', () => {
 
   describe('action: textNavigation', () => {
     it('should navigate to next match', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'two',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'th',
         event: {} as React.KeyboardEvent,
         props: {
-          options: ['one', 'two', 'three', 'four', 'five'],
+          items: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
@@ -420,23 +421,23 @@ describe('useListbox defaultReducer', () => {
       expect(result.highlightedValue).to.equal('three');
     });
 
-    it('should not move highlight when no matched options', () => {
-      const state: ListboxState<string> = {
+    it('should not move the highlight when there are no matched items', () => {
+      const state: ListState<string> = {
         highlightedValue: 'one',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'z',
         event: {} as React.KeyboardEvent,
         props: {
-          options: ['one', 'two', 'three', 'four', 'five'],
+          items: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
@@ -447,22 +448,22 @@ describe('useListbox defaultReducer', () => {
     });
 
     it('should highlight first match that is not disabled', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'one',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
         props: {
-          options: ['one', 'two', 'three', 'four', 'five'],
+          items: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
           disabledItemsFocusable: false,
-          isOptionDisabled: (_, i) => i === 1,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: (_, i) => i === 1,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
@@ -473,22 +474,22 @@ describe('useListbox defaultReducer', () => {
     });
 
     it('should move highlight to disabled items if disabledItemsFocusable=true', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'one',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
         props: {
-          options: ['one', 'two', 'three', 'four', 'five'],
+          items: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
           disabledItemsFocusable: true,
-          isOptionDisabled: (_, i) => i === 1,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: (_, i) => i === 1,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },
@@ -499,22 +500,22 @@ describe('useListbox defaultReducer', () => {
     });
 
     it('should not move highlight when disabled wrap and match is before highlighted option', () => {
-      const state: ListboxState<string> = {
+      const state: ListState<string> = {
         highlightedValue: 'three',
         selectedValues: [],
       };
 
-      const action: ListboxReducerAction<string> = {
+      const action: ListReducerAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'one',
         event: {} as React.KeyboardEvent,
         props: {
-          options: ['one', 'two', 'three', 'four', 'five'],
+          items: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: true,
           disabledItemsFocusable: false,
-          isOptionDisabled: () => false,
-          optionComparer: (o, v) => o === v,
-          optionStringifier: (option) => option,
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
           orientation: 'vertical',
           selectionLimit: null,
         },

@@ -1,45 +1,40 @@
 import * as React from 'react';
-import {
-  ListboxState,
-  UseListboxParametersWithDefaults,
-  ActionTypes,
-  ListboxReducerAction,
-} from './useListbox.types';
+import { ActionTypes } from './actions.types';
+import { ListState, UseListParametersWithDefaults, ListReducerAction } from './useListbox.types';
 
-type OptionPredicate<TOption> = (option: TOption, index: number) => boolean;
+type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 
+// TODO: make page size configurable
 const pageSize = 5;
 
-function findValidOptionToHighlight<TOption>(
+function findValidItemToHighlight<ItemValue>(
   index: number,
   lookupDirection: 'next' | 'previous',
-  options: TOption[],
+  items: ItemValue[],
   focusDisabled: boolean,
-  isOptionDisabled: OptionPredicate<TOption>,
+  isItemDisabled: ItemPredicate<ItemValue>,
   wrapAround: boolean,
 ): number {
-  if (options.length === 0 || options.every((o, i) => isOptionDisabled(o, i))) {
+  if (items.length === 0 || items.every((item, itemIndex) => isItemDisabled(item, itemIndex))) {
     return -1;
   }
 
   let nextFocus = index;
 
   for (;;) {
-    // No valid options found
+    // No valid items found
     if (
-      (!wrapAround && lookupDirection === 'next' && nextFocus === options.length) ||
+      (!wrapAround && lookupDirection === 'next' && nextFocus === items.length) ||
       (!wrapAround && lookupDirection === 'previous' && nextFocus === -1)
     ) {
       return -1;
     }
 
-    const nextFocusDisabled = focusDisabled
-      ? false
-      : isOptionDisabled(options[nextFocus], nextFocus);
+    const nextFocusDisabled = focusDisabled ? false : isItemDisabled(items[nextFocus], nextFocus);
     if (nextFocusDisabled) {
       nextFocus += lookupDirection === 'next' ? 1 : -1;
       if (wrapAround) {
-        nextFocus = (nextFocus + options.length) % options.length;
+        nextFocus = (nextFocus + items.length) % items.length;
       }
     } else {
       return nextFocus;
@@ -47,21 +42,21 @@ function findValidOptionToHighlight<TOption>(
   }
 }
 
-function getNewHighlightedOption<TOption>(
-  options: TOption[],
-  previouslyHighlightedOption: TOption | null,
+function getNewHighlightedItem<ItemValue>(
+  items: ItemValue[],
+  previouslyHighlightedValue: ItemValue | null,
   diff: number | 'reset' | 'start' | 'end',
-  highlightDisabledOptions: boolean,
-  isOptionDisabled: OptionPredicate<TOption>,
+  highlightDisabledItems: boolean,
+  isItemDisabled: ItemPredicate<ItemValue>,
   disableListWrap: boolean,
-  optionComparer: (optionA: TOption, optionB: TOption) => boolean,
-): TOption | null {
-  const maxIndex = options.length - 1;
+  itemComparer: (item1: ItemValue, item2: ItemValue) => boolean,
+): ItemValue | null {
+  const maxIndex = items.length - 1;
   const defaultHighlightedIndex = -1;
   const previouslyHighlightedIndex =
-    previouslyHighlightedOption == null
+    previouslyHighlightedValue == null
       ? -1
-      : options.findIndex((option) => optionComparer(option, previouslyHighlightedOption));
+      : items.findIndex((item) => itemComparer(item, previouslyHighlightedValue));
 
   let nextIndexCandidate: number;
   let lookupDirection: 'next' | 'previous';
@@ -117,105 +112,100 @@ function getNewHighlightedOption<TOption>(
     }
   }
 
-  const nextIndex = findValidOptionToHighlight(
+  const nextIndex = findValidItemToHighlight(
     nextIndexCandidate,
     lookupDirection,
-    options,
-    highlightDisabledOptions,
-    isOptionDisabled,
+    items,
+    highlightDisabledItems,
+    isItemDisabled,
     wrapAround,
   );
 
-  return options[nextIndex] ?? null;
+  return items[nextIndex] ?? null;
 }
 
-function moveHighlight<TOption>(
-  previouslyHighlightedOption: TOption | null,
+function moveHighlight<ItemValue>(
+  previouslyHighlightedValue: ItemValue | null,
   diff: number | 'reset' | 'start' | 'end',
-  props: UseListboxParametersWithDefaults<TOption>,
+  props: UseListParametersWithDefaults<ItemValue>,
 ) {
-  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
-    props;
+  const { items, isItemDisabled, disableListWrap, disabledItemsFocusable, itemComparer } = props;
 
-  return getNewHighlightedOption(
-    options,
-    previouslyHighlightedOption,
+  return getNewHighlightedItem(
+    items,
+    previouslyHighlightedValue,
     diff,
     disabledItemsFocusable ?? false,
-    isOptionDisabled ?? (() => false),
+    isItemDisabled ?? (() => false),
     disableListWrap ?? false,
-    optionComparer ?? ((o1, o2) => o1 === o2),
+    itemComparer ?? ((o1, o2) => o1 === o2),
   );
 }
 
-function toggleSelection<TOption>(
-  option: TOption,
-  selectedOptions: TOption[],
+function toggleSelection<ItemValue>(
+  item: ItemValue,
+  selectedValues: ItemValue[],
   selectionLimit: number | null,
-  optionComparer: (optionA: TOption, optionB: TOption) => boolean,
+  itemComparer: (item1: ItemValue, item2: ItemValue) => boolean,
 ) {
   if (selectionLimit === 0) {
     return [];
   }
 
-  // Selection limit = 1 is a special case - we don't want to allow deselecting the option.
+  // Selection limit = 1 is a special case - we don't want to allow deselecting the item.
   if (selectionLimit === 1) {
-    if (optionComparer(selectedOptions[0], option)) {
-      return selectedOptions;
+    if (itemComparer(selectedValues[0], item)) {
+      return selectedValues;
     }
 
-    return [option];
+    return [item];
   }
 
-  // The toggled option is selected; remove it from the selection.
-  if (selectedOptions.some((so) => optionComparer(so, option))) {
-    return selectedOptions.filter((so) => !optionComparer(so, option));
+  // The toggled item is selected; remove it from the selection.
+  if (selectedValues.some((sv) => itemComparer(sv, item))) {
+    return selectedValues.filter((sv) => !itemComparer(sv, item));
   }
 
-  // The toggled option is not selected and the selected array is shorter than the limit - add to the selection.
-  if (selectionLimit === null || selectedOptions.length < selectionLimit) {
-    return [...selectedOptions, option];
+  // The toggled item is not selected and the selected array is shorter than the limit - add to the selection.
+  if (selectionLimit === null || selectedValues.length < selectionLimit) {
+    return [...selectedValues, item];
   }
 
   // Truncate the selection to the limit (discard items with lower indexes).
-  const newSelection = selectedOptions.slice(selectedOptions.length - selectionLimit + 1);
-  newSelection.push(option);
+  const newSelection = selectedValues.slice(selectedValues.length - selectionLimit + 1);
+  newSelection.push(item);
 
   return newSelection;
 }
 
-function handleOptionSelection<TOption>(
-  option: TOption,
-  state: ListboxState<TOption>,
-  props: UseListboxParametersWithDefaults<TOption>,
-): ListboxState<TOption> {
-  const {
-    optionComparer = (o, v) => o === v,
-    isOptionDisabled = () => false,
-    selectionLimit,
-  } = props;
+function handleItemSelection<ItemValue>(
+  item: ItemValue,
+  state: ListState<ItemValue>,
+  props: UseListParametersWithDefaults<ItemValue>,
+): ListState<ItemValue> {
+  const { itemComparer = (o, v) => o === v, isItemDisabled = () => false, selectionLimit } = props;
   const { selectedValues } = state;
 
-  const optionIndex = props.options.findIndex((o) => props.optionComparer(option, o));
+  const itemIndex = props.items.findIndex((i) => itemComparer(item, i));
 
-  if (isOptionDisabled(option, optionIndex)) {
+  if (isItemDisabled(item, itemIndex)) {
     return state;
   }
 
-  // if the option is already selected, remove it from the selection, otherwise add it
-  const newSelectedValues = toggleSelection(option, selectedValues, selectionLimit, optionComparer);
+  // if the item is already selected, remove it from the selection, otherwise add it
+  const newSelectedValues = toggleSelection(item, selectedValues, selectionLimit, itemComparer);
 
   return {
     selectedValues: newSelectedValues,
-    highlightedValue: option,
+    highlightedValue: item,
   };
 }
 
-function handleKeyDown<TOption>(
+function handleKeyDown<ItemValue>(
   event: React.KeyboardEvent,
-  state: Readonly<ListboxState<TOption>>,
-  parameters: UseListboxParametersWithDefaults<TOption>,
-): ListboxState<TOption> {
+  state: Readonly<ListState<ItemValue>>,
+  parameters: UseListParametersWithDefaults<ItemValue>,
+): ListState<ItemValue> {
   const previouslySelectedValue = state.highlightedValue;
   const { orientation } = parameters;
 
@@ -296,7 +286,7 @@ function handleKeyDown<TOption>(
         return state;
       }
 
-      return handleOptionSelection(state.highlightedValue, state, parameters);
+      return handleItemSelection(state.highlightedValue, state, parameters);
 
     default:
       break;
@@ -305,10 +295,10 @@ function handleKeyDown<TOption>(
   return state;
 }
 
-function handleBlur<TOption>(
-  state: ListboxState<TOption>,
-  props: UseListboxParametersWithDefaults<TOption>,
-): ListboxState<TOption> {
+function handleBlur<ItemValue>(
+  state: ListState<ItemValue>,
+  props: UseListParametersWithDefaults<ItemValue>,
+): ListState<ItemValue> {
   if (props.focusManagement === 'DOM') {
     return state;
   }
@@ -319,139 +309,138 @@ function handleBlur<TOption>(
   };
 }
 
-const textCriteriaMatches = <TOption>(
-  nextFocus: TOption,
+const textCriteriaMatches = <ItemValue>(
+  nextFocus: ItemValue,
   searchString: string,
-  stringifyOption: (option: TOption) => string | undefined,
+  stringifyItem: (item: ItemValue) => string | undefined,
 ) => {
-  const text = stringifyOption(nextFocus)?.trim().toLowerCase();
+  const text = stringifyItem(nextFocus)?.trim().toLowerCase();
 
   if (!text || text.length === 0) {
-    // Make option not navigable if stringification fails or results in empty string.
+    // Make item not navigable if stringification fails or results in empty string.
     return false;
   }
 
   return text.indexOf(searchString) === 0;
 };
 
-function handleTextNavigation<TOption>(
-  state: ListboxState<TOption>,
+function handleTextNavigation<ItemValue>(
+  state: ListState<ItemValue>,
   searchString: string,
-  props: UseListboxParametersWithDefaults<TOption>,
-): ListboxState<TOption> {
+  props: UseListParametersWithDefaults<ItemValue>,
+): ListState<ItemValue> {
   const {
-    options,
-    isOptionDisabled,
+    items,
+    isItemDisabled,
     disableListWrap,
     disabledItemsFocusable,
-    optionComparer,
-    optionStringifier,
+    itemComparer,
+    itemStringifier,
   } = props;
 
-  const startWithCurrentOption = searchString.length > 1;
+  const startWithCurrentItem = searchString.length > 1;
 
-  let nextOption = startWithCurrentOption
+  let nextItem = startWithCurrentItem
     ? state.highlightedValue
-    : getNewHighlightedOption(
-        options,
+    : getNewHighlightedItem(
+        items,
         state.highlightedValue,
         1,
         disabledItemsFocusable ?? false,
-        isOptionDisabled ?? (() => false),
+        isItemDisabled ?? (() => false),
         disableListWrap ?? false,
-        optionComparer,
+        itemComparer,
       );
 
   // use `for` instead of `while` prevent infinite loop
-  for (let index = 0; index < options.length; index += 1) {
+  for (let index = 0; index < items.length; index += 1) {
     // Return un-mutated state if looped back to the currently highlighted value
-    if (!nextOption || (!startWithCurrentOption && state.highlightedValue === nextOption)) {
+    if (!nextItem || (!startWithCurrentItem && state.highlightedValue === nextItem)) {
       return state;
     }
 
     if (
-      textCriteriaMatches(nextOption, searchString, optionStringifier) &&
-      (!isOptionDisabled(nextOption, options.indexOf(nextOption)) || disabledItemsFocusable)
+      textCriteriaMatches(nextItem, searchString, itemStringifier) &&
+      (!isItemDisabled(nextItem, items.indexOf(nextItem)) || disabledItemsFocusable)
     ) {
-      // The nextOption is the element to be highlighted
+      // The nextItem is the element to be highlighted
       return {
         ...state,
-        highlightedValue: nextOption,
+        highlightedValue: nextItem,
       };
     }
     // Move to the next element.
-    nextOption = getNewHighlightedOption(
-      options,
-      nextOption,
+    nextItem = getNewHighlightedItem(
+      items,
+      nextItem,
       1,
       disabledItemsFocusable ?? false,
-      isOptionDisabled ?? (() => false),
+      isItemDisabled ?? (() => false),
       disableListWrap ?? false,
-      optionComparer,
+      itemComparer,
     );
   }
 
-  // No option match text search criteria
+  // No item matches the text search criteria
   return state;
 }
 
-function handleOptionsChange<TOption>(
-  options: TOption[],
-  previousOptions: TOption[],
-  state: ListboxState<TOption>,
-  props: UseListboxParametersWithDefaults<TOption>,
-): ListboxState<TOption> {
-  const { optionComparer, focusManagement } = props;
+function handleItemsChange<ItemValue>(
+  items: ItemValue[],
+  previousItems: ItemValue[],
+  state: ListState<ItemValue>,
+  props: UseListParametersWithDefaults<ItemValue>,
+): ListState<ItemValue> {
+  const { itemComparer, focusManagement } = props;
 
-  let newHighlightedOption: TOption | null = null;
+  let newHighlightedValue: ItemValue | null = null;
 
   if (state.highlightedValue != null) {
-    newHighlightedOption =
-      options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
-  } else if (focusManagement === 'DOM' && previousOptions.length === 0) {
-    // TODO: exclude disabled options
-    newHighlightedOption = options[0] ?? null;
+    newHighlightedValue = items.find((item) => itemComparer(item, state.highlightedValue!)) ?? null;
+  } else if (focusManagement === 'DOM' && previousItems.length === 0) {
+    // TODO: exclude disabled items
+    newHighlightedValue = items[0] ?? null;
   }
 
-  // exclude selected values that are no longer in the options
+  // exclude selected values that are no longer in the items list
   const selectedValues = state.selectedValues ?? [];
   const newSelectedValues = selectedValues.filter((selectedValue) =>
-    options.some((option) => optionComparer(option, selectedValue)),
+    items.some((item) => itemComparer(item, selectedValue)),
   );
 
   return {
-    highlightedValue: newHighlightedOption,
+    highlightedValue: newHighlightedValue,
     selectedValues: newSelectedValues,
   };
 }
 
-export default function defaultListboxReducer<TOption>(
-  state: Readonly<ListboxState<TOption>>,
-  action: ListboxReducerAction<TOption>,
-): Readonly<ListboxState<TOption>> {
+export default function defaultListboxReducer<ItemValue>(
+  state: Readonly<ListState<ItemValue>>,
+  action: ListReducerAction<ItemValue>,
+): Readonly<ListState<ItemValue>> {
   const { type } = action;
 
   switch (type) {
     case ActionTypes.keyDown:
       return handleKeyDown(action.event, state, action.props);
-    case ActionTypes.optionClick:
-      return handleOptionSelection(action.option, state, action.props);
+    case ActionTypes.itemClick:
+      return handleItemSelection(action.item, state, action.props);
     case ActionTypes.blur:
       return handleBlur(state, action.props);
     case ActionTypes.setValue:
       return {
         ...state,
-        selectedValues: action.value,
+        selectedValues: action.values,
       };
     case ActionTypes.setHighlight:
       return {
         ...state,
-        highlightedValue: action.highlight,
+        highlightedValue: action.value,
       };
     case ActionTypes.textNavigation:
       return handleTextNavigation(state, action.searchString, action.props);
-    case ActionTypes.optionsChange:
-      return handleOptionsChange(action.options, action.previousOptions, state, action.props);
+    case ActionTypes.itemsChange:
+      return handleItemsChange(action.items, action.previousItems, state, action.props);
     default:
       return state;
   }

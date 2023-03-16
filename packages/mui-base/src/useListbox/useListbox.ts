@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
-  UseListboxParameters,
-  UseListboxParametersWithDefaults,
-  ActionTypes,
-  OptionState,
-  UseListboxOptionSlotProps,
-  UseListboxRootSlotProps,
+  UseListParameters,
+  UseListParametersWithDefaults,
+  ListItemState,
+  UseListRootSlotProps,
 } from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
@@ -15,21 +13,20 @@ import { EventHandlers } from '../utils/types';
 import useLatest from '../utils/useLatest';
 import useTextNavigation from '../utils/useTextNavigation';
 import useListChangeNotifiers from './useListChangeNotifiers';
+import { ActionTypes, ListAction } from './actions.types';
 
-const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
-const defaultIsOptionDisabled = () => false;
-const defaultOptionStringifier = <TOption>(option: TOption) =>
-  typeof option === 'string' ? option : String(option);
+const defaultItemComparer = <ItemValue>(item1: ItemValue, item2: ItemValue) => item1 === item2;
+const defaultIsItemDisabled = () => false;
+const defaultItemStringifier = <ItemValue>(item: ItemValue) =>
+  typeof item === 'string' ? item : String(item);
 
-export interface ListContextValue<Item> {
-  getItemProps: <TOther extends EventHandlers = {}>(
-    item: Item,
-    otherHandlers?: TOther,
-  ) => UseListboxOptionSlotProps<TOther>;
-  getItemState: (item: Item) => OptionState;
-  registerHighlightChangeHandler: (handler: (item: Item | null) => void) => () => void;
-  registerSelectionChangeHandler: (handler: (items: Item | Item[] | null) => void) => () => void;
-  focusManagement: UseListboxParameters<Item>['focusManagement'];
+export interface ListContextValue<ItemValue> {
+  dispatch: (action: ListAction<ItemValue>) => void;
+  getItemState: (item: ItemValue) => ListItemState;
+  registerHighlightChangeHandler: (handler: (item: ItemValue | null) => void) => () => void;
+  registerSelectionChangeHandler: (
+    handler: (items: ItemValue | ItemValue[] | null) => void,
+  ) => () => void;
 }
 
 export const ListContext = React.createContext<ListContextValue<any> | null>(null);
@@ -38,39 +35,40 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /**
- * @ignore - internal hook.
+ * The useListbox is a lower-level utility that is used to build list-like components.
+ * It's used to manage the state of the list and its items.
  *
- * The useListbox is a lower-level utility that is used to build a listbox component.
- * It's used to manage the state of the listbox and its options.
- * Contains the logic for keyboard navigation, selection, and focus management.
+ * Supports highlighting a single item and selecting an arbitrary number of items.
+ *
+ * @ignore - internal hook.
  */
-export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
+export default function useListbox<ItemValue>(params: UseListParameters<ItemValue>) {
   const {
     disabledItemsFocusable = false,
     disableListWrap = false,
     focusManagement = 'activeDescendant',
+    getItemDomElement,
     id: idProp,
-    isOptionDisabled = defaultIsOptionDisabled,
-    listboxRef: externalListboxRef,
+    isItemDisabled = defaultIsItemDisabled,
+    listRef: externalListboxRef,
     onHighlightChange,
-    optionComparer = defaultOptionComparer,
-    optionStringifier = defaultOptionStringifier,
-    options,
-    getOptionElement,
+    itemComparer = defaultItemComparer,
+    items,
+    itemStringifier = defaultItemStringifier,
     orientation = 'vertical',
+    selectionLimit = null,
     stateReducer: externalReducer,
     value: valueParam,
-    selectionLimit = null,
-  } = props;
+  } = params;
 
   const id = useId(idProp);
 
   const defaultIdGenerator = React.useCallback(
-    (_: TOption, index: number) => `${id}-option-${index}`,
+    (_: ItemValue, index: number) => `${id}-option-${index}`,
     [id],
   );
 
-  const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
+  const itemIdGenerator = params.itemIdGenerator ?? defaultIdGenerator;
 
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
@@ -78,7 +76,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const handleHighlightChange = React.useCallback(
     (
       event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-      value: TOption | null,
+      value: ItemValue | null,
       reason: ActionTypes,
     ) => {
       onHighlightChange?.(event, value, reason);
@@ -86,30 +84,30 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       if (
         focusManagement === 'DOM' &&
         value != null &&
-        (reason === ActionTypes.optionClick ||
+        (reason === ActionTypes.itemClick ||
           reason === ActionTypes.keyDown ||
           reason === ActionTypes.textNavigation)
       ) {
-        getOptionElement?.(value)?.focus();
+        getItemDomElement?.(value)?.focus();
       }
     },
-    [getOptionElement, onHighlightChange, focusManagement],
+    [getItemDomElement, onHighlightChange, focusManagement],
   );
 
-  const propsWithDefaults: React.RefObject<UseListboxParametersWithDefaults<TOption>> = useLatest(
+  const propsWithDefaults: React.RefObject<UseListParametersWithDefaults<ItemValue>> = useLatest(
     {
-      ...props,
+      ...params,
       disabledItemsFocusable,
       disableListWrap,
       focusManagement,
-      isOptionDisabled,
+      isItemDisabled,
       onHighlightChange: handleHighlightChange,
-      optionComparer,
-      optionStringifier,
+      itemComparer,
+      itemStringifier,
       orientation,
       selectionLimit,
     },
-    [props],
+    [params],
   );
 
   const [{ highlightedValue, selectedValues }, dispatch] = useControllableReducer(
@@ -140,36 +138,35 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const highlightedIndex = React.useMemo(() => {
     return highlightedValue == null
       ? -1
-      : options.findIndex((option) => optionComparer(option, highlightedValue));
-  }, [highlightedValue, options, optionComparer]);
+      : items.findIndex((item) => itemComparer(item, highlightedValue));
+  }, [highlightedValue, items, itemComparer]);
 
   // introducing refs to avoid recreating the getOptionState function on each change.
   const latestSelectedValues = useLatest(selectedValues);
   const latestHighlightedIndex = useLatest(highlightedIndex);
-  const latestHighlightedValue = useLatest(highlightedValue);
-  const previousOptions = React.useRef<TOption[]>([]);
+  const previousItems = React.useRef<ItemValue[]>([]);
 
   React.useEffect(() => {
-    if (areArraysEqual(previousOptions.current, options, optionComparer)) {
+    if (areArraysEqual(previousItems.current, items, itemComparer)) {
       return;
     }
 
     dispatch({
-      type: ActionTypes.optionsChange,
+      type: ActionTypes.itemsChange,
       event: null,
-      options,
-      previousOptions: previousOptions.current,
+      items,
+      previousItems: previousItems.current,
     });
 
-    previousOptions.current = options;
-  }, [options, optionComparer, dispatch]);
+    previousItems.current = items;
+  }, [items, itemComparer, dispatch]);
 
   const {
     notifySelectionChanged,
     notifyHighlightChanged,
     registerHighlightChangeHandler,
     registerSelectionChangeHandler,
-  } = useListChangeNotifiers<TOption>();
+  } = useListChangeNotifiers<ItemValue>();
 
   React.useEffect(() => {
     notifySelectionChanged(selectedValues);
@@ -180,7 +177,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   }, [highlightedValue, notifyHighlightChanged]);
 
   const setSelectedValue = React.useCallback(
-    (values: TOption[]) => {
+    (values: ItemValue[]) => {
       dispatch({
         type: ActionTypes.setValue,
         event: null,
@@ -191,49 +188,13 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   );
 
   const setHighlightedValue = React.useCallback(
-    (option: TOption | null) => {
+    (option: ItemValue | null) => {
       dispatch({
         type: ActionTypes.setHighlight,
         event: null,
         highlight: option,
       });
     },
-    [dispatch],
-  );
-
-  const createHandleOptionClick = React.useCallback(
-    (option: TOption, other: Record<string, React.EventHandler<any>>) =>
-      (event: React.MouseEvent) => {
-        other.onClick?.(event);
-        if (event.defaultPrevented) {
-          return;
-        }
-
-        event.preventDefault();
-
-        dispatch({
-          type: ActionTypes.optionClick,
-          option,
-          event,
-        });
-      },
-    [dispatch],
-  );
-
-  const createHandleOptionPointerOver = React.useCallback(
-    (option: TOption, other: Record<string, React.EventHandler<any>>) =>
-      (event: React.PointerEvent) => {
-        other.onMouseOver?.(event);
-        if (event.defaultPrevented) {
-          return;
-        }
-
-        dispatch({
-          type: ActionTypes.optionHover,
-          option,
-          event,
-        });
-      },
     [dispatch],
   );
 
@@ -295,12 +256,12 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
-  ): UseListboxRootSlotProps<TOther> => {
+  ): UseListRootSlotProps<TOther> => {
     return {
       ...otherHandlers,
       'aria-activedescendant':
         focusManagement === 'activeDescendant' && highlightedValue != null
-          ? optionIdGenerator(highlightedValue, highlightedIndex)
+          ? itemIdGenerator(highlightedValue, highlightedIndex)
           : undefined,
       id,
       onBlur: createHandleBlur(otherHandlers),
@@ -311,113 +272,87 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     };
   };
 
-  const getOptionState = React.useCallback(
-    (option: TOption): OptionState => {
-      const index = options.findIndex((opt) => optionComparer(opt, option));
-      const selected = (latestSelectedValues.current ?? []).some(
-        (value) => value != null && optionComparer(option, value),
-      );
-
-      const disabled = isOptionDisabled(option, index);
-      const highlighted = latestHighlightedIndex.current === index && index !== -1;
-
-      return {
-        disabled,
-        highlighted,
-        index,
-        selected,
-      };
-    },
-    [options, isOptionDisabled, optionComparer, latestSelectedValues, latestHighlightedIndex],
-  );
-
-  const firstFocusableOption = React.useMemo(() => {
+  const firstFocusableItem = React.useMemo(() => {
     if (focusManagement === 'activeDescendant') {
-      // options are not focusable when using activeDescendant
+      // items are not focusable when using activeDescendant
       return undefined;
     }
 
     if (disabledItemsFocusable) {
-      return options[0];
+      return items[0];
     }
 
-    for (let i = 0; i < options.length; i += 1) {
-      const option = options[i];
-      const optionState = getOptionState(option);
-      if (!optionState.disabled) {
-        return option;
+    for (let i = 0; i < items.length; i += 1) {
+      const item = items[i];
+      if (!isItemDisabled(item, i)) {
+        return item;
       }
     }
 
     return undefined;
-  }, [options, disabledItemsFocusable, getOptionState, focusManagement]);
+  }, [items, disabledItemsFocusable, focusManagement, isItemDisabled]);
 
-  const getOptionTabIndex = React.useCallback(
-    (option: TOption, optionState: OptionState) => {
+  const isItemFocusable = React.useCallback(
+    (item: ItemValue, highlighted: boolean, disabled: boolean) => {
       if (focusManagement === 'activeDescendant') {
         return undefined;
       }
 
       // TODO: check if using highlightedValue instead of latestHighlightedValue.current does not kill performance
       if (highlightedValue == null) {
-        return option === firstFocusableOption ? 0 : -1;
+        return item === firstFocusableItem;
       }
 
-      if (!optionState.highlighted) {
-        return -1;
+      if (!highlighted) {
+        return false;
       }
 
-      if (optionState.disabled && !disabledItemsFocusable) {
-        return -1;
+      if (disabled && !disabledItemsFocusable) {
+        return false;
       }
 
-      return 0;
+      return true;
     },
-    [focusManagement, disabledItemsFocusable, firstFocusableOption, highlightedValue],
+    [focusManagement, disabledItemsFocusable, firstFocusableItem, highlightedValue],
   );
 
-  const getOptionProps = React.useCallback(
-    <TOther extends EventHandlers = {}>(
-      option: TOption,
-      otherHandlers: TOther = {} as TOther,
-    ): UseListboxOptionSlotProps<TOther> => {
-      const optionState = getOptionState(option);
+  const getItemState = React.useCallback(
+    (item: ItemValue): ListItemState => {
+      const index = items.findIndex((i) => itemComparer(i, item));
+      const selected = (latestSelectedValues.current ?? []).some(
+        (value) => value != null && itemComparer(item, value),
+      );
+
+      const disabled = isItemDisabled(item, index);
+      const highlighted = latestHighlightedIndex.current === index && index !== -1;
+      const focusable = isItemFocusable(item, highlighted, disabled);
 
       return {
-        ...otherHandlers,
-        'aria-disabled': optionState.disabled || undefined,
-        'aria-selected': optionState.selected,
-        id: optionIdGenerator(option, optionState.index),
-        onClick: createHandleOptionClick(option, otherHandlers),
-        onPointerOver: createHandleOptionPointerOver(option, otherHandlers),
-        role: 'option',
-        tabIndex: getOptionTabIndex(option, optionState),
+        disabled,
+        focusable,
+        highlighted,
+        index,
+        selected,
       };
     },
     [
-      optionIdGenerator,
-      createHandleOptionClick,
-      createHandleOptionPointerOver,
-      getOptionTabIndex,
-      getOptionState,
+      items,
+      isItemDisabled,
+      itemComparer,
+      latestSelectedValues,
+      latestHighlightedIndex,
+      isItemFocusable,
     ],
   );
 
-  const contextValue: ListContextValue<TOption> = React.useMemo(
+  const contextValue: ListContextValue<ItemValue> = React.useMemo(
     () => ({
-      getItemProps: getOptionProps,
-      getItemState: getOptionState,
+      dispatch,
+      getItemState,
       registerHighlightChangeHandler,
       registerSelectionChangeHandler,
-      focusManagement,
     }),
-    [
-      getOptionProps,
-      getOptionState,
-      registerHighlightChangeHandler,
-      registerSelectionChangeHandler,
-      focusManagement,
-    ],
+    [dispatch, getItemState, registerHighlightChangeHandler, registerSelectionChangeHandler],
   );
 
   React.useDebugValue({
@@ -426,13 +361,11 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   });
 
   return {
+    contextValue,
     getRootProps,
-    getOptionProps,
-    getOptionState,
     highlightedOption: highlightedValue,
     selectedOptions: selectedValues,
-    setSelectedValue,
     setHighlightedValue,
-    contextValue,
+    setSelectedValue,
   };
 }

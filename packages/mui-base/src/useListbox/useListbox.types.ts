@@ -1,121 +1,44 @@
 import * as React from 'react';
+import { ActionTypes, ListAction } from './actions.types';
 
-type UseListboxStrictParametersRequiredKeys =
-  | 'isOptionDisabled'
+type UseListStrictParametersRequiredKeys =
+  | 'isItemDisabled'
   | 'disableListWrap'
   | 'disabledItemsFocusable'
-  | 'optionComparer'
+  | 'itemComparer'
   | 'orientation'
-  | 'optionStringifier'
+  | 'itemStringifier'
   | 'selectionLimit';
 
-export type UseListboxParametersWithDefaults<TOption> = Omit<
-  UseListboxParameters<TOption>,
-  UseListboxStrictParametersRequiredKeys
+export type UseListParametersWithDefaults<ItemValue> = Omit<
+  UseListParameters<ItemValue>,
+  UseListStrictParametersRequiredKeys
 > &
-  Required<Pick<UseListboxParameters<TOption>, UseListboxStrictParametersRequiredKeys>>;
+  Required<Pick<UseListParameters<ItemValue>, UseListStrictParametersRequiredKeys>>;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
 
-enum ActionTypes {
-  blur = 'blur',
-  focus = 'focus',
-  keyDown = 'keyDown',
-  optionClick = 'optionClick',
-  optionHover = 'optionHover',
-  optionsChange = 'optionsChange',
-  setValue = 'setValue',
-  setHighlight = 'setHighlight',
-  textNavigation = 'textNagivation',
-}
-
-// split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
-export { ActionTypes };
-
-interface OptionClickAction<TOption> {
-  type: ActionTypes.optionClick;
-  option: TOption;
-  event: React.MouseEvent;
-}
-
-interface OptionHoverAction<TOption> {
-  type: ActionTypes.optionHover;
-  option: TOption;
-  event: React.MouseEvent;
-}
-
-interface FocusAction {
-  type: ActionTypes.focus;
-  event: React.FocusEvent;
-}
-
-interface BlurAction {
-  type: ActionTypes.blur;
-  event: React.FocusEvent;
-}
-
-interface KeyDownAction {
-  type: ActionTypes.keyDown;
-  event: React.KeyboardEvent;
-}
-
-interface SetValueAction<TOption> {
-  type: ActionTypes.setValue;
-  event: null;
-  value: TOption[];
-}
-
-interface SetHighlightAction<TOption> {
-  type: ActionTypes.setHighlight;
-  event: null;
-  highlight: TOption | null;
-}
-
-interface TextNavigationAction {
-  type: ActionTypes.textNavigation;
-  event: React.KeyboardEvent;
-  searchString: string;
-}
-
-interface OptionsChangeAction<TOption> {
-  type: ActionTypes.optionsChange;
-  event: null;
-  options: TOption[];
-  previousOptions: TOption[];
-}
-
-export type ListboxAction<TOption> =
-  | OptionClickAction<TOption>
-  | OptionHoverAction<TOption>
-  | FocusAction
-  | BlurAction
-  | KeyDownAction
-  | SetHighlightAction<TOption>
-  | TextNavigationAction
-  | SetValueAction<TOption>
-  | OptionsChangeAction<TOption>;
-
-export type ListboxReducerAction<T> = ListboxAction<T> & {
-  props: UseListboxParametersWithDefaults<T>;
+export type ListReducerAction<T> = ListAction<T> & {
+  props: UseListParametersWithDefaults<T>;
 };
 
-export interface ListboxState<TOption> {
-  highlightedValue: TOption | null;
-  selectedValues: TOption[];
+export interface ListState<ItemValue> {
+  highlightedValue: ItemValue | null;
+  selectedValues: ItemValue[];
 }
 
-export type ListboxReducer<TOption> = (
-  state: ListboxState<TOption>,
-  action: ListboxReducerAction<TOption>,
-) => ListboxState<TOption>;
+export type ListReducer<ItemValue> = (
+  state: ListState<ItemValue>,
+  action: ListReducerAction<ItemValue>,
+) => ListState<ItemValue>;
 
-export interface UseListboxParameters<TOption> {
+export interface UseListParameters<ItemValue> {
   /**
-   * The default selected value. Use when the listbox is not controlled.
+   * The default selected value. Use when the list component is not controlled.
    */
-  defaultValue?: TOption[];
+  defaultValue?: ItemValue[];
   /**
-   * If `true`, it will be possible to highlight disabled options.
+   * If `true`, it will be possible to highlight disabled items.
    * @default false
    */
   disabledItemsFocusable?: boolean;
@@ -126,87 +49,96 @@ export interface UseListboxParameters<TOption> {
   disableListWrap?: boolean;
   focusManagement?: FocusManagementType;
   /**
-   * A function that returns the DOM element associated with an option.
+   * A function that returns the DOM element associated with an item.
+   * This is required to set focus when using the `DOM` focus management.
    *
-   * @param option Option to get the DOM element for.
+   * @param item List item to get the DOM element for.
    */
-  getOptionElement?: (option: TOption) => HTMLElement | null;
+  getItemDomElement?: (itemValue: ItemValue) => HTMLElement | null;
   /**
-   * Id attribute of the listbox.
+   * Id attribute of the list component.
    */
   id?: string;
   /**
-   * A function that determines if a particular option is disabled.
+   * A function that determines if a particular item is disabled.
    * @default () => false
    */
-  isOptionDisabled?: (option: TOption, index: number) => boolean;
+  isItemDisabled?: (itemValue: ItemValue, index: number) => boolean;
   /**
-   * Ref of the listbox DOM element.
+   * Ref of the list root DOM element.
    */
-  listboxRef?: React.Ref<any>;
+  listRef?: React.Ref<any>;
   /**
-   * Callback fired when the value changes.
+   * Callback fired when the selected value changes.
    */
   onChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TOption[],
+    values: ItemValue[],
     reason: ActionTypes,
   ) => void;
   /**
-   * Callback fired when the highlighted option changes.
+   * Callback fired when the highlighted item changes.
+   * The `value` is null if there is no highlighted item.
    */
   onHighlightChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    option: TOption | null,
+    value: ItemValue | null,
     reason: ActionTypes,
   ) => void;
   /**
-   * A function that tests equality between two options.
+   * A function that tests equality between two items' values.
    * @default (a, b) => a === b
    */
-  optionComparer?: (optionA: TOption, optionB: TOption) => boolean;
+  itemComparer?: (itemValue1: ItemValue, itemValue2: ItemValue) => boolean;
   /**
    * A function that generates the id attribute of individual options.
    */
-  optionIdGenerator?: (option: TOption, index: number) => string;
+  itemIdGenerator?: (value: ItemValue, index: number) => string;
   /**
    * A function that converts an object to its string representation
    * @default (o) => o
    */
-  optionStringifier?: (option: TOption) => string | undefined;
+  itemStringifier?: (option: ItemValue) => string | undefined;
   /**
-   * Array of options to be rendered in the list.
+   * Array of list items.
    */
-  options: TOption[];
+  items: ItemValue[];
   /**
-   * Orientation of the items in the listbox.
+   * Orientation of the items in the list.
    * Determines the actions that are performed when arrow keys are pressed.
    */
   orientation?: 'horizontal-ltr' | 'horizontal-rtl' | 'vertical';
   /**
-   * Maximum number of options that can be selected at once.
+   * Maximum number of items that can be selected at once.
    * Set to `null` to disable the limit.
+   *
+   * @default null
    */
   selectionLimit?: number | null;
   /**
-   * Custom state reducer function. It calculates the new state (highlighted and selected options)
+   * Custom state reducer function. It calculates the new state (highlighted and selected items)
    * based on the previous one and the performed action.
    */
-  stateReducer?: ListboxReducer<TOption>;
+  stateReducer?: ListReducer<ItemValue>;
   /**
-   * The selected value. Use when the listbox is controlled.
+   * The selected value. Use when the list component is controlled.
    */
-  value?: TOption[];
+  value?: ItemValue[];
 }
 
-export interface OptionState {
+export interface ListItemState {
   disabled: boolean;
+  /**
+   * Determines if the item is focusable.
+   * If `undefined`, focusing doesn't apply as focusManagement is set to 'activeDescendant'.
+   */
+  focusable: boolean | undefined;
   highlighted: boolean;
   index: number;
   selected: boolean;
 }
 
-interface UseListboxRootSlotOwnProps {
+interface UseListRootSlotOwnProps {
   'aria-activedescendant'?: React.AriaAttributes['aria-activedescendant'];
   id?: string;
   onBlur: React.FocusEventHandler;
@@ -216,20 +148,4 @@ interface UseListboxRootSlotOwnProps {
   ref: React.Ref<any>;
 }
 
-export type UseListboxRootSlotProps<TOther = {}> = TOther & UseListboxRootSlotOwnProps;
-
-interface UseListboxOptionSlotOwnProps {
-  'aria-disabled': React.AriaAttributes['aria-disabled'];
-  'aria-selected': React.AriaAttributes['aria-selected'];
-  id?: string;
-  onClick: React.MouseEventHandler;
-  onPointerOver: React.PointerEventHandler;
-  role: React.AriaRole;
-  tabIndex?: number;
-}
-
-export type UseListboxOptionSlotProps<TOther = {}> = Omit<
-  TOther,
-  keyof UseListboxOptionSlotOwnProps
-> &
-  UseListboxOptionSlotOwnProps;
+export type UseListRootSlotProps<TOther = {}> = TOther & UseListRootSlotOwnProps;

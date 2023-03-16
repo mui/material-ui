@@ -6,13 +6,19 @@ import {
 import { EventHandlers } from '../utils/types';
 import useForcedRerendering from '../utils/useForcedRerendering';
 import { ListContext } from './useListbox';
+import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
+import { ActionTypes } from './actions.types';
 
-export interface UseListItemParameters<Item> {
-  item: Item;
-  ref?: React.Ref<HTMLElement>;
-}
-
-export default function useListItem<Item>(parameters: UseListItemParameters<Item>) {
+/**
+ * Contains the logic for an item of a list-like component (e.g. Select, Menu, etc.).
+ * It provides information about the item's state (selected, highlighted) and
+ * handles the item's mouse events.
+ *
+ * @template ItemValue The type of the item's value. This should be consistent with the type of useList's `items` parameter.
+ */
+export default function useListItem<ItemValue>(
+  parameters: UseListItemParameters<ItemValue>,
+): UseListItemReturnValue {
   const { item, ref: externalRef } = parameters;
 
   const itemRef = React.useRef<HTMLElement>(null);
@@ -23,20 +29,15 @@ export default function useListItem<Item>(parameters: UseListItemParameters<Item
     throw new Error('useListItem must be used within a ListProvider');
   }
 
-  const {
-    getItemProps,
-    getItemState,
-    registerHighlightChangeHandler,
-    registerSelectionChangeHandler,
-  } = listContext;
+  const { dispatch, getItemState, registerHighlightChangeHandler, registerSelectionChangeHandler } =
+    listContext;
 
-  const itemState = getItemState(item);
-  const { highlighted, selected } = itemState;
+  const { highlighted, selected, focusable } = getItemState(item);
 
   const rerender = useForcedRerendering();
 
   useEnhancedEffect(() => {
-    function updateHighlightedState(highlightedItem: Item | null) {
+    function updateHighlightedState(highlightedItem: ItemValue | null) {
       if (highlightedItem === item && !highlighted) {
         rerender();
       } else if (highlightedItem !== item && highlighted) {
@@ -48,20 +49,12 @@ export default function useListItem<Item>(parameters: UseListItemParameters<Item
   });
 
   useEnhancedEffect(() => {
-    function updateSelectedState(selectedItems: Item | Item[] | null) {
+    function updateSelectedState(selectedItems: ItemValue[]) {
       if (!selected) {
-        if (Array.isArray(selectedItems)) {
-          if (selectedItems.includes(item)) {
-            rerender();
-          }
-        } else if (selectedItems === item) {
+        if (selectedItems.includes(item)) {
           rerender();
         }
-      } else if (Array.isArray(selectedItems)) {
-        if (!selectedItems.includes(item)) {
-          rerender();
-        }
-      } else if (selectedItems !== item) {
+      } else if (!selectedItems.includes(item)) {
         rerender();
       }
     }
@@ -69,12 +62,60 @@ export default function useListItem<Item>(parameters: UseListItemParameters<Item
     return registerSelectionChangeHandler(updateSelectedState);
   }, [registerSelectionChangeHandler, rerender, selected, item]);
 
-  return {
-    getItemProps: <TOther extends EventHandlers = {}>(otherHandlers?: TOther) => ({
-      ...getItemProps(item, otherHandlers),
-      ref: handleRef,
-    }),
-    getItemState: () => getItemState(item),
+  const createHandleClick = React.useCallback(
+    (other: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
+      other.onClick?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      event.preventDefault();
+
+      dispatch({
+        type: ActionTypes.itemClick,
+        item,
+        event,
+      });
+    },
+    [dispatch, item],
+  );
+
+  const createHandlePointerOver = React.useCallback(
+    (other: Record<string, React.EventHandler<any>>) => (event: React.PointerEvent) => {
+      other.onMouseOver?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      dispatch({
+        type: ActionTypes.itemHover,
+        item,
+        event,
+      });
+    },
+    [dispatch, item],
+  );
+
+  let tabIndex: number | undefined;
+  if (focusable !== undefined) {
+    tabIndex = focusable ? 0 : -1;
+  }
+
+  const getRootProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ) => ({
+    ...otherHandlers,
+    onClick: createHandleClick(otherHandlers),
+    onPointerOver: createHandlePointerOver(otherHandlers),
     ref: handleRef,
+    tabIndex,
+    // TODO: id
+  });
+
+  return {
+    getRootProps,
+    highlighted,
+    ref: handleRef,
+    selected,
   };
 }
