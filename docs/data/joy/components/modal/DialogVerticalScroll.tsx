@@ -6,15 +6,16 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Switch from '@mui/joy/Switch';
 import Modal from '@mui/joy/Modal';
-import ModalDialog from '@mui/joy/ModalDialog';
+import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
 
 export default function DialogVerticalScroll() {
-  const [layout, setLayout] = React.useState(undefined);
-
-  const [scroll, setScroll] = React.useState(true);
+  const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
+    undefined,
+  );
+  const [scroll, setScroll] = React.useState<boolean>(true);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
@@ -59,7 +60,9 @@ export default function DialogVerticalScroll() {
             <FormLabel>Container overflow</FormLabel>
             <Switch
               checked={scroll}
-              onChange={(event) => setScroll(event.target.checked)}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setScroll(event.target.checked)
+              }
               sx={{ ml: 'auto' }}
             />
           </FormControl>

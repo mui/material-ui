@@ -1,16 +1,19 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
-function randomBetween(min, max) {
+type NestedModalsProps = {
+  random?: boolean;
+};
+
+function randomBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function NestedModals({ random }) {
-  const [open, setOpen] = React.useState(false);
+function NestedModals({ random }: NestedModalsProps) {
+  const [open, setOpen] = React.useState<boolean>(false);
   return (
     <React.Fragment>
       <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
@@ -40,9 +43,5 @@ function NestedModals({ random }) {
     </React.Fragment>
   );
 }
-
-NestedModals.propTypes = {
-  random: PropTypes.bool,
-};
 
 export default NestedModals;

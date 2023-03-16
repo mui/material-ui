@@ -6,7 +6,7 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
 export default function CloseModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   return (
     <React.Fragment>
       <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
@@ -15,7 +15,7 @@ export default function CloseModal() {
       <Modal
         aria-labelledby="close-modal-title"
         open={open}
-        onClose={(_event, reason) => {
+        onClose={(_event: React.MouseEvent<HTMLButtonElement>, reason: string) => {
           alert(`Reason: ${reason}`);
           setOpen(false);
         }}

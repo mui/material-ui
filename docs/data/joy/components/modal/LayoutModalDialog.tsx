@@ -3,12 +3,13 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
-import ModalDialog from '@mui/joy/ModalDialog';
+import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
 export default function LayoutModalDialog() {
-  const [layout, setLayout] = React.useState(undefined);
-
+  const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
+    undefined,
+  );
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
