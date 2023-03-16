@@ -12,7 +12,7 @@ function randomBetween(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export default function NestedModals({ random }: NestedModalsProps): JSX.Element {
+function NestedModals({ random }: NestedModalsProps) {
   const [open, setOpen] = React.useState<boolean>(false);
   return (
     <React.Fragment>
@@ -43,3 +43,5 @@ export default function NestedModals({ random }: NestedModalsProps): JSX.Element
     </React.Fragment>
   );
 }
+
+export default NestedModals;

@@ -5,7 +5,7 @@ import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 
-export default function FadeModalDialog(): JSX.Element {
+export default function FadeModalDialog() {
   const [open, setOpen] = React.useState<boolean>(false);
   return (
     <React.Fragment>
