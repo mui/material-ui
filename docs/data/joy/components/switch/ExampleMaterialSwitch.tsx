@@ -1,14 +1,17 @@
 import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Theme } from '@mui/joy';
 
 export default function ExampleMaterialSwitch() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <Switch
       variant={checked ? 'soft' : 'solid'}
       checked={checked}
-      onChange={(event) => setChecked(event.target.checked)}
-      sx={(theme) => ({
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        setChecked(event.target.checked)
+      }
+      sx={(theme: Theme) => ({
         display: 'inherit',
         '--Switch-thumbShadow':
           'rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px',

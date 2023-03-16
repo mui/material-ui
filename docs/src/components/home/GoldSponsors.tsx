@@ -27,6 +27,13 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
+    src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
+    srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
+    name: 'Spotify',
+    description: 'Music service to access to millions of songs.',
+    href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
     src: '/static/sponsors//megafamous.png',
     name: 'MegaFamous',
     description: 'Buy Instagram followers & likes.',

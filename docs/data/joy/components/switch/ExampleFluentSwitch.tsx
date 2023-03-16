@@ -1,14 +1,17 @@
 import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
+import { Theme } from '@mui/joy';
 
 export default function ExampleFluentSwitch() {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = React.useState<boolean>(false);
   return (
     <Switch
       variant={checked ? 'solid' : 'outlined'}
       checked={checked}
-      onChange={(event) => setChecked(event.target.checked)}
-      sx={(theme) => ({
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+        setChecked(event.target.checked)
+      }
+      sx={(theme: Theme) => ({
         display: 'inherit',
         '--Switch-trackWidth': '40px',
         '--Switch-trackHeight': '20px',
