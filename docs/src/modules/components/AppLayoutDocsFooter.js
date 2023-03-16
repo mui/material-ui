@@ -98,14 +98,12 @@ async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
   const sentData = {
-    payload: {
       type: 'send_feedback',
       rating,
       comment,
       currentLocationURL: window.location.href,
       commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
       commmentSectionTitle: commentedSection.text,
-    },
   };
   if (!comment || comment.length < 10) {
     return 'ignored';
@@ -115,8 +113,10 @@ async function postFeedbackOnSlack(data) {
     await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: encodeURIComponent(JSON.stringify(sentData)),
-    });
+        // Seems tricky but it's to match how slack send data
+        body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
+      },
+    );
     return 'sent';
   } catch (error) {
     console.error(error);

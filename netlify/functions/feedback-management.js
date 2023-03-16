@@ -36,14 +36,16 @@ const deleteMessage = async (data) => {
  * @param {object} context
  */
 exports.handler = async (event) => {
-  // eslint-disable-next-line no-console
-  console.log('=== event ===');
-  // eslint-disable-next-line no-console
-  console.log(event);
   try {
     const { payload } = querystring.parse(event.body);
     const data = JSON.parse(decodeURIComponent(payload));
 
+    // eslint-disable-next-line no-console
+    console.log('=== data ===');
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(data, null, 2));
+    // eslint-disable-next-line no-console
+    console.log('============');
     switch (data.type) {
       case 'send_feedback':
         {
@@ -70,7 +72,10 @@ exports.handler = async (event) => {
         break;
 
       case 'delete_action':
-        await deleteMessage(data);
+        deleteMessage(data).catch((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
         break;
       case 'save_message':
         {
@@ -110,6 +115,10 @@ exports.handler = async (event) => {
                 as_user: true,
                 text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
               });
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.log(error);
             });
         }
 
