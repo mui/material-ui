@@ -7,7 +7,7 @@ card: true
 tags: ['MUI X', 'News']
 ---
 
-<img src="/static/blog/mui-x-v6/card.png" alt="" style="aspect-ratio: 672/157; margin-bottom: 16px;" />
+<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
@@ -42,7 +42,7 @@ We've redesigned this sub-component to make it as extensible as possible.
 
 This is part of an overarching effort throughout the life cycle of v6 to refactor all Data Grid panels.
 
-<img src="/static/blog/mui-x-v6/column-menu-custom-action.png" style="aspect-ratio: 168/83; margin-bottom: 24px;" loading="lazy" alt="Column menu custom action" />
+<img src="/static/blog/mui-x-v6/column-menu-custom-action.png" style="margin-bottom: 24px;" loading="lazy" alt="Column menu custom action" width="1636" height="808" />
 
 #### [Cell selection](/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
@@ -103,7 +103,7 @@ These rich text fields are specialized for date and time logic and offer quick n
 Add quick and customizable shortcuts for your users. Particularly useful for date ranges.
 Display them on the left, right, bottom, or top.
 
-<img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="aspect-ratio: 84/53; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
+<img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." width="2222" height="1402" />
 
 #### [Edit date ranges with drag and drop](/x/react-date-pickers/date-range-calendar/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
