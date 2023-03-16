@@ -340,7 +340,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       };
     });
   const demos = findBaseDemos(name, allMarkdowns);
-  let apiPath = getApiPath(demos, name);
+  const apiPath = getApiPath(demos, name);
 
   return {
     filename,
@@ -395,7 +395,7 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
 
   const demos = findBaseHooksDemos(name, allMarkdowns);
 
-  let apiPath = getApiPath(demos, name);
+  const apiPath = getApiPath(demos, name);
 
   const result = {
     filename,
