@@ -98,8 +98,8 @@ async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
   const sentData = {
-    type: 'sendMessage',
     payload: {
+      type: 'send_feedback',
       rating,
       comment,
       currentLocationURL: window.location.href,
@@ -115,7 +115,7 @@ async function postFeedbackOnSlack(data) {
     await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: JSON.stringify(sentData),
+      body: encodeURIComponent(JSON.stringify(sentData)),
     });
     return 'sent';
   } catch (error) {
