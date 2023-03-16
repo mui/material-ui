@@ -292,6 +292,47 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
+const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
+  /**
+   * Gather the metadata needed for the component's API page.
+   */
+  const pageContent = {
+    // Sorted by required DESC, name ASC
+    parameters: _.fromPairs(
+      Object.entries(reactApi.parametersTable).sort(([aName, aData], [bName, bData]) => {
+        if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
+          return aName.localeCompare(bName);
+        }
+        if (aData.required) {
+          return -1;
+        }
+        return 1;
+      }),
+    ),
+    returnValue: _.fromPairs(
+      Object.entries(reactApi.returnValueTable).sort(([aName, aData], [bName, bData]) => {
+        if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
+          return aName.localeCompare(bName);
+        }
+        if (aData.required) {
+          return -1;
+        }
+        return 1;
+      }),
+    ),
+    name: reactApi.name,
+    filename: toGitHubPath(reactApi.filename),
+    demos: `<ul>${reactApi.demos
+      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .join('\n')}</ul>`,
+  };
+
+  writePrettifiedFile(
+    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
+    JSON.stringify(pageContent),
+  );
+};
+
 const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) => {
   const hookName = reactApi.name;
   const apiDocsTranslationPath = path.resolve(outputDirectory, kebabCase(hookName));
@@ -428,6 +469,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
+    generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);

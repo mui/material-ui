@@ -304,6 +304,7 @@ const generateApiPage = (
   apiPagesDirectory: string,
   translationPagesDirectory: string,
   reactApi: ReactApi,
+  onlyJsonFile: boolean = false,
 ) => {
   /**
    * Gather the metadata needed for the component's API page.
@@ -353,33 +354,35 @@ const generateApiPage = (
     JSON.stringify(pageContent),
   );
 
-  writePrettifiedFile(
-    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import ApiPage from 'docs/src/modules/components/ApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
+  if (!onlyJsonFile) {
+    writePrettifiedFile(
+      path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
+      `import * as React from 'react';
+  import ApiPage from 'docs/src/modules/components/ApiPage';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
+  export default function Page(props) {
+    const { descriptions, pageContent } = props;
+    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  }
 
-Page.getInitialProps = () => {
-  const req = require.context(
-    '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
+  Page.getInitialProps = () => {
+    const req = require.context(
+      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      false,
+      /${kebabCase(reactApi.name)}.*.json$/,
+    );
+    const descriptions = mapApiPageTranslations(req);
 
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
+    return {
+      descriptions,
+      pageContent: jsonPageContent,
+    };
   };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
-  );
+  `.replace(/\r?\n/g, reactApi.EOL),
+    );
+  }
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -634,10 +637,9 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
         : 'docs/translations/api-docs';
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
 
-    // Once we have the tabs API in all projects, we can remove this altogether
-    if (!reactApi.apiPathname.startsWith('/base')) {
-      generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
-    }
+    // Once we have the tabs API in all projects, we can make this default
+    const generateOnlyJsonFile = reactApi.apiPathname.startsWith('/base');
+    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);
