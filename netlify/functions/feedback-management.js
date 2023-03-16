@@ -23,13 +23,12 @@ const googleAuth = new JWT({
 
 const service = sheets({ version: 'v4', auth: googleAuth });
 
-const deleteMessage = async (data) => {
-  await slackClient.chat.delete({
+const deleteMessage = (data) =>
+  slackClient.chat.delete({
     channel: data.channel.id,
     ts: data.message_ts,
     as_user: true,
   });
-};
 
 /**
  * @param {object} event
