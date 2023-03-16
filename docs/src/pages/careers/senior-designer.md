@@ -93,7 +93,8 @@ Here's a brief overview of how this role's process will be carried through:
 - **Comparable experience review** (40 to 60 min ⎯ with a designer, product manager or tech lead): We'll deep dive into a presentation of relevant past experiences to understand your approach to problem-solving and design.
 - **Conversation with the CEO** (60 min): A quick call so you get to know each other, and talk about vision, future, history, etc.
 
-We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well. It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you, making for a great match!
+We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well.
+It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you.
 
 ## How to apply?
 
