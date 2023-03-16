@@ -6115,10 +6115,10 @@ damerau-levenshtein@^1.0.8:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
 
-danger@^11.2.3:
-  version "11.2.3"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-11.2.3.tgz#2a0a6d3581478005d0f2abf5b3995a8409165067"
-  integrity sha512-NNDOUDZWCi1fqEicSWbnk8lOOoqY+vwekB8twUiknEyyvDDKypWEcUolq6SNg9Kd6HMqnX80K8U8nqzmDRC1QQ==
+danger@^11.2.4:
+  version "11.2.4"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-11.2.4.tgz#b11e2803350cd7e4695b44c525968d4d39ae5810"
+  integrity sha512-9tSrDm79+vWijG3zLXp6DQFmUqFLXg8Fl3jZmPhymlfsmAX0NaAc4HbC81pTOsSgOdiJfJHWpDwKu7fsTktFOQ==
   dependencies:
     "@gitbeaker/node" "^21.3.0"
     "@octokit/rest" "^18.12.0"
