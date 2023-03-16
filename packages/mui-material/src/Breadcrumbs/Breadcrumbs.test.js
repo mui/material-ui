@@ -100,35 +100,37 @@ describe('<Breadcrumbs />', () => {
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
   });
 
-  it('should show custom collapsed icon', () => {
-    const { getByRole } = render(
-      <Breadcrumbs
-        slots={{
-          Collapsed: FirstPageIcon,
-        }}
-        maxItems={2}
-      >
-        <span>first</span>
-        <span>second</span>
-        <span>third</span>
-      </Breadcrumbs>,
-    );
+  describe('prop: slots and slotProps', () => {
+    it('should show custom collapsed icon', () => {
+      render(
+        <Breadcrumbs
+          slots={{
+            CollapsedIcon: FirstPageIcon,
+          }}
+          maxItems={2}
+        >
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+        </Breadcrumbs>,
+      );
 
-    expect(getByRole('button')).to.have.descendants('[data-testid="FirstPageIcon"]');
-  });
+      screen.getByTestId('FirstPageIcon');
+    });
 
-  it('should apply componentProps to collapsed icon', () => {
-    const { getAllByTestId } = render(
-      <Breadcrumbs
-        maxItems={2}
-        slotProps={{ collapsed: { 'data-testid': 'collapsed-test-label' } }}
-      >
-        <span>first</span>
-        <span>second</span>
-        <span>third</span>
-      </Breadcrumbs>,
-    );
+    it('should apply slotProps to collapsed icon', () => {
+      render(
+        <Breadcrumbs
+          maxItems={2}
+          slotProps={{ collapsedIcon: { 'data-testid': 'collapsedIcon-test-label' } }}
+        >
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+        </Breadcrumbs>,
+      );
 
-    expect(getAllByTestId('collapsed-test-label')).to.have.lengthOf(1);
+      screen.getByTestId('collapsedIcon-test-label');
+    });
   });
 });
