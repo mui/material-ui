@@ -536,6 +536,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             ownerState={ownerState}
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
+            aria-readonly={readOnly}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             defaultValue={defaultValue}

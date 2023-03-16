@@ -139,6 +139,16 @@ describe('<InputBase />', () => {
       expect(input).to.have.class(classes.readOnly);
       expect(input).to.have.property('readOnly');
     });
+    it('should set aria-readonly to true when readOnly is true', () => {
+      const { getByRole } = render(<InputBase readOnly />);
+      const input = getByRole('textbox');
+      expect(input).to.have.attribute('aria-readonly', 'true');
+    });
+    it('should set aria-readonly to false when readOnly is false', () => {
+      const { getByRole } = render(<InputBase readOnly={false} />);
+      const input = getByRole('textbox');
+      expect(input).to.have.attribute('aria-readonly', 'false');
+    });
   });
 
   it('should fire event callbacks', () => {
