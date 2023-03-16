@@ -11,7 +11,7 @@ import {
 import MenuUnstyled, { menuUnstyledClasses } from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 
-describe('MenuUnstyled', () => {
+describe('<MenuUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
