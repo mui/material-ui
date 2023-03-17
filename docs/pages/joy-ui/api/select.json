@@ -53,10 +53,22 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'div'",
+      "class": ".MuiSelect-root"
+    },
+    {
       "name": "button",
       "description": "The component used to render the button.",
       "default": "'button'",
       "class": ".MuiSelect-button"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiSelect-startDecorator"
     },
     {
       "name": "endDecorator",
@@ -75,18 +87,6 @@
       "description": "The component used to render the listbox.",
       "default": "'ul'",
       "class": ".MuiSelect-listbox"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'div'",
-      "class": ".MuiSelect-root"
-    },
-    {
-      "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
-      "default": "'span'",
-      "class": ".MuiSelect-startDecorator"
     }
   ],
   "spread": false,

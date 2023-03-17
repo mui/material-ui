@@ -12,8 +12,8 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "fallback": "The component used to render the fallback.",
+    "root": "The component used to render the root.",
     "img": "The component used to render the img.",
-    "root": "The component used to render the root."
+    "fallback": "The component used to render the fallback."
   }
 }

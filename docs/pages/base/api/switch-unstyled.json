@@ -26,16 +26,16 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "input",
-      "description": "The component used to render the input.",
-      "default": "'input'",
-      "class": ".MuiSwitch-input"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'span'",
       "class": ".MuiSwitch-root"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiSwitch-input"
     },
     {
       "name": "thumb",

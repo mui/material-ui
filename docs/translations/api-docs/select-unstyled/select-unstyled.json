@@ -21,8 +21,8 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
+    "root": "The component used to render the root.",
     "listbox": "The component used to render the listbox.",
-    "popper": "The component used to render the popper.",
-    "root": "The component used to render the root."
+    "popper": "The component used to render the popper."
   }
 }

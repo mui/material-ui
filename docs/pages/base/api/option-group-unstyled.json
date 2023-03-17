@@ -22,6 +22,12 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'li'",
+      "class": ".MuiOptionGroup-root"
+    },
+    {
       "name": "label",
       "description": "The component used to render the label.",
       "default": "'span'",
@@ -32,12 +38,6 @@
       "description": "The component used to render the list.",
       "default": "'ul'",
       "class": ".MuiOptionGroup-list"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'li'",
-      "class": ".MuiOptionGroup-root"
     }
   ],
   "spread": true,

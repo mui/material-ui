@@ -50,16 +50,22 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "action",
-      "description": "The component used to render the action.",
+      "name": "root",
+      "description": "The component used to render the root.",
       "default": "'span'",
-      "class": ".MuiCheckbox-action"
+      "class": ".MuiCheckbox-root"
     },
     {
       "name": "checkbox",
       "description": "The component used to render the checkbox.",
       "default": "'span'",
       "class": ".MuiCheckbox-checkbox"
+    },
+    {
+      "name": "action",
+      "description": "The component used to render the action.",
+      "default": "'span'",
+      "class": ".MuiCheckbox-action"
     },
     {
       "name": "input",
@@ -72,12 +78,6 @@
       "description": "The component used to render the label.",
       "default": "'label'",
       "class": ".MuiCheckbox-label"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'span'",
-      "class": ".MuiCheckbox-root"
     }
   ],
   "spread": false,

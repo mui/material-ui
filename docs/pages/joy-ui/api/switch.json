@@ -40,34 +40,10 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "action",
-      "description": "The component used to render the action.",
-      "default": "'div'",
-      "class": ".MuiSwitch-action"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiSwitch-endDecorator"
-    },
-    {
-      "name": "input",
-      "description": "The component used to render the input.",
-      "default": "'input'",
-      "class": ".MuiSwitch-input"
-    },
-    {
       "name": "root",
       "description": "The component used to render the root.",
       "default": "'div'",
       "class": ".MuiSwitch-root"
-    },
-    {
-      "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
-      "default": "'span'",
-      "class": ".MuiSwitch-startDecorator"
     },
     {
       "name": "thumb",
@@ -76,10 +52,34 @@
       "class": ".MuiSwitch-thumb"
     },
     {
+      "name": "action",
+      "description": "The component used to render the action.",
+      "default": "'div'",
+      "class": ".MuiSwitch-action"
+    },
+    {
+      "name": "input",
+      "description": "The component used to render the input.",
+      "default": "'input'",
+      "class": ".MuiSwitch-input"
+    },
+    {
       "name": "track",
       "description": "The component used to render the track.",
       "default": "'span'",
       "class": ".MuiSwitch-track"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component used to render the start decorator.",
+      "default": "'span'",
+      "class": ".MuiSwitch-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component used to render the end decorator.",
+      "default": "'span'",
+      "class": ".MuiSwitch-endDecorator"
     }
   ],
   "spread": true,

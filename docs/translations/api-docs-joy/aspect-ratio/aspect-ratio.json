@@ -12,7 +12,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "content": "The component used to render the content.",
-    "root": "The component used to render the root."
+    "root": "The component used to render the root.",
+    "content": "The component used to render the content."
   }
 }

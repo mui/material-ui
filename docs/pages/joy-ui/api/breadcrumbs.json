@@ -20,10 +20,10 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "li",
-      "description": "The component used to render the li.",
-      "default": "'li'",
-      "class": ".MuiBreadcrumbs-li"
+      "name": "root",
+      "description": "The component used to render the root.",
+      "default": "'nav'",
+      "class": ".MuiBreadcrumbs-root"
     },
     {
       "name": "ol",
@@ -32,10 +32,10 @@
       "class": ".MuiBreadcrumbs-ol"
     },
     {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'nav'",
-      "class": ".MuiBreadcrumbs-root"
+      "name": "li",
+      "description": "The component used to render the li.",
+      "default": "'li'",
+      "class": ".MuiBreadcrumbs-li"
     },
     {
       "name": "separator",
