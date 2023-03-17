@@ -92,27 +92,20 @@ exports.handler = async (event) => {
           });
           const service = sheets({ version: 'v4', auth: googleAuth });
 
-          service.spreadsheets.values
-            .append({
-              spreadsheetId: spreadSheetsIds.forLater,
-              range: 'Sheet1!A:D',
-              valueInputOption: 'USER_ENTERED',
-              resource: {
-                values: [[username, quote, links[0] ?? '', links[1] ?? '']],
-              },
-            })
-            .then(() => {
-              slackClient.chat.postMessage({
-                channel: channelId,
-                thread_ts: message_ts,
-                as_user: true,
-                text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
-              });
-            })
-            .catch((error) => {
-              // eslint-disable-next-line no-console
-              console.log(error);
-            });
+          await service.spreadsheets.values.append({
+            spreadsheetId: spreadSheetsIds.forLater,
+            range: 'Sheet1!A:D',
+            valueInputOption: 'USER_ENTERED',
+            resource: {
+              values: [[username, quote, links[0] ?? '', links[1] ?? '']],
+            },
+          });
+          await slackClient.chat.postMessage({
+            channel: channelId,
+            thread_ts: message_ts,
+            as_user: true,
+            text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
+          });
         }
 
         break;
