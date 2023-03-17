@@ -45,7 +45,7 @@ export interface MenuItemUnstyledOwnProps {
 
 export interface MenuItemUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'li'
    */
   root?: React.ElementType;

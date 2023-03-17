@@ -171,15 +171,20 @@ export default function ApiPage(props) {
   } = pageContent;
 
   const isJoyComponent = filename.includes('mui-joy');
+  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#default-props'
     : '/material-ui/customization/theme-components/#default-props';
   const styleOverridesLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#style-overrides'
     : '/material-ui/customization/theme-components/#global-style-overrides';
-  const slotGuideLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#component-identifier'
-    : '';
+  let slotGuideLink = '';
+  if (isJoyComponent) {
+    slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+  } else if (isBaseComponent) {
+    slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+  }
+
   const {
     componentDescription,
     componentDescriptionToc = [],

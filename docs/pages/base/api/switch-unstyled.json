@@ -27,25 +27,25 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'span'",
       "class": ".MuiSwitch-root"
     },
     {
       "name": "input",
-      "description": "The component used to render the input.",
+      "description": "The component that renders the input.",
       "default": "'input'",
       "class": ".MuiSwitch-input"
     },
     {
       "name": "thumb",
-      "description": "The component used to render the thumb.",
+      "description": "The component that renders the thumb.",
       "default": "'span'",
       "class": ".MuiSwitch-thumb"
     },
     {
       "name": "track",
-      "description": "The component used to render the track.",
+      "description": "The component that renders the track.",
       "default": "'span'",
       "class": ".MuiSwitch-track"
     }

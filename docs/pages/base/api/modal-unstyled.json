@@ -36,13 +36,13 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiModal-root"
     },
     {
       "name": "backdrop",
-      "description": "The component used to render the backdrop.",
+      "description": "The component that renders the backdrop.",
       "class": ".MuiModal-backdrop"
     }
   ],

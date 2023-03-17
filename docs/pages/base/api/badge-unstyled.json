@@ -23,13 +23,13 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'span'",
       "class": ".MuiBadge-root"
     },
     {
       "name": "badge",
-      "description": "The component used to render the badge.",
+      "description": "The component that renders the badge.",
       "default": "'span'",
       "class": ".MuiBadge-badge"
     }
