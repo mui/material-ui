@@ -1000,9 +1000,10 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleInputMouseDown = (event) => {
-    if (inputValue === '' || !open) {
-      handlePopupIndicator(event);
+  // Prevent input blur when interacting with the combobox
+  const handleMouseDown = (event) => {
+    if (event.target.getAttribute('id') !== id) {
+      event.preventDefault();
     }
   };
 
@@ -1021,10 +1022,9 @@ export default function useAutocomplete(props) {
     firstFocus.current = false;
   };
 
-  // Prevent input blur when interacting with the combobox
-  const handleMouseDown = (event) => {
-    if (event.target.getAttribute('id') !== id) {
-      event.preventDefault();
+  const handleInputMouseDown = (event) => {
+    if (inputValue === '' || !open) {
+      handlePopupIndicator(event);
     }
   };
 
