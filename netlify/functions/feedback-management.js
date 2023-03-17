@@ -3,7 +3,7 @@ const querystring = require('node:querystring');
 const { JWT } = require('google-auth-library');
 const { sheets } = require('@googleapis/sheets');
 
-const slackChannels = {
+const slackChannelIds = {
   'mui-x': 'C04U3R2V9UK',
   'mui-core': 'C041SDSF32L',
 };
@@ -47,8 +47,9 @@ exports.handler = async (event) => {
             }`,
           ].join('\n\n');
 
+          const isDocsX = currentLocationURL.includes('/x/');
           await slackClient.chat.postMessage({
-            channel: slackChannels['mui-x'],
+            channel: slackChannelIds[isDocsX ? 'mui-x' : 'mui-core'],
             text: simpleSlackMessage,
             as_user: true,
           });
