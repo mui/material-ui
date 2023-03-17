@@ -17,7 +17,7 @@ function readOutputFixtureSync(fixture, file) {
 
 pluginTester({
   plugin,
-  filename: __filename,
+  filepath: __filename,
   tests: [
     {
       title: 'literal',
