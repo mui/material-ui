@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import createMixins from '@mui/material/styles/createMixins';
+import createTypography from '@mui/material/styles/createTypography';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import styleFunctionSx from './styleFunctionSx';
 
@@ -417,6 +418,27 @@ describe('styleFunctionSx', () => {
           sx: [(t) => t.typography.unknown],
         }),
       ).not.to.throw();
+    });
+  });
+
+  it('resolves inherit typography properties', () => {
+    const result = styleFunctionSx({
+      theme: { typography: createTypography({}, {}) },
+      sx: {
+        fontFamily: 'inherit',
+        fontWeight: 'inherit',
+        fontSize: 'inherit',
+        lineHeight: 'inherit',
+        letterSpacing: 'inherit',
+      },
+    });
+
+    expect(result).deep.equal({
+      fontFamily: 'inherit',
+      fontWeight: 'inherit',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
     });
   });
 });

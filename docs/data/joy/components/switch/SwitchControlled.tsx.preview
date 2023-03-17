@@ -1,0 +1,4 @@
+<Switch
+  checked={checked}
+  onChange={(event) => setChecked(event.target.checked)}
+/>

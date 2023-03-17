@@ -45,6 +45,7 @@ export { default as withTheme } from './withTheme';
 export * from './CssVarsProvider';
 export { default as experimental_extendTheme } from './experimental_extendTheme';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
