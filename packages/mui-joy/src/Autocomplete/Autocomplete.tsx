@@ -372,6 +372,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     unstable_isActiveElementInListbox: defaultIsActiveElementInListbox,
   });
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+  const { onClick: handleRootOnClick } = getRootProps();
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
@@ -439,6 +441,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps: other,
     ownerState,
     getSlotProps: getRootProps,
+    additionalProps: {
+      onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (handleRootOnClick) {
+          handleRootOnClick(event);
+        }
+        if (event.currentTarget === event.target && handleInputMouseDown) {
+          handleInputMouseDown(event as React.MouseEvent<HTMLInputElement, MouseEvent>);
+        }
+      },
+    },
   });
 
   const [SlotWrapper, wrapperProps] = useSlot('wrapper', {

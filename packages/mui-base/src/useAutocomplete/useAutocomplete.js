@@ -1007,7 +1007,7 @@ export default function useAutocomplete(props) {
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = (event) => {
+  const handleClick = () => {
     inputRef.current.focus();
 
     if (
@@ -1019,10 +1019,6 @@ export default function useAutocomplete(props) {
     }
 
     firstFocus.current = false;
-
-    if (event.currentTarget === event.target) {
-      handleInputMouseDown();
-    }
   };
 
   // Prevent input blur when interacting with the combobox

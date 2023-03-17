@@ -967,17 +967,20 @@ describe('<Autocomplete />', () => {
       });
     });
 
-    it('should open popup when clicked on borders of root element', () => {
+    it('should open popup when clicked on borders of input element', () => {
       const handleOpen = spy();
+      const ref = React.createRef();
       render(
         <Autocomplete
           onOpen={handleOpen}
           options={['one']}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => (
+            <TextField {...params} InputProps={{ ...params.InputProps, ref }} />
+          )}
         />,
       );
-      const root = document.querySelector(`.${classes.root}`);
-      fireEvent.click(root);
+
+      fireEvent.click(ref.current);
       expect(handleOpen.callCount).to.equal(1);
     });
 

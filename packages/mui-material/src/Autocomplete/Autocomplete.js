@@ -469,6 +469,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
@@ -571,6 +573,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
+            onClick: (event) => {
+              if (event.target === event.currentTarget) {
+                handleInputMouseDown();
+              }
+            },
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
