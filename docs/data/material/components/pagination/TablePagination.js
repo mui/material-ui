@@ -21,6 +21,7 @@ export default function TablePaginationDemo() {
       page={page}
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
+      rowsPerPageOptions={[10, 25, 50, 100]}
       onRowsPerPageChange={handleChangeRowsPerPage}
     />
   );
