@@ -10,21 +10,29 @@ const createFontStyleFunction = (prop) => {
   return (props) => {
     if (props[prop] !== undefined && props[prop] !== null) {
       const styleFromPropValue = (propValue) => {
-        let value =
-          props.theme.typography?.[
-            `${prop}${
-              props[prop] === 'default' || props[prop] === prop
-                ? ''
-                : capitalize(props[prop]?.toString())
-            }`
-          ];
+        // fetch the value directly defined in the theme, like fontWeightLight
+        let value = props.theme.typography?.[propValue];
 
-        if (!value) {
-          value = props.theme.typography?.[propValue]?.[prop];
+        if (typeof value === 'object') {
+          // typography variant was pulled, but these props can't be an object
+          value = null;
         }
 
         if (!value) {
-          value = propValue;
+          // fetch fontWeightLight when the value is 'light'
+          value =
+            props.theme.typography?.[
+              `${prop}${
+                props[prop] === 'default' || props[prop] === prop
+                  ? ''
+                  : capitalize(props[prop]?.toString())
+              }`
+            ];
+        }
+
+        if (!value) {
+          // fetch the value from the typography variant or default to the propValue
+          value = props.theme.typography?.[propValue]?.[prop] ?? propValue;
         }
 
         return {
