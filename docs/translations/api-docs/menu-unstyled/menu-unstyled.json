@@ -12,7 +12,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "listbox": "The component used to render the listbox."
+    "root": "The component that renders the root.",
+    "listbox": "The component that renders the listbox."
   }
 }

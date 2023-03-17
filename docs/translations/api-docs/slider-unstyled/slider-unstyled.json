@@ -29,13 +29,13 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "track": "The component used to render the track.",
-    "rail": "The component used to render the rail.",
-    "thumb": "The component used to render the thumb.",
-    "mark": "The component used to render the mark.",
-    "markLabel": "The component used to render the mark label.",
-    "valueLabel": "The component used to render the value label.",
-    "input": "The component used to render the input."
+    "root": "The component that renders the root.",
+    "track": "The component that renders the track.",
+    "rail": "The component that renders the rail.",
+    "thumb": "The component that renders the thumb.",
+    "mark": "The component that renders the mark.",
+    "markLabel": "The component that renders the mark label.",
+    "valueLabel": "The component that renders the value label.",
+    "input": "The component that renders the input."
   }
 }

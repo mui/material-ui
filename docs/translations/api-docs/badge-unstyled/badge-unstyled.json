@@ -12,7 +12,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "badge": "The component used to render the badge."
+    "root": "The component that renders the root.",
+    "badge": "The component that renders the badge."
   }
 }
