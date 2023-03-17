@@ -4,7 +4,7 @@ import { useTabContext } from '../TabsUnstyled';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
 import { useCompoundItem } from '../utils/useCompound';
-import { useListItem } from '../useListbox';
+import { useListItem } from '../useList';
 import useButton from '../useButton';
 import { TabMetadata } from '../useTabs';
 /**
@@ -25,9 +25,10 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
   const { value: selectedValue, idPrefix = '', selectionFollowsFocus } = useTabContext();
 
   const {
-    getItemProps: getTabProps,
-    getItemState: getTabState,
+    getRootProps: getTabProps,
     ref: listItemRefHandler,
+    highlighted,
+    selected,
   } = useListItem({
     item: value,
   });
@@ -52,8 +53,6 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     value,
     tabMetadata,
   );
-
-  const { selected, highlighted } = getTabState();
 
   const getRootProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,

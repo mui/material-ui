@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
 import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
-import useCompoundParent from '../utils/useCompound';
+import { useCompoundParent } from '../utils/useCompound';
 
 export interface TabMetadata {
   disabled: boolean;
@@ -45,7 +45,7 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
     [onChange, setValue],
   );
 
-  const { subitems: tabPanels, ...compoundComponentContextValue } = useCompoundParent<
+  const { subitems: tabPanels, contextValue: compoundComponentContextValue } = useCompoundParent<
     string | number,
     string
   >();

@@ -34,7 +34,9 @@ export interface UseListItemReturnValue {
    * @param otherHandlers event handlers for the root slot
    * @returns props that should be spread on the root slot
    */
-  getRootProps: <TOther extends EventHandlers = {}>() => UseListItemRootSlotProps<TOther>;
+  getRootProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseListItemRootSlotProps<TOther>;
   /**
    * If `true`, the current item is highlighted.
    */

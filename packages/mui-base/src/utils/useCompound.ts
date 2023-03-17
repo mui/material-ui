@@ -36,6 +36,8 @@ export interface UseCompoundParentReturnValue<Key, Subitem> {
  * directly inside the parent component. They can be anywhere in the tree (and even rendered by other components).
  *
  * The downside is that this doesn't work with SSR as it relies on the useEffect hook.
+ *
+ * @ignore - internal hook.
  */
 export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<Key, Subitem> {
   const [subitems, setSubitems] = React.useState(new Map<Key, Subitem>());
@@ -90,6 +92,8 @@ export interface UseCompoundItemReturnValue {
  *
  * @param id A unique key for the child component
  * @param itemMetadata Arbitrary metadata to pass to the parent component. This should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
+ *
+ * @ignore - internal hook.
  */
 export function useCompoundItem<Key, Subitem>(
   id: Key,

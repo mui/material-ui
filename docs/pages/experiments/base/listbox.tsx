@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import clsx from 'clsx';
-import useListbox, { ListContext, useListItem } from '@mui/base/useListbox';
+import useList, { ListContext, useListItem } from '@mui/base/useList';
 
 const styles = `
   body {
@@ -93,14 +93,13 @@ const Item = React.forwardRef(function Item(
   ref: React.Ref<HTMLElement>,
 ) {
   const item = props.value;
-  const { getItemProps, getItemState } = useListItem({ item, ref });
+  const { getRootProps, selected, highlighted } = useListItem({ item, ref });
 
-  const itemProps = getItemProps();
-  const state = getItemState();
+  const itemProps = getRootProps();
 
   const classes = clsx('item', {
-    highlighted: state.highlighted,
-    selected: state.selected,
+    highlighted,
+    selected,
   });
 
   return (
@@ -132,9 +131,9 @@ function List() {
   }
 
   const itemRefs = React.useRef(new Map<number, HTMLElement>());
-  const listbox = useListbox({
-    options: items,
-    getOptionElement: (item) => itemRefs.current.get(item) || null,
+  const listbox = useList({
+    items,
+    getItemDomElement: (item) => itemRefs.current.get(item) || null,
     orientation,
     focusManagement,
     selectionLimit: 1,

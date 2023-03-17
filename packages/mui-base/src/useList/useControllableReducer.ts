@@ -1,13 +1,12 @@
 import * as React from 'react';
 import {
-  ActionTypes,
-  ListboxAction,
   ListReducer,
   ListReducerAction,
   ListState,
   UseListParametersWithDefaults,
-} from './useListbox.types';
+} from './useList.types';
 import areArraysEqual from '../utils/areArraysEqual';
+import { ActionTypes, ListAction } from './actions.types';
 
 /**
  * Gets the current state. If the selectedValue is controlled,
@@ -52,7 +51,7 @@ function useStateChangeDetection<TOption>(
   nextState: ListState<TOption>,
   internalPreviousState: ListState<TOption>,
   propsRef: React.RefObject<UseListParametersWithDefaults<TOption>>,
-  lastActionRef: React.MutableRefObject<ListboxAction<TOption> | null>,
+  lastActionRef: React.MutableRefObject<ListAction<TOption> | null>,
 ) {
   React.useEffect(() => {
     if (!propsRef.current || lastActionRef.current === null) {
@@ -69,12 +68,12 @@ function useStateChangeDetection<TOption>(
     }
 
     const previousState = getControlledState(internalPreviousState, propsRef.current);
-    const { optionComparer, onChange } = propsRef.current;
+    const { itemComparer, onChange } = propsRef.current;
 
     const previousSelectedValues = previousState?.selectedValues ?? [];
     const nextSelectedValues = nextState.selectedValues as TOption[];
 
-    if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
+    if (!areArraysEqual(nextSelectedValues, previousSelectedValues, itemComparer)) {
       onChange?.(lastActionRef.current.event, nextSelectedValues, lastActionRef.current.type);
     }
 
@@ -83,7 +82,7 @@ function useStateChangeDetection<TOption>(
       !areOptionsEqual(
         internalPreviousState.highlightedValue,
         nextState.highlightedValue,
-        propsRef.current.optionComparer,
+        propsRef.current.itemComparer,
       )
     ) {
       propsRef.current?.onHighlightChange?.(
@@ -110,10 +109,10 @@ export default function useControllableReducer<TOption>(
   internalReducer: ListReducer<TOption>,
   externalReducer: ListReducer<TOption> | undefined,
   props: React.RefObject<UseListParametersWithDefaults<TOption>>,
-): [ListState<TOption>, (action: ListboxAction<TOption>) => void] {
+): [ListState<TOption>, (action: ListAction<TOption>) => void] {
   const { value, defaultValue } = props.current!;
 
-  const actionRef = React.useRef<ListboxAction<TOption> | null>(null);
+  const actionRef = React.useRef<ListAction<TOption> | null>(null);
 
   const initialSelectedValues = (value === undefined ? defaultValue : value) ?? [];
 
@@ -138,7 +137,7 @@ export default function useControllableReducer<TOption>(
   const [nextState, dispatch] = React.useReducer(combinedReducer, initialState);
 
   const dispatchWithProps = React.useCallback(
-    (action: ListboxAction<TOption>) => {
+    (action: ListAction<TOption>) => {
       dispatch({
         props: props.current,
         ...action,

@@ -70,7 +70,7 @@ export interface UseButtonReturnValue {
    */
   active: boolean;
   /**
-   * A ref to the component's root element.
+   * A ref to the component's root DOM element.
    */
   ref: ((instance: unknown) => void) | null;
 }

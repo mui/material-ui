@@ -3,7 +3,7 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
 import { ActionTypes, ListAction } from './actions.types';
-import { ListState, UseListParametersWithDefaults } from './useListbox.types';
+import { ListState, UseListParametersWithDefaults } from './useList.types';
 import useControllableReducer from './useControllableReducer';
 
 describe('useControllableReducer', () => {

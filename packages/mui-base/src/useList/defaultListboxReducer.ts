@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ActionTypes } from './actions.types';
-import { ListState, UseListParametersWithDefaults, ListReducerAction } from './useListbox.types';
+import { ListState, UseListParametersWithDefaults, ListReducerAction } from './useList.types';
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 

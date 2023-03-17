@@ -9,12 +9,12 @@ import {
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useListbox, {
+import useList, {
   ActionTypes,
   defaultListboxReducer,
-  ListboxReducer,
-  UseListboxParameters,
-} from '../useListbox';
+  ListReducer,
+  UseListParameters,
+} from '../useList';
 
 export const TabsListContext = React.createContext<TabsListContextValue | null>(null);
 
@@ -60,28 +60,28 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
 
   const isRtl = direction === 'rtl';
 
-  let listOrientation: UseListboxParameters<any>['orientation'];
+  let listOrientation: UseListParameters<any>['orientation'];
   if (orientation === 'vertical') {
     listOrientation = 'vertical';
   } else {
     listOrientation = isRtl ? 'horizontal-rtl' : 'horizontal-ltr';
   }
 
-  const stateReducer: ListboxReducer<string | number> = React.useCallback(
+  const stateReducer: ListReducer<string | number> = React.useCallback(
     (state, action) => {
       const newState = defaultListboxReducer(state, action);
 
-      if (action.type === ActionTypes.optionsChange) {
+      if (action.type === ActionTypes.itemsChange) {
         return {
           ...newState,
           highlightedValue: newState.selectedValues[0] ?? null,
         };
       }
 
-      if (action.type === ActionTypes.setValue && action.value != null) {
+      if (action.type === ActionTypes.setValue && action.values != null) {
         return {
           ...newState,
-          highlightedValue: action.value[0],
+          highlightedValue: action.values[0],
         };
       }
 
@@ -107,14 +107,14 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
 
   const handleChange = React.useCallback(
     (
-      e:
+      event:
         | React.FocusEvent<Element, Element>
         | React.KeyboardEvent<Element>
         | React.MouseEvent<Element, MouseEvent>
         | null,
       newValue: (string | number)[],
     ) => {
-      onSelected(e, newValue[0] ?? null);
+      onSelected(event, newValue[0] ?? null);
     },
     [onSelected],
   );
@@ -124,14 +124,14 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     selectedOptions,
     highlightedOption,
     contextValue: listContextValue,
-  } = useListbox({
+  } = useList({
     disabledItemsFocusable: !selectionFollowsFocus,
     focusManagement: 'DOM',
-    getOptionElement: getTabElement,
-    isOptionDisabled: (option) => subitems.get(option)?.disabled ?? false,
-    listboxRef: externalRef,
+    getItemDomElement: getTabElement,
+    isItemDisabled: (item) => subitems.get(item)?.disabled ?? false,
+    items: subitemKeys,
+    listRef: externalRef,
     onChange: handleChange,
-    options: subitemKeys,
     orientation: listOrientation,
     selectionLimit: 1,
     stateReducer,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OptionState, UseListboxOptionSlotProps } from '../useListbox';
+import { ListItemState, UseListItemRootSlotProps } from '../useList';
 import { EventHandlers } from '../utils';
 import { TabsListProviderValue } from './TabsListProvider';
 
@@ -7,8 +7,8 @@ export interface TabsListContextValue {
   getTabProps: <TOther extends EventHandlers = {}>(
     tabValue: string | number,
     otherHandlers?: TOther,
-  ) => UseListboxOptionSlotProps;
-  getTabState: (tabValue: string | number) => OptionState;
+  ) => UseListItemRootSlotProps;
+  getTabState: (tabValue: string | number) => ListItemState;
 }
 
 export interface UseTabsListParameters {

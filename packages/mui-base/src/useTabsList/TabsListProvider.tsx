@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListContext, ListContextValue } from '../useListbox';
+import { ListContext, ListContextValue } from '../useList';
 import { TabMetadata } from '../useTabs/useTabs';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 
@@ -17,9 +17,8 @@ export interface TabsListProviderProps {
 export default function TabsListProvider(props: TabsListProviderProps) {
   const { value, children } = props;
   const {
-    focusManagement,
+    dispatch,
     getItemIndex,
-    getItemProps,
     getItemState,
     registerHighlightChangeHandler,
     registerSelectionChangeHandler,
@@ -30,17 +29,15 @@ export default function TabsListProvider(props: TabsListProviderProps) {
 
   const listContextValue: ListContextValue<string | number> = React.useMemo(
     () => ({
-      focusManagement,
-      getItemProps,
+      dispatch,
       getItemState,
       getItemIndex,
       registerHighlightChangeHandler,
       registerSelectionChangeHandler,
     }),
     [
-      focusManagement,
+      dispatch,
       getItemIndex,
-      getItemProps,
       getItemState,
       registerHighlightChangeHandler,
       registerSelectionChangeHandler,

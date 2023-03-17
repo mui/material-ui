@@ -5,7 +5,7 @@ import {
   UseListParametersWithDefaults,
   ListItemState,
   UseListRootSlotProps,
-} from './useListbox.types';
+} from './useList.types';
 import defaultReducer from './defaultListboxReducer';
 import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
@@ -35,14 +35,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /**
- * The useListbox is a lower-level utility that is used to build list-like components.
+ * The useList is a lower-level utility that is used to build list-like components.
  * It's used to manage the state of the list and its items.
  *
  * Supports highlighting a single item and selecting an arbitrary number of items.
  *
  * @ignore - internal hook.
  */
-export default function useListbox<ItemValue>(params: UseListParameters<ItemValue>) {
+export default function useList<ItemValue>(params: UseListParameters<ItemValue>) {
   const {
     disabledItemsFocusable = false,
     disableListWrap = false,
@@ -50,7 +50,7 @@ export default function useListbox<ItemValue>(params: UseListParameters<ItemValu
     getItemDomElement,
     id: idProp,
     isItemDisabled = defaultIsItemDisabled,
-    listRef: externalListboxRef,
+    listRef: externalListRef,
     onHighlightChange,
     itemComparer = defaultItemComparer,
     items,
@@ -70,8 +70,8 @@ export default function useListbox<ItemValue>(params: UseListParameters<ItemValu
 
   const itemIdGenerator = params.itemIdGenerator ?? defaultIdGenerator;
 
-  const listboxRef = React.useRef<HTMLUListElement>(null);
-  const handleRef = useForkRef(externalListboxRef, listboxRef);
+  const listRef = React.useRef<HTMLUListElement>(null);
+  const handleRef = useForkRef(externalListRef, listRef);
 
   const handleHighlightChange = React.useCallback(
     (
@@ -217,7 +217,7 @@ export default function useListbox<ItemValue>(params: UseListParameters<ItemValu
 
       if (focusManagement === 'activeDescendant') {
         // When the child element is focused using the activeDescendant attribute,
-        // the listbox handles keyboard events on its behalf.
+        // the list handles keyboard events on its behalf.
         // We have to `preventDefault()` is this case to prevent the browser from
         // scrolling the view when space is pressed or submitting forms when enter is pressed.
         keysToPreventDefault.push(' ', 'Enter');
@@ -243,8 +243,8 @@ export default function useListbox<ItemValue>(params: UseListParameters<ItemValu
         return;
       }
 
-      if (listboxRef.current?.contains(event.relatedTarget)) {
-        // focus remains within the listbox
+      if (listRef.current?.contains(event.relatedTarget)) {
+        // focus remains within the list
         return;
       }
 
@@ -266,6 +266,7 @@ export default function useListbox<ItemValue>(params: UseListParameters<ItemValu
       id,
       onBlur: createHandleBlur(otherHandlers),
       onKeyDown: createHandleKeyDown(otherHandlers),
+      // TODO: role should be set by a downstream component
       role: 'listbox',
       tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,

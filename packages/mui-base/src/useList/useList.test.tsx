@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
 import { createRenderer, createEvent, fireEvent } from 'test/utils';
-import useListbox, { ListContext } from './useListbox';
+import useList, { ListContext } from './useList';
 import useListItem from './useListItem';
 
 describe('useListbox', () => {
@@ -10,7 +10,7 @@ describe('useListbox', () => {
   describe('prop: id', () => {
     it('propagates it to the root element', () => {
       function Listbox() {
-        const { getRootProps } = useListbox({ items: [], id: 'test-id' });
+        const { getRootProps } = useList({ items: [], id: 'test-id' });
         return <ul {...getRootProps()} />;
       }
       const { getByRole } = render(<Listbox />);
@@ -29,7 +29,7 @@ describe('useListbox', () => {
       }
 
       function Listbox() {
-        const { getRootProps, contextValue } = useListbox({ items, id: 'test-id' });
+        const { getRootProps, contextValue } = useList({ items, id: 'test-id' });
         return (
           <ListContext.Provider value={contextValue}>
             <ul {...getRootProps()}>
@@ -51,7 +51,7 @@ describe('useListbox', () => {
 
     it('generates a unique id if not provided explicitly', () => {
       function Listbox() {
-        const { getRootProps } = useListbox({ items: [] });
+        const { getRootProps } = useList({ items: [] });
         return <ul {...getRootProps()} />;
       }
 
@@ -71,7 +71,7 @@ describe('useListbox', () => {
     ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown', 'Enter', ' '].forEach((key) =>
       it(`prevents default behavior when ${key} is pressed in activeDescendant focus management mode`, () => {
         function Listbox() {
-          const { getRootProps } = useListbox({ items: [], focusManagement: 'activeDescendant' });
+          const { getRootProps } = useList({ items: [], focusManagement: 'activeDescendant' });
           return <div {...getRootProps()} />;
         }
 
@@ -93,7 +93,7 @@ describe('useListbox', () => {
     ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'].forEach((key) =>
       it(`prevents default behavior when ${key} is pressed in DOM focus management mode`, () => {
         function Listbox() {
-          const { getRootProps } = useListbox({ items: [], focusManagement: 'DOM' });
+          const { getRootProps } = useList({ items: [], focusManagement: 'DOM' });
           return <div {...getRootProps()} />;
         }
 
@@ -115,7 +115,7 @@ describe('useListbox', () => {
     ['Enter', ' '].forEach((key) =>
       it(`does not prevent default behavior when ${key} is pressed in DOM focus management mode`, () => {
         function Listbox() {
-          const { getRootProps } = useListbox({ items: [], focusManagement: 'DOM' });
+          const { getRootProps } = useList({ items: [], focusManagement: 'DOM' });
           return <div {...getRootProps()} />;
         }
 

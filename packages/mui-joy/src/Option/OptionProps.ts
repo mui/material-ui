@@ -5,7 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { ListItemState } from '@mui/base/useListbox';
+import { ListItemState } from '@mui/base/useList';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type OptionSlot = 'root';

@@ -5,7 +5,7 @@ import {
 } from '@mui/utils';
 import { EventHandlers } from '../utils/types';
 import useForcedRerendering from '../utils/useForcedRerendering';
-import { ListContext } from './useListbox';
+import { ListContext } from './useList';
 import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
 import { ActionTypes } from './actions.types';
 
