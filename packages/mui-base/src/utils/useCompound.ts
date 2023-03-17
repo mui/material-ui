@@ -90,13 +90,13 @@ export interface UseCompoundItemReturnValue {
 /**
  * Registers a child component with the parent component.
  *
- * @param id A unique key for the child component
+ * @param id A unique key for the child component. If the `id` is `undefined`, the registration logic will not run (this can sometimes be the case during SSR).
  * @param itemMetadata Arbitrary metadata to pass to the parent component. This should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
  *
  * @ignore - internal hook.
  */
 export function useCompoundItem<Key, Subitem>(
-  id: Key,
+  id: Key | undefined,
   itemMetadata: Subitem,
 ): UseCompoundItemReturnValue {
   const context = React.useContext(CompoundComponentContext) as CompoundComponentContextValue<
@@ -111,13 +111,17 @@ export function useCompoundItem<Key, Subitem>(
   const { registerItem, unregisterItem } = context;
 
   React.useEffect(() => {
+    if (id === undefined) {
+      return () => {};
+    }
+
     registerItem(id, itemMetadata);
 
     return () => unregisterItem(id);
   }, [id, registerItem, unregisterItem, itemMetadata]);
 
   return {
-    index: context.getItemIndex(id),
+    index: id !== undefined ? context.getItemIndex(id) : -1,
     totalItemCount: context.totalSubitemCount,
   };
 }

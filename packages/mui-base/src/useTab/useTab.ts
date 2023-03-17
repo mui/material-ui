@@ -71,6 +71,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
       ...resolvedButtonProps,
       role: 'tab',
       'aria-controls': 'not-implemented-yet',
+      'aria-selected': selected,
       id: tabId,
       ref: handleRef,
     };

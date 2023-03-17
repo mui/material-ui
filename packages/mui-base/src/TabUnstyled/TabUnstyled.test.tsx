@@ -9,25 +9,16 @@ describe('<TabUnstyled />', () => {
   const { render } = createRenderer();
 
   const testTabsListContext: TabsListProviderValue = {
+    dispatch: () => {},
     registerItem: () => {},
     unregisterItem: () => {},
     getItemIndex: () => 0,
     totalSubitemCount: 1,
-    getItemProps() {
-      return {
-        'aria-disabled': undefined,
-        'aria-selected': undefined,
-        onClick: () => {},
-        onPointerOver: () => {},
-        role: 'tab' as const,
-      } as any;
-    },
     getItemState() {
-      return { disabled: false, highlighted: false, selected: false, index: 0 };
+      return { disabled: false, highlighted: false, selected: false, focusable: true, index: 0 };
     },
     registerHighlightChangeHandler: () => () => {},
     registerSelectionChangeHandler: () => () => {},
-    focusManagement: 'DOM',
   };
 
   describeConformanceUnstyled(<TabUnstyled value="1" />, () => ({

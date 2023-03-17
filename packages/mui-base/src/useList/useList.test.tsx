@@ -5,13 +5,13 @@ import { createRenderer, createEvent, fireEvent } from 'test/utils';
 import useList, { ListContext } from './useList';
 import useListItem from './useListItem';
 
-describe('useListbox', () => {
+describe('useList', () => {
   const { render } = createRenderer();
   describe('prop: id', () => {
     it('propagates it to the root element', () => {
       function Listbox() {
         const { getRootProps } = useList({ items: [], id: 'test-id' });
-        return <ul {...getRootProps()} />;
+        return <ul role="listbox" {...getRootProps()} />;
       }
       const { getByRole } = render(<Listbox />);
 
@@ -24,17 +24,21 @@ describe('useListbox', () => {
 
       function ListItem({ children }: React.PropsWithChildren<{}>) {
         const id = React.useId();
-        const { getRootProps } = useListItem({ item: id });
-        return <li {...getRootProps()}>{children}</li>;
+        const { getRootProps, selected } = useListItem({ item: id });
+        return (
+          <li role="option" aria-selected={selected} {...getRootProps()}>
+            {children}
+          </li>
+        );
       }
 
       function Listbox() {
         const { getRootProps, contextValue } = useList({ items, id: 'test-id' });
         return (
           <ListContext.Provider value={contextValue}>
-            <ul {...getRootProps()}>
+            <ul role="listbox" {...getRootProps()}>
               {items.map((item) => (
-                <ListItem>{item}</ListItem>
+                <ListItem key={item}>{item}</ListItem>
               ))}
             </ul>
           </ListContext.Provider>
@@ -52,7 +56,7 @@ describe('useListbox', () => {
     it('generates a unique id if not provided explicitly', () => {
       function Listbox() {
         const { getRootProps } = useList({ items: [] });
-        return <ul {...getRootProps()} />;
+        return <ul role="listbox" {...getRootProps()} />;
       }
 
       const { getAllByRole } = render(
@@ -72,7 +76,7 @@ describe('useListbox', () => {
       it(`prevents default behavior when ${key} is pressed in activeDescendant focus management mode`, () => {
         function Listbox() {
           const { getRootProps } = useList({ items: [], focusManagement: 'activeDescendant' });
-          return <div {...getRootProps()} />;
+          return <div role="listbox" {...getRootProps()} />;
         }
 
         const { getByRole } = render(<Listbox />);
@@ -94,7 +98,7 @@ describe('useListbox', () => {
       it(`prevents default behavior when ${key} is pressed in DOM focus management mode`, () => {
         function Listbox() {
           const { getRootProps } = useList({ items: [], focusManagement: 'DOM' });
-          return <div {...getRootProps()} />;
+          return <div role="listbox" {...getRootProps()} />;
         }
 
         const { getByRole } = render(<Listbox />);
@@ -116,7 +120,7 @@ describe('useListbox', () => {
       it(`does not prevent default behavior when ${key} is pressed in DOM focus management mode`, () => {
         function Listbox() {
           const { getRootProps } = useList({ items: [], focusManagement: 'DOM' });
-          return <div {...getRootProps()} />;
+          return <div role="listbox" {...getRootProps()} />;
         }
 
         const { getByRole } = render(<Listbox />);

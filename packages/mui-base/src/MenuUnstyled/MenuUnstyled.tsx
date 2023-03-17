@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import MenuUnstyledContext from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
@@ -15,6 +14,7 @@ import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import MenuProvider from '../useMenu/MenuProvider';
 
 function useUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -102,7 +102,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   return (
     <Root {...rootProps}>
       <Listbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
+        <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
     </Root>
   );

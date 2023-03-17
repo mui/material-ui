@@ -16,7 +16,7 @@ describe('useControllableReducer', () => {
         return state;
       });
 
-      const actionToDispatch = { type: ActionTypes.setValue as const, value: ['b'], event: null };
+      const actionToDispatch = { type: ActionTypes.setValue as const, values: ['b'], event: null };
       const props: UseListParametersWithDefaults<string> = {
         items: ['a', 'b', 'c'],
         defaultValue: ['a'],
@@ -50,7 +50,7 @@ describe('useControllableReducer', () => {
         return state;
       });
 
-      const actionToDispatch = { type: ActionTypes.setValue as const, value: ['b'], event: null };
+      const actionToDispatch = { type: ActionTypes.setValue as const, values: ['b'], event: null };
       const props: UseListParametersWithDefaults<string> = {
         items: ['a', 'b', 'c'],
         defaultValue: ['a'],

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { MenuItemMetadata } from '../MenuItemUnstyled/MenuItemUnstyled.types';
-import { MenuUnstyledContextType } from '../MenuUnstyled/MenuUnstyledContext';
-import { UseListboxRootSlotProps } from '../useListbox';
+import { UseListRootSlotProps } from '../useList';
+import { MenuItemMetadata } from '../useMenuItem';
 import { EventHandlers } from '../utils/types';
+import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
   open?: boolean;
@@ -15,7 +15,7 @@ export interface UseMenuReturnValue {
   /**
    * The value for the menu context.
    */
-  contextValue: MenuUnstyledContextType;
+  contextValue: MenuProviderValue;
   /**
    * Resolver for the listbox component's props.
    * @param otherHandlers event handlers for the listbox component
@@ -39,7 +39,7 @@ export interface UseMenuReturnValue {
   /**
    * Items in the menu listbox.
    */
-  menuItems: Record<string, MenuItemMetadata>;
+  menuItems: Map<string, MenuItemMetadata>;
 }
 
 interface UseMenuListboxSlotEventHandlers {
@@ -47,7 +47,7 @@ interface UseMenuListboxSlotEventHandlers {
   onKeyDown: React.KeyboardEventHandler;
 }
 
-export type UseMenuListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
+export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
   Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
 > & {
   ref: React.Ref<any>;

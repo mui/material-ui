@@ -12,13 +12,9 @@ export interface UseListItemParameters<ItemValue> {
 }
 
 interface UseListItemRootSlotOwnProps {
-  // TODO: ARIA attributes should be added by the higher level component (Select, Menu, etc.)
-  'aria-disabled': React.AriaAttributes['aria-disabled'];
-  'aria-selected': React.AriaAttributes['aria-selected'];
   id?: string;
   onClick: React.MouseEventHandler;
   onPointerOver: React.PointerEventHandler;
-  role: React.AriaRole;
   tabIndex?: number;
 }
 

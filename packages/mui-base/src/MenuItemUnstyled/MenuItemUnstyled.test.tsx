@@ -1,22 +1,27 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import MenuItemUnstyled, { menuItemUnstyledClasses } from '@mui/base/MenuItemUnstyled';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import { MenuProvider } from '@mui/base/useMenu';
 
 const dummyGetItemState = () => ({
   disabled: false,
   highlighted: false,
   selected: false,
   index: 0,
+  focusable: true,
 });
 
 const testContext = {
-  getItemState: dummyGetItemState,
+  dispatch: () => {},
+  getItemIndex: () => 0,
   getItemProps: () => ({}),
-  registerItem: () => {},
-  unregisterItem: () => {},
+  getItemState: dummyGetItemState,
   open: false,
   registerHighlightChangeHandler: () => () => {},
+  registerItem: () => {},
+  registerSelectionChangeHandler: () => () => {},
+  totalSubitemCount: 0,
+  unregisterItem: () => {},
 };
 
 describe('<MenuItemUnstyled />', () => {
@@ -26,14 +31,10 @@ describe('<MenuItemUnstyled />', () => {
   describeConformanceUnstyled(<MenuItemUnstyled />, () => ({
     inheritComponent: 'li',
     render: (node) => {
-      return render(
-        <MenuUnstyledContext.Provider value={testContext}>{node}</MenuUnstyledContext.Provider>,
-      );
+      return render(<MenuProvider value={testContext}>{node}</MenuProvider>);
     },
     mount: (node: React.ReactNode) => {
-      const wrapper = mount(
-        <MenuUnstyledContext.Provider value={testContext}>{node}</MenuUnstyledContext.Provider>,
-      );
+      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
       return wrapper.childAt(0);
     },
     refInstanceof: window.HTMLLIElement,

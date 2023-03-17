@@ -130,7 +130,7 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
       dispatch({
         type: ActionTypes.setValue,
         event: null,
-        value: valueParam,
+        values: valueParam,
       });
     }
   }, [valueParam, selectedValues, dispatch]);
@@ -181,18 +181,18 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
       dispatch({
         type: ActionTypes.setValue,
         event: null,
-        value: values,
+        values,
       });
     },
     [dispatch],
   );
 
   const setHighlightedValue = React.useCallback(
-    (option: ItemValue | null) => {
+    (item: ItemValue | null) => {
       dispatch({
         type: ActionTypes.setHighlight,
         event: null,
-        highlight: option,
+        value: item,
       });
     },
     [dispatch],
@@ -266,8 +266,6 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
       id,
       onBlur: createHandleBlur(otherHandlers),
       onKeyDown: createHandleKeyDown(otherHandlers),
-      // TODO: role should be set by a downstream component
-      role: 'listbox',
       tabIndex: focusManagement === 'DOM' ? -1 : 0,
       ref: handleRef,
     };

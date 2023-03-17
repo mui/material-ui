@@ -143,7 +143,6 @@ interface UseListRootSlotOwnProps {
   id?: string;
   onBlur: React.FocusEventHandler;
   onKeyDown: React.KeyboardEventHandler;
-  role: React.AriaRole;
   tabIndex: number;
   ref: React.Ref<any>;
 }
