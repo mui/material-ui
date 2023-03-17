@@ -1007,10 +1007,8 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = (event) => {
-    const isToolTipElement = event.target?.parentElement?.getAttribute('role')?.includes('tooltip');
-
-    // Prevent input blur if usesr clicked on the tooltip
-    if (isToolTipElement) {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
       return;
     }
     if (event.target.getAttribute('id') !== id) {
@@ -1020,10 +1018,8 @@ export default function useAutocomplete(props) {
 
   // Focus the input when interacting with the combobox
   const handleClick = (event) => {
-    const isToolTipElement = event.target?.parentElement?.getAttribute('role')?.includes('tooltip');
-
-    // Prevent focusing the input if usesr clicked on the tooltip
-    if (isToolTipElement) {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
       return;
     }
     inputRef.current.focus();
