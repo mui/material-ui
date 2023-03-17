@@ -102,13 +102,13 @@
     {
       "name": "valueLabel",
       "description": "The component that renders the value label.",
-      "class": ".MuiSlider-valueLabel"
+      "class": ""
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiSlider-input"
+      "class": ""
     }
   ],
   "spread": true,

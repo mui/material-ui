@@ -52,7 +52,7 @@
       "name": "action",
       "description": "The component that renders the action.",
       "default": "'button'",
-      "class": ".MuiChip-action"
+      "class": ""
     },
     {
       "name": "startDecorator",
