@@ -575,7 +575,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             startAdornment,
             onClick: (event) => {
               if (event.target === event.currentTarget) {
-                handleInputMouseDown();
+                handleInputMouseDown(event);
               }
             },
             ...((hasClearIcon || hasPopupIcon) && {
