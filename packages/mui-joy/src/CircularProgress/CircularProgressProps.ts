@@ -7,22 +7,22 @@ export type CircularProgressSlot = 'root' | 'svg' | 'track' | 'progress';
 
 export interface CircularProgressSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'span'
    */
   root: React.ElementType;
   /**
-   * The component used to render the svg.
+   * The component that renders the svg.
    * @default 'svg'
    */
   svg: React.ElementType;
   /**
-   * The component used to render the track.
+   * The component that renders the track.
    * @default 'circle'
    */
   track: React.ElementType;
   /**
-   * The component used to render the progress.
+   * The component that renders the progress.
    * @default 'circle'
    */
   progress: React.ElementType;

@@ -47,37 +47,37 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'span'",
       "class": ".MuiRadio-root"
     },
     {
       "name": "radio",
-      "description": "The component used to render the radio.",
+      "description": "The component that renders the radio.",
       "default": "'span'",
       "class": ".MuiRadio-radio"
     },
     {
       "name": "icon",
-      "description": "The component used to render the icon.",
+      "description": "The component that renders the icon.",
       "default": "'span'",
       "class": ".MuiRadio-icon"
     },
     {
       "name": "action",
-      "description": "The component used to render the action.",
+      "description": "The component that renders the action.",
       "default": "'span'",
       "class": ".MuiRadio-action"
     },
     {
       "name": "input",
-      "description": "The component used to render the input.",
+      "description": "The component that renders the input.",
       "default": "'input'",
       "class": ".MuiRadio-input"
     },
     {
       "name": "label",
-      "description": "The component used to render the label.",
+      "description": "The component that renders the label.",
       "default": "'label'",
       "class": ".MuiRadio-label"
     }

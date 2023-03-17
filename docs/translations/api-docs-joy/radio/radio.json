@@ -22,11 +22,11 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "radio": "The component used to render the radio.",
-    "icon": "The component used to render the icon.",
-    "action": "The component used to render the action.",
-    "input": "The component used to render the input.",
-    "label": "The component used to render the label."
+    "root": "The component that renders the root.",
+    "radio": "The component that renders the radio.",
+    "icon": "The component that renders the icon.",
+    "action": "The component that renders the action.",
+    "input": "The component that renders the input.",
+    "label": "The component that renders the label."
   }
 }

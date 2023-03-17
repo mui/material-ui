@@ -8,9 +8,9 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "ol": "The component used to render the ol.",
-    "li": "The component used to render the li.",
-    "separator": "The component used to render the separator."
+    "root": "The component that renders the root.",
+    "ol": "The component that renders the ol.",
+    "li": "The component that renders the li.",
+    "separator": "The component that renders the separator."
   }
 }

@@ -54,17 +54,17 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "wrapper": "The component used to render the wrapper.",
-    "input": "The component used to render the input.",
-    "startDecorator": "The component used to render the start decorator.",
-    "endDecorator": "The component used to render the end decorator.",
-    "clearIndicator": "The component used to render the clear indicator.",
-    "popupIndicator": "The component used to render the popup indicator.",
-    "listbox": "The component used to render the listbox.",
-    "option": "The component used to render the option.",
-    "loading": "The component used to render the loading.",
-    "noOptions": "The component used to render the no-options.",
-    "limitTag": "The component used to render the limit tag."
+    "root": "The component that renders the root.",
+    "wrapper": "The component that renders the wrapper.",
+    "input": "The component that renders the input.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator.",
+    "clearIndicator": "The component that renders the clear indicator.",
+    "popupIndicator": "The component that renders the popup indicator.",
+    "listbox": "The component that renders the listbox.",
+    "option": "The component that renders the option.",
+    "loading": "The component that renders the loading.",
+    "noOptions": "The component that renders the no-options.",
+    "limitTag": "The component that renders the limit tag."
   }
 }
