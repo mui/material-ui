@@ -28,62 +28,62 @@ export type AutocompleteSlot =
 
 export interface AutocompleteSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the wrapper.
+   * The component that renders the wrapper.
    * @default 'div'
    */
   wrapper: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
   input: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
   endDecorator: React.ElementType;
   /**
-   * The component used to render the clear indicator.
+   * The component that renders the clear indicator.
    * @default 'button'
    */
   clearIndicator: React.ElementType;
   /**
-   * The component used to render the popup indicator.
+   * The component that renders the popup indicator.
    * @default 'button'
    */
   popupIndicator: React.ElementType;
   /**
-   * The component used to render the listbox.
+   * The component that renders the listbox.
    * @default 'ul'
    */
   listbox: React.ElementType;
   /**
-   * The component used to render the option.
+   * The component that renders the option.
    * @default 'li'
    */
   option: React.ElementType;
   /**
-   * The component used to render the loading.
+   * The component that renders the loading.
    * @default 'li'
    */
   loading: React.ElementType;
   /**
-   * The component used to render the no-options.
+   * The component that renders the no-options.
    * @default 'li'
    */
   noOptions: React.ElementType;
   /**
-   * The component used to render the limit tag.
+   * The component that renders the limit tag.
    * @default 'span'
    */
   limitTag: React.ElementType;

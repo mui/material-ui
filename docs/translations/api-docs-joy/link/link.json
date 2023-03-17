@@ -15,8 +15,8 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator.",
-    "endDecorator": "The component used to render the end decorator."
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator."
   }
 }

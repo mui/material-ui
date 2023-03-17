@@ -15,13 +15,13 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'label'",
       "class": ".MuiFormLabel-root"
     },
     {
       "name": "asterisk",
-      "description": "The component used to render the asterisk.",
+      "description": "The component that renders the asterisk.",
       "default": "'span'",
       "class": ".MuiFormLabel-asterisk"
     }

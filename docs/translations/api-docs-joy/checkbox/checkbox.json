@@ -24,10 +24,10 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "checkbox": "The component used to render the checkbox.",
-    "action": "The component used to render the action.",
-    "input": "The component used to render the input.",
-    "label": "The component used to render the label."
+    "root": "The component that renders the root.",
+    "checkbox": "The component that renders the checkbox.",
+    "action": "The component that renders the action.",
+    "input": "The component that renders the input.",
+    "label": "The component that renders the label."
   }
 }

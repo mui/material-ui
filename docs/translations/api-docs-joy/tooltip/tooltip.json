@@ -31,7 +31,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "root": "The component used to render the root.",
-    "arrow": "The component used to render the arrow."
+    "root": "The component that renders the root.",
+    "arrow": "The component that renders the arrow."
   }
 }

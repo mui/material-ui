@@ -36,25 +36,25 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'span'",
       "class": ".MuiCircularProgress-root"
     },
     {
       "name": "svg",
-      "description": "The component used to render the svg.",
+      "description": "The component that renders the svg.",
       "default": "'svg'",
       "class": ".MuiCircularProgress-svg"
     },
     {
       "name": "track",
-      "description": "The component used to render the track.",
+      "description": "The component that renders the track.",
       "default": "'circle'",
       "class": ".MuiCircularProgress-track"
     },
     {
       "name": "progress",
-      "description": "The component used to render the progress.",
+      "description": "The component that renders the progress.",
       "default": "'circle'",
       "class": ".MuiCircularProgress-progress"
     }

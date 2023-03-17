@@ -35,25 +35,25 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiInput-root"
     },
     {
       "name": "input",
-      "description": "The component used to render the input.",
+      "description": "The component that renders the input.",
       "default": "'input'",
       "class": ".MuiInput-input"
     },
     {
       "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": ".MuiInput-startDecorator"
     },
     {
       "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
+      "description": "The component that renders the end decorator.",
       "default": "'span'",
       "class": ".MuiInput-endDecorator"
     }

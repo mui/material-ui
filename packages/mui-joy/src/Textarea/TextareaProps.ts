@@ -7,22 +7,22 @@ export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorato
 
 export interface TextareaSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the textarea.
+   * The component that renders the textarea.
    * @default 'textarea'
    */
   textarea: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'div'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'div'
    */
   endDecorator: React.ElementType;

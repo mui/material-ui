@@ -35,25 +35,25 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiTextarea-root"
     },
     {
       "name": "textarea",
-      "description": "The component used to render the textarea.",
+      "description": "The component that renders the textarea.",
       "default": "'textarea'",
       "class": ".MuiTextarea-textarea"
     },
     {
       "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "description": "The component that renders the start decorator.",
       "default": "'div'",
       "class": ".MuiTextarea-startDecorator"
     },
     {
       "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
+      "description": "The component that renders the end decorator.",
       "default": "'div'",
       "class": ".MuiTextarea-endDecorator"
     }
