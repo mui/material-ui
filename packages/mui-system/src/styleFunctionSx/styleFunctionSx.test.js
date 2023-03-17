@@ -446,7 +446,7 @@ describe('styleFunctionSx', () => {
     const result = styleFunctionSx({
       theme: { typography: createTypography({}, {}) },
       sx: {
-        fontFamily: 'fontFamily',
+        fontFamily: 'default',
         fontWeight: 'fontWeightMedium',
         fontSize: 'fontSize',
       },
