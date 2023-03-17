@@ -61,17 +61,17 @@ Depending on the day, you'll:
 - Migrate from Sendinblue to SendGrid.
 - Oversee our US flip.
 - Develop and implement strategies to support the growth and success of the company
-- Use create [Toolpad apps](https://mui.com/toolpad/) to streamline the operations.
+- Create new [Toolpad apps](https://mui.com/toolpad/) to streamline the operations (could require some SQL & JavaScript skills).
 
 ## About you
 
 ### Skills you should have
 
-- Obsessive over the details, aiming for inbox-zero.
+- Obsessive over the details, aiming for inbox zero.
 - JavaScript & SQL code proficiency as a lot of our operations rely on it.
 - Excellent written and verbal communication skills.
 - Demonstrable competency in strategic planning and business development.
-- Strong analytical, problem solving skills, with the ability to make data-driven decisions.
+- Strong analytical, and problem-solving skills, with the ability to make data-driven decisions.
 - A high sense of curiosity, enjoying self-learning to get things done. You are [versatile](https://review.firstround.com/the-adaptable-leader-is-the-new-holy-grail-become-one-hire-one).
 - Excited about the ambiguity of an entrepreneurial, growing company, and able to juggle many projects and responsibilities.
 - Bachelor's degree in a related field (e.g. computer science, business management).
