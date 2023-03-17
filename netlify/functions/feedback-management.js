@@ -15,14 +15,6 @@ const spreadSheetsIds = {
 // Slack API
 const slackClient = new WebClient(process.env.SLACK_BOT_TOKEN);
 
-const googleAuth = new JWT({
-  email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-  key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
-
-const service = sheets({ version: 'v4', auth: googleAuth });
-
 /**
  * @param {object} event
  * @param {object} context
@@ -92,6 +84,13 @@ exports.handler = async (event) => {
           const links = elements[2].elements
             .filter((element) => element.type === 'link')
             .map((element) => element.url);
+
+          const googleAuth = new JWT({
+            email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
+            key: process.env.G_SHEET_TOKEN.replace(/\\n/g, '\n'),
+            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+          });
+          const service = sheets({ version: 'v4', auth: googleAuth });
 
           service.spreadsheets.values
             .append({
