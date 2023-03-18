@@ -2,6 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -16,6 +18,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import Snackbar from '@mui/material/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -437,12 +440,29 @@ export default function AppLayoutDocsFooter(props) {
             </PaginationDiv>
           </React.Fragment>
         )}
+
         <Collapse
           in={commentOpen}
           unmountOnExit
           onEntered={handleEntered}
           timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
         >
+          {rating !== 1 && (
+            <Alert severity="info" icon={<InfoRoundedIcon fontSize="inherit" />} sx={{ mb: 4, border: (theme) => `1px solid ${(theme.vars || theme).palette.grey[200]}`,   theme.applyDarkStyles({ 
+              borderColor: (theme.vars || theme).palette.primaryDark[700],
+            }), }} >
+              <Typography id="feedback-description" color="text.secondary">
+                {t('feedbackMessageToGitHub.usecases')}{' '}
+                {t('feedbackMessageToGitHub.callToAction.text')}
+                <Link
+                  href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                  target="_blank"
+                >
+                  {t('feedbackMessageToGitHub.callToAction.link')}
+                </Link>
+              </Typography>
+            </Alert>
+          )}
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <form
             aria-labelledby="feedback-message"
@@ -487,19 +507,6 @@ export default function AppLayoutDocsFooter(props) {
                   {t('submit')}
                 </Button>
               </DialogActions>
-              {rating !== 1 && (
-                <Typography id="feedback-description" color="text.secondary">
-                  {t('feedbackMessageToGitHub.usecases')}
-                  <br />
-                  {t('feedbackMessageToGitHub.callToAction.text')}
-                  <Link
-                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                    target="_blank"
-                  >
-                    {t('feedbackMessageToGitHub.callToAction.link')}
-                  </Link>
-                </Typography>
-              )}
             </Box>
           </form>
         </Collapse>
