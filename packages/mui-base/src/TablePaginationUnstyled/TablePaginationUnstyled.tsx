@@ -21,6 +21,7 @@ import {
   TablePaginationUnstyledSpacerSlotProps,
 } from './TablePaginationUnstyled.types';
 import { ItemAriaLabelType } from './common.types';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
@@ -44,7 +45,7 @@ const useUtilityClasses = () => {
     actions: ['actions'],
   };
 
-  return composeClasses(slots, getTablePaginationUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTablePaginationUnstyledUtilityClass));
 };
 
 /**

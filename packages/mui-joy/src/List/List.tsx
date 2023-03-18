@@ -75,10 +75,10 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
       ...applySizeVars(ownerState.instanceSize),
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
-      '--ListItem-paddingLeft': 'var(--NestedList-item-paddingLeft)',
+      '--ListItem-paddingLeft': 'var(--NestedListItem-paddingLeft)',
       // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-      '--List-itemButtonMarginBlock': '0px',
-      '--List-itemButtonMarginInline': '0px',
+      '--ListItemButton-marginBlock': '0px',
+      '--ListItemButton-marginInline': '0px',
       '--ListItem-marginBlock': '0px',
       '--ListItem-marginInline': '0px',
       padding: 0,

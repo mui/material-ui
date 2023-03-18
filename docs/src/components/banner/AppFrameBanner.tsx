@@ -6,7 +6,7 @@ import { alpha } from '@mui/material/styles';
 export default function AppFrameBanner() {
   return FEATURE_TOGGLE.enable_docsnav_banner ? (
     <Link
-      href="https://mui.com/x/whats-new/"
+      href="https://mui.com/blog/mui-x-v6/"
       target="_blank"
       variant="caption"
       sx={(theme) => ({

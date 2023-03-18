@@ -58,12 +58,12 @@ export interface BadgeUnstyledOwnProps {
 
 export interface BadgeUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'span'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the badge.
+   * The component that renders the badge.
    * @default 'span'
    */
   badge?: React.ElementType;

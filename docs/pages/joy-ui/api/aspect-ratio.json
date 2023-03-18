@@ -39,16 +39,16 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "content",
-      "description": "The component used to render the content.",
-      "default": "'div'",
-      "class": ".MuiAspectRatio-content"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiAspectRatio-root"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content.",
+      "default": "'div'",
+      "class": ".MuiAspectRatio-content"
     }
   ],
   "spread": true,
