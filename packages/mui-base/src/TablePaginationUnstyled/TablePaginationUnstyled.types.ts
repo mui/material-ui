@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
-import * as CommonTypes from './common.types';
+import { ItemAriaLabelType } from './common.types';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -10,8 +10,6 @@ export interface LabelDisplayedRowsArgs {
   count: number;
   page: number;
 }
-
-export type ItemAriaLabelType = CommonTypes.ItemAriaLabelType;
 
 export interface TablePaginationUnstyledRootSlotPropsOverrides {}
 export interface TablePaginationUnstyledActionsSlotPropsOverrides {}

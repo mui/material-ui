@@ -11,7 +11,6 @@ import {
   TablePaginationUnstyledProps,
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
-  ItemAriaLabelType,
   TablePaginationUnstyledRootSlotProps,
   TablePaginationUnstyledSelectSlotProps,
   TablePaginationUnstyledActionsSlotProps,
@@ -21,6 +20,7 @@ import {
   TablePaginationUnstyledToolbarSlotProps,
   TablePaginationUnstyledSpacerSlotProps,
 } from './TablePaginationUnstyled.types';
+import { ItemAriaLabelType } from './common.types';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
