@@ -151,6 +151,7 @@ const Root = styled('div')(
         lineHeight: 1.7,
       },
       '& img, & video': {
+        borderRadius: 4,
         display: 'block',
         margin: 'auto',
       },
