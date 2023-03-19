@@ -231,7 +231,7 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
 // Track fraction of actual events to prevent exceeding event quota.
 // Filter sessions instead of individual events so that we can track multiple metrics per device.
 const disableWebVitalsReporting = Math.random() > 0.0001;
-export function reportWebVitals({ id, name, label, value }) {
+export function reportWebVitals({ id, name, label, delta, value }) {
   if (disableWebVitalsReporting) {
     return;
   }
@@ -243,11 +243,11 @@ export function reportWebVitals({ id, name, label, value }) {
     eventLabel: id, // id unique to current page load
     nonInteraction: true, // avoids affecting bounce rate.
   });
-  window.gtag('send', 'event', {
-    eventCategory: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
-    eventAction: name,
-    eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
-    eventLabel: id, // id unique to current page load
-    nonInteraction: true, // avoids affecting bounce rate.
+  window.gtag('event', name, {
+    value: delta,
+    metricLabel: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    metricValue: value,
+    metricDetla: delta,
+    metricId: id, // id unique to current page load
   });
 }
