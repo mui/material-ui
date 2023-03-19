@@ -50,11 +50,6 @@ function handleClick(event) {
 
 let boundDataGaListener = false;
 
-const PRODUCTION_GA =
-  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
-
-const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
-
 /**
  * basically just a `useAnalytics` hook.
  * However, it needs the redux store which is created
@@ -67,8 +62,6 @@ function GoogleAnalytics() {
     if (!boundDataGaListener) {
       boundDataGaListener = true;
       document.addEventListener('click', handleClick);
-      window.gtag('js', new Date());
-      window.gtag('config', GOOGLE_ANALYTICS_ID_V4);
     }
   }, []);
 
