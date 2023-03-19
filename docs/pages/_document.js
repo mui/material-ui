@@ -174,14 +174,12 @@ export default class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){
-                  dataLayer.push(arguments);}
-                window.gtag = gtag;
-                gtag('js', new Date());
-
-                gtag('config', '${GOOGLE_ANALYTICS_ID_V4}');
-                `,
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID_V4}');
+`,
             }}
           />
           <NextScript />
