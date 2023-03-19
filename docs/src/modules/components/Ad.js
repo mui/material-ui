@@ -94,9 +94,7 @@ class AdErrorBoundary extends React.Component {
       eventAction: 'crash',
       eventLabel,
     });
-    window.gtag('send', {
-      hitType: 'event',
-      eventCategory: 'ad',
+    window.gtag('event', 'ad', {
       eventAction: 'crash',
       eventLabel,
     });
@@ -203,9 +201,7 @@ function Ad() {
         eventAction: 'display',
         eventLabel,
       });
-      window.gtag('send', {
-        hitType: 'event',
-        eventCategory: 'ad',
+      window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
       });

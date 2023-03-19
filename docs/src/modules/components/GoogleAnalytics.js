@@ -35,9 +35,7 @@ function handleClick(event) {
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
       });
-      window.gtag('send', {
-        hitType: 'event',
-        eventCategory: category,
+      window.gtag('event', category, {
         eventAction: element.getAttribute('data-ga-event-action'),
         eventLabel: element.getAttribute('data-ga-event-label'),
       });

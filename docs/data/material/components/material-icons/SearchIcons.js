@@ -138,9 +138,7 @@ const Icons = React.memo(function Icons(props) {
         eventAction: 'click',
         eventLabel: icon.name,
       });
-      window.gtag('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons',
+      window.gtag('event', 'material-icons', {
         eventAction: 'click',
         eventLabel: icon.name,
       });
@@ -150,9 +148,7 @@ const Icons = React.memo(function Icons(props) {
         eventAction: 'click',
         eventLabel: icon.theme,
       });
-      window.gtag('send', {
-        hitType: 'event',
-        eventCategory: 'material-icons-theme',
+      window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
         eventLabel: icon.theme,
       });
@@ -511,9 +507,7 @@ export default function SearchIcons() {
                 eventAction: 'no-results',
                 eventLabel: value,
               });
-              window.gtag('send', {
-                hitType: 'event',
-                eventCategory: 'material-icons',
+              window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,
               });
