@@ -75,6 +75,7 @@ function GoogleAnalytics() {
       window.ga('set', { page: canonicalAsServer });
       window.ga('send', { hitType: 'pageview' });
 
+      // https://developers.google.com/analytics/devguides/collection/ga4/views?client_type=gtag
       window.gtag('event', 'page_view', {
         page_title: document.title,
         page_location: canonicalAsServer,
