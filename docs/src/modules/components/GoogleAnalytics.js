@@ -72,9 +72,12 @@ function GoogleAnalytics() {
     setTimeout(() => {
       const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
       window.ga('set', { page: canonicalAsServer });
-      window.gtag('set', { page: canonicalAsServer });
       window.ga('send', { hitType: 'pageview' });
-      window.gtag('send', { hitType: 'pageview' });
+
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: canonicalAsServer,
+      });
     });
   }, [router.route]);
 

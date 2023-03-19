@@ -179,6 +179,9 @@ function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());
 gtag('config', '${GOOGLE_ANALYTICS_ID_V4}');
+gtag('config', 'TAG_ID', {
+  send_page_view: false
+});
 `,
             }}
           />
