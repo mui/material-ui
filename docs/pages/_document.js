@@ -161,7 +161,10 @@ export default class MyDocument extends Document {
               `,
             }}
           />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NXDQLC2ZK" />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID_V4}`}
+          />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
