@@ -136,11 +136,14 @@ function GoogleAnalytics() {
     window.gtag('set', 'user_properties', {
       colorSchemeOS,
     });
+  }, [colorSchemeOS]);
+
+  React.useEffect(() => {
     window.ga('set', 'dimension5', colorScheme);
     window.gtag('set', 'user_properties', {
       colorScheme,
     });
-  }, [colorSchemeOS, colorScheme]);
+  }, [colorScheme]);
 
   return null;
 }
