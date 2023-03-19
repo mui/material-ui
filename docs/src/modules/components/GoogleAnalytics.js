@@ -64,10 +64,13 @@ function GoogleAnalytics() {
   }, []);
 
   const router = useRouter();
+  const timeout = React.useRef();
 
   React.useEffect(() => {
     // Wait for the title to be updated.
-    setTimeout(() => {
+    // React fires useEffect twice in dev mode
+    clearTimeout(timeout.current);
+    timeout.current = setTimeout(() => {
       const { canonicalAsServer } = pathnameToLanguage(window.location.pathname);
       window.ga('set', { page: canonicalAsServer });
       window.ga('send', { hitType: 'pageview' });
