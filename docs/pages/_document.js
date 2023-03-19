@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Script from 'next/script';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
@@ -161,8 +162,12 @@ export default class MyDocument extends Document {
               `,
             }}
           />
-          <script
-            async
+          {/**
+           * A better alternative to <script async>, to delay its execution
+           * https://developer.chrome.com/blog/script-component/
+           */}
+          <Script
+            strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID_V4}`}
           />
           <script
