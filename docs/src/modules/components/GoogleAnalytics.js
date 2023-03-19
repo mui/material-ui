@@ -86,13 +86,17 @@ function GoogleAnalytics() {
   const codeVariant = useNoSsrCodeVariant();
   React.useEffect(() => {
     window.ga('set', 'dimension1', codeVariant);
-    window.gtag('set', 'dimension1', codeVariant);
+    window.gtag('set', 'user_properties', {
+      codeVariant,
+    });
   }, [codeVariant]);
 
   const userLanguage = useUserLanguage();
   React.useEffect(() => {
     window.ga('set', 'dimension2', userLanguage);
-    window.gtag('set', 'dimension2', userLanguage);
+    window.gtag('set', 'user_properties', {
+      userLanguage,
+    });
   }, [userLanguage]);
 
   React.useEffect(() => {
@@ -103,7 +107,9 @@ function GoogleAnalytics() {
     function trackDevicePixelRation() {
       const devicePixelRatio = Math.round(window.devicePixelRatio * 10) / 10;
       window.ga('set', 'dimension3', devicePixelRatio);
-      window.gtag('set', 'dimension3', devicePixelRatio);
+      window.gtag('set', 'user_properties', {
+        devicePixelRatio,
+      });
     }
 
     trackDevicePixelRation();
@@ -127,9 +133,13 @@ function GoogleAnalytics() {
 
   React.useEffect(() => {
     window.ga('set', 'dimension4', colorSchemeOS);
-    window.gtag('set', 'dimension4', colorSchemeOS);
+    window.gtag('set', 'user_properties', {
+      colorSchemeOS,
+    });
     window.ga('set', 'dimension5', colorScheme);
-    window.gtag('set', 'dimension5', colorScheme);
+    window.gtag('set', 'user_properties', {
+      colorScheme,
+    });
   }, [colorSchemeOS, colorScheme]);
 
   return null;
