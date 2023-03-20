@@ -57,6 +57,6 @@ For instance, a margin-top:
 
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set flag `useFlexGap` to true.
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set `useFlexGap` prop to true.
 
 {{"demo": "FlexboxGapStack.js", "bg": true}}

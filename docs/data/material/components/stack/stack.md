@@ -57,13 +57,15 @@ For instance, a margin-top:
 
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set flag `useFlexGap` to true.
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set `useFlexGap` prop to true.
 
-It removes the [known limitation](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers. We recommend to check the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
+It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
+
+We recommend checking the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
 
 {{"demo": "FlexboxGapStack.js", "bg": true}}
 
-To set the flag to all stack instances, create a theme with default props:
+To set the prop to all stack instances, create a theme with default props:
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -71,7 +73,7 @@ import Stack from '@mui/material/Stack';
 
 const theme = createTheme({
   components: {
-    MuiGrid: {
+    MuiStack: {
       defaultProps: {
         useFlexGap: true,
       },

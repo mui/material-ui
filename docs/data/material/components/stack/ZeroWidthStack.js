@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const message = `Truncation should be conditionally applicable on this long line of text
- as this is a much longer line than what the container can support. `;
+ as this is a much longer line than what the container can support.`;
 
 export default function ZeroWidthStack() {
   return (
