@@ -3,7 +3,7 @@ import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 
 export interface Slot {
-  class: string;
+  class: string | null;
   name: string;
   description: string;
   default?: string;
@@ -52,7 +52,7 @@ export default function parseSlots({
         name: slotName,
         description: getSymbolDescription(propertySymbol, project),
         default: tags.default?.text?.[0].text,
-        class: classNames.includes(slotName) ? `.${muiName}-${slotName}` : '',
+        class: classNames.includes(slotName) ? `.${muiName}-${slotName}` : null,
       };
     });
 
