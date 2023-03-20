@@ -119,7 +119,10 @@
       "trackFalse",
       "trackInverted",
       "markActive",
-      "markLabelActive"
+      "markLabelActive",
+      "disabled",
+      "active",
+      "focusVisible"
     ],
     "globalClasses": {
       "disabled": "Mui-disabled",

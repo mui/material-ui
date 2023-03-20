@@ -105,7 +105,10 @@
       "variantSolid",
       "sizeSm",
       "sizeMd",
-      "sizeLg"
+      "sizeLg",
+      "focusVisible",
+      "disabled",
+      "expanded"
     ],
     "globalClasses": {
       "focusVisible": "Mui-focusVisible",

@@ -53,7 +53,7 @@
     }
   ],
   "classes": {
-    "classes": ["button"],
+    "classes": ["button", "active", "expanded", "disabled", "focusVisible"],
     "globalClasses": {
       "active": "Mui-active",
       "expanded": "Mui-expanded",

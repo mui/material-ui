@@ -175,7 +175,9 @@
       "variantSolid",
       "sizeSm",
       "sizeMd",
-      "sizeLg"
+      "sizeLg",
+      "disabled",
+      "focusVisible"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
   },

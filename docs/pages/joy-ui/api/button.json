@@ -92,7 +92,9 @@
       "sizeMd",
       "sizeLg",
       "fullWidth",
-      "loading"
+      "loading",
+      "focusVisible",
+      "disabled"
     ],
     "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
   },

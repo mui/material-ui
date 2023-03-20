@@ -24,7 +24,7 @@
     }
   ],
   "classes": {
-    "classes": ["highlighted"],
+    "classes": ["highlighted", "disabled", "selected"],
     "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
   },
   "spread": true,

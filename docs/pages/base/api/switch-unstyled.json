@@ -51,7 +51,7 @@
     }
   ],
   "classes": {
-    "classes": ["readOnly"],
+    "classes": ["readOnly", "checked", "disabled", "focusVisible"],
     "globalClasses": {
       "checked": "Mui-checked",
       "disabled": "Mui-disabled",

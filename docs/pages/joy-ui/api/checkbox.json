@@ -95,7 +95,10 @@
       "sizeLg",
       "variantOutlined",
       "variantSoft",
-      "variantSolid"
+      "variantSolid",
+      "checked",
+      "disabled",
+      "focusVisible"
     ],
     "globalClasses": {
       "checked": "Mui-checked",

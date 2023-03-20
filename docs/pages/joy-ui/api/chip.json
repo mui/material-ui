@@ -85,7 +85,9 @@
       "variantPlain",
       "variantSolid",
       "variantSoft",
-      "variantOutlined"
+      "variantOutlined",
+      "disabled",
+      "focusVisible"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
   },

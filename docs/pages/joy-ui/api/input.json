@@ -75,7 +75,10 @@
       "variantOutlined",
       "variantSoft",
       "variantSolid",
-      "fullWidth"
+      "fullWidth",
+      "focused",
+      "disabled",
+      "error"
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },

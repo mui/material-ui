@@ -70,7 +70,10 @@
       "adornedEnd",
       "multiline",
       "inputMultiline",
-      "inputTypeSearch"
+      "inputTypeSearch",
+      "focused",
+      "disabled",
+      "error"
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },

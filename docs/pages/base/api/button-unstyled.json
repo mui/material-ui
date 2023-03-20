@@ -29,7 +29,7 @@
     }
   ],
   "classes": {
-    "classes": [],
+    "classes": ["active", "disabled", "focusVisible"],
     "globalClasses": {
       "active": "Mui-active",
       "disabled": "Mui-disabled",
