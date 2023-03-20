@@ -39,21 +39,7 @@ To learn how to add more variants or sizes to the component, check out the [Them
 import Radio from '@mui/joy/Radio';
 ```
 
-The Radio component can be used within a Box for a simple interface.
-
-<!-- remove? -->
-<!-- ```jsx
-import Box from '@mui/joy/Box';
-import Radio from '@mui/joy/Radio';
-
-export default function MyApp() {
-  return (
-    <Box>
-      <Radio value="Hello World" name="radio-buttons" />
-    </Box>
-  );
-}
-``` -->
+The Joy UI Radio Button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
 
 {{"demo": "RadioButtons.js"}}
 
@@ -194,7 +180,7 @@ Here are a few tips to make sure you have an accessible Radio button component:
   This includes Radio buttons, Checkboxes, and Switches.
   In most cases, this is done by using the Form Control and Form Label element.
 - When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
-  You can also use the `inputProps` prop to add them.
+  You can also use the `slotProps.input` prop to add them.
 
 ```jsx
 <Radio
