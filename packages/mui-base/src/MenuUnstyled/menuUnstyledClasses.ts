@@ -6,7 +6,7 @@ export interface MenuUnstyledClasses {
   root: string;
   /** Class name applied to the listbox element. */
   listbox: string;
-  /** State class applied to the root element and the listbox element if `open={true}`. */
+  /** State class applied to the root `PopperUnstyled` element and the listbox `ul` element if `open={true}`. */
   expanded: string;
 }
 
