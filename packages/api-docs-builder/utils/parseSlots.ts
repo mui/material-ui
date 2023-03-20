@@ -47,7 +47,7 @@ export default function parseSlots({
       };
     });
 
-    result = Object.values(slots).sort((a, b) => a.name.localeCompare(b.name));
+    result = Object.values(slots);
   } catch (e) {
     console.error(`No declaration for ${interfaceName}`);
   }

@@ -155,6 +155,11 @@
       "default": "false",
       "required": true
     },
+    "expanded": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
     "focused": {
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false",

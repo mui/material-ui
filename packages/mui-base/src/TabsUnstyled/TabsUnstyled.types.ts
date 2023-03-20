@@ -59,7 +59,7 @@ export interface TabsUnstyledOwnProps {
 
 export interface TabsUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;

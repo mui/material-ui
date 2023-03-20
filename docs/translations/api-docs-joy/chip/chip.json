@@ -13,10 +13,10 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "action": "The component used to render the action.",
-    "endDecorator": "The component used to render the end decorator.",
-    "label": "The component used to render the label.",
-    "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator."
+    "root": "The component that renders the root.",
+    "label": "The component that renders the label.",
+    "action": "The component that renders the action.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator."
   }
 }

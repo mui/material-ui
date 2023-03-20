@@ -7,12 +7,12 @@ export type FormLabelSlot = 'root' | 'asterisk';
 
 export interface FormLabelSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'label'
    */
   root: React.ElementType;
   /**
-   * The component used to render the asterisk.
+   * The component that renders the asterisk.
    * @default 'span'
    */
   asterisk: React.ElementType;

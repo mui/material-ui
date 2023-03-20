@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/system';
 import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
 import { Components } from '../styles/components';
+import defaultTheme from '../styles/defaultTheme';
 import { CssBaselineProps } from './CssBaselineProps';
 
 /**
@@ -71,6 +72,7 @@ function CssBaseline(props: CssBaselineProps) {
             ...colorSchemeStyles,
           };
         }}
+        defaultTheme={defaultTheme}
       />
       {children}
     </React.Fragment>

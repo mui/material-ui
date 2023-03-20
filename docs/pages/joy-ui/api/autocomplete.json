@@ -90,76 +90,76 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "clearIndicator",
-      "description": "The component used to render the clear indicator.",
-      "default": "'button'",
-      "class": ".MuiAutocomplete-clearIndicator"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-root"
     },
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiAutocomplete-endDecorator"
+      "name": "wrapper",
+      "description": "The component that renders the wrapper.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-wrapper"
     },
     {
       "name": "input",
-      "description": "The component used to render the input.",
+      "description": "The component that renders the input.",
       "default": "'input'",
       "class": ".MuiAutocomplete-input"
     },
     {
-      "name": "limitTag",
-      "description": "The component used to render the limit tag.",
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiAutocomplete-limitTag"
+      "class": ".MuiAutocomplete-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-endDecorator"
+    },
+    {
+      "name": "clearIndicator",
+      "description": "The component that renders the clear indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-clearIndicator"
+    },
+    {
+      "name": "popupIndicator",
+      "description": "The component that renders the popup indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-popupIndicator"
     },
     {
       "name": "listbox",
-      "description": "The component used to render the listbox.",
+      "description": "The component that renders the listbox.",
       "default": "'ul'",
       "class": ".MuiAutocomplete-listbox"
     },
     {
+      "name": "option",
+      "description": "The component that renders the option.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-option"
+    },
+    {
       "name": "loading",
-      "description": "The component used to render the loading.",
+      "description": "The component that renders the loading.",
       "default": "'li'",
       "class": ".MuiAutocomplete-loading"
     },
     {
       "name": "noOptions",
-      "description": "The component used to render the no-options.",
+      "description": "The component that renders the no-options.",
       "default": "'li'",
       "class": ".MuiAutocomplete-noOptions"
     },
     {
-      "name": "option",
-      "description": "The component used to render the option.",
-      "default": "'li'",
-      "class": ".MuiAutocomplete-option"
-    },
-    {
-      "name": "popupIndicator",
-      "description": "The component used to render the popup indicator.",
-      "default": "'button'",
-      "class": ".MuiAutocomplete-popupIndicator"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'div'",
-      "class": ".MuiAutocomplete-root"
-    },
-    {
-      "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "name": "limitTag",
+      "description": "The component that renders the limit tag.",
       "default": "'span'",
-      "class": ".MuiAutocomplete-startDecorator"
-    },
-    {
-      "name": "wrapper",
-      "description": "The component used to render the wrapper.",
-      "default": "'div'",
-      "class": ".MuiAutocomplete-wrapper"
+      "class": ".MuiAutocomplete-limitTag"
     }
   ],
   "spread": true,

@@ -16,9 +16,9 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "endDecorator": "The component used to render the end decorator.",
-    "loadingIndicatorCenter": "The component used to render the loading indicator center.",
-    "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator."
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator.",
+    "loadingIndicatorCenter": "The component that renders the loading indicator center."
   }
 }

@@ -22,22 +22,22 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiOptionGroup-root"
+    },
+    {
       "name": "label",
-      "description": "The component used to render the label.",
+      "description": "The component that renders the label.",
       "default": "'span'",
       "class": ".MuiOptionGroup-label"
     },
     {
       "name": "list",
-      "description": "The component used to render the list.",
+      "description": "The component that renders the list.",
       "default": "'ul'",
       "class": ".MuiOptionGroup-list"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'li'",
-      "class": ".MuiOptionGroup-root"
     }
   ],
   "spread": true,

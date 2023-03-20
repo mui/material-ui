@@ -133,6 +133,7 @@ export type {
   ColorSystemOptions,
 } from './experimental_extendTheme';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
+export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';

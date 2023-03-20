@@ -233,7 +233,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange?: (
     event: React.SyntheticEvent,
@@ -299,7 +299,7 @@ export interface UseAutocompleteParameters<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {}
 
-export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
+export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto' | 'touch';
 
 export type AutocompleteChangeReason =
   | 'createOption'
@@ -411,6 +411,11 @@ export interface UseAutocompleteReturnValue<
    * @default false
    */
   dirty: boolean;
+  /**
+   * If `true`, the listbox is being displayed.
+   * @default false
+   */
+  expanded: boolean;
   /**
    * If `true`, the popup is open on the component.
    * @default false

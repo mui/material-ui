@@ -38,10 +38,10 @@ import { expectType } from '@mui/types';
 
 <Switch
   sx={{
-    '--joy-Switch-track-radius': '8px',
-    '--joy-Switch-track-width': '48px',
-    '--joy-Switch-track-height': '24px',
-    '--joy-Switch-thumb-size': '16px',
+    '--joy-Switch-trackRadius': '8px',
+    '--joy-Switch-trackWidth': '48px',
+    '--joy-Switch-trackHeight': '24px',
+    '--joy-Switch-thumbSize': '16px',
   }}
 />;
 

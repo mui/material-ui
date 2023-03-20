@@ -77,7 +77,7 @@ As with any performance optimization, this is not a silver bullet. Be sure to id
 
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "ServerModal.js"}}
 

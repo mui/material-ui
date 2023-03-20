@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   ListboxState,
-  UseListboxPropsWithDefaults,
+  UseListboxParametersWithDefaults,
   ActionTypes,
   ListboxReducerAction,
 } from './useListbox.types';
@@ -51,45 +51,69 @@ function getNewHighlightedOption<TOption>(
   options: TOption[],
   previouslyHighlightedOption: TOption | null,
   diff: number | 'reset' | 'start' | 'end',
-  lookupDirection: 'previous' | 'next',
-  highlightDisabled: boolean,
+  highlightDisabledOptions: boolean,
   isOptionDisabled: OptionPredicate<TOption>,
-  wrapAround: boolean,
+  disableListWrap: boolean,
   optionComparer: (optionA: TOption, optionB: TOption) => boolean,
 ): TOption | null {
   const maxIndex = options.length - 1;
   const defaultHighlightedIndex = -1;
-  let nextIndexCandidate: number;
   const previouslyHighlightedIndex =
     previouslyHighlightedOption == null
       ? -1
       : options.findIndex((option) => optionComparer(option, previouslyHighlightedOption));
 
-  if (diff === 'reset') {
-    return defaultHighlightedIndex === -1 ? null : options[defaultHighlightedIndex] ?? null;
-  }
+  let nextIndexCandidate: number;
+  let lookupDirection: 'next' | 'previous';
+  let wrapAround: boolean;
 
-  if (diff === 'start') {
-    nextIndexCandidate = 0;
-  } else if (diff === 'end') {
-    nextIndexCandidate = maxIndex;
-  } else {
-    const newIndex = previouslyHighlightedIndex + diff;
+  switch (diff) {
+    case 'reset':
+      if (defaultHighlightedIndex === -1) {
+        return null;
+      }
 
-    if (newIndex < 0) {
-      if ((!wrapAround && previouslyHighlightedIndex !== -1) || Math.abs(diff) > 1) {
-        nextIndexCandidate = 0;
+      nextIndexCandidate = 0;
+      lookupDirection = 'next';
+      wrapAround = false;
+      break;
+
+    case 'start':
+      nextIndexCandidate = 0;
+      lookupDirection = 'next';
+      wrapAround = false;
+      break;
+
+    case 'end':
+      nextIndexCandidate = maxIndex;
+      lookupDirection = 'previous';
+      wrapAround = false;
+      break;
+
+    default: {
+      const newIndex = previouslyHighlightedIndex + diff;
+      wrapAround = !disableListWrap;
+
+      if (newIndex < 0) {
+        if ((!wrapAround && previouslyHighlightedIndex !== -1) || Math.abs(diff) > 1) {
+          nextIndexCandidate = 0;
+          lookupDirection = 'next';
+        } else {
+          nextIndexCandidate = maxIndex;
+          lookupDirection = 'previous';
+        }
+      } else if (newIndex > maxIndex) {
+        if (!wrapAround || Math.abs(diff) > 1) {
+          nextIndexCandidate = maxIndex;
+          lookupDirection = 'previous';
+        } else {
+          nextIndexCandidate = 0;
+          lookupDirection = 'next';
+        }
       } else {
-        nextIndexCandidate = maxIndex;
+        nextIndexCandidate = newIndex;
+        lookupDirection = diff >= 0 ? 'next' : 'previous';
       }
-    } else if (newIndex > maxIndex) {
-      if (!wrapAround || Math.abs(diff) > 1) {
-        nextIndexCandidate = maxIndex;
-      } else {
-        nextIndexCandidate = 0;
-      }
-    } else {
-      nextIndexCandidate = newIndex;
     }
   }
 
@@ -97,7 +121,7 @@ function getNewHighlightedOption<TOption>(
     nextIndexCandidate,
     lookupDirection,
     options,
-    highlightDisabled,
+    highlightDisabledOptions,
     isOptionDisabled,
     wrapAround,
   );
@@ -105,13 +129,72 @@ function getNewHighlightedOption<TOption>(
   return options[nextIndex] ?? null;
 }
 
+function moveHighlight<TOption>(
+  previouslyHighlightedOption: TOption | null,
+  diff: number | 'reset' | 'start' | 'end',
+  props: UseListboxParametersWithDefaults<TOption>,
+) {
+  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
+    props;
+
+  return getNewHighlightedOption(
+    options,
+    previouslyHighlightedOption,
+    diff,
+    disabledItemsFocusable ?? false,
+    isOptionDisabled ?? (() => false),
+    disableListWrap ?? false,
+    optionComparer ?? ((o1, o2) => o1 === o2),
+  );
+}
+
+function toggleSelection<TOption>(
+  option: TOption,
+  selectedOptions: TOption[],
+  selectionLimit: number | null,
+  optionComparer: (optionA: TOption, optionB: TOption) => boolean,
+) {
+  if (selectionLimit === 0) {
+    return [];
+  }
+
+  // Selection limit = 1 is a special case - we don't want to allow deselecting the option.
+  if (selectionLimit === 1) {
+    if (optionComparer(selectedOptions[0], option)) {
+      return selectedOptions;
+    }
+
+    return [option];
+  }
+
+  // The toggled option is selected; remove it from the selection.
+  if (selectedOptions.some((so) => optionComparer(so, option))) {
+    return selectedOptions.filter((so) => !optionComparer(so, option));
+  }
+
+  // The toggled option is not selected and the selected array is shorter than the limit - add to the selection.
+  if (selectionLimit === null || selectedOptions.length < selectionLimit) {
+    return [...selectedOptions, option];
+  }
+
+  // Truncate the selection to the limit (discard items with lower indexes).
+  const newSelection = selectedOptions.slice(selectedOptions.length - selectionLimit + 1);
+  newSelection.push(option);
+
+  return newSelection;
+}
+
 function handleOptionSelection<TOption>(
   option: TOption,
   state: ListboxState<TOption>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
-  const { multiple, optionComparer = (o, v) => o === v, isOptionDisabled = () => false } = props;
-  const { selectedValue } = state;
+  const {
+    optionComparer = (o, v) => o === v,
+    isOptionDisabled = () => false,
+    selectionLimit,
+  } = props;
+  const { selectedValues } = state;
 
   const optionIndex = props.options.findIndex((o) => props.optionComparer(option, o));
 
@@ -119,25 +202,11 @@ function handleOptionSelection<TOption>(
     return state;
   }
 
-  if (multiple) {
-    const selectedValues = (selectedValue as TOption[]) ?? [];
-    // if the option is already selected, remove it from the selection, otherwise add it
-    const newSelectedValues = selectedValues.some((sv) => optionComparer(sv, option))
-      ? (selectedValue as TOption[]).filter((v) => !optionComparer(v, option))
-      : [...((selectedValue as TOption[]) ?? []), option];
-
-    return {
-      selectedValue: newSelectedValues,
-      highlightedValue: option,
-    };
-  }
-
-  if (selectedValue != null && optionComparer(option, selectedValue as TOption)) {
-    return state;
-  }
+  // if the option is already selected, remove it from the selection, otherwise add it
+  const newSelectedValues = toggleSelection(option, selectedValues, selectionLimit, optionComparer);
 
   return {
-    selectedValue: option,
+    selectedValues: newSelectedValues,
     highlightedValue: option,
   };
 }
@@ -145,65 +214,47 @@ function handleOptionSelection<TOption>(
 function handleKeyDown<TOption>(
   event: React.KeyboardEvent,
   state: Readonly<ListboxState<TOption>>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  parameters: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
-  const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
-    props;
-
-  const moveHighlight = (
-    diff: number | 'reset' | 'start' | 'end',
-    direction: 'next' | 'previous',
-    wrapAround: boolean,
-  ) => {
-    return getNewHighlightedOption(
-      options,
-      state.highlightedValue,
-      diff,
-      direction,
-      disabledItemsFocusable ?? false,
-      isOptionDisabled ?? (() => false),
-      wrapAround,
-      optionComparer,
-    );
-  };
+  const previouslySelectedValue = state.highlightedValue;
 
   switch (event.key) {
     case 'Home':
       return {
         ...state,
-        highlightedValue: moveHighlight('start', 'next', false),
+        highlightedValue: moveHighlight(previouslySelectedValue, 'start', parameters),
       };
 
     case 'End':
       return {
         ...state,
-        highlightedValue: moveHighlight('end', 'previous', false),
+        highlightedValue: moveHighlight(previouslySelectedValue, 'end', parameters),
       };
 
     case 'PageUp':
       return {
         ...state,
-        highlightedValue: moveHighlight(-pageSize, 'previous', false),
+        highlightedValue: moveHighlight(previouslySelectedValue, -pageSize, parameters),
       };
 
     case 'PageDown':
       return {
         ...state,
-        highlightedValue: moveHighlight(pageSize, 'next', false),
+        highlightedValue: moveHighlight(previouslySelectedValue, pageSize, parameters),
       };
 
     case 'ArrowUp':
       // TODO: extend current selection with Shift modifier
       return {
         ...state,
-        highlightedValue: moveHighlight(-1, 'previous', !(disableListWrap ?? false)),
+        highlightedValue: moveHighlight(previouslySelectedValue, -1, parameters),
       };
 
     case 'ArrowDown':
       // TODO: extend current selection with Shift modifier
       return {
         ...state,
-        highlightedValue: moveHighlight(1, 'next', !(disableListWrap ?? false)),
+        highlightedValue: moveHighlight(previouslySelectedValue, 1, parameters),
       };
 
     case 'Enter':
@@ -212,7 +263,7 @@ function handleKeyDown<TOption>(
         return state;
       }
 
-      return handleOptionSelection(state.highlightedValue, state, props);
+      return handleOptionSelection(state.highlightedValue, state, parameters);
 
     default:
       break;
@@ -246,7 +297,7 @@ const textCriteriaMatches = <TOption>(
 function handleTextNavigation<TOption>(
   state: ListboxState<TOption>,
   searchString: string,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const {
     options,
@@ -257,24 +308,19 @@ function handleTextNavigation<TOption>(
     optionStringifier,
   } = props;
 
-  const moveHighlight = (previouslyHighlightedOption: TOption | null) => {
-    return getNewHighlightedOption(
-      options,
-      previouslyHighlightedOption,
-      1,
-      'next',
-      disabledItemsFocusable ?? false,
-      isOptionDisabled ?? (() => false),
-      !(disableListWrap ?? false),
-      optionComparer,
-    );
-  };
-
   const startWithCurrentOption = searchString.length > 1;
 
   let nextOption = startWithCurrentOption
     ? state.highlightedValue
-    : moveHighlight(state.highlightedValue);
+    : getNewHighlightedOption(
+        options,
+        state.highlightedValue,
+        1,
+        disabledItemsFocusable ?? false,
+        isOptionDisabled ?? (() => false),
+        disableListWrap ?? false,
+        optionComparer,
+      );
 
   // use `for` instead of `while` prevent infinite loop
   for (let index = 0; index < options.length; index += 1) {
@@ -294,7 +340,15 @@ function handleTextNavigation<TOption>(
       };
     }
     // Move to the next element.
-    nextOption = moveHighlight(nextOption);
+    nextOption = getNewHighlightedOption(
+      options,
+      nextOption,
+      1,
+      disabledItemsFocusable ?? false,
+      isOptionDisabled ?? (() => false),
+      disableListWrap ?? false,
+      optionComparer,
+    );
   }
 
   // No option match text search criteria
@@ -303,36 +357,25 @@ function handleTextNavigation<TOption>(
 
 function handleOptionsChange<TOption>(
   options: TOption[],
-  previousOptions: TOption[],
   state: ListboxState<TOption>,
-  props: UseListboxPropsWithDefaults<TOption>,
+  props: UseListboxParametersWithDefaults<TOption>,
 ): ListboxState<TOption> {
-  const { multiple, optionComparer } = props;
+  const { optionComparer } = props;
 
   const newHighlightedOption =
     state.highlightedValue == null
       ? null
       : options.find((option) => optionComparer(option, state.highlightedValue!)) ?? null;
 
-  if (multiple) {
-    // exclude selected values that are no longer in the options
-    const selectedValues = (state.selectedValue as TOption[]) ?? [];
-    const newSelectedValues = selectedValues.filter((selectedValue) =>
-      options.some((option) => optionComparer(option, selectedValue)),
-    );
-
-    return {
-      highlightedValue: newHighlightedOption,
-      selectedValue: newSelectedValues,
-    };
-  }
-
-  const newSelectedValue =
-    options.find((option) => optionComparer(option, state.selectedValue as TOption)) ?? null;
+  // exclude selected values that are no longer in the options
+  const selectedValues = state.selectedValues ?? [];
+  const newSelectedValues = selectedValues.filter((selectedValue) =>
+    options.some((option) => optionComparer(option, selectedValue)),
+  );
 
   return {
     highlightedValue: newHighlightedOption,
-    selectedValue: newSelectedValue,
+    selectedValues: newSelectedValues,
   };
 }
 
@@ -352,7 +395,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.setValue:
       return {
         ...state,
-        selectedValue: action.value,
+        selectedValues: action.value,
       };
     case ActionTypes.setHighlight:
       return {
@@ -362,7 +405,7 @@ export default function defaultListboxReducer<TOption>(
     case ActionTypes.textNavigation:
       return handleTextNavigation(state, action.searchString, action.props);
     case ActionTypes.optionsChange:
-      return handleOptionsChange(action.options, action.previousOptions, state, action.props);
+      return handleOptionsChange(action.options, state, action.props);
     default:
       return state;
   }
