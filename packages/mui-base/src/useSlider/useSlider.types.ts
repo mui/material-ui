@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { EventHandlers } from '../utils';
 
 export interface UseSliderParameters {
   'aria-labelledby'?: string;
@@ -62,3 +63,47 @@ export type UseSliderHiddenInputProps<TOther = {}> = Omit<
   keyof UseSliderHiddenInputOwnProps
 > &
   UseSliderHiddenInputOwnProps;
+
+export type Axis = 'horizontal' | 'vertical' | 'horizontal-reverse';
+
+export interface AxisProps<T extends Axis> {
+  offset: (
+    percent: number,
+  ) => T extends 'horizontal'
+    ? { left: string }
+    : T extends 'vertical'
+    ? { bottom: string }
+    : T extends 'horizontal-reverse'
+    ? { right: string }
+    : never;
+  leap: (
+    percent: number,
+  ) => T extends 'horizontal' | 'horizontal-reverse'
+    ? { width: string }
+    : T extends 'vertical'
+    ? { height: string }
+    : never;
+}
+
+export interface UseSliderReturnValue {
+  active: number;
+  axis: Axis;
+  axisProps: { [key in Axis]: AxisProps<key> };
+  dragging: boolean;
+  focusedThumbIndex: number;
+  getHiddenInputProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseSliderHiddenInputProps<TOther>;
+  getRootProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseSliderRootSlotProps<TOther>;
+  getThumbProps: <TOther extends EventHandlers = {}>(
+    otherHandlers?: TOther,
+  ) => UseSliderThumbSlotProps<TOther>;
+  marks: Mark[];
+  open: number;
+  range: boolean;
+  trackLeap: number;
+  trackOffset: number;
+  values: number[];
+}
