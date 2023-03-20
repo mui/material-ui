@@ -67,7 +67,7 @@ function SlotsTable(props) {
         <tr>
           <th align="left">{t('api-docs.name')}</th>
           <th align="left">{t('api-docs.defaultClass')}</th>
-          <th align="left">{t('api-docs.defaultValue')}</th>
+          <th align="left">{t('api-docs.defaultHTMLTag')}</th>
           <th align="left">{t('api-docs.description')}</th>
         </tr>
       </thead>
@@ -169,15 +169,20 @@ export default function ApiPage(props) {
   } = pageContent;
 
   const isJoyComponent = filename.includes('mui-joy');
+  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#theme-default-props'
     : '/material-ui/customization/theme-components/#theme-default-props';
   const styleOverridesLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#theme-style-overrides'
     : '/material-ui/customization/theme-components/#theme-style-overrides';
-  const extendVariantsLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#extend-variants'
-    : '';
+  let slotGuideLink = '';
+  if (isJoyComponent) {
+    slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+  } else if (isBaseComponent) {
+    slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+  }
+
   const {
     componentDescription,
     componentDescriptionToc = [],
@@ -186,8 +191,8 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
-  const slotExtraDescription = extendVariantsLink
-    ? t('api-docs.slotDescription').replace(/{{extendVariantsLink}}/, extendVariantsLink)
+  const slotExtraDescription = slotGuideLink
+    ? t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
     : '';
   if (slotDescriptions && slotExtraDescription) {
     Object.keys(slotDescriptions).forEach((slot) => {
