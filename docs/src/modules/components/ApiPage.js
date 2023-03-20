@@ -12,7 +12,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import { sxChip } from './AppNavDrawerItem';
 
-function ClassesTable(props) {
+function CSSTable(props) {
   const { componentStyles, classDescriptions } = props;
   const t = useTranslate();
 
@@ -67,7 +67,7 @@ function ClassesTable(props) {
   );
 }
 
-ClassesTable.propTypes = {
+CSSTable.propTypes = {
   classDescriptions: PropTypes.object.isRequired,
   componentStyles: PropTypes.object.isRequired,
 };
@@ -122,6 +122,43 @@ SlotsTable.propTypes = {
   slotDescriptions: PropTypes.object.isRequired,
 };
 
+function ClassesTable(props) {
+  const { componentClasses, componentName } = props;
+  const t = useTranslate();
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th align="left">{t('api-docs.ruleName')}</th>
+          <th align="left">{t('api-docs.globalClass')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {componentClasses.classes.map((className) => (
+          <tr key={className}>
+            <td align="left">
+              <span className="prop-name">{className}</span>
+            </td>
+            <td align="left">
+              <span className="prop-name">
+                .
+                {componentClasses.globalClasses[className] ||
+                  `Mui${componentName.replace('Unstyled', '')}-${className}`}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+ClassesTable.propTypes = {
+  componentClasses: PropTypes.object.isRequired,
+  componentName: PropTypes.string.isRequired,
+};
+
 export function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
@@ -130,7 +167,8 @@ export function getTranslatedHeader(t, header) {
     'theme-default-props': t('api-docs.themeDefaultProps'),
     inheritance: t('api-docs.inheritance'),
     slots: t('api-docs.slots'),
-    css: 'CSS',
+    classes: t('api-docs.classes'),
+    css: t('api-docs.css'),
   };
 
   // TODO Drop runtime type-checking once we type-check this file
@@ -181,6 +219,7 @@ export default function ApiPage(props) {
     spread,
     styles: componentStyles,
     slots: componentSlots,
+    classes: componentClasses,
   } = pageContent;
 
   const isJoyComponent = filename.includes('mui-joy');
@@ -356,7 +395,7 @@ import { ${pageContent.name} } from '${source}';`}
           <React.Fragment>
             <Heading hash="css" />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
-            <ClassesTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
+            <CSSTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
             <br />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
@@ -390,6 +429,15 @@ import { ${pageContent.name} } from '${source}';`}
                 ),
               }}
             />
+          </React.Fragment>
+        ) : null}
+        {componentClasses?.classes?.length ||
+        (componentClasses?.classes?.globalClasses &&
+          Object.keys(componentClasses.classes.globalClasses).length) ? (
+          <React.Fragment>
+            <Heading hash="classes" />
+            <ClassesTable componentClasses={componentClasses} componentName={pageContent.name} />
+            <br />
           </React.Fragment>
         ) : null}
       </MarkdownElement>

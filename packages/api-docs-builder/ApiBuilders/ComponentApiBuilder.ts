@@ -342,7 +342,8 @@ const generateApiPage = (
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     ...((reactApi.classes?.classes.length > 0 ||
-      Object.keys(reactApi.classes?.globalClasses)?.length > 0) && { classes: reactApi.classes }),
+      (reactApi.classes?.globalClasses &&
+        Object.keys(reactApi.classes.globalClasses).length > 0)) && { classes: reactApi.classes }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
     muiName: reactApi.apiPathname.startsWith('/joy-ui')
