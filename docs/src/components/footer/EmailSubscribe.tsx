@@ -24,7 +24,13 @@ function searchParams(params: any) {
     .join('&');
 }
 
-export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
+export default function EmailSubscribe({
+  sx,
+  fullWidth,
+}: {
+  sx?: SxProps<Theme>;
+  fullWidth?: Boolean;
+}) {
   const [form, setForm] = React.useState<{
     email: string;
     status: 'initial' | 'loading' | 'failure' | 'sent';
@@ -93,16 +99,17 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     <Form onSubmit={handleSubmit} sx={sx}>
       <FormLabel
         htmlFor="email-subscribe"
-        sx={{ typography: 'caption', mb: 0.5, color: 'text.secondary', fontWeight: 500 }}
+        sx={{ typography: 'caption', color: 'text.secondary', fontWeight: 500 }}
       >
         Enter your email:
       </FormLabel>
       <Box
         sx={{
           display: 'flex',
+          mt: 1,
           gap: 1,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: 320,
+          maxWidth: fullWidth ? '100%' : 320,
         }}
       >
         <InputBase
@@ -115,6 +122,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           inputProps={{ required: true }}
           sx={[
             (theme) => ({
+              width: fullWidth ? '100%' : 'auto',
               minWidth: 220,
               borderRadius: 1,
               border: '1px solid',

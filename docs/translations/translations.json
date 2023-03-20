@@ -83,7 +83,7 @@
     "usecases": "If something is broken and you need a reply to a problem you've encountered,",
     "callToAction": {
       "text": "please ",
-      "link": "open an issue."
+      "link": "Open an issue"
     }
   },
   "feedbackNo": "No",

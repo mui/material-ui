@@ -13,21 +13,27 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
+import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
+import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
+import MapRoundedIcon from '@mui/icons-material/MapRounded';
 import Snackbar from '@mui/material/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import ROUTES from 'docs/src/route';
 
 const PaginationDiv = styled('div')(({ theme }) => {
   return {
-    margin: theme.spacing(3, 0, 4),
+    margin: theme.spacing(4, 0),
     display: 'flex',
     justifyContent: 'space-between',
     [theme.breakpoints.down('sm')]: {
@@ -375,7 +381,7 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Box component="footer" sx={{ mt: 12 }}>
+      <Box component="footer" sx={{ my: 8 }}>
         {hidePagePagination ? null : (
           <React.Fragment>
             <Divider />
@@ -407,7 +413,8 @@ export default function AppLayoutDocsFooter(props) {
                   component="div"
                   id="feedback-message"
                   variant="body2"
-                  sx={{ mx: 2 }}
+                  fontWeight="medium"
+                  sx={{ mr: 1 }}
                 >
                   {t('feedbackMessage')}
                 </Typography>
@@ -447,22 +454,6 @@ export default function AppLayoutDocsFooter(props) {
           onEntered={handleEntered}
           timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
         >
-          {rating !== 1 && (
-            <Alert severity="info" icon={<InfoRoundedIcon fontSize="inherit" />} sx={{ mb: 4, border: (theme) => `1px solid ${(theme.vars || theme).palette.grey[200]}`,   theme.applyDarkStyles({ 
-              borderColor: (theme.vars || theme).palette.primaryDark[700],
-            }), }} >
-              <Typography id="feedback-description" color="text.secondary">
-                {t('feedbackMessageToGitHub.usecases')}{' '}
-                {t('feedbackMessageToGitHub.callToAction.text')}
-                <Link
-                  href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
-                  target="_blank"
-                >
-                  {t('feedbackMessageToGitHub.callToAction.link')}
-                </Link>
-              </Typography>
-            </Alert>
-          )}
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <form
             aria-labelledby="feedback-message"
@@ -473,6 +464,7 @@ export default function AppLayoutDocsFooter(props) {
             <Box sx={{ mb: 4 }}>
               {commentedSection.text ? (
                 <Typography
+                  variant="body2"
                   id="feedback-description"
                   color="text.secondary"
                   dangerouslySetInnerHTML={{
@@ -483,7 +475,7 @@ export default function AppLayoutDocsFooter(props) {
                   }}
                 />
               ) : (
-                <Typography id="feedback-description" color="text.secondary">
+                <Typography variant="body2" id="feedback-description" color="text.secondary">
                   {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
                 </Typography>
               )}
@@ -510,6 +502,64 @@ export default function AppLayoutDocsFooter(props) {
             </Box>
           </form>
         </Collapse>
+        <Divider sx={{ mb: 4 }} />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            justifyContent: 'space-between',
+            gap: { xs: 4, lg: 8 },
+          }}
+        >
+          <Box flexGrow={1}>
+            <Typography variant="body2" fontWeight="bold">
+              Keep up to date
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Join our newsletter for regular updates. No spam ever.
+            </Typography>
+            <EmailSubscribe fullWidth sx={{ mb: 1 }} />
+          </Box>
+          <Divider sx={{ display: { xs: 'block', sm: 'hidden' } }} />
+          <Stack direction="column" spacing={3}>
+            <Typography variant="body2" fontWeight="bold">
+              Engage further with us
+            </Typography>
+            <Stack direction="column" spacing={1}>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <BugReportRoundedIcon fontSize="small" color="disabled" />
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
+                  Need answers?
+                  <Link
+                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                    target="_blank"
+                    sx={{ ml: 0.5 }}
+                  >
+                    {t('feedbackMessageToGitHub.callToAction.link')}
+                  </Link>
+                </Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <ChangeCircleRoundedIcon fontSize="small" color="disabled" />
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
+                  Past releases?
+                  <Link href={ROUTES.roadmap} target="_blank" sx={{ ml: 0.5 }}>
+                    Check the changelog
+                  </Link>
+                </Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <MapRoundedIcon fontSize="small" color="disabled" />
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
+                  The future?
+                  <Link href={ROUTES.roadmap} target="_blank" sx={{ ml: 0.5 }}>
+                    Check the roadmap
+                  </Link>
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Box>
       </Box>
       <Snackbar
         open={snackbarOpen}
