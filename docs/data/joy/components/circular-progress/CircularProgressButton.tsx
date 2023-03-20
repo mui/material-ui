@@ -18,7 +18,13 @@ export default function CircularProgressSizes() {
       <Link
         component="button"
         variant="outlined"
-        startDecorator={<CircularProgress variant="plain" thickness={2} />}
+        startDecorator={
+          <CircularProgress
+            variant="plain"
+            thickness={2}
+            sx={{ '--CircularProgress-size': '16px' }}
+          />
+        }
         sx={{ p: 1 }}
       >
         Submitting...

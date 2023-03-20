@@ -973,7 +973,12 @@ export default function useAutocomplete(props) {
     });
   };
 
-  const handleOptionTouchStart = () => {
+  const handleOptionTouchStart = (event) => {
+    setHighlightedIndex({
+      event,
+      index: Number(event.currentTarget.getAttribute('data-option-index')),
+      reason: 'touch',
+    });
     isTouch.current = true;
   };
 

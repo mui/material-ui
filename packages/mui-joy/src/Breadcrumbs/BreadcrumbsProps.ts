@@ -7,22 +7,22 @@ export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 
 export interface BreadcrumbsSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'nav'
    */
   root: React.ElementType;
   /**
-   * The component used to render the ol.
+   * The component that renders the ol.
    * @default 'ol'
    */
   ol: React.ElementType;
   /**
-   * The component used to render the li.
+   * The component that renders the li.
    * @default 'li'
    */
   li: React.ElementType;
   /**
-   * The component used to render the separator.
+   * The component that renders the separator.
    * @default 'li'
    */
   separator: React.ElementType;

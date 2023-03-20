@@ -1,2 +1,2 @@
 export { default } from './useTabs';
-export * from './useTabs';
+export * from './useTabs.types';

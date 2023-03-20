@@ -37,34 +37,34 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "action",
-      "description": "The component used to render the action.",
-      "default": "'button'",
-      "class": ".MuiChip-action"
-    },
-    {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiChip-endDecorator"
-    },
-    {
-      "name": "label",
-      "description": "The component used to render the label.",
-      "default": "'span'",
-      "class": ".MuiChip-label"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiChip-root"
     },
     {
+      "name": "label",
+      "description": "The component that renders the label.",
+      "default": "'span'",
+      "class": ".MuiChip-label"
+    },
+    {
+      "name": "action",
+      "description": "The component that renders the action.",
+      "default": "'button'",
+      "class": ".MuiChip-action"
+    },
+    {
       "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": ".MuiChip-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiChip-endDecorator"
     }
   ],
   "spread": true,

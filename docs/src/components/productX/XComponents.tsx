@@ -32,11 +32,14 @@ const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
 })<{ ratio: number; src: string }>(({ src, ratio, theme }) => ({
   height: 0,
-  backgroundImage: `url(${src.replace('$mode', theme.palette.mode)})`,
+  backgroundImage: `url(${src})`,
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',
   paddingBottom: `${(1 / ratio) * 100}%`,
   margin: 'auto',
+  ...theme.applyDarkStyles({
+    backgroundImage: `url(${src.replace('-light', '-dark')})`,
+  }),
 }));
 
 function PrefetchImages() {
@@ -146,7 +149,7 @@ export default function XComponents() {
                         <Grid item xs={6}>
                           <Box sx={{ maxWidth: 200, ml: 'auto' }}>
                             <AspectRatioImage
-                              src="/static/branding/mui-x/sparkline-$mode1.png"
+                              src="/static/branding/mui-x/sparkline-light1.png"
                               ratio={211 / 220}
                             />
                           </Box>
@@ -154,7 +157,7 @@ export default function XComponents() {
                         <Grid item xs={6}>
                           <Box sx={{ maxWidth: 200, mr: 'auto' }}>
                             <AspectRatioImage
-                              src="/static/branding/mui-x/sparkline-$mode2.png"
+                              src="/static/branding/mui-x/sparkline-light2.png"
                               ratio={211 / 220}
                             />
                           </Box>
@@ -166,7 +169,7 @@ export default function XComponents() {
                         <Grid item xs={6}>
                           <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', ml: 'auto' }}>
                             <AspectRatioImage
-                              src="/static/branding/mui-x/chart-$mode1.png"
+                              src="/static/branding/mui-x/chart-light1.png"
                               ratio={219 / 120}
                             />
                           </Box>
@@ -174,7 +177,7 @@ export default function XComponents() {
                         <Grid item xs={6}>
                           <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', mr: 'auto' }}>
                             <AspectRatioImage
-                              src="/static/branding/mui-x/chart-$mode2.png"
+                              src="/static/branding/mui-x/chart-light2.png"
                               ratio={219 / 120}
                             />
                           </Box>
@@ -182,7 +185,7 @@ export default function XComponents() {
                         <Grid item xs={6}>
                           <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', ml: 'auto' }}>
                             <AspectRatioImage
-                              src="/static/branding/mui-x/chart-$mode3.png"
+                              src="/static/branding/mui-x/chart-light3.png"
                               ratio={219 / 120}
                             />
                           </Box>
@@ -190,7 +193,7 @@ export default function XComponents() {
                         <Grid item xs={6}>
                           <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', mr: 'auto' }}>
                             <AspectRatioImage
-                              src="/static/branding/mui-x/chart-$mode4.png"
+                              src="/static/branding/mui-x/chart-light4.png"
                               ratio={219 / 120}
                             />
                           </Box>

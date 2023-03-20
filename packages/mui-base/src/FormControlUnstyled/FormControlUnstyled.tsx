@@ -14,6 +14,7 @@ import {
 } from './FormControlUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
@@ -33,7 +34,7 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
     ],
   };
 
-  return composeClasses(slots, getFormControlUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getFormControlUnstyledUtilityClass));
 }
 
 /**

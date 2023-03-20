@@ -142,7 +142,7 @@ export default function JoyVariablesDemo(props: {
           boxShadow: 'sm',
         }}
       >
-        <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
+        <List component="div" sx={{ '--List-padding': '1rem', '--ListDivider-gap': '0px' }}>
           <Box
             sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
           >

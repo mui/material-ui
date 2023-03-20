@@ -1,0 +1,11 @@
+<Switch
+  slotProps={{
+    input: { 'aria-label': 'Dark mode' },
+    thumb: {
+      children: <DarkMode />,
+    },
+  }}
+  sx={{
+    '--Switch-thumbSize': '28px',
+  }}
+/>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
   UseListboxParameters,
-  UseListboxPropsWithDefaults,
+  UseListboxParametersWithDefaults,
   ActionTypes,
   OptionState,
   UseListboxOptionSlotProps,
@@ -21,7 +21,11 @@ const defaultOptionStringifier = <TOption>(option: TOption) =>
   typeof option === 'string' ? option : String(option);
 
 /**
- * @ignore - do not document.
+ * @ignore - internal hook.
+ *
+ * The useListbox is a lower-level utility that is used to build a listbox component.
+ * It's used to manage the state of the listbox and its options.
+ * Contains the logic for keyboard navigation, selection, and focus management.
  */
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
@@ -31,12 +35,12 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     id: idProp,
     isOptionDisabled = defaultIsOptionDisabled,
     listboxRef: externalListboxRef,
-    multiple = false,
     optionComparer = defaultOptionComparer,
     optionStringifier = defaultOptionStringifier,
     options,
     stateReducer: externalReducer,
     value: valueParam,
+    selectionLimit = null,
   } = props;
 
   const id = useId(idProp);
@@ -48,16 +52,16 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: React.RefObject<UseListboxPropsWithDefaults<TOption>> = useLatest(
+  const propsWithDefaults: React.RefObject<UseListboxParametersWithDefaults<TOption>> = useLatest(
     {
       ...props,
       disabledItemsFocusable,
       disableListWrap,
       focusManagement,
       isOptionDisabled,
-      multiple,
       optionComparer,
       optionStringifier,
+      selectionLimit,
     },
     [props],
   );
@@ -65,7 +69,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
 
-  const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
+  const [{ highlightedValue, selectedValues: selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
     externalReducer,
     propsWithDefaults,
@@ -117,11 +121,11 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
   }, [options, optionComparer, dispatch]);
 
   const setSelectedValue = React.useCallback(
-    (option: TOption | TOption[] | null) => {
+    (values: TOption[]) => {
       dispatch({
         type: ActionTypes.setValue,
         event: null,
-        value: option,
+        value: values,
       });
     },
     [dispatch],
@@ -244,15 +248,10 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const getOptionState = React.useCallback(
     (option: TOption): OptionState => {
-      let selected: boolean;
       const index = options.findIndex((opt) => optionComparer(opt, option));
-      if (multiple) {
-        selected = ((latestSelectedValue.current as TOption[]) ?? []).some(
-          (value) => value != null && optionComparer(option, value),
-        );
-      } else {
-        selected = optionComparer(option, latestSelectedValue.current as TOption);
-      }
+      const selected = (latestSelectedValue.current ?? []).some(
+        (value) => value != null && optionComparer(option, value),
+      );
 
       const disabled = isOptionDisabled(option, index);
       const highlighted = latestHighlightedIndex.current === index && index !== -1;
@@ -264,14 +263,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         selected,
       };
     },
-    [
-      options,
-      multiple,
-      isOptionDisabled,
-      optionComparer,
-      latestSelectedValue,
-      latestHighlightedIndex,
-    ],
+    [options, isOptionDisabled, optionComparer, latestSelectedValue, latestHighlightedIndex],
   );
 
   const getOptionTabIndex = React.useCallback(
