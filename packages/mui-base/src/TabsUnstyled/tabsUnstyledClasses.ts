@@ -4,9 +4,9 @@ import generateUtilityClasses from '../generateUtilityClasses';
 export interface TabsUnstyledClasses {
   /** Class name applied to the root element. */
   root: string;
-  /** State class applied to the root `div` element if `orientation='horizontal'`. */
+  /** Class name applied to the root element if `orientation='horizontal'`. */
   horizontal: string;
-  /** State class applied to the root `div` element if `orientation='vertical'`. */
+  /** Class name applied to the root element if `orientation='vertical'`. */
   vertical: string;
 }
 
