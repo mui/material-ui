@@ -19,6 +19,7 @@ export default function ExampleFilterMemberCheckbox() {
       variant="outlined"
       sx={{
         p: 2,
+        bgcolor: 'background.body',
         borderRadius: 'sm',
         width: 360,
         maxWidth: '100%',

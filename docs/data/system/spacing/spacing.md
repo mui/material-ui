@@ -64,8 +64,8 @@ const theme = {
 - input: `string`: the prop value is passed as raw CSS value.
 
 ```jsx
-<Box sx={{ m: "2rem" }} /> // margin: 2rem;
-<Box sx={{ mx: "auto" }} /> // margin-left: auto; margin-right: auto;
+<Box sx={{ m: '2rem' }} /> // margin: 2rem;
+<Box sx={{ mx: 'auto' }} /> // margin-left: auto; margin-right: auto;
 ```
 
 ## Example
@@ -86,7 +86,7 @@ However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a wid
 {{"demo": "HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ mx: "auto", width: 200 }}>…
+<Box sx={{ mx: 'auto', width: 200 }}>…
 ```
 
 ## API

@@ -3,7 +3,7 @@ product: material-ui
 title: React Tooltip（工具提示）组件
 components: Tooltip
 githubLabel: 'component: tooltip'
-materialDesign: https://material.io/components/tooltips
+materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 

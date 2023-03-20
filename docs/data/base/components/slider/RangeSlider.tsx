@@ -108,16 +108,6 @@ const StyledSlider = styled(SliderUnstyled)(
   & .${sliderUnstyledClasses.markActive} {
     background-color: #fff;
   }
-
-  & .${sliderUnstyledClasses.valueLabel} {
-    font-family: IBM Plex Sans;
-    font-size: 14px;
-    display: block;
-    position: relative;
-    top: -1.6em;
-    text-align: center;
-    transform: translateX(-50%);
-  }
 `,
 );
 

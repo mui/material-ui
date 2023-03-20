@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Link component
+components: Link
 githubLabel: 'component: link'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
@@ -14,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 The `Link` component represents the HTML `<a>` element.
 It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component, as well as the system props.
 
-{{"demo": "LinkUsage.js", "hideToolbar": true}}
+{{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

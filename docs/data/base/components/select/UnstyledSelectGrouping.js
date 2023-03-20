@@ -154,14 +154,14 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 function CustomSelect(props) {
-  const components = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 CustomSelect.propTypes = {
@@ -170,22 +170,22 @@ CustomSelect.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Listbox: PropTypes.elementType,
-    Popper: PropTypes.func,
-    Root: PropTypes.elementType,
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
   }),
 };
 
 const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(props, ref) {
-  const components = {
-    Root: StyledGroupRoot,
-    Label: StyledGroupHeader,
-    List: StyledGroupOptions,
-    ...props.components,
+  const slots = {
+    root: StyledGroupRoot,
+    label: StyledGroupHeader,
+    list: StyledGroupOptions,
+    ...props.slots,
   };
 
-  return <OptionGroupUnstyled {...props} ref={ref} components={components} />;
+  return <OptionGroupUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 CustomOptionGroup.propTypes = {
@@ -194,10 +194,10 @@ CustomOptionGroup.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Label: PropTypes.elementType,
-    List: PropTypes.elementType,
-    Root: PropTypes.elementType,
+  slots: PropTypes.shape({
+    label: PropTypes.elementType,
+    list: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
 };
 

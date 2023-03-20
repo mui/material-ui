@@ -8,6 +8,7 @@ import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
+import formLabelClasses from '../FormLabel/formLabelClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -17,7 +18,7 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getFormHelperTextUtilityClass, {});
 };
 
-const FormHelperTextRoot = styled('p', {
+const FormHelperTextRoot = styled('div', {
   name: 'JoyFormHelperText',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -29,8 +30,20 @@ const FormHelperTextRoot = styled('p', {
   lineHeight: theme.vars.lineHeight.sm,
   color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
   margin: 'var(--FormHelperText-margin, 0px)',
+  [`.${formLabelClasses.root} + &`]: {
+    '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
+  },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormHelperText API](https://mui.com/joy-ui/api/form-helper-text/)
+ */
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -81,10 +94,6 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

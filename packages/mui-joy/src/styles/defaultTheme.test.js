@@ -1,10 +1,9 @@
 import { expect } from 'chai';
-import { getThemeWithVars } from './defaultTheme';
+import defaultTheme from './defaultTheme';
 
-describe('extendTheme', () => {
+describe('defaultTheme', () => {
   it('the output contains required fields', () => {
-    const result = getThemeWithVars();
-    Object.keys(result).forEach((field) => {
+    Object.keys(defaultTheme).forEach((field) => {
       expect([
         'breakpoints',
         'components',
@@ -22,32 +21,24 @@ describe('extendTheme', () => {
         'spacing',
         'radius',
         'shadow',
+        'zIndex',
         'typography',
         'variants',
+        'colorInversion',
+        'colorInversionConfig',
         'vars',
         'cssVarPrefix',
+        'getColorSchemeSelector',
+        'unstable_sxConfig',
+        'unstable_sx',
+        'shouldSkipGeneratingVar',
+        'generateCssVars',
       ]).to.includes(field);
     });
   });
 
-  it('the generated palette has correct colorChannel', () => {
-    const result = getThemeWithVars({
-      colorSchemes: {
-        light: {
-          palette: {
-            primary: {
-              mainChannel: '12 12 12',
-            },
-          },
-        },
-      },
-    });
-    expect(result.palette.primary.mainChannel).to.equal('12 12 12');
-  });
-
   it('the generated palette always has mode and color scheme as `light`', () => {
-    const result = getThemeWithVars();
-    expect(result.palette.mode).to.equal('light');
-    expect(result.palette.colorScheme).to.equal('light');
+    expect(defaultTheme.palette.mode).to.equal('light');
+    expect(defaultTheme.palette.colorScheme).to.equal('light');
   });
 });

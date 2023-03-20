@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Badge component
+components: Badge
 githubLabel: 'component: badge'
 unstyled: /base/react-badge/
 ---

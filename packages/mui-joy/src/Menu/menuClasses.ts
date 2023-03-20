@@ -3,6 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface MenuClasses {
   /** Classname applied to the root element. */
   root: string;
+  /** Classname applied to the listbox element. */
+  listbox: string;
   /** Classname applied to the root element when the menu open. */
   expanded: string;
   /** Classname applied to the root element if `color="primary"`. */
@@ -17,6 +19,8 @@ export interface MenuClasses {
   colorSuccess: string;
   /** Classname applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element when color inversion is triggered. */
+  colorContext: string;
   /** Classname applied to the root element if `variant="plain"`. */
   variantPlain: string;
   /** Classname applied to the root element if `variant="outlined"`. */
@@ -36,11 +40,12 @@ export interface MenuClasses {
 export type MenuClassKey = keyof MenuClasses;
 
 export function getMenuUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenu', slot);
+  return generateUtilityClass('MuiMenu', slot);
 }
 
-const menuClasses: MenuClasses = generateUtilityClasses('JoyMenu', [
+const menuClasses: MenuClasses = generateUtilityClasses('MuiMenu', [
   'root',
+  'listbox',
   'expanded',
   'colorPrimary',
   'colorNeutral',
@@ -48,6 +53,7 @@ const menuClasses: MenuClasses = generateUtilityClasses('JoyMenu', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'variantPlain',
   'variantOutlined',
   'variantSoft',

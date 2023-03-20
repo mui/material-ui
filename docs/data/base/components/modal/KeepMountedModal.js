@@ -68,7 +68,7 @@ export default function ModalUnstyledDemo() {
         aria-describedby="keep-mounted-modal-description"
         open={open}
         onClose={handleClose}
-        components={{ Backdrop }}
+        slots={{ backdrop: Backdrop }}
         keepMounted
       >
         <Box sx={style}>

@@ -1,5 +1,8 @@
 import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
+import { AutocompleteOwnerState } from '@mui/joy/Autocomplete';
+import { AutocompleteListboxOwnerState } from '@mui/joy/AutocompleteListbox';
+import { AutocompleteOptionOwnerState } from '@mui/joy/AutocompleteOption';
 import { AvatarOwnerState } from '@mui/joy/Avatar';
 import { AvatarGroupOwnerState } from '@mui/joy/AvatarGroup';
 import { BadgeOwnerState } from '@mui/joy/Badge';
@@ -12,7 +15,10 @@ import { CardOverflowOwnerState } from '@mui/joy/CardOverflow';
 import { CheckboxOwnerState } from '@mui/joy/Checkbox';
 import { ChipOwnerState } from '@mui/joy/Chip';
 import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
+import { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { ContainerProps } from '@mui/joy/Container';
+import { ScopedCssBaselineOwnerState } from '@mui/joy/ScopedCssBaseline';
+import { DividerOwnerState } from '@mui/joy/Divider';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
 import { FormLabelOwnerState } from '@mui/joy/FormLabel';
@@ -20,6 +26,7 @@ import { GridProps } from '@mui/joy/Grid';
 import { IconButtonOwnerState } from '@mui/joy/IconButton';
 import { InputOwnerState } from '@mui/joy/Input';
 import { LinkOwnerState } from '@mui/joy/Link';
+import { LinearProgressOwnerState } from '@mui/joy/LinearProgress';
 import { ListOwnerState } from '@mui/joy/List';
 import { ListDividerOwnerState } from '@mui/joy/ListDivider';
 import { ListSubheaderOwnerState } from '@mui/joy/ListSubheader';
@@ -47,11 +54,23 @@ import { TabOwnerState } from '@mui/joy/Tab';
 import { TabListOwnerState } from '@mui/joy/TabList';
 import { TabPanelOwnerState } from '@mui/joy/TabPanel';
 import { TabsOwnerState } from '@mui/joy/Tabs';
+import { TableOwnerState } from '@mui/joy/Table';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
+import { TooltipOwnerState } from '@mui/joy/Tooltip';
 import { TypographyOwnerState } from '@mui/joy/Typography';
 import { expectType } from '@mui/types';
 
 extendTheme({
+  colorInversion: (theme) => ({
+    soft: {
+      primary: {
+        '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-darkChannel')} / 0.4)`,
+        [theme.getColorSchemeSelector('dark')]: {
+          '--variant-plainColor': `rgba(${theme.getCssVar('palette-info-lightChannel')} / 0.4)`,
+        },
+      },
+    },
+  }),
   components: {
     JoyAlert: {
       defaultProps: {
@@ -87,6 +106,125 @@ extendTheme({
         },
         content: ({ ownerState }) => {
           expectType<AspectRatioOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAutocomplete: {
+      defaultProps: {
+        freeSolo: true,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        wrapper: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        input: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        startDecorator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        clearIndicator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        popupIndicator: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        listbox: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        option: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        loading: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        noOptions: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+        limitTag: ({ ownerState }) => {
+          expectType<
+            AutocompleteOwnerState<any, any, any, any> & Record<string, unknown>,
+            typeof ownerState
+          >(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyAutocompleteListbox: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AutocompleteListboxOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyAutocompleteOption: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AutocompleteOptionOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
@@ -183,6 +321,14 @@ extendTheme({
       },
       styleOverrides: {
         root: ({ ownerState }) => {
+          expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        startDecorator: ({ ownerState }) => {
+          expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
           expectType<ButtonOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
@@ -300,6 +446,39 @@ extendTheme({
         },
       },
     },
+    JoyCircularProgress: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+        size: 'md',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        svg: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        track: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        progress: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyContainer: {
       defaultProps: {
         disableGutters: true,
@@ -307,6 +486,30 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ContainerProps & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyScopedCssBaseline: {
+      defaultProps: {
+        disableColorScheme: true,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ScopedCssBaselineOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyDivider: {
+      defaultProps: {
+        orientation: 'vertical',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<DividerOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },
@@ -403,6 +606,21 @@ extendTheme({
         },
         endDecorator: ({ ownerState }) => {
           expectType<LinkOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyLinearProgress: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+        size: 'md',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<LinearProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },
@@ -823,6 +1041,19 @@ extendTheme({
         },
       },
     },
+    JoyTable: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<TableOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
     JoyTextarea: {
       defaultProps: {
         size: 'sm',
@@ -844,6 +1075,23 @@ extendTheme({
         },
         endDecorator: ({ ownerState }) => {
           expectType<TextareaOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyTooltip: {
+      defaultProps: {
+        size: 'md',
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<TooltipOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        arrow: ({ ownerState }) => {
+          expectType<TooltipOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
           return {};
         },
       },

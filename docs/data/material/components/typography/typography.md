@@ -3,7 +3,7 @@ product: material-ui
 title: React Typography component
 components: Typography
 githubLabel: 'component: Typography'
-materialDesign: https://material.io/design/typography/the-type-system.html
+materialDesign: https://m2.material.io/design/typography/the-type-system.html
 ---
 
 # Typography
@@ -11,7 +11,7 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
 Too many type sizes and styles at once can spoil any layout.
-A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
+A [typographic scale](https://m2.material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -88,7 +88,7 @@ It's important to realize that the style of a typography component is independen
 </Typography>;
 ```
 
-- You can change the mapping [globally using the theme](/material-ui/customization/theme-components/#default-props):
+- You can change the mapping [globally using the theme](/material-ui/customization/typography/#adding-amp-disabling-variants):
 
 ```js
 const theme = createTheme({

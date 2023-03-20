@@ -489,7 +489,6 @@ export default function ButtonThemes() {
           mt: 0.5,
           flexGrow: 1,
           maxWidth: 'calc(100% + 24px)',
-          bgcolor: 'background.body',
           borderRadius: '8px',
           '& .markdown-body pre': {
             margin: 0,
@@ -553,14 +552,14 @@ export default function ButtonThemes() {
           >
             <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
             <Select
-              componentsProps={{
+              slotProps={{
                 button: {
                   id: 'button-theme',
                 },
               }}
               size="sm"
               value={design}
-              onChange={setDesign}
+              onChange={(event, newValue) => setDesign(newValue)}
               sx={{ minWidth: 160 }}
             >
               <Option value="github">GitHub</Option>

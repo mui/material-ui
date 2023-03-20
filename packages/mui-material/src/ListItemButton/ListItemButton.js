@@ -136,15 +136,19 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     divider = false,
     focusVisibleClassName,
     selected = false,
+    className,
     ...other
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    alignItems,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      alignItems,
+      disableGutters,
+    }),
+    [alignItems, context.dense, dense, disableGutters],
+  );
 
   const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -181,6 +185,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         component={(other.href || other.to) && component === 'div' ? 'button' : component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
+        className={clsx(classes.root, className)}
         {...other}
         classes={classes}
       >
@@ -215,6 +220,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

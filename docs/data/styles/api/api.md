@@ -10,7 +10,7 @@ title: Styles API
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
 > If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -129,7 +129,7 @@ export default function MyComponent(props) {
 This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
@@ -344,7 +344,7 @@ function MyComponent(props) {
 export default withStyles(styles)(MyComponent);
 ```
 
-Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) like so:
+Also, you can use as [decorators](https://babeljs.io/docs/babel-plugin-proposal-decorators) like so:
 
 ```jsx
 import * as React from 'react';

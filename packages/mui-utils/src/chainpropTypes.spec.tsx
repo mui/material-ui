@@ -6,7 +6,7 @@ interface ChainProps {
   foo?: boolean;
 }
 
-const Chain: React.FC<ChainProps> = (props) => {
+const Chain: React.FC<ChainProps> = function Chain(props) {
   return <div />;
 };
 

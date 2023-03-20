@@ -19,23 +19,26 @@ Additionally, you can import a `[componentName]Classes` object that describes al
 
 {{"demo": "StylingCustomCss.js", "defaultCodeOpen": true}}
 
+If you don't use these classes, you can clean up the DOM by disabling them.
+See [Disabling default CSS classes](#disabling-default-css-classes) for instructions.
+
 ## Overriding subcomponent slots
 
-If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `components` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
+If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
 
-The following demo uses [SwitchUnstyled](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `Root`, `Thumb`, and `Input`.
+The following demo uses [SwitchUnstyled](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
 
 Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
 {{"demo": "StylingSlots.js"}}
 
-The components you pass in the `components` prop receive the `ownerState` prop from the top-level component (the "owner").
+The components you pass in the `slots` prop receive the `ownerState` prop from the top-level component (the "owner").
 By convention, it contains all props passed to the owner, merged with its rendering state.
 
 For example:
 
 ```jsx
-<SwitchUnstyled components={{ Thumb: MyCustomThumb }} data-foo="42" />
+<SwitchUnstyled slots={{ thumb: MyCustomThumb }} data-foo="42" />
 ```
 
 In this case, `MyCustomThumb` component receives the `ownerState` object with the following data:
@@ -81,3 +84,19 @@ Use them to apply styling to your HTML elements.
 The `getInputProps` function can be used to get the props to place on an HTML `<input>` to make the switch accessible.
 
 {{"demo": "StylingHooks.js", "defaultCodeOpen": true}}
+
+## Disabling default CSS classes
+
+If you don't need the built-in classes on components, you may disable them.
+This will clean up the DOM and can be useful especially if you apply your own classes or style components using a CSS-in-JS solution.
+To do this, wrap your components in a ClassNameConfigurator component (imported from `@mui/base/utils`):
+
+```tsx
+<ClassNameConfigurator disableDefaultClasses>
+  <ButtonUnstyled>I'm classless!</ButtonUnstyled>
+</ClassNameConfigurator>
+```
+
+Inspect the elements in the following demo to see the difference:
+
+{{"demo": "DisabledDefaultClasses.js"}}

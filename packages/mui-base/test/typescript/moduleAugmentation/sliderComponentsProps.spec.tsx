@@ -2,12 +2,12 @@ import * as React from 'react';
 import { SliderUnstyled } from '@mui/base';
 
 declare module '@mui/base' {
-  interface SliderUnstyledComponentsPropsOverrides {
+  interface SliderUnstyledRootSlotPropsOverrides {
     variant?: 'one' | 'two';
   }
 }
 
-<SliderUnstyled componentsProps={{ root: { variant: 'one' } }} />;
+<SliderUnstyled slotProps={{ root: { variant: 'one' } }} />;
 
 // @ts-expect-error unknown color
-<SliderUnstyled componentsProps={{ root: { variant: 'three' } }} />;
+<SliderUnstyled slotProps={{ root: { variant: 'three' } }} />;

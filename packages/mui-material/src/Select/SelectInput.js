@@ -158,6 +158,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }, []);
 
+  const anchorElement = displayNode?.parentNode;
+
   React.useImperativeHandle(
     handleRef,
     () => ({
@@ -173,7 +175,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Resize menu on `defaultOpen` automatic toggle.
   React.useEffect(() => {
     if (defaultOpen && openState && displayNode && !isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       displayRef.current.focus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -215,7 +217,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       setOpenState(open);
     }
   };
@@ -309,7 +311,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         'ArrowUp',
         'ArrowDown',
         // The native select doesn't respond to enter on macOS, but it's recommended by
-        // https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
+        // https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
         'Enter',
       ];
 
@@ -348,7 +350,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }
 
-  const items = childrenArray.map((child, index, arr) => {
+  const items = childrenArray.map((child) => {
     if (!React.isValidElement(child)) {
       return null;
     }
@@ -389,26 +391,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       foundMatch = true;
     }
 
-    if (child.props.value === undefined) {
-      return React.cloneElement(child, {
-        'aria-readonly': true,
-        role: 'option',
-      });
-    }
-
-    const isFirstSelectableElement = () => {
-      if (value) {
-        return selected;
-      }
-      const firstSelectableElement = arr.find(
-        (item) => item.props.value !== undefined && item.props.disabled !== true,
-      );
-      if (child === firstSelectableElement) {
-        return true;
-      }
-      return selected;
-    };
-
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
@@ -425,10 +407,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       },
       role: 'option',
-      selected:
-        arr[0].props.value === undefined || arr[0].props.disabled === true
-          ? isFirstSelectableElement()
-          : selected,
+      selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
@@ -479,7 +458,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let menuMinWidth = menuMinWidthState;
 
   if (!autoWidth && isOpenControlled && displayNode) {
-    menuMinWidth = displayNode.clientWidth;
+    menuMinWidth = anchorElement.clientWidth;
   }
 
   let tabIndex;
@@ -546,7 +525,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu
         id={`menu-${name || ''}`}
-        anchorEl={displayNode}
+        anchorEl={anchorElement}
         open={open}
         onClose={handleClose}
         anchorOrigin={{

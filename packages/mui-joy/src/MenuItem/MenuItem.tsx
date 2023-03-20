@@ -1,25 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import useMenuItem from '@mui/base/useMenuItem';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import {
-  MenuItemProps,
-  MenuItemOwnerState,
-  ExtendMenuItem,
-  MenuItemTypeMap,
-} from './MenuItemProps';
+import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
-  const { focusVisible, disabled, selected } = ownerState;
-  // Does not need to create state clases: focusVisible, disabled, and selected because ListItemButton already takes care of them.
-  // Otherwise, there will be duplicated classes.
+const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
+  const { focusVisible, disabled, selected, color, variant } = ownerState;
   const slots = {
-    root: ['root', focusVisible && 'focusVisible', disabled && 'disabled', selected && 'selected'],
+    root: [
+      'root',
+      focusVisible && 'focusVisible',
+      disabled && 'disabled',
+      selected && 'selected',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, {});
@@ -27,12 +29,22 @@ const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }
   return composedClasses;
 };
 
-const MenuItemRoot = styled(ListItemButtonRoot, {
+const MenuItemRoot = styled(StyledListItemButton, {
   name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuItemOwnerState }>({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
+ * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
+ */
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
@@ -46,10 +58,12 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled: disabledProp = false,
     component = 'li',
     selected = false,
-    color = selected ? 'primary' : 'neutral',
+    color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
@@ -95,10 +109,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * @default selected ? 'primary' : 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -110,11 +124,12 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the component is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

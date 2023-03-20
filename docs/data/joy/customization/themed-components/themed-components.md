@@ -112,6 +112,62 @@ extendTheme({
 });
 ```
 
+### Extend colors
+
+The following code snippet illustrates how to provide additional colors to a component beyond `primary`, `success`, `info`, `danger`, `neutral`, and `warning`.
+
+Note that by creating new colors, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which gives you fine-grained control over CSS properties like `color`, `background`, and `border`.
+
+The example below extends the Button colors to include `secondary` value:
+
+```js
+extendTheme({
+  components: {
+    JoyButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'secondary' && {
+            color: theme.vars.palette.text.secondary,
+            backgroundColor: theme.vars.palette.background.level1,
+          }),
+        }),
+      },
+    },
+  },
+});
+```
+
+Once these values are defined as above, you can make use of them directly on instances of the Button component:
+
+```jsx
+<Button color="secondary">Secondary color</Button>
+<Button color="tertiary">Tertiary color</Button>
+```
+
+:::info
+To learn how to extend size properties, check out the [Extend sizes](#extend-sizes) section in this document.
+:::
+
+#### TypeScript
+
+Module augmentation is required to pass the values to the `color` prop of the component.
+
+The interface format is `{ComponentName}PropsColorOverrides`, which is the same for all Joy UI components:
+
+```tsx
+// This part could be declared in your theme file
+declare module '@mui/joy/Button' {
+  interface ButtonPropsColorOverrides {
+    secondary: true;
+    tertiary: true;
+  }
+}
+
+// typed-safe
+<Button color="secondary" />
+<Button color="tertiary" />
+```
+
 ### Extend sizes
 
 The following code snippet illustrates how to provide additional sizes to a component beyond `sm`, `md`, and `lg`.
@@ -157,7 +213,7 @@ Once these values are defined as above, you can make use of them directly on ins
 
 :::info
 The properties used for extending sizes should only relate to the density or the dimensions of the component.
-To learn how to extend color properties, check out the [Extend variants](#extend-variants) section in this document.
+To learn how to extend variant properties, check out the [Extend variants](#extend-variants) section in this document.
 :::
 
 #### TypeScript
@@ -264,7 +320,7 @@ If you have custom color schemes defined, this approach also works.
 However, note that it creates additional CSS specificity which might be cumbersome when the parent component wants to override their children styles.
 
 :::error
-🚨 **Note:** We don't recommend using the conditional operator to switch between values as it is not performant.
+We don't recommend using the conditional operator to switch between values as it is not performant.
 
 ```js
 // 🚫 Don't do this

@@ -7,23 +7,31 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "components": {
-      "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}"
-    },
-    "componentsProps": {
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } },
-    "focusableWhenDisabled": { "type": { "name": "bool" } }
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
   },
   "name": "ButtonUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "props.href || props.to ? 'a' : 'button'",
+      "class": ".MuiButton-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-button/\">Unstyled button</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-button/\">Unstyled Button</a></li></ul>",
   "cssComponent": false
 }

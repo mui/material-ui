@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.98",
+  "version": "5.0.0-alpha.123",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -29,12 +29,12 @@
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files ",
-    "build:legacy": "node ../../scripts/build legacy",
-    "build:modern": "node ../../scripts/build modern",
-    "build:node": "node ../../scripts/build node",
-    "build:stable": "node ../../scripts/build stable",
-    "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "node ../../scripts/buildTypes",
+    "build:legacy": "node ../../scripts/build.mjs legacy",
+    "build:modern": "node ../../scripts/build.mjs modern",
+    "build:node": "node ../../scripts/build.mjs node",
+    "build:stable": "node ../../scripts/build.mjs stable",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-lab/**/*.test.{js,ts,tsx}'",
@@ -60,16 +60,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.9",
-    "@mui/base": "5.0.0-alpha.96",
-    "@mui/system": "^5.10.4",
-    "@mui/utils": "^5.10.3",
+    "@babel/runtime": "^7.21.0",
+    "@mui/base": "5.0.0-alpha.121",
+    "@mui/system": "^5.11.13",
+    "@mui/types": "^7.2.3",
+    "@mui/utils": "^5.11.13",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
-  },
-  "devDependencies": {
-    "@mui/types": "^7.2.0"
   },
   "sideEffects": false,
   "publishConfig": {

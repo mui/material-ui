@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -16,9 +16,8 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import IconImage from 'docs/src/components/icon/IconImage';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
@@ -49,7 +48,7 @@ function Role(props: RoleProps) {
             variant="body1"
             color="text.primary"
             fontWeight={700}
-            sx={{ display: 'block', my: 1 }}
+            sx={{ display: 'block', mb: 0.5 }}
           >
             {props.title}
           </Typography>
@@ -139,7 +138,7 @@ const faqData = [
   {
     summary: 'Does MUI offer contract job opportunities?',
     detail:
-      'Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)',
+      'Yes. People outside of France can be hired as full-time contractors. (Benefits may vary.)',
   },
 ];
 
@@ -148,32 +147,88 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Support Engineer - X',
+        title: 'React Tech Lead - Core',
         description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-support-engineer/',
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+        url: '/careers/react-tech-lead-core/',
       },
       {
         title: 'React Engineer - Core',
         description:
-          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+          'You will strengthen the core components team by collaborating with the community to land contributions.',
         url: '/careers/react-engineer-core/',
       },
       {
+        title: 'React Tech Lead - xGrid',
+        description:
+          'You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.',
+        url: '/careers/react-tech-lead-x-grid/',
+      },
+      {
+        title: 'React Engineer - xGrid',
+        description:
+          'You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x-grid/',
+      },
+      {
         title: 'Product Engineer - Store',
-        description: 'You will lead the technical and operational development of MUI Store.',
+        description:
+          'You will lead the technical, product, and operational development of the store.',
         url: '/careers/product-engineer/',
+      },
+      {
+        title: 'Accessibility Engineer',
+        description:
+          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
+        url: '/careers/accessibility-engineer/',
       },
     ],
   },
   {
-    title: 'People',
+    title: 'Design',
     roles: [
       {
-        title: 'People Operations Manager',
+        title: 'Lead Designer',
         description:
-          'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/careers/people-operations-manager/',
+          "You will be accountable for MUI's design execution and a small team of designers.",
+        url: '/careers/lead-designer/',
+      },
+      {
+        title: 'Design Engineer',
+        description: 'You will focus on design to implement great product experiences.',
+        url: '/careers/design-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'Developer Experience',
+    roles: [
+      {
+        title: 'Developer Advocate',
+        description:
+          'You will build a thriving and connected developer community around our suite of products.',
+        url: '/careers/developer-advocate/',
+      },
+    ],
+  },
+  {
+    title: 'Marketing',
+    roles: [
+      {
+        title: 'Product Marketing Manager',
+        description: 'You will own the marketing efforts at MUI.',
+        url: '/careers/product-marketing-manager/',
+      },
+    ],
+  },
+  {
+    title: 'Operations',
+    roles: [
+      {
+        title: 'Head of Operations',
+        description:
+          "You will take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.",
+        url: '/careers/head-of-operations/',
       },
     ],
   },
@@ -190,10 +245,20 @@ const nextRolesData = [
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Engineer - X',
+        title: 'React Support Engineer - X',
         description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
+          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/careers/react-support-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'You will hire the next engineers, among other roles, joining the team.',
+        url: '/careers/technical-recruiter/',
       },
     ],
   },
@@ -208,22 +273,12 @@ const nextRolesData = [
     ],
   },
   {
-    title: 'People',
-    roles: [
-      {
-        title: 'Technical Recruiter',
-        description: 'You will hire the next engineers joining the team.',
-      },
-    ],
-  },
-  {
     title: 'Support',
     roles: [
       {
         title: 'Support Agent - Store',
         description:
           "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/careers/support-agent/',
       },
     ],
   },
@@ -293,7 +348,12 @@ function CareersContent() {
       </Container>
       {/* Our ultimate goal */}
       <Box
-        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+        sx={(theme) => ({
+          bgcolor: 'grey.50',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+          }),
+        })}
       >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container alignItems="center" spacing={4}>
@@ -344,11 +404,11 @@ function CareersContent() {
                 ['Remote work:', 'Our entire company is distributed.'],
                 [
                   'Retreats:',
-                  'We meet up once or twice a year for a short week of meetings, events, and fun!',
+                  'We meet up every eight months for a week of working and having fun together!',
                 ],
                 [
                   'Equipment:',
-                  'MUI will let you choose new hardware of your choice (up to $2,500 USD).',
+                  'MUI will provide the hardware of your choice (initial grant of $2,500 USD).',
                 ],
                 ['Time off:', 'We provide five weeks of paid time off.'],
               ].map((textArray) => (
@@ -377,9 +437,12 @@ function CareersContent() {
                     See how we run the company and the way we work.
                   </Typography>
                   <Typography
-                    color={(theme) =>
-                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
-                    }
+                    sx={(theme) => ({
+                      color: 'primary.600',
+                      ...theme.applyDarkStyles({
+                        color: 'primary.400',
+                      }),
+                    })}
                     variant="body2"
                     fontWeight="bold"
                   >
@@ -403,9 +466,12 @@ function CareersContent() {
                     Check behind the scenes and news from the company.
                   </Typography>
                   <Typography
-                    color={(theme) =>
-                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
-                    }
+                    sx={(theme) => ({
+                      color: 'primary.600',
+                      ...theme.applyDarkStyles({
+                        color: 'primary.400',
+                      }),
+                    })}
                     variant="body2"
                     fontWeight="bold"
                   >
@@ -425,28 +491,32 @@ function CareersContent() {
             {`Open roles (${openRolesData.reduce((acc, item) => acc + item.roles.length, 0)})`}
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 500 }}>
-            The company is bootstrapped (up to now). It was incorporated in mid-2019 and yet growing
-            fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (16), and are on
-            track to triple it in 2022 (40). We&apos;re looking for help keep growing in the
-            following areas:
+            The company is bootstrapped (so far). It was incorporated in mid-2019 and is growing
+            fast (x2-3 YoY). We doubled the team in 2020 (6), accelerated in 2021 (15), kept a
+            similar pace in 2022 (25), and we plan to triple it in 2023 (75). We&apos;re looking for
+            help to grow in the following areas:
           </Typography>
         </div>
         <Divider
-          sx={{
+          sx={(theme) => ({
             my: { xs: 2, sm: 4 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
+            borderColor: 'grey.100',
+            ...theme.applyDarkStyles({
+              borderColor: 'primaryDark.600',
+            }),
+          })}
         />
         <Stack
           spacing={2}
           divider={
             <Divider
-              sx={{
+              sx={(theme) => ({
                 my: { xs: 1, sm: 2 },
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-              }}
+                borderColor: 'grey.100',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                }),
+              })}
             />
           }
         >
@@ -476,62 +546,60 @@ function CareersContent() {
       </Container>
       {/* Next roles */}
       {nextRolesData.length > 0 ? (
-        <ThemeProvider theme={brandingDarkTheme}>
-          <Box sx={{ bgcolor: 'primaryDark.700' }}>
-            <Container sx={{ py: { xs: 4, md: 8 } }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <div>
-                  <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
-                    Next roles
-                  </Typography>
-                  <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                    We hire in batches, we collect applications a few months before we actively aim
-                    to fill the roles. If none of these roles fit with what you are looking for, you
-                    can apply to the{' '}
-                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                      Dream job
-                    </Link>{' '}
-                    role.
-                  </Typography>
-                </div>
-              </Box>
-              <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
-              <Stack
-                spacing={2}
-                divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
-              >
-                {nextRolesData.map((category) => {
-                  const roles = category.roles;
-                  return (
-                    <React.Fragment key={category.title}>
-                      <Typography component="h3" variant="h5" fontWeight="extraBold">
-                        {category.title}
-                      </Typography>
-                      {roles.length > 0 ? (
-                        roles.map((role) => (
-                          <Role
-                            key={role.title}
-                            title={role.title}
-                            description={role.description}
-                            url={role.url}
-                          />
-                        ))
-                      ) : (
-                        <Typography color="text.secondary">No plans yet.</Typography>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </Stack>
-            </Container>
-          </Box>
-        </ThemeProvider>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+          <Container sx={{ py: { xs: 4, md: 8 } }}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
+                  Next roles
+                </Typography>
+                <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+                  We hire in batches, we collect applications a few months before we actively aim to
+                  fill the roles. If none of these roles fit with what you are looking for, you can
+                  apply to the{' '}
+                  <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                    Dream job
+                  </Link>{' '}
+                  role.
+                </Typography>
+              </div>
+            </Box>
+            <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
+            <Stack
+              spacing={2}
+              divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
+            >
+              {nextRolesData.map((category) => {
+                const roles = category.roles;
+                return (
+                  <React.Fragment key={category.title}>
+                    <Typography component="h3" variant="h5" fontWeight="extraBold">
+                      {category.title}
+                    </Typography>
+                    {roles.length > 0 ? (
+                      roles.map((role) => (
+                        <Role
+                          key={role.title}
+                          title={role.title}
+                          description={role.description}
+                          url={role.url}
+                        />
+                      ))
+                    ) : (
+                      <Typography color="text.secondary">No plans yet.</Typography>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </Stack>
+          </Container>
+        </Box>
       ) : null}
       {/* Frequently asked questions */}
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
@@ -547,13 +615,16 @@ function CareersContent() {
             {renderFAQItem(2)}
             <Paper
               variant="outlined"
-              sx={{
+              sx={(theme) => ({
                 p: 2,
                 borderStyle: 'dashed',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
-              }}
+                borderColor: 'grey.300',
+                bgcolor: 'white',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.400',
+                  bgcolor: 'primaryDark.800',
+                }),
+              })}
             >
               <Box sx={{ textAlign: 'left' }}>
                 <Typography variant="body2" color="text.primary" fontWeight="bold">
@@ -576,7 +647,7 @@ function CareersContent() {
 
 export default function Careers() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="Careers - MUI"
         description="Interested in joining MUI? Learn about the roles we're hiring for."
@@ -588,6 +659,6 @@ export default function Careers() {
       </main>
       <Divider />
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }

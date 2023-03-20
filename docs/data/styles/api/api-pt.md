@@ -8,7 +8,7 @@ title: A referência da API do @material-ui/core/styles.
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -115,7 +115,7 @@ export default function MyComponent(props) {
 Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@material-ui/styles';
 
 const sheets = new ServerStyleSheets();

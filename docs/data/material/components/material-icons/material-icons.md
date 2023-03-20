@@ -1,7 +1,7 @@
 ---
 product: material-ui
 components: Icon, SvgIcon
-materialDesign: https://material.io/design/iconography/system-icons.html
+materialDesign: https://m2.material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
@@ -16,8 +16,9 @@ includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?ico
 
 :::info
 The `@mui/icons-material` package depends on `@mui/material`, which requires Emotion packages.
+If you don't use Material UI in your project yet, install the icons package with:
+`npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`.
 
-If you don't use Material UI in your project yet, install the icons package with `npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`.  
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 :::
 

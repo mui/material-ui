@@ -48,7 +48,7 @@ yarn add @material-ui/core
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+This allows us to rely on [Hooks](https://legacy.reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
 ### Update Material UI Styles version
 
@@ -132,26 +132,26 @@ yarn add @material-ui/styles
   -theme.palette.augmentColor(background);
   +const background = theme.palette.augmentColor({ main: color });
 
-  console.log({ background });
+   console.log({ background });
   ```
 
 - You can safely remove the next variant from the theme creation:
 
   ```diff
-  typography: {
-  - useNextVariants: true,
-  },
+   typography: {
+  -  useNextVariants: true,
+   },
   ```
 
 - `theme.spacing.unit` usage is deprecated, you can use the new API:
 
   ```diff
-  label: {
-    [theme.breakpoints.up('sm')]: {
-  -   paddingTop: theme.spacing.unit * 12,
-  +   paddingTop: theme.spacing(12),
-    },
-  }
+   label: {
+     [theme.breakpoints.up('sm')]: {
+  -    paddingTop: theme.spacing.unit * 12,
+  +    paddingTop: theme.spacing(12),
+     },
+   }
   ```
 
   _Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`_.
@@ -188,14 +188,14 @@ Normalized `value` prop type for input components to use `unknown`. This affects
 `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
-function MySelect({ children }) {
-- const handleChange = (event: any, value: string) => {
-+ const handleChange = (event: any, value: unknown) => {
-    // handle value
-  };
+ function MySelect({ children }) {
+-  const handleChange = (event: any, value: string) => {
++  const handleChange = (event: any, value: unknown) => {
+     // handle value
+   };
 
-  return <Select onChange={handleChange}>{children}</Select>
-}
+   return <Select onChange={handleChange}>{children}</Select>
+ }
 ```
 
 This change is explained in more detail in the [TypeScript guide](/material-ui/guides/typescript/#handling-value-and-event-handlers)
@@ -397,12 +397,12 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
   The `FormLabelClasses` property has been removed.
 
   ```diff
-  <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' }}
-  + classes={{ asterisk: 'bar' }}
-  >
-    Foo
-  </InputLabel>
+   <InputLabel
+  -  FormLabelClasses={{ asterisk: 'bar' }}
+  +  classes={{ asterisk: 'bar' }}
+   >
+     Foo
+   </InputLabel>
   ```
 
 - [InputBase] Change the default box sizing model.
@@ -462,9 +462,9 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 - This change eases the use of Material UI with a CDN:
 
   ```diff
-  const {
-    Button,
-    TextField,
+   const {
+     Button,
+     TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```

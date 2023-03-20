@@ -1,10 +1,11 @@
 import { OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from './useMenu.types';
+import { UseMenuListboxSlotProps } from '../useMenu';
 
-export interface MenuUnstyledComponentsPropsOverrides {}
+export interface MenuUnstyledRootSlotPropsOverrides {}
+export interface MenuUnstyledListboxSlotPropsOverrides {}
 
 export interface MenuUnstyledActions {
   highlightFirstItem: () => void;
@@ -26,31 +27,6 @@ export interface MenuUnstyledOwnProps {
   children?: React.ReactNode;
   className?: string;
   /**
-   * The components used for each slot inside the Menu.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-    Listbox?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Menu.
-   * @default {}
-   */
-  componentsProps?: {
-    root?: SlotComponentProps<
-      typeof PopperUnstyled,
-      MenuUnstyledComponentsPropsOverrides,
-      MenuUnstyledOwnerState
-    >;
-    listbox?: SlotComponentProps<
-      'ul',
-      MenuUnstyledComponentsPropsOverrides,
-      MenuUnstyledOwnerState
-    >;
-  };
-  /**
    * Always keep the menu in the DOM.
    * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
    *
@@ -67,6 +43,41 @@ export interface MenuUnstyledOwnProps {
    * @default false
    */
   open?: boolean;
+  /**
+   * The props used for each slot inside the Menu.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      typeof PopperUnstyled,
+      MenuUnstyledRootSlotPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+    listbox?: SlotComponentProps<
+      'ul',
+      MenuUnstyledListboxSlotPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the Menu.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: MenuUnstyledSlots;
+}
+
+export interface MenuUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default PopperUnstyled
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
 }
 
 export interface MenuUnstyledTypeMap<P = {}, D extends React.ElementType = 'ul'> {

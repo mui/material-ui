@@ -108,7 +108,7 @@ const StyledAppBar = styled(AppBar, {
       },
     }),
     boxShadow: 'none',
-    backdropFilter: 'blur(20px)',
+    backdropFilter: 'blur(8px)',
     borderStyle: 'solid',
     borderColor:
       theme.palette.mode === 'dark'
@@ -116,10 +116,10 @@ const StyledAppBar = styled(AppBar, {
         : theme.palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    background:
+    backgroundColor:
       theme.palette.mode === 'dark'
         ? alpha(theme.palette.primaryDark[900], 0.7)
-        : 'rgba(255,255,255,0.7)',
+        : 'rgba(255,255,255,0.8)',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
   };
 });
@@ -154,7 +154,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 export default function AppFrame(props) {
-  const { children, disableDrawer = false, className } = props;
+  const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -189,7 +189,7 @@ export default function AppFrame(props) {
           >
             <SvgHamburgerMenu />
           </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */>
+          <NextLink href="/" passHref /* onClick={onClose} */ legacyBehavior>
             <Box
               component="a"
               aria-label={t('goToHome')}
@@ -199,8 +199,8 @@ export default function AppFrame(props) {
             </Box>
           </NextLink>
           <GrowingDiv />
-          <Stack direction="row" spacing={1.3}>
-            <AppFrameBanner />
+          <Stack direction="row" spacing="10px">
+            <BannerComponent />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -235,6 +235,7 @@ export default function AppFrame(props) {
 }
 
 AppFrame.propTypes = {
+  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,

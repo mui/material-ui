@@ -19,6 +19,10 @@
       "default": "'end'"
     },
     "onChange": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ typography?: object }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -45,6 +49,6 @@
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/FormControlLabel/FormControlLabel.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio button</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li></ul>",
   "cssComponent": false
 }

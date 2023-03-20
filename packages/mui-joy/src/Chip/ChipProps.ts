@@ -1,71 +1,105 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
+
+export interface ChipSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default 'span'
+   */
+  label: React.ElementType;
+  /**
+   * The component that renders the action.
+   * @default 'button'
+   */
+  action: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
 
 export interface ChipPropsColorOverrides {}
 export interface ChipPropsSizeOverrides {}
 export interface ChipPropsVariantOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, ChipOwnerState>;
-  label?: SlotComponentProps<'span', { sx?: SxProps }, ChipOwnerState>;
-  action?: SlotComponentProps<
-    'button',
-    { sx?: SxProps; component?: React.ElementType; href?: string; to?: string },
-    ChipOwnerState
-  >;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ChipOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ChipOwnerState>;
-}
+export type ChipSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ChipSlots,
+  {
+    root: SlotProps<'div', {}, ChipOwnerState>;
+    label: SlotProps<'span', {}, ChipOwnerState>;
+    action: SlotProps<
+      'button',
+      {
+        href?: string;
+        to?: string;
+      },
+      ChipOwnerState
+    >;
+    startDecorator: SlotProps<'span', {}, ChipOwnerState>;
+    endDecorator: SlotProps<'span', {}, ChipOwnerState>;
+  }
+>;
 
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * The props used for each slot inside the component.
-     * @default {}
-     */
-    componentsProps?: ComponentsProps;
-    /**
-     * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'primary'
-     */
-    color?: OverridableStringUnion<ColorPaletteProp, ChipPropsColorOverrides>;
-    /**
-     * If `true`, the component is disabled.
-     * @default false
-     */
-    disabled?: boolean;
-    /**
-     * Element placed after the children.
-     */
-    endDecorator?: React.ReactNode;
-    /**
-     * The size of the component.
-     * It accepts theme values between 'sm' and 'lg'.
-     * @default 'md'
-     */
-    size?: OverridableStringUnion<'sm' | 'md' | 'lg', ChipPropsSizeOverrides>;
-    /**
-     * Element placed before the children.
-     */
-    startDecorator?: React.ReactNode;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps;
-    /**
-     * The variant to use.
-     * @default 'solid'
-     */
-    variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
-  };
+  props: P &
+    ChipSlotsAndSlotProps & {
+      /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'primary'
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, ChipPropsColorOverrides>;
+      /**
+       * If `true`, the component is disabled.
+       * @default false
+       */
+      disabled?: boolean;
+      /**
+       * Element placed after the children.
+       */
+      endDecorator?: React.ReactNode;
+      /**
+       * Element action click handler.
+       */
+      onClick?: React.MouseEventHandler<HTMLButtonElement>;
+      /**
+       * The size of the component.
+       * It accepts theme values between 'sm' and 'lg'.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', ChipPropsSizeOverrides>;
+      /**
+       * Element placed before the children.
+       */
+      startDecorator?: React.ReactNode;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+      /**
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+       * @default 'solid'
+       */
+      variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;
+    };
   defaultComponent: D;
 }
 
@@ -74,7 +108,7 @@ export type ChipProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ChipTypeMap<P, D>, D>;
 
-export interface ChipOwnerState extends ChipProps {
+export interface ChipOwnerState extends ApplyColorInversion<ChipProps> {
   /**
    * If `true`, the chip is clickable.
    */
@@ -82,5 +116,5 @@ export interface ChipOwnerState extends ChipProps {
   /**
    * If `true`, the action slot's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

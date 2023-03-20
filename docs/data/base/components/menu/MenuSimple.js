@@ -179,8 +179,8 @@ export default function UnstyledMenuSimple() {
         open={isOpen}
         onClose={close}
         anchorEl={anchorEl}
-        components={{ Root: Popper, Listbox: StyledListbox }}
-        componentsProps={{ listbox: { id: 'simple-menu' } }}
+        slots={{ root: Popper, listbox: StyledListbox }}
+        slotProps={{ listbox: { id: 'simple-menu' } }}
       >
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
           Profile

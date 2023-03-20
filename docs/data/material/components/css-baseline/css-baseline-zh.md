@@ -103,11 +103,11 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 
 ### 文字铸排
 
-- 在 `<html>` 里面不会声明基础的 font-size，但是我们假设是 16px (浏览器的默认设置)。 You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#typography-html-font-size) page.
+- 在 `<html>` 里面不会声明基础的 font-size，但是我们假设是 16px (浏览器的默认设置)。 You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#html-font-size) page.
 - 在 `theme.typography.body1` 元素上设置 `<body>` 样式。
 - 您可以通过设置 `theme.typography.fontWeightBold` 来设置 `<b>` 和 `<strong>` 元素的 font-weight。
 - 启用自定义字体平滑功能可以更好地显示 Roboto 字体。
 
 ## Customization 个性化
 
-Head to the [global customization](/material-ui/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.
+Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-override) section of the documentation to change the output of these components.

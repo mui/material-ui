@@ -116,7 +116,7 @@ The date picker is at the border between the core component and advanced compone
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
   We want our users to be able to adopt new features as fast as we build them.
-- 🔘 We have added support for a built-in [single select](/x/react-data-grid/columns/#column-types) column type:
+- 🔘 We have added support for a built-in [single select](/x/react-data-grid/column-definition/#column-types) column type:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
@@ -214,7 +214,7 @@ We have the following objectives:
   It has a lot of accumulated value not being realized. We're aiming for 25% of the community to have migrated by the end of the quarter.
 - ♨️ Fix the friction the community has during the upgrade to v5.
   We want to make the upgrade feel painless.
-- ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
+- ⚛️ Support [React 18](https://legacy.reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most demanding users to feel empowered by MUI, not slowed down by a third-party.
 - 🦴 Migrate more components to `@mui/base`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://mui.com/base/react-switch/).
   You can follow our progress in the [umbrella issue](https://github.com/mui/material-ui/issues/27170).

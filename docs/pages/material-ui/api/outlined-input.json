@@ -17,7 +17,7 @@
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "id": { "type": { "name": "string" } },
     "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
     "inputProps": { "type": { "name": "object" }, "default": "{}" },
@@ -26,7 +26,7 @@
     "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "multiline": { "type": { "name": "bool" } },
+    "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
     "notched": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
@@ -34,6 +34,10 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "startAdornment": { "type": { "name": "node" } },
     "sx": {
       "type": {

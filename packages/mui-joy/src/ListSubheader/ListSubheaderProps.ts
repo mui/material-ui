@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type ListSubheaderSlot = 'root';
 
@@ -12,7 +12,6 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListSubheaderColorOverrides>;
     /**
@@ -29,8 +28,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div
      */
     sticky?: boolean;
     /**
-     * The variant to use.
-     * @default 'plain'
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      */
     variant?: OverridableStringUnion<VariantProp, ListSubheaderVariantOverrides>;
   };
@@ -44,4 +42,4 @@ export type ListSubheaderProps<
   },
 > = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
 
-export interface ListSubheaderOwnerState extends ListSubheaderProps {}
+export interface ListSubheaderOwnerState extends ApplyColorInversion<ListSubheaderProps> {}
