@@ -220,6 +220,10 @@ export default function createStyled(input = {}) {
         Component.displayName = displayName;
       }
 
+      if (tag.muiName) {
+        Component.muiName = tag.muiName;
+      }
+
       return Component;
     };
 
