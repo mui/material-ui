@@ -7,12 +7,12 @@ export type AspectRatioSlot = 'root' | 'content';
 
 export interface AspectRatioSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the content.
+   * The component that renders the content.
    * @default 'div'
    */
   content: React.ElementType;

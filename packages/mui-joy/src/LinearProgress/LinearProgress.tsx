@@ -138,7 +138,7 @@ const LinearProgressRoot = styled('div', {
  *
  * Demos:
  *
- * - [Linear Progress](https://mui.com/joy-ui/react-linear-progres/)
+ * - [Linear Progress](https://mui.com/joy-ui/react-linear-progress/)
  *
  * API:
  *

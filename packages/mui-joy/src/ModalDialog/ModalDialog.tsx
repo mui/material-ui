@@ -97,17 +97,17 @@ const ModalDialogRoot = styled(SheetRoot, {
     '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
     '--Typography-fontSize': '1.125em',
     [`& + [id="${ownerState['aria-describedby']}"]`]: {
-      '--private_ModalDialog-descriptionOffset': 'calc(-1 * var(--ModalDialog-descriptionOffset))',
+      '--unstable_ModalDialog-descriptionOffset': 'calc(-1 * var(--ModalDialog-descriptionOffset))',
     },
   },
   [`& [id="${ownerState['aria-describedby']}"]`]: {
     '--Typography-fontSize': '1em',
     '--Typography-margin':
-      'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 0 0',
+      'var(--unstable_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 0 0',
     '&:not(:last-child)': {
       // create spacing between description and the next element.
       '--Typography-margin':
-        'var(--private_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 var(--ModalDialog-gap) 0',
+        'var(--unstable_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 var(--ModalDialog-gap) 0',
     },
   },
 }));

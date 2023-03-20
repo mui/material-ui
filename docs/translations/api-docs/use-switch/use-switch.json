@@ -8,5 +8,11 @@
     "readOnly": "If <code>true</code>, the component is read only.",
     "required": "If <code>true</code>, the <code>input</code> element is required."
   },
-  "returnValueDescriptions": {}
+  "returnValueDescriptions": {
+    "checked": "If <code>true</code>, the component will be checked.",
+    "disabled": "If <code>true</code>, the component will be disabled.",
+    "focusVisible": "If <code>true</code>, it indicates that the component is being focused using keyboard.",
+    "getInputProps": "Resolver for the input slot's props.",
+    "readOnly": "If <code>true</code>, the component will be read only."
+  }
 }

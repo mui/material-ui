@@ -13,9 +13,9 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "input": "The component used to render the input.",
-    "root": "The component used to render the root.",
-    "thumb": "The component used to render the thumb.",
-    "track": "The component used to render the track."
+    "root": "The component that renders the root.",
+    "input": "The component that renders the input.",
+    "thumb": "The component that renders the thumb.",
+    "track": "The component that renders the track."
   }
 }

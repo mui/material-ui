@@ -6,7 +6,7 @@ import { SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
-interface PopperUnstyledRootSlotPropsOverrides {}
+export interface PopperUnstyledRootSlotPropsOverrides {}
 
 export interface PopperUnstyledTransitionProps {
   in: boolean;
@@ -112,7 +112,7 @@ export interface PopperUnstyledOwnProps {
 
 export interface PopperUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;

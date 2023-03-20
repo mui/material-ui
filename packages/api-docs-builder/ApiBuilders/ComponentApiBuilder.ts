@@ -219,9 +219,9 @@ async function annotateComponentDefinition(api: ReactApi) {
   markdownLines.push(
     'Demos:',
     '',
-    ...api.demos.map((item) => {
-      return `- [${item.name}](${
-        item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+    ...api.demos.map((demo) => {
+      return `- [${demo.demoPageTitle}](${
+        demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
       })`;
     }),
     '',
@@ -367,7 +367,7 @@ const generateApiPage = (
         }
       : null,
     demos: `<ul>${reactApi.demos
-      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
