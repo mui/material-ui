@@ -110,16 +110,15 @@ async function postFeedbackOnSlack(data) {
   }
 
   try {
-    // await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
-    await fetch(
-      `https://deploy-preview-36472--material-ui.netlify.app//.netlify/functions/feedback-management/`,
-      {
-        method: 'POST',
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        // Seems tricky but it's to match how slack send data
-        body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
-      },
-    );
+    const res = await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      // Seems tricky but it's to match how slack send data
+      body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
     return 'sent';
   } catch (error) {
     console.error(error);
