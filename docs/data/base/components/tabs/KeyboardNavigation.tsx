@@ -5,6 +5,37 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 
+export default function AccessibleTabs1() {
+  return (
+    <div>
+      <p>Selection following focus:</p>
+      <TabsUnstyled
+        defaultValue={0}
+        aria-label="Tabs where selection follows focus"
+        selectionFollowsFocus
+      >
+        <TabsList>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+          <Tab>Three</Tab>
+        </TabsList>
+      </TabsUnstyled>
+
+      <p>Selection independent of focus (default behavior):</p>
+      <TabsUnstyled
+        defaultValue={0}
+        aria-label="Tabs where selection does not follow focus"
+      >
+        <TabsList>
+          <Tab>One</Tab>
+          <Tab>Two</Tab>
+          <Tab>Three</Tab>
+        </TabsList>
+      </TabsUnstyled>
+    </div>
+  );
+}
+
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -79,34 +110,3 @@ const TabsList = styled(TabsListUnstyled)(
   box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
-
-export default function AccessibleTabs1() {
-  return (
-    <div>
-      <p>Selection following focus:</p>
-      <TabsUnstyled
-        defaultValue={0}
-        aria-label="Tabs where selection follows focus"
-        selectionFollowsFocus
-      >
-        <TabsList>
-          <Tab>One</Tab>
-          <Tab>Two</Tab>
-          <Tab>Three</Tab>
-        </TabsList>
-      </TabsUnstyled>
-
-      <p>Selection independent of focus (default behavior):</p>
-      <TabsUnstyled
-        defaultValue={0}
-        aria-label="Tabs where selection does not follow focus"
-      >
-        <TabsList>
-          <Tab>One</Tab>
-          <Tab>Two</Tab>
-          <Tab>Three</Tab>
-        </TabsList>
-      </TabsUnstyled>
-    </div>
-  );
-}
