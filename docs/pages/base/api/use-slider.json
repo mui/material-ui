@@ -42,78 +42,47 @@
     "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
   },
   "returnValue": {
-    "active": {
-      "type": {
-        "name": "number",
-        "description": "number"
-      }
-    },
-    "axis": {
-      "type": {
-        "name": "'horizontal' | 'vertical' | 'horizontal-reverse'",
-        "description": ""
-      }
-    },
+    "active": { "type": { "name": "number", "description": "number" }, "required": true },
+    "axis": { "type": { "name": "Axis", "description": "Axis" }, "required": true },
     "axisProps": {
       "type": {
-        "name": "{ [key in Axis]: AxisProps<key> }"
-      }
+        "name": "{ [key in Axis]: AxisProps&lt;key&gt }",
+        "description": "{ [key in Axis]: AxisProps&lt;key&gt }"
+      },
+      "required": true
     },
-    "dragging": {
-      "type": {
-        "name": "boolean"
-      }
-    },
+    "dragging": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "focusedThumbIndex": {
-      "type": {
-        "name": "number"
-      }
+      "type": { "name": "number", "description": "number" },
+      "required": true
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderHiddenInputProps&lt;TOther&gt"
-      }
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderHiddenInputProps&lt;TOther&gt",
+        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderHiddenInputProps&lt;TOther&gt"
+      },
+      "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderRootSlotProps&lt;TOther&gt"
-      }
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
     },
     "getThumbProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderThumbSlotProps&lt;TOther&gt"
-      }
+        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderThumbSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderThumbSlotProps&lt;TOther&gt"
+      },
+      "required": true
     },
-    "marks": {
-      "type": {
-        "name": "{value: number, label?: React.ReactNode}[]"
-      }
-    },
-    "open": {
-      "type": {
-        "name": "number"
-      }
-    },
-    "range": {
-      "type": {
-        "name": "boolean"
-      }
-    },
-    "trackLeap": {
-      "type": {
-        "name": "number"
-      }
-    },
-    "trackOffset": {
-      "type": {
-        "name": "number"
-      }
-    },
-    "values": {
-      "type": {
-        "name": "number[]"
-      }
-    }
+    "marks": { "type": { "name": "Mark[]", "description": "Mark[]" }, "required": true },
+    "open": { "type": { "name": "number", "description": "number" }, "required": true },
+    "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "trackLeap": { "type": { "name": "number", "description": "number" }, "required": true },
+    "trackOffset": { "type": { "name": "number", "description": "number" }, "required": true },
+    "values": { "type": { "name": "number[]", "description": "number[]" }, "required": true }
   },
   "name": "useSlider",
   "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
