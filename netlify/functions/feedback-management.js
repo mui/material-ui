@@ -25,17 +25,18 @@ const app = new App({
 
 // Define slack actions to answer
 
-app.action('delete_action', async ({ ack, body, client }) => {
+app.shortcut('delete_action', async ({ ack, body, client }) => {
+  await ack();
   await client.chat.delete({
     channel: body.channel.id,
     ts: body.message_ts,
     as_user: true,
     token: process.env.SLACK_BOT_TOKEN,
   });
-  await ack();
 });
 
-app.action('save_message', async ({ ack, body, client }) => {
+app.shortcut('save_message', async ({ ack, body, client }) => {
+  await ack();
   const {
     user: { username },
     channel: { id: channelId },
@@ -77,8 +78,6 @@ app.action('save_message', async ({ ack, body, client }) => {
     as_user: true,
     text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
   });
-
-  await ack();
 });
 
 // Slack API
