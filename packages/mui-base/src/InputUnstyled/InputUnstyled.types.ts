@@ -138,17 +138,17 @@ export type InputUnstyledOwnProps = (SingleLineInputUnstyledProps | MultiLineInp
 
 export interface InputUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
   input?: React.ElementType;
   /**
-   * The component used to render the textarea.
+   * The component that renders the textarea.
    * @default 'textarea'
    */
   textarea?: React.ElementType;

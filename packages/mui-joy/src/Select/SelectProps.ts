@@ -17,32 +17,32 @@ export type SelectSlot =
 
 export interface SelectSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the button.
+   * The component that renders the button.
    * @default 'button'
    */
   button: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
   endDecorator: React.ElementType;
   /**
-   * The component used to render the indicator.
+   * The component that renders the indicator.
    * @default 'span'
    */
   indicator: React.ElementType;
   /**
-   * The component used to render the listbox.
+   * The component that renders the listbox.
    * @default 'ul'
    */
   listbox: React.ElementType;

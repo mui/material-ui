@@ -1,7 +1,15 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { SlotComponentProps } from '@mui/base';
+import { InternalStandardProps as StandardProps, SvgIcon, Theme } from '..';
 import { TabScrollButtonClasses } from './tabScrollButtonClasses';
+
+export interface TabScrollButtonStartIconSlotPropsOverrides {}
+export interface TabScrollButtonEndIconSlotPropsOverrides {}
+
+export interface TabScrollButtonOwnerState extends TabScrollButtonProps {
+  isRtl: boolean;
+}
 
 export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -12,6 +20,31 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TabScrollButtonClasses>;
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots?: {
+    StartScrollButtonIcon?: React.ElementType;
+    EndScrollButtonIcon?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   * @default {}
+   */
+  slotProps?: {
+    startScrollButtonIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      TabScrollButtonStartIconSlotPropsOverrides,
+      TabScrollButtonOwnerState
+    >;
+    endScrollButtonIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      TabScrollButtonEndIconSlotPropsOverrides,
+      TabScrollButtonOwnerState
+    >;
+  };
   /**
    * The direction the button should indicate.
    */

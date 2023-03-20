@@ -27,11 +27,11 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "button": "The component used to render the button.",
-    "endDecorator": "The component used to render the end decorator.",
-    "indicator": "The component used to render the indicator.",
-    "listbox": "The component used to render the listbox.",
-    "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator."
+    "root": "The component that renders the root.",
+    "button": "The component that renders the button.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator.",
+    "indicator": "The component that renders the indicator.",
+    "listbox": "The component that renders the listbox."
   }
 }

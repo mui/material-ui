@@ -77,7 +77,10 @@ export default function transformer(file) {
       .replace(
         /--([a-zA-Z]+)([-_])([a-zA-Z]+)-([a-zA-Z]+)/gm,
         (matched, capture1, capture2, capture3, capture4) => {
-          if (!JoyComponents.includes(capture1) && !['internal', 'unstable'].includes(capture1)) {
+          if (
+            !JoyComponents.includes(capture1) &&
+            !['internal', 'unstable', 'private'].includes(capture1)
+          ) {
             return matched;
           }
           // turn `--List-item-...` and `--List-divider-...` to `--ListItem-...` and `--ListDivider-...`
@@ -89,5 +92,7 @@ export default function transformer(file) {
       )
       // from `--internal-...` to `--unstable_...`
       .replace(/--internal-/gm, '--unstable_')
+      // from `--private_...` to `--unstable_...`
+      .replace(/--private_/gm, '--unstable_')
   );
 }

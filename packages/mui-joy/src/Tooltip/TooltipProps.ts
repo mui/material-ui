@@ -8,12 +8,12 @@ export type TooltipSlot = 'root' | 'arrow';
 
 export interface TooltipSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the arrow.
+   * The component that renders the arrow.
    * @default 'span'
    */
   arrow: React.ElementType;
