@@ -113,16 +113,16 @@
   ],
   "classes": {
     "classes": [
-      "marked",
-      "vertical",
+      "active",
+      "disabled",
       "dragging",
+      "focusVisible",
+      "markActive",
+      "marked",
+      "markLabelActive",
       "trackFalse",
       "trackInverted",
-      "markActive",
-      "markLabelActive",
-      "disabled",
-      "active",
-      "focusVisible"
+      "vertical"
     ],
     "globalClasses": {
       "disabled": "Mui-disabled",

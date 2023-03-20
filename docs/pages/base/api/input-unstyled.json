@@ -65,15 +65,15 @@
   ],
   "classes": {
     "classes": [
-      "formControl",
-      "adornedStart",
       "adornedEnd",
-      "multiline",
+      "adornedStart",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
       "inputMultiline",
       "inputTypeSearch",
-      "focused",
-      "disabled",
-      "error"
+      "multiline"
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
   },

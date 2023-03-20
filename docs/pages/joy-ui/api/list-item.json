@@ -51,19 +51,19 @@
   ],
   "classes": {
     "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
       "nested",
       "nesting",
       "sticky",
-      "colorPrimary",
-      "colorNeutral",
-      "colorDanger",
-      "colorInfo",
-      "colorSuccess",
-      "colorWarning",
-      "colorContext",
+      "variantOutlined",
       "variantPlain",
       "variantSoft",
-      "variantOutlined",
       "variantSolid"
     ],
     "globalClasses": {}

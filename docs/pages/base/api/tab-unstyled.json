@@ -30,7 +30,7 @@
     }
   ],
   "classes": {
-    "classes": ["selected", "disabled"],
+    "classes": ["disabled", "selected"],
     "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
   },
   "spread": true,

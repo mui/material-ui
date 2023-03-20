@@ -82,23 +82,23 @@
   ],
   "classes": {
     "classes": [
-      "indeterminate",
-      "colorPrimary",
+      "checked",
+      "colorContext",
       "colorDanger",
       "colorInfo",
       "colorNeutral",
+      "colorPrimary",
       "colorSuccess",
       "colorWarning",
-      "colorContext",
-      "sizeSm",
-      "sizeMd",
+      "disabled",
+      "focusVisible",
+      "indeterminate",
       "sizeLg",
+      "sizeMd",
+      "sizeSm",
       "variantOutlined",
       "variantSoft",
-      "variantSolid",
-      "checked",
-      "disabled",
-      "focusVisible"
+      "variantSolid"
     ],
     "globalClasses": {
       "checked": "Mui-checked",

@@ -55,18 +55,18 @@
   ],
   "classes": {
     "classes": [
-      "colorPrimary",
+      "colorContext",
       "colorDanger",
       "colorInfo",
       "colorNeutral",
+      "colorPrimary",
       "colorSuccess",
       "colorWarning",
-      "colorContext",
-      "sizeSm",
-      "sizeMd",
       "sizeLg",
-      "variantPlain",
+      "sizeMd",
+      "sizeSm",
       "variantOutlined",
+      "variantPlain",
       "variantSoft",
       "variantSolid"
     ],

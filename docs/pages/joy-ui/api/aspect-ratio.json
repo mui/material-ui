@@ -53,15 +53,15 @@
   ],
   "classes": {
     "classes": [
-      "colorPrimary",
-      "colorNeutral",
+      "colorContext",
       "colorDanger",
       "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
       "colorSuccess",
       "colorWarning",
-      "colorContext",
-      "variantPlain",
       "variantOutlined",
+      "variantPlain",
       "variantSoft",
       "variantSolid"
     ],
