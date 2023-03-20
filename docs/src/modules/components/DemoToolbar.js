@@ -42,26 +42,33 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const Root = styled('div')(({ theme }) => ({
-  display: 'none',
-  [theme.breakpoints.up('sm')]: {
-    display: 'flex',
-    top: 0,
-    height: theme.spacing(8),
-    ...(theme.direction === 'rtl' && {
-      left: theme.spacing(1),
-    }),
-    ...(theme.direction !== 'rtl' && {
-      right: theme.spacing(1),
-    }),
+const Root = styled('div')(({ theme }) => [
+  {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      top: 0,
+      height: theme.spacing(8),
+      ...(theme.direction === 'rtl' && {
+        left: theme.spacing(1),
+      }),
+      ...(theme.direction !== 'rtl' && {
+        right: theme.spacing(1),
+      }),
+    },
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '& .MuiSvgIcon-root': {
+      fontSize: 17,
+      color: (theme.vars || theme).palette.grey[800],
+    },
   },
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  '& .MuiSvgIcon-root': {
-    fontSize: 17,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
-  },
-}));
+  theme.applyDarkStyles({
+    '& .MuiSvgIcon-root': {
+      color: (theme.vars || theme).palette.grey[400],
+    },
+  }),
+]);
 
 function DemoTooltip(props) {
   return (
@@ -469,14 +476,14 @@ export default function DemoToolbar(props) {
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={{
+              sx={(theme) => ({
                 padding: '5px 10px',
                 borderRadius: 0.5,
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200],
-              }}
+                borderColor: 'grey.200',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.700',
+                }),
+              })}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -487,17 +494,17 @@ export default function DemoToolbar(props) {
               <JavaScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={{
+              sx={(theme) => ({
                 padding: '5px 10px',
                 borderRadius: 0.5,
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200],
+                borderColor: 'grey.200',
                 '&.Mui-disabled': {
                   opacity: 0.5,
                 },
-              }}
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.700',
+                }),
+              })}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}

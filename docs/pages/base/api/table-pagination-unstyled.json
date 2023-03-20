@@ -40,35 +40,57 @@
     }
   },
   "name": "TablePaginationUnstyled",
-  "styles": {
-    "classes": [
-      "root",
-      "toolbar",
-      "spacer",
-      "selectLabel",
-      "selectRoot",
-      "select",
-      "selectIcon",
-      "input",
-      "menuItem",
-      "displayedRows",
-      "actions"
-    ],
-    "globalClasses": {
-      "root": "MuiTablePagination-root",
-      "toolbar": "MuiTablePagination-toolbar",
-      "spacer": "MuiTablePagination-spacer",
-      "selectLabel": "MuiTablePagination-selectLabel",
-      "selectRoot": "MuiTablePagination-selectRoot",
-      "select": "MuiTablePagination-select",
-      "selectIcon": "MuiTablePagination-selectIcon",
-      "input": "MuiTablePagination-input",
-      "menuItem": "MuiTablePagination-menuItem",
-      "displayedRows": "MuiTablePagination-displayedRows",
-      "actions": "MuiTablePagination-actions"
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'td'",
+      "class": ".MuiTablePagination-root"
     },
-    "name": null
-  },
+    {
+      "name": "actions",
+      "description": "The component that renders the actions.",
+      "default": "TablePaginationActionsUnstyled",
+      "class": ".MuiTablePagination-actions"
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select.",
+      "default": "'select'",
+      "class": ".MuiTablePagination-select"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The component that renders the select label.",
+      "default": "'p'",
+      "class": ".MuiTablePagination-selectLabel"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component that renders the menu item.",
+      "default": "'option'",
+      "class": ".MuiTablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The component that renders the displayed rows.",
+      "default": "'p'",
+      "class": ".MuiTablePagination-displayedRows"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component that renders the toolbar.",
+      "default": "'div'",
+      "class": ".MuiTablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The component that renders the spacer.",
+      "default": "'div'",
+      "class": ".MuiTablePagination-spacer"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",

@@ -13,11 +13,29 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface TypographySlots {
+  /**
+   * The component that renders the root.
+   * @default 'a'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface TypographyPropsColorOverrides {}
 export interface TypographyPropsVariantOverrides {}
 
 export type TypographySlotsAndSlotProps = CreateSlotsAndSlotProps<
-  TypographySlot,
+  TypographySlots,
   {
     root: SlotProps<'a', {}, TypographyOwnerState>;
     startDecorator: SlotProps<'span', {}, TypographyOwnerState>;
@@ -91,7 +109,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        */
       variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
     };

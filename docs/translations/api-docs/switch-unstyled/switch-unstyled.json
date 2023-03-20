@@ -9,7 +9,13 @@
     "readOnly": "If <code>true</code>, the component is read only.",
     "required": "If <code>true</code>, the <code>input</code> element is required.",
     "slotProps": "The props used for each slot inside the Switch.",
-    "slots": "The components used for each slot inside the Switch. Either a string to use a HTML element or a component."
+    "slots": "The components used for each slot inside the Switch. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "input": "The component that renders the input.",
+    "thumb": "The component that renders the thumb.",
+    "track": "The component that renders the track."
+  }
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -36,9 +36,9 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--CircularProgress-size': 'var(--Icon-fontSize)',
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
+        '--CircularProgress-size': '20px',
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -46,6 +46,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
+        '--CircularProgress-size': '24px',
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
@@ -53,6 +54,7 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
+        '--CircularProgress-size': '28px',
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,
@@ -89,7 +91,16 @@ export const IconButtonRoot = styled(StyledIconButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Button](https://mui.com/joy-ui/react-button/)
+ *
+ * API:
+ *
+ * - [IconButton API](https://mui.com/joy-ui/api/icon-button/)
+ */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -199,6 +210,7 @@ IconButton.propTypes /* remove-proptypes */ = {
   focusVisibleClassName: PropTypes.string,
   /**
    * The size of the component.
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -217,7 +229,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

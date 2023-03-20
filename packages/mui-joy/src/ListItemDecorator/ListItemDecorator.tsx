@@ -24,16 +24,25 @@ const ListItemDecoratorRoot = styled('span', {
   boxSizing: 'border-box',
   display: 'inline-flex',
   alignItems: 'center',
-  color: `var(--List-decorator-color)`,
+  color: `var(--List-decoratorColor)`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
-        minInlineSize: 'var(--List-decorator-size)',
+        minInlineSize: 'var(--List-decoratorSize)',
       }
     : {
-        minBlockSize: 'var(--List-decorator-size)',
+        minBlockSize: 'var(--List-decoratorSize)',
       }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemDecorator API](https://mui.com/joy-ui/api/list-item-decorator/)
+ */
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

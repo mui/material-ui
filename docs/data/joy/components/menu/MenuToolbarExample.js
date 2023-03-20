@@ -63,8 +63,8 @@ const MenuButton = React.forwardRef(
           sx: (theme) => ({
             width: 288,
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
-            '--List-padding': 'var(--List-divider-gap)',
-            '--List-item-minHeight': '32px',
+            '--List-padding': 'var(--ListDivider-gap)',
+            '--ListItem-minHeight': '32px',
             [`& .${menuItemClasses.root}`]: {
               transition: 'none',
               '&:hover': {
@@ -153,7 +153,7 @@ export default function MenuToolbarExample() {
         px: 2,
         borderRadius: '4px',
         maxWidth: 'fit-content',
-        '--List-item-radius': '8px',
+        '--ListItem-radius': '8px',
       }}
     >
       <ListItem>

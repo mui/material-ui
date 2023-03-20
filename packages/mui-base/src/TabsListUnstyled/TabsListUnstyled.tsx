@@ -9,7 +9,8 @@ import {
   TabsListUnstyledRootSlotProps,
   TabsListUnstyledTypeMap,
 } from './TabsListUnstyled.types';
-import useTabsList from './useTabsList';
+import useTabsList from '../useTabsList';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
@@ -18,7 +19,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
     root: ['root', orientation],
   };
 
-  return composeClasses(slots, getTabsListUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTabsListUnstyledUtilityClass));
 };
 
 /**

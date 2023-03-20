@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -124,8 +124,8 @@ const CheckboxAction = styled('span', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
-    borderRadius: `var(--Checkbox-action-radius, ${
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    borderRadius: `var(--Checkbox-actionRadius, ${
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',
@@ -181,7 +181,16 @@ const CheckboxLabel = styled('label', {
 
 const defaultCheckedIcon = <CheckIcon />;
 const defaultIndeterminateIcon = <IndeterminateIcon />;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Checkbox](https://mui.com/joy-ui/react-checkbox/)
+ *
+ * API:
+ *
+ * - [Checkbox API](https://mui.com/joy-ui/api/checkbox/)
+ */
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -376,10 +385,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -407,7 +413,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
-   * @default <IndeterminateCheckBoxIcon />
+   * @default <IndeterminateIcon />
    */
   indeterminateIcon: PropTypes.node,
   /**
@@ -456,10 +462,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['sm', 'md', 'lg']),
-    PropTypes.string,
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -482,13 +485,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Checkbox;

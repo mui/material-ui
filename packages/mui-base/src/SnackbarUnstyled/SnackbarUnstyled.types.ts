@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
-import { UseSnackbarParameters } from './useSnackbar.types';
+import { UseSnackbarParameters } from '../useSnackbar';
 import { SlotComponentProps } from '../utils';
 
 export interface SnackbarUnstyledRootSlotPropsOverrides {}
@@ -14,9 +14,7 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: SnackbarUnstyledSlots;
   /**
    * The props used for each slot inside the Snackbar.
    * @default {}
@@ -38,6 +36,14 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
    * @default true
    */
   exited?: boolean;
+}
+
+export interface SnackbarUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface SnackbarUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

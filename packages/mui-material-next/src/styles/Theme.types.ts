@@ -1,4 +1,4 @@
-import { SxProps as SystemSxProps, SxConfig, CSSObject } from '@mui/system';
+import { SxProps as SystemSxProps } from '@mui/system';
 import {
   CssVarsTheme as MD2Theme,
   SupportedColorScheme,
@@ -246,7 +246,6 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
   };
   palette: MD2Theme['palette'];
   vars: MD2Theme['vars'] & {
-    palette: MD2Theme['vars']['palette'];
     ref: {
       palette: MD3Palettes;
       typeface: any;
@@ -260,8 +259,10 @@ export interface Theme extends Omit<MD2Theme, 'vars'> {
       shape: MD3Shape;
     };
   };
-  unstable_sxConfig: SxConfig;
-  unstable_sx: (props: SystemSxProps<Theme>) => CSSObject;
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: Theme['vars'];
+  };
 }
 
 export type SxProps = SystemSxProps<Theme>;

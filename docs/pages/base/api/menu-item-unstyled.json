@@ -14,6 +14,14 @@
   },
   "name": "MenuItemUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiMenuItem-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/MenuItemUnstyled.tsx",

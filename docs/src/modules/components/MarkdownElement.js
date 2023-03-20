@@ -187,22 +187,23 @@ const Root = styled('div')(
       borderCollapse: 'collapse',
       marginBottom: '20px',
       borderSpacing: 0,
-      '& .prop-name, & .prop-type, & .prop-default': {
-        fontWeight: 400,
-        fontFamily: lightTheme.typography.fontFamilyCode,
-        WebkitFontSmoothing: 'subpixel-antialiased',
-        fontSize: lightTheme.typography.pxToRem(13),
-      },
+      '& .prop-name, & .prop-type, & .prop-default, & .slot-name, & .slot-defaultClass, & .slot-default':
+        {
+          fontWeight: 400,
+          fontFamily: lightTheme.typography.fontFamilyCode,
+          WebkitFontSmoothing: 'subpixel-antialiased',
+          fontSize: lightTheme.typography.pxToRem(13),
+        },
       '& .required': {
         color: '#006500',
       },
       '& .optional': {
         color: '#45529f',
       },
-      '& .prop-type': {
+      '& .prop-type, & .slot-defaultClass': {
         color: '#932981',
       },
-      '& .prop-default': {
+      '& .prop-default, & .slot-default': {
         borderBottom: `1px dotted var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
       },
     },
@@ -326,7 +327,10 @@ const Root = styled('div')(
     },
     '& img, & video': {
       // Use !important so that inline style on <img> or <video> can't win.
+      // This avoid horizontal overflows on mobile.
       maxWidth: '100% !important',
+      // Avoid the image to be fixed height, so it can respect the aspect ratio.
+      height: 'auto',
     },
     '& img': {
       // Avoid layout jump
@@ -434,14 +438,19 @@ const Root = styled('div')(
       },
     },
     '& li': {
+      // tight lists https://spec.commonmark.org/0.30/#tight
       marginBottom: 4,
       '& pre': {
         marginTop: theme.spacing(1),
       },
+      // loose lists https://spec.commonmark.org/0.30/#loose
+      '& > p': {
+        marginBottom: theme.spacing(1),
+      },
     },
   }),
-  {
-    ':where(.mode-dark) &': {
+  ({ theme }) => ({
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
@@ -491,10 +500,10 @@ const Root = styled('div')(
         '& .optional': {
           color: '#a5b3ff',
         },
-        '& .prop-type': {
+        '& .prop-type, & .slot-defaultClass': {
           color: '#ffb6ec',
         },
-        '& .prop-default': {
+        '& .prop-default, & .slot-default': {
           borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
       },
@@ -569,7 +578,7 @@ const Root = styled('div')(
         boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
-  },
+  }),
 );
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {

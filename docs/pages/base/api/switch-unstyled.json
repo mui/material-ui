@@ -24,6 +24,32 @@
   },
   "name": "SwitchUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": ".MuiSwitch-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiSwitch-input"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
+      "default": "'span'",
+      "class": ".MuiSwitch-thumb"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": ".MuiSwitch-track"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SwitchUnstyled/SwitchUnstyled.tsx",

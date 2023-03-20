@@ -75,7 +75,16 @@ const BreadcrumbsSeparator = styled('li', {
   userSelect: 'none',
   marginInline: 'var(--Breadcrumbs-gap)',
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Breadcrumbs](https://mui.com/joy-ui/react-breadcrumbs/)
+ *
+ * API:
+ *
+ * - [Breadcrumbs API](https://mui.com/joy-ui/api/breadcrumbs/)
+ */
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const props = useThemeProps<typeof inProps & BreadcrumbsProps>({
     props: inProps,

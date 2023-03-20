@@ -20,6 +20,14 @@
   },
   "name": "ButtonUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "props.href || props.to ? 'a' : 'button'",
+      "class": ".MuiButton-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx",

@@ -24,9 +24,7 @@ export interface MenuItemUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: MenuItemUnstyledSlots;
   /**
    * The props used for each slot inside the MenuItem.
    * @default {}
@@ -45,6 +43,14 @@ export interface MenuItemUnstyledOwnProps {
   label?: string;
 }
 
+export interface MenuItemUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
+}
+
 export interface MenuItemUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & MenuItemUnstyledOwnProps;
   defaultComponent: D;
@@ -55,3 +61,15 @@ export type MenuItemUnstyledProps<
 > = OverrideProps<MenuItemUnstyledTypeMap<{}, D>, D> & {
   component?: D;
 };
+
+export interface MenuItemMetadata {
+  id: string;
+  disabled: boolean;
+  label?: string;
+  ref: React.RefObject<HTMLElement>;
+}
+
+export interface MenuItemState {
+  disabled: boolean;
+  highlighted: boolean;
+}

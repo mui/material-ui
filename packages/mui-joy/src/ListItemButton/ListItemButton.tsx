@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import {
@@ -42,10 +42,10 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
   ({ theme, ownerState }) => [
     {
       ...(ownerState.selected && {
-        '--List-decorator-color': 'initial',
+        '--List-decoratorColor': 'initial',
       }),
       ...(ownerState.disabled && {
-        '--List-decorator-color':
+        '--List-decoratorColor':
           theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       }),
       WebkitTapHighlightColor: 'transparent',
@@ -59,27 +59,27 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       backgroundColor: 'initial', // reset button background
       cursor: 'pointer',
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-      marginInline: 'var(--List-itemButton-marginInline)',
-      marginBlock: 'var(--List-itemButton-marginBlock)',
+      marginInline: 'var(--ListItemButton-marginInline)',
+      marginBlock: 'var(--ListItemButton-marginBlock)',
       ...(ownerState['data-first-child'] === undefined && {
         marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
         marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
       }),
       // account for the border width, so that all of the ListItemButtons content aligned horizontally
-      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth, 0px))',
+      paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
       // account for the border width, so that all of the ListItemButtons content aligned vertically
       paddingInlineStart:
-        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+        'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
       paddingInlineEnd:
-        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-      minBlockSize: 'var(--List-item-minHeight)',
+        'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      minBlockSize: 'var(--ListItem-minHeight)',
       border: 'none',
-      borderRadius: 'var(--List-item-radius)',
+      borderRadius: 'var(--ListItem-radius)',
       flexGrow: ownerState.row ? 0 : 1,
       flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
       flexShrink: 0,
       minInlineSize: 0,
-      fontSize: 'var(--List-item-fontSize)',
+      fontSize: 'var(--ListItem-fontSize)',
       fontFamily: theme.vars.fontFamily.body,
       ...(ownerState.selected && {
         fontWeight: theme.vars.fontWeight.md,
@@ -105,7 +105,16 @@ const ListItemButtonRoot = styled(StyledListItemButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
+ */
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -212,7 +221,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * @default selected ? 'primary' : 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -264,7 +273,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

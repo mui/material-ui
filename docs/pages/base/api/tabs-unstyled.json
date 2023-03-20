@@ -35,6 +35,14 @@
   },
   "name": "TabsUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabs-root"
+    }
+  ],
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsUnstyled/TabsUnstyled.tsx",

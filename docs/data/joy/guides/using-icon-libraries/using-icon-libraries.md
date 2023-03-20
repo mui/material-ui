@@ -78,6 +78,10 @@ If you use TypeScript, you will need to update the TSConfig.
 
 :::
 
+:::error
+`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
+:::
+
 ### Usage
 
 By default, Joy UI components are able to control an icon's color, font size, and margins when its size or variant changes.

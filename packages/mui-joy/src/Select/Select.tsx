@@ -12,12 +12,11 @@ import PopperUnstyled, {
   PopperUnstyledTypeMap,
 } from '@mui/base/PopperUnstyled';
 import {
-  useSelect,
   SelectUnstyledContext,
   flattenOptionGroups,
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
-import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
+import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -110,38 +109,38 @@ const SelectRoot = styled('div', {
                 ownerState.color === 'neutral' ? 'primary' : ownerState.color!
               ]?.[500],
           }),
-      '--Select-indicator-color': variantStyle?.backgroundColor
+      '--Select-indicatorColor': variantStyle?.backgroundColor
         ? variantStyle?.color
         : theme.vars.palette.text.tertiary,
       ...(ownerState.size === 'sm' && {
         '--Select-minHeight': '2rem',
         '--Select-paddingInline': '0.5rem',
-        '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(1.5rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Select-minHeight': '2.5rem',
         '--Select-paddingInline': '0.75rem',
-        '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(2rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Select-minHeight': '3rem',
         '--Select-paddingInline': '1rem',
-        '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
+        '--Select-decoratorChildHeight': 'min(2.375rem, var(--Select-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--Select-decorator-childOffset':
-        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
+      '--Select-decoratorChildOffset':
+        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2), var(--Select-paddingInline))',
       '--_Select-paddingBlock':
-        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decorator-childHeight)) / 2, 0px)',
-      '--Select-decorator-childRadius':
+        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Select-decoratorChildHeight)) / 2, 0px)',
+      '--Select-decoratorChildRadius':
         'max(var(--Select-radius) - var(--variant-borderWidth, 0px) - var(--_Select-paddingBlock), min(var(--_Select-paddingBlock) + var(--variant-borderWidth, 0px), var(--Select-radius) / 2))',
-      '--Button-minHeight': 'var(--Select-decorator-childHeight)',
-      '--IconButton-size': 'var(--Select-decorator-childHeight)',
-      '--Button-radius': 'var(--Select-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Select-decorator-childRadius)',
+      '--Button-minHeight': 'var(--Select-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Select-decoratorChildHeight)',
+      '--Button-radius': 'var(--Select-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Select-decoratorChildRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
       minHeight: 'var(--Select-minHeight)',
@@ -177,13 +176,13 @@ const SelectRoot = styled('div', {
         margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
       },
       [`&.${selectClasses.focusVisible}`]: {
-        '--Select-indicator-color': variantStyle?.color,
+        '--Select-indicatorColor': variantStyle?.color,
         '&::before': {
           boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
         },
       },
       [`&.${selectClasses.disabled}`]: {
-        '--Select-indicator-color': 'inherit',
+        '--Select-indicatorColor': 'inherit',
       },
     },
     {
@@ -216,6 +215,7 @@ const SelectButton = styled('button', {
   fontFamily: 'inherit',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+  overflow: 'auto',
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
@@ -233,16 +233,18 @@ const SelectListbox = styled(StyledList, {
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.popup,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     minWidth: 'max-content', // prevent options from shrinking if some of them is wider than the Select's root.
+    maxHeight: '44vh', // the best value from what I tried so far which does not cause screen flicker when listbox is open.
+    overflow: 'auto',
     outline: 0,
     boxShadow: theme.shadow.md,
-    zIndex: 1000,
+    zIndex: theme.vars.zIndex.popup,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.popup,
     }),
@@ -254,8 +256,8 @@ const SelectStartDecorator = styled('span', {
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
+  '--Button-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Select-decoratorChildOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
   display: 'inherit',
   alignItems: 'center',
@@ -273,8 +275,8 @@ const SelectEndDecorator = styled('span', {
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
-    '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
+    '--Button-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Select-decoratorChildOffset) * -1) 0 0',
     '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
     display: 'inherit',
     alignItems: 'center',
@@ -296,7 +298,7 @@ const SelectIndicator = styled('span', {
   ...(ownerState.size === 'lg' && {
     '--Icon-fontSize': '1.5rem',
   }),
-  color: 'var(--Select-indicator-color)',
+  color: 'var(--Select-indicatorColor)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
@@ -305,7 +307,16 @@ const SelectIndicator = styled('span', {
     marginInlineStart: 'calc(var(--Select-gap) / 2)',
   },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Select API](https://mui.com/joy-ui/api/select/)
+ */
 const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
@@ -647,12 +658,21 @@ Select.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * If `true`, the select element is focused during the first mount
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * @ignore
    */
   children: PropTypes.node,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -663,6 +683,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen: PropTypes.bool,
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -690,6 +715,21 @@ Select.propTypes /* remove-proptypes */ = {
    */
   indicator: PropTypes.node,
   /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
+  /**
+   * Controls the open state of the select's listbox.
+   * @default undefined
+   */
+  listboxOpen: PropTypes.bool,
+  /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
+  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -697,6 +737,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange: PropTypes.func,
   /**
    * Text to show when there is no selected value.
    */
@@ -730,8 +775,8 @@ Select.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
-   * @default 'solid'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

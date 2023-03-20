@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -149,9 +149,9 @@ const RadioAction = styled('span', {
   {
     position: 'absolute',
     textAlign: 'left', // prevent text-align inheritance
-    borderRadius: `var(--Radio-action-radius, ${
+    borderRadius: `var(--Radio-actionRadius, ${
       // Automatic radius adjustment when composing with ListItem or Sheet
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',
@@ -218,7 +218,16 @@ const RadioIcon = styled('span', {
   backgroundColor: 'currentColor',
   transform: ownerState.checked ? 'scale(1)' : 'scale(0)',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio Group](https://mui.com/joy-ui/react-radio-button/)
+ *
+ * API:
+ *
+ * - [Radio API](https://mui.com/joy-ui/api/radio/)
+ */
 const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -463,7 +472,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
    * This prop is useful for composing Radio with ListItem component.
-   * @default false;
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
@@ -499,7 +508,7 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
