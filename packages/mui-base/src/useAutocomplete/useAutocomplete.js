@@ -1023,7 +1023,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if ((inputValue === '' || !open) && event.buttons === 0) {
+    if ((inputValue === '' || !open) && event.button === 0) {
       handlePopupIndicator(event);
     }
   };
