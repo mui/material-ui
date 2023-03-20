@@ -98,7 +98,9 @@ export default function parseSlotsAndClasses({
     result = {
       slots: Object.values(slots),
       classes: {
-        classes: otherClassNames.concat(Object.keys(globalStateClassNames)).sort((a, b) => a.localeCompare(b)),
+        classes: otherClassNames
+          .concat(Object.keys(globalStateClassNames))
+          .sort((a, b) => a.localeCompare(b)),
         globalClasses: globalStateClassNames,
       },
     };
