@@ -3,9 +3,12 @@ import { getSymbolDescription } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import getPropsFromComponentSymbol from './getPropsFromComponentSymbol';
 
-export interface Styles {
+export interface Classes {
   classes: string[];
   globalClasses: Record<string, string>;
+}
+
+export interface Styles extends Classes {
   name: string | null;
   descriptions: Record<string, string>;
 }

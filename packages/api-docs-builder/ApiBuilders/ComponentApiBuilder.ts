@@ -20,9 +20,9 @@ import createDescribeableProp, {
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import parseStyles, { Styles } from '../utils/parseStyles';
+import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlots, { Slot } from '../utils/parseSlots';
+import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -50,6 +50,7 @@ export interface ReactApi extends ReactDocgenApi {
    */
   src: string;
   styles: Styles;
+  classes: Classes;
   slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
@@ -340,6 +341,8 @@ const generateApiPage = (
       name: reactApi.styles.name,
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
+    ...((reactApi.classes?.classes.length > 0 ||
+      Object.keys(reactApi.classes?.globalClasses)?.length > 0) && { classes: reactApi.classes }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
     muiName: reactApi.apiPathname.startsWith('/joy-ui')
@@ -626,7 +629,15 @@ export default async function generateComponentApi(
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+
+  const { slots, classes } = parseSlotsAndClasses({
+    project,
+    componentName: reactApi.name,
+    muiName: reactApi.muiName,
+  });
+  reactApi.slots = slots;
+  reactApi.classes = classes;
+
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
