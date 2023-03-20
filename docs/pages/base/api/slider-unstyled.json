@@ -102,13 +102,13 @@
     {
       "name": "valueLabel",
       "description": "The component that renders the value label.",
-      "class": ""
+      "class": null
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ""
+      "class": null
     }
   ],
   "spread": true,

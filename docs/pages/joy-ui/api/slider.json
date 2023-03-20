@@ -150,7 +150,7 @@
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ""
+      "class": null
     }
   ],
   "spread": false,
