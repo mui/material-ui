@@ -162,6 +162,30 @@
       "class": ".MuiAutocomplete-limitTag"
     }
   ],
+  "classes": {
+    "classes": [
+      "formControl",
+      "multiple",
+      "hasPopupIcon",
+      "hasClearIcon",
+      "popupIndicatorOpen",
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAutocomplete",

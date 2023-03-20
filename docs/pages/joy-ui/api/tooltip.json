@@ -78,6 +78,31 @@
       "class": ".MuiTooltip-arrow"
     }
   ],
+  "classes": {
+    "classes": [
+      "tooltipArrow",
+      "touch",
+      "placementLeft",
+      "placementRight",
+      "placementTop",
+      "placementBottom",
+      "colorPrimary",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyTooltip",

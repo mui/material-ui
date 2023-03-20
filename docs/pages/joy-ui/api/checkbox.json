@@ -80,6 +80,29 @@
       "class": ".MuiCheckbox-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "indeterminate",
+      "colorPrimary",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyCheckbox",

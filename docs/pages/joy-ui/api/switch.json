@@ -82,6 +82,28 @@
       "class": ".MuiSwitch-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "readOnly",
+      "colorPrimary",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoySwitch",

@@ -44,6 +44,7 @@
       "class": ".MuiBreadcrumbs-separator"
     }
   ],
+  "classes": { "classes": ["sizeSm", "sizeMd", "sizeLg"], "globalClasses": {} },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyBreadcrumbs",

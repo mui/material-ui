@@ -58,6 +58,25 @@
       "class": ".MuiTextarea-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "formControl",
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error", "focused": "Mui-focused" }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyTextarea",

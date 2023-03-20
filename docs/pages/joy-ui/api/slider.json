@@ -153,6 +153,32 @@
       "class": null
     }
   ],
+  "classes": {
+    "classes": [
+      "marked",
+      "vertical",
+      "dragging",
+      "trackFalse",
+      "trackInverted",
+      "valueLabelOpen",
+      "markActive",
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoySlider",

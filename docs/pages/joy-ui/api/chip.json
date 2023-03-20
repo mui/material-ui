@@ -67,6 +67,28 @@
       "class": ".MuiChip-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "labelSm",
+      "labelMd",
+      "labelLg",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantPlain",
+      "variantSolid",
+      "variantSoft",
+      "variantOutlined"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyChip",

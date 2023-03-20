@@ -75,6 +75,27 @@
       "class": ".MuiButton-loadingIndicatorCenter"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "fullWidth",
+      "loading"
+    ],
+    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyButton",

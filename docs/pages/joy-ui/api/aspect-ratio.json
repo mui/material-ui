@@ -51,6 +51,22 @@
       "class": ".MuiAspectRatio-content"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAspectRatio",

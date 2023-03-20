@@ -59,6 +59,33 @@
       "class": ".MuiTypography-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "body1",
+      "body2",
+      "body3",
+      "noWrap",
+      "gutterBottom",
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyTypography",

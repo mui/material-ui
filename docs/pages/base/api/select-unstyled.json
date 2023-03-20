@@ -52,6 +52,15 @@
       "class": ".MuiSelect-popper"
     }
   ],
+  "classes": {
+    "classes": ["button"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "expanded": "Mui-expanded",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
   "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLButtonElement",

@@ -63,6 +63,34 @@
       "class": ".MuiLink-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid",
+      "underlineNone",
+      "underlineHover",
+      "underlineAlways",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "body1",
+      "body2",
+      "body3"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyLink",

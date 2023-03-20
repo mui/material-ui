@@ -111,6 +111,22 @@
       "class": null
     }
   ],
+  "classes": {
+    "classes": [
+      "marked",
+      "vertical",
+      "dragging",
+      "trackFalse",
+      "trackInverted",
+      "markActive",
+      "markLabelActive"
+    ],
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
   "muiName": "MuiSlider",
   "forwardsRefTo": "HTMLSpanElement",

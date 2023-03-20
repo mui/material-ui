@@ -89,6 +89,30 @@
       "class": ".MuiSelect-listbox"
     }
   ],
+  "classes": {
+    "classes": [
+      "popper",
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg"
+    ],
+    "globalClasses": {
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "expanded": "Mui-expanded"
+    }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoySelect",

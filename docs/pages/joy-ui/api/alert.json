@@ -53,6 +53,25 @@
       "class": ".MuiAlert-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorPrimary",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "sizeSm",
+      "sizeMd",
+      "sizeLg",
+      "variantPlain",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAlert",

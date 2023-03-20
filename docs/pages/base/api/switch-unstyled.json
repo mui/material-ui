@@ -50,6 +50,14 @@
       "class": ".MuiSwitch-track"
     }
   ],
+  "classes": {
+    "classes": ["readOnly"],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
   "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",

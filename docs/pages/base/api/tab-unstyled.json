@@ -29,6 +29,10 @@
       "class": ".MuiTab-root"
     }
   ],
+  "classes": {
+    "classes": [],
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
+  },
   "spread": true,
   "muiName": "MuiTab",
   "forwardsRefTo": "HTMLButtonElement",

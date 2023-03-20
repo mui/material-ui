@@ -39,6 +39,7 @@
       "class": ".MuiMenu-listbox"
     }
   ],
+  "classes": { "classes": [], "globalClasses": { "expanded": "Mui-expanded" } },
   "spread": false,
   "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",

@@ -49,6 +49,25 @@
       "class": ".MuiListItem-endAction"
     }
   ],
+  "classes": {
+    "classes": [
+      "nested",
+      "nesting",
+      "sticky",
+      "colorPrimary",
+      "colorNeutral",
+      "colorDanger",
+      "colorInfo",
+      "colorSuccess",
+      "colorWarning",
+      "colorContext",
+      "variantPlain",
+      "variantSoft",
+      "variantOutlined",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItem",
