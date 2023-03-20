@@ -65,6 +65,12 @@ The next demo shows how to apply custom styles to a set of tabs:
 
 {{"demo": "UnstyledTabsCustomized.js"}}
 
+### Vertical
+
+To set the tabs orientation to vertical, use the orientation="vertical" on the TabsUnstyled component. Keyboard navigation (e.g. arrow keys) will adapt automatically to the used orientation.
+
+{{"demo": "UnstyledTabsVertical.js"}}
+
 ### Anatomy
 
 The Tab components are each composed of a root slot with no interior slots:
