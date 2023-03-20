@@ -335,6 +335,8 @@ const Root = styled('div')(
     '& img': {
       // Avoid layout jump
       display: 'inline-block',
+      // Avoid very sharp edges
+      borderRadius: 2,
     },
     '& hr': {
       height: 1,
