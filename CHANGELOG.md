@@ -11,51 +11,52 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.11.14`
 
-- &#8203;<!-- 24 -->[Breadcrumbs] Add ability to change icon used in `BreadcrumbCollapsed` through sl (#33812) @pratikkarad
-- &#8203;<!-- 06 -->[Stepper] Add aria-current to active StepButton (#36526) @michalak111
-- &#8203;<!-- 04 -->[TabScrollButton] Add ability to change left and right icons (#33863) @pratikkarad
+- [Breadcrumbs] Add ability to change icon used in `BreadcrumbCollapsed` through sl (#33812) @pratikkarad
+- [Stepper] Add aria-current to active StepButton (#36526) @michalak111
+- [TabScrollButton] Add ability to change left and right icons (#33863) @pratikkarad
 
 ### `@mui/system@5.11.14`
 
-- &#8203;<!-- 05 -->[system] Fix sx prop regression for fontWeight values (#36543) @mnajdova
+- [system] Fix sx prop regression for fontWeight values (#36543) @mnajdova
 
 ### `@mui/base@5.0.0-alpha.121`
 
-- &#8203;<!-- 27 -->[docs][base] Improve the Slots Table in API docs (#36330) @hbjORbj
+- [docs][base] Improve the Slots Table in API docs (#36330) @hbjORbj
 
 ### `@mui/joy@5.0.0-alpha.72`
 
-- &#8203;<!-- 09 -->[Joy] Ensure new CSS variable naming is everywhere (#36460) @hbjORbj
-- &#8203;<!-- 08 -->[Menu][joy] Classname listbox is missing (#36520) @hbjORbj
+- [Joy] Ensure new CSS variable naming is everywhere (#36460) @hbjORbj
+- [Menu][joy] Classname listbox is missing (#36520) @hbjORbj
 
 ### `@mui/lab@5.0.0-alpha.124`
 
-- &#8203;<!-- 07 -->[Masonry] Include Masonry in theme augmentation interface (#36533) @hbjORbj
+- [Masonry] Include Masonry in theme augmentation interface (#36533) @hbjORbj
 
 ### Docs
 
-- &#8203;<!-- 26 -->[blog] Post blog about Chamonix retreat to the website (#36517) @mikailaread
-- &#8203;<!-- 25 -->[blog] Fix image layout shift (#36522) @oliviertassinari
-- &#8203;<!-- 21 -->[docs] Use `theme.applyDarkStyles` for the rest of the docs (#36161) @siriwatknp
-- &#8203;<!-- 20 -->[docs] Fix 301 and 404 links (#36555) @oliviertassinari
-- &#8203;<!-- 19 -->[docs] Keep slot code order in API docs (#36499) @oliviertassinari
-- &#8203;<!-- 18 -->[docs] Missing className on Migrating from JSS example (#36536) @gabrielnafuzi
-- &#8203;<!-- 17 -->[docs] Fix function name for Joy templates (#36512) @hbjORbj
-- &#8203;<!-- 16 -->[docs] Add multiline Chip example (#36437) @dav1app
-- &#8203;<!-- 15 -->[docs] Add a new gold sponsor (#36518) @hbjORbj
-- &#8203;<!-- 14 -->[docs][joy] Improve the Slots Table in API docs (#36328) @hbjORbj
-- &#8203;<!-- 13 -->[docs][joy] Build TS versions for Modal component demos (#36385) @varunmulay22
-- &#8203;<!-- 12 -->[docs][joy] Build TS versions for Menu component demos (#36383) @varunmulay22
-- &#8203;<!-- 11 -->[docs][joy] Build TS versions for Switch component demos (#36379) @varunmulay22
-- &#8203;<!-- 10 -->[docs][material] Update Table's demo to show pointer cursor on clickable rows (#36546) @varunmulay22
-- &#8203;<!-- 02 -->[website] Open Head of Operations role (#36501) @oliviertassinari
-- &#8203;<!-- 03 -->[website] Limit sponsors description to two rows @oliviertassinari
+- [blog] Post blog about Chamonix retreat to the website (#36517) @mikailaread
+- [blog] Fix image layout shift (#36522) @oliviertassinari
+- [docs] Use `theme.applyDarkStyles` for the rest of the docs (#36161) @siriwatknp
+- [docs] Fix 301 and 404 links (#36555) @oliviertassinari
+- [docs] Keep slot code order in API docs (#36499) @oliviertassinari
+- [docs] Missing className on Migrating from JSS example (#36536) @gabrielnafuzi
+- [docs] Fix function name for Joy templates (#36512) @hbjORbj
+- [docs] Add multiline Chip example (#36437) @dav1app
+- [docs] Add a new gold sponsor (#36518) @hbjORbj
+- [docs][joy] Improve the Slots Table in API docs (#36328) @hbjORbj
+- [docs][joy] Build TS versions for Modal component demos (#36385) @varunmulay22
+- [docs][joy] Build TS versions for Menu component demos (#36383) @varunmulay22
+- [docs][joy] Build TS versions for Switch component demos (#36379) @varunmulay22
+- [docs] Remove `shouldSkipGeneratingVar` usage (#36581) @siriwatknp
+- [docs][material] Update Table's demo to show pointer cursor on clickable rows (#36546) @varunmulay22
+- [website] Open Head of Operations role (#36501) @oliviertassinari
+- [website] Limit sponsors description to two rows @oliviertassinari
 
 ### Core
 
-- &#8203;<!-- 23 -->[core] Fix CI @oliviertassinari
-- &#8203;<!-- 22 -->[core] Fix blank line @oliviertassinari
-- &#8203;<!-- 01 -->[website] Simplify internal ops @oliviertassinari
+- [core] Fix CI @oliviertassinari
+- [core] Fix blank line @oliviertassinari
+- [website] Simplify internal ops @oliviertassinari
 
 All contributors of this release in alphabetical order: @dav1app, @gabrielnafuzi, @hbjORbj, @michalak111, @mikailaread, @mnajdova, @oliviertassinari, @pratikkarad, @siriwatknp, @varunmulay22
 
