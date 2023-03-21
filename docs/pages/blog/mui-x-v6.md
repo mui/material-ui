@@ -14,15 +14,12 @@ tags: ['MUI X', 'News']
 ## Table of Contents
 
 - [✨ Feature highlights ✨](#✨-features-highlights-✨)
-
   - Data Grid
-
     - [ApiRef moved to the MIT (Community) version](#apiref-moved-to-the-mit-community-version)
     - [Improved column menu](#improved-column-menu)
     - [Cell selection](#cell-selection) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
     - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files). [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
     - [Stable aggregation and row pinning](#stable-aggregation-and-row-pinning)
-
   - Date and Time pickers
     - [Fields: the new default input for pickers](#fields-the-new-default-input-for-pickers).
     - [Improved layout customization](#improved-layout-customization)
@@ -30,7 +27,6 @@ tags: ['MUI X', 'News']
     - [Edit date ranges with drag and drop](#edit-date-ranges-with-drag-and-drop) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
     - [Overhaul in the documentation](#overhaul-in-the-documentation)
     - [Removed clock view on desktop Time Pickers](#removed-clock-view-on-desktop-time-pickers)
-
 - [Installation and migration](#installation-and-migration)
 - [What's next](#whats-next)
 - [Decoupling versions from MUI Core](#decoupling-versions-from-mui-core)
