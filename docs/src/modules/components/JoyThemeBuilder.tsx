@@ -65,6 +65,8 @@ import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 import generateThemeAugmentation from 'docs/src/modules/joy/generateThemeAugmentation';
+import literalToObject from 'docs/src/modules/joy/literalToObject';
+import getMinimalJoyTemplate from 'docs/src/modules/joy/getMinimalJoyTemplate';
 
 const tailwindColors = {
   slate: {
@@ -1244,52 +1246,6 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-function literalToObject(literal: string | null | undefined) {
-  if (!literal) {
-    return {};
-  }
-  const lines = literal.split('\n');
-  const result: Record<string, any> = {};
-  const parent: Array<Record<string, any>> = [];
-  let nested: Record<string, any> | null | undefined = null;
-
-  lines.forEach((line) => {
-    const trimmedLine = line.trim();
-    if (!trimmedLine.match(/}/)) {
-      const [key, value] = trimmedLine.split(':');
-      if (value && value.match(/{/)) {
-        if (!nested) {
-          result[key] = {};
-          nested = result[key];
-        } else {
-          parent.push(nested);
-          nested[key] = {};
-          nested = nested[key];
-        }
-      } else if (key && !key.trim().match(/^(\/\/|\/\*)/) && value && nested) {
-        try {
-          const trimmedValue = value.trim().replace(/,$/, '');
-          if (trimmedValue === 'undefined') {
-            nested[key] = undefined;
-          }
-          if (trimmedValue === 'null') {
-            nested[key] = null;
-          }
-          if (trimmedValue.match(/^('|")/)) {
-            nested[key] = trimmedValue.slice(1, -1);
-          }
-        } catch (error) {
-          // igore error
-        }
-      }
-    } else {
-      nested = parent.pop();
-    }
-  });
-
-  return result;
-}
-
 function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
   const [open, setOpen] = React.useState(false);
   const { map: templateMap } = sourceJoyTemplates();
@@ -1413,125 +1369,7 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                 overlay
                 onClick={() => {
                   const { result } = extractTemplates({
-                    './result/App.tsx': `import * as React from "react";
-import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
-import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import CssBaseline from "@mui/joy/CssBaseline";
-import Card from "@mui/joy/Card";
-import Divider from "@mui/joy/Divider";
-import Link from "@mui/joy/Link";
-import List from "@mui/joy/List";
-import ListSubheader from "@mui/joy/ListSubheader";
-import ListItem from "@mui/joy/ListItem";
-import ListItemButton from "@mui/joy/ListItemButton";
-import Typography from "@mui/joy/Typography";
-import theme from "./theme";
-
-const ColorSchemeToggle = () => {
-const { mode, setMode } = useColorScheme();
-const [mounted, setMounted] = React.useState(false);
-React.useEffect(() => {
-setMounted(true);
-}, []);
-if (!mounted) {
-return <Button variant="outlined" color="primary" />;
-}
-return (
-<Button
-  variant="outlined"
-  onClick={() => {
-    if (mode === "light") {
-      setMode("dark");
-    } else {
-      setMode("light");
-    }
-  }}
->
-  {mode === "light" ? "Turn dark" : "Turn light"}
-</Button>
-);
-};
-
-export default function App() {
-return (
-<CssVarsProvider theme={theme}>
-  <CssBaseline />
-  <Card
-    size="lg"
-    variant="solid"
-    color="primary"
-    invertedColors
-    sx={{
-      borderRadius: "sm",
-      m: 1,
-      fontSize: "lg",
-      background: (theme) =>
-        \`linear-gradient(-10deg, \${theme.vars.palette.primary[900]} -10%, \${theme.vars.palette.primary[700]}, \${theme.vars.palette.primary[500]} 70%, \${theme.vars.palette.primary[400]})\`
-    }}
-  >
-    <Box sx={{ position: "absolute", top: "1.5rem", right: "1.5rem" }}>
-      <ColorSchemeToggle />
-    </Box>
-    <Typography level="h1" fontWeight="xl" sx={{ mt: -1 }}>
-      Joy UI
-    </Typography>
-    <Typography sx={{ mt: 0.5 }}>
-      Hand-crafted React components with fresh design. Focus on developer
-      experience and customizability.
-    </Typography>
-    <Divider sx={{ mt: 2 }} />
-    <List sx={{ mx: -1 }}>
-      <ListSubheader>documentation</ListSubheader>
-      <ListItem>
-        <ListItemButton
-          component="a"
-          href="https://mui.com/joy-ui/main-features/global-variants/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Main features &nbsp; <span role="img">↗</span>️
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton
-          component="a"
-          href="https://mui.com/joy-ui/react-autocomplete/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Browse components &nbsp; <span role="img">↗</span>️
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton
-          component="a"
-          href="https://mui.com/joy-ui/customization/approaches/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Check out theming and customization &nbsp;{" "}
-          <span role="img">↗</span>️
-        </ListItemButton>
-      </ListItem>
-    </List>
-  </Card>
-  <Typography textAlign="center" level="body2">
-    Developed by{" "}
-    <Link
-      underline="always"
-      href="https://mui.com/about"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      MUI
-    </Link>{" "}
-    team.
-  </Typography>
-</CssVarsProvider>
-);
-}
-                  `,
+                    './result/App.tsx': getMinimalJoyTemplate(),
                     './result/theme.ts': generateThemeCode(data),
                     './result/themeAugmentation.ts': generateThemeAugmentation(data),
                   });
