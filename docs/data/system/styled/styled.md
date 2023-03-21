@@ -60,7 +60,7 @@ This example demonstrates how you can use the `styled` API to create custom comp
 
 If you inspect this element with the browser DevTools in development mode, you will notice that the class of the component now ends with the `MyThemeComponent-root`, which comes from the `name` and `slot` options that were provided.
 
-<img src="/static/images/system/styled-options.png" alt="browser DevTools showing the rendered component" width="327" />
+<img src="/static/images/system/styled-options.png" alt="browser DevTools showing the rendered component" width="654" height="258" style="width: 327px" />
 
 In addition to this, the `color`, `sx`, and `variant` props are not propagated to the generated `div` element.
 

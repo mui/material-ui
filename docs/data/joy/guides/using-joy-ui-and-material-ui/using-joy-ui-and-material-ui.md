@@ -27,12 +27,8 @@ import { deepmerge } from '@mui/utils';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendMuiTheme,
-  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
-import {
-  extendTheme as extendJoyTheme,
-  shouldSkipGeneratingVar as joyShouldSkipGeneratingVar,
-} from '@mui/joy/styles';
+import { extendTheme as extendJoyTheme } from '@mui/joy/styles';
 
 const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
   // This is required to point to `var(--mui-*)` because we are using
@@ -102,8 +98,6 @@ const mergedTheme = ({
     ...muiTheme.zIndex
   }
 } as unknown) as ReturnType<typeof extendMuiTheme>;
-mergedTheme.shouldSkipGeneratingVar = (keys) =>
-  joyShouldSkipGeneratingVar(keys) || muiShouldSkipGeneratingVar(keys);
 mergedTheme.generateCssVars = (colorScheme) => ({
   css: {
     ...joyTheme.generateCssVars(colorScheme).css,
@@ -142,13 +136,11 @@ This setup uses the `CssVarsProvider` component from Joy UI and configures the M
 import { deepmerge } from '@mui/utils';
 import {
   experimental_extendTheme as extendMuiTheme,
-  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
 import colors from '@mui/joy/colors';
 import {
   extendTheme as extendJoyTheme,
   CssVarsProvider,
-  shouldSkipGeneratingVar as joyShouldSkipGeneratingVar,
 } from '@mui/joy/styles';
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
@@ -229,9 +221,6 @@ const mergedTheme = ({
   }
 } as unknown) as ReturnType<typeof extendJoyTheme>;
 
-mergedTheme.shouldSkipGeneratingVar = (...params) =>
-  joyShouldSkipGeneratingVar(params[0]) ||
-  muiShouldSkipGeneratingVar(params[0]);
 mergedTheme.generateCssVars = (colorScheme) => ({
   css: {
     ...muiTheme.generateCssVars(colorScheme).css,
