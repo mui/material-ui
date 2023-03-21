@@ -553,6 +553,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     });
   };
 
+  const autocompleteLoadingComponent = (
+    <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+      {loadingText}
+    </AutocompleteLoading>
+  );
+
   const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
   const paperSlotProps = slotProps.paper ?? componentsProps.paper;
   const popperSlotProps = slotProps.popper ?? componentsProps.popper;
@@ -639,6 +645,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             {...paperSlotProps}
             className={clsx(classes.paper, paperSlotProps?.className)}
           >
+            {loading && groupedOptions.length === 0 ? autocompleteLoadingComponent : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
               <AutocompleteNoOptions
                 className={classes.noOptions}
@@ -672,12 +679,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                   }
                   return renderListOption(option, index);
                 })}
+                {loading && onScrollToBottom ? autocompleteLoadingComponent : null}
               </AutocompleteListbox>
-            ) : null}
-            {loading && (onScrollToBottom || (!onScrollToBottom && groupedOptions.length === 0)) ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
             ) : null}
           </AutocompletePaper>
         </AutocompletePopper>
