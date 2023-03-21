@@ -31,8 +31,8 @@
     },
     "getInputProps": {
       "type": {
-        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps",
-        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps"
+        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
+        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps"
       },
       "required": true
     },
