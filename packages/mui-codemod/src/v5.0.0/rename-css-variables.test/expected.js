@@ -10,4 +10,5 @@
   <Switch sx={{ '--Switch-trackWidth': '40px' }} />
   <Item sx={{ py: 'var(--unstable_actionRadius)' }} />
   <Item sx={{ py: 'var(--unstable_actionRadius)' }} />
+  <Item sx={{ py: 'var(--unstable_actionRadius)' }} />
 </div>;

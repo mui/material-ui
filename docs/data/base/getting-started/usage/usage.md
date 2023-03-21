@@ -121,7 +121,7 @@ MUI Base includes two kinds of building blocks: **components** and **hooks**.
 :::
 
 Many Base components are implemented with the help of hooks.
-(Visit the [React documentation on hooks](https://reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
+(Visit the [React documentation on hooks](https://legacy.reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
 
 You can use components or hooks—or a combination thereof—when building custom components.
 

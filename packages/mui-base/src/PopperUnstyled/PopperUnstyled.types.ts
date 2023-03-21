@@ -112,7 +112,7 @@ export interface PopperUnstyledOwnProps {
 
 export interface PopperUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;

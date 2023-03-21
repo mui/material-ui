@@ -13,7 +13,7 @@ To promote greater consistency between apps, light and dark theme types are avai
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
 However, this is optional; MUI components come with a default theme.
 
-`ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
+`ThemeProvider` relies on the [context feature of React](https://react.dev/learn/passing-data-deeply-with-context) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](#themeprovider).
 
 ## Theme configuration variables
@@ -217,7 +217,7 @@ theme = responsiveFontSizes(theme);
 
 **WARNING**: Do not use this method in production.
 
-Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://reactjs.org/docs/strict-mode.html) like `Warning: findDOMNode is deprecated in StrictMode`.
+Generates a theme that reduces the amount of warnings inside [`React.StrictMode`](https://react.dev/reference/react/StrictMode) like `Warning: findDOMNode is deprecated in StrictMode`.
 
 #### Requirements
 

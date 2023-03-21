@@ -144,51 +144,65 @@ const CustomContent = React.forwardRef(function CustomContent(
   );
 });
 
-const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
-  paddingTop: 5,
-  '& .MuiTreeItem-content .MuiTreeItem-label': {
-    paddingLeft: theme.spacing(0.75),
-  },
-  '& .MuiTreeItem-root': {
-    position: 'relative',
-    '&:last-of-type': {
-      '&:before': {
-        height: 30 / 2,
+const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
+  {
+    paddingTop: 5,
+    '& .MuiTreeItem-content .MuiTreeItem-label': {
+      paddingLeft: theme.spacing(0.75),
+    },
+    '& .MuiTreeItem-root': {
+      position: 'relative',
+      '&:last-of-type': {
+        '&:before': {
+          height: 30 / 2,
+        },
       },
-    },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: -18,
-      height: '100%',
-      width: 2,
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
-    },
-  },
-  '& .MuiTreeItem-content': {
-    padding: theme.spacing('2px', 0.5),
-  },
-  '& .MuiTreeItem-group': {
-    marginLeft: 0,
-    paddingLeft: theme.spacing(3),
-    '& .MuiTreeItem-content': {
       '&:before': {
         content: '""',
-        position: 'absolute',
         display: 'block',
-        width: 24,
-        height: 2,
-        backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
-        top: '50%',
-        left: 6,
-        transform: 'translate(-100%, -50%)',
+        position: 'absolute',
+        left: -18,
+        height: '100%',
+        width: 2,
+        backgroundColor: (theme.vars || theme).palette.grey[200],
+      },
+    },
+    '& .MuiTreeItem-content': {
+      padding: theme.spacing('2px', 0.5),
+    },
+    '& .MuiTreeItem-group': {
+      marginLeft: 0,
+      paddingLeft: theme.spacing(3),
+      '& .MuiTreeItem-content': {
+        '&:before': {
+          content: '""',
+          position: 'absolute',
+          display: 'block',
+          width: 24,
+          height: 2,
+          backgroundColor: (theme.vars || theme).palette.grey[200],
+          top: '50%',
+          left: 6,
+          transform: 'translate(-100%, -50%)',
+        },
       },
     },
   },
-}));
+  theme.applyDarkStyles({
+    '& .MuiTreeItem-root': {
+      '&:before': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+      },
+    },
+    '& .MuiTreeItem-group': {
+      '& .MuiTreeItem-content': {
+        '&:before': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+        },
+      },
+    },
+  }),
+]);
 
 function TreeItem(
   props: TreeItemProps & {
@@ -204,11 +218,14 @@ export default function XDateRangeDemo() {
       <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
         <Paper
           variant="outlined"
-          sx={{
+          sx={(theme) => ({
             maxWidth: '100%',
             mx: 'auto',
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
-          }}
+            bgcolor: '#fff',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
           <TreeView
             aria-label="file system navigator"

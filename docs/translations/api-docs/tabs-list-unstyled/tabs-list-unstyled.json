@@ -7,5 +7,5 @@
     "slots": "The components used for each slot inside the TabsList. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
   },
   "classDescriptions": {},
-  "slotDescriptions": { "root": "The component used to render the root." }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

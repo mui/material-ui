@@ -59,8 +59,8 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       backgroundColor: 'initial', // reset button background
       cursor: 'pointer',
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-      marginInline: 'var(--List-itemButtonMarginInline)',
-      marginBlock: 'var(--List-itemButtonMarginBlock)',
+      marginInline: 'var(--ListItemButton-marginInline)',
+      marginBlock: 'var(--ListItemButton-marginBlock)',
       ...(ownerState['data-first-child'] === undefined && {
         marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
         marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',

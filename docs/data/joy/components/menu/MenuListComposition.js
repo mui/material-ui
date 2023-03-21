@@ -24,7 +24,7 @@ export default function MenuListComposition() {
     if (event.key === 'Tab') {
       setAnchorEl(null);
     } else if (event.key === 'Escape') {
-      anchorEl.focus();
+      anchorEl?.focus();
       setAnchorEl(null);
     }
   };
