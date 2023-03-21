@@ -58,6 +58,7 @@ const JoyComponents = [
   'Switch',
   'Tab',
   'Table',
+  'TableCell',
   'TabList',
   'TabPanel',
   'Tabs',
@@ -87,7 +88,14 @@ export default function transformer(file) {
           if (capture1 === 'List' && ['divider', 'item'].includes(capture3)) {
             return `--${capture1}${capitalize(capture3)}-${capture4}`;
           }
-          return `--${capture1}${capture2}${capture3}${capitalize(capture4)}`;
+          // turn `--List-decorator-...` to `--ListItemDecorator-...`
+          if (capture1 === 'List' && ['decorator'].includes(capture3)) {
+            return `--${capture1}Item${capitalize(capture3)}-${capture4}`;
+          }
+          if (!JoyComponents.includes(capture3)) {
+            return `--${capture1}${capture2}${capture3}${capitalize(capture4)}`;
+          }
+          return matched;
         },
       )
       // from `--internal-...` to `--unstable_...`
