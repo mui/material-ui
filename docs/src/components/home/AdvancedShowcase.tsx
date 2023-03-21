@@ -1687,28 +1687,23 @@ export default function DataTable() {
       preview={
         <Paper
           variant="outlined"
-          sx={(theme) => ({
+          sx={{
             overflow: 'hidden',
             width: '100%',
             boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
-            bgcolor: '#fff',
-            ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.800',
-            }),
-          })}
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
+          }}
         >
           <XGridGlobalStyles />
           <Box
-            sx={(theme) => ({
+            sx={{
               textAlign: 'center',
               py: 1,
               position: 'relative',
               borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              ...theme.applyDarkStyles({
-                borderColor: 'primaryDark.600',
-              }),
-            })}
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
+            }}
           >
             <Typography color="primary.main" fontWeight={700}>
               Trades, October 2020
