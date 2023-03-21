@@ -526,8 +526,8 @@ function CodeBlockResult({
               '--List-radius': '0px',
               '--List-padding': '0px',
               '--List-gap': '0px',
-              '--List-item-minHeight': '48px',
-              '--List-item-paddingX': '16px',
+              '--ListItem-minHeight': '48px',
+              '--ListItem-paddingX': '16px',
               [`& .${tabClasses.root}`]: {
                 bgcolor: 'transparent',
                 color: 'text.tertiary',
@@ -560,7 +560,7 @@ function CodeBlockResult({
             </Tab>
             <Tab
               value="ts"
-              sx={{ [`&.${tabClasses.selected}`]: { '--List-decorator-color': '#007acc' } }}
+              sx={{ [`&.${tabClasses.selected}`]: { '--List-decoratorColor': '#007acc' } }}
             >
               <ListItemDecorator>
                 <TypeScriptIcon />
@@ -699,9 +699,9 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
               variant="plain"
               sx={{
                 '--List-padding': '0px',
-                '--List-item-minHeight': '48px',
+                '--ListItem-minHeight': '48px',
                 '--List-gap': '1rem',
-                '--List-decorator-size': '2rem',
+                '--List-decoratorSize': '2rem',
                 '& > button': {
                   bgcolor: 'transparent',
                   boxShadow: 'none',
@@ -1803,8 +1803,8 @@ export default function JoyThemeBuilder() {
               flexBasis: 256,
               flexGrow: 0,
               '--List-divider-gap': '0px',
-              '--List-item-minHeight': '56px',
-              '--List-decorator-size': '32px',
+              '--ListItem-minHeight': '56px',
+              '--List-decoratorSize': '32px',
             }}
           >
             <ListSubheader sx={{ minHeight: 48 }}>Palette</ListSubheader>
@@ -1951,7 +1951,7 @@ export default function JoyThemeBuilder() {
                   sx={{
                     px: 2,
                     '--List-padding': '0px',
-                    '--List-item-minHeight': '48px',
+                    '--ListItem-minHeight': '48px',
                     '& > button': {
                       bgcolor: 'transparent',
                       boxShadow: 'none',
@@ -1966,8 +1966,8 @@ export default function JoyThemeBuilder() {
                           display: 'block',
                           position: 'absolute',
                           height: 2,
-                          left: 'var(--List-item-paddingLeft)',
-                          right: 'var(--List-item-paddingRight)',
+                          left: 'var(--ListItem-paddingLeft)',
+                          right: 'var(--ListItem-paddingRight)',
                           bottom: -1,
                           bgcolor: `${colorProp}.solidBg`,
                         },
