@@ -87,7 +87,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     disablePortal,
     modifiers,
     open,
-    ownerState,
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
@@ -225,11 +224,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       role: 'tooltip',
       ref: ownRef,
     },
-    ownerState: {
-      // shallow merge ownerState from external component, e.g. Joy Menu.
-      ...props,
-      ...ownerState,
-    },
+    ownerState: props,
     className: classes.root,
   });
 
