@@ -56,9 +56,12 @@ export interface UseListParameters<ItemValue> {
    */
   getItemDomElement?: (itemValue: ItemValue) => HTMLElement | null;
   /**
-   * Id attribute of the list component.
+   * A function that returns the id of an item.
+   * This is required to set `aria-activedescendant` and is required when using the `activeDescendant` focus management.
+   *
+   * @param itemValue List item to get the id for.
    */
-  id?: string;
+  getItemId?: (itemValue: ItemValue) => string | undefined;
   /**
    * A function that determines if a particular item is disabled.
    * @default () => false

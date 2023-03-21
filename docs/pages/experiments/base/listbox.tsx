@@ -89,10 +89,10 @@ const styles = `
 const items = Array.from({ length: 200 }, (_, i) => i + 1);
 
 const Item = React.forwardRef(function Item(
-  props: React.PropsWithChildren<{ value: number }>,
+  props: React.PropsWithChildren<{ value: number; id?: string }>,
   ref: React.Ref<HTMLElement>,
 ) {
-  const item = props.value;
+  const { value: item, id } = props;
   const { getRootProps, selected, highlighted } = useListItem({ item, ref });
 
   const itemProps = getRootProps();
@@ -103,7 +103,7 @@ const Item = React.forwardRef(function Item(
   });
 
   return (
-    <div {...itemProps} className={classes}>
+    <div {...itemProps} className={classes} id={id}>
       {item}
     </div>
   );
@@ -134,6 +134,7 @@ function List() {
   const listbox = useList({
     items,
     getItemDomElement: (item) => itemRefs.current.get(item) || null,
+    getItemId: (item) => `item-${item}`,
     orientation,
     focusManagement,
     selectionLimit: 1,
@@ -201,7 +202,12 @@ function List() {
       <div {...getRootProps()} className="list" style={{ flexDirection }}>
         <ListContext.Provider value={contextValue}>
           {items.map((item) => (
-            <Item key={item} value={item} ref={(node) => handleItemRef(item, node)} />
+            <Item
+              key={item}
+              value={item}
+              ref={(node) => handleItemRef(item, node)}
+              id={`item-${item}`}
+            />
           ))}
         </ListContext.Provider>
       </div>

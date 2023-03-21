@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import {
-  SelectOption,
-  SelectValue,
-  UseSelectButtonSlotProps,
-  UseSelectListboxSlotProps,
-} from '../useSelect';
+import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
+import { SelectOption } from '../useOption';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
 
@@ -203,7 +199,7 @@ export type SelectUnstyledPopperSlotProps<TValue extends {}, Multiple extends bo
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
   className?: string;
-  disablePortal: PopperUnstyledProps['disablePortal'];
+  keepMounted: PopperUnstyledProps['keepMounted'];
   open: boolean;
   ownerState: SelectUnstyledOwnerState<TValue, Multiple>;
   placement: PopperUnstyledProps['placement'];

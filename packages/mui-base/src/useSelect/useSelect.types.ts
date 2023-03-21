@@ -1,28 +1,9 @@
 import * as React from 'react';
 import { UseButtonRootSlotProps } from '../useButton';
-import { OptionState, UseListboxOptionSlotProps, UseListboxRootSlotProps } from '../useListbox';
+import { UseListRootSlotProps } from '../useList';
+import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
-import { SelectChangeNotifiers } from './useSelectChangeNotifiers';
-
-export interface SelectOption<TValue> {
-  value: TValue;
-  label: React.ReactNode;
-  disabled?: boolean;
-}
-
-export interface SelectOptionGroup<TValue> {
-  options: SelectChild<TValue>[];
-  label: React.ReactNode;
-  disabled?: boolean;
-}
-
-export type SelectChild<TValue> = SelectOption<TValue> | SelectOptionGroup<TValue>;
-
-export function isOptionGroup<TValue>(
-  child: SelectChild<TValue>,
-): child is SelectOptionGroup<TValue> {
-  return !!(child as SelectOptionGroup<TValue>).options;
-}
+import { SelectProviderValue } from './SelectProvider';
 
 export type SelectChangeEventType =
   | React.MouseEvent<Element, MouseEvent>
@@ -31,6 +12,12 @@ export type SelectChangeEventType =
   | null;
 
 export type SelectValue<Value, Multiple> = Multiple extends true ? Value[] : Value | null;
+
+export interface SelectOptionDefinition<Value> {
+  value: Value;
+  disabled?: boolean;
+  label: string;
+}
 
 export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
   defaultValue?: SelectValue<TValue, Multiple>;
@@ -53,7 +40,7 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
   ) => void;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
-  options: SelectOption<TValue>[];
+  options?: SelectOptionDefinition<TValue>[];
   optionStringifier?: (option: SelectOption<TValue>) => string;
   value?: SelectValue<TValue, Multiple>;
 };
@@ -76,16 +63,8 @@ interface UseSelectListboxSlotEventHandlers {
   onKeyUp: React.KeyboardEventHandler;
 }
 
-export type UseSelectListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
+export type UseSelectListboxSlotProps<TOther = {}> = UseListRootSlotProps<
   Omit<TOther, keyof UseSelectListboxSlotEventHandlers> & UseSelectListboxSlotEventHandlers
->;
-
-interface UseSelectOptionSlotEventHandlers {
-  onClick: React.MouseEventHandler;
-}
-
-export type UseSelectOptionSlotProps<TOther = {}> = UseListboxOptionSlotProps<
-  Omit<TOther, keyof UseSelectOptionSlotEventHandlers> & UseSelectOptionSlotEventHandlers
 >;
 
 export interface UseSelectResult<TValue, Multiple> {
@@ -98,25 +77,10 @@ export interface UseSelectResult<TValue, Multiple> {
   getListboxProps: <TOther extends EventHandlers = {}>(
     otherHandlers?: TOther,
   ) => UseSelectListboxSlotProps<TOther>;
-  contextValue: {
-    getOptionProps: <TOther extends EventHandlers = {}>(
-      option: TValue,
-      otherHandlers?: TOther,
-    ) => UseSelectOptionSlotProps<TOther>;
-    getOptionState: (option: TValue) => OptionState;
-    listboxRef: React.RefObject<HTMLElement>;
-    /**
-     * Registers a handler for when the highlighted option changes.
-     * @param handler A function that will be called with the new highlighted option.
-     */
-    registerHighlightChangeHandler: SelectChangeNotifiers<TValue>['registerHighlightChangeHandler'];
-    /**
-     * Registers a handler for when the selection changes.
-     * @param handler A function that will be called with the new selected items.
-     */
-    registerSelectionChangeHandler: SelectChangeNotifiers<TValue>['registerSelectionChangeHandler'];
-  };
+  getOptionMetadata: (option: TValue) => SelectOption<TValue> | undefined;
+  contextValue: SelectProviderValue<TValue>;
   highlightedOption: TValue | null;
   open: boolean;
+  options: TValue[];
   value: SelectValue<TValue, Multiple>;
 }

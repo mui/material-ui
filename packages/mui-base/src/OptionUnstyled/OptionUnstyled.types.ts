@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import { OptionState } from '../useListbox';
-import { UseSelectOptionSlotProps } from '../useSelect';
+import { UseOptionRootSlotProps } from '../useOption';
 import { SlotComponentProps } from '../utils';
 
 export interface OptionUnstyledRootSlotPropsOverrides {}
@@ -77,11 +76,15 @@ export interface OptionUnstyledType {
 }
 
 export type OptionUnstyledOwnerState<TValue> = Simplify<
-  OptionUnstyledOwnProps<TValue> & OptionState
+  OptionUnstyledOwnProps<TValue> & {
+    selected: boolean;
+    highlighted: boolean;
+    index: number;
+  }
 >;
 
 export type OptionUnstyledRootSlotProps<TValue> = Simplify<
-  UseSelectOptionSlotProps & {
+  UseOptionRootSlotProps & {
     children?: React.ReactNode;
     className: string;
     ref: React.Ref<HTMLLIElement>;

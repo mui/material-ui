@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   UseListParameters,
   UseListParametersWithDefaults,
@@ -48,7 +48,7 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
     disableListWrap = false,
     focusManagement = 'activeDescendant',
     getItemDomElement,
-    id: idProp,
+    getItemId,
     isItemDisabled = defaultIsItemDisabled,
     listRef: externalListRef,
     onHighlightChange,
@@ -61,14 +61,19 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
     value: valueParam,
   } = params;
 
-  const id = useId(idProp);
+  if (process.env.NODE_ENV !== 'production') {
+    if (focusManagement === 'DOM' && getItemDomElement == null) {
+      throw new Error(
+        'The `getItemDomElement` prop is required when using the `DOM` focus management.',
+      );
+    }
 
-  const defaultIdGenerator = React.useCallback(
-    (_: ItemValue, index: number) => `${id}-option-${index}`,
-    [id],
-  );
-
-  const itemIdGenerator = params.itemIdGenerator ?? defaultIdGenerator;
+    if (focusManagement === 'activeDescendant' && getItemId == null) {
+      throw new Error(
+        'The `getItemId` prop is required when using the `activeDescendant` focus management.',
+      );
+    }
+  }
 
   const listRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListRef, listRef);
@@ -261,9 +266,8 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
       ...otherHandlers,
       'aria-activedescendant':
         focusManagement === 'activeDescendant' && highlightedValue != null
-          ? itemIdGenerator(highlightedValue, highlightedIndex)
+          ? getItemId!(highlightedValue)
           : undefined,
-      id,
       onBlur: createHandleBlur(otherHandlers),
       onKeyDown: createHandleKeyDown(otherHandlers),
       tabIndex: focusManagement === 'DOM' ? -1 : 0,

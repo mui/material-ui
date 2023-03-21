@@ -1,19 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OptionState } from '../useListbox';
 import composeClasses from '../composeClasses';
 import {
   OptionUnstyledProps,
   OptionUnstyledOwnerState,
   OptionUnstyledType,
 } from './OptionUnstyled.types';
-import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
 import useOption from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-function useUtilityClasses(ownerState: OptionState) {
+function useUtilityClasses<TValue>(ownerState: OptionUnstyledOwnerState<TValue>) {
   const { disabled, highlighted, selected } = ownerState;
 
   const slots = {
@@ -41,17 +39,13 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     ...other
   } = props;
 
-  const selectContext = React.useContext(SelectUnstyledContext);
-  if (!selectContext) {
-    throw new Error('OptionUnstyled must be used within a SelectUnstyled');
-  }
-
   const Root = component || slots.root || 'li';
 
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
     value,
     optionRef: ref,
+    label: label || children,
   });
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {

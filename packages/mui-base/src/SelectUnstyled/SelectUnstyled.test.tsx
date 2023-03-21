@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import { SelectOption } from '@mui/base/useSelect';
+import { SelectOption } from '@mui/base/useOption';
 import OptionUnstyled, {
   OptionUnstyledProps,
   optionUnstyledClasses,
@@ -23,7 +23,7 @@ describe('<SelectUnstyled />', () => {
   const { render } = createRenderer();
 
   const componentToTest = (
-    <SelectUnstyled defaultListboxOpen>
+    <SelectUnstyled defaultListboxOpen slotProps={{ popper: { disablePortal: true } }}>
       <OptionGroupUnstyled label="Group">
         <OptionUnstyled value={1}>1</OptionUnstyled>
       </OptionGroupUnstyled>
@@ -85,7 +85,7 @@ describe('<SelectUnstyled />', () => {
 
     ['Enter', ' ', 'Escape'].forEach((key) => {
       it(`closes the dropdown when the "${key}" key is pressed`, () => {
-        const { getByRole, queryByRole } = render(
+        const { getByRole } = render(
           <SelectUnstyled>
             <OptionUnstyled value={1}>1</OptionUnstyled>
           </SelectUnstyled>,
@@ -99,7 +99,7 @@ describe('<SelectUnstyled />', () => {
         userEvent.keyPress(listbox, { key });
 
         expect(select).to.have.attribute('aria-expanded', 'false');
-        expect(queryByRole('listbox')).to.equal(null);
+        expect(listbox).not.toBeVisible();
       });
     });
 
@@ -142,7 +142,7 @@ describe('<SelectUnstyled />', () => {
 
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '1'
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
-          userEvent.keyPress(listbox, { key });
+          fireEvent.keyDown(listbox, { key });
 
           expect(select).to.have.text('2');
         }),
@@ -356,7 +356,7 @@ describe('<SelectUnstyled />', () => {
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
-      expect(queryByRole('listbox')).to.equal(null);
+      expect(queryByRole('listbox')).not.toBeVisible();
     });
   });
 
@@ -846,6 +846,7 @@ describe('<SelectUnstyled />', () => {
 
     expect(select).to.have.attribute('aria-expanded', 'false');
     expect(select).to.have.text('1');
+    expect(listbox).not.toBeVisible();
   });
 
   it('closes the listbox when already selected option is selected again with a click', () => {

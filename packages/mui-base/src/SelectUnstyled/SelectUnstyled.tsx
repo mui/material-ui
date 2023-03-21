@@ -12,15 +12,15 @@ import {
   SelectUnstyledRootSlotProps,
   SelectUnstyledType,
 } from './SelectUnstyled.types';
-import { flattenOptionGroups, getOptionsFromChildren } from './utils';
-import useSelect, { SelectChild, SelectOption, SelectValue } from '../useSelect';
+import useSelect, { SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
-import { SelectUnstyledContext } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
 import defaultOptionStringifier from './defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { SelectOption } from '../useOption';
+import SelectProvider from '../useSelect/SelectProvider';
 
 function defaultRenderValue<TValue>(
   selectedOptions: SelectOption<TValue> | SelectOption<TValue>[] | null,
@@ -120,20 +120,15 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     ...other
   } = props;
 
-  const renderValue = renderValueProp ?? defaultRenderValue;
+  const renderValue: (option: SelectValue<SelectOption<TValue>, Multiple>) => React.ReactNode =
+    renderValueProp ?? defaultRenderValue;
 
-  const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
-  const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
   const [listboxOpen, setListboxOpen] = useControlled({
     controlled: listboxOpenProp,
     default: defaultListboxOpen,
     name: 'SelectUnstyled',
     state: 'listboxOpen',
   });
-
-  React.useEffect(() => {
-    setGroupedOptions(getOptionsFromChildren(children));
-  }, [children]);
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
   const buttonRef = React.useRef<HTMLElement | null>(null);
@@ -166,10 +161,11 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    contextValue,
+    getOptionMetadata,
     value,
   } = useSelect({
     buttonRef: handleButtonRef,
@@ -180,7 +176,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     open: listboxOpen,
     onChange,
     onOpenChange: handleOpenChange,
-    options,
     optionStringifier,
     value: valueProp,
   });
@@ -198,24 +193,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const selectedOption: SelectValue<SelectOption<TValue>, Multiple> = React.useMemo(() => {
-    if (multiple) {
-      if (value == null) {
-        return [] as unknown as SelectValue<SelectOption<TValue>, Multiple>;
-      }
-
-      return options.filter((o) => (value as TValue[]).includes(o.value)) as SelectValue<
-        SelectOption<TValue>,
-        Multiple
-      >;
-    }
-
-    return (options.find((o) => value === o.value) ?? null) as SelectValue<
-      SelectOption<TValue>,
-      Multiple
-    >;
-  }, [options, value, multiple]);
 
   const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue, Multiple>> =
     useSlotProps({
@@ -244,7 +221,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     externalSlotProps: slotProps.popper,
     additionalProps: {
       anchorEl: buttonRef.current,
-      disablePortal: true,
+      keepMounted: true,
       open: listboxOpen,
       placement: 'bottom-start' as const,
       role: undefined,
@@ -253,20 +230,32 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     className: classes.popper,
   });
 
+  let selectedOptionsMetadata: SelectValue<SelectOption<TValue>, Multiple>;
+  if (multiple) {
+    selectedOptionsMetadata = (value as TValue[])
+      .map((v) => getOptionMetadata(v))
+      .filter((o) => o !== undefined) as SelectValue<SelectOption<TValue>, Multiple>;
+  } else {
+    selectedOptionsMetadata = (getOptionMetadata(value as TValue) ?? null) as SelectValue<
+      SelectOption<TValue>,
+      Multiple
+    >;
+  }
+
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOption as any)}</Button>
+      <Button {...buttonProps}>{renderValue(selectedOptionsMetadata)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
-            <SelectUnstyledContext.Provider value={contextValue}>
-              {children}
-            </SelectUnstyledContext.Provider>
+            <SelectProvider value={contextValue}>{children}</SelectProvider>
           </ListboxRoot>
         </Popper>
       )}
 
-      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
+      {name && (
+        <input type="hidden" name={name} value={getSerializedValue(selectedOptionsMetadata)} />
+      )}
     </React.Fragment>
   );
 }) as SelectUnstyledType;

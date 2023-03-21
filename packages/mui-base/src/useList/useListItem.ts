@@ -109,7 +109,6 @@ export default function useListItem<ItemValue>(
     onPointerOver: createHandlePointerOver(otherHandlers),
     ref: handleRef,
     tabIndex,
-    // TODO: id
   });
 
   return {

@@ -78,19 +78,20 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseMenuItemRootSlotProps<TOther> => {
-    const resolvedMenuItemProps = {
+    const resolvedButtonProps = {
       ...otherHandlers,
-      ...getListRootProps(otherHandlers),
+      ...getButtonProps(otherHandlers),
     };
 
-    const resolvedButtonProps = {
-      ...resolvedMenuItemProps,
-      ...getButtonProps(resolvedMenuItemProps),
+    const resolvedMenuItemProps = {
+      ...resolvedButtonProps,
+      ...getListRootProps(resolvedButtonProps),
     };
 
     return {
       ...otherHandlers,
       ...resolvedButtonProps,
+      ...resolvedMenuItemProps,
       role: 'menuitem',
       ref: handleRef,
     };
