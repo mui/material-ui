@@ -107,7 +107,7 @@ export default function EmailSubscribe({
         sx={{
           display: 'flex',
           mt: 1,
-          gap: 1,
+          gap: 1.5,
           width: { xs: '100%', sm: 'auto' },
           maxWidth: fullWidth ? '100%' : 320,
         }}
@@ -127,7 +127,7 @@ export default function EmailSubscribe({
               borderRadius: 1,
               border: '1px solid',
               bgcolor: '#fff',
-              boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+              boxShadow: '0 2px 4px 0 rgba(0 0 0 / 0.1)',
               borderColor: 'grey.300',
               typography: 'body2',
               '&:hover': {
@@ -169,6 +169,7 @@ export default function EmailSubscribe({
               color: 'primary.600',
               py: 1,
               px: 1.5,
+              minWidth: 'auto',
               '&:hover': {
                 bgcolor: alpha(theme.palette.primary[100], 1),
               },

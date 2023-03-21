@@ -505,7 +505,7 @@ export default function AppLayoutDocsFooter(props) {
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
             justifyContent: 'space-between',
-            gap: { xs: 4, lg: 8 },
+            gap: { xs: 4, lg: 12 },
           }}
         >
           <Box flexGrow={1}>
@@ -517,7 +517,7 @@ export default function AppLayoutDocsFooter(props) {
             </Typography>
             <EmailSubscribe fullWidth sx={{ mb: 1 }} />
           </Box>
-          <Divider sx={{ display: { xs: 'block', sm: 'hidden' } }} />
+          <Divider sx={{ display: { xs: 'block', sm: 'none' } }} />
           <Stack direction="column" spacing={3}>
             <Typography variant="body2" fontWeight="bold">
               Engage further with us
