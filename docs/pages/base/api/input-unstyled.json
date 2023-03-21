@@ -60,7 +60,7 @@
       "name": "textarea",
       "description": "The component that renders the textarea.",
       "default": "'textarea'",
-      "class": ".MuiInput-textarea"
+      "class": null
     }
   ],
   "spread": true,

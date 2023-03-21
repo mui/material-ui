@@ -89,6 +89,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/13808724',
     github: 'cherniavskii',
   },
+  mikailaread: {
+    name: 'Mikaila Read',
+    avatar: 'https://avatars.githubusercontent.com/u/76401606',
+    github: 'mikailaread',
+  },
 };
 
 const classes = {
@@ -146,6 +151,7 @@ const Root = styled('div')(
         lineHeight: 1.7,
       },
       '& img, & video': {
+        borderRadius: 4,
         display: 'block',
         margin: 'auto',
       },
