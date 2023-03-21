@@ -553,7 +553,6 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
         variant="outlined"
         size="sm"
         startDecorator={<Search />}
-        sx={{ width: '100%' }}
       >
         Browse palette
       </Button>
