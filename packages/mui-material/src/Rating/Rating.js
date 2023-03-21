@@ -374,7 +374,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
     const newHover = roundValueToPrecision(max * percent + precision / 2, precision);
     return clamp(newHover, precision, max);
-  }
+  };
 
   const handleMouseMove = (event) => {
     if (onMouseMove) {
@@ -417,12 +417,12 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const isMobile = () => {
     return /mobile|android/i.test(navigator.userAgent.toLowerCase());
-  }
+  };
 
   const parseNewValue = (event) => {
     let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
     if (isMobile() && event.target.value !== '') {
-      newValue = computeRatingValue(event.nativeEvent)
+      newValue = computeRatingValue(event.nativeEvent);
     }
 
     // Give mouse priority over keyboard
@@ -432,7 +432,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
 
     return newValue;
-  }
+  };
 
   const handleChange = (event) => {
     const newValue = parseNewValue(event);
