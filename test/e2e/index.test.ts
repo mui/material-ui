@@ -194,7 +194,7 @@ describe('e2e', () => {
   });
 
   describe('<Autocomplete/>', () => {
-    it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
+    it('[Material Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
       await renderFixture('Autocomplete/HoverMaterialAutocomplete');
 
       const combobox = (await screen.getByRole('combobox'))!;
@@ -209,8 +209,6 @@ describe('e2e', () => {
       await page.keyboard.down('ArrowDown'); // moves to 3rd option
       await page.keyboard.down('ArrowDown'); // moves to 4th option
 
-      await page.waitForTimeout(1000);
-
       const listbox = (await screen.getByRole('listbox'))!;
       const focusedOption = (await listbox.$('.Mui-focused'))!;
       const focusedOptionText = await focusedOption.innerHTML();
@@ -218,7 +216,7 @@ describe('e2e', () => {
       expect(focusedOptionText).to.equal('four');
     });
 
-    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse over', async () => {
+    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
       await renderFixture('Autocomplete/HoverJoyAutocomplete');
 
       const combobox = (await screen.getByRole('combobox'))!;
@@ -232,8 +230,6 @@ describe('e2e', () => {
       await page.keyboard.down('ArrowDown'); // moves to 2nd option
       await page.keyboard.down('ArrowDown'); // moves to 3rd option
       await page.keyboard.down('ArrowDown'); // moves to 4th option
-
-      await page.waitForTimeout(1000);
 
       const listbox = (await screen.getByRole('listbox'))!;
       const focusedOption = (await listbox.$('.Joy-focused'))!;
