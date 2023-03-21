@@ -15,8 +15,7 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
-import Chip from '@mui/material/Chip';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import Button from '@mui/material/Button';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -292,25 +291,22 @@ export default function XDateRangeDemo() {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            mb: 0.5,
+            justifyContent: 'space-between',
+            // lineHeight: 1,
           }}
         >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
-            Coming soon!
+          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+            🧪&nbsp;&nbsp;&nbsp;Experiment with the lab version now!
           </Typography>
-          <Chip
-            label="Available in the lab"
-            size="small"
+          <Button
+            variant="outlined"
             href="/material-ui/react-tree-view"
             component="a"
-            sx={{ fontWeight: 500, cursor: 'pointer' }}
-          />
+            sx={{ color: 'primary.300', flexShrink: 0 }}
+          >
+            Check the docs
+          </Button>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Subscribe to our newsletter to get first-hand info about the development and release of
-          new components.
-        </Typography>
-        <EmailSubscribe />
       </Frame.Info>
     </Frame>
   );

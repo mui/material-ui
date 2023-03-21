@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -87,20 +87,21 @@ export default function XDateRangeDemo() {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            lineHeight: 1,
-            mb: 0.5,
+            justifyContent: 'space-between',
+            // lineHeight: 1,
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
-            Available now for your project.
+            🎉&nbsp;&nbsp;&nbsp;Stable version available now for your project!
           </Typography>
-          <Chip
-            label="See docs"
-            size="small"
+          <Button
+            variant="outlined"
             href="/x/react-date-pickers/date-range-picker/"
             component="a"
-            sx={{ fontWeight: 500, cursor: 'pointer' }}
-          />
+            sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
+          >
+            Check the docs
+          </Button>
         </Box>
       </Frame.Info>
     </Frame>
