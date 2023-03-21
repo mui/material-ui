@@ -507,7 +507,8 @@ function CodeBlockResult({
       variant="outlined"
       {...props}
       sx={{
-        borderRadius: '16px 16px 0 0',
+        borderRadius: 'sm',
+        overflow: 'auto',
         '&& pre': { maxHeight: 'initial', minHeight: 450, borderRadius: 0, margin: 0 },
       }}
     >
@@ -570,10 +571,10 @@ function CodeBlockResult({
         </Tabs>
         <IconButton
           size="sm"
-          variant="soft"
+          variant="outlined"
           color="neutral"
           onClick={onClose}
-          sx={{ ml: 'auto', mr: 1, borderRadius: '50%' }}
+          sx={{ ml: 'auto', mr: 1 }}
         >
           <Close />
         </IconButton>
@@ -680,9 +681,10 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
             variant="outlined"
             color="neutral"
             startDecorator={<InfoOutlined />}
-            sx={{ bgcolor: 'neutral.softBg' }}
+            sx={{ bgcolor: 'neutral.softBg', my: 1 }}
           >
-            The selected palette will replace the current tokens.
+            The selected palette will replace the default Joy UI color tokens or the ones you
+            inserted.
           </Alert>
           <Tabs
             size="sm"
@@ -825,7 +827,8 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
         variant="soft"
         color="neutral"
         startDecorator={<Add />}
-        sx={{ my: 1 }}
+        fullWidth
+        sx={{ mt: 2 }}
         onClick={() => {
           setOpen(true);
           nameRef.current?.focus();
@@ -839,22 +842,30 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
     <Sheet
       variant="soft"
       color="neutral"
-      sx={{ borderRadius: 'sm', my: 1, p: 1, display: 'flex', gap: 1, alignItems: 'center' }}
+      sx={{
+        borderRadius: 'sm',
+        my: 1,
+        p: 1,
+        display: 'flex',
+        gap: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}
     >
       <Input
         autoFocus
         size="sm"
-        placeholder="token"
+        placeholder="Token number"
         slotProps={{
           input: { ref: nameRef },
         }}
-        sx={{ flex: 1 }}
         onChange={(event) => setName(event.target.value)}
+        sx={{ maxWidth: '160px' }}
       />{' '}
       <b>:</b>{' '}
       <Input
         size="sm"
-        placeholder="Type a valid CSS color"
+        placeholder="A valid CSS color"
         value={color}
         onChange={(event) => setColor(event.target.value)}
         onKeyDown={(event) => {
@@ -863,7 +874,7 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
             setOpen(false);
           }
         }}
-        sx={{ flex: 2 }}
+        sx={{ maxWidth: '160px' }}
       />
       <IconButton
         variant="solid"
@@ -960,6 +971,7 @@ function GlobalVariantTokenCreator({
         variant="soft"
         color="neutral"
         startDecorator={<Add />}
+        fullWidth
         sx={{ my: 1 }}
         onClick={() => {
           setOpen(true);
@@ -973,7 +985,7 @@ function GlobalVariantTokenCreator({
     <Sheet
       variant="soft"
       color="neutral"
-      sx={{ borderRadius: 'sm', my: 1, p: 1, display: 'flex', gap: 1, alignItems: 'center' }}
+      sx={{ borderRadius: 'sm', my: 2, p: 1, display: 'flex', gap: 1, alignItems: 'center' }}
     >
       <Select
         defaultListboxOpen
@@ -1101,17 +1113,26 @@ function GlobalVariantForm({
   ].filter((item) => !(tokens as Array<string>).includes(item));
   return (
     <React.Fragment>
-      <Typography component="div" fontWeight="lg" mb={0.5}>
+      <Typography component="div" fontWeight="xl" level="h6">
         Global variant tokens
+      </Typography>
+      <Typography component="div" level="body2" mb={3} mt={0.5}>
+        Pick the specific primitive color, now in CSS variables form already, to correspond to a
+        semantic global variant token.
       </Typography>
 
       <Sheet
+        variant="outlined"
         sx={{
           bgcolor: 'background.level1',
-          p: 2,
+          px: 2,
+          py: 4,
+          mt: 1,
+          mb: 2,
+          borderRadius: 'sm',
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
+          gap: 4,
           alignItems: 'center',
           justifyContent: 'center',
         }}
@@ -1726,9 +1747,10 @@ export default function JoyThemeBuilder() {
             border: '1px solid',
             borderBottomWidth: 0,
             borderColor: 'divider',
+            bgcolor: 'background.level1',
             display: 'flex',
             gap: 1,
-            borderRadius: '16px 16px 0 0',
+            borderRadius: '8px 8px 0 0',
           }}
         >
           <Tabs
@@ -1752,42 +1774,40 @@ export default function JoyThemeBuilder() {
               </Tab>
             </TabList>
           </Tabs>
-          <Button
+          <IconButton
             size="sm"
-            variant="soft"
+            variant="outlined"
             color="neutral"
-            startDecorator={<Code />}
-            sx={{ ml: 'auto' }}
+            sx={{ ml: 'auto', minWidth: '38px' }}
             onClick={() => setShowCode(true)}
           >
-            Show me the code
-          </Button>
+            <Code />
+          </IconButton>
           <TemplatesDialog data={data}>
-            <Button
-              variant="solid"
-              color="neutral"
-              startDecorator={
-                <SvgIcon viewBox="0 0 1080 1080">
-                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                </SvgIcon>
-              }
-            >
-              CodeSandbox
-            </Button>
+            <IconButton variant="solid" color="neutral" size="sm" sx={{ minWidth: '38px' }}>
+              <SvgIcon viewBox="0 0 1080 1080">
+                <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+              </SvgIcon>
+            </IconButton>
           </TemplatesDialog>
         </Box>
       )}
       {!showCode && (
-        <Sheet data-joy-color-scheme={colorMode} variant="outlined" sx={{ display: 'flex' }}>
+        <Sheet
+          data-joy-color-scheme={colorMode}
+          variant="outlined"
+          sx={{ display: 'flex', borderRadius: '0 0 8px 8px', overflow: 'auto' }}
+        >
           <List
             sx={{
               flexBasis: 256,
               flexGrow: 0,
               '--List-divider-gap': '0px',
               '--List-item-minHeight': '56px',
+              '--List-decorator-size': '32px',
             }}
           >
-            <ListSubheader sx={{ minHeight: 40 }}>Palette</ListSubheader>
+            <ListSubheader sx={{ minHeight: 48 }}>Palette</ListSubheader>
             {(['primary', 'neutral', 'danger', 'info', 'success', 'warning'] as const).map(
               (color) => (
                 <React.Fragment key={color}>
@@ -1803,14 +1823,14 @@ export default function JoyThemeBuilder() {
                       <ListItemDecorator>
                         <Box
                           sx={{
-                            width: 24,
-                            height: 24,
+                            width: 20,
+                            height: 20,
                             borderRadius: '50%',
                             bgcolor: `${color}.500`,
                           }}
                         />
                       </ListItemDecorator>
-                      <ListItemContent>{color}</ListItemContent>
+                      <ListItemContent sx={{ fontSize: 'sm' }}>{color}</ListItemContent>
                       <KeyboardArrowRight />
                     </ListItemButton>
                   </ListItem>
@@ -1827,7 +1847,7 @@ export default function JoyThemeBuilder() {
                 })}
                 onClick={() => setColorProp('etc')}
               >
-                <ListItemContent>text, background, etc.</ListItemContent>
+                <ListItemContent sx={{ fontSize: 'sm' }}>text, background, etc.</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListDivider />
@@ -1929,7 +1949,7 @@ export default function JoyThemeBuilder() {
                 <TabList
                   variant="plain"
                   sx={{
-                    px: 1.5,
+                    px: 2,
                     '--List-padding': '0px',
                     '--List-item-minHeight': '48px',
                     '& > button': {
@@ -1955,11 +1975,18 @@ export default function JoyThemeBuilder() {
                     },
                   }}
                 >
-                  <Tab>Primitive</Tab>
-                  <Tab>Global variant</Tab>
+                  <Tab>Primitive colors</Tab>
+                  <Tab>Global variants</Tab>
                 </TabList>
                 <Divider />
                 <TabPanel value={0}>
+                  <Typography component="div" fontWeight="xl" level="h6">
+                    Customize primitive colors
+                  </Typography>
+                  <Typography component="div" level="body2" mb={3} mt={0.5}>
+                    Add your custom tailored palette here, inserting each HEX value to their place
+                    on the scale, or choose from the available set of popular color palettes.
+                  </Typography>
                   <PaletteImport
                     onSelect={(newTokens) => {
                       setter((prev) => ({
@@ -1968,6 +1995,7 @@ export default function JoyThemeBuilder() {
                       }));
                     }}
                   />
+
                   <ColorPaletteForm
                     {...formProps}
                     tokens={primitives}
