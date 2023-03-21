@@ -75,7 +75,7 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Modal Dialog
+### Modal dialog
 
 To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
 
@@ -108,16 +108,13 @@ The `ModalDialog`'s layout can be:
 
 {{"demo": "LayoutModalDialog.js"}}
 
-To add more layout, apply a style to the theme like this:
+To add more layout, create a new theme with [`styleOverrides`](/joy-ui/customization/themed-components/#style-overrides) like this:
 
 ```js
-// Add a new `top` layout to the ModalDialog
-extendTheme({
+const theme = extendTheme({
   components: {
     JoyModalDialog: {
-      defaultProps: {
-        layout: 'top',
-      },
+      defaultProps: { layout: 'top' },
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.layout === 'top' && {
@@ -155,21 +152,30 @@ You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org
 
 Use `ModalOverflow` component to let the `ModalDialog` overflows the viewport in vertical axis. The whole modal dialog will be scrollable when its content is larger that the viewport's height.
 
+It supports both `center` and `fullScreen` built-in layouts.
+
 {{"demo": "ModalDialogOverflow.js"}}
 
-### Alert Dialog
+:::success
+If the `ModalOverflow` does not meet your requirement, you can use the `Box` component with `sx` prop to create the desired behavior.
+
+```jsx
+import Box from '@mui/joy/Box';
+
+<Modal>
+  <Box sx={{ …styles }}>
+    <ModalDialog>…</ModalDialog>
+  </Box>
+</Modal>
+```
+
+:::
+
+### Alert dialog
 
 Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) that interrupts the user's workflow.
 
 {{"demo": "AlertDialogModal.js"}}
-
-### Vertical scroll
-
-By default, `ModalDialog` will not overflow the screen when the content is longer than the viewport.
-
-You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content.
-
-{{"demo": "DialogVerticalScroll.js"}}
 
 ### Nested modals
 
