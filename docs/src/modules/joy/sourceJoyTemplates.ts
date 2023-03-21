@@ -11,9 +11,9 @@ req.keys().forEach((key: string) => {
     const name = match.groups?.name;
     const filePath = match.groups?.filePath;
     if (name && filePath) {
-      const { files, codeVariant } = templateMap.get(key) || {};
+      const { files, codeVariant } = templateMap.get(name) || {};
       templateMap.set(name, {
-        files: { ...files, filePath: req(key) },
+        files: { ...files, [filePath]: req(key) },
         codeVariant: filePath.match(/\.(ts|tsx)$/) ? 'TS' : codeVariant || 'JS',
       });
     }

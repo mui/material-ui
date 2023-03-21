@@ -1,6 +1,36 @@
+// @ts-ignore
+import LZString from 'lz-string';
+import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+
+function compress(object: any) {
+  return LZString.compressToBase64(JSON.stringify(object))
+    .replace(/\+/g, '-') // Convert '+' to '-'
+    .replace(/\//g, '_') // Convert '/' to '_'
+    .replace(/=+$/, ''); // Remove ending '='
+}
+
+function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
+  const extension = codeVariant === 'TS' ? '.tsx' : '.js';
+  const parameters = compress({ files });
+
+  // ref: https://codesandbox.io/docs/api/#define-api
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.target = '_blank';
+  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+  addHiddenInput(form, 'parameters', parameters);
+  addHiddenInput(
+    form,
+    'query',
+    `file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension}`,
+  );
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+}
 
 const createReactApp = (demo: {
   title: string;
@@ -48,7 +78,15 @@ const createReactApp = (demo: {
     },
   };
 
-  return { title, description, files, dependencies, devDependencies };
+  return {
+    title,
+    description,
+    files,
+    dependencies,
+    devDependencies,
+    openSandbox: (initialFile?: string) =>
+      openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
+  };
 };
 
 const createJoyTemplate = (demo: {
@@ -119,7 +157,14 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     },
   };
 
-  return { title, files, dependencies, devDependencies };
+  return {
+    title,
+    files,
+    dependencies,
+    devDependencies,
+    openSandbox: (initialFile?: string) =>
+      openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
+  };
 };
 
 export default {

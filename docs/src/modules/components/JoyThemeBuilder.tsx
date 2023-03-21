@@ -1,8 +1,6 @@
 import * as React from 'react';
 // @ts-ignore
 import { TypeScript as TypeScriptIcon } from '@mui/docs';
-// @ts-ignore
-import LZString from 'lz-string';
 import startCase from 'lodash/startCase';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
@@ -67,21 +65,6 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
-
-function compress(object: any) {
-  return LZString.compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
-}
-
-function addHiddenInput(form: any, name: string, value: any) {
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = name;
-  input.value = value;
-  form.appendChild(input);
-}
 
 const tailwindColors = {
   slate: {
@@ -1446,25 +1429,15 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
               textColor="#fff"
               overlay
               onClick={() => {
-                const { files } = codeSandbox.createJoyTemplate({
-                  ...item,
-                  files: newFiles,
-                  githubLocation: '',
-                  title: `Joy UI - Custom theme`,
-                  codeVariant: 'TS',
-                });
-                const parameters = compress({ files });
-
-                // ref: https://codesandbox.io/docs/api/#define-api
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.target = '_blank';
-                form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-                addHiddenInput(form, 'parameters', parameters);
-                addHiddenInput(form, 'query', 'file=/App.tsx');
-                document.body.appendChild(form);
-                form.submit();
-                document.body.removeChild(form);
+                codeSandbox
+                  .createJoyTemplate({
+                    ...item,
+                    files: newFiles,
+                    githubLocation: '',
+                    title: `Joy UI - Custom theme`,
+                    codeVariant: 'TS',
+                  })
+                  .openSandbox();
               }}
               endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
             >
@@ -1651,24 +1624,14 @@ return (
                     './result/theme.ts': generateThemeCode(data),
                     './result/themeAugmentation.ts': generateThemeAugmentation(data),
                   });
-                  const { files } = codeSandbox.createJoyTemplate({
-                    ...result,
-                    codeVariant: 'TS',
-                    githubLocation: '',
-                    title: `Joy UI - Minimal template`,
-                  });
-                  const parameters = compress({ files });
-
-                  // ref: https://codesandbox.io/docs/api/#define-api
-                  const form = document.createElement('form');
-                  form.method = 'POST';
-                  form.target = '_blank';
-                  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-                  addHiddenInput(form, 'parameters', parameters);
-                  addHiddenInput(form, 'query', 'file=/App.tsx');
-                  document.body.appendChild(form);
-                  form.submit();
-                  document.body.removeChild(form);
+                  codeSandbox
+                    .createJoyTemplate({
+                      ...result,
+                      codeVariant: 'TS',
+                      githubLocation: '',
+                      title: `Joy UI - Minimal template`,
+                    })
+                    .openSandbox();
                 }}
                 endDecorator={<ArrowOutwardIcon />}
               >
