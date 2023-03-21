@@ -134,7 +134,7 @@ export default function ColorInversionFooter() {
           </ListItem>
           <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
             <ListSubheader>Product</ListSubheader>
-            <List sx={{ '--List-decoratorSize': '32px' }}>
+            <List sx={{ '--ListItemDecorator-size': '32px' }}>
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>
