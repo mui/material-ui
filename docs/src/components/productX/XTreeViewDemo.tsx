@@ -292,7 +292,6 @@ export default function XDateRangeDemo() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            // lineHeight: 1,
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
