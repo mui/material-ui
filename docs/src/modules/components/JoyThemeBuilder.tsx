@@ -450,7 +450,7 @@ function CodeBlockResult({
             </Tab>
             <Tab
               value="ts"
-              sx={{ [`&.${tabClasses.selected}`]: { '--List-decoratorColor': '#007acc' } }}
+              sx={{ [`&.${tabClasses.selected}`]: { '--ListItemDecorator-color': '#007acc' } }}
             >
               <ListItemDecorator>
                 <TypeScriptIcon />
@@ -541,7 +541,13 @@ function ColorInput({
   );
 }
 
-function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string>) => void }) {
+function PaletteImport({
+  onSelect,
+  colorMode = 'light',
+}: {
+  onSelect: (palette: Record<string, string>) => void;
+  colorMode: 'light' | 'dark';
+}) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   return (
     <React.Fragment>
@@ -556,7 +562,11 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
       >
         Browse palette
       </Button>
-      <Modal open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+      <Modal
+        data-joy-color-scheme={colorMode}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
         <ModalDialog
           aria-labelledby="color-palettes-modal"
           sx={{ '--ModalDialog-minWidth': '700px' }}
@@ -588,9 +598,9 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
               variant="plain"
               sx={{
                 '--List-padding': '0px',
-                '--ListItem-minHeight': '48px',
                 '--List-gap': '1rem',
-                '--List-decoratorSize': '2rem',
+                '--ListItem-minHeight': '48px',
+                '--ListItemDecorator-size': '2rem',
                 '& > button': {
                   bgcolor: 'transparent',
                   boxShadow: 'none',
@@ -1433,6 +1443,9 @@ export default function JoyThemeBuilder() {
       },
     },
   };
+  React.useEffect(() => {
+    setColorMode(muiTheme.palette.mode);
+  }, [muiTheme.palette.mode, setColorMode]);
   return (
     <CssVarsProvider theme={theme}>
       {showCode && (
@@ -1507,7 +1520,7 @@ export default function JoyThemeBuilder() {
               flexGrow: 0,
               '--ListDivider-gap': '0px',
               '--ListItem-minHeight': '56px',
-              '--List-decoratorSize': '32px',
+              '--ListItemDecorator-size': '32px',
             }}
           >
             <ListSubheader sx={{ minHeight: 48 }}>Palette</ListSubheader>
@@ -1691,6 +1704,7 @@ export default function JoyThemeBuilder() {
                     on the scale, or choose from the available set of popular color palettes.
                   </Typography>
                   <PaletteImport
+                    colorMode={muiTheme.palette.mode}
                     onSelect={(newTokens) => {
                       setter((prev) => ({
                         ...prev,
