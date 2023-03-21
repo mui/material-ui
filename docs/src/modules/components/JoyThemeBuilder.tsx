@@ -1116,7 +1116,7 @@ function GlobalVariantForm({
             <FormLabel>{item}:</FormLabel>
             <ColorAutocomplete
               value={value[item] ?? ''}
-              placeholder={themeDefaultValue[item]}
+              placeholder={themeDefaultValue[item]?.replace(/, #[0-9a-zA-Z]+/, '')}
               options={availableTokens}
               onValidColor={(newValue) => {
                 onChange({ [item]: newValue });
@@ -1201,7 +1201,7 @@ function ColorPaletteForm({
             {availableTokens.length > 0 ? (
               <ColorAutocomplete
                 value={value[item] ?? ''}
-                placeholder={themeDefaultValue[item]}
+                placeholder={themeDefaultValue[item]?.replace(/, #[0-9a-zA-Z]+/, '')}
                 options={availableTokens}
                 onValidColor={(newValue) => {
                   onChange({ [item]: newValue });
@@ -1213,7 +1213,7 @@ function ColorPaletteForm({
             ) : (
               <ColorInput
                 value={value[item] ?? ''}
-                placeholder={themeDefaultValue[item]}
+                placeholder={themeDefaultValue[item]?.replace(/, #[0-9a-zA-Z]+/, '')}
                 onEmptyColor={() => {
                   onRemove(item);
                 }}
