@@ -12,8 +12,8 @@ interface Iterator<T> {
   (appendStyle: (responsiveStyles: Record<string, any>, style: object) => void, value: T): void;
 }
 
-function appendLevel(level: number) {
-  if (level === 0) {
+function appendLevel(level: number | undefined) {
+  if (!level) {
     return '';
   }
   return `Level${level}`;
