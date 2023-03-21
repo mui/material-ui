@@ -98,6 +98,8 @@ export default function transformer(file) {
           return matched;
         },
       )
+      .replace(/--List-decoratorSize/gm, '--ListItemDecorator-size')
+      .replace(/--List-decoratorColor/gm, '--ListItemDecorator-color')
       // from `--internal-...` to `--unstable_...`
       .replace(/--internal-/gm, '--unstable_')
       // from `--private_...` to `--unstable_...`

@@ -1,5 +1,6 @@
 <div>
   <List sx={{ py: 'var(--ListDivider-gap)', '--ListItemDecorator-size': '24px' }} />
+  <List sx={{ '--ListItemDecorator-size': '24px' }} />
   <ListItem sx={{ '--ListItem-minHeight': '20px' }} />
   <Input
     sx={{
