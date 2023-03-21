@@ -68,21 +68,21 @@ We're looking for designers who are generalists, meaning they can navigate from 
 
 As a company that develops code-based products, it's important that you have a grasp of development to be effective.
 Concretely, that means you can at least picture how a given CSS snippet looks like just by reading it.
-If you're able to contribute to the codebase yourself, opening PRs and tweaking the documentation or components, that's highly valued.
+Being able to contribute to the codebase yourself, open pull requests, and improve documentation or components is very valuable.
 
 We strongly believe designers should code to ensure the level of detail they've wished for is really being implemented.
-So, if you want to grow in that direction, or are already moving towards that, we're looking for you.
+So, if you're this designer, either already able to code or growing in this direction, we're looking for you.
 
 ### Other skills you should have
 
-- **Sharp written and verbal English communication skills.** You'll interface both in written and spoken form with our worldwide team, community members, and enterprise customers. English is the language medium for that and you should have a great grasp of it.
-- **Expert-level UI & UX knowledge.** You can craft great-looking UIs with thoughtful interaction patterns that solve concrete user problems
-- **Design systems experience.** You've either worked on one before or helped create one from scratch in the past. You agonize over component API, standards, and organization.
-- **Relative development autonomy.** Knowing how to read HTML and CSS is necessary. But being able to code yourself and contribute to the codebase would be incredible.
+- **Excellent written and verbal communication skills.** You will communicate both in writing and verbally with our globally-distributed team, community members, and enterprise customers. English is the primary language we interact in.
+- **Experience building and evaluating UI/UX.** You can design attractive UIs with well-thought-out interaction patterns that solve practical user problems.
+- **Design systems experience.** You have previously worked on or contributed to the creation of a design system. You are meticulous about component APIs, standards, and organization.
+- **Relative development autonomy.** Ability to read HTML/JSX and CSS is a requirement. Being able to code and contribute to the codebase would be a significant advantage, but isn't required for the role.
 
 ### It would be nice if you had but it isn't required
 
-- **Experience with open-source projects**. You have seen the particular product dynamics when in an OSS environment and are knowledgeable of the challenges.
+- **Past experience with open-source projects.** You understand the unique dynamics of products in an open-source environment as well as common challenges that arise.
 
 ## Benefits & Compensation
 
