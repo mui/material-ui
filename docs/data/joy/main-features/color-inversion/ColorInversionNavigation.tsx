@@ -68,7 +68,7 @@ export default function ColorInversionNavigation() {
         </Select>
         <List
           sx={{
-            '--List-item-radius': '8px',
+            '--ListItem-radius': '8px',
             '--List-gap': '4px',
             flexGrow: 0,
             minWidth: 256,

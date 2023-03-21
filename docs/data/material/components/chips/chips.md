@@ -77,6 +77,13 @@ You can use the `size` prop to define a small Chip.
 
 {{"demo": "SizesChips.js"}}
 
+## Multiline chip
+
+By default, Chips displays labels only in a single line.
+To have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
+
+{{"demo": "MultilineChips.js"}}
+
 ## Chip array
 
 An example of rendering multiple chips from an array of values.
@@ -84,7 +91,7 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
-{{"demo": "ChipsArray.js", "bg": true}}
+{{"demo": "ChipsArray.js"}}
 
 ## Chip playground
 

@@ -97,3 +97,6 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 ## How to apply?
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/e641bac3-5538-4ec8-8d73-eaa1a03704d6/application?utm_source=ZNRrPGBkqO)
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

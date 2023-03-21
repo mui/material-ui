@@ -8,5 +8,5 @@
     "value": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
   },
   "classDescriptions": {},
-  "slotDescriptions": { "root": "The component used to render the root." }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

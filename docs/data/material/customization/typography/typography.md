@@ -106,10 +106,10 @@ const theme = createTheme({
 The computed font size by the browser follows this mathematical equation:
 
 <div class="only-light-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size.svg" width="436" height="48" />
 </div>
 <div class="only-dark-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size-dark.svg" width="436" height="48" />
 </div>
 
 <!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->

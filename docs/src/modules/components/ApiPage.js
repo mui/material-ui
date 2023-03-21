@@ -58,7 +58,7 @@ ClassesTable.propTypes = {
 };
 
 function SlotsTable(props) {
-  const { componentSlots, slotDescriptions } = props;
+  const { slotDefaultHeader, componentSlots, slotDescriptions } = props;
   const t = useTranslate();
 
   return (
@@ -67,7 +67,7 @@ function SlotsTable(props) {
         <tr>
           <th align="left">{t('api-docs.name')}</th>
           <th align="left">{t('api-docs.defaultClass')}</th>
-          <th align="left">{t('api-docs.defaultValue')}</th>
+          <th align="left">{slotDefaultHeader || t('api-docs.defaultValue')}</th>
           <th align="left">{t('api-docs.description')}</th>
         </tr>
       </thead>
@@ -104,6 +104,7 @@ function SlotsTable(props) {
 
 SlotsTable.propTypes = {
   componentSlots: PropTypes.array.isRequired,
+  slotDefaultHeader: PropTypes.string,
   slotDescriptions: PropTypes.object.isRequired,
 };
 
@@ -170,15 +171,20 @@ export default function ApiPage(props) {
   } = pageContent;
 
   const isJoyComponent = filename.includes('mui-joy');
+  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#default-props'
     : '/material-ui/customization/theme-components/#default-props';
   const styleOverridesLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#style-overrides'
     : '/material-ui/customization/theme-components/#global-style-overrides';
-  const extendVariantsLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#extend-variants'
-    : '';
+  let slotGuideLink = '';
+  if (isJoyComponent) {
+    slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+  } else if (isBaseComponent) {
+    slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+  }
+
   const {
     componentDescription,
     componentDescriptionToc = [],
@@ -187,8 +193,8 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
-  const slotExtraDescription = extendVariantsLink
-    ? t('api-docs.slotDescription').replace(/{{extendVariantsLink}}/, extendVariantsLink)
+  const slotExtraDescription = slotGuideLink
+    ? t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
     : '';
   if (slotDescriptions && slotExtraDescription) {
     Object.keys(slotDescriptions).forEach((slot) => {
@@ -360,7 +366,11 @@ import { ${componentName} } from '${source}';`}
         {componentSlots?.length ? (
           <React.Fragment>
             <Heading hash="slots" />
-            <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <SlotsTable
+              componentSlots={componentSlots}
+              slotDescriptions={slotDescriptions}
+              slotDefaultHeader={isJoyComponent ? t('api-docs.defaultHTMLTag') : ''}
+            />
             <br />
           </React.Fragment>
         ) : null}

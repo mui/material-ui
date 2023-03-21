@@ -34,23 +34,23 @@ const AlertRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AlertOwnerState }>(({ theme, ownerState }) => ({
   '--Alert-radius': theme.vars.radius.sm,
-  '--Alert-decorator-childRadius':
+  '--Alert-decoratorChildRadius':
     'max((var(--Alert-radius) - var(--variant-borderWidth, 0px)) - var(--Alert-padding), min(var(--Alert-padding) + var(--variant-borderWidth, 0px), var(--Alert-radius) / 2))',
-  '--Button-minHeight': 'var(--Alert-decorator-childHeight)',
-  '--IconButton-size': 'var(--Alert-decorator-childHeight)',
-  '--Button-radius': 'var(--Alert-decorator-childRadius)',
-  '--IconButton-radius': 'var(--Alert-decorator-childRadius)',
+  '--Button-minHeight': 'var(--Alert-decoratorChildHeight)',
+  '--IconButton-size': 'var(--Alert-decoratorChildHeight)',
+  '--Button-radius': 'var(--Alert-decoratorChildRadius)',
+  '--IconButton-radius': 'var(--Alert-decoratorChildRadius)',
   ...(ownerState.size === 'sm' && {
     '--Alert-padding': '0.5rem',
     '--Alert-gap': '0.375rem',
-    '--Alert-decorator-childHeight': '1.5rem',
+    '--Alert-decoratorChildHeight': '1.5rem',
     '--Icon-fontSize': '1.125rem',
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--Alert-padding': '0.75rem',
     '--Alert-gap': '0.5rem',
-    '--Alert-decorator-childHeight': '2rem',
+    '--Alert-decoratorChildHeight': '2rem',
     '--Icon-fontSize': '1.25rem',
     fontSize: theme.vars.fontSize.sm,
     fontWeight: theme.vars.fontWeight.md,
@@ -58,7 +58,7 @@ const AlertRoot = styled('div', {
   ...(ownerState.size === 'lg' && {
     '--Alert-padding': '1rem',
     '--Alert-gap': '0.75rem',
-    '--Alert-decorator-childHeight': '2.375rem',
+    '--Alert-decoratorChildHeight': '2.375rem',
     '--Icon-fontSize': '1.5rem',
     fontSize: theme.vars.fontSize.md,
     fontWeight: theme.vars.fontWeight.md,

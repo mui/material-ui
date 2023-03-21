@@ -9,7 +9,7 @@ interface MarkdownPage {
 /**
  * Returns the markdowns of the documentation in a flat array.
  */
-export default function findPagesMarkdownNew(
+export default function findPagesMarkdown(
   directory: string = path.resolve(__dirname, '../../../docs/data'),
   pagesMarkdown: MarkdownPage[] = [],
 ) {
@@ -19,12 +19,12 @@ export default function findPagesMarkdownNew(
     const itemPath = path.resolve(directory, item);
 
     if (fs.statSync(itemPath).isDirectory()) {
-      findPagesMarkdownNew(itemPath, pagesMarkdown);
+      findPagesMarkdown(itemPath, pagesMarkdown);
       return;
     }
 
+    // Ignore non en-US source markdown.
     if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
-      // neglect translation markdown
       return;
     }
 

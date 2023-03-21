@@ -45,7 +45,7 @@ export interface MenuItemUnstyledOwnProps {
 
 export interface MenuItemUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'li'
    */
   root?: React.ElementType;
@@ -61,3 +61,15 @@ export type MenuItemUnstyledProps<
 > = OverrideProps<MenuItemUnstyledTypeMap<{}, D>, D> & {
   component?: D;
 };
+
+export interface MenuItemMetadata {
+  id: string;
+  disabled: boolean;
+  label?: string;
+  ref: React.RefObject<HTMLElement>;
+}
+
+export interface MenuItemState {
+  disabled: boolean;
+  highlighted: boolean;
+}

@@ -52,7 +52,6 @@ export default function StylingCustomCss() {
   return (
     <div>
       <style type="text/css">{css}</style>
-
       <SwitchUnstyled className="my-switch" />
     </div>
   );

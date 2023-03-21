@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "5.11.11",
+  "version": "5.11.13",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -49,9 +49,9 @@
   "dependencies": {
     "@babel/runtime": "^7.21.0",
     "@emotion/hash": "^0.9.0",
-    "@mui/private-theming": "^5.11.11",
+    "@mui/private-theming": "^5.11.13",
     "@mui/types": "^7.2.3",
-    "@mui/utils": "^5.11.11",
+    "@mui/utils": "^5.11.13",
     "clsx": "^1.2.1",
     "csstype": "^3.1.1",
     "hoist-non-react-statics": "^3.3.2",
