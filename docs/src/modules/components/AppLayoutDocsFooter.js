@@ -17,7 +17,6 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
 import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
 import MapRoundedIcon from '@mui/icons-material/MapRounded';
