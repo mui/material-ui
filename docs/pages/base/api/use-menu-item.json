@@ -26,8 +26,8 @@
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseMenuItemRootSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseMenuItemRootSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseMenuItemRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseMenuItemRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
