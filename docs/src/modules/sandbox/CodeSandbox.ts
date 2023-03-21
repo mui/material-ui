@@ -84,6 +84,11 @@ const createReactApp = (demo: {
     files,
     dependencies,
     devDependencies,
+    /**
+     * @param {string} initialFile
+     * @description should start with `/`, e.g. `/demo.tsx`. If the extension is not provided,
+     * it will be appended based on the code variant.
+     */
     openSandbox: (initialFile?: string) =>
       openSandbox({ files, codeVariant: demo.codeVariant, initialFile }),
   };
