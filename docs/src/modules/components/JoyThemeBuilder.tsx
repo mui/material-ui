@@ -553,6 +553,8 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
         variant="outlined"
         size="sm"
         startDecorator={<Search />}
+        fullWidth
+        sx={{ mb: 1 }}
       >
         Browse palette
       </Button>
@@ -749,7 +751,6 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
           input: { ref: nameRef },
         }}
         onChange={(event) => setName(event.target.value)}
-        sx={{ maxWidth: '160px' }}
       />{' '}
       <b>:</b>{' '}
       <Input
@@ -763,7 +764,6 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
             setOpen(false);
           }
         }}
-        sx={{ maxWidth: '160px' }}
       />
       <IconButton
         variant="solid"
@@ -1005,7 +1005,7 @@ function GlobalVariantForm({
       <Typography component="div" fontWeight="xl" level="h6">
         Global variant tokens
       </Typography>
-      <Typography component="div" level="body2" mb={3} mt={0.5}>
+      <Typography component="div" level="body2" mb={2} mt={0.5}>
         Pick the specific primitive color, now in CSS variables form already, to correspond to a
         semantic global variant token.
       </Typography>
@@ -1017,7 +1017,7 @@ function GlobalVariantForm({
           px: 2,
           py: 4,
           mt: 1,
-          mb: 2,
+          mb: 3,
           borderRadius: 'sm',
           display: 'flex',
           flexDirection: 'column',
@@ -1450,7 +1450,7 @@ export default function JoyThemeBuilder() {
             border: '1px solid',
             borderBottomWidth: 0,
             borderColor: 'divider',
-            bgcolor: 'background.level1',
+            bgcolor: 'background.surface',
             display: 'flex',
             gap: 1,
             borderRadius: '8px 8px 0 0',
@@ -1686,7 +1686,7 @@ export default function JoyThemeBuilder() {
                   <Typography component="div" fontWeight="xl" level="h6">
                     Customize primitive colors
                   </Typography>
-                  <Typography component="div" level="body2" mb={3} mt={0.5}>
+                  <Typography component="div" level="body2" mb={2} mt={0.5}>
                     Add your custom tailored palette here, inserting each HEX value to their place
                     on the scale, or choose from the available set of popular color palettes.
                   </Typography>
