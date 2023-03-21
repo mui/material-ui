@@ -90,7 +90,7 @@
     "@octokit/rest": "^19.0.7",
     "@playwright/test": "1.31.2",
     "@rollup/plugin-replace": "^5.0.2",
-    "@testing-library/dom": "^9.0.0",
+    "@testing-library/dom": "^9.0.1",
     "@testing-library/react": "^14.0.0",
     "@types/chai": "^4.3.4",
     "@types/chai-dom": "^1.11.0",
