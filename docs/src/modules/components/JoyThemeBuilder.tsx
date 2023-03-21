@@ -8,7 +8,6 @@ import * as mdColors from '@mui/material/colors';
 import { useTheme as useMuiTheme } from '@mui/material/styles';
 import {
   CssVarsProvider,
-  Palette,
   extendTheme,
   ColorPaletteProp,
   VariantProp,
@@ -65,6 +64,7 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
+import generateThemeAugmentation from 'docs/src/modules/joy/generateThemeAugmentation';
 
 const tailwindColors = {
   slate: {
@@ -334,91 +334,6 @@ const tailwindColors = {
 };
 
 const defaultTheme = extendTheme();
-
-const augmentPalette = (colorSchemes: any, prop: keyof Palette) => {
-  if (!colorSchemes) {
-    return '';
-  }
-  const result: Array<string> = [];
-  const palette = { ...colorSchemes.light?.palette?.[prop], ...colorSchemes.dark?.palette?.[prop] };
-  Object.keys(palette).forEach((k) => {
-    if (
-      !Object.keys(defaultTheme.colorSchemes.light.palette[prop]).includes(k) &&
-      !k.match(/^(plain|outlined|soft|solid)/)
-    ) {
-      result.push(`${k}: true;`);
-    }
-    if (
-      Object.keys(defaultTheme.colorSchemes.light.palette[prop]).includes(k) &&
-      palette[k] === undefined
-    ) {
-      result.push(`${k}: false;`);
-    }
-  });
-  return result.join('\n');
-};
-
-const prependSpace = (text: string, space = 0) => {
-  const lines = text.split('\n').map((line) => `${[...Array(space).fill(' ')].join('')}${line}`);
-  return lines.join('\n');
-};
-
-const renderInterface = (name: string, text: string) => {
-  if (!text || !text.trim()) {
-    return '';
-  }
-  return `interface ${name} {
-${text}  
-  }`;
-};
-
-const generateThemeAugmentation = (data: any) => {
-  const result = [
-    renderInterface(
-      'PalettePrimaryOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'primary'), 4),
-    ),
-    renderInterface(
-      `PaletteNeutralOverrides`,
-      prependSpace(augmentPalette(data?.colorSchemes, 'neutral'), 4),
-    ),
-    renderInterface(
-      'PaletteDangerOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'danger'), 4),
-    ),
-    renderInterface(
-      'PaletteInfoOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'info'), 4),
-    ),
-    renderInterface(
-      'PaletteSuccessOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'success'), 4),
-    ),
-    renderInterface(
-      'PaletteWarningOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'warning'), 4),
-    ),
-    renderInterface(
-      'PaletteBackgroundOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'background'), 4),
-    ),
-    renderInterface(
-      'PaletteCommonOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'common'), 4),
-    ),
-    renderInterface(
-      'PaletteTextOverrides',
-      prependSpace(augmentPalette(data?.colorSchemes, 'text'), 4),
-    ),
-  ]
-    .filter((text) => !!text)
-    .join('\n');
-  return `
-declare module '@mui/joy/styles' {
-  ${result === '' ? '// No custom tokens found, you can skip the theme augmentation.' : result}
-}
-`;
-};
 
 const generateThemeCode = (data: any) =>
   `
@@ -828,7 +743,7 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
       <Input
         autoFocus
         size="sm"
-        placeholder="Token number"
+        placeholder="Token name/number"
         slotProps={{
           input: { ref: nameRef },
         }}
@@ -1289,11 +1204,7 @@ function ColorPaletteForm({
                 value={value[item] ?? ''}
                 placeholder={themeDefaultValue[item]}
                 onEmptyColor={() => {
-                  if (themeDefaultValue[item]) {
-                    onChange({ [item]: '' });
-                  } else {
-                    onRemove(item);
-                  }
+                  onRemove(item);
                 }}
                 onValidColor={(color) => {
                   onChange({ [item]: color });
@@ -1757,7 +1668,7 @@ export default function JoyThemeBuilder() {
             sx={{
               flexBasis: 256,
               flexGrow: 0,
-              '--List-divider-gap': '0px',
+              '--ListDivider-gap': '0px',
               '--ListItem-minHeight': '56px',
               '--List-decoratorSize': '32px',
             }}
