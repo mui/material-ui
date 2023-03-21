@@ -2,9 +2,9 @@
   "parameters": {
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
-      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" }
+      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" }
     },
-    "onClose": { "type": { "name": "() =&gt void", "description": "() =&gt void" } },
+    "onClose": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } },
     "open": { "type": { "name": "boolean", "description": "boolean" } }
   },
   "returnValue": {

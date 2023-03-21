@@ -10,12 +10,12 @@
     },
     "onClose": {
       "type": {
-        "name": "(event: React.SyntheticEvent&lt;any&gt | Event | null, reason: SnackbarCloseReason) =&gt void",
-        "description": "(event: React.SyntheticEvent&lt;any&gt | Event | null, reason: SnackbarCloseReason) =&gt void"
+        "name": "(event: React.SyntheticEvent&lt;any&gt; | Event | null, reason: SnackbarCloseReason) =&gt; void",
+        "description": "(event: React.SyntheticEvent&lt;any&gt; | Event | null, reason: SnackbarCloseReason) =&gt; void"
       }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" } },
+    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
     "resumeHideDuration": { "type": { "name": "number", "description": "number" } }
   },
   "returnValue": {
