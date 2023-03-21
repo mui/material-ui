@@ -360,11 +360,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
   const rootRef = React.useRef();
   const handleRef = useForkRef(focusVisibleRef, rootRef, ref);
 
-  const handleMouseMove = (event) => {
-    if (onMouseMove) {
-      onMouseMove(event);
-    }
-
+  const computeRatingValue = (event) => {
     const rootNode = rootRef.current;
     const { right, left } = rootNode.getBoundingClientRect();
     const { width } = rootNode.firstChild.getBoundingClientRect();
@@ -376,8 +372,16 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       percent = (event.clientX - left) / (width * max);
     }
 
-    let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
-    newHover = clamp(newHover, precision, max);
+    const newHover = roundValueToPrecision(max * percent + precision / 2, precision);
+    return clamp(newHover, precision, max);
+  }
+
+  const handleMouseMove = (event) => {
+    if (onMouseMove) {
+      onMouseMove(event);
+    }
+
+    const newHover = computeRatingValue(event);
 
     setState((prev) =>
       prev.hover === newHover && prev.focus === newHover
@@ -411,14 +415,27 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     }
   };
 
-  const handleChange = (event) => {
+  const isMobile = () => {
+    return /mobile|android/i.test(navigator.userAgent.toLowerCase());
+  }
+
+  const parseNewValue = (event) => {
     let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
+    if (isMobile() && event.target.value !== '') {
+      newValue = computeRatingValue(event.nativeEvent)
+    }
 
     // Give mouse priority over keyboard
     // Fix https://github.com/mui/material-ui/issues/22827
     if (hover !== -1) {
       newValue = hover;
     }
+
+    return newValue;
+  }
+
+  const handleChange = (event) => {
+    const newValue = parseNewValue(event);
 
     setValueState(newValue);
 
