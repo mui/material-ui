@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
-import { ListDividerClasses } from './listDividerClasses';
 
 export type ListDividerSlot = 'root';
 
@@ -14,13 +13,10 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListDividerClasses>;
-    /**
      * The empty space on the side(s) of the divider in a vertical list.
      *
      * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
+     * @default 'context'
      */
     inset?: OverridableStringUnion<
       'context' | 'gutter' | 'startDecorator' | 'startContent',

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { TypeScript as TypeScriptIcon } from '@mui/docs';
 // @ts-ignore
 import LZString from 'lz-string';
+import startCase from 'lodash/startCase';
 import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
 import * as mdColors from '@mui/material/colors';
@@ -18,14 +19,18 @@ import {
 import Autocomplete, { AutocompleteProps } from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import Alert from '@mui/joy/Alert';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
+import Card from '@mui/joy/Card';
+import CardCover from '@mui/joy/CardCover';
 import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
 import Input, { InputProps } from '@mui/joy/Input';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListDivider from '@mui/joy/ListDivider';
@@ -47,6 +52,7 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 import Close from '@mui/icons-material/Close';
@@ -60,6 +66,17 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
+
+const cache: Record<string, any> = {};
+// @ts-ignore
+const req = require.context(
+  '../../../data/joy/getting-started/templates/?raw',
+  true,
+  /^\.\/[^/]+\/.*\.(js|tsx|ts)$/,
+);
+req.keys().forEach((key: string) => {
+  cache[key] = req(key);
+});
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -652,12 +669,7 @@ function PaletteImport({ onSelect }: { onSelect: (palette: Record<string, string
       <Modal open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
         <ModalDialog
           aria-labelledby="color-palettes-modal"
-          sx={{
-            '--ModalDialog-minWidth': '700px',
-            maxHeight: '94vh',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
+          sx={{ '--ModalDialog-minWidth': '700px' }}
         >
           <ModalClose />
           <Typography id="color-palettes-modal" component="h2">
@@ -940,6 +952,7 @@ function GlobalVariantTokenCreator({
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [color, setColor] = React.useState('');
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
   if (!open) {
     return (
       <Button
@@ -968,8 +981,8 @@ function GlobalVariantTokenCreator({
         size="sm"
         onChange={(event, newValue) => {
           setName(newValue as string);
+          inputRef.current?.focus();
         }}
-        slotProps={{ listbox: { sx: { minWidth: 'min-content' } } }}
       >
         {availableTokens.map((item) => (
           <Option key={item} value={item}>
@@ -986,10 +999,14 @@ function GlobalVariantTokenCreator({
         slotProps={{
           listbox: {
             disablePortal: true,
+            placement: 'bottom-start',
             sx: {
               minWidth: 'max-content',
               maxHeight: 160,
             },
+          },
+          input: {
+            ref: inputRef,
           },
         }}
         renderOption={(optionProps, data) => (
@@ -998,6 +1015,14 @@ function GlobalVariantTokenCreator({
             {data}
           </AutocompleteOption>
         )}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            if (name) {
+              onChange(name, (event.target as EventTarget & HTMLInputElement).value);
+              setOpen(false);
+            }
+          }
+        }}
         onChange={(event, newValue) => setColor(newValue || '')}
         onInputChange={(event, newValue) => setColor(newValue)}
         sx={{ flex: 1 }}
@@ -1314,6 +1339,340 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
+type RecordValue<T> = T extends Record<string | number | symbol, infer U> ? U : never;
+
+function literalToObject(literal: string | null | undefined) {
+  if (!literal) {
+    return {};
+  }
+  const lines = literal.split('\n');
+  const result: Record<string, any> = {};
+  const parent: Array<Record<string, any>> = [];
+  let nested: Record<string, any> | null | undefined = null;
+
+  lines.forEach((line) => {
+    const trimmedLine = line.trim();
+    if (!trimmedLine.match(/}/)) {
+      const [key, value] = trimmedLine.split(':');
+      if (value && value.match(/{/)) {
+        if (!nested) {
+          result[key] = {};
+          nested = result[key];
+        } else {
+          parent.push(nested);
+          nested[key] = {};
+          nested = nested[key];
+        }
+      } else if (key && !key.trim().match(/^(\/\/|\/\*)/) && value && nested) {
+        try {
+          const trimmedValue = value.trim().replace(/,$/, '');
+          if (trimmedValue === 'undefined') {
+            nested[key] = undefined;
+          }
+          if (trimmedValue === 'null') {
+            nested[key] = null;
+          }
+          if (trimmedValue.match(/^('|")/)) {
+            nested[key] = trimmedValue.slice(1, -1);
+          }
+        } catch (error) {
+          // igore error
+        }
+      }
+    } else {
+      nested = parent.pop();
+    }
+  });
+
+  return result;
+}
+
+function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
+  const [open, setOpen] = React.useState(false);
+  const templates = extractTemplates(cache);
+  const names = Object.keys(templates);
+  const renderItem = (name: string, item: RecordValue<typeof templates>) => {
+    const themeFileName =
+      Object.keys(item.files).find((file) => file.match(/theme\.(ts|tsx|js)/)) || 'theme.ts';
+    const themeFile = item.files[themeFileName];
+    const customTheme = literalToObject(themeFile?.match(/extendTheme\({(.*)}\)/s)?.[1]);
+    const mergedData = deepmerge(customTheme, data);
+    const newFiles = {
+      ...item.files,
+      [themeFileName]: generateThemeCode(mergedData),
+    };
+    return (
+      <Card component="li" size="sm" variant="outlined" key={name} sx={{ '--Card-padding': '0px' }}>
+        <AspectRatio ratio="2">
+          <Box
+            sx={(theme) => ({
+              background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
+              transition: '0.3s',
+              [theme.getColorSchemeSelector('dark')]: {
+                background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+              },
+            })}
+          />
+        </AspectRatio>
+        <CardCover
+          sx={{
+            opacity: 0,
+            transition: '0.2s',
+            '&:hover, &:focus-within': {
+              opacity: 1,
+              bgcolor: 'rgba(0 0 0 / 0.72)',
+              boxShadow: 'md',
+            },
+          }}
+        >
+          <div>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <Link
+              component="button"
+              fontSize="xl"
+              fontWeight="xl"
+              color="neutral"
+              textColor="#fff"
+              overlay
+              onClick={() => {
+                const { files } = codeSandbox.createJoyTemplate({
+                  ...item,
+                  files: newFiles,
+                  githubLocation: '',
+                  title: `Joy UI - Custom theme`,
+                  codeVariant: 'TS',
+                });
+                const parameters = compress({ files });
+
+                // ref: https://codesandbox.io/docs/api/#define-api
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.target = '_blank';
+                form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+                addHiddenInput(form, 'parameters', parameters);
+                addHiddenInput(form, 'query', 'file=/App.tsx');
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+              }}
+              endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
+            >
+              {startCase(name)}
+            </Link>
+          </div>
+        </CardCover>
+      </Card>
+    );
+  };
+  return (
+    <React.Fragment>
+      {React.cloneElement(children, {
+        onClick: () => {
+          setOpen(true);
+          children.props.onClick?.();
+        },
+      })}
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <ModalDialog
+          size="lg"
+          aria-labelledby="templates-dialog"
+          aria-describedby="templates-dialog-description"
+          sx={{ '--ModalDialog-minWidth': '1200px' }}
+        >
+          <ModalClose />
+          <Typography level="h2" id="templates-dialog">
+            Clone a template sandbox
+          </Typography>
+          <Typography id="templates-dialog-description" textColor="text.secondary" fontSize="md">
+            Click on one of these template to see start a sandbox with your custom theme.
+          </Typography>
+
+          <List
+            sx={{
+              px: 1,
+              overflow: 'auto',
+              flexGrow: 1,
+              gap: 4,
+              height: 'max-content',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              '--Icon-color': (theme) => theme.vars.palette.text.tertiary,
+            }}
+          >
+            <Card
+              variant="outlined"
+              sx={{
+                borderStyle: 'dashed',
+                '--variant-borderWidth': '2px',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <Link
+                component="button"
+                fontSize="lg"
+                fontWeight="lg"
+                color="neutral"
+                textColor="text.primary"
+                overlay
+                onClick={() => {
+                  const { result } = extractTemplates({
+                    './result/App.tsx': `import * as React from "react";
+import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import CssBaseline from "@mui/joy/CssBaseline";
+import Card from "@mui/joy/Card";
+import Divider from "@mui/joy/Divider";
+import Link from "@mui/joy/Link";
+import List from "@mui/joy/List";
+import ListSubheader from "@mui/joy/ListSubheader";
+import ListItem from "@mui/joy/ListItem";
+import ListItemButton from "@mui/joy/ListItemButton";
+import Typography from "@mui/joy/Typography";
+import theme from "./theme";
+
+const ColorSchemeToggle = () => {
+const { mode, setMode } = useColorScheme();
+const [mounted, setMounted] = React.useState(false);
+React.useEffect(() => {
+setMounted(true);
+}, []);
+if (!mounted) {
+return <Button variant="outlined" color="primary" />;
+}
+return (
+<Button
+  variant="outlined"
+  onClick={() => {
+    if (mode === "light") {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  }}
+>
+  {mode === "light" ? "Turn dark" : "Turn light"}
+</Button>
+);
+};
+
+export default function App() {
+return (
+<CssVarsProvider theme={theme}>
+  <CssBaseline />
+  <Card
+    size="lg"
+    variant="solid"
+    color="primary"
+    invertedColors
+    sx={{
+      borderRadius: "sm",
+      m: 1,
+      fontSize: "lg",
+      background: (theme) =>
+        \`linear-gradient(-10deg, \${theme.vars.palette.primary[900]} -10%, \${theme.vars.palette.primary[700]}, \${theme.vars.palette.primary[500]} 70%, \${theme.vars.palette.primary[400]})\`
+    }}
+  >
+    <Box sx={{ position: "absolute", top: "1.5rem", right: "1.5rem" }}>
+      <ColorSchemeToggle />
+    </Box>
+    <Typography level="h1" fontWeight="xl" sx={{ mt: -1 }}>
+      Joy UI
+    </Typography>
+    <Typography sx={{ mt: 0.5 }}>
+      Hand-crafted React components with fresh design. Focus on developer
+      experience and customizability.
+    </Typography>
+    <Divider sx={{ mt: 2 }} />
+    <List sx={{ mx: -1 }}>
+      <ListSubheader>documentation</ListSubheader>
+      <ListItem>
+        <ListItemButton
+          component="a"
+          href="https://mui.com/joy-ui/main-features/global-variants/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Main features &nbsp; <span role="img">↗</span>️
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton
+          component="a"
+          href="https://mui.com/joy-ui/react-autocomplete/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Browse components &nbsp; <span role="img">↗</span>️
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton
+          component="a"
+          href="https://mui.com/joy-ui/customization/approaches/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Check out theming and customization &nbsp;{" "}
+          <span role="img">↗</span>️
+        </ListItemButton>
+      </ListItem>
+    </List>
+  </Card>
+  <Typography textAlign="center" level="body2">
+    Developed by{" "}
+    <Link
+      underline="always"
+      href="https://mui.com/about"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      MUI
+    </Link>{" "}
+    team.
+  </Typography>
+</CssVarsProvider>
+);
+}
+                  `,
+                    './result/theme.ts': generateThemeCode(data),
+                    './result/themeAugmentation.ts': generateThemeAugmentation(data),
+                  });
+                  const { files } = codeSandbox.createJoyTemplate({
+                    ...result,
+                    codeVariant: 'TS',
+                    githubLocation: '',
+                    title: `Joy UI - Minimal template`,
+                  });
+                  const parameters = compress({ files });
+
+                  // ref: https://codesandbox.io/docs/api/#define-api
+                  const form = document.createElement('form');
+                  form.method = 'POST';
+                  form.target = '_blank';
+                  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+                  addHiddenInput(form, 'parameters', parameters);
+                  addHiddenInput(form, 'query', 'file=/App.tsx');
+                  document.body.appendChild(form);
+                  form.submit();
+                  document.body.removeChild(form);
+                }}
+                endDecorator={<ArrowOutwardIcon />}
+              >
+                Minimal template
+              </Link>
+              <Typography textColor="text.tertiary">Build your next project with Joy!</Typography>
+            </Card>
+            {names.map((name) => renderItem(name, templates[name]))}
+          </List>
+        </ModalDialog>
+      </Modal>
+    </React.Fragment>
+  );
+}
+
 export default function JoyThemeBuilder() {
   const muiTheme = useMuiTheme();
   const [showCode, setShowCode] = React.useState(false);
@@ -1403,160 +1762,19 @@ export default function JoyThemeBuilder() {
           >
             Show me the code
           </Button>
-          <Button
-            variant="solid"
-            color="neutral"
-            startDecorator={
-              <SvgIcon viewBox="0 0 1080 1080">
-                <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-              </SvgIcon>
-            }
-            onClick={() => {
-              const { result } = extractTemplates({
-                './result/App.tsx': `import * as React from "react";
-import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
-import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import CssBaseline from "@mui/joy/CssBaseline";
-import Card from "@mui/joy/Card";
-import Divider from "@mui/joy/Divider";
-import Link from "@mui/joy/Link";
-import List from "@mui/joy/List";
-import ListSubheader from "@mui/joy/ListSubheader";
-import ListItem from "@mui/joy/ListItem";
-import ListItemButton from "@mui/joy/ListItemButton";
-import Typography from "@mui/joy/Typography";
-import theme from "./theme";
-
-const ColorSchemeToggle = () => {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <Button variant="outlined" color="primary" />;
-  }
-  return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        if (mode === "light") {
-          setMode("dark");
-        } else {
-          setMode("light");
-        }
-      }}
-    >
-      {mode === "light" ? "Turn dark" : "Turn light"}
-    </Button>
-  );
-};
-
-export default function App() {
-  return (
-    <CssVarsProvider theme={theme}>
-      <CssBaseline />
-      <Card
-        size="lg"
-        variant="solid"
-        color="primary"
-        invertedColors
-        sx={{
-          borderRadius: "sm",
-          m: 1,
-          fontSize: "lg",
-          background: (theme) =>
-            \`linear-gradient(-10deg, \${theme.vars.palette.primary[900]} -10%, \${theme.vars.palette.primary[700]}, \${theme.vars.palette.primary[500]} 70%, \${theme.vars.palette.primary[400]})\`
-        }}
-      >
-        <Box sx={{ position: "absolute", top: "1.5rem", right: "1.5rem" }}>
-          <ColorSchemeToggle />
-        </Box>
-        <Typography level="h1" fontWeight="xl" sx={{ mt: -1 }}>
-          Joy UI
-        </Typography>
-        <Typography sx={{ mt: 0.5 }}>
-          Hand-crafted React components with fresh design. Focus on developer
-          experience and customizability.
-        </Typography>
-        <Divider sx={{ mt: 2 }} />
-        <List sx={{ mx: -1 }}>
-          <ListSubheader>documentation</ListSubheader>
-          <ListItem>
-            <ListItemButton
-              component="a"
-              href="https://mui.com/joy-ui/main-features/global-variants/"
-              target="_blank"
-              rel="noopener noreferrer"
+          <TemplatesDialog data={data}>
+            <Button
+              variant="solid"
+              color="neutral"
+              startDecorator={
+                <SvgIcon viewBox="0 0 1080 1080">
+                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                </SvgIcon>
+              }
             >
-              Main features &nbsp; <span role="img">↗</span>️
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton
-              component="a"
-              href="https://mui.com/joy-ui/react-autocomplete/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Browse components &nbsp; <span role="img">↗</span>️
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton
-              component="a"
-              href="https://mui.com/joy-ui/customization/approaches/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Check out theming and customization &nbsp;{" "}
-              <span role="img">↗</span>️
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Card>
-      <Typography textAlign="center" level="body2">
-        Developed by{" "}
-        <Link
-          underline="always"
-          href="https://mui.com/about"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MUI
-        </Link>{" "}
-        team.
-      </Typography>
-    </CssVarsProvider>
-  );
-}
-            `,
-                './result/theme.ts': generateThemeCode(data),
-                './result/themeAugmentation.ts': generateThemeAugmentation(data),
-              });
-              const { files } = codeSandbox.createJoyTemplate({
-                ...result,
-                githubLocation: '',
-                title: `Joy UI - Custom theme`,
-                codeVariant: 'TS',
-              });
-              const parameters = compress({ files });
-
-              // ref: https://codesandbox.io/docs/api/#define-api
-              const form = document.createElement('form');
-              form.method = 'POST';
-              form.target = '_blank';
-              form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-              addHiddenInput(form, 'parameters', parameters);
-              addHiddenInput(form, 'query', 'file=/App.tsx');
-              document.body.appendChild(form);
-              form.submit();
-              document.body.removeChild(form);
-            }}
-          >
-            Open sandbox
-          </Button>
+              CodeSandbox
+            </Button>
+          </TemplatesDialog>
         </Box>
       )}
       {!showCode && (

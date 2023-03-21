@@ -18,7 +18,7 @@ The Unstyled Slider component lets users make selections from a range of values 
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSliderIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -129,7 +129,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 ## Hook
 
 ```js
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider from '@mui/base/useSlider';
 ```
 
 The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.

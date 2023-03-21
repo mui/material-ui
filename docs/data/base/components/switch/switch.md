@@ -15,7 +15,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 The Unstyled Switch component provides users with a switch for toggling between two mutually exclusive states.
 
-{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -84,7 +84,7 @@ The following code snippet applies a CSS class called `my-thumb` to the thumb sl
 ## Hook
 
 ```js
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 ```
 
 The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.

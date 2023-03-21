@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Circular Progress component
+components: CircularProgress
 githubLabel: 'component: CircularProgress'
 ---
 

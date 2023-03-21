@@ -1,14 +1,47 @@
 {
   "parameters": {
-    "ref": { "type": { "name": "React.Ref<unknown>", "description": "" }, "required": true },
-    "aria-label": { "type": { "name": "string", "description": "" } },
-    "aria-labelledby": { "type": { "name": "string", "description": "" } },
-    "children": {
-      "type": { "name": "React.ReactNode", "description": "The content of the component." }
+    "ref": {
+      "type": { "name": "React.Ref&lt;unknown&gt", "description": "React.Ref&lt;unknown&gt" },
+      "required": true
+    },
+    "aria-label": { "type": { "name": "string", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string", "description": "string" } },
+    "children": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } }
+  },
+  "returnValue": {
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabsListRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabsListRootSlotProps&lt;TOther&gt"
+      },
+      "required": true
+    },
+    "isRtl": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "orientation": {
+      "type": {
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
+      },
+      "default": "'horizontal'",
+      "required": true
+    },
+    "processChildren": {
+      "type": {
+        "name": "() =&gt React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt&gt[] | null | undefined",
+        "description": "() =&gt React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt&gt[] | null | undefined"
+      },
+      "required": true
+    },
+    "value": {
+      "type": { "name": "string | number | false", "description": "string | number | false" },
+      "required": true
     }
   },
-  "returnValue": {},
   "name": "useTabsList",
-  "filename": "/packages/mui-base/src/TabsListUnstyled/useTabsList.ts",
+  "filename": "/packages/mui-base/src/useTabsList/useTabsList.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
 }

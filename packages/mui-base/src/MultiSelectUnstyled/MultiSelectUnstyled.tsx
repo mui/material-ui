@@ -13,8 +13,7 @@ import {
   MultiSelectUnstyledType,
 } from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
-import useSelect from '../SelectUnstyled/useSelect';
-import { SelectChild, SelectOption } from '../SelectUnstyled/useSelect.types';
+import useSelect, { SelectChild, SelectOption } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import {
@@ -135,19 +134,21 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+    },
+    [setListboxOpen, onListboxOpenChange],
+  );
 
   const {
     buttonActive,
     buttonFocusVisible,
+    contextValue,
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
     value,
   } = useSelect<TValue>({
     buttonRef: handleButtonRef,
@@ -221,11 +222,10 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   const context: SelectUnstyledContextType = React.useMemo(
     () => ({
-      getOptionProps,
-      getOptionState,
+      ...contextValue,
       listboxRef,
     }),
-    [getOptionProps, getOptionState],
+    [contextValue],
   );
 
   return (

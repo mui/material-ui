@@ -40,7 +40,6 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition: 'fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   ...(ownerState.fontSize &&
     ownerState.fontSize !== 'inherit' && {
       fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
@@ -55,7 +54,16 @@ const SvgIconRoot = styled('svg', {
     color: theme.variants.plain?.[ownerState.color!]?.color,
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [SvgIcon API](https://mui.com/joy-ui/api/svg-icon/)
+ */
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & SvgIconProps>({
     props: inProps,

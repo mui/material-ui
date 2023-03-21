@@ -28,7 +28,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate

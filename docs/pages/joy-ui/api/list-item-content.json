@@ -1,0 +1,20 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "ListItemContent",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/ListItemContent/ListItemContent.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}

@@ -16,7 +16,7 @@ An input is a UI element that accepts text data from the user.
 The Unstyled Input component replaces the native HTML `<input>` tag, and offers expanded customization and accessibility features.
 It can also be transformed into a `<textarea>` as needed.
 
-{{"demo": "UnstyledInputIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -85,7 +85,7 @@ The following code snippet applies a CSS class called `my-input` to the input sl
 ## Hook
 
 ```js
-import { useInput } from '@mui/base/InputUnstyled';
+import useInput from '@mui/base/useInput';
 ```
 
 The `useInput` hook lets you apply the functionality of an input to a fully custom component.

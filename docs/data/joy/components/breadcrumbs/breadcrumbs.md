@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Breadcrumbs component
+components: Breadcrumbs
 githubLabel: 'component: breadcrumbs'
 ---
 
@@ -114,7 +115,7 @@ The Breadcrumbs component is composed of a root `<nav>` that wraps around an `<o
       <!-- Link or Typography -->
     </li>
     <li aria-hidden="true" class="MuiBreadcrumbs-separator">/</li>
-    <li class="MuiBreadcrumbs-li css-1rqbcrs-JoyBreadcrumbs-ol">
+    <li class="MuiBreadcrumbs-li css-1rqbcrs-MuiBreadcrumbs-ol">
       <!-- Link or Typography -->
     </li>
   </ol>

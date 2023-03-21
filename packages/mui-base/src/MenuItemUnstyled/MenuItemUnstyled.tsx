@@ -7,7 +7,7 @@ import {
   MenuItemUnstyledTypeMap,
 } from './MenuItemUnstyled.types';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
-import useMenuItem from './useMenuItem';
+import useMenuItem from '../useMenuItem';
 import composeClasses from '../composeClasses';
 import useSlotProps from '../utils/useSlotProps';
 
@@ -44,13 +44,13 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
     ...other
   } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({
+  const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
     disabled: disabledProp,
     ref,
     label,
   });
 
-  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible };
+  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible, highlighted };
 
   const classes = getUtilityClasses(ownerState);
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
+import MenuUnstyledContext from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
@@ -10,7 +10,7 @@ import {
   MenuUnstyledTypeMap,
 } from './MenuUnstyled.types';
 import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
-import useMenu from './useMenu';
+import useMenu from '../useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
@@ -51,15 +51,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ...other
   } = props;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     open,
     onClose,
     listboxId,
@@ -105,17 +97,6 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ownerState,
     className: classes.listbox,
   });
-
-  const contextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      registerItem,
-      unregisterItem,
-      getItemState,
-      getItemProps,
-      open,
-    }),
-    [getItemProps, getItemState, open, registerItem, unregisterItem],
-  );
 
   return (
     <Root {...rootProps}>
