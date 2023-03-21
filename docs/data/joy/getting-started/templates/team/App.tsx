@@ -470,7 +470,7 @@ export default function TeamExample() {
                   </Box>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decoratorSize': '48px' }}>
+                <List sx={{ '--ListItemDecorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{

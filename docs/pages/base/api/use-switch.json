@@ -8,8 +8,8 @@
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "onFocus": {
