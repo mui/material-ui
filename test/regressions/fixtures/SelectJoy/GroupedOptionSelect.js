@@ -41,7 +41,7 @@ export default function SelectGroupedOptions() {
         {Object.entries(group).map(([name, animals], index) => (
           <React.Fragment key={name}>
             {index !== 0 && <ListDivider role="none" />}
-            <List aria-labelledby={`select-group-${name}`} sx={{ '--List-decoratorSize': '28px' }}>
+            <List aria-labelledby={`select-group-${name}`} sx={{ '--ListItemDecorator-size': '28px' }}>
               <ListItem id={`select-group-${name}`} sticky>
                 <Typography level="body3" textTransform="uppercase" letterSpacing="md">
                   {name} ({animals.length})

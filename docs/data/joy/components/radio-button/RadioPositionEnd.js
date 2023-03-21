@@ -17,7 +17,7 @@ export default function RadioPositionEnd() {
           '--List-gap': '0.5rem',
           '--ListItem-paddingY': '1rem',
           '--ListItem-radius': '8px',
-          '--List-decoratorSize': '32px',
+          '--ListItemDecorator-size': '32px',
         }}
       >
         {['Individual', 'Team', 'Enterprise'].map((item, index) => (

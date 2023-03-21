@@ -59,7 +59,7 @@ export default function ExampleIOSList() {
         })}
       >
         <ListItem nested>
-          <List aria-label="Personal info" sx={{ '--List-decoratorSize': '72px' }}>
+          <List aria-label="Personal info" sx={{ '--ListItemDecorator-size': '72px' }}>
             <ListItem>
               <ListItemDecorator>
                 <Avatar size="lg" sx={{ '--Avatar-size': '60px' }}>

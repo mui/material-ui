@@ -95,7 +95,7 @@ export default function EmailNav() {
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decoratorSize': '32px',
+            '--ListItemDecorator-size': '32px',
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
