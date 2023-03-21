@@ -766,7 +766,7 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
-    it('should open popup when clicked on borders of input element', () => {
+    it('should open popup when clicked on the root element', () => {
       const handleOpen = spy();
       render(<Autocomplete onOpen={handleOpen} options={['one']} />);
 

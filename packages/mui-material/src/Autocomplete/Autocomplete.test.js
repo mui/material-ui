@@ -967,7 +967,7 @@ describe('<Autocomplete />', () => {
       });
     });
 
-    it('should open popup when clicked on borders of input element', () => {
+    it('should open popup when clicked on the root element', () => {
       const handleOpen = spy();
       const ref = React.createRef();
       render(
