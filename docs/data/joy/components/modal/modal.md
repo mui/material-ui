@@ -163,7 +163,7 @@ If the `ModalOverflow` does not meet your requirement, you can use the `Box` com
 import Box from '@mui/joy/Box';
 
 <Modal>
-  <Box sx={{ …styles }}>
+  <Box sx={{ …your custom styles }}>
     <ModalDialog>…</ModalDialog>
   </Box>
 </Modal>

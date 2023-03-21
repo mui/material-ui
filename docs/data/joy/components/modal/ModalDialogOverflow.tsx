@@ -7,15 +7,16 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
-import ModalDialog from '@mui/joy/ModalDialog';
+import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import ModalOverflow from '@mui/joy/ModalOverflow';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 
 export default function ModalDialogOverflow() {
-  const [layout, setLayout] = React.useState(undefined);
-
-  const [scroll, setScroll] = React.useState(true);
+  const [layout, setLayout] = React.useState<ModalDialogProps['layout'] | undefined>(
+    undefined,
+  );
+  const [scroll, setScroll] = React.useState<boolean>(true);
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
@@ -57,7 +58,9 @@ export default function ModalDialogOverflow() {
               <FormLabel>Long content</FormLabel>
               <Switch
                 checked={scroll}
-                onChange={(event) => setScroll(event.target.checked)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setScroll(event.target.checked)
+                }
                 sx={{ ml: 'auto' }}
               />
             </FormControl>
