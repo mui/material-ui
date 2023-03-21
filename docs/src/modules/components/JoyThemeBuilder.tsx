@@ -65,18 +65,8 @@ import LightMode from '@mui/icons-material/LightMode';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
+import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
-
-const cache: Record<string, any> = {};
-// @ts-ignore
-const req = require.context(
-  '../../../data/joy/getting-started/templates/?raw',
-  true,
-  /^\.\/[^/]+\/.*\.(js|tsx|ts)$/,
-);
-req.keys().forEach((key: string) => {
-  cache[key] = req(key);
-});
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -1360,8 +1350,6 @@ function getAvailableTokens(colorSchemes: any, colorMode: 'light' | 'dark') {
   return tokens;
 }
 
-type RecordValue<T> = T extends Record<string | number | symbol, infer U> ? U : never;
-
 function literalToObject(literal: string | null | undefined) {
   if (!literal) {
     return {};
@@ -1410,9 +1398,11 @@ function literalToObject(literal: string | null | undefined) {
 
 function TemplatesDialog({ children, data }: { children: React.ReactElement; data: any }) {
   const [open, setOpen] = React.useState(false);
-  const templates = extractTemplates(cache);
-  const names = Object.keys(templates);
-  const renderItem = (name: string, item: RecordValue<typeof templates>) => {
+  const { map: templateMap } = sourceJoyTemplates();
+  const renderItem = (name: string, item: TemplateData) => {
+    if (!item.files) {
+      return null;
+    }
     const themeFileName =
       Object.keys(item.files).find((file) => file.match(/theme\.(ts|tsx|js)/)) || 'theme.ts';
     const themeFile = item.files[themeFileName];
@@ -1686,7 +1676,9 @@ return (
               </Link>
               <Typography textColor="text.tertiary">Build your next project with Joy!</Typography>
             </Card>
-            {names.map((name) => renderItem(name, templates[name]))}
+            {Array.from(templateMap.entries()).map(([name, template]) =>
+              renderItem(name, template),
+            )}
           </List>
         </ModalDialog>
       </Modal>
