@@ -11,7 +11,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.11.14`
 
-- [Breadcrumbs] Add ability to change icon used in `BreadcrumbCollapsed` through sl (#33812) @pratikkarad
+- [Breadcrumbs] Add ability to change icon used in `BreadcrumbCollapsed` through slots (#33812) @pratikkarad
 - [Stepper] Add aria-current to active StepButton (#36526) @michalak111
 - [TabScrollButton] Add ability to change left and right icons (#33863) @pratikkarad
 
