@@ -38,6 +38,10 @@ export default function MyApp() {
 import useNumberInput from '@mui/base/useNumberInput';
 ```
 
+Here's an example of a component built using the hook alone:
+
+{{"demo": "UseNumberInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
+
 ## Customization
 
 ### Quantity Input
