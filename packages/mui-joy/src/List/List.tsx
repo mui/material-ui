@@ -41,7 +41,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingY': '0.25rem',
         '--ListItem-paddingX': '0.5rem',
         '--ListItem-fontSize': theme.vars.fontSize.sm,
-        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
         '--Icon-fontSize': '1.125rem',
       };
     }
@@ -52,7 +52,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingY': '0.375rem',
         '--ListItem-paddingX': '0.75rem',
         '--ListItem-fontSize': theme.vars.fontSize.md,
-        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
         '--Icon-fontSize': '1.25rem',
       };
     }
@@ -63,7 +63,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
         '--ListItem-paddingY': '0.5rem',
         '--ListItem-paddingX': '1rem',
         '--ListItem-fontSize': theme.vars.fontSize.md,
-        '--List-decoratorSize': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
+        '--ListItemDecorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
         '--Icon-fontSize': '1.5rem',
       };
     }
@@ -90,7 +90,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
       '--List-gap': '0px',
-      '--List-decoratorColor': theme.vars.palette.text.tertiary,
+      '--ListItemDecorator-color': theme.vars.palette.text.tertiary,
       '--List-nestedInsetStart': '0px',
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
