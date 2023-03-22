@@ -565,6 +565,29 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+          // make the arrow looks nice with the Tooltip's border radius
+          padding: 6,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
+    [arrowRef, modifiersProp],
+  );
+
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
       id,
@@ -587,15 +610,17 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       disablePortal,
       keepMounted,
       direction,
+      as: PopperUnstyled,       
+      modifiers,
       ...interactiveWrapperListeners,
     },
     ref: null,
     className: classes.root,
-    elementType: PopperUnstyled,
+    elementType: TooltipRoot,
     externalForwardedProps: other,
     ownerState,
     internalForwardedProps: {
-      component: TooltipRoot,
+      component: 'div',
     },
   });
 
@@ -607,31 +632,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
-  const modifiers = React.useMemo(
-    () => [
-      {
-        name: 'arrow',
-        enabled: Boolean(arrowRef),
-        options: {
-          element: arrowRef,
-          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
-          // make the arrow looks nice with the Tooltip's border radius
-          padding: 6,
-        },
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 10],
-        },
-      },
-      ...(rootProps.modifiers || []),
-    ],
-    [arrowRef, rootProps.modifiers],
-  );
-
   const result = (
-    <SlotRoot {...rootProps} modifiers={modifiers}>
+    <SlotRoot {...rootProps}>
       {title}
       {arrow ? <SlotArrow {...arrowProps} /> : null}
     </SlotRoot>
