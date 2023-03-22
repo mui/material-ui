@@ -1,16 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent, OverrideProps, DefaultComponentProps } from '@mui/types';
+import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import PopperUnstyled, {
-  PopperUnstyledProps,
-  PopperUnstyledTypeMap,
-} from '@mui/base/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import {
   SelectUnstyledContext,
   flattenOptionGroups,
@@ -476,6 +473,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
+  const modifiers = React.useMemo(
+    () => [...defaultModifiers, ...(props.slotProps?.listbox?.modifiers || [])],
+    [props.slotProps?.listbox?.modifiers],
+  );
+
   const selectedOption = React.useMemo(() => {
     return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
@@ -524,9 +526,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
+      as: PopperUnstyled, 
+      modifiers,
     },
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    elementType: SelectListbox,
     externalForwardedProps: other,
     getSlotProps: getListboxProps,
     ownerState: {
@@ -542,7 +546,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disableColorInversion: !mergedProps.disablePortal,
     }),
     internalForwardedProps: {
-      component: SelectListbox,
+      component: 'ul',
     },
   });
 
@@ -575,11 +579,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [color, contextValue],
   );
 
-  const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
-    [listboxProps.modifiers],
-  );
-
   let result = null;
   if (anchorEl) {
     result = (
@@ -589,7 +588,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           listboxProps.className,
           listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
         )}
-        modifiers={modifiers}
       >
         <SelectUnstyledContext.Provider value={context}>
           {/* for building grouped options */}
