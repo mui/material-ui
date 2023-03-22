@@ -6,45 +6,6 @@ import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
 import { maxWidth, sizingTransform } from '../sizing';
 
-const createFontStyleFunction = (prop) => {
-  return (props) => {
-    if (props[prop] !== undefined && props[prop] !== null) {
-      const styleFromPropValue = (propValue) => {
-        // fetch the value directly defined in the theme, like fontWeightLight
-        let value = props.theme.typography?.[propValue];
-
-        if (typeof value === 'object') {
-          // typography variant was pulled, but these props can't be an object
-          value = null;
-        }
-
-        if (!value) {
-          // fetch fontWeightLight when the value is 'light'
-          value =
-            props.theme.typography?.[
-              `${prop}${
-                props[prop] === 'default' || props[prop] === prop
-                  ? ''
-                  : capitalize(props[prop]?.toString())
-              }`
-            ];
-        }
-
-        if (!value) {
-          // fetch the value from the typography variant or default to the propValue
-          value = props.theme.typography?.[propValue]?.[prop] ?? propValue;
-        }
-
-        return {
-          [prop]: value,
-        };
-      };
-      return handleBreakpoints(props, props[prop], styleFromPropValue);
-    }
-    return null;
-  };
-};
-
 const defaultSxConfig = {
   // borders
   border: {
@@ -324,18 +285,15 @@ const defaultSxConfig = {
   // typography
   fontFamily: {
     themeKey: 'typography',
-    style: createFontStyleFunction('fontFamily'),
   },
   fontSize: {
     themeKey: 'typography',
-    style: createFontStyleFunction('fontSize'),
   },
   fontStyle: {
     themeKey: 'typography',
   },
   fontWeight: {
     themeKey: 'typography',
-    style: createFontStyleFunction('fontWeight'),
   },
   letterSpacing: {},
   textTransform: {},
