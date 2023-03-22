@@ -587,7 +587,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
-      as: PopperUnstyled, 
+      as: PopperUnstyled,
       anchorEl,
       open: popupOpen,
       style: anchorEl
