@@ -271,7 +271,7 @@ export default function EnhancedTable() {
       rows,
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
     );
-    rowsOnMount = rows.slice(
+    rowsOnMount = rowsOnMount.slice(
       0 * DEFAULT_ROWS_PER_PAGE,
       0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
     );
