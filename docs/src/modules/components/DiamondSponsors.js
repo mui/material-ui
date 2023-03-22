@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { styled, alpha } from '@mui/material/styles';
+import { useTheme, styled, alpha } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 // import Link from 'docs/src/modules/components/Link';
@@ -15,6 +14,7 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 export default function DiamondSponsors() {
+  const theme = useTheme();
   const t = useTranslate();
 
   return (
@@ -26,58 +26,55 @@ export default function DiamondSponsors() {
         rel="noopener nofollow"
         size="small"
         endIcon={<InfoOutlinedIcon fontSize="small" />}
-        sx={(theme) => ({
+        sx={{
           mb: 1,
           fontSize: theme.typography.pxToRem(12.5),
           fontWeight: 500,
-          color: (theme.vars || theme).palette.primary[600],
+          color:
+            theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
           '& svg': {
             width: 14,
             height: 14,
           },
-          ...theme.applyDarkStyles({
-            color: (theme.vars || theme).palette.primary[300],
-          }),
-        })}
+        }}
       >
         {t('diamondSponsors')}
       </Button>
       <Stack
         spacing={1.5}
-        sx={[
-          (theme) => ({
-            '& a': {
-              width: '100%',
-              height: 52,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
-              border: `1px solid`,
-              borderColor: 'grey.200',
-              fontSize: theme.typography.pxToRem(14),
-              fontWeight: 700,
-              borderRadius: 1,
-              transition: theme.transitions.create(['color', 'border-color']),
-              '&:hover': {
-                color: 'primary.500',
-                borderColor: 'grey.300',
-                backgroundColor: 'grey.50',
-              },
+        sx={{
+          '& a': {
+            width: '100%',
+            height: 52,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
+            border: `1px solid ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[200]
+            }`,
+            fontSize: theme.typography.pxToRem(14),
+            fontWeight: 700,
+            borderRadius: 1,
+            transition: theme.transitions.create(['color', 'border-color']),
+            '&:hover': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.grey[300],
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[700], 0.4)
+                  : theme.palette.grey[50],
             },
-          }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '& a': {
-                borderColor: 'primaryDark.700',
-                '&:hover': {
-                  color: 'primary.300',
-                  borderColor: 'primaryDark.600',
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              },
-            }),
-        ]}
+          },
+        }}
       >
         <a
           data-ga-event-category="sponsor"
@@ -87,18 +84,12 @@ export default function DiamondSponsors() {
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
-          <Box
-            component="img"
-            height="30px"
-            src={`/static/sponsors/octopus-light.svg`}
+          <img
+            height="30"
+            src={`/static/sponsors/octopus-${theme.palette.mode}.svg`}
             alt="octopus"
             title="Repeatable, reliable deployments"
             loading="lazy"
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/octopus-dark.svg)`,
-              })
-            }
           />
         </a>
         <a
@@ -109,18 +100,12 @@ export default function DiamondSponsors() {
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
-          <Box
-            component="img"
-            height="26px"
-            src={`/static/sponsors/doit-light.svg`}
+          <img
+            height="26"
+            src={`/static/sponsors/doit-${theme.palette.mode}.svg`}
             alt="doit"
             title="Management Platform for Google Cloud and AWS"
             loading="lazy"
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/doit-dark.svg)`,
-              })
-            }
           />
         </a>
         <a
@@ -131,18 +116,16 @@ export default function DiamondSponsors() {
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
-          <Box
-            component="img"
-            height="26px"
-            src={'https://brand.zesty.io/zesty-io-logo-horizontal.svg'}
+          <img
+            height="26"
+            src={
+              theme.palette.mode === 'light'
+                ? 'https://brand.zesty.io/zesty-io-logo-horizontal.svg'
+                : 'https://brand.zesty.io/zesty-io-logo-horizontal-light-color.svg'
+            }
             alt="zesty.io"
             title="The only Next.js CMS you need"
             loading="lazy"
-            sx={(theme) =>
-              theme.applyDarkStyles({
-                content: `url(https://brand.zesty.io/zesty-io-logo-horizontal-light-color.svg)`,
-              })
-            }
           />
         </a>
         {/*

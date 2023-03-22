@@ -12,12 +12,12 @@ export default function SelectCustomOption() {
       slotProps={{
         listbox: {
           sx: {
-            '--List-decoratorSize': '44px',
+            '--ListItemDecorator-size': '44px',
           },
         },
       }}
       sx={{
-        '--List-decoratorSize': '44px',
+        '--ListItemDecorator-size': '44px',
         minWidth: 240,
       }}
     >
