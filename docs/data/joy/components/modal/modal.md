@@ -144,9 +144,13 @@ declare module '@mui/joy/ModalDialog' {
 
 By default, `ModalDialog` will not overflow the screen when the content's height is bigger than the viewport.
 
-You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content's container.
+To create scrollable content, apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content's container.
 
 {{"demo": "DialogVerticalScroll.js"}}
+
+:::success
+To let the modal dialog overflows the screen and become scrollable, see [`ModalOverflow`](#modal-overflow) example.
+:::
 
 ### Modal overflow
 
