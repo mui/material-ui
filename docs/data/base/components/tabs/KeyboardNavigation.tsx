@@ -5,7 +5,7 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 
-export default function AccessibleTabs1() {
+export default function AccessibleTabs() {
   return (
     <div>
       <p>Selection following focus:</p>
