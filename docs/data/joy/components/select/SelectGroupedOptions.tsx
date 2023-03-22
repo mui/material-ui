@@ -27,7 +27,6 @@ export default function SelectGroupedOptions() {
       placeholder="Choose your animal"
       slotProps={{
         listbox: {
-          component: 'div',
           sx: {
             maxHeight: 240,
             overflow: 'auto',
