@@ -141,7 +141,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       open,
       disablePortal,
       keepMounted,
-      ref,
       as: PopperUnstyled,
       modifiers,
     },
