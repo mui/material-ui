@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
   integerPropType,
@@ -13,7 +12,7 @@ import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -403,6 +402,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const classes = useUtilityClasses(ownerState);
 
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(props.slotProps?.listbox?.modifiers || []),
+    ],
+    [props.slotProps?.listbox?.modifiers],
+  );
+
   let selectedOptions;
 
   if (multiple && (value as Array<unknown>).length > 0) {
@@ -564,7 +576,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    elementType: AutocompleteListbox,
     getSlotProps: getListboxProps,
     externalForwardedProps: other,
     ownerState,
@@ -575,6 +587,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
+      as: PopperUnstyled, 
       anchorEl,
       open: popupOpen,
       style: anchorEl
@@ -582,9 +595,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             width: anchorEl.clientWidth,
           }
         : {},
+      modifiers,
     },
     internalForwardedProps: {
-      component: AutocompleteListbox,
+      component: 'ul',
     },
   });
 
@@ -660,19 +674,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
-  const modifiers = React.useMemo(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      ...(listboxProps.modifiers || []),
-    ],
-    [listboxProps.modifiers],
-  );
-
   let popup = null;
   if (anchorEl) {
     popup = (
@@ -683,7 +684,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             listboxProps.className,
             listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
           )}
-          modifiers={modifiers}
         >
           {groupedOptions.map((option, index) => {
             if (groupBy) {
