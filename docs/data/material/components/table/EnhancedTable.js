@@ -244,7 +244,7 @@ export default function EnhancedTable() {
       getComparator(DEFAULT_ORDER, DEFAULT_ORDER_BY),
     );
 
-    rowsOnMount = rows.slice(
+    rowsOnMount = rowsOnMount.slice(
       0 * DEFAULT_ROWS_PER_PAGE,
       0 * DEFAULT_ROWS_PER_PAGE + DEFAULT_ROWS_PER_PAGE,
     );
@@ -370,6 +370,7 @@ export default function EnhancedTable() {
                         tabIndex={-1}
                         key={row.name}
                         selected={isItemSelected}
+                        sx={{ cursor: 'pointer' }}
                       >
                         <TableCell padding="checkbox">
                           <Checkbox
