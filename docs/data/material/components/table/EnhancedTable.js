@@ -236,7 +236,7 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [visibleRows, setVisibleRows] = React.useState(null);
   const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
-  const [emptyRowsHeight, setEmptyRowsHeight] = React.useState(0);
+  const [paddingHeight, setPaddingHeight] = React.useState(0);
 
   React.useEffect(() => {
     let rowsOnMount = stableSort(
@@ -313,8 +313,8 @@ export default function EnhancedTable() {
     const numEmptyRows =
       newPage > 0 ? Math.max(0, (1 + newPage) * rowsPerPage - rows.length) : 0;
 
-    const paddingHeight = (dense ? 33 : 53) * numEmptyRows;
-    setEmptyRowsHeight(paddingHeight);
+    const newPaddingHeight = (dense ? 33 : 53) * numEmptyRows;
+    setPaddingHeight(newPaddingHeight);
   };
 
   const handleChangeRowsPerPage = (event) => {
@@ -329,6 +329,9 @@ export default function EnhancedTable() {
     );
 
     setVisibleRows(updatedRows);
+
+    // There is no layout jump to handle on the first page.
+    setPaddingHeight(0);
   };
 
   const handleChangeDense = (event) => {
@@ -397,10 +400,10 @@ export default function EnhancedTable() {
                     );
                   })
                 : null}
-              {emptyRowsHeight > 0 && (
+              {paddingHeight > 0 && (
                 <TableRow
                   style={{
-                    height: emptyRowsHeight,
+                    height: paddingHeight,
                   }}
                 >
                   <TableCell colSpan={6} />
