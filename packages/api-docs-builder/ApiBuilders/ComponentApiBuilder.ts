@@ -631,6 +631,9 @@ export default async function generateComponentApi(
   reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
 
+  // Both `slots` and `classes` are empty if
+  // interface `${componentName}Slots` wasn't found.
+  // Currently, Base UI and Joy UI components support this interface
   const { slots, classes } = parseSlotsAndClasses({
     project,
     componentName: reactApi.name,
@@ -648,6 +651,16 @@ export default async function generateComponentApi(
     const globalClass = generateUtilityClass(reactApi.styles.name || reactApi.muiName, key);
     reactApi.styles.globalClasses[key] = globalClass;
   });
+
+  // if `reactApi.classes` and `reactApi.styles` both exist,
+  // API documentation includes both "CSS" Section and "State classes" Section
+  if (
+    (reactApi.styles.classes?.length || Object.keys(reactApi.styles.globalClasses || {})?.length) &&
+    (reactApi.classes.classes?.length || Object.keys(reactApi.classes.globalClasses || {})?.length)
+  ) {
+    reactApi.styles.classes = [];
+    reactApi.styles.globalClasses = {};
+  }
 
   attachPropsTable(reactApi);
   attachTranslations(reactApi);
