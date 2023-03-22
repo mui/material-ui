@@ -8,8 +8,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
-        "description": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}"
+        "name": "() =&gt; {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
+        "description": "() =&gt; {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}"
       },
       "required": true
     },
