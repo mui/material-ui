@@ -158,7 +158,7 @@ export default function useSlot<
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
       ...mergedProps,
       ...(LeafComponent && {
-        as: LeafComponent,
+        component: LeafComponent,
       }),
       ref,
     },
