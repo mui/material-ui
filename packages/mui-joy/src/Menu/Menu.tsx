@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import useMenu from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
+import useSlot from '../utils/useSlot';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
@@ -74,7 +74,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
-    component,
     color: colorProp = 'neutral',
     disablePortal = false,
     keepMounted = false,
@@ -130,22 +129,22 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
     elementType: MenuRoot,
-    externalForwardedProps: other,
     getSlotProps: getListboxProps,
-    externalSlotProps: {},
+    externalForwardedProps: other,
+    ownerState,
     additionalProps: {
       anchorEl,
       open,
       disablePortal,
       keepMounted,
       ref,
-      as: PopperUnstyled, 
+      as: PopperUnstyled,
       modifiers,
     },
-    className: classes.root,
-    ownerState,
   });
 
   const menuContextValue: MenuUnstyledContextType = React.useMemo(
@@ -157,7 +156,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   );
 
   const result = (
-    <MenuRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>
           {disablePortal ? (
@@ -168,7 +167,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           )}
         </ListProvider>
       </MenuUnstyledContext.Provider>
-    </MenuRoot>
+    </SlotRoot>
   );
 
   return disablePortal ? (
