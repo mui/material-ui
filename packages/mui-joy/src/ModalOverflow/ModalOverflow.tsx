@@ -11,7 +11,6 @@ import {
   ModalOverflowTypeMap,
 } from './ModalOverflowProps';
 import CloseModalContext from '../Modal/CloseModalContext';
-import ModalOverflowContext from './ModalOverflowContext';
 import modalDialogClasses from '../ModalDialog/modalDialogClasses';
 
 const useUtilityClasses = () => {
@@ -97,11 +96,7 @@ const ModalOverflow = React.forwardRef(function ModalOverflow(inProps, ref) {
     },
   });
 
-  return (
-    <ModalOverflowContext.Provider value>
-      <SlotRoot {...rootProps}>{children}</SlotRoot>
-    </ModalOverflowContext.Provider>
-  );
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ModalOverflowTypeMap>;
 
 ModalOverflow.propTypes /* remove-proptypes */ = {
