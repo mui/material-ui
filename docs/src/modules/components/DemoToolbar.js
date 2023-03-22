@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import LZString from 'lz-string';
 import { useTheme, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -26,21 +25,6 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
-
-function compress(object) {
-  return LZString.compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
-}
-
-function addHiddenInput(form, name, value) {
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = name;
-  input.value = value;
-  form.appendChild(input);
-}
 
 const Root = styled('div')(({ theme }) => ({
   display: 'none',
@@ -262,54 +246,6 @@ export default function DemoToolbar(props) {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
       setCodeVariant(clickedCodeVariant);
     }
-  };
-
-  const handleCodeSandboxClick = () => {
-    const { files } = codeSandbox.createReactApp(demoData);
-    const parameters = compress({ files });
-
-    // ref: https://codesandbox.io/docs/api/#define-api
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-    addHiddenInput(form, 'parameters', parameters);
-    addHiddenInput(
-      form,
-      'query',
-      codeVariant === CODE_VARIANTS.TS ? 'file=/demo.tsx' : 'file=/demo.js',
-    );
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-  };
-
-  const handleStackBlitzClick = () => {
-    const demoConfig = stackBlitz.createReactApp(demoData);
-
-    // ref: https://developer.stackblitz.com/docs/platform/post-api/
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = `https://stackblitz.com/run?file=demo.${
-      codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'js'
-    }`;
-    addHiddenInput(form, 'project[template]', 'create-react-app');
-    addHiddenInput(form, 'project[title]', demoConfig.title);
-    addHiddenInput(
-      form,
-      'project[description]',
-      `# ${demoConfig.title}\n${demoConfig.description}`,
-    );
-    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
-    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
-    Object.keys(demoConfig.files).forEach((key) => {
-      const value = demoConfig.files[key];
-      addHiddenInput(form, `project[files][${key}]`, value);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -538,7 +474,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={handleCodeSandboxClick}
+                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
                   {...getControlProps(3)}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
@@ -552,7 +488,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={handleStackBlitzClick}
+                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
                   {...getControlProps(4)}
                 >
                   <SvgIcon viewBox="0 0 19 28">

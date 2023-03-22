@@ -18,7 +18,7 @@ export default function BasicButtons() {
 
 describe('StackBlitz', () => {
   it('generate the correct javascript result', () => {
-    const result = StackBlitz.createReactApp({
+    const { openSandbox, ...result } = StackBlitz.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:
         'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
@@ -45,11 +45,14 @@ describe('StackBlitz', () => {
         '@emotion/react': 'latest',
         '@emotion/styled': 'latest',
       },
+      devDependencies: {
+        'react-scripts': 'latest',
+      },
     });
   });
 
   it('generate the correct typescript result', () => {
-    const result = StackBlitz.createReactApp({
+    const { openSandbox, ...result } = StackBlitz.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:
         'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
@@ -80,6 +83,9 @@ describe('StackBlitz', () => {
         '@types/react': 'latest',
         '@types/react-dom': 'latest',
         typescript: 'latest',
+      },
+      devDependencies: {
+        'react-scripts': 'latest',
       },
     });
   });
