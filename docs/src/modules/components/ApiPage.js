@@ -436,8 +436,7 @@ import { ${pageContent.name} } from '${source}';`}
           </React.Fragment>
         ) : null}
         {componentClasses?.classes?.length ||
-        (componentClasses?.classes?.globalClasses &&
-          Object.keys(componentClasses.classes.globalClasses).length) ? (
+        Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
           <React.Fragment>
             <Heading hash="classes" />
             <ClassesTable componentClasses={componentClasses} componentName={pageContent.name} />
