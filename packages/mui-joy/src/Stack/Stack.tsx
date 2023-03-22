@@ -76,7 +76,7 @@ Stack.propTypes /* remove-proptypes */ = {
    * While CSS `gap` removes the [known limitations](https://mui.com/joy-ui/react-stack#limitations),
    * it is not fully supported in some browsers. We recommend checking https://caniuse.com/?search=flex%20gap before using this flag.
    *
-   * To enable this flag globally, follow the theme's default props configuration.
+   * To enable this flag globally, follow the [theme's default props](https://mui.com/joy-ui/customization/themed-components/#default-props) configuration.
    * @default false
    */
   useFlexGap: PropTypes.bool,
