@@ -1700,8 +1700,8 @@ export default function JoyThemeBuilder() {
                     Customize primitive colors
                   </Typography>
                   <Typography component="div" level="body2" mb={2} mt={0.5}>
-                    Add your custom tailored palette here, inserting each HEX value to their place
-                    on the scale, or choose from the available set of popular color palettes.
+                    Add your custom-tailored palette here, inserting each HEX value to the scale, or
+                    choose from an available set of popular color palettes.
                   </Typography>
                   <PaletteImport
                     colorMode={muiTheme.palette.mode}
