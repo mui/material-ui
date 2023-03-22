@@ -1,5 +1,73 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.14
+
+<!-- generated comparing v5.11.13..master -->
+
+_Mar 21, 2023_
+
+A big thanks to the 15 contributors who made this release possible.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.14`
+
+- [Breadcrumbs] Add ability to change icon used in `BreadcrumbCollapsed` through slots (#33812) @pratikkarad
+- [Stepper] Add aria-current to active StepButton (#36526) @michalak111
+- [TabScrollButton] Add ability to change left and right icons (#33863) @pratikkarad
+- [ListItemButton] Respect LinkComponent (#34159) @zaverden
+- [l10n] Add Central Kurdish (ku-CKB) locale (#36592) @HediMuhamad
+
+### `@mui/system@5.11.14`
+
+- [system] Fix sx prop regression for fontWeight values (#36543) @mnajdova
+
+### `@mui/base@5.0.0-alpha.121`
+
+- [docs][base] Improve the Slots Table in API docs (#36330) @hbjORbj
+
+### `@mui/joy@5.0.0-alpha.72`
+
+- [Joy] Ensure new CSS variable naming is everywhere (#36460) @hbjORbj
+- [Menu][joy] Classname listbox is missing (#36520) @hbjORbj
+- [Joy] Fix `--List-decorator*` vars (#36595) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.124`
+
+- [Masonry] Include Masonry in theme augmentation interface (#36533) @hbjORbj
+
+### Docs
+
+- [blog] Post blog about Chamonix retreat to the website (#36517) @mikailaread
+- [blog] Fix image layout shift (#36522) @oliviertassinari
+- [docs] Use `theme.applyDarkStyles` for the rest of the docs (#36161) @siriwatknp
+- [docs] Fix 301 and 404 links (#36555) @oliviertassinari
+- [docs] Keep slot code order in API docs (#36499) @oliviertassinari
+- [docs] Missing className on Migrating from JSS example (#36536) @gabrielnafuzi
+- [docs] Fix function name for Joy templates (#36512) @hbjORbj
+- [docs] Add multiline Chip example (#36437) @dav1app
+- [docs] Add a new gold sponsor (#36518) @hbjORbj
+- [docs][joy] Improve the Slots Table in API docs (#36328) @hbjORbj
+- [docs] Fix virtualElement demo for Popper (#36320) @sai6855
+- [docs] Fix typo in API docs (#36388) @RomanHotsiy
+- [docs] Ensure classname displayed under Slots section in API docs exists (#36539) @hbjORbj
+- [docs][joy] Build TS versions for Modal component demos (#36385) @varunmulay22
+- [docs][joy] Build TS versions for Menu component demos (#36383) @varunmulay22
+- [docs][joy] Build TS versions for Switch component demos (#36379) @varunmulay22
+- [docs] Remove `shouldSkipGeneratingVar` usage (#36581) @siriwatknp
+- [docs][material] Update Table's demo to show pointer cursor on clickable rows (#36546) @varunmulay22
+- [website] Designer role changes (#36528) @danilo-leal
+- [website] No association between showcase and MUI @oliviertassinari
+- [website] Open Head of Operations role (#36501) @oliviertassinari
+- [website] Limit sponsors description to two rows @oliviertassinari
+
+### Core
+
+- [core] Fix CI @oliviertassinari
+- [core] Fix blank line @oliviertassinari
+- [website] Simplify internal ops @oliviertassinari
+
+All contributors of this release in alphabetical order: @danilo-leal, @dav1app, @gabrielnafuzi, @hbjORbj, @HediMuhamad, @michalak111, @mikailaread, @mnajdova, @oliviertassinari, @pratikkarad, @RomanHotsiy, @sai6855, @siriwatknp, @varunmulay22, @zaverden
+
 ## 5.11.13
 
 <!-- generated comparing v5.11.12..master -->
