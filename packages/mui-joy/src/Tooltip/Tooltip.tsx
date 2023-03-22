@@ -610,7 +610,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       disablePortal,
       keepMounted,
       direction,
-      as: PopperUnstyled,       
+      as: PopperUnstyled,
       modifiers,
       ...interactiveWrapperListeners,
     },
@@ -619,9 +619,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     elementType: TooltipRoot,
     externalForwardedProps: other,
     ownerState,
-    internalForwardedProps: {
-      component: 'div',
-    },
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {

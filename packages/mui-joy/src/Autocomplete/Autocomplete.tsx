@@ -597,9 +597,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         : {},
       modifiers,
     },
-    internalForwardedProps: {
-      component: 'ul',
-    },
   });
 
   const [SlotLoading, loadingProps] = useSlot('loading', {

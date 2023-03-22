@@ -526,7 +526,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
-      as: PopperUnstyled, 
+      as: PopperUnstyled,
       modifiers,
     },
     className: classes.listbox,
@@ -545,9 +545,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       color: mergedProps.color || 'neutral',
       disableColorInversion: !mergedProps.disablePortal,
     }),
-    internalForwardedProps: {
-      component: 'ul',
-    },
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
