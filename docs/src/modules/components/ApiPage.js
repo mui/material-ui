@@ -128,19 +128,23 @@ function ClassesTable(props) {
 
   return (
     <table>
-      <thead>
+      <thead style={{ display: 'table', width: '100%' }}>
         <tr>
-          <th align="left">{t('api-docs.ruleName')}</th>
-          <th align="left">{t('api-docs.globalClass')}</th>
+          <th align="left" width="50%">
+            {t('api-docs.ruleName')}
+          </th>
+          <th align="left" width="50%">
+            {t('api-docs.globalClass')}
+          </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style={{ display: 'table', width: '100%' }}>
         {componentClasses.classes.map((className) => (
           <tr key={className}>
-            <td align="left">
+            <td align="left" width="50%">
               <span className="prop-name">{className}</span>
             </td>
-            <td align="left">
+            <td align="left" width="50%">
               <span className="prop-name">
                 .
                 {componentClasses.globalClasses[className] ||
