@@ -117,24 +117,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: MenuRoot,
-    externalForwardedProps: other,
-    getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    additionalProps: {
-      anchorEl,
-      open,
-      disablePortal,
-      keepMounted,
-      ref,
-      component: MenuRoot,
-      as: component, // use `as` to insert the component inside of the MenuRoot
-    },
-    className: classes.root,
-    ownerState,
-  });
-
   const modifiers = React.useMemo(
     () => [
       {
@@ -148,6 +130,25 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
+  const rootProps = useSlotProps({
+    elementType: MenuRoot,
+    externalForwardedProps: other,
+    getSlotProps: getListboxProps,
+    externalSlotProps: {},
+    additionalProps: {
+      anchorEl,
+      open,
+      disablePortal,
+      keepMounted,
+      ref,
+      component: 'ul',
+      as: PopperUnstyled, 
+      modifiers,
+    },
+    className: classes.root,
+    ownerState,
+  });
+
   const menuContextValue: MenuUnstyledContextType = React.useMemo(
     () => ({
       ...contextValue,
@@ -157,7 +158,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   );
 
   const result = (
-    <PopperUnstyled {...rootProps} modifiers={modifiers}>
+    <MenuRoot {...rootProps}>
       <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>
           {disablePortal ? (
@@ -168,7 +169,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           )}
         </ListProvider>
       </MenuUnstyledContext.Provider>
-    </PopperUnstyled>
+    </MenuRoot>
   );
 
   return disablePortal ? (
