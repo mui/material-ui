@@ -61,6 +61,13 @@ function testOnScrollToBottom({ reason, scrollToBottomCallCount, onScrollToBotto
     }
 
     checkHighlightIs(listbox, 'five');
+  } else if (reason === 'touch') {
+    fireEvent.touchStart(screen.getAllByRole('option')[0]);
+    fireEvent.scroll(listbox, {
+      target: {
+        scrollTop: listbox.scrollHeight - listbox.offsetHeight,
+      },
+    });
   }
   if (scrollToBottomCallCount > 0) {
     expect(listbox.scrollTop).to.greaterThan(0);
@@ -2788,6 +2795,27 @@ describe('<Autocomplete />', () => {
       );
       testOnScrollToBottom({
         reason: 'mouse',
+        onScrollToBottom,
+        scrollToBottomCallCount: 1,
+      });
+    });
+
+    it('should call onScrollToBottom when scroll bar reaches bottom by touch', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two', 'three', 'four', 'five']}
+          ListboxProps={{ style: { height: '100px' } }}
+          renderInput={(params) => <TextField {...params} />}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'touch',
         onScrollToBottom,
         scrollToBottomCallCount: 1,
       });

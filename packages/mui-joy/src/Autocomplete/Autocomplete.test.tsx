@@ -35,7 +35,7 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
 }
 
 type TestOnScrollToBottom = {
-  reason: 'mouse' | 'keyboard';
+  reason: 'mouse' | 'keyboard' | 'touch';
   scrollToBottomCallCount: number;
   onScrollToBottom: ReturnType<typeof spy>;
 };
@@ -70,6 +70,13 @@ function testOnScrollToBottom({
     }
 
     checkHighlightIs(listbox, 'five');
+  } else if (reason === 'touch') {
+    fireEvent.touchStart(screen.getAllByRole('option')[0]);
+    fireEvent.scroll(listbox, {
+      target: {
+        scrollTop: listbox.scrollHeight - listbox.offsetHeight,
+      },
+    });
   }
 
   if (scrollToBottomCallCount > 0) {
@@ -2332,6 +2339,33 @@ describe('Joy <Autocomplete />', () => {
 
   describe('prop: onScrollToBottom', () => {
     it('should call onScrollToBottom when scroll bar reaches bottom by mouse', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const onScrollToBottom = spy();
+      render(
+        <Autocomplete
+          open
+          autoFocus
+          options={['one', 'two', 'three', 'four', 'five']}
+          slotProps={{
+            listbox: {
+              style: {
+                height: '100px',
+              },
+            },
+          }}
+          onScrollToBottom={onScrollToBottom}
+        />,
+      );
+      testOnScrollToBottom({
+        reason: 'mouse',
+        onScrollToBottom,
+        scrollToBottomCallCount: 1,
+      });
+    });
+
+    it('should call onScrollToBottom when scroll bar reaches bottom by touch', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
