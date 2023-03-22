@@ -60,8 +60,10 @@ Stack.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * If `true`, the CSS flexbox `gap` is used instead of applying `margin` to children. CSS `gap` removes the [known limitations](https://mui.com/joy-ui/react-stack#limitations),
-   * however, it is not fully supported in some browsers. We recommend checking https://caniuse.com/?search=flex%20gap before using this flag.
+   * If `true`, the CSS flexbox `gap` is used instead of applying `margin` to children.
+   *
+   * While CSS `gap` removes the [known limitations](https://mui.com/joy-ui/react-stack#limitations),
+   * it is not fully supported in some browsers. We recommend checking https://caniuse.com/?search=flex%20gap before using this flag.
    *
    * To enable this flag globally, follow the theme's default props configuration.
    * @default false
