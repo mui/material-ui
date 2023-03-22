@@ -77,6 +77,8 @@ export type NumberInputUnstyledOwnerState = Simplify<
   Omit<NumberInputUnstyledProps, 'component' | 'slots' | 'slotProps'> & {
     formControlContext: FormControlState | undefined;
     focused: boolean;
+    isIncrementDisabled: boolean;
+    isDecrementDisabled: boolean;
   }
 >;
 

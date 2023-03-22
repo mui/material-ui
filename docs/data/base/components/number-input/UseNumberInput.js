@@ -128,7 +128,6 @@ const StyledInputRoot = styled('div')(
 const StyledInputElement = styled('input')`
   grid-column: 2/3;
   grid-row: 1/3;
-
   background: none;
   border: 0;
   outline: 0;
@@ -138,12 +137,10 @@ const StyledInputElement = styled('input')`
 const StyledStepperButton = styled('button')`
   width: 1.5rem;
   height: 1rem;
-
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-
   font-size: 0.875rem;
   box-sizing: border-box;
   border: 0;
