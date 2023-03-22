@@ -141,7 +141,7 @@ This had many UX downsides. for example, watch what happens when we edit the day
 
 #### New "Fields"
 
-This mask logic is now gone. ["Fields"](/x/react-date-pickers/fields/) implements the new rich text fields, that solves the mask input limitations.
+This mask logic is now gone. ["Fields"](/x/react-date-pickers/fields/) implement the new rich text fields that solve the mask input limitations.
 They are specialized for date and time logic and offer quick navigation and isolated interaction within each section of a date value.
 See it in action:
 
@@ -155,7 +155,7 @@ This design is heavily inspired by the [native date picker](https://developer.mo
 
 ### Birthday picker
 
-Up until MUI X v5, we were recommending the use of 3 separate inputs to implement a birthday picker, and esptially not the use of a `<DatePicker>`, see this article for why [Designing Birthday Picker UX: Simpler Is Better](https://www.smashingmagazine.com/2021/05/frustrating-design-patterns-birthday-picker/).
+Up until MUI X v5, we were recommending the use of 3 separate inputs to implement a birthday picker, and especially not the use of a `<DatePicker>`; see this article for why [Designing Birthday Picker UX: Simpler Is Better](https://www.smashingmagazine.com/2021/05/frustrating-design-patterns-birthday-picker/).
 
 Birthday pickers can now have a great UX thanks to the Fields.
 They behave almost like 3 separate inputs and support full letter month which can be used so end-users don't confuse day and month.
@@ -268,8 +268,8 @@ Here's a list of what you can expect to be delivered in the following months (wh
 - Clipboard importing ([mui-x#199](https://github.com/mui/mui-x/issues/199))
 - Filtering on header ([mui-x#6247](https://github.com/mui/mui-x/issues/6247))
 - Row spanning ([mui-x#207](https://github.com/mui/mui-x/issues/207))
-- Improved Panels, column Management panel (column visibility, reordering, grouping, pinning, etc.) ([mui-x#5700](https://github.com/mui/mui-x/issues/5700))
-- Filter panel ([mui-x#6419](https://github.com/mui/mui-x/issues/6419))
+- Improved column management panel (column visibility, reordering, grouping, pinning, etc.) ([mui-x#5700](https://github.com/mui/mui-x/issues/5700))
+- Improved filter panel ([mui-x#6419](https://github.com/mui/mui-x/issues/6419))
 - Support for Joy UI
 
 ### Date Pickers
