@@ -10,32 +10,29 @@ export default function TableOfContentsBanner() {
     <Link
       href="https://war.ukraine.ua/support-ukraine/"
       target="_blank"
-      sx={[
-        (theme) => ({
-          mb: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'auto',
-          backgroundColor: alpha(theme.palette.grey[50], 0.4),
-          border: '1px solid',
-          borderColor: (theme.vars || theme).palette.grey[200],
-          borderRadius: 1,
-          transitionProperty: 'all',
-          transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          transitionDuration: '150ms',
-          '&:hover, &:focus-visible': {
-            borderColor: (theme.vars || theme).palette.primary[200],
-          },
-        }),
-        (theme) =>
-          theme.applyDarkStyles({
-            backgroundColor: alpha(theme.palette.primary[900], 0.2),
-            borderColor: (theme.vars || theme).palette.primaryDark[700],
-            '&:hover, &:focus-visible': {
-              borderColor: (theme.vars || theme).palette.primaryDark[500],
-            },
-          }),
-      ]}
+      sx={(theme) => ({
+        mb: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'auto',
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primary[900], 0.2)
+            : alpha(theme.palette.grey[50], 0.4),
+        border: '1px solid',
+        borderColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200],
+        borderRadius: 1,
+        transitionProperty: 'all',
+        transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        transitionDuration: '150ms',
+        '&:hover, &:focus-visible': {
+          borderColor:
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[500]
+              : theme.palette.primary[200],
+        },
+      })}
     >
       <Box sx={{ width: '100%' }}>
         <Box sx={{ height: '12px', backgroundColor: '#0057b7' }} />

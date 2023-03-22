@@ -29,7 +29,7 @@ export default function DividedList() {
               minWidth: 240,
               borderRadius: 'sm',
               boxShadow: 'sm',
-              '--List-decoratorSize': '48px',
+              '--ListItemDecorator-size': '48px',
               '--ListItem-paddingLeft': '1.5rem',
               '--ListItem-paddingRight': '1rem',
             }}

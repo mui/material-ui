@@ -32,19 +32,14 @@ function ProductSubMenu(props: ProductSubMenuProp) {
       ]}
     >
       <Box
-        sx={[
-          (theme) => ({
-            '& circle': {
-              fill: (theme.vars || theme).palette.grey[100],
-            },
-          }),
-          (theme) =>
-            theme.applyDarkStyles({
-              '& circle': {
-                fill: (theme.vars || theme).palette.primaryDark[700],
-              },
-            }),
-        ]}
+        sx={{
+          '& circle': {
+            fill: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[100],
+          },
+        }}
       >
         {icon}
       </Box>
@@ -92,15 +87,15 @@ export default function MuiProductSelector() {
       <Box
         component="li"
         role="none"
-        sx={(theme) => ({
+        sx={{
           p: 2,
           pr: 3,
           borderBottom: '1px solid',
-          borderColor: 'grey.100',
-          ...theme.applyDarkStyles({
-            borderColor: alpha(theme.palette.primary[100], 0.08),
-          }),
-        })}
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? alpha(theme.palette.primary[100], 0.08)
+              : theme.palette.grey[100],
+        }}
       >
         <ProductSubMenu
           role="menuitem"
@@ -142,25 +137,22 @@ export default function MuiProductSelector() {
       <li role="none">
         <Link
           href={ROUTES.advancedComponents}
-          sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
+          sx={{
+            p: 2,
+            pr: 3,
+            borderBottom: '1px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primary[100], 0.08)
+                : theme.palette.grey[100],
+            width: '100%',
+            '&:hover': {
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[700], 0.4)
+                  : theme.palette.grey[50],
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
-                '&:hover': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
-          ]}
+          }}
         >
           <ProductSubMenu
             role="menuitem"
@@ -173,25 +165,22 @@ export default function MuiProductSelector() {
       <li role="none">
         <Link
           href={ROUTES.toolpadDocs}
-          sx={[
-            {
-              p: 2,
-              pr: 3,
-              borderBottom: '1px solid',
-              borderColor: 'grey.100',
-              width: '100%',
-              '&:hover': {
-                backgroundColor: 'grey.50',
-              },
+          sx={{
+            p: 2,
+            pr: 3,
+            borderBottom: '1px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primary[100], 0.08)
+                : theme.palette.grey[100],
+            width: '100%',
+            '&:hover': {
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[700], 0.4)
+                  : theme.palette.grey[50],
             },
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: alpha(theme.palette.primary[100], 0.08),
-                '&:hover': {
-                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                },
-              }),
-          ]}
+          }}
         >
           <ProductSubMenu
             role="menuitem"
