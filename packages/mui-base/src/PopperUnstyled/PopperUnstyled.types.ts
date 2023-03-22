@@ -106,8 +106,6 @@ export interface PopperUnstyledOwnProps {
    * @default false
    */
   transition?: boolean;
-
-  ownerState?: any;
 }
 
 export interface PopperUnstyledSlots {
