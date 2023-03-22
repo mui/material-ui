@@ -2386,7 +2386,7 @@ describe('Joy <Autocomplete />', () => {
         />,
       );
       testOnScrollToBottom({
-        reason: 'mouse',
+        reason: 'touch',
         onScrollToBottom,
         scrollToBottomCallCount: 1,
       });
