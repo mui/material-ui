@@ -1,6 +1,4 @@
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { padding, margin } from '../spacing';
-import { handleBreakpoints } from '../breakpoints';
 import { borderRadius, borderTransform } from '../borders';
 import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
