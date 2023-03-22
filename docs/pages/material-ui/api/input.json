@@ -77,6 +77,8 @@
     "name": "MuiInput"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Input/Input.js",
   "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },

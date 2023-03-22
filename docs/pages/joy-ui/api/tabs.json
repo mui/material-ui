@@ -55,6 +55,8 @@
   "name": "Tabs",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTabs",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Tabs/Tabs.tsx",
   "inheritance": null,

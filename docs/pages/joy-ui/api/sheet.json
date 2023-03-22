@@ -27,6 +27,8 @@
   "name": "Sheet",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoySheet",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Sheet/Sheet.tsx",
   "inheritance": null,

@@ -27,6 +27,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-joy/src/FormLabel/FormLabel.tsx",
   "inheritance": null,

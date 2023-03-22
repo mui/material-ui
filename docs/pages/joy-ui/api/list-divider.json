@@ -23,6 +23,8 @@
   "name": "ListDivider",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListDivider",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/ListDivider/ListDivider.tsx",
   "inheritance": null,

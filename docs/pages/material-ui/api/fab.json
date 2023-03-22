@@ -53,6 +53,8 @@
     "name": "MuiFab"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Fab/Fab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

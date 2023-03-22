@@ -41,6 +41,8 @@
     "name": "MuiNativeSelect"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiNativeSelect",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },
