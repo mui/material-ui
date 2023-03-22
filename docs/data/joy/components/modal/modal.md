@@ -142,38 +142,29 @@ declare module '@mui/joy/ModalDialog' {
 
 #### Vertical scroll
 
-By default, `ModalDialog` will not overflow the screen when the content's height is bigger than the viewport.
+By default, content within the `ModalDialog` won't overflow the screen when its height is bigger than the viewport.
 
-To create scrollable content, apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content's container.
+To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) with either `scroll` or `auto` values.
 
 {{"demo": "DialogVerticalScroll.js"}}
 
-:::success
-To let the modal dialog overflows the screen and become scrollable, see [`ModalOverflow`](#modal-overflow) example.
-:::
-
 ### Modal overflow
 
-Use `ModalOverflow` component to let the `ModalDialog` overflows the viewport in vertical axis. The whole modal dialog will be scrollable when its content is larger that the viewport's height.
+The previous section demonstrated how to make content _within_ the modal scrollable.
+
+To make the _whole_ modal scrollable, in case its higher than the viewport, use the `ModalOverflow` component.
+It will allow the `ModalDialog` to vertically overflow the screen.
 
 It supports both `center` and `fullScreen` built-in layouts.
 
 {{"demo": "ModalDialogOverflow.js"}}
 
-:::success
-If the `ModalOverflow` does not meet your requirement, you can use the `Box` component with `sx` prop to create the desired behavior.
+It is possible to achieve the same result by using the `Box` component and CSS, through the `sx` prop.
+However, the `ModalOverflow` component adds greater convenience:
 
-```jsx
-import Box from '@mui/joy/Box';
-
-<Modal>
-  <Box sx={{ …your custom styles }}>
-    <ModalDialog>…</ModalDialog>
-  </Box>
-</Modal>
-```
-
-:::
+- It makes your styling more consistent, as you won't need to copy styles across different instances.
+- You can also add theming customization to it directly from the theme.
+- It automatically handles the close action by clicking on the modal's backdrop.
 
 ### Alert dialog
 
