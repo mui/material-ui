@@ -133,6 +133,7 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
 <p>
   <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=192" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
+  <a href="https://open.spotify.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/spotify/f37ea28/logo/192.png" alt="Spotify" title="Music service to access to millions of songs" loading="lazy" /></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes." loading="lazy" /></a>
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/192.png" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
@@ -217,7 +218,7 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
+  <img alt="GitHub logo" src="/docs/public/static/readme/github-lightmode.svg" width="80" height="43">
 </picture>
 
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
@@ -225,7 +226,7 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
-  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
+  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-lightmode.svg" width="100" height="27" style="margin-top: 1rem;">
 </picture>
 
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
@@ -233,11 +234,11 @@ These great services sponsor MUI's core infrastructure:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
-  <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
+  <img alt="BrowserStack logo" src="/docs/public/static/readme/browserstack-lightmode.svg" width="140" height="25" style="margin-top: 1rem;">
 </picture>
 
 [BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-<img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=70" width="35" height="35" style="margin-top: 1rem;">
 
 [CodeCov](https://about.codecov.io/) lets us monitor test coverage.

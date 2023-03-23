@@ -16,6 +16,11 @@ export interface LabComponents {
     styleOverrides?: ComponentsOverrides<Theme>['MuiLoadingButton'];
     variants?: ComponentsVariants['MuiLoadingButton'];
   };
+  MuiMasonry?: {
+    defaultProps?: ComponentsProps['MuiMasonry'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiMasonry'];
+    variants?: ComponentsVariants['MuiMasonry'];
+  };
   MuiTabList?: {
     defaultProps?: ComponentsProps['MuiTabList'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTabList'];

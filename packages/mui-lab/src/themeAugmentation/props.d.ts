@@ -11,10 +11,12 @@ import { TimelineProps } from '../Timeline';
 import { TimelineSeparatorProps } from '../TimelineSeparator';
 import { TreeItemProps } from '../TreeItem';
 import { TreeViewProps } from '../TreeView';
+import { MasonryProps } from '../Masonry';
 
 export interface LabComponentsPropsList {
   MuiAvatarGroup: AvatarGroupProps;
   MuiLoadingButton: LoadingButtonProps;
+  MuiMasonry: MasonryProps;
   MuiTabList: TabListProps;
   MuiTabPanel: TabPanelProps;
   MuiTimeline: TimelineProps;

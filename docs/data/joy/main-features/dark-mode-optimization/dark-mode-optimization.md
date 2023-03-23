@@ -16,9 +16,9 @@ Indeed, this light-mode "flash" will occur _every_ time you load up the app in t
 
 This can cause eye fatigue in a low-light setting, not to mention a frustrating interruption of the user experience—especially for those who interact with the app when it's in between modes.
 
-The animated screen capture below illustrates this problem as it appears on [mui.com](https://mui.com/):
+The animated screen capture below illustrates this problem as it would appear on [mui.com](https://mui.com/) without a fix:
 
-<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="border-radius: 10px; display: block; width: 400px; margin-inline: auto; margin-bottom: 24px;" alt="The dark-mode flashing problem at mui.com." />
+<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="margin-bottom: 24px; width: 240px;" alt="The dark-mode flashing problem at mui.com." width="480" height="294" />
 
 ## The solution: CSS variables
 

@@ -1,12 +1,12 @@
-# Lead Designer
+# Senior Designer
 
-<p class="description">You will be accountable for MUI's design execution and a small team of designers.</p>
+<p class="description">You will be responsible for pushing MUI's component design bar higher.</p>
 
 ## Details of the Role
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
+- **Level**: [3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
 - We're a **remote** company, operating mostly asynchronously (written communication over meetings).
 
 ## About the company
@@ -46,50 +46,48 @@ Design is foundational to achieving this goal.
 
 ## About the role
 
+Designers at MUI are essentially _team leaders_.
+That means you'll be working closely with your engineering lead counterpart to shape work and scope targeting a set of problems revolving around our component area, either on MUI Core or MUI X (to be further defined).
+
+As our [design philosophy](https://mui-org.notion.site/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc) states, you'll be conducting and guiding the whole team, making sure everything we do is adding a special design spice that only you can add.
+We imagine a world where design execution is a definitive product differentiator.
+
 ### What you'll do on a day-to-day basis
 
-As a **designer**, you will:
-
-- Ensure high-quality UI and UX across teams, libraries, components, and product strategy
-- Collaborate with product managers and engineers to ensure that design work is aligned with business goals and user needs
-- Create design concepts, prototypes, and high-fidelity mockups for projects on the X, Core, and Toolpad teams
-- Update and implement new components on the Core, X, and Toolpad teams
-- Develop and maintain MUI's own design system and style guide
-- Oversee the design kits production, ensuring they're aligned with engineering implementation
-
-As a **team leader**, you will:
-
-- Manage the design process, including user research, user flows, and user testing
-- Review design work and provide feedback to ensure overall design quality and consistency, with consideration to both UI and UX
-- Set goals, priorities, and distribute tasks for the design team
-- Provide mentorship and support to the design team members
-- Hire and retain a great team
+- Ensure high-quality user interface and UX work across MUI Core or MUI X components and design systems
+- Oversee the design kits production of the component set you'll be responsible for
+- Lead the design process for your team, from research to testing to implementation
+- Collaborate with product managers and engineers to strategize work that is aligned with business goals and user needs
+- Review designs from other team members and provide feedback to ensure all MUI design output has the same level of quality
 
 ## About you
 
-We're looking for someone with an expert eye for both UI and UX design. Details matter to you.
+If you get excited by thinking about design systems, high-level of craftsmanship, accessible components, and joyful experiences, then we're looking for you!
 
-You're a leader who can support and guide a small but growing design team.
+We're looking for designers who are generalists, meaning they can navigate from very high-level product strategy discussions to low-level implementation work.
 
-And, it's also important that you have enough development skills – CSS, JSX, Git, etc. – to communicate effectively with engineers, product managers, and ultimately, to be accountable for the quality of the design implemented.
+As a company that develops code-based products, it's important that you have a grasp of development to be effective.
+Concretely, that means you can at least picture how a given CSS snippet looks like just by reading it.
+Being able to contribute to the codebase yourself, open pull requests, and improve documentation or components is very valuable.
 
-### Skills you should have
+We strongly believe designers should code to ensure the level of detail they've wished for is really being implemented.
+So, if you're this designer, either already able to code or growing in this direction, we're looking for you.
 
-- **Expert-level UI knowledge**. You can craft great-looking designs, spotting tiny details most people wouldn't pay attention to.
-- **Expert-level UX knowledge**. You can build intuitive solutions, both high and low-level ones. You care about the entire user journey as well as an interaction with a specific component.
-- **Sharp written and verbal communication skills**. Communicating clearly is fundamental to create and manage high-quality products and teams. You'll interface with our team, community members, enterprise customers and also contribute to user documentation.
-- **Managerial abilities**. You have either managed a team before or are feeling ready to start now. You've shown that you're a design leader at heart and can provide the needed guidance and support to other designers.
-- **Comfortable around design systems**. You've worked on one before and have experienced the challenges of developing it.
-- **Enough development autonomy**. Our products are essentially code. Knowing how to navigate through code is key to understanding MUI products and collaborating with engineers. You know how to work with CSS (mainly CSS-in-JS), JSX, and Git.
+### Other skills you should have
 
-### What would be nice if you had, but isn't required
+- **Excellent written and verbal communication skills.** You will communicate both in writing and verbally with our globally-distributed team, community members, and enterprise customers. English is the primary language we interact in.
+- **Experience building and evaluating UI/UX.** You can design attractive UIs with well-thought-out interaction patterns that solve practical user problems.
+- **Design systems experience.** You have previously worked on or contributed to the creation of a design system. You are meticulous about component APIs, standards, and organization.
+- **Relative development autonomy.** Ability to read HTML/JSX and CSS is a requirement. Being able to code and contribute to the codebase would be a significant advantage, but isn't required for the role.
 
-- **Experience with open-source projects**. You have seen the particular product dynamics when in an OSS environment and are knowledgable of the challenges.
+### It would be nice if you had but it isn't required
+
+- **Past experience with open-source projects.** You understand the unique dynamics of products in an open-source environment as well as common challenges that arise.
 
 ## Benefits & Compensation
 
-Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay competitive, top market rates, for a person that can cleary exceed the role's expectations.
+Therefore, we consider profile and location.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
 ## Interview steps
@@ -101,8 +99,12 @@ Here's a brief overview of how this role's process will be carried through:
 - **Comparable experience review** (40 to 60 min ⎯ with a designer, product manager or tech lead): We'll deep dive into a presentation of relevant past experiences to understand your approach to problem-solving and design.
 - **Conversation with the CEO** (60 min): A quick call so you get to know each other, and talk about vision, future, history, etc.
 
-We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well. It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you, making for a great match!
+We like to encourage candidates to also see all of these conversations as opportunities for you to interview us as well.
+It's highly encouraged to bring whatever questions you see fit to make sure we are also a great role for you.
 
 ## How to apply?
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/4ea9d324-3350-48d5-bfab-706ebfc23ed2/application?utm_source=ZNRrPGBkqO)
+
+Don't tick every bullet? **Apply anyway!** Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

@@ -9,8 +9,8 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "label": "The component used to render the label.",
-    "list": "The component used to render the list.",
-    "root": "The component used to render the root."
+    "root": "The component that renders the root.",
+    "label": "The component that renders the label.",
+    "list": "The component that renders the list."
   }
 }

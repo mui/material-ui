@@ -286,5 +286,5 @@ Note that the attribute selector creates higher CSS specificity which could be c
 ## 5. Test dark-mode flickering
 
 1. Toggle dark mode in your application
-2. Open DevTools and set the [CPU throttling](https://developer.chrome.com/docs/devtools/evaluate-performance/#simulate_a_mobile_cpu) to the lowest value (don't close the DevTools).
+2. Open DevTools and set the [CPU throttling](https://developer.chrome.com/docs/devtools/performance/#simulate_a_mobile_cpu) to the lowest value (don't close the DevTools).
 3. Refresh the page. You should see the all components in dark mode at first glance.

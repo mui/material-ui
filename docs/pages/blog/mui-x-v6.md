@@ -7,7 +7,7 @@ card: true
 tags: ['MUI X', 'News']
 ---
 
-<img src="/static/blog/mui-x-v6/card.png" alt="" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2400" height="559" />
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
@@ -42,7 +42,7 @@ We've redesigned this sub-component to make it as extensible as possible.
 
 This is part of an overarching effort throughout the life cycle of v6 to refactor all Data Grid panels.
 
-<img src="/static/blog/mui-x-v6/column-menu-custom-action.png" style="maxWidth: 692px; margin-bottom: 24px;" loading="lazy" alt="Column menu custom action" />
+<img src="/static/blog/mui-x-v6/column-menu-custom-action.png" style="margin-bottom: 24px;" loading="lazy" alt="Column menu custom action" width="1636" height="808" />
 
 #### [Cell selection](/x/react-data-grid/cell-selection/) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan)
 
@@ -50,7 +50,7 @@ Select a cell or group of cells like in an Excel sheet.
 Cell selection is a powerful and flexible way to select data in the Data Grid.
 It's also the base for bulk editing and clipboard importing (coming soon).
 
-<video style="margin-bottom: 5px; width: 100%;" autoplay muted loop playsinline >
+<video style="margin-bottom: 5px;" autoplay muted loop playsinline>
   <source src="/static/blog/mui-x-v6/cell-selection.mp4" type="video/mp4" />
 </video>
 
@@ -94,7 +94,7 @@ export default function CustomStaticDatePicker() {
 
 These rich text fields are specialized for date and time logic and offer quick navigation and isolated interaction within each section of a date value.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
+<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
@@ -103,14 +103,14 @@ These rich text fields are specialized for date and time logic and offer quick n
 Add quick and customizable shortcuts for your users. Particularly useful for date ranges.
 Display them on the left, right, bottom, or top.
 
-<img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
+<img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." width="2222" height="1402" />
 
 #### [Edit date ranges with drag and drop](/x/react-date-pickers/date-range-calendar/) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan)
 
 Editing a date range is even easier now with the new drag-and-drop interface. Change `start` and `end` dates at will.
 
-<video style="margin-bottom: 24px; max-height: 398px;" autoplay muted loop playsinline >
-    <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
+<video style="margin-bottom: 24px;" autoplay muted loop playsinline>
+  <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
 </video>
 
 #### Removed clock view on desktop Time Pickers
