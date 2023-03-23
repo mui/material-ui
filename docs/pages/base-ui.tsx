@@ -6,6 +6,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import BaseUIHero from 'docs/src/components/productBaseUI/BaseUIHero';
 import BaseUISummary from 'docs/src/components/productBaseUI/BaseUISummary';
+import BaseUIComponents from 'docs/src/components/productBaseUI/BaseUIComponents';
 
 export default function Core() {
   return (
@@ -20,6 +21,7 @@ export default function Core() {
       <main id="main-content">
         <BaseUIHero />
         <BaseUISummary />
+        <BaseUIComponents />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>
