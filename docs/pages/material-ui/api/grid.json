@@ -129,6 +129,8 @@
     "name": "MuiGrid"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiGrid",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Grid/Grid.js",
   "inheritance": null,

@@ -24,7 +24,7 @@ export default function SelectCustomValueAppearance() {
       slotProps={{
         listbox: {
           sx: {
-            '--List-decoratorSize': '48px',
+            '--ListItemDecorator-size': '48px',
           },
         },
       }}

@@ -13,6 +13,8 @@
   "name": "TableHead",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableHead" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableHead",
   "forwardsRefTo": "HTMLTableSectionElement",
   "filename": "/packages/mui-material/src/TableHead/TableHead.js",
   "inheritance": null,

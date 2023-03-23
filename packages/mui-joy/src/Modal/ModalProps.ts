@@ -8,12 +8,12 @@ export type ModalSlot = 'root' | 'backdrop';
 
 export interface ModalSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the backdrop.
+   * The component that renders the backdrop.
    * @default 'div'
    */
   backdrop: React.ElementType;

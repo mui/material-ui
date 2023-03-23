@@ -14,19 +14,21 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "asterisk",
-      "description": "The component used to render the asterisk.",
-      "default": "'span'",
-      "class": ".MuiFormLabel-asterisk"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'label'",
       "class": ".MuiFormLabel-root"
+    },
+    {
+      "name": "asterisk",
+      "description": "The component that renders the asterisk.",
+      "default": "'span'",
+      "class": ".MuiFormLabel-asterisk"
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-joy/src/FormLabel/FormLabel.tsx",
   "inheritance": null,

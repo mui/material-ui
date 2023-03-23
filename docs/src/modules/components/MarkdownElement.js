@@ -337,6 +337,8 @@ const Root = styled('div')(
     '& img': {
       // Avoid layout jump
       display: 'inline-block',
+      // Avoid very sharp edges
+      borderRadius: 2,
     },
     '& hr': {
       height: 1,
@@ -451,8 +453,8 @@ const Root = styled('div')(
       },
     },
   }),
-  {
-    ':where(.mode-dark) &': {
+  ({ theme }) => ({
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
@@ -580,7 +582,7 @@ const Root = styled('div')(
         boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
-  },
+  }),
 );
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {

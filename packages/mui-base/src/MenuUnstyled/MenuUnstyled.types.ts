@@ -69,12 +69,12 @@ export interface MenuUnstyledOwnProps {
 
 export interface MenuUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default PopperUnstyled
    */
   root?: React.ElementType;
   /**
-   * The component used to render the listbox.
+   * The component that renders the listbox.
    * @default 'ul'
    */
   listbox?: React.ElementType;

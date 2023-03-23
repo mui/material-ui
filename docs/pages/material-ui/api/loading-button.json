@@ -91,6 +91,8 @@
     "name": "MuiLoadingButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiLoadingButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/material-ui/api/button/" },

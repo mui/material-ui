@@ -12,6 +12,8 @@
   "name": "FormHelperText",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormHelperText",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormHelperText/FormHelperText.tsx",
   "inheritance": null,

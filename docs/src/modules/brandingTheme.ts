@@ -363,7 +363,8 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      */
     applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
       if ((this as Theme).vars) {
-        // CssVarsProvider is used
+        // If CssVarsProvider is used as a provider,
+        // returns ':where([data-mui-color-scheme="light|dark"]) &'
         const selector = (this as Theme)
           .getColorSchemeSelector('dark')
           .replace(/(\[[^\]]+\])/, ':where($1)');

@@ -48,7 +48,7 @@ function getMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
-export const extractPackageFile = (filePath: string) => {
+export function extractPackageFile(filePath: string) {
   filePath = filePath.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
   const match = filePath.match(
     /.*\/packages.*\/(?<packagePath>[^/]+)\/src\/(.*\/)?(?<name>[^/]+)\.(js|tsx|ts|d\.ts)/,
@@ -61,9 +61,9 @@ export const extractPackageFile = (filePath: string) => {
     ...result,
     muiPackage: result.packagePath?.replace('x-', 'mui-'),
   };
-};
+}
 
-export const extractApiPage = (filePath: string) => {
+export function extractApiPage(filePath: string) {
   filePath = filePath.replace(new RegExp(`\\${path.sep}`, 'g'), '/');
   return {
     apiPathname: filePath
@@ -72,9 +72,9 @@ export const extractApiPage = (filePath: string) => {
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, ''),
   };
-};
+}
 
-const parseFile = (filename: string) => {
+function parseFile(filename: string) {
   const src = fs.readFileSync(filename, 'utf8');
   return {
     src,
@@ -87,19 +87,19 @@ const parseFile = (filename: string) => {
     EOL: getLineFeed(src),
     inheritedComponent: src.match(/\/\/ @inheritedComponent (.*)/)?.[1],
   };
-};
+}
 
 export type ComponentInfo = {
   /**
-   * Full path to the file
+   * Full path to the source file.
    */
   filename: string;
   /**
-   * Component name
+   * Component name as imported in the docs, in the global MUI namespace.
    */
   name: string;
   /**
-   * Component name with `Mui` prefix
+   * Component name with `Mui` prefix, in the global HTML page namespace.
    */
   muiName: string;
   apiPathname: string;
@@ -120,7 +120,7 @@ export type ComponentInfo = {
      */
     apiPathname: string;
   };
-  getDemos: () => Array<{ name: string; demoPathname: string }>;
+  getDemos: () => Array<{ demoPageTitle: string; demoPathname: string }>;
   apiPagesDirectory: string;
   skipApiGeneration?: boolean;
   /**
@@ -131,21 +131,16 @@ export type ComponentInfo = {
 
 export type HookInfo = {
   /**
-   * Full path to the file
+   * Full path to the source file.
    */
   filename: string;
   /**
-   * Hook name
+   * Hook name as imported in the docs, in the global MUI namespace.
    */
   name: string;
   apiPathname: string;
-  readFile: () => {
-    src: string;
-    spread: boolean;
-    shouldSkip: boolean;
-    EOL: string;
-  };
-  getDemos: () => Array<{ name: string; demoPathname: string }>;
+  readFile: ComponentInfo['readFile'];
+  getDemos: ComponentInfo['getDemos'];
   apiPagesDirectory: string;
   skipApiGeneration?: boolean;
 };
@@ -174,22 +169,7 @@ const migratedBaseComponents = [
   'TabUnstyled',
 ];
 
-function findMaterialUIDemos(
-  componentName: string,
-  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; components: readonly string[] }>,
-) {
-  return pagesMarkdown
-    .filter(
-      (page) =>
-        page.pathname.indexOf('/material/') === 0 && page.components.includes(componentName),
-    )
-    .map((page) => ({
-      name: page.title,
-      demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`),
-    }));
-}
-
-export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
+export function getMaterialComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
@@ -202,11 +182,11 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     apiPathname: `/material-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/material-ui/api`),
     isSystemComponent: getSystemComponents().includes(name),
-    readFile() {
+    readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
-    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+    getInheritance: (inheritedComponent = srcInfo?.inheritedComponent) => {
       if (!inheritedComponent) {
         return null;
       }
@@ -227,46 +207,20 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
 
         return {
           ...markdown,
-          title: getTitle(markdownContent),
+          markdownContent,
           components: markdownHeaders.components as string[],
         };
       });
-      return findMaterialUIDemos(name, allMarkdowns).map((info) => ({
-        ...info,
-        demoPathname: info.demoPathname,
-      }));
+      return allMarkdowns
+        .filter(
+          (page) => page.pathname.indexOf('/material/') === 0 && page.components.includes(name),
+        )
+        .map((page) => ({
+          demoPageTitle: getTitle(page.markdownContent),
+          demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`),
+        }));
     },
   };
-};
-
-function findBaseDemos(
-  componentName: string,
-  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; components: readonly string[] }>,
-) {
-  return pagesMarkdown
-    .filter((page) => page.components.includes(componentName))
-    .map((page) => ({
-      name: page.title,
-      demoPathname: page.pathname.match(/material\//)
-        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-        : `${page.pathname.replace('/components/', '/react-')}/`,
-    }));
-}
-
-function findBaseHooksDemos(
-  hookName: string,
-  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; hooks: readonly string[] }>,
-) {
-  return pagesMarkdown
-    .filter((page) => page.hooks && page.hooks.includes(hookName))
-    .map((page) => ({
-      name: page.title,
-      demoPathname: page.pathname.match(/material\//)
-        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-        : `${page.pathname.replace('/components/', '/react-')}/#hook${
-            page.hooks?.length > 1 ? 's' : ''
-          }`,
-    }));
 }
 
 interface PageMarkdown {
@@ -275,7 +229,7 @@ interface PageMarkdown {
   components: readonly string[];
 }
 
-const pathToSystemTitle = (page: PageMarkdown) => {
+function pathToSystemTitle(page: PageMarkdown) {
   const defaultTitle = page.title;
   if (page.pathname.match(/material\//)) {
     return `${defaultTitle} (Material UI)`;
@@ -287,20 +241,50 @@ const pathToSystemTitle = (page: PageMarkdown) => {
     return `${defaultTitle} (Joy UI)`;
   }
   return defaultTitle;
-};
+}
 
-function findSystemDemos(componentName: string, pagesMarkdown: ReadonlyArray<PageMarkdown>) {
+function findBaseDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{
+    pathname: string;
+    components: readonly string[];
+    markdownContent: string;
+  }>,
+) {
   return pagesMarkdown
     .filter((page) => page.components.includes(componentName))
     .map((page) => ({
-      name: pathToSystemTitle(page),
+      demoPageTitle: getTitle(page.markdownContent),
       demoPathname: page.pathname.match(/material\//)
         ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
         : `${page.pathname.replace('/components/', '/react-')}/`,
     }));
 }
 
-const getApiPath = (demos: Array<{ name: string; demoPathname: string }>, name: string) => {
+function findBaseHooksDemos(
+  hookName: string,
+  pagesMarkdown: ReadonlyArray<{
+    pathname: string;
+    hooks: readonly string[];
+    markdownContent: string;
+  }>,
+) {
+  return pagesMarkdown
+    .filter((page) => page.hooks && page.hooks.includes(hookName))
+    .map((page) => ({
+      demoPageTitle: getTitle(page.markdownContent),
+      demoPathname: page.pathname.match(/material\//)
+        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+        : `${page.pathname.replace('/components/', '/react-')}/#hook${
+            page.hooks?.length > 1 ? 's' : ''
+          }`,
+    }));
+}
+
+const getApiPath = (
+  demos: Array<{ demoPageTitle: string; demoPathname: string }>,
+  name: string,
+) => {
   let apiPath = null;
 
   if (demos && demos.length > 0) {
@@ -314,7 +298,7 @@ const getApiPath = (demos: Array<{ name: string; demoPathname: string }>, name: 
   return apiPath;
 };
 
-export const getBaseComponentInfo = (filename: string): ComponentInfo => {
+export function getBaseComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
@@ -335,7 +319,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
 
       return {
         ...markdown,
-        title: getTitle(markdownContent),
+        markdownContent,
         components: markdownHeaders.components as string[],
       };
     });
@@ -350,11 +334,11 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     isSystemComponent: getSystemComponents().includes(name),
-    readFile() {
+    readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
-    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+    getInheritance: (inheritedComponent = srcInfo?.inheritedComponent) => {
       if (!inheritedComponent) {
         return null;
       }
@@ -368,9 +352,9 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     },
     getDemos: () => demos,
   };
-};
+}
 
-export const getBaseHookInfo = (filename: string): HookInfo => {
+export function getBaseHookInfo(filename: string): HookInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
@@ -390,7 +374,7 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
 
       return {
         ...markdown,
-        title: getTitle(markdownContent),
+        markdownContent,
         hooks: markdownHeaders.hooks as string[],
       };
     });
@@ -403,33 +387,16 @@ export const getBaseHookInfo = (filename: string): HookInfo => {
     name,
     apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
-    readFile() {
+    readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
     getDemos: () => demos,
   };
   return result;
-};
-
-function findJoyUIDemos(
-  componentName: string,
-  pagesMarkdown: ReadonlyArray<{ pathname: string; title: string; components: readonly string[] }>,
-) {
-  return pagesMarkdown
-    .filter(
-      (page) => page.pathname.indexOf('/joy/') === 0 && page.components.includes(componentName),
-    )
-    .map((page) => ({
-      name: page.title,
-      demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`).replace(
-        'material-ui',
-        'joy-ui',
-      ),
-    }));
 }
 
-export const getJoyComponentInfo = (filename: string): ComponentInfo => {
+export function getJoyComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
@@ -442,11 +409,11 @@ export const getJoyComponentInfo = (filename: string): ComponentInfo => {
     apiPathname: `/joy-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/joy-ui/api`),
     isSystemComponent: getSystemComponents().includes(name),
-    readFile() {
+    readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
-    getInheritance(inheritedComponent = srcInfo?.inheritedComponent) {
+    getInheritance: (inheritedComponent = srcInfo?.inheritedComponent) => {
       if (!inheritedComponent) {
         return null;
       }
@@ -464,19 +431,24 @@ export const getJoyComponentInfo = (filename: string): ComponentInfo => {
 
         return {
           ...markdown,
-          title: getTitle(markdownContent),
+          markdownContent,
           components: markdownHeaders.components as string[],
         };
       });
-      return findJoyUIDemos(name, allMarkdowns).map((info) => ({
-        ...info,
-        demoPathname: info.demoPathname,
-      }));
+      return allMarkdowns
+        .filter((page) => page.pathname.indexOf('/joy/') === 0 && page.components.includes(name))
+        .map((page) => ({
+          demoPageTitle: getTitle(page.markdownContent),
+          demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`).replace(
+            'material-ui',
+            'joy-ui',
+          ),
+        }));
     },
   };
-};
+}
 
-export const getSystemComponentInfo = (filename: string): ComponentInfo => {
+export function getSystemComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
@@ -489,7 +461,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
     apiPathname: `/system/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/system/api`),
     isSystemComponent: true,
-    readFile() {
+    readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
@@ -510,16 +482,26 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
 
           return {
             ...markdown,
-            title: getTitle(markdownContent),
+            markdownContent,
             components: markdownHeaders.components as string[],
           };
         });
-      return findSystemDemos(name, allMarkdowns);
+      return allMarkdowns
+        .filter((page) => page.components.includes(name))
+        .map((page) => ({
+          demoPageTitle: pathToSystemTitle({
+            ...page,
+            title: getTitle(page.markdownContent),
+          }),
+          demoPathname: page.pathname.match(/material\//)
+            ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+            : `${page.pathname.replace('/components/', '/react-')}/`,
+        }));
     },
   };
-};
+}
 
-export const formatType = (rawType: string) => {
+export function formatType(rawType: string) {
   if (!rawType) {
     return '';
   }
@@ -536,19 +518,21 @@ export const formatType = (rawType: string) => {
   });
 
   return prettifiedSignatureWithTypeName.slice(prefix.length).replace(/\n$/, '');
-};
+}
 
-export const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
-  symbol
+export function getSymbolDescription(symbol: ts.Symbol, project: TypeScriptProject) {
+  return symbol
     .getDocumentationComment(project.checker)
     .flatMap((comment) => comment.text.split('\n'))
     .filter((line) => !line.startsWith('TODO'))
     .join('\n');
+}
 
-export const getSymbolJSDocTags = (symbol: ts.Symbol) =>
-  Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
+export function getSymbolJSDocTags(symbol: ts.Symbol) {
+  return Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
+}
 
-export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) => {
+export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   let rawType: string;
 
   const declaration = symbol.declarations?.[0];
@@ -563,7 +547,7 @@ export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) =
   }
 
   return formatType(rawType);
-};
+}
 
 export function generateApiPages() {
   findPagesMarkdown().forEach((markdown) => {

@@ -174,7 +174,7 @@ async function annotateHookDefinition(api: ReactApi) {
       'Demos:',
       '',
       ...api.demos.map((item) => {
-        return `- [${item.name}](${
+        return `- [${item.demoPageTitle}](${
           item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
         })`;
       }),
@@ -226,7 +226,7 @@ const attachTable = (
       const typeDescription = (propDescriptor.typeStr ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt')
+        .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
       return {
@@ -323,7 +323,7 @@ const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
     name: reactApi.name,
     filename: toGitHubPath(reactApi.filename),
     demos: `<ul>${reactApi.demos
-      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
   };
 

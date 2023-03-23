@@ -8,27 +8,27 @@ export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
 
 export interface CheckboxSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'span'
    */
   root: React.ElementType;
   /**
-   * The component used to render the checkbox.
+   * The component that renders the checkbox.
    * @default 'span'
    */
   checkbox: React.ElementType;
   /**
-   * The component used to render the action.
+   * The component that renders the action.
    * @default 'span'
    */
   action: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
   input: React.ElementType;
   /**
-   * The component used to render the label.
+   * The component that renders the label.
    * @default 'label'
    */
   label: React.ElementType;

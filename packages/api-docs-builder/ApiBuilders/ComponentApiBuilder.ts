@@ -40,6 +40,12 @@ export interface ReactApi extends ReactDocgenApi {
   description: string;
   spread: boolean | undefined;
   /**
+   * If `true`, the component supports theme default props customization.
+   * If `null`, we couldn't infer this information.
+   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
+   */
+  themeDefaultProps: boolean | undefined | null;
+  /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
@@ -195,9 +201,9 @@ async function annotateComponentDefinition(api: ReactApi) {
   markdownLines.push(
     'Demos:',
     '',
-    ...api.demos.map((item) => {
-      return `- [${item.name}](${
-        item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+    ...api.demos.map((demo) => {
+      return `- [${demo.demoPageTitle}](${
+        demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
       })`;
     }),
     '',
@@ -335,6 +341,10 @@ const generateApiPage = (
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     spread: reactApi.spread,
+    themeDefaultProps: reactApi.themeDefaultProps,
+    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+      ? reactApi.muiName.replace('Mui', 'Joy')
+      : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
@@ -344,7 +354,7 @@ const generateApiPage = (
         }
       : null,
     demos: `<ul>${reactApi.demos
-      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
@@ -518,7 +528,10 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeScriptProject) => {
+export default async function generateComponentApi(
+  componentInfo: ComponentInfo,
+  project: TypeScriptProject,
+) {
   const {
     filename,
     name,
@@ -611,6 +624,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
+  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
   reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
@@ -646,6 +660,4 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   }
 
   return reactApi;
-};
-
-export default generateComponentApi;
+}

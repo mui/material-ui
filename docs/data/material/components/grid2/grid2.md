@@ -133,7 +133,15 @@ The demo below shows how this works:
 The grid container that renders inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.
 It will also inherit the props of the top-level grid if it receives those props.
 
-Check out the demo below to see what this looks like:
+### Inheriting columns
+
+A nested grid container will inherits the columns from its parent unless the `columns` prop is specified to the instance.
+
+{{"demo": "NestedGridColumns.js", "bg": true}}
+
+### Inheriting spacing
+
+A nested grid container will inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
 
 {{"demo": "NestedGrid.js", "bg": true}}
 

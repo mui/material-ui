@@ -230,41 +230,41 @@ export interface SliderUnstyledOwnProps {
 
 export interface SliderUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'span'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the track.
+   * The component that renders the track.
    * @default 'span'
    */
   track?: React.ElementType;
   /**
-   * The component used to render the rail.
+   * The component that renders the rail.
    * @default 'span'
    */
   rail?: React.ElementType;
   /**
-   * The component used to render the thumb.
+   * The component that renders the thumb.
    * @default 'span'
    */
   thumb?: React.ElementType;
   /**
-   * The component used to render the mark.
+   * The component that renders the mark.
    * @default 'span'
    */
   mark?: React.ElementType;
   /**
-   * The component used to render the mark label.
+   * The component that renders the mark label.
    * @default 'span'
    */
   markLabel?: React.ElementType;
   /**
-   * The component used to render the value label.
+   * The component that renders the value label.
    */
   valueLabel?: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
   input?: React.ElementType;
