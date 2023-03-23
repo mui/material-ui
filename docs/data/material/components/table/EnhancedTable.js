@@ -299,23 +299,27 @@ export default function EnhancedTable() {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleChangePage = React.useCallback(
+    (event, newPage) => {
+      setPage(newPage);
 
-    const updatedRows = rows.slice(
-      newPage * rowsPerPage,
-      newPage * rowsPerPage + rowsPerPage,
-    );
+      const sortedRows = stableSort(rows, getComparator(order, orderBy));
+      const updatedRows = sortedRows.slice(
+        newPage * rowsPerPage,
+        newPage * rowsPerPage + rowsPerPage,
+      );
 
-    setVisibleRows(updatedRows);
+      setVisibleRows(updatedRows);
 
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const numEmptyRows =
-      newPage > 0 ? Math.max(0, (1 + newPage) * rowsPerPage - rows.length) : 0;
+      // Avoid a layout jump when reaching the last page with empty rows.
+      const numEmptyRows =
+        newPage > 0 ? Math.max(0, (1 + newPage) * rowsPerPage - rows.length) : 0;
 
-    const newPaddingHeight = (dense ? 33 : 53) * numEmptyRows;
-    setPaddingHeight(newPaddingHeight);
-  };
+      const newPaddingHeight = (dense ? 33 : 53) * numEmptyRows;
+      setPaddingHeight(newPaddingHeight);
+    },
+    [order, orderBy, dense, rowsPerPage],
+  );
 
   const handleChangeRowsPerPage = React.useCallback(
     (event) => {
