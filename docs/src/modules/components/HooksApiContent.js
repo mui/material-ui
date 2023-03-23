@@ -45,6 +45,7 @@ Heading.propTypes = {
 export default function HooksApiContent(props) {
   const { descriptions, pagesContents } = props;
   const userLanguage = useUserLanguage();
+  const t = useTranslate();
 
   return Object.keys(pagesContents).map((key) => {
     const { filename, name: hookName, parameters, returnValue } = pagesContents[key];
@@ -66,22 +67,12 @@ export default function HooksApiContent(props) {
           <Heading text="import" hash={`${hookNameKebabCase}-import`} />
           <HighlightedCode
             code={`
-import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
+import ${hookName} from '${source.split('/').slice(0, -1).join('/')}';
+// ${t('or')}
+import { ${hookName} } from '${source.split('/').slice(0, 2).join('/')}';`}
             language="jsx"
           />
-          {/* TODO: Add this once the hooks are in dedicated folders */}
-          {/* <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} /> */}
-          {hookDescription ? (
-            <React.Fragment>
-              <br />
-              <br />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: hookDescription,
-                }}
-              />
-            </React.Fragment>
-          ) : null}
+          <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
           <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} />
           <PropertiesTable
             properties={parameters}
