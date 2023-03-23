@@ -46,4 +46,12 @@ Here's an example of a component built using the hook alone:
 
 ### Quantity Input
 
+The "purchase quantity" input component from the MUI store:
+
 {{"demo": "QuantityInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
+
+### Steppers only
+
+A compact stepper-only component using the hook:
+
+{{"demo": "UseNumberInputCompact.js", "defaultCodeOpen": false, "bg": "gradient"}}

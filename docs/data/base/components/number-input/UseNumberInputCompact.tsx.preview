@@ -1,0 +1,10 @@
+<Layout>
+  <CompactNumberInput
+    aria-label="Compact number input"
+    placeholder="Type a number…"
+    value={value}
+    onValueChange={(val) => setValue(val)}
+  />
+
+  <pre>Current value: {value ?? ' '}</pre>
+</Layout>

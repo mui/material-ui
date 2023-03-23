@@ -33,7 +33,7 @@ const parseInput = (v: string): string => {
  *
  * API:
  *
- * - [useNumberInput API](https://mui.com/base/api/use-number-input/)
+ * - [useNumberInput API](https://mui.com/base/react-number-input/hooks-api/#use-number-input)
  */
 export default function useNumberInput(
   parameters: UseNumberInputParameters,

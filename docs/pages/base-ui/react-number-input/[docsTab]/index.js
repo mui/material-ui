@@ -4,6 +4,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/number-input/number-input.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import NumberInputUnstyledApiJsonPageContent from '../../api/number-input-unstyled.json';
+import useNumberInputApiJsonPageContent from '../../api/use-number-input.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -29,12 +30,19 @@ export const getStaticProps = () => {
   );
   const NumberInputUnstyledApiDescriptions = mapApiPageTranslations(NumberInputUnstyledApiReq);
 
+  const useNumberInputApiReq = require.context(
+    'docs/translations/api-docs/use-number-input',
+    false,
+    /use-number-input.*.json$/,
+  );
+  const useNumberInputApiDescriptions = mapApiPageTranslations(useNumberInputApiReq);
+
   return {
     props: {
       componentsApiDescriptions: { NumberInputUnstyled: NumberInputUnstyledApiDescriptions },
       componentsApiPageContents: { NumberInputUnstyled: NumberInputUnstyledApiJsonPageContent },
-      hooksApiDescriptions: {},
-      hooksApiPageContents: {},
+      hooksApiDescriptions: { useNumberInput: useNumberInputApiDescriptions },
+      hooksApiPageContents: { useNumberInput: useNumberInputApiJsonPageContent },
     },
   };
 };
