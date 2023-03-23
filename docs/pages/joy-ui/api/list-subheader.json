@@ -25,6 +25,8 @@
   "name": "ListSubheader",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListSubheader",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ListSubheader/ListSubheader.tsx",
   "inheritance": null,

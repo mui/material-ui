@@ -16,6 +16,8 @@
     "name": "MuiListItemAvatar"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemAvatar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemAvatar/ListItemAvatar.js",
   "inheritance": null,

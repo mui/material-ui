@@ -62,6 +62,8 @@
     "name": "MuiSwitch"
   },
   "spread": false,
+  "themeDefaultProps": false,
+  "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/material-ui/api/icon-button/" },

@@ -22,6 +22,8 @@
   "name": "Divider",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyDivider",
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-joy/src/Divider/Divider.tsx",
   "inheritance": null,

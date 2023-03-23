@@ -41,6 +41,8 @@
     "name": "MuiListItemButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemButton",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemButton/ListItemButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

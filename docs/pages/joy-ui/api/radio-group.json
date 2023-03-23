@@ -43,6 +43,8 @@
   "name": "RadioGroup",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyRadioGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/RadioGroup/RadioGroup.tsx",
   "inheritance": null,

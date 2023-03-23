@@ -26,10 +26,12 @@ async function parseWithConfig(filename: string, configFilePath: string) {
   return babel.parseAsync(source, partialConfig.options);
 }
 
-function findConformanceDescriptor(file: babel.ParseResult): babel.types.ObjectExpression | null {
+function findConformanceDescriptor(
+  file: babel.ParseResult,
+): null | { name: string; body: babel.types.ObjectExpression } {
   const { types: t } = babel;
 
-  let descriptor: null | babel.types.ObjectExpression = null;
+  let descriptor = null;
   babel.traverse(file, {
     CallExpression(babelPath) {
       const { node: callExpression } = babelPath;
@@ -41,7 +43,10 @@ function findConformanceDescriptor(file: babel.ParseResult): babel.types.ObjectE
           t.isObjectExpression(optionsFactory.body)
         ) {
           // describeConformance(element, () => options);
-          descriptor = optionsFactory.body;
+          descriptor = {
+            name: callee.name,
+            body: optionsFactory.body,
+          };
         } else {
           throw new Error(
             `Only an arrow function returning an object expression is supported as the second argument to \`describeConformance\` ` +
@@ -114,6 +119,7 @@ export interface ParseResult {
   forwardsRefTo: string | undefined;
   inheritComponent: string | undefined;
   spread: boolean | undefined;
+  themeDefaultProps: boolean | undefined | null;
 }
 
 export default async function parseTest(componentFilename: string): Promise<ParseResult> {
@@ -140,6 +146,7 @@ export default async function parseTest(componentFilename: string): Promise<Pars
     forwardsRefTo: undefined,
     inheritComponent: undefined,
     spread: undefined,
+    themeDefaultProps: null,
   };
 
   if (descriptor === null) {
@@ -147,7 +154,7 @@ export default async function parseTest(componentFilename: string): Promise<Pars
   }
 
   let skippedTests: string[] = [];
-  descriptor.properties.forEach((property) => {
+  descriptor.body.properties.forEach((property) => {
     if (!babel.types.isObjectProperty(property)) {
       return;
     }
@@ -170,6 +177,10 @@ export default async function parseTest(componentFilename: string): Promise<Pars
   });
 
   result.spread = !skippedTests.includes('propsSpread');
+  result.themeDefaultProps =
+    descriptor.name === 'describeConformanceUnstyled'
+      ? undefined
+      : !skippedTests.includes('themeDefaultProps');
 
   return result;
 }

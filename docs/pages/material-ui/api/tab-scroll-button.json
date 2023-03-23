@@ -39,6 +39,8 @@
     "name": "MuiTabScrollButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTabScrollButton",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/TabScrollButton/TabScrollButton.js",
   "inheritance": null,
