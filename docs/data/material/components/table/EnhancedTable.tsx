@@ -282,11 +282,11 @@ export default function EnhancedTable() {
   const handleRequestSort = React.useCallback(
     (event: React.MouseEvent<unknown>, property: keyof Data) => {
       const isAsc = orderBy === property && order === 'asc';
-      const toggledOrderBy = isAsc ? 'desc' : 'asc';
-      setOrder(toggledOrderBy);
+      const toggledOrder = isAsc ? 'desc' : 'asc';
+      setOrder(toggledOrder);
       setOrderBy(property);
 
-      const sortedRows = stableSort(rows, getComparator(toggledOrderBy, property));
+      const sortedRows = stableSort(rows, getComparator(toggledOrder, property));
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
@@ -342,21 +342,25 @@ export default function EnhancedTable() {
     setPaddingHeight(newPaddingHeight);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const updatedRowsPerPage = parseInt(event.target.value, 10);
-    setRowsPerPage(updatedRowsPerPage);
+  const handleChangeRowsPerPage = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const updatedRowsPerPage = parseInt(event.target.value, 10);
+      setRowsPerPage(updatedRowsPerPage);
 
-    setPage(0);
+      setPage(0);
 
-    const updatedRows = rows.slice(
-      0 * updatedRowsPerPage,
-      0 * updatedRowsPerPage + updatedRowsPerPage,
-    );
-    setVisibleRows(updatedRows);
+      const sortedRows = stableSort(rows, getComparator(order, orderBy));
+      const updatedRows = sortedRows.slice(
+        0 * updatedRowsPerPage,
+        0 * updatedRowsPerPage + updatedRowsPerPage,
+      );
+      setVisibleRows(updatedRows);
 
-    // There is no layout jump to handle on the first page.
-    setPaddingHeight(0);
-  };
+      // There is no layout jump to handle on the first page.
+      setPaddingHeight(0);
+    },
+    [order, orderBy],
+  );
 
   const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);
