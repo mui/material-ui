@@ -147,7 +147,7 @@ const DEFAULT_ROWS_PER_PAGE = 5;
 
 interface EnhancedTableProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+  onRequestSort: (event: React.MouseEvent<unknown>, newOrderBy: keyof Data) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
@@ -158,8 +158,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
-      onRequestSort(event, property);
+    (newOrderBy: keyof Data) => (event: React.MouseEvent<unknown>) => {
+      onRequestSort(event, newOrderBy);
     };
 
   return (
@@ -280,13 +280,13 @@ export default function EnhancedTable() {
   }, []);
 
   const handleRequestSort = React.useCallback(
-    (event: React.MouseEvent<unknown>, property: keyof Data) => {
-      const isAsc = orderBy === property && order === 'asc';
+    (event: React.MouseEvent<unknown>, newOrderBy: keyof Data) => {
+      const isAsc = orderBy === newOrderBy && order === 'asc';
       const toggledOrder = isAsc ? 'desc' : 'asc';
       setOrder(toggledOrder);
-      setOrderBy(property);
+      setOrderBy(newOrderBy);
 
-      const sortedRows = stableSort(rows, getComparator(toggledOrder, property));
+      const sortedRows = stableSort(rows, getComparator(toggledOrder, newOrderBy));
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,

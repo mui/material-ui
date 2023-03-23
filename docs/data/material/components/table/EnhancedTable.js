@@ -120,8 +120,8 @@ const DEFAULT_ROWS_PER_PAGE = 5;
 function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
-  const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
+  const createSortHandler = (newOrderBy) => (event) => {
+    onRequestSort(event, newOrderBy);
   };
 
   return (
@@ -253,13 +253,13 @@ export default function EnhancedTable() {
   }, []);
 
   const handleRequestSort = React.useCallback(
-    (event, property) => {
-      const isAsc = orderBy === property && order === 'asc';
+    (event, newOrderBy) => {
+      const isAsc = orderBy === newOrderBy && order === 'asc';
       const toggledOrder = isAsc ? 'desc' : 'asc';
       setOrder(toggledOrder);
-      setOrderBy(property);
+      setOrderBy(newOrderBy);
 
-      const sortedRows = stableSort(rows, getComparator(toggledOrder, property));
+      const sortedRows = stableSort(rows, getComparator(toggledOrder, newOrderBy));
       const updatedRows = sortedRows.slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
