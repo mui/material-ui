@@ -53,7 +53,7 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
 
 export type MenuProps<
   D extends React.ElementType = MenuTypeMap['defaultComponent'],
-  P = {},
+  P = { component?: React.ElementType },
 > = OverrideProps<MenuTypeMap<P, D>, D>;
 
 export interface MenuOwnerState extends ApplyColorInversion<MenuProps> {}

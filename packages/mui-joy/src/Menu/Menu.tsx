@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import useMenu from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import useSlot from '../utils/useSlot';
+import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
@@ -75,6 +75,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     anchorEl,
     children,
     color: colorProp = 'neutral',
+    component = 'ul',
     disablePortal = false,
     keepMounted = false,
     id,
@@ -129,21 +130,25 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
-    className: classes.root,
+  const rootProps = useSlotProps({
     elementType: MenuRoot,
     getSlotProps: getListboxProps,
     externalForwardedProps: other,
+    externalSlotProps: {},
     ownerState,
     additionalProps: {
+      ref,
       anchorEl,
       open,
       disablePortal,
       keepMounted,
       as: PopperUnstyled,
       modifiers,
+      slots: {
+        root: component,
+      },
     },
+    className: classes.root,
   });
 
   const menuContextValue: MenuUnstyledContextType = React.useMemo(
@@ -155,7 +160,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   );
 
   const result = (
-    <SlotRoot {...rootProps}>
+    <MenuRoot {...rootProps}>
       <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>
           {disablePortal ? (
@@ -166,7 +171,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           )}
         </ListProvider>
       </MenuUnstyledContext.Provider>
-    </SlotRoot>
+    </MenuRoot>
   );
 
   return disablePortal ? (

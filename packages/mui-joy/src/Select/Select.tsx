@@ -342,6 +342,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     size: sizeProp = 'md',
     variant = 'outlined',
     color: colorProp = 'neutral',
+    slotProps = {},
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
@@ -474,8 +475,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const classes = useUtilityClasses(ownerState);
 
   const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(props.slotProps?.listbox?.modifiers || [])],
-    [props.slotProps?.listbox?.modifiers],
+    () => [...defaultModifiers, ...(slotProps.listbox?.modifiers || [])],
+    [slotProps.listbox?.modifiers],
   );
 
   const selectedOption = React.useMemo(() => {
@@ -528,10 +529,21 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       placement: 'bottom' as const,
       as: PopperUnstyled,
       modifiers,
+      slots: {
+        root: slotProps?.listbox?.component || 'ul',
+      },
     },
     className: classes.listbox,
     elementType: SelectListbox,
-    externalForwardedProps: other,
+    externalForwardedProps: {
+      ...other,
+      slotProps: {
+        ...slotProps,
+        ...(slotProps.listbox && {
+          listbox: { ...slotProps.listbox, component: undefined },
+        }),
+      },
+    },
     getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,

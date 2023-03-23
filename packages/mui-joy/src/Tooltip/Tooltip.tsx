@@ -223,6 +223,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const {
     children,
     className,
+    component,
     arrow = false,
     describeChild = false,
     disableFocusListener = false,
@@ -611,6 +612,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       keepMounted,
       direction,
       as: PopperUnstyled,
+      slots: {
+        root: component,
+      },
       modifiers,
       ...interactiveWrapperListeners,
     },
