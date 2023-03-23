@@ -5,6 +5,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 import BaseUIHero from 'docs/src/components/productBaseUI/BaseUIHero';
+import BaseUISummary from 'docs/src/components/productBaseUI/BaseUISummary';
 
 export default function Core() {
   return (
@@ -18,6 +19,7 @@ export default function Core() {
       <AppHeader gitHubRepository="https://github.com/mui/material-ui" />
       <main id="main-content">
         <BaseUIHero />
+        <BaseUISummary />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>
