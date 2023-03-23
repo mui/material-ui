@@ -83,6 +83,8 @@
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyRadio",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Radio/Radio.tsx",
   "inheritance": null,

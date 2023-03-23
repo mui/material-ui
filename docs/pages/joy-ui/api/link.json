@@ -64,6 +64,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyLink",
   "forwardsRefTo": "HTMLAnchorElement",
   "filename": "/packages/mui-joy/src/Link/Link.tsx",
   "inheritance": null,

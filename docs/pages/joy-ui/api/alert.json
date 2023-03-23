@@ -54,6 +54,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAlert",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Alert/Alert.tsx",
   "inheritance": null,

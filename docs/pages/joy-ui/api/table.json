@@ -49,6 +49,8 @@
   "name": "Table",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyTable",
   "forwardsRefTo": "HTMLTableElement",
   "filename": "/packages/mui-joy/src/Table/Table.tsx",
   "inheritance": null,

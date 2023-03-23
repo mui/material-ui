@@ -1,10 +1,10 @@
-# Components
+# Themed components
 
 <p class="description">You can customize a component's styles, default props, and more by using its keys inside the theme. This helps to achieve styling consistency across your application.</p>
 
-## Default props
+## Theme default props
 
-Every Material UI component has default preset values for each of its props.
+Every Material UI component has default values for each of its props.
 To change these default values, use the `defaultProps` key exposed in the theme's `components` key:
 
 ```js
@@ -25,7 +25,7 @@ const theme = createTheme({
 
 If you're using TypeScript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
 
-## Global style overrides
+## Theme style overrides
 
 The theme's `styleOverrides` key makes it possible to potentially change every single style injected by Material UI into the DOM.
 This is useful if you want to apply a fully custom design system to Material UI's components.

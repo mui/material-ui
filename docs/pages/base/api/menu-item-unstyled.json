@@ -23,6 +23,7 @@
     }
   ],
   "spread": true,
+  "muiName": "MuiMenuItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/MenuItemUnstyled.tsx",
   "inheritance": null,

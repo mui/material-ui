@@ -29,6 +29,8 @@
   "name": "AutocompleteListbox",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocompleteListbox",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/AutocompleteListbox/AutocompleteListbox.tsx",
   "inheritance": null,

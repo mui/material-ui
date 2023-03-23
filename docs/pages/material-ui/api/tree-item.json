@@ -46,6 +46,8 @@
     "name": "MuiTreeItem"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTreeItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-lab/src/TreeItem/TreeItem.js",
   "inheritance": null,

@@ -79,6 +79,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTooltip",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Tooltip/Tooltip.tsx",
   "inheritance": null,

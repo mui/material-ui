@@ -90,6 +90,8 @@
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoySelect",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Select/Select.tsx",
   "inheritance": null,
