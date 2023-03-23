@@ -32,6 +32,10 @@ declare module '@mui/material/styles/createPalette' {
   interface Palette {
     primaryDark: PaletteColor;
   }
+
+  interface TypeText {
+    tertiary: string;
+  }
 }
 
 declare module '@mui/material/styles/createTypography' {
@@ -189,10 +193,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         ...(mode === 'light' && {
           primary: grey[900],
           secondary: grey[700],
+          tertiary: grey[600],
         }),
         ...(mode === 'dark' && {
           primary: '#fff',
           secondary: grey[400],
+          tertiary: grey[400],
         }),
       },
       grey: {
