@@ -50,8 +50,7 @@ export default function HooksApiContent(props) {
   return Object.keys(pagesContents).map((key) => {
     const { filename, name: hookName, parameters, returnValue } = pagesContents[key];
 
-    const { hookDescription, parametersDescriptions, returnValueDescriptions } =
-      descriptions[key][userLanguage];
+    const { parametersDescriptions, returnValueDescriptions } = descriptions[key][userLanguage];
 
     const source = filename
       .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
