@@ -1,25 +1,37 @@
 import * as React from 'react';
-import { ActionTypes, ListAction } from './actions.types';
+import { Simplify } from '@mui/types';
+import { ListAction } from './actions.types';
+import {
+  ControllableReducerAction,
+  StateChangeCallback,
+} from '../utils/useControllableReducer.types';
 
-type UseListStrictParametersRequiredKeys =
-  | 'isItemDisabled'
-  | 'disableListWrap'
+type UseListParametersWithDefaultsRequiredKeys =
   | 'disabledItemsFocusable'
+  | 'disableListWrap'
+  | 'focusManagement'
+  | 'isItemDisabled'
   | 'itemComparer'
-  | 'orientation'
+  | 'items'
   | 'itemStringifier'
+  | 'orientation'
   | 'selectionLimit';
 
-export type UseListParametersWithDefaults<ItemValue> = Omit<
-  UseListParameters<ItemValue>,
-  UseListStrictParametersRequiredKeys
-> &
-  Required<Pick<UseListParameters<ItemValue>, UseListStrictParametersRequiredKeys>>;
+export type UseListParametersWithDefaults<ItemValue> = Simplify<
+  Required<Pick<UseListParameters<ItemValue, any, any>, UseListParametersWithDefaultsRequiredKeys>>
+>;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
 
-export type ListReducerAction<T> = ListAction<T> & {
-  props: UseListParametersWithDefaults<T>;
+export type ListReducerAction<ItemValue, State extends ListState<ItemValue>> = ListAction<
+  ItemValue,
+  State
+> & {
+  props: React.RefObject<UseListParametersWithDefaults<ItemValue>>;
+};
+
+export type ListActionAddOn<ItemValue> = {
+  props: React.RefObject<UseListParametersWithDefaults<ItemValue>>;
 };
 
 export interface ListState<ItemValue> {
@@ -27,16 +39,17 @@ export interface ListState<ItemValue> {
   selectedValues: ItemValue[];
 }
 
-export type ListReducer<ItemValue> = (
-  state: ListState<ItemValue>,
-  action: ListReducerAction<ItemValue>,
-) => ListState<ItemValue>;
+export type ListReducer<ItemValue, State extends ListState<ItemValue>> = (
+  state: State,
+  action: ListReducerAction<ItemValue, State>,
+) => State;
 
-export interface UseListParameters<ItemValue> {
-  /**
-   * The default selected value. Use when the list component is not controlled.
-   */
-  defaultValue?: ItemValue[];
+export interface UseListParameters<
+  ItemValue,
+  State extends ListState<ItemValue> = ListState<ItemValue>,
+  CustomAction extends ControllableReducerAction = never,
+> {
+  controlledState?: Partial<State>;
   /**
    * If `true`, it will be possible to highlight disabled items.
    * @default false
@@ -62,6 +75,7 @@ export interface UseListParameters<ItemValue> {
    * @param itemValue List item to get the id for.
    */
   getItemId?: (itemValue: ItemValue) => string | undefined;
+  getInitialState?: () => State;
   /**
    * A function that determines if a particular item is disabled.
    * @default () => false
@@ -72,22 +86,29 @@ export interface UseListParameters<ItemValue> {
    */
   listRef?: React.Ref<any>;
   /**
-   * Callback fired when the selected value changes.
+   * Callback fired when the value changes.
    */
   onChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    values: ItemValue[],
-    reason: ActionTypes,
+    value: ItemValue[],
+    reason: string,
   ) => void;
+  /**
+   * Callback fired when the highlighted option changes.
+   */
+  onHighlightChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    option: ItemValue | null,
+    reason: string,
+  ) => void;
+  /**
+   * Callback fired when the selected value changes.
+   */
+  onStateChange?: StateChangeCallback<State>;
   /**
    * Callback fired when the highlighted item changes.
    * The `value` is null if there is no highlighted item.
    */
-  onHighlightChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: ItemValue | null,
-    reason: ActionTypes,
-  ) => void;
   /**
    * A function that tests equality between two items' values.
    * @default (a, b) => a === b
@@ -122,11 +143,10 @@ export interface UseListParameters<ItemValue> {
    * Custom state reducer function. It calculates the new state (highlighted and selected items)
    * based on the previous one and the performed action.
    */
-  stateReducer?: ListReducer<ItemValue>;
-  /**
-   * The selected value. Use when the list component is controlled.
-   */
-  value?: ItemValue[];
+  stateReducer?: (
+    state: State,
+    action: (ListAction<ItemValue, State> | CustomAction) & ListActionAddOn<ItemValue>,
+  ) => State;
 }
 
 export interface ListItemState {

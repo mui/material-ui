@@ -6,6 +6,10 @@ import {
 } from '@mui/utils';
 import useButton from '../useButton';
 import {
+  ButtonClickAction,
+  SelectAction,
+  SelectActionTypes,
+  SelectInternalState,
   SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -13,11 +17,11 @@ import {
   UseSelectResult,
 } from './useSelect.types';
 import useList, {
-  ListReducer,
   defaultListboxReducer,
   ActionTypes,
   UseListParameters,
-  ListState,
+  ListAction,
+  ListActionAddOn,
 } from '../useList';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
@@ -48,7 +52,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
     onChange,
     onHighlightChange,
     onOpenChange,
-    open = false,
+    open: openProp,
     options: optionsParam,
     optionStringifier = defaultOptionStringifier,
     value: valueProp,
@@ -118,77 +122,47 @@ function useSelect<TValue, Multiple extends boolean = false>(
 
   const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
-  React.useEffect(() => {
-    focusListboxIfRequested();
-  }, [focusListboxIfRequested]);
+  const stateReducer = React.useCallback(
+    (
+      state: SelectInternalState<TValue>,
+      action: (ListAction<TValue, SelectInternalState<TValue>> | SelectAction) &
+        ListActionAddOn<TValue>,
+    ) => {
+      const { open } = state;
 
-  React.useEffect(() => {
-    requestListboxFocus(open);
-  }, [open]);
+      switch (action.type) {
+        case SelectActionTypes.buttonClick:
+          return {
+            ...state,
+            open: !open,
+          };
 
-  const createHandleMouseDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLElement>) => {
-      otherHandlers?.onMouseDown?.(event);
-      if (!event.defaultPrevented && open) {
-        ignoreClick.current = true;
-      }
-    };
+        case SelectActionTypes.buttonArrowKeyDown:
+          if (action.event.key === 'ArrowDown') {
+            return {
+              ...state,
+              open: true,
+            };
+          }
 
-  const createHandleButtonClick =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
-      otherHandlers?.onClick?.(event);
-      if (!event.defaultPrevented && !ignoreClick.current) {
-        onOpenChange?.(!open);
-      }
+          if (action.event.key === 'ArrowUp') {
+            return {
+              ...state,
+              open: true,
+              // TODO: highlight last item
+            };
+          }
 
-      ignoreClick.current = false;
-    };
+          break;
 
-  const createHandleButtonKeyDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyDown?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      if (event.key === 'Enter') {
-        ignoreEnterKeyUp.current = true;
-      }
-
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        onOpenChange?.(true);
-      }
-    };
-
-  const createHandleListboxKeyUp =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyUp?.(event);
-      if (event.defaultPrevented) {
-        return;
+        default:
+          break;
       }
 
-      const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
-
-      if (open && !ignoreEnterKeyUp.current && closingKeys.includes(event.key)) {
-        buttonRef?.current?.focus();
-      }
-
-      ignoreEnterKeyUp.current = false;
-    };
-
-  const createHandleListboxBlur =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
-      otherHandlers?.onBlur?.(event);
-      if (!event.defaultPrevented) {
-        onOpenChange?.(false);
-      }
-    };
-
-  const listboxReducer: ListReducer<TValue> = React.useCallback(
-    (state, action) => {
-      const newState: ListState<TValue> = defaultListboxReducer<TValue>(state, action);
+      const newState: SelectInternalState<TValue> = defaultListboxReducer(
+        state,
+        action as ListAction<TValue, SelectInternalState<TValue>> & ListActionAddOn<TValue>,
+      );
 
       switch (action.type) {
         case ActionTypes.keyDown:
@@ -204,15 +178,44 @@ function useSelect<TValue, Multiple extends boolean = false>(
             };
           }
 
+          if (
+            !multiple &&
+            (action.event.key === 'Enter' ||
+              action.event.key === ' ' ||
+              action.event.key === 'Escape')
+          ) {
+            return {
+              ...newState,
+              open: false,
+            };
+          }
+
           break;
 
-        case ActionTypes.blur:
-        case ActionTypes.setValue:
+        case ActionTypes.itemClick:
+          if (!multiple) {
+            return {
+              ...newState,
+              open: false,
+            };
+          }
+
+          break;
+
+        case ActionTypes.setState:
         case ActionTypes.itemsChange:
           return {
             ...newState,
             highlightedValue:
               newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
+          };
+
+        case ActionTypes.blur:
+          return {
+            ...newState,
+            highlightedValue:
+              newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
+            open: false,
           };
 
         default:
@@ -221,7 +224,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
 
       return newState;
     },
-    [open, multiple],
+    [multiple],
   );
 
   const {
@@ -255,9 +258,26 @@ function useSelect<TValue, Multiple extends boolean = false>(
     [options, optionStringifier],
   );
 
-  const useListboxParameters: UseListParameters<TValue> = {
-    defaultValue,
+  const controlledState = React.useMemo(
+    () => ({
+      selectedValues: value,
+      open: openProp,
+    }),
+    [value, openProp],
+  );
+
+  const useListboxParameters: UseListParameters<
+    TValue,
+    SelectInternalState<TValue>,
+    SelectAction
+  > = {
+    getInitialState: () => ({
+      highlightedValue: null,
+      selectedValues: defaultValue ?? [],
+      open: false,
+    }),
     getItemId: (itemValue) => options.get(itemValue)?.id,
+    controlledState,
     isItemDisabled,
     listRef: handleListboxRef,
     onChange: (e, newValues) => {
@@ -270,28 +290,95 @@ function useSelect<TValue, Multiple extends boolean = false>(
     onHighlightChange: (e, newValue) => {
       onHighlightChange?.(e, newValue ?? null);
     },
+    onStateChange: (e, field, fieldValue) => {
+      if (field === 'open') {
+        onOpenChange?.(fieldValue as boolean);
+        if (fieldValue === false && e?.type !== 'blur') {
+          buttonRef.current?.focus();
+        }
+      }
+    },
     items: optionValues,
     itemStringifier: stringifyOption,
     selectionLimit: multiple ? null : 1,
-    stateReducer: listboxReducer,
-    value,
+    stateReducer,
   };
 
   const {
+    dispatch,
     getRootProps: getListboxRootProps,
     highlightedOption,
     selectedOptions,
     contextValue: listContextValue,
+    state,
   } = useList(useListboxParameters);
 
-  useEnhancedEffect(() => {
-    // TODO: the listbox should close when an option is clicked (even if it's already selected)
-    // close the listbox when an option is selected
-    if (!multiple && listboxRef.current?.contains(document.activeElement)) {
-      onOpenChange?.(false);
-      buttonRef.current?.focus();
-    }
-  }, [multiple, onOpenChange, selectedOptions]);
+  const { open } = state;
+
+  React.useEffect(() => {
+    focusListboxIfRequested();
+  }, [focusListboxIfRequested]);
+
+  React.useEffect(() => {
+    requestListboxFocus(open);
+  }, [open]);
+
+  const createHandleMouseDown =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLElement>) => {
+      otherHandlers?.onMouseDown?.(event);
+      if (!event.defaultPrevented && open) {
+        ignoreClick.current = true;
+      }
+    };
+
+  const createHandleButtonClick =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
+      otherHandlers?.onClick?.(event);
+      if (!event.defaultPrevented && !ignoreClick.current) {
+        const action: ButtonClickAction = {
+          type: SelectActionTypes.buttonClick,
+          event,
+        };
+
+        dispatch(action);
+      }
+
+      ignoreClick.current = false;
+    };
+
+  const createHandleButtonKeyDown =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
+      otherHandlers?.onKeyDown?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      if (event.key === 'Enter') {
+        ignoreEnterKeyUp.current = true;
+      }
+
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        dispatch({ type: SelectActionTypes.buttonArrowKeyDown, event });
+      }
+    };
+
+  const createHandleListboxKeyUp =
+    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
+      otherHandlers?.onKeyUp?.(event);
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
+
+      if (open && !ignoreEnterKeyUp.current && closingKeys.includes(event.key)) {
+        buttonRef?.current?.focus();
+      }
+
+      ignoreEnterKeyUp.current = false;
+    };
 
   useEnhancedEffect(() => {
     // Scroll to the currently highlighted option.
@@ -340,7 +427,6 @@ function useSelect<TValue, Multiple extends boolean = false>(
     return {
       ...getListboxRootProps({
         ...otherHandlers,
-        onBlur: createHandleListboxBlur(otherHandlers),
         onKeyUp: createHandleListboxKeyUp(otherHandlers),
       }),
       id: listboxId,

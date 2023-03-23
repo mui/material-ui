@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { UseListRootSlotProps } from '../useList';
+import { ListState, UseListRootSlotProps } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { EventHandlers } from '../utils/types';
 import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
+  defaultOpen?: boolean;
   open?: boolean;
-  onClose?: () => void;
+  onOpenChange?: (open: boolean) => void;
   listboxId?: string;
   listboxRef?: React.Ref<any>;
 }
@@ -40,6 +41,7 @@ export interface UseMenuReturnValue {
    * Items in the menu listbox.
    */
   menuItems: Map<string, MenuItemMetadata>;
+  open: boolean;
 }
 
 interface UseMenuListboxSlotEventHandlers {
@@ -53,3 +55,7 @@ export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
   ref: React.Ref<any>;
   role: React.AriaRole;
 };
+
+export interface MenuInternalState extends ListState<string> {
+  open: boolean;
+}

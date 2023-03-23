@@ -12,19 +12,22 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
-        type: ActionTypes.setValue,
-        values: ['foo'],
+      const action: ListReducerAction<string, ListState<string>> = {
+        type: ActionTypes.setState,
+        value: { selectedValues: ['foo'] },
         event: null,
         props: {
-          items: ['foo', 'bar'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['foo', 'bar'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
       const result = defaultReducer(state, action);
@@ -39,18 +42,21 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.blur,
         event: {} as any, // not relevant
         props: {
-          items: [],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: [],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
 
@@ -66,18 +72,21 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          items: ['one', 'two', 'three'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
         item: 'two',
       };
@@ -92,18 +101,21 @@ describe('useListbox defaultReducer', () => {
         selectedValues: ['one'],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          items: ['one', 'two', 'three'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: 1,
+          current: {
+            items: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: 1,
+          },
         },
         item: 'two',
       };
@@ -118,18 +130,21 @@ describe('useListbox defaultReducer', () => {
         selectedValues: ['one'],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          items: ['one', 'two', 'three'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
         item: 'two',
       };
@@ -144,18 +159,21 @@ describe('useListbox defaultReducer', () => {
         selectedValues: ['one', 'two'],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
-          items: ['one', 'two', 'three'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
         item: 'two',
       };
@@ -173,20 +191,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Home',
           } as any,
           props: {
-            items: ['one', 'two', 'three', 'four', 'five'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: (_, index) => index === 0,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three', 'four', 'five'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: (_, index) => index === 0,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
         };
 
@@ -202,20 +223,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'End',
           } as any,
           props: {
-            items: ['one', 'two', 'three', 'four', 'five'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: (_, index) => index === 4,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three', 'four', 'five'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: (_, index) => index === 4,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
         };
 
@@ -231,20 +255,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowUp',
           } as any,
           props: {
-            items: ['one', 'two', 'three', 'four', 'five'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: (_, index) => index === 0 || index === 4,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three', 'four', 'five'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: (_, index) => index === 0 || index === 4,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
         };
 
@@ -260,20 +287,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
           props: {
-            items: ['one', 'two', 'three', 'four', 'five'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: (_, index) => index === 0 || index === 4,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three', 'four', 'five'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: (_, index) => index === 0 || index === 4,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
         };
 
@@ -287,20 +317,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
           props: {
-            items: ['one', 'two', 'three', 'four', 'five'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: () => true,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three', 'four', 'five'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: () => true,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
         };
 
@@ -316,20 +349,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
           props: {
-            items: ['one', 'two', 'three'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: () => false,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: () => false,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
         };
 
@@ -343,20 +379,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: ['one'],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
           props: {
-            items: ['one', 'two', 'three'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: () => false,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: 1,
+            current: {
+              items: ['one', 'two', 'three'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: () => false,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: 1,
+            },
           },
         };
 
@@ -370,20 +409,23 @@ describe('useListbox defaultReducer', () => {
           selectedValues: ['one'],
         };
 
-        const action: ListReducerAction<string> = {
+        const action: ListReducerAction<string, ListState<string>> = {
           type: ActionTypes.itemClick,
           event: {
             key: 'Enter',
           } as any,
           props: {
-            items: ['one', 'two', 'three'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            isItemDisabled: () => false,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            selectionLimit: null,
+            current: {
+              items: ['one', 'two', 'three'],
+              disableListWrap: false,
+              disabledItemsFocusable: false,
+              focusManagement: 'activeDescendant',
+              isItemDisabled: () => false,
+              itemComparer: (o, v) => o === v,
+              itemStringifier: (option) => option,
+              orientation: 'vertical',
+              selectionLimit: null,
+            },
           },
           item: 'two',
         };
@@ -401,19 +443,22 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.textNavigation,
         searchString: 'th',
         event: {} as React.KeyboardEvent,
         props: {
-          items: ['one', 'two', 'three', 'four', 'five'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
 
@@ -427,19 +472,22 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.textNavigation,
         searchString: 'z',
         event: {} as React.KeyboardEvent,
         props: {
-          items: ['one', 'two', 'three', 'four', 'five'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
 
@@ -453,19 +501,22 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
         props: {
-          items: ['one', 'two', 'three', 'four', 'five'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          isItemDisabled: (_, i) => i === 1,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: (_, i) => i === 1,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
 
@@ -479,19 +530,22 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
         props: {
-          items: ['one', 'two', 'three', 'four', 'five'],
-          disableListWrap: false,
-          disabledItemsFocusable: true,
-          isItemDisabled: (_, i) => i === 1,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: false,
+            disabledItemsFocusable: true,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: (_, i) => i === 1,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
 
@@ -505,19 +559,22 @@ describe('useListbox defaultReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string> = {
+      const action: ListReducerAction<string, ListState<string>> = {
         type: ActionTypes.textNavigation,
         searchString: 'one',
         event: {} as React.KeyboardEvent,
         props: {
-          items: ['one', 'two', 'three', 'four', 'five'],
-          disableListWrap: true,
-          disabledItemsFocusable: false,
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          selectionLimit: null,
+          current: {
+            items: ['one', 'two', 'three', 'four', 'five'],
+            disableListWrap: true,
+            disabledItemsFocusable: false,
+            focusManagement: 'activeDescendant',
+            isItemDisabled: () => false,
+            itemComparer: (o, v) => o === v,
+            itemStringifier: (option) => option,
+            orientation: 'vertical',
+            selectionLimit: null,
+          },
         },
       };
 

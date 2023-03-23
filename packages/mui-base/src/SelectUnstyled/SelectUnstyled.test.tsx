@@ -96,7 +96,7 @@ describe('<SelectUnstyled />', () => {
         });
 
         const listbox = getByRole('listbox');
-        userEvent.keyPress(listbox, { key });
+        fireEvent.keyDown(listbox, { key });
 
         expect(select).to.have.attribute('aria-expanded', 'false');
         expect(listbox).not.toBeVisible();
@@ -351,8 +351,8 @@ describe('<SelectUnstyled />', () => {
       });
 
       const listbox = getByRole('listbox');
-      userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
-      userEvent.keyPress(listbox, { key: 'Escape' });
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights '2'
+      fireEvent.keyDown(listbox, { key: 'Escape' });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');

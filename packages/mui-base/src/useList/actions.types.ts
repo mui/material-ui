@@ -1,77 +1,63 @@
-enum ActionTypes {
-  blur = 'blur',
-  focus = 'focus',
-  keyDown = 'keyDown',
-  itemClick = 'itemClick',
-  itemHover = 'itemHover',
-  itemsChange = 'itemsChange',
-  setValue = 'setValue',
-  setHighlight = 'setHighlight',
-  textNavigation = 'textNagivation',
-}
+import { SetStateAction, setStateActionType } from '../utils/useControllableReducer.types';
+import type { ListState } from './useList.types';
 
-// split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
-export { ActionTypes };
+export const ActionTypes = {
+  blur: 'blur',
+  focus: 'focus',
+  keyDown: 'keyDown',
+  itemClick: 'itemClick',
+  itemHover: 'itemHover',
+  itemsChange: 'itemsChange',
+  setState: setStateActionType,
+  textNavigation: 'textNavigation',
+} as const;
 
 interface ItemClickAction<Value> {
-  type: ActionTypes.itemClick;
+  type: typeof ActionTypes.itemClick;
   item: Value;
   event: React.MouseEvent;
 }
 
 interface ItemHoverAction<Value> {
-  type: ActionTypes.itemHover;
+  type: typeof ActionTypes.itemHover;
   item: Value;
   event: React.MouseEvent;
 }
 
 interface FocusAction {
-  type: ActionTypes.focus;
+  type: typeof ActionTypes.focus;
   event: React.FocusEvent;
 }
 
 interface BlurAction {
-  type: ActionTypes.blur;
+  type: typeof ActionTypes.blur;
   event: React.FocusEvent;
 }
 
 interface KeyDownAction {
-  type: ActionTypes.keyDown;
+  type: typeof ActionTypes.keyDown;
   event: React.KeyboardEvent;
 }
 
-interface SetValueAction<Value> {
-  type: ActionTypes.setValue;
-  event: null;
-  values: Value[];
-}
-
-interface SetHighlightAction<Value> {
-  type: ActionTypes.setHighlight;
-  event: null;
-  value: Value | null;
-}
-
 interface TextNavigationAction {
-  type: ActionTypes.textNavigation;
+  type: typeof ActionTypes.textNavigation;
   event: React.KeyboardEvent;
   searchString: string;
 }
 
 interface ItemsChangeAction<Value> {
-  type: ActionTypes.itemsChange;
+  type: typeof ActionTypes.itemsChange;
   event: null;
   items: Value[];
   previousItems: Value[];
 }
 
-export type ListAction<Value> =
+export type ListAction<Value, State extends ListState<Value>> =
+  | BlurAction
+  | FocusAction
   | ItemClickAction<Value>
   | ItemHoverAction<Value>
-  | FocusAction
-  | BlurAction
+  | ItemsChangeAction<Value>
   | KeyDownAction
-  | SetHighlightAction<Value>
-  | TextNavigationAction
-  | SetValueAction<Value>
-  | ItemsChangeAction<Value>;
+  | SetStateAction<State>
+  | TextNavigationAction;

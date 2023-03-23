@@ -2,9 +2,10 @@ import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
+import type { SelectInternalState } from './useSelect.types';
 
 export type SelectProviderValue<Value> = CompoundComponentContextValue<Value, SelectOption<Value>> &
-  ListContextValue<Value>;
+  ListContextValue<Value, SelectInternalState<Value>>;
 
 export interface SelectProviderProps<Value> {
   value: SelectProviderValue<Value>;
@@ -25,7 +26,7 @@ export default function SelectProvider<Value>(props: SelectProviderProps<Value>)
     totalSubitemCount,
   } = value;
 
-  const listContextValue: ListContextValue<Value> = React.useMemo(
+  const listContextValue: ListContextValue<Value, SelectInternalState<Value>> = React.useMemo(
     () => ({
       dispatch,
       getItemState,

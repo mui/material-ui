@@ -13,6 +13,7 @@ import useList, {
   ActionTypes,
   defaultListboxReducer,
   ListReducer,
+  ListState,
   UseListParameters,
 } from '../useList';
 
@@ -60,14 +61,14 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
 
   const isRtl = direction === 'rtl';
 
-  let listOrientation: UseListParameters<any>['orientation'];
+  let listOrientation: UseListParameters<any, any>['orientation'];
   if (orientation === 'vertical') {
     listOrientation = 'vertical';
   } else {
     listOrientation = isRtl ? 'horizontal-rtl' : 'horizontal-ltr';
   }
 
-  const stateReducer: ListReducer<string | number> = React.useCallback(
+  const stateReducer: ListReducer<string | number, ListState<string | number>> = React.useCallback(
     (state, action) => {
       const newState = defaultListboxReducer(state, action);
 
@@ -78,10 +79,10 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
         };
       }
 
-      if (action.type === ActionTypes.setValue && action.values != null) {
+      if (action.type === ActionTypes.setState && action.value.selectedValues != null) {
         return {
           ...newState,
-          highlightedValue: action.values[0],
+          highlightedValue: action.value.selectedValues[0],
         };
       }
 
@@ -97,14 +98,6 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     [selectionFollowsFocus],
   );
 
-  const listboxValue = React.useMemo(() => {
-    if (value == null) {
-      return [];
-    }
-
-    return [value];
-  }, [value]);
-
   const handleChange = React.useCallback(
     (
       event:
@@ -119,12 +112,22 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     [onSelected],
   );
 
+  const controlledState = React.useMemo(() => {
+    if (value === undefined) {
+      return {};
+    }
+
+    return value != null ? { selectedValues: [value] } : { selectedValues: [] };
+  }, [value]);
+
   const {
-    getRootProps: getListboxRootProps,
-    selectedOptions,
-    highlightedOption,
     contextValue: listContextValue,
+    dispatch,
+    getRootProps: getListboxRootProps,
+    highlightedOption,
+    selectedOptions,
   } = useList({
+    controlledState,
     disabledItemsFocusable: !selectionFollowsFocus,
     focusManagement: 'DOM',
     getItemDomElement: getTabElement,
@@ -135,8 +138,23 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     orientation: listOrientation,
     selectionLimit: 1,
     stateReducer,
-    value: listboxValue,
   });
+
+  React.useEffect(() => {
+    if (value === undefined) {
+      return;
+    }
+
+    if (value != null) {
+      dispatch({
+        type: ActionTypes.setState,
+        event: null,
+        value: {
+          highlightedValue: value,
+        },
+      });
+    }
+  }, [dispatch, value]);
 
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,

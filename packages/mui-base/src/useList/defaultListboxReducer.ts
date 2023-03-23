@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { ActionTypes } from './actions.types';
-import { ListState, UseListParametersWithDefaults, ListReducerAction } from './useList.types';
+import {
+  ListState,
+  UseListParametersWithDefaults,
+  ListReducerAction,
+  ListActionAddOn,
+} from './useList.types';
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 
@@ -178,11 +183,11 @@ function toggleSelection<ItemValue>(
   return newSelection;
 }
 
-function handleItemSelection<ItemValue>(
+function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   item: ItemValue,
-  state: ListState<ItemValue>,
+  state: State,
   props: UseListParametersWithDefaults<ItemValue>,
-): ListState<ItemValue> {
+): State {
   const { itemComparer = (o, v) => o === v, isItemDisabled = () => false, selectionLimit } = props;
   const { selectedValues } = state;
 
@@ -196,16 +201,17 @@ function handleItemSelection<ItemValue>(
   const newSelectedValues = toggleSelection(item, selectedValues, selectionLimit, itemComparer);
 
   return {
+    ...state,
     selectedValues: newSelectedValues,
     highlightedValue: item,
   };
 }
 
-function handleKeyDown<ItemValue>(
+function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
   event: React.KeyboardEvent,
-  state: Readonly<ListState<ItemValue>>,
+  state: State,
   parameters: UseListParametersWithDefaults<ItemValue>,
-): ListState<ItemValue> {
+): State {
   const previouslySelectedValue = state.highlightedValue;
   const { orientation } = parameters;
 
@@ -295,10 +301,10 @@ function handleKeyDown<ItemValue>(
   return state;
 }
 
-function handleBlur<ItemValue>(
-  state: ListState<ItemValue>,
+function handleBlur<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
   props: UseListParametersWithDefaults<ItemValue>,
-): ListState<ItemValue> {
+): State {
   if (props.focusManagement === 'DOM') {
     return state;
   }
@@ -309,11 +315,11 @@ function handleBlur<ItemValue>(
   };
 }
 
-const textCriteriaMatches = <ItemValue>(
+function textCriteriaMatches<ItemValue>(
   nextFocus: ItemValue,
   searchString: string,
   stringifyItem: (item: ItemValue) => string | undefined,
-) => {
+) {
   const text = stringifyItem(nextFocus)?.trim().toLowerCase();
 
   if (!text || text.length === 0) {
@@ -322,13 +328,13 @@ const textCriteriaMatches = <ItemValue>(
   }
 
   return text.indexOf(searchString) === 0;
-};
+}
 
-function handleTextNavigation<ItemValue>(
-  state: ListState<ItemValue>,
+function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
   searchString: string,
   props: UseListParametersWithDefaults<ItemValue>,
-): ListState<ItemValue> {
+): State {
   const {
     items,
     isItemDisabled,
@@ -385,12 +391,12 @@ function handleTextNavigation<ItemValue>(
   return state;
 }
 
-function handleItemsChange<ItemValue>(
+function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   items: ItemValue[],
   previousItems: ItemValue[],
-  state: ListState<ItemValue>,
+  state: State,
   props: UseListParametersWithDefaults<ItemValue>,
-): ListState<ItemValue> {
+): State {
   const { itemComparer, focusManagement } = props;
 
   let newHighlightedValue: ItemValue | null = null;
@@ -409,38 +415,35 @@ function handleItemsChange<ItemValue>(
   );
 
   return {
+    ...state,
     highlightedValue: newHighlightedValue,
     selectedValues: newSelectedValues,
   };
 }
 
-export default function defaultListboxReducer<ItemValue>(
-  state: Readonly<ListState<ItemValue>>,
-  action: ListReducerAction<ItemValue>,
-): Readonly<ListState<ItemValue>> {
-  const { type } = action;
+export default function defaultListboxReducer<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  action: ListReducerAction<ItemValue, State> & ListActionAddOn<ItemValue>,
+): State {
+  const { type, props } = action;
+  const parameters = props.current!;
 
   switch (type) {
     case ActionTypes.keyDown:
-      return handleKeyDown(action.event, state, action.props);
+      return handleKeyDown(action.event, state, parameters);
     case ActionTypes.itemClick:
-      return handleItemSelection(action.item, state, action.props);
+      return handleItemSelection(action.item, state, parameters);
     case ActionTypes.blur:
-      return handleBlur(state, action.props);
-    case ActionTypes.setValue:
+      return handleBlur(state, parameters);
+    case ActionTypes.setState:
       return {
         ...state,
-        selectedValues: action.values,
-      };
-    case ActionTypes.setHighlight:
-      return {
-        ...state,
-        highlightedValue: action.value,
+        ...action.value,
       };
     case ActionTypes.textNavigation:
-      return handleTextNavigation(state, action.searchString, action.props);
+      return handleTextNavigation(state, action.searchString, parameters);
     case ActionTypes.itemsChange:
-      return handleItemsChange(action.items, action.previousItems, state, action.props);
+      return handleItemsChange(action.items, action.previousItems, state, parameters);
     default:
       return state;
   }

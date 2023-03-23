@@ -26,6 +26,7 @@ export interface MenuUnstyledOwnProps {
   anchorEl?: PopperUnstyledProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
+  defaultOpen?: boolean;
   /**
    * Always keep the menu in the DOM.
    * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
@@ -37,7 +38,7 @@ export interface MenuUnstyledOwnProps {
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onClose?: () => void;
+  onOpenChange?: (open: boolean) => void;
   /**
    * Controls whether the menu is displayed.
    * @default false
@@ -92,7 +93,7 @@ export type MenuUnstyledProps<
 };
 
 export interface MenuUnstyledOwnerState extends MenuUnstyledOwnProps {
-  open: boolean;
+  keepMounted: boolean;
 }
 
 export type MenuUnstyledRootSlotProps = {

@@ -5,23 +5,37 @@ import {
   UseListParametersWithDefaults,
   ListItemState,
   UseListRootSlotProps,
+  ListState,
+  ListActionAddOn,
 } from './useList.types';
 import defaultReducer from './defaultListboxReducer';
-import useControllableReducer from './useControllableReducer';
+import useControllableReducer from '../utils/useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 import useLatest from '../utils/useLatest';
 import useTextNavigation from '../utils/useTextNavigation';
 import useListChangeNotifiers from './useListChangeNotifiers';
 import { ActionTypes, ListAction } from './actions.types';
+import {
+  ControllableReducerAction,
+  StateChangeCallback,
+  StateComparers,
+} from '../utils/useControllableReducer.types';
 
-const defaultItemComparer = <ItemValue>(item1: ItemValue, item2: ItemValue) => item1 === item2;
+const noop = () => {};
+const emptyObject = {};
+
+const defaultItemComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsItemDisabled = () => false;
 const defaultItemStringifier = <ItemValue>(item: ItemValue) =>
   typeof item === 'string' ? item : String(item);
+const defaultGetInitialState = () => ({
+  highlightedValue: null,
+  selectedValues: [],
+});
 
-export interface ListContextValue<ItemValue> {
-  dispatch: (action: ListAction<ItemValue>) => void;
+export interface ListContextValue<ItemValue, State extends ListState<ItemValue>> {
+  dispatch: (action: ListAction<ItemValue, State>) => void;
   getItemState: (item: ItemValue) => ListItemState;
   registerHighlightChangeHandler: (handler: (item: ItemValue | null) => void) => () => void;
   registerSelectionChangeHandler: (
@@ -29,7 +43,7 @@ export interface ListContextValue<ItemValue> {
   ) => () => void;
 }
 
-export const ListContext = React.createContext<ListContextValue<any> | null>(null);
+export const ListContext = React.createContext<ListContextValue<any, any> | null>(null);
 if (process.env.NODE_ENV !== 'production') {
   ListContext.displayName = 'ListContext';
 }
@@ -42,23 +56,30 @@ if (process.env.NODE_ENV !== 'production') {
  *
  * @ignore - internal hook.
  */
-export default function useList<ItemValue>(params: UseListParameters<ItemValue>) {
+function useList<
+  ItemValue,
+  State extends ListState<ItemValue> = ListState<ItemValue>,
+  CustomAction extends ControllableReducerAction = never,
+>(params: UseListParameters<ItemValue, State, CustomAction>) {
   const {
+    controlledState: controlledProps = emptyObject,
     disabledItemsFocusable = false,
     disableListWrap = false,
     focusManagement = 'activeDescendant',
+    getInitialState = defaultGetInitialState,
     getItemDomElement,
     getItemId,
     isItemDisabled = defaultIsItemDisabled,
     listRef: externalListRef,
-    onHighlightChange,
-    itemComparer = defaultItemComparer,
+    onStateChange = noop,
     items,
+    itemComparer = defaultItemComparer,
     itemStringifier = defaultItemStringifier,
+    onChange,
+    onHighlightChange,
     orientation = 'vertical',
     selectionLimit = null,
     stateReducer: externalReducer,
-    value: valueParam,
   } = params;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -82,7 +103,7 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
     (
       event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
       value: ItemValue | null,
-      reason: ActionTypes,
+      reason: string,
     ) => {
       onHighlightChange?.(event, value, reason);
 
@@ -99,27 +120,83 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
     [getItemDomElement, onHighlightChange, focusManagement],
   );
 
+  const stateComparers = React.useMemo(
+    () =>
+      ({
+        highlightedValue: itemComparer,
+        selectedValues: (valuesArray1, valuesArray2) =>
+          areArraysEqual(valuesArray1, valuesArray2, itemComparer),
+      } as StateComparers<State>),
+    [itemComparer],
+  );
+
+  const handleStateChange: StateChangeCallback<State> = React.useCallback(
+    (event, field, value, reason, state) => {
+      onStateChange?.(event, field, value, reason, state);
+
+      switch (field) {
+        case 'highlightedValue':
+          handleHighlightChange(
+            event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+            value as ItemValue | null,
+            reason,
+          );
+          break;
+        case 'selectedValues':
+          onChange?.(
+            event as React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+            value as ItemValue[],
+            reason,
+          );
+          break;
+        default:
+          break;
+      }
+    },
+    [handleHighlightChange, onChange, onStateChange],
+  );
+
   const propsWithDefaults: React.RefObject<UseListParametersWithDefaults<ItemValue>> = useLatest(
     {
-      ...params,
       disabledItemsFocusable,
       disableListWrap,
       focusManagement,
       isItemDisabled,
-      onHighlightChange: handleHighlightChange,
       itemComparer,
+      items,
       itemStringifier,
+      onHighlightChange: handleHighlightChange,
       orientation,
       selectionLimit,
+      stateComparers,
     },
     [params],
   );
 
-  const [{ highlightedValue, selectedValues }, dispatch] = useControllableReducer(
-    defaultReducer,
-    externalReducer,
-    propsWithDefaults,
+  const initialState = getInitialState();
+  const reducer = externalReducer ?? defaultReducer;
+
+  const actionAddOn: ListActionAddOn<ItemValue> = React.useMemo(
+    () => ({ props: propsWithDefaults }),
+    [propsWithDefaults],
   );
+
+  type ListActionsWithCustomActions = CustomAction | ListAction<ItemValue, State>;
+
+  const [state, dispatch] = useControllableReducer<
+    State,
+    ListActionsWithCustomActions,
+    ListActionAddOn<ItemValue>
+  >({
+    reducer: reducer as any,
+    actionAddOn,
+    initialState: initialState as State,
+    controlledProps,
+    stateComparers,
+    onStateChange: handleStateChange,
+  });
+
+  const { highlightedValue, selectedValues } = state;
 
   const handleTextNavigation = useTextNavigation((searchString, event) =>
     dispatch({
@@ -128,17 +205,6 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
       searchString,
     }),
   );
-
-  React.useEffect(() => {
-    // if a controlled value changes, we need to update the state to keep things in sync
-    if (valueParam !== undefined && valueParam !== selectedValues) {
-      dispatch({
-        type: ActionTypes.setValue,
-        event: null,
-        values: valueParam,
-      });
-    }
-  }, [valueParam, selectedValues, dispatch]);
 
   const highlightedIndex = React.useMemo(() => {
     return highlightedValue == null
@@ -184,9 +250,9 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
   const setSelectedValue = React.useCallback(
     (values: ItemValue[]) => {
       dispatch({
-        type: ActionTypes.setValue,
+        type: ActionTypes.setState,
         event: null,
-        values,
+        value: { selectedValues: values } as Partial<State>,
       });
     },
     [dispatch],
@@ -195,9 +261,9 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
   const setHighlightedValue = React.useCallback(
     (item: ItemValue | null) => {
       dispatch({
-        type: ActionTypes.setHighlight,
+        type: ActionTypes.setState,
         event: null,
-        value: item,
+        value: { highlightedValue: item } as Partial<State>,
       });
     },
     [dispatch],
@@ -348,7 +414,7 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
     ],
   );
 
-  const contextValue: ListContextValue<ItemValue> = React.useMemo(
+  const contextValue: ListContextValue<ItemValue, State> = React.useMemo(
     () => ({
       dispatch,
       getItemState,
@@ -365,10 +431,14 @@ export default function useList<ItemValue>(params: UseListParameters<ItemValue>)
 
   return {
     contextValue,
+    dispatch,
     getRootProps,
     highlightedOption: highlightedValue,
     selectedOptions: selectedValues,
     setHighlightedValue,
     setSelectedValue,
+    state,
   };
 }
+
+export default useList;

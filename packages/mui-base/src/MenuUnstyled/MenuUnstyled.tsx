@@ -43,18 +43,20 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     anchorEl,
     children,
     component,
+    defaultOpen,
     keepMounted = false,
     listboxId,
-    onClose,
-    open = false,
+    onOpenChange,
+    open,
     slotProps = {},
     slots = {},
     ...other
   } = props;
 
   const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+    defaultOpen,
     open,
-    onClose,
+    onOpenChange,
     listboxId,
   });
 
@@ -69,7 +71,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
 
   const ownerState: MenuUnstyledOwnerState = {
     ...props,
-    open,
+    keepMounted,
   };
 
   const classes = useUtilityClasses(ownerState);

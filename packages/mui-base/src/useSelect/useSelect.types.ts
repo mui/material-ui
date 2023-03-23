@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UseButtonRootSlotProps } from '../useButton';
-import { UseListRootSlotProps } from '../useList';
+import { ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
@@ -83,4 +83,28 @@ export interface UseSelectResult<TValue, Multiple> {
   open: boolean;
   options: TValue[];
   value: SelectValue<TValue, Multiple>;
+}
+
+const ACTION_TYPES_BUTTON_CLICK = 'buttonClick';
+const ACTION_TYPES_BUTTON_ARROW_KEY_DOWN = 'buttonArrowKeyDown';
+
+export const SelectActionTypes = {
+  buttonClick: ACTION_TYPES_BUTTON_CLICK,
+  buttonArrowKeyDown: ACTION_TYPES_BUTTON_ARROW_KEY_DOWN,
+} as const;
+
+export interface ButtonClickAction {
+  type: typeof ACTION_TYPES_BUTTON_CLICK;
+  event: React.MouseEvent;
+}
+
+export interface ButtonArrowKeyDownAction {
+  type: typeof ACTION_TYPES_BUTTON_ARROW_KEY_DOWN;
+  event: React.KeyboardEvent;
+}
+
+export type SelectAction = ButtonClickAction | ButtonArrowKeyDownAction;
+
+export interface SelectInternalState<TValue> extends ListState<TValue> {
+  open: boolean;
 }
