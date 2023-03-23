@@ -12,7 +12,7 @@ import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
-import More from '../action/More';
+import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Button', 'Menu', 'Input', 'Tabs', 'Slider'];
 

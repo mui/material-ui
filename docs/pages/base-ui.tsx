@@ -8,6 +8,7 @@ import BaseUIHero from 'docs/src/components/productBaseUI/BaseUIHero';
 import BaseUISummary from 'docs/src/components/productBaseUI/BaseUISummary';
 import BaseUIComponents from 'docs/src/components/productBaseUI/BaseUIComponents';
 import BaseUICustomization from 'docs/src/components/productBaseUI/BaseUICustomization';
+import BaseUIEnd from 'docs/src/components/productBaseUI/BaseUIEnd';
 
 export default function Core() {
   return (
@@ -24,6 +25,7 @@ export default function Core() {
         <BaseUISummary />
         <BaseUIComponents />
         <BaseUICustomization />
+        <BaseUIEnd />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>

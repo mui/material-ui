@@ -40,7 +40,7 @@ const content = [
 
 export default function BaseUISummary() {
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+    <Container sx={{ py: { xs: 6, sm: 10, md: 12 } }}>
       <Box sx={{ textAlign: 'center' }}>
         <SectionHeadline
           overline="Building with Base UI"

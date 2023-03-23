@@ -4,10 +4,14 @@ import Box, { BoxProps } from '@mui/material/Box';
 
 interface SelectionProps extends BoxProps {
   bg?: 'white' | 'comfort' | 'dim' | 'gradient';
+  /**
+   * More spacing
+   */
+  cozy?: boolean;
 }
 
 export default function Section(props: SelectionProps) {
-  const { bg = 'white', children, sx, ...other } = props;
+  const { bg = 'white', children, sx, cozy = false, ...other } = props;
 
   const map = {
     white: {
@@ -46,7 +50,7 @@ export default function Section(props: SelectionProps) {
                   bgcolor: map[bg].dark,
                 }),
               }),
-          py: { xs: 4, sm: 6, md: 8 },
+          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 6, md: 8 },
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

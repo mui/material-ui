@@ -5,6 +5,7 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
+import ROUTES from 'docs/src/route';
 
 export default function BaseUIHero() {
   return (
@@ -51,7 +52,7 @@ export default function BaseUIHero() {
             build with using any styling solution you choose—no need to override any default style
             engine or theme.
           </Typography>
-          <GetStartedButtons installation="npm install @mui/base" />
+          <GetStartedButtons to={ROUTES.baseDocs} installation="npm install @mui/base" />
         </Box>
       }
       right={<div />}
