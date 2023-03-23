@@ -21,11 +21,12 @@ This document shows how to construct it with existing Joy UI components combined
 
 ### Using the `IconButton` component
 
-Joy UI's [`Icon Button`](/joy-ui/react-button/#icon-button) component is perfect for building a toggle button because it produces a square button with an icon inside.
+Joy UI's [`Icon Button`](/joy-ui/react-button/#icon-button) component is perfect for building a toggle button because it already produces a square button with an icon inside.
 
 ### With Radix UI
 
-Use Joy UI Icon Buton component as a starting point and pass Radix's Toggle Button to component prop. Radix will enhance the functionalities by preserving the styles of Joy UI components.
+Using Joy UI's Icon Buton component as a starting point, pass Radix UI's Toggle Button to the `component` prop.
+Radix will enhance the functionalities by preserving the styles of Joy UI components.
 
 - [Install Radix UI's Toggle](https://www.radix-ui.com/docs/primitives/components/toggle)
 - [Install Radix UI's Toggle Group](https://www.radix-ui.com/docs/primitives/components/toggle-group)
@@ -37,11 +38,11 @@ Use Joy UI Icon Buton component as a starting point and pass Radix's Toggle Butt
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### With React-Aria
+### With React Aria
 
-React-aria provides `useToggleButton` hook that can be used with Joy UI's `Icon Button` component.
+React Aria provides `useToggleButton` hook that can be used with Joy UI's `Icon Button` component.
 
-- [Install React-Aria's toggle button](https://react-spectrum.adobe.com/react-aria/useToggleButton.html)
+- [Install React Aria's toggle button](https://react-spectrum.adobe.com/react-aria/useToggleButton.html)
 - [Toggle button component documentation](https://react-spectrum.adobe.com/react-aria/useToggleButton.html#features)
 
 <iframe src="https://codesandbox.io/embed/toggle-button-joy-ui-feat-react-aria-56iex7?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
