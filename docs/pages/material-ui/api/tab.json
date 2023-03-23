@@ -41,6 +41,8 @@
     "name": "MuiTab"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Tab/Tab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

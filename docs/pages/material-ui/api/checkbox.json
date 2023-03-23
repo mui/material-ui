@@ -43,6 +43,8 @@
     "name": "MuiCheckbox"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCheckbox",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Checkbox/Checkbox.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

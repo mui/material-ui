@@ -32,7 +32,7 @@
     "noOptionsText": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
     "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: T | Array&lt;T&gt;, reason: string, details?: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the component.<br><em>reason:</em> One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;.",
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>.",
-    "onHighlightChange": "Callback fired when the highlight option changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, option: T, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>option:</em> The highlighted option.<br><em>reason:</em> Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>.",
+    "onHighlightChange": "Callback fired when the highlight option changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, option: T, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>option:</em> The highlighted option.<br><em>reason:</em> Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>.",
     "onInputChange": "Callback fired when the input value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: string, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the text input.<br><em>reason:</em> Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>.",
     "onOpen": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
     "open": "If <code>true</code>, the component is shown.",
@@ -54,17 +54,17 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "clearIndicator": "The component used to render the clear indicator.",
-    "endDecorator": "The component used to render the end decorator.",
-    "input": "The component used to render the input.",
-    "limitTag": "The component used to render the limit tag.",
-    "listbox": "The component used to render the listbox.",
-    "loading": "The component used to render the loading.",
-    "noOptions": "The component used to render the no-options.",
-    "option": "The component used to render the option.",
-    "popupIndicator": "The component used to render the popup indicator.",
-    "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator.",
-    "wrapper": "The component used to render the wrapper."
+    "root": "The component that renders the root.",
+    "wrapper": "The component that renders the wrapper.",
+    "input": "The component that renders the input.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator.",
+    "clearIndicator": "The component that renders the clear indicator.",
+    "popupIndicator": "The component that renders the popup indicator.",
+    "listbox": "The component that renders the listbox.",
+    "option": "The component that renders the option.",
+    "loading": "The component that renders the loading.",
+    "noOptions": "The component that renders the no-options.",
+    "limitTag": "The component that renders the limit tag."
   }
 }

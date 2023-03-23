@@ -193,7 +193,7 @@ yarn add @mui/icons-material
 
 The date and time picker components have been moved to MUI X.
 If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`.
-See [Migration from the lab](https://mui.com/x/react-date-pickers/migration-lab/) for details.
+See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/) for details.
 
 ### Peer dependencies
 

@@ -302,7 +302,7 @@ Let's add the `Slider` into the `Player` component now:
 
 You should see this:
 
-<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 745px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
 
 ### Customize the slider thumb
 
@@ -367,7 +367,7 @@ To finish this guide off, let's see how you can add custom styles based on a com
 
 This is what it'll look like:
 
-<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="width: 745px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
 
 Create a `Button.tsx` file and copy the following code:
 

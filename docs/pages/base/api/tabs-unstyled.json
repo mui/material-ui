@@ -38,12 +38,13 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiTabs-root"
     }
   ],
   "spread": true,
+  "muiName": "MuiTabs",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsUnstyled/TabsUnstyled.tsx",
   "inheritance": null,

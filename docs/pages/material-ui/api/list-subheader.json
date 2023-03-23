@@ -27,6 +27,8 @@
     "name": "MuiListSubheader"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListSubheader",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/ListSubheader/ListSubheader.js",
   "inheritance": null,

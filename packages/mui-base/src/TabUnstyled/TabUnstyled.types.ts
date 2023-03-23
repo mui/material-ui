@@ -4,7 +4,7 @@ import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 import { SlotComponentProps } from '../utils';
 import { UseTabRootSlotProps } from '../useTab';
 
-interface TabUnstyledRootSlotPropsOverrides {}
+export interface TabUnstyledRootSlotPropsOverrides {}
 
 export interface TabUnstyledOwnProps
   extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'slots' | 'slotProps'> {
@@ -33,7 +33,7 @@ export interface TabUnstyledOwnProps
 
 export interface TabUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'button'
    */
   root?: React.ElementType;

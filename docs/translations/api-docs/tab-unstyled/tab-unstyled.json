@@ -10,5 +10,5 @@
     "value": "You can provide your own value. Otherwise, we fall back to the child position index."
   },
   "classDescriptions": {},
-  "slotDescriptions": { "root": "The component used to render the root." }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

@@ -31,7 +31,7 @@ These projects live within two product lines: MUI Core and MUI X.
 
 The following chart illustrates how MUI's packages are related to one another:
 
-<img src="/static/images/packages/mui-packages.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X."/>
+<img src="/static/images/packages/mui-packages.png" style="width: 600px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X." width="1200" height="600" />
 
 In this article, we'll only cover the MUI Core packages.
 Visit the [MUI X Overview](/x/introduction/) for more information about our collection of advanced components.
@@ -122,4 +122,4 @@ It uses the Emotion adapter (`@mui/styled-engine`) as the default style engine t
 To use MUI System, you must install either Emotion or styled-components, because the respective `styled-engine` package depends on it.
 :::
 
-<img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." />
+<img src="/static/images/packages/mui-system.png" style="width: 600px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." width="1200" height="600" />

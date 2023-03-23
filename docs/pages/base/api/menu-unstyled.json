@@ -27,19 +27,20 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "listbox",
-      "description": "The component used to render the listbox.",
-      "default": "'ul'",
-      "class": ".MuiMenu-listbox"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "PopperUnstyled",
       "class": ".MuiMenu-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": ".MuiMenu-listbox"
     }
   ],
   "spread": false,
+  "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",
   "inheritance": null,

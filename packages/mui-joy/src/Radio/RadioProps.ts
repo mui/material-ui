@@ -8,32 +8,32 @@ export type RadioSlot = 'root' | 'radio' | 'icon' | 'action' | 'input' | 'label'
 
 export interface RadioSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'span'
    */
   root: React.ElementType;
   /**
-   * The component used to render the radio.
+   * The component that renders the radio.
    * @default 'span'
    */
   radio: React.ElementType;
   /**
-   * The component used to render the icon.
+   * The component that renders the icon.
    * @default 'span'
    */
   icon: React.ElementType;
   /**
-   * The component used to render the action.
+   * The component that renders the action.
    * @default 'span'
    */
   action: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
   input: React.ElementType;
   /**
-   * The component used to render the label.
+   * The component that renders the label.
    * @default 'label'
    */
   label: React.ElementType;

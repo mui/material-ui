@@ -11,10 +11,6 @@ import {
 import { Theme } from './Theme.types';
 import defaultTheme from './defaultTheme';
 
-const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
-  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
-
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
   createCssVarsProvider<SupportedColorScheme>({
     theme: defaultTheme,
@@ -36,8 +32,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
       };
       return newTheme;
     },
-    shouldSkipGeneratingVar,
     excludeVariablesFromRoot,
   });
 
-export { useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar, CssVarsProvider };
+export { useColorScheme, getInitColorSchemeScript, CssVarsProvider };
