@@ -17,8 +17,23 @@ import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
 import { alpha } from '@mui/material/styles';
 
-import { DataGridPremium, useGridApiRef, GridRowGroupingModel, GridAggregationModel, GridColDef, GridColumnVisibilityModel } from '@mui/x-data-grid-premium';
-import { renderEditProgress, renderEditStatus, renderProgress, renderStatus, renderTotalPrice, useDemoData, STATUS_OPTIONS } from '@mui/x-data-grid-generator';
+import {
+  DataGridPremium,
+  useGridApiRef,
+  GridRowGroupingModel,
+  GridAggregationModel,
+  GridColDef,
+  GridColumnVisibilityModel,
+} from '@mui/x-data-grid-premium';
+import {
+  renderEditProgress,
+  renderEditStatus,
+  renderProgress,
+  renderStatus,
+  renderTotalPrice,
+  useDemoData,
+  STATUS_OPTIONS,
+} from '@mui/x-data-grid-generator';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -37,7 +52,7 @@ export default function XHero() {
       headerName: 'Unit Price',
       type: 'number',
 
-      valueParser: (value:number) => Number(value),
+      valueParser: (value: number) => Number(value),
     },
     {
       field: 'feeRate',
@@ -52,7 +67,7 @@ export default function XHero() {
       headerName: 'Quantity',
       type: 'number',
       width: 140,
-      valueParser: (value:string) => Number(value),
+      valueParser: (value: string) => Number(value),
     },
     {
       field: 'filledQuantity',
@@ -62,7 +77,6 @@ export default function XHero() {
       availableAggregationFunctions: ['min', 'max', 'avg', 'size'],
       type: 'number',
       width: 120,
-
     },
     {
       field: 'isFilled',
@@ -70,7 +84,6 @@ export default function XHero() {
       align: 'center',
       type: 'boolean',
       width: 80,
-
     },
     {
       field: 'traderName',
@@ -85,7 +98,6 @@ export default function XHero() {
       type: 'singleSelect',
       valueOptions: STATUS_OPTIONS,
       width: 150,
-
     },
     {
       field: 'totalPrice',
@@ -108,17 +120,17 @@ export default function XHero() {
   const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
   const [columnVisibilityModel, setColumnVisibilityModel] =
     React.useState<GridColumnVisibilityModel>({
-      commodity: false
+      commodity: false,
     });
-  const [rowGroupingModel, setRowGroupingModel] =
-    React.useState<GridRowGroupingModel>(['commodity']);
-  const [aggregationModel, setAggregationModel] =
-    React.useState<GridAggregationModel>({
-      quantity: 'sum',
-      unitPrice: 'avg',
-      feeRate: 'min',
-      totalPrice: 'max',
-    });
+  const [rowGroupingModel, setRowGroupingModel] = React.useState<GridRowGroupingModel>([
+    'commodity',
+  ]);
+  const [aggregationModel, setAggregationModel] = React.useState<GridAggregationModel>({
+    quantity: 'sum',
+    unitPrice: 'avg',
+    feeRate: 'min',
+    totalPrice: 'max',
+  });
   const apiRef = useGridApiRef();
   let rowGroupingCounter = 0;
   return (
@@ -271,15 +283,16 @@ export default function XHero() {
                 checkboxSelection
                 hideFooter
                 loading={loading}
-                isGroupExpandedByDefault={
-                  node => {rowGroupingCounter++; return (rowGroupingCounter == 3) ? true : false }
-                }
+                isGroupExpandedByDefault={(node) => {
+                  rowGroupingCounter++;
+                  return rowGroupingCounter == 3 ? true : false;
+                }}
                 rowGroupingModel={rowGroupingModel}
                 onRowGroupingModelChange={(model) => setRowGroupingModel(model)}
                 aggregationModel={aggregationModel}
                 onAggregationModelChange={(newModel) => setAggregationModel(newModel)}
                 columnVisibilityModel={columnVisibilityModel}
-                onColumnVisibilityModelChange={(newModel) =>setColumnVisibilityModel(newModel)}
+                onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
               />
             </Box>
           </Paper>

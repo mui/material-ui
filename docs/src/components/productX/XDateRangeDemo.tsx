@@ -3,20 +3,109 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { PickersShortcutsItem, DateRange } from '@mui/x-date-pickers-pro';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Frame from 'docs/src/components/action/Frame';
+import { startOfWeek, endOfWeek, subDays, startOfMonth, endOfMonth, addMonths } from 'date-fns';
+import { Chip, Divider, List, ListItem } from '@mui/material';
 
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
+function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
+  const { items, onChange, isValid } = props;
+
+  if (items == null || items.length === 0) {
+    return null;
+  }
+
+  const resolvedItems = items.map((item) => {
+    const newValue = item.getValue({ isValid });
+
+    return {
+      label: item.label,
+      onClick: () => {
+        onChange(newValue);
+      },
+      disabled: !isValid(newValue),
+    };
+  });
+
+  return (
+    <Box
+      sx={{
+        gridRow: 1,
+        gridColumn: 2,
+      }}
+    >
+      <List
+        dense
+        sx={(theme) => ({
+          display: 'flex',
+          px: theme.spacing(4),
+          '& .MuiListItem-root': {
+            py: 2,
+            pl: 0,
+            pr: theme.spacing(1),
+          },
+        })}
+      >
+        {resolvedItems.map((item) => {
+          return (
+            <ListItem key={item.label}>
+              <Chip {...item} />
+            </ListItem>
+          );
+        })}
+      </List>
+      <Divider />
+    </Box>
+  );
+}
+
 export default function XDateRangeDemo() {
   const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const today = new Date();
+  const shortcutsItems: PickersShortcutsItem<DateRange<Date>>[] = [
+    {
+      label: 'This Week',
+      getValue: () => {
+        return [startOfWeek(today), endOfWeek(today)];
+      },
+    },
+    {
+      label: 'Last Week',
+      getValue: () => {
+        const prevWeek = subDays(today, 7);
+        return [startOfWeek(prevWeek), endOfWeek(prevWeek)];
+      },
+    },
+    {
+      label: 'Last 7 Days',
+      getValue: () => {
+        return [subDays(today, 7), today];
+      },
+    },
+    {
+      label: 'Current Month',
+      getValue: () => {
+        return [startOfMonth(today), endOfMonth(today)];
+      },
+    },
+    {
+      label: 'Next Month',
+      getValue: () => {
+        const nextMonth = addMonths(today, 1);
+        return [startOfMonth(nextMonth), endOfMonth(nextMonth)];
+      },
+    },
+    { label: 'Reset', getValue: () => [null, null] },
+  ];
+
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2 }}>
@@ -71,13 +160,14 @@ export default function XDateRangeDemo() {
               onChange={(newValue) => {
                 setValue(newValue);
               }}
-              renderInput={(startProps, endProps) => (
-                <React.Fragment>
-                  <TextField {...startProps} />
-                  <Box sx={{ mx: 2 }}> to </Box>
-                  <TextField {...endProps} />
-                </React.Fragment>
-              )}
+              slots={{
+                shortcuts: CustomRangeShortcuts,
+              }}
+              slotProps={{
+                shortcuts: {
+                  items: shortcutsItems,
+                },
+              }}
             />
           </LocalizationProvider>
         </Paper>
@@ -95,7 +185,7 @@ export default function XDateRangeDemo() {
           </Typography>
           <Button
             variant="outlined"
-            href="/x/react-date-pickers/date-range-picker/"
+            href="/x/react-Date-pickers/Date-range-picker/"
             component="a"
             sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
           >
