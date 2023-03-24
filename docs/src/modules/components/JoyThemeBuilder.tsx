@@ -776,6 +776,7 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
             setOpen(false);
           }
         }}
+        sx={{ flexGrow: 1 }}
       />
       <IconButton
         variant="solid"
