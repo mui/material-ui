@@ -1,16 +1,16 @@
-import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useListbox, {
-  defaultListboxReducer,
-  ListboxState,
-  ActionTypes,
-  ListboxReducerAction,
-} from '../useListbox';
-import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
-import { EventHandlers } from '../utils';
-import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
-import type { MenuUnstyledContextType } from '../MenuUnstyled';
+import * as React from 'react';
 import { MenuItemMetadata, MenuItemState } from '../MenuItemUnstyled/MenuItemUnstyled.types';
+import type { MenuUnstyledContextType } from '../MenuUnstyled';
+import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
+import useListbox, {
+  ActionTypes,
+  defaultListboxReducer,
+  ListboxReducerAction,
+  ListboxState,
+} from '../useListbox';
+import { EventHandlers } from '../utils';
+import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 
 function stateReducer(
   state: ListboxState<string>,
@@ -122,7 +122,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     }
 
     if (e.key === 'Escape' && open) {
-      onClose?.();
+      onClose?.(e);
     }
   };
 
@@ -130,7 +130,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     otherHandlers.onBlur?.(e);
 
     if (!listboxRef.current?.contains(e.relatedTarget)) {
-      onClose?.();
+      onClose?.(e);
     }
   };
 

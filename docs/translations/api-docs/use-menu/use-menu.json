@@ -1,6 +1,11 @@
 {
   "hookDescription": "",
-  "parametersDescriptions": {},
+  "parametersDescriptions": {
+    "listboxId": "Id of the listbox element within the Menu.",
+    "listboxRef": "Ref of the listbox DOM element within the Menu.",
+    "onClose": "Callback fired when the component requests to be closed.\nTypically <code>onClose</code> is used to set state in the parent component,\nwhich is used to control the <code>Menu</code> <code>open</code> prop.",
+    "open": "If <code>true</code>, the component is shown."
+  },
   "returnValueDescriptions": {
     "contextValue": "The value for the menu context.",
     "getListboxProps": "Resolver for the listbox component's props.",

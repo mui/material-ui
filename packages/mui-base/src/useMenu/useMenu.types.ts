@@ -5,9 +5,28 @@ import { UseListboxRootSlotProps } from '../useListbox';
 import { EventHandlers } from '../utils/types';
 
 export interface UseMenuParameters {
+  /**
+   * If `true`, the component is shown.
+   */
   open?: boolean;
-  onClose?: () => void;
+
+  /**
+   * Callback fired when the component requests to be closed.
+   * Typically `onClose` is used to set state in the parent component,
+   * which is used to control the `Menu` `open` prop.
+   *
+   * @param {React.KeyboardEvent | React.FocusEvent} event The event source of the callback.
+   */
+  onClose?: (event: React.KeyboardEvent | React.FocusEvent) => void;
+
+  /**
+   * Id of the listbox element within the Menu.
+   */
   listboxId?: string;
+
+  /**
+   * Ref of the listbox DOM element within the Menu.
+   */
   listboxRef?: React.Ref<any>;
 }
 
