@@ -27,6 +27,14 @@
   },
   "name": "ChipDelete",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiChipDelete-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyChipDelete",

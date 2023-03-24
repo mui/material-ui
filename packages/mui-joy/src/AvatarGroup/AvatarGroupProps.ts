@@ -2,11 +2,28 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { AvatarProps } from '../Avatar/AvatarProps';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type AvatarGroupSlot = 'root';
 
+export interface AvatarGroupSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AvatarGroupSlots,
+  {
+    root: SlotProps<'div', {}, AvatarGroupOwnerState>;
+  }
+>;
+
 export interface AvatarGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    AvatarGroupSlotsAndSlotProps &
     Pick<AvatarProps, 'color' | 'size' | 'variant'> & {
       /**
        * The color context for the avatar children.

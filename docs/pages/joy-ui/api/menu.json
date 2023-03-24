@@ -47,6 +47,14 @@
   },
   "name": "Menu",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiMenu-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyMenu",

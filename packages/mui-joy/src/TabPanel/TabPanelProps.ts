@@ -2,14 +2,31 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { TabPanelUnstyledOwnProps } from '@mui/base/TabPanelUnstyled';
 import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabPanelSlot = 'root';
+
+export interface TabPanelSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type TabPanelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabPanelSlots,
+  {
+    root: SlotProps<'div', {}, TabPanelOwnerState>;
+  }
+>;
 
 export interface TabPanelPropsSizeOverrides {}
 
 export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabPanelUnstyledOwnProps, 'value' | 'slots' | 'slotProps'> & {
+    Omit<TabPanelUnstyledOwnProps, 'value' | 'slots' | 'slotProps'> &
+    TabPanelSlotsAndSlotProps & {
       /**
        * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
        * @default 0

@@ -10,5 +10,6 @@
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>.",
     "wrap": "Only for horizontal list. If <code>true</code>, the list sets the flex-wrap to &quot;wrap&quot; and adjust margin to have gap-like behavior (will move to <code>gap</code> in the future)."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

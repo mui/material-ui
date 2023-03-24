@@ -42,6 +42,14 @@
   },
   "name": "RadioGroup",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiRadioGroup-root"
+    }
+  ],
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyRadioGroup",

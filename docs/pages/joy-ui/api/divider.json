@@ -21,6 +21,14 @@
   },
   "name": "Divider",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'hr'",
+      "class": ".MuiDivider-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyDivider",

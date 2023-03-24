@@ -39,6 +39,14 @@
   },
   "name": "ListItemButton",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiListItemButton-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListItemButton",

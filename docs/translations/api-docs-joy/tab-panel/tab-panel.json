@@ -7,5 +7,6 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

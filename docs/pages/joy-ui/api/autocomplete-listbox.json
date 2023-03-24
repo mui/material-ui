@@ -28,6 +28,14 @@
   },
   "name": "AutocompleteListbox",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiAutocompleteListbox-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAutocompleteListbox",

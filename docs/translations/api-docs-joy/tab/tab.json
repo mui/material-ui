@@ -11,5 +11,6 @@
     "value": "You can provide your own value. Otherwise, it falls back to the child position index.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": { "root": "The component that renders the root." }
 }
