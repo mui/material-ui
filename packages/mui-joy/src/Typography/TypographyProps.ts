@@ -15,17 +15,17 @@ export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface TypographySlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'a'
    */
   root: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
   endDecorator: React.ElementType;
@@ -109,7 +109,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        */
       variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
     };

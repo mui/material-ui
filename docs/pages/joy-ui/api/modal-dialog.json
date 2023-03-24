@@ -40,6 +40,8 @@
   "name": "ModalDialog",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyModalDialog",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ModalDialog/ModalDialog.tsx",
   "inheritance": null,

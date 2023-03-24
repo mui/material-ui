@@ -22,6 +22,8 @@
   "name": "TabPanel",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTabPanel",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/TabPanel/TabPanel.tsx",
   "inheritance": null,

@@ -26,6 +26,8 @@
   "name": "CardOverflow",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCardOverflow",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/CardOverflow/CardOverflow.tsx",
   "inheritance": null,

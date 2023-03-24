@@ -19,7 +19,7 @@ const testContext = {
   registerHighlightChangeHandler: () => () => {},
 };
 
-describe('MenuItemUnstyled', () => {
+describe('<MenuItemUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 

@@ -25,6 +25,8 @@
     "name": "MuiStepper"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Stepper/Stepper.js",
   "inheritance": null,

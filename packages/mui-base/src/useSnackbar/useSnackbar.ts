@@ -3,7 +3,7 @@ import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import {
   UseSnackbarParameters,
   SnackbarCloseReason,
-  UseSnackbarRootSlotProps,
+  UseSnackbarReturnValue,
 } from './useSnackbar.types';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
@@ -18,7 +18,7 @@ import extractEventHandlers from '../utils/extractEventHandlers';
  *
  * - [useSnackbar API](https://mui.com/base/api/use-snackbar/)
  */
-export default function useSnackbar(parameters: UseSnackbarParameters) {
+export default function useSnackbar(parameters: UseSnackbarParameters): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
     disableWindowBlurListener = false,
@@ -145,9 +145,11 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const getRootProps = <TOther extends Record<string, React.EventHandler<any> | undefined> = {}>(
+  const getRootProps: UseSnackbarReturnValue['getRootProps'] = <
+    TOther extends Parameters<UseSnackbarReturnValue['getRootProps']>[0],
+  >(
     otherHandlers: TOther = {} as TOther,
-  ): UseSnackbarRootSlotProps<TOther> => {
+  ) => {
     const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
     const externalEventHandlers = {
       ...propsEventHandlers,

@@ -72,7 +72,7 @@ function ColorSchemeToggle() {
 
 function TeamNav() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
         <ListSubheader>
           Browse
@@ -470,7 +470,7 @@ export default function TeamExample() {
                   </Box>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-size': '48px' }}>
+                <List sx={{ '--ListItemDecorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -480,7 +480,7 @@ export default function TeamExample() {
                           height: '100%',
                           width: '2px',
                           bgcolor: 'divider',
-                          left: 'calc(var(--List-item-paddingLeft) + 15px)',
+                          left: 'calc(var(--ListItem-paddingLeft) + 15px)',
                           top: '50%',
                         },
                       }}

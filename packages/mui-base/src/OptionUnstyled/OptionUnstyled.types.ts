@@ -44,7 +44,7 @@ export interface OptionUnstyledOwnProps<TValue> {
 
 export interface OptionUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'li'
    */
   root?: React.ElementType;

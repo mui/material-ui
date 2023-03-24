@@ -1,18 +1,18 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "endDecorator": "Element placed after the children.",
     "role": "The ARIA role attribute of the element.",
-    "size": "The size of the component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "startDecorator": "Element placed before the children.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "endDecorator": "The component used to render the end decorator.",
-    "root": "The component used to render the root.",
-    "startDecorator": "The component used to render the start decorator."
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator."
   }
 }

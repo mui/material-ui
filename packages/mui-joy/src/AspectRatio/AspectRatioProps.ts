@@ -7,12 +7,12 @@ export type AspectRatioSlot = 'root' | 'content';
 
 export interface AspectRatioSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the content.
+   * The component that renders the content.
    * @default 'div'
    */
   content: React.ElementType;
@@ -66,7 +66,7 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, AspectRatioPropsVariantOverrides>;

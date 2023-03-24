@@ -17,6 +17,8 @@
     "name": "MuiMenuList"
   },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiMenuList",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-material/src/MenuList/MenuList.js",
   "inheritance": { "component": "List", "pathname": "/material-ui/api/list/" },

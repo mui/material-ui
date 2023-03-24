@@ -138,7 +138,7 @@ const LinearProgressRoot = styled('div', {
  *
  * Demos:
  *
- * - [Linear Progress](https://mui.com/joy-ui/react-linear-progres/)
+ * - [Linear Progress](https://mui.com/joy-ui/react-linear-progress/)
  *
  * API:
  *
@@ -270,7 +270,7 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

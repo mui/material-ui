@@ -110,7 +110,6 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -125,7 +124,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>

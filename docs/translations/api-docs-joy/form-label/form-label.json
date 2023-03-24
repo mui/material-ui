@@ -8,7 +8,7 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "asterisk": "The component used to render the asterisk.",
-    "root": "The component used to render the root."
+    "root": "The component that renders the root.",
+    "asterisk": "The component that renders the asterisk."
   }
 }

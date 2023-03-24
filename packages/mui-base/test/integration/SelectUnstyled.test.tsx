@@ -13,7 +13,7 @@ describe('<SelectUnstyled> integration', () => {
     }
 
     const SelectListbox = React.forwardRef(function SelectListbox(
-      props: SelectUnstyledListboxSlotProps<string>,
+      props: SelectUnstyledListboxSlotProps<string, false>,
       ref: React.ForwardedRef<HTMLUListElement>,
     ) {
       const { ownerState, ...other } = props;

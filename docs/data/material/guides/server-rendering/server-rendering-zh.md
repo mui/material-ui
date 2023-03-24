@@ -84,7 +84,7 @@ The first thing that we need to do on every request is to create a new `emotion 
 
 When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/system/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
-The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. 我们用 [ReactDOMServer.renderToString()](https://react.dev/reference/react-dom/server/renderToString) 来实现此操作。 我们用 [ReactDOMServer.renderToString()](https://react.dev/reference/react-dom/server/renderToString) 来实现此操作。
 
 MUI is using Emotion as its default styled engine. We need to extract the styles from the Emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
 

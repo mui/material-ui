@@ -40,7 +40,7 @@ const IconToggleButton = styled(ToggleButton)({
 function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
   const t = useTranslate();
-  const theme = useTheme();
+  const upperTheme = useTheme();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState(null);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -75,7 +75,7 @@ function AppSettingsDrawer(props) {
 
   const handleChangeDirection = (event, direction) => {
     if (direction === null) {
-      direction = theme.direction;
+      direction = upperTheme.direction;
     }
 
     changeTheme({ direction });
@@ -146,7 +146,7 @@ function AppSettingsDrawer(props) {
         </Heading>
         <ToggleButtonGroup
           exclusive
-          value={theme.direction}
+          value={upperTheme.direction}
           onChange={handleChangeDirection}
           aria-labelledby="settings-direction"
           color="primary"
@@ -179,31 +179,30 @@ function AppSettingsDrawer(props) {
           data-ga-event-action="colors"
           size="small"
           variant="outlined"
-          sx={{
-            width: '100%',
-            mx: 0,
-            py: 1,
-            fontWeight: 500,
-            border: `1px solid  ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[500],
-            '&:hover': {
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[300],
-              background:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
+          sx={[
+            {
+              width: '100%',
+              mx: 0,
+              py: 1,
+              fontWeight: 500,
+              border: '1px solid',
+              borderColor: 'grey.200',
+              color: 'primary.500',
+              '&:hover': {
+                borderColor: 'grey.300',
+                background: 'grey.50',
+              },
             },
-          }}
+            (theme) =>
+              theme.applyDarkStyles({
+                borderColor: 'primaryDark.700',
+                color: 'primary.300',
+                '&:hover': {
+                  borderColor: 'primaryDark.600',
+                  background: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+              }),
+          ]}
         >
           {t('settings.editWebsiteColors')}
         </Button>

@@ -52,7 +52,7 @@ const RadioGroupRoot = styled('div', {
  *
  * Demos:
  *
- * - [Radio Group](https://mui.com/joy-ui/react-radio/)
+ * - [Radio Group](https://mui.com/joy-ui/react-radio-button/)
  *
  * API:
  *
@@ -249,7 +249,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

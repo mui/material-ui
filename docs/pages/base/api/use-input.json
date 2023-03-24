@@ -5,8 +5,8 @@
     "error": { "type": { "name": "boolean", "description": "boolean" } },
     "inputRef": {
       "type": {
-        "name": "React.Ref&lt;HTMLInputElement&gt",
-        "description": "React.Ref&lt;HTMLInputElement&gt"
+        "name": "React.Ref&lt;HTMLInputElement&gt;",
+        "description": "React.Ref&lt;HTMLInputElement&gt;"
       }
     },
     "onBlur": {
@@ -14,8 +14,8 @@
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "onClick": {
@@ -52,15 +52,15 @@
     },
     "getInputProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputInputSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputInputSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputInputSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputInputSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputRootSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseInputRootSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseInputRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },

@@ -3,7 +3,7 @@ import { OverrideProps } from '@mui/types';
 import { UseTabPanelRootSlotProps } from '../useTabPanel';
 import { SlotComponentProps } from '../utils';
 
-interface TabPanelUnstyledRootSlotPropsOverrides {}
+export interface TabPanelUnstyledRootSlotPropsOverrides {}
 
 export interface TabPanelUnstyledOwnProps {
   /**
@@ -36,7 +36,7 @@ export interface TabPanelUnstyledOwnProps {
 
 export interface TabPanelUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;

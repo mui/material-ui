@@ -13,6 +13,7 @@ import {
   SliderUnstyledProps,
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 // @ts-ignore
 function Identity(x) {
@@ -45,7 +46,7 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
     focusVisible: ['focusVisible'],
   };
 
-  return composeClasses(slots, getSliderUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getSliderUtilityClass));
 };
 
 /**

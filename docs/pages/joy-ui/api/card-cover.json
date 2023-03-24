@@ -12,6 +12,8 @@
   "name": "CardCover",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCardCover",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/CardCover/CardCover.tsx",
   "inheritance": null,
