@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useDemoData } from '@mui/x-data-grid-generator';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -19,12 +17,88 @@ import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
 import { alpha } from '@mui/material/styles';
 
+import { DataGridPremium, useGridApiRef, GridRowGroupingModel, GridAggregationModel, GridColDef, GridColumnVisibilityModel } from '@mui/x-data-grid-premium';
+import { renderEditProgress, renderEditStatus, renderProgress, renderStatus, renderTotalPrice, useDemoData, STATUS_OPTIONS } from '@mui/x-data-grid-generator';
+
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
 export default function XHero() {
+  const columns: GridColDef[] = [
+    {
+      field: 'commodity',
+      headerName: 'Commodity',
+      width: 180,
+    },
+    {
+      field: 'unitPrice',
+      headerName: 'Unit Price',
+      type: 'number',
+
+      valueParser: (value:number) => Number(value),
+    },
+    {
+      field: 'feeRate',
+      headerName: 'Fee Rate',
+      type: 'number',
+      width: 80,
+
+      valueParser: (value) => Number(value),
+    },
+    {
+      field: 'quantity',
+      headerName: 'Quantity',
+      type: 'number',
+      width: 140,
+      valueParser: (value:string) => Number(value),
+    },
+    {
+      field: 'filledQuantity',
+      headerName: 'Filled Quantity',
+      renderCell: renderProgress,
+      renderEditCell: renderEditProgress,
+      availableAggregationFunctions: ['min', 'max', 'avg', 'size'],
+      type: 'number',
+      width: 120,
+
+    },
+    {
+      field: 'isFilled',
+      headerName: 'Is Filled',
+      align: 'center',
+      type: 'boolean',
+      width: 80,
+
+    },
+    {
+      field: 'traderName',
+      headerName: 'Trader Name',
+      width: 120,
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
+      renderCell: renderStatus,
+      renderEditCell: renderEditStatus,
+      type: 'singleSelect',
+      valueOptions: STATUS_OPTIONS,
+      width: 150,
+
+    },
+    {
+      field: 'totalPrice',
+      headerName: 'Total in USD',
+      valueGetter: ({ row }) =>
+        row.feeRate == null || row.quantity == null || row.unitPrice == null
+          ? null
+          : row.feeRate + row.quantity * row.unitPrice,
+      renderCell: renderTotalPrice,
+      type: 'number',
+      width: 160,
+    },
+  ];
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10000,
@@ -32,6 +106,21 @@ export default function XHero() {
     editable: true,
   });
   const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const [columnVisibilityModel, setColumnVisibilityModel] =
+    React.useState<GridColumnVisibilityModel>({
+      commodity: false
+    });
+  const [rowGroupingModel, setRowGroupingModel] =
+    React.useState<GridRowGroupingModel>(['commodity']);
+  const [aggregationModel, setAggregationModel] =
+    React.useState<GridAggregationModel>({
+      quantity: 'sum',
+      unitPrice: 'avg',
+      feeRate: 'min',
+      totalPrice: 'max',
+    });
+  const apiRef = useGridApiRef();
+  let rowGroupingCounter = 0;
   return (
     <HeroContainer
       left={
@@ -102,7 +191,7 @@ export default function XHero() {
                 }),
               })}
             >
-              <Typography fontWeight={500}>Trades, October 2020</Typography>
+              <Typography fontWeight={500}>Trades, March 2023</Typography>
             </Box>
             <Box
               sx={[
@@ -174,13 +263,23 @@ export default function XHero() {
                   }),
               ]}
             >
-              <DataGridPro
+              <DataGridPremium
                 {...data}
+                columns={columns}
+                apiRef={apiRef}
                 disableRowSelectionOnClick
                 checkboxSelection
                 hideFooter
                 loading={loading}
-                density="compact"
+                isGroupExpandedByDefault={
+                  node => {rowGroupingCounter++; return (rowGroupingCounter == 3) ? true : false }
+                }
+                rowGroupingModel={rowGroupingModel}
+                onRowGroupingModelChange={(model) => setRowGroupingModel(model)}
+                aggregationModel={aggregationModel}
+                onAggregationModelChange={(newModel) => setAggregationModel(newModel)}
+                columnVisibilityModel={columnVisibilityModel}
+                onColumnVisibilityModelChange={(newModel) =>setColumnVisibilityModel(newModel)}
               />
             </Box>
           </Paper>
