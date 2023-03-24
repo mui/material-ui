@@ -14,7 +14,7 @@ import {
   getSystemComponentInfo,
   extractApiPage,
   getJoyComponentInfo,
-  generateApiPages,
+  generateBaseUIApiPages,
   writePrettifiedFile,
 } from './buildApiUtils';
 import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
@@ -286,18 +286,19 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         // @ts-ignore
         const { value } = build;
         const { name, demos } = value;
-        const lastIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+        // find a potential # in the pathname
+        const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
 
         let pathname = null;
 
         if (demos.length > 0) {
+          // make sure the pathname doesn't contain #
           pathname =
-            lastIdx >= 0
-              ? demos[0].demoPathname.substr(0, demos[0].demoPathname.indexOf('#'))
-              : demos[0].demoPathname;
+            hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
         }
 
         if (pathname !== null) {
+          // add the new apiLink, where pathame is in format of /react-component/components-api
           apiLinks.push({
             pathname: `${pathname}${name.startsWith('use') ? 'hooks-api' : 'components-api'}`,
             hash: kebabCase(name),
@@ -322,7 +323,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   }, Promise.resolve());
 
   // update the component pages to show the API tabs
-  generateApiPages();
+  generateBaseUIApiPages();
 
   if (grep === null) {
     const componentApis = allBuilds
