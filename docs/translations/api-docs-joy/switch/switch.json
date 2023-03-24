@@ -14,7 +14,99 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "checked": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the root `checked` class"
+    },
+    "disabled": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the root disabled class"
+    },
+    "action": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the action element"
+    },
+    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
+    "thumb": {
+      "description": "Styles Styles applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track element" },
+    "focusVisible": {
+      "description": "Class applied to the root element if the switch has visible focus"
+    },
+    "readOnly": { "description": "Class applied to the root element if the switch is read-only" },
+    "colorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorDanger": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "sizeSm": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "startDecorator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the startDecorator element"
+    },
+    "endDecorator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the endDecorator element"
+    }
+  },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "thumb": "The component that renders the thumb.",

@@ -123,7 +123,7 @@ SlotsTable.propTypes = {
 };
 
 function ClassesTable(props) {
-  const { componentClasses, componentName } = props;
+  const { componentClasses, classDescriptions, componentName } = props;
   const t = useTranslate();
 
   return (
@@ -131,10 +131,10 @@ function ClassesTable(props) {
       <thead style={{ display: 'table', width: '100%' }}>
         <tr>
           <th align="left" width="50%">
-            {t('api-docs.ruleName')}
+            {t('api-docs.globalClass')}
           </th>
           <th align="left" width="50%">
-            {t('api-docs.globalClass')}
+            {t('api-docs.description')}
           </th>
         </tr>
       </thead>
@@ -142,15 +142,22 @@ function ClassesTable(props) {
         {componentClasses.classes.map((className) => (
           <tr key={className}>
             <td align="left" width="50%">
-              <span className="prop-name">{className}</span>
-            </td>
-            <td align="left" width="50%">
               <span className="prop-name">
                 .
                 {componentClasses.globalClasses[className] ||
                   `Mui${componentName.replace('Unstyled', '')}-${className}`}
               </span>
             </td>
+            <td
+              align="left"
+              dangerouslySetInnerHTML={{
+                __html:
+                  classDescriptions[className] &&
+                  classDescriptions[className].description
+                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
+              }}
+            />
           </tr>
         ))}
       </tbody>
@@ -159,6 +166,7 @@ function ClassesTable(props) {
 }
 
 ClassesTable.propTypes = {
+  classDescriptions: PropTypes.object.isRequired,
   componentClasses: PropTypes.object.isRequired,
   componentName: PropTypes.string.isRequired,
 };
@@ -439,7 +447,16 @@ import { ${pageContent.name} } from '${source}';`}
         Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
           <React.Fragment>
             <Heading hash="classes" />
-            <ClassesTable componentClasses={componentClasses} componentName={pageContent.name} />
+            <p
+              dangerouslySetInnerHTML={{
+                __html: t('api-docs.classesDescription'),
+              }}
+            />
+            <ClassesTable
+              componentClasses={componentClasses}
+              componentName={pageContent.name}
+              classDescriptions={classDescriptions}
+            />
             <br />
           </React.Fragment>
         ) : null}

@@ -13,7 +13,118 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "badge": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the badge `span` element"
+    },
+    "anchorOriginTopRight": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
+    },
+    "anchorOriginBottomRight": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'right' }}</code>"
+    },
+    "anchorOriginTopLeft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'top', 'left' }}</code>"
+    },
+    "anchorOriginBottomLeft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }}</code>"
+    },
+    "colorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorDanger": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "invisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>invisible={true}</code>"
+    },
+    "locationInside": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>location=\"inside\"</code>"
+    },
+    "locationOutside": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>location=\"outside\"</code>"
+    },
+    "sizeSm": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantPlain": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
+  },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "badge": "The component that renders the badge."

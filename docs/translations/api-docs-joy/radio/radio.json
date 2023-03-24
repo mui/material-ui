@@ -20,7 +20,107 @@
     "value": "The value of the component. The DOM API casts this to a string.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "radio": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the radio element"
+    },
+    "icon": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the icon element"
+    },
+    "action": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the action element"
+    },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "label": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the label element"
+    },
+    "checked": {
+      "description": "State class applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root",
+      "conditions": "action slots if <code>checked</code>"
+    },
+    "disabled": {
+      "description": "State class applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root",
+      "conditions": "action slots if <code>disabled</code>"
+    },
+    "focusVisible": {
+      "description": "Class applied to the root element if the switch has visible focus"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
+  },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "radio": "The component that renders the radio.",
