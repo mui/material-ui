@@ -2,18 +2,18 @@
   "hookDescription": "",
   "parametersDescriptions": {},
   "returnValueDescriptions": {
-    "active": "If <code>true</code>, the slider will be active.",
+    "active": "The active index of the slider.",
     "axis": "The orientation of the slider.",
-    "axisProps": "The extra props for the axis. You can override the existing props or add new ones.",
-    "dragging": "The orientation of the slider.",
+    "axisProps": "Returns the <code>offset</code> and <code>leap</code> methods to calculate the positioning styles based on the slider axis.",
+    "dragging": "If <code>true</code>, the slider is being dragged.",
     "focusedThumbIndex": "The index of the thumb which is focused on the slider.",
     "getHiddenInputProps": "Resolver for the hidden input slot's props.",
     "getRootProps": "Resolver for the root slot's props.",
     "getThumbProps": "Resolver for the thumb slot's props.",
-    "marks": "Marks indicate predetermined values to which the user can move the slider. If true the marks are spaced according the value of the step prop. If an array, it should contain objects with value and an optional label keys.",
+    "marks": "The marks of the slider. Marks indicate predetermined values to which the user can move the slider.",
     "open": "The thumb index for the current value when in hover state.",
     "range": "The range of the slider.",
-    "trackLeap": "The track leap for the current value of the slider.",
+    "trackLeap": "If <code>true</code>, the slider is a range slider.",
     "trackOffset": "The track offset for the current value of the slider.",
     "values": "The possible values of the slider."
   }

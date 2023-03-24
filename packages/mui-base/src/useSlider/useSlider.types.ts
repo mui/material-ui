@@ -87,19 +87,22 @@ export interface AxisProps<T extends Axis> {
 
 export interface UseSliderReturnValue {
   /**
-   * If `true`, the slider will be active.
+   * The active index of the slider.
+   * @default -1
    */
   active: number;
   /**
    * The orientation of the slider.
+   * @default horizontal
    */
   axis: Axis;
   /**
-   * The extra props for the axis. You can override the existing props or add new ones.
+   * Returns the `offset` and `leap` methods to calculate the positioning styles based on the slider axis.
    */
   axisProps: { [key in Axis]: AxisProps<key> };
   /**
-   * The orientation of the slider.
+   * If `true`, the slider is being dragged.
+   * @default false
    */
   dragging: boolean;
   /**
@@ -108,7 +111,7 @@ export interface UseSliderReturnValue {
   focusedThumbIndex: number;
   /**
    * Resolver for the hidden input slot's props.
-   * @param externalProps props for the hidden input slot
+   * @param otherHandlers props for the hidden input slot
    * @returns props that should be spread on the hidden input slot
    */
   getHiddenInputProps: <TOther extends EventHandlers = {}>(
@@ -116,7 +119,7 @@ export interface UseSliderReturnValue {
   ) => UseSliderHiddenInputProps<TOther>;
   /**
    * Resolver for the root slot's props.
-   * @param externalProps props for the root slot
+   * @param otherHandlers props for the root slot
    * @returns props that should be spread on the root slot
    */
   getRootProps: <TOther extends EventHandlers = {}>(
@@ -124,18 +127,19 @@ export interface UseSliderReturnValue {
   ) => UseSliderRootSlotProps<TOther>;
   /**
    * Resolver for the thumb slot's props.
-   * @param externalProps props for the thumb slot
+   * @param otherHandlers props for the thumb slot
    * @returns props that should be spread on the thumb slot
    */
   getThumbProps: <TOther extends EventHandlers = {}>(
     otherHandlers?: TOther,
   ) => UseSliderThumbSlotProps<TOther>;
   /**
-   * Marks indicate predetermined values to which the user can move the slider. If true the marks are spaced according the value of the step prop. If an array, it should contain objects with value and an optional label keys.
+   * The marks of the slider. Marks indicate predetermined values to which the user can move the slider.
    */
   marks: Mark[];
   /**
    * The thumb index for the current value when in hover state.
+   * @default -1
    */
   open: number;
   /**
@@ -143,7 +147,7 @@ export interface UseSliderReturnValue {
    */
   range: boolean;
   /**
-   * The track leap for the current value of the slider.
+   * If `true`, the slider is a range slider.
    */
   trackLeap: number;
   /**

@@ -42,8 +42,16 @@
     "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
   },
   "returnValue": {
-    "active": { "type": { "name": "number", "description": "number" }, "required": true },
-    "axis": { "type": { "name": "Axis", "description": "Axis" }, "required": true },
+    "active": {
+      "type": { "name": "number", "description": "number" },
+      "default": "-1",
+      "required": true
+    },
+    "axis": {
+      "type": { "name": "Axis", "description": "Axis" },
+      "default": "horizontal",
+      "required": true
+    },
     "axisProps": {
       "type": {
         "name": "{ [key in Axis]: AxisProps&lt;key&gt }",
@@ -51,7 +59,11 @@
       },
       "required": true
     },
-    "dragging": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "dragging": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
     "focusedThumbIndex": {
       "type": { "name": "number", "description": "number" },
       "required": true
@@ -78,7 +90,11 @@
       "required": true
     },
     "marks": { "type": { "name": "Mark[]", "description": "Mark[]" }, "required": true },
-    "open": { "type": { "name": "number", "description": "number" }, "required": true },
+    "open": {
+      "type": { "name": "number", "description": "number" },
+      "default": "-1",
+      "required": true
+    },
     "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "trackLeap": { "type": { "name": "number", "description": "number" }, "required": true },
     "trackOffset": { "type": { "name": "number", "description": "number" }, "required": true },
