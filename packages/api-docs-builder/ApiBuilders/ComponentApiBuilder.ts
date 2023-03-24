@@ -343,7 +343,12 @@ const generateApiPage = (
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     ...((reactApi.classes?.classes.length > 0 ||
       (reactApi.classes?.globalClasses &&
-        Object.keys(reactApi.classes.globalClasses).length > 0)) && { classes: reactApi.classes }),
+        Object.keys(reactApi.classes.globalClasses).length > 0)) && {
+      classes: {
+        classes: reactApi.classes.classes,
+        globalClasses: reactApi.classes.globalClasses,
+      },
+    }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
     muiName: reactApi.apiPathname.startsWith('/joy-ui')
@@ -458,7 +463,11 @@ const attachTranslations = (reactApi: ReactApi) => {
   /**
    * CSS class descriptions.
    */
-  translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+  translations.classDescriptions = extractClassConditions(
+    reactApi.styles.classes.length || Object.keys(reactApi.styles.globalClasses).length
+      ? reactApi.styles.descriptions
+      : reactApi.classes.descriptions,
+  );
 
   reactApi.translations = translations;
 };
@@ -653,7 +662,8 @@ export default async function generateComponentApi(
   });
 
   // if `reactApi.classes` and `reactApi.styles` both exist,
-  // API documentation includes both "CSS" Section and "State classes" Section
+  // API documentation includes both "CSS" Section and "State classes" Section;
+  // we either want (1) "Slots" section and "State classes" section, or (2) "CSS" section
   if (
     (reactApi.styles.classes?.length || Object.keys(reactApi.styles.globalClasses || {})?.length) &&
     (reactApi.classes.classes?.length || Object.keys(reactApi.classes.globalClasses || {})?.length)

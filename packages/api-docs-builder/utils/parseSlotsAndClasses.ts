@@ -29,16 +29,22 @@ function extractClasses({
 }: {
   project: TypeScriptProject;
   componentName: string;
-}): string[] {
+}): { classNames: string[]; descriptions: Record<string, string> } {
+  const result: { classNames: string[]; descriptions: Record<string, string> } = {
+    classNames: [],
+    descriptions: {},
+  };
   const classesInterface = `${componentName}Classes`;
   const classesType = project.checker.getDeclaredTypeOfSymbol(project.exports[classesInterface]);
   const classesTypeDeclaration = classesType?.symbol?.declarations?.[0];
-  let classNames: string[] = [];
   if (classesTypeDeclaration && ts.isInterfaceDeclaration(classesTypeDeclaration)) {
     const classesProperties = classesType.getProperties();
-    classNames = classesProperties.map((symbol) => symbol.name);
+    classesProperties.forEach((symbol) => {
+      result.classNames.push(symbol.name);
+      result.descriptions[symbol.name] = getSymbolDescription(symbol, project);
+    });
   }
-  return classNames;
+  return result;
 }
 
 export default function parseSlotsAndClasses({
@@ -52,7 +58,7 @@ export default function parseSlotsAndClasses({
 }): { slots: Slot[]; classes: Classes } {
   let result: { slots: Slot[]; classes: Classes } = {
     slots: [],
-    classes: { classes: [], globalClasses: {} },
+    classes: { classes: [], globalClasses: {}, descriptions: {} },
   };
   const slotsInterface = `${componentName}Slots`;
   try {
@@ -64,7 +70,10 @@ export default function parseSlotsAndClasses({
     }
 
     // Obtain an array of classes for the given component
-    const classNames = extractClasses({ project, componentName });
+    const { classNames, descriptions: classDescriptions } = extractClasses({
+      project,
+      componentName,
+    });
     const slots: Record<string, Slot> = {};
     const propertiesOnProject = type.getProperties();
 
@@ -102,6 +111,7 @@ export default function parseSlotsAndClasses({
           .concat(Object.keys(globalStateClassNames))
           .sort((a, b) => a.localeCompare(b)),
         globalClasses: globalStateClassNames,
+        descriptions: classDescriptions,
       },
     };
   } catch (e) {

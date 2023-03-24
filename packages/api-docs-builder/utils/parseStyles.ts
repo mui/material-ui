@@ -6,11 +6,11 @@ import getPropsFromComponentSymbol from './getPropsFromComponentSymbol';
 export interface Classes {
   classes: string[];
   globalClasses: Record<string, string>;
+  descriptions: Record<string, string>;
 }
 
 export interface Styles extends Classes {
   name: string | null;
-  descriptions: Record<string, string>;
 }
 
 const EMPTY_STYLES: Styles = {
