@@ -53,7 +53,7 @@
       "conditions": "action slots if <code>disabled</code>"
     },
     "focusVisible": {
-      "description": "Class applied to the root element if the switch has visible focus"
+      "description": "Class name applied to the root element if the switch has visible focus"
     },
     "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
@@ -86,7 +86,7 @@
       "conditions": "<code>color=\"warning\"</code>"
     },
     "colorContext": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "color inversion is triggered"
     },

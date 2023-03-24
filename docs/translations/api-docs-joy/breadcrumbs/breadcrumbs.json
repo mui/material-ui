@@ -7,25 +7,25 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "ol": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the ol element" },
-    "li": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the li element" },
+    "root": { "description": "Class name applied to the root element." },
+    "ol": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the ol element" },
+    "li": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the li element" },
     "separator": {
-      "description": "Styles applied to {{nodeName}}.",
+      "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the separator element"
     },
     "sizeSm": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"sm\"</code>"
     },
     "sizeMd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"md\"</code>"
     },
     "sizeLg": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"lg\"</code>"
     }

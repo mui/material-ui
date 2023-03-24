@@ -12,64 +12,64 @@
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "Class name applied to the root element." },
     "startAction": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the component element",
       "conditions": "<code>startAction</code> element is provided"
     },
     "endAction": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the component element",
       "conditions": "<code>endAction</code> element is provided"
     },
     "nested": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "if nested={true}"
     },
     "nesting": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "if it is under a nested list item"
     },
     "sticky": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "if sticky={true}"
     },
     "colorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorNeutral": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"neutral\"</code>"
     },
     "colorDanger": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"danger\"</code>"
     },
     "colorInfo": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"success\"</code>"
     },
     "colorWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"warning\"</code>"
     },
     "colorContext": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "color inversion is triggered"
     },

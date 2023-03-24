@@ -26,89 +26,98 @@
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the root slot" },
-    "button": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the button slot" },
+    "root": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the root slot" },
+    "button": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the button slot"
+    },
     "indicator": {
-      "description": "Styles applied to {{nodeName}}.",
+      "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the indicator slot"
     },
     "startDecorator": {
-      "description": "Styles applied to {{nodeName}}.",
+      "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the startDecorator slot"
     },
     "endDecorator": {
-      "description": "Styles applied to {{nodeName}}.",
+      "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the endDecorator slot"
     },
-    "popper": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the popper slot" },
-    "listbox": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the listbox slot" },
+    "popper": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the popper slot"
+    },
+    "listbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the listbox slot"
+    },
     "colorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorNeutral": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"neutral\"</code>"
     },
     "colorDanger": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"danger\"</code>"
     },
     "colorInfo": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"info\"</code>"
     },
     "colorSuccess": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"success\"</code>"
     },
     "colorWarning": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>color=\"warning\"</code>"
     },
     "colorContext": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "color inversion is triggered"
     },
     "variantPlain": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>variant=\"plain\"</code>"
     },
     "variantOutlined": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
     "variantSoft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>variant=\"soft\"</code>"
     },
     "variantSolid": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>variant=\"solid\"</code>"
     },
     "sizeSm": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>size=\"sm\"</code>"
     },
     "sizeMd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>size=\"md\"</code>"
     },
     "sizeLg": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root slot",
       "conditions": "<code>size=\"lg\"</code>"
     },
