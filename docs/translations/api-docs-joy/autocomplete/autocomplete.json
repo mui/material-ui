@@ -99,8 +99,8 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the limitTag element"
     },
-    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
-    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
+    "hasPopupIcon": { "description": "Class name applied when the popup icon is rendered." },
+    "hasClearIcon": { "description": "Class name applied when the clear icon is rendered." },
     "clearIndicator": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the clear indicator"

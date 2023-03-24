@@ -23,9 +23,9 @@ export interface AutocompleteClasses {
   multiple: string;
   /** Class name applied to the limitTag element. */
   limitTag: string;
-  /** Styles applied when the popup icon is rendered. */
+  /** Class name applied when the popup icon is rendered. */
   hasPopupIcon: string;
-  /** Styles applied when the clear icon is rendered. */
+  /** Class name applied when the clear icon is rendered. */
   hasClearIcon: string;
   /** Class name applied to the clear indicator. */
   clearIndicator: string;
