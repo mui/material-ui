@@ -143,11 +143,11 @@ export interface UseSliderReturnValue {
    */
   open: number;
   /**
-   * The range of the slider.
+   * If `true`, the slider is a range slider.
    */
   range: boolean;
   /**
-   * If `true`, the slider is a range slider.
+   * The track leap for the current value of the slider.
    */
   trackLeap: number;
   /**
