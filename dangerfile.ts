@@ -151,7 +151,7 @@ async function reportBundleSize() {
   const comparison = await loadLastComparison(upstreamRef);
 
   const detailedComparisonQuery = `circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
-  const detailedComparisonToolpadUrl = `https://bundle-size.onrender.com/prod/pages/h71gdad?${detailedComparisonQuery}`;
+  const detailedComparisonToolpadUrl = `https://tools-public.onrender.com/prod/pages/h71gdad?${detailedComparisonQuery}`;
   const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
 
