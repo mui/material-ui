@@ -411,9 +411,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           offset: [0, 4],
         },
       },
-      ...(props.slotProps?.listbox?.modifiers || []),
+      ...(slotProps?.listbox?.modifiers || []),
     ],
-    [props.slotProps?.listbox?.modifiers],
+    [slotProps?.listbox?.modifiers],
   );
 
   let selectedOptions;
