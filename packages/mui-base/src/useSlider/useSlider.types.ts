@@ -143,7 +143,7 @@ export interface UseSliderReturnValue {
    */
   open: number;
   /**
-   * If `true`, the slider is a range slider.
+   * If `true`, the slider is a range slider when the `value` prop passed is an array.
    */
   range: boolean;
   /**
