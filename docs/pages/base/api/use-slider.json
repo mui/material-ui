@@ -59,8 +59,8 @@
     },
     "axisProps": {
       "type": {
-        "name": "{ [key in Axis]: AxisProps&lt;key&gt }",
-        "description": "{ [key in Axis]: AxisProps&lt;key&gt }"
+        "name": "{ [key in Axis]: AxisProps&lt;key&gt; }",
+        "description": "{ [key in Axis]: AxisProps&lt;key&gt; }"
       },
       "required": true
     },
@@ -75,22 +75,22 @@
     },
     "getHiddenInputProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderHiddenInputProps&lt;TOther&gt",
-        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderHiddenInputProps&lt;TOther&gt"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderHiddenInputProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderHiddenInputProps&lt;TOther&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderRootSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderRootSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
     "getThumbProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderThumbSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends EventHandlers = {}&gt(otherHandlers?: TOther) =&gt UseSliderThumbSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderThumbSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseSliderThumbSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
