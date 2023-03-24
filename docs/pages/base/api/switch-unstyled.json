@@ -51,6 +51,7 @@
     }
   ],
   "spread": true,
+  "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SwitchUnstyled/SwitchUnstyled.tsx",
   "inheritance": null,

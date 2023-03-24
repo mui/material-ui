@@ -1,7 +1,7 @@
 {
   "parameters": {
     "ref": {
-      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" },
+      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
       "required": true
     },
     "aria-labelledby": { "type": { "name": "string", "description": "string" } },
@@ -18,14 +18,14 @@
     "name": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
-        "name": "(event: Event, value: number | number[], activeThumb: number) =&gt void",
-        "description": "(event: Event, value: number | number[], activeThumb: number) =&gt void"
+        "name": "(event: Event, value: number | number[], activeThumb: number) =&gt; void",
+        "description": "(event: Event, value: number | number[], activeThumb: number) =&gt; void"
       }
     },
     "onChangeCommitted": {
       "type": {
-        "name": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt void",
-        "description": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt void"
+        "name": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt; void",
+        "description": "(event: React.SyntheticEvent | Event, value: number | number[]) =&gt; void"
       }
     },
     "orientation": {
@@ -37,8 +37,8 @@
     },
     "scale": {
       "type": {
-        "name": "(value: number) =&gt number",
-        "description": "(value: number) =&gt number"
+        "name": "(value: number) =&gt; number",
+        "description": "(value: number) =&gt; number"
       },
       "default": "function Identity(x) {\nreturn x;\n}"
     },

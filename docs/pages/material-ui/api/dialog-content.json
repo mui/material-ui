@@ -13,6 +13,8 @@
   "name": "DialogContent",
   "styles": { "classes": ["root", "dividers"], "globalClasses": {}, "name": "MuiDialogContent" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDialogContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/DialogContent/DialogContent.js",
   "inheritance": null,

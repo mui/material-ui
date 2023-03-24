@@ -52,7 +52,7 @@
       "name": "action",
       "description": "The component that renders the action.",
       "default": "'button'",
-      "class": ".MuiChip-action"
+      "class": null
     },
     {
       "name": "startDecorator",
@@ -68,6 +68,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyChip",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Chip/Chip.tsx",
   "inheritance": null,

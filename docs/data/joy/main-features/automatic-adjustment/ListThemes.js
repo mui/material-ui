@@ -17,7 +17,7 @@ export default function ButtonThemes() {
   const rootPresets = {
     dense: {
       '--ListItem-minHeight': '27px',
-      '--List-decoratorSize': '28px',
+      '--ListItemDecorator-size': '28px',
       '--ListItem-radius': '5px',
       '--List-gap': '5px',
       '--List-padding': '10px',
@@ -26,14 +26,14 @@ export default function ButtonThemes() {
       '--ListItem-paddingY': '0px',
       '--ListItem-fontSize': '14px',
       '--List-nestedInsetStart': '28px',
-      '--List-decoratorColor': 'var(--joy-palette-primary-plainColor)',
+      '--ListItemDecorator-color': 'var(--joy-palette-primary-plainColor)',
     },
     cozy: {
       '--List-radius': '20px',
       '--ListItem-minHeight': '48px',
       '--List-padding': '8px',
       '--List-gap': '8px',
-      '--List-nestedInsetStart': 'var(--List-decoratorSize)',
+      '--List-nestedInsetStart': 'var(--ListItemDecorator-size)',
     },
   };
   const nestedPresets = {

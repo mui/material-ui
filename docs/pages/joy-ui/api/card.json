@@ -38,6 +38,8 @@
   "name": "Card",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCard",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Card/Card.tsx",
   "inheritance": null,

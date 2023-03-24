@@ -22,7 +22,7 @@ export default function EllipsisList() {
       </Typography>
       <List
         aria-labelledby="ellipsis-list-demo"
-        sx={{ '--List-decoratorSize': '56px' }}
+        sx={{ '--ListItemDecorator-size': '56px' }}
       >
         <ListItem>
           <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>

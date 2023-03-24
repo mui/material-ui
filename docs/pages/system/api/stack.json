@@ -25,6 +25,8 @@
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStack",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-system/src/Stack/Stack.tsx",
   "inheritance": null,

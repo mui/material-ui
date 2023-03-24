@@ -16,6 +16,8 @@
     "name": "MuiTimelineContent"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TimelineContent/TimelineContent.js",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },

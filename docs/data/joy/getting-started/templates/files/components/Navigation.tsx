@@ -77,7 +77,7 @@ export default function Navigation() {
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decoratorSize': '32px',
+            '--ListItemDecorator-size': '32px',
           }}
         >
           <ListItem>

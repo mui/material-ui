@@ -42,10 +42,10 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
   ({ theme, ownerState }) => [
     {
       ...(ownerState.selected && {
-        '--List-decoratorColor': 'initial',
+        '--ListItemDecorator-color': 'initial',
       }),
       ...(ownerState.disabled && {
-        '--List-decoratorColor':
+        '--ListItemDecorator-color':
           theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       }),
       WebkitTapHighlightColor: 'transparent',
