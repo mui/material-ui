@@ -42,12 +42,12 @@
       "conditions": "<code>endAdornment</code> is provided"
     },
     "focused": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the component is focused"
     },
     "disabled": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },

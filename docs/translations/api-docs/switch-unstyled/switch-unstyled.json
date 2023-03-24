@@ -16,10 +16,14 @@
     "input": { "description": "Class applied to the internal input element" },
     "track": { "description": "Class applied to the track element" },
     "thumb": { "description": "Class applied to the thumb element" },
-    "checked": { "description": "Class applied to the root element if the switch is checked" },
-    "disabled": { "description": "Class applied to the root element if the switch is disabled" },
+    "checked": {
+      "description": "State class applied to the root element if the switch is checked"
+    },
+    "disabled": {
+      "description": "State class applied to the root element if the switch is disabled"
+    },
     "focusVisible": {
-      "description": "Class applied to the root element if the switch has visible focus"
+      "description": "State class applied to the root element if the switch has visible focus"
     },
     "readOnly": { "description": "Class applied to the root element if the switch is read-only" }
   },
