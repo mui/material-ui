@@ -239,19 +239,24 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
       className: classes.listbox,
     });
 
-  const popperProps: SelectUnstyledPopperSlotProps<TValue, Multiple> = useSlotProps({
-    elementType: Popper,
-    externalSlotProps: slotProps.popper,
-    additionalProps: {
-      anchorEl: buttonRef.current,
-      disablePortal: true,
-      open: listboxOpen,
-      placement: 'bottom-start' as const,
-      role: undefined,
-    },
-    ownerState,
-    className: classes.popper,
-  });
+  const popperProps: WithOptionalOwnerState<SelectUnstyledPopperSlotProps<TValue, Multiple>> =
+    useSlotProps({
+      elementType: Popper,
+      externalSlotProps: slotProps.popper,
+      additionalProps: {
+        anchorEl: buttonRef.current,
+        disablePortal: true,
+        open: listboxOpen,
+        placement: 'bottom-start' as const,
+        role: undefined,
+      },
+      ownerState,
+      className: classes.popper,
+    });
+
+  if (!slots.popper && popperProps.ownerState) {
+    delete popperProps.ownerState;
+  }
 
   return (
     <React.Fragment>
