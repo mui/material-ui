@@ -342,7 +342,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     size: sizeProp = 'md',
     variant = 'outlined',
     color: colorProp = 'neutral',
-    slotProps = {},
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
@@ -475,8 +474,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const classes = useUtilityClasses(ownerState);
 
   const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(slotProps.listbox?.modifiers || [])],
-    [slotProps.listbox?.modifiers],
+    () => [...defaultModifiers, ...(props.slotProps?.listbox?.modifiers || [])],
+    [props.slotProps?.listbox?.modifiers],
   );
 
   const selectedOption = React.useMemo(() => {
@@ -530,7 +529,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       as: PopperUnstyled,
       modifiers,
       slots: {
-        root: slotProps?.listbox?.component || 'ul',
+        root: props.slotProps?.listbox?.component || 'ul',
       },
     },
     className: classes.listbox,
@@ -538,9 +537,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     externalForwardedProps: {
       ...other,
       slotProps: {
-        ...slotProps,
-        ...(slotProps.listbox && {
-          listbox: { ...slotProps.listbox, component: undefined },
+        ...props.slotProps,
+        ...(props.slotProps?.listbox && {
+          listbox: { ...props.slotProps.listbox, component: undefined },
         }),
       },
     },
@@ -764,6 +763,17 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  slotProps: PropTypes.shape({
+    button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * Leading adornment for the select.
    */

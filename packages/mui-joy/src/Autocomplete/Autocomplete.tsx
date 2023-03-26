@@ -341,7 +341,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     type,
     startDecorator,
     size: sizeProp = 'md',
-    slotProps = {},
     color: colorProp = 'neutral',
     variant = 'outlined',
     value: valueProp,
@@ -411,9 +410,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           offset: [0, 4],
         },
       },
-      ...(slotProps?.listbox?.modifiers || []),
+      ...(props.slotProps?.listbox?.modifiers || []),
     ],
-    [slotProps?.listbox?.modifiers],
+    [props.slotProps?.listbox?.modifiers],
   );
 
   let selectedOptions;
@@ -582,9 +581,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     externalForwardedProps: {
       ...other,
       slotProps: {
-        ...slotProps,
-        ...(slotProps.listbox && {
-          listbox: { ...slotProps.listbox, component: undefined },
+        ...props.slotProps,
+        ...(props.slotProps?.listbox && {
+          listbox: { ...props.slotProps.listbox, component: undefined },
         }),
       },
     },
@@ -606,7 +605,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         : {},
       modifiers,
       slots: {
-        root: slotProps?.listbox?.component || 'ul',
+        root: props.slotProps?.listbox?.component || 'ul',
       },
     },
   });
