@@ -254,6 +254,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
       className: classes.popper,
     });
 
+  // Prevent passing `ownerState` to `PopperUnstyled`
   if (!slots.popper && popperProps.ownerState) {
     delete popperProps.ownerState;
   }
