@@ -3170,10 +3170,10 @@
     ast-types "^0.14.1"
     recast "^0.20.3"
 
-"@types/jsdom@^21.1.0":
-  version "21.1.0"
-  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-21.1.0.tgz#219f15e3370da3f85d18fe02ae86bda7ff66104a"
-  integrity sha512-leWreJOdnuIxq9Y70tBVm/bvTuh31DSlF/r4l7Cfi4uhVQqLHD0Q4v301GMisEMwwbMgF7ZKxuZ+Jbd4NcdmRw==
+"@types/jsdom@^21.1.1":
+  version "21.1.1"
+  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-21.1.1.tgz#e59e26352071267b507bf04d51841a1d7d3e8617"
+  integrity sha512-cZFuoVLtzKP3gmq9eNosUL1R50U+USkbLtUQ1bYVgl/lKp0FZM7Cq4aIHAL8oIvQ17uSHi7jXPtfDOdjPwBE7A==
   dependencies:
     "@types/node" "*"
     "@types/tough-cookie" "*"
