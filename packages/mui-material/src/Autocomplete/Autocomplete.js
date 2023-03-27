@@ -705,7 +705,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
    *
-   * In addition of `freeSolo` mode, the typed value will be the input value
+   * When using `freeSolo` mode, the typed value will be the input value
    * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
