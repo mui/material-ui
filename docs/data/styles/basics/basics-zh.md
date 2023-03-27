@@ -4,7 +4,7 @@
 
 > ⚠️ `@mui/styles`是MUI的_**传统**_样式解决方案。 它依赖于 [JSS ](https://cssinjs.org/)作为样式解决方案，在`@mui/material`中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles` 与 [React.StrictMode](https://reactjs.org/docs/strict-mode.html) 或 React 18 不兼容。
+> ⚠️ `@mui/styles` 与 [React.StrictMode](https://react.dev/reference/react/StrictMode) 或 React 18 不兼容。
 
 Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material-UI 组件中使用的样式方案**，它将作为一个 `@mui/styles` 的依赖包存在。 你可以使用它，但你不一定要使用它，因为MUI也[可以与](/material-ui/guides/interoperability/)所有其他主要的样式解决方案互操作。
 

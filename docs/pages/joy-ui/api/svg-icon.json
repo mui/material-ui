@@ -31,6 +31,8 @@
   "name": "SvgIcon",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoySvgIcon",
   "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-joy/src/SvgIcon/SvgIcon.tsx",
   "inheritance": null,

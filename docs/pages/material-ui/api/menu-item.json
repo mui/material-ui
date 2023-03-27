@@ -27,6 +27,8 @@
     "name": "MuiMenuItem"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMenuItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/MenuItem/MenuItem.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

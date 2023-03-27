@@ -49,17 +49,17 @@ export interface OptionGroupUnstyledOwnProps {
 
 export interface OptionGroupUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'li'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the label.
+   * The component that renders the label.
    * @default 'span'
    */
   label?: React.ElementType;
   /**
-   * The component used to render the list.
+   * The component that renders the list.
    * @default 'ul'
    */
   list?: React.ElementType;

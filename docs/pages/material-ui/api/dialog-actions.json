@@ -13,6 +13,8 @@
   "name": "DialogActions",
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiDialogActions" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDialogActions",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/DialogActions/DialogActions.js",
   "inheritance": null,

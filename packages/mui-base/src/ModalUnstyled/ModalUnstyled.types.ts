@@ -116,12 +116,12 @@ export interface ModalUnstyledOwnProps {
 
 export interface ModalUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the backdrop.
+   * The component that renders the backdrop.
    */
   backdrop?: React.ElementType;
 }

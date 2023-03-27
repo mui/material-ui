@@ -32,6 +32,8 @@
   "name": "FormControl",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormControl/FormControl.tsx",
   "inheritance": null,

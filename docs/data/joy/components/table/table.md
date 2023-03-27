@@ -50,7 +50,7 @@ To learn more about why we take this approach, check out this article from Chris
 
 #### Inline style
 
-An alternative way of controlling the column's width is to use [inline styles](https://reactjs.org/docs/dom-elements.html#style) on the `<th>` element:
+An alternative way of controlling the column's width is to use [inline styles](https://react.dev/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) on the `<th>` element:
 
 ```js
 <thead>

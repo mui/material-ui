@@ -18,13 +18,13 @@
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "actions": "The component used to render the actions.",
-    "displayedRows": "The component used to render the displayed rows.",
-    "menuItem": "The component used to render the menu item.",
-    "root": "The component used to render the root.",
-    "select": "The component used to render the select.",
-    "selectLabel": "The component used to render the select label.",
-    "spacer": "The component used to render the spacer.",
-    "toolbar": "The component used to render the toolbar."
+    "root": "The component that renders the root.",
+    "actions": "The component that renders the actions.",
+    "select": "The component that renders the select.",
+    "selectLabel": "The component that renders the select label.",
+    "menuItem": "The component that renders the menu item.",
+    "displayedRows": "The component that renders the displayed rows.",
+    "toolbar": "The component that renders the toolbar.",
+    "spacer": "The component that renders the spacer."
   }
 }

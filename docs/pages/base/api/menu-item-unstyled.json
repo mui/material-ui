@@ -17,12 +17,13 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'li'",
       "class": ".MuiMenuItem-root"
     }
   ],
   "spread": true,
+  "muiName": "MuiMenuItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/MenuItemUnstyled.tsx",
   "inheritance": null,

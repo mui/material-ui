@@ -31,6 +31,8 @@
   "name": "Hidden",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiHidden",
   "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-hidden/\">Hidden</a></li></ul>",

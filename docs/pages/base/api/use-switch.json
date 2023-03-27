@@ -8,8 +8,8 @@
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "onFocus": {
@@ -31,8 +31,8 @@
     },
     "getInputProps": {
       "type": {
-        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps",
-        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps"
+        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
+        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps"
       },
       "required": true
     },

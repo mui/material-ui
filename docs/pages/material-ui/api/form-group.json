@@ -17,6 +17,8 @@
     "name": "MuiFormGroup"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/FormGroup/FormGroup.js",
   "inheritance": null,

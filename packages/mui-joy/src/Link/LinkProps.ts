@@ -15,17 +15,17 @@ export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 
 export interface LinkSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'a'
    */
   root: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
   endDecorator: React.ElementType;

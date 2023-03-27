@@ -124,17 +124,17 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
 
 export interface SelectUnstyledSlots<TValue extends {}, Multiple extends boolean> {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'button'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the listbox.
+   * The component that renders the listbox.
    * @default 'ul'
    */
   listbox?: React.ElementType;
   /**
-   * The component used to render the popper.
+   * The component that renders the popper.
    * @default PopperUnstyled
    */
   popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue, Multiple>>;
