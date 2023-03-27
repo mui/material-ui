@@ -495,6 +495,18 @@ export default function useAutocomplete(props) {
     return false;
   };
 
+  const ensureExistingOptionHighlighted = () => {
+    const previousItem = previousProps.filteredOptions[highlightedIndexRef.current];
+    if (!previousItem) {
+      return;
+    }
+
+    const itemIndex = findIndex(filteredOptions, (optionItem) => isOptionEqualToValue(optionItem, previousItem));
+    if (itemIndex > -1) {
+      setHighlightedIndex({ index: itemIndex });
+    }
+  }
+
   const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
       return;
@@ -503,6 +515,7 @@ export default function useAutocomplete(props) {
     // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
     // If it exists and the value hasn't changed, return, otherwise continue execution
     if (checkHighlightedOptionExists()) {
+      ensureExistingOptionHighlighted();
       return;
     }
 
