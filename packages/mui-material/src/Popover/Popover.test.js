@@ -104,6 +104,25 @@ describe('<Popover />', () => {
       expect(screen.queryByTestId('children')).to.equal(null);
     });
 
+    it('should not change the rendered children during closing transition', () => {
+      const { setProps } = render(
+        <Popover open anchorEl={document.createElement('div')} transitionDuration={1974}>
+          <div data-testid="children" />
+        </Popover>,
+      );
+
+      setProps({ open: false });
+      setProps({ children: <div data-testid="second-children"/> });
+
+      expect(screen.getByTestId('children')).toBeVisible();
+
+      clock.tick(1974);
+
+      setProps({ open: true });
+
+      expect(screen.queryByTestId('second-children')).toBeVisible();
+    })
+
     describe('getOffsetTop', () => {
       it('should return vertical when vertical is a number', () => {
         const vertical = 1;
