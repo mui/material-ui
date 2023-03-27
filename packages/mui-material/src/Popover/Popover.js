@@ -284,7 +284,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const cachedChildren = React.useRef(children);
 
   React.useEffect(() => {
-    if(open) {
+    if (open) {
       cachedChildren.current = children;
     }
   }, [children, open]);
