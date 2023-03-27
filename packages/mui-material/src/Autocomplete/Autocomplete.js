@@ -131,7 +131,9 @@ const AutocompleteRoot = styled('div', {
     },
   },
   [`& .${outlinedInputClasses.root}`]: {
-    padding: 9,
+    paddingTop: 9,
+    paddingBottom: 9,
+    paddingLeft: 12,
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
       paddingRight: 26 + 4 + 9,
     },
@@ -139,7 +141,7 @@ const AutocompleteRoot = styled('div', {
       paddingRight: 52 + 4 + 9,
     },
     [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
+      padding: '7.5px 4px 7.5px 2px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
@@ -150,9 +152,9 @@ const AutocompleteRoot = styled('div', {
     // one of the popup or clear icon as the specificity is equal so the latter one wins
     paddingTop: 6,
     paddingBottom: 6,
-    paddingLeft: 6,
+    paddingLeft: 9,
     [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
+      padding: '7.5px 4px 7.5px 5px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
