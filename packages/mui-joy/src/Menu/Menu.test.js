@@ -23,7 +23,7 @@ describe('Joy <Menu />', () => {
     render,
     ThemeProvider,
     muiName: 'JoyMenu',
-    refInstanceof: window.HTMLUListElement,
+    refInstanceof: window.HTMLDivElement,
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
