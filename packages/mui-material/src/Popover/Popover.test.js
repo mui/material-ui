@@ -112,7 +112,7 @@ describe('<Popover />', () => {
       );
 
       setProps({ open: false });
-      setProps({ children: <div data-testid="second-children"/> });
+      setProps({ children: <div data-testid="second-children" /> });
 
       expect(screen.getByTestId('children')).toBeVisible();
 
@@ -121,7 +121,7 @@ describe('<Popover />', () => {
       setProps({ open: true });
 
       expect(screen.queryByTestId('second-children')).toBeVisible();
-    })
+    });
 
     describe('getOffsetTop', () => {
       it('should return vertical when vertical is a number', () => {
