@@ -22,19 +22,20 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "badge",
-      "description": "The component used to render the badge.",
-      "default": "'span'",
-      "class": ".MuiBadge-badge"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'span'",
       "class": ".MuiBadge-root"
+    },
+    {
+      "name": "badge",
+      "description": "The component that renders the badge.",
+      "default": "'span'",
+      "class": ".MuiBadge-badge"
     }
   ],
   "spread": true,
+  "muiName": "MuiBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.tsx",
   "inheritance": null,

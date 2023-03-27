@@ -33,7 +33,7 @@ export interface TabUnstyledOwnProps
 
 export interface TabUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'button'
    */
   root?: React.ElementType;

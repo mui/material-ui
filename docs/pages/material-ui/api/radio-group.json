@@ -13,6 +13,8 @@
     "name": "MuiRadioGroup"
   },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiRadioGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/RadioGroup/RadioGroup.js",
   "inheritance": { "component": "FormGroup", "pathname": "/material-ui/api/form-group/" },

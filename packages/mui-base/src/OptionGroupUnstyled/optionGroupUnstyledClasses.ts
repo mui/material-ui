@@ -2,8 +2,13 @@ import generateUtilityClass from '../generateUtilityClass';
 import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface OptionGroupUnstyledClasses {
+  /** Class name applied to the root element. */
   root: string;
+  /** State class applied to the root `li` element if `disabled={true}`. */
+  disabled: string;
+  /** Class name applied to the label element. */
   label: string;
+  /** Class name applied to the list element. */
   list: string;
 }
 
@@ -15,7 +20,7 @@ export function getOptionGroupUnstyledUtilityClass(slot: string): string {
 
 const optionGroupUnstyledClasses: OptionGroupUnstyledClasses = generateUtilityClasses(
   'MuiOptionGroup',
-  ['root', 'label', 'list'],
+  ['root', 'disabled', 'label', 'list'],
 );
 
 export default optionGroupUnstyledClasses;

@@ -23,6 +23,8 @@
     "name": "MuiStep"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStep",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Step/Step.js",
   "inheritance": null,

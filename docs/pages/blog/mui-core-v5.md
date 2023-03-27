@@ -648,7 +648,7 @@ This breaking change is an opportunity to drop the support of legacy upstream de
 - We have updated the minimum supported node.js version from 8.0 to **12.17**.
   This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
 - We have updated the minimum supported React version from 16.8 to **17.0**.
-  The breaking changes released between the two versions are [very limited](https://reactjs.org/blog/2020/10/20/react-v17.html).
+  The breaking changes released between the two versions are [very limited](https://legacy.reactjs.org/blog/2020/10/20/react-v17.html).
 - We have updated the supported browsers.
   - IE: **partial**. We have kept the logic added in the past to support IE 11,
     however, we have stopped actively working on it. We can't guarantee that it works correctly. It's discontinued.

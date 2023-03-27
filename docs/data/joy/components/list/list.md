@@ -131,7 +131,7 @@ By default, this works on both light and dark modes.
 ### Nested list
 
 Within the `ListItem` component, you can create a nested list using the `nested` prop.
-The nested list will inherit the list `size` as well as other CSS variables like `--List-radius` and `--List-item-radius` from the root `List` component to adjust the design consistently.
+The nested list will inherit the list `size` as well as other CSS variables like `--List-radius` and `--ListItem-radius` from the root `List` component to adjust the design consistently.
 The layout and spacing of the nested list will remain intact, however, as if it isn't nested.
 
 {{"demo": "NestedList.js"}}

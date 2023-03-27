@@ -40,6 +40,8 @@
   "name": "IconButton",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyIconButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/IconButton/IconButton.tsx",
   "inheritance": null,

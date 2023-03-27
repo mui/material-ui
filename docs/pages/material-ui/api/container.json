@@ -33,6 +33,8 @@
     "name": "MuiContainer"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiContainer",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-material/src/Container/Container.js",
   "inheritance": null,

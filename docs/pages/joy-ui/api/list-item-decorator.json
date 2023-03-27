@@ -12,6 +12,8 @@
   "name": "ListItemDecorator",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListItemDecorator",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/ListItemDecorator/ListItemDecorator.tsx",
   "inheritance": null,

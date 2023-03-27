@@ -24,6 +24,7 @@ const useUtilityClasses = (ownerState: MenuOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
+    listbox: ['listbox'],
   };
 
   return composeClasses(slots, getMenuUtilityClass, {});

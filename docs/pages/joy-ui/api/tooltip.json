@@ -66,19 +66,21 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "arrow",
-      "description": "The component used to render the arrow.",
-      "default": "'span'",
-      "class": ".MuiTooltip-arrow"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiTooltip-root"
+    },
+    {
+      "name": "arrow",
+      "description": "The component that renders the arrow.",
+      "default": "'span'",
+      "class": ".MuiTooltip-arrow"
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTooltip",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Tooltip/Tooltip.tsx",
   "inheritance": null,

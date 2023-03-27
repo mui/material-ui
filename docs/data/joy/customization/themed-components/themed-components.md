@@ -40,7 +40,7 @@ function App() {
 }
 ```
 
-## Default props
+## Theme default props
 
 The values specified in the theme as `defaultProps` affect all instances of the component:
 
@@ -61,7 +61,7 @@ extendTheme({
 <IconButton>...</IconButton>;
 ```
 
-## Style overrides
+## Theme style overrides
 
 ### Change styles based on props
 

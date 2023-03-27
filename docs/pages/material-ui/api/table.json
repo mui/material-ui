@@ -28,6 +28,8 @@
   "name": "Table",
   "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {}, "name": "MuiTable" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTable",
   "forwardsRefTo": "HTMLTableElement",
   "filename": "/packages/mui-material/src/Table/Table.js",
   "inheritance": null,

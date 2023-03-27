@@ -10,7 +10,7 @@ They won't receive any new feature of bug fixes and won't be compatible with fut
 
 If you want to use the **stable version** of those components, please have a look at the new [MUI X packages](/x/react-date-pickers/getting-started/) `@mui/x-date-pickers` and `@mui/x-date-pickers-pro`.
 
-To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/react-date-pickers/migration-lab/).
+To migrate from `@mui/lab` to `@mui/x-date-pickers` you can follow the dedicated [migration guide](/x/migration/migration-pickers-lab/).
 :::
 
 :::warning
