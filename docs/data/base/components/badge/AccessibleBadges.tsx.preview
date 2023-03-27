@@ -1,3 +1,0 @@
-<StyledBadge badgeContent={100}>
-  <MailIcon />
-</StyledBadge>

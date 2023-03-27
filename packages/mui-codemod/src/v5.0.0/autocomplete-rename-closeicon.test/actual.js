@@ -1,1 +1,0 @@
-<Autocomplete closeIcon={defaultClearIcon} />

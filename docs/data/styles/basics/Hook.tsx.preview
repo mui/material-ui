@@ -1,1 +1,0 @@
-<Button className={classes.root}>Styled with Hook API</Button>

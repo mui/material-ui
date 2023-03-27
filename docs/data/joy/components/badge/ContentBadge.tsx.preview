@@ -1,6 +1,0 @@
-<Badge badgeContent={4}>
-  <Typography fontSize="xl">🛍</Typography>
-</Badge>
-<Badge badgeContent="❕">
-  <Typography fontSize="xl">🔔</Typography>
-</Badge>

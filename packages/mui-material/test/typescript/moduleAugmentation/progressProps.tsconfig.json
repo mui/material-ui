@@ -1,4 +1,0 @@
-{
-  "extends": "../../../../../tsconfig",
-  "files": ["progressProps.spec.tsx"]
-}

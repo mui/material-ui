@@ -1,4 +1,0 @@
-<CustomButton component="span">Button</CustomButton>
-<CustomButton component="span" disabled>
-  Disabled
-</CustomButton>

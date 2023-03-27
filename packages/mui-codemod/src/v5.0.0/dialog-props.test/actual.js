@@ -1,1 +1,0 @@
-<Dialog disableBackdropClick onClose={handleClose} />;

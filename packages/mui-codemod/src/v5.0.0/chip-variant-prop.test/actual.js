@@ -1,1 +1,0 @@
-<Chip variant="default" />

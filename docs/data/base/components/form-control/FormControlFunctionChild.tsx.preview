@@ -1,8 +1,0 @@
-<FormControlUnstyled defaultValue="" required>
-  {({ filled, focused }: FormControlUnstyledState) => (
-    <React.Fragment>
-      <Input className={filled ? 'filled' : ''} />
-      {filled && !focused && <OkMark>✔</OkMark>}
-    </React.Fragment>
-  )}
-</FormControlUnstyled>

@@ -1,3 +1,0 @@
-<CssVarsProvider theme={customTheme}>
-  <Box sx={(theme) => theme.typography.display1}>Gradient text</Box>
-</CssVarsProvider>

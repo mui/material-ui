@@ -1,4 +1,0 @@
-{
-  "extends": "../../../../../tsconfig",
-  "files": ["paletteColors.spec.ts"]
-}

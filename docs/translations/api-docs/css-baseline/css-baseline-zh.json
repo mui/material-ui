@@ -1,8 +1,0 @@
-{
-  "componentDescription": "使用一个优雅、一致且简单的基础来进行构建。",
-  "propDescriptions": {
-    "children": "包装一个节点。",
-    "enableColorScheme": "启用 <code>color-scheme</code> CSS 属性来使用 <code>theme.palette.mode</code>。欲了解更多详情，请访问 <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme\">https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme</a> ，若要了解浏览器支持情况，请查阅 <a href=\"https://caniuse.com/?search=color-scheme\">https://caniuse.com/?search=color-scheme</a>。"
-  },
-  "classDescriptions": {}
-}

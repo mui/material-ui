@@ -1,6 +1,0 @@
-<CustomButton component="span" disabled>
-  focusableWhenDisabled = false
-</CustomButton>
-<CustomButton component="span" disabled focusableWhenDisabled>
-  focusableWhenDisabled = true
-</CustomButton>

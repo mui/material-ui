@@ -1,1 +1,0 @@
-<DialogTitle onClick={onClick} />;

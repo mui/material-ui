@@ -1,7 +1,0 @@
-<CustomMultiSelect defaultValue={[10, 20]}>
-  <StyledOption value={10}>Ten</StyledOption>
-  <StyledOption value={20}>Twenty</StyledOption>
-  <StyledOption value={30}>Thirty</StyledOption>
-  <StyledOption value={40}>Forty</StyledOption>
-  <StyledOption value={50}>Fifty</StyledOption>
-</CustomMultiSelect>

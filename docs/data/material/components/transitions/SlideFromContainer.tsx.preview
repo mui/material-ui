@@ -1,9 +1,0 @@
-<Box sx={{ width: 200 }}>
-  <FormControlLabel
-    control={<Switch checked={checked} onChange={handleChange} />}
-    label="Show from target"
-  />
-  <Slide direction="up" in={checked} container={containerRef.current}>
-    {icon}
-  </Slide>
-</Box>

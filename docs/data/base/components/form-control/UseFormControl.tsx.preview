@@ -1,4 +1,0 @@
-<FormControlUnstyled defaultValue="" required>
-  <CustomInput />
-  <ControlStateDisplay />
-</FormControlUnstyled>

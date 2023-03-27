@@ -1,1 +1,0 @@
-<Dialog onClose={handleClose} />;

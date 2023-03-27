@@ -1,8 +1,0 @@
-<Grid container spacing={8}>
-  <Grid item xs>
-    <TypographyDemo loading />
-  </Grid>
-  <Grid item xs>
-    <TypographyDemo />
-  </Grid>
-</Grid>

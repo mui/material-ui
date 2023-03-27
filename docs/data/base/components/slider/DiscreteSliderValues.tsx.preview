@@ -1,7 +1,0 @@
-<StyledSlider
-  aria-label="Temperature"
-  defaultValue={37}
-  getAriaValueText={valuetext}
-  step={null}
-  marks={marks}
-/>

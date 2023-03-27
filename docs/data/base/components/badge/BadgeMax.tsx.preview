@@ -1,9 +1,0 @@
-<StyledBadge badgeContent={99}>
-  <MailIcon />
-</StyledBadge>
-<StyledBadge badgeContent={100}>
-  <MailIcon />
-</StyledBadge>
-<StyledBadge badgeContent={1000} max={999}>
-  <MailIcon />
-</StyledBadge>
