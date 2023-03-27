@@ -1,17 +1,17 @@
 import * as React from 'react';
-import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
-import Sheet from '@mui/joy/Sheet';
-import Stack from '@mui/joy/Stack';
-import { styled } from '@mui/joy/styles';
-import Typography from '@mui/joy/Typography';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
-const Item = styled(Sheet)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.vars.palette.text.tertiary,
-  maxWidth: '400px',
+  color: theme.palette.text.secondary,
 }));
 
 const message = `Truncation should be conditionally applicable on this long line of text
