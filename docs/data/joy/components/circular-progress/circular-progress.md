@@ -79,16 +79,15 @@ For plain texts and icons, the dimension is relative to the circular progress's 
 
 ### With a button
 
-`CircularProgress` can be used as a decorator to show loading on a button.
+The Circular Progress component can be used as a decorator to show loading on a button.
 
-The size of the circular progress is controlled by a button, an icon button, or a link unless the `size` prop is explicitly specified on the progress.
+The size of the Circular Progress is controlled by a button, an icon button, or a link unless the `size` prop is explicitly specified on the progress.
 
 {{"demo": "CircularProgressButton.js"}}
 
-## CSS variables
+## CSS variable playground
 
 Play around with all the CSS variables available on the component to see how the design changes.
-
 You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "CircularProgressVariables.js", "hideToolbar": true}}
