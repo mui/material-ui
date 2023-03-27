@@ -1700,7 +1700,7 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      expect(textbox).has.value('two')
+      expect(textbox).has.value('two');
     });
 
     it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {

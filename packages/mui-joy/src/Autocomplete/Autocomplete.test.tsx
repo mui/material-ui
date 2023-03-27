@@ -1371,7 +1371,7 @@ describe('Joy <Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      expect(textbox).has.value('two')
+      expect(textbox).has.value('two');
     });
 
     it('should not select undefined', () => {

@@ -501,11 +501,13 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const itemIndex = findIndex(filteredOptions, (optionItem) => isOptionEqualToValue(optionItem, previousItem));
+    const itemIndex = findIndex(filteredOptions, (optionItem) =>
+      isOptionEqualToValue(optionItem, previousItem),
+    );
     if (itemIndex > -1) {
       setHighlightedIndex({ index: itemIndex });
     }
-  }
+  };
 
   const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
