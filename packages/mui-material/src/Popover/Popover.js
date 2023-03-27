@@ -280,6 +280,15 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   const [isPositioned, setIsPositioned] = React.useState(open);
 
+  // we cache the children to avoid changes of the content during closing animation
+  const cachedChildren = React.useRef(children);
+
+  React.useEffect(() => {
+    if(open) {
+      cachedChildren.current = children;
+    }
+  }, [children, open]);
+
   const setPositioningStyles = React.useCallback(() => {
     const element = paperRef.current;
 
@@ -385,7 +394,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
           {...(isPositioned ? undefined : { style: { ...PaperProps.style, opacity: 0 } })}
           ownerState={ownerState}
         >
-          {children}
+          {cachedChildren.current}
         </PopoverPaper>
       </TransitionComponent>
     </PopoverRoot>
