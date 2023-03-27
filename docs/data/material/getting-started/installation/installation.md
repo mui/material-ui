@@ -18,6 +18,13 @@ npm install @mui/material @emotion/react @emotion/styled
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
+### pnpm
+
+```sh
+pnpm add @mui/material @emotion/react @emotion/styled
+
+```
+
 ## With styled-components
 
 Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
@@ -33,6 +40,11 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 
 ```sh
 yarn add @mui/material @mui/styled-engine-sc styled-components
+```
+
+### pnpm 
+```sh
+pnpm add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 :::warning
@@ -61,6 +73,12 @@ npm install @fontsource/roboto
 
 ```sh
 yarn add @fontsource/roboto
+```
+
+### pnpm
+
+```sh
+pnpm add @fontsource/roboto
 ```
 
 Then you can import it in your entry point like this:
@@ -102,6 +120,11 @@ npm install @mui/icons-material
 
 ```sh
 yarn add @mui/icons-material
+```
+### pnpm
+
+```sh
+pnpm add @mui/icons-material
 ```
 
 ### Google Web Fonts
