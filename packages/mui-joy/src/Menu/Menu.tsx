@@ -13,6 +13,7 @@ import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
+import { ListOwnerState } from '../List';
 
 const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;
@@ -53,6 +54,7 @@ const MenuRoot = styled(StyledList, {
     }),
   };
 });
+
 /**
  *
  * Demos:
@@ -64,7 +66,7 @@ const MenuRoot = styled(StyledList, {
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
  * - inherits [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
  */
-const Menu = React.forwardRef(function Menu(inProps, ref) {
+const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
@@ -75,7 +77,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     anchorEl,
     children,
     color: colorProp = 'neutral',
-    component = 'ul',
+    component,
     disablePortal = false,
     keepMounted = false,
     id,
@@ -135,7 +137,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     getSlotProps: getListboxProps,
     externalForwardedProps: other,
     externalSlotProps: {},
-    ownerState,
+    ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
       ref,
       anchorEl,
@@ -145,7 +147,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       as: PopperUnstyled,
       modifiers,
       slots: {
-        root: component,
+        root: component || 'ul',
       },
     },
     className: classes.root,

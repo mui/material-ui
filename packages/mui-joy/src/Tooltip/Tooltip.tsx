@@ -613,7 +613,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       direction,
       as: PopperUnstyled,
       slots: {
-        root: component,
+        root: component || 'div',
       },
       modifiers,
       ...interactiveWrapperListeners,
