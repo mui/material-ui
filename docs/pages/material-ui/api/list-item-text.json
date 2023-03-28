@@ -22,6 +22,8 @@
     "name": "MuiListItemText"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemText",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemText/ListItemText.js",
   "inheritance": null,

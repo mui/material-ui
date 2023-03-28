@@ -6,7 +6,7 @@
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
 > If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://react.dev/reference/react/StrictMode) or React 18.
 
 ## Theming
 
@@ -400,15 +400,15 @@ Refer to the plugin's page for setup and usage instructions.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/material-gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/v4.x/examples/gatsby) for an usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/material-next/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui/material-ui/blob/v4.x/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/material-next) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/v4.x/examples/nextjs) for an up-to-date usage example.
 
 ## Class names
 

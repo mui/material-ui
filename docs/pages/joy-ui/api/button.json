@@ -51,31 +51,33 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiButton-endDecorator"
-    },
-    {
-      "name": "loadingIndicatorCenter",
-      "description": "The component used to render the loading indicator center.",
-      "default": "'span'",
-      "class": ".MuiButton-loadingIndicatorCenter"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'button'",
       "class": ".MuiButton-root"
     },
     {
       "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": ".MuiButton-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiButton-endDecorator"
+    },
+    {
+      "name": "loadingIndicatorCenter",
+      "description": "The component that renders the loading indicator center.",
+      "default": "'span'",
+      "class": ".MuiButton-loadingIndicatorCenter"
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Button/Button.tsx",
   "inheritance": null,

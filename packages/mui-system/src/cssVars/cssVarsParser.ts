@@ -120,7 +120,7 @@ const getCssValue = (keys: string[], value: string | number) => {
  * console.log(vars) // { fontSize: 'var(--foo-fontSize)', lineHeight: 'var(--foo-lineHeight)', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
  */
 export default function cssVarsParser<T extends Record<string, any>>(
-  theme: T,
+  theme: Record<string, any>,
   options?: {
     prefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
@@ -128,7 +128,8 @@ export default function cssVarsParser<T extends Record<string, any>>(
 ) {
   const { prefix, shouldSkipGeneratingVar } = options || {};
   const css = {} as Record<string, string | number>;
-  const vars = {} as NestedRecord<string>;
+  const vars = {} as T;
+  const varsWithDefaults = {};
 
   walkObjectDeep(
     theme,
@@ -140,11 +141,12 @@ export default function cssVarsParser<T extends Record<string, any>>(
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
           assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
+          assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${value})`, arrayKeys);
         }
       }
     },
     (keys) => keys[0] === 'vars', // skip 'vars/*' paths
   );
 
-  return { css, vars };
+  return { css, vars, varsWithDefaults };
 }

@@ -41,7 +41,7 @@ const AsteriskComponent = styled('span', {
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
 })<{ ownerState: FormLabelProps }>({
-  color: 'var(--FormLabel-asterisk-color)',
+  color: 'var(--FormLabel-asteriskColor)',
 });
 /**
  *

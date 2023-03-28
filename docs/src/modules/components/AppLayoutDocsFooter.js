@@ -97,8 +97,32 @@ async function postFeedback(data) {
 async function postFeedbackOnSlack(data) {
   const { rating, comment, commentedSection } = data;
 
+  const sentData = {
+    callback_id: 'send_feedback',
+    rating,
+    comment,
+    currentLocationURL: window.location.href,
+    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commmentSectionTitle: commentedSection.text,
+  };
   if (!comment || comment.length < 10) {
     return 'ignored';
+  }
+
+  try {
+    const res = await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      // Seems tricky but it's to match how slack send data
+      body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    return 'sent';
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 
   /**
@@ -142,28 +166,6 @@ async function postFeedbackOnSlack(data) {
      ],
    };
   */
-
-  const simpleSlackMessage = [
-    `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
-    `>${comment.split('\n').join('\n>')}`,
-    `sent from ${window.location.href}${
-      commentedSection.text
-        ? ` (from section <${window.location.origin}${window.location.pathname}#${commentedSection.hash}|${commentedSection.text})>`
-        : ''
-    }`,
-  ].join('\n\n');
-
-  try {
-    await fetch(`https://hooks.slack.com/services/${process.env.SLACK_FEEDBACKS_TOKEN}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: JSON.stringify({ text: simpleSlackMessage }),
-    });
-    return 'sent';
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 }
 
 async function getUserFeedback(id) {

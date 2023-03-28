@@ -25,7 +25,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
   </video>
 
-- ⚛️ We have prepared the support for the upcoming release of [React v17](https://reactjs.org/blog/2020/08/10/react-v17-rc.html). Most of the work was about better handling events, and updating our test infrastructure to run the whole test suite with the _latest_ and _next_ version of React.<br />We have also improved `StrictMode` support. The last standing issues are being addressed with the work on the style engine. More on that later in the post.
+- ⚛️ We have prepared the support for the upcoming release of [React v17](https://legacy.reactjs.org/blog/2020/08/10/react-v17-rc.html). Most of the work was about better handling events, and updating our test infrastructure to run the whole test suite with the _latest_ and _next_ version of React.<br />We have also improved `StrictMode` support. The last standing issues are being addressed with the work on the style engine. More on that later in the post.
 - 💅 We have introduced a new dynamic variant API. This API allows developers to add new variants to MUI components right from the theme, without having to wrap the components. For instance with the Button:
 
   ```tsx

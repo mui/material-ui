@@ -23,12 +23,13 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "props.href || props.to ? 'a' : 'button'",
       "class": ".MuiButton-root"
     }
   ],
   "spread": true,
+  "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx",
   "inheritance": null,

@@ -12,8 +12,8 @@
     },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt void",
-        "description": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt void"
+        "name": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt; void"
       }
     },
     "orientation": {
@@ -28,7 +28,12 @@
       "type": { "name": "string | number | false", "description": "string | number | false" }
     }
   },
-  "returnValue": {},
+  "returnValue": {
+    "tabsContextValue": {
+      "type": { "name": "TabsContextValue", "description": "TabsContextValue" },
+      "required": true
+    }
+  },
   "name": "useTabs",
   "filename": "/packages/mui-base/src/useTabs/useTabs.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"

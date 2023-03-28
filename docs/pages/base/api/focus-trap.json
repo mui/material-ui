@@ -14,6 +14,8 @@
   "name": "FocusTrap",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "themeDefaultProps": null,
+  "muiName": "MuiFocusTrap",
   "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-focus-trap/\">Focus Trap</a></li></ul>",

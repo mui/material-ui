@@ -70,6 +70,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Khmer                   | kh-KH               | `khKH`      |
 | Kazakh                  | kk-KZ               | `kkKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
+| Kurdish (Central)       | ku-CKB              | `kuCKB`     |
 | Macedonian              | mk-MK               | `mkMK`      |
 | Norwegian (bokmål)      | nb-NO               | `nbNO`      |
 | Persian                 | fa-IR               | `faIR`      |

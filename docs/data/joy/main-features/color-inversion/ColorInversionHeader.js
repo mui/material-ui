@@ -80,9 +80,9 @@ export default function ColorInversionHeader() {
           disablePortal
           size="sm"
           sx={{
-            '--List-decorator-size': '24px',
-            '--List-item-minHeight': '40px',
-            '--List-divider-gap': '4px',
+            '--ListItemDecorator-size': '24px',
+            '--ListItem-minHeight': '40px',
+            '--ListDivider-gap': '4px',
             minWidth: 200,
           }}
         >

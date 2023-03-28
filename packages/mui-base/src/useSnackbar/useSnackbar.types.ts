@@ -49,3 +49,18 @@ export interface UseSnackbarRootSlotOwnProps {
   ref?: React.Ref<any>;
   role: React.AriaRole;
 }
+
+export interface UseSnackbarReturnValue {
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends Record<string, ((event: any) => void) | undefined> = {}>(
+    externalProps?: TOther,
+  ) => UseSnackbarRootSlotProps<TOther>;
+  /**
+   * Callback fired when a "click away" event is detected.
+   */
+  onClickAway: (event: React.SyntheticEvent<any> | Event) => void;
+}

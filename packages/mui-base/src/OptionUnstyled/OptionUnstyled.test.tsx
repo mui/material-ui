@@ -20,7 +20,7 @@ const dummyGetOptionProps = () => ({
   value: '',
 });
 
-describe('OptionUnstyled', () => {
+describe('<OptionUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 

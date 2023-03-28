@@ -39,14 +39,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * @default false
    */
   disableTransitionOnChange?: boolean;
-  /**
-   * A function to determine if the key, value should be attached as CSS Variable
-   * `keys` is an array that represents the object path keys.
-   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-   *  then, keys = ['foo', 'bar']
-   *        value = 'var(--test)'
-   */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 export interface CreateCssVarsProviderResult<ColorScheme extends string> {
@@ -92,48 +84,6 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
     >,
   ) => React.ReactElement;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  generateCssThemeVars: (options?: {
-    /**
-     * Design system default color scheme.
-     * - provides string if the design system has one default color scheme (either light or dark)
-     * - provides object if the design system has default light & dark color schemes
-     */
-    defaultColorScheme?: ColorScheme | { light: ColorScheme; dark: ColorScheme };
-    /**
-     * @default 'light'
-     */
-    defaultMode?: 'light' | 'dark';
-    /**
-     * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
-     * @default ':root'
-     */
-    rootSelector: string;
-    /**
-     * The selector for attaching CSS variables that are **outside** of `theme.colorSchemes.*`.
-     * @default (key) => `[data-color-scheme="${key}"]`
-     */
-    colorSchemeSelector: (key: ColorScheme) => string;
-    /**
-     * A function to determine if the key, value should be attached as CSS Variable
-     * `keys` is an array that represents the object path keys.
-     *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-     *  then, keys = ['foo', 'bar']
-     *        value = 'var(--test)'
-     */
-    shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-    /**
-     * Controlled mode. If not provided, it will try to read the value from the upper CssVarsProvider.
-     */
-    mode?: Mode;
-    /**
-     * Controlled color scheme. If not provided, it will try to read the value from the upper CssVarsProvider.
-     */
-    colorScheme?: ColorScheme;
-    theme?: {
-      cssVarPrefix?: string;
-      colorSchemes: Record<ColorScheme, Record<string, any>>;
-    };
-  }) => Record<string, any>;
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 

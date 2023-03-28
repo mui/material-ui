@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
-import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
@@ -137,12 +136,12 @@ const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(props, ref
     ...props.slots,
   };
 
-  return <MultiSelectUnstyled {...props} ref={ref} slots={slots} />;
+  return <SelectUnstyled {...props} multiple ref={ref} slots={slots} />;
 });
 
 CustomMultiSelect.propTypes = {
   /**
-   * The components used for each slot inside the MultiSelect.
+   * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

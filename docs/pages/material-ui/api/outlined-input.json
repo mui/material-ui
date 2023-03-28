@@ -71,6 +71,8 @@
     "name": "MuiOutlinedInput"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiOutlinedInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/OutlinedInput/OutlinedInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },
