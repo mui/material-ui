@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { styled as joyStyled } from '@mui/joy/styles';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
@@ -18,8 +17,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
-import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
+import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -144,56 +142,57 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoRootMaterial = styled('div', {
+const DemoRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
-  position: 'relative',
-  outline: 0,
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
+})(({ theme, hiddenToolbar, bg }) => [
+  {
+    position: 'relative',
+    outline: 0,
+    margin: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    [theme.breakpoints.up('sm')]: {
+      borderRadius: 10,
+      ...(bg === 'outlined' && {
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+      }),
+      /* Make no difference between the demo and the markdown. */
+      ...(bg === 'inline' && {
+        padding: theme.spacing(0),
+      }),
+      ...(hiddenToolbar && {
+        paddingTop: theme.spacing(1),
+      }),
+    },
+    /* Isolate the demo with an outline. */
     ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
+      padding: theme.spacing(3),
+      backgroundColor: (theme.vars || theme).palette.background.paper,
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
     }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
+    /* Prepare the background to display an inner elevation. */
+    ...(bg === true && {
+      padding: theme.spacing(3),
+      backgroundColor: (theme.vars || theme).palette.grey[100],
+      ...theme.applyDarkStyles({
+        backgroundColor: (theme.vars || theme).palette.grey[900],
+      }),
     }),
-    ...(hiddenToolbar && {
-      paddingTop: theme.spacing(1),
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.grey[100],
-    ...theme.applyDarkStyles({
-      backgroundColor: (theme.vars || theme).palette.grey[900],
-    }),
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    padding: theme.spacing(20, 8),
-    border: `1px solid`,
-    borderColor: alpha(theme.palette.primary[100], 0.5),
-    overflow: 'hidden',
-    backgroundColor: alpha(theme.palette.primary[50], 0.5),
-    backgroundClip: 'padding-box',
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-      theme.palette.primary[50],
-      0.5,
-    )} 0px, transparent 50%),
+    /* Mostly meant for introduction demos. */
+    ...(bg === 'gradient' && {
+      padding: theme.spacing(20, 8),
+      border: `1px solid`,
+      borderColor: alpha(theme.palette.primary[100], 0.5),
+      overflow: 'hidden',
+      backgroundColor: alpha(theme.palette.primary[50], 0.5),
+      backgroundClip: 'padding-box',
+      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
+        theme.palette.primary[50],
+        0.5,
+      )} 0px, transparent 50%),
         radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
         radial-gradient(at 0% 95%, ${alpha(theme.palette.primary[100], 0.3)}, transparent 40%),
         radial-gradient(at 0% 20%, ${
@@ -201,13 +200,13 @@ const DemoRootMaterial = styled('div', {
         } 0px, transparent 50%),
         radial-gradient(at 93% 85%, ${alpha(theme.palette.primary[100], 0.2)} 0px, transparent 50%),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
-    ...theme.applyDarkStyles({
-      borderColor: alpha(theme.palette.primaryDark[500], 0.7),
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-        theme.palette.primaryDark[700],
-        0.5,
-      )} 0px, transparent 50%),
+      ...theme.applyDarkStyles({
+        borderColor: alpha(theme.palette.primaryDark[500], 0.7),
+        backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+        backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
+          theme.palette.primaryDark[700],
+          0.5,
+        )} 0px, transparent 50%),
     radial-gradient(at 80% 0%, ${
       (theme.vars || theme).palette.primaryDark[700]
     } 0px, transparent 50%),
@@ -219,67 +218,29 @@ const DemoRootMaterial = styled('div', {
     } 0px, transparent 35%),
     radial-gradient(at 93% 85%, ${alpha(theme.palette.primaryDark[500], 0.8)} 0px, transparent 50%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+      }),
     }),
-  }),
-  ...(hiddenToolbar && {
-    paddingTop: theme.spacing(2),
-  }),
-}));
-
-const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hiddenToolbar' && prop !== 'bg',
-})(({ theme, hiddenToolbar, bg }) => ({
-  position: 'relative',
-  outline: 0,
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(2),
     }),
   },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    border: `1px solid`,
-    borderColor: grey[100],
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundColor: alpha(grey[50], 0.2),
-    backgroundImage: `
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
-    ...theme.applyDarkStyles({
-      borderColor: alpha(grey[700], 0.3),
-      backgroundColor: alpha(blueDark[800], 0.2),
-      backgroundImage: `
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.10'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
-    }),
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level2,
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
+  bg === 'joy-gradient' && {
     padding: theme.spacing(0),
     overflow: 'auto',
     backgroundColor: alpha(blue[50], 0.5),
     border: `1px solid`,
     borderColor: alpha(blue[100], 0.5),
     backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
-      radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-      radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
-      radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%), 
-      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%), 
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+    radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
+    radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
+    radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%), 
+    radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%), 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.03'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+    [theme.breakpoints.up('sm')]: {
+      ...(hiddenToolbar && {
+        paddingTop: theme.spacing(0), // override the breakpoint above
+      }),
+    },
     ...theme.applyDarkStyles({
       backgroundColor: blueDark[800],
       borderColor: alpha(blueDark[500], 0.7),
@@ -287,17 +248,14 @@ const DemoRootJoy = joyStyled('div', {
         blueDark[700],
         0.5,
       )} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, ${blueDark[700]} 0px, transparent 50%),
-        radial-gradient(at 0% 95%, ${blueDark[700]} 0px, transparent 50%),
-        radial-gradient(at 0% 5%, ${blueDark[700]} 0px, transparent 25%),
-        radial-gradient(at 93% 85%, ${alpha(blueDark[500], 0.8)} 0px, transparent 50%), 
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
+      radial-gradient(at 80% 0%, ${blueDark[700]} 0px, transparent 50%),
+      radial-gradient(at 0% 95%, ${blueDark[700]} 0px, transparent 50%),
+      radial-gradient(at 0% 5%, ${blueDark[700]} 0px, transparent 25%),
+      radial-gradient(at 93% 85%, ${alpha(blueDark[500], 0.8)} 0px, transparent 50%), 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23003A75' fill-opacity='0.15'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
     }),
-  }),
-  ...(hiddenToolbar && {
-    paddingTop: theme.spacing(0),
-  }),
-}));
+  },
+]);
 
 const DemoCodeViewer = styled(HighlightedCode)(({ theme }) => ({
   '& pre': {
@@ -326,7 +284,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 }));
 
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation, mode } = props;
+  const { demo, demoOptions, disableAd, githubLocation } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -379,6 +337,10 @@ export default function Demo(props) {
     demoOptions.bg = true;
   }
 
+  if (demoOptions.bg === 'gradient' && demoData.product === 'joy-ui') {
+    demoOptions.bg = 'joy-gradient';
+  }
+
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
   const shownOnce = React.useRef(false);
   if (codeOpen) {
@@ -407,9 +369,6 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
-
-  const DemoRoot = demoData.product === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
   const initialEditorCode = isPreview
@@ -462,13 +421,7 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </Wrapper>
+        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}
@@ -481,74 +434,72 @@ export default function Demo(props) {
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
-        {demoOptions.hideToolbar ? null : (
-          <NoSsr defer fallback={<DemoToolbarFallback />}>
-            <React.Suspense fallback={<DemoToolbarFallback />}>
-              <DemoToolbar
-                codeOpen={codeOpen}
-                codeVariant={codeVariant}
-                demo={demo}
-                demoData={demoData}
-                demoHovered={demoHovered}
-                demoId={demoId}
-                demoName={demoName}
-                demoOptions={demoOptions}
-                demoSourceId={demoSourceId}
-                initialFocusRef={initialFocusRef}
-                onCodeOpenChange={() => {
-                  setCodeOpen((open) => !open);
-                  setShowAd(true);
-                }}
-                onResetDemoClick={resetDemo}
-                openDemoSource={openDemoSource}
-                showPreview={showPreview}
-              />
-            </React.Suspense>
-          </NoSsr>
-        )}
-        <Collapse in={openDemoSource} unmountOnExit>
-          {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
+      {demoOptions.hideToolbar ? null : (
+        <NoSsr defer fallback={<DemoToolbarFallback />}>
+          <React.Suspense fallback={<DemoToolbarFallback />}>
+            <DemoToolbar
+              codeOpen={codeOpen}
+              codeVariant={codeVariant}
+              demo={demo}
+              demoData={demoData}
+              demoHovered={demoHovered}
+              demoId={demoId}
+              demoName={demoName}
+              demoOptions={demoOptions}
+              demoSourceId={demoSourceId}
+              initialFocusRef={initialFocusRef}
+              onCodeOpenChange={() => {
+                setCodeOpen((open) => !open);
+                setShowAd(true);
               }}
+              onResetDemoClick={resetDemo}
+              openDemoSource={openDemoSource}
+              showPreview={showPreview}
             />
-          ) : (
-            <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview}
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                });
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true);
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
-          )}
-        </Collapse>
-        {adVisibility ? <AdCarbonInline /> : null}
-      </Wrapper>
+          </React.Suspense>
+        </NoSsr>
+      )}
+      <Collapse in={openDemoSource} unmountOnExit>
+        {/* A limitation from https://github.com/nihgwu/react-runner,
+            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+        {demoOptions.disableLiveEdit ? (
+          <DemoCodeViewer
+            code={editorCode.value}
+            id={demoSourceId}
+            language={demoData.sourceLanguage}
+            copyButtonProps={{
+              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+              'data-ga-event-label': demo.gaLabel,
+              'data-ga-event-action': 'copy-click',
+            }}
+          />
+        ) : (
+          <DemoEditor
+            // Mount a new text editor when the preview mode change to reset the undo/redo history.
+            key={editorCode.isPreview}
+            value={editorCode.value}
+            onChange={(value) => {
+              setEditorCode({
+                ...editorCode,
+                value,
+              });
+            }}
+            onFocus={() => {
+              setLiveDemoActive(true);
+            }}
+            id={demoSourceId}
+            language={demoData.sourceLanguage}
+            copyButtonProps={{
+              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+              'data-ga-event-label': demo.gaLabel,
+              'data-ga-event-action': 'copy-click',
+            }}
+          >
+            <DemoEditorError>{debouncedError}</DemoEditorError>
+          </DemoEditor>
+        )}
+      </Collapse>
+      {adVisibility ? <AdCarbonInline /> : null}
     </Root>
   );
 }
@@ -561,5 +512,4 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  mode: PropTypes.string, // temporary, just to make Joy docs work.
 };

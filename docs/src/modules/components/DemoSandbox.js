@@ -148,6 +148,7 @@ function getTheme(outerTheme) {
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
   }
+  delete resultTheme.$$material; // to ensure that the demo uses default theme.
   return resultTheme;
 }
 

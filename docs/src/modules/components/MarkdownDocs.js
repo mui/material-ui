@@ -10,7 +10,6 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
@@ -58,7 +57,6 @@ export default function MarkdownDocs(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
-  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
   return (
     <AppLayoutDocs
@@ -69,22 +67,16 @@ export default function MarkdownDocs(props) {
       title={title}
       toc={toc}
     >
-      <Provider>
+      <Provider {...(isJoy && { enableThemeScope: true })}>
         {disableAd ? null : (
-          <Wrapper>
-            <AdGuest>
-              <Ad />
-            </AdGuest>
-          </Wrapper>
+          <AdGuest>
+            <Ad />
+          </AdGuest>
         )}
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
-            return (
-              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
-              </Wrapper>
-            );
+            return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
           }
 
           if (renderedMarkdownOrDemo.component) {
@@ -95,11 +87,7 @@ export default function MarkdownDocs(props) {
               throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
             }
 
-            return (
-              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
-              </Wrapper>
-            );
+            return <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
           }
 
           const name = renderedMarkdownOrDemo.demo;
@@ -138,7 +126,6 @@ export default function MarkdownDocs(props) {
           return (
             <Demo
               key={index}
-              mode={theme.palette.mode}
               demo={{
                 raw: demo.raw,
                 js: demoComponents[demo.module] ?? noComponent(demo.module),
