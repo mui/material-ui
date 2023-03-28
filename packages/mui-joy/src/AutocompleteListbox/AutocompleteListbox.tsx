@@ -15,6 +15,7 @@ import listItemClasses from '../ListItem/listItemClasses';
 import listClasses from '../List/listClasses';
 import { scopedVariables } from '../List/ListProvider';
 import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteListboxOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -125,17 +126,22 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteListboxRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'listbox',
+    },
+  });
+
   return (
-    <AutocompleteListboxRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      role="listbox"
-      {...other}
-    >
+    <SlotRoot ref={ref} {...rootProps}>
       {children}
-    </AutocompleteListboxRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 

@@ -14,6 +14,7 @@ import {
   CardOverflowTypeMap,
 } from './CardOverflowProps';
 import { CardRowContext } from '../Card/CardContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
@@ -126,17 +127,18 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <CardOverflowRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {children}
-    </CardOverflowRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardOverflowRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<CardOverflowTypeMap>;
 
 CardOverflow.propTypes /* remove-proptypes */ = {

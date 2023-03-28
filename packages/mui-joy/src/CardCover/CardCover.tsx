@@ -7,6 +7,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardCoverUtilityClass } from './cardCoverClasses';
 import { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -74,20 +75,25 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardCoverRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+    },
+  });
+
   return (
-    <CardCoverRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
           ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
-    </CardCoverRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<CardCoverTypeMap>;
 

@@ -14,6 +14,7 @@ import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import { CardRowContext } from './CardContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;
@@ -126,15 +127,20 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+    },
+  });
+
   const result = (
     <CardRowContext.Provider value={orientation === 'horizontal'}>
-      <CardRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
+      <SlotRoot {...rootProps}>
         {React.Children.map(children, (child, index) => {
           if (!React.isValidElement(child)) {
             return child;
@@ -155,7 +161,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           }
           return React.cloneElement(child, extraProps);
         })}
-      </CardRoot>
+      </SlotRoot>
     </CardRowContext.Provider>
   );
 

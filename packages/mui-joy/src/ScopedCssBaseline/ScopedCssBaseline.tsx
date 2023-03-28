@@ -12,6 +12,7 @@ import {
   ScopedCssBaselineProps,
 } from './ScopedCssBaselineProps';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -86,15 +87,18 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
 
   const classes = useUtilityClasses();
 
-  return (
-    <ScopedCssBaselineRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    />
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ScopedCssBaselineRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+    },
+  });
+
+  return <SlotRoot {...rootProps} />;
 }) as OverridableComponent<ScopedCssBaselineTypeMap>;
 
 ScopedCssBaseline.propTypes /* remove-proptypes */ = {

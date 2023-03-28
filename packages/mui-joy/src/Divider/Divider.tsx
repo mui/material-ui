@@ -7,6 +7,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { DividerOwnerState, DividerTypeMap } from './DividerProps';
 import { getDividerUtilityClass } from './dividerClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: DividerOwnerState) => {
   const { orientation, inset } = ownerState;
@@ -123,24 +124,25 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <DividerRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      {...(role === 'separator' &&
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: DividerRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      ...(role === 'separator' &&
         orientation === 'vertical' && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
-        })}
-      {...other}
-    >
-      {children}
-    </DividerRoot>
-  );
+        }),
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<DividerTypeMap>;
 
 Divider.propTypes /* remove-proptypes */ = {

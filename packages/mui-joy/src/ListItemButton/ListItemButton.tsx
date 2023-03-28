@@ -14,6 +14,7 @@ import {
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -171,20 +172,23 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = getRootProps();
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemButtonRoot,
+    externalForwardedProps: other,
+    ownerState,
+    getSlotProps: getRootProps,
+    additionalProps: {
+      as: component,
+    },
+  });
 
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
-      <ListItemButtonRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...other}
-        {...rootProps}
-        role={role ?? rootProps.role}
-      >
+      <SlotRoot {...rootProps} role={role ?? rootProps.role}>
         {children}
-      </ListItemButtonRoot>
+      </SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
