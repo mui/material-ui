@@ -5,17 +5,22 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
 import ROUTES from 'docs/src/route';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import DesignServicesRoundedIcon from '@mui/icons-material/DesignServicesRounded';
+import CopyAllRoundedIcon from '@mui/icons-material/CopyAllRounded';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Header = styled('header')(({ theme }) => [
@@ -66,6 +71,27 @@ export default function AppHeader(props: AppHeaderProps) {
     changeTheme({ paletteMode });
   };
 
+  const [contextMenu, setContextMenu] = React.useState<{
+    mouseX: number;
+    mouseY: number;
+  } | null>(null);
+
+  const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX + 2,
+            mouseY: event.clientY - 6,
+          }
+        : null,
+    );
+  };
+
+  const handleClose = () => {
+    setContextMenu(null);
+  };
+
   return (
     <Header>
       <GlobalStyles
@@ -80,10 +106,36 @@ export default function AppHeader(props: AppHeaderProps) {
           component={Link}
           href={ROUTES.home}
           aria-label="Go to homepage"
-          sx={{ lineHeight: 0, mr: 2 }}
+          onContextMenu={handleContextMenu}
+          sx={{ lineHeight: 0, mr: 1 }}
         >
           <SvgMuiLogo width={30} />
         </Box>
+        <Menu
+          open={contextMenu !== null}
+          onClose={handleClose}
+          anchorReference="anchorPosition"
+          anchorPosition={
+            contextMenu !== null ? { top: contextMenu.mouseY, left: contextMenu.mouseX } : undefined
+          }
+          sx={{
+            '& .MuiPaper-root': { py: 1 },
+          }}
+        >
+          <MenuItem onClick={handleClose}>
+            <CopyAllRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Copy logo as SVG
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <CopyAllRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Copy wordmark as SVG
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={handleClose} component="a" href={ROUTES.branding}>
+            <DesignServicesRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Brand guidelines
+          </MenuItem>
+        </Menu>
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>

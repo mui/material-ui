@@ -196,7 +196,7 @@ export default function AppFrame(props) {
               aria-label={t('goToHome')}
               sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >
-              <SvgMuiLogo width={30} />
+              <SvgMuiLogo />
             </Box>
           </NextLink>
           <GrowingDiv />
