@@ -1,5 +1,6 @@
 import { useThemeProps as systemUseThemeProps } from '@mui/system';
 import defaultTheme from './defaultTheme';
+import IDENTIFIER from './identifier';
 
 export default function useThemeProps<T extends {}>({
   props,
@@ -12,6 +13,6 @@ export default function useThemeProps<T extends {}>({
     props,
     name,
     defaultTheme: { ...defaultTheme, components: {} },
-    identifier: '$$joy',
+    identifier: IDENTIFIER,
   });
 }

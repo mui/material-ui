@@ -4,11 +4,12 @@ import defaultTheme from './defaultTheme';
 import { CssVarsThemeOptions } from './extendTheme';
 import { createSoftInversion, createSolidInversion } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
+import IDENTIFIER from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme
 >({
-  identifier: '$$joy',
+  identifier: IDENTIFIER,
   theme: defaultTheme,
   attribute: 'data-joy-color-scheme',
   modeStorageKey: 'joy-mode',

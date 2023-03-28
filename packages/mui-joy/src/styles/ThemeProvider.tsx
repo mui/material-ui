@@ -3,9 +3,10 @@ import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from
 import defaultTheme from './defaultTheme';
 import extendTheme from './extendTheme';
 import type { CssVarsThemeOptions } from './extendTheme';
+import IDENTIFIER from './identifier';
 
 export const useTheme = () => {
-  const theme = useSystemTheme(defaultTheme, '$$joy');
+  const theme = useSystemTheme(defaultTheme);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -13,7 +14,7 @@ export const useTheme = () => {
   }
 
   // @ts-ignore internal logic
-  return theme.$$joy || theme;
+  return theme[IDENTIFIER] || theme;
 };
 
 export default function ThemeProvider({
@@ -30,7 +31,7 @@ export default function ThemeProvider({
 }>) {
   return (
     <SystemThemeProvider
-      identifier="$$joy"
+      identifier={IDENTIFIER}
       enableThemeScope={enableThemeScope}
       theme={themeInput ? extendTheme(themeInput) : defaultTheme}
     >
