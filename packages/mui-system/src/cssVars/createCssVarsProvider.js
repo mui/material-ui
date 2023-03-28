@@ -264,8 +264,6 @@ export default function createCssVarsProvider(options) {
       shouldGenerateStyleSheet = false;
     }
 
-    const calculatedTheme = resolveTheme ? resolveTheme(theme) : theme;
-
     const element = (
       <React.Fragment>
         {shouldGenerateStyleSheet && (
@@ -276,7 +274,9 @@ export default function createCssVarsProvider(options) {
           </React.Fragment>
         )}
         <ThemeProvider
-          theme={enableThemeScope ? { [identifier]: calculatedTheme } : calculatedTheme}
+          identifier={identifier}
+          enableThemeScope={enableThemeScope}
+          theme={resolveTheme ? resolveTheme(theme) : theme}
         >
           {children}
         </ThemeProvider>

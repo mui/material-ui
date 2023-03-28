@@ -3,8 +3,8 @@ import useThemeWithoutDefault from './useThemeWithoutDefault';
 
 export const systemDefaultTheme = createTheme();
 
-function useTheme(defaultTheme = systemDefaultTheme) {
-  return useThemeWithoutDefault(defaultTheme);
+function useTheme(defaultTheme = systemDefaultTheme, identifier = undefined) {
+  return useThemeWithoutDefault(defaultTheme, identifier);
 }
 
 export default useTheme;

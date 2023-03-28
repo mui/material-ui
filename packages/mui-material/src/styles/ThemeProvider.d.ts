@@ -3,6 +3,11 @@ import { DefaultTheme } from '@mui/system';
 export interface ThemeProviderProps<Theme = DefaultTheme> {
   children?: React.ReactNode;
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
+  /**
+   * If `true`, the theme scope is created to prevent conflict with other libraries's theme
+   * that use emotion or styled-components
+   */
+  enableThemeScope?: boolean;
 }
 
 /**

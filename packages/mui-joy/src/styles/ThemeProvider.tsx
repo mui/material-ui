@@ -5,7 +5,7 @@ import extendTheme from './extendTheme';
 import type { CssVarsThemeOptions } from './extendTheme';
 
 export const useTheme = () => {
-  const theme = useSystemTheme(defaultTheme);
+  const theme = useSystemTheme(defaultTheme, '$$joy');
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -19,11 +19,21 @@ export const useTheme = () => {
 export default function ThemeProvider({
   children,
   theme: themeInput,
+  enableThemeScope,
 }: React.PropsWithChildren<{
   theme?: CssVarsThemeOptions;
+  /**
+   * If `true`, the theme scope is created to prevent conflict with other libraries's theme
+   * that use emotion or styled-components
+   */
+  enableThemeScope?: boolean;
 }>) {
   return (
-    <SystemThemeProvider theme={themeInput ? extendTheme(themeInput) : defaultTheme}>
+    <SystemThemeProvider
+      identifier="$$joy"
+      enableThemeScope={enableThemeScope}
+      theme={themeInput ? extendTheme(themeInput) : defaultTheme}
+    >
       {children}
     </SystemThemeProvider>
   );

@@ -28,10 +28,14 @@ InnerThemeProvider.propTypes = {
  * It should preferably be used at **the root of your component tree**.
  */
 function ThemeProvider(props) {
-  const { children, theme: localTheme } = props;
+  const { children, theme: localTheme, identifier, enableThemeScope } = props;
 
   return (
-    <MuiThemeProvider theme={localTheme}>
+    <MuiThemeProvider
+      theme={localTheme}
+      identifier={identifier}
+      enableThemeScope={enableThemeScope}
+    >
       <InnerThemeProvider>{children}</InnerThemeProvider>
     </MuiThemeProvider>
   );
@@ -46,6 +50,15 @@ ThemeProvider.propTypes /* remove-proptypes */ = {
    * Your component tree.
    */
   children: PropTypes.node,
+  /**
+   * If `true`, the theme scope is created to prevent conflict with other libraries's theme
+   * that use emotion or styled-components
+   */
+  enableThemeScope: PropTypes.bool,
+  /**
+   * The design system's unique id for getting the corresponded theme when there are multiple design systems.
+   */
+  identifier: PropTypes.string,
   /**
    * A theme object. You can provide a function to extend the outer theme.
    */
