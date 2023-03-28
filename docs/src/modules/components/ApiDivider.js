@@ -8,8 +8,7 @@ export default function Divider() {
         mt: 5,
         borderBottomWidth: 2,
         borderBottomStyle: 'dashed',
-        borderBottomColor: (theme) =>
-          theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300],
+        borderBottomColor: 'divider',
       }}
     />
   );

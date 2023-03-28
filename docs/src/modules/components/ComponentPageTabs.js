@@ -42,7 +42,6 @@ export default function ComponentPageTabs(props) {
           },
           backgroundColor: (theme) =>
             theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'rgba(255,255,255)',
-          backdropFilter: 'blur(8px)',
           borderBottom: 1,
           borderColor: 'divider',
           zIndex: 1000,
