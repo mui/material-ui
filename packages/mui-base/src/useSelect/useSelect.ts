@@ -209,11 +209,15 @@ function useSelect<TValue, Multiple extends boolean = false>(
         case ActionTypes.blur:
         case ActionTypes.setValue:
         case ActionTypes.optionsChange:
-          return {
-            ...newState,
-            highlightedValue:
-              newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
-          };
+          if(!multiple) {
+            return {
+              ...newState,
+              highlightedValue:
+                newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
+            };
+          }
+          
+          break;
 
         default:
           return newState;
