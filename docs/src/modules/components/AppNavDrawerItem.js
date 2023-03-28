@@ -178,7 +178,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
 const sxChip = (color) => [
   (theme) => ({
     ml: 1.5,
-    fontSize: (theme) => theme.typography.pxToRem(10),
+    fontSize: theme.typography.pxToRem(10),
     fontWeight: 'semiBold',
     textTransform: 'uppercase',
     letterSpacing: '.04rem',
