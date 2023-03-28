@@ -229,7 +229,7 @@ Pay specific attention to the `ref` and `inputProps` keys.
 
 :::warning
 If you're using a custom input component inside the Autocomplete, you might need to include `forwardRef`. 
-When incorporating the Text Field component, you should pass `ref` to `inputRef`.
+When incorporating the mui's `TextField` component, you should pass `ref` to `inputRef`.
 :::
 
 {{"demo": "CustomInputAutocomplete.js"}}
