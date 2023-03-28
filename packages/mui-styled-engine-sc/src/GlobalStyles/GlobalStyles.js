@@ -6,10 +6,11 @@ function isEmpty(obj) {
 }
 
 const GlobalStyles = createGlobalStyle((props) => {
-  const { styles, defaultTheme = {} } = props;
+  const { styles, defaultTheme = {}, identifier } = props;
 
   if (typeof styles === 'function') {
-    return styles(isEmpty(props.theme) ? defaultTheme : props.theme);
+    const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+    return styles(identifier ? theme[identifier] || theme : theme);
   }
 
   return styles;
@@ -19,5 +20,6 @@ export default GlobalStyles;
 
 GlobalStyles.propTypes = {
   defaultTheme: PropTypes.object,
+  identifier: PropTypes.string,
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
 };

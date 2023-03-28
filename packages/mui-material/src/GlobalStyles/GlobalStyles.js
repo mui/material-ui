@@ -4,7 +4,7 @@ import { GlobalStyles as SystemGlobalStyles } from '@mui/system';
 import defaultTheme from '../styles/defaultTheme';
 
 function GlobalStyles(props) {
-  return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} />;
+  return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} identifier="$$material" />;
 }
 
 GlobalStyles.propTypes /* remove-proptypes */ = {

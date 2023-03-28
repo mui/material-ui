@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CSSObject, InterpolationFunction } from 'styled-components';
 
 export interface GlobalStylesProps<Theme = {}> {
+  identifier?: string;
   defaultTheme?: object;
   styles: string | CSSObject | InterpolationFunction<Theme>;
 }

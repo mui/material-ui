@@ -12,9 +12,4 @@ export default function useThemeProps<
   Theme extends ThemeWithProps,
   Props,
   Name extends keyof any,
->(params: {
-  props: Props;
-  name: Name;
-  defaultTheme?: Theme;
-  identifier: string;
-}): Props & ThemedProps<Theme, Name>;
+>(params: { props: Props; name: Name; defaultTheme?: Theme }): Props & ThemedProps<Theme, Name>;

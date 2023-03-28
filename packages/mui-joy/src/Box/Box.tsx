@@ -5,6 +5,7 @@ import { Theme } from '../styles/types';
 import defaultTheme from '../styles/defaultTheme';
 
 const Box = createBox<Theme>({
+  identifier: '$$joy',
   defaultTheme,
   defaultClassName: 'MuiBox-root',
   generateClassName: ClassNameGenerator.generate,

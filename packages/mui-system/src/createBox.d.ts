@@ -6,6 +6,7 @@ export default function createBox<
   T extends object = SystemTheme,
   AdditionalProps extends Record<string, unknown> = {},
 >(options?: {
+  identifier?: string;
   defaultTheme: T;
   defaultClassName?: string;
   generateClassName?: (componentName: string) => string;
