@@ -1349,7 +1349,7 @@ describe('Joy <Autocomplete />', () => {
       checkHighlightIs(listbox, null);
     });
 
-    it('should keep focus on selected option when options updates', () => {
+    it('should reset the highlight when the input changed', () => {
       const filterOptions = createFilterOptions({});
       const { getByRole } = render(
         <Autocomplete
@@ -1363,15 +1363,15 @@ describe('Joy <Autocomplete />', () => {
       const textbox = getByRole('combobox');
       const listbox = getByRole('listbox');
 
-      fireEvent.change(textbox, { target: { value: 'two' } });
+      fireEvent.change(textbox, { target: { value: 't' } });
 
       checkHighlightIs(listbox, 'two');
 
       fireEvent.change(textbox, { target: { value: '' } });
 
-      checkHighlightIs(listbox, 'two');
+      checkHighlightIs(listbox, 'one');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      expect(textbox).has.value('two');
+      expect(textbox).has.value('one');
     });
 
     it('should not select undefined', () => {

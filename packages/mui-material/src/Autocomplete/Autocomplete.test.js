@@ -1677,7 +1677,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
     });
 
-    it('should keep focus on selected option when options updates', () => {
+    it('should reset the highlight when the input changed', () => {
       const filterOptions = createFilterOptions({});
       render(
         <Autocomplete
@@ -1692,15 +1692,15 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const listbox = screen.getByRole('listbox');
 
-      fireEvent.change(textbox, { target: { value: 'two' } });
+      fireEvent.change(textbox, { target: { value: 't' } });
 
       checkHighlightIs(listbox, 'two');
 
       fireEvent.change(textbox, { target: { value: '' } });
 
-      checkHighlightIs(listbox, 'two');
+      checkHighlightIs(listbox, 'one');
       fireEvent.keyDown(textbox, { key: 'Enter' });
-      expect(textbox).has.value('two');
+      expect(textbox).has.value('one');
     });
 
     it("should reset the highlight when previously highlighted option doesn't exists in new options", () => {
