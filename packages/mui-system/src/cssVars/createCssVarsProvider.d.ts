@@ -97,7 +97,7 @@ export default function createCssVarsProvider<ColorScheme extends string>(
     /**
      * The design system's unique id for getting the corresponded theme when there are multiple design systems.
      */
-    identifier: string;
+    identifier?: string;
     /**
      * Design system default theme
      *
