@@ -10,7 +10,13 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
-import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  useTheme,
+  styled,
+  createTheme,
+  ThemeProvider,
+  THEME_IDENTIFIER,
+} from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -148,7 +154,7 @@ function getTheme(outerTheme) {
   if (outerTheme.spacing) {
     resultTheme.spacing = outerTheme.spacing;
   }
-  delete resultTheme.$$material; // to ensure that the demo uses default theme.
+  delete resultTheme[THEME_IDENTIFIER]; // to ensure that the demo uses default theme.
   return resultTheme;
 }
 

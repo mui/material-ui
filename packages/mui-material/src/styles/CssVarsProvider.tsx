@@ -9,12 +9,13 @@ import experimental_extendTheme, {
 } from './experimental_extendTheme';
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
+import IDENTIFIER from './identifier';
 
 const defaultTheme = experimental_extendTheme();
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
   createCssVarsProvider<SupportedColorScheme>({
-    identifier: '$$material',
+    identifier: IDENTIFIER,
     theme: defaultTheme,
     attribute: 'data-mui-color-scheme',
     modeStorageKey: 'mui-mode',

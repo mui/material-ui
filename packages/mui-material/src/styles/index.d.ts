@@ -1,3 +1,4 @@
+export { default as THEME_IDENTIFIER } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
