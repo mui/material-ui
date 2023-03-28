@@ -24,7 +24,15 @@ export type SlotProps<TSlotComponent extends React.ElementType, TOverrides, TOwn
  * @example CreateSlotsAndSlotProps<{ root: React.ElementType, decorator: React.ElementType }, { root: ..., decorator: ... }>
  */
 export type CreateSlotsAndSlotProps<Slots, K extends Record<keyof Slots, any>> = {
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
   slots?: Partial<Slots>;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
   slotProps?: {
     [P in keyof K]?: K[P];
   };
