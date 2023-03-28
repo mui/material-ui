@@ -6,9 +6,10 @@ export default function Divider() {
     <MuiDivider
       sx={{
         mt: 5,
-        borderBottomWidth: 3,
-        borderBottomStyle: 'double',
-        borderBottomColor: 'rgb(200,200,200)',
+        borderBottomWidth: 2,
+        borderBottomStyle: 'dashed',
+        borderBottomColor: (theme) =>
+          theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300],
       }}
     />
   );
