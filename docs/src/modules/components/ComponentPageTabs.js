@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
 import Link from 'docs/src/modules/components/Link';
-import { alpha } from '@mui/material/styles';
 
 export default function ComponentPageTabs(props) {
   const {
@@ -42,9 +41,7 @@ export default function ComponentPageTabs(props) {
             sm: 0,
           },
           backgroundColor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? alpha(theme.palette.primaryDark[900], 0.7)
-              : 'rgba(255,255,255,0.8)',
+            theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'rgba(255,255,255)',
           backdropFilter: 'blur(8px)',
           borderBottom: 1,
           borderColor: 'divider',
