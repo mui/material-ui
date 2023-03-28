@@ -66,6 +66,7 @@ const pages = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
+          { pathname: '/joy-ui/react-snackbar', comingSoon: true },
         ],
       },
       {
