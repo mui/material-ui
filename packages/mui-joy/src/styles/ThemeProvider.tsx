@@ -2,10 +2,11 @@ import * as React from 'react';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme from './defaultTheme';
 import extendTheme from './extendTheme';
-import type { CssVarsThemeOptions } from './extendTheme';
 import IDENTIFIER from './identifier';
+import type { CssVarsThemeOptions } from './extendTheme';
+import type { Theme } from './types';
 
-export const useTheme = () => {
+export const useTheme = (): Theme => {
   const theme = useSystemTheme(defaultTheme);
 
   if (process.env.NODE_ENV !== 'production') {
