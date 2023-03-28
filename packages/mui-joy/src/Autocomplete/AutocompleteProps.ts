@@ -31,62 +31,62 @@ export interface AutocompleteSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the wrapper.
    * @default 'div'
    */
-  wrapper: React.ElementType;
+  wrapper?: React.ElementType;
   /**
    * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
   /**
    * The component that renders the clear indicator.
    * @default 'button'
    */
-  clearIndicator: React.ElementType;
+  clearIndicator?: React.ElementType;
   /**
    * The component that renders the popup indicator.
    * @default 'button'
    */
-  popupIndicator: React.ElementType;
+  popupIndicator?: React.ElementType;
   /**
    * The component that renders the listbox.
    * @default 'ul'
    */
-  listbox: React.ElementType;
+  listbox?: React.ElementType;
   /**
    * The component that renders the option.
    * @default 'li'
    */
-  option: React.ElementType;
+  option?: React.ElementType;
   /**
    * The component that renders the loading.
    * @default 'li'
    */
-  loading: React.ElementType;
+  loading?: React.ElementType;
   /**
    * The component that renders the no-options.
    * @default 'li'
    */
-  noOptions: React.ElementType;
+  noOptions?: React.ElementType;
   /**
    * The component that renders the limit tag.
    * @default 'span'
    */
-  limitTag: React.ElementType;
+  limitTag?: React.ElementType;
 }
 
 export interface AutocompletePropsVariantOverrides {}

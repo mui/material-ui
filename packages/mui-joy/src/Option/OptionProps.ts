@@ -16,7 +16,7 @@ export interface OptionSlots {
    * The component that renders the root.
    * @default 'li'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type OptionSlotsAndSlotProps = CreateSlotsAndSlotProps<

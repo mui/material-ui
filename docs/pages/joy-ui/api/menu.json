@@ -27,6 +27,10 @@
       },
       "default": "'md'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
     "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "sx": {
       "type": {
@@ -76,7 +80,7 @@
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyMenu",
-  "forwardsRefTo": "HTMLUListElement",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Menu/Menu.tsx",
   "inheritance": { "component": "PopperUnstyled", "pathname": "/base/api/popper-unstyled/" },
   "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",

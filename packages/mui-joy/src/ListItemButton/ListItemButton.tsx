@@ -134,6 +134,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     selected = false,
     color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -171,12 +173,13 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: ListItemButtonRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
     getSlotProps: getRootProps,
   });
@@ -261,6 +264,20 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

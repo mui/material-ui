@@ -28,7 +28,7 @@ export type CreateSlotsAndSlotProps<Slots, K extends Record<keyof Slots, any>> =
    * The components used for each slot inside.
    * @default {}
    */
-  slots?: Partial<Slots>;
+  slots?: Slots;
   /**
    * The props used for each slot inside.
    * @default {}

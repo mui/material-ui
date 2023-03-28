@@ -72,6 +72,8 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -101,12 +103,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
     className: classes.root,
   });
@@ -177,6 +180,20 @@ MenuList.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

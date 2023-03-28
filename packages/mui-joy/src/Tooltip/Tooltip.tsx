@@ -18,12 +18,6 @@ import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
-// Create a function to prevent typescript-to-proptypes from generating `slots` and `slotProps` proptypes.
-const excludeSlotsAndSlotProps = <T extends { slots?: any; slotProps?: any }>(props: T) => {
-  const { slots, slotProps, ...otherProps } = props;
-  return otherProps;
-};
-
 const useUtilityClasses = (ownerState: TooltipOwnerState) => {
   const { arrow, variant, color, size, placement, touch } = ownerState;
 
@@ -249,6 +243,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -506,7 +503,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const childrenProps = {
     ...nameOrDescProps,
-    ...excludeSlotsAndSlotProps(other),
+    ...other,
+    component,
     ...children.props,
     className: clsx(className, children.props.className),
     onTouchStart: detectTouchStart,
@@ -565,6 +563,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const modifiers = React.useMemo(
     () => [
@@ -617,7 +616,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ref: null,
     className: classes.root,
     elementType: TooltipRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -625,7 +624,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ref: setArrowRef,
     className: classes.arrow,
     elementType: TooltipArrow,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -838,7 +837,16 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
-   * @ignore
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
    */
   slots: PropTypes.shape({
     arrow: PropTypes.elementType,

@@ -10,12 +10,12 @@ export interface BadgeSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the badge.
    * @default 'div'
    */
-  badge: React.ElementType;
+  badge?: React.ElementType;
 }
 
 export interface BadgePropsVariantOverrides {}
