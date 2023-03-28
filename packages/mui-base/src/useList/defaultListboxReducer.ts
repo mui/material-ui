@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ActionTypes } from './actions.types';
+import { ListActionTypes } from './listActions.types';
 import {
   ListState,
-  UseListParametersWithDefaults,
+  ListActionAddOnValue,
   ListReducerAction,
   ListActionAddOn,
 } from './useList.types';
@@ -132,7 +132,7 @@ function getNewHighlightedItem<ItemValue>(
 function moveHighlight<ItemValue>(
   previouslyHighlightedValue: ItemValue | null,
   diff: number | 'reset' | 'start' | 'end',
-  props: UseListParametersWithDefaults<ItemValue>,
+  props: ListActionAddOnValue<ItemValue>,
 ) {
   const { items, isItemDisabled, disableListWrap, disabledItemsFocusable, itemComparer } = props;
 
@@ -186,7 +186,7 @@ function toggleSelection<ItemValue>(
 function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   item: ItemValue,
   state: State,
-  props: UseListParametersWithDefaults<ItemValue>,
+  props: ListActionAddOnValue<ItemValue>,
 ): State {
   const { itemComparer = (o, v) => o === v, isItemDisabled = () => false, selectionLimit } = props;
   const { selectedValues } = state;
@@ -210,7 +210,7 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
 function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
   event: React.KeyboardEvent,
   state: State,
-  parameters: UseListParametersWithDefaults<ItemValue>,
+  parameters: ListActionAddOnValue<ItemValue>,
 ): State {
   const previouslySelectedValue = state.highlightedValue;
   const { orientation } = parameters;
@@ -303,7 +303,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
 
 function handleBlur<ItemValue, State extends ListState<ItemValue>>(
   state: State,
-  props: UseListParametersWithDefaults<ItemValue>,
+  props: ListActionAddOnValue<ItemValue>,
 ): State {
   if (props.focusManagement === 'DOM') {
     return state;
@@ -333,7 +333,7 @@ function textCriteriaMatches<ItemValue>(
 function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   searchString: string,
-  props: UseListParametersWithDefaults<ItemValue>,
+  props: ListActionAddOnValue<ItemValue>,
 ): State {
   const {
     items,
@@ -395,7 +395,7 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   items: ItemValue[],
   previousItems: ItemValue[],
   state: State,
-  props: UseListParametersWithDefaults<ItemValue>,
+  props: ListActionAddOnValue<ItemValue>,
 ): State {
   const { itemComparer, focusManagement } = props;
 
@@ -429,20 +429,20 @@ export default function defaultListboxReducer<ItemValue, State extends ListState
   const parameters = props.current!;
 
   switch (type) {
-    case ActionTypes.keyDown:
+    case ListActionTypes.keyDown:
       return handleKeyDown(action.event, state, parameters);
-    case ActionTypes.itemClick:
+    case ListActionTypes.itemClick:
       return handleItemSelection(action.item, state, parameters);
-    case ActionTypes.blur:
+    case ListActionTypes.blur:
       return handleBlur(state, parameters);
-    case ActionTypes.setState:
+    case ListActionTypes.setState:
       return {
         ...state,
         ...action.value,
       };
-    case ActionTypes.textNavigation:
+    case ListActionTypes.textNavigation:
       return handleTextNavigation(state, action.searchString, parameters);
-    case ActionTypes.itemsChange:
+    case ListActionTypes.itemsChange:
       return handleItemsChange(action.items, action.previousItems, state, parameters);
     default:
       return state;

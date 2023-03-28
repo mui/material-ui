@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useList, {
   defaultListboxReducer,
-  ActionTypes,
+  ListActionTypes,
   ListActionAddOn,
   ListAction,
 } from '../useList';
@@ -56,7 +56,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       state: MenuInternalState,
       action: ListAction<string, MenuInternalState> & ListActionAddOn<string>,
     ): MenuInternalState => {
-      if (action.type === ActionTypes.itemHover || action.type === ActionTypes.setState) {
+      if (action.type === ListActionTypes.itemHover || action.type === ListActionTypes.setState) {
         return state;
       }
 
@@ -70,7 +70,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
         };
       }
 
-      if (action.type === ActionTypes.keyDown) {
+      if (action.type === ListActionTypes.keyDown) {
         if (action.event.key === 'Escape') {
           return {
             ...newState,
@@ -79,7 +79,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
         }
       }
 
-      if (action.type === ActionTypes.blur) {
+      if (action.type === ListActionTypes.blur) {
         if (!listboxRef.current?.contains(action.event.relatedTarget)) {
           return {
             ...newState,
@@ -114,7 +114,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     contextValue: listContextValue,
     state: { open },
   } = useList<string, MenuInternalState>({
-    controlledState,
+    controlledProps: controlledState,
     disabledItemsFocusable: true,
     focusManagement: 'DOM',
     getItemDomElement,

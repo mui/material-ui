@@ -2,51 +2,42 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   UseListParameters,
-  UseListParametersWithDefaults,
+  ListActionAddOnValue,
   ListItemState,
   UseListRootSlotProps,
   ListState,
   ListActionAddOn,
 } from './useList.types';
+import { ListActionTypes, ListAction } from './listActions.types';
+import { ListContextValue } from './ListContext';
 import defaultReducer from './defaultListboxReducer';
-import useControllableReducer from '../utils/useControllableReducer';
-import areArraysEqual from '../utils/areArraysEqual';
-import { EventHandlers } from '../utils/types';
-import useLatest from '../utils/useLatest';
-import useTextNavigation from '../utils/useTextNavigation';
 import useListChangeNotifiers from './useListChangeNotifiers';
-import { ActionTypes, ListAction } from './actions.types';
+import useControllableReducer from '../utils/useControllableReducer';
 import {
   ControllableReducerAction,
   StateChangeCallback,
   StateComparers,
 } from '../utils/useControllableReducer.types';
+import areArraysEqual from '../utils/areArraysEqual';
+import { EventHandlers } from '../utils/types';
+import useLatest from '../utils/useLatest';
+import useTextNavigation from '../utils/useTextNavigation';
 
-const noop = () => {};
-const emptyObject = {};
+const EMPTY_OBJECT = {};
+const NOOP = () => {};
 
-const defaultItemComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
+const defaultItemComparer = <ItemValue>(optionA: ItemValue, optionB: ItemValue) =>
+  optionA === optionB;
+
 const defaultIsItemDisabled = () => false;
+
 const defaultItemStringifier = <ItemValue>(item: ItemValue) =>
   typeof item === 'string' ? item : String(item);
+
 const defaultGetInitialState = () => ({
   highlightedValue: null,
   selectedValues: [],
 });
-
-export interface ListContextValue<ItemValue, State extends ListState<ItemValue>> {
-  dispatch: (action: ListAction<ItemValue, State>) => void;
-  getItemState: (item: ItemValue) => ListItemState;
-  registerHighlightChangeHandler: (handler: (item: ItemValue | null) => void) => () => void;
-  registerSelectionChangeHandler: (
-    handler: (items: ItemValue | ItemValue[] | null) => void,
-  ) => () => void;
-}
-
-export const ListContext = React.createContext<ListContextValue<any, any> | null>(null);
-if (process.env.NODE_ENV !== 'production') {
-  ListContext.displayName = 'ListContext';
-}
 
 /**
  * The useList is a lower-level utility that is used to build list-like components.
@@ -62,7 +53,7 @@ function useList<
   CustomAction extends ControllableReducerAction = never,
 >(params: UseListParameters<ItemValue, State, CustomAction>) {
   const {
-    controlledState: controlledProps = emptyObject,
+    controlledProps = EMPTY_OBJECT,
     disabledItemsFocusable = false,
     disableListWrap = false,
     focusManagement = 'activeDescendant',
@@ -71,7 +62,7 @@ function useList<
     getItemId,
     isItemDisabled = defaultIsItemDisabled,
     listRef: externalListRef,
-    onStateChange = noop,
+    onStateChange = NOOP,
     items,
     itemComparer = defaultItemComparer,
     itemStringifier = defaultItemStringifier,
@@ -110,9 +101,9 @@ function useList<
       if (
         focusManagement === 'DOM' &&
         value != null &&
-        (reason === ActionTypes.itemClick ||
-          reason === ActionTypes.keyDown ||
-          reason === ActionTypes.textNavigation)
+        (reason === ListActionTypes.itemClick ||
+          reason === ListActionTypes.keyDown ||
+          reason === ListActionTypes.textNavigation)
       ) {
         getItemDomElement?.(value)?.focus();
       }
@@ -156,7 +147,7 @@ function useList<
     [handleHighlightChange, onChange, onStateChange],
   );
 
-  const propsWithDefaults: React.RefObject<UseListParametersWithDefaults<ItemValue>> = useLatest(
+  const propsWithDefaults: React.RefObject<ListActionAddOnValue<ItemValue>> = useLatest(
     {
       disabledItemsFocusable,
       disableListWrap,
@@ -200,7 +191,7 @@ function useList<
 
   const handleTextNavigation = useTextNavigation((searchString, event) =>
     dispatch({
-      type: ActionTypes.textNavigation,
+      type: ListActionTypes.textNavigation,
       event,
       searchString,
     }),
@@ -223,7 +214,7 @@ function useList<
     }
 
     dispatch({
-      type: ActionTypes.itemsChange,
+      type: ListActionTypes.itemsChange,
       event: null,
       items,
       previousItems: previousItems.current,
@@ -250,7 +241,7 @@ function useList<
   const setSelectedValue = React.useCallback(
     (values: ItemValue[]) => {
       dispatch({
-        type: ActionTypes.setState,
+        type: ListActionTypes.setState,
         event: null,
         value: { selectedValues: values } as Partial<State>,
       });
@@ -261,7 +252,7 @@ function useList<
   const setHighlightedValue = React.useCallback(
     (item: ItemValue | null) => {
       dispatch({
-        type: ActionTypes.setState,
+        type: ListActionTypes.setState,
         event: null,
         value: { highlightedValue: item } as Partial<State>,
       });
@@ -299,7 +290,7 @@ function useList<
       }
 
       dispatch({
-        type: ActionTypes.keyDown,
+        type: ListActionTypes.keyDown,
         event,
       });
 
@@ -320,7 +311,7 @@ function useList<
       }
 
       dispatch({
-        type: ActionTypes.blur,
+        type: ListActionTypes.blur,
         event,
       });
     };

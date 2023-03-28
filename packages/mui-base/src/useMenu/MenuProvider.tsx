@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { ListContext, ListContextValue } from '../useList/ListContext';
 import { MenuItemMetadata } from '../useMenuItem';
-import { ListContext, ListContextValue } from '../useList';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 import type { MenuInternalState } from './useMenu.types';
 

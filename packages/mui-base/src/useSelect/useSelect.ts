@@ -18,7 +18,7 @@ import {
 } from './useSelect.types';
 import useList, {
   defaultListboxReducer,
-  ActionTypes,
+  ListActionTypes,
   UseListParameters,
   ListAction,
   ListActionAddOn,
@@ -165,7 +165,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
       );
 
       switch (action.type) {
-        case ActionTypes.keyDown:
+        case ListActionTypes.keyDown:
           // change selection when listbox is closed
           if (
             (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown') &&
@@ -192,7 +192,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
 
           break;
 
-        case ActionTypes.itemClick:
+        case ListActionTypes.itemClick:
           if (!multiple) {
             return {
               ...newState,
@@ -202,15 +202,15 @@ function useSelect<TValue, Multiple extends boolean = false>(
 
           break;
 
-        case ActionTypes.setState:
-        case ActionTypes.itemsChange:
+        case ListActionTypes.setState:
+        case ListActionTypes.itemsChange:
           return {
             ...newState,
             highlightedValue:
               newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
           };
 
-        case ActionTypes.blur:
+        case ListActionTypes.blur:
           return {
             ...newState,
             highlightedValue:
@@ -277,7 +277,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
       open: false,
     }),
     getItemId: (itemValue) => options.get(itemValue)?.id,
-    controlledState,
+    controlledProps: controlledState,
     isItemDisabled,
     listRef: handleListboxRef,
     onChange: (e, newValues) => {

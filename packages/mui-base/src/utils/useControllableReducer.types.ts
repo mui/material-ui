@@ -50,7 +50,7 @@ export interface ControllableReducerParameters<
   actionAddOn?: ActionAddOn;
 }
 
-export const setStateActionType = 'setState';
+export const setStateActionType = 'controlledReducer:setState';
 
 export interface SetStateAction<State> {
   type: typeof setStateActionType;

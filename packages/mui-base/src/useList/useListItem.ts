@@ -5,9 +5,9 @@ import {
 } from '@mui/utils';
 import { EventHandlers } from '../utils/types';
 import useForcedRerendering from '../utils/useForcedRerendering';
-import { ListContext } from './useList';
 import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
-import { ActionTypes } from './actions.types';
+import { ListActionTypes } from './listActions.types';
+import { ListContext } from './ListContext';
 
 /**
  * Contains the logic for an item of a list-like component (e.g. Select, Menu, etc.).
@@ -72,7 +72,7 @@ export default function useListItem<ItemValue>(
       event.preventDefault();
 
       dispatch({
-        type: ActionTypes.itemClick,
+        type: ListActionTypes.itemClick,
         item,
         event,
       });
@@ -88,7 +88,7 @@ export default function useListItem<ItemValue>(
       }
 
       dispatch({
-        type: ActionTypes.itemHover,
+        type: ListActionTypes.itemHover,
         item,
         event,
       });

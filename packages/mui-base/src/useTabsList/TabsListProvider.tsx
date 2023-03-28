@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ListContext, ListContextValue, ListState } from '../useList';
+import { ListState } from '../useList';
+import { ListContextValue, ListContext } from '../useList/ListContext';
 import { TabMetadata } from '../useTabs/useTabs';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 

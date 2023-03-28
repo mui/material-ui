@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ListReducerAction, ListState } from './useList.types';
-import { ActionTypes } from './actions.types';
+import { ListActionTypes } from './listActions.types';
 import defaultReducer from './defaultListboxReducer';
 
 describe('useListbox defaultReducer', () => {
@@ -13,7 +13,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.setState,
+        type: ListActionTypes.setState,
         value: { selectedValues: ['foo'] },
         event: null,
         props: {
@@ -43,7 +43,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.blur,
+        type: ListActionTypes.blur,
         event: {} as any, // not relevant
         props: {
           current: {
@@ -73,7 +73,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.itemClick,
+        type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
           current: {
@@ -102,7 +102,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.itemClick,
+        type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
           current: {
@@ -131,7 +131,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.itemClick,
+        type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
           current: {
@@ -160,7 +160,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.itemClick,
+        type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         props: {
           current: {
@@ -192,7 +192,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'Home',
           } as any,
@@ -224,7 +224,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'End',
           } as any,
@@ -256,7 +256,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'ArrowUp',
           } as any,
@@ -288,7 +288,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
@@ -318,7 +318,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'ArrowDown',
           } as any,
@@ -350,7 +350,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
@@ -380,7 +380,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.keyDown,
+          type: ListActionTypes.keyDown,
           event: {
             key: 'Enter',
           } as any,
@@ -410,7 +410,7 @@ describe('useListbox defaultReducer', () => {
         };
 
         const action: ListReducerAction<string, ListState<string>> = {
-          type: ActionTypes.itemClick,
+          type: ListActionTypes.itemClick,
           event: {
             key: 'Enter',
           } as any,
@@ -444,7 +444,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.textNavigation,
+        type: ListActionTypes.textNavigation,
         searchString: 'th',
         event: {} as React.KeyboardEvent,
         props: {
@@ -473,7 +473,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.textNavigation,
+        type: ListActionTypes.textNavigation,
         searchString: 'z',
         event: {} as React.KeyboardEvent,
         props: {
@@ -502,7 +502,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.textNavigation,
+        type: ListActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
         props: {
@@ -531,7 +531,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.textNavigation,
+        type: ListActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
         props: {
@@ -560,7 +560,7 @@ describe('useListbox defaultReducer', () => {
       };
 
       const action: ListReducerAction<string, ListState<string>> = {
-        type: ActionTypes.textNavigation,
+        type: ListActionTypes.textNavigation,
         searchString: 'one',
         event: {} as React.KeyboardEvent,
         props: {

@@ -249,8 +249,8 @@ describe('useControllableReducer', () => {
         };
       });
 
-      const actionToDispatch = {
-        type: 'setState' as const,
+      const actionToDispatch: SetStateAction<TestState> = {
+        type: setStateActionType,
         event: null,
         value: { productionYear: 2010 },
       };
@@ -291,8 +291,8 @@ describe('useControllableReducer', () => {
         };
       };
 
-      const actionToDispatch = {
-        type: 'setState' as const,
+      const actionToDispatch: SetStateAction<TestState> = {
+        type: setStateActionType,
         event: null,
         value: { productionYear: 2010, make: 'BMW' },
       };

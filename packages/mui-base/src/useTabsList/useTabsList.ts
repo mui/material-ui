@@ -10,7 +10,7 @@ import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
 import useList, {
-  ActionTypes,
+  ListActionTypes,
   defaultListboxReducer,
   ListReducer,
   ListState,
@@ -72,14 +72,14 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     (state, action) => {
       const newState = defaultListboxReducer(state, action);
 
-      if (action.type === ActionTypes.itemsChange) {
+      if (action.type === ListActionTypes.itemsChange) {
         return {
           ...newState,
           highlightedValue: newState.selectedValues[0] ?? null,
         };
       }
 
-      if (action.type === ActionTypes.setState && action.value.selectedValues != null) {
+      if (action.type === ListActionTypes.setState && action.value.selectedValues != null) {
         return {
           ...newState,
           highlightedValue: action.value.selectedValues[0],
@@ -127,7 +127,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     highlightedOption,
     selectedOptions,
   } = useList({
-    controlledState,
+    controlledProps: controlledState,
     disabledItemsFocusable: !selectionFollowsFocus,
     focusManagement: 'DOM',
     getItemDomElement: getTabElement,
@@ -147,7 +147,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
 
     if (value != null) {
       dispatch({
-        type: ActionTypes.setState,
+        type: ListActionTypes.setState,
         event: null,
         value: {
           highlightedValue: value,

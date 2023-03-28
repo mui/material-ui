@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListContext, ListContextValue } from '../useList';
+import { ListContextValue, ListContext } from '../useList/ListContext';
 import { SelectOption } from '../useOption/useOption.types';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 import type { SelectInternalState } from './useSelect.types';
