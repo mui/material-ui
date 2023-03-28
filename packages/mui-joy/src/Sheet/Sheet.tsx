@@ -105,11 +105,8 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: SheetRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   const result = <SlotRoot {...rootProps} />;

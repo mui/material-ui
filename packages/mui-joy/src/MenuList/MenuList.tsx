@@ -106,10 +106,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     ref,
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });

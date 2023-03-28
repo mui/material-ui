@@ -91,10 +91,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     ref,
     elementType: TabListRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });

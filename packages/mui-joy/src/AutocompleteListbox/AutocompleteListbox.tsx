@@ -130,19 +130,14 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     ref,
     className: clsx(classes.root, className),
     elementType: AutocompleteListboxRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
     additionalProps: {
-      as: component,
       role: 'listbox',
     },
   });
 
-  return (
-    <SlotRoot ref={ref} {...rootProps}>
-      {children}
-    </SlotRoot>
-  );
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {

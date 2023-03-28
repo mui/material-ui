@@ -79,11 +79,8 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: CardCoverRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return (

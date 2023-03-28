@@ -87,10 +87,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ref,
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
-    additionalProps: {
-      as: component,
-    },
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     className: classes.root,
     ownerState,
   });

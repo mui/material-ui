@@ -91,11 +91,8 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
     ref,
     className: clsx(classes.root, className),
     elementType: ScopedCssBaselineRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return <SlotRoot {...rootProps} />;

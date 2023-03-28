@@ -88,10 +88,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     ref,
     getSlotProps: getRootProps,
     elementType: OptionRoot,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     className: classes.root,
     ownerState,
   });

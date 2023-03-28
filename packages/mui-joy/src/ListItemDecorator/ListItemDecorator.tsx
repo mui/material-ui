@@ -64,11 +64,8 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
     ref,
     className: clsx(classes.root, className),
     elementType: ListItemDecoratorRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;

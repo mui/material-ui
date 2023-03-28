@@ -131,11 +131,8 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: CardRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   const result = (

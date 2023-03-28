@@ -117,15 +117,13 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
     ref,
     elementType: ModalCloseRoot,
     getSlotProps: getRootProps,
-    additionalProps: {
-      as: component,
-    },
     externalForwardedProps: {
       onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
         closeModalContext?.(event, 'closeClick');
         onClick?.(event);
       },
       ...other,
+      component,
     },
     className: classes.root,
     ownerState,

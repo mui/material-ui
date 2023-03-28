@@ -176,12 +176,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: ListItemButtonRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
     getSlotProps: getRootProps,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return (

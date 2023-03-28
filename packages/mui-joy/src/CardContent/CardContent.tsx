@@ -56,11 +56,8 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: CardContentRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;

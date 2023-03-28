@@ -131,11 +131,8 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: CardOverflowRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;

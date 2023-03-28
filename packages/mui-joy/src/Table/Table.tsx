@@ -321,11 +321,8 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: TableRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return (

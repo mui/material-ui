@@ -126,10 +126,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ref,
     elementType: TabRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });

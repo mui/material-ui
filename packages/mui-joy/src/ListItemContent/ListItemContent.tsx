@@ -52,11 +52,8 @@ const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) 
     ref,
     className: clsx(classes.root, className),
     elementType: ListItemContentRoot,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     ownerState,
-    additionalProps: {
-      as: component,
-    },
   });
 
   return <SlotRoot {...rootProps}>{children}</SlotRoot>;
