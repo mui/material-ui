@@ -40,7 +40,7 @@ Radix will enhance the functionalities by preserving the styles of Joy UI compon
 
 ### With React Aria
 
-React Aria provides `useToggleButton` hook that can be used with Joy UI's `Icon Button` component.
+React Aria provides `useToggleButton` hook that can be used with Joy UI's `IconButton` component.
 
 - [Install React Aria's toggle button](https://react-spectrum.adobe.com/react-aria/useToggleButton.html)
 - [Toggle button component documentation](https://react-spectrum.adobe.com/react-aria/useToggleButton.html#features)
