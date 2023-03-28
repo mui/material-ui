@@ -75,9 +75,9 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Modal dialog
+### Modal Dialog
 
-To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
+To create a modal dialog, render the Modal Dialog component inside the Modal.
 
 It will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
 
@@ -85,17 +85,17 @@ It will apply spacing to the elements that have `aria-labelledby` or `aria-descr
 
 #### Variant
 
-The `ModalDialog` supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+The Modal Dialog supports the [global variants](/joy-ui/main-features/global-variants/) feature.
 
-The `ModalClose`'s variant adapts automatically to have a proper contrast to the `ModalDialog`.
+The Modal Close component's variant adapts automatically to contrast with the Modal Dialog, as demonstrated below:
 
 {{"demo": "VariantModalDialog.js"}}
 
 #### Size
 
-The `ModalDialog` comes with 3 sizes, `sm`, `md` (default), and `lg`.
+The Modal Dialog comes in 3 sizes: `sm`, `md` (default), and `lg`.
 
-The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog` unless it is specified in each component directly.
+The Modal Close and Modal Dialog Title components inherit the size from the Modal Dialog unless specified in each component directly.
 
 {{"demo": "SizeModalDialog.js"}}
 
@@ -142,7 +142,7 @@ declare module '@mui/joy/ModalDialog' {
 
 #### Vertical scroll
 
-By default, content within the `ModalDialog` won't overflow the screen when its height is bigger than the viewport.
+By default, content within the Modal Dialog won't overflow the screen when its height is bigger than the viewport.
 
 To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) with either `scroll` or `auto` values.
 
@@ -152,19 +152,19 @@ To ensure your content is visible, make the container holding it overflow by add
 
 The previous section demonstrated how to make content _within_ the modal scrollable.
 
-To make the _whole_ modal scrollable, in case its higher than the viewport, use the `ModalOverflow` component.
-It will allow the `ModalDialog` to vertically overflow the screen.
+To make the _whole_ modal scrollable, in case its higher than the viewport, use the Modal Overflow component.
+It will allow the Modal Dialog to vertically overflow the screen.
 
 It supports both `center` and `fullScreen` built-in layouts.
 
 {{"demo": "ModalDialogOverflow.js"}}
 
-It is possible to achieve the same result by using the `Box` component and CSS, through the `sx` prop.
-However, the `ModalOverflow` component adds greater convenience:
+You can achieve the same result by using the Box component and CSS with the `sx` prop.
+However, the Modal Overflow component adds greater convenience:
 
 - It makes your styling more consistent, as you won't need to copy styles across different instances.
 - You can also add theming customization to it directly from the theme.
-- It automatically handles the close action by clicking on the modal's backdrop.
+- It automatically handles the close action when the user clicks on the Modal's backdrop.
 
 ### Alert dialog
 
