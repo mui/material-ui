@@ -29,6 +29,7 @@ export default function AdDisplay(props) {
       <a
         href={ad.link}
         target="_blank"
+        // eslint-disable-next-line react/no-invalid-html-attribute
         rel="noopener sponsored"
         {...(ad.label
           ? {

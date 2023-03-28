@@ -84,6 +84,7 @@ export default function DiamondSponsors() {
           data-ga-event-action="drawer"
           data-ga-event-label="octopus"
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+          // eslint-disable-next-line react/no-invalid-html-attribute
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
@@ -106,6 +107,7 @@ export default function DiamondSponsors() {
           data-ga-event-action="drawer"
           data-ga-event-label="doit"
           href="https://www.doit.com/flexsave/?utm_source=materialui&utm_medium=referral"
+          // eslint-disable-next-line react/no-invalid-html-attribute
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
@@ -128,6 +130,7 @@ export default function DiamondSponsors() {
           data-ga-event-action="drawer"
           data-ga-event-label="zesty.io"
           href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor"
+          // eslint-disable-next-line react/no-invalid-html-attribute
           rel="noopener noreferrer sponsored"
           target="_blank"
         >
