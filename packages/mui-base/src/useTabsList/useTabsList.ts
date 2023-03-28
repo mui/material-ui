@@ -11,7 +11,7 @@ import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
 import useList, {
   ListActionTypes,
-  defaultListboxReducer,
+  listReducer,
   ListReducer,
   ListState,
   UseListParameters,
@@ -29,7 +29,6 @@ export const TabsListContext = React.createContext<TabsListContextValue | null>(
  *
  * - [useTabsList API](https://mui.com/base/react-tabs/hooks-api/#use-tabs-list)
  */
-
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
   const { ref: externalRef } = parameters;
 
@@ -70,7 +69,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
 
   const stateReducer: ListReducer<string | number, ListState<string | number>> = React.useCallback(
     (state, action) => {
-      const newState = defaultListboxReducer(state, action);
+      const newState = listReducer(state, action);
 
       if (action.type === ListActionTypes.itemsChange) {
         return {

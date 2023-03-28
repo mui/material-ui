@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useList, {
-  defaultListboxReducer,
-  ListActionTypes,
-  ListActionAddOn,
-  ListAction,
-} from '../useList';
+import useList, { listReducer, ListActionTypes, ListActionAddOn, ListAction } from '../useList';
 import {
   MenuInternalState,
   UseMenuListboxSlotProps,
@@ -60,7 +55,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
         return state;
       }
 
-      const newState = defaultListboxReducer(state, action);
+      const newState = listReducer(state, action);
 
       // make sure an item is always highlighted
       if (newState.highlightedValue === null && action.props.current!.items.length > 0) {

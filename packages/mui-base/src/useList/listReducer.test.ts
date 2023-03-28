@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import listReducer from './listReducer';
 import { ListReducerAction, ListState } from './useList.types';
 import { ListActionTypes } from './listActions.types';
-import defaultReducer from './defaultListboxReducer';
 
-describe('useListbox defaultReducer', () => {
+describe('listReducer', () => {
   describe('action: setControlledValue', () => {
     it("assigns the provided value to the state's selectedValues", () => {
       const state: ListState<string> = {
@@ -30,7 +30,7 @@ describe('useListbox defaultReducer', () => {
           },
         },
       };
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.selectedValues).to.deep.equal(['foo']);
     });
   });
@@ -60,7 +60,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal(null);
     });
   });
@@ -91,7 +91,7 @@ describe('useListbox defaultReducer', () => {
         item: 'two',
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.selectedValues).to.deep.equal(['two']);
     });
 
@@ -120,7 +120,7 @@ describe('useListbox defaultReducer', () => {
         item: 'two',
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.selectedValues).to.deep.equal(['two']);
     });
 
@@ -149,7 +149,7 @@ describe('useListbox defaultReducer', () => {
         item: 'two',
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.selectedValues).to.deep.equal(['one', 'two']);
     });
 
@@ -178,7 +178,7 @@ describe('useListbox defaultReducer', () => {
         item: 'two',
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.selectedValues).to.deep.equal(['one']);
     });
   });
@@ -211,7 +211,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.highlightedValue).to.equal('two');
       });
     });
@@ -243,7 +243,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.highlightedValue).to.equal('four');
       });
     });
@@ -275,7 +275,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.highlightedValue).to.equal('four');
       });
     });
@@ -307,7 +307,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.highlightedValue).to.equal('two');
       });
 
@@ -337,7 +337,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.highlightedValue).to.equal(null);
       });
     });
@@ -369,7 +369,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.selectedValues).to.deep.equal(['two']);
       });
 
@@ -399,7 +399,7 @@ describe('useListbox defaultReducer', () => {
           },
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.selectedValues).to.deep.equal(['two']);
       });
 
@@ -430,7 +430,7 @@ describe('useListbox defaultReducer', () => {
           item: 'two',
         };
 
-        const result = defaultReducer(state, action);
+        const result = listReducer(state, action);
         expect(result.selectedValues).to.deep.equal(['one', 'two']);
       });
     });
@@ -462,7 +462,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal('three');
     });
 
@@ -491,7 +491,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal('one');
     });
 
@@ -520,7 +520,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal('three');
     });
 
@@ -549,7 +549,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal('two');
     });
 
@@ -578,7 +578,7 @@ describe('useListbox defaultReducer', () => {
         },
       };
 
-      const result = defaultReducer(state, action);
+      const result = listReducer(state, action);
       expect(result.highlightedValue).to.equal('three');
     });
   });

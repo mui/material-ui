@@ -17,7 +17,7 @@ import {
   UseSelectResult,
 } from './useSelect.types';
 import useList, {
-  defaultListboxReducer,
+  listReducer,
   ListActionTypes,
   UseListParameters,
   ListAction,
@@ -159,7 +159,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
           break;
       }
 
-      const newState: SelectInternalState<TValue> = defaultListboxReducer(
+      const newState: SelectInternalState<TValue> = listReducer(
         state,
         action as ListAction<TValue, SelectInternalState<TValue>> & ListActionAddOn<TValue>,
       );

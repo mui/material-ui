@@ -12,11 +12,22 @@ type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 // TODO: make page size configurable
 const pageSize = 5;
 
+/**
+ * Looks up the next valid item to highlight within the list.
+ *
+ * @param currentIndex The index of the start of the search.
+ * @param lookupDirection Whether to look for the next or previous item.
+ * @param items The array of items to search.
+ * @param includeDisabledItems Whether to include disabled items in the search.
+ * @param isItemDisabled A function that determines whether an item is disabled.
+ * @param wrapAround Whether to wrap around the list when searching.
+ * @returns
+ */
 function findValidItemToHighlight<ItemValue>(
-  index: number,
+  currentIndex: number,
   lookupDirection: 'next' | 'previous',
   items: ItemValue[],
-  focusDisabled: boolean,
+  includeDisabledItems: boolean,
   isItemDisabled: ItemPredicate<ItemValue>,
   wrapAround: boolean,
 ): number {
@@ -24,7 +35,7 @@ function findValidItemToHighlight<ItemValue>(
     return -1;
   }
 
-  let nextFocus = index;
+  let nextFocus = currentIndex;
 
   for (;;) {
     // No valid items found
@@ -35,7 +46,9 @@ function findValidItemToHighlight<ItemValue>(
       return -1;
     }
 
-    const nextFocusDisabled = focusDisabled ? false : isItemDisabled(items[nextFocus], nextFocus);
+    const nextFocusDisabled = includeDisabledItems
+      ? false
+      : isItemDisabled(items[nextFocus], nextFocus);
     if (nextFocusDisabled) {
       nextFocus += lookupDirection === 'next' ? 1 : -1;
       if (wrapAround) {
@@ -47,17 +60,29 @@ function findValidItemToHighlight<ItemValue>(
   }
 }
 
-function getNewHighlightedItem<ItemValue>(
-  items: ItemValue[],
+// TODO: expose these functions for use in custom reducers
+
+/**
+ * Gets the next item to highlight based on the current highlighted item and the search direction.
+ *
+ * @param previouslyHighlightedValue The item from which to start the search for the next candidate.
+ * @param offset The offset from the previously highlighted item to search for the next candidate or a special named value ('reset', 'start', 'end').
+ * @param props
+ *
+ * @returns The next item to highlight or null if no item is valid.
+ */
+function moveHighlight<ItemValue>(
   previouslyHighlightedValue: ItemValue | null,
-  diff: number | 'reset' | 'start' | 'end',
-  highlightDisabledItems: boolean,
-  isItemDisabled: ItemPredicate<ItemValue>,
-  disableListWrap: boolean,
-  itemComparer: (item1: ItemValue, item2: ItemValue) => boolean,
-): ItemValue | null {
-  const maxIndex = items.length - 1;
+  offset: number | 'reset' | 'start' | 'end',
+  listConfig: ListActionAddOnValue<ItemValue>,
+) {
+  const { items, isItemDisabled, disableListWrap, disabledItemsFocusable, itemComparer } =
+    listConfig;
+
+  // TODO: make this configurable
   const defaultHighlightedIndex = -1;
+  const maxIndex = items.length - 1;
+
   const previouslyHighlightedIndex =
     previouslyHighlightedValue == null
       ? -1
@@ -65,9 +90,9 @@ function getNewHighlightedItem<ItemValue>(
 
   let nextIndexCandidate: number;
   let lookupDirection: 'next' | 'previous';
-  let wrapAround: boolean;
+  let wrapAround = !disableListWrap;
 
-  switch (diff) {
+  switch (offset) {
     case 'reset':
       if (defaultHighlightedIndex === -1) {
         return null;
@@ -91,11 +116,10 @@ function getNewHighlightedItem<ItemValue>(
       break;
 
     default: {
-      const newIndex = previouslyHighlightedIndex + diff;
-      wrapAround = !disableListWrap;
+      const newIndex = previouslyHighlightedIndex + offset;
 
       if (newIndex < 0) {
-        if ((!wrapAround && previouslyHighlightedIndex !== -1) || Math.abs(diff) > 1) {
+        if ((!wrapAround && previouslyHighlightedIndex !== -1) || Math.abs(offset) > 1) {
           nextIndexCandidate = 0;
           lookupDirection = 'next';
         } else {
@@ -103,7 +127,7 @@ function getNewHighlightedItem<ItemValue>(
           lookupDirection = 'previous';
         }
       } else if (newIndex > maxIndex) {
-        if (!wrapAround || Math.abs(diff) > 1) {
+        if (!wrapAround || Math.abs(offset) > 1) {
           nextIndexCandidate = maxIndex;
           lookupDirection = 'previous';
         } else {
@@ -112,7 +136,7 @@ function getNewHighlightedItem<ItemValue>(
         }
       } else {
         nextIndexCandidate = newIndex;
-        lookupDirection = diff >= 0 ? 'next' : 'previous';
+        lookupDirection = offset >= 0 ? 'next' : 'previous';
       }
     }
   }
@@ -121,7 +145,7 @@ function getNewHighlightedItem<ItemValue>(
     nextIndexCandidate,
     lookupDirection,
     items,
-    highlightDisabledItems,
+    disabledItemsFocusable,
     isItemDisabled,
     wrapAround,
   );
@@ -129,24 +153,16 @@ function getNewHighlightedItem<ItemValue>(
   return items[nextIndex] ?? null;
 }
 
-function moveHighlight<ItemValue>(
-  previouslyHighlightedValue: ItemValue | null,
-  diff: number | 'reset' | 'start' | 'end',
-  props: ListActionAddOnValue<ItemValue>,
-) {
-  const { items, isItemDisabled, disableListWrap, disabledItemsFocusable, itemComparer } = props;
-
-  return getNewHighlightedItem(
-    items,
-    previouslyHighlightedValue,
-    diff,
-    disabledItemsFocusable ?? false,
-    isItemDisabled ?? (() => false),
-    disableListWrap ?? false,
-    itemComparer ?? ((o1, o2) => o1 === o2),
-  );
-}
-
+/**
+ * Toggles the selection of an item.
+ *
+ * @param item Item to toggle.
+ * @param selectedValues Already selected items.
+ * @param selectionLimit The number of items that can be simultanously selected. If null, there is no limit.
+ * @param itemComparer A custom item comparer function.
+ *
+ * @returns The new array of selected items.
+ */
 function toggleSelection<ItemValue>(
   item: ItemValue,
   selectedValues: ItemValue[],
@@ -335,28 +351,13 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
   searchString: string,
   props: ListActionAddOnValue<ItemValue>,
 ): State {
-  const {
-    items,
-    isItemDisabled,
-    disableListWrap,
-    disabledItemsFocusable,
-    itemComparer,
-    itemStringifier,
-  } = props;
+  const { items, isItemDisabled, disabledItemsFocusable, itemStringifier } = props;
 
   const startWithCurrentItem = searchString.length > 1;
 
   let nextItem = startWithCurrentItem
     ? state.highlightedValue
-    : getNewHighlightedItem(
-        items,
-        state.highlightedValue,
-        1,
-        disabledItemsFocusable ?? false,
-        isItemDisabled ?? (() => false),
-        disableListWrap ?? false,
-        itemComparer,
-      );
+    : moveHighlight(state.highlightedValue, 1, props);
 
   // use `for` instead of `while` prevent infinite loop
   for (let index = 0; index < items.length; index += 1) {
@@ -376,15 +377,7 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
       };
     }
     // Move to the next element.
-    nextItem = getNewHighlightedItem(
-      items,
-      nextItem,
-      1,
-      disabledItemsFocusable ?? false,
-      isItemDisabled ?? (() => false),
-      disableListWrap ?? false,
-      itemComparer,
-    );
+    nextItem = moveHighlight(nextItem, 1, props);
   }
 
   // No item matches the text search criteria
@@ -421,7 +414,7 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
-export default function defaultListboxReducer<ItemValue, State extends ListState<ItemValue>>(
+export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   action: ListReducerAction<ItemValue, State> & ListActionAddOn<ItemValue>,
 ): State {
