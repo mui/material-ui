@@ -35,6 +35,8 @@
   "name": "TreeView",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTreeView" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTreeView",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-lab/src/TreeView/TreeView.js",
   "inheritance": null,

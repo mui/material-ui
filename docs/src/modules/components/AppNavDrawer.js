@@ -54,8 +54,7 @@ function ProductDrawerButton(props) {
           minWidth: 0,
           fontSize: theme.typography.pxToRem(13),
           fontWeight: theme.typography.fontWeightMedium,
-          color:
-            theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+          color: (theme.vars || theme).palette.primary[600],
           '& svg': {
             ml: -0.6,
             width: 18,
@@ -64,6 +63,9 @@ function ProductDrawerButton(props) {
           '& > span': {
             ml: '4px',
           },
+          ...theme.applyDarkStyles({
+            color: (theme.vars || theme).palette.primary[300],
+          }),
         })}
       >
         {props.productName}
@@ -98,7 +100,7 @@ function ProductIdentifier({ name, metadata, versionSelector }) {
       <Typography
         sx={(theme) => ({
           ml: 1,
-          color: theme.palette.grey[600],
+          color: (theme.vars || theme).palette.grey[600],
           fontSize: theme.typography.pxToRem(11),
           fontWeight: 700,
           textTransform: 'uppercase',
@@ -239,6 +241,7 @@ function reduceChildRoutes(context) {
         href={firstChild.pathname}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -266,6 +269,7 @@ function reduceChildRoutes(context) {
         href={page.pathname}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -321,15 +325,15 @@ export default function AppNavDrawer(props) {
                 minWidth: 0,
                 fontSize: theme.typography.pxToRem(13),
                 fontWeight: 500,
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[300]
-                    : theme.palette.primary[600],
+                color: (theme.vars || theme).palette.primary[600],
                 '& svg': {
                   ml: -0.6,
                   width: 18,
                   height: 18,
                 },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[300],
+                }),
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
@@ -383,15 +387,15 @@ export default function AppNavDrawer(props) {
               component="a"
               onClick={onClose}
               aria-label={t('goToHome')}
-              sx={{
+              sx={(theme) => ({
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primary[100], 0.08)
-                    : theme.palette.grey[200],
-              }}
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ...theme.applyDarkStyles({
+                  borderColor: alpha(theme.palette.primary[100], 0.08),
+                }),
+              })}
             >
               <SvgMuiLogo width={30} />
             </Box>
@@ -518,12 +522,12 @@ export default function AppNavDrawer(props) {
           )}
         </ToolbarDiv>
         <Divider
-          sx={{
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
-          }}
+          sx={(theme) => ({
+            borderColor: (theme.vars || theme).palette.grey[100],
+            ...theme.applyDarkStyles({
+              borderColor: alpha(theme.palette.primary[100], 0.08),
+            }),
+          })}
         />
         <DiamondSponsors />
         {navItems}

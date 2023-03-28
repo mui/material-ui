@@ -59,6 +59,8 @@
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Input/Input.tsx",
   "inheritance": null,

@@ -47,6 +47,7 @@
     }
   ],
   "spread": true,
+  "muiName": "MuiModal",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.tsx",
   "inheritance": null,

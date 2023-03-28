@@ -72,7 +72,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
-        children: [{ pathname: '/joy-ui/react-card' }, { pathname: '/joy-ui/react-sheet' }],
+        children: [
+          { pathname: '/joy-ui/react-accordion', comingSoon: true },
+          { pathname: '/joy-ui/react-card' },
+          { pathname: '/joy-ui/react-sheet' },
+        ],
       },
       {
         pathname: '/joy-ui/components/navigation',
@@ -108,6 +112,7 @@ const pages = [
     children: [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
+      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
       {
         pathname: '/joy-ui/customization/theme',
         subheader: 'Theme',
@@ -118,8 +123,14 @@ const pages = [
           { pathname: '/joy-ui/customization/themed-components', title: 'Components' },
         ],
       },
-      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
-      { pathname: '/joy-ui/customization/default-theme-viewer' },
+      {
+        subheader: 'Tools',
+        pathname: '/joy-ui/customization/tool',
+        children: [
+          { pathname: '/joy-ui/customization/default-theme-viewer' },
+          { pathname: '/joy-ui/customization/theme-builder' },
+        ],
+      },
     ],
   },
   {

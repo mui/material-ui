@@ -46,6 +46,8 @@
     "name": "MuiFormControlLabel"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormControlLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/FormControlLabel/FormControlLabel.js",
   "inheritance": null,

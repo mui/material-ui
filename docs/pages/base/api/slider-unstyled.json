@@ -112,6 +112,7 @@
     }
   ],
   "spread": true,
+  "muiName": "MuiSlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.tsx",
   "inheritance": null,

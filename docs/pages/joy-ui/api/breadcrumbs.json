@@ -45,6 +45,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyBreadcrumbs",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-joy/src/Breadcrumbs/Breadcrumbs.tsx",
   "inheritance": null,
