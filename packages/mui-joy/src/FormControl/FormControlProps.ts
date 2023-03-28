@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type FormControlSlot = 'root';
@@ -73,4 +73,4 @@ export type FormControlProps<
   P = { component?: React.ElementType },
 > = OverrideProps<FormControlTypeMap<P, D>, D>;
 
-export interface FormControlOwnerState extends FormControlProps {}
+export interface FormControlOwnerState extends ApplyColorInversion<FormControlProps> {}

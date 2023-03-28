@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
+import { ApplyColorInversion, SxProps } from '../styles/types';
 import { AvatarProps } from '../Avatar/AvatarProps';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -60,4 +60,4 @@ export type AvatarGroupProps<
   P = { component?: React.ElementType },
 > = OverrideProps<AvatarGroupTypeMap<P, D>, D>;
 
-export interface AvatarGroupOwnerState extends AvatarGroupProps {}
+export interface AvatarGroupOwnerState extends ApplyColorInversion<AvatarGroupProps> {}
