@@ -76,7 +76,7 @@ export default function MarkdownDocs(props) {
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
-            return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
+            return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
           }
 
           if (renderedMarkdownOrDemo.component) {
@@ -87,7 +87,7 @@ export default function MarkdownDocs(props) {
               throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
             }
 
-            return <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
+            return <Component key={index} {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
           }
 
           const name = renderedMarkdownOrDemo.demo;
