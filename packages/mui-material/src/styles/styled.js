@@ -6,6 +6,7 @@ export const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !
 export const slotShouldForwardProp = shouldForwardProp;
 
 const styled = createStyled({
+  identifier: '$$material',
   defaultTheme,
   rootShouldForwardProp,
 });

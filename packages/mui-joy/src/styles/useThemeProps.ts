@@ -8,5 +8,10 @@ export default function useThemeProps<T extends {}>({
   props: T & {};
   name: string;
 }) {
-  return systemUseThemeProps({ props, name, defaultTheme: { ...defaultTheme, components: {} } });
+  return systemUseThemeProps({
+    props,
+    name,
+    defaultTheme: { ...defaultTheme, components: {} },
+    identifier: '$$joy',
+  });
 }

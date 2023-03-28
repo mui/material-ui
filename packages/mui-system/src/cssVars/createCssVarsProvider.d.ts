@@ -80,6 +80,11 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * @default false
          */
         disableStyleSheetGeneration?: boolean;
+        /**
+         * If `true`, the theme scope is created to prevent conflict with other libraries's theme
+         * that use emotion or styled-components
+         */
+        enableThemeScope?: boolean;
       }
     >,
   ) => React.ReactElement;
@@ -89,6 +94,10 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
 
 export default function createCssVarsProvider<ColorScheme extends string>(
   options: CssVarsProviderConfig<ColorScheme> & {
+    /**
+     * The design system's id for getting the corresponded theme when there are multiple design systems.
+     */
+    identifier: string;
     /**
      * Design system default theme
      *

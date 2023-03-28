@@ -14,6 +14,7 @@ const defaultTheme = experimental_extendTheme();
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
   createCssVarsProvider<SupportedColorScheme>({
+    identifier: '$$material',
     theme: defaultTheme,
     attribute: 'data-mui-color-scheme',
     modeStorageKey: 'mui-mode',

@@ -17,6 +17,7 @@ export const DISABLE_CSS_TRANSITION =
 
 export default function createCssVarsProvider(options) {
   const {
+    identifier,
     theme: defaultTheme = {},
     attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -64,6 +65,7 @@ export default function createCssVarsProvider(options) {
     colorSchemeSelector = ':root',
     disableNestedContext = false,
     disableStyleSheetGeneration = false,
+    enableThemeScope = false,
   }) {
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
@@ -262,6 +264,8 @@ export default function createCssVarsProvider(options) {
       shouldGenerateStyleSheet = false;
     }
 
+    const calculatedTheme = resolveTheme ? resolveTheme(theme) : theme;
+
     const element = (
       <React.Fragment>
         {shouldGenerateStyleSheet && (
@@ -271,7 +275,11 @@ export default function createCssVarsProvider(options) {
             <GlobalStyles styles={otherColorSchemesStyleSheet} />
           </React.Fragment>
         )}
-        <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
+        <ThemeProvider
+          theme={enableThemeScope ? { [identifier]: calculatedTheme } : calculatedTheme}
+        >
+          {children}
+        </ThemeProvider>
       </React.Fragment>
     );
 
@@ -331,6 +339,11 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to
      */
     documentNode: PropTypes.any,
+    /**
+     * If `true`, the theme scope is created to prevent conflict with other libraries's theme
+     * that use emotion or styled-components
+     */
+    enableThemeScope: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

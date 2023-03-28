@@ -10,5 +10,5 @@ export default function useTheme() {
     React.useDebugValue(theme);
   }
 
-  return theme;
+  return theme.$$material || theme;
 }

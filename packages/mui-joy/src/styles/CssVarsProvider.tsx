@@ -8,6 +8,7 @@ import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme
 >({
+  identifier: '$$joy',
   theme: defaultTheme,
   attribute: 'data-joy-color-scheme',
   modeStorageKey: 'joy-mode',

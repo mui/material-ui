@@ -78,13 +78,14 @@ const lowercaseFirstLetter = (string) => {
 
 export default function createStyled(input = {}) {
   const {
+    identifier,
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
   } = input;
 
   const systemSx = (props) => {
-    const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+    const theme = isEmpty(props.theme) ? defaultTheme : props.theme[identifier] || props.theme;
     return styleFunctionSx({ ...props, theme });
   };
   systemSx.__mui_systemSx = true;
@@ -144,7 +145,9 @@ export default function createStyled(input = {}) {
             return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
               ? ({ theme: themeInput, ...other }) => {
                   return stylesArg({
-                    theme: isEmpty(themeInput) ? defaultTheme : themeInput,
+                    theme: isEmpty(themeInput)
+                      ? defaultTheme
+                      : themeInput[identifier] || themeInput,
                     ...other,
                   });
                 }
@@ -156,7 +159,9 @@ export default function createStyled(input = {}) {
 
       if (componentName && overridesResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+          const theme = isEmpty(props.theme)
+            ? defaultTheme
+            : props.theme[identifier] || props.theme;
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
@@ -174,7 +179,9 @@ export default function createStyled(input = {}) {
 
       if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
-          const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
+          const theme = isEmpty(props.theme)
+            ? defaultTheme
+            : props.theme[identifier] || props.theme;
           return variantsResolver(
             props,
             getVariantStyles(componentName, theme),
@@ -204,7 +211,10 @@ export default function createStyled(input = {}) {
       ) {
         // If the type is function, we need to define the default theme.
         transformedStyleArg = ({ theme: themeInput, ...other }) =>
-          styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
+          styleArg({
+            theme: isEmpty(themeInput) ? defaultTheme : themeInput[identifier] || themeInput,
+            ...other,
+          });
       }
 
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
