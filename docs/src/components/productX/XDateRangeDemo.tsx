@@ -189,7 +189,7 @@ export default function XDateRangeDemo() {
             component="a"
             sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300' }}
           >
-            Check the docs
+            View more demos
           </Button>
         </Box>
       </Frame.Info>

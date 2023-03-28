@@ -303,7 +303,7 @@ export default function XDateRangeDemo() {
             component="a"
             sx={{ color: 'primary.300', flexShrink: 0 }}
           >
-            Check the docs
+            View more demos
           </Button>
         </Box>
       </Frame.Info>
