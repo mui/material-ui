@@ -14,8 +14,8 @@
     },
     "getListboxProps": {
       "type": {
-        "name": "&lt;TOther extends EventHandlers&gt(otherHandlers?: TOther) =&gt UseMenuListboxSlotProps",
-        "description": "&lt;TOther extends EventHandlers&gt(otherHandlers?: TOther) =&gt UseMenuListboxSlotProps"
+        "name": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps",
+        "description": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps"
       },
       "required": true
     },
@@ -24,17 +24,17 @@
       "required": true
     },
     "highlightFirstItem": {
-      "type": { "name": "() =&gt void", "description": "() =&gt void" },
+      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
       "required": true
     },
     "highlightLastItem": {
-      "type": { "name": "() =&gt void", "description": "() =&gt void" },
+      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
       "required": true
     },
     "menuItems": {
       "type": {
-        "name": "Record&lt;string, MenuItemMetadata&gt",
-        "description": "Record&lt;string, MenuItemMetadata&gt"
+        "name": "Record&lt;string, MenuItemMetadata&gt;",
+        "description": "Record&lt;string, MenuItemMetadata&gt;"
       },
       "required": true
     }
