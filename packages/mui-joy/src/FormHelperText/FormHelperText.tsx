@@ -63,20 +63,14 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     };
   }, [setHelperText]);
 
-  const ownerState = {
-    ...props,
-  };
-
   const classes = useUtilityClasses();
 
   const [SlotRoot, rootProps] = useSlot('root', {
-    ref,
+    ref: handleRef,
     elementType: FormHelperTextRoot,
-
     externalForwardedProps: other,
-    ownerState,
+    ownerState: props,
     additionalProps: {
-      ref: handleRef,
       as: component,
       id: formControl?.['aria-describedby'],
     },
