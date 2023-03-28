@@ -23,7 +23,7 @@ export default function DiamondSponsors() {
         component="a"
         href="/material-ui/discover-more/backers/#diamond"
         target="_blank"
-        rel="noopener nofollow"
+        rel="noopene nofollow"
         size="small"
         endIcon={<InfoOutlinedIcon fontSize="small" />}
         sx={(theme) => ({
