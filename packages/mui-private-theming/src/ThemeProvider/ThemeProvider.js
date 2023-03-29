@@ -33,7 +33,7 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
  * This component should preferably be used at **the root of your component tree**.
  */
 function ThemeProvider(props) {
-  const { children, theme: localTheme, identifier, enableThemeScope } = props;
+  const { children, theme: localTheme } = props;
   const outerTheme = useTheme();
 
   if (process.env.NODE_ENV !== 'production') {
@@ -52,19 +52,14 @@ function ThemeProvider(props) {
   }
 
   const theme = React.useMemo(() => {
-    let internalTheme = localTheme;
-    if (identifier && typeof localTheme !== 'function') {
-      internalTheme = localTheme[identifier] || localTheme;
-    }
-    const output =
-      outerTheme === null ? internalTheme : mergeOuterLocalTheme(outerTheme, internalTheme);
+    const output = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
 
     if (output != null) {
       output[nested] = outerTheme !== null;
     }
 
-    return enableThemeScope ? { ...(outerTheme || {}), [identifier]: output } : output;
-  }, [localTheme, outerTheme, identifier, enableThemeScope]);
+    return output;
+  }, [localTheme, outerTheme]);
 
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
@@ -74,15 +69,6 @@ ThemeProvider.propTypes = {
    * Your component tree.
    */
   children: PropTypes.node,
-  /**
-   * If `true`, the theme scope is created to prevent conflict with other libraries's theme
-   * that use emotion or styled-components
-   */
-  enableThemeScope: PropTypes.bool,
-  /**
-   * The design system's unique id for getting the corresponded theme when there are multiple design systems.
-   */
-  identifier: PropTypes.string,
   /**
    * A theme object. You can provide a function to extend the outer theme.
    */
