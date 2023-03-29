@@ -1,32 +1,28 @@
 import * as React from 'react';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme from './defaultTheme';
+import extendTheme from './extendTheme';
 import IDENTIFIER from './identifier';
-import type { Theme } from './types';
+import type { CssVarsThemeOptions } from './extendTheme';
 
-export const useTheme = (): Theme => {
-  const theme = useSystemTheme(defaultTheme);
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useDebugValue(theme);
-  }
-
-  // @ts-ignore internal logic
-  return theme[IDENTIFIER] || theme;
+export const useTheme = () => {
+  return useSystemTheme(defaultTheme);
 };
 
 export default function ThemeProvider({
   children,
-  theme: themeInput = defaultTheme,
+  theme: themeInput,
 }: React.PropsWithChildren<{
-  theme?: Theme | { [k in typeof IDENTIFIER]: Theme };
+  theme?: CssVarsThemeOptions | { [k in typeof IDENTIFIER]: CssVarsThemeOptions };
 }>) {
-  const scopedTheme = (themeInput as any)[IDENTIFIER];
+  let theme = defaultTheme;
+  if (themeInput) {
+    theme = extendTheme(IDENTIFIER in themeInput ? themeInput[IDENTIFIER] : themeInput);
+  }
   return (
     <SystemThemeProvider
-      identifier={scopedTheme ? IDENTIFIER : undefined}
-      theme={scopedTheme || themeInput}
+      theme={theme}
+      identifier={themeInput && IDENTIFIER in themeInput ? IDENTIFIER : undefined}
     >
       {children}
     </SystemThemeProvider>
