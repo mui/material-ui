@@ -41,11 +41,11 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
   disableTransitionOnChange?: boolean;
 }
 
-type Identify<I extends string, T> = T | { [k in I]: T };
+type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
 
 export interface CreateCssVarsProviderResult<
   ColorScheme extends string,
-  Identifier extends string,
+  Identifier extends string | undefined = undefined,
 > {
   CssVarsProvider: (
     props: React.PropsWithChildren<
@@ -97,13 +97,13 @@ export interface CreateCssVarsProviderResult<
 
 export default function createCssVarsProvider<
   ColorScheme extends string,
-  Identifier extends string,
+  Identifier extends string | undefined = undefined,
 >(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
      * The design system's unique id for getting the corresponded theme when there are multiple design systems.
      */
-    identifier: Identifier;
+    identifier?: Identifier;
     /**
      * Design system default theme
      *
