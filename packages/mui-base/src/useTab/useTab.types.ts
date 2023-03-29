@@ -6,7 +6,7 @@ export interface UseTabParameters {
    * The value of the tab.
    * It's used to associate the tab with a tab panel(s) with the same value.
    */
-  value: number | string;
+  value?: number | string;
   /**
    * If `true`, the tab will be disabled.
    */

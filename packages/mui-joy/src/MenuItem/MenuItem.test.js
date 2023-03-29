@@ -24,6 +24,7 @@ const testContext = {
   getItemProps: () => ({}),
   registerItem: () => {},
   unregisterItem: () => {},
+  preregisterItem: () => {},
   open: false,
   registerHighlightChangeHandler: () => () => {},
 };

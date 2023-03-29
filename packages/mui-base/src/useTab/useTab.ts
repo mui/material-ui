@@ -3,10 +3,15 @@ import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui
 import { useTabContext } from '../TabsUnstyled';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
-import { useCompoundItem } from '../utils/useCompound';
+import { useCompoundItem } from '../utils/useCompoundItem';
 import { useListItem } from '../useList';
 import useButton from '../useButton';
 import { TabMetadata } from '../useTabs';
+
+function tabValueGenerator(otherTabValues: Set<string | number>) {
+  return otherTabValues.size;
+}
+
 /**
  *
  * Demos:
@@ -18,11 +23,19 @@ import { TabMetadata } from '../useTabs';
  * - [useTab API](https://mui.com/base/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
-  const { value, ref: externalRef, disabled = false } = parameters;
+  const { value: valueParam, ref: externalRef, disabled = false } = parameters;
 
   const tabRef = React.useRef<HTMLElement>(null);
 
   const { value: selectedValue, idPrefix = '', selectionFollowsFocus } = useTabContext();
+
+  const tabMetadata = React.useMemo(() => ({ disabled, ref: tabRef }), [disabled, tabRef]);
+
+  const {
+    id: value,
+    index,
+    totalItemCount: totalTabsCount,
+  } = useCompoundItem<string | number, TabMetadata>(valueParam, tabMetadata, tabValueGenerator);
 
   const {
     getRootProps: getTabProps,
@@ -46,13 +59,6 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
   const handleRef = useForkRef(tabRef, externalRef, listItemRefHandler, buttonRefHandler);
 
   const tabId = idPrefix + useId();
-
-  const tabMetadata = React.useMemo(() => ({ disabled, ref: tabRef }), [disabled, tabRef]);
-
-  const { index, totalItemCount: totalTabsCount } = useCompoundItem<string | number, TabMetadata>(
-    value,
-    tabMetadata,
-  );
 
   const getRootProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,

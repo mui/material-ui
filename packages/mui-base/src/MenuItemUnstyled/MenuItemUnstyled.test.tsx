@@ -18,10 +18,9 @@ const testContext = {
   getItemState: dummyGetItemState,
   open: false,
   registerHighlightChangeHandler: () => () => {},
-  registerItem: () => {},
+  registerItem: () => ({ id: '', unregister: () => {} }),
   registerSelectionChangeHandler: () => () => {},
   totalSubitemCount: 0,
-  unregisterItem: () => {},
 };
 
 describe('<MenuItemUnstyled />', () => {

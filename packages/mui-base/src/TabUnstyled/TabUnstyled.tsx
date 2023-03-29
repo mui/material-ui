@@ -142,7 +142,7 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * You can provide your own value. Otherwise, we fall back to the child position index.
    */
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
 export default TabUnstyled;

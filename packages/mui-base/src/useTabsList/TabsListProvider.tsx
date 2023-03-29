@@ -26,7 +26,6 @@ export default function TabsListProvider(props: TabsListProviderProps) {
     registerHighlightChangeHandler,
     registerSelectionChangeHandler,
     registerItem,
-    unregisterItem,
     totalSubitemCount,
   } = value;
 
@@ -56,9 +55,8 @@ export default function TabsListProvider(props: TabsListProviderProps) {
         getItemIndex,
         registerItem,
         totalSubitemCount,
-        unregisterItem,
       }),
-      [registerItem, getItemIndex, unregisterItem, totalSubitemCount],
+      [registerItem, getItemIndex, totalSubitemCount],
     );
 
   return (

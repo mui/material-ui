@@ -9,7 +9,7 @@ import {
   UseMenuItemRootSlotProps,
 } from './useMenuItem.types';
 import { useListItem } from '../useList';
-import { useCompoundItem } from '../utils/useCompound';
+import { useCompoundItem } from '../utils/useCompoundItem';
 
 /**
  *

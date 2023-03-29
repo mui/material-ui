@@ -11,7 +11,7 @@ export interface TabUnstyledOwnProps
   /**
    * You can provide your own value. Otherwise, we fall back to the child position index.
    */
-  value: number | string;
+  value?: number | string;
   /**
    * Callback invoked when new value is being set.
    */

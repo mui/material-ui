@@ -1,9 +1,44 @@
 import * as React from 'react';
 
+interface RegisterItemReturnValue<Key> {
+  /**
+   * The id of the item.
+   * If the `id` was `undefined`, an id from the `missingKeyGenerator` will be used.
+   */
+  id: Key;
+  /**
+   * A function that unregisters the item.
+   */
+  unregister: () => void;
+}
+
 export type CompoundComponentContextValue<Key, Subitem> = {
-  registerItem: (id: Key, item: Subitem) => void;
-  unregisterItem: (id: Key) => void;
+  /**
+   * Registers an item with the parent.
+   * This should be called during the effect phase of the child component.
+   * The `itemMetadata` should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
+   *
+   * @param id Id of the item.
+   * @param itemMetadata Arbitrary metadata to pass to the parent component.
+   * @param missingKeyGenerator A function that generates a unique id for the item.
+   *   It is called with the set of the ids of all the items that have already been registered.
+   *   Return `existingKeys.size` if you want to use the index of the new item as the id.
+   * @returns A function that unregisters the item.
+   */
+  registerItem: (
+    id: Key | undefined,
+    item: Subitem,
+    missingKeyGenerator?: (existingKeys: Set<Key>) => Key,
+  ) => RegisterItemReturnValue<Key>;
+  /**
+   * Returns the 0-based index of the item in the parent component's list of registered items.
+   *
+   * @param id id of the item.
+   */
   getItemIndex: (id: Key) => number;
+  /**
+   * The total number of items registered with the parent.
+   */
   totalSubitemCount: number;
 };
 
@@ -41,22 +76,50 @@ export interface UseCompoundParentReturnValue<Key, Subitem> {
  */
 export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<Key, Subitem> {
   const [subitems, setSubitems] = React.useState(new Map<Key, Subitem>());
-
-  const registerItem = React.useCallback(function registerItem(id: Key, item: Subitem) {
-    setSubitems((previousState) => {
-      const newState = new Map(previousState);
-      newState.set(id, item);
-      return newState;
-    });
-  }, []);
+  const subitemKeys = React.useRef(new Set<Key>());
 
   const unregisterItem = React.useCallback(function unregisterItem(id: Key) {
+    subitemKeys.current.delete(id);
     setSubitems((previousState) => {
       const newState = new Map(previousState);
       newState.delete(id);
       return newState;
     });
   }, []);
+
+  const registerItem = React.useCallback(
+    function registerItem(
+      id: Key | undefined,
+      item: Subitem,
+      missingKeyGenerator?: (existingKeys: Set<Key>) => Key,
+    ) {
+      let providedOrGeneratedId: Key;
+      if (id === undefined) {
+        if (missingKeyGenerator === undefined) {
+          throw new Error(
+            "The compound component's child doesn't have a key. You need to provide a missingKeyGenerator to generate it.",
+          );
+        }
+
+        providedOrGeneratedId = missingKeyGenerator(subitemKeys.current);
+      } else {
+        providedOrGeneratedId = id;
+      }
+
+      subitemKeys.current.add(providedOrGeneratedId);
+      setSubitems((previousState) => {
+        const newState = new Map(previousState);
+        newState.set(providedOrGeneratedId, item);
+        return newState;
+      });
+
+      return {
+        id: providedOrGeneratedId,
+        unregister: () => unregisterItem(providedOrGeneratedId),
+      };
+    },
+    [unregisterItem],
+  );
 
   const getItemIndex = React.useCallback(
     function getItemIndex(id: Key) {
@@ -70,58 +133,7 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
       getItemIndex,
       registerItem,
       totalSubitemCount: subitems.size,
-      unregisterItem,
     },
     subitems,
-  };
-}
-
-export interface UseCompoundItemReturnValue {
-  /**
-   * The 0-based index of the child component in the parent component's list of registered children.
-   */
-  index: number;
-  /**
-   * The total number of child components registered with the parent component.
-   */
-  totalItemCount: number;
-}
-
-/**
- * Registers a child component with the parent component.
- *
- * @param id A unique key for the child component. If the `id` is `undefined`, the registration logic will not run (this can sometimes be the case during SSR).
- * @param itemMetadata Arbitrary metadata to pass to the parent component. This should be a stable reference (e.g. a memoized object), to avoid unnecessary re-registrations.
- *
- * @ignore - internal hook.
- */
-export function useCompoundItem<Key, Subitem>(
-  id: Key | undefined,
-  itemMetadata: Subitem,
-): UseCompoundItemReturnValue {
-  const context = React.useContext(CompoundComponentContext) as CompoundComponentContextValue<
-    Key,
-    Subitem
-  >;
-
-  if (context === null) {
-    throw new Error('useCompoundItem must be used within a useCompoundParent');
-  }
-
-  const { registerItem, unregisterItem } = context;
-
-  React.useEffect(() => {
-    if (id === undefined) {
-      return () => {};
-    }
-
-    registerItem(id, itemMetadata);
-
-    return () => unregisterItem(id);
-  }, [id, registerItem, unregisterItem, itemMetadata]);
-
-  return {
-    index: id !== undefined ? context.getItemIndex(id) : -1,
-    totalItemCount: context.totalSubitemCount,
   };
 }

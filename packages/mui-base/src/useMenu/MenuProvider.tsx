@@ -27,7 +27,6 @@ export default function MenuProvider(props: MenuProviderProps) {
     registerHighlightChangeHandler,
     registerSelectionChangeHandler,
     registerItem,
-    unregisterItem,
     totalSubitemCount,
   } = value;
 
@@ -54,9 +53,8 @@ export default function MenuProvider(props: MenuProviderProps) {
         getItemIndex,
         registerItem,
         totalSubitemCount,
-        unregisterItem,
       }),
-      [registerItem, getItemIndex, unregisterItem, totalSubitemCount],
+      [registerItem, getItemIndex, totalSubitemCount],
     );
 
   return (

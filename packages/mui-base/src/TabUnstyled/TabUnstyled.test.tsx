@@ -10,8 +10,7 @@ describe('<TabUnstyled />', () => {
 
   const testTabsListContext: TabsListProviderValue = {
     dispatch: () => {},
-    registerItem: () => {},
-    unregisterItem: () => {},
+    registerItem: () => ({ id: 0, unregister: () => {} }),
     getItemIndex: () => 0,
     totalSubitemCount: 1,
     getItemState() {

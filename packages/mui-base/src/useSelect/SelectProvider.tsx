@@ -27,7 +27,6 @@ export default function SelectProvider<Value>(props: SelectProviderProps<Value>)
     registerHighlightChangeHandler,
     registerSelectionChangeHandler,
     registerItem,
-    unregisterItem,
     totalSubitemCount,
   } = value;
 
@@ -56,9 +55,8 @@ export default function SelectProvider<Value>(props: SelectProviderProps<Value>)
       getItemIndex,
       registerItem,
       totalSubitemCount,
-      unregisterItem,
     }),
-    [registerItem, getItemIndex, unregisterItem, totalSubitemCount],
+    [registerItem, getItemIndex, totalSubitemCount],
   );
 
   return (
