@@ -101,7 +101,7 @@ function testPropForwarding(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
-  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
+  const { render, slots } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
