@@ -97,7 +97,7 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The direction of the text.
    * @default 'ltr'
@@ -136,7 +136,7 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this prop to `false`.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
 export default TabsUnstyled;

@@ -4,16 +4,45 @@
       "type": { "name": "React.Ref&lt;unknown&gt;", "description": "React.Ref&lt;unknown&gt;" },
       "required": true
     },
-    "aria-label": { "type": { "name": "string", "description": "string" } },
-    "aria-labelledby": { "type": { "name": "string", "description": "string" } },
-    "children": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } }
+    "defaultValue": {
+      "type": { "name": "string | number | null", "description": "string | number | null" }
+    },
+    "direction": {
+      "type": {
+        "name": "&#39;ltr&#39; | &#39;rtl&#39;",
+        "description": "&#39;ltr&#39; | &#39;rtl&#39;"
+      }
+    },
+    "onChange": {
+      "type": {
+        "name": "(event: React.SyntheticEvent | null, value: string | number | null) =&gt; void",
+        "description": "(event: React.SyntheticEvent | null, value: string | number | null) =&gt; void"
+      }
+    },
+    "orientation": {
+      "type": {
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
+      }
+    },
+    "value": {
+      "type": { "name": "string | number | null", "description": "string | number | null" }
+    }
   },
   "returnValue": {
+    "contextValue": {
+      "type": { "name": "TabsListProviderValue", "description": "TabsListProviderValue" },
+      "required": true
+    },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabsListRootSlotProps&lt;TOther&gt;",
         "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabsListRootSlotProps&lt;TOther&gt;"
       },
+      "required": true
+    },
+    "highlightedValue": {
+      "type": { "name": "string | number | null", "description": "string | number | null" },
       "required": true
     },
     "isRtl": {
@@ -29,15 +58,8 @@
       "default": "'horizontal'",
       "required": true
     },
-    "processChildren": {
-      "type": {
-        "name": "() =&gt; React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt;&gt;[] | null | undefined",
-        "description": "() =&gt; React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt;&gt;[] | null | undefined"
-      },
-      "required": true
-    },
-    "value": {
-      "type": { "name": "string | number | false", "description": "string | number | false" },
+    "selectedValue": {
+      "type": { "name": "string | number | null", "description": "string | number | null" },
       "required": true
     }
   },

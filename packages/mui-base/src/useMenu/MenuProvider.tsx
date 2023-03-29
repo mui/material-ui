@@ -12,6 +12,11 @@ export interface MenuProviderProps {
   children: React.ReactNode;
 }
 
+/**
+ * Sets up the contexts for the underlying MenuItem components.
+ *
+ * @ignore - do not document.
+ */
 export default function MenuProvider(props: MenuProviderProps) {
   const { value, children } = props;
 

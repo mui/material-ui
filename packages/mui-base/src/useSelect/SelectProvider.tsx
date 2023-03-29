@@ -12,6 +12,11 @@ export interface SelectProviderProps<Value> {
   children: React.ReactNode;
 }
 
+/**
+ * Sets up the contexts for the underlying Option components.
+ *
+ * @ignore - do not document.
+ */
 export default function SelectProvider<Value>(props: SelectProviderProps<Value>) {
   const { value, children } = props;
 

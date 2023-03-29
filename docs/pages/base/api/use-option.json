@@ -1,7 +1,12 @@
 {
   "parameters": {
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "label": {
+      "type": { "name": "string | React.ReactNode", "description": "string | React.ReactNode" },
+      "required": true
+    },
     "value": { "type": { "name": "Value", "description": "Value" }, "required": true },
+    "id": { "type": { "name": "string", "description": "string" } },
     "optionRef": {
       "type": {
         "name": "React.Ref&lt;HTMLElement&gt;",

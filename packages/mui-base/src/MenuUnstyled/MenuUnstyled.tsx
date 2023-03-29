@@ -140,6 +140,10 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  defaultOpen: PropTypes.bool,
+  /**
    * Always keep the menu in the DOM.
    * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
    *
@@ -153,7 +157,7 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onClose: PropTypes.func,
+  onOpenChange: PropTypes.func,
   /**
    * Controls whether the menu is displayed.
    * @default false

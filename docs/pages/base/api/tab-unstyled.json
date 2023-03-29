@@ -1,5 +1,9 @@
 {
   "props": {
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "required": true
+    },
     "action": {
       "type": {
         "name": "union",
@@ -16,8 +20,7 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
-    },
-    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+    }
   },
   "name": "TabUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

@@ -14,6 +14,8 @@ export interface TabsListProviderProps {
 
 /**
  * Sets up the contexts for the underlying Tab components.
+ *
+ * @ignore - do not document.
  */
 export default function TabsListProvider(props: TabsListProviderProps) {
   const { value, children } = props;
