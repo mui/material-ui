@@ -6,6 +6,7 @@ import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslation
 import OptionGroupUnstyledApiJsonPageContent from '../../api/option-group-unstyled.json';
 import OptionUnstyledApiJsonPageContent from '../../api/option-unstyled.json';
 import SelectUnstyledApiJsonPageContent from '../../api/select-unstyled.json';
+import useOptionApiJsonPageContent from '../../api/use-option.json';
 import useSelectApiJsonPageContent from '../../api/use-select.json';
 
 export default function Page(props) {
@@ -46,6 +47,13 @@ export const getStaticProps = () => {
   );
   const SelectUnstyledApiDescriptions = mapApiPageTranslations(SelectUnstyledApiReq);
 
+  const useOptionApiReq = require.context(
+    'docs/translations/api-docs/use-option',
+    false,
+    /use-option.*.json$/,
+  );
+  const useOptionApiDescriptions = mapApiPageTranslations(useOptionApiReq);
+
   const useSelectApiReq = require.context(
     'docs/translations/api-docs/use-select',
     false,
@@ -65,8 +73,14 @@ export const getStaticProps = () => {
         OptionUnstyled: OptionUnstyledApiJsonPageContent,
         SelectUnstyled: SelectUnstyledApiJsonPageContent,
       },
-      hooksApiDescriptions: { useSelect: useSelectApiDescriptions },
-      hooksApiPageContents: { useSelect: useSelectApiJsonPageContent },
+      hooksApiDescriptions: {
+        useOption: useOptionApiDescriptions,
+        useSelect: useSelectApiDescriptions,
+      },
+      hooksApiPageContents: {
+        useOption: useOptionApiJsonPageContent,
+        useSelect: useSelectApiJsonPageContent,
+      },
     },
   };
 };

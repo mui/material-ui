@@ -131,6 +131,11 @@ module.exports = [
   },
   {
     pathname: '/base/react-select/hooks-api',
+    hash: 'use-option',
+    title: 'useOption',
+  },
+  {
+    pathname: '/base/react-select/hooks-api',
     hash: 'use-select',
     title: 'useSelect',
   },

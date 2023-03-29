@@ -2,7 +2,7 @@
 product: base
 title: Unstyled React Select components and hook
 components: SelectUnstyled, OptionUnstyled, OptionGroupUnstyled
-hooks: useSelect
+hooks: useSelect, useOption
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
@@ -142,7 +142,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 <SelectUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
-## Hook
+## Hooks
 
 ```js
 import useSelect from '@mui/base/useSelect';

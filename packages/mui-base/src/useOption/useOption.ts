@@ -7,9 +7,13 @@ import useForcedRerendering from '../utils/useForcedRerendering';
 
 /**
  *
+ * Demos:
+ *
+ * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
+ *
  * API:
  *
- * - [useOption API](https://mui.com/base/api/use-option/)
+ * - [useOption API](https://mui.com/base/react-select/hooks-api/#use-option)
  */
 export default function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
   const { value, optionRef: optionRefParam } = params;
