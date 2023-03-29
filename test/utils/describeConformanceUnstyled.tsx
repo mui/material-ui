@@ -9,7 +9,6 @@ import {
   describeRef,
   randomStringValue,
   testClassName,
-  testComponentProp,
   testReactTestRenderer,
 } from './describeConformance';
 
@@ -163,36 +162,6 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
       });
     }
   });
-
-  it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', () => {
-    const RootComponentA = React.forwardRef(
-      ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        // @ts-ignore
-        <Element data-testid="a" ref={ref}>
-          {children}
-        </Element>
-      ),
-    );
-
-    const RootComponentB = React.forwardRef(
-      ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        // @ts-ignore
-        <Element data-testid="b" ref={ref}>
-          {children}
-        </Element>
-      ),
-    );
-
-    const { queryByTestId } = render(
-      React.cloneElement(element, {
-        component: RootComponentA,
-        slots: { root: RootComponentB },
-      }),
-    );
-
-    expect(queryByTestId('a')).not.to.equal(null);
-    expect(queryByTestId('b')).to.equal(null);
-  });
 }
 
 function testSlotPropsProp(
@@ -342,7 +311,6 @@ function testDisablingClassGeneration(
 }
 
 const fullSuite = {
-  componentProp: testComponentProp,
   slotsProp: testSlotsProp,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallbacks: testSlotPropsCallbacks,

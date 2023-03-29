@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { DefaultComponentProps, Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
 
@@ -43,11 +43,7 @@ export interface ButtonUnstyledSlots {
   root?: React.ElementType;
 }
 
-export type ButtonUnstyledProps<
-  D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
-> = OverrideProps<ButtonUnstyledTypeMap<{}, D>, D> & {
-  component?: D;
-};
+export type ButtonUnstyledProps = DefaultComponentProps<ButtonUnstyledTypeMap>;
 
 export interface ButtonUnstyledTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & ButtonUnstyledOwnProps;

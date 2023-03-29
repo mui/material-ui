@@ -59,10 +59,10 @@ The following props are available on all non-utility Base components.
 See [Usage](/base/getting-started/usage/) for full details.
 :::
 
-Use the `component` prop to override the root slot with a custom element:
+Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
-<ButtonUnstyled component="div" />
+<ButtonUnstyled slots={{ root: 'div' }} />
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Unstyled Button component will automatically add the necessary accessibility attributes.
@@ -72,8 +72,8 @@ Compare the attributes on the `<span>` in this demo with the Button from the pre
 {{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
-If an Unstyled Button is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
-Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+If an Unstyled Button is customized with a non-button element (i.e. `<ButtonUnstyled slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
+Similarly, `<ButtonUnstyled slots={{ root: "span" }} type="reset">` will not reset its parent form.
 :::
 
 ## Hook

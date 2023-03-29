@@ -47,8 +47,8 @@ const CustomButton = styled(ButtonUnstyled)`
 export default function UnstyledButtonsSpan() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton component="span">Button</CustomButton>
-      <CustomButton component="span" disabled>
+      <CustomButton slots={{ root: 'span' }}>Button</CustomButton>
+      <CustomButton slots={{ root: 'span' }} disabled>
         Disabled
       </CustomButton>
     </Stack>

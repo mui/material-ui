@@ -6,7 +6,6 @@ import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
   ButtonUnstyledProps,
   ButtonUnstyledOwnProps,
-  ButtonUnstyledTypeMap,
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
 import useButton from '../useButton';
@@ -39,13 +38,13 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * - [ButtonUnstyled API](https://mui.com/base/api/button-unstyled/)
  */
-const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
-  BaseComponentType extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
->(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
+const ButtonUnstyled = React.forwardRef(function ButtonUnstyled(
+  props: ButtonUnstyledProps,
+  forwardedRef: React.ForwardedRef<any>,
+) {
   const {
     action,
     children,
-    component,
     disabled,
     focusableWhenDisabled = false,
     onBlur,
@@ -88,7 +87,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const classes = useUtilityClasses(ownerState);
 
   const defaultElement = other.href || other.to ? 'a' : 'button';
-  const Root: React.ElementType = component ?? slots.root ?? defaultElement;
+  const Root: React.ElementType = slots.root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -102,7 +101,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<ButtonUnstyledTypeMap>;
+});
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -124,11 +123,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false
