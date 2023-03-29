@@ -6,7 +6,15 @@ import IDENTIFIER from './identifier';
 import type { CssVarsThemeOptions } from './extendTheme';
 
 export const useTheme = () => {
-  return useSystemTheme(defaultTheme);
+  const theme = useSystemTheme(defaultTheme);
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useDebugValue(theme);
+  }
+
+  // @ts-ignore internal logic
+  return theme[IDENTIFIER] || theme;
 };
 
 export default function ThemeProvider({
