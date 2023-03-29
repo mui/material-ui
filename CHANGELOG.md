@@ -1,5 +1,57 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.15
+
+<!-- generated comparing v5.11.14..master -->
+
+_Mar 28, 2023_
+
+A big thanks to the 10 contributors who made this release possible. We have one big highlight this week ✨:
+
+- @siriwatknp made a [Theme Builder](https://mui.com/joy-ui/customization/theme-builder) for Joy UI 🎨 (#35741)
+
+### `@mui/material@5.11.15`
+
+- [Chip] Fix error when theme value is a CSS variable (#36654) @siriwatknp
+- [Grid2] Support dynamic nested columns (#36401) @siriwatknp
+
+### `@mui/system@5.11.15`
+
+- [system] Enable regressions tests & fix regressions (#36611) @mnajdova
+- [Stack] Add `useFlexGap` prop (#36404) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.122`
+
+- [Autocomplete] Update `autoSelect` prop description (#36280) @sai6855
+- [TablePagination][base] Improve `actions` type in `slotProps` (#36458) @sai6855
+- [Base] Add JSDoc comments for classes of Base components (#36586) @hbjORbj
+- [useSlider][base] Add API docs for the hook parameters and return type (#36576) @varunmulay22
+
+### `@mui/joy@5.0.0-alpha.73`
+
+- [Joy] Miscellaneous fixes (#36628) @siriwatknp
+- [Joy] Add palette customizer (#35741) @siriwatknp
+
+### Docs
+
+- Revert "[docs] Use `theme.applyDarkStyles` for the rest of the docs" (#36602) @mnajdova
+- [blog] Improvements on v6 announcement blog (#36505) @joserodolfofreitas
+- [docs] Add `Snackbar` coming soon page (#36604) @danilo-leal
+- [docs] Add accordion coming soon page (#36279) @siriwatknp
+- [docs] Fix palette customizer theme augmentation (#36629) @siriwatknp
+- [docs] Finish migration away from https://reactjs.org/ @oliviertassinari
+- [docs] Remove duplicated slot descriptions (#36621) @hbjORbj
+- [docs] Fix broken example link (#36607) @mnajdova
+- [docs] Use `theme.applyDarkStyles` (#36606) @siriwatknp
+- [docs] Improve API for theme default prop (#36490) @oliviertassinari
+- [docs][Table] Refactor `Sorting & Selecting` table demo (#33236) @IFaniry
+
+### Core
+
+- [core] Use Netlify function for feedback management (#36472) @alexfauquette
+
+All contributors of this release in alphabetical order: @alexfauquette, @danilo-leal, @hbjORbj, @IFaniry, @joserodolfofreitas, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @varunmulay22
+
 ## 5.11.14
 
 <!-- generated comparing v5.11.13..master -->
