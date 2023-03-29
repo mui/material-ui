@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DefaultComponentProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
 
@@ -43,12 +43,7 @@ export interface ButtonUnstyledSlots {
   root?: React.ElementType;
 }
 
-export type ButtonUnstyledProps = DefaultComponentProps<ButtonUnstyledTypeMap>;
-
-export interface ButtonUnstyledTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & ButtonUnstyledOwnProps;
-  defaultComponent: D;
-}
+export type ButtonUnstyledProps = ButtonUnstyledOwnProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
   active: boolean;
