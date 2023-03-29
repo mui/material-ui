@@ -1,0 +1,10 @@
+<FormControlUnstyled value={cardNum} onChange={handleChange}>
+  <Label>Card number</Label>
+  <Input
+    slots={{
+      root: InputRoot,
+    }}
+    endAdornment={<CardTypes />}
+  />
+  <HelperText />
+</FormControlUnstyled>
