@@ -17,20 +17,24 @@ async function main() {
   // prepare screenshots
   await fse.emptyDir(screenshotDir);
 
-  ['/', '/#main-content'].forEach((route) => {
-    it(`creates screenshots of ${route}`, async function test() {
-      await page.goto(baseUrl, { waitUntil: 'networkidle0' });
+  describe('Visual regression website', () => {
+    after(async () => {
+      await browser.close();
+    });
 
-      const [pathname, targetId] = route.split('#');
-      const elm = targetId ? await page.waitForSelector(`#${targetId}`) : page;
-      const screenshotPath = path.resolve(screenshotDir, `.${pathname}${targetId || 'page'}.png`);
-      await fse.ensureDir(path.dirname(screenshotPath));
+    ['/', '/#main-content'].forEach((route) => {
+      it(`creates screenshots of ${route}`, async function test() {
+        await page.goto(baseUrl, { waitUntil: 'networkidle0' });
 
-      await elm.screenshot({ path: screenshotPath, type: 'png' });
+        const [pathname, targetId] = route.split('#');
+        const elm = targetId ? await page.waitForSelector(`#${targetId}`) : page;
+        const screenshotPath = path.resolve(screenshotDir, `.${pathname}${targetId || 'page'}.png`);
+        await fse.ensureDir(path.dirname(screenshotPath));
+
+        await elm.screenshot({ path: screenshotPath, type: 'png' });
+      });
     });
   });
-
-  await browser.close();
 
   run();
 }
