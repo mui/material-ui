@@ -43,7 +43,8 @@ export interface ButtonUnstyledSlots {
   root?: React.ElementType;
 }
 
-export type ButtonUnstyledProps = ButtonUnstyledOwnProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonUnstyledProps = ButtonUnstyledOwnProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
   active: boolean;

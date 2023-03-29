@@ -1,11 +1,7 @@
 import * as React from 'react';
-import ButtonUnstyled, {
-  buttonUnstyledClasses,
-  ButtonUnstyledTypeMap,
-} from '@mui/base/ButtonUnstyled';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { OverridableComponent } from '@mui/types';
 
 const blue = {
   500: '#007FFF',
@@ -42,15 +38,15 @@ const CustomButton = styled(ButtonUnstyled)`
     opacity: 0.5;
     cursor: not-allowed;
   }
-` as OverridableComponent<ButtonUnstyledTypeMap>;
+`;
 
 export default function UnstyledButtonsDisabledFocusCustom() {
   return (
     <Stack spacing={2}>
-      <CustomButton component="span" disabled>
+      <CustomButton slots={{ root: 'span' }} disabled>
         focusableWhenDisabled = false
       </CustomButton>
-      <CustomButton component="span" disabled focusableWhenDisabled>
+      <CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
         focusableWhenDisabled = true
       </CustomButton>
     </Stack>
