@@ -20,7 +20,8 @@
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
-    }
+    },
+    "useFlexGap": { "type": { "name": "bool" } }
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

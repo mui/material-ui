@@ -1,17 +1,18 @@
 import * as React from 'react';
 import {
-  unstable_useIsFocusVisible as useIsFocusVisible,
-  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerDocument as ownerDocument,
+  unstable_useControlled as useControlled,
+  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
+  unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
 } from '@mui/utils';
 import {
   Mark,
   UseSliderHiddenInputProps,
   UseSliderParameters,
+  UseSliderReturnValue,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
@@ -187,7 +188,7 @@ function doesSupportTouchActionNone() {
  *
  * - [useSlider API](https://mui.com/base/react-slider/hooks-api/#use-slider)
  */
-export default function useSlider(parameters: UseSliderParameters) {
+export default function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
     defaultValue,

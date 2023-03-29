@@ -146,7 +146,7 @@ export default function UnstyledTable() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
-                } as any,
+                },
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
