@@ -4,8 +4,10 @@ import fse from 'fs-extra';
 import lodashChunk from 'lodash/chunk.js';
 import { upload } from '@argos-ci/core';
 
-const screenshotsBase = 'test/regressions/screenshots/chrome';
-const screenshotsTmp = 'test/regressions/screenshots/argos';
+const args = process.argv.slice(2);
+
+const screenshotsBase = args[0] || 'test/regressions/screenshots/chrome';
+const screenshotsTmp = args[1] || 'test/regressions/screenshots/argos';
 const BATCH_SIZE = 200;
 
 async function run() {

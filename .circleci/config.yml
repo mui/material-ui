@@ -409,6 +409,14 @@ jobs:
           command: yarn test:e2e-website
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
+      - run:
+          name: yarn test:regressions:website
+          command: yarn test:e2e-website
+          environment:
+            PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
+      - run:
+          name: Upload screenshots to Argos CI
+          command: yarn test:argos test/regressions-website/screenshots/chrome test/regressions-website/screenshots/argos
   test_profile:
     <<: *defaults
     docker:

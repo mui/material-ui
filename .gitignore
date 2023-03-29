@@ -27,6 +27,7 @@
 /test/bundling/fixtures/gatsby/.cache
 /test/bundling/fixtures/gatsby/public
 /test/regressions/screenshots
+/test/regressions-website/screenshots
 /tmp
 .next
 build
