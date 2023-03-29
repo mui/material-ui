@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme from './defaultTheme';
-import extendTheme from './extendTheme';
 import IDENTIFIER from './identifier';
-import type { CssVarsThemeOptions } from './extendTheme';
 import type { Theme } from './types';
 
 export const useTheme = (): Theme => {
@@ -20,21 +18,15 @@ export const useTheme = (): Theme => {
 
 export default function ThemeProvider({
   children,
-  theme: themeInput,
-  enableThemeScope,
+  theme: themeInput = defaultTheme,
 }: React.PropsWithChildren<{
-  theme?: CssVarsThemeOptions;
-  /**
-   * If `true`, the theme scope is created to prevent conflict with other libraries's theme
-   * that use emotion or styled-components
-   */
-  enableThemeScope?: boolean;
+  theme?: Theme | { [k in typeof IDENTIFIER]: Theme };
 }>) {
+  const scopedTheme = (themeInput as any)[IDENTIFIER];
   return (
     <SystemThemeProvider
-      identifier={IDENTIFIER}
-      enableThemeScope={enableThemeScope}
-      theme={themeInput ? extendTheme(themeInput) : defaultTheme}
+      identifier={scopedTheme ? IDENTIFIER : undefined}
+      theme={scopedTheme || themeInput}
     >
       {children}
     </SystemThemeProvider>
