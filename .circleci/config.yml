@@ -411,7 +411,7 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
       - run:
           name: yarn test:regressions:website
-          command: yarn test:e2e-website
+          command: yarn test:regressions:website
           environment:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
       - run:
