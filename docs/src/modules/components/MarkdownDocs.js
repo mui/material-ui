@@ -4,7 +4,7 @@ import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme, extendTheme, THEME_IDENTIFIER } from '@mui/joy/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -30,6 +30,8 @@ function JoyModeObserver({ mode }) {
 JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
+
+const joyTheme = extendTheme();
 
 export default function MarkdownDocs(props) {
   const theme = useTheme();
@@ -59,15 +61,15 @@ export default function MarkdownDocs(props) {
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
 
   return (
-    <AppLayoutDocs
-      description={description}
-      disableAd={disableAd}
-      disableToc={disableToc}
-      location={location}
-      title={title}
-      toc={toc}
-    >
-      <Provider {...(isJoy && { enableThemeScope: true })}>
+    <Provider {...(isJoy && { theme: { [THEME_IDENTIFIER]: joyTheme } })}>
+      <AppLayoutDocs
+        description={description}
+        disableAd={disableAd}
+        disableToc={disableToc}
+        location={location}
+        title={title}
+        toc={toc}
+      >
         {disableAd ? null : (
           <AdGuest>
             <Ad />
@@ -141,8 +143,8 @@ export default function MarkdownDocs(props) {
             />
           );
         })}
-      </Provider>
-    </AppLayoutDocs>
+      </AppLayoutDocs>
+    </Provider>
   );
 }
 

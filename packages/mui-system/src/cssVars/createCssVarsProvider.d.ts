@@ -41,14 +41,22 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
   disableTransitionOnChange?: boolean;
 }
 
-export interface CreateCssVarsProviderResult<ColorScheme extends string> {
+type Identify<I extends string, T> = T | { [k in I]: T };
+
+export interface CreateCssVarsProviderResult<
+  ColorScheme extends string,
+  Identifier extends string,
+> {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       Partial<CssVarsProviderConfig<ColorScheme>> & {
-        theme?: {
-          cssVarPrefix?: string;
-          colorSchemes: Record<ColorScheme, Record<string, any>>;
-        };
+        theme?: Identify<
+          Identifier,
+          {
+            cssVarPrefix?: string;
+            colorSchemes: Record<ColorScheme, Record<string, any>>;
+          }
+        >;
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
@@ -80,11 +88,6 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * @default false
          */
         disableStyleSheetGeneration?: boolean;
-        /**
-         * If `true`, the theme scope is created to prevent conflict with other libraries's theme
-         * that use emotion or styled-components
-         */
-        enableThemeScope?: boolean;
       }
     >,
   ) => React.ReactElement;
@@ -92,12 +95,15 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 
-export default function createCssVarsProvider<ColorScheme extends string>(
+export default function createCssVarsProvider<
+  ColorScheme extends string,
+  Identifier extends string,
+>(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
      * The design system's unique id for getting the corresponded theme when there are multiple design systems.
      */
-    identifier?: string;
+    identifier: Identifier;
     /**
      * Design system default theme
      *
@@ -145,7 +151,7 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      */
     excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
-): CreateCssVarsProviderResult<ColorScheme>;
+): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 
 // disable automatic export
 export {};

@@ -7,7 +7,8 @@ import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 import IDENTIFIER from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme
+  DefaultColorScheme | ExtendedColorScheme,
+  typeof IDENTIFIER
 >({
   identifier: IDENTIFIER,
   theme: defaultTheme,
