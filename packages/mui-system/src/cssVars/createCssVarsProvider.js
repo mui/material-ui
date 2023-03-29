@@ -65,20 +65,20 @@ export default function createCssVarsProvider(options) {
     colorSchemeSelector = ':root',
     disableNestedContext = false,
     disableStyleSheetGeneration = false,
-    enableThemeScope = false,
   }) {
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
+    const scopedTheme = themeProp[identifier];
     const {
       colorSchemes = {},
       components = {},
       generateCssVars = () => ({ vars: {}, css: {} }),
       cssVarPrefix,
       ...restThemeProp
-    } = themeProp;
+    } = scopedTheme || themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -274,8 +274,7 @@ export default function createCssVarsProvider(options) {
           </React.Fragment>
         )}
         <ThemeProvider
-          identifier={identifier}
-          enableThemeScope={enableThemeScope}
+          identifier={scopedTheme ? identifier : undefined}
           theme={resolveTheme ? resolveTheme(theme) : theme}
         >
           {children}
@@ -339,11 +338,6 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to
      */
     documentNode: PropTypes.any,
-    /**
-     * If `true`, the theme scope is created to prevent conflict with other libraries's theme
-     * that use emotion or styled-components
-     */
-    enableThemeScope: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

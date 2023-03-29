@@ -34,6 +34,24 @@ function ThemeProvider(props) {
   const { children, theme: localTheme, identifier } = props;
   const upperTheme = muiUseTheme(); // user's provided theme or `null`.
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (
+      (upperTheme === null && typeof localTheme === 'function') ||
+      (identifier && upperTheme && !upperTheme[identifier] && typeof localTheme === 'function')
+    ) {
+      console.error(
+        [
+          'MUI: You are providing a theme function prop to the ThemeProvider component:',
+          '<ThemeProvider theme={outerTheme => outerTheme} />',
+          '',
+          'However, no outer theme is present.',
+          'Make sure a theme is already injected higher in the React tree ' +
+            'or provide a theme object.',
+        ].join('\n'),
+      );
+    }
+  }
+
   const theme = React.useMemo(() => {
     let resolvedTheme = {};
     if (upperTheme) {

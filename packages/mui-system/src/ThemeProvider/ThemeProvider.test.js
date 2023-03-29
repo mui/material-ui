@@ -207,4 +207,17 @@ describe('ThemeProvider', () => {
       [Symbol.for('mui.nested')]: true,
     });
   });
+
+  it('theme scope: multiple identifiers with callback', () => {
+    expect(() =>
+      render(
+        <ThemeProvider identifier="mui" theme={{ bar: 'bar' }}>
+          <ThemeProvider identifier="joy" theme={(upperTheme) => ({ foo: upperTheme })} />
+        </ThemeProvider>,
+      ),
+    ).toErrorDev([
+      'MUI: You are providing a theme function prop to the ThemeProvider component:',
+      '<ThemeProvider theme={outerTheme => outerTheme} />',
+    ]);
+  });
 });
