@@ -7,14 +7,16 @@ export default function InfiniteScrolling() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleOnScrollToBottom = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setFilms((previousFilms) => [
-        ...previousFilms,
-        ...allFilms.slice(previousFilms.length, previousFilms.length + 10),
-      ]);
-    }, 2000);
+    if (allFilms.length !== films.length) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        setFilms((previousFilms) => [
+          ...previousFilms,
+          ...allFilms.slice(previousFilms.length, previousFilms.length + 10),
+        ]);
+      }, 2000);
+    }
   };
 
   return (
