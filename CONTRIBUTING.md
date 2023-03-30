@@ -3,6 +3,7 @@
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the MUI community. Here are a few guidelines that will help you along the way.
 
 ## Summary
+
 - [Code of Conduct](#code-of-conduct)
 - [A large spectrum of contributions](#a-large-spectrum-of-contributions)
 - [Your first Pull Request](#your-first-pull-request)
@@ -184,9 +185,8 @@ and `yarn deduplicate` should fix most of the issues.
 ##### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
-how to fix the issues. It runs also commands that generates and changes some files 
+how to fix the issues. It runs also commands that generates and changes some files
 (like `yarn docs:api`), if the pipe fails you might need to run them locally and commit the changes.
-
 
 ##### ci/circleci: test_unit-1
 
