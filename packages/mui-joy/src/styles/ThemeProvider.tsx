@@ -3,9 +3,10 @@ import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from
 import defaultTheme from './defaultTheme';
 import extendTheme from './extendTheme';
 import IDENTIFIER from './identifier';
+import type { Theme } from './types';
 import type { CssVarsThemeOptions } from './extendTheme';
 
-export const useTheme = () => {
+export const useTheme = (): Theme => {
   const theme = useSystemTheme(defaultTheme);
 
   if (process.env.NODE_ENV !== 'production') {
