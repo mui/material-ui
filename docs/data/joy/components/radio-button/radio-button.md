@@ -12,7 +12,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 ## Introduction
 
-Radio buttons let users make a mutually exclusive choice (e.g., this or that). Only one selection is allowed from the available set of options.
+Radio buttons let users make a mutually exclusive choice (e.g., this or that).
+Only one selection is allowed from the available set of options.
 
 Radio buttons should have the most commonly used option selected by default.
 
@@ -39,7 +40,7 @@ To learn how to add more variants or sizes to the component, check out the [Them
 import Radio from '@mui/joy/Radio';
 ```
 
-The Joy UI Radio Button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
+The Joy UI Radio button behaves similar to the native HTML <input type="radio">, so it accepts props like `checked`, `value` and `onChange`.
 
 {{"demo": "RadioButtons.js"}}
 
@@ -78,7 +79,7 @@ Use the `label` prop to add a label to a Radio button.
 
 {{"demo": "RadioButtonLabel.js"}}
 
-For more complex layouts, compose a Radio Button with Form Control, Form Label, and Form Helper Text (optional), as shown below:
+For more complex layouts, compose a Radio button with Form Control, Form Label, and Form Helper Text (optional), as shown below:
 
 {{"demo": "RadioButtonControl.js"}}
 
@@ -126,7 +127,7 @@ Use the CSS variable `--Radio-actionRadius` to control the border radius of the 
 
 ### Custom icons
 
-Use the `checkedIcon` and/or `uncheckedIcon` props to add custom icons to the Radio button that correspond to each state, respectively.
+Use the `checkedIcon` and `uncheckedIcon` props to add custom icons to the Radio button that correspond to each state, respectively.
 The demo below shows how to apply a custom `checkedIcon` to the Radio button that sits on the corner of each Sheet:
 
 {{"demo": "IconsRadio.js"}}
@@ -146,7 +147,7 @@ In this case, you'll need to use CSS properties like border and background color
 
 ### Tiers
 
-A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-groups) that demonstrate the composition of the components.
+This example demonstrates the composition of the components, and was inspired by [this Dribbble shot from Tailwind Labs](https://dribbble.com/shots/11239824-Radio-button-groups).
 
 {{"demo": "ExampleTiers.js"}}
 
@@ -205,7 +206,7 @@ The Radio Group component is composed of a root `<div>` element that can wrap mu
 </div>
 ```
 
-The Radio component is composed of a root `<span>`, with further nested `<span>` elements for the radio, icon, action (with a nested `<input>`), and its associated `<label>`.
+The Radio component is composed of a root `<span>`, with further nested `<span>` elements for the radio button, icon, action (with a nested `<input>`), and its associated `<label>`.
 
 ```html
   <span class="JoyRadio-root">
