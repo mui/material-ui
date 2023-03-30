@@ -1,9 +1,17 @@
 {
   "parameters": {
-    "ref": { "type": { "name": "React.Ref<any>", "description": "" }, "required": true },
-    "disabled": { "type": { "name": "boolean", "description": "" } },
-    "label": { "type": { "name": "string", "description": "" } },
-    "onClick": { "type": { "name": "React.MouseEventHandler<any>", "description": "" } }
+    "ref": {
+      "type": { "name": "React.Ref&lt;any&gt", "description": "React.Ref&lt;any&gt" },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "label": { "type": { "name": "string", "description": "string" } },
+    "onClick": {
+      "type": {
+        "name": "React.MouseEventHandler&lt;any&gt",
+        "description": "React.MouseEventHandler&lt;any&gt"
+      }
+    }
   },
   "returnValue": {},
   "name": "useMenuItem",

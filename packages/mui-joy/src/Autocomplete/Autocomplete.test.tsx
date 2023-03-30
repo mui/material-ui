@@ -1975,6 +1975,25 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(textbox).to.have.property('value', 'a');
     });
+
+    it('should not throw error when nested options are provided', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          openOnFocus
+          autoHighlight
+          options={[
+            { property: { name: 'one' } },
+            { property: { name: 'two' } },
+            { property: { name: 'three' } },
+          ]}
+          getOptionLabel={(option) => option.property.name}
+        />,
+      );
+
+      expect(() => {
+        fireEvent.focus(getByRole('combobox'));
+      }).not.to.throw();
+    });
   });
 
   describe('prop: onHighlightChange', () => {

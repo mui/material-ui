@@ -1,48 +1,43 @@
 {
   "parameters": {
-    "ref": { "type": { "name": "React.Ref<unknown>", "description": "" }, "required": true },
-    "aria-label": { "type": { "name": "string", "description": "" } },
-    "aria-labelledby": { "type": { "name": "string", "description": "" } },
-    "children": {
-      "type": { "name": "React.ReactNode", "description": "The content of the component." }
-    }
+    "ref": {
+      "type": { "name": "React.Ref&lt;unknown&gt", "description": "React.Ref&lt;unknown&gt" },
+      "required": true
+    },
+    "aria-label": { "type": { "name": "string", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string", "description": "string" } },
+    "children": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } }
   },
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "<TOther extends Record<string, any> = {}>(externalProps?: TOther) => UseTabsListRootSlotProps<TOther>",
-        "description": "Resolver for the root slot's props."
+        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabsListRootSlotProps&lt;TOther&gt",
+        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabsListRootSlotProps&lt;TOther&gt"
       },
       "required": true
     },
     "isRtl": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, it will indicate that the text's direction in right-to-left."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
       "required": true
     },
     "orientation": {
       "type": {
-        "name": "'horizontal' | 'vertical'",
-        "description": "The component orientation (layout flow direction)."
+        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
+        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
       },
       "default": "'horizontal'",
       "required": true
     },
     "processChildren": {
       "type": {
-        "name": "() => React.ReactElement<any, string | React.JSXElementConstructor<any>>[] | null | undefined",
-        "description": "Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation."
+        "name": "() =&gt React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt&gt[] | null | undefined",
+        "description": "() =&gt React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt&gt[] | null | undefined"
       },
       "required": true
     },
     "value": {
-      "type": {
-        "name": "string | number | false",
-        "description": "The value of the currently selected `Tab`."
-      },
+      "type": { "name": "string | number | false", "description": "string | number | false" },
       "required": true
     }
   },

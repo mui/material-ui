@@ -1,26 +1,20 @@
 {
   "parameters": {
     "value": {
-      "type": {
-        "name": "number | string",
-        "description": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
-      },
+      "type": { "name": "number | string", "description": "number | string" },
       "required": true
     }
   },
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "() => {\n  'aria-labelledby': string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
-        "description": "Resolver for the root slot's props."
+        "name": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
+        "description": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}"
       },
       "required": true
     },
     "hidden": {
-      "type": {
-        "name": "boolean",
-        "description": "If `true`, it indicates that the tab panel will be hidden."
-      },
+      "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
       "required": true
     }
