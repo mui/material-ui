@@ -8,15 +8,10 @@ The following code snippet demonstrates a simple app that uses the Joy UI [Butto
 
 ```jsx
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 
 export default function MyApp() {
-  return (
-    <CssVarsProvider>
-      <Button variant="solid">Hello World</Button>
-    </CssVarsProvider>
-  );
+  return <Button variant="solid">Hello World</Button>;
 }
 ```
 
@@ -30,10 +25,6 @@ Try changing the `variant` on the Button to `soft` to see how the style changes:
 In the Quickstart example above, you can see that the Button component is nested within `<CssVarsProvider />`.
 This provider unlocks a whole host of customization options powered by CSS variables.
 See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
-
-:::error
-`<CssVarsProvider />` is _required_ when working with Joy UI components.
-:::
 
 ## Globals
 

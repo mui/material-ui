@@ -36,7 +36,7 @@ export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     label?: string | React.ReactElement;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, OptionPropsVariantOverrides>;

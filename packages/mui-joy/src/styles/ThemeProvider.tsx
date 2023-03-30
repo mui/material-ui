@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
-import defaultTheme, { getThemeWithVars } from './defaultTheme';
+import defaultTheme from './defaultTheme';
+import extendTheme from './extendTheme';
 import type { CssVarsThemeOptions } from './extendTheme';
 
 export const useTheme = () => {
@@ -14,7 +15,7 @@ export default function ThemeProvider({
   theme?: CssVarsThemeOptions;
 }>) {
   return (
-    <SystemThemeProvider theme={themeInput ? getThemeWithVars(themeInput) : defaultTheme}>
+    <SystemThemeProvider theme={themeInput ? extendTheme(themeInput) : defaultTheme}>
       {children}
     </SystemThemeProvider>
   );

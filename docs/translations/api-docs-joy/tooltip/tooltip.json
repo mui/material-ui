@@ -3,7 +3,7 @@
   "propDescriptions": {
     "arrow": "If <code>true</code>, adds an arrow to the tooltip.",
     "children": "Tooltip reference element.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
     "direction": "Direction of the text.",
     "disableFocusListener": "Do not respond to focus-visible events.",
@@ -24,14 +24,14 @@
     "onOpen": "Callback fired when the component requests to be open.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
     "open": "If <code>true</code>, the component is shown.",
     "placement": "Tooltip placement.",
-    "size": "The size of the component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "title": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
-    "variant": "The variant to use."
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {},
   "slotDescriptions": {
-    "arrow": "The component used to render the arrow.",
-    "root": "The component used to render the root."
+    "root": "The component that renders the root.",
+    "arrow": "The component that renders the arrow."
   }
 }

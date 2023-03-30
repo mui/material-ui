@@ -24,13 +24,13 @@ const ListItemDecoratorRoot = styled('span', {
   boxSizing: 'border-box',
   display: 'inline-flex',
   alignItems: 'center',
-  color: `var(--List-decorator-color)`,
+  color: `var(--ListItemDecorator-color)`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
-        minInlineSize: 'var(--List-decorator-size)',
+        minInlineSize: 'var(--ListItemDecorator-size)',
       }
     : {
-        minBlockSize: 'var(--List-decorator-size)',
+        minBlockSize: 'var(--ListItemDecorator-size)',
       }),
 }));
 /**

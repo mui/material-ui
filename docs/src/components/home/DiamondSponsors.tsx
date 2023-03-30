@@ -83,7 +83,7 @@ export default function DiamondSponsors() {
               <IconButton
                 aria-label="Become MUI sponsor"
                 component="a"
-                href="mailto:diamond@mui.com"
+                href="mailto:sales@mui.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="primary"
@@ -103,8 +103,8 @@ export default function DiamondSponsors() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   To join us, contact us at{' '}
-                  <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
-                    diamond@mui.com
+                  <Link href="mailto:sales@mui.com" target="_blank" rel="noopener noreferrer">
+                    sales@mui.com
                   </Link>{' '}
                   for pre-approval.
                 </Typography>

@@ -12,22 +12,22 @@ export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIn
 
 export interface ButtonSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'button'
    */
   root: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
   endDecorator: React.ElementType;
   /**
-   * The component used to render the loading indicator center.
+   * The component that renders the loading indicator center.
    * @default 'span'
    */
   loadingIndicatorCenter: React.ElementType;
@@ -102,7 +102,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
        */
       tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;

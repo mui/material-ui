@@ -8,12 +8,12 @@ export type TooltipSlot = 'root' | 'arrow';
 
 export interface TooltipSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the arrow.
+   * The component that renders the arrow.
    * @default 'span'
    */
   arrow: React.ElementType;
@@ -164,7 +164,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       title: React.ReactNode;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, TooltipPropsVariantOverrides>;

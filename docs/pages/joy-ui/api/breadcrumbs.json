@@ -20,31 +20,33 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "li",
-      "description": "The component used to render the li.",
-      "default": "'li'",
-      "class": ".MuiBreadcrumbs-li"
-    },
-    {
-      "name": "ol",
-      "description": "The component used to render the ol.",
-      "default": "'ol'",
-      "class": ".MuiBreadcrumbs-ol"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'nav'",
       "class": ".MuiBreadcrumbs-root"
     },
     {
+      "name": "ol",
+      "description": "The component that renders the ol.",
+      "default": "'ol'",
+      "class": ".MuiBreadcrumbs-ol"
+    },
+    {
+      "name": "li",
+      "description": "The component that renders the li.",
+      "default": "'li'",
+      "class": ".MuiBreadcrumbs-li"
+    },
+    {
       "name": "separator",
-      "description": "The component used to render the separator.",
+      "description": "The component that renders the separator.",
       "default": "'li'",
       "class": ".MuiBreadcrumbs-separator"
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyBreadcrumbs",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-joy/src/Breadcrumbs/Breadcrumbs.tsx",
   "inheritance": null,

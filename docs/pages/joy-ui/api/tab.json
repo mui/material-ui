@@ -38,6 +38,8 @@
   "name": "Tab",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Tab/Tab.tsx",
   "inheritance": null,

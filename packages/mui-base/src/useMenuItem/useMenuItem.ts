@@ -3,7 +3,11 @@ import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui
 import { EventHandlers } from '../utils/types';
 import { MenuUnstyledContext } from '../MenuUnstyled';
 import useButton from '../useButton';
-import { UseMenuItemParameters } from './useMenuItem.types';
+import {
+  UseMenuItemParameters,
+  UseMenuItemReturnValue,
+  UseMenuItemRootSlotProps,
+} from './useMenuItem.types';
 import useForcedRerendering from '../utils/useForcedRerendering';
 
 /**
@@ -16,7 +20,7 @@ import useForcedRerendering from '../utils/useForcedRerendering';
  *
  * - [useMenuItem API](https://mui.com/base/api/use-menu-item/)
  */
-export default function useMenuItem(props: UseMenuItemParameters) {
+export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemReturnValue {
   const { disabled = false, ref, label } = props;
 
   const id = useId();
@@ -88,9 +92,11 @@ export default function useMenuItem(props: UseMenuItemParameters) {
 
   if (id === undefined) {
     return {
-      getRootProps: (other?: EventHandlers) => ({
-        ...other,
-        ...getButtonProps(other),
+      getRootProps: <TOther extends EventHandlers = {}>(
+        otherHandlers: TOther = {} as TOther,
+      ): UseMenuItemRootSlotProps<TOther> => ({
+        ...otherHandlers,
+        ...getButtonProps(otherHandlers),
         role: 'menuitem',
       }),
       disabled: false,
@@ -100,12 +106,14 @@ export default function useMenuItem(props: UseMenuItemParameters) {
   }
 
   return {
-    getRootProps: (other?: EventHandlers) => {
-      const optionProps = menuContext.getItemProps(id, other);
+    getRootProps: <TOther extends EventHandlers = {}>(
+      otherHandlers: TOther = {} as TOther,
+    ): UseMenuItemRootSlotProps<TOther> => {
+      const optionProps = menuContext.getItemProps(id, otherHandlers);
 
       return {
-        ...other,
-        ...getButtonProps(other),
+        ...otherHandlers,
+        ...getButtonProps(otherHandlers),
         tabIndex: optionProps.tabIndex,
         id: optionProps.id,
         role: 'menuitem',

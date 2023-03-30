@@ -67,7 +67,7 @@ function SlotsTable(props) {
         <tr>
           <th align="left">{t('api-docs.name')}</th>
           <th align="left">{t('api-docs.defaultClass')}</th>
-          <th align="left">{t('api-docs.defaultValue')}</th>
+          <th align="left">{t('api-docs.defaultHTMLTag')}</th>
           <th align="left">{t('api-docs.description')}</th>
         </tr>
       </thead>
@@ -111,8 +111,8 @@ function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
-    'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
+    'theme-default-props': t('api-docs.themeDefaultProps'),
     inheritance: t('api-docs.inheritance'),
     slots: t('api-docs.slots'),
     css: 'CSS',
@@ -162,7 +162,6 @@ export default function ApiPage(props) {
     filename,
     forwardsRefTo,
     inheritance,
-    name: componentName,
     props: componentProps,
     spread,
     styles: componentStyles,
@@ -170,12 +169,19 @@ export default function ApiPage(props) {
   } = pageContent;
 
   const isJoyComponent = filename.includes('mui-joy');
+  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#default-props'
-    : '/material-ui/customization/theme-components/#default-props';
+    ? '/joy-ui/customization/themed-components/#theme-default-props'
+    : '/material-ui/customization/theme-components/#theme-default-props';
   const styleOverridesLink = isJoyComponent
-    ? '/joy-ui/customization/themed-components/#style-overrides'
-    : '/material-ui/customization/theme-components/#global-style-overrides';
+    ? '/joy-ui/customization/themed-components/#theme-style-overrides'
+    : '/material-ui/customization/theme-components/#theme-style-overrides';
+  let slotGuideLink = '';
+  if (isJoyComponent) {
+    slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+  } else if (isBaseComponent) {
+    slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+  }
 
   const {
     componentDescription,
@@ -184,7 +190,7 @@ export default function ApiPage(props) {
     propDescriptions,
     slotDescriptions,
   } = descriptions[userLanguage];
-  const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
+  const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
 
   const source = filename
     .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
@@ -202,6 +208,9 @@ export default function ApiPage(props) {
         ...(sectionName === 'props' && inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
           : []),
+        ...(sectionName === 'props' && pageContent.themeDefaultProps
+          ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
+          : []),
       ],
     };
   }
@@ -210,7 +219,6 @@ export default function ApiPage(props) {
     createTocEntry('demos'),
     createTocEntry('import'),
     ...componentDescriptionToc,
-    componentStyles.name && createTocEntry('component-name'),
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
     componentSlots?.length > 0 && createTocEntry('slots'),
@@ -245,11 +253,11 @@ export default function ApiPage(props) {
       disableAd={disableAd}
       disableToc={false}
       location={apiSourceLocation}
-      title={`${componentName} API`}
+      title={`${pageContent.name} API`}
       toc={toc}
     >
       <MarkdownElement>
-        <h1>{componentName} API</h1>
+        <h1>{pageContent.name} API</h1>
         <Typography
           variant="h5"
           component="p"
@@ -270,9 +278,9 @@ export default function ApiPage(props) {
         <Heading hash="import" />
         <HighlightedCode
           code={`
-import ${componentName} from '${source}/${componentName}';
+import ${pageContent.name} from '${source}/${pageContent.name}';
 // ${t('or')}
-import { ${componentName} } from '${source}';`}
+import { ${pageContent.name} } from '${source}';`}
           language="jsx"
         />
         <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
@@ -287,22 +295,6 @@ import { ${componentName} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {(componentStyles.name || isJoyComponent) && (
-          <React.Fragment>
-            <Heading hash="component-name" />
-            <span
-              dangerouslySetInnerHTML={{
-                __html: t('api-docs.styleOverrides')
-                  .replace(
-                    /{{componentStyles\.name}}/,
-                    isJoyComponent ? `Joy${componentName}` : componentStyles.name,
-                  )
-                  .replace(/{{defaultPropsLink}}/, defaultPropsLink)
-                  .replace(/{{styleOverridesLink}}/, styleOverridesLink),
-              }}
-            />
-          </React.Fragment>
-        )}
         <Heading hash="props" />
         <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
@@ -311,7 +303,7 @@ import { ${componentName} } from '${source}';`}
           <React.Fragment>
             <span
               dangerouslySetInnerHTML={{
-                __html: t('api-docs.cssComponent').replace(/{{name}}/, componentName),
+                __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
               }}
             />
             <br />
@@ -328,7 +320,19 @@ import { ${componentName} } from '${source}';`}
                   .replace(/{{component}}/, inheritance.component)
                   .replace(/{{pathname}}/, inheritance.pathname)
                   .replace(/{{suffix}}/, inheritanceSuffix)
-                  .replace(/{{componentName}}/, componentName),
+                  .replace(/{{name}}/, pageContent.name),
+              }}
+            />
+          </React.Fragment>
+        )}
+        {pageContent.themeDefaultProps && (
+          <React.Fragment>
+            <Heading hash="theme-default-props" level="h3" />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('api-docs.themeDefaultPropsDescription')
+                  .replace(/{{muiName}}/, pageContent.muiName)
+                  .replace(/{{defaultPropsLink}}/, defaultPropsLink),
               }}
             />
           </React.Fragment>
@@ -338,17 +342,38 @@ import { ${componentName} } from '${source}';`}
             <Heading hash="css" />
             <ClassesTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
             <br />
-            <span dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span
-              dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
+              dangerouslySetInnerHTML={{
+                __html: t('api-docs.overrideStylesStyledComponent').replace(
+                  /{{styleOverridesLink}}/,
+                  styleOverridesLink,
+                ),
+              }}
             />
           </React.Fragment>
         ) : null}
         {componentSlots?.length ? (
           <React.Fragment>
             <Heading hash="slots" />
+            {slotGuideLink && (
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink),
+                }}
+              />
+            )}
             <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
             <br />
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('api-docs.overrideStylesStyledComponent').replace(
+                  /{{styleOverridesLink}}/,
+                  styleOverridesLink,
+                ),
+              }}
+            />
           </React.Fragment>
         ) : null}
       </MarkdownElement>

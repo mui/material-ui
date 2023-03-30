@@ -7,17 +7,17 @@ export type AvatarSlot = 'root' | 'img' | 'fallback';
 
 export interface AvatarSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the img.
+   * The component that renders the img.
    * @default 'img'
    */
   img: React.ElementType;
   /**
-   * The component used to render the fallback.
+   * The component that renders the fallback.
    * @default 'svg'
    */
   fallback: React.ElementType;
@@ -74,7 +74,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'soft'
        */
       variant?: OverridableStringUnion<VariantProp, AvatarPropsVariantOverrides>;

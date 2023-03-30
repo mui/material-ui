@@ -7,12 +7,12 @@ export type BadgeSlot = 'root' | 'badge';
 
 export interface BadgeSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the badge.
+   * The component that renders the badge.
    * @default 'div'
    */
   badge: React.ElementType;
@@ -92,7 +92,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, BadgePropsVariantOverrides>;

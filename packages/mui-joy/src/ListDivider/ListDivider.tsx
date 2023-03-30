@@ -34,32 +34,32 @@ const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
     '--Divider-inset': 'calc(-1 * var(--List-padding))',
   }),
   ...(ownerState.row && {
-    marginInline: 'var(--List-divider-gap)',
+    marginInline: 'var(--ListDivider-gap)',
     ...(ownerState.inset === 'gutter' && {
-      marginBlock: 'var(--List-item-paddingY)',
+      marginBlock: 'var(--ListItem-paddingY)',
     }),
     ...(ownerState['data-first-child'] === undefined && {
-      // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
-      marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
+      marginInlineStart: 'calc(var(--List-gap) + var(--ListDivider-gap))',
     }),
   }),
   ...(!ownerState.row && {
     // by default, the divider line is stretched from edge-to-edge of the List
-    // spacing between ListItem can be controlled by `--List-divider-gap` on the List
+    // spacing between ListItem can be controlled by `--ListDivider-gap` on the List
     ...(ownerState['data-first-child'] === undefined && {
-      // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
-      marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
+      marginBlockStart: 'calc(var(--List-gap) + var(--ListDivider-gap))',
     }),
-    marginBlockEnd: 'var(--List-divider-gap)',
+    marginBlockEnd: 'var(--ListDivider-gap)',
     ...(ownerState.inset === 'gutter' && {
-      marginInlineStart: 'var(--List-item-paddingLeft)',
-      marginInlineEnd: 'var(--List-item-paddingRight)',
+      marginInlineStart: 'var(--ListItem-paddingLeft)',
+      marginInlineEnd: 'var(--ListItem-paddingRight)',
     }),
     ...(ownerState.inset === 'startDecorator' && {
-      marginInlineStart: 'var(--List-item-paddingLeft)',
+      marginInlineStart: 'var(--ListItem-paddingLeft)',
     }),
     ...(ownerState.inset === 'startContent' && {
-      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-size))',
+      marginInlineStart: 'calc(var(--ListItem-paddingLeft) + var(--ListItemDecorator-size))',
     }),
   }),
 }));
