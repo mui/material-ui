@@ -6,7 +6,7 @@
     "disabled": "If <code>true</code>, the component is disabled.",
     "endDecorator": "Element placed after the children.",
     "level": "Applies the theme typography styles.",
-    "overlay": "If <code>true</code>, the ::after psuedo element is added to cover the area of interaction. The parent of the overlay Link should have <code>relative</code> CSS position.",
+    "overlay": "If <code>true</code>, the ::after pseudo element is added to cover the area of interaction. The parent of the overlay Link should have <code>relative</code> CSS position.",
     "startDecorator": "Element placed before the children.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "textColor": "The system color.",
