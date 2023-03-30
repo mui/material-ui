@@ -27,10 +27,10 @@ Here are the most significant improvements in April:
   This API targets plain CSS and styled-components users.
   It can be challenging to apply your class name on the right element with the `classes` API. It can also be cumbersome. ⚠️ Using global class names provide more power but comes with a responsibility. We encourage any pattern that increases your **custom style isolation**.
 
-  [![Global class names](/static/blog/april-2019-update/global-class-names.png)](/system/styles/advanced/#with-material-ui-core)
+  [![Global class names](/static/blog/april-2019-update/global-class-names.png)](/system/styles/advanced/)
 
 - 📅 We have moved material-ui-pickers to our organization: [@material-ui/pickers](https://material-ui-pickers.dev/). A big thanks to **@dmtrKovalenko** for creating and owning these date/time components.
-- 🔥 We have fixed more Strict Mode warnings, getting us closer to [Concurrent React](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) support.
+- 🔥 We have fixed more Strict Mode warnings, getting us closer to [Concurrent React](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) support.
 - ♿️ We have significantly improved the keyboard behavior on the Select, Menu, Button and Tooltip components. The arrow key changes feel instantaneous. The select items can be selected with the alphabetical keys. The focus visible state is better detected.
 - 💄 We have added support for responsive font sizes. You can wrap your theme with [`responsiveFontSizes()`](/material-ui/customization/typography/#responsive-font-sizes):
 

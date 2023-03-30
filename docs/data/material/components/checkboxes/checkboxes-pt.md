@@ -2,7 +2,7 @@
 product: material-ui
 title: Componente React para Caixa de seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
-materialDesign: 'https://material.io/components/selection-controls#checkboxes'
+materialDesign: 'https://m2.material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 
 <p class="description">Caixas de seleção permitem ao usuário selecionar um ou mais itens de um conjunto.</p>
 
-[Caixas de seleção](https://material.io/design/components/selection-controls.html#checkboxes) podem ser usadas para ativar ou desativar uma opção.
+[Caixas de seleção](https://m2.material.io/components/checkboxes) podem ser usadas para ativar ou desativar uma opção.
 
 Se você tem várias opções aparecendo em uma lista, você pode economizar espaço usando caixas de seleção ao invés de interruptores liga/desliga. Se você tem uma única opção, evite usar uma caixa de seleção e use um interruptor de liga/desliga.
 

@@ -1,7 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { OptionState } from '../ListboxUnstyled';
+import { OptionState } from '../useListbox';
 import composeClasses from '../composeClasses';
 import {
   OptionUnstyledProps,
@@ -11,6 +10,8 @@ import {
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
+import useOption from '../useOption';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(ownerState: OptionState) {
   const { disabled, highlighted, selected } = ownerState;
@@ -19,7 +20,7 @@ function useUtilityClasses(ownerState: OptionState) {
     root: ['root', disabled && 'disabled', highlighted && 'highlighted', selected && 'selected'],
   };
 
-  return composeClasses(slots, getOptionUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getOptionUnstyledUtilityClass));
 }
 
 /**
@@ -32,11 +33,11 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   const {
     children,
     component,
-    components = {},
-    componentsProps = {},
-    disabled,
-    value,
+    disabled = false,
     label,
+    slotProps = {},
+    slots = {},
+    value,
     ...other
   } = props;
 
@@ -45,53 +46,29 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
 
-  const Root = component || components.Root || 'li';
+  const Root = component || slots.root || 'li';
 
-  const selectOption = {
-    value,
-    label: label || children,
+  const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
-  };
-
-  const optionState = selectContext.getOptionState(selectOption);
-  const optionProps = selectContext.getOptionProps(selectOption);
-  const listboxRef = selectContext.listboxRef;
+    value,
+    optionRef: ref,
+  });
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {
     ...props,
-    ...optionState,
+    disabled,
+    highlighted,
+    index,
+    selected,
   };
-
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const handleRef = useForkRef(ref, optionRef);
-
-  React.useEffect(() => {
-    // Scroll to the currently highlighted option
-    if (optionState.highlighted) {
-      if (!listboxRef.current || !optionRef.current) {
-        return;
-      }
-      const listboxClientRect = listboxRef.current.getBoundingClientRect();
-      const optionClientRect = optionRef.current.getBoundingClientRect();
-
-      if (optionClientRect.top < listboxClientRect.top) {
-        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
-      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
-        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
-      }
-    }
-  }, [optionState.highlighted, listboxRef]);
 
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
+    getSlotProps: getRootProps,
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
-    additionalProps: {
-      ...optionProps,
-      ref: handleRef,
-    },
     className: classes.root,
     ownerState,
   });
@@ -114,21 +91,6 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the OptionUnstyled.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the OptionUnstyled.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the option will be disabled.
    * @default false
    */
@@ -138,6 +100,21 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.string,
+  /**
+   * The props used for each slot inside the OptionUnstyled.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the OptionUnstyled.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The value of the option.
    */
@@ -149,7 +126,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Unstyled select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *

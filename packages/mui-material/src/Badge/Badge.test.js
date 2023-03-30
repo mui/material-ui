@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { BadgeUnstyled } from '@mui/base';
 import { createRenderer, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 
@@ -30,7 +29,7 @@ describe('<Badge />', () => {
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
@@ -280,6 +279,88 @@ describe('<Badge />', () => {
         />,
       );
       expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightCircular);
+    });
+  });
+
+  describe('prop: components / slots', () => {
+    it('allows overriding the slots using the components prop', () => {
+      const CustomRoot = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-root" />;
+      });
+
+      const CustomBadge = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-badge" />;
+      });
+
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          components={{ Root: CustomRoot, Badge: CustomBadge }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
+    });
+
+    it('allows overriding the slots using the slots prop', () => {
+      const CustomRoot = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-root" />;
+      });
+
+      const CustomBadge = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-badge" />;
+      });
+
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          slots={{ root: CustomRoot, badge: CustomBadge }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
+    });
+  });
+
+  describe('prop: componentsProps / slotProps', () => {
+    it('allows modifying slots props using the componentsProps prop', () => {
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          componentsProps={{
+            root: { 'data-testid': 'custom-root' },
+            badge: { 'data-testid': 'custom-badge' },
+          }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
+    });
+
+    it('allows modifying slots props using the slotProps prop', () => {
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          slotProps={{
+            root: { 'data-testid': 'custom-root' },
+            badge: { 'data-testid': 'custom-badge' },
+          }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
     });
   });
 

@@ -18,7 +18,7 @@ Note that you may continue to use JSS for adding overrides for the components (e
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
 :::
 
 This document reviews all the steps necessary to migrate away from JSS.
@@ -100,7 +100,7 @@ Example transformation:
  }
 ```
 
-:::warning
+:::success
 You should run this codemod on a small chunk of files and then check the changes before continuing, because in some cases you might need to adjust the code after the transformation—this codemod won't cover all cases.
 :::
 
@@ -113,7 +113,6 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -128,7 +127,7 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>
@@ -183,7 +182,7 @@ For example:
  }
 ```
 
-:::warning
+:::success
 [This jss-to-styled tool](https://siriwatk.dev/tool/jss-to-styled) helps convert JSS to multiple styled components without increasing CSS specificity.
 
 This tool is _not_ maintained by MUI.
@@ -210,29 +209,6 @@ With yarn:
 
 ```sh
 yarn add tss-react
-```
-
-You will also need to edit your providers:
-
-```diff
- import { render } from 'react-dom';
--import { StylesProvider } from '@material-ui/core/styles';
-+import createCache from '@emotion/cache';
-+import { CacheProvider } from "@emotion/react";
-
-+export const muiCache = createCache({
-+  'key': 'mui',
-+  'prepend': true,
-+});
-
- render(
--  <StylesProvider injectFirst>
-+  <CacheProvider value={muiCache}>
-     <Root />
--  </StylesProvider>,
-+  </CacheProvider>,
-   document.getElementById('root')
- );
 ```
 
 #### Codemod
@@ -330,7 +306,7 @@ the transformation would look like this:
  export default App;
 ```
 
-:::warning
+:::error
 When using JavaScript (rather than TypeScript), remove `<void, 'child' | 'small'>`.
 :::
 
@@ -388,11 +364,11 @@ The following is a comprehensive example using the `$` syntax, `useStyles()` par
          The Background take the primary theme color when the mouse hovers the parent.
          I am smaller than the other child.
        </div>
-    </div>
-  );
-}
+     </div>
+   );
+ }
 
-export default App;
+ export default App;
 ```
 
 After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that the codemod could not handle reliably.
@@ -463,7 +439,7 @@ Follow the instructions in the relevant section of the [Breaking changes](/mater
 In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
 By default, TSS is only able to provide the theme.
-If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-global-styleoverrides).
 
 :::warning
 tss-react is _not_ maintained by MUI.

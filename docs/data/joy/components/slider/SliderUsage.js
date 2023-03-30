@@ -9,6 +9,12 @@ export default function SliderUsage() {
       componentName="Slider"
       data={[
         {
+          propName: 'variant',
+          knob: 'select',
+          defaultValue: 'solid',
+          options: ['plain', 'outlined', 'soft', 'solid'],
+        },
+        {
           propName: 'color',
           knob: 'color',
           defaultValue: 'primary',
@@ -42,6 +48,9 @@ export default function SliderUsage() {
               maxWidth: '100%',
             }),
             ...(props.orientation === 'vertical' && { height: 200 }),
+            p: 2,
+            lineHeight: 0,
+            borderRadius: 'sm',
           }}
         >
           <Slider defaultValue={3} max={10} {...props} />

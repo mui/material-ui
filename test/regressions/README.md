@@ -41,14 +41,14 @@ It allows catching regressions like this one:
 
 Screenshots are saved in `./screenshots/$BROWSER_NAME/`.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('TrapFocus/OpenTrapFocus')`.
+A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('FocusTrap/OpenFocusTrap')`.
 
 ## Commands
 
 For development `yarn test:regressions:dev` and `yarn test:regressions:run --watch` in separate terminals is recommended.
 
 | command                        | description                                                                                                           |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | `yarn test:regressions`        | Full run                                                                                                              |
 | `yarn test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
 | `yarn test:regressions:run`    | Runs the tests (requires `yarn test:regressions:dev` or `yarn test:regressions:build`+`yarn test:regressions:server`) |

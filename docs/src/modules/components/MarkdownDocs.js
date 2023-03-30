@@ -1,20 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
+import { exactProp } from '@mui/utils';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { exactProp } from '@mui/utils';
-import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import BrandingProvider from 'docs/src/BrandingProvider';
-
-// TODO: Only import on demand via @mui/markdown/loader
-const markdownComponents = {
-  'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
-};
+import Ad from 'docs/src/modules/components/Ad';
+import AdGuest from 'docs/src/modules/components/AdGuest';
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -34,18 +32,31 @@ JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
 
-function MarkdownDocs(props) {
+export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const {
+    disableAd = false,
+    disableToc = false,
+    /**
+     * Some Joy pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * This config will skip the CssVarsProvider at the root of the page.
+     */
+    disableCssVarsProvider = false,
+    demos = {},
+    docs,
+    demoComponents,
+    srcComponents,
+  } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
-  const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
+  const localizedDoc = docs[userLanguage] || docs.en;
+  const { description, location, rendered, title, toc } = localizedDoc;
 
-  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
+  const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
@@ -59,6 +70,13 @@ function MarkdownDocs(props) {
       toc={toc}
     >
       <Provider>
+        {disableAd ? null : (
+          <Wrapper>
+            <AdGuest>
+              <Ad />
+            </AdGuest>
+          </Wrapper>
+        )}
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
@@ -70,10 +88,16 @@ function MarkdownDocs(props) {
           }
 
           if (renderedMarkdownOrDemo.component) {
-            const Component = markdownComponents[renderedMarkdownOrDemo.component];
+            const name = renderedMarkdownOrDemo.component;
+            const Component = srcComponents?.[name];
+
+            if (Component === undefined) {
+              throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
+            }
+
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <Component headers={headers} options={renderedMarkdownOrDemo} />
+                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
               </Wrapper>
             );
           }
@@ -118,9 +142,11 @@ function MarkdownDocs(props) {
               demo={{
                 raw: demo.raw,
                 js: demoComponents[demo.module] ?? noComponent(demo.module),
+                scope: demos.scope,
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
-                tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
+                tsx: demoComponents[demo.moduleTS] ?? null,
+                gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
               }}
               disableAd={disableAd}
               demoOptions={renderedMarkdownOrDemo}
@@ -137,12 +163,12 @@ MarkdownDocs.propTypes = {
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
+  disableCssVarsProvider: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
   MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
 }
-
-export default MarkdownDocs;

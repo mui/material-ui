@@ -27,10 +27,13 @@ const List = React.forwardRef(function List(
   return <li {...props} ref={ref} />;
 });
 
-const option = <OptionGroupUnstyled components={{ Root, Label, List }} />;
+const option = <OptionGroupUnstyled slots={{ root: Root, label: Label, list: List }} />;
 
-const PolymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

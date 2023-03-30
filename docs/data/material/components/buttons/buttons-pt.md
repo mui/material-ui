@@ -2,7 +2,7 @@
 product: material-ui
 title: Componente React para Botão
 components: Button, IconButton, ButtonBase, LoadingButton
-materialDesign: https://material.io/components/buttons
+materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 unstyled: /base/react-button/
@@ -12,7 +12,7 @@ unstyled: /base/react-button/
 
 <p class="description">Botões permitem que os usuários tomem ações e decisões com um simples toque.</p>
 
-[Botões](https://material.io/design/components/buttons.html) comunicam ações que os usuários podem realizar. Eles são normalmente colocados em toda a interface do usuário, em lugares como:
+[Botões](https://m2.material.io/components/buttons) comunicam ações que os usuários podem realizar. Eles são normalmente colocados em toda a interface do usuário, em lugares como:
 
 - Janelas modais
 - Formulários
@@ -29,13 +29,13 @@ O `Botão` vem com três variantes: texto (padrão), contido e delineado.
 
 ### Botões de texto
 
-[Botões de texto](https://material.io/components/buttons#text-button) normalmente são usados ​​para ações menos pronunciadas, incluindo aquelas localizadas: em caixas de diálogo, em cartões. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
+[Botões de texto](https://m2.material.io/components/buttons#text-button) normalmente são usados ​​para ações menos pronunciadas, incluindo aquelas localizadas: em caixas de diálogo, em cartões. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 {{"demo": "TextButtons.js"}}
 
 ### Botões contidos
 
-[Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
+[Botões Contidos](https://m2.material.io/components/buttons#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
 {{"demo": "ContainedButtons.js"}}
 
@@ -45,7 +45,7 @@ Você pode remover a elevação com a propriedade `disableElevation`.
 
 ### Botões delineados
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
+[Outlined buttons](https://m2.material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
 
 Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 

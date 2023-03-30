@@ -1,4 +1,4 @@
-import { SelectOption } from './useSelect.types';
+import { SelectOption } from '../useSelect/useSelect.types';
 
 const defaultOptionStringifier = <TValue>(option: SelectOption<TValue>) => {
   const { label, value } = option;

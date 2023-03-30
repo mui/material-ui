@@ -23,12 +23,6 @@ const currencies = [
 ];
 
 export default function SelectTextFields() {
-  const [currency, setCurrency] = React.useState('EUR');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrency(event.target.value);
-  };
-
   return (
     <Box
       component="form"
@@ -43,8 +37,7 @@ export default function SelectTextFields() {
           id="outlined-select-currency"
           select
           label="Select"
-          value={currency}
-          onChange={handleChange}
+          defaultValue="EUR"
           helperText="Please select your currency"
         >
           {currencies.map((option) => (
@@ -57,8 +50,7 @@ export default function SelectTextFields() {
           id="outlined-select-currency-native"
           select
           label="Native select"
-          value={currency}
-          onChange={handleChange}
+          defaultValue="EUR"
           SelectProps={{
             native: true,
           }}
@@ -76,8 +68,7 @@ export default function SelectTextFields() {
           id="filled-select-currency"
           select
           label="Select"
-          value={currency}
-          onChange={handleChange}
+          defaultValue="EUR"
           helperText="Please select your currency"
           variant="filled"
         >
@@ -91,8 +82,7 @@ export default function SelectTextFields() {
           id="filled-select-currency-native"
           select
           label="Native select"
-          value={currency}
-          onChange={handleChange}
+          defaultValue="EUR"
           SelectProps={{
             native: true,
           }}
@@ -111,8 +101,7 @@ export default function SelectTextFields() {
           id="standard-select-currency"
           select
           label="Select"
-          value={currency}
-          onChange={handleChange}
+          defaultValue="EUR"
           helperText="Please select your currency"
           variant="standard"
         >
@@ -126,8 +115,7 @@ export default function SelectTextFields() {
           id="standard-select-currency-native"
           select
           label="Native select"
-          value={currency}
-          onChange={handleChange}
+          defaultValue="EUR"
           SelectProps={{
             native: true,
           }}

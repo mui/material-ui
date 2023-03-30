@@ -6,21 +6,18 @@ export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
 export interface GetInitColorSchemeScriptOptions {
   /**
-   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-   * @default true
+   * The mode to be used for the first visit
+   * @default 'light'
    */
-  enableColorScheme?: boolean;
-  /**
-   * If `true`, the initial color scheme is set to the user's prefers-color-scheme mode
-   * @default false
-   */
-  enableSystem?: boolean;
+  defaultMode?: 'light' | 'dark' | 'system';
   /**
    * The default color scheme to be used on the light mode
+   * @default 'light'
    */
   defaultLightColorScheme?: string;
   /**
    * The default color scheme to be used on the dark mode
+   * * @default 'dark'
    */
   defaultDarkColorScheme?: string;
   /**
@@ -47,8 +44,7 @@ export interface GetInitColorSchemeScriptOptions {
 
 export default function getInitColorSchemeScript(options?: GetInitColorSchemeScriptOptions) {
   const {
-    enableColorScheme = true,
-    enableSystem = false,
+    defaultMode = 'light',
     defaultLightColorScheme = 'light',
     defaultDarkColorScheme = 'dark',
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -58,13 +54,14 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
   } = options || {};
   return (
     <script
+      key="mui-color-scheme-init"
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
-        var mode = localStorage.getItem('${modeStorageKey}');
+        var mode = localStorage.getItem('${modeStorageKey}') || '${defaultMode}';
         var cssColorScheme = mode;
         var colorScheme = '';
-        if (mode === 'system' || (!mode && !!${enableSystem})) {
+        if (mode === 'system') {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           if (mql.matches) {
@@ -83,9 +80,6 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
         }
         if (colorScheme) {
           ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
-        }
-        if (${enableColorScheme} && !!cssColorScheme) {
-          ${colorSchemeNode}.style.setProperty('color-scheme', cssColorScheme);
         }
       } catch (e) {} })();`,
       }}

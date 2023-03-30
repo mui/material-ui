@@ -56,7 +56,7 @@ The popper's default placement is `bottom`. You can change it using the `placeme
 
 You can animate the open and close states of the popper with a render prop child and a transition component, as long as the component meets these conditions:
 
-- Is a direct child descendent of the popper
+- Is a direct child descendant of the popper
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
 

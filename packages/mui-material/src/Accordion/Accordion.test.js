@@ -105,15 +105,17 @@ describe('<Accordion />', () => {
   });
 
   it('should handle the TransitionComponent prop', () => {
-    const NoTransitionCollapse = (props) => {
+    function NoTransitionCollapse(props) {
       return props.in ? <div>{props.children}</div> : null;
-    };
+    }
     NoTransitionCollapse.propTypes = {
       children: PropTypes.node,
       in: PropTypes.bool,
     };
 
-    const CustomContent = () => <div>Hello</div>;
+    function CustomContent() {
+      return <div>Hello</div>;
+    }
     const { queryByText, getByText, setProps } = render(
       <Accordion expanded TransitionComponent={NoTransitionCollapse}>
         <AccordionSummary />
@@ -165,7 +167,11 @@ describe('<Accordion />', () => {
         expect(() => {
           PropTypes.checkPropTypes(
             Accordion.propTypes,
-            { classes: {}, children: <React.Fragment /> },
+            {
+              classes: {},
+              // eslint-disable-next-line react/jsx-no-useless-fragment
+              children: <React.Fragment />,
+            },
             'prop',
             'MockedName',
           );

@@ -1,10 +1,10 @@
 {
   "props": {
     "action": { "type": { "name": "custom", "description": "ref" } },
-    "allowScrollButtonsMobile": { "type": { "name": "bool" } },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
     "aria-label": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
-    "centered": { "type": { "name": "bool" } },
+    "centered": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
@@ -26,6 +26,20 @@
       "default": "'auto'"
     },
     "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ EndScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -49,7 +63,7 @@
       },
       "default": "'standard'"
     },
-    "visibleScrollbar": { "type": { "name": "bool" } }
+    "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Tabs",
   "styles": {
@@ -72,6 +86,8 @@
     "name": "MuiTabs"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTabs",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Tabs/Tabs.js",
   "inheritance": null,

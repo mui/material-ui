@@ -1,10 +1,10 @@
-# Components
+# Themed components
 
 <p class="description">You can customize a component's styles, default props, and more by using its keys inside the theme. This helps to achieve styling consistency across your application.</p>
 
-## Default props
+## Theme default props
 
-Every Material UI component has default preset values for each of its props.
+Every Material UI component has default values for each of its props.
 To change these default values, use the `defaultProps` key exposed in the theme's `components` key:
 
 ```js
@@ -25,7 +25,7 @@ const theme = createTheme({
 
 If you're using TypeScript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
 
-## Global style overrides
+## Theme style overrides
 
 The theme's `styleOverrides` key makes it possible to potentially change every single style injected by Material UI into the DOM.
 This is useful if you want to apply a fully custom design system to Material UI's components.
@@ -106,7 +106,7 @@ You can use the `sx` prop inside the `styleOverrides` key to modify styles withi
 This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
 :::info
-**Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
 :::
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
@@ -116,18 +116,20 @@ const finalTheme = createTheme({
   components: {
     MuiChip: {
       styleOverrides: {
-        root: sx({
-          px: 1,
-          py: 0.25,
-          borderRadius: 1,
-        }),
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            px: 1,
+            py: 0.25,
+            borderRadius: 1,
+          }),
         label: {
           padding: 'initial',
         },
-        icon: sx({
-          mr: 0.5,
-          ml: '-2px',
-        }),
+        icon: ({ theme }) =>
+          theme.unstable_sx({
+            mr: 0.5,
+            ml: '-2px',
+          }),
       },
     },
   },

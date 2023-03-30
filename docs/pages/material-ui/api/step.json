@@ -6,7 +6,7 @@
     "completed": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
-    "expanded": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" }, "default": "false" },
     "index": { "type": { "name": "custom", "description": "integer" } },
     "last": { "type": { "name": "bool" } },
     "sx": {
@@ -23,6 +23,8 @@
     "name": "MuiStep"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStep",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Step/Step.js",
   "inheritance": null,

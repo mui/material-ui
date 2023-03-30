@@ -19,7 +19,7 @@ const rgb2hex = (rgb: string) =>
     .map((n) => parseInt(n, 10).toString(16).padStart(2, '0'))
     .join('')}`;
 
-const ColorSchemePicker = () => {
+function ColorSchemePicker() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -58,9 +58,9 @@ const ColorSchemePicker = () => {
       </Box>
     </Box>
   );
-};
+}
 
-const ColorToken = ({ name, value }: { name: string; value: string }) => {
+function ColorToken({ name, value }: { name: string; value: string }) {
   const [color, setColor] = React.useState('');
   const ref = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
@@ -86,9 +86,9 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
       <Typography level="body3">{color}</Typography>
     </Box>
   );
-};
+}
 
-const PaletteTokens = () => {
+function PaletteTokens() {
   const { colorScheme } = useColorScheme();
   const { palette } = useTheme();
   const [mounted, setMounted] = React.useState(false);
@@ -138,9 +138,9 @@ const PaletteTokens = () => {
       </Box>
     </React.Fragment>
   );
-};
+}
 
-const TypographyScale = () => {
+function TypographyScale() {
   const { typography } = useTheme();
   return (
     <React.Fragment>
@@ -157,7 +157,7 @@ const TypographyScale = () => {
       })}
     </React.Fragment>
   );
-};
+}
 
 export default function JoyStyleGuide() {
   return (

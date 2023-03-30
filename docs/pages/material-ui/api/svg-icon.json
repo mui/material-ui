@@ -18,7 +18,7 @@
       "default": "'medium'"
     },
     "htmlColor": { "type": { "name": "string" } },
-    "inheritViewBox": { "type": { "name": "bool" } },
+    "inheritViewBox": { "type": { "name": "bool" }, "default": "false" },
     "shapeRendering": { "type": { "name": "string" } },
     "sx": {
       "type": {
@@ -40,12 +40,15 @@
       "colorDisabled",
       "fontSizeInherit",
       "fontSizeSmall",
+      "fontSizeMedium",
       "fontSizeLarge"
     ],
     "globalClasses": {},
     "name": "MuiSvgIcon"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSvgIcon",
   "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-material/src/SvgIcon/SvgIcon.js",
   "inheritance": null,

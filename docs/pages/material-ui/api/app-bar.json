@@ -9,7 +9,7 @@
       },
       "default": "'primary'"
     },
-    "enableColorOnDark": { "type": { "name": "bool" } },
+    "enableColorOnDark": { "type": { "name": "bool" }, "default": "false" },
     "position": {
       "type": {
         "name": "enum",
@@ -43,9 +43,11 @@
     "name": "MuiAppBar"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAppBar",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-material/src/AppBar/AppBar.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App bar</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App Bar</a></li></ul>",
   "cssComponent": false
 }

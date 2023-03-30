@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Textarea component
+components: Textarea
 githubLabel: 'component: TextareaAutosize'
 unstyled: /base/react-textarea-autosize/
 ---
@@ -13,7 +14,7 @@ unstyled: /base/react-textarea-autosize/
 
 Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](/base/react-textarea-autosize/) component.
 
-{{"demo": "TextareaUsage.js", "hideToolbar": true}}
+{{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -77,6 +78,27 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 It's usually more common to see textarea components using decorators at the top and bottom.
 
 {{"demo": "TextareaDecorators.js"}}
+
+## Accessibility
+
+In order for the textarea to be accessible, **it should be linked to a label**.
+
+The `FormControl` automatically generates a unique id that links the textarea with the `FormLabel` component:
+
+{{"demo": "TextareaField.js"}}
+
+Alternatively, you can do it manually by targeting the textarea slot:
+
+```jsx
+<label htmlFor="unique-id">Label</label>
+<Textarea
+  slotProps={{
+    textarea: {
+      id: 'unique-id',
+    }
+  }}
+/>
+```
 
 ## Common examples
 

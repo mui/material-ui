@@ -49,7 +49,7 @@ Material UI was designed with the [Roboto](https://fonts.google.com/specimen/Rob
 
 ## 字体图标
 
-To use the font `Icon` component, you must first add the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font. Here are [some instructions](/material-ui/icons/#font-icons) on how to do so. For instance, via Google Web Fonts:
+To use the font `Icon` component, you must first add the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font. Here are [some instructions](/material-ui/icons/#icon-font-icons) on how to do so. For instance, via Google Web Fonts:
 
 ```html
 <link

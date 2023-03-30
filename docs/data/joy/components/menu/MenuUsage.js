@@ -78,7 +78,7 @@ export default function MenuUsage() {
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
-            componentsProps={{
+            slotProps={{
               listbox: {
                 'aria-labelledby': 'menu-usage-button',
               },

@@ -8,6 +8,10 @@
       "default": "{}"
     },
     "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
+      "default": "{}"
+    },
     "spacing": {
       "type": {
         "name": "union",
@@ -33,6 +37,8 @@
   "name": "AvatarGroup",
   "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAvatarGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,

@@ -4,7 +4,7 @@
 
 > ⚠️ `@mui/styles` 是MUI的_**传统**_样式解决方案。 它依赖于[JSS](https://cssinjs.org/)作为样式解决方案，在 `@mui/material `中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles` 与  [React.StrictMode](https://reactjs.org/docs/strict-mode.html) 或 React 18 不兼容。
+> ⚠️ `@mui/styles` 与  [React.StrictMode](https://react.dev/reference/react/StrictMode) 或 React 18 不兼容。
 
 ## Theming 主题
 
@@ -376,7 +376,7 @@ const jss = create({
 这个例子返回一个HTML字符串，并在使用前将所需的关键CSS内联。
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 function render() {

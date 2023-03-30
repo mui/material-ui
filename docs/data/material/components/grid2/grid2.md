@@ -2,7 +2,7 @@
 product: material-ui
 title: React Grid component
 githubLabel: 'component: Grid'
-materialDesign: https://material.io/design/layout/understanding-layout.html
+materialDesign: https://m2.material.io/design/layout/understanding-layout.html
 ---
 
 # Grid version 2
@@ -101,7 +101,7 @@ They behave similarly to the `row-gap` and `column-gap` properties of [CSS Grid]
 ## Responsive values
 
 You can set prop values to change when a given breakpoint is active.
-For instance, we can implement Material Design's [recommended](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:
+For instance, we can implement Material Design's [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid, as seen in the following demo:
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
@@ -133,7 +133,15 @@ The demo below shows how this works:
 The grid container that renders inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.
 It will also inherit the props of the top-level grid if it receives those props.
 
-Check out the demo below to see what this looks like:
+### Inheriting columns
+
+A nested grid container will inherits the columns from its parent unless the `columns` prop is specified to the instance.
+
+{{"demo": "NestedGridColumns.js", "bg": true}}
+
+### Inheriting spacing
+
+A nested grid container will inherits the row and column spacing from its parent unless the `spacing` prop is specified to the instance.
 
 {{"demo": "NestedGrid.js", "bg": true}}
 

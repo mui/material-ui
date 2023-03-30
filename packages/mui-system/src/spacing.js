@@ -44,7 +44,7 @@ const getCssProperties = memoize((prop) => {
   return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
-const marginKeys = [
+export const marginKeys = [
   'm',
   'mt',
   'mr',
@@ -67,7 +67,7 @@ const marginKeys = [
   'marginBlockEnd',
 ];
 
-const paddingKeys = [
+export const paddingKeys = [
   'p',
   'pt',
   'pr',

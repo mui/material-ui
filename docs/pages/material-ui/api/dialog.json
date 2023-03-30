@@ -7,13 +7,13 @@
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
-      "deprecationInfo": "Use <code>components.Backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
+      "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disableEscapeKeyDown": { "type": { "name": "bool" } },
-    "fullScreen": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "fullScreen": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "maxWidth": {
       "type": {
         "name": "union",
@@ -72,6 +72,8 @@
     "name": "MuiDialog"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDialog",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },

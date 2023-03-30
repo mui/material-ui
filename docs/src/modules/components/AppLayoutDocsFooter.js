@@ -1,8 +1,10 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
+import { styled, useTheme } from '@mui/material/styles';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -20,12 +22,6 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Footer = styled('footer')(({ theme }) => {
-  return {
-    marginTop: theme.spacing(12),
-  };
-});
-
 const PaginationDiv = styled('div')(({ theme }) => {
   return {
     margin: theme.spacing(3, 0, 4),
@@ -37,13 +33,9 @@ const PaginationDiv = styled('div')(({ theme }) => {
   };
 });
 
-const PageLinkButton = styled(Button)(({ theme }) => {
-  return {
-    textTransform: 'none',
-    fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-  };
-});
+const PageLinkButton = styled(Button)(({ theme }) => ({
+  fontWeight: theme.typography.fontWeightMedium,
+}));
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
   return {
@@ -54,12 +46,6 @@ const FeedbackGrid = styled(Grid)(({ theme }) => {
       marginTop: 40,
       width: '100%',
     },
-  };
-});
-
-const FeedbackMessage = styled(Typography)(({ theme }) => {
-  return {
-    margin: theme.spacing(0, 2),
   };
 });
 
@@ -108,6 +94,80 @@ async function postFeedback(data) {
   }
 }
 
+async function postFeedbackOnSlack(data) {
+  const { rating, comment, commentedSection } = data;
+
+  const sentData = {
+    callback_id: 'send_feedback',
+    rating,
+    comment,
+    currentLocationURL: window.location.href,
+    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commmentSectionTitle: commentedSection.text,
+  };
+  if (!comment || comment.length < 10) {
+    return 'ignored';
+  }
+
+  try {
+    const res = await fetch(`${window.location.origin}/.netlify/functions/feedback-management/`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      // Seems tricky but it's to match how slack send data
+      body: `payload=${encodeURIComponent(JSON.stringify(sentData))}`,
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    return 'sent';
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+
+  /**
+   Not used because I ignore how to encode that with:
+      'content-type': 'application/x-www-form-urlencoded'
+   
+   const complexSlackMessage = {
+     blocks: [
+       {
+         type: 'header',
+         text: {
+           type: 'plain_text',
+           text: `New comment ${rating > 0 ? '👍' : '👎'}`,
+           emoji: true,
+         },
+       },
+       {
+         type: 'section',
+         text: {
+           type: 'plain_text',
+           text: comment,
+           emoji: true,
+         },
+       },
+       {
+         type: 'section',
+         text: {
+           type: 'mrkdwn',
+           text: `v: ${version}, lang: ${language}`,
+         },
+         accessory: {
+           type: 'button',
+           text: {
+             type: 'plain_text',
+             text: 'Go to the page',
+             emoji: true,
+           },
+           url: window.location.host,
+         },
+       },
+     ],
+   };
+  */
+}
+
 async function getUserFeedback(id) {
   const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
   const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
@@ -125,7 +185,7 @@ async function getUserFeedback(id) {
   }
 }
 
-async function submitFeedback(page, rating, comment, language) {
+async function submitFeedback(page, rating, comment, language, commentedSection) {
   const data = {
     id: getCookie('feedbackId'),
     page,
@@ -135,17 +195,22 @@ async function submitFeedback(page, rating, comment, language) {
     language,
   };
 
-  const result = await postFeedback(data);
-  if (result) {
-    document.cookie = `feedbackId=${result.id};path=/;max-age=31536000`;
-    setTimeout(async () => {
-      const userFeedback = await getUserFeedback(result.id);
-      if (userFeedback) {
-        document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
-      }
-    });
+  const resultSlack = await postFeedbackOnSlack({ ...data, commentedSection });
+  if (rating !== undefined) {
+    const resultVote = await postFeedback(data);
+    if (resultVote) {
+      document.cookie = `feedbackId=${resultVote.id};path=/;max-age=31536000`;
+      setTimeout(async () => {
+        const userFeedback = await getUserFeedback(resultVote.id);
+        if (userFeedback) {
+          document.cookie = `feedback=${JSON.stringify(userFeedback)};path=/;max-age=31536000`;
+        }
+      });
+    }
+    return resultSlack && resultVote;
   }
-  return result;
+
+  return resultSlack;
 }
 
 function getCurrentRating(pathname) {
@@ -175,18 +240,36 @@ function usePageNeighbours() {
   return { prevPage, nextPage };
 }
 
-export default function AppLayoutDocsFooter() {
+const EMPTY_SECTION = { hash: '', text: '' };
+
+export default function AppLayoutDocsFooter(props) {
+  const { tableOfContents = [] } = props;
+
+  const theme = useTheme();
   const t = useTranslate();
   const userLanguage = useUserLanguage();
   const { activePage } = React.useContext(PageContext);
   const [rating, setRating] = React.useState();
   const [comment, setComment] = React.useState('');
-  const [commentOpen, setCommentOpen] = React.useState(false);
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(false);
   const inputRef = React.useRef();
+  const [commentOpen, setCommentOpen] = React.useState(false);
+  const [commentedSection, setCommentedSection] = React.useState(EMPTY_SECTION);
 
   const { nextPage, prevPage } = usePageNeighbours();
+
+  const sectionOptions = React.useMemo(
+    () =>
+      tableOfContents.flatMap((section) => [
+        {
+          hash: section.hash,
+          text: section.text,
+        },
+        ...section.children.map(({ hash, text }) => ({ hash, text })),
+      ]),
+    [tableOfContents],
+  );
 
   const setCurrentRatingFromCookie = React.useCallback(() => {
     if (activePage !== null) {
@@ -203,7 +286,13 @@ export default function AppLayoutDocsFooter() {
       setSnackbarMessage(t('feedbackFailed'));
     }
 
-    const result = await submitFeedback(activePage.pathname, rating, comment, userLanguage);
+    const result = await submitFeedback(
+      activePage.pathname,
+      rating,
+      comment,
+      userLanguage,
+      commentedSection,
+    );
     if (result) {
       setSnackbarMessage(t('feedbackSubmitted'));
     } else {
@@ -218,6 +307,12 @@ export default function AppLayoutDocsFooter() {
       setRating(vote);
       setCommentOpen(true);
     }
+
+    // Manualy move focus if commment is already open.
+    // If the comment is closed, onEntered will call focus itself;
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   const handleChangeTextfield = (event) => {
@@ -230,9 +325,20 @@ export default function AppLayoutDocsFooter() {
     processFeedback();
   };
 
+  // See https://github.com/mui/mui-toolpad/issues/1164 for context.
+  const handleKeyDownForm = (event) => {
+    const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
+
+    if (event.key === 'Enter' && modifierKey) {
+      const submitButton = event.currentTarget.querySelector('[type="submit"]');
+      submitButton.click();
+    }
+  };
+
   const handleCancelComment = () => {
     setCommentOpen(false);
     setCurrentRatingFromCookie();
+    setCommentedSection(EMPTY_SECTION);
   };
 
   const handleEntered = () => {
@@ -243,11 +349,32 @@ export default function AppLayoutDocsFooter() {
     setSnackbarOpen(false);
   };
 
+  React.useEffect(() => {
+    const eventListener = (event) => {
+      const feedbackHash = event.target.getAttribute('data-feedback-hash');
+      if (feedbackHash) {
+        const section = sectionOptions.find((item) => item.hash === feedbackHash) || EMPTY_SECTION;
+        setCommentOpen(true);
+        setCommentedSection(section);
+
+        // Manualy move focus if commment is already open.
+        // If the comment is closed, onEntered will call focus itself;
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }
+    };
+    document.addEventListener('click', eventListener);
+    return () => {
+      document.removeEventListener('click', eventListener);
+    };
+  }, [sectionOptions]);
+
   const hidePagePagination = activePage === null || activePage.ordered === false;
 
   return (
     <React.Fragment>
-      <Footer>
+      <Box component="footer" sx={{ mt: 12 }}>
         {hidePagePagination ? null : (
           <React.Fragment>
             <Divider />
@@ -256,6 +383,7 @@ export default function AppLayoutDocsFooter() {
                 <PageLinkButton
                   component={Link}
                   noLinkStyle
+                  prefetch={false}
                   href={prevPage.pathname}
                   {...prevPage.linkProps}
                   size="medium"
@@ -273,14 +401,15 @@ export default function AppLayoutDocsFooter() {
                 alignItems="center"
                 aria-labelledby="feedback-message"
               >
-                <FeedbackMessage
+                <Typography
                   align="center"
                   component="div"
                   id="feedback-message"
                   variant="body2"
+                  sx={{ mx: 2 }}
                 >
                   {t('feedbackMessage')}
-                </FeedbackMessage>
+                </Typography>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
                     <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
@@ -298,6 +427,7 @@ export default function AppLayoutDocsFooter() {
                 <PageLinkButton
                   component={Link}
                   noLinkStyle
+                  prefetch={false}
                   href={nextPage.pathname}
                   {...nextPage.linkProps}
                   size="medium"
@@ -309,25 +439,42 @@ export default function AppLayoutDocsFooter() {
             </PaginationDiv>
           </React.Fragment>
         )}
-        <Collapse in={commentOpen} unmountOnExit onEntered={handleEntered}>
+        <Collapse
+          in={commentOpen}
+          unmountOnExit
+          onEntered={handleEntered}
+          timeout={{ enter: 0, exit: theme.transitions.duration.standard }}
+        >
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
           <form
             aria-labelledby="feedback-message"
             onReset={handleCancelComment}
             onSubmit={handleSubmitComment}
+            onKeyDown={handleKeyDownForm}
           >
-            <Typography component="div" variant="h6" gutterBottom>
-              {t('feedbackTitle')}
-            </Typography>
-            <div>
-              <Typography id="feedback-description" color="text.secondary" gutterBottom>
-                {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
-              </Typography>
+            <Box sx={{ mb: 4 }}>
+              {commentedSection.text ? (
+                <Typography
+                  id="feedback-description"
+                  color="text.secondary"
+                  dangerouslySetInnerHTML={{
+                    __html: t('feedbackSectionSpecific').replace(
+                      '{{sectionName}}',
+                      `"${commentedSection.text}"`,
+                    ),
+                  }}
+                />
+              ) : (
+                <Typography id="feedback-description" color="text.secondary">
+                  {rating === 1 ? t('feedbackMessageUp') : t('feedbackMessageDown')}
+                </Typography>
+              )}
               <TextField
                 multiline
                 margin="dense"
                 name="comment"
                 fullWidth
-                rows={6}
+                rows={4}
                 value={comment}
                 onChange={handleChangeTextfield}
                 inputProps={{
@@ -336,14 +483,29 @@ export default function AppLayoutDocsFooter() {
                   ref: inputRef,
                 }}
               />
-            </div>
-            <DialogActions>
-              <Button type="reset">{t('cancel')}</Button>
-              <Button type="submit">{t('submit')}</Button>
-            </DialogActions>
+              <DialogActions>
+                <Button type="reset">{t('cancel')}</Button>
+                <Button type="submit" variant="contained">
+                  {t('submit')}
+                </Button>
+              </DialogActions>
+              {rating !== 1 && (
+                <Typography id="feedback-description" color="text.secondary">
+                  {t('feedbackMessageToGitHub.usecases')}
+                  <br />
+                  {t('feedbackMessageToGitHub.callToAction.text')}
+                  <Link
+                    href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                    target="_blank"
+                  >
+                    {t('feedbackMessageToGitHub.callToAction.link')}
+                  </Link>
+                </Typography>
+              )}
+            </Box>
           </form>
         </Collapse>
-      </Footer>
+      </Box>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
@@ -353,3 +515,7 @@ export default function AppLayoutDocsFooter() {
     </React.Fragment>
   );
 }
+
+AppLayoutDocsFooter.propTypes = {
+  tableOfContents: PropTypes.array,
+};

@@ -70,7 +70,7 @@ The component has two states that can be controlled:
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
 :::warning
-⚠️ These two states are isolated, they should be controlled independently.
+These two states are isolated, and should be controlled independently.
 :::
 
 {{"demo": "ControllableStates.js"}}
@@ -86,7 +86,7 @@ The prop is designed to cover the primary use case of a **search input** with su
 {{"demo": "FreeSolo.js"}}
 
 :::warning
-⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
 The value created by typing into the textbox is always a string, regardless of the type of the options.
 :::
@@ -114,6 +114,16 @@ otherwise, you will notice duplicate headers.
 
 {{"demo": "Grouped.js"}}
 
+To control how the groups are rendered, provide a custom `renderGroup` prop.
+This is a function that accepts an object with two fields:
+
+- `group`—a string representing a group name
+- `children`—a collection of list items that belong to the group
+
+The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+
+{{"demo": "RenderGroup.js"}}
+
 ## Disabled options
 
 {{"demo": "DisabledOptions.js"}}
@@ -126,7 +136,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
+import useAutocomplete from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
@@ -177,8 +187,8 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 {{"demo": "GoogleMaps.js"}}
 
-:::warning
-⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::error
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 :::
 
 ## Multiple values

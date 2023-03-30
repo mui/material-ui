@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
-import useSwitch from './useSwitch';
-import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
+import useSwitch from '../useSwitch';
 import {
   SwitchUnstyledProps,
   SwitchUnstyledOwnerState,
@@ -14,6 +13,8 @@ import {
   SwitchUnstyledTypeMap,
 } from './SwitchUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 
 const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
   const { checked, disabled, focusVisible, readOnly } = ownerState;
@@ -31,7 +32,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
     track: ['track'],
   };
 
-  return composeClasses(slots, getSwitchUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getSwitchUnstyledUtilityClass));
 };
 
 /**
@@ -39,7 +40,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Unstyled switch](https://mui.com/base/react-switch/)
+ * - [Unstyled Switch](https://mui.com/base/react-switch/)
  *
  * API:
  *
@@ -51,8 +52,6 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   const {
     checked: checkedProp,
     component,
-    components = {},
-    componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
     onBlur,
@@ -61,6 +60,8 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -87,10 +88,10 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? components.Root ?? 'span';
+  const Root: React.ElementType = component ?? slots.root ?? 'span';
   const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -99,28 +100,27 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     className: classes.root,
   });
 
-  const Thumb: React.ElementType = components.Thumb ?? 'span';
+  const Thumb: React.ElementType = slots.thumb ?? 'span';
   const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = useSlotProps({
     elementType: Thumb,
-    externalSlotProps: componentsProps.thumb,
+    externalSlotProps: slotProps.thumb,
     ownerState,
     className: classes.thumb,
   });
 
-  const Input: React.ElementType = components.Input ?? 'input';
+  const Input: React.ElementType = slots.input ?? 'input';
   const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = useSlotProps({
     elementType: Input,
     getSlotProps: getInputProps,
-    externalSlotProps: componentsProps.input,
+    externalSlotProps: slotProps.input,
     ownerState,
     className: classes.input,
   });
 
-  const Track: React.ElementType =
-    components.Track === null ? () => null : components.Track ?? 'span';
+  const Track: React.ElementType = slots.track === null ? () => null : slots.track ?? 'span';
   const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = useSlotProps({
     elementType: Track,
-    externalSlotProps: componentsProps.track,
+    externalSlotProps: slotProps.track,
     ownerState,
     className: classes.track,
   });
@@ -152,27 +152,6 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Switch.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes /* @typescript-to-proptypes-ignore */.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Thumb: PropTypes.elementType,
-    Track: PropTypes.oneOfType([PropTypes.elementType, PropTypes.oneOf([null])]),
-  }),
-  /**
-   * The props used for each slot inside the Switch.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -209,6 +188,27 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside the Switch.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Switch.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.oneOfType([PropTypes.elementType, PropTypes.oneOf([null])]),
+  }),
 } as any;
 
 export default SwitchUnstyled;

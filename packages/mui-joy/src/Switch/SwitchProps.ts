@@ -1,40 +1,82 @@
 import * as React from 'react';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
+export type SwitchSlot =
+  | 'root'
+  | 'action'
+  | 'input'
+  | 'track'
+  | 'thumb'
+  | 'startDecorator'
+  | 'endDecorator';
+
+export interface SwitchSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the thumb.
+   * @default 'span'
+   */
+  thumb: React.ElementType;
+  /**
+   * The component that renders the action.
+   * @default 'div'
+   */
+  action: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component that renders the track.
+   * @default 'span'
+   */
+  track: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
 
 export interface SwitchPropsVariantOverrides {}
-
 export interface SwitchPropsColorOverrides {}
-
 export interface SwitchPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, SwitchOwnerState>;
-  thumb?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-  action?: SlotComponentProps<'div', { sx?: SxProps }, SwitchOwnerState>;
-  input?: SlotComponentProps<'button', { sx?: SxProps }, SwitchOwnerState>;
-  track?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
-}
+export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SwitchSlots,
+  {
+    root: SlotProps<'div', {}, SwitchOwnerState>;
+    thumb: SlotProps<'span', {}, SwitchOwnerState>;
+    action: SlotProps<'div', {}, SwitchOwnerState>;
+    input: SlotProps<'input', {}, SwitchOwnerState>;
+    track: SlotProps<'span', {}, SwitchOwnerState>;
+    startDecorator: SlotProps<'span', {}, SwitchOwnerState>;
+    endDecorator: SlotProps<'span', {}, SwitchOwnerState>;
+  }
+>;
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    SwitchSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
-      /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
       /**
        * The element that appears at the end of the switch.
        */
@@ -53,7 +95,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
@@ -66,9 +108,9 @@ export type SwitchProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SwitchTypeMap<P, D>, D>;
 
-export interface SwitchOwnerState extends SwitchProps {
+export interface SwitchOwnerState extends ApplyColorInversion<SwitchProps> {
   /**
    * If `true`, the switch's focus is visible.
    */
-  focusVisible: boolean;
+  focusVisible?: boolean;
 }

@@ -83,7 +83,7 @@ const Root = styled('span')(
 );
 
 export default function UnstyledSwitches() {
-  const label = { componentsProps: { input: { 'aria-label': 'Demo switch' } } };
+  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
 
   return (
     <div>

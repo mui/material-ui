@@ -65,7 +65,7 @@ The `rowSpacing` and `columnSpacing` props allow for specifying the row and colu
 
 ## Responsive values
 
-You can switch the props' value based on the active breakpoint. For instance, we can implement the [recommended](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+You can switch the props' value based on the active breakpoint. For instance, we can implement the [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 

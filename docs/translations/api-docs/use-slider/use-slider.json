@@ -1,0 +1,38 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {
+    "aria-labelledby": "The id of the element containing a label for the slider.",
+    "defaultValue": "The default value. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "disableSwap": "If <code>true</code>, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.",
+    "isRtl": "If <code>true</code> the Slider will be rendered right-to-left (with the lowest value on the right-hand side).",
+    "marks": "Marks indicate predetermined values to which the user can move the slider.\nIf <code>true</code> the marks are spaced according the value of the <code>step</code> prop.\nIf an array, it should contain objects with <code>value</code> and an optional <code>label</code> keys.",
+    "max": "The maximum allowed value of the slider.\nShould not be equal to min.",
+    "min": "The minimum allowed value of the slider.\nShould not be equal to max.",
+    "name": "Name attribute of the hidden <code>input</code> element.",
+    "onChange": "Callback function that is fired when the slider's value changed.",
+    "onChangeCommitted": "Callback function that is fired when the <code>mouseup</code> is triggered.",
+    "orientation": "The component orientation.",
+    "ref": "The ref attached to the root of the Slider.",
+    "scale": "A transformation function, to change the scale of the slider.",
+    "step": "The granularity with which the slider can step through values. (A \"discrete\" slider.)\nThe <code>min</code> prop serves as the origin for the valid values.\nWe recommend (max - min) to be evenly divisible by the step.\n\nWhen step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop.",
+    "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
+    "value": "The value of the slider.\nFor ranged sliders, provide an array with two values."
+  },
+  "returnValueDescriptions": {
+    "active": "The active index of the slider.",
+    "axis": "The orientation of the slider.",
+    "axisProps": "Returns the <code>offset</code> and <code>leap</code> methods to calculate the positioning styles based on the slider axis.",
+    "dragging": "If <code>true</code>, the slider is being dragged.",
+    "focusedThumbIndex": "The index of the thumb which is focused on the slider.",
+    "getHiddenInputProps": "Resolver for the hidden input slot's props.",
+    "getRootProps": "Resolver for the root slot's props.",
+    "getThumbProps": "Resolver for the thumb slot's props.",
+    "marks": "The marks of the slider. Marks indicate predetermined values to which the user can move the slider.",
+    "open": "The thumb index for the current value when in hover state.",
+    "range": "If <code>true</code>, the slider is a range slider when the <code>value</code> prop passed is an array.",
+    "trackLeap": "The track leap for the current value of the slider.",
+    "trackOffset": "The track offset for the current value of the slider.",
+    "values": "The possible values of the slider."
+  }
+}

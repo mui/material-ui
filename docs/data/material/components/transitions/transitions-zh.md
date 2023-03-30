@@ -9,7 +9,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">过渡动画有利于增强 UI 的表现力并且让人更易于使用。</p>
 
-Material-UI 提供了一系列的过渡效果，你可以将一些基本的 [动作](https://material.io/design/motion/) 添加到你的应用组件中。
+Material-UI 提供了一系列的过渡效果，你可以将一些基本的 [动作](https://m2.material.io/design/motion/) 添加到你的应用组件中。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
