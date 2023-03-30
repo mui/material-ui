@@ -13,7 +13,7 @@ export {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from './focusVisible';
-export { } from './initMatchers';
+export {} from './initMatchers';
 export * as fireDiscreteEvent from './fireDiscreteEvent';
 export * as userEvent from './userEvent';
 
