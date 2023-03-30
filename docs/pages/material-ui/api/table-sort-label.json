@@ -23,6 +23,8 @@
     "name": "MuiTableSortLabel"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableSortLabel",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/TableSortLabel/TableSortLabel.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

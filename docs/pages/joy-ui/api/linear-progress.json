@@ -35,6 +35,8 @@
   "name": "LinearProgress",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyLinearProgress",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/LinearProgress/LinearProgress.tsx",
   "inheritance": null,

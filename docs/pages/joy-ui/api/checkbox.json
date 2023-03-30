@@ -81,6 +81,8 @@
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyCheckbox",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Checkbox/Checkbox.tsx",
   "inheritance": null,

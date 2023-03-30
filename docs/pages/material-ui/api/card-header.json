@@ -23,6 +23,8 @@
     "name": "MuiCardHeader"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardHeader",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/CardHeader/CardHeader.js",
   "inheritance": null,

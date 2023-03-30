@@ -6,6 +6,8 @@
   "name": "CssBaseline",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiCssBaseline",
   "filename": "/packages/mui-material/src/CssBaseline/CssBaseline.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">CSS Baseline</a></li></ul>",

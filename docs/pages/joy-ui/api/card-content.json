@@ -12,6 +12,8 @@
   "name": "CardContent",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCardContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/CardContent/CardContent.tsx",
   "inheritance": null,

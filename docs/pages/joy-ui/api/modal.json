@@ -36,6 +36,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "JoyModal",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Modal/Modal.tsx",
   "inheritance": null,

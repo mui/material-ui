@@ -95,7 +95,7 @@ export default function Showcase() {
               }}
               component="a"
               href={app.link}
-              rel="noopener"
+              rel="noopener nofollow"
               target="_blank"
             >
               <CardMedia

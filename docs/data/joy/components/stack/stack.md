@@ -64,6 +64,41 @@ For instance, a margin-top:
 <Stack mt={2}>
 ```
 
+## Flexbox gap
+
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set `useFlexGap` prop to true.
+
+It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
+
+We recommend checking the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
+
+{{"demo": "FlexboxGapStack.js", "bg": true}}
+
+To set the prop to all stack instances, create a theme with default props:
+
+```js
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import Stack from '@mui/joy/Stack';
+
+const theme = extendTheme({
+  components: {
+    JoyStack: {
+      defaultProps: {
+        useFlexGap: true,
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <CssVarsProvider theme={theme}>
+      <Stack>…</Stack> {/* uses flexbox gap by default */}
+    </CssVarsProvider>
+  );
+}
+```
+
 ## Interactive demo
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
@@ -74,7 +109,7 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ### Margin on the children
 
-Customizing the margin on the children is not supported.
+Customizing the margin on the children is not supported by default.
 
 For instance, the top-margin on the `Button` component below will be ignored.
 
@@ -84,7 +119,11 @@ For instance, the top-margin on the `Button` component below will be ignored.
 </Stack>
 ```
 
-A [RFC](https://github.com/mui/material-ui/issues/33754) to address this issue is already open.
+:::success
+To overcome this limitation, set [`useFlexGap`](#flexbox-gap) prop to true to switch to CSS flexbox gap implementation.
+
+You can learn more about this limitation by visiting this [RFC](https://github.com/mui/material-ui/issues/33754).
+:::
 
 ### white-space: nowrap
 

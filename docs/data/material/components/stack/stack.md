@@ -54,3 +54,78 @@ For instance, a margin-top:
 ```jsx
 <Stack mt={2}>
 ```
+
+## Flexbox gap
+
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set `useFlexGap` prop to true.
+
+It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
+
+We recommend checking the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
+
+{{"demo": "FlexboxGapStack.js", "bg": true}}
+
+To set the prop to all stack instances, create a theme with default props:
+
+```js
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+
+const theme = createTheme({
+  components: {
+    MuiStack: {
+      defaultProps: {
+        useFlexGap: true,
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Stack>…</Stack> {/* uses flexbox gap by default */}
+    </ThemeProvider>
+  );
+}
+```
+
+## Limitations
+
+### Margin on the children
+
+Customizing the margin on the children is not supported by default.
+
+For instance, the top-margin on the `Button` component below will be ignored.
+
+```jsx
+<Stack>
+  <Button sx={{ marginTop: '30px' }}>...</Button>
+</Stack>
+```
+
+:::success
+To overcome this limitation, set [`useFlexGap`](#flexbox-gap) prop to true to switch to CSS flexbox gap implementation.
+
+You can learn more about this limitation by visiting this [RFC](https://github.com/mui/material-ui/issues/33754).
+:::
+
+### white-space: nowrap
+
+The initial setting on flex items is `min-width: auto`.
+This causes a positioning conflict when children use `white-space: nowrap;`.
+You can reproduce the issue with:
+
+```jsx
+<Stack direction="row">
+  <Typography noWrap>
+```
+
+In order for the item to stay within the container you need to set `min-width: 0`.
+
+```jsx
+<Stack direction="row" sx={{ minWidth: 0 }}>
+  <Typography noWrap>
+```
+
+{{"demo": "ZeroWidthStack.js", "bg": true}}

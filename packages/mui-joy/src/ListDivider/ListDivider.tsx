@@ -59,7 +59,7 @@ const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
       marginInlineStart: 'var(--ListItem-paddingLeft)',
     }),
     ...(ownerState.inset === 'startContent' && {
-      marginInlineStart: 'calc(var(--ListItem-paddingLeft) + var(--List-decoratorSize))',
+      marginInlineStart: 'calc(var(--ListItem-paddingLeft) + var(--ListItemDecorator-size))',
     }),
   }),
 }));

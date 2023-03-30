@@ -60,6 +60,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCircularProgress",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/CircularProgress/CircularProgress.tsx",
   "inheritance": null,
