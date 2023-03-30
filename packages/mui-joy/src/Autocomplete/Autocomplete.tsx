@@ -12,7 +12,7 @@ import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -42,6 +42,7 @@ import {
 import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
+import { SlotCommonProps } from '../utils/types';
 import useSlot from '../utils/useSlot';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
@@ -219,7 +220,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   }),
 }));
 
-const AutocompleteListbox = styled(StyledAutocompleteListbox, {
+const AutocompleteListbox = styled(StyledAutocompleteListbox as unknown as 'ul', {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
@@ -410,9 +411,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           offset: [0, 4],
         },
       },
-      ...(props.slotProps?.listbox?.modifiers || []),
+      ...((props.slotProps?.listbox as Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>)
+        ?.modifiers || []),
     ],
-    [props.slotProps?.listbox?.modifiers],
+    [props.slotProps?.listbox],
   );
 
   let selectedOptions;
@@ -605,7 +607,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         : {},
       modifiers,
       slots: {
-        root: props.slotProps?.listbox?.component || 'ul',
+        root: (props.slotProps?.listbox as SlotCommonProps)?.component || 'ul',
       },
     },
   });

@@ -7,7 +7,10 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import PopperUnstyled, {
+  PopperUnstyledOwnProps,
+  PopperUnstyledProps,
+} from '@mui/base/PopperUnstyled';
 import {
   SelectUnstyledContext,
   flattenOptionGroups,
@@ -21,6 +24,7 @@ import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { SelectOwnProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
+import { SlotCommonProps } from '../utils/types';
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
@@ -474,8 +478,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const classes = useUtilityClasses(ownerState);
 
   const modifiers = React.useMemo(
-    () => [...defaultModifiers, ...(props.slotProps?.listbox?.modifiers || [])],
-    [props.slotProps?.listbox?.modifiers],
+    () => [
+      ...defaultModifiers,
+      ...((props.slotProps?.listbox as Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>)
+        ?.modifiers || []),
+    ],
+    [props.slotProps?.listbox],
   );
 
   const selectedOption = React.useMemo(() => {
@@ -529,7 +537,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       as: PopperUnstyled,
       modifiers,
       slots: {
-        root: props.slotProps?.listbox?.component || 'ul',
+        root: (props.slotProps?.listbox as SlotCommonProps)?.component || 'ul',
       },
     },
     className: classes.listbox,
