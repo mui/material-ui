@@ -115,6 +115,8 @@ exports.handler = async (event, context, callback) => {
         channel: slackChannelIds[isDocsX ? 'mui-x' : 'mui-core'],
         text: simpleSlackMessage,
         as_user: true,
+        unfurl_links: false,
+        unfurl_media: false,
       });
     } else {
       const handler = await awsLambdaReceiver.start();
