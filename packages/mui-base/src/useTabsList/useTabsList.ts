@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTabContext } from '../TabsUnstyled';
+import { useTabsContext } from '../TabsUnstyled';
 import {
   TabsListContextValue,
   UseTabsListParameters,
@@ -37,13 +37,23 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     onSelected,
     orientation = 'horizontal',
     value,
+    registerTabIdLookup,
     selectionFollowsFocus,
-  } = useTabContext();
+  } = useTabsContext();
 
   const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
     string | number,
     TabMetadata
   >();
+
+  const tabIdLookup = React.useCallback(
+    (tabValue: string | number) => {
+      return subitems.get(tabValue)?.id;
+    },
+    [subitems],
+  );
+
+  registerTabIdLookup(tabIdLookup);
 
   const subitemKeys = React.useMemo(() => Array.from(subitems.keys()), [subitems]);
 

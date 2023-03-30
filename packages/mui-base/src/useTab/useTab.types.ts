@@ -12,6 +12,11 @@ export interface UseTabParameters {
    */
   disabled?: boolean;
   /**
+   * The id of the tab.
+   * If not provided, it will be automatically generated.
+   */
+  id?: string;
+  /**
    * Ref to the DOM element associated with the tab.
    */
   ref?: React.Ref<any>;

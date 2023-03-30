@@ -32,7 +32,6 @@ export interface UseTabsParameters {
 }
 
 export interface UseTabsReturnValue {
-  tabPanels: Map<string | number, string>;
   /**
    * Returns the values to be passed to the tabs provider.
    */

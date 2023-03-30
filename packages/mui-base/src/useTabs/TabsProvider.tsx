@@ -20,13 +20,15 @@ export default function TabsProvider(props: TabsProviderProps) {
   const {
     direction,
     getItemIndex,
-    idPrefix,
     onSelected,
     orientation,
     registerItem,
+    registerTabIdLookup,
     selectionFollowsFocus,
     totalSubitemCount,
     value,
+    getTabId,
+    getTabPanelId,
   } = valueProp;
 
   const compoundComponentContextValue: CompoundComponentContextValue<string | number, string> =
@@ -42,13 +44,24 @@ export default function TabsProvider(props: TabsProviderProps) {
   const tabsContextValue: TabsContextValue = React.useMemo(
     () => ({
       direction,
-      idPrefix,
+      getTabId,
+      getTabPanelId,
       onSelected,
       orientation,
+      registerTabIdLookup,
       selectionFollowsFocus,
       value,
     }),
-    [direction, idPrefix, onSelected, orientation, selectionFollowsFocus, value],
+    [
+      direction,
+      getTabId,
+      getTabPanelId,
+      onSelected,
+      orientation,
+      registerTabIdLookup,
+      selectionFollowsFocus,
+      value,
+    ],
   );
 
   return (

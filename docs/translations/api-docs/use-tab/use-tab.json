@@ -2,6 +2,7 @@
   "hookDescription": "",
   "parametersDescriptions": {
     "disabled": "If <code>true</code>, the tab will be disabled.",
+    "id": "The id of the tab.\nIf not provided, it will be automatically generated.",
     "ref": "Ref to the DOM element associated with the tab.",
     "value": "The value of the tab.\nIt's used to associate the tab with a tab panel(s) with the same value."
   },

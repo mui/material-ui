@@ -32,13 +32,6 @@
     "contextValue": {
       "type": { "name": "TabsProviderValue", "description": "TabsProviderValue" },
       "required": true
-    },
-    "tabPanels": {
-      "type": {
-        "name": "Map&lt;string | number, string&gt;",
-        "description": "Map&lt;string | number, string&gt;"
-      },
-      "required": true
     }
   },
   "name": "useTabs",

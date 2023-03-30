@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { useTabContext } from '../TabsUnstyled';
+import { useTabsContext } from '../TabsUnstyled';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
 import { useCompoundItem } from '../utils/useCompoundItem';
@@ -23,13 +23,14 @@ function tabValueGenerator(otherTabValues: Set<string | number>) {
  * - [useTab API](https://mui.com/base/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
-  const { value: valueParam, ref: externalRef, disabled = false } = parameters;
+  const { value: valueParam, ref: externalRef, disabled = false, id: idParam } = parameters;
 
   const tabRef = React.useRef<HTMLElement>(null);
+  const id = useId(idParam);
 
-  const { value: selectedValue, idPrefix = '', selectionFollowsFocus } = useTabContext();
+  const { value: selectedValue, selectionFollowsFocus, getTabPanelId } = useTabsContext();
 
-  const tabMetadata = React.useMemo(() => ({ disabled, ref: tabRef }), [disabled, tabRef]);
+  const tabMetadata = React.useMemo(() => ({ disabled, ref: tabRef, id }), [disabled, tabRef, id]);
 
   const {
     id: value,
@@ -58,7 +59,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
 
   const handleRef = useForkRef(tabRef, externalRef, listItemRefHandler, buttonRefHandler);
 
-  const tabId = idPrefix + useId();
+  const tabPanelId = value !== undefined ? getTabPanelId(value) : undefined;
 
   const getRootProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
@@ -76,9 +77,9 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     return {
       ...resolvedButtonProps,
       role: 'tab',
-      'aria-controls': 'not-implemented-yet',
+      'aria-controls': tabPanelId,
       'aria-selected': selected,
-      id: tabId,
+      id,
       ref: handleRef,
     };
   };

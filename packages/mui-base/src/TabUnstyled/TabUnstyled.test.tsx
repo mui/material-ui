@@ -24,7 +24,15 @@ describe('<TabUnstyled />', () => {
     inheritComponent: 'div',
     render: (node) => {
       const { container, ...other } = render(
-        <TabsContext.Provider value={{ idPrefix: '', value: 0, onSelected() {} }}>
+        <TabsContext.Provider
+          value={{
+            value: 0,
+            onSelected() {},
+            registerTabIdLookup() {},
+            getTabId: () => '',
+            getTabPanelId: () => '',
+          }}
+        >
           <TabsListProvider value={testTabsListContext}>{node}</TabsListProvider>
         </TabsContext.Provider>,
       );
@@ -33,7 +41,15 @@ describe('<TabUnstyled />', () => {
     },
     mount: (node: any) => {
       const wrapper = mount(
-        <TabsContext.Provider value={{ idPrefix: '', value: 0, onSelected() {} }}>
+        <TabsContext.Provider
+          value={{
+            value: 0,
+            onSelected() {},
+            registerTabIdLookup() {},
+            getTabId: () => '',
+            getTabPanelId: () => '',
+          }}
+        >
           <TabsListProvider value={testTabsListContext}>{node}</TabsListProvider>
         </TabsContext.Provider>,
       );

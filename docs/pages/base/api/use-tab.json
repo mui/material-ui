@@ -1,11 +1,9 @@
 {
   "parameters": {
-    "value": {
-      "type": { "name": "number | string", "description": "number | string" },
-      "required": true
-    },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } }
+    "id": { "type": { "name": "string", "description": "string" } },
+    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
+    "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
     "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
