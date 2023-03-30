@@ -52,15 +52,15 @@ export default function MyApp() {
 
 ### Basic usage
 
-The `Modal` accepts only a single React element as a child.
+The Modal accepts only a single React element as a child.
 That can be either a Joy UI component, e.g. [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
 
-Use the `ModalClose` component to render a close button that inherits the modal's `onClose` function.
+Use the Modal Close component to render a close button that inherits the modal's `onClose` function.
 
 {{"demo": "BasicModal.js"}}
 
 :::info
-`ModalClose` accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
+Modal Close accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
 :::
 
 ### Close reason
@@ -79,7 +79,7 @@ The possible values are:
 
 To create a modal dialog, render the Modal Dialog component inside the Modal.
 
-It will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
+The Dialog will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
 
 {{"demo": "BasicModalDialog.js"}}
 
@@ -101,7 +101,7 @@ The Modal Close and Modal Dialog Title components inherit the size from the Moda
 
 #### Layout
 
-The `ModalDialog`'s layout can be:
+The Modal Dialog's layout can be:
 
 - `center` (default): the modal dialog appears at the center of the viewport.
 - `fullScreen`: the modal dialog covers the whole viewport.
@@ -148,14 +148,14 @@ To ensure your content is visible, make the container holding it overflow by add
 
 {{"demo": "DialogVerticalScroll.js"}}
 
-### Modal overflow
+### Modal Overflow
 
 The previous section demonstrated how to make content _within_ the modal scrollable.
 
 To make the _whole_ modal scrollable, in case its higher than the viewport, use the Modal Overflow component.
 It will allow the Modal Dialog to vertically overflow the screen.
 
-It supports both `center` and `fullScreen` built-in layouts.
+The Modal Overflow supports both `center` and `fullScreen` built-in layouts.
 
 {{"demo": "ModalDialogOverflow.js"}}
 
