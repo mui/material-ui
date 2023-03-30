@@ -172,58 +172,58 @@ For CircleCI you need to log in first.
 No further permissions are required to view the build logs.
 The following section gives an overview of what each check is responsible for.
 
-##### ci/codesandbox
+#### ci/codesandbox
 
 This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
 of MUI that was built from this Pull Request. Use it to test more complex scenarios.
 
-##### ci/circleci: checkout
+#### ci/circleci: checkout
 
 A preflight check to see if the dependencies and lockfile are ok. Running `yarn`
 and `yarn deduplicate` should fix most of the issues.
 
-##### ci/circleci: test_static
+#### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
 how to fix the issues. It runs also commands that generates and changes some files
 (like `yarn docs:api`), if the pipe fails you might need to run them locally and commit the changes.
 
-##### ci/circleci: test_unit-1
+#### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
 If `yarn test:unit` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-##### ci/circleci: test_browser-1
+#### ci/circleci: test_browser-1
 
 Runs the unit tests in multiple browsers (via BrowserStack). The log of the failed
 build should list which browsers failed. If Chrome failed then `yarn test:karma`
 should<sup>[1](test/README.md#accessibility-tree-exclusion)</sup> fail locally as well. If other browsers failed debugging might be trickier.
 If `yarn test:karma` passes locally, but fails in CI, consider [Accessibility tree exclusion in CI](test/README.md#accessibility-tree-exclusion).
 
-##### ci/circleci: test_regression-1
+#### ci/circleci: test_regression-1
 
 Renders tests in `test/regressions/tests` and makes screenshots. This step shouldn't
 fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
 are evaluated in another step.
 
-##### ci/circleci: test_types
+#### ci/circleci: test_types
 
 Typechecks the repository. The log of the failed build should list all issues.
 
-##### ci/circleci: test_bundle_size_monitor
+#### ci/circleci: test_bundle_size_monitor
 
 This task is mostly responsible for monitoring the bundle size. It will only report
 the size if the change exceeds a certain threshold. If it fails there's usually
 something wrong with the way the packages or docs were built.
 
-##### argos
+#### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
 differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
 might be intended. Clicking on _Details_ will show you the differences.
 
-##### deploy/netlify
+#### deploy/netlify
 
 Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
 or `yarn docs:export` usually fail locally as well.
