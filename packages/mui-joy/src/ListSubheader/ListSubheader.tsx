@@ -5,6 +5,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
@@ -31,26 +32,38 @@ const ListSubheaderRoot = styled('div', {
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
-  marginInline: 'var(--List-item-marginInline)',
-  paddingBlock: 'var(--List-item-paddingY)',
-  paddingInlineStart: 'var(--List-item-paddingLeft)',
-  paddingInlineEnd: 'var(--List-item-paddingRight)',
-  minBlockSize: 'var(--List-item-minHeight)',
-  fontSize: 'calc(var(--List-item-fontSize) * 0.75)',
+  marginInline: 'var(--ListItem-marginInline)',
+  paddingBlock: 'var(--ListItem-paddingY)',
+  paddingInlineStart: 'var(--ListItem-paddingLeft)',
+  paddingInlineEnd: 'var(--ListItem-paddingRight)',
+  minBlockSize: 'var(--ListItem-minHeight)',
+  fontSize: 'calc(var(--ListItem-fontSize) * 0.75)',
   fontWeight: theme.vars.fontWeight.lg,
   fontFamily: theme.vars.fontFamily.body,
   letterSpacing: theme.vars.letterSpacing.md,
   textTransform: 'uppercase',
   ...(ownerState.sticky && {
     position: 'sticky',
-    top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
+    top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
     zIndex: 1,
-    background: 'var(--List-item-stickyBackground)',
+    background: 'var(--ListItem-stickyBackground)',
   }),
+  color:
+    ownerState.color && ownerState.color !== 'context'
+      ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+      : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  color: theme.vars.palette[ownerState.color!]?.[500], // make the subheader less contrast
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListSubheader API](https://mui.com/joy-ui/api/list-subheader/)
+ */
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -63,10 +76,12 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     children,
     id: idOverride,
     sticky = false,
-    variant = 'plain',
-    color = 'neutral',
+    variant,
+    color: colorProp,
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
   const id = useId(idOverride);
   const setSubheaderId = React.useContext(ListSubheaderDispatch);
 
@@ -81,7 +96,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id,
     sticky,
     variant,
-    color,
+    color: variant ? color ?? 'neutral' : color,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -115,7 +130,6 @@ ListSubheader.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -144,8 +158,7 @@ ListSubheader.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
-   * @default 'plain'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

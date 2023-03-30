@@ -3,13 +3,13 @@ product: material-ui
 title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
-materialDesign: https://material.io/components/text-fields
+materialDesign: https://m2.material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
 # Text Field
 
-<p class="description">Text fields let users enter and edit text.</p>
+<p class="description">Text Fields let users enter and edit text.</p>
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
@@ -22,9 +22,11 @@ It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "BasicTextFields.js"}}
 
-**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/)
-([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
-but MUI will continue to support it.
+:::info
+The standard variant of the Text Field is no longer documented in the [Material Design guidelines](https://m2.material.io/)
+([this article explains why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
+but Material UI will continue to support it.
+:::
 
 ## Form props
 
@@ -309,4 +311,4 @@ For more advanced use cases, you might be able to take advantage of:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
+- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

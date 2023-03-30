@@ -1,0 +1,11 @@
+<Button loading loadingPosition="start" variant="outlined">
+  Fetch data
+</Button>
+<Button
+  loading
+  loadingPosition="end"
+  endDecorator={<SendIcon />}
+  variant="solid"
+>
+  Send
+</Button>

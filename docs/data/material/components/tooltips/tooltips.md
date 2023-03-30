@@ -3,7 +3,7 @@ product: material-ui
 title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: tooltip'
-materialDesign: https://material.io/components/tooltips
+materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
@@ -123,7 +123,7 @@ You can disable this behavior (thus failing the success criterion which is requi
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 :::warning
-⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 :::
 
 {{"demo": "DisabledTooltips.js"}}

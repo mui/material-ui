@@ -6,11 +6,16 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import { useColorInversion } from '../styles/ColorInversion';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
-import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
+import {
+  CardOverflowProps,
+  CardOverflowOwnerState,
+  CardOverflowTypeMap,
+} from './CardOverflowProps';
 import { CardRowContext } from '../Card/CardContext';
 
-const useUtilityClasses = (ownerState: CardOverflowProps) => {
+const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
   const slots = {
     root: [
@@ -28,13 +33,13 @@ const CardOverflowRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: CardOverflowProps & {
+  ownerState: CardOverflowOwnerState & {
     row: boolean;
     'data-first-child'?: string;
     'data-last-child'?: string;
   };
 }>(({ theme, ownerState }) => {
-  const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth))';
+  const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth, 0px))';
   return [
     ownerState.row
       ? {
@@ -82,7 +87,16 @@ const CardOverflowRoot = styled('div', {
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardOverflow API](https://mui.com/joy-ui/api/card-overflow/)
+ */
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
@@ -95,10 +109,12 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     className,
     component = 'div',
     children,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     variant = 'plain',
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const ownerState = {
     ...props,
@@ -159,7 +175,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -528,7 +528,9 @@ describe('<Snackbar />', () => {
 
     it('accepts a different component that handles the transition', () => {
       const transitionRef = React.createRef();
-      const Transition = () => <div className="cloned-element-class" ref={transitionRef} />;
+      function Transition() {
+        return <div className="cloned-element-class" ref={transitionRef} />;
+      }
       const { container } = render(<Snackbar open TransitionComponent={Transition} />);
       expect(container).to.contain(transitionRef.current);
     });

@@ -17,7 +17,9 @@ describe('withStyles', () => {
   const { render } = createRenderer({ strict: false });
 
   it('hoist statics', () => {
-    const Test = () => null;
+    function Test() {
+      return null;
+    }
     Test.someStatic = 'will not get hoisted';
     const TestWithStyles = withStyles({})(Test);
     expect(TestWithStyles.someStatic).to.equal(Test.someStatic);
@@ -60,7 +62,9 @@ describe('withStyles', () => {
   });
 
   it('should forward the props', () => {
-    const Test = (props) => <div>{props.foo}</div>;
+    function Test(props) {
+      return <div>{props.foo}</div>;
+    }
     Test.propTypes = {
       foo: PropTypes.any,
     };
@@ -72,7 +76,9 @@ describe('withStyles', () => {
   });
 
   it('should work with no theme', () => {
-    const Test = (props) => <div>{props.foo}</div>;
+    function Test(props) {
+      return <div>{props.foo}</div>;
+    }
     Test.propTypes = {
       foo: PropTypes.any,
     };
@@ -119,7 +125,9 @@ describe('withStyles', () => {
     });
 
     it('should supply correct props to jss callbacks', () => {
-      const MyComp = () => <div />;
+      function MyComp() {
+        return <div />;
+      }
       MyComp.defaultProps = {
         myDefaultProp: 111,
       };
@@ -160,7 +168,10 @@ describe('withStyles', () => {
     });
 
     it('should use theme.props instead of defaultProps', () => {
-      const MuiFoo = ({ foo }) => foo;
+      function MuiFoo({ foo }) {
+        return foo;
+      }
+
       MuiFoo.defaultProps = {
         foo: 'foo',
       };
@@ -315,7 +326,9 @@ describe('withStyles', () => {
       const StyledComponent1 = withStyles({ root: { padding: 1 } })(a);
       const fooo = ({ classes }) => <div className={classes.root} data-testid="fooo" />;
       const StyledComponent2 = withStyles({ root: { padding: 1 } })(fooo);
-      const AppFrame = ({ classes }) => <div className={classes.root} data-testid="AppFrame" />;
+      function AppFrame({ classes }) {
+        return <div className={classes.root} data-testid="AppFrame" />;
+      }
       AppFrame.displayName = 'AppLayout';
       const StyledComponent3 = withStyles({ root: { padding: 1 } })(AppFrame);
 

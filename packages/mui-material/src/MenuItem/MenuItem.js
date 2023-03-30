@@ -135,7 +135,7 @@ const MenuItemRoot = styled(ButtonBase, {
     },
   }),
   ...(ownerState.dense && {
-    minHeight: 32, // https://material.io/components/menus#specs > Dense
+    minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
     paddingTop: 4,
     paddingBottom: 4,
     ...theme.typography.body2,
@@ -156,14 +156,18 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     focusVisibleClassName,
     role = 'menuitem',
     tabIndex: tabIndexProp,
+    className,
     ...other
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      disableGutters,
+    }),
+    [context.dense, dense, disableGutters],
+  );
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -202,6 +206,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         tabIndex={tabIndex}
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        className={clsx(classes.root, className)}
         {...other}
         ownerState={ownerState}
         classes={classes}
@@ -229,6 +234,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -268,7 +277,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * @ignore
+   * If `true`, the component is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**

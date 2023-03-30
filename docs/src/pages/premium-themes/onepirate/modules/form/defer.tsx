@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export default function defer<P>(Component: React.ComponentType<P>) {
-  const Defer = (props: P) => {
+  function Defer(props: P) {
     const [mounted, setMounted] = React.useState(false);
 
     React.useEffect(() => {
@@ -9,7 +9,7 @@ export default function defer<P>(Component: React.ComponentType<P>) {
     }, []);
 
     return <Component mounted={mounted} {...props} />;
-  };
+  }
 
   return Defer;
 }

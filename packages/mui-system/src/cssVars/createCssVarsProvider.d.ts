@@ -39,19 +39,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * @default false
    */
   disableTransitionOnChange?: boolean;
-  /**
-   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
-   * @default true
-   */
-  enableColorScheme?: boolean;
-  /**
-   * A function to determine if the key, value should be attached as CSS Variable
-   * `keys` is an array that represents the object path keys.
-   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-   *  then, keys = ['foo', 'bar']
-   *        value = 'var(--test)'
-   */
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 export interface CreateCssVarsProviderResult<ColorScheme extends string> {
@@ -71,7 +58,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * The node used to attach the color-scheme attribute
          * @default document
          */
-        colorSchemeNode?: Document | HTMLElement | null;
+        colorSchemeNode?: Element | null;
         /**
          * The CSS selector for attaching the generated custom properties
          * @default ':root'
@@ -82,6 +69,17 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string> {
          * @default window
          */
         storageWindow?: Window | null;
+        /**
+         * If `true`, the provider creates its own context and generate stylesheet as if it is a root `CssVarsProvider`.
+         */
+        disableNestedContext?: boolean;
+        /**
+         * If `true`, the style sheet won't be generated.
+         *
+         * This is useful for controlling nested CssVarsProvider behavior.
+         * @default false
+         */
+        disableStyleSheetGeneration?: boolean;
       }
     >,
   ) => React.ReactElement;
@@ -94,7 +92,7 @@ export default function createCssVarsProvider<ColorScheme extends string>(
     /**
      * Design system default theme
      *
-     * The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
+     * - The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
      * those object of the color scheme will be used when the color scheme is active.
      *
      *  {
@@ -104,16 +102,21 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      *    }
      *  }
      *
-     *  If colorScheme is 'light', the `lightColorSchemeValues` will be merged to theme as `{ ...theme, ...lightColorSchemeValues }`
-     *  likewise, if colorScheme is 'dark', the `darkColorSchemeValues` will be merged to theme as `{ ...theme, ...darkColorSchemeValues }`
+     * - If colorScheme is 'light', the `lightColorSchemeValues` will be merged to theme as `{ ...theme, ...lightColorSchemeValues }`
+     *   likewise, if colorScheme is 'dark', the `darkColorSchemeValues` will be merged to theme as `{ ...theme, ...darkColorSchemeValues }`
      *
-     *  !!! Don't provided the same keys as in colorSchemes to theme because they will be replaced internally when the selected colorScheme is calculated.
+     * - If the theme contains the same keys as the color scheme, their values will be merged.
      *  Ex. {
      *    colorSchemes: {
-     *      light: { palette: { ... } },
-     *      dark: { palette: { ... } }
+     *      light: { palette: { primary: { ... } } },
+     *      dark: { palette: { primary: { ...} } }
      *    },
-     *    palette: { ... }, // This values will be replaced by the `palette` from the light | dark color scheme at runtime.
+     *    palette: { shared: { ... } }
+     *  }
+     *
+     *  becomes: {
+     *    colorSchemes: { ... },
+     *    palette: { shared: { ... }, primary: { ... } }
      *  }
      */
     theme: any;
@@ -124,6 +127,14 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      * variants from those tokens.
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
+    /**
+     * @internal
+     * A function that returns a list of variables that will be excluded from the `colorSchemeSelector` (:root by default)
+     *
+     * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
+     * This is introduced to fix https://github.com/mui/material-ui/issues/34084
+     */
+    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
 ): CreateCssVarsProviderResult<ColorScheme>;
 

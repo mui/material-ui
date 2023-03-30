@@ -110,7 +110,6 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -125,7 +124,7 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>
@@ -206,29 +205,6 @@ With yarn:
 
 ```sh
 yarn add tss-react
-```
-
-You will also need to edit your providers:
-
-```diff
- import { render } from 'react-dom';
--import { StylesProvider } from '@material-ui/core/styles';
-+import createCache from '@emotion/cache';
-+import { CacheProvider } from "@emotion/react";
-
-+export const muiCache = createCache({
-+  'key': 'mui',
-+  'prepend': true,
-+});
-
- render(
--  <StylesProvider injectFirst>
-+  <CacheProvider value={muiCache}>
-     <Root />
--  </StylesProvider>,
-+  </CacheProvider>,
-   document.getElementById('root')
- );
 ```
 
 #### Codemod

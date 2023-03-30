@@ -43,7 +43,12 @@ const StyledInputElement = styled('input')(
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
@@ -71,7 +76,12 @@ const StyledTextareaElement = styled('textarea', {
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
@@ -82,7 +92,7 @@ const CustomInput = React.forwardRef(function CustomInput(
 ) {
   return (
     <InputUnstyled
-      components={{ Input: StyledInputElement, Textarea: StyledTextareaElement }}
+      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
       {...props}
       ref={ref}
     />

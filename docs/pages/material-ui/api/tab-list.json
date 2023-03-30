@@ -1,8 +1,28 @@
 {
   "props": { "children": { "type": { "name": "node" } } },
   "name": "TabList",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": [
+      "root",
+      "vertical",
+      "flexContainer",
+      "flexContainerVertical",
+      "centered",
+      "scroller",
+      "fixed",
+      "scrollableX",
+      "scrollableY",
+      "hideScrollbar",
+      "scrollButtons",
+      "scrollButtonsHideMobile",
+      "indicator"
+    ],
+    "globalClasses": {},
+    "name": "MuiTabList"
+  },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiTabList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/material-ui/api/tabs/" },

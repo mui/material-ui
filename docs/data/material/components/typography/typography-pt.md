@@ -3,14 +3,14 @@ product: material-ui
 title: Componente React de Tipografia
 components: Typography
 githubLabel: 'component: Typography'
-materialDesign: https://material.io/design/typography/the-type-system.html
+materialDesign: https://m2.material.io/design/typography/the-type-system.html
 ---
 
 # Typography
 
 <p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 
-O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer leiaute. Uma [escala tipográfica](https://material.io/design/typography/#type-scale) tem um conjunto limitado de tipos de tamanhos que funcionam bem em conjunto com o leiaute de grade.
+O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer leiaute. Uma [escala tipográfica](https://m2.material.io/design/typography/#type-scale) tem um conjunto limitado de tipos de tamanhos que funcionam bem em conjunto com o leiaute de grade.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

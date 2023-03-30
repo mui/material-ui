@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ButtonUnstyledProps, useButton } from '@mui/base/ButtonUnstyled';
+import { ButtonUnstyledProps } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 

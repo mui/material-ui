@@ -1,14 +1,14 @@
 ---
 product: material-ui
-title: Image list React component
+title: Image List React component
 components: ImageList, ImageListItem, ImageListItemBar
-materialDesign: https://material.io/components/image-lists
+materialDesign: https://m2.material.io/components/image-lists
 githubLabel: 'component: image list'
 ---
 
-# Image list
+# Image List
 
-<p class="description">Image lists display a collection of images in an organized grid.</p>
+<p class="description">The Image List displays a collection of images in an organized grid.</p>
 
 Image lists represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
 

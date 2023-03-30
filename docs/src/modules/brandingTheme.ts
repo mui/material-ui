@@ -1,6 +1,17 @@
-import { deepmerge } from '@mui/utils';
+import { CSSObject } from '@mui/system';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+
+interface ApplyDarkStyles {
+  (scheme: CSSObject): CSSObject;
+}
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    applyDarkStyles: ApplyDarkStyles;
+  }
+}
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -28,12 +39,14 @@ declare module '@mui/material/styles/createTypography' {
     fontWeightSemiBold?: number;
     fontWeightExtraBold?: number;
     fontFamilyCode?: string;
+    fontFamilySystem?: string;
   }
 
   interface Typography {
     fontWeightSemiBold: number;
     fontWeightExtraBold: number;
     fontFamilyCode: string;
+    fontFamilySystem: string;
   }
 }
 
@@ -78,7 +91,7 @@ export const blueDark = {
   800: '#001E3C',
   900: '#0A1929',
 };
-const grey = {
+export const grey = {
   50: '#F3F6F9',
   100: '#E7EBF0',
   200: '#E0E3E7',
@@ -89,6 +102,44 @@ const grey = {
   700: '#3E5060', // vs white bg: WCAG 8.3 AAA, APCA 88.7 Best for text
   800: '#2D3843', // vs white bg: WCAG 11.9 AAA, APCA 97.3 Best for text
   900: '#1A2027',
+};
+export const error = {
+  50: '#FFF0F1',
+  100: '#FFDBDE',
+  200: '#FFBDC2',
+  300: '#FF99A2',
+  400: '#FF7A86',
+  500: '#FF505F',
+  main: '#EB0014', // contrast 4.63:1
+  600: '#EB0014',
+  700: '#C70011',
+  800: '#94000D',
+  900: '#570007',
+};
+export const success = {
+  50: '#E9FBF0',
+  100: '#C6F6D9',
+  200: '#9AEFBC',
+  300: '#6AE79C',
+  400: '#3EE07F',
+  500: '#21CC66',
+  600: '#1DB45A',
+  700: '#1AA251',
+  800: '#178D46',
+  900: '#0F5C2E',
+};
+export const warning = {
+  50: '#FFF9EB',
+  100: '#FFF3C1',
+  200: '#FFECA1',
+  300: '#FFDC48', // vs blueDark900: WCAG 10.4 AAA, APCA 72 Ok for text
+  400: '#F4C000', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
+  500: '#DEA500', // vs blueDark900: WCAG 8 AAA normal, APCA 58 Only large text
+  main: '#DEA500',
+  600: '#D18E00', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
+  700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
+  800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
+  900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
 };
 // context on the Advanced Perceptual Contrast Algorithm (APCA) used above here: https://github.com/w3c/wcag/issues/695
 
@@ -145,6 +196,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       grey: {
+        ...grey,
         ...(mode === 'light' && {
           main: grey[100],
           contrastText: grey[600],
@@ -154,50 +206,17 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           contrastText: grey[600],
         }),
       },
-      error: {
-        50: '#FFF0F1',
-        100: '#FFDBDE',
-        200: '#FFBDC2',
-        300: '#FF99A2',
-        400: '#FF7A86',
-        500: '#FF505F',
-        main: '#EB0014', // contrast 4.63:1
-        600: '#EB0014',
-        700: '#C70011',
-        800: '#94000D',
-        900: '#570007',
-      },
+      error,
       success: {
-        50: '#E9FBF0',
-        100: '#C6F6D9',
-        200: '#9AEFBC',
-        300: '#6AE79C',
-        400: '#3EE07F',
-        500: '#21CC66',
-        600: '#1DB45A',
+        ...success,
         ...(mode === 'dark' && {
           main: '#1DB45A', // contrast 6.17:1 (blueDark.800)
         }),
         ...(mode === 'light' && {
           main: '#1AA251', // contrast 3.31:1
         }),
-        700: '#1AA251',
-        800: '#178D46',
-        900: '#0F5C2E',
       },
-      warning: {
-        50: '#FFF9EB',
-        100: '#FFF3C1',
-        200: '#FFECA1',
-        300: '#FFDC48', // vs blueDark900: WCAG 10.4 AAA, APCA 72 Ok for text
-        400: '#F4C000', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
-        500: '#DEA500', // vs blueDark900: WCAG 8 AAA normal, APCA 58 Only large text
-        main: '#DEA500',
-        600: '#D18E00', // vs blueDark900: WCAG 6.4 AA normal, APCA 48 Only large text
-        700: '#AB6800', // vs white bg: WCAG 4.4 AA large, APCA 71 Ok for text
-        800: '#8C5800', // vs white bg: WCAG 5.9 AAA large, APCA 80 Best for text
-        900: '#5A3600', // vs white bg: WCAG 10.7 AAA, APCA 95 Best for text
-      },
+      warning,
     },
     shape: {
       borderRadius: 10,
@@ -205,13 +224,14 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     spacing: 10,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
+      // Match VS Code
+      // https://github.com/microsoft/vscode/blob/b38691f611d1ce3ef437c67a1b047c757b7b4e53/src/vs/editor/common/config/editorOptions.ts#L4578-L4580
+      // https://github.com/microsoft/vscode/blob/d950552131d7350a45dac8b59bf179469c36c2ac/src/vs/editor/standalone/browser/standalone-tokens.css#L10
       fontFamilyCode: [
-        'Consolas',
-        'Menlo',
-        'Monaco',
-        'Andale Mono',
-        'Ubuntu Mono',
-        'monospace',
+        'Menlo', // macOS
+        'Consolas', // Windows
+        '"Droid Sans Mono"', // Linux
+        'monospace', // fallback
       ].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontFamilySystem: systemFont.join(','),
@@ -288,9 +308,79 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       },
     },
+    /**
+     * This utility exists to help transitioning to CSS variables page by page (prevent dark mode flicker).
+     * It will use the proper styling method based on the theme because the component might be on the page that does not support CSS variables yet.
+     *
+     * 😓 Without this utility:
+     * {
+     *   ...theme.vars ? {
+     *     color: theme.vars.palette.primary.main,
+     *     [theme.getColorScheme('dark')]: {
+     *       color: '#fff',
+     *     }
+     *   } : {
+     *     color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
+     *   }
+     * }
+     *
+     * 🤩 Using the utility:
+     * {
+     *   color: (theme.vars || theme).palette.primary.main,
+     *   ...theme.applyDarkStyles({
+     *     color: '#fff',
+     *   }),
+     * }
+     *
+     * -------------------------------------------------------------------------------------------------
+     * 💡 This util should be used in an array if the styles contain psuedo classes or nested selectors:
+     *
+     * ❌ There is a chance that the upper selectors could be overridden
+     * {
+     *    // the whole selector could be overridden
+     *   '&::before': {
+     *     color: ...
+     *   },
+     *   ...theme.applyDarkStyles({
+     *      '&::before': {
+     *        color: ...
+     *      }
+     *   })
+     * }
+     *
+     * ✅ use an array (supports in both emotion and styled-components)
+     * Only the `color` will be overridden in dark mode.
+     *  [
+     *    '&::before': {
+     *      color: ...
+     *    },
+     *    theme.applyDarkStyles({
+     *      '&::before': {
+     *        color: ...
+     *      }
+     *    })
+     *  ]
+     */
+    applyDarkStyles(css: Parameters<ApplyDarkStyles>[0]) {
+      if ((this as Theme).vars) {
+        // If CssVarsProvider is used as a provider,
+        // returns ':where([data-mui-color-scheme="light|dark"]) &'
+        const selector = (this as Theme)
+          .getColorSchemeSelector('dark')
+          .replace(/(\[[^\]]+\])/, ':where($1)');
+        return {
+          [selector]: css,
+        };
+      }
+      if ((this as Theme).palette.mode === 'dark') {
+        return css;
+      }
+
+      return undefined;
+    },
   } as ThemeOptions);
 
-export function getThemedComponents(theme: Theme): { components: Theme['components'] } {
+export function getThemedComponents(): ThemeOptions {
   return {
     components: {
       MuiButtonBase: {
@@ -303,84 +393,88 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
           disableElevation: true,
         },
         styleOverrides: {
-          sizeLarge: {
-            padding: '0.875rem 1rem',
-            ...theme.typography.body1,
-            lineHeight: 21 / 16,
-            fontWeight: 700,
-          },
-          sizeSmall: {
-            padding: theme.spacing(0.5, 1),
-            marginLeft: theme.spacing(-1),
-          },
-          containedPrimary: {
-            backgroundColor: theme.palette.primary[500],
-            color: '#fff',
-          },
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.size === 'large' && {
+              padding: '0.875rem 1rem',
+              ...theme.typography.body1,
+              lineHeight: 21 / 16,
+              fontWeight: 700,
+            }),
+            ...(ownerState.size === 'small' && {
+              padding: theme.spacing(0.5, 1),
+            }),
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'primary' && {
+                backgroundColor: (theme.vars || theme).palette.primary[500],
+                color: '#fff',
+              }),
+          }),
         },
         variants: [
           {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'code' },
-            style: {
-              color:
-                theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
-              border: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[400]
-                  : theme.palette.grey[300],
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[50],
-              fontFamily: theme.typography.fontFamilyCode,
-              fontWeight: 400,
-              fontSize: defaultTheme.typography.pxToRem(13), // 14px
-              lineHeight: 21 / 14,
-              letterSpacing: 0,
-              WebkitFontSmoothing: 'subpixel-antialiased',
-              '&:hover, &.Mui-focusVisible': {
-                borderColor: theme.palette.primary.main,
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[50],
+            style: ({ theme }) => [
+              {
+                border: '1px solid',
+                color: (theme.vars || theme).palette.grey[800],
+                borderColor: (theme.vars || theme).palette.grey[300],
+                backgroundColor: (theme.vars || theme).palette.grey[50],
+                fontFamily: theme.typography.fontFamilyCode,
+                fontWeight: 400,
+                fontSize: defaultTheme.typography.pxToRem(13), // 14px
+                lineHeight: 21 / 14,
+                letterSpacing: 0,
+                WebkitFontSmoothing: 'subpixel-antialiased',
+                '&:hover, &.Mui-focusVisible': {
+                  borderColor: (theme.vars || theme).palette.primary.main,
+                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                  '& .MuiButton-endIcon': {
+                    color: (theme.vars || theme).palette.primary.main,
+                  },
+                },
+                '& .MuiButton-startIcon': {
+                  color: (theme.vars || theme).palette.grey[400],
+                },
                 '& .MuiButton-endIcon': {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primary[300]
-                      : theme.palette.primary.main,
+                  display: 'inline-block',
+                  position: 'absolute',
+                  right: 0,
+                  marginRight: 10,
+                  color: (theme.vars || theme).palette.grey[700],
                 },
               },
-              '& .MuiButton-startIcon': {
-                color: theme.palette.grey[400],
-              },
-              '& .MuiButton-endIcon': {
-                display: 'inline-block',
-                position: 'absolute',
-                right: 0,
-                marginRight: 10,
-                color:
-                  theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
-              },
-            },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.grey[400],
+                borderColor: (theme.vars || theme).palette.primaryDark[400],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                '&:hover, &.Mui-focusVisible': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  '& .MuiButton-endIcon': {
+                    color: (theme.vars || theme).palette.primary[300],
+                  },
+                },
+                '& .MuiButton-endIcon': {
+                  color: (theme.vars || theme).palette.grey[400],
+                },
+              }),
+            ],
           },
           {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
-            style: {
+            style: ({ theme }) => ({
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 700,
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[600],
+              color: (theme.vars || theme).palette.primary[600],
+              ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+              }),
               mb: 1,
               '& svg': {
                 ml: -0.5,
               },
-            },
+            }),
           },
         ],
       },
@@ -388,95 +482,88 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         variants: [
           {
             props: { color: 'primary' },
-            style: {
-              height: 34,
-              width: 34,
-              border: `1px solid ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200]
-              }`,
-              borderRadius: theme.shape.borderRadius,
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-              '&:hover': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-                background:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
+            style: ({ theme }) => [
+              {
+                height: 34,
+                width: 34,
+                border: `1px solid`,
+                borderColor: (theme.vars || theme).palette.grey[200],
+                color: (theme.vars || theme).palette.primary[500],
+                borderRadius: theme.shape.borderRadius,
+                '&:hover': {
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                  background: (theme.vars || theme).palette.grey[50],
+                },
               },
-            },
+              theme.applyDarkStyles({
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  background: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+              }),
+            ],
           },
         ],
       },
       MuiMenu: {
         styleOverrides: {
-          paper: {
-            minWidth: 160,
-            color: theme.palette.text.secondary,
-            backgroundImage: 'none',
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.background.paper,
-            border: `1px solid ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
-            '& .MuiMenuItem-root': {
-              fontSize: theme.typography.pxToRem(14),
-              fontWeight: 500,
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-              '&:focus': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-              '&.Mui-selected': {
+          paper: ({ theme }) => [
+            {
+              minWidth: 160,
+              color: (theme.vars || theme).palette.text.secondary,
+              backgroundImage: 'none',
+              border: '1px solid',
+              backgroundColor: (theme.vars || theme).palette.background.paper,
+              borderColor: (theme.vars || theme).palette.grey[200],
+              '& .MuiMenuItem-root': {
+                fontSize: theme.typography.pxToRem(14),
                 fontWeight: 500,
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[300]
-                    : theme.palette.primary[600],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : alpha(theme.palette.primary[100], 0.6),
+                '&:hover, &:focus': {
+                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                },
+                '&.Mui-selected': {
+                  fontWeight: 500,
+                  color: (theme.vars || theme).palette.primary[600],
+                  backgroundColor: alpha(theme.palette.primary[100], 0.6),
+                },
               },
             },
-          },
+            theme.applyDarkStyles({
+              backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+              borderColor: (theme.vars || theme).palette.primaryDark[700],
+              '& .MuiMenuItem-root': {
+                '&:hover, &:focus': {
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+                '&.Mui-selected': {
+                  color: (theme.vars || theme).palette.primary[300],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+              },
+            }),
+          ],
         },
       },
       MuiPopover: {
         styleOverrides: {
-          paper: {
-            boxShadow: `0px 4px 20px ${
-              theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-            }`,
-          },
+          paper: ({ theme }) => ({
+            boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+            ...theme.applyDarkStyles({
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+            }),
+          }),
         },
       },
       MuiDivider: {
         styleOverrides: {
-          root: {
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
-          },
+          root: ({ theme }) => ({
+            borderColor: (theme.vars || theme).palette.grey[100],
+            ...theme.applyDarkStyles({
+              borderColor: alpha(theme.palette.primary[100], 0.08),
+            }),
+          }),
         },
       },
       MuiLink: {
@@ -485,19 +572,9 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         },
         styleOverrides: {
           root: {
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[600],
             fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
-            '&:hover': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[200]
-                  : theme.palette.primary[700],
-            },
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
@@ -506,86 +583,97 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             },
           },
         },
+        variants: [
+          {
+            props: { color: 'primary' },
+            style: ({ theme }) => [
+              {
+                color: (theme.vars || theme).palette.primary[600],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[700],
+                },
+              },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[300],
+                '&:hover': {
+                  color: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+            ],
+          },
+        ],
       },
       MuiChip: {
         styleOverrides: {
-          root: ({ ownerState: { color, variant } }) => ({
+          root: ({ ownerState: { color, variant }, theme }) => ({
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                color:
-                  theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
                 backgroundColor: 'transparent',
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.grey[100], 0.1)
-                    : theme.palette.grey[200],
+                color: (theme.vars || theme).palette.grey[900],
+                borderColor: (theme.vars || theme).palette.grey[200],
                 '&:hover': {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.grey[300]
-                      : theme.palette.grey[900],
+                  color: (theme.vars || theme).palette.grey[900],
                 },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.grey[300],
+                  borderColor: alpha(theme.palette.grey[100], 0.1),
+                  '&:hover': {
+                    color: (theme.vars || theme).palette.grey[300],
+                  },
+                }),
               }),
             ...(variant === 'outlined' &&
               color === 'primary' && {
                 '&:hover': {
-                  color: theme.palette.primary[500],
+                  color: (theme.vars || theme).palette.primary[500],
                 },
               }),
             ...(variant === 'filled' &&
               color === 'default' && {
                 border: '1px solid transparent',
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[500], 0.8)
-                    : alpha(theme.palette.primary[100], 0.5),
+                color: (theme.vars || theme).palette.primary[700],
+                backgroundColor: alpha(theme.palette.primary[100], 0.5),
                 '&:hover': {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.primary[100],
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
                 },
+                ...theme.applyDarkStyles({
+                  color: '#fff',
+                  backgroundColor: alpha(theme.palette.primaryDark[500], 0.8),
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  },
+                }),
               }),
             // for labelling product in the search
             // @ts-ignore internal repo module augmentation issue
             ...(variant === 'light' && {
               ...(color === 'default' && {
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[200]
-                    : theme.palette.primary[700],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.5)
-                    : alpha(theme.palette.primary[100], 0.3),
+                color: (theme.vars || theme).palette.primary[700],
+                backgroundColor: alpha(theme.palette.primary[100], 0.3),
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[200],
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                }),
               }),
               ...(color === 'warning' && {
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.warning[900],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.warning[900]
-                    : theme.palette.warning[100],
+                color: (theme.vars || theme).palette.warning[900],
+                backgroundColor: (theme.vars || theme).palette.warning[100],
+                ...theme.applyDarkStyles({
+                  color: '#fff',
+                  backgroundColor: (theme.vars || theme).palette.warning[900],
+                }),
               }),
               ...(color === 'success' && {
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.success[900],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.success[900]
-                    : theme.palette.success[100],
+                color: (theme.vars || theme).palette.success[900],
+                backgroundColor: (theme.vars || theme).palette.success[100],
+                ...theme.applyDarkStyles({
+                  color: '#fff',
+                  backgroundColor: (theme.vars || theme).palette.success[900],
+                }),
               }),
             }),
           }),
-          deleteIcon: {
-            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
-            '&:hover': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.grey[100]
-                  : theme.palette.primary[900],
-            },
-          },
         },
       },
       MuiList: {
@@ -597,40 +685,43 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiListItemButton: {
         styleOverrides: {
-          root: {
-            padding: '8px',
-            textTransform: 'none',
-            fontWeight: 500,
-            fontSize: theme.typography.pxToRem(14),
-            color:
-              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
-            borderRadius: 0,
-            '&:hover': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
-            '&.Mui-selected': {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
-              borderRadius: 10,
-              border: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? `${theme.palette.primary[700]} !important`
-                  : `${theme.palette.primary[500]} !important`,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.primary[50],
+          root: ({ theme }) => [
+            {
+              padding: '8px',
+              textTransform: 'none',
+              fontWeight: 500,
+              fontSize: theme.typography.pxToRem(14),
+              color: theme.palette.grey[700],
+              borderRadius: 0,
               '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[100],
+                backgroundColor: theme.palette.grey[50],
+              },
+              '&.Mui-selected': {
+                borderRadius: 10,
+                border: '1px solid',
+                color: (theme.vars || theme).palette.primary[500],
+                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
               },
             },
-          },
+            theme.applyDarkStyles({
+              color: theme.palette.grey[300],
+              '&:hover': {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              },
+              '&.Mui-selected': {
+                color: '#fff',
+                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              },
+            }),
+          ],
         },
       },
       MuiSelect: {
@@ -650,85 +741,90 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiPaper: {
         styleOverrides: {
-          root: {
-            backgroundImage: 'none',
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-            '&[href]': {
-              textDecorationLine: 'none',
-            },
-          },
-          outlined: {
-            display: 'block',
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[200],
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: theme.palette.primaryDark[700],
-            }),
-            'a&, button&': {
-              '&:hover': {
-                boxShadow: `0px 4px 20px ${
-                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-                }`,
+          root: ({ theme, ownerState }) => [
+            {
+              backgroundImage: 'none',
+              backgroundColor: '#fff',
+              '&[href]': {
+                textDecorationLine: 'none',
               },
+              ...(ownerState.variant === 'outlined' && {
+                display: 'block',
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ':is(a, button)': {
+                  '&:hover': {
+                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                  },
+                },
+              }),
             },
-          },
+            theme.applyDarkStyles({
+              backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+              ...(ownerState.variant === 'outlined' && {
+                borderColor: (theme.vars || theme).palette.primaryDark[500],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                ':is(a, button)': {
+                  '&:hover': {
+                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                  },
+                },
+              }),
+            }),
+          ],
         },
       },
       MuiTableCell: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             padding: theme.spacing(1, 2),
-            borderColor: theme.palette.divider,
-          },
-          head: {
-            color: theme.palette.text.primary,
-            fontWeight: 700,
-          },
-          body: {
-            color: theme.palette.text.secondary,
-          },
+            borderColor: (theme.vars || theme).palette.divider,
+            ...(ownerState.variant === 'head' && {
+              color: (theme.vars || theme).palette.text.primary,
+              fontWeight: 700,
+            }),
+            ...(ownerState.variant === 'body' && {
+              color: (theme.vars || theme).palette.text.secondary,
+            }),
+          }),
         },
       },
       MuiToggleButtonGroup: {
         styleOverrides: {
-          root: {
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-          },
+          root: ({ theme }) => ({
+            backgroundColor: '#fff',
+            ...theme.applyDarkStyles({
+              backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+            }),
+          }),
         },
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: {
-            textTransform: 'none',
-            fontWeight: 500,
-            color:
-              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[200],
-            '&.Mui-selected': {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? `${theme.palette.primary[700]} !important`
-                  : `${theme.palette.primary[500]} !important`,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.primary[50],
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[100],
+          root: ({ theme }) => [
+            {
+              textTransform: 'none',
+              fontWeight: 500,
+              color: theme.palette.grey[700],
+              borderColor: theme.palette.grey[200],
+              '&.Mui-selected': {
+                color: (theme.vars || theme).palette.primary[500],
+                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                backgroundColor: (theme.vars || theme).palette.primary[50],
               },
             },
-          },
+            theme.applyDarkStyles({
+              color: theme.palette.grey[300],
+              borderColor: theme.palette.primaryDark[500],
+              '&.Mui-selected': {
+                color: '#fff',
+                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              },
+            }),
+          ],
         },
       },
       MuiTooltip: {
@@ -760,12 +856,14 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
               opacity: 1,
             },
           },
-          track: {
+          track: ({ theme }) => ({
             opacity: 1,
             borderRadius: 32,
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
-          },
+            backgroundColor: theme.palette.grey[400],
+            ...theme.applyDarkStyles({
+              backgroundColor: theme.palette.grey[800],
+            }),
+          }),
           thumb: {
             flexShrink: 0,
             width: '14px',
@@ -775,33 +873,34 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiPaginationItem: {
         styleOverrides: {
-          root: {
-            textTransform: 'none',
-            fontWeight: 700,
-            color:
-              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[200],
-            '&.Mui-selected': {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? `${theme.palette.primary[700]} !important`
-                  : `${theme.palette.primary[500]} !important`,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.primary[50],
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[100],
+          root: ({ theme }) => [
+            {
+              textTransform: 'none',
+              fontWeight: 700,
+              color: theme.palette.grey[700],
+              borderColor: theme.palette.grey[200],
+              '&.Mui-selected': {
+                color: (theme.vars || theme).palette.primary[500],
+                borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                backgroundColor: (theme.vars || theme).palette.primary[50],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
               },
             },
-          },
+            theme.applyDarkStyles({
+              color: theme.palette.grey[300],
+              borderColor: theme.palette.primaryDark[500],
+              '&.Mui-selected': {
+                color: '#fff',
+                borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              },
+            }),
+          ],
         },
       },
       MuiCssBaseline: {
@@ -813,5 +912,12 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
   };
 }
 
-const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents(darkTheme));
+export const brandingDarkTheme = createTheme({
+  ...getDesignTokens('dark'),
+  ...getThemedComponents(),
+});
+
+export const brandingLightTheme = createTheme({
+  ...getDesignTokens('light'),
+  ...getThemedComponents(),
+});

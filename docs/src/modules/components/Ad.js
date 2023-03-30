@@ -94,6 +94,10 @@ class AdErrorBoundary extends React.Component {
       eventAction: 'crash',
       eventLabel,
     });
+    window.gtag('event', 'ad', {
+      eventAction: 'crash',
+      eventLabel,
+    });
   }
 
   render() {
@@ -117,7 +121,7 @@ function Ad() {
   let children;
   let label;
   // Hide the content to google bot to avoid its indexation.
-  if (/Googlebot/.test(navigator.userAgent) || disableAd) {
+  if ((typeof window !== 'undefined' && /Googlebot/.test(navigator.userAgent)) || disableAd) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
@@ -194,6 +198,10 @@ function Ad() {
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'ad',
+        eventAction: 'display',
+        eventLabel,
+      });
+      window.gtag('event', 'ad', {
         eventAction: 'display',
         eventLabel,
       });

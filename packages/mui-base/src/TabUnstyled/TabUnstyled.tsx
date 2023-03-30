@@ -8,24 +8,26 @@ import {
   TabUnstyledProps,
   TabUnstyledTypeMap,
   TabUnstyledRootSlotProps,
+  TabUnstyledOwnerState,
 } from './TabUnstyled.types';
-import useTab from './useTab';
+import useTab from '../useTab';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
+const useUtilityClasses = (ownerState: TabUnstyledOwnerState) => {
   const { selected, disabled } = ownerState;
 
   const slots = {
     root: ['root', selected && 'selected', disabled && 'disabled'],
   };
 
-  return composeClasses(slots, getTabUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTabUnstyledUtilityClass));
 };
 /**
  *
  * Demos:
  *
- * - [Unstyled tabs](https://mui.com/base/react-tabs/)
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
@@ -41,8 +43,8 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
     onClick,
     onFocus,
     component,
-    components = {},
-    componentsProps = {},
+    slotProps = {},
+    slots = {},
     ...other
   } = props;
 
@@ -75,11 +77,11 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabRoot: React.ElementType = component ?? components.Root ?? 'button';
+  const TabRoot: React.ElementType = component ?? slots.root ?? 'button';
   const tabRootProps: WithOptionalOwnerState<TabUnstyledRootSlotProps> = useSlotProps({
     elementType: TabRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -117,21 +119,6 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the Tab.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Tab.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -148,6 +135,21 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onFocus: PropTypes.func,
+  /**
+   * The props used for each slot inside the Tab.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Tab.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * You can provide your own value. Otherwise, we fall back to the child position index.
    */

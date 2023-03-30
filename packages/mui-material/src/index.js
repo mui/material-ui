@@ -412,7 +412,9 @@ export { StyledEngineProvider } from './styles';
 
 export { default as unstable_composeClasses } from '@mui/base/composeClasses';
 
-export { default as generateUtilityClass } from '@mui/base/generateUtilityClass';
-export * from '@mui/base/generateUtilityClass';
+export { default as generateUtilityClass } from './generateUtilityClass';
+export * from './generateUtilityClass';
 
-export { default as generateUtilityClasses } from '@mui/base/generateUtilityClasses';
+export { default as generateUtilityClasses } from './generateUtilityClasses';
+
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';

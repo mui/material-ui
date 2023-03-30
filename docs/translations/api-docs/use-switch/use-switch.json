@@ -1,0 +1,18 @@
+{
+  "hookDescription": "The basic building block for creating custom switches.",
+  "parametersDescriptions": {
+    "checked": "If <code>true</code>, the component is checked.",
+    "defaultChecked": "The default checked state. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "onChange": "Callback fired when the state is changed.",
+    "readOnly": "If <code>true</code>, the component is read only.",
+    "required": "If <code>true</code>, the <code>input</code> element is required."
+  },
+  "returnValueDescriptions": {
+    "checked": "If <code>true</code>, the component will be checked.",
+    "disabled": "If <code>true</code>, the component will be disabled.",
+    "focusVisible": "If <code>true</code>, it indicates that the component is being focused using keyboard.",
+    "getInputProps": "Resolver for the input slot's props.",
+    "readOnly": "If <code>true</code>, the component will be read only."
+  }
+}

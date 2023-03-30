@@ -10,8 +10,8 @@ const caseAllCaps = {
 const defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 
 /**
- * @see @link{https://material.io/design/typography/the-type-system.html}
- * @see @link{https://material.io/design/typography/understanding-typography.html}
+ * @see @link{https://m2.material.io/design/typography/the-type-system.html}
+ * @see @link{https://m2.material.io/design/typography/understanding-typography.html}
  */
 export default function createTypography(palette, typography) {
   const {
@@ -72,6 +72,13 @@ export default function createTypography(palette, typography) {
     button: buildVariant(fontWeightMedium, 14, 1.75, 0.4, caseAllCaps),
     caption: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
     overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps),
+    inherit: {
+      fontFamily: 'inherit',
+      fontWeight: 'inherit',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      letterSpacing: 'inherit',
+    },
   };
 
   return deepmerge(

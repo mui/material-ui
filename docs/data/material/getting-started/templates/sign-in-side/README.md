@@ -4,7 +4,9 @@
 
 <!-- #default-branch-switch -->
 
-Copy the files into your project, or one of the [example projects](https://github.com/mui/material-ui/tree/master/examples), and import and use the `SignInSide` component.
+1. Copy the files into your project, or one of the [example projects](https://github.com/mui/material-ui/tree/master/examples).
+2. Make sure your project has the required dependencies: @mui/material, @mui/icons-material, @emotion/styled, @emotion/react.
+3. Import and use the `SignInSide` component.
 
 ## Demo
 

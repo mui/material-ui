@@ -35,7 +35,7 @@ return React.createElement(props.component, props);
 ```
 
 For example, by default a `List` component will render a `<ul>` element.
-This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop.
+This can be changed by passing a [React component](https://react.dev/reference/react/Component) to the `component` prop.
 The following example will render the `List` component with a `<nav>` element as root element instead:
 
 ```jsx
@@ -52,7 +52,7 @@ The following example will render the `List` component with a `<nav>` element as
 This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library.
 But it also **comes with a small caveat!**
 
-### Caveat with inlining
+### Inlining & caveat
 
 Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders.
 For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
@@ -76,7 +76,9 @@ function ListItemLink(props) {
 }
 ```
 
-⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
+:::warning
+⚠️ However, since we are using an inline function to change the rendered component, React will remount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily but the state will be lost, e.g. the ripple effect of the `ListItem` will also not work correctly.
+:::
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead.
 Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
@@ -109,7 +111,7 @@ function ListItemLink(props) {
 }
 ```
 
-### Caveat with prop forwarding
+### Prop forwarding & caveat
 
 You can take advantage of the prop forwarding to simplify the code.
 In this example, we don't create any intermediary component:
@@ -120,32 +122,36 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ However, this strategy suffers from a limitation: prop collisions.
-The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
+:::warning
+⚠️ However, this strategy suffers from a limitation: prop name collisions.
+The component receiving the `component` prop (e.g. ListItem) might intercept the prop (e.g. to) that is destined to the leave element (e.g. Link).
+:::
 
 ### With TypeScript
 
-Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation.
-For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component.
-For a code example concerning Button and react-router-dom checkout [these demos](/material-ui/guides/routing/#component-prop).
-
-To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component.
+To be able to use the `component` prop, the type of the props should be used with type arguments. Otherwise, the `component` prop will not be present.
 
 The examples below use `TypographyProps` but the same will work for any component which has props defined with `OverrideProps`.
 
-The following `CustomComponent` component has the same props as the `Typography` component.
-
 ```ts
+import { TypographyProps } from '@mui/material/Typography';
+
 function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
   /* ... */
 }
+// ...
+<CustomComponent component="a" />;
 ```
 
 Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`.
 In addition, the `CustomComponent` will have all props of a `<a>` HTML element.
 The other props of the `Typography` component will also be present in props of the `CustomComponent`.
 
-It is possible to have generic `CustomComponent` which will accept any React component, custom, and HTML elements.
+You can find a code example with the Button and react-router-dom in [these demos](/material-ui/guides/routing/#component-prop).
+
+#### Generic
+
+It's also possible to have a generic `CustomComponent` which will accept any React component, and HTML elements.
 
 ```ts
 function GenericCustomComponent<C extends React.ElementType>(
@@ -155,17 +161,14 @@ function GenericCustomComponent<C extends React.ElementType>(
 }
 ```
 
-If the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+If the `GenericCustomComponent` is used with a `component` prop provided, it should also have all props required by the provided component.
 
 ```ts
 function ThirdPartyComponent({ prop1 }: { prop1: string }) {
-  return <div />;
+  /* ... */
 }
 // ...
-function ThirdPartyComponent({ prop1 }: { prop1: string }) {
-  return <div />;
-}
-// ...
+<GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
 ```
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
@@ -186,14 +189,14 @@ ref forwarding. However, only the following component types can be given a `ref`
 - Any MUI component
 - class components i.e. `React.Component` or `React.PureComponent`
 - DOM (or host) components e.g. `div` or `button`
-- [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
-- [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
+- [React.forwardRef components](https://react.dev/reference/react/forwardRef)
+- [React.lazy components](https://react.dev/reference/react/lazy)
+- [React.memo components](https://react.dev/reference/react/memo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from
 React in your console similar to:
 
-:::info
+:::warning
 Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 :::
 
@@ -204,7 +207,7 @@ In some instances, an additional warning is issued to help with debugging, simil
 Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 :::
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://react.dev/reference/react/forwardRef).
 
 ```diff
 -const MyButton = () => <div role="button" />;

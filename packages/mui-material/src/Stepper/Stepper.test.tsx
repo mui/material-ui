@@ -111,7 +111,9 @@ describe('<Stepper />', () => {
     });
 
     it('passes index down correctly when rendering children containing arrays', () => {
-      const CustomStep = ({ index }: StepProps) => <div data-index={index} data-testid="step" />;
+      function CustomStep({ index }: StepProps) {
+        return <div data-index={index} data-testid="step" />;
+      }
 
       const { getAllByTestId } = render(
         <Stepper nonLinear>
@@ -143,7 +145,9 @@ describe('<Stepper />', () => {
     });
 
     it('should allow the developer to specify a custom step connector', () => {
-      const CustomConnector = () => <div className="CustomConnector" />;
+      function CustomConnector() {
+        return <div className="CustomConnector" />;
+      }
       const { container } = render(
         <Stepper connector={<CustomConnector />}>
           <Step />

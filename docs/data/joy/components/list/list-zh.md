@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React List component
+components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
 githubLabel: 'component: list'
 ---
 
@@ -107,7 +108,7 @@ The nested list inherits the list `size` and a few other CSS variables, such as 
 
 ### Horizontal list
 
-To show a list in a horizontal direction, use the `row` prop on the `List` component.
+To show a list in a horizontal direction, use the `orientation="horizontal"` prop on the `List` component.
 
 :::warning
 **Note:** Nested lists don't work in the horizontal direction. To do that, create a custom pop-up component instead (see the [Navigation menu](#navigation-menu) example).
@@ -190,7 +191,7 @@ Inspired by [Gatsby's documentation](https://www.gatsbyjs.com/docs) sidenav. Thi
 
 ### Navigation menu
 
-Inspired by the [APG Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html) design pattern. This example uses a combination of horizontal and vertical lists to form the navigation menu bar.
+Inspired by the [APG Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/examples/menubar-navigation/) design pattern. This example uses a combination of horizontal and vertical lists to form the navigation menu bar.
 
 It also supports keyboard navigation, inspired by the [Roving UX](https://github.com/argyleink/roving-ux) technique.
 

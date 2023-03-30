@@ -1,4 +1,4 @@
-# CSS variables
+# TODO merge with other pages
 
 <p class="description">Learn about the experimental API for using CSS variables with Material UI components.</p>
 
@@ -91,19 +91,19 @@ const theme = experimental_extendTheme({
 If you are using [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), you can replace it with the new experimental provider.
 
 ```diff
-- import { ThemeProvider, createTheme } from '@mui/material/styles';
-+ import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+-import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
 
-function App() {
-  return (
+ function App() {
+   return (
 -    <ThemeProvider theme={createTheme()}>
 -      ...
 -    </ThemeProvider>
 +    <CssVarsProvider>
 +      ...
 +    </CssVarsProvider>
-  )
-}
+   )
+ }
 ```
 
 ### Toggle between light and dark mode
@@ -243,6 +243,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 **options**
 
-- `enableSystem?: boolean`: - If `true` and the selected mode is not `light` or `dark`, the system mode is used
+- `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 
 export type MenuListSlot = 'root';
 
@@ -25,6 +25,7 @@ export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     color?: OverridableStringUnion<ColorPaletteProp, MenuListPropsColorOverrides>;
     /**
      * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+     * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', MenuListPropsSizeOverrides>;
     /**
@@ -32,8 +33,8 @@ export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
-     * @default 'plain'
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, MenuListPropsVariantOverrides>;
   };
@@ -47,4 +48,4 @@ export type MenuListProps<
   },
 > = OverrideProps<MenuListTypeMap<P, D>, D>;
 
-export interface MenuListOwnerState extends MenuListProps {}
+export interface MenuListOwnerState extends ApplyColorInversion<MenuListProps> {}

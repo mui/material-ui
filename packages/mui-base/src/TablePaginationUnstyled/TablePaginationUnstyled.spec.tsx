@@ -57,6 +57,21 @@ const styledTablePagination = (
     onPageChange={() => {}}
     page={0}
     rowsPerPage={10}
-    components={{ Root, Actions, Select, MenuItem, SelectLabel, DisplayedRows, Toolbar, Spacer }}
+    slots={{
+      root: Root,
+      actions: Actions,
+      select: Select,
+      menuItem: MenuItem,
+      selectLabel: SelectLabel,
+      displayedRows: DisplayedRows,
+      toolbar: Toolbar,
+      spacer: Spacer,
+    }}
+    slotProps={{
+      actions: {
+        showFirstButton: true,
+        showLastButton: true,
+      },
+    }}
   />
 );

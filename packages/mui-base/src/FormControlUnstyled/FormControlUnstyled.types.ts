@@ -4,7 +4,7 @@ import { SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface FormControlUnstyledComponentsPropsOverrides {}
+export interface FormControlUnstyledRootSlotPropsOverrides {}
 
 export interface FormControlUnstyledOwnProps {
   /**
@@ -15,21 +15,6 @@ export interface FormControlUnstyledOwnProps {
    * Class name applied to the root element.
    */
   className?: string;
-  /**
-   * The components used for each slot inside the FormControl.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  componentsProps?: {
-    root?: SlotComponentProps<
-      'div',
-      FormControlUnstyledComponentsPropsOverrides,
-      FormControlUnstyledOwnerState
-    >;
-  };
   defaultValue?: unknown;
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
@@ -47,7 +32,32 @@ export interface FormControlUnstyledOwnProps {
    * @default false
    */
   required?: boolean;
+  /**
+   * The props used for each slot inside the FormControl.
+   * @default {}
+   */
+  slotProps?: {
+    root?: SlotComponentProps<
+      'div',
+      FormControlUnstyledRootSlotPropsOverrides,
+      FormControlUnstyledOwnerState
+    >;
+  };
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: FormControlUnstyledSlots;
   value?: unknown;
+}
+
+export interface FormControlUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormControlUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

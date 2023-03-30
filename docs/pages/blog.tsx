@@ -19,19 +19,21 @@ import Head from 'docs/src/modules/components/Head';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import GradientText from 'docs/src/components/typography/GradientText';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
+import generateRssFeed from 'docs/scripts/generateRSSFeed';
 
 export const getStaticProps = () => {
   const data = getAllBlogPosts();
+  generateRssFeed(data.allBlogPosts);
   return {
     props: data,
   };
 };
 
-const PostPreview = (props: BlogPost) => {
+function PostPreview(props: BlogPost) {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
@@ -40,21 +42,24 @@ const PostPreview = (props: BlogPost) => {
             key={tag}
             label={tag}
             size="small"
-            sx={{
-              fontWeight: 500,
-              color: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[700],
-              background: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.grey[700], 0.5)
-                  : theme.palette.grey[100],
-              '&:hover': {
-                background: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.grey[700], 0.5)
-                    : theme.palette.grey[100],
-              },
-            }}
+            sx={[
+              (theme) => ({
+                fontWeight: 500,
+                color: (theme.vars || theme).palette.grey[700],
+                background: (theme.vars || theme).palette.grey[100],
+                '&:hover': {
+                  background: (theme.vars || theme).palette.grey[100],
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.grey[50],
+                  background: alpha(theme.palette.grey[700], 0.5),
+                  '&:hover': {
+                    background: alpha(theme.palette.grey[700], 0.5),
+                  },
+                }),
+            ]}
           />
         ))}
       </Box>
@@ -84,30 +89,31 @@ const PostPreview = (props: BlogPost) => {
       </Typography>
       {props.authors && (
         <AvatarGroup
-          sx={{
-            mt: 2,
-            mb: 1,
-            alignSelf: 'flex-start',
-            '& .MuiAvatar-circular': {
-              width: 28,
-              height: 28,
-              border: 3,
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[800]
-                  : theme.palette.grey[100],
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[100],
-              color: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[100]
-                  : theme.palette.grey[800],
-              fontSize: (theme) => theme.typography.pxToRem(13),
-              fontWeight: 500,
-            },
-          }}
+          sx={[
+            (theme) => ({
+              mt: 2,
+              mb: 1,
+              alignSelf: 'flex-start',
+              '& .MuiAvatar-circular': {
+                width: 28,
+                height: 28,
+                border: 3,
+                borderColor: (theme.vars || theme).palette.grey[100],
+                backgroundColor: (theme.vars || theme).palette.grey[100],
+                color: (theme.vars || theme).palette.grey[800],
+                fontSize: theme.typography.pxToRem(13),
+                fontWeight: 500,
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '& .MuiAvatar-circular': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[800],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  color: (theme.vars || theme).palette.primaryDark[100],
+                },
+              }),
+          ]}
         >
           {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
             <Avatar
@@ -162,13 +168,13 @@ const PostPreview = (props: BlogPost) => {
           sx={(theme) => ({
             mt: { xs: 1, md: 0 },
             mb: { xs: -1, md: 0 },
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[600],
+            color: (theme.vars || theme).palette.primary[600],
             '& .MuiButton-endIcon': {
               ml: 0,
             },
+            ...theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primary[300],
+            }),
           })}
         >
           Read more
@@ -176,7 +182,7 @@ const PostPreview = (props: BlogPost) => {
       </Box>
     </React.Fragment>
   );
-};
+}
 
 const PAGE_SIZE = 5;
 
@@ -242,7 +248,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
     );
   };
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="Blog - MUI"
         description="Follow the MUI blog to learn about new product features, latest advancements in UI development, and business initiatives."
@@ -272,26 +278,31 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 key={post.slug}
                 component="li"
                 variant="outlined"
-                sx={(theme) => ({
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  position: 'relative',
-                  transition: 'all ease 120ms',
-                  '&:hover, &:focus-within': {
-                    borderColor: theme.palette.mode === 'dark' ? 'primary.600' : 'grey.300',
-                    boxShadow: `0px 4px 20px ${
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(0, 0, 0, 0.5)'
-                        : 'rgba(170, 180, 190, 0.3)'
-                    }`,
-                  },
-                  '&:focus-within': {
-                    '& a': {
-                      outline: 'none',
+                sx={[
+                  {
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    transition: 'all ease 120ms',
+                    '&:hover, &:focus-within': {
+                      borderColor: 'grey.300',
+                      boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                    },
+                    '&:focus-within': {
+                      '& a': {
+                        outline: 0,
+                      },
                     },
                   },
-                })}
+                  (theme) =>
+                    theme.applyDarkStyles({
+                      '&:hover, &:focus-within': {
+                        borderColor: 'primary.600',
+                        boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+                      },
+                    }),
+                ]}
               >
                 {post.image && (
                   <Box
@@ -341,7 +352,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Typography>
           <Box sx={{ gridRow: 'span 2' }}>
             <Box
-              sx={{
+              sx={(theme) => ({
                 position: 'sticky',
                 top: 100,
                 alignSelf: 'start',
@@ -350,15 +361,13 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
                 p: 2,
                 borderRadius: 1,
                 border: '1px solid',
-                background: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.2)
-                    : 'rgba(255, 255, 255, 0.2)',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200],
-              }}
+                background: 'rgba(255, 255, 255, 0.2)',
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ...theme.applyDarkStyles({
+                  background: alpha(theme.palette.primaryDark[700], 0.2),
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                }),
+              })}
             >
               <Typography color="text.primary" fontWeight="500" sx={{ mb: 2 }}>
                 Filter by tag
@@ -442,6 +451,6 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       <HeroEnd />
       <Divider />
       <AppFooter />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }
