@@ -88,7 +88,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     [],
   );
 
-  const controlledState = React.useMemo(() => ({ open: openProp }), [openProp]);
+  const controlledProps = React.useMemo(() => ({ open: openProp }), [openProp]);
 
   const stateChangeHandler: StateChangeCallback<MenuInternalState> = React.useCallback(
     (event, field, fieldValue, reason, state) => {
@@ -109,7 +109,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     contextValue: listContextValue,
     state: { open },
   } = useList<string, MenuInternalState>({
-    controlledProps: controlledState,
+    controlledProps,
     disabledItemsFocusable: true,
     focusManagement: 'DOM',
     getItemDomElement,

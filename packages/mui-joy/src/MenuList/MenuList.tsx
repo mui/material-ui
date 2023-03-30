@@ -4,8 +4,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
@@ -120,15 +119,15 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
         ...contextValue,
         getListboxProps,
         open: true,
-      } as MenuUnstyledContextType),
+      } as MenuProviderValue),
     [contextValue, getListboxProps],
   );
 
   return (
     <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
+      <MenuProvider value={menuContextValue}>
         <ListProvider nested>{children}</ListProvider>
-      </MenuUnstyledContext.Provider>
+      </MenuProvider>
     </MenuListRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;

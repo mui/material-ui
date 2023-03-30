@@ -43,6 +43,11 @@ export interface UseTabReturnValue {
    */
   active: boolean;
   /**
+   * If `true`, the tab has visible focus.
+   * This is a workaround for browsers that do not support this feature natively.
+   */
+  focusVisible: boolean;
+  /**
    * If `true`, the tab is highlighted.
    */
   highlighted: boolean;
@@ -54,6 +59,11 @@ export interface UseTabReturnValue {
    * If `true`, the tab is selected.
    */
   selected: boolean;
+  /**
+   * Sets the focus-visible state of the tab.
+   * This is a workaround for browsers that do not support this feature natively.
+   */
+  setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
   /**
    * Total number of tabs in the nearest parent TabsList.
    * This can be used to determine if the tab is the last one to style it accordingly.

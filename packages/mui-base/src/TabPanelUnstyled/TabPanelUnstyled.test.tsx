@@ -14,7 +14,7 @@ describe('<TabPanelUnstyled />', () => {
     getTabId: () => '',
     getTabPanelId: () => '',
     getItemIndex: () => 0,
-    registerItem: () => ({ id: 0, unregister: () => {} }),
+    registerItem: () => ({ id: 0, deregister: () => {} }),
     totalSubitemCount: 1,
     direction: 'ltr',
     orientation: 'horizontal',

@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
@@ -155,8 +153,6 @@ const ListRoot = styled(StyledList, {
  */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
-  const menuContext = React.useContext(MenuUnstyledContext);
-  const selectContext = React.useContext(SelectUnstyledContext);
   const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -180,9 +176,6 @@ const List = React.forwardRef(function List(inProps, ref) {
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
-  if (menuContext || selectContext) {
-    role = 'group';
-  }
   if (radioGroupContext) {
     role = 'presentation';
   }

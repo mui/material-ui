@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import {
   OptionUnstyledProps,
@@ -41,11 +42,17 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const Root = component || slots.root || 'li';
 
+  const optionRef = React.useRef<HTMLLIElement>(null);
+  const combinedRef = useForkRef(optionRef, ref);
+
+  const computedLabel =
+    label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
+
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
+    label: computedLabel,
+    optionRef: combinedRef,
     value,
-    optionRef: ref,
-    label: label || children,
   });
 
   const ownerState: OptionUnstyledOwnerState<TValue> = {

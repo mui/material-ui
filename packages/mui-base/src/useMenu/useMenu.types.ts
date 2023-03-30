@@ -14,7 +14,7 @@ export interface UseMenuParameters {
 
 export interface UseMenuReturnValue {
   /**
-   * The value for the menu context.
+   * The value to be passed into the MenuProvider.
    */
   contextValue: MenuProviderValue;
   /**
@@ -41,6 +41,9 @@ export interface UseMenuReturnValue {
    * Items in the menu listbox.
    */
   menuItems: Map<string, MenuItemMetadata>;
+  /**
+   * If `true`, the menu is open.
+   */
   open: boolean;
 }
 

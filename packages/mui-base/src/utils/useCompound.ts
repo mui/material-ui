@@ -7,9 +7,9 @@ interface RegisterItemReturnValue<Key> {
    */
   id: Key;
   /**
-   * A function that unregisters the item.
+   * A function that deregisters the item.
    */
-  unregister: () => void;
+  deregister: () => void;
 }
 
 export type CompoundComponentContextValue<Key, Subitem> = {
@@ -23,7 +23,6 @@ export type CompoundComponentContextValue<Key, Subitem> = {
    * @param missingKeyGenerator A function that generates a unique id for the item.
    *   It is called with the set of the ids of all the items that have already been registered.
    *   Return `existingKeys.size` if you want to use the index of the new item as the id.
-   * @returns A function that unregisters the item.
    */
   registerItem: (
     id: Key | undefined,
@@ -78,7 +77,7 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
   const [subitems, setSubitems] = React.useState(new Map<Key, Subitem>());
   const subitemKeys = React.useRef(new Set<Key>());
 
-  const unregisterItem = React.useCallback(function unregisterItem(id: Key) {
+  const deregisterItem = React.useCallback(function deregisterItem(id: Key) {
     subitemKeys.current.delete(id);
     setSubitems((previousState) => {
       const newState = new Map(previousState);
@@ -115,10 +114,10 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
 
       return {
         id: providedOrGeneratedId,
-        unregister: () => unregisterItem(providedOrGeneratedId),
+        deregister: () => deregisterItem(providedOrGeneratedId),
       };
     },
-    [unregisterItem],
+    [deregisterItem],
   );
 
   const getItemIndex = React.useCallback(

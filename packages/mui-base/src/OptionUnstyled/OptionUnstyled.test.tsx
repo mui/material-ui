@@ -25,7 +25,7 @@ describe('<OptionUnstyled />', () => {
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
             registerHighlightChangeHandler: () => () => {},
-            registerItem: () => ({ id: 0, unregister: () => {} }),
+            registerItem: () => ({ id: 0, deregister: () => {} }),
             registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}
@@ -42,7 +42,7 @@ describe('<OptionUnstyled />', () => {
             getItemIndex: () => 0,
             getItemState: dummyGetItemState,
             registerHighlightChangeHandler: () => () => {},
-            registerItem: () => ({ id: 0, unregister: () => {} }),
+            registerItem: () => ({ id: 0, deregister: () => {} }),
             registerSelectionChangeHandler: () => () => {},
             totalSubitemCount: 0,
           }}

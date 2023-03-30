@@ -50,9 +50,9 @@ export function useCompoundItem<Key, Subitem>(
   const [registeredId, setRegisteredId] = React.useState(id);
 
   useEnhancedEffect(() => {
-    const { id: returnedId, unregister } = registerItem(id, itemMetadata, missingKeyGenerator);
+    const { id: returnedId, deregister } = registerItem(id, itemMetadata, missingKeyGenerator);
     setRegisteredId(returnedId);
-    return unregister;
+    return deregister;
   }, [registerItem, itemMetadata, missingKeyGenerator, id]);
 
   return {

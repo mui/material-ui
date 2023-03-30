@@ -51,6 +51,8 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     getRootProps: getButtonProps,
     ref: buttonRefHandler,
     active,
+    focusVisible,
+    setFocusVisible,
   } = useButton({
     disabled,
     focusableWhenDisabled: !selectionFollowsFocus,
@@ -87,11 +89,13 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
   return {
     getRootProps,
     active,
+    focusVisible,
     highlighted,
     index,
     // the `selected` state isn't set on the server (it relies on effects to be calculated),
     // so we fall back to checking the `value` prop with the selectedValue from the TabsContext
     selected: selected || value === selectedValue,
+    setFocusVisible,
     totalTabsCount,
   };
 }

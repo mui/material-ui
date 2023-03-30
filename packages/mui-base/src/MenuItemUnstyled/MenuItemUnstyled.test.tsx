@@ -18,7 +18,7 @@ const testContext = {
   getItemState: dummyGetItemState,
   open: false,
   registerHighlightChangeHandler: () => () => {},
-  registerItem: () => ({ id: '', unregister: () => {} }),
+  registerItem: () => ({ id: '', deregister: () => {} }),
   registerSelectionChangeHandler: () => () => {},
   totalSubitemCount: 0,
 };

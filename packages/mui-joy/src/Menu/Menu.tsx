@@ -4,8 +4,7 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -89,9 +88,18 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose],
+  );
+
   const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
     open,
-    onClose,
+    onOpenChange: handleOpenChange,
     listboxId: id,
   });
 
@@ -148,17 +156,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      ...contextValue,
-      open,
-    }),
-    [contextValue, open],
-  );
-
   const result = (
     <PopperUnstyled {...rootProps} modifiers={modifiers}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
+      <MenuProvider value={contextValue}>
         <ListProvider nested>
           {disablePortal ? (
             children
@@ -167,7 +167,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
             <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
           )}
         </ListProvider>
-      </MenuUnstyledContext.Provider>
+      </MenuProvider>
     </PopperUnstyled>
   );
 

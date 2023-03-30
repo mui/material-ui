@@ -44,7 +44,7 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
 
   const { index } = useCompoundItem<Value, SelectOption<Value>>(value, selectOption);
 
-  const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler);
+  const handleRef = useForkRef(optionRefParam, optionRef, listItemRefHandler)!;
 
   return {
     getRootProps: <Other extends EventHandlers = {}>(otherHandlers: Other = {} as Other) => ({
@@ -58,5 +58,6 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
     highlighted,
     index,
     selected,
+    ref: handleRef,
   };
 }

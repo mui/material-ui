@@ -11,12 +11,8 @@ import PopperUnstyled, {
   PopperUnstyledProps,
   PopperUnstyledTypeMap,
 } from '@mui/base/PopperUnstyled';
-import {
-  SelectUnstyledContext,
-  flattenOptionGroups,
-  getOptionsFromChildren,
-} from '@mui/base/SelectUnstyled';
-import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
+import useSelect, { SelectProvider } from '@mui/base/useSelect';
+import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -389,8 +385,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
-  const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
   const [listboxOpen, setListboxOpen] = useControlled({
     controlled: listboxOpenProp,
     default: defaultListboxOpen,
@@ -413,10 +407,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     }),
     [],
   );
-
-  React.useEffect(() => {
-    setGroupedOptions(getOptionsFromChildren(children));
-  }, [children]);
 
   React.useEffect(() => {
     setAnchorEl(rootRef.current);
@@ -446,6 +436,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     disabled,
     getButtonProps,
     getListboxProps,
+    getOptionMetadata,
     value,
   } = useSelect({
     buttonRef,
@@ -456,7 +447,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     onChange,
     onOpenChange: handleOpenChange,
     open: listboxOpen,
-    options,
     value: valueProp,
   });
 
@@ -476,9 +466,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOption = React.useMemo(() => {
-    return options.find((o) => value === o.value) ?? null;
-  }, [options, value]);
+  const selectedOption = React.useMemo(
+    () => getOptionMetadata(value as TValue) ?? null,
+    [getOptionMetadata, value],
+  );
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
@@ -585,16 +576,17 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     result = (
       <SlotListbox
         {...listboxProps}
+        keepMounted
         className={clsx(
           listboxProps.className,
           listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
         )}
         modifiers={modifiers}
       >
-        <SelectUnstyledContext.Provider value={context}>
+        <SelectProvider value={context}>
           {/* for building grouped options */}
           <ListProvider nested>{children}</ListProvider>
-        </SelectUnstyledContext.Provider>
+        </SelectProvider>
       </SlotListbox>
     );
 
