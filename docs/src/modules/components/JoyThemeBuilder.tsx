@@ -341,6 +341,8 @@ const generateThemeCode = (data: any) =>
   `
 import { extendTheme } from '@mui/joy/styles';
 
+${generateThemeAugmentation(data)}
+
 const theme = extendTheme(${JSON.stringify(
     data,
     (k, v) => (v === undefined ? '__undefined' : v),
@@ -774,6 +776,7 @@ function ColorTokenCreator({ onChange }: { onChange: (name: string, value: strin
             setOpen(false);
           }
         }}
+        sx={{ flexGrow: 1 }}
       />
       <IconButton
         variant="solid"
@@ -1380,7 +1383,6 @@ function TemplatesDialog({ children, data }: { children: React.ReactElement; dat
                   const { result } = extractTemplates({
                     './result/App.tsx': getMinimalJoyTemplate(),
                     './result/theme.ts': generateThemeCode(data),
-                    './result/themeAugmentation.ts': generateThemeAugmentation(data),
                   });
                   codeSandbox
                     .createJoyTemplate({
