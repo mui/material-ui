@@ -213,7 +213,8 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
               // Container's demo isn't ready
               // Grid has problem with react-docgen
               // Stack has problem with react-docgen
-              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/))
+              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/)) ||
+            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
           ) {
             return false;
           }
