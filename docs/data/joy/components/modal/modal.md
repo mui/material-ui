@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Modal component
+components: Modal, ModalClose, ModalDialog
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
@@ -74,7 +75,7 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Dialog
+### Modal Dialog
 
 To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
 
@@ -148,6 +149,14 @@ Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA
 
 {{"demo": "AlertDialogModal.js"}}
 
+### Vertical scroll
+
+By default, `ModalDialog` will not overflow the screen when the content is longer than the viewport.
+
+You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content.
+
+{{"demo": "DialogVerticalScroll.js"}}
+
 ### Nested modals
 
 The modal components can be nested:
@@ -185,7 +194,7 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 Therefore, in order to display a modal rendered on the server, disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}

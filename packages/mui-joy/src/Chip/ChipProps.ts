@@ -5,12 +5,40 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
 
+export interface ChipSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default 'span'
+   */
+  label: React.ElementType;
+  /**
+   * The component that renders the action.
+   * @default 'button'
+   */
+  action: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface ChipPropsColorOverrides {}
 export interface ChipPropsSizeOverrides {}
 export interface ChipPropsVariantOverrides {}
 
 export type ChipSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ChipSlot,
+  ChipSlots,
   {
     root: SlotProps<'div', {}, ChipOwnerState>;
     label: SlotProps<'span', {}, ChipOwnerState>;
@@ -67,7 +95,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, ChipPropsVariantOverrides>;

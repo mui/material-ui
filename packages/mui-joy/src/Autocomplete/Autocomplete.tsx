@@ -9,11 +9,10 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import {
-  useAutocomplete,
+import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
-} from '@mui/base/AutocompleteUnstyled';
+} from '@mui/base/useAutocomplete';
 import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
@@ -51,8 +50,8 @@ type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 
 
 const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
-const defaultGetOptionLabel = <T extends unknown>(option: T) =>
-  (option as { label: string }).label ?? option;
+// @ts-ignore
+const defaultGetOptionLabel = (option) => option.label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
 const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   <ListItem key={params.key} nested>
@@ -69,8 +68,17 @@ const defaultVariantMapping = {
 };
 
 const useUtilityClasses = (ownerState: OwnerState) => {
-  const { focused, hasClearIcon, hasPopupIcon, popupOpen, variant, color, size, multiple } =
-    ownerState;
+  const {
+    disabled,
+    focused,
+    hasClearIcon,
+    hasPopupIcon,
+    popupOpen,
+    variant,
+    color,
+    size,
+    multiple,
+  } = ownerState;
 
   const slots = {
     root: [
@@ -87,7 +95,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     clearIndicator: ['clearIndicator'],
-    popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
+    popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen', disabled && 'disabled'],
     listbox: ['listbox'],
     option: ['option'],
     loading: ['loading'],
@@ -103,9 +111,9 @@ const AutocompleteRoot = styled(StyledInputRoot as unknown as 'div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
-  '--Autocomplete-wrapper-gap': '3px',
+  '--Autocomplete-wrapperGap': '3px',
   ...(ownerState.size === 'lg' && {
-    '--Autocomplete-wrapper-gap': '4px',
+    '--Autocomplete-wrapperGap': '4px',
   }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
@@ -134,23 +142,23 @@ const AutocompleteWrapper = styled('div', {
   alignItems: 'center',
   flexWrap: 'wrap',
   [`&.${autocompleteClasses.multiple}`]: {
-    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapper-gap))',
+    paddingBlockEnd: 'min(var(--_Input-paddingBlock), var(--Autocomplete-wrapperGap))',
     // TODO: use [CSS :has](https://caniuse.com/?search=%3Ahas) later
     ...(ownerState.startDecorator &&
       Array.isArray(ownerState.value) &&
       (ownerState.value as Array<unknown>).length > 0 && {
-        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapper-gap), 0px)',
-        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapper-gap))',
+        marginBlockStart: 'min(var(--_Input-paddingBlock) - var(--Autocomplete-wrapperGap), 0px)',
+        marginInlineStart: 'calc(-1 * var(--Autocomplete-wrapperGap))',
         [`& .${autocompleteClasses.input}`]: {
-          marginInlineStart: 'max(var(--Autocomplete-wrapper-gap), var(--Input-gap))',
+          marginInlineStart: 'max(var(--Autocomplete-wrapperGap), var(--Input-gap))',
         },
       }),
   },
   [`& .${chipClasses.root}`]: {
     // TODO: use flexbox `gap` later.
     minWidth: 0,
-    marginInlineStart: 'var(--Autocomplete-wrapper-gap)',
-    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
+    marginInlineStart: 'var(--Autocomplete-wrapperGap)',
+    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
   },
 }));
 
@@ -162,7 +170,7 @@ const AutocompleteInput = styled(StyledInputHtml as unknown as 'input', {
   minWidth: 30,
   minHeight: 'var(--Chip-minHeight)',
   ...(ownerState.multiple && {
-    marginBlockStart: 'var(--Autocomplete-wrapper-gap)',
+    marginBlockStart: 'var(--Autocomplete-wrapperGap)',
     ...(!ownerState.startDecorator && {
       marginInlineStart: 'var(--Input-paddingInline)',
     }),
@@ -194,7 +202,7 @@ const AutocompleteClearIndicator = styled(StyledIconButton as unknown as 'button
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(!ownerState.hasPopupIcon && {
-    marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
+    marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   }),
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
   visibility: ownerState.focused ? 'visible' : 'hidden',
@@ -206,7 +214,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   overridesResolver: (props, styles) => styles.popupIndicator,
 })<{ ownerState: OwnerState }>(({ ownerState }) => ({
   marginInlineStart: 'calc(var(--_Input-paddingBlock) / 2)',
-  marginInlineEnd: 'calc(var(--Input-decorator-childOffset) * -1)',
+  marginInlineEnd: 'calc(var(--Input-decoratorChildOffset) * -1)',
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
@@ -269,7 +277,16 @@ const excludeUseAutocompleteParams = <
   selectOnFocus,
   ...other
 }: T) => other as T;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [Autocomplete API](https://mui.com/joy-ui/api/autocomplete/)
+ */
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -370,6 +387,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const ownerState = {
     ...props,
     value,
+    disabled,
     focused,
     hasOptions: !!groupedOptions.length,
     hasClearIcon,
@@ -746,7 +764,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   autoFocus: PropTypes.bool,
   /**
    * The icon to display in place of the default clear icon.
-   * @default <ClearIcon fontSize="small" />
+   * @default <ClearIcon fontSize="md" />
    */
   clearIcon: PropTypes.node,
   /**
@@ -800,6 +818,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -823,9 +842,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The label to display when the tags are truncated (`limitTags`).
    *
-   * @param {number} more The number of truncated tags.
+   * @param {string | number} more The number of truncated tags.
    * @returns {ReactNode}
-   * @default (more) => `+${more}`
+   * @default (more: string | number) => `+${more}`
    */
   getLimitTagsText: PropTypes.func,
   /**
@@ -930,7 +949,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**
@@ -1053,7 +1072,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

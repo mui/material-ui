@@ -305,7 +305,10 @@ describe('useSlot', () => {
       HTMLButtonElement,
       Props &
         CreateSlotsAndSlotProps<
-          'root' | 'decorator',
+          {
+            root: React.ElementType;
+            decorator: React.ElementType;
+          },
           {
             root: SlotProps<'button', {}, OwnerState>;
             decorator: SlotProps<'span', {}, OwnerState>;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/base/composeClasses';
-import { useOption } from '@mui/base/OptionUnstyled';
+import useOption from '@mui/base/useOption';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
@@ -32,7 +32,16 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
     },
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/joy-ui/api/option/)
+ */
 const Option = React.forwardRef(function Option(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -135,7 +144,7 @@ Option.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

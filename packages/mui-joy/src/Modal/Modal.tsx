@@ -49,9 +49,9 @@ const ModalRoot = styled('div', {
   name: 'JoyModal',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
   position: 'fixed',
-  zIndex: 9999,
+  zIndex: theme.vars.zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
@@ -78,7 +78,16 @@ const ModalBackdrop = styled('div', {
     backdropFilter: 'blur(8px)',
   }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [Modal API](https://mui.com/joy-ui/api/modal/)
+ */
 const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

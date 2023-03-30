@@ -1,0 +1,3 @@
+<Checkbox label="Small" size="sm" defaultChecked />
+<Checkbox label="Medium" size="md" defaultChecked />
+<Checkbox label="Large" size="lg" defaultChecked />

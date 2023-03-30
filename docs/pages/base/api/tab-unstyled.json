@@ -21,7 +21,16 @@
   },
   "name": "TabUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiTab-root"
+    }
+  ],
   "spread": true,
+  "muiName": "MuiTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/TabUnstyled/TabUnstyled.tsx",
   "inheritance": null,

@@ -72,7 +72,7 @@ Use the `component` prop to override the root slot with a custom element:
 ## Hook
 
 ```js
-import { useSnackbar } from '@mui/base/SnackbarUnstyled';
+import useSnackbar from '@mui/base/useSnackbar';
 ```
 
 The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.

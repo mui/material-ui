@@ -4,16 +4,16 @@
     "value": { "type": { "name": "Value", "description": "Value" }, "required": true },
     "optionRef": {
       "type": {
-        "name": "React.Ref&lt;HTMLElement&gt",
-        "description": "React.Ref&lt;HTMLElement&gt"
+        "name": "React.Ref&lt;HTMLElement&gt;",
+        "description": "React.Ref&lt;HTMLElement&gt;"
       }
     }
   },
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "&lt;Other extends EventHandlers&gt(otherHandlers?: Other) =&gt UseOptionRootSlotProps&lt;Other&gt",
-        "description": "&lt;Other extends EventHandlers&gt(otherHandlers?: Other) =&gt UseOptionRootSlotProps&lt;Other&gt"
+        "name": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;",
+        "description": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;"
       },
       "required": true
     },
@@ -22,6 +22,6 @@
     "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useOption",
-  "filename": "/packages/mui-base/src/OptionUnstyled/useOption.ts",
+  "filename": "/packages/mui-base/src/useOption/useOption.ts",
   "demos": "<ul></ul>"
 }

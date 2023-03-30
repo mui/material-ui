@@ -10,7 +10,7 @@ import {
   screen,
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -393,6 +393,21 @@ describe('<Select />', () => {
     });
   });
 
+  it('should not have the selectable option selected when inital value provided is empty string on Select with ListSubHeader item', () => {
+    render(
+      <Select open value="">
+        <ListSubheader>Category 1</ListSubheader>
+        <MenuItem value={10}>Ten</MenuItem>
+        <ListSubheader>Category 2</ListSubheader>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>,
+    );
+
+    const options = screen.getAllByRole('option');
+    expect(options[1]).not.to.have.class(menuItemClasses.selected);
+  });
+
   describe('SVG icon', () => {
     it('should not present an SVG icon when native and multiple are specified', () => {
       const { container } = render(
@@ -549,8 +564,57 @@ describe('<Select />', () => {
       });
     });
 
+    describe('when the first child is a ListSubheader wrapped in a custom component', () => {
+      describe('with the `muiSkipListHighlight` static field', () => {
+        function WrappedListSubheader(props) {
+          return <ListSubheader {...props} />;
+        }
+
+        WrappedListSubheader.muiSkipListHighlight = true;
+
+        it('highlights the first selectable option below the header', () => {
+          const { getByText } = render(
+            <Select defaultValue="" open>
+              <WrappedListSubheader>Category 1</WrappedListSubheader>
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <WrappedListSubheader>Category 2</WrappedListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const expectedHighlightedOption = getByText('Option 1');
+          expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
+        });
+      });
+
+      describe('with the `muiSkipListHighlight` prop', () => {
+        function WrappedListSubheader(props) {
+          const { muiSkipListHighlight, ...other } = props;
+          return <ListSubheader {...other} />;
+        }
+
+        it('highlights the first selectable option below the header', () => {
+          const { getByText } = render(
+            <Select defaultValue="" open>
+              <WrappedListSubheader muiSkipListHighlight>Category 1</WrappedListSubheader>
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <WrappedListSubheader muiSkipListHighlight>Category 2</WrappedListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const expectedHighlightedOption = getByText('Option 1');
+          expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
+        });
+      });
+    });
+
     describe('when the first child is a MenuItem disabled', () => {
-      it('first selectable option is focused to use the arrow', () => {
+      it('highlights the first selectable option below the header', () => {
         const { getAllByRole } = render(
           <Select defaultValue="" open>
             <MenuItem value="" disabled>

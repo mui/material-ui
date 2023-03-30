@@ -27,12 +27,8 @@ import { deepmerge } from '@mui/utils';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendMuiTheme,
-  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
-import {
-  extendTheme as extendJoyTheme,
-  shouldSkipGeneratingVar as joyShouldSkipGeneratingVar,
-} from '@mui/joy/styles';
+import { extendTheme as extendJoyTheme } from '@mui/joy/styles';
 
 const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
   // This is required to point to `var(--mui-*)` because we are using
@@ -88,12 +84,30 @@ const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
 // not raw colors.
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme();
 
-// You can use your own `deepmerge` function.
-// muiTheme will deeply merge to joyTheme.
-const mergedTheme = (deepmerge(joyTheme, muiTheme) as unknown) as ReturnType<
-  typeof extendMuiTheme
->;
-
+const mergedTheme = ({
+  ...joyTheme,
+  ...muiTheme,
+  // You can use your own `deepmerge` function.
+  colorSchemes: deepmerge(joyTheme.colorSchemes, muiTheme.colorSchemes),
+  typography: {
+    ...joyTheme.typography,
+    ...muiTheme.typography
+  },
+  zIndex: {
+    ...joyTheme.zIndex,
+    ...muiTheme.zIndex
+  }
+} as unknown) as ReturnType<typeof extendMuiTheme>;
+mergedTheme.generateCssVars = (colorScheme) => ({
+  css: {
+    ...joyTheme.generateCssVars(colorScheme).css,
+    ...muiTheme.generateCssVars(colorScheme).css
+  },
+  vars: (deepmerge(
+    joyTheme.generateCssVars(colorScheme).vars,
+    muiTheme.generateCssVars(colorScheme).vars
+  ) as unknown) as ThemeVars
+});
 mergedTheme.unstable_sxConfig = {
   ...joySxConfig,
   ...muiSxConfig
@@ -101,12 +115,7 @@ mergedTheme.unstable_sxConfig = {
 
 export default function App() {
   return (
-    <CssVarsProvider
-      theme={mergedTheme}
-      shouldSkipGeneratingVar={(keys) =>
-        muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)
-      }
-    >
+    <CssVarsProvider theme={mergedTheme}>
       ...Material UI and Joy UI components
     </CssVarsProvider>
   );
@@ -127,13 +136,11 @@ This setup uses the `CssVarsProvider` component from Joy UI and configures the M
 import { deepmerge } from '@mui/utils';
 import {
   experimental_extendTheme as extendMuiTheme,
-  shouldSkipGeneratingVar as muiShouldSkipGeneratingVar,
 } from '@mui/material/styles';
 import colors from '@mui/joy/colors';
 import {
   extendTheme as extendJoyTheme,
   CssVarsProvider,
-  shouldSkipGeneratingVar as joyShouldSkipGeneratingVar,
 } from '@mui/joy/styles';
 
 const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
@@ -202,13 +209,28 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
   },
 });
 
-const { unstable_sxConfig: joySxConfig, ...joyTheme} = extendJoyTheme();
+const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendJoyTheme();
 
-// You can use your own `deepmerge` function.
-// joyTheme will deeply merge to muiTheme.
-const mergedTheme = (deepmerge(muiTheme, joyTheme) as unknown) as ReturnType<
-  typeof extendJoyTheme
->;
+const mergedTheme = ({
+  ...muiTheme,
+  ...joyTheme,
+  colorSchemes: deepmerge(muiTheme.colorSchemes, joyTheme.colorSchemes),
+  typography: {
+    ...muiTheme.typography,
+    ...joyTheme.typography
+  }
+} as unknown) as ReturnType<typeof extendJoyTheme>;
+
+mergedTheme.generateCssVars = (colorScheme) => ({
+  css: {
+    ...muiTheme.generateCssVars(colorScheme).css,
+    ...joyTheme.generateCssVars(colorScheme).css
+  },
+  vars: deepmerge(
+    muiTheme.generateCssVars(colorScheme).vars,
+    joyTheme.generateCssVars(colorScheme).vars
+  )
+});
 
 mergedTheme.unstable_sxConfig = {
   ...muiSxConfig,
@@ -217,12 +239,7 @@ mergedTheme.unstable_sxConfig = {
 
 export default function App() {
   return (
-    <CssVarsProvider
-      theme={mergedTheme}
-      shouldSkipGeneratingVar={(keys) =>
-        muiShouldSkipGeneratingVar(keys) || joyShouldSkipGeneratingVar(keys)
-      }
-    >
+    <CssVarsProvider theme={mergedTheme}>
       ...Material UI and Joy UI components
     </CssVarsProvider>
   );

@@ -8,6 +8,7 @@ import {
   strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
 
 describe('<Breadcrumbs />', () => {
   const { render } = createRenderer();
@@ -97,5 +98,39 @@ describe('<Breadcrumbs />', () => {
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
+  });
+
+  describe('prop: slots and slotProps', () => {
+    it('should show custom collapsed icon', () => {
+      render(
+        <Breadcrumbs
+          slots={{
+            CollapsedIcon: FirstPageIcon,
+          }}
+          maxItems={2}
+        >
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+        </Breadcrumbs>,
+      );
+
+      screen.getByTestId('FirstPageIcon');
+    });
+
+    it('should apply slotProps to collapsed icon', () => {
+      render(
+        <Breadcrumbs
+          maxItems={2}
+          slotProps={{ collapsedIcon: { 'data-testid': 'collapsedIcon-test-label' } }}
+        >
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+        </Breadcrumbs>,
+      );
+
+      screen.getByTestId('collapsedIcon-test-label');
+    });
   });
 });

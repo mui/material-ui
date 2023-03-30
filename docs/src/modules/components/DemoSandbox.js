@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { create } from 'jss';
@@ -70,11 +70,11 @@ FramedDemo.propTypes = {
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: (theme.vars || theme).palette.background.default,
   flexGrow: 1,
   height: 400,
   border: 0,
-  boxShadow: theme.shadows[1],
+  boxShadow: (theme.vars || theme).shadows[1],
 }));
 
 function DemoIframe(props) {

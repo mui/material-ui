@@ -9,9 +9,10 @@ import {
   ButtonUnstyledTypeMap,
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
-import useButton from './useButton';
+import useButton from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
   focusVisible: boolean;
@@ -25,7 +26,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', active && 'active'],
   };
 
-  return composeClasses(slots, getButtonUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getButtonUnstyledUtilityClass));
 };
 /**
  * The foundation for building custom-styled buttons.

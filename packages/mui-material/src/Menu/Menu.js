@@ -165,7 +165,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
-        component: MenuPaper,
+        as: MenuPaper,
         ...PaperProps,
         classes: {
           ...PaperProps.classes,

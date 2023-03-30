@@ -31,7 +31,7 @@ Materal-UI 将这样渲染自定义的组件：
 return React.createElement(props.component, props);
 ```
 
-例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 但只要把一个 [React 组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components) 属性传递给 `component` 属性，就即可将此更改。 在下面的例子里，就将 `List` 组件作为一个根元素来渲染成 `<nav>` 元素：
+例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 但只要把一个 [React 组件](https://react.dev/reference/react/Component) 属性传递给 `component` 属性，就即可将此更改。 在下面的例子里，就将 `List` 组件作为一个根元素来渲染成 `<nav>` 元素：
 
 ```jsx
 <List component="nav">
@@ -170,9 +170,9 @@ If the `GenericCustomComponent` will be used with a `component` prop provided, i
 - 任何 Material-UI 组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
 - DOM（或 host）组件，例如 `div` 或 `button`
-- [React.forwardRef 组件](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [React.lazy 组件](https://reactjs.org/docs/react-api.html#reactlazy)
-- [React.memo 组件](https://reactjs.org/docs/react-api.html#reactmemo)
+- [React.forwardRef 组件](https://react.dev/reference/react/forwardRef)
+- [React.lazy 组件](https://react.dev/reference/react/lazy)
+- [React.memo 组件](https://react.dev/reference/react/memo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
@@ -186,7 +186,7 @@ Note that you will still get this warning for `lazy` and `memo` components if th
 Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 :::
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://react.dev/reference/react/forwardRef).
 
 ```diff
 Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?

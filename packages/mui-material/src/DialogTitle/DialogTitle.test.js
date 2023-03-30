@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { expect } from 'chai';
 import { describeConformance, createRenderer } from 'test/utils';
 import DialogTitle, { dialogTitleClasses as classes } from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 
 describe('<DialogTitle />', () => {
   const { render } = createRenderer();
@@ -27,5 +29,37 @@ describe('<DialogTitle />', () => {
     const { getByText } = render(<DialogTitle>{children}</DialogTitle>);
 
     getByText('Hello');
+  });
+
+  describe('prop: id', () => {
+    it('should apply the id attribute provided to the Dialog title', () => {
+      const { getByText } = render(
+        <Dialog open>
+          <DialogTitle id="custom-id">title test</DialogTitle>
+        </Dialog>,
+      );
+
+      expect(getByText('title test')).to.have.attribute('id', 'custom-id');
+    });
+
+    it('should fallback to the aria-labelledby from the Dialog', () => {
+      const { getByText } = render(
+        <Dialog open aria-labelledby="custom-id">
+          <DialogTitle>title test</DialogTitle>
+        </Dialog>,
+      );
+
+      expect(getByText('title test')).to.have.attribute('id', 'custom-id');
+    });
+
+    it('should apply the id attribute explicitly provided to the DialogTitle and not take from Dialog', () => {
+      const { getByText } = render(
+        <Dialog open aria-labelledby="custom-id-1">
+          <DialogTitle id="custom-id-2">title test</DialogTitle>
+        </Dialog>,
+      );
+
+      expect(getByText('title test')).to.have.attribute('id', 'custom-id-2');
+    });
   });
 });

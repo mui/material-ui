@@ -32,7 +32,6 @@ The [Sheet](/joy-ui/react-sheet/) component is a `<div>` container that supports
 
 Import Sheet and add it to your app as shown below.
 (If you're using Create React App, for example, all of this code should go in `App.js`.)
-Notice that Joy UI components must be nested within `<CssVarsProvider />`:
 
 ```jsx
 import * as React from 'react';

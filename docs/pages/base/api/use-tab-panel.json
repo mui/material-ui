@@ -8,8 +8,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
-        "description": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}"
+        "name": "() =&gt; {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
+        "description": "() =&gt; {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}"
       },
       "required": true
     },
@@ -20,6 +20,6 @@
     }
   },
   "name": "useTabPanel",
-  "filename": "/packages/mui-base/src/TabPanelUnstyled/useTabPanel.ts",
+  "filename": "/packages/mui-base/src/useTabPanel/useTabPanel.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
 }

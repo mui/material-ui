@@ -1,7 +1,7 @@
 {
   "parameters": {
     "ref": {
-      "type": { "name": "React.Ref&lt;unknown&gt", "description": "React.Ref&lt;unknown&gt" },
+      "type": { "name": "React.Ref&lt;unknown&gt;", "description": "React.Ref&lt;unknown&gt;" },
       "required": true
     },
     "aria-label": { "type": { "name": "string", "description": "string" } },
@@ -11,8 +11,8 @@
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabsListRootSlotProps&lt;TOther&gt",
-        "description": "&lt;TOther extends Record&lt;string, any&gt = {}&gt(externalProps?: TOther) =&gt UseTabsListRootSlotProps&lt;TOther&gt"
+        "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabsListRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabsListRootSlotProps&lt;TOther&gt;"
       },
       "required": true
     },
@@ -31,8 +31,8 @@
     },
     "processChildren": {
       "type": {
-        "name": "() =&gt React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt&gt[] | null | undefined",
-        "description": "() =&gt React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt&gt[] | null | undefined"
+        "name": "() =&gt; React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt;&gt;[] | null | undefined",
+        "description": "() =&gt; React.ReactElement&lt;any, string | React.JSXElementConstructor&lt;any&gt;&gt;[] | null | undefined"
       },
       "required": true
     },
@@ -42,6 +42,6 @@
     }
   },
   "name": "useTabsList",
-  "filename": "/packages/mui-base/src/TabsListUnstyled/useTabsList.ts",
+  "filename": "/packages/mui-base/src/useTabsList/useTabsList.ts",
   "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
 }

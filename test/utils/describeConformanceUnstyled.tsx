@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { ClassNameConfigurator } from '@mui/base/utils';
 import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
 import createDescribe from './createDescribe';
 import {
@@ -318,6 +319,28 @@ function testOwnerStatePropagation(
   });
 }
 
+function testDisablingClassGeneration(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  it(`does not generate any class names if placed within a ClassNameConfigurator`, () => {
+    render(<ClassNameConfigurator disableDefaultClasses>{element}</ClassNameConfigurator>);
+
+    const elementsWithClasses = document.querySelectorAll(`[class]`);
+
+    elementsWithClasses.forEach((el: Element) => {
+      // There can be empty class attributes as clsx returns an empty string given falsy arguments.
+      expect(el.className.trim()).to.equal('');
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   slotsProp: testSlotsProp,
@@ -328,6 +351,7 @@ const fullSuite = {
   reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
   ownerStatePropagation: testOwnerStatePropagation,
+  disableClassGeneration: testDisablingClassGeneration,
 };
 
 function describeConformanceUnstyled(

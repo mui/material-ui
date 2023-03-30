@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Typography component
+components: Typography
 githubLabel: 'component: Typography'
 ---
 
@@ -223,9 +224,9 @@ The Typography component is composed of a single root `<p>` that's assigned the 
 When one Typography component is nested within another, the nested component renders as a `<span>` (unless customized as described above).
 
 ```html
-<p class="JoyTypography-root JoyTypography-body1">
+<p class="MuiTypography-root MuiTypography-body1">
   <!-- Typography content -->
-  <span class="JoyTypography-root JoyTypography-inherit">
+  <span class="MuiTypography-root MuiTypography-inherit">
     <!-- Nested Typography content -->
   </span>
 </p>

@@ -21,7 +21,16 @@
   },
   "name": "SnackbarUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiSnackbar-root"
+    }
+  ],
   "spread": true,
+  "muiName": "MuiSnackbar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/SnackbarUnstyled/SnackbarUnstyled.tsx",
   "inheritance": null,

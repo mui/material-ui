@@ -52,6 +52,7 @@ Button.propTypes = {
     getSerializedValue: PropTypes.func,
     listboxId: PropTypes.string,
     listboxOpen: PropTypes.bool,
+    multiple: PropTypes.bool,
     name: PropTypes.string,
     onChange: PropTypes.func,
     onListboxOpenChange: PropTypes.func,

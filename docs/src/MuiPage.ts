@@ -41,6 +41,11 @@ export interface MuiPage {
    * @default false
    */
   newFeature?: boolean;
+  /**
+   * Indicates if the feature is in development.
+   * @default false
+   */
+  comingSoon?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {

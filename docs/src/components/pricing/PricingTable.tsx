@@ -441,21 +441,17 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
-    <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
+    <ColumnHead label="Row selection" nested href="/x/react-data-grid/row-selection/" />
   ),
   'data-grid/row-multiselection': (
     <ColumnHead
       label="Multi-row selection"
       nested
-      href="/x/react-data-grid/selection/#multiple-row-selection"
+      href="/x/react-data-grid/row-selection/#multiple-row-selection"
     />
   ),
   'data-grid/row-rangeselection': (
-    <ColumnHead
-      label="Range selection"
-      nested
-      href="/x/react-data-grid/selection/#range-selection"
-    />
+    <ColumnHead label="Range selection" nested href="/x/react-data-grid/cell-selection/" />
   ),
   'data-grid/filter-quick': (
     <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />

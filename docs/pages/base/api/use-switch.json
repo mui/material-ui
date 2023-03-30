@@ -8,8 +8,8 @@
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "onFocus": {
@@ -21,8 +21,24 @@
     "readOnly": { "type": { "name": "boolean", "description": "boolean" } },
     "required": { "type": { "name": "boolean", "description": "boolean" } }
   },
-  "returnValue": {},
+  "returnValue": {
+    "checked": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
+      "required": true
+    },
+    "getInputProps": {
+      "type": {
+        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
+        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps"
+      },
+      "required": true
+    },
+    "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+  },
   "name": "useSwitch",
-  "filename": "/packages/mui-base/src/SwitchUnstyled/useSwitch.ts",
+  "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
   "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Unstyled Switch</a></li></ul>"
 }

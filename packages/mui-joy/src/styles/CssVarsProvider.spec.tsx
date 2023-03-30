@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CSSObject } from '@mui/system';
-import { CssVarsProvider, PaletteRange, extendTheme } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 // -----------------------------------
 // Extending palette
@@ -14,9 +14,13 @@ declare module '@mui/joy/styles' {
     secondary: PaletteRange;
   }
 
+  interface PaletteRange {
+    1000: string;
+  }
+
   interface PaletteRangeOverrides {
-    '100': false;
-    '120': true;
+    100: false;
+    120: true;
   }
 }
 
@@ -68,6 +72,9 @@ function App5() {
         colorSchemes: {
           light: {
             palette: {
+              primary: {
+                1000: '#000',
+              },
               secondary: {
                 // @ts-expect-error `100` is removed
                 100: '',

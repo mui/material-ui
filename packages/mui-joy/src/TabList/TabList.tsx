@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useTabsList } from '@mui/base/TabsListUnstyled';
+import useTabsList from '@mui/base/useTabsList';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -39,10 +39,19 @@ const TabListRoot = styled(StyledList, {
   '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
-  '--List-divider-gap': '0px',
+  '--ListDivider-gap': '0px',
   ...scopedVariables,
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabList API](https://mui.com/joy-ui/api/tab-list/)
+ */
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({
     props: inProps,
@@ -141,7 +150,7 @@ TabList.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
