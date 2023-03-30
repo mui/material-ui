@@ -16,7 +16,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { EventHandlers } from '../utils';
+import { areArraysEqual, EventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -224,6 +224,12 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     name: 'Slider',
   });
 
+  const isValueUnchanged = (newValue: number | Array<number>): boolean => {
+    return typeof newValue === 'number'
+      ? newValue === valueDerived
+      : areArraysEqual(newValue, valueDerived as number[]);
+  };
+
   const handleChange =
     onChange &&
     ((event: Event | React.SyntheticEvent, value: number | number[], thumbIndex: number) => {
@@ -356,7 +362,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       setValueState(newValue);
       setFocusedThumbIndex(index);
 
-      if (handleChange) {
+      if (handleChange && !isValueUnchanged(newValue)) {
         handleChange(event, newValue, index);
       }
 
@@ -466,7 +472,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       setDragging(true);
     }
 
-    if (handleChange && newValue !== valueDerived) {
+    if (handleChange && !isValueUnchanged(newValue)) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -517,7 +523,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
       setValueState(newValue);
 
-      if (handleChange) {
+      if (handleChange && !isValueUnchanged(newValue)) {
         handleChange(nativeEvent, newValue, activeIndex);
       }
     }
@@ -584,7 +590,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
         setValueState(newValue);
 
-        if (handleChange) {
+        if (handleChange && !isValueUnchanged(newValue)) {
           handleChange(event, newValue, activeIndex);
         }
       }
