@@ -254,7 +254,7 @@ describe('styleFunctionSx', () => {
     });
 
     it('resolves breakpoints object with container query shorthand', () => {
-      const breakpointsExpectedResult = {
+      const containerBreakpointsExpectedResult = {
         '@container (min-width:0px)': { border: '1px solid' },
         '@container (min-width:600px)': { border: '2px solid' },
         '@container (min-width:960px)': { border: '3px solid' },
@@ -274,7 +274,7 @@ describe('styleFunctionSx', () => {
         },
       });
 
-      expect(result).to.deep.equal(breakpointsExpectedResult);
+      expect(result).to.deep.equal(containerBreakpointsExpectedResult);
     });
 
     it('resolves breakpoints object with container query shorthand with custom container query breakpoints', () => {
@@ -301,7 +301,7 @@ describe('styleFunctionSx', () => {
           values: customBreakpoints,
         },
       };
-      const breakpointsExpectedResult = {
+      const containerBreakpointsExpectedResult = {
         '@container (min-width:0px)': { border: '1px solid' },
         '@container (min-width:400px)': { border: '2px solid' },
         '@container (min-width:800px)': { border: '3px solid' },
@@ -321,7 +321,7 @@ describe('styleFunctionSx', () => {
         },
       });
 
-      expect(result).to.deep.equal(breakpointsExpectedResult);
+      expect(result).to.deep.equal(containerBreakpointsExpectedResult);
     });
 
     it('merges multiple breakpoints object', () => {
