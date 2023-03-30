@@ -1,22 +1,56 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import {
+  Avatar,
+  Box, IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+  Paper
+} from '@mui/material';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
+const ListWithContainerBreakpoints = () => <List>
+  {[{ name: 'Peter Pan', value: '$100,000' },
+    { name: 'Frida Kahlo', value: '$200,000' }].map((entry, index) => (
+    <ListItem key={index}>
+      <ListItemAvatar><Avatar/></ListItemAvatar>
+      <Box sx={{
+        display: 'flex',
+        width: '100%',
+        flexDirection: {
+          cqxs: 'column',
+          cqsm: 'row'
+        }
+      }}>
+        <ListItemText>
+          {entry.name}
+        </ListItemText>
+        <ListItemText sx={{ display: 'flex', justifyContent: { cqsm: 'flex-end' } }}>
+          {entry.value}
+        </ListItemText>
+      </Box>
+      <IconButton><ChevronRightIcon/></IconButton>
+    </ListItem>
+  ))}
+</List>;
 
 export default function ContainerBreakpointsAsObject() {
   return (
-    <div>
-      <Box
-        sx={{
-          width: {
-            cqxs: 100, // theme.breakpoints.up('xs', 'container')
-            cqsm: 200, // theme.breakpoints.up('sm', 'container')
-            cqmd: 300, // theme.breakpoints.up('md', 'container')
-            cqlg: 400, // theme.breakpoints.up('lg', 'container')
-            cqxl: 500, // theme.breakpoints.up('xl', 'container')
-          },
-        }}
-      >
-        This box has a responsive width.
-      </Box>
-    </div>
+    <Box sx={{ display: 'flex', gap: '16px', flexDirection: 'column', width: '100%' }}>
+      <Paper sx={{
+        width: '50%',
+        containerType: 'inline-size',
+      }}>
+        <ListWithContainerBreakpoints/>
+      </Paper>
+      <Paper sx={{
+        width: '100%',
+        containerType: 'inline-size',
+      }}>
+        <ListWithContainerBreakpoints/>
+      </Paper>
+    </Box>
   );
 }
