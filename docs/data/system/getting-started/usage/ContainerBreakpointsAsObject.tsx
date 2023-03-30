@@ -41,13 +41,13 @@ export default function ContainerBreakpointsAsObject() {
     <Box sx={{ display: 'flex', gap: '16px', flexDirection: 'column', width: '100%' }}>
       <Paper sx={{
         width: '50%',
-        containerType: 'inline-size',
+        containerType: 'inline-size', // <-- this defines the reference container
       }}>
         <ListWithContainerBreakpoints/>
       </Paper>
       <Paper sx={{
         width: '100%',
-        containerType: 'inline-size',
+        containerType: 'inline-size', // <-- this defines the reference container
       }}>
         <ListWithContainerBreakpoints/>
       </Paper>
