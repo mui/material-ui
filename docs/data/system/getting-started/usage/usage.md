@@ -388,7 +388,7 @@ const theme = createTheme({
       cqsm: 400,
       cqmd: 800,
       cqlg: 1000,
-      cqxl: 1400
+      cqxl: 1400,
     },
   },
 });
@@ -410,6 +410,7 @@ export default function CustomBreakpointsForContainerQueries() {
   );
 }
 ```
+
 If no container query breakpoints are defined, the theme will fall back to the default breakpoints, e.g. `cqxs` → `xs`.
 
 #### Theme getter

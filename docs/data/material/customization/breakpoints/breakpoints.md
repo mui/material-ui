@@ -163,8 +163,9 @@ The `sx` prop may also be used to define styles for specific container props. Mo
 #### Returns
 
 `media / container query`: Either
-* a `media query` string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive)
-* or a `container query` string which matches container widths greater than the width given by the breakpoint key (inclusive). The breakpoint width is compared to the next outer container with `container-type: inline-size` defined.
+
+- a `media query` string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive)
+- or a `container query` string which matches container widths greater than the width given by the breakpoint key (inclusive). The breakpoint width is compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
@@ -197,9 +198,9 @@ const styles = (theme) => ({
 #### Returns
 
 `media / container query`: Either
-* a `media query` string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive)
-* or a `container query` string which matches container widths less than the width given by the breakpoint key (exclusive). The breakpoint width is compared to the next outer container with `container-type: inline-size` defined.
 
+- a `media query` string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive)
+- or a `container query` string which matches container widths less than the width given by the breakpoint key (exclusive). The breakpoint width is compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
@@ -232,9 +233,9 @@ const styles = (theme) => ({
 #### Returns
 
 `media / container query`: Either
-* a `media query` string ready to be used with most styling solutions, which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive)
-* or a `container query` string which matches container widths starting from the width given by the breakpoint key (inclusive) and stopping at the width given by the next breakpoint key (exclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
 
+- a `media query` string ready to be used with most styling solutions, which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive)
+- or a `container query` string which matches container widths starting from the width given by the breakpoint key (inclusive) and stopping at the width given by the next breakpoint key (exclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
@@ -268,9 +269,9 @@ const styles = (theme) => ({
 #### Returns
 
 `media / container query`: Either
-* a `media query` string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive)
-* or a `container query` string which matches container widths stopping at the width given by the breakpoint key (exclusive) and starting at the width given by the next breakpoint key (inclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
 
+- a `media query` string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive)
+- or a `container query` string which matches container widths stopping at the width given by the breakpoint key (exclusive) and starting at the width given by the next breakpoint key (inclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
@@ -306,8 +307,9 @@ const styles = (theme) => ({
 
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
 `media / container query`: Either
-* a `media query` string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive)
-* or a `container query` string which matches container widths greater than the width given by the breakpoint key in the first argument (inclusive) and less than the width given by the breakpoint key in the second argument (exclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
+
+- a `media query` string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive)
+- or a `container query` string which matches container widths greater than the width given by the breakpoint key in the first argument (inclusive) and less than the width given by the breakpoint key in the second argument (exclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
