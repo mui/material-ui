@@ -27,7 +27,7 @@ const SelectSelect = styled('div', {
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
-      { [`&.${selectClasses.error}`]: styles[ownerState.error] },
+      { [`&.${selectClasses.error}`]: styles.error },
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -612,7 +612,6 @@ SelectInput.propTypes = {
   displayEmpty: PropTypes.bool,
   /**
    * If `true`, the `select input` will indicate an error.
-   * The prop defaults to the value (`false`).
    */
   error: PropTypes.bool,
   /**

@@ -80,7 +80,7 @@ const NativeSelectSelect = styled('select', {
     return [
       styles.select,
       styles[ownerState.variant],
-      styles[ownerState.error],
+      styles.error,
       { [`&.${nativeSelectClasses.multiple}`]: styles.multiple },
     ];
   },
@@ -180,7 +180,6 @@ NativeSelectInput.propTypes = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the `select input` will indicate an error.
-   * The prop defaults to the value (`false`).
    */
   error: PropTypes.bool,
   /**

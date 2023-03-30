@@ -41,7 +41,6 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     className,
     defaultOpen = false,
     displayEmpty = false,
-    error,
     IconComponent = ArrowDropDownIcon,
     id,
     input,
@@ -71,16 +70,16 @@ const Select = React.forwardRef(function Select(inProps, ref) {
 
   const variant = fcs.variant || variantProp;
 
+  const ownerState = { ...props, variant, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
+
   const InputComponent =
     input ||
     {
-      standard: <StyledInput />,
-      outlined: <StyledOutlinedInput label={label} />,
-      filled: <StyledFilledInput />,
+      standard: <StyledInput ownerState={ownerState} />,
+      outlined: <StyledOutlinedInput label={label} ownerState={ownerState} />,
+      filled: <StyledFilledInput ownerState={ownerState} />,
     }[variant];
-
-  const ownerState = { ...props, variant, classes: classesProp };
-  const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
 
@@ -117,7 +116,6 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         },
         ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
         ref: inputComponentRef,
-        error,
         className: clsx(InputComponent.props.className, className),
         // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
         ...(!input && { variant }),
@@ -175,11 +173,6 @@ Select.propTypes /* remove-proptypes */ = {
    * @default false
    */
   displayEmpty: PropTypes.bool,
-  /**
-   * If `true`, the `input` will indicate an error.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  error: PropTypes.bool,
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon
