@@ -2,6 +2,23 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the MUI community. Here are a few guidelines that will help you along the way.
 
+## Summary
+- [Code of Conduct](#code-of-conduct)
+- [A large spectrum of contributions](#a-large-spectrum-of-contributions)
+- [Your first Pull Request](#your-first-pull-request)
+- [Sending a Pull Request](#sending-a-pull-request)
+  - [Trying changes on the documentation site](#trying-changes-on-the-documentation-site)
+  - [Trying changes on the playground](#trying-changes-on-the-playground)
+  - [How to increase the chance of being accepted?](#how-to-increase-the-chance-of-being-accepted)
+  - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
+  - [Updating the component api documentation](#updating-the-component-api-documentation)
+  - [Coding style](#coding-style)
+- [How to add a new demo in the documentation](#how-to-add-a-new-demo-in-the-documentation)
+- [How can I use a change that wasn't released yet?](#how-can-i-use-a-change-that-wasnt-released-yet)
+- [Translations](#translations)
+- [Roadmap](#roadmap)
+- [License](#license)
+
 ## Code of Conduct
 
 MUI has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
@@ -146,7 +163,7 @@ If your pull request addresses an open issue, make sure to link the PR to that i
 Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
 This makes it easier to understand where the PR is coming from, and also speeds things up as the issue gets closed when the PR is merged.
 
-#### Checks and how to fix them
+### CI checks and how to fix them
 
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed.
@@ -167,7 +184,9 @@ and `yarn deduplicate` should fix most of the issues.
 ##### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
-how to fix the issues.
+how to fix the issues. It runs also commands that generates and changes some files 
+(like `yarn docs:api`), if the pipe fails you might need to run them locally and commit the changes.
+
 
 ##### ci/circleci: test_unit-1
 
