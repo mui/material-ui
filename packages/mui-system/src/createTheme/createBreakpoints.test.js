@@ -47,6 +47,18 @@ describe('createBreakpoints', () => {
     it('should work for custom breakpoints', () => {
       expect(customBreakpoints.up('laptop')).to.equal('@media (min-width:1024px)');
     });
+
+    it('should work for xs with container query', () => {
+      expect(breakpoints.up('xs', 'container')).to.equal('@container (min-width:0px)');
+    });
+
+    it('should work for md with container query', () => {
+      expect(breakpoints.up('md', 'container')).to.equal('@container (min-width:900px)');
+    });
+
+    it('should work for custom breakpoints with container query', () => {
+      expect(customBreakpoints.up('laptop', 'container')).to.equal('@container (min-width:1024px)');
+    });
   });
 
   describe('down', () => {
@@ -77,6 +89,14 @@ describe('createBreakpoints', () => {
     it('should work for the largest of custom breakpoints', () => {
       expect(customBreakpoints.down('desktop')).to.equal('@media (max-width:1279.95px)');
     });
+
+    it('should work with container query', () => {
+      expect(breakpoints.down('sm', 'container')).to.equal('@container (max-width:599.95px)');
+    });
+
+    it('should work for the largest of custom breakpoints with container query', () => {
+      expect(customBreakpoints.down('desktop', 'container')).to.equal('@container (max-width:1279.95px)');
+    });
   });
 
   describe('between', () => {
@@ -103,6 +123,18 @@ describe('createBreakpoints', () => {
         '@media (min-width:640px) and (max-width:1023.95px)',
       );
     });
+
+    it('should work with container query', () => {
+      expect(breakpoints.between('sm', 'md', 'container')).to.equal(
+        '@container (min-width:600px) and (max-width:899.95px)',
+      );
+    });
+
+    it('should work for custom breakpoints with container query', () => {
+      expect(customBreakpoints.between('tablet', 'laptop', 'container')).to.equal(
+        '@container (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
   });
 
   describe('only', () => {
@@ -117,6 +149,16 @@ describe('createBreakpoints', () => {
     it('should work for custom breakpoints', () => {
       expect(customBreakpoints.only('tablet')).to.equal(
         '@media (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
+
+    it('should work with container query', () => {
+      expect(breakpoints.only('md', 'container')).to.equal('@container (min-width:900px) and (max-width:1199.95px)');
+    });
+
+    it('should work for custom breakpoints with container query', () => {
+      expect(customBreakpoints.only('tablet', 'container')).to.equal(
+        '@container (min-width:640px) and (max-width:1023.95px)',
       );
     });
   });
@@ -139,6 +181,18 @@ describe('createBreakpoints', () => {
     it('should work for custom breakpoints', () => {
       expect(customBreakpoints.not('tablet')).to.equal(
         '@media not all and (min-width:640px) and (max-width:1023.95px)',
+      );
+    });
+
+    it('should work with container query', () => {
+      expect(breakpoints.not('md', 'container')).to.equal(
+        '@container not all and (min-width:900px) and (max-width:1199.95px)',
+      );
+    });
+
+    it('should work for custom breakpoints with container query', () => {
+      expect(customBreakpoints.not('tablet', 'container')).to.equal(
+        '@container not all and (min-width:640px) and (max-width:1023.95px)',
       );
     });
   });

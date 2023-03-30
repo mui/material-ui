@@ -126,19 +126,45 @@ declare module '@mui/material/styles' {
 }
 ```
 
+## Container queries
+
+The breakpoints API also supports generating a container query by providing a `container` param to its functions.
+
+```jsx
+const styles = (theme) => ({
+  root: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md', 'container')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md', 'container')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg', 'container')]: {
+      backgroundColor: green[500],
+    },
+  },
+});
+```
+
+The `sx` prop may also be used to define styles for specific container props. More details on the [responsive values](/system/getting-started/usage/#responsive-values) page.
+
 ## API
 
-### `theme.breakpoints.up(key) => media query`
+### `theme.breakpoints.up(key, query) => media / container query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+2. `query` ('media' | 'container'): Optional param to define whether a `container` query or a `media` query should be built. Defaults to `media`.
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive).
+`media / container query`: Either
+* a `media query` string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive)
+* or a `container query` string which matches container widths greater than the width given by the breakpoint key (inclusive). The breakpoint width is compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
@@ -151,21 +177,29 @@ const styles = (theme) => ({
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
+    // container query equivalent
+    [theme.breakpoints.up('md', 'container')]: {
+      backgroundColor: 'red',
+    },
   },
 });
 ```
 
-### `theme.breakpoints.down(key) => media query`
+### `theme.breakpoints.down(key, query) => media / container query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+2. `query` ('media' | 'container'): Optional param to define whether a `container` query or a `media` query should be built. Defaults to `media`.
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive).
+`media / container query`: Either
+* a `media query` string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive)
+* or a `container query` string which matches container widths less than the width given by the breakpoint key (exclusive). The breakpoint width is compared to the next outer container with `container-type: inline-size` defined.
+
 
 #### Examples
 
@@ -178,21 +212,29 @@ const styles = (theme) => ({
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
+    // container query equivalent
+    [theme.breakpoints.down('md', 'container')]: {
+      backgroundColor: 'red',
+    },
   },
 });
 ```
 
-### `theme.breakpoints.only(key) => media query`
+### `theme.breakpoints.only(key, query) => media / container query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+2. `query` ('media' | 'container'): Optional param to define whether a `container` query or a `media` query should be built. Defaults to `media`.
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive).
+`media / container query`: Either
+* a `media query` string ready to be used with most styling solutions, which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive)
+* or a `container query` string which matches container widths starting from the width given by the breakpoint key (inclusive) and stopping at the width given by the next breakpoint key (exclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
+
 
 #### Examples
 
@@ -206,21 +248,29 @@ const styles = (theme) => ({
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
+    // container query equivalent
+    [theme.breakpoints.only('md', 'container')]: {
+      backgroundColor: 'red',
+    },
   },
 });
 ```
 
-### `theme.breakpoints.not(key) => media query`
+### `theme.breakpoints.not(key, query) => media / container query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
 #### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
+2. `query` ('media' | 'container'): Optional param to define whether a `container` query or a `media` query should be built. Defaults to `media`.
 
 #### Returns
 
-`media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+`media / container query`: Either
+* a `media query` string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive)
+* or a `container query` string which matches container widths stopping at the width given by the breakpoint key (exclusive) and starting at the width given by the next breakpoint key (inclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
+
 
 #### Examples
 
@@ -234,11 +284,15 @@ const styles = (theme) => ({
     [theme.breakpoints.not('md')]: {
       backgroundColor: 'red',
     },
+    // container query equivalent
+    [theme.breakpoints.not('md', 'container')]: {
+      backgroundColor: 'red',
+    },
   },
 });
 ```
 
-### `theme.breakpoints.between(start, end) => media query`
+### `theme.breakpoints.between(start, end, query) => media / container query`
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
@@ -246,10 +300,14 @@ const styles = (theme) => ({
 
 1. `start` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 2. `end` (_string_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+3. `query` ('media' | 'container'): Optional param to define whether a `container` query or a `media` query should be built. Defaults to `media`.
 
 #### Returns
 
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
+`media / container query`: Either
+* a `media query` string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive)
+* or a `container query` string which matches container widths greater than the width given by the breakpoint key in the first argument (inclusive) and less than the width given by the breakpoint key in the second argument (exclusive). The breakpoint widths are compared to the next outer container with `container-type: inline-size` defined.
 
 #### Examples
 
@@ -260,6 +318,10 @@ const styles = (theme) => ({
     // Match [sm, md)
     //       [600px, 900px)
     [theme.breakpoints.between('sm', 'md')]: {
+      backgroundColor: 'red',
+    },
+    // container query equivalent
+    [theme.breakpoints.between('sm', 'md', 'container')]: {
       backgroundColor: 'red',
     },
   },

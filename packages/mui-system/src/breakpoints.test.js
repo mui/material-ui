@@ -39,6 +39,25 @@ describe('breakpoints', () => {
     });
   });
 
+  it('should work with container queries', () => {
+    const palette = breakpoints(textColor);
+
+    expect(palette.filterProps.length).to.equal(6);
+    expect(
+      palette({
+        color: 'red',
+        cqsm: {
+          color: 'blue',
+        },
+      }),
+    ).to.deep.equal({
+      color: 'red',
+      '@container (min-width:600px)': {
+        color: 'blue',
+      },
+    });
+  });
+
   describe('function: computeBreakpointsBase', () => {
     describe('mui default breakpoints', () => {
       it('compute base for breakpoint values of array type', () => {
@@ -259,6 +278,32 @@ describe('breakpoints', () => {
       );
       expect(result).to.deep.equal({
         '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '0.875rem',
+          letterSpacing: '0.01071em',
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
+      });
+    });
+
+    it('should remove empty container breakpoints', () => {
+      const result = removeUnusedBreakpoints(
+        ['@container (min-width:0px)', '@container (min-width:600px)', '@container (min-width:960px)'],
+        {
+          '@container (min-width:0px)': {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: '0.875rem',
+            letterSpacing: '0.01071em',
+            fontWeight: 400,
+            lineHeight: 1.43,
+          },
+          '@container (min-width:600px)': null,
+          '@container (min-width:960px)': {},
+        },
+      );
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': {
           fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
           fontSize: '0.875rem',
           letterSpacing: '0.01071em',

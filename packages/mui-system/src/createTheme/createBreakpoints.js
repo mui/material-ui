@@ -2,6 +2,8 @@
 // It can't be configured as it's used statically for propTypes.
 export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'];
 
+const defaultQuery = 'media';
+
 const sortBreakpointsValues = (values) => {
   const breakpointsAsArray = Object.keys(values).map((key) => ({ key, val: values[key] })) || [];
   // Sort in ascending order
@@ -31,21 +33,21 @@ export default function createBreakpoints(breakpoints) {
   const sortedValues = sortBreakpointsValues(values);
   const keys = Object.keys(sortedValues);
 
-  function up(key) {
+  function up(key, query = defaultQuery) {
     const value = typeof values[key] === 'number' ? values[key] : key;
-    return `@media (min-width:${value}${unit})`;
+    return `@${query} (min-width:${value}${unit})`;
   }
 
-  function down(key) {
+  function down(key, query = defaultQuery) {
     const value = typeof values[key] === 'number' ? values[key] : key;
-    return `@media (max-width:${value - step / 100}${unit})`;
+    return `@${query} (max-width:${value - step / 100}${unit})`;
   }
 
-  function between(start, end) {
+  function between(start, end, query = defaultQuery) {
     const endIndex = keys.indexOf(end);
 
     return (
-      `@media (min-width:${
+      `@${query} (min-width:${
         typeof values[start] === 'number' ? values[start] : start
       }${unit}) and ` +
       `(max-width:${
@@ -57,25 +59,25 @@ export default function createBreakpoints(breakpoints) {
     );
   }
 
-  function only(key) {
+  function only(key, query = defaultQuery) {
     if (keys.indexOf(key) + 1 < keys.length) {
-      return between(key, keys[keys.indexOf(key) + 1]);
+      return between(key, keys[keys.indexOf(key) + 1], query);
     }
 
-    return up(key);
+    return up(key, query);
   }
 
-  function not(key) {
+  function not(key, query = defaultQuery) {
     // handle first and last key separately, for better readability
     const keyIndex = keys.indexOf(key);
     if (keyIndex === 0) {
-      return up(keys[1]);
+      return up(keys[1], query);
     }
     if (keyIndex === keys.length - 1) {
-      return down(keys[keyIndex]);
+      return down(keys[keyIndex], query);
     }
 
-    return between(key, keys[keys.indexOf(key) + 1]).replace('@media', '@media not all and');
+    return between(key, keys[keys.indexOf(key) + 1], query).replace(`@${query}`, `@${query} not all and`);
   }
 
   return {

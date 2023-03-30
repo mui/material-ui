@@ -6,6 +6,9 @@ export type Breakpoint = OverridableStringUnion<
   'xs' | 'sm' | 'md' | 'lg' | 'xl',
   BreakpointOverrides
 >;
+
+export type QueryType = 'media' | 'container';
+
 export const keys: Breakpoint[];
 
 // Keep in sync with docs/src/pages/customization/breakpoints/breakpoints.md
@@ -30,37 +33,42 @@ export interface Breakpoints {
   values: { [key in Breakpoint]: number };
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+   * @param query - By default, `media` queries will be created, one may however choose to create `container` queries instead.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive).
    * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-up-key-media-query)
    */
-  up: (key: Breakpoint | number) => string;
+  up: (key: Breakpoint | number, query?: QueryType) => string;
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+   * @param query - By default, `media` queries will be created, one may however choose to create `container` queries instead.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive).
    * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-down-key-media-query)
    */
-  down: (key: Breakpoint | number) => string;
+  down: (key: Breakpoint | number, query?: QueryType) => string;
   /**
    * @param start - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
    * @param end - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+   * @param query - By default, `media` queries will be created, one may however choose to create `container` queries instead.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths greater than
    *          the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
    * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-between-start-end-media-query)
    */
-  between: (start: Breakpoint | number, end: Breakpoint | number) => string;
+  between: (start: Breakpoint | number, end: Breakpoint | number, query?: QueryType) => string;
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
+   * @param query - By default, `media` queries will be created, one may however choose to create `container` queries instead.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths starting from
    *          the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive).
    * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-only-key-media-query)
    */
-  only: (key: Breakpoint) => string;
+  only: (key: Breakpoint, query?: QueryType) => string;
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.).
+   * @param query - By default, `media` queries will be created, one may however choose to create `container` queries instead.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths stopping at
    *          the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
    */
-  not: (key: Breakpoint) => string;
+  not: (key: Breakpoint, query?: QueryType) => string;
   /**
    * The unit used for the breakpoint's values.
    * @default 'px'

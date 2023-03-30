@@ -366,6 +366,52 @@ declare module '@mui/material/styles' {
 }
 ```
 
+#### Container queries
+
+In order to use [`@container` queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries) instead of [`@media` queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries), you can add the prefix `cq` to your sx definitions.
+
+{{"demo": "ContainerBreakpointsAsObject.js"}}
+
+#### Container query breakpoints
+
+In order to use different breakpoints for container queries than the default `xs` to `xl`, you may define them with the same prefix as in the sx props.
+
+```jsx
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      cqxs: 0,
+      cqsm: 400,
+      cqmd: 800,
+      cqlg: 1000,
+      cqxl: 1400
+    },
+  },
+});
+
+export default function CustomBreakpointsForContainerQueries() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          width: {
+            cqxs: 100,
+            cqmd: 300,
+          },
+        }}
+      >
+        This box has a responsive width
+      </Box>
+    </ThemeProvider>
+  );
+}
+```
+If no container query breakpoints are defined, the theme will fall back to the default breakpoints, e.g. `cqxs` → `xs`.
+
 #### Theme getter
 
 If you wish to use the theme for a CSS property that is not supported natively by the system, then you can use a function as the value, in which you can access the theme object.
