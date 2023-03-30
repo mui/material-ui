@@ -77,7 +77,10 @@ export default function createBreakpoints(breakpoints) {
       return down(keys[keyIndex], query);
     }
 
-    return between(key, keys[keys.indexOf(key) + 1], query).replace(`@${query}`, `@${query} not all and`);
+    return between(key, keys[keys.indexOf(key) + 1], query).replace(
+      `@${query}`,
+      `@${query} not all and`,
+    );
   }
 
   return {

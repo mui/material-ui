@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {deepmerge} from '@mui/utils';
+import { deepmerge } from '@mui/utils';
 import merge from './merge';
 
 export const containerQueryPrefix = 'cq';
@@ -38,18 +38,21 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       // key is breakpoint
       const useContainerQueryWithContainerBreakPoints =
-        breakpoint.indexOf(containerQueryPrefix) === 0
-        && breakpointKeys.includes(breakpoint);
+        breakpoint.indexOf(containerQueryPrefix) === 0 && breakpointKeys.includes(breakpoint);
       const useContainerQueryWithDefaultBreakPoints =
-        breakpoint.indexOf(containerQueryPrefix) === 0
-        && !useContainerQueryWithContainerBreakPoints
-        && breakpointKeys.includes(breakpoint.substring(containerQueryPrefix.length));
-      const useContainerQuery = useContainerQueryWithDefaultBreakPoints || useContainerQueryWithContainerBreakPoints;
+        breakpoint.indexOf(containerQueryPrefix) === 0 &&
+        !useContainerQueryWithContainerBreakPoints &&
+        breakpointKeys.includes(breakpoint.substring(containerQueryPrefix.length));
+      const useContainerQuery =
+        useContainerQueryWithDefaultBreakPoints || useContainerQueryWithContainerBreakPoints;
       const mappedBreakpoint = useContainerQueryWithDefaultBreakPoints
         ? breakpoint.substring(containerQueryPrefix.length).toLowerCase()
         : breakpoint;
       if (breakpointKeys.indexOf(mappedBreakpoint) !== -1) {
-        const mediaKey = themeBreakpoints.up(mappedBreakpoint, useContainerQuery ? 'container' : 'media');
+        const mediaKey = themeBreakpoints.up(
+          mappedBreakpoint,
+          useContainerQuery ? 'container' : 'media',
+        );
         acc[mediaKey] = styleFromPropValue(propValue[breakpoint], mappedBreakpoint);
       } else {
         const cssKey = mappedBreakpoint;
@@ -73,13 +76,19 @@ function breakpoints(styleFunction) {
     const extended = themeBreakpoints.keys.reduce((acc, key) => {
       if (props[key] && key.indexOf(containerQueryPrefix) !== 0) {
         acc = acc || {};
-        acc[themeBreakpoints.up(key)] = styleFunction({theme, ...props[key]});
+        acc[themeBreakpoints.up(key)] = styleFunction({ theme, ...props[key] });
       } else if (props[key] && key.indexOf(containerQueryPrefix) === 0) {
         acc = acc || {};
-        acc[themeBreakpoints.up(key, 'container')] = styleFunction({theme, ...props[`${key}`]});
-      } else if (props[`${containerQueryPrefix}${key}`] || (props[key] && key.indexOf(containerQueryPrefix) === 0)) {
+        acc[themeBreakpoints.up(key, 'container')] = styleFunction({ theme, ...props[`${key}`] });
+      } else if (
+        props[`${containerQueryPrefix}${key}`] ||
+        (props[key] && key.indexOf(containerQueryPrefix) === 0)
+      ) {
         acc = acc || {};
-        acc[themeBreakpoints.up(key, 'container')] = styleFunction({theme, ...props[`${containerQueryPrefix}${key}`]});
+        acc[themeBreakpoints.up(key, 'container')] = styleFunction({
+          theme,
+          ...props[`${containerQueryPrefix}${key}`],
+        });
       }
       return acc;
     }, null);
@@ -90,13 +99,13 @@ function breakpoints(styleFunction) {
   newStyleFunction.propTypes =
     process.env.NODE_ENV !== 'production'
       ? {
-        ...styleFunction.propTypes,
-        xs: PropTypes.object,
-        sm: PropTypes.object,
-        md: PropTypes.object,
-        lg: PropTypes.object,
-        xl: PropTypes.object,
-      }
+          ...styleFunction.propTypes,
+          xs: PropTypes.object,
+          sm: PropTypes.object,
+          md: PropTypes.object,
+          lg: PropTypes.object,
+          xl: PropTypes.object,
+        }
       : {};
 
   newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];
@@ -160,10 +169,10 @@ export function computeBreakpointsBase(breakpointValues, themeBreakpoints) {
 }
 
 export function resolveBreakpointValues({
-                                          values: breakpointValues,
-                                          breakpoints: themeBreakpoints,
-                                          base: customBase,
-                                        }) {
+  values: breakpointValues,
+  breakpoints: themeBreakpoints,
+  base: customBase,
+}) {
   const base = customBase || computeBreakpointsBase(breakpointValues, themeBreakpoints);
   const keys = Object.keys(base);
 

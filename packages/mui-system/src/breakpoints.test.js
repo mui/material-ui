@@ -289,7 +289,11 @@ describe('breakpoints', () => {
 
     it('should remove empty container breakpoints', () => {
       const result = removeUnusedBreakpoints(
-        ['@container (min-width:0px)', '@container (min-width:600px)', '@container (min-width:960px)'],
+        [
+          '@container (min-width:0px)',
+          '@container (min-width:600px)',
+          '@container (min-width:960px)',
+        ],
         {
           '@container (min-width:0px)': {
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

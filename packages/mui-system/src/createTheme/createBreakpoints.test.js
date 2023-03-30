@@ -95,7 +95,9 @@ describe('createBreakpoints', () => {
     });
 
     it('should work for the largest of custom breakpoints with container query', () => {
-      expect(customBreakpoints.down('desktop', 'container')).to.equal('@container (max-width:1279.95px)');
+      expect(customBreakpoints.down('desktop', 'container')).to.equal(
+        '@container (max-width:1279.95px)',
+      );
     });
   });
 
@@ -153,7 +155,9 @@ describe('createBreakpoints', () => {
     });
 
     it('should work with container query', () => {
-      expect(breakpoints.only('md', 'container')).to.equal('@container (min-width:900px) and (max-width:1199.95px)');
+      expect(breakpoints.only('md', 'container')).to.equal(
+        '@container (min-width:900px) and (max-width:1199.95px)',
+      );
     });
 
     it('should work for custom breakpoints with container query', () => {
