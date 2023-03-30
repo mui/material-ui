@@ -6,7 +6,6 @@
     "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
     "displayEmpty": { "type": { "name": "bool" }, "default": "false" },
-    "error": { "type": { "name": "bool" } },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
     "id": { "type": { "name": "string" } },
     "input": { "type": { "name": "element" } },
