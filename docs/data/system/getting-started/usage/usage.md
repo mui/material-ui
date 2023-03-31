@@ -381,7 +381,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
+const themeWithCustomBreakpoints = createTheme({
   breakpoints: {
     values: {
       cqxs: 0,
