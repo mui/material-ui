@@ -123,28 +123,30 @@ ProductIdentifier.propTypes = {
   versionSelector: PropTypes.element,
 };
 
+const browserUrlPreviewHeight = 30;
+
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
   useEnhancedEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = parent.querySelector('.app-drawer-active');
+    const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
+    const activeDrawerLink = scrollContainer.querySelector('.app-drawer-active');
 
-    if (!enabled || !parent || !activeElement || !activeElement.scrollIntoView) {
+    if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
     }
 
-    parent.scrollTop = savedScrollTop[slot];
+    scrollContainer.scrollTop = savedScrollTop[slot];
 
-    const activeBox = activeElement.getBoundingClientRect();
+    const activeBox = activeDrawerLink.getBoundingClientRect();
 
-    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
-      parent.scrollTop += activeBox.top - 8 - 32;
+    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewHeight > window.innerHeight) {
+      scrollContainer.scrollTop += activeBox.top - (activeBox.bottom - activeBox.top) * 1.5;
     }
 
     return () => {
-      savedScrollTop[slot] = parent.scrollTop;
+      savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
 
