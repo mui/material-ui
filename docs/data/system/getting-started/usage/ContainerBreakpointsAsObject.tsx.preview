@@ -1,0 +1,16 @@
+<Paper
+  sx={{
+    width: '50%',
+    containerType: 'inline-size', // <-- this defines the reference container
+  }}
+>
+  <ListWithContainerBreakpoints />
+</Paper>
+<Paper
+  sx={{
+    width: '100%',
+    containerType: 'inline-size', // <-- this defines the reference container
+  }}
+>
+  <ListWithContainerBreakpoints />
+</Paper>
