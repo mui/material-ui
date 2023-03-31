@@ -1,11 +1,34 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider as MuiThemeProvider } from '@mui/private-theming';
+import {
+  ThemeProvider as MuiThemeProvider,
+  useTheme as usePrivateTheme,
+} from '@mui/private-theming';
 import { exactProp } from '@mui/utils';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
 
 const EMPTY_THEME = {};
+
+function useThemeScoping(identifier, upperTheme, localTheme, isPrivate = false) {
+  return React.useMemo(() => {
+    const resolvedTheme = identifier ? upperTheme[identifier] || upperTheme : upperTheme;
+
+    if (typeof localTheme === 'function') {
+      const mergedTheme = localTheme(resolvedTheme);
+      const result = identifier ? { ...upperTheme, [identifier]: mergedTheme } : mergedTheme;
+      // must return a function for the private theme to NOT merge with the upper theme.
+      // see the test case "use provided theme from a callback" in ThemeProvider.test.js
+      if (isPrivate) {
+        return () => result;
+      }
+      return result;
+    }
+    return identifier
+      ? { ...upperTheme, [identifier]: localTheme }
+      : { ...upperTheme, ...localTheme };
+  }, [identifier, upperTheme, localTheme, isPrivate]);
+}
 
 /**
  * This component makes the `theme` available down the React tree.
@@ -17,6 +40,7 @@ const EMPTY_THEME = {};
 function ThemeProvider(props) {
   const { children, theme: localTheme, identifier } = props;
   const upperTheme = useThemeWithoutDefault(EMPTY_THEME);
+  const upperPrivateTheme = usePrivateTheme() || EMPTY_THEME;
 
   if (process.env.NODE_ENV !== 'production') {
     if (
@@ -36,21 +60,12 @@ function ThemeProvider(props) {
     }
   }
 
-  const theme = React.useMemo(() => {
-    const resolvedTheme = identifier ? upperTheme[identifier] || upperTheme : upperTheme;
+  const engineTheme = useThemeScoping(identifier, upperTheme, localTheme);
+  const privateTheme = useThemeScoping(identifier, upperPrivateTheme, localTheme, true);
 
-    if (typeof localTheme === 'function') {
-      const mergedTheme = localTheme(resolvedTheme);
-      // must return a function to not
-      return () => (identifier ? { ...upperTheme, [identifier]: mergedTheme } : mergedTheme);
-    }
-    return identifier
-      ? { ...upperTheme, [identifier]: localTheme }
-      : { ...upperTheme, ...localTheme };
-  }, [identifier, upperTheme, localTheme]);
   return (
-    <MuiThemeProvider theme={theme}>
-      <StyledEngineThemeContext.Provider value={typeof theme === 'function' ? theme() : theme}>
+    <MuiThemeProvider theme={privateTheme}>
+      <StyledEngineThemeContext.Provider value={engineTheme}>
         {children}
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>

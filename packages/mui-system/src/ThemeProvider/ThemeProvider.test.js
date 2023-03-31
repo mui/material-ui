@@ -76,7 +76,6 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       foo: 'foo',
       bar: 'bar',
-      [Symbol.for('mui.nested')]: false,
     });
   });
 
@@ -102,8 +101,7 @@ describe('ThemeProvider', () => {
       [Symbol.for('mui.nested')]: true,
     });
     expect(engineTheme).to.deep.equal({
-      bar: { foo: 'foo', [Symbol.for('mui.nested')]: false },
-      [Symbol.for('mui.nested')]: true, // mutated by the private ThemeProvider
+      bar: { foo: 'foo' },
     });
   });
 
@@ -123,7 +121,7 @@ describe('ThemeProvider', () => {
       </ThemeProvider>,
     );
     expect(privateTheme).to.deep.equal({ mui: { foo: 'foo' }, [Symbol.for('mui.nested')]: false });
-    expect(engineTheme).to.deep.equal({ mui: { foo: 'foo' }, [Symbol.for('mui.nested')]: false });
+    expect(engineTheme).to.deep.equal({ mui: { foo: 'foo' } });
   });
 
   it('theme scope: nested below general theme', () => {
@@ -151,7 +149,6 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { bar: 'bar' },
-      [Symbol.for('mui.nested')]: false,
     });
   });
 
@@ -182,7 +179,6 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { baz: { bar: 'bar' } },
-      [Symbol.for('mui.nested')]: false,
     });
   });
 
@@ -213,7 +209,6 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { baz: { bar: 'bar' } },
-      [Symbol.for('mui.nested')]: false,
     });
   });
 
@@ -263,12 +258,10 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       mui: { bar: 'bar' },
       joy: { foo: 'foo' },
-      [Symbol.for('mui.nested')]: false,
     });
     expect(engineTheme2).to.deep.equal({
       mui: { baz: { bar: 'bar' } },
       joy: { baz: { foo: 'foo' } },
-      [Symbol.for('mui.nested')]: false,
     });
   });
 
