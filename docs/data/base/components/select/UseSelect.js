@@ -5,6 +5,112 @@ import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import clsx from 'clsx';
 
+function renderSelectedValue(value, options) {
+  const selectedOption = options.find((option) => option.value === value);
+
+  return selectedOption ? `${selectedOption.label} (${value})` : null;
+}
+
+function CustomOption(props) {
+  const { children, value, className, disabled = false } = props;
+  const { getRootProps, highlighted } = useOption({
+    value,
+    disabled,
+  });
+
+  return (
+    <Option
+      {...getRootProps()}
+      className={clsx({ highlighted }, className)}
+      style={{ '--color': value }}
+    >
+      {children}
+    </Option>
+  );
+}
+
+CustomOption.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+};
+
+function CustomSelect({ options, placeholder }) {
+  const listboxRef = React.useRef(null);
+  const [listboxVisible, setListboxVisible] = React.useState(false);
+
+  const { getButtonProps, getListboxProps, contextValue, value } = useSelect({
+    listboxRef,
+    onOpenChange: setListboxVisible,
+    open: listboxVisible,
+    options,
+  });
+
+  React.useEffect(() => {
+    if (listboxVisible) {
+      listboxRef.current?.focus();
+    }
+  }, [listboxVisible]);
+
+  return (
+    <Root>
+      <Toggle {...getButtonProps()} style={{ '--color': value }}>
+        {renderSelectedValue(value, options) || (
+          <span className="placeholder">{placeholder ?? ' '}</span>
+        )}
+
+        <UnfoldMoreRoundedIcon />
+      </Toggle>
+      <Listbox
+        {...getListboxProps()}
+        aria-hidden={!listboxVisible}
+        className={listboxVisible ? '' : 'hidden'}
+      >
+        <SelectUnstyledContext.Provider value={contextValue}>
+          {options.map((option) => {
+            return (
+              <CustomOption key={option.value} value={option.value}>
+                {option.label}
+              </CustomOption>
+            );
+          })}
+        </SelectUnstyledContext.Provider>
+      </Listbox>
+    </Root>
+  );
+}
+
+CustomSelect.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      disabled: PropTypes.bool,
+      label: PropTypes.node,
+      value: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  placeholder: PropTypes.string,
+};
+
+const options = [
+  {
+    label: 'Red',
+    value: '#D32F2F',
+  },
+  {
+    label: 'Green',
+    value: '#4CAF50',
+  },
+  {
+    label: 'Blue',
+    value: '#2196F3',
+  },
+];
+
+export default function UseSelect() {
+  return <CustomSelect placeholder="Select a color…" options={options} />;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -138,109 +244,3 @@ const Option = styled('li')(
   }
   `,
 );
-
-function renderSelectedValue(value, options) {
-  const selectedOption = options.find((option) => option.value === value);
-
-  return selectedOption ? `${selectedOption.label} (${value})` : null;
-}
-
-function CustomOption(props) {
-  const { children, value, className, disabled = false } = props;
-  const { getRootProps, highlighted } = useOption({
-    value,
-    disabled,
-  });
-
-  return (
-    <Option
-      {...getRootProps()}
-      className={clsx({ highlighted }, className)}
-      style={{ '--color': value }}
-    >
-      {children}
-    </Option>
-  );
-}
-
-CustomOption.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  value: PropTypes.string.isRequired,
-};
-
-function CustomSelect({ options, placeholder }) {
-  const listboxRef = React.useRef(null);
-  const [listboxVisible, setListboxVisible] = React.useState(false);
-
-  const { getButtonProps, getListboxProps, contextValue, value } = useSelect({
-    listboxRef,
-    onOpenChange: setListboxVisible,
-    open: listboxVisible,
-    options,
-  });
-
-  React.useEffect(() => {
-    if (listboxVisible) {
-      listboxRef.current?.focus();
-    }
-  }, [listboxVisible]);
-
-  return (
-    <Root>
-      <Toggle {...getButtonProps()} style={{ '--color': value }}>
-        {renderSelectedValue(value, options) || (
-          <span className="placeholder">{placeholder ?? ' '}</span>
-        )}
-
-        <UnfoldMoreRoundedIcon />
-      </Toggle>
-      <Listbox
-        {...getListboxProps()}
-        aria-hidden={!listboxVisible}
-        className={listboxVisible ? '' : 'hidden'}
-      >
-        <SelectUnstyledContext.Provider value={contextValue}>
-          {options.map((option) => {
-            return (
-              <CustomOption key={option.value} value={option.value}>
-                {option.label}
-              </CustomOption>
-            );
-          })}
-        </SelectUnstyledContext.Provider>
-      </Listbox>
-    </Root>
-  );
-}
-
-CustomSelect.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      disabled: PropTypes.bool,
-      label: PropTypes.node,
-      value: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  placeholder: PropTypes.string,
-};
-
-const options = [
-  {
-    label: 'Red',
-    value: '#D32F2F',
-  },
-  {
-    label: 'Green',
-    value: '#4CAF50',
-  },
-  {
-    label: 'Blue',
-    value: '#2196F3',
-  },
-];
-
-export default function UseSelect() {
-  return <CustomSelect placeholder="Select a color…" options={options} />;
-}

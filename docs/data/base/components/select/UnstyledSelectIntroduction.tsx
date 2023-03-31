@@ -9,6 +9,33 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
+const CustomSelect = React.forwardRef(function CustomSelect<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectUnstyledProps<TValue, Multiple>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
+});
+
+export default function UnstyledSelectIntroduction() {
+  return (
+    <CustomSelect defaultValue={10}>
+      <StyledOption value={10}>Documentation</StyledOption>
+      <StyledOption value={20}>Components</StyledOption>
+      <StyledOption value={30}>Features</StyledOption>
+    </CustomSelect>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -145,30 +172,3 @@ const StyledOption = styled(OptionUnstyled)(
 const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect<
-  TValue extends {},
-  Multiple extends boolean,
->(
-  props: SelectUnstyledProps<TValue, Multiple>,
-  ref: React.ForwardedRef<HTMLButtonElement>,
-) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
-});
-
-export default function UnstyledSelectIntroduction() {
-  return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Documentation</StyledOption>
-      <StyledOption value={20}>Components</StyledOption>
-      <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
-  );
-}

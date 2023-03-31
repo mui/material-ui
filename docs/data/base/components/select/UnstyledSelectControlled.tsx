@@ -7,6 +7,32 @@ import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled'
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
+function CustomSelect(props: SelectUnstyledProps<number, false>) {
+  const slots: SelectUnstyledProps<number, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <SelectUnstyled {...props} slots={slots} />;
+}
+
+export default function UnstyledSelectsMultiple() {
+  const [value, setValue] = React.useState<number | null>(10);
+  return (
+    <div>
+      <CustomSelect value={value} onChange={(e, newValue) => setValue(newValue)}>
+        <StyledOption value={10}>Ten</StyledOption>
+        <StyledOption value={20}>Twenty</StyledOption>
+        <StyledOption value={30}>Thirty</StyledOption>
+      </CustomSelect>
+
+      <Paragraph>Selected value: {value}</Paragraph>
+    </div>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -138,29 +164,3 @@ const Paragraph = styled('p')(
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
   `,
 );
-
-function CustomSelect(props: SelectUnstyledProps<number, false>) {
-  const slots: SelectUnstyledProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-export default function UnstyledSelectsMultiple() {
-  const [value, setValue] = React.useState<number | null>(10);
-  return (
-    <div>
-      <CustomSelect value={value} onChange={(e, newValue) => setValue(newValue)}>
-        <StyledOption value={10}>Ten</StyledOption>
-        <StyledOption value={20}>Twenty</StyledOption>
-        <StyledOption value={30}>Thirty</StyledOption>
-      </CustomSelect>
-
-      <Paragraph>Selected value: {value}</Paragraph>
-    </div>
-  );
-}

@@ -10,6 +10,48 @@ import OptionGroupUnstyled, {
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
+function CustomSelect(props: SelectUnstyledProps<string, false>) {
+  const slots: SelectUnstyledProps<string, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <SelectUnstyled {...props} slots={slots} />;
+}
+
+const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
+  props: OptionGroupUnstyledProps,
+  ref: React.ForwardedRef<any>,
+) {
+  const slots: OptionGroupUnstyledProps['slots'] = {
+    root: StyledGroupRoot,
+    label: StyledGroupHeader,
+    list: StyledGroupOptions,
+    ...props.slots,
+  };
+
+  return <OptionGroupUnstyled {...props} ref={ref} slots={slots} />;
+});
+
+export default function UnstyledSelectGrouping() {
+  return (
+    <CustomSelect>
+      <CustomOptionGroup label="Hobbits">
+        <StyledOption value="Frodo">Frodo</StyledOption>
+        <StyledOption value="Sam">Sam</StyledOption>
+        <StyledOption value="Merry">Merry</StyledOption>
+        <StyledOption value="Pippin">Pippin</StyledOption>
+      </CustomOptionGroup>
+      <CustomOptionGroup label="Elves">
+        <StyledOption value="Galadriel">Galadriel</StyledOption>
+        <StyledOption value="Legolas">Legolas</StyledOption>
+      </CustomOptionGroup>
+    </CustomSelect>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -156,45 +198,3 @@ const StyledGroupOptions = styled('ul')`
 const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
-
-function CustomSelect(props: SelectUnstyledProps<string, false>) {
-  const slots: SelectUnstyledProps<string, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-const CustomOptionGroup = React.forwardRef(function CustomOptionGroup(
-  props: OptionGroupUnstyledProps,
-  ref: React.ForwardedRef<any>,
-) {
-  const slots: OptionGroupUnstyledProps['slots'] = {
-    root: StyledGroupRoot,
-    label: StyledGroupHeader,
-    list: StyledGroupOptions,
-    ...props.slots,
-  };
-
-  return <OptionGroupUnstyled {...props} ref={ref} slots={slots} />;
-});
-
-export default function UnstyledSelectGrouping() {
-  return (
-    <CustomSelect>
-      <CustomOptionGroup label="Hobbits">
-        <StyledOption value="Frodo">Frodo</StyledOption>
-        <StyledOption value="Sam">Sam</StyledOption>
-        <StyledOption value="Merry">Merry</StyledOption>
-        <StyledOption value="Pippin">Pippin</StyledOption>
-      </CustomOptionGroup>
-      <CustomOptionGroup label="Elves">
-        <StyledOption value="Galadriel">Galadriel</StyledOption>
-        <StyledOption value="Legolas">Legolas</StyledOption>
-      </CustomOptionGroup>
-    </CustomSelect>
-  );
-}

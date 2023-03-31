@@ -9,6 +9,106 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 import Box from '@mui/system/Box';
 
+function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+  props: SelectUnstyledProps<TValue, Multiple>,
+) {
+  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <SelectUnstyled {...props} slots={slots} />;
+}
+
+interface Character {
+  name: string;
+  race: string;
+}
+
+const characters: Character[] = [
+  { name: 'Frodo', race: 'Hobbit' },
+  { name: 'Sam', race: 'Hobbit' },
+  { name: 'Merry', race: 'Hobbit' },
+  { name: 'Gandalf', race: 'Maia' },
+  { name: 'Gimli', race: 'Dwarf' },
+];
+
+export default function UnstyledSelectObjectValuesForm() {
+  const getSerializedValue = (option: SelectOption<Character> | null) => {
+    if (option?.value == null) {
+      return '';
+    }
+
+    return `${option.value.race}.${option.value.name}`;
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    alert(`character=${formData.get('character')}`);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <div>
+            <Label
+              id="object-value-default-label"
+              htmlFor="object-value-default-button"
+            >
+              Default behavior
+            </Label>
+            <CustomSelect
+              name="character"
+              id="object-value-default-button"
+              aria-labelledby="object-value-default-label object-value-default-button"
+            >
+              {characters.map((character) => (
+                <StyledOption key={character.name} value={character}>
+                  {character.name}
+                </StyledOption>
+              ))}
+            </CustomSelect>
+          </div>
+          <Button sx={{ ml: 1 }} type="submit">
+            Submit
+          </Button>
+        </Box>
+      </form>
+      <form onSubmit={handleSubmit}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-end', mt: 2 }}>
+          <div>
+            <Label
+              id="object-value-serialize-label"
+              htmlFor="object-value-serialize-button"
+            >
+              Custom getSerializedValue
+            </Label>
+            <CustomSelect
+              getSerializedValue={getSerializedValue}
+              name="character"
+              id="object-value-serialize-button"
+              aria-labelledby="object-value-serialize-label object-value-serialize-button"
+            >
+              {characters.map((character) => (
+                <StyledOption key={character.name} value={character}>
+                  {character.name}
+                </StyledOption>
+              ))}
+            </CustomSelect>
+          </div>
+          <Button sx={{ ml: 1 }} type="submit">
+            Submit
+          </Button>
+        </Box>
+      </form>
+    </div>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -154,103 +254,3 @@ const Button = styled('button')`
     background-color: ${blue[600]};
   }
 `;
-
-function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
-  props: SelectUnstyledProps<TValue, Multiple>,
-) {
-  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-interface Character {
-  name: string;
-  race: string;
-}
-
-const characters: Character[] = [
-  { name: 'Frodo', race: 'Hobbit' },
-  { name: 'Sam', race: 'Hobbit' },
-  { name: 'Merry', race: 'Hobbit' },
-  { name: 'Gandalf', race: 'Maia' },
-  { name: 'Gimli', race: 'Dwarf' },
-];
-
-export default function UnstyledSelectObjectValuesForm() {
-  const getSerializedValue = (option: SelectOption<Character> | null) => {
-    if (option?.value == null) {
-      return '';
-    }
-
-    return `${option.value.race}.${option.value.name}`;
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    alert(`character=${formData.get('character')}`);
-  };
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-          <div>
-            <Label
-              id="object-value-default-label"
-              htmlFor="object-value-default-button"
-            >
-              Default behavior
-            </Label>
-            <CustomSelect
-              name="character"
-              id="object-value-default-button"
-              aria-labelledby="object-value-default-label object-value-default-button"
-            >
-              {characters.map((character) => (
-                <StyledOption key={character.name} value={character}>
-                  {character.name}
-                </StyledOption>
-              ))}
-            </CustomSelect>
-          </div>
-          <Button sx={{ ml: 1 }} type="submit">
-            Submit
-          </Button>
-        </Box>
-      </form>
-      <form onSubmit={handleSubmit}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-end', mt: 2 }}>
-          <div>
-            <Label
-              id="object-value-serialize-label"
-              htmlFor="object-value-serialize-button"
-            >
-              Custom getSerializedValue
-            </Label>
-            <CustomSelect
-              getSerializedValue={getSerializedValue}
-              name="character"
-              id="object-value-serialize-button"
-              aria-labelledby="object-value-serialize-label object-value-serialize-button"
-            >
-              {characters.map((character) => (
-                <StyledOption key={character.name} value={character}>
-                  {character.name}
-                </StyledOption>
-              ))}
-            </CustomSelect>
-          </div>
-          <Button sx={{ ml: 1 }} type="submit">
-            Submit
-          </Button>
-        </Box>
-      </form>
-    </div>
-  );
-}

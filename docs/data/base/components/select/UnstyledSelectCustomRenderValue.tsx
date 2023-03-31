@@ -8,6 +8,39 @@ import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled'
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
+function CustomSelect(props: SelectUnstyledProps<number, false>) {
+  const slots: SelectUnstyledProps<number, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <SelectUnstyled {...props} slots={slots} />;
+}
+
+function renderValue(option: SelectOption<number> | null) {
+  if (option == null) {
+    return <span>Select an option...</span>;
+  }
+
+  return (
+    <span>
+      {option.label} ({option.value})
+    </span>
+  );
+}
+
+export default function UnstyledSelectCustomRenderValue() {
+  return (
+    <CustomSelect renderValue={renderValue}>
+      <StyledOption value={10}>Ten</StyledOption>
+      <StyledOption value={20}>Twenty</StyledOption>
+      <StyledOption value={30}>Thirty</StyledOption>
+    </CustomSelect>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -129,36 +162,3 @@ const StyledOption = styled(OptionUnstyled)(
 const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
-
-function CustomSelect(props: SelectUnstyledProps<number, false>) {
-  const slots: SelectUnstyledProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-function renderValue(option: SelectOption<number> | null) {
-  if (option == null) {
-    return <span>Select an option...</span>;
-  }
-
-  return (
-    <span>
-      {option.label} ({option.value})
-    </span>
-  );
-}
-
-export default function UnstyledSelectCustomRenderValue() {
-  return (
-    <CustomSelect renderValue={renderValue}>
-      <StyledOption value={10}>Ten</StyledOption>
-      <StyledOption value={20}>Twenty</StyledOption>
-      <StyledOption value={30}>Thirty</StyledOption>
-    </CustomSelect>
-  );
-}

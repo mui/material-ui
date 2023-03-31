@@ -7,6 +7,52 @@ import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled'
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
+function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+  props: SelectUnstyledProps<TValue, Multiple>,
+) {
+  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <SelectUnstyled {...props} slots={slots} />;
+}
+
+interface Character {
+  name: string;
+  race: string;
+}
+
+const characters: Character[] = [
+  { name: 'Frodo', race: 'Hobbit' },
+  { name: 'Sam', race: 'Hobbit' },
+  { name: 'Merry', race: 'Hobbit' },
+  { name: 'Gandalf', race: 'Maia' },
+  { name: 'Gimli', race: 'Dwarf' },
+];
+
+export default function UnstyledSelectObjectValues() {
+  const [character, setCharacter] = React.useState<Character | null>(characters[0]);
+  return (
+    <div>
+      <CustomSelect
+        value={character}
+        onChange={(e, newValue) => setCharacter(newValue)}
+      >
+        {characters.map((c) => (
+          <StyledOption key={c.name} value={c}>
+            {c.name}
+          </StyledOption>
+        ))}
+      </CustomSelect>
+      <Paragraph>Selected character:</Paragraph>
+      <Pre>{JSON.stringify(character, null, 2)}</Pre>
+    </div>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -152,49 +198,3 @@ const Pre = styled('pre')(
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
   `,
 );
-
-function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
-  props: SelectUnstyledProps<TValue, Multiple>,
-) {
-  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-interface Character {
-  name: string;
-  race: string;
-}
-
-const characters: Character[] = [
-  { name: 'Frodo', race: 'Hobbit' },
-  { name: 'Sam', race: 'Hobbit' },
-  { name: 'Merry', race: 'Hobbit' },
-  { name: 'Gandalf', race: 'Maia' },
-  { name: 'Gimli', race: 'Dwarf' },
-];
-
-export default function UnstyledSelectObjectValues() {
-  const [character, setCharacter] = React.useState<Character | null>(characters[0]);
-  return (
-    <div>
-      <CustomSelect
-        value={character}
-        onChange={(e, newValue) => setCharacter(newValue)}
-      >
-        {characters.map((c) => (
-          <StyledOption key={c.name} value={c}>
-            {c.name}
-          </StyledOption>
-        ))}
-      </CustomSelect>
-      <Paragraph>Selected character:</Paragraph>
-      <Pre>{JSON.stringify(character, null, 2)}</Pre>
-    </div>
-  );
-}
