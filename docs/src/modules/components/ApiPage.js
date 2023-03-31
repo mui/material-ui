@@ -3,12 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
+import { sxChip } from './AppNavDrawerItem';
 
 function ClassesTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -30,16 +32,21 @@ function ClassesTable(props) {
             <tr key={className}>
               <td align="left">
                 <span className="prop-name">
-                  {isGlobalStateClass ? <b>{className}</b> : className}
+                  {isGlobalStateClass ? (
+                    <React.Fragment>
+                      {className}
+                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
+                    </React.Fragment>
+                  ) : (
+                    className
+                  )}
                 </span>
               </td>
               <td align="left">
                 <span className="prop-name">
-                  {isGlobalStateClass ? (
-                    <b>.{componentStyles.globalClasses[className]}</b>
-                  ) : (
-                    `.${componentStyles.name}-${className}`
-                  )}
+                  .
+                  {componentStyles.globalClasses[className] ||
+                    `${componentStyles.name}-${className}`}
                 </span>
               </td>
               <td

@@ -5,7 +5,7 @@
     "componentsApi": "Components API",
     "themeDefaultProps": "Theme default props",
     "themeDefaultPropsDescription": "You can use <code>{{muiName}}</code> to change the default props of this component <a href={{defaultPropsLink}}>with the theme</a>.",
-    "cssDescription": "The following class names are useful for styling with CSS (the <a href=\"/material-ui/customization/how-to-customize/#state-classes\">state classes</a> are in <b>bold</b>). <br /> To learn more, visit the <a href=\"/material-ui/customization/theme-components/\">component customization</a> page.",
+    "cssDescription": "The following class names are useful for styling with CSS (the <a href=\"/material-ui/customization/how-to-customize/#state-classes\">state classes</a> are marked). <br /> To learn more, visit the <a href=\"/material-ui/customization/theme-components/\">component customization</a> page.",
     "cssComponent": "As a CSS utility, the {{name}} component also supports all <a href=\"/system/properties/\"><code>system</code></a> properties. You can use them as props directly on the component.",
     "default": "Default",
     "defaultValue": "Default value",
@@ -36,6 +36,7 @@
     "ruleName": "Rule name",
     "slots": "Slots",
     "spreadHint": "Props of the {{spreadHintElement}} component are also available.",
+    "state": "STATE",
     "styleOverrides": "The name <code>{{componentStyles.name}}</code> can be used when providing <a href={{defaultPropsLink}}>default props</a> or <a href={{styleOverridesLink}}>style overrides</a> in the theme.",
     "slotDescription": "To learn how to customize the slot, check out the <a href={{slotGuideLink}}>Overriding component structure</a> guide.",
     "type": "Type"
