@@ -19,7 +19,7 @@ In the meantime, you can still adopt Joy UI today for building a toggle button!
 
 This document shows how to construct it with existing Joy UI components combined with popular headless UI libraries.
 
-### Using the `IconButton` component
+### Using the Icon Button component
 
 Joy UI's [`IconButton`](/joy-ui/react-button/#icon-button) component is perfect for building a toggle button because it already produces a square button with an icon inside.
 
