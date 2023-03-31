@@ -487,7 +487,7 @@ export default function TeamExample() {
                     >
                       <Avatar
                         size="sm"
-                        src="https://seeklogo.com/images/D/dribbble-logo-143FF96D65-seeklogo.com.png"
+                        src="https://www.vectorlogo.zone/logos/dribbble/dribbble-icon.svg"
                       />
                     </ListItemDecorator>
                     <ListItemContent>
@@ -500,7 +500,8 @@ export default function TeamExample() {
                     <ListItemDecorator>
                       <Avatar
                         size="sm"
-                        src="https://seeklogo.com/images/P/pinterest-logo-CA98998DCB-seeklogo.com.png"
+                        src="https://www.vectorlogo.zone/logos/pinterest/pinterest-icon.svg"
+                        sx={{ backgroundColor: 'background.body' }}
                       />
                     </ListItemDecorator>
                     <ListItemContent>
