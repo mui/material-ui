@@ -76,7 +76,7 @@ const useUtilityClasses = () => {
 const defaultPopperOptions = {};
 
 const PopperTooltip = React.forwardRef(function PopperTooltip(
-  props: PopperTooltipProps,
+  props: PopperTooltipProps & { ownerState?: any },
   ref: React.ForwardedRef<HTMLElement>,
 ) {
   const {
@@ -93,8 +93,15 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     slotProps = {},
     slots = {},
     TransitionProps,
+    // ignore `ownerState` passed as a prop
+    ownerState: ownerStateIgnored,
     ...other
   } = props;
+
+  const ownerState = {
+    ...props,
+    ownerState: undefined,
+  };
 
   const tooltipRef = React.useRef<HTMLElement | null>(null);
   const ownRef = useForkRef(tooltipRef, ref);
@@ -216,6 +223,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
 
   const classes = useUtilityClasses();
   const Root = component ?? slots.root ?? 'div';
+
   const rootProps: WithOptionalOwnerState<PopperUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -224,7 +232,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       role: 'tooltip',
       ref: ownRef,
     },
-    ownerState: props,
+    ownerState,
     className: classes.root,
   });
 

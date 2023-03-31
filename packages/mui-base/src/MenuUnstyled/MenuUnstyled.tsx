@@ -91,11 +91,6 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     ownerState,
   });
 
-  // Prevent passing `ownerState` to `PopperUnstyled`
-  if (!component && !slots.root && rootProps.ownerState) {
-    delete rootProps.ownerState;
-  }
-
   const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({
     elementType: Listbox,
