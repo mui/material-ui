@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Script from 'next/script';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
@@ -33,7 +34,10 @@ if (process.env.NODE_ENV === 'production') {
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
+// TODO remove https://support.google.com/analytics/answer/11986666
 const GOOGLE_ANALYTICS_ID = PRODUCTION_GA ? 'UA-106598593-2' : 'UA-106598593-3';
+
+const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
 
 export default class MyDocument extends Document {
   render() {
@@ -153,12 +157,28 @@ export default class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                window.ga('create','${GOOGLE_ANALYTICS_ID}',{
-                  sampleRate: ${PRODUCTION_GA ? 80 : 100},
-                });
-              `,
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+window.ga('create','${GOOGLE_ANALYTICS_ID}',{
+  sampleRate: ${PRODUCTION_GA ? 80 : 100},
+});
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
+  send_page_view: false,
+});
+`,
             }}
+          />
+          {/**
+           * A better alternative to <script async>, to delay its execution
+           * https://developer.chrome.com/blog/script-component/
+           */}
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID_V4}`}
           />
           <NextScript />
         </body>
