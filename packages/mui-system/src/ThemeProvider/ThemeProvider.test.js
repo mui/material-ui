@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import { useTheme } from '@mui/private-theming';
+import { useTheme as usePrivateTheme } from '@mui/private-theming';
 import { ThemeContext } from '@mui/styled-engine';
 import ThemeProvider from './ThemeProvider';
+
+const useEngineTheme = () => React.useContext(ThemeContext);
 
 describe('ThemeProvider', () => {
   const { render } = createRenderer();
 
   it('should provide the theme to the mui theme context', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -23,14 +27,17 @@ describe('ThemeProvider', () => {
       </ThemeProvider>,
     );
 
-    expect(theme).to.include({ foo: 'foo' });
+    expect(privateTheme).to.include({ foo: 'foo' });
+    expect(engineTheme).to.include({ foo: 'foo' });
   });
 
   it('should provide the theme to the styled engine theme context', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = React.useContext(ThemeContext);
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -40,14 +47,17 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    expect(theme).to.include({ foo: 'foo' });
+    expect(engineTheme).to.include({ foo: 'foo' });
+    expect(privateTheme).to.include({ foo: 'foo' });
   });
 
   it('merge theme by default', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -58,14 +68,25 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({ foo: 'foo', bar: 'bar', [Symbol.for('mui.nested')]: true });
+    expect(privateTheme).to.deep.equal({
+      foo: 'foo',
+      bar: 'bar',
+      [Symbol.for('mui.nested')]: true,
+    });
+    expect(engineTheme).to.deep.equal({
+      foo: 'foo',
+      bar: 'bar',
+      [Symbol.for('mui.nested')]: false,
+    });
   });
 
   it('use provided theme from a callback', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -76,17 +97,23 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({
+    expect(privateTheme).to.deep.equal({
       bar: { foo: 'foo', [Symbol.for('mui.nested')]: false },
       [Symbol.for('mui.nested')]: true,
+    });
+    expect(engineTheme).to.deep.equal({
+      bar: { foo: 'foo', [Symbol.for('mui.nested')]: false },
+      [Symbol.for('mui.nested')]: true, // mutated by the private ThemeProvider
     });
   });
 
   it('theme scope: theme should not change', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -95,14 +122,17 @@ describe('ThemeProvider', () => {
         <Test />
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({ mui: { foo: 'foo' }, [Symbol.for('mui.nested')]: false });
+    expect(privateTheme).to.deep.equal({ mui: { foo: 'foo' }, [Symbol.for('mui.nested')]: false });
+    expect(engineTheme).to.deep.equal({ mui: { foo: 'foo' }, [Symbol.for('mui.nested')]: false });
   });
 
   it('theme scope: nested below general theme', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -113,18 +143,25 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({
+    expect(privateTheme).to.deep.equal({
       foo: 'foo',
       mui: { bar: 'bar' },
       [Symbol.for('mui.nested')]: true,
     });
+    expect(engineTheme).to.deep.equal({
+      foo: 'foo',
+      mui: { bar: 'bar' },
+      [Symbol.for('mui.nested')]: false,
+    });
   });
 
   it('theme scope: respect callback and merge theme', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -137,7 +174,12 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({
+    expect(privateTheme).to.deep.equal({
+      foo: 'foo',
+      mui: { baz: { bar: 'bar' } },
+      [Symbol.for('mui.nested')]: true,
+    });
+    expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { baz: { bar: 'bar' } },
       [Symbol.for('mui.nested')]: true,
@@ -145,10 +187,12 @@ describe('ThemeProvider', () => {
   });
 
   it('theme scope: order should not matter', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
@@ -161,7 +205,12 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({
+    expect(privateTheme).to.deep.equal({
+      foo: 'foo',
+      mui: { baz: { bar: 'bar' } },
+      [Symbol.for('mui.nested')]: true,
+    });
+    expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { baz: { bar: 'bar' } },
       [Symbol.for('mui.nested')]: true,
@@ -169,18 +218,22 @@ describe('ThemeProvider', () => {
   });
 
   it('theme scope: multiple identifiers', () => {
-    let theme;
+    let privateTheme;
+    let engineTheme;
 
     function Test() {
-      theme = useTheme();
+      privateTheme = usePrivateTheme();
+      engineTheme = useEngineTheme();
 
       return null;
     }
 
-    let theme2;
+    let privateTheme2;
+    let engineTheme2;
 
     function Test2() {
-      theme2 = useTheme();
+      privateTheme2 = usePrivateTheme();
+      engineTheme2 = useEngineTheme();
 
       return null;
     }
@@ -196,12 +249,23 @@ describe('ThemeProvider', () => {
         </ThemeProvider>
       </ThemeProvider>,
     );
-    expect(theme).to.deep.equal({
+    expect(privateTheme).to.deep.equal({
       mui: { bar: 'bar' },
       joy: { foo: 'foo' },
       [Symbol.for('mui.nested')]: true,
     });
-    expect(theme2).to.deep.equal({
+    expect(privateTheme2).to.deep.equal({
+      mui: { baz: { bar: 'bar' } },
+      joy: { baz: { foo: 'foo' } },
+      [Symbol.for('mui.nested')]: true,
+    });
+
+    expect(engineTheme).to.deep.equal({
+      mui: { bar: 'bar' },
+      joy: { foo: 'foo' },
+      [Symbol.for('mui.nested')]: false,
+    });
+    expect(engineTheme2).to.deep.equal({
       mui: { baz: { bar: 'bar' } },
       joy: { baz: { foo: 'foo' } },
       [Symbol.for('mui.nested')]: true,

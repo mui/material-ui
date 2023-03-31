@@ -1,27 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider as MuiThemeProvider, useTheme as muiUseTheme } from '@mui/private-theming';
+import {
+  ThemeProvider as MuiThemeProvider,
+  useTheme as usePrivateTheme,
+} from '@mui/private-theming';
 import { exactProp } from '@mui/utils';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
-import useTheme from '../useTheme';
 
 const EMPTY_THEME = {};
-
-function InnerThemeProvider(props) {
-  const theme = useTheme();
-  return (
-    <StyledEngineThemeContext.Provider value={typeof theme === 'object' ? theme : EMPTY_THEME}>
-      {props.children}
-    </StyledEngineThemeContext.Provider>
-  );
-}
-
-InnerThemeProvider.propTypes = {
-  /**
-   * Your component tree.
-   */
-  children: PropTypes.node,
-};
 
 /**
  * This component makes the `theme` available down the React tree.
@@ -32,7 +18,7 @@ InnerThemeProvider.propTypes = {
  */
 function ThemeProvider(props) {
   const { children, theme: localTheme, identifier } = props;
-  const upperTheme = muiUseTheme(); // user's provided theme or `null`.
+  const upperTheme = usePrivateTheme(); // user's provided theme or `null`.
 
   if (process.env.NODE_ENV !== 'production') {
     if (
@@ -69,7 +55,11 @@ function ThemeProvider(props) {
   }, [identifier, upperTheme, localTheme]);
   return (
     <MuiThemeProvider theme={theme}>
-      <InnerThemeProvider>{children}</InnerThemeProvider>
+      <StyledEngineThemeContext.Provider
+        value={typeof theme === 'function' ? theme() : theme || EMPTY_THEME}
+      >
+        {children}
+      </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>
   );
 }
