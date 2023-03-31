@@ -3,6 +3,28 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import useSwitch from '@mui/base/useSwitch';
 
+function MUISwitch(props) {
+  const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
+
+  const stateClasses = {
+    checked,
+    disabled,
+    focusVisible,
+  };
+
+  return (
+    <SwitchRoot className={clsx(stateClasses)}>
+      <SwitchTrack>
+        <SwitchThumb className={clsx(stateClasses)} />
+      </SwitchTrack>
+      <SwitchInput {...getInputProps()} aria-label="Demo switch" />
+    </SwitchRoot>
+  );
+}
+
+export default function UseSwitchesCustom() {
+  return <MUISwitch defaultChecked />;
+}
 const blue = {
   700: '#0059B2',
 };
@@ -78,26 +100,3 @@ const SwitchTrack = styled('span')(
   display: block;
 `,
 );
-
-function MUISwitch(props) {
-  const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
-
-  const stateClasses = {
-    checked,
-    disabled,
-    focusVisible,
-  };
-
-  return (
-    <SwitchRoot className={clsx(stateClasses)}>
-      <SwitchTrack>
-        <SwitchThumb className={clsx(stateClasses)} />
-      </SwitchTrack>
-      <SwitchInput {...getInputProps()} aria-label="Demo switch" />
-    </SwitchRoot>
-  );
-}
-
-export default function UseSwitchesCustom() {
-  return <MUISwitch defaultChecked />;
-}

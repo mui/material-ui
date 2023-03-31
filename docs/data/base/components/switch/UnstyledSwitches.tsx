@@ -1,7 +1,18 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+export default function UnstyledSwitches() {
+  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
 
+  return (
+    <div>
+      <SwitchUnstyled component={Root} {...label} defaultChecked />
+      <SwitchUnstyled component={Root} {...label} />
+      <SwitchUnstyled component={Root} {...label} defaultChecked disabled />
+      <SwitchUnstyled component={Root} {...label} disabled />
+    </div>
+  );
+}
 const blue = {
   500: '#007FFF',
 };
@@ -81,16 +92,3 @@ const Root = styled('span')(
   }
   `,
 );
-
-export default function UnstyledSwitches() {
-  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
-
-  return (
-    <div>
-      <SwitchUnstyled component={Root} {...label} defaultChecked />
-      <SwitchUnstyled component={Root} {...label} />
-      <SwitchUnstyled component={Root} {...label} defaultChecked disabled />
-      <SwitchUnstyled component={Root} {...label} disabled />
-    </div>
-  );
-}
