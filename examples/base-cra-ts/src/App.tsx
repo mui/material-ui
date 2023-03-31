@@ -30,5 +30,5 @@ const Button = styled(ButtonUnstyled)`
 `;
 
 export default function App() {
-  return <Button>Hello from MUI Base</Button>;
+  return <Button>Hello from Base UI</Button>;
 }

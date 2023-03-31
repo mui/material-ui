@@ -1,8 +1,8 @@
-# Customizing MUI Base components
+# Customizing Base UI components
 
-<p class="description">There are several ways to customize MUI Base components, from applying custom CSS rules to building fully custom components using hooks.</p>
+<p class="description">There are several ways to customize Base UI components, from applying custom CSS rules to building fully custom components using hooks.</p>
 
-With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style.
+With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
 
 This document reviews the three levels of customization that are available: applying custom CSS rules, overriding default subcomponent slots, and using hooks to build fully custom components.
 

@@ -292,7 +292,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
 
   return (
     <Portal
-      // @ts-expect-error TODO: include ref to MUI Base Portal props
+      // @ts-expect-error TODO: include ref to Base UI Portal props
       ref={handlePortalRef}
       container={container}
       disablePortal={disablePortal}
