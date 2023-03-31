@@ -2,6 +2,22 @@ import * as React from 'react';
 import InputUnstyled from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 
+const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+  return (
+    <InputUnstyled
+      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+export default function UnstyledInputBasic() {
+  return (
+    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
@@ -85,19 +101,3 @@ const StyledTextareaElement = styled('textarea', {
   }
 `,
 );
-
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  return (
-    <InputUnstyled
-      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-export default function UnstyledInputBasic() {
-  return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
-  );
-}
