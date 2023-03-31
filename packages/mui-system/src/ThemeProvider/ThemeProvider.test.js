@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
+import { ThemeProvider } from '@mui/system';
 import { useTheme as usePrivateTheme } from '@mui/private-theming';
 import { ThemeContext } from '@mui/styled-engine';
-import ThemeProvider from './ThemeProvider';
 
 const useEngineTheme = () => React.useContext(ThemeContext);
 
@@ -116,7 +116,7 @@ describe('ThemeProvider', () => {
       return null;
     }
     render(
-      <ThemeProvider identifier="mui" theme={{ foo: 'foo' }}>
+      <ThemeProvider themeId="mui" theme={{ foo: 'foo' }}>
         <Test />
       </ThemeProvider>,
     );
@@ -136,7 +136,7 @@ describe('ThemeProvider', () => {
     }
     render(
       <ThemeProvider theme={{ foo: 'foo' }}>
-        <ThemeProvider identifier="mui" theme={{ bar: 'bar' }}>
+        <ThemeProvider themeId="mui" theme={{ bar: 'bar' }}>
           <Test />
         </ThemeProvider>
       </ThemeProvider>,
@@ -164,8 +164,8 @@ describe('ThemeProvider', () => {
     }
     render(
       <ThemeProvider theme={{ foo: 'foo' }}>
-        <ThemeProvider identifier="mui" theme={{ bar: 'bar' }}>
-          <ThemeProvider identifier="mui" theme={(upperTheme) => ({ baz: upperTheme })}>
+        <ThemeProvider themeId="mui" theme={{ bar: 'bar' }}>
+          <ThemeProvider themeId="mui" theme={(upperTheme) => ({ baz: upperTheme })}>
             <Test />
           </ThemeProvider>
         </ThemeProvider>
@@ -193,9 +193,9 @@ describe('ThemeProvider', () => {
       return null;
     }
     render(
-      <ThemeProvider identifier="mui" theme={{ bar: 'bar' }}>
+      <ThemeProvider themeId="mui" theme={{ bar: 'bar' }}>
         <ThemeProvider theme={{ foo: 'foo' }}>
-          <ThemeProvider identifier="mui" theme={(upperTheme) => ({ baz: upperTheme })}>
+          <ThemeProvider themeId="mui" theme={(upperTheme) => ({ baz: upperTheme })}>
             <Test />
           </ThemeProvider>
         </ThemeProvider>
@@ -212,7 +212,7 @@ describe('ThemeProvider', () => {
     });
   });
 
-  it('theme scope: multiple identifiers', () => {
+  it('theme scope: multiple themeIds', () => {
     let privateTheme;
     let engineTheme;
 
@@ -233,11 +233,11 @@ describe('ThemeProvider', () => {
       return null;
     }
     render(
-      <ThemeProvider identifier="mui" theme={{ bar: 'bar' }}>
-        <ThemeProvider identifier="joy" theme={{ foo: 'foo' }}>
+      <ThemeProvider themeId="mui" theme={{ bar: 'bar' }}>
+        <ThemeProvider themeId="joy" theme={{ foo: 'foo' }}>
           <Test />
-          <ThemeProvider identifier="mui" theme={(upperTheme) => ({ baz: upperTheme })}>
-            <ThemeProvider identifier="joy" theme={(upperTheme) => ({ baz: upperTheme })}>
+          <ThemeProvider themeId="mui" theme={(upperTheme) => ({ baz: upperTheme })}>
+            <ThemeProvider themeId="joy" theme={(upperTheme) => ({ baz: upperTheme })}>
               <Test2 />
             </ThemeProvider>
           </ThemeProvider>
@@ -265,11 +265,11 @@ describe('ThemeProvider', () => {
     });
   });
 
-  it('theme scope: multiple identifiers with callback', () => {
+  it('theme scope: multiple themeIds with callback', () => {
     expect(() =>
       render(
-        <ThemeProvider identifier="mui" theme={{ bar: 'bar' }}>
-          <ThemeProvider identifier="joy" theme={(upperTheme) => ({ foo: upperTheme })} />
+        <ThemeProvider themeId="mui" theme={{ bar: 'bar' }}>
+          <ThemeProvider themeId="joy" theme={(upperTheme) => ({ foo: upperTheme })} />
         </ThemeProvider>,
       ),
     ).toErrorDev([

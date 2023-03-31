@@ -17,7 +17,7 @@ export const DISABLE_CSS_TRANSITION =
 
 export default function createCssVarsProvider(options) {
   const {
-    identifier,
+    themeId,
     theme: defaultTheme = {},
     attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
     modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
@@ -71,7 +71,7 @@ export default function createCssVarsProvider(options) {
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
 
-    const scopedTheme = themeProp[identifier];
+    const scopedTheme = themeProp[themeId];
     const {
       colorSchemes = {},
       components = {},
@@ -274,7 +274,7 @@ export default function createCssVarsProvider(options) {
           </React.Fragment>
         )}
         <ThemeProvider
-          themeId={scopedTheme ? identifier : undefined}
+          themeId={scopedTheme ? themeId : undefined}
           theme={resolveTheme ? resolveTheme(theme) : theme}
         >
           {children}
