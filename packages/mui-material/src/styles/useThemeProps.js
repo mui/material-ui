@@ -1,7 +1,7 @@
 import { useThemeProps as systemUseThemeProps } from '@mui/system';
 import defaultTheme from './defaultTheme';
-import IDENTIFIER from './identifier';
+import THEME_ID from './identifier';
 
 export default function useThemeProps({ props, name }) {
-  return systemUseThemeProps({ props, name, defaultTheme, identifier: IDENTIFIER });
+  return systemUseThemeProps({ props, name, defaultTheme, identifier: THEME_ID });
 }

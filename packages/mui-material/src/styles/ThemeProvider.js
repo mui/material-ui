@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
-import IDENTIFIER from './identifier';
+import THEME_ID from './identifier';
 
 export default function ThemeProvider({ theme: themeInput, ...props }) {
-  const scopedTheme = themeInput[IDENTIFIER];
+  const scopedTheme = themeInput[THEME_ID];
   return (
     <SystemThemeProvider
       {...props}
-      identifier={scopedTheme ? IDENTIFIER : undefined}
+      identifier={scopedTheme ? THEME_ID : undefined}
       theme={scopedTheme || themeInput}
     />
   );

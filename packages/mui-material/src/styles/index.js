@@ -1,6 +1,6 @@
 import MuiError from '@mui/utils/macros/MuiError.macro';
 
-export { default as THEME_IDENTIFIER } from './identifier';
+export { default as THEME_ID } from './identifier';
 export { default as adaptV4Theme } from './adaptV4Theme';
 export {
   hexToRgb,

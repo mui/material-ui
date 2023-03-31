@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { Theme } from '../styles/types';
 import defaultTheme from '../styles/defaultTheme';
-import IDENTIFIER from '../styles/identifier';
+import THEME_ID from '../styles/identifier';
 
 const Box = createBox<Theme>({
-  identifier: IDENTIFIER,
+  identifier: THEME_ID,
   defaultTheme,
   defaultClassName: 'MuiBox-root',
   generateClassName: ClassNameGenerator.generate,

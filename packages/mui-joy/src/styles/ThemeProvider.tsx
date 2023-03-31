@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemeProvider as SystemThemeProvider, useTheme as useSystemTheme } from '@mui/system';
 import defaultTheme from './defaultTheme';
 import extendTheme from './extendTheme';
-import IDENTIFIER from './identifier';
+import THEME_ID from './identifier';
 import type { Theme } from './types';
 import type { CssVarsThemeOptions } from './extendTheme';
 
@@ -15,23 +15,23 @@ export const useTheme = (): Theme => {
   }
 
   // @ts-ignore internal logic
-  return theme[IDENTIFIER] || theme;
+  return theme[THEME_ID] || theme;
 };
 
 export default function ThemeProvider({
   children,
   theme: themeInput,
 }: React.PropsWithChildren<{
-  theme?: CssVarsThemeOptions | { [k in typeof IDENTIFIER]: CssVarsThemeOptions };
+  theme?: CssVarsThemeOptions | { [k in typeof THEME_ID]: CssVarsThemeOptions };
 }>) {
   let theme = defaultTheme;
   if (themeInput) {
-    theme = extendTheme(IDENTIFIER in themeInput ? themeInput[IDENTIFIER] : themeInput);
+    theme = extendTheme(THEME_ID in themeInput ? themeInput[THEME_ID] : themeInput);
   }
   return (
     <SystemThemeProvider
       theme={theme}
-      identifier={themeInput && IDENTIFIER in themeInput ? IDENTIFIER : undefined}
+      identifier={themeInput && THEME_ID in themeInput ? THEME_ID : undefined}
     >
       {children}
     </SystemThemeProvider>

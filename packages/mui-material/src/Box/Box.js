@@ -2,12 +2,12 @@ import { createBox } from '@mui/system';
 import PropTypes from 'prop-types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { createTheme } from '../styles';
-import IDENTIFIER from '../styles/identifier';
+import THEME_ID from '../styles/identifier';
 
 const defaultTheme = createTheme();
 
 const Box = createBox({
-  identifier: IDENTIFIER,
+  identifier: THEME_ID,
   defaultTheme,
   defaultClassName: 'MuiBox-root',
   generateClassName: ClassNameGenerator.generate,

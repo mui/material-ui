@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyles as SystemGlobalStyles } from '@mui/system';
 import defaultTheme from '../styles/defaultTheme';
-import IDENTIFIER from '../styles/identifier';
+import THEME_ID from '../styles/identifier';
 
 function GlobalStyles(props) {
-  return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} identifier={IDENTIFIER} />;
+  return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} identifier={THEME_ID} />;
 }
 
 GlobalStyles.propTypes /* remove-proptypes */ = {

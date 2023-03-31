@@ -77,7 +77,7 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
 } from './types/theme';
-export { default as THEME_IDENTIFIER } from './identifier';
+export { default as THEME_ID } from './identifier';
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript } from './CssVarsProvider';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 export { default as styled } from './styled';
