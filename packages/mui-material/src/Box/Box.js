@@ -7,7 +7,7 @@ import THEME_ID from '../styles/identifier';
 const defaultTheme = createTheme();
 
 const Box = createBox({
-  identifier: THEME_ID,
+  themeId: THEME_ID,
   defaultTheme,
   defaultClassName: 'MuiBox-root',
   generateClassName: ClassNameGenerator.generate,

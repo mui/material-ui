@@ -13,6 +13,6 @@ export default function useThemeProps<T extends {}>({
     props,
     name,
     defaultTheme: { ...defaultTheme, components: {} },
-    identifier: THEME_ID,
+    themeId: THEME_ID,
   });
 }

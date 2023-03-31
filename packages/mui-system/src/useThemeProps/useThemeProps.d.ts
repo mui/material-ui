@@ -16,5 +16,5 @@ export default function useThemeProps<
   props: Props;
   name: Name;
   defaultTheme?: Theme;
-  identifier?: string;
+  themeId?: string;
 }): Props & ThemedProps<Theme, Name>;

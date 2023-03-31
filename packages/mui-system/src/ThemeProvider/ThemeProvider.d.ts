@@ -8,7 +8,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
   /**
    * The design system's unique id for getting the corresponded theme when there are multiple design systems.
    */
-  identifier?: string;
+  themeId?: string;
   /**
    * A theme object. You can provide a function to extend the outer theme.
    */

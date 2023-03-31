@@ -274,7 +274,7 @@ export default function createCssVarsProvider(options) {
           </React.Fragment>
         )}
         <ThemeProvider
-          identifier={scopedTheme ? identifier : undefined}
+          themeId={scopedTheme ? identifier : undefined}
           theme={resolveTheme ? resolveTheme(theme) : theme}
         >
           {children}

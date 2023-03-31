@@ -17,7 +17,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   SupportedColorScheme,
   typeof THEME_ID
 >({
-  identifier: THEME_ID,
+  themeId: THEME_ID,
   theme: defaultTheme,
   attribute: 'data-mui-color-scheme',
   modeStorageKey: 'mui-mode',

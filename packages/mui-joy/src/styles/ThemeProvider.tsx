@@ -31,7 +31,7 @@ export default function ThemeProvider({
   return (
     <SystemThemeProvider
       theme={theme}
-      identifier={themeInput && THEME_ID in themeInput ? THEME_ID : undefined}
+      themeId={themeInput && THEME_ID in themeInput ? THEME_ID : undefined}
     >
       {children}
     </SystemThemeProvider>

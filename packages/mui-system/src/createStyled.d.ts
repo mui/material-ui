@@ -31,7 +31,7 @@ export type CreateMUIStyled<T extends object = DefaultTheme> = CreateMUIStyledSt
 >;
 
 export default function createStyled<T extends object = DefaultTheme>(options?: {
-  identifier?: string;
+  themeId?: string;
   defaultTheme?: T;
   rootShouldForwardProp?: (prop: PropertyKey) => boolean;
   slotShouldForwardProp?: (prop: PropertyKey) => boolean;

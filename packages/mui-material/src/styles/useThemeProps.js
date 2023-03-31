@@ -3,5 +3,5 @@ import defaultTheme from './defaultTheme';
 import THEME_ID from './identifier';
 
 export default function useThemeProps({ props, name }) {
-  return systemUseThemeProps({ props, name, defaultTheme, identifier: THEME_ID });
+  return systemUseThemeProps({ props, name, defaultTheme, themeId: THEME_ID });
 }

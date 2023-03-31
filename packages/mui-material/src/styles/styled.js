@@ -7,7 +7,7 @@ export const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !
 export const slotShouldForwardProp = shouldForwardProp;
 
 const styled = createStyled({
-  identifier: THEME_ID,
+  themeId: THEME_ID,
   defaultTheme,
   rootShouldForwardProp,
 });

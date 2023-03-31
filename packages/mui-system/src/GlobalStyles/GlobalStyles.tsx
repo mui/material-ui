@@ -7,19 +7,19 @@ import { Theme as SystemTheme } from '../createTheme';
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;
   defaultTheme?: object;
-  identifier?: string;
+  themeId?: string;
 }
 
 function GlobalStyles<Theme = SystemTheme>({
   styles,
-  identifier,
+  themeId,
   defaultTheme = {},
 }: GlobalStylesProps<Theme>) {
   const upperTheme = useTheme(defaultTheme);
 
   const globalStyles =
     typeof styles === 'function'
-      ? styles(identifier ? (upperTheme as any)[identifier] || upperTheme : upperTheme)
+      ? styles(themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme)
       : styles;
 
   return <MuiGlobalStyles styles={globalStyles as any} />;
@@ -37,7 +37,7 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  identifier: PropTypes.string,
+  themeId: PropTypes.string,
   /**
    * @ignore
    */

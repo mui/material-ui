@@ -10,7 +10,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   DefaultColorScheme | ExtendedColorScheme,
   typeof THEME_ID
 >({
-  identifier: THEME_ID,
+  themeId: THEME_ID,
   theme: defaultTheme,
   attribute: 'data-joy-color-scheme',
   modeStorageKey: 'joy-mode',

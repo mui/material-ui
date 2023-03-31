@@ -5,7 +5,7 @@ import defaultTheme from '../styles/defaultTheme';
 import THEME_ID from '../styles/identifier';
 
 function GlobalStyles(props) {
-  return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} identifier={THEME_ID} />;
+  return <SystemGlobalStyles {...props} defaultTheme={defaultTheme} themeId={THEME_ID} />;
 }
 
 GlobalStyles.propTypes /* remove-proptypes */ = {

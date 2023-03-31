@@ -8,7 +8,7 @@ export default function ThemeProvider({ theme: themeInput, ...props }) {
   return (
     <SystemThemeProvider
       {...props}
-      identifier={scopedTheme ? THEME_ID : undefined}
+      themeId={scopedTheme ? THEME_ID : undefined}
       theme={scopedTheme || themeInput}
     />
   );

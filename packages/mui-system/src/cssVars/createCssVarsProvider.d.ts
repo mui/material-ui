@@ -103,7 +103,7 @@ export default function createCssVarsProvider<
     /**
      * The design system's unique id for getting the corresponded theme when there are multiple design systems.
      */
-    identifier?: Identifier;
+    themeId?: Identifier;
     /**
      * Design system default theme
      *

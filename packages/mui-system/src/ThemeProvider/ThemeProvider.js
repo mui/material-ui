@@ -10,13 +10,13 @@ import useThemeWithoutDefault from '../useThemeWithoutDefault';
 
 const EMPTY_THEME = {};
 
-function useThemeScoping(identifier, upperTheme, localTheme, isPrivate = false) {
+function useThemeScoping(themeId, upperTheme, localTheme, isPrivate = false) {
   return React.useMemo(() => {
-    const resolvedTheme = identifier ? upperTheme[identifier] || upperTheme : upperTheme;
+    const resolvedTheme = themeId ? upperTheme[themeId] || upperTheme : upperTheme;
 
     if (typeof localTheme === 'function') {
       const mergedTheme = localTheme(resolvedTheme);
-      const result = identifier ? { ...upperTheme, [identifier]: mergedTheme } : mergedTheme;
+      const result = themeId ? { ...upperTheme, [themeId]: mergedTheme } : mergedTheme;
       // must return a function for the private theme to NOT merge with the upper theme.
       // see the test case "use provided theme from a callback" in ThemeProvider.test.js
       if (isPrivate) {
@@ -24,10 +24,8 @@ function useThemeScoping(identifier, upperTheme, localTheme, isPrivate = false) 
       }
       return result;
     }
-    return identifier
-      ? { ...upperTheme, [identifier]: localTheme }
-      : { ...upperTheme, ...localTheme };
-  }, [identifier, upperTheme, localTheme, isPrivate]);
+    return themeId ? { ...upperTheme, [themeId]: localTheme } : { ...upperTheme, ...localTheme };
+  }, [themeId, upperTheme, localTheme, isPrivate]);
 }
 
 /**
@@ -38,14 +36,14 @@ function useThemeScoping(identifier, upperTheme, localTheme, isPrivate = false) 
  * <ThemeProvider theme={{ id: theme }}> // theme scoping
  */
 function ThemeProvider(props) {
-  const { children, theme: localTheme, identifier } = props;
+  const { children, theme: localTheme, themeId } = props;
   const upperTheme = useThemeWithoutDefault(EMPTY_THEME);
   const upperPrivateTheme = usePrivateTheme() || EMPTY_THEME;
 
   if (process.env.NODE_ENV !== 'production') {
     if (
       (upperTheme === null && typeof localTheme === 'function') ||
-      (identifier && upperTheme && !upperTheme[identifier] && typeof localTheme === 'function')
+      (themeId && upperTheme && !upperTheme[themeId] && typeof localTheme === 'function')
     ) {
       console.error(
         [
@@ -60,8 +58,8 @@ function ThemeProvider(props) {
     }
   }
 
-  const engineTheme = useThemeScoping(identifier, upperTheme, localTheme);
-  const privateTheme = useThemeScoping(identifier, upperPrivateTheme, localTheme, true);
+  const engineTheme = useThemeScoping(themeId, upperTheme, localTheme);
+  const privateTheme = useThemeScoping(themeId, upperPrivateTheme, localTheme, true);
 
   return (
     <MuiThemeProvider theme={privateTheme}>
@@ -82,13 +80,13 @@ ThemeProvider.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The design system's unique id for getting the corresponded theme when there are multiple design systems.
-   */
-  identifier: PropTypes.string,
-  /**
    * A theme object. You can provide a function to extend the outer theme.
    */
   theme: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  /**
+   * The design system's unique id for getting the corresponded theme when there are multiple design systems.
+   */
+  themeId: PropTypes.string,
 };
 
 if (process.env.NODE_ENV !== 'production') {
