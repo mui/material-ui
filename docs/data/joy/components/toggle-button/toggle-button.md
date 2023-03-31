@@ -21,7 +21,7 @@ This document shows how to construct it with existing Joy UI components combined
 
 ### Using the Icon Button component
 
-Joy UI's [`IconButton`](/joy-ui/react-button/#icon-button) component is perfect for building a toggle button because it already produces a square button with an icon inside.
+Joy UI's [Icon Button](/joy-ui/react-button/#icon-button) component is perfect for building a toggle button because it already produces a square button with an icon inside.
 
 ### With Radix UI
 
