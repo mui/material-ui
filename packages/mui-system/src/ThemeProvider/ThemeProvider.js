@@ -1,11 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider as MuiThemeProvider,
-  useTheme as usePrivateTheme,
-} from '@mui/private-theming';
+import { ThemeProvider as MuiThemeProvider } from '@mui/private-theming';
 import { exactProp } from '@mui/utils';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
+import useThemeWithoutDefault from '../useThemeWithoutDefault';
 
 const EMPTY_THEME = {};
 
@@ -13,12 +11,12 @@ const EMPTY_THEME = {};
  * This component makes the `theme` available down the React tree.
  * It should preferably be used at **the root of your component tree**.
  *
- * <ThemeProvider theme={theme} identifier="id"> // existing use case
- * <ThemeProvider theme={{ id: theme }} identifier="id"> // theme scoping
+ * <ThemeProvider theme={theme}> // existing use case
+ * <ThemeProvider theme={{ id: theme }}> // theme scoping
  */
 function ThemeProvider(props) {
   const { children, theme: localTheme, identifier } = props;
-  const upperTheme = usePrivateTheme(); // user's provided theme or `null`.
+  const upperTheme = useThemeWithoutDefault(EMPTY_THEME);
 
   if (process.env.NODE_ENV !== 'production') {
     if (
@@ -39,25 +37,20 @@ function ThemeProvider(props) {
   }
 
   const theme = React.useMemo(() => {
-    let resolvedTheme = {};
-    if (upperTheme) {
-      resolvedTheme = identifier ? upperTheme[identifier] || upperTheme : upperTheme;
-    }
+    const resolvedTheme = identifier ? upperTheme[identifier] || upperTheme : upperTheme;
 
     if (typeof localTheme === 'function') {
       const mergedTheme = localTheme(resolvedTheme);
-      return () =>
-        identifier ? { ...(upperTheme || {}), [identifier]: mergedTheme } : mergedTheme;
+      // must return a function to not
+      return () => (identifier ? { ...upperTheme, [identifier]: mergedTheme } : mergedTheme);
     }
     return identifier
-      ? { ...(upperTheme || {}), [identifier]: localTheme }
-      : { ...(upperTheme || {}), ...localTheme };
+      ? { ...upperTheme, [identifier]: localTheme }
+      : { ...upperTheme, ...localTheme };
   }, [identifier, upperTheme, localTheme]);
   return (
     <MuiThemeProvider theme={theme}>
-      <StyledEngineThemeContext.Provider
-        value={typeof theme === 'function' ? theme() : theme || EMPTY_THEME}
-      >
+      <StyledEngineThemeContext.Provider value={typeof theme === 'function' ? theme() : theme}>
         {children}
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>

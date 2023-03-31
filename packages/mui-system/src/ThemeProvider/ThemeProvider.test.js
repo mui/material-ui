@@ -182,7 +182,7 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { baz: { bar: 'bar' } },
-      [Symbol.for('mui.nested')]: true,
+      [Symbol.for('mui.nested')]: false,
     });
   });
 
@@ -213,7 +213,7 @@ describe('ThemeProvider', () => {
     expect(engineTheme).to.deep.equal({
       foo: 'foo',
       mui: { baz: { bar: 'bar' } },
-      [Symbol.for('mui.nested')]: true,
+      [Symbol.for('mui.nested')]: false,
     });
   });
 
@@ -268,7 +268,7 @@ describe('ThemeProvider', () => {
     expect(engineTheme2).to.deep.equal({
       mui: { baz: { bar: 'bar' } },
       joy: { baz: { foo: 'foo' } },
-      [Symbol.for('mui.nested')]: true,
+      [Symbol.for('mui.nested')]: false,
     });
   });
 
