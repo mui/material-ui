@@ -52,6 +52,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAspectRatio",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/AspectRatio/AspectRatio.tsx",
   "inheritance": null,

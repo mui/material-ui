@@ -38,6 +38,8 @@
   "name": "MenuList",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyMenuList",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/MenuList/MenuList.tsx",
   "inheritance": null,

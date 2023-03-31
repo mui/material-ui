@@ -68,6 +68,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyChip",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Chip/Chip.tsx",
   "inheritance": null,

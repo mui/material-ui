@@ -32,6 +32,8 @@
   "name": "TabList",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTabList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/TabList/TabList.tsx",
   "inheritance": null,

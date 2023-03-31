@@ -54,7 +54,7 @@ function isEmpty(obj: State) {
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/base/react-textarea-autosize/components-api/#textarea-autosize)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,

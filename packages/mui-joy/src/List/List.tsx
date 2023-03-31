@@ -95,9 +95,9 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       '--ListItem-paddingLeft': 'var(--ListItem-paddingX)',
       '--ListItem-paddingRight': 'var(--ListItem-paddingX)',
       // Automatic radius adjustment kicks in only if '--List-padding' and '--List-radius' are provided.
-      '--unstable_childRadius':
-        'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
-      '--ListItem-radius': 'var(--unstable_childRadius)',
+      '--unstable_List-childRadius':
+        'calc(max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2)) - var(--variant-borderWidth, 0px))',
+      '--ListItem-radius': 'var(--unstable_List-childRadius)',
       // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
       '--ListItem-startActionTranslateX': 'calc(0.5 * var(--ListItem-paddingLeft))',
       '--ListItem-endActionTranslateX': 'calc(-0.5 * var(--ListItem-paddingRight))',
@@ -133,6 +133,7 @@ export const StyledList = styled('ul')<{ ownerState: ListOwnerState }>(({ theme,
       flexGrow: 1,
       position: 'relative', // for sticky ListItem
       ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      '--unstable_List-borderWidth': 'var(--variant-borderWidth, 0px)', // For children to lookup the List's border width.
     },
   ];
 });
