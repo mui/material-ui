@@ -2,6 +2,14 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
+export default function UnstyledSlider() {
+  return (
+    <Box sx={{ width: 320 }}>
+      <StyledSlider defaultValue={50} />
+      <StyledSlider defaultValue={10} disabled />
+    </Box>
+  );
+}
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -95,12 +103,3 @@ const StyledSlider = styled(SliderUnstyled)(
   }
 `,
 );
-
-export default function UnstyledSlider() {
-  return (
-    <Box sx={{ width: 320 }}>
-      <StyledSlider defaultValue={50} />
-      <StyledSlider defaultValue={10} disabled />
-    </Box>
-  );
-}

@@ -3,6 +3,26 @@ import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
+function SliderValueLabel({ children }) {
+  return (
+    <span className="label">
+      <div className="value">{children}</div>
+    </span>
+  );
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default function LabeledValuesSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+    </Box>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -113,23 +133,3 @@ const StyledSlider = styled(SliderUnstyled)(
   }
 `,
 );
-
-function SliderValueLabel({ children }) {
-  return (
-    <span className="label">
-      <div className="value">{children}</div>
-    </span>
-  );
-}
-
-SliderValueLabel.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-export default function LabeledValuesSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
-    </Box>
-  );
-}
