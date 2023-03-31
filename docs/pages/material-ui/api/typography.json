@@ -61,6 +61,8 @@
     "name": "MuiTypography"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTypography",
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-material/src/Typography/Typography.js",
   "inheritance": null,

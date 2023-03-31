@@ -29,6 +29,8 @@
   "name": "SwipeableDrawer",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiSwipeableDrawer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SwipeableDrawer/SwipeableDrawer.js",
   "inheritance": { "component": "Drawer", "pathname": "/material-ui/api/drawer/" },

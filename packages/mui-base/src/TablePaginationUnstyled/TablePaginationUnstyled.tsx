@@ -11,7 +11,6 @@ import {
   TablePaginationUnstyledProps,
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
-  ItemAriaLabelType,
   TablePaginationUnstyledRootSlotProps,
   TablePaginationUnstyledSelectSlotProps,
   TablePaginationUnstyledActionsSlotProps,
@@ -21,6 +20,7 @@ import {
   TablePaginationUnstyledToolbarSlotProps,
   TablePaginationUnstyledSpacerSlotProps,
 } from './TablePaginationUnstyled.types';
+import { ItemAriaLabelType } from './common.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {

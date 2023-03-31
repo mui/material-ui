@@ -83,6 +83,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoySwitch",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Switch/Switch.tsx",
   "inheritance": null,

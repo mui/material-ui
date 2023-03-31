@@ -13,6 +13,8 @@
   "name": "AccordionActions",
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiAccordionActions" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordionActions",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AccordionActions/AccordionActions.js",
   "inheritance": null,

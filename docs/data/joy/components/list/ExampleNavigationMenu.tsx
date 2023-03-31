@@ -177,7 +177,7 @@ const AboutMenu = React.forwardRef(
                 '--List-radius': '8px',
                 '--List-padding': '4px',
                 '--ListDivider-gap': '4px',
-                '--List-decoratorSize': '32px',
+                '--ListItemDecorator-size': '32px',
               }}
             >
               <ListItem role="none">

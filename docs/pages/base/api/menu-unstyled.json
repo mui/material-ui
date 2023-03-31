@@ -40,6 +40,7 @@
     }
   ],
   "spread": false,
+  "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",
   "inheritance": null,

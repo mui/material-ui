@@ -53,6 +53,7 @@
     }
   ],
   "spread": true,
+  "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/SelectUnstyled/SelectUnstyled.tsx",
   "inheritance": null,

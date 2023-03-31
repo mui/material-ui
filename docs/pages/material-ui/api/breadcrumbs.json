@@ -36,6 +36,8 @@
     "name": "MuiBreadcrumbs"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiBreadcrumbs",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-material/src/Breadcrumbs/Breadcrumbs.js",
   "inheritance": null,

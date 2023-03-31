@@ -60,6 +60,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTypography",
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-joy/src/Typography/Typography.tsx",
   "inheritance": null,

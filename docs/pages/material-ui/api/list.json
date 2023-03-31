@@ -20,6 +20,8 @@
     "name": "MuiList"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiList",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-material/src/List/List.js",
   "inheritance": null,

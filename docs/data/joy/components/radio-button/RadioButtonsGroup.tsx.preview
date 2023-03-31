@@ -7,10 +7,10 @@
       slotProps={{ input: { 'aria-describedby': 'female-helper-text' } }}
     />
     <FormHelperText id="female-helper-text">
-      A helper text for this radio.
+      Helper text for this radio.
     </FormHelperText>
     <Radio value="male" label="Male" />
     <Radio value="other" label="Other" />
   </RadioGroup>
-  <FormHelperText>This is a helper text.</FormHelperText>
+  <FormHelperText>This is helper text.</FormHelperText>
 </FormControl>

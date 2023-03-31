@@ -59,6 +59,8 @@
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyTextarea",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",
   "inheritance": null,

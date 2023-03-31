@@ -102,16 +102,17 @@
     {
       "name": "valueLabel",
       "description": "The component that renders the value label.",
-      "class": ".MuiSlider-valueLabel"
+      "class": null
     },
     {
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": ".MuiSlider-input"
+      "class": null
     }
   ],
   "spread": true,
+  "muiName": "MuiSlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.tsx",
   "inheritance": null,

@@ -12,6 +12,8 @@
   "name": "AccordionDetails",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionDetails" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordionDetails",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AccordionDetails/AccordionDetails.js",
   "inheritance": null,
