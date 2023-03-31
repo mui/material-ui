@@ -45,7 +45,7 @@ export default function PropertiesTable(props) {
   const t = useTranslate();
 
   const showDefaultPropColumn = Object.entries(properties).some(
-    ([_, propData]) => propData.default != null,
+    ([, propData]) => propData.default != null,
   );
 
   return (
