@@ -25,7 +25,7 @@ const CardActionAreaRoot = styled(ButtonBase, {
 })(({ theme }) => ({
   display: 'block',
   textAlign: 'inherit',
-  borderRadius: 'inherit',
+  borderRadius: 'inherit', // for Safari to work https://github.com/mui/material-ui/issues/36285.
   width: '100%',
   [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
     opacity: (theme.vars || theme).palette.action.hoverOpacity,
