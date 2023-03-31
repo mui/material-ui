@@ -103,6 +103,18 @@ export default function MarkdownDocs(props) {
           }
 
           const name = renderedMarkdownOrDemo.demo;
+
+          if (renderedMarkdownOrDemo.excludeByCurrentColorMode) {
+            const matchedColorMode = name.match(/([^/.]+(?=\.js|jsx|ts|tsx$))/)[0];
+
+            if (
+              ['light', 'dark'].includes(matchedColorMode) &&
+              matchedColorMode !== theme.palette.mode
+            ) {
+              return <span key={`${index}-excluded-by-current-color-mode`} />;
+            }
+          }
+
           const demo = demos?.[name];
           if (demo === undefined) {
             const errorMessage = [

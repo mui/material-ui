@@ -2,6 +2,9 @@
 
 <p class="description">Install Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
+{{"demo": "Demo.light.js", "excludeByCurrentColorMode": true}}
+{{"demo": "Demo.dark.js", "excludeByCurrentColorMode": true}}
+
 Run one of the following commands to add Base UI to your project:
 
 ## npm
