@@ -4,12 +4,13 @@ import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import { CssVarsProvider, useColorScheme, extendTheme, THEME_IDENTIFIER } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 
@@ -30,8 +31,6 @@ function JoyModeObserver({ mode }) {
 JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
-
-const joyTheme = extendTheme();
 
 export default function MarkdownDocs(props) {
   const theme = useTheme();
@@ -59,26 +58,33 @@ export default function MarkdownDocs(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
+  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
   return (
-    <Provider {...(isJoy && { theme: { [THEME_IDENTIFIER]: joyTheme } })}>
-      <AppLayoutDocs
-        description={description}
-        disableAd={disableAd}
-        disableToc={disableToc}
-        location={location}
-        title={title}
-        toc={toc}
-      >
+    <AppLayoutDocs
+      description={description}
+      disableAd={disableAd}
+      disableToc={disableToc}
+      location={location}
+      title={title}
+      toc={toc}
+    >
+      <Provider>
         {disableAd ? null : (
-          <AdGuest>
-            <Ad />
-          </AdGuest>
+          <Wrapper>
+            <AdGuest>
+              <Ad />
+            </AdGuest>
+          </Wrapper>
         )}
         {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
         {rendered.map((renderedMarkdownOrDemo, index) => {
           if (typeof renderedMarkdownOrDemo === 'string') {
-            return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
+            return (
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
+                <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />
+              </Wrapper>
+            );
           }
 
           if (renderedMarkdownOrDemo.component) {
@@ -89,7 +95,11 @@ export default function MarkdownDocs(props) {
               throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
             }
 
-            return <Component key={index} {...renderedMarkdownOrDemo} markdown={localizedDoc} />;
+            return (
+              <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
+                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
+              </Wrapper>
+            );
           }
 
           const name = renderedMarkdownOrDemo.demo;
@@ -128,6 +138,7 @@ export default function MarkdownDocs(props) {
           return (
             <Demo
               key={index}
+              mode={theme.palette.mode}
               demo={{
                 raw: demo.raw,
                 js: demoComponents[demo.module] ?? noComponent(demo.module),
@@ -143,8 +154,8 @@ export default function MarkdownDocs(props) {
             />
           );
         })}
-      </AppLayoutDocs>
-    </Provider>
+      </Provider>
+    </AppLayoutDocs>
   );
 }
 
