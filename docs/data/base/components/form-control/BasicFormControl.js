@@ -6,7 +6,7 @@ import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
 
-export default function UseFormControl() {
+export default function BasicFormControl() {
   return (
     <FormControlUnstyled defaultValue="" required>
       <Label>Name</Label>
