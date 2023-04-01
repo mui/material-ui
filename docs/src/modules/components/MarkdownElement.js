@@ -69,6 +69,9 @@ const Root = styled('div')(
     '& .description': {
       ...lightTheme.typography.subtitle1,
       fontWeight: 400,
+      margin: '0 0 28px',
+    },
+    '& .component-tabs': {
       margin: '0 0 40px',
     },
     '& h2': {
@@ -108,7 +111,6 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
-      paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
