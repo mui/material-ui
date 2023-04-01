@@ -283,5 +283,5 @@ export default function TextField<V extends Variants>(
      * @default 'outlined'
      */
     variant?: V;
-  } & Omit<TextFieldProps<V>, 'variant'>,
+  } & Omit<TextFieldProps, 'variant'>,
 ): JSX.Element;
