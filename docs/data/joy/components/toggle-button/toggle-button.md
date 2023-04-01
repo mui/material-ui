@@ -6,7 +6,7 @@ githubLabel: 'component: toggle button'
 
 # Toggle Button
 
-<p class="description">A Toggle Button can be used to group related options.</p>
+<p class="description">A toggle is a two-state button that may be part of a group of mutually exclusive options.</p>
 
 :::info
 💡 The Joy UI Toggle Button component is still in development.
