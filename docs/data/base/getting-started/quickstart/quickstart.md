@@ -36,7 +36,7 @@ Let’s replicate a button from Github's UI as a quick tutorial. We'll use their
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
-### Base UI
+### Components & Hooks
 
 Base UI provides a `ButtonUnstyled` component and a `useButton` hook, both of which can be used to build a button, each with its own [benefits and trade-offs](/base/getting-started/usage/#components-vs-hooks).
 
@@ -50,8 +50,17 @@ Here are some styling examples:
 
 Pass a `className` prop and use it as a styling hook:
 
-{{"demo": "BaseButtonPlainCss.light.js", "excludeByCurrentColorMode": true}}
-{{"demo": "BaseButtonPlainCss.dark.js", "excludeByCurrentColorMode": true}}
+```
+<style type="text/css">
+  .btn {
+    /* styles */
+  }
+</style>
+
+<ButtonUnstyled className="btn">
+  Create Repository
+</ButtonUnstyled>
+```
 
 Base UI components like `ButtonUnstyled` come with a classes object (e.g. `buttonUnstyledClasses`) that provide class hooks for styling a particular state.
 
@@ -63,7 +72,25 @@ Base UI components like `ButtonUnstyled` come with a classes object (e.g. `butto
 }
 ```
 
-### Styling with Tailwind
+Here's a complete demo of using `ButtonUnstyled` and `useButton` with plain CSS:
+
+{{"demo": "BaseButtonPlainCss.light.js", "defaultCodeOpen": false, "excludeByCurrentColorMode": true}}
+{{"demo": "BaseButtonPlainCss.dark.js", "defaultCodeOpen": false, "excludeByCurrentColorMode": true}}
+
+### Styling with Tailwind CSS
+
+After installing Tailwind, simply pass Tailwind's utility classes to `className`.
+
+```tsx
+<ButtonUnstyled className="bg-green-600 rounded-md py-1 px-4...">
+  Create Repository
+</ButtonUnstyled>
+```
+
+Here's a complete demo of the same button styled with Tailwind instead:
+
+{{"demo": "BaseButtonTailwind.light.js", "excludeByCurrentColorMode": true}}
+{{"demo": "BaseButtonTailwind.dark.js", "excludeByCurrentColorMode": true}}
 
 ### Styling with MUI System
 
