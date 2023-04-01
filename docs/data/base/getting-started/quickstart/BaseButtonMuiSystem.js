@@ -1,9 +1,11 @@
 import * as React from 'react';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import useButton from '@mui/base/useButton';
 import { styled, alpha } from '@mui/system';
+import Stack from '@mui/material/Stack';
 
-const GithubButton = styled('button')(
-  ({ theme }) => `
+function getStyles({ theme }) {
+  return `
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
         Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     word-wrap: break-word;
@@ -52,11 +54,11 @@ const GithubButton = styled('button')(
       box-shadow: none;
     }
 
-    &:hover:not([disabled]) {
+    &:hover:not(.${buttonUnstyledClasses.disabled}) {
       background-color: ${theme.palette.mode === 'dark' ? '#2ea043' : '#2c974b'};
     }
 
-    &:active:not([disabled]) {
+    &:active:not(.${buttonUnstyledClasses.disabled}) {
       background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#298e46'};
       box-shadow: ${
         theme.palette.mode === 'dark'
@@ -65,7 +67,7 @@ const GithubButton = styled('button')(
       }
     }
 
-    &[disabled] {
+    &.${buttonUnstyledClasses.disabled} {
       color: ${
         theme.palette.mode === 'dark' ? alpha('#fff', 0.5) : alpha('#fff', 0.5)
       };
@@ -73,8 +75,18 @@ const GithubButton = styled('button')(
         theme.palette.mode === 'dark' ? alpha('#196c2e', 0.6) : alpha('#196c2e', 0.6)
       };
     }
-  `,
-);
+  `;
+}
+
+/*
+ * The style function argument is completely identical for the unstyled component
+ * and the hook, though each have different pro and cons.
+ * More about unstyled components vs hooks here: https://mui.com/base/getting-started/usage/#components-vs-hooks
+ */
+
+const GithubButtonComponent = styled(ButtonUnstyled)(getStyles);
+
+const GithubButtonHook = styled('button')(getStyles);
 
 export default function App() {
   const buttonRef = React.useRef();
@@ -84,10 +96,12 @@ export default function App() {
   });
 
   return (
-    <div>
-      <GithubButton type="button" {...getRootProps()}>
+    <Stack spacing={2} direction="row">
+      <GithubButtonComponent>Create Repository</GithubButtonComponent>
+
+      <GithubButtonHook type="button" {...getRootProps()}>
         Create Repository
-      </GithubButton>
-    </div>
+      </GithubButtonHook>
+    </Stack>
   );
 }

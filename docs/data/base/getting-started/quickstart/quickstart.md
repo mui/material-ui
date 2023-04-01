@@ -6,25 +6,25 @@
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-#### npm
+### npm
 
 ```sh
 npm install @mui/base
 ```
 
-#### yarn
+### yarn
 
 ```sh
 yarn add @mui/base
 ```
 
-#### pnpm
+### pnpm
 
 ```sh
 pnpm add @mui/base
 ```
 
-#### Peer dependencies
+### Peer dependencies
 
 <!-- #react-peer-version -->
 
@@ -32,7 +32,7 @@ pnpm add @mui/base
 
 ## Tutorial
 
-Let’s replicate a button from Github's UI as a quick tutorial. We'll use their [style guide](https://primer.style) as a reference.
+Let's replicate a button from Github's UI as a quick tutorial. We'll use their [style guide](https://primer.style) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
@@ -50,7 +50,7 @@ Here are some styling examples:
 
 Pass a `className` prop and use it as a styling hook:
 
-```
+```tsx
 <style type="text/css">
   .btn {
     /* styles */
@@ -96,12 +96,62 @@ Here's a complete demo of the same button styled with Tailwind instead:
 
 [MUI System](/system/getting-started/overview/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
 
-Most of the demos and examples in the Base UI documentation are styled with MUI system. Read more about the demos [here](/base/getting-started/overview/).
+MUI System provides a [`styled` function](/system/styled/) that is equivalent to emotion's or styled-components' styled(). Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
 
-#### `ButtonUnstyled` with MUI System
+Most of the demos and examples in the Base UI documentation are styled with MUI system in this way.
 
-{{"demo": "BaseButtonMuiSystemComponent.js"}}
+#### Styling `ButtonUnstyled` with MUI System
 
-#### `useButton` with MUI System
+```tsx
+import * as React from 'react';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import { styled } from '@mui/system';
 
-{{"demo": "BaseButtonMuiSystemHook.js"}}
+const GithubButton = styled(ButtonUnstyled)(
+  ({ theme }) => `
+    background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
+    ${/* ... the rest of the styles */}
+  `,
+);
+
+export default function App() {
+  return (
+    <div>
+      <GithubButton>Create Repository</GithubButton>
+    </div>
+  );
+}
+```
+
+#### Styling `useButton` with MUI System
+
+```tsx
+import * as React from 'react';
+import useButton from '@mui/base/useButton';
+import { styled } from '@mui/system';
+
+const GithubButton = styled('button')(
+  ({ theme }) => `
+    background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
+    ${/* ... the rest of the styles */}
+  `,
+);
+
+export default function App() {
+  const { getRootProps } = useButton(/* props*/);
+
+  return (
+    <div>
+      <GithubButton type="button" {...getRootProps()}>
+        Create Repository
+      </GithubButton>
+    </div>
+  );
+}
+```
+
+Here's a complete demo of styling `ButtonUnstyled` and `useButton` with MUI System:
+
+{{"demo": "BaseButtonMuiSystem.js", "defaultCodeOpen": false}}
+
+Read more about working with MUI System and its utilities [here](/system/getting-started/usage/).
