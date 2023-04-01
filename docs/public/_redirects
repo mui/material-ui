@@ -414,11 +414,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/guides/flow/ https://v4.mui.com/guides/flow/ 301
 /:lang/material-ui/guides/flow/ https://v4.mui.com/:lang/guides/flow/ 301
 # 2023
-
-# APIs
-
-## Base UI
-
 /base/api/badge-unstyled /base/react-badge/components-api#badge-unstyled 301
 /base/api/button-unstyled /base/react-button/components-api#button-unstyled 301
 /base/api/click-away-listener /base/react-click-away-listener/components-api#click-away-listener 301
@@ -459,6 +454,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base/api/use-tab-panel /base/react-tabs/hooks-api#use-tab-panel 301
 /base/api/use-tabs /base/react-tabs/hooks-api#use-tabs 301
 /base/api/use-tabs-list /base/react-tabs/hooks-api#use-tabs-list 301
+/joy-ui/customization/theme-tokens/ /joy-ui/customization/theme-colors/ 301
 
 # Proxies
 
