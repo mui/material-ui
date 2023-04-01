@@ -2,8 +2,11 @@ import generateUtilityClass from '../generateUtilityClass';
 import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface MenuItemUnstyledClasses {
+  /** Class name applied to the root element. */
   root: string;
+  /** State class applied to the root `button` element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root `button` element if `focusVisible={true}`. */
   focusVisible: string;
 }
 

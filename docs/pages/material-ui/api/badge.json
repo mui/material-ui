@@ -94,6 +94,8 @@
     "name": "MuiBadge"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Badge/Badge.js",
   "inheritance": null,

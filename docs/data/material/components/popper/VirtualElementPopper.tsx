@@ -8,6 +8,18 @@ export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<PopperProps['anchorEl']>(null);
 
+  const previousAnchorElPosition = React.useRef<DOMRect | undefined>(undefined);
+
+  React.useEffect(() => {
+    if (anchorEl) {
+      if (typeof anchorEl === 'object') {
+        previousAnchorElPosition.current = anchorEl.getBoundingClientRect();
+      } else {
+        previousAnchorElPosition.current = anchorEl().getBoundingClientRect();
+      }
+    }
+  }, [anchorEl]);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -21,13 +33,17 @@ export default function VirtualElementPopper() {
       return;
     }
 
-    const getBoundingClientRect = () =>
-      selection.getRangeAt(0).getBoundingClientRect();
+    const getBoundingClientRect = () => {
+      if (selection.rangeCount === 0 && previousAnchorElPosition.current) {
+        setOpen(false);
+        return previousAnchorElPosition.current;
+      }
+      return selection.getRangeAt(0).getBoundingClientRect();
+    };
 
     setOpen(true);
-    setAnchorEl({
-      getBoundingClientRect,
-    });
+
+    setAnchorEl({ getBoundingClientRect });
   };
 
   const id = open ? 'virtual-element-popper' : undefined;

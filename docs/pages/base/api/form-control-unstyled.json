@@ -17,6 +17,7 @@
   "name": "FormControlUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "muiName": "MuiFormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/FormControlUnstyled/FormControlUnstyled.tsx",
   "inheritance": null,

@@ -48,6 +48,8 @@
     "name": "MuiToggleButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiToggleButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/ToggleButton/ToggleButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

@@ -99,7 +99,7 @@ These props may include HTML attributes such as `min`, `max`, and `autocomplete`
 
 ## CSS variable playground
 
-Play around with the CSS variables available to the Avatar component to see how the design changes.
+Play around with the CSS variables available to the Input component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "InputVariables.js", "hideToolbar": true}}

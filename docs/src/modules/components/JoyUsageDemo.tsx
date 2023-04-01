@@ -506,7 +506,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     slotProps={{
                       listbox: {
                         sx: {
-                          '--List-decoratorSize': '24px',
+                          '--ListItemDecorator-size': '24px',
                         },
                       },
                     }}

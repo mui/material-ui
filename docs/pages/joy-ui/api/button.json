@@ -76,6 +76,8 @@
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Button/Button.tsx",
   "inheritance": null,

@@ -10,12 +10,13 @@ import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
+import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
@@ -225,7 +226,7 @@ const attachTable = (
       const typeDescription = (propDescriptor.typeStr ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt')
+        .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
       return {
@@ -291,7 +292,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -329,34 +330,6 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
   writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
-  );
-
-  writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import HookApiPage from 'docs/src/modules/components/HookApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
-
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
-
-Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
-
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
-  };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
   );
 };
 
@@ -496,7 +469,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);

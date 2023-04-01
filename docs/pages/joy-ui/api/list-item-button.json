@@ -40,6 +40,8 @@
   "name": "ListItemButton",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListItemButton",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ListItemButton/ListItemButton.tsx",
   "inheritance": null,

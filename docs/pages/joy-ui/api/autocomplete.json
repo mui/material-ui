@@ -163,6 +163,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocomplete",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Autocomplete/Autocomplete.tsx",
   "inheritance": null,

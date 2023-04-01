@@ -8,7 +8,7 @@ import FormControlUnstyledContext from './FormControlUnstyledContext';
  *
  * API:
  *
- * - [useFormControlUnstyledContext API](https://mui.com/base/api/use-form-control-unstyled-context/)
+ * - [useFormControlUnstyledContext API](https://mui.com/base/react-form-control/hooks-api/#use-form-control-unstyled-context)
  */
 export default function useFormControlUnstyledContext() {
   return React.useContext(FormControlUnstyledContext);

@@ -47,7 +47,7 @@ function stateReducer(
  *
  * API:
  *
- * - [useMenu API](https://mui.com/base/api/use-menu/)
+ * - [useMenu API](https://mui.com/base/react-menu/hooks-api/#use-menu)
  */
 export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;

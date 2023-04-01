@@ -92,6 +92,8 @@
     "name": "MuiChip"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiChip",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Chip/Chip.js",
   "inheritance": null,

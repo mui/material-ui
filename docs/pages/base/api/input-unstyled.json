@@ -60,10 +60,11 @@
       "name": "textarea",
       "description": "The component that renders the textarea.",
       "default": "'textarea'",
-      "class": ".MuiInput-textarea"
+      "class": null
     }
   ],
   "spread": true,
+  "muiName": "MuiInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,
