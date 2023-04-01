@@ -111,4 +111,45 @@ describe('<NativeSelectInput />', () => {
       ).to.toHaveComputedStyle(combinedStyle);
     });
   });
+
+  describe('theme styleOverrides:', () => {
+    it('should override with error style when `select` has `error` state', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const iconStyle = { color: 'rgb(255, 0, 0)' };
+      const selectStyle = { color: 'rgb(255, 192, 203)' };
+
+      const theme = createTheme({
+        components: {
+          MuiNativeSelect: {
+            styleOverrides: {
+              icon: (props) => ({
+                ...(props.ownerState.error && iconStyle),
+              }),
+              select: (props) => ({
+                ...(props.ownerState.error && selectStyle),
+              }),
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <NativeSelectInput error IconComponent="div">
+            <option value={'first'}>First</option>
+            <option value={'second'}>Second</option>
+          </NativeSelectInput>
+        </ThemeProvider>,
+      );
+      expect(container.querySelector(`.${nativeSelectClasses.select}`)).to.toHaveComputedStyle(
+        selectStyle,
+      );
+      expect(container.querySelector(`.${nativeSelectClasses.icon}`)).to.toHaveComputedStyle(
+        iconStyle,
+      );
+    });
+  });
 });

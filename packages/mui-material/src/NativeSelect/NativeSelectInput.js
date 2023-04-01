@@ -80,7 +80,7 @@ const NativeSelectSelect = styled('select', {
     return [
       styles.select,
       styles[ownerState.variant],
-      styles.error,
+      ownerState.error && styles.error,
       { [`&.${nativeSelectClasses.multiple}`]: styles.multiple },
     ];
   },
