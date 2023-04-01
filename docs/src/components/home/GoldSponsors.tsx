@@ -27,8 +27,8 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
-    srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
+      src: '/static/sponsors/spotify-logo.png',
+    srcSet: '/static/sponsors/spotify-logo.png',
     name: 'Spotify',
     description: 'Music service to access to millions of songs.',
     href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
