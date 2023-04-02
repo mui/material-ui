@@ -40,9 +40,52 @@ Let's replicate a button from Github's UI as a quick tutorial. We'll use their [
 
 Base UI provides a `ButtonUnstyled` component and a `useButton` hook, both of which can be used to build a button, each with its own [benefits and trade-offs](/base/getting-started/usage/#components-vs-hooks).
 
-{{"demo": "BaseButton.js"}}
+#### `ButtonUnstyled` Component
 
-Base UI comes with no built-in styles or styling solution. It can integrate with the styling method of your choice to make fully customizable components for your application or library. Read more about customization strategies [here](/base/getting-started/customization/).
+```tsx
+import * as React from 'react';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+
+export default function App() {
+  return (
+    <div>
+      <ButtonUnstyled>
+        ButtonUnstyled
+      </ButtonUnstyled>
+    </div>
+  );
+}
+
+```
+
+#### `useButton` Hook
+
+```tsx
+import * as React from 'react';
+import useButton from '@mui/base/useButton';
+
+export default function App() {
+  const buttonRef = React.useRef();
+
+  const { getRootProps } = useButton({
+    ref: buttonRef,
+  });
+  return (
+    <div>
+      <button type="button" {...getRootProps()}>
+        useButton
+      </button>
+    </div>
+  );
+}
+
+```
+
+Base UI comes with no styles or styling solution, and looks like this out-of-the-box:
+
+{{"demo": "BaseButton.js", "defaultCodeOpen": false}}
+
+You are free to integrate with any styling method of your choice to make fully customizable components for your application or library. Read more about customization strategies [here](/base/getting-started/customization/).
 
 Here are some styling examples:
 
@@ -50,12 +93,17 @@ Here are some styling examples:
 
 Pass a `className` prop and use it as a styling hook:
 
+```css
+/* styles.css */
+
+.btn {
+  background-color: #1f883d;
+  /* the rest of the styles */
+}
+```
+
 ```tsx
-<style type="text/css">
-  .btn {
-    /* styles */
-  }
-</style>
+/* App.js */
 
 <ButtonUnstyled className="btn">
   Create Repository
@@ -65,9 +113,9 @@ Pass a `className` prop and use it as a styling hook:
 Base UI components like `ButtonUnstyled` come with a classes object (e.g. `buttonUnstyledClasses`) that provide class hooks for styling a particular state.
 
 ```css
-// To style the disabled state:
+/* To style the disabled state: */
 
-.${buttonUnstyledClasses.disabled} { // ".MuiButton-disabled"
+.${buttonUnstyledClasses.disabled} { /* ".MuiButton-disabled" */
   cursor: not-allowed;
 }
 ```
@@ -96,7 +144,7 @@ Here's a complete demo of the same button styled with Tailwind instead:
 
 [MUI System](/system/getting-started/overview/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
 
-MUI System provides a [`styled` function](/system/styled/) that is equivalent to emotion's or styled-components' styled(). Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
+MUI System's core utility is a [`styled` function](/system/styled/) that is equivalent to emotion's or styled-components' styled(). Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
 
 Most of the demos and examples in the Base UI documentation are styled with MUI system in this way.
 
@@ -143,6 +191,29 @@ export default function App() {
   return (
     <div>
       <GithubButton type="button" {...getRootProps()}>
+        Create Repository
+      </GithubButton>
+    </div>
+  );
+}
+```
+
+#### Using the `sx` prop
+
+MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values directly to any component created with `styled`.
+
+```tsx
+const GithubButton = styled(ButtonUnstyled)(
+  ({ theme }) => `
+    background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
+    margin: 0;
+  `,
+);
+
+export default function App() {
+  return (
+    <div>
+      <GithubButton sx={{ m: 2 }}> {/* resolves to margin: 16px */}
         Create Repository
       </GithubButton>
     </div>
