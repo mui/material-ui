@@ -108,7 +108,7 @@
     "react-simple-code-editor": "^0.13.1",
     "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.5",
-    "react-virtuoso": "^4.1.0",
+    "react-virtuoso": "^4.1.1",
     "react-window": "^1.8.8",
     "recharts": "2.4.3",
     "rimraf": "^3.0.2",
