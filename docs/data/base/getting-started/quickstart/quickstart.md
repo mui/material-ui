@@ -6,19 +6,19 @@
 
 `@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
 
-### npm
+### With npm
 
 ```sh
 npm install @mui/base
 ```
 
-### yarn
+### With yarn
 
 ```sh
 yarn add @mui/base
 ```
 
-### pnpm
+### With pnpm
 
 ```sh
 pnpm add @mui/base
@@ -49,13 +49,10 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 export default function App() {
   return (
     <div>
-      <ButtonUnstyled>
-        ButtonUnstyled
-      </ButtonUnstyled>
+      <ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>
     </div>
   );
 }
-
 ```
 
 #### `useButton` Hook
@@ -78,7 +75,6 @@ export default function App() {
     </div>
   );
 }
-
 ```
 
 Base UI comes with no styles or styling solution, and looks like this out-of-the-box:
@@ -105,9 +101,7 @@ Pass a `className` prop and use it as a styling hook:
 ```tsx
 /* App.js */
 
-<ButtonUnstyled className="btn">
-  Create Repository
-</ButtonUnstyled>
+<ButtonUnstyled className="btn">Create Repository</ButtonUnstyled>
 ```
 
 Base UI components like `ButtonUnstyled` come with a classes object (e.g. `buttonUnstyledClasses`) that provide class hooks for styling a particular state.
@@ -146,7 +140,31 @@ Here's a complete demo of the same button styled with Tailwind instead:
 
 MUI System's core utility is a [`styled` function](/system/styled/) that is equivalent to emotion's or styled-components' styled(). Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
 
-Most of the demos and examples in the Base UI documentation are styled with MUI system in this way.
+```tsx
+import * as React from 'react';
+import { ThemeProvider } from '@emotion/react';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+
+const theme = {
+  colors: {
+    primary: 'green',
+  },
+};
+
+const GithubButton = styled(ButtonUnstyled)(
+  ({ theme }) => `
+    background-color: ${theme.colors.primary /* => 'green' */};
+  `,
+);
+
+render(
+  <ThemeProvider theme={theme}>
+    <GithubButton>Create Repository</GithubButton>
+  </ThemeProvider>,
+);
+```
+
+Most of the demos and examples in the Base UI documentation are styled with MUI system in this way. You can inspect the `theme` object used on this site in your browser console, or explore the default structure [here](/material-ui/customization/default-theme/).
 
 #### Styling `ButtonUnstyled` with MUI System
 
@@ -200,7 +218,7 @@ export default function App() {
 
 #### Using the `sx` prop
 
-MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values directly to any component created with `styled`.
+MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
 
 ```tsx
 const GithubButton = styled(ButtonUnstyled)(
@@ -213,7 +231,7 @@ const GithubButton = styled(ButtonUnstyled)(
 export default function App() {
   return (
     <div>
-      <GithubButton sx={{ m: 2 }}> {/* resolves to margin: 16px */}
+      <GithubButton sx={{ m: 2 /* => margin: 16px */ }}>
         Create Repository
       </GithubButton>
     </div>
