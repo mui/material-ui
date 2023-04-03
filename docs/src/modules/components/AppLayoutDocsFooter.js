@@ -503,7 +503,7 @@ export default function AppLayoutDocsFooter(props) {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
+            flexDirection: { xs: 'column-reverse', md: 'row' },
             justifyContent: 'space-between',
             gap: { xs: 4, lg: 12 },
           }}
