@@ -6,7 +6,7 @@ import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { SlotsTable } from 'docs/src/modules/components/ApiPage';
 import Divider from 'docs/src/modules/components/ApiDivider';
-import PropsTable from 'docs/src/modules/components/PropretiesTable';
+import PropertiesTable from 'docs/src/modules/components/PropretiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
@@ -61,8 +61,8 @@ function getTranslatedHeader(t, header, text) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
-    'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
+    'theme-default-props': t('api-docs.themeDefaultProps'),
     inheritance: t('api-docs.inheritance'),
     slots: t('api-docs.slots'),
     css: 'CSS',
@@ -102,6 +102,7 @@ export default function ComponentsApiContent(props) {
   const numberOfComponents = components.length;
 
   return components.map((key, idx) => {
+    const pageContent = pageContents[key];
     const {
       cssComponent,
       filename,
@@ -112,7 +113,7 @@ export default function ComponentsApiContent(props) {
       spread,
       styles: componentStyles,
       slots: componentSlots,
-    } = pageContents[key];
+    } = pageContent;
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
       descriptions[key][userLanguage];
@@ -169,38 +170,21 @@ export default function ComponentsApiContent(props) {
           <Heading text="import" hash={`${componentNameKebabCase}-import`} level="h3" />
           <HighlightedCode
             code={`
-import ${componentName} from '${source}/${componentName}';
+import ${pageContent.name} from '${source}/${pageContent.name}';
 // ${t('or')}
-import { ${componentName} } from '${source}';`}
+import { ${pageContent.name} } from '${source}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-          {componentStyles.name && (
-            <React.Fragment>
-              <Heading
-                text="component-name"
-                hash={`${componentNameKebabCase}-component-name`}
-                level="h3"
-              />
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.styleOverrides').replace(
-                    /{{componentStyles\.name}}/,
-                    componentStyles.name,
-                  ),
-                }}
-              />
-            </React.Fragment>
-          )}
           <Heading text="props" hash={`${componentNameKebabCase}-props`} level="h3" />
           <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
-          <PropsTable properties={componentProps} propertiesDescriptions={propDescriptions} />
+          <PropertiesTable properties={componentProps} propertiesDescriptions={propDescriptions} />
           <br />
           {cssComponent && (
             <React.Fragment>
               <span
                 dangerouslySetInnerHTML={{
-                  __html: t('api-docs.cssComponent').replace(/{{name}}/, componentName),
+                  __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
                 }}
               />
               <br />
@@ -221,25 +205,34 @@ import { ${componentName} } from '${source}';`}
                     .replace(/{{component}}/, inheritance.component)
                     .replace(/{{pathname}}/, inheritance.pathname)
                     .replace(/{{suffix}}/, inheritanceSuffix)
-                    .replace(/{{componentName}}/, componentName),
+                    .replace(/{{name}}/, pageContent.name),
                 }}
               />
             </React.Fragment>
           )}
-          {componentSlots?.length ? (
+          {pageContent.themeDefaultProps && (
             <React.Fragment>
-              <Heading text="slots" hash={`${componentNameKebabCase}-slots`} level="h3" />
-              {slotGuideLink && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: t('api-docs.slotDescription').replace(
-                      /{{slotGuideLink}}/,
-                      slotGuideLink,
-                    ),
-                  }}
-                />
-              )}
-              <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+              <Heading
+                text="theme-default-props"
+                hash={`${componentName}-theme-default-props`}
+                level="h4"
+              />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.themeDefaultPropsDescription')
+                    .replace(/{{muiName}}/, pageContent.muiName)
+                    .replace(/{{defaultPropsLink}}/, defaultPropsLink),
+                }}
+              />
+            </React.Fragment>
+          )}
+          {Object.keys(componentStyles.classes).length ? (
+            <React.Fragment>
+              <Heading text="css" hash={`${componentName}-css`} level="h3" />
+              <ClassesTable
+                componentStyles={componentStyles}
+                classDescriptions={classDescriptions}
+              />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
               <span
@@ -252,17 +245,19 @@ import { ${componentName} } from '${source}';`}
               />
             </React.Fragment>
           ) : null}
-          {Object.keys(componentStyles.classes).length ? (
+          {componentSlots?.length ? (
             <React.Fragment>
-              <Heading text="css" hash={`${componentNameKebabCase}-css`} level="h3" />
-              <ClassesTable
-                componentStyles={componentStyles}
-                classDescriptions={classDescriptions}
-              />
+              <Heading text="slots" hash={`${componentNameKebabCase}-slots`} level="h3" />
+              <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
               <br />
-              <span dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
+              <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
               <span
-                dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStylesStyledComponent') }}
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.overrideStylesStyledComponent').replace(
+                    /{{styleOverridesLink}}/,
+                    styleOverridesLink,
+                  ),
+                }}
               />
             </React.Fragment>
           ) : null}
