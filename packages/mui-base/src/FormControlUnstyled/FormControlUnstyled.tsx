@@ -192,7 +192,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * @ignore
+   * Callback fired when the form element's value is modified.
    */
   onChange: PropTypes.func,
   /**
@@ -216,7 +216,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The value of the form element.
    */
   value: PropTypes.any,
 } as any;
