@@ -55,6 +55,8 @@
     }
   ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAvatar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Avatar/Avatar.tsx",
   "inheritance": null,

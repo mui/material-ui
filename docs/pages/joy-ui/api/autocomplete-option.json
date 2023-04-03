@@ -25,6 +25,8 @@
   "name": "AutocompleteOption",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocompleteOption",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/AutocompleteOption/AutocompleteOption.tsx",
   "inheritance": null,

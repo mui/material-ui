@@ -219,7 +219,6 @@ function reduceChildRoutes(context) {
   }
 
   const title = pageToTitleI18n(page, t);
-
   if (page.children && page.children.length >= 1) {
     const topLevel =
       activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
@@ -238,9 +237,14 @@ function reduceChildRoutes(context) {
         depth={depth}
         key={title}
         title={title}
-        href={firstChild.pathname}
+        href={{
+          pathname: firstChild.pathname,
+          ...(firstChild.query && { query: firstChild.query }),
+          ...(firstChild.hash && { hash: firstChild.hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -265,9 +269,14 @@ function reduceChildRoutes(context) {
         depth={depth}
         key={title}
         title={title}
-        href={page.pathname}
+        href={{
+          pathname: page.pathname,
+          ...(page.query && { query: page.query }),
+          ...(page.hash && { hash: page.hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}

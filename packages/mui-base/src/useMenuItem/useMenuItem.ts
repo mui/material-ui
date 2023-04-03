@@ -18,7 +18,7 @@ import useForcedRerendering from '../utils/useForcedRerendering';
  *
  * API:
  *
- * - [useMenuItem API](https://mui.com/base/api/use-menu-item/)
+ * - [useMenuItem API](https://mui.com/base/react-menu/hooks-api/#use-menu-item)
  */
 export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemReturnValue {
   const { disabled = false, ref, label } = props;

@@ -10,7 +10,7 @@ import { EventHandlers } from '../utils';
  *
  * API:
  *
- * - [useTab API](https://mui.com/base/api/use-tab/)
+ * - [useTab API](https://mui.com/base/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
   const { value: valueProp, onChange, onClick, onFocus } = parameters;

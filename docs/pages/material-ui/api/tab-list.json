@@ -21,6 +21,8 @@
     "name": "MuiTabList"
   },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiTabList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/material-ui/api/tabs/" },

@@ -24,6 +24,7 @@
     }
   ],
   "spread": true,
+  "muiName": "MuiOption",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionUnstyled/OptionUnstyled.tsx",
   "inheritance": null,

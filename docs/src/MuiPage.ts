@@ -1,5 +1,7 @@
 export interface MuiPage {
   pathname: string;
+  query?: object;
+  hash?: string;
   children?: MuiPage[];
   disableDrawer?: boolean;
   icon?: string;
@@ -41,6 +43,11 @@ export interface MuiPage {
    * @default false
    */
   newFeature?: boolean;
+  /**
+   * Indicates if the feature is in development.
+   * @default false
+   */
+  comingSoon?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {
