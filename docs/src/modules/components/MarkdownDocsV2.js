@@ -105,24 +105,18 @@ export default function MarkdownDocsV2(props) {
   const componentsApiToc = [];
 
   Object.keys(componentsApiPageContents).forEach((key) => {
-    const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
-
-    const { name: componentName } = componentsApiPageContents[key];
+    const { componentDescriptionToc = [], s } = componentsApiDescriptions[key][userLanguage];
+    const { name: componentName, styles, inheritance, slots } = componentsApiPageContents[key];
 
     const componentNameKebabCase = kebabCase(componentName);
 
     const componentApiToc = [
       createComponentTocEntry(componentNameKebabCase, 'import'),
       ...componentDescriptionToc,
-      componentsApiPageContents[key].styles.name &&
-        createComponentTocEntry(componentNameKebabCase, 'component-name'),
-      createComponentTocEntry(
-        componentNameKebabCase,
-        'props',
-        componentsApiPageContents[key].inheritance,
-      ),
-      componentsApiPageContents[key].styles.classes.length > 0 &&
-        createComponentTocEntry(componentNameKebabCase, 'css'),
+      styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
+      createComponentTocEntry(componentNameKebabCase, 'props', inheritance),
+      styles.classes.length > 0 && createComponentTocEntry(componentNameKebabCase, 'css'),
+      slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
     ].filter(Boolean);
 
     componentsApiToc.push({

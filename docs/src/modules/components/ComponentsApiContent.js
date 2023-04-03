@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { SlotsTable } from 'docs/src/modules/components/ApiPage';
 import Divider from 'docs/src/modules/components/ApiDivider';
 import PropsTable from 'docs/src/modules/components/PropretiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -63,6 +64,7 @@ function getTranslatedHeader(t, header, text) {
     'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
+    slots: t('api-docs.slots'),
     css: 'CSS',
   };
 
@@ -109,9 +111,26 @@ export default function ComponentsApiContent(props) {
       props: componentProps,
       spread,
       styles: componentStyles,
+      slots: componentSlots,
     } = pageContents[key];
 
-    const { classDescriptions, propDescriptions } = descriptions[key][userLanguage];
+    const { classDescriptions, propDescriptions, slotDescriptions } =
+      descriptions[key][userLanguage];
+
+    const isJoyComponent = filename.includes('mui-joy');
+    const isBaseComponent = filename.includes('mui-base');
+    const defaultPropsLink = isJoyComponent
+      ? '/joy-ui/customization/themed-components/#theme-default-props'
+      : '/material-ui/customization/theme-components/#theme-default-props';
+    const styleOverridesLink = isJoyComponent
+      ? '/joy-ui/customization/themed-components/#theme-style-overrides'
+      : '/material-ui/customization/theme-components/#theme-style-overrides';
+    let slotGuideLink = '';
+    if (isJoyComponent) {
+      slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+    } else if (isBaseComponent) {
+      slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+    }
 
     const source = filename
       .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
@@ -207,6 +226,32 @@ import { ${componentName} } from '${source}';`}
               />
             </React.Fragment>
           )}
+          {componentSlots?.length ? (
+            <React.Fragment>
+              <Heading text="slots" hash={`${componentNameKebabCase}-slots`} level="h3" />
+              {slotGuideLink && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t('api-docs.slotDescription').replace(
+                      /{{slotGuideLink}}/,
+                      slotGuideLink,
+                    ),
+                  }}
+                />
+              )}
+              <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+              <br />
+              <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.overrideStylesStyledComponent').replace(
+                    /{{styleOverridesLink}}/,
+                    styleOverridesLink,
+                  ),
+                }}
+              />
+            </React.Fragment>
+          ) : null}
           {Object.keys(componentStyles.classes).length ? (
             <React.Fragment>
               <Heading text="css" hash={`${componentNameKebabCase}-css`} level="h3" />
