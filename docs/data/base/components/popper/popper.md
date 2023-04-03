@@ -10,12 +10,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 <p class="description">The Unstyled Popper component lets you create tooltips and popovers that display information about an element on the page.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Popper is a utility component for creating various kinds of popups.
 It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for positioning.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

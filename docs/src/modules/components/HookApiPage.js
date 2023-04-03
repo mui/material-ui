@@ -10,7 +10,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 
-function getTranslatedHeader(t, header) {
+export function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),

@@ -9,6 +9,29 @@ import { replaceComponentLinks } from './utils/replaceUrl';
 import findPagesMarkdown from './utils/findPagesMarkdown';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
+const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
+
+export function writePrettifiedFile(
+  filename: string,
+  data: string,
+  prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
+  options: object = {},
+) {
+  const prettierConfig = prettier.resolveConfig.sync(filename, {
+    config: prettierConfigPath,
+  });
+  if (prettierConfig === null) {
+    throw new Error(
+      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
+    );
+  }
+
+  fs.writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
+    encoding: 'utf8',
+    ...options,
+  });
+}
+
 let systemComponents: string[] | undefined;
 // making the resolution lazy to avoid issues when importing something irrelevant from this file (i.e. `getSymbolDescription`)
 // the eager resolution results in errors when consuming externally (i.e. `mui-x`)
@@ -220,17 +243,95 @@ function pathToSystemTitle(page: PageMarkdown) {
   return defaultTitle;
 }
 
+function findBaseDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{
+    pathname: string;
+    components: readonly string[];
+    markdownContent: string;
+  }>,
+) {
+  return pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => ({
+      demoPageTitle: getTitle(page.markdownContent),
+      demoPathname: page.pathname.match(/material\//)
+        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+        : `${page.pathname.replace('/components/', '/react-')}/`,
+    }));
+}
+
+function findBaseHooksDemos(
+  hookName: string,
+  pagesMarkdown: ReadonlyArray<{
+    pathname: string;
+    hooks: readonly string[];
+    markdownContent: string;
+  }>,
+) {
+  return pagesMarkdown
+    .filter((page) => page.hooks && page.hooks.includes(hookName))
+    .map((page) => ({
+      demoPageTitle: getTitle(page.markdownContent),
+      demoPathname: page.pathname.match(/material\//)
+        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+        : `${page.pathname.replace('/components/', '/react-')}/#hook${
+            page.hooks?.length > 1 ? 's' : ''
+          }`,
+    }));
+}
+
+const getApiPath = (
+  demos: Array<{ demoPageTitle: string; demoPathname: string }>,
+  name: string,
+) => {
+  let apiPath = null;
+
+  if (demos && demos.length > 0) {
+    // remove the hash from the demoPathname, for e.g. "#hooks"
+    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0];
+    apiPath = `${cleanedDemosPathname}${
+      name.startsWith('use') ? 'hooks-api' : 'components-api'
+    }/#${kebabCase(name)}`;
+  }
+
+  return apiPath;
+};
+
 export function getBaseComponentInfo(filename: string): ComponentInfo {
   const { name } = extractPackageFile(filename);
   let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
   if (!name) {
     throw new Error(`Could not find the component name from: ${filename}`);
   }
+
+  // resolve demos, so that we can getch the API url
+  const allMarkdowns = findPagesMarkdown()
+    .filter((markdown) => {
+      if (migratedBaseComponents.some((component) => filename.includes(component))) {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      }
+      return true;
+    })
+    .map((markdown) => {
+      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+      const markdownHeaders = getHeaders(markdownContent) as any;
+
+      return {
+        ...markdown,
+        markdownContent,
+        components: markdownHeaders.components as string[],
+      };
+    });
+
+  const demos = findBaseDemos(name, allMarkdowns);
+  const apiPath = getApiPath(demos, name);
+
   return {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: `/base/api/${kebabCase(name)}/`,
+    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     isSystemComponent: getSystemComponents().includes(name),
     readFile: () => {
@@ -249,33 +350,7 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
             : `/base/api/${kebabCase(inheritedComponent)}/`,
       };
     },
-    getDemos: () => {
-      const allMarkdowns = findPagesMarkdown()
-        .filter((markdown) => {
-          if (migratedBaseComponents.some((component) => filename.includes(component))) {
-            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-          }
-          return true;
-        })
-        .map((markdown) => {
-          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-          const markdownHeaders = getHeaders(markdownContent) as any;
-
-          return {
-            ...markdown,
-            markdownContent,
-            components: markdownHeaders.components as string[],
-          };
-        });
-      return allMarkdowns
-        .filter((page) => page.components.includes(name))
-        .map((page) => ({
-          demoPageTitle: getTitle(page.markdownContent),
-          demoPathname: page.pathname.match(/material\//)
-            ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-            : `${page.pathname.replace('/components/', '/react-')}/`,
-        }));
-    },
+    getDemos: () => demos,
   };
 }
 
@@ -285,44 +360,38 @@ export function getBaseHookInfo(filename: string): HookInfo {
   if (!name) {
     throw new Error(`Could not find the hook name from: ${filename}`);
   }
+
+  const allMarkdowns = findPagesMarkdown()
+    .filter((markdown) => {
+      if (migratedBaseComponents.some((component) => filename.includes(component))) {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      }
+      return true;
+    })
+    .map((markdown) => {
+      const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+      const markdownHeaders = getHeaders(markdownContent) as any;
+
+      return {
+        ...markdown,
+        markdownContent,
+        hooks: markdownHeaders.hooks as string[],
+      };
+    });
+
+  const demos = findBaseHooksDemos(name, allMarkdowns);
+  const apiPath = getApiPath(demos, name);
+
   const result = {
     filename,
     name,
-    apiPathname: `/base/api/${kebabCase(name)}/`,
+    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
     },
-    getDemos: () => {
-      const allMarkdowns = findPagesMarkdown()
-        .filter((markdown) => {
-          if (migratedBaseComponents.some((component) => filename.includes(component))) {
-            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-          }
-          return true;
-        })
-        .map((markdown) => {
-          const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
-          const markdownHeaders = getHeaders(markdownContent) as any;
-
-          return {
-            ...markdown,
-            markdownContent,
-            hooks: markdownHeaders.hooks as string[],
-          };
-        });
-      return allMarkdowns
-        .filter((page) => page.hooks && page.hooks.includes(name))
-        .map((page) => ({
-          demoPageTitle: getTitle(page.markdownContent),
-          demoPathname: page.pathname.match(/material\//)
-            ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-            : `${page.pathname.replace('/components/', '/react-')}/#hook${
-                page.hooks?.length > 1 ? 's' : ''
-              }`,
-        }));
-    },
+    getDemos: () => demos,
   };
   return result;
 }
@@ -478,4 +547,138 @@ export function stringifySymbol(symbol: ts.Symbol, project: TypeScriptProject) {
   }
 
   return formatType(rawType);
+}
+
+export function generateBaseUIApiPages() {
+  findPagesMarkdown().forEach((markdown) => {
+    const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+    const markdownHeaders = getHeaders(markdownContent) as any;
+    const pathnameTokens = markdown.pathname.split('/');
+    const productName = pathnameTokens[1];
+    const componentName = pathnameTokens[3];
+
+    if (
+      productName === 'base' &&
+      (markdown.filename.indexOf('\\components\\') >= 0 ||
+        markdown.filename.indexOf('/components/') >= 0)
+    ) {
+      const { components, hooks } = markdownHeaders;
+
+      let apiTabImportStatements = '';
+      let staticProps = 'export const getStaticProps = () => {';
+      let componentsApiDescriptions = '';
+      let componentsPageContents = '';
+      let hooksApiDescriptions = '';
+      let hooksPageContents = '';
+
+      if (components) {
+        components.forEach((component: string) => {
+          const componentNameKebabCase = kebabCase(component);
+          apiTabImportStatements += `import ${component}ApiJsonPageContent from '../../api/${componentNameKebabCase}.json';`;
+          staticProps += `
+          const ${component}ApiReq = require.context(
+            'docs/translations/api-docs/${componentNameKebabCase}',
+            false,
+            /${componentNameKebabCase}.*.json$/,
+          );
+          const ${component}ApiDescriptions = mapApiPageTranslations(${component}ApiReq);
+          `;
+          componentsApiDescriptions += `${component} : ${component}ApiDescriptions ,`;
+          componentsPageContents += `${component} : ${component}ApiJsonPageContent ,`;
+        });
+      }
+
+      if (hooks) {
+        hooks.forEach((hook: string) => {
+          const hookNameKebabCase = kebabCase(hook);
+          apiTabImportStatements += `import ${hook}ApiJsonPageContent from '../../api/${hookNameKebabCase}.json';`;
+          staticProps += `
+          const ${hook}ApiReq = require.context(
+            'docs/translations/api-docs/${hookNameKebabCase}',
+            false,
+            /${hookNameKebabCase}.*.json$/,
+          );
+          const ${hook}ApiDescriptions = mapApiPageTranslations(${hook}ApiReq);
+          `;
+          hooksApiDescriptions += `${hook} : ${hook}ApiDescriptions ,`;
+          hooksPageContents += `${hook} : ${hook}ApiJsonPageContent ,`;
+        });
+      }
+
+      staticProps += `
+      return { props: { componentsApiDescriptions: {`;
+      staticProps += componentsApiDescriptions;
+
+      staticProps += '}, componentsApiPageContents: { ';
+      staticProps += componentsPageContents;
+
+      staticProps += '}, hooksApiDescriptions: {';
+      staticProps += hooksApiDescriptions;
+
+      staticProps += '}, hooksApiPageContents: {';
+      staticProps += hooksPageContents;
+
+      staticProps += ` },},};};`;
+
+      const tokens = markdown.pathname.split('/');
+      const name = tokens[tokens.length - 1];
+      const importStatement = `docs/data${markdown.pathname}/${name}.md`;
+      const demosSource = `
+import * as React from 'react';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
+import AppFrame from 'docs/src/modules/components/AppFrame';
+import * as pageProps from '${importStatement}?@mui/markdown';
+
+export default function Page(props) {
+  const { userLanguage, ...other } = props;
+  return <MarkdownDocs {...pageProps} {...other} />;
+}
+
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
+};
+      `;
+
+      const tabsApiSource = `
+import * as React from 'react';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
+import AppFrame from 'docs/src/modules/components/AppFrame';
+import * as pageProps from '${importStatement}?@mui/markdown';
+import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+${apiTabImportStatements}
+
+export default function Page(props) {
+  const { userLanguage, ...other } = props;
+  return <MarkdownDocs {...pageProps} {...other} />;
+}
+
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
+};
+
+export const getStaticPaths = () => {
+  return {
+    paths: [{ params: { docsTab: 'components-api' } }, { params: { docsTab: 'hooks-api' } }],
+    fallback: false, // can also be true or 'blocking'
+  };
+};
+
+${staticProps}
+      `;
+
+      const componentPageDirectory = `docs/pages/${productName}/react-${componentName}/`;
+      if (!fs.existsSync(componentPageDirectory)) {
+        fs.mkdirSync(componentPageDirectory, { recursive: true });
+      }
+      const demosSourcePath = path.join(process.cwd(), `${componentPageDirectory}/index.js`);
+      writePrettifiedFile(demosSourcePath, demosSource);
+
+      const docsTabsPagesDirectory = `${componentPageDirectory}/[docsTab]`;
+      if (!fs.existsSync(docsTabsPagesDirectory)) {
+        fs.mkdirSync(docsTabsPagesDirectory, { recursive: true });
+      }
+      const tabsApiPath = path.join(process.cwd(), `${docsTabsPagesDirectory}/index.js`);
+      writePrettifiedFile(tabsApiPath, tabsApiSource);
+    }
+  });
 }

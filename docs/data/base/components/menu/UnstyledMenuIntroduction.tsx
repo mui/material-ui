@@ -6,6 +6,77 @@ import MenuItemUnstyled, {
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
+export default function UnstyledMenuIntroduction() {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const isOpen = Boolean(anchorEl);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const menuActions = React.useRef<MenuUnstyledActions>(null);
+
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (isOpen) {
+      setAnchorEl(null);
+    } else {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setAnchorEl(event.currentTarget);
+      if (event.key === 'ArrowUp') {
+        menuActions.current?.highlightLastItem();
+      }
+    }
+  };
+
+  const close = () => {
+    setAnchorEl(null);
+    buttonRef.current!.focus();
+  };
+
+  const createHandleMenuClick = (menuItem: string) => {
+    return () => {
+      console.log(`Clicked on ${menuItem}`);
+      close();
+    };
+  };
+
+  return (
+    <div>
+      <TriggerButton
+        type="button"
+        onClick={handleButtonClick}
+        onKeyDown={handleButtonKeyDown}
+        ref={buttonRef}
+        aria-controls={isOpen ? 'simple-menu' : undefined}
+        aria-expanded={isOpen || undefined}
+        aria-haspopup="menu"
+      >
+        My account
+      </TriggerButton>
+      <MenuUnstyled
+        actions={menuActions}
+        open={isOpen}
+        onClose={close}
+        anchorEl={anchorEl}
+        slots={{ root: Popper, listbox: StyledListbox }}
+        slotProps={{ listbox: { id: 'simple-menu' } }}
+      >
+        <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
+          Profile
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+          Language settings
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
+          Log out
+        </StyledMenuItem>
+      </MenuUnstyled>
+    </div>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -107,74 +178,3 @@ const TriggerButton = styled('button')(
 const Popper = styled(PopperUnstyled)`
   z-index: 1;
 `;
-
-export default function UnstyledMenuIntroduction() {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setAnchorEl(event.currentTarget);
-      if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
-      }
-    }
-  };
-
-  const close = () => {
-    setAnchorEl(null);
-    buttonRef.current!.focus();
-  };
-
-  const createHandleMenuClick = (menuItem: string) => {
-    return () => {
-      console.log(`Clicked on ${menuItem}`);
-      close();
-    };
-  };
-
-  return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        ref={buttonRef}
-        aria-controls={isOpen ? 'simple-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        My account
-      </TriggerButton>
-      <MenuUnstyled
-        actions={menuActions}
-        open={isOpen}
-        onClose={close}
-        anchorEl={anchorEl}
-        slots={{ root: Popper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
-        <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
-          Profile
-        </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-          Language settings
-        </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
-          Log out
-        </StyledMenuItem>
-      </MenuUnstyled>
-    </div>
-  );
-}

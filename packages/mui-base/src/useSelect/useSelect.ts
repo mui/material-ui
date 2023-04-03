@@ -24,11 +24,11 @@ import useSelectChangeNotifiers from './useSelectChangeNotifiers';
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hook)
+ * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
  *
  * API:
  *
- * - [useSelect API](https://mui.com/base/api/use-select/)
+ * - [useSelect API](https://mui.com/base/react-select/hooks-api/#use-select)
  */
 function useSelect<TValue, Multiple extends boolean = false>(
   props: UseSelectParameters<TValue, Multiple>,
