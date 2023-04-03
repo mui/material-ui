@@ -533,7 +533,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
 
   const ownerState = {
     ...props,
-    defaultValue: props.defaultValue ?? valueProp,
     isRtl,
     max,
     min,
