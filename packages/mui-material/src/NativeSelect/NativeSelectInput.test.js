@@ -144,7 +144,7 @@ describe('<NativeSelectInput />', () => {
           </NativeSelectInput>
         </ThemeProvider>,
       );
-      expect(container.querySelector(`.${nativeSelectClasses.select}`)).to.toHaveComputedStyle(
+      expect(container.querySelector(`.${nativeSelectClasses.select}`)).toHaveComputedStyle(
         selectStyle,
       );
       expect(container.querySelector(`.${nativeSelectClasses.icon}`)).to.toHaveComputedStyle(
