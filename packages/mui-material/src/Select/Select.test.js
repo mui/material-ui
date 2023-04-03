@@ -1501,8 +1501,8 @@ describe('<Select />', () => {
           <Select value="" error IconComponent="div" />
         </ThemeProvider>,
       );
-      expect(container.querySelector(`.${classes.select}`)).to.toHaveComputedStyle(selectStyle);
-      expect(container.querySelector(`.${classes.icon}`)).to.toHaveComputedStyle(iconStyle);
+      expect(container.querySelector(`.${classes.select}`)).toHaveComputedStyle(selectStyle);
+      expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(iconStyle);
     });
   });
 
