@@ -1,14 +1,18 @@
 import * as babel from '@babel/core';
-import { readFile, existsSync } from 'fs-extra';
+import { readFile } from 'fs-extra';
 import * as path from 'path';
+import glob from 'fast-glob';
 
 const workspaceRoot = path.join(__dirname, '../../../');
 const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
 
-function withExtension(filepath: string, extension: string) {
-  return path.join(
-    path.dirname(filepath),
-    path.basename(filepath, path.extname(filepath)) + extension,
+function getTestFilesNames(filepath: string) {
+  return glob.sync(
+    path.join(
+      path.dirname(filepath),
+      `/{tests/,}{*.,}${path.basename(filepath, path.extname(filepath))}.test.{js,ts,tsx}`,
+    ),
+    { absolute: true },
   );
 }
 
@@ -123,24 +127,26 @@ export interface ParseResult {
 }
 
 export default async function parseTest(componentFilename: string): Promise<ParseResult> {
-  const testFilename = ['js', 'ts', 'tsx']
-    .map((extension) => {
-      return withExtension(componentFilename, `.test.${extension}`);
-    })
-    .find((possibleTestFileName) => {
-      return existsSync(possibleTestFileName);
-    });
-  if (testFilename === undefined) {
+  const testFilenames = getTestFilesNames(componentFilename);
+
+  if (testFilenames.length === 0) {
     throw new Error(
-      `Could not find a test file next to ${componentFilename}. The test filename should end with '.test.{js,ts,tsx}'.`,
+      `Could not find any test file next to ${componentFilename}. The test filename should end with '.test.{js,ts,tsx}'.`,
     );
   }
 
-  const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
-  if (babelParseResult === null) {
-    throw new Error(`Could not parse ${testFilename}.`);
+  let descriptor: ReturnType<typeof findConformanceDescriptor> = null;
+
+  // eslint-disable-next-line no-restricted-syntax
+  for await (const testFilename of testFilenames) {
+    if (descriptor === null) {
+      const babelParseResult = await parseWithConfig(testFilename, babelConfigPath);
+      if (babelParseResult === null) {
+        throw new Error(`Could not parse ${testFilename}.`);
+      }
+      descriptor = findConformanceDescriptor(babelParseResult);
+    }
   }
-  const descriptor = findConformanceDescriptor(babelParseResult);
 
   const result: ParseResult = {
     forwardsRefTo: undefined,
