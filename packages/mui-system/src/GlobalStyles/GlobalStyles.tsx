@@ -37,10 +37,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  themeId: PropTypes.string,
-  /**
-   * @ignore
-   */
   styles: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.array,
     PropTypes.func,
@@ -49,6 +45,10 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
     PropTypes.string,
     PropTypes.bool,
   ]),
+  /**
+   * @ignore
+   */
+  themeId: PropTypes.string,
 } as any;
 
 export default GlobalStyles;
