@@ -67,7 +67,7 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
  *
  * API:
  *
- * - [FormControlUnstyled API](https://mui.com/base/api/form-control-unstyled/)
+ * - [FormControlUnstyled API](https://mui.com/base/react-form-control/components-api/#form-control-unstyled)
  */
 const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],

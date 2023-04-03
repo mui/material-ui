@@ -79,6 +79,11 @@
     "nativeInput": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the underlying native input component"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
     }
   }
 }

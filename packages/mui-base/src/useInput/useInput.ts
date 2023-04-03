@@ -17,7 +17,7 @@ import {
  *
  * API:
  *
- * - [useInput API](https://mui.com/base/api/use-input/)
+ * - [useInput API](https://mui.com/base/react-input/hooks-api/#use-input)
  */
 export default function useInput(parameters: UseInputParameters): UseInputReturnValue {
   const {

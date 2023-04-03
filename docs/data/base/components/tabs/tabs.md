@@ -11,6 +11,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 
 <p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Tabs are implemented using a collection of related components:
@@ -21,8 +25,6 @@ Tabs are implemented using a collection of related components:
 - `<TabsUnstyled />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
 
 {{"demo": "UnstyledTabsIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Components
 
