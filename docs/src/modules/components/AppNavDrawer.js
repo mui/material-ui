@@ -230,7 +230,7 @@ function reduceChildRoutes(context) {
     }
 
     const subheader = Boolean(page.subheader);
-
+    const pathnames = firstChild.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -238,9 +238,9 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={{
-          pathname: firstChild.pathname,
+          pathname: pathnames[0],
           ...(firstChild.query && { query: firstChild.query }),
-          ...(firstChild.hash && { hash: firstChild.hash }),
+          ...(pathnames[1] && { hash: pathnames[1] }),
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
@@ -262,7 +262,7 @@ function reduceChildRoutes(context) {
     );
   } else {
     page = page.children && page.children.length === 1 ? page.children[0] : page;
-
+    const pathnames = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -270,9 +270,9 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={{
-          pathname: page.pathname,
+          pathname: pathnames[0],
           ...(page.query && { query: page.query }),
-          ...(page.hash && { hash: page.hash }),
+          ...(pathnames[1] && { hash: pathnames[1] }),
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
