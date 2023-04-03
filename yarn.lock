@@ -1384,26 +1384,26 @@
   dependencies:
     "@date-io/core" "^2.16.0"
 
-"@definitelytyped/header-parser@^0.0.157", "@definitelytyped/header-parser@latest":
-  version "0.0.157"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.157.tgz#0b3bc18f39857f34e6cdc772c19beaf1115b331d"
-  integrity sha512-7wzMY7tTrvyDAznTPw5OQPRyVTLXvOcmiq2EwjtKwgAMR5Yq9px8S9mOPwdsY0NRyMOX/VGUigb8YTgKZhTutA==
+"@definitelytyped/header-parser@^0.0.159", "@definitelytyped/header-parser@latest":
+  version "0.0.159"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.159.tgz#92b845a6cb1f4d8c7412620c777b6af61bcc5d4d"
+  integrity sha512-y+zr9ahjiFz7BLW1HeMWrx7xNxfBTDU0loJqzRh9WPHVdSrMsk+JQBSlubed/EZ1hgFZ6m93FRzBRCGIj8kBYg==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.157"
+    "@definitelytyped/typescript-versions" "^0.0.159"
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@^0.0.157", "@definitelytyped/typescript-versions@latest":
-  version "0.0.157"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.157.tgz#e497083f217aa9617922cf496b2e61de7801ed9f"
-  integrity sha512-IHnGLv4TJY7iK++u6e01ICGHFW2hVwruBOeNGwXIZlAWpsdQ8Wc7ZdDXuN/4tTlIM/A6Hx4LDB9BhB6VufTUww==
+"@definitelytyped/typescript-versions@^0.0.159", "@definitelytyped/typescript-versions@latest":
+  version "0.0.159"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.159.tgz#fa8ac5808364506b94746fa0003bc4d7b11cc15b"
+  integrity sha512-9TWRPpOo3CWYUyS3QCu8goJbAhS3qAE/LWFc+Qy6Wb8vsUAwMTioCtPPsYyqrPDbatXvPFrOr182hE1OFvEFSA==
 
-"@definitelytyped/utils@^0.0.157", "@definitelytyped/utils@latest":
-  version "0.0.157"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.157.tgz#53c17fb48459f5f442dc112aae939cbf0b73bd92"
-  integrity sha512-oCmx3j6ScEBw5qNqYBqf566u0jhhTBAof98Fhy+tKwK9G9X8vaqpCiEgxoA6iw85O43dqMvVDR8EfkK0EwIayQ==
+"@definitelytyped/utils@^0.0.159", "@definitelytyped/utils@latest":
+  version "0.0.159"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.159.tgz#e18d114462dba703a9f75316e2b668048ad103a5"
+  integrity sha512-zm+Gsw39sD2EANlJmmNXgtpIzXO3QmBq5nZx6Y95RD/s2AypDaBw0eauO1wWji6I45tJOAgPZEvfmjjaxfoyhA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.157"
+    "@definitelytyped/typescript-versions" "^0.0.159"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
@@ -3334,10 +3334,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash@*", "@types/lodash@^4.14.191":
-  version "4.14.191"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz#09511e7f7cba275acd8b419ddac8da9a6a79e2fa"
-  integrity sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==
+"@types/lodash@*", "@types/lodash@^4.14.192":
+  version "4.14.192"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.192.tgz#5790406361a2852d332d41635d927f1600811285"
+  integrity sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A==
 
 "@types/markdown-to-jsx@^7.0.1":
   version "7.0.1"

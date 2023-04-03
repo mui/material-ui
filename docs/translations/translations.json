@@ -431,6 +431,7 @@
     "/joy-ui/react-switch": "Switch",
     "/joy-ui/react-textarea": "Textarea",
     "/joy-ui/react-text-field": "Text Field",
+    "/joy-ui/react-toggle-button": "Toggle Button",
     "/joy-ui/react-aspect-ratio": "Aspect Ratio",
     "/joy-ui/react-avatar": "Avatar",
     "/joy-ui/react-badge": "Badge",

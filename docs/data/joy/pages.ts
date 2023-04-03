@@ -41,6 +41,7 @@ const pages = [
           { pathname: '/joy-ui/react-switch' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
+          { pathname: '/joy-ui/react-toggle-button', title: 'Toggle Button', comingSoon: true },
         ],
       },
       {
