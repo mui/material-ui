@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
-export default function ModalUnstyledDemo() {
+export default function KeepMountedModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
