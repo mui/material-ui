@@ -32,7 +32,6 @@ describe('useControllableReducer', () => {
 
   describe('param: reducer', () => {
     it('calls the provided reducer', () => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const reducer = spy((state: TestState, action: SetStateAction<TestState>) => {
         return {
           ...state,
