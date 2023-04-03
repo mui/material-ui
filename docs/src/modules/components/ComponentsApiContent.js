@@ -251,7 +251,10 @@ import { ${pageContent.name} } from '${source}';`}
               {slotGuideLink && (
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink),
+                    __html: t('api-docs.slotDescription').replace(
+                      /{{slotGuideLink}}/,
+                      slotGuideLink,
+                    ),
                   }}
                 />
               )}
