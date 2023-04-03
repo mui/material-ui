@@ -8,6 +8,7 @@ import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
@@ -159,14 +160,16 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const result = (
     <PopperUnstyled {...rootProps} modifiers={modifiers}>
       <MenuProvider value={contextValue}>
-        <ListProvider nested>
-          {disablePortal ? (
-            children
-          ) : (
-            // For portal popup, the children should not inherit color inversion from the upper parent.
-            <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
-          )}
-        </ListProvider>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>
+            {disablePortal ? (
+              children
+            ) : (
+              // For portal popup, the children should not inherit color inversion from the upper parent.
+              <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
+            )}
+          </ListProvider>
+        </GroupListContext.Provider>
       </MenuProvider>
     </PopperUnstyled>
   );

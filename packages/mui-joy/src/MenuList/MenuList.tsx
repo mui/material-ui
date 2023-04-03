@@ -9,6 +9,7 @@ import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
@@ -126,7 +127,9 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   return (
     <MenuListRoot {...listboxProps}>
       <MenuProvider value={menuContextValue}>
-        <ListProvider nested>{children}</ListProvider>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>{children}</ListProvider>
+        </GroupListContext.Provider>
       </MenuProvider>
     </MenuListRoot>
   );

@@ -16,6 +16,7 @@ import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
@@ -584,8 +585,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         modifiers={modifiers}
       >
         <SelectProvider value={context}>
-          {/* for building grouped options */}
-          <ListProvider nested>{children}</ListProvider>
+          <GroupListContext.Provider value="select">
+            {/* for building grouped options */}
+            <ListProvider nested>{children}</ListProvider>
+          </GroupListContext.Provider>
         </SelectProvider>
       </SlotListbox>
     );

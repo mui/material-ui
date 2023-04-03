@@ -10,6 +10,7 @@ import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
+import GroupListContext from './GroupListContext';
 import ListProvider from './ListProvider';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 
@@ -153,6 +154,7 @@ const ListRoot = styled(StyledList, {
  */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
+  const group = React.useContext(GroupListContext);
   const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -176,6 +178,9 @@ const List = React.forwardRef(function List(inProps, ref) {
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
+  if (group) {
+    role = 'group';
+  }
   if (radioGroupContext) {
     role = 'presentation';
   }
