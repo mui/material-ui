@@ -6,25 +6,15 @@ import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#80BFFF',
-  400: '#3399FF',
-  600: '#0072E5',
-};
-
-const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
-};
+export default function BasicFormControl() {
+  return (
+    <FormControlUnstyled defaultValue="" required>
+      <Label>Name</Label>
+      <Input />
+      <HelperText />
+    </FormControlUnstyled>
+  );
+}
 
 const Input = styled(InputUnstyled)(
   ({ theme }) => `
@@ -111,12 +101,22 @@ const HelperText = styled((props: {}) => {
   font-size: 0.875rem;
 `;
 
-export default function UseFormControl() {
-  return (
-    <FormControlUnstyled defaultValue="" required>
-      <Label>Name</Label>
-      <Input />
-      <HelperText />
-    </FormControlUnstyled>
-  );
-}
+const blue = {
+  100: '#DAECFF',
+  200: '#80BFFF',
+  400: '#3399FF',
+  600: '#0072E5',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};
