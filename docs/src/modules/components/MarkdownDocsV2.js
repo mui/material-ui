@@ -90,13 +90,20 @@ export default function MarkdownDocsV2(props) {
     });
   });
 
-  function createComponentTocEntry(componentName, sectionName, hasInheritance = false) {
+  function createComponentTocEntry(
+    componentName,
+    sectionName,
+    options = { inheritance: false, themeDefaultProps: false },
+  ) {
     return {
       text: getComponentTranslatedHeader(t, sectionName),
       hash: `${componentName}-${sectionName}`,
       children: [
-        ...(hasInheritance
+        ...(options.inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+          : []),
+        ...(options.themeDefaultProps
+          ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
           : []),
       ],
     };
@@ -106,23 +113,22 @@ export default function MarkdownDocsV2(props) {
 
   Object.keys(componentsApiPageContents).forEach((key) => {
     const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
-
-    const { name: componentName } = componentsApiPageContents[key];
-
+    const {
+      name: componentName,
+      styles,
+      inheritance,
+      slots,
+      themeDefaultProps,
+    } = componentsApiPageContents[key];
     const componentNameKebabCase = kebabCase(componentName);
 
     const componentApiToc = [
       createComponentTocEntry(componentNameKebabCase, 'import'),
       ...componentDescriptionToc,
-      componentsApiPageContents[key].styles.name &&
-        createComponentTocEntry(componentNameKebabCase, 'component-name'),
-      createComponentTocEntry(
-        componentNameKebabCase,
-        'props',
-        componentsApiPageContents[key].inheritance,
-      ),
-      componentsApiPageContents[key].styles.classes.length > 0 &&
-        createComponentTocEntry(componentNameKebabCase, 'css'),
+      styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
+      createComponentTocEntry(componentNameKebabCase, 'props', { inheritance, themeDefaultProps }),
+      styles.classes.length > 0 && createComponentTocEntry(componentNameKebabCase, 'css'),
+      slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
     ].filter(Boolean);
 
     componentsApiToc.push({
