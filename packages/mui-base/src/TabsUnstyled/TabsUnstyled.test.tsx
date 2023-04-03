@@ -123,7 +123,7 @@ describe('<TabsUnstyled />', () => {
       );
 
       const tabs = getAllByRole('tab');
-      const tabPanels = getAllByRole('tabpanel');
+      const tabPanels = getAllByRole('tabpanel', { hidden: true });
 
       expect(tabPanels[0]).to.have.attribute('aria-labelledby', tabs[1].id);
       expect(tabPanels[1]).to.have.attribute('aria-labelledby', tabs[0].id);
@@ -148,7 +148,7 @@ describe('<TabsUnstyled />', () => {
       );
 
       const tabs = getAllByRole('tab');
-      const tabPanels = getAllByRole('tabpanel');
+      const tabPanels = getAllByRole('tabpanel', { hidden: true });
 
       expect(tabs[0]).to.have.attribute('aria-controls', tabPanels[1].id);
       expect(tabs[1]).to.have.attribute('aria-controls', tabPanels[0].id);

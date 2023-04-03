@@ -356,7 +356,7 @@ describe('<SelectUnstyled />', () => {
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
-      expect(queryByRole('listbox')).not.toBeVisible();
+      expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
     });
   });
 
