@@ -1468,7 +1468,7 @@ describe('<Select />', () => {
         </ThemeProvider>,
       );
 
-      expect(container.querySelector(`.${nativeSelectClasses.icon}`)).to.toHaveComputedStyle(
+      expect(container.querySelector(`.${nativeSelectClasses.icon}`)).toHaveComputedStyle(
         iconStyle,
       );
     });
