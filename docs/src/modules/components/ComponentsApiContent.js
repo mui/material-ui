@@ -248,6 +248,13 @@ import { ${pageContent.name} } from '${source}';`}
           {componentSlots?.length ? (
             <React.Fragment>
               <Heading text="slots" hash={`${componentNameKebabCase}-slots`} level="h3" />
+              {slotGuideLink && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink),
+                  }}
+                />
+              )}
               <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
