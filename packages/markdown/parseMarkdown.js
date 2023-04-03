@@ -350,6 +350,33 @@ function createRender(context) {
             )}\n</aside>`;
           },
         },
+        {
+          name: 'tabs',
+          level: 'block',
+          start(src) {
+            const match = src.match(/===/);
+            return match ? match.index : undefined;
+          },
+          tokenizer(src) {
+            const rule =
+              /^ {0,3}(={3,}(?=[^=\n]*\n)|~{3,})([^\n]*)\n(?=|([\s\S]*?)\n)(?= {0,3}\1[~=]* *(?=\n|$)|$)/;
+            const match = rule.exec(src);
+            if (match) {
+              const token = {
+                type: 'tabs',
+                raw: match[0],
+                text: match[3].trim(),
+                tokens: [],
+              };
+              this.lexer.blockTokens(token.text, token.tokens);
+              return token;
+            }
+            return undefined;
+          },
+          renderer(token) {
+            return `<div class="remark-tabs">${this.parser.parse(token.tokens)}`;
+          },
+        },
       ],
     });
 

@@ -751,6 +751,10 @@ export function getThemedComponents(): ThemeOptions {
               minHeight: 32,
               minWidth: 0,
               borderRadius: 12,
+              overflow: 'unset',
+              '& .MuiTabs-indicator': {
+                bottom: '-14px',
+              },
               '&:hover': {
                 background: (theme.vars || theme).palette.grey[50],
               },
