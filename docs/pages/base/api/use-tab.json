@@ -7,6 +7,7 @@
   },
   "returnValue": {
     "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;",
@@ -17,6 +18,13 @@
     "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "index": { "type": { "name": "number", "description": "number" }, "required": true },
     "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "setFocusVisible": {
+      "type": {
+        "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;",
+        "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;"
+      },
+      "required": true
+    },
     "totalTabsCount": { "type": { "name": "number", "description": "number" }, "required": true }
   },
   "name": "useTab",

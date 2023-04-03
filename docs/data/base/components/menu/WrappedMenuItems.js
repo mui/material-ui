@@ -90,7 +90,11 @@ export default function WrappedMenuItems() {
       <MenuUnstyled
         actions={menuActions}
         open={isOpen}
-        onClose={close}
+        onOpenChange={(open) => {
+          if (!open) {
+            close();
+          }
+        }}
         anchorEl={anchorEl}
         slots={{ root: Popper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}

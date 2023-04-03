@@ -2,11 +2,12 @@
   "hookDescription": "",
   "parametersDescriptions": {},
   "returnValueDescriptions": {
-    "contextValue": "The value for the menu context.",
+    "contextValue": "The value to be passed into the MenuProvider.",
     "getListboxProps": "Resolver for the listbox component's props.",
     "highlightedOption": "The highlighted option in the menu listbox.",
     "highlightFirstItem": "Callback for highlighting the first item in the menu listbox.",
     "highlightLastItem": "Callback for highlighting the last item in the menu listbox.",
-    "menuItems": "Items in the menu listbox."
+    "menuItems": "Items in the menu listbox.",
+    "open": "If <code>true</code>, the menu is open."
   }
 }

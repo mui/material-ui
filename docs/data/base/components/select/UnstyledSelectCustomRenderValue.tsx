@@ -3,8 +3,8 @@ import SelectUnstyled, {
   SelectUnstyledProps,
   selectUnstyledClasses,
 } from '@mui/base/SelectUnstyled';
-import { SelectOption } from '@mui/base/useSelect';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import { SelectOption } from '@mui/base/useOption';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 

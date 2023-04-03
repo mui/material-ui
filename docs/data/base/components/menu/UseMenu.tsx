@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  MenuUnstyledContext,
-  MenuUnstyledContextType,
-} from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import useMenuItem from '@mui/base/useMenuItem';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { GlobalStyles } from '@mui/system';
@@ -11,20 +7,20 @@ import clsx from 'clsx';
 
 const Menu = React.forwardRef(function Menu(
   props: React.ComponentPropsWithoutRef<'ul'> & {
-    onClose: () => void;
+    onOpenChange: (isOpen: boolean) => void;
     open: boolean;
   },
   ref: React.Ref<HTMLUListElement>,
 ) {
-  const { children, onClose, open, ...other } = props;
+  const { children, onOpenChange, open, ...other } = props;
 
   const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
-    onClose,
+    onOpenChange,
     open,
   });
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
+  const menuContextValue: MenuProviderValue = React.useMemo(
     () => ({
       ...contextValue,
       open: true,
@@ -34,9 +30,7 @@ const Menu = React.forwardRef(function Menu(
 
   return (
     <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        {children}
-      </MenuUnstyledContext.Provider>
+      <MenuProvider value={menuContextValue}>{children}</MenuProvider>
     </ul>
   );
 });
@@ -77,9 +71,11 @@ export default function UseMenu() {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  const handleOnClose = () => {
-    setAnchorEl(null);
-    buttonRef.current!.focus();
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      setAnchorEl(null);
+      buttonRef.current!.focus();
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -105,7 +101,7 @@ export default function UseMenu() {
         Commands
       </button>
       <PopperUnstyled open={open} anchorEl={anchorEl}>
-        <Menu onClose={handleOnClose} open={open}>
+        <Menu onOpenChange={handleOpenChange} open={open}>
           <MenuItem>Cut</MenuItem>
           <MenuItem>Copy</MenuItem>
           <MenuItem>Paste</MenuItem>

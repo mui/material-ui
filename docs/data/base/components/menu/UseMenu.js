@@ -1,18 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import useMenuItem from '@mui/base/useMenuItem';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { GlobalStyles } from '@mui/system';
 import clsx from 'clsx';
 
 const Menu = React.forwardRef(function Menu(props, ref) {
-  const { children, onClose, open, ...other } = props;
+  const { children, onOpenChange, open, ...other } = props;
 
   const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
-    onClose,
+    onOpenChange,
     open,
   });
 
@@ -26,16 +25,14 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
   return (
     <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        {children}
-      </MenuUnstyledContext.Provider>
+      <MenuProvider value={menuContextValue}>{children}</MenuProvider>
     </ul>
   );
 });
 
 Menu.propTypes = {
   children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
+  onOpenChange: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };
 
@@ -76,9 +73,11 @@ export default function UseMenu() {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
 
-  const handleOnClose = () => {
-    setAnchorEl(null);
-    buttonRef.current.focus();
+  const handleOpenChange = (isOpen) => {
+    if (!isOpen) {
+      setAnchorEl(null);
+      buttonRef.current.focus();
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -104,7 +103,7 @@ export default function UseMenu() {
         Commands
       </button>
       <PopperUnstyled open={open} anchorEl={anchorEl}>
-        <Menu onClose={handleOnClose} open={open}>
+        <Menu onOpenChange={handleOpenChange} open={open}>
           <MenuItem>Cut</MenuItem>
           <MenuItem>Copy</MenuItem>
           <MenuItem>Paste</MenuItem>
