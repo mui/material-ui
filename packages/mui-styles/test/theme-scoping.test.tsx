@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
-import { Theme, ThemeProvider, createTheme, THEME_ID } from '@mui/material/styles';
+import * as material from '@mui/material/styles';
+import * as joy from '@mui/joy/styles';
 import { makeStyles } from '@mui/styles';
 
 describe('Theme scoping', () => {
   const { render } = createRenderer();
 
   it('works without theme scoping', () => {
-    const useStyles = makeStyles<Theme>((theme) => ({
+    const useStyles = makeStyles<material.Theme>((theme) => ({
       root: {
         color: theme.palette.primary.main,
       },
@@ -21,15 +22,15 @@ describe('Theme scoping', () => {
 
     expect(() =>
       render(
-        <ThemeProvider theme={createTheme()}>
+        <material.ThemeProvider theme={material.createTheme()}>
           <Component />
-        </ThemeProvider>,
+        </material.ThemeProvider>,
       ),
     ).not.to.throw();
   });
 
   it('theme scoping works', () => {
-    const useStyles = makeStyles<Theme>((theme) => ({
+    const useStyles = makeStyles<material.Theme>((theme) => ({
       root: {
         color: theme.palette.primary.main,
       },
@@ -42,9 +43,32 @@ describe('Theme scoping', () => {
 
     expect(() =>
       render(
-        <ThemeProvider theme={{ [THEME_ID]: createTheme() }}>
+        <material.ThemeProvider theme={{ [material.THEME_ID]: material.createTheme() }}>
           <Component />
-        </ThemeProvider>,
+        </material.ThemeProvider>,
+      ),
+    ).not.to.throw();
+  });
+
+  it('should get Material UI theme even it is inside Joy provider', () => {
+    const useStyles = makeStyles<material.Theme>((theme) => ({
+      root: {
+        color: theme.palette.grey[700], // joy does not have `grey` in the default theme.
+      },
+    }));
+    function Component() {
+      const classes = useStyles();
+
+      return <div className={classes.root}>Component</div>;
+    }
+
+    expect(() =>
+      render(
+        <material.ThemeProvider theme={{ [material.THEME_ID]: material.createTheme() }}>
+          <joy.ThemeProvider>
+            <Component />
+          </joy.ThemeProvider>
+        </material.ThemeProvider>,
       ),
     ).not.to.throw();
   });
