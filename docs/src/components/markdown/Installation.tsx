@@ -1,10 +1,48 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import { styled } from '@mui/material/styles';
+import TabsUnstyled, { TabsUnstyledOwnProps } from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import TabUnstyled from '@mui/base/TabUnstyled';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+
+const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
+  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+  borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+  borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+}));
+
+const TabPanel = styled(TabPanelUnstyled)(({ theme }) => ({
+  '& pre': {
+    marginTop: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
+}));
+
+const Tab = styled(TabUnstyled)(({ theme }) =>
+  theme.unstable_sx({
+    py: 1,
+    px: 2,
+    border: 'none',
+    borderBottom: '2px solid transparent',
+    bgcolor: 'primaryDark.800',
+    color: '#fff',
+    fontSize: '0.75rem',
+    fontWeight: 600,
+    fontFamily: theme.typography.fontFamilyCode,
+    outline: 'none',
+    '&:first-child': {
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+    },
+    '&[aria-selected="true"]': {
+      borderColor: (theme.vars || theme).palette.primary.main,
+    },
+    '&:hover, &:focus-visible': {
+      backgroundColor: 'primaryDark.600',
+    },
+  }),
+);
 
 const STORAGE_KEY = 'package-manager';
 
@@ -25,31 +63,31 @@ export default function Installation({
     }
   }, []);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+  const handleChange: TabsUnstyledOwnProps['onChange'] = (event, newValue) => {
+    setValue(newValue as string);
     try {
-      localStorage.setItem(STORAGE_KEY, newValue);
+      localStorage.setItem(STORAGE_KEY, newValue as string);
     } catch (error) {
       // ignore error
     }
   };
   return (
-    <TabContext value={value}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <TabList onChange={handleChange} aria-label="lab API tabs example">
-          {managers.map((item) => (
-            <Tab key={item} label={item} value={item} />
-          ))}
-        </TabList>
-      </Box>
+    <TabsUnstyled value={value} onChange={handleChange}>
+      <TabsList>
+        {managers.map((item) => (
+          <Tab key={item} value={item}>
+            {item}
+          </Tab>
+        ))}
+      </TabsList>
       {managers.map((item) => (
-        <TabPanel key={item} value={item} sx={{ p: 0 }}>
+        <TabPanel key={item} value={item}>
           <HighlightedCode
             language="bash"
             code={`${{ yarn: 'yarn add', npm: 'npm install', pnpm: 'pnpm add' }[item]} ${dep}`}
           />
         </TabPanel>
       ))}
-    </TabContext>
+    </TabsUnstyled>
   );
 }
