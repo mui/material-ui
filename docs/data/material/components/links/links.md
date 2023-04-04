@@ -34,7 +34,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 - `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
   Without this, the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer"` has the same effect, but also prevents the _Referrer_ header from being sent to the new page.
+- `rel="noreferrer"` has the same effect, but also prevents the _Referer_ header from being sent to the new page.
   ⚠️ Removing the referrer header will affect analytics.
 
 ## Third-party routing library
