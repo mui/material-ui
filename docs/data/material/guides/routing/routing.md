@@ -101,7 +101,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/material-next-ts) provides an adapter for the use of [Next.js's Link component](https://nextjs.org/docs/api-reference/next/link) with Material UI.
 
-- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/HEAD/examples/material-next-ts/src/Link.tsx) component.
+- The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui/material-ui/blob/-/examples/material-next-ts/src/Link.tsx) component.
   This component is unstyled and only responsible for handling the navigation.
   The prop `href` was renamed `to` to avoid a naming conflict.
   This is similar to react-router's Link component.

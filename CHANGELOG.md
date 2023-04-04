@@ -5406,7 +5406,7 @@ _Sep 1, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui/material-ui/discussions/27803).
-- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/migration/migration-v4/#preset-safe)
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/migration/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://mui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
 ### `@mui/material@5.0.0-rc.0`
@@ -5438,7 +5438,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   > **Note**: `@mui/base` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
-  We encourage you to use the [codemod](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
+  We encourage you to use the [codemod](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md#mui-replace) for smooth migration.
 
 #### Changes
 
@@ -6573,7 +6573,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
 - 📦 Save [10 kB gzipped](https://bundlephobia.com/package/@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
-- ⚒️ Add many new [codemods](https://github.com/mui/material-ui/blob/HEAD/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
+- ⚒️ Add many new [codemods](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.35`
@@ -8841,7 +8841,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [Box] Remove deprecated props (#23716) @mnajdova
   All props are now available under the `sx` prop. A deprecation will be landing in v4.
-  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#box-sx-prop).
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md#box-sx-prop).
 
   ```diff
   -<Box p={2} bgcolor="primary.main">

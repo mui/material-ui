@@ -57,7 +57,7 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-function SlotsTable(props) {
+export function SlotsTable(props) {
   const { componentSlots, slotDescriptions } = props;
   const t = useTranslate();
 
