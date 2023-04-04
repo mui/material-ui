@@ -1,5 +1,6 @@
 {
   "props": {
+    "value": { "type": { "name": "any" }, "required": true },
     "children": { "type": { "name": "node" } },
     "color": {
       "type": {
@@ -17,7 +18,6 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "union",
