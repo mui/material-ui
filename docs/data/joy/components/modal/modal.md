@@ -108,7 +108,7 @@ The Modal Dialog's layout can be:
 
 {{"demo": "LayoutModalDialog.js"}}
 
-To add more layout, create a new theme with [`styleOverrides`](/joy-ui/customization/themed-components/#style-overrides) like this:
+To add more layout, create a new theme with [`styleOverrides`](/joy-ui/customization/themed-components/#theme-style-overrides) like this:
 
 ```js
 const theme = extendTheme({
