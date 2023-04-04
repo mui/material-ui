@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { SlotsTable } from 'docs/src/modules/components/ApiPage';
+import { SlotsTable, ClassesTable } from 'docs/src/modules/components/ApiPage';
 import Divider from 'docs/src/modules/components/ApiDivider';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
-function ClassesTable(props) {
+function CSSTable(props) {
   const { componentStyles, classDescriptions } = props;
   const t = useTranslate();
 
@@ -52,7 +52,7 @@ function ClassesTable(props) {
   );
 }
 
-ClassesTable.propTypes = {
+CSSTable.propTypes = {
   classDescriptions: PropTypes.object.isRequired,
   componentStyles: PropTypes.object.isRequired,
 };
@@ -65,7 +65,8 @@ function getTranslatedHeader(t, header, text) {
     'theme-default-props': t('api-docs.themeDefaultProps'),
     inheritance: t('api-docs.inheritance'),
     slots: t('api-docs.slots'),
-    css: 'CSS',
+    classes: t('api-docs.classes'),
+    css: t('api-docs.css'),
   };
 
   return translations[header] || translations[text] || text || header;
@@ -113,6 +114,7 @@ export default function ComponentsApiContent(props) {
       spread,
       styles: componentStyles,
       slots: componentSlots,
+      classes: componentClasses,
     } = pageContent;
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
@@ -229,10 +231,7 @@ import { ${pageContent.name} } from '${source}';`}
           {Object.keys(componentStyles.classes).length ? (
             <React.Fragment>
               <Heading text="css" hash={`${componentName}-css`} level="h3" />
-              <ClassesTable
-                componentStyles={componentStyles}
-                classDescriptions={classDescriptions}
-              />
+              <CSSTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
               <span
@@ -269,6 +268,23 @@ import { ${pageContent.name} } from '${source}';`}
                   ),
                 }}
               />
+            </React.Fragment>
+          ) : null}
+          {componentClasses?.classes?.length ||
+          Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
+            <React.Fragment>
+              <Heading hash="classes" level="h3" />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.classesDescription'),
+                }}
+              />
+              <ClassesTable
+                componentClasses={componentClasses}
+                componentName={pageContent.name}
+                classDescriptions={classDescriptions}
+              />
+              <br />
             </React.Fragment>
           ) : null}
         </MarkdownElement>
