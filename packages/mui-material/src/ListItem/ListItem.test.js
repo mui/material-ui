@@ -175,7 +175,7 @@ describe('<ListItem />', () => {
               classes: {},
               children: [
                 <ListItemSecondaryAction>I should have come last :(</ListItemSecondaryAction>,
-                <ListItemText>My position doesn&apos;t not matter.</ListItemText>,
+                <ListItemText>My position does not matter.</ListItemText>,
               ],
             },
             'prop',
