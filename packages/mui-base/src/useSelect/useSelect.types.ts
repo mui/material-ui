@@ -20,6 +20,7 @@ export interface SelectOptionDefinition<Value> {
 }
 
 export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
+  defaultOpen?: boolean;
   defaultValue?: SelectValue<TValue, Multiple>;
   disabled?: boolean;
   buttonRef?: React.Ref<Element>;

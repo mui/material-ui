@@ -1,9 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
-} from '@mui/utils';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   SelectUnstyledListboxSlotProps,
   SelectUnstyledOwnerState,
@@ -123,13 +120,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
   const renderValue: (option: SelectValue<SelectOption<TValue>, Multiple>) => React.ReactNode =
     renderValueProp ?? defaultRenderValue;
 
-  const [listboxOpen, setListboxOpen] = useControlled({
-    controlled: listboxOpenProp,
-    default: defaultListboxOpen,
-    name: 'SelectUnstyled',
-    state: 'listboxOpen',
-  });
-
   const [buttonDefined, setButtonDefined] = React.useState(false);
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
@@ -150,14 +140,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     }
   }, [autoFocus]);
 
-  const handleOpenChange = React.useCallback(
-    (isOpen: boolean) => {
-      setListboxOpen(isOpen);
-      onListboxOpenChange?.(isOpen);
-    },
-    [setListboxOpen, onListboxOpenChange],
-  );
-
   const {
     buttonActive,
     buttonFocusVisible,
@@ -167,15 +149,17 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     getListboxProps,
     getOptionMetadata,
     value,
+    open,
   } = useSelect({
     buttonRef: handleButtonRef,
+    defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
     listboxId,
     multiple,
-    open: listboxOpen,
+    open: listboxOpenProp,
     onChange,
-    onOpenChange: handleOpenChange,
+    onOpenChange: onListboxOpenChange,
     optionStringifier,
     value: valueProp,
   });
@@ -186,7 +170,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     defaultListboxOpen,
     disabled,
     focusVisible: buttonFocusVisible,
-    open: listboxOpen,
+    open,
     multiple,
     renderValue,
     value,
@@ -222,7 +206,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     additionalProps: {
       anchorEl: buttonRef.current,
       keepMounted: true,
-      open: listboxOpen,
+      open,
       placement: 'bottom-start' as const,
       role: undefined,
     },

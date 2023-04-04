@@ -2,11 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent, OverrideProps, DefaultComponentProps } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
-} from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import PopperUnstyled, {
   PopperUnstyledProps,
   PopperUnstyledTypeMap,
@@ -386,13 +382,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const [listboxOpen, setListboxOpen] = useControlled({
-    controlled: listboxOpenProp,
-    default: defaultListboxOpen,
-    name: 'SelectUnstyled',
-    state: 'listboxOpen',
-  });
-
   const rootRef = React.useRef<HTMLElement | null>(null);
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement | null>(null);
@@ -421,13 +410,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const handleOpenChange = React.useCallback(
     (isOpen: boolean) => {
-      setListboxOpen(isOpen);
       onListboxOpenChange?.(isOpen);
       if (!isOpen) {
         onClose?.();
       }
     },
-    [onClose, onListboxOpenChange, setListboxOpen],
+    [onClose, onListboxOpenChange],
   );
 
   const {
@@ -438,16 +426,18 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
+    open: listboxOpen,
     value,
   } = useSelect({
     buttonRef,
+    defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
     listboxId,
     multiple: false,
     onChange,
     onOpenChange: handleOpenChange,
-    open: listboxOpen,
+    open: listboxOpenProp,
     value: valueProp,
   });
 

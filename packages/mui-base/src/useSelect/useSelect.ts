@@ -44,6 +44,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
 ): UseSelectResult<TValue, Multiple> {
   const {
     buttonRef: buttonRefProp,
+    defaultOpen = false,
     defaultValue: defaultValueProp,
     disabled = false,
     listboxId: listboxIdProp,
@@ -274,7 +275,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
     getInitialState: () => ({
       highlightedValue: null,
       selectedValues: defaultValue ?? [],
-      open: false,
+      open: defaultOpen,
     }),
     getItemId: (itemValue) => options.get(itemValue)?.id,
     controlledProps: controlledState,

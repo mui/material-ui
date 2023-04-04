@@ -41,12 +41,14 @@ function getControlledState<State>(internalState: State, controlledProps: Partia
  */
 function useStateChangeDetection<State extends {}>(
   nextState: State,
-  internalPreviousState: State,
+  initialState: State,
   stateComparers: StateComparers<State>,
   onStateChange: StateChangeCallback<State>,
   controlledProps: Partial<State>,
   lastActionRef: React.MutableRefObject<ControllableReducerAction | null>,
 ) {
+  const internalPreviousStateRef = React.useRef<State>(initialState);
+
   React.useEffect(() => {
     if (lastActionRef.current === null) {
       // Detect changes only if an action has been dispatched.
@@ -58,7 +60,7 @@ function useStateChangeDetection<State extends {}>(
       return;
     }
 
-    const previousState = getControlledState(internalPreviousState, controlledProps);
+    const previousState = getControlledState(internalPreviousStateRef.current, controlledProps);
 
     (Object.keys(nextState) as (keyof State)[]).forEach((key) => {
       // go through all state keys and compare them with the previous state
@@ -78,9 +80,10 @@ function useStateChangeDetection<State extends {}>(
       }
     });
 
+    internalPreviousStateRef.current = nextState;
     lastActionRef.current = null;
   }, [
-    internalPreviousState,
+    internalPreviousStateRef,
     nextState,
     lastActionRef,
     onStateChange,
@@ -129,6 +132,7 @@ export default function useControllableReducer<
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
   const reducerWithControlledState = React.useCallback(
     (state: State, action: Action & ActionAddOn) => {
+      actionRef.current = action;
       const controlledState = getControlledState(state, controlledProps);
       return reducer(controlledState, action);
     },
@@ -140,7 +144,6 @@ export default function useControllableReducer<
   // The action that is passed to dispatch is augmented with the actionAddOn.
   const dispatchWithAddOn = React.useCallback(
     (action: Action) => {
-      actionRef.current = action;
       dispatch({
         ...action,
         ...actionAddOn,
@@ -149,15 +152,9 @@ export default function useControllableReducer<
     [actionAddOn],
   );
 
-  const previousState = React.useRef<State>(initialState);
-
-  React.useEffect(() => {
-    previousState.current = nextState;
-  }, [nextState]);
-
   useStateChangeDetection<State>(
     nextState,
-    previousState.current,
+    initialState,
     stateComparers ?? EMPTY_OBJECT,
     onStateChange ?? NOOP,
     controlledProps,
