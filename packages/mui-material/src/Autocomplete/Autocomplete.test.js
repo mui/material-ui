@@ -963,6 +963,23 @@ describe('<Autocomplete />', () => {
       });
     });
 
+    it('should open popup when clicked on the root element', () => {
+      const handleOpen = spy();
+      const ref = React.createRef();
+      render(
+        <Autocomplete
+          onOpen={handleOpen}
+          options={['one']}
+          renderInput={(params) => (
+            <TextField {...params} InputProps={{ ...params.InputProps, ref }} />
+          )}
+        />,
+      );
+
+      fireEvent.click(ref.current);
+      expect(handleOpen.callCount).to.equal(1);
+    });
+
     it('does not clear the textbox on Escape', () => {
       const handleChange = spy();
       render(

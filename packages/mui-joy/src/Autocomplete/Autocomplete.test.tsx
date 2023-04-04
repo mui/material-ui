@@ -761,6 +761,15 @@ describe('Joy <Autocomplete />', () => {
       });
     });
 
+    it('should open popup when clicked on the root element', () => {
+      const handleOpen = spy();
+      render(<Autocomplete onOpen={handleOpen} options={['one']} />);
+
+      const root = document.querySelector(`.${classes.root}`)!;
+      fireEvent.click(root);
+      expect(handleOpen.callCount).to.equal(1);
+    });
+
     it('does not clear the textbox on Escape', () => {
       const handleChange = spy();
       render(
