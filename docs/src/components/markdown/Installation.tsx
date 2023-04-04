@@ -17,6 +17,7 @@ const TabPanel = styled(TabPanelUnstyled)(({ theme }) => ({
     marginTop: 0,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
+    borderTopColor: (theme.vars || theme).palette.primaryDark[500],
   },
 }));
 
@@ -32,14 +33,29 @@ const Tab = styled(TabUnstyled)(({ theme }) =>
     fontWeight: 600,
     fontFamily: theme.typography.fontFamilyCode,
     outline: 'none',
+    minWidth: 60,
     '&:first-child': {
       borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+    },
+    '&:not(:first-child)': {
+      marginLeft: '1px',
+    },
+    '&:last-child': {
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+    },
+    '&:not([aria-selected="true"])': {
+      color: 'rgba(255 255 255 / 0.72)',
     },
     '&[aria-selected="true"]': {
       borderColor: (theme.vars || theme).palette.primary.main,
     },
     '&:hover, &:focus-visible': {
       backgroundColor: 'primaryDark.600',
+    },
+    '&:focus-visible': {
+      outline: '2px solid',
+      outlineOffset: '-2px',
+      outlineColor: (theme.vars || theme).palette.primary.main,
     },
   }),
 );
@@ -72,7 +88,7 @@ export default function Installation({
     }
   };
   return (
-    <TabsUnstyled value={value} onChange={handleChange}>
+    <TabsUnstyled selectionFollowsFocus value={value} onChange={handleChange}>
       <TabsList>
         {managers.map((item) => (
           <Tab key={item} value={item}>
