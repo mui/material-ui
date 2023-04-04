@@ -10,6 +10,8 @@
   "name": "ModalOverflow",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyModalOverflow",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ModalOverflow/ModalOverflow.tsx",
   "inheritance": null,
