@@ -47,9 +47,14 @@ const FeedbackGrid = styled(Grid)(({ theme }) => {
   return {
     width: 'auto',
     color: theme.palette.text.secondary,
+    justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
+      borderTop: '1px solid',
+      borderColor: theme.palette.divider,
+      justifyContent: 'start',
       order: 3,
-      marginTop: 40,
+      paddingTop: 32,
+      marginTop: 32,
       width: '100%',
     },
   };
@@ -401,7 +406,6 @@ export default function AppLayoutDocsFooter(props) {
               <FeedbackGrid
                 container
                 role="group"
-                justifyContent="center"
                 alignItems="center"
                 aria-labelledby="feedback-message"
               >
@@ -410,8 +414,11 @@ export default function AppLayoutDocsFooter(props) {
                   component="div"
                   id="feedback-message"
                   variant="body2"
-                  fontWeight="medium"
-                  sx={{ mr: 1 }}
+                  sx={{
+                    mr: { xs: 'auto', sm: 1 },
+                    fontWeight: { xs: '700', sm: '500' },
+                    color: { xs: 'text.primary', sm: 'text.secondary' },
+                  }}
                 >
                   {t('feedbackMessage')}
                 </Typography>
