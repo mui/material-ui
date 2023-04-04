@@ -95,7 +95,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       if (field === 'open') {
         onOpenChange?.(fieldValue as boolean);
 
-        if (state.highlightedValue !== null) {
+        if (fieldValue === true && state.highlightedValue !== null) {
           subitems.get(state.highlightedValue)?.ref.current?.focus();
         }
       }
