@@ -527,7 +527,7 @@ export default function AppLayoutDocsFooter(props) {
           <Divider sx={{ display: { xs: 'block', sm: 'none' } }} />
           <Stack direction="column" spacing={3}>
             <Typography variant="body2" fontWeight="bold">
-              Engage further with us
+              Connect with us
             </Typography>
             <Stack direction="column" spacing={1}>
               <Stack direction="row" alignItems="center" spacing={1}>
