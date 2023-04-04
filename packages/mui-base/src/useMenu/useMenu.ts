@@ -46,7 +46,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     [subitems],
   );
 
-  const stateReducer = React.useCallback(
+  const menuReducer = React.useCallback(
     (
       state: MenuInternalState,
       action: ListAction<string, MenuInternalState> & ListActionAddOn<string>,
@@ -79,6 +79,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
           return {
             ...newState,
             open: false,
+            highlightedValue: action.props.current!.items[0],
           };
         }
       }
@@ -104,6 +105,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
   );
 
   const {
+    dispatch,
     getRootProps,
     highlightedOption,
     contextValue: listContextValue,
@@ -125,7 +127,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     listRef: handleRef,
     onStateChange: stateChangeHandler,
     selectionLimit: 0,
-    stateReducer,
+    stateReducer: menuReducer,
   });
 
   React.useEffect(() => {
@@ -159,11 +161,9 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       ...compoundComponentContextValue,
       ...listContextValue,
     },
+    dispatch,
     getListboxProps,
     highlightedOption,
-    // TODO: remove
-    highlightFirstItem: () => {},
-    highlightLastItem: () => {},
     menuItems: subitems,
     open,
   };

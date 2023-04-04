@@ -2,6 +2,13 @@ import { EventHandlers } from '../utils';
 
 export interface UseListItemParameters<ItemValue> {
   /**
+   * If `true`, the list item will dispatch the `itemHover` action on pointer over.
+   * Since the use cases for it are rare, it's disabled by default.
+   *
+   * @default false
+   */
+  handlePointerOverEvents?: boolean;
+  /**
    * The list item.
    */
   item: ItemValue;
@@ -14,7 +21,7 @@ export interface UseListItemParameters<ItemValue> {
 interface UseListItemRootSlotOwnProps {
   id?: string;
   onClick: React.MouseEventHandler;
-  onPointerOver: React.PointerEventHandler;
+  onPointerOver: React.PointerEventHandler | undefined;
   tabIndex?: number;
 }
 

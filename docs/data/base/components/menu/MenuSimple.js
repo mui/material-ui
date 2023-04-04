@@ -5,13 +5,18 @@ import MenuItemUnstyled, {
 } from '@mui/base/MenuItemUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
+import { ListActionTypes } from '@mui/base/useList';
 
 export default function UnstyledMenuSimple() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef(null);
+  const [buttonElement, setButtonElement] = React.useState(null);
+
+  const [isOpen, setOpen] = React.useState(false);
   const menuActions = React.useRef(null);
   const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node) => {
+    setButtonElement(node);
+  }, []);
 
   const handleButtonClick = (event) => {
     if (preventReopen.current) {
@@ -20,11 +25,7 @@ export default function UnstyledMenuSimple() {
       return;
     }
 
-    if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
+    setOpen((open) => !open);
   };
 
   const handleButtonMouseDown = () => {
@@ -38,22 +39,23 @@ export default function UnstyledMenuSimple() {
   const handleButtonKeyDown = (event) => {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      setAnchorEl(event.currentTarget);
+      setOpen(true);
       if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
+        // Focus the last item when pressing ArrowUp.
+        menuActions.current?.dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
       }
     }
-  };
-
-  const close = () => {
-    setAnchorEl(null);
-    buttonRef.current.focus();
   };
 
   const createHandleMenuClick = (menuItem) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      close();
+      setOpen(false);
+      buttonElement?.focus();
     };
   };
 
@@ -64,7 +66,7 @@ export default function UnstyledMenuSimple() {
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
         onMouseDown={handleButtonMouseDown}
-        ref={buttonRef}
+        ref={updateAnchor}
         aria-controls={isOpen ? 'simple-menu' : undefined}
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
@@ -76,11 +78,9 @@ export default function UnstyledMenuSimple() {
         actions={menuActions}
         open={isOpen}
         onOpenChange={(open) => {
-          if (!open) {
-            close();
-          }
+          setOpen(open);
         }}
-        anchorEl={anchorEl}
+        anchorEl={buttonElement}
         slots={{ root: Popper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >

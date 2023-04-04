@@ -20,7 +20,7 @@ import { ListContext } from './ListContext';
 export default function useListItem<ItemValue>(
   parameters: UseListItemParameters<ItemValue>,
 ): UseListItemReturnValue {
-  const { item, ref: externalRef } = parameters;
+  const { handlePointerOverEvents = false, item, ref: externalRef } = parameters;
 
   const itemRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(itemRef, externalRef);
@@ -107,7 +107,7 @@ export default function useListItem<ItemValue>(
   ) => ({
     ...otherHandlers,
     onClick: createHandleClick(otherHandlers),
-    onPointerOver: createHandlePointerOver(otherHandlers),
+    onPointerOver: handlePointerOverEvents ? createHandlePointerOver(otherHandlers) : undefined,
     ref: handleRef,
     tabIndex,
   });

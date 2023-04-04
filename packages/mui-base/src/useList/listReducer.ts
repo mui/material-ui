@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ListActionTypes } from './listActions.types';
 import {
   ListState,
@@ -224,14 +223,14 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
 }
 
 function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
-  event: React.KeyboardEvent,
+  key: string,
   state: State,
   parameters: ListActionAddOnValue<ItemValue>,
 ): State {
   const previouslySelectedValue = state.highlightedValue;
   const { orientation } = parameters;
 
-  switch (event.key) {
+  switch (key) {
     case 'Home':
       return {
         ...state,
@@ -423,7 +422,7 @@ export default function listReducer<ItemValue, State extends ListState<ItemValue
 
   switch (type) {
     case ListActionTypes.keyDown:
-      return handleKeyDown(action.event, state, parameters);
+      return handleKeyDown(action.key, state, parameters);
     case ListActionTypes.itemClick:
       return handleItemSelection(action.item, state, parameters);
     case ListActionTypes.blur:

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListState, UseListRootSlotProps } from '../useList';
+import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { MenuItemMetadata } from '../useMenuItem';
 import { EventHandlers } from '../utils/types';
 import { MenuProviderValue } from './MenuProvider';
@@ -18,6 +18,11 @@ export interface UseMenuReturnValue {
    */
   contextValue: MenuProviderValue;
   /**
+   * Action dispatcher for the menu component.
+   * Allows to programmatically control the menu.
+   */
+  dispatch: (action: ListAction<string, MenuInternalState>) => void;
+  /**
    * Resolver for the listbox component's props.
    * @param otherHandlers event handlers for the listbox component
    * @returns props that should be spread on the listbox component
@@ -29,14 +34,6 @@ export interface UseMenuReturnValue {
    * The highlighted option in the menu listbox.
    */
   highlightedOption: string | null;
-  /**
-   * Callback for highlighting the first item in the menu listbox.
-   */
-  highlightFirstItem: () => void;
-  /**
-   * Callback for highlighting the last item in the menu listbox.
-   */
-  highlightLastItem: () => void;
   /**
    * Items in the menu listbox.
    */

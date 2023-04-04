@@ -44,18 +44,17 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     children,
     component,
     defaultOpen,
-    keepMounted = false,
     listboxId,
     onOpenChange,
-    open,
+    open: openProp,
     slotProps = {},
     slots = {},
     ...other
   } = props;
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const { contextValue, getListboxProps, dispatch, open } = useMenu({
     defaultOpen,
-    open,
+    open: openProp,
     onOpenChange,
     listboxId,
   });
@@ -63,16 +62,12 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
-  const ownerState: MenuUnstyledOwnerState = {
-    ...props,
-    keepMounted,
-  };
+  const ownerState: MenuUnstyledOwnerState = { ...props, open };
 
   const classes = useUtilityClasses(ownerState);
 
@@ -84,7 +79,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     additionalProps: {
       anchorEl,
       open,
-      keepMounted,
+      keepMounted: true,
       role: undefined,
       ref: forwardedRef,
     },
@@ -143,13 +138,6 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   defaultOpen: PropTypes.bool,
-  /**
-   * Always keep the menu in the DOM.
-   * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
-   *
-   * @default false
-   */
-  keepMounted: PropTypes.bool,
   /**
    * @ignore
    */

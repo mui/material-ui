@@ -6,6 +6,7 @@ import MenuItemUnstyled, {
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
+import { ListActionTypes } from '@mui/base/useList';
 
 function MenuSection({ children, label }: MenuSectionProps) {
   return (
@@ -17,11 +18,16 @@ function MenuSection({ children, label }: MenuSectionProps) {
 }
 
 export default function WrappedMenuItems() {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
+  const [isOpen, setOpen] = React.useState(false);
   const menuActions = React.useRef<MenuUnstyledActions>(null);
   const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
+    setButtonElement(node);
+  }, []);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (preventReopen.current) {
@@ -30,11 +36,7 @@ export default function WrappedMenuItems() {
       return;
     }
 
-    if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
+    setOpen((open) => !open);
   };
 
   const handleButtonMouseDown = () => {
@@ -48,22 +50,23 @@ export default function WrappedMenuItems() {
   const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      setAnchorEl(event.currentTarget);
+      setOpen(true);
       if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
+        // Focus the last item when pressing ArrowUp.
+        menuActions.current?.dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
       }
     }
-  };
-
-  const close = () => {
-    setAnchorEl(null);
-    buttonRef.current!.focus();
   };
 
   const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
-      close();
+      setOpen(false);
+      buttonElement?.focus();
     };
   };
 
@@ -74,7 +77,7 @@ export default function WrappedMenuItems() {
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
         onMouseDown={handleButtonMouseDown}
-        ref={buttonRef}
+        ref={updateAnchor}
         aria-controls={isOpen ? 'wrapped-menu' : undefined}
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
@@ -85,11 +88,9 @@ export default function WrappedMenuItems() {
         actions={menuActions}
         open={isOpen}
         onOpenChange={(open) => {
-          if (!open) {
-            close();
-          }
+          setOpen(open);
         }}
-        anchorEl={anchorEl}
+        anchorEl={buttonElement}
         slots={{ root: Popper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >

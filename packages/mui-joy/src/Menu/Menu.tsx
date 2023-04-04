@@ -98,7 +98,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [onClose],
   );
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
     onOpenChange: handleOpenChange,
     listboxId: id,
@@ -107,10 +107,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {

@@ -291,6 +291,7 @@ function useList<
 
       dispatch({
         type: ListActionTypes.keyDown,
+        key: event.key,
         event,
       });
 

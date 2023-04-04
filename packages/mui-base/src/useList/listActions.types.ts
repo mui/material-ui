@@ -36,6 +36,7 @@ interface BlurAction {
 
 interface KeyDownAction {
   type: typeof ListActionTypes.keyDown;
+  key: string;
   event: React.KeyboardEvent;
 }
 

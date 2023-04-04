@@ -2,14 +2,14 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from '../useMenu';
+import { MenuInternalState, UseMenuListboxSlotProps } from '../useMenu';
+import { ListAction } from '../useList';
 
 export interface MenuUnstyledRootSlotPropsOverrides {}
 export interface MenuUnstyledListboxSlotPropsOverrides {}
 
 export interface MenuUnstyledActions {
-  highlightFirstItem: () => void;
-  highlightLastItem: () => void;
+  dispatch: (action: ListAction<string, MenuInternalState>) => void;
 }
 
 export interface MenuUnstyledOwnProps {
@@ -27,13 +27,6 @@ export interface MenuUnstyledOwnProps {
   children?: React.ReactNode;
   className?: string;
   defaultOpen?: boolean;
-  /**
-   * Always keep the menu in the DOM.
-   * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
-   *
-   * @default false
-   */
-  keepMounted?: boolean;
   listboxId?: string;
   /**
    * Triggered when focus leaves the menu and the menu should close.
@@ -93,7 +86,7 @@ export type MenuUnstyledProps<
 };
 
 export interface MenuUnstyledOwnerState extends MenuUnstyledOwnProps {
-  keepMounted: boolean;
+  open: boolean;
 }
 
 export type MenuUnstyledRootSlotProps = {

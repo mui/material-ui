@@ -3,7 +3,7 @@
     "actions": {
       "type": {
         "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { highlightFirstItem: func, highlightLastItem: func } }"
+        "description": "func<br>&#124;&nbsp;{ current?: { dispatch: func } }"
       }
     },
     "color": {

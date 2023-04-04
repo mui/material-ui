@@ -193,9 +193,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'Home',
-          } as any,
+          key: 'Home',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three', 'four', 'five'],
@@ -225,9 +224,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'End',
-          } as any,
+          key: 'End',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three', 'four', 'five'],
@@ -257,9 +255,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'ArrowUp',
-          } as any,
+          key: 'ArrowUp',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three', 'four', 'five'],
@@ -289,9 +286,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'ArrowDown',
-          } as any,
+          key: 'ArrowDown',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three', 'four', 'five'],
@@ -319,9 +315,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'ArrowDown',
-          } as any,
+          key: 'ArrowDown',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three', 'four', 'five'],
@@ -351,9 +346,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'Enter',
-          } as any,
+          key: 'Enter',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three'],
@@ -381,9 +375,8 @@ describe('listReducer', () => {
 
         const action: ListReducerAction<string, ListState<string>> = {
           type: ListActionTypes.keyDown,
-          event: {
-            key: 'Enter',
-          } as any,
+          key: 'Enter',
+          event: {} as any,
           props: {
             current: {
               items: ['one', 'two', 'three'],
