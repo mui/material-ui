@@ -180,7 +180,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
