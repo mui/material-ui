@@ -154,7 +154,7 @@ describe('createCssVarsProvider', () => {
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
     });
 
-    it('display error if non-existed colorScheme is set', () => {
+    it('display error if nonexistent colorScheme is set', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: createCssVarsTheme({
           colorSchemes: { light: {} },

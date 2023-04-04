@@ -72,7 +72,7 @@ describe('useMediaQuery', () => {
     beforeEach(() => {
       matchMediaInstances = [];
       const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
-      // can't stub non-existent properties with sinon
+      // can't stub nonexistent properties with sinon
       // jsdom does not implement window.matchMedia
       if (window.matchMedia === undefined) {
         window.matchMedia = fakeMatchMedia;

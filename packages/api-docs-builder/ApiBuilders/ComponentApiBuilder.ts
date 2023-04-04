@@ -462,8 +462,6 @@ const attachTranslations = (reactApi: ReactApi) => {
   });
 
   /**
-<<<<<<< HEAD
-=======
    * Slot descriptions.
    */
   if (reactApi.slots?.length > 0) {
@@ -475,7 +473,6 @@ const attachTranslations = (reactApi: ReactApi) => {
   }
 
   /**
->>>>>>> master
    * CSS class descriptions.
    */
   translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
