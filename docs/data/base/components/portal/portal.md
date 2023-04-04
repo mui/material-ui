@@ -9,14 +9,16 @@ githubLabel: 'component: Portal'
 
 <p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Portal is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal).
 It gives you the functionality of `createPortal()` in a convenient component form.
 
 The Portal component is used internally by the [Unstyled Modal](/base/react-modal/) and [Unstyled Popper](/base/react-popper/) components.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

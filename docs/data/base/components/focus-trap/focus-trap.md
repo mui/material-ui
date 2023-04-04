@@ -9,11 +9,13 @@ githubLabel: 'component: FocusTrap'
 
 <p class="description">The Focus Trap component prevents the user's focus from escaping its children components.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Focus Trap is a utility component that's useful when implementing an overlay such as a [modal dialog](/base/react-modal/), which should block all interactions outside of it while open.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

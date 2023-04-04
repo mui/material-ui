@@ -26,6 +26,8 @@ export interface SelectClasses {
   iconStandard: string;
   /** Styles applied to the underlying native input component. */
   nativeInput: string;
+  /** State class applied to the root element if `error={true}`. */
+  error: string;
 }
 
 export type SelectClassKey = keyof SelectClasses;
@@ -48,6 +50,7 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'iconOutlined',
   'iconStandard',
   'nativeInput',
+  'error',
 ]);
 
 export default selectClasses;

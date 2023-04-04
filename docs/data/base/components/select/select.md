@@ -2,7 +2,7 @@
 product: base
 title: Unstyled React Select components and hook
 components: SelectUnstyled, OptionUnstyled, OptionGroupUnstyled
-hooks: useSelect
+hooks: useSelect, useOption
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
@@ -10,6 +10,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 # Unstyled Select
 
 <p class="description">The Select components let you create lists of options for users to choose from.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
@@ -25,8 +29,6 @@ It also includes Unstyled Option for creating the options on the list, and Unsty
 - 🦍 Can be used as a controlled or uncontrolled component
 - 🧬 Accepts custom elements and non-string values for options
 - 🗃️ Options can be grouped and nested
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Components
 
@@ -140,7 +142,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 <SelectUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
-## Hook
+## Hooks
 
 ```js
 import useSelect from '@mui/base/useSelect';

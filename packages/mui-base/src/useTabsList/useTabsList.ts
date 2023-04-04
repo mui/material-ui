@@ -79,7 +79,7 @@ const moveFocus = (
  *
  * API:
  *
- * - [useTabsList API](https://mui.com/base/api/use-tabs-list/)
+ * - [useTabsList API](https://mui.com/base/react-tabs/hooks-api/#use-tabs-list)
  */
 
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
