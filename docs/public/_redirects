@@ -459,6 +459,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base/api/use-tabs/ /base/react-tabs/hooks-api/#use-tabs 301
 /base/api/use-tabs-list/ /base/react-tabs/hooks-api/#use-tabs-list 301
 
+/joy-ui/customization/theme-tokens/ /joy-ui/customization/theme-colors/ 301
+/joy-ui/guides/apply-dark-mode/ /joy-ui/customization/dark-mode/ 301
+
 # Proxies
 
 ## MUI Store
