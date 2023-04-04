@@ -4,7 +4,7 @@
 
 Run one of the following commands to add MUI Base to your project:
 
-{{"component": "components/markdown/Installation", "dep": "@mui/base", "managers": ["yarn", "npm"]}}
+{{"component": "components/markdown/Installation", "installation": "@mui/base", "managers": ["yarn", "npm"]}}
 
 ## Peer dependencies
 

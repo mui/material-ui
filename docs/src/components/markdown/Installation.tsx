@@ -12,43 +12,49 @@ const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
   borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
 }));
 
-const TabPanel = styled(TabPanelUnstyled)(({ theme }) => ({
-  '& pre': {
-    marginTop: 0,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-    borderTopColor: (theme.vars || theme).palette.primaryDark[500],
-  },
-}));
+const TabPanel = styled(TabPanelUnstyled)<{ ownerState: { mounted: boolean } }>(
+  ({ theme, ownerState }) => ({
+    '& pre': {
+      marginTop: 0,
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderTopColor: (theme.vars || theme).palette.primaryDark[500],
+      '& code': {
+        opacity: ownerState.mounted ? 1 : 0,
+      },
+    },
+  }),
+);
 
-const Tab = styled(TabUnstyled)(({ theme }) =>
+const Tab = styled(TabUnstyled)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
   theme.unstable_sx({
-    py: 1,
+    py: 1.25,
     px: 2,
     border: 'none',
     borderBottom: '2px solid transparent',
     bgcolor: 'primaryDark.800',
-    color: '#fff',
+    color: 'rgba(255 255 255 / 0.72)',
     fontSize: '0.75rem',
     fontWeight: 600,
     fontFamily: theme.typography.fontFamilyCode,
     outline: 'none',
     minWidth: 60,
-    '&:first-child': {
-      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-    },
+    '&:first-child /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */':
+      {
+        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      },
     '&:not(:first-child)': {
       marginLeft: '1px',
     },
     '&:last-child': {
       borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
     },
-    '&:not([aria-selected="true"])': {
-      color: 'rgba(255 255 255 / 0.72)',
-    },
-    '&[aria-selected="true"]': {
-      borderColor: (theme.vars || theme).palette.primary.main,
-    },
+    ...(ownerState.mounted && {
+      '&[aria-selected="true"]': {
+        color: '#fff',
+        borderColor: (theme.vars || theme).palette.primary.main,
+      },
+    }),
     '&:hover, &:focus-visible': {
       backgroundColor: 'primaryDark.600',
     },
@@ -63,13 +69,14 @@ const Tab = styled(TabUnstyled)(({ theme }) =>
 const STORAGE_KEY = 'package-manager';
 
 export default function Installation({
-  dep,
+  installation,
   managers = ['yarn', 'npm'],
 }: {
-  dep: string;
+  installation: string;
   managers?: Array<string>;
 }) {
   const [value, setValue] = React.useState(managers[0]);
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -77,6 +84,7 @@ export default function Installation({
     } catch (error) {
       // ignore error
     }
+    setMounted(true);
   }, []);
 
   const handleChange: TabsUnstyledOwnProps['onChange'] = (event, newValue) => {
@@ -87,20 +95,24 @@ export default function Installation({
       // ignore error
     }
   };
+
+  const ownerState = { mounted };
   return (
     <TabsUnstyled selectionFollowsFocus value={value} onChange={handleChange}>
       <TabsList>
         {managers.map((item) => (
-          <Tab key={item} value={item}>
+          <Tab key={item} value={item} ownerState={ownerState}>
             {item}
           </Tab>
         ))}
       </TabsList>
       {managers.map((item) => (
-        <TabPanel key={item} value={item}>
+        <TabPanel key={item} value={item} ownerState={ownerState}>
           <HighlightedCode
             language="bash"
-            code={`${{ yarn: 'yarn add', npm: 'npm install', pnpm: 'pnpm add' }[item]} ${dep}`}
+            code={`${
+              { yarn: 'yarn add', npm: 'npm install', pnpm: 'pnpm add' }[item]
+            } ${installation}`}
           />
         </TabPanel>
       ))}
