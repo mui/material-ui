@@ -53,7 +53,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Revise Joy UI "Radio" page (#35893) @DevinCLane
 - [docs] Support Google Analytics 4 (#36123) @alexfauquette
 - [docs][material] Keep consistency in description of classes (#36631) @hbjORbj
-- [docs] Remove redundant files and fix regression (#36775) @ZeeshanTamboli 
+- [docs] Remove redundant files and fix regression (#36775) @ZeeshanTamboli
 
 ### Core
 
