@@ -57,7 +57,7 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-function SlotsTable(props) {
+export function SlotsTable(props) {
   const { componentSlots, slotDescriptions } = props;
   const t = useTranslate();
 
@@ -107,7 +107,7 @@ SlotsTable.propTypes = {
   slotDescriptions: PropTypes.object.isRequired,
 };
 
-function getTranslatedHeader(t, header) {
+export function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),

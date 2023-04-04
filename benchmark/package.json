@@ -11,7 +11,7 @@
     "server:system": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/system.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\""
   },
   "dependencies": {
-    "@chakra-ui/system": "^2.5.3",
+    "@chakra-ui/system": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mdx-js/react": "^2.3.0",
@@ -29,7 +29,7 @@
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
     "styled-components": "^5.3.9",
-    "theme-ui": "^0.15.5",
+    "theme-ui": "^0.15.7",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
   }

@@ -90,6 +90,7 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    maxWidth: 'calc(100vw - 2 * var(--ModalDialog-padding))',
     maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
   [`& [id="${ownerState['aria-labelledby']}"]`]: {

@@ -311,7 +311,7 @@ AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.string,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,

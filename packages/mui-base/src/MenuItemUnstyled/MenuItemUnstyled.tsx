@@ -30,7 +30,7 @@ function useUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
  *
  * API:
  *
- * - [MenuItemUnstyled API](https://mui.com/base/api/menu-item-unstyled/)
+ * - [MenuItemUnstyled API](https://mui.com/base/react-menu/components-api/#menu-item-unstyled)
  */
 const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
   BaseComponentType extends React.ElementType = MenuItemUnstyledTypeMap['defaultComponent'],

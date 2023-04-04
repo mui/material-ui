@@ -27,7 +27,7 @@ export default function EditPage(props) {
       target="_blank"
       rel="noopener nofollow"
       size="small"
-      endIcon={<EditRoundedIcon />}
+      startIcon={<EditRoundedIcon />}
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
