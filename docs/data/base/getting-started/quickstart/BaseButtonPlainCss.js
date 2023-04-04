@@ -3,7 +3,27 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import useButton from '@mui/base/useButton';
 import Stack from '@mui/material/Stack';
 
+// .mode-dark is provided by the MUI docs site
 const css = `
+  .demo {
+    --btn-text: #fff;
+    --btn-bg: #1f883d;
+    --btn-hover: #2c974b;
+    --btn-active-bg: #298e46;
+    --btn-active-box-shadow: inset 0px 1px 0px rgba(0, 45, 17, 0.2);
+    --btn-disabled: rgba(255, 255, 255, 0.8);
+    --btn-disabled-bg: rgb(148, 211, 162);
+  }
+
+  .mode-dark .demo {
+    --btn-bg: #238636;
+    --btn-hover: #2ea043;
+    --btn-active-bg: #238636;
+    --btn-active-box-shadow: 0 0 transparent;
+    --btn-disabled: rgba(255, 255, 255, 0.5);
+    --btn-disabled-bg: rgba(25, 108, 46, 0.6);
+  }
+
   .github-button {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans,
         Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
@@ -25,8 +45,8 @@ const css = `
     appearance: none;
     transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
     transition-property: color, background-color, box-shadow, border-color;
-    color: #fff;
-    background-color: #238636;
+    color: var(--btn-text);
+    background-color: var(--btn-bg);
     border-color: rgba(240, 246, 252, 0.1);
     box-shadow: 0 0 transparent, 0 0 transparent;
     margin-left: 16px !important;
@@ -42,20 +62,20 @@ const css = `
   }
 
   .github-button:hover:not([disabled]) {
-    color: #fff;
-    background-color: #2ea043;
+    color: var(--btn-text);
+    background-color: var(--btn-hover);
   }
 
   .github-button:active:not([disabled]) {
-    background-color: #238636;
-    box-shadow: 0 0 transparent;
+    background-color: var(--btn-active-bg);
+    box-shadow: var(--btn-active-box-shadow);
   }
 
   .github-button[disabled] {
     cursor: not-allowed;
     box-shadow: none;
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(25, 108, 46, 0.6);
+    color: var(--btn-disabled);
+    background-color: var(--btn-disabled-bg);
   }
 `;
 
@@ -69,7 +89,7 @@ export default function App() {
   return (
     <React.Fragment>
       <style type="text/css">{css}</style>
-      <Stack spacing={2} direction="row">
+      <Stack spacing={2} direction="row" className="demo">
         <ButtonUnstyled className="github-button">Create Repository</ButtonUnstyled>
 
         <button type="button" {...getRootProps()} className="github-button">

@@ -116,8 +116,7 @@ Base UI components like `ButtonUnstyled` come with a classes object (e.g. `butto
 
 Here's a complete demo of using `ButtonUnstyled` and `useButton` with plain CSS:
 
-{{"demo": "BaseButtonPlainCss.light.js", "defaultCodeOpen": false, "excludeByCurrentColorMode": true}}
-{{"demo": "BaseButtonPlainCss.dark.js", "defaultCodeOpen": false, "excludeByCurrentColorMode": true}}
+{{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
 ### Styling with Tailwind CSS
 
