@@ -1,8 +1,8 @@
 import * as React from 'react';
 import useMessageBus from '../utils/useMessageBus';
 
-const SELECTION_CHANGE_TOPIC = Symbol('change-selection');
-const HIGHLIGHT_CHANGE_TOPIC = Symbol('change-highlight');
+const SELECTION_CHANGE_TOPIC = 'select:change-selection';
+const HIGHLIGHT_CHANGE_TOPIC = 'select:change-highlight';
 
 export interface ListChangeNotifiers<ItemValue> {
   /**

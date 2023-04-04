@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 export interface MessageBus {
-  subscribe(topic: symbol, callback: Function): () => void;
-  publish(topic: symbol, ...args: unknown[]): void;
+  subscribe(topic: string, callback: Function): () => void;
+  publish(topic: string, ...args: unknown[]): void;
 }
 
 export function createMessageBus(): MessageBus {
-  const listeners = new Map<symbol, Set<Function>>();
+  const listeners = new Map<string, Set<Function>>();
 
-  function subscribe(topic: symbol, callback: Function) {
+  function subscribe(topic: string, callback: Function) {
     let topicListeners = listeners.get(topic);
     if (!topicListeners) {
       topicListeners = new Set([callback]);
@@ -25,7 +25,7 @@ export function createMessageBus(): MessageBus {
     };
   }
 
-  function publish(topic: symbol, ...args: unknown[]) {
+  function publish(topic: string, ...args: unknown[]) {
     const topicListeners = listeners.get(topic);
     if (topicListeners) {
       topicListeners.forEach((callback) => callback(...args));

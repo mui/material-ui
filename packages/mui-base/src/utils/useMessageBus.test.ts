@@ -5,7 +5,7 @@ import { createMessageBus } from './useMessageBus';
 describe('messageBus', () => {
   it('should be able to subscribe to a message', () => {
     const { subscribe, publish } = createMessageBus();
-    const testSubject = Symbol('test');
+    const testSubject = 'test';
     const callback = spy();
     subscribe(testSubject, callback);
     publish(testSubject, 'foo');
@@ -14,7 +14,7 @@ describe('messageBus', () => {
 
   it('should be able to unsubscribe from a message', () => {
     const { subscribe, publish } = createMessageBus();
-    const testSubject = Symbol('test');
+    const testSubject = 'test';
     const callback = spy();
     const unsubscribe = subscribe(testSubject, callback);
     unsubscribe();
@@ -24,8 +24,8 @@ describe('messageBus', () => {
 
   it('should be able to publish multiple messages', () => {
     const { subscribe, publish } = createMessageBus();
-    const testSubject1 = Symbol('test1');
-    const testSubject2 = Symbol('test2');
+    const testSubject1 = 'test1';
+    const testSubject2 = 'test2';
     const callback = spy();
     subscribe(testSubject1, callback);
     subscribe(testSubject2, callback);
@@ -36,8 +36,8 @@ describe('messageBus', () => {
 
   it('should be able to publish multiple messages with different arguments', () => {
     const { subscribe, publish } = createMessageBus();
-    const testSubject1 = Symbol('test1');
-    const testSubject2 = Symbol('test2');
+    const testSubject1 = 'test1';
+    const testSubject2 = 'test2';
     const callback = spy();
     subscribe(testSubject1, callback);
     subscribe(testSubject2, callback);
