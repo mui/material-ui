@@ -39,7 +39,7 @@ const Thumb = styled('span')`
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  .${switchUnstyledClasses.checked} & {
+  .${switchUnstyledClasses.checked} > & {
     left: 14px;
     top: 3px;
     background-color: #fff;
