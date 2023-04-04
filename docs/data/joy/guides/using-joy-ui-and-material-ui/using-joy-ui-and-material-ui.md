@@ -16,24 +16,21 @@ Once Joy UI reaches component parity with Material UI, we recommend that you _ch
 Additionally, keep these in mind when using them together:
 
 - Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
-- Joy UI requires wrapping your application with the `CssVarsProvider` component but you're able to import it from either @mui/joy or @mui/material.
+- Theme scoping must be done on one of the libraries based on the use cases below.
 
 ## Case A: Joy UI in a Material UI project
 
-For this case, the Material UI theme should override the Joy UI's.
+For this case, Joy UI theme should be scoped with its `THEME_ID` so that it does not override the Material UI theme:
 
 ```js
-import { deepmerge } from '@mui/utils';
+import { Experimental_CssVarsProvider as MaterialCssVarsProvider } from '@mui/material/styles';
 import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendMuiTheme,
-} from '@mui/material/styles';
-import { extendTheme as extendJoyTheme } from '@mui/joy/styles';
+  THEME_ID as JOY_THEME_ID,
+  extendTheme as joyExtendTheme,
+  CssVarsProvider as JoyCssVarsProvider,
+} from '@mui/joy/styles';
 
-const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
-  // This is required to point to `var(--mui-*)` because we are using
-  // `CssVarsProvider` from Material UI.
-  cssVarPrefix: 'mui',
+const joyTheme = joyExtendTheme({
   colorSchemes: {
     light: {
       palette: {
@@ -70,57 +67,22 @@ const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendTheme({
     display: '"Roboto","Helvetica","Arial",sans-serif',
     body: '"Roboto","Helvetica","Arial",sans-serif',
   },
-  shadow: {
-    xs: `var(--mui-shadowRing), ${muiTheme.shadows[1]}`,
-    sm: `var(--mui-shadowRing), ${muiTheme.shadows[2]}`,
-    md: `var(--mui-shadowRing), ${muiTheme.shadows[4]}`,
-    lg: `var(--mui-shadowRing), ${muiTheme.shadows[8]}`,
-    xl: `var(--mui-shadowRing), ${muiTheme.shadows[12]}`,
-  },
 });
-
-// Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)`
-// because some of the values in the Joy UI theme refers to CSS variables and
-// not raw colors.
-const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme();
-
-const mergedTheme = ({
-  ...joyTheme,
-  ...muiTheme,
-  // You can use your own `deepmerge` function.
-  colorSchemes: deepmerge(joyTheme.colorSchemes, muiTheme.colorSchemes),
-  typography: {
-    ...joyTheme.typography,
-    ...muiTheme.typography
-  },
-  zIndex: {
-    ...joyTheme.zIndex,
-    ...muiTheme.zIndex
-  }
-} as unknown) as ReturnType<typeof extendMuiTheme>;
-mergedTheme.generateCssVars = (colorScheme) => ({
-  css: {
-    ...joyTheme.generateCssVars(colorScheme).css,
-    ...muiTheme.generateCssVars(colorScheme).css
-  },
-  vars: (deepmerge(
-    joyTheme.generateCssVars(colorScheme).vars,
-    muiTheme.generateCssVars(colorScheme).vars
-  ) as unknown) as ThemeVars
-});
-mergedTheme.unstable_sxConfig = {
-  ...joySxConfig,
-  ...muiSxConfig
-};
 
 export default function App() {
   return (
-    <CssVarsProvider theme={mergedTheme}>
-      ...Material UI and Joy UI components
-    </CssVarsProvider>
+    <JoyCssVarsProvider theme={{ [JOY_THEME_ID]: joyTheme }}>
+      <MaterialCssVarsProvider>
+        ...Material UI and Joy UI components
+      </MaterialCssVarsProvider>
+    </JoyCssVarsProvider>
   );
 }
 ```
+
+:::info
+Order of the providers does not matter if joy theme is scoped with its theme id.
+:::
 
 ### CodeSandbox
 
@@ -130,23 +92,17 @@ Visit the following CodeSandbox to preview this use case setup.
 
 ## Case B: Material UI in a Joy UI project
 
-This setup uses the `CssVarsProvider` component from Joy UI and configures the Material UI theme to use the tokens from Joy UI.
+Scope the Material UI theme with its `THEME_ID` so that it does not override the Joy UI theme:
 
 ```js
-import { deepmerge } from '@mui/utils';
 import {
-  experimental_extendTheme as extendMuiTheme,
+  experimental_extendTheme as materialExtendTheme,
+  Experimental_CssVarsProvider as MaterialCssVarsProvider,
 } from '@mui/material/styles';
 import colors from '@mui/joy/colors';
-import {
-  extendTheme as extendJoyTheme,
-  CssVarsProvider,
-} from '@mui/joy/styles';
+import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
 
-const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
-  // This is required to point to `var(--joy-*)` because we are using
-  // `CssVarsProvider` from Joy UI.
-  cssVarPrefix: 'joy',
+const materialTheme = materialExtendTheme({
   colorSchemes: {
     light: {
       palette: {
@@ -209,42 +165,18 @@ const { unstable_sxConfig: muiSxConfig, ...muiTheme } = extendMuiTheme({
   },
 });
 
-const { unstable_sxConfig: joySxConfig, ...joyTheme } = extendJoyTheme();
-
-const mergedTheme = ({
-  ...muiTheme,
-  ...joyTheme,
-  colorSchemes: deepmerge(muiTheme.colorSchemes, joyTheme.colorSchemes),
-  typography: {
-    ...muiTheme.typography,
-    ...joyTheme.typography
-  }
-} as unknown) as ReturnType<typeof extendJoyTheme>;
-
-mergedTheme.generateCssVars = (colorScheme) => ({
-  css: {
-    ...muiTheme.generateCssVars(colorScheme).css,
-    ...joyTheme.generateCssVars(colorScheme).css
-  },
-  vars: deepmerge(
-    muiTheme.generateCssVars(colorScheme).vars,
-    joyTheme.generateCssVars(colorScheme).vars
-  )
-});
-
-mergedTheme.unstable_sxConfig = {
-  ...muiSxConfig,
-  ...joySxConfig
-};
-
 export default function App() {
   return (
-    <CssVarsProvider theme={mergedTheme}>
-      ...Material UI and Joy UI components
-    </CssVarsProvider>
+    <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+      <JoyCssVarsProvider>...Material UI and Joy UI components</JoyCssVarsProvider>
+    </MaterialCssVarsProvider>
   );
 }
 ```
+
+:::info
+Order of the providers does not matter if material theme is scoped with its theme id.
+:::
 
 ### CodeSandbox
 
@@ -252,114 +184,31 @@ Visit the following CodeSandbox to preview this use case setup.
 
 [![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-k86j2j?file=/demo.tsx)
 
-## TypeScript setup
-
-The snippet can be used with both of the above use cases. Here, we augment the Material UI and Joy UI theme to have the same tokens so that you have the same experience when customizing components via APIs like `styled` or `sx`.
-
-```ts
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import {
-  experimental_extendTheme as extendMuiTheme,
-  PaletteColor,
-  TypeText,
-  TypeAction,
-  Overlays,
-  PaletteColorChannel,
-  PaletteAlert,
-  PaletteAppBar,
-  PaletteAvatar,
-  PaletteChip,
-  PaletteFilledInput,
-  PaletteLinearProgress,
-  PaletteSlider,
-  PaletteSkeleton,
-  PaletteSnackbarContent,
-  PaletteSpeedDialAction,
-  PaletteStepConnector,
-  PaletteStepContent,
-  PaletteSwitch,
-  PaletteTableCell,
-  PaletteTextChannel,
-  PaletteTooltip,
-  Shadows,
-  zIndex,
-} from '@mui/material/styles';
-import { Theme as JoyTheme } from '@mui/joy/styles';
-
-type JoyComponents = CssVarsThemeOptions['components'];
-
-// extends Joy theme to include tokens from Material UI
-declare module '@mui/joy/styles' {
-  interface Palette {
-    secondary: PaletteColorChannel;
-    error: PaletteColorChannel;
-    dividerChannel: string;
-    action: TypeAction;
-    Alert: PaletteAlert;
-    AppBar: PaletteAppBar;
-    Avatar: PaletteAvatar;
-    Chip: PaletteChip;
-    FilledInput: PaletteFilledInput;
-    LinearProgress: PaletteLinearProgress;
-    Skeleton: PaletteSkeleton;
-    Slider: PaletteSlider;
-    SnackbarContent: PaletteSnackbarContent;
-    SpeedDialAction: PaletteSpeedDialAction;
-    StepConnector: PaletteStepConnector;
-    StepContent: PaletteStepContent;
-    Switch: PaletteSwitch;
-    TableCell: PaletteTableCell;
-    Tooltip: PaletteTooltip;
-  }
-  interface PalettePrimary extends PaletteColor {}
-  interface PaletteInfo extends PaletteColor {}
-  interface PaletteSuccess extends PaletteColor {}
-  interface PaletteWarning extends PaletteColor {}
-  interface PaletteCommon extends CommonColors {}
-  interface PaletteText extends TypeText {}
-  interface PaletteBackground extends TypeBackground {}
-
-  interface ThemeVars {
-    // attach to Joy UI `theme.vars`
-    shadows: Shadows;
-    overlays: Overlays;
-    zIndex: ZIndex;
-  }
-}
-
-declare module '@mui/material/styles' {
-  interface Theme {
-    // put everything back to Material UI `theme.vars`
-    vars: JoyTheme['vars'];
-  }
-}
-```
-
 ## Caveat
 
-Both libraries have the same class name prefix:
+- Both libraries have the same class name prefix:
 
-```js
-import MaterialTypography, {
-  typographyClasses as muiTypographyClasses,
-} from '@mui/material/Typography';
-import JoyTypography, {
-  typographyClasses as joyTyographyClasses,
-} from '@mui/joy/Typography';
-import Stack from '@mui/material/Stack';
+  ```js
+  import MaterialTypography, {
+    typographyClasses as muiTypographyClasses,
+  } from '@mui/material/Typography';
+  import JoyTypography, {
+    typographyClasses as joyTyographyClasses,
+  } from '@mui/joy/Typography';
+  import Stack from '@mui/material/Stack';
 
-<Stack
-  sx={{
-    // similar to `& .${joyTyographyClasses.root}`
-    [`& .${muiTypographyClasses.root}`]: {
-      color: 'red',
-    },
-  }}
->
-  {/* Both components are red. */}
-  <MaterialTypography>Red</MaterialTypography>
-  <JoyTypography>Red</JoyTypography>
-</Stack>;
-```
+  <Stack
+    sx={{
+      // similar to `& .${joyTyographyClasses.root}`
+      [`& .${muiTypographyClasses.root}`]: {
+        color: 'red',
+      },
+    }}
+  >
+    {/* Both components are red. */}
+    <MaterialTypography>Red</MaterialTypography>
+    <JoyTypography>Red</JoyTypography>
+  </Stack>;
+  ```
 
-However, the class name prefix are the same
+- Joy UI and Material UI components have different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.
