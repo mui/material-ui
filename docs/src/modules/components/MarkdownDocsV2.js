@@ -72,14 +72,14 @@ export default function MarkdownDocsV2(props) {
   const hooksToc = [];
   Object.keys(hooksApiPageContents).forEach((key) => {
     const { hookDescriptionToc = [] } = hooksApiDescriptions[key][userLanguage];
-    const { name: hookName } = hooksApiPageContents[key];
+    const { name: hookName, parameters: hookParameters } = hooksApiPageContents[key];
 
     const hookNameKebabCase = kebabCase(hookName);
 
     const hookToc = [
       createHookTocEntry(hookNameKebabCase, 'import'),
       ...hookDescriptionToc,
-      createHookTocEntry(hookNameKebabCase, 'parameters'),
+      Object.keys(hookParameters).length > 0 && createHookTocEntry(hookNameKebabCase, 'parameters'),
       createHookTocEntry(hookNameKebabCase, 'return-value'),
     ].filter(Boolean);
 
