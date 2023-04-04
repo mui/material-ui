@@ -9,6 +9,7 @@ export default function ExampleFluentSwitch() {
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={(theme) => ({
+        display: 'inherit',
         '--Switch-trackWidth': '40px',
         '--Switch-trackHeight': '20px',
         '--Switch-thumbSize': '12px',

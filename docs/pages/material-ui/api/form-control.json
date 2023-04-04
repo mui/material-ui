@@ -51,6 +51,8 @@
     "name": "MuiFormControl"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/FormControl/FormControl.js",
   "inheritance": null,

@@ -44,8 +44,8 @@ const ListItemRoot = styled('li', {
 })<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
-    '--List-itemButtonMarginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
-    '--List-itemButtonMarginBlock': 'calc(-1 * var(--ListItem-paddingY))',
+    '--ListItemButton-marginInline': `calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))`,
+    '--ListItemButton-marginBlock': 'calc(-1 * var(--ListItem-paddingY))',
     alignItems: 'center',
     marginInline: 'var(--ListItem-marginInline)',
   },
@@ -53,10 +53,10 @@ const ListItemRoot = styled('li', {
     // add negative margin to NestedList equal to this ListItem padding
     '--NestedList-marginRight': 'calc(-1 * var(--ListItem-paddingRight))',
     '--NestedList-marginLeft': 'calc(-1 * var(--ListItem-paddingLeft))',
-    '--NestedList-item-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
+    '--NestedListItem-paddingLeft': `calc(var(--ListItem-paddingLeft) + var(--List-nestedInsetStart))`,
     // add negative margin to ListItem, ListItemButton to make them start from the edge.
-    '--List-itemButtonMarginBlock': '0px',
-    '--List-itemButtonMarginInline':
+    '--ListItemButton-marginBlock': '0px',
+    '--ListItemButton-marginInline':
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',
     '--ListItem-marginInline':
       'calc(-1 * var(--ListItem-paddingLeft)) calc(-1 * var(--ListItem-paddingRight))',

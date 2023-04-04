@@ -20,6 +20,8 @@
   "name": "MenuItem",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyMenuItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/MenuItem/MenuItem.tsx",
   "inheritance": { "component": "ListItemButton", "pathname": "/joy-ui/api/list-item-button/" },

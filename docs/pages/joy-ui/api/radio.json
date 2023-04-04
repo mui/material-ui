@@ -46,46 +46,48 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "action",
-      "description": "The component used to render the action.",
+      "name": "root",
+      "description": "The component that renders the root.",
       "default": "'span'",
-      "class": ".MuiRadio-action"
+      "class": ".MuiRadio-root"
+    },
+    {
+      "name": "radio",
+      "description": "The component that renders the radio.",
+      "default": "'span'",
+      "class": ".MuiRadio-radio"
     },
     {
       "name": "icon",
-      "description": "The component used to render the icon.",
+      "description": "The component that renders the icon.",
       "default": "'span'",
       "class": ".MuiRadio-icon"
     },
     {
+      "name": "action",
+      "description": "The component that renders the action.",
+      "default": "'span'",
+      "class": ".MuiRadio-action"
+    },
+    {
       "name": "input",
-      "description": "The component used to render the input.",
+      "description": "The component that renders the input.",
       "default": "'input'",
       "class": ".MuiRadio-input"
     },
     {
       "name": "label",
-      "description": "The component used to render the label.",
+      "description": "The component that renders the label.",
       "default": "'label'",
       "class": ".MuiRadio-label"
-    },
-    {
-      "name": "radio",
-      "description": "The component used to render the radio.",
-      "default": "'span'",
-      "class": ".MuiRadio-radio"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'span'",
-      "class": ".MuiRadio-root"
     }
   ],
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyRadio",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Radio/Radio.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-radio/\">Radio Group</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio</a></li></ul>",
   "cssComponent": false
 }

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { OverridableComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
-import { ItemAriaLabelType } from './TablePaginationUnstyled.types';
 import {
   TablePaginationActionsUnstyledButtonSlotProps,
   TablePaginationActionsUnstyledProps,
   TablePaginationActionsUnstyledRootSlotProps,
   TablePaginationActionsUnstyledTypeMap,
 } from './TablePaginationActionsUnstyled.types';
+import { ItemAriaLabelType } from './common.types';
 
 function LastPageIconDefault() {
   return <span>{'⇾|'}</span>;

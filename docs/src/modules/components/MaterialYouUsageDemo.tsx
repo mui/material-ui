@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, useTheme as md2UseTheme } from '@mui/material/styles';
+import { useTheme as md2UseTheme } from '@mui/material/styles';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
@@ -11,7 +11,6 @@ import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { grey } from 'docs/src/modules/brandingTheme';
 import {
   extendTheme,
   CssVarsProvider as MaterialYouCssVarsProvider,
@@ -244,8 +243,8 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
           gap: 2,
           p: 3,
           mt: 1,
-          borderLeft: (theme) =>
-            `1px solid ${theme.palette.mode === 'dark' ? alpha(grey[700], 0.3) : grey[100]}`,
+          borderLeft: '1px solid',
+          borderColor: 'divider',
           backdropFilter: 'blur(8px)',
           minWidth: '280px',
         }}
@@ -267,7 +266,6 @@ export default function MaterialYouUsageDemo<T extends { [k: string]: any } = {}
             onClick={() => setProps(initialProps as T)}
             sx={{
               visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
-              // '--IconButton-size': '30px',
             }}
           >
             <ReplayRoundedIcon />

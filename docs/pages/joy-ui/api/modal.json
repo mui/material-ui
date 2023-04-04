@@ -23,19 +23,21 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "backdrop",
-      "description": "The component used to render the backdrop.",
-      "default": "'div'",
-      "class": ".MuiModal-backdrop"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiModal-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "default": "'div'",
+      "class": ".MuiModal-backdrop"
     }
   ],
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "JoyModal",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Modal/Modal.tsx",
   "inheritance": null,

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
+import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
+import { ItemAriaLabelType } from './common.types';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -8,8 +10,6 @@ export interface LabelDisplayedRowsArgs {
   count: number;
   page: number;
 }
-
-export type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
 export interface TablePaginationUnstyledRootSlotPropsOverrides {}
 export interface TablePaginationUnstyledActionsSlotPropsOverrides {}
@@ -42,7 +42,7 @@ export interface TablePaginationUnstyledOwnProps {
       TablePaginationUnstyledOwnerState
     >;
     actions?: SlotComponentProps<
-      'div',
+      typeof TablePaginationActionsUnstyled,
       TablePaginationUnstyledActionsSlotPropsOverrides,
       TablePaginationUnstyledOwnerState
     >;
@@ -154,42 +154,42 @@ export interface TablePaginationUnstyledOwnProps {
 
 export interface TablePaginationUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'td'
    */
   root?: React.ElementType;
   /**
-   * The component used to render the actions.
+   * The component that renders the actions.
    * @default TablePaginationActionsUnstyled
    */
   actions?: React.ElementType;
   /**
-   * The component used to render the select.
+   * The component that renders the select.
    * @default 'select'
    */
   select?: React.ElementType;
   /**
-   * The component used to render the select label.
+   * The component that renders the select label.
    * @default 'p'
    */
   selectLabel?: React.ElementType;
   /**
-   * The component used to render the menu item.
+   * The component that renders the menu item.
    * @default 'option'
    */
   menuItem?: React.ElementType;
   /**
-   * The component used to render the displayed rows.
+   * The component that renders the displayed rows.
    * @default 'p'
    */
   displayedRows?: React.ElementType;
   /**
-   * The component used to render the toolbar.
+   * The component that renders the toolbar.
    * @default 'div'
    */
   toolbar?: React.ElementType;
   /**
-   * The component used to render the spacer.
+   * The component that renders the spacer.
    * @default 'div'
    */
   spacer?: React.ElementType;

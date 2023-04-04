@@ -10,9 +10,9 @@ export interface InputUnstyledClasses {
   adornedStart: string;
   /** Class name applied to the root element if `endAdornment` is provided. */
   adornedEnd: string;
-  /** Class name applied to the root element if the component is focused. */
+  /** State class applied to the root element if the component is focused. */
   focused: string;
-  /** Class name applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;

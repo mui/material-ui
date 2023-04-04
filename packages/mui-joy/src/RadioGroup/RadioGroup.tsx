@@ -52,7 +52,7 @@ const RadioGroupRoot = styled('div', {
  *
  * Demos:
  *
- * - [Radio Group](https://mui.com/joy-ui/react-radio/)
+ * - [Radio](https://mui.com/joy-ui/react-radio-button/)
  *
  * API:
  *

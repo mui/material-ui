@@ -24,8 +24,8 @@ export default function ExampleGmailList() {
         sx={{
           // ...applyRadiusOnEdges({ target: 'deepest' | 'nested' }),
           '--ListItem-paddingLeft': '0px',
-          '--List-decoratorSize': '64px',
-          '--List-decoratorColor': (theme) => theme.vars.palette.text.secondary,
+          '--ListItemDecorator-size': '64px',
+          '--ListItemDecorator-color': (theme) => theme.vars.palette.text.secondary,
           '--ListItem-minHeight': '32px',
           '--List-nestedInsetStart': '13px',
           [`& .${listItemDecoratorClasses.root}`]: {

@@ -22,39 +22,47 @@ export default function XDateRangeDemo() {
       <Frame.Demo sx={{ p: 2 }}>
         <Paper
           variant="outlined"
-          sx={{
-            '& > div': {
-              borderRadius: 1,
-              overflow: 'auto',
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
+          sx={[
+            {
+              '& > div': {
+                borderRadius: 1,
+                overflow: 'auto',
+                bgcolor: '#fff',
+              },
+              '& > div > div > div > div': {
+                flexGrow: 1,
+              },
+              '& .MuiTypography-subtitle1': {
+                fontSize: '0.875rem',
+              },
+              '& .MuiTypography-caption': {
+                width: 28,
+                height: 32,
+              },
+              '& .MuiPickersSlideTransition-root': {
+                minWidth: 258,
+                minHeight: 238,
+              },
+              '& [role="row"]': {
+                margin: '4px 0',
+              },
+              '& .MuiDateRangePickerDay-root': {
+                lineHeight: 0,
+                margin: 0,
+              },
+              '& .MuiPickersDay-root': {
+                width: 28,
+                height: 28,
+                fontWeight: 400,
+              },
             },
-            '& > div > div > div > div': {
-              flexGrow: 1,
-            },
-            '& .MuiTypography-subtitle1': {
-              fontSize: '0.875rem',
-            },
-            '& .MuiTypography-caption': {
-              width: 28,
-              height: 32,
-            },
-            '& .MuiPickersSlideTransition-root': {
-              minWidth: 258,
-              minHeight: 238,
-            },
-            '& [role="row"]': {
-              margin: '4px 0',
-            },
-            '& .MuiDateRangePickerDay-root': {
-              lineHeight: 0,
-              margin: 0,
-            },
-            '& .MuiPickersDay-root': {
-              width: 28,
-              height: 28,
-              fontWeight: 400,
-            },
-          }}
+            (theme) =>
+              theme.applyDarkStyles({
+                '& > div': {
+                  bgcolor: 'primaryDark.900',
+                },
+              }),
+          ]}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateRangePicker

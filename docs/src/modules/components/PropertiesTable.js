@@ -12,15 +12,12 @@ const Wrapper = styled('div')({
   overflow: 'hidden',
 });
 const Table = styled('table')(({ theme }) => {
-  const contentColor =
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 1)
-      : 'rgba(255, 255, 255, 1)';
-  const contentColorTransparent =
-    theme.palette.mode === 'dark'
-      ? alpha(theme.palette.primaryDark[900], 0)
-      : 'rgba(255, 255, 255, 0)';
-  const shadowColor = theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.2)';
+  const contentColor = 'rgba(255, 255, 255, 1)';
+  const contentColorDark = alpha(theme.palette.primaryDark[900], 1);
+  const contentColorTransparent = 'rgba(255, 255, 255, 0)';
+  const contentColorTransparentDark = alpha(theme.palette.primaryDark[900], 0);
+  const shadowColor = 'rgba(0,0,0,0.2)';
+  const shadowColorDark = 'rgba(0,0,0,0.7)';
   return {
     borderRadius: 10,
     background: `
@@ -33,12 +30,23 @@ const Table = styled('table')(({ theme }) => {
     // as a workaround, use negative margin with overflow `hidden` on the parent
     marginLeft: -1,
     marginRight: -1,
+    ...theme.applyDarkStyles({
+      background: `
+      linear-gradient(to right, ${contentColorDark} 5%, ${contentColorTransparentDark}),
+      linear-gradient(to right, ${contentColorTransparentDark}, ${contentColorDark} 100%) 100%,
+      linear-gradient(to right, ${shadowColorDark}, rgba(0, 0, 0, 0) 5%),
+      linear-gradient(to left, ${shadowColorDark}, rgba(0, 0, 0, 0) 5%)`,
+    }),
   };
 });
 
 export default function PropertiesTable(props) {
   const { properties, propertiesDescriptions, showOptionalAbbr = false } = props;
   const t = useTranslate();
+
+  const showDefaultPropColumn = Object.entries(properties).some(
+    ([, propData]) => propData.default != null,
+  );
 
   return (
     <Wrapper>
@@ -47,7 +55,7 @@ export default function PropertiesTable(props) {
           <tr>
             <th align="left">{t('api-docs.name')}</th>
             <th align="left">{t('api-docs.type')}</th>
-            <th align="left">{t('api-docs.default')}</th>
+            {showDefaultPropColumn && <th align="left">{t('api-docs.default')}</th>}
             <th align="left">{t('api-docs.description')}</th>
           </tr>
         </thead>
@@ -81,9 +89,11 @@ export default function PropertiesTable(props) {
                   <td align="left">
                     <span className="prop-type" dangerouslySetInnerHTML={{ __html: typeName }} />
                   </td>
-                  <td align="left">
-                    {propDefault && <span className="prop-default">{propDefault}</span>}
-                  </td>
+                  {showDefaultPropColumn && (
+                    <td align="left">
+                      {propDefault && <span className="prop-default">{propDefault}</span>}
+                    </td>
+                  )}
                   <td align="left">
                     {propData.deprecated && (
                       <Alert severity="warning" sx={{ mb: 1, py: 0 }}>

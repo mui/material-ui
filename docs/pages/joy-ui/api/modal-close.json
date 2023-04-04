@@ -32,6 +32,8 @@
   "name": "ModalClose",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyModalClose",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/ModalClose/ModalClose.tsx",
   "inheritance": null,

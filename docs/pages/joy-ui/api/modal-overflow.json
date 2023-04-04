@@ -1,0 +1,18 @@
+{
+  "props": {
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "ModalOverflow",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/ModalOverflow/ModalOverflow.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",
+  "cssComponent": false
+}

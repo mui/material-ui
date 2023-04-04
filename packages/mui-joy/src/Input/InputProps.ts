@@ -7,22 +7,22 @@ export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
 export interface InputSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root: React.ElementType;
   /**
-   * The component used to render the input.
+   * The component that renders the input.
    * @default 'input'
    */
   input: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
   startDecorator: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
   endDecorator: React.ElementType;

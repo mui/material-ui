@@ -26,6 +26,9 @@ export interface FormControlUnstyledOwnProps {
    * @default false
    */
   error?: boolean;
+  /**
+   * Callback fired when the form element's value is modified.
+   */
   onChange?: React.ChangeEventHandler<NativeFormControlElement>;
   /**
    * If `true`, the label will indicate that the `input` is required.
@@ -49,12 +52,15 @@ export interface FormControlUnstyledOwnProps {
    * @default {}
    */
   slots?: FormControlUnstyledSlots;
+  /**
+   * The value of the form element.
+   */
   value?: unknown;
 }
 
 export interface FormControlUnstyledSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
   root?: React.ElementType;
@@ -86,9 +92,21 @@ type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'val
 
 export type FormControlUnstyledState = Simplify<
   Pick<FormControlUnstyledProps, ContextFromPropsKey> & {
+    /**
+     * If `true`, the form element has some value.
+     */
     filled: boolean;
+    /**
+     * If `true`, the form element is focused and not disabled.
+     */
     focused: boolean;
+    /**
+     * Callback fired when the form element has lost focus.
+     */
     onBlur: () => void;
+    /**
+     * Callback fired when the form element receives focus.
+     */
     onFocus: () => void;
   }
 >;
@@ -98,3 +116,5 @@ export type FormControlUnstyledRootSlotProps = {
   className?: string;
   ownerState: FormControlUnstyledOwnerState;
 };
+
+export interface UseFormControlUnstyledContextReturnValue extends FormControlUnstyledState {}

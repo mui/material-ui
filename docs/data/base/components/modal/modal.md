@@ -10,6 +10,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The Unstyled Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Unstyled Modal is a utility component that renders its children in front of a backdrop.
@@ -22,8 +26,6 @@ This lets you create an element that your users must interact with before contin
 - 🔐 Disables page scrolling while open
 - ⌨️ Manages focus correctly between the modal and its parent app
 - ♿️ Adds the appropriate ARIA roles automatically
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
@@ -120,7 +122,7 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 
 In order to display an Unstyled Modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 

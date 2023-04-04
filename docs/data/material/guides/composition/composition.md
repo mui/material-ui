@@ -35,7 +35,7 @@ return React.createElement(props.component, props);
 ```
 
 For example, by default a `List` component will render a `<ul>` element.
-This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop.
+This can be changed by passing a [React component](https://react.dev/reference/react/Component) to the `component` prop.
 The following example will render the `List` component with a `<nav>` element as root element instead:
 
 ```jsx
@@ -189,9 +189,9 @@ ref forwarding. However, only the following component types can be given a `ref`
 - Any MUI component
 - class components i.e. `React.Component` or `React.PureComponent`
 - DOM (or host) components e.g. `div` or `button`
-- [React.forwardRef components](https://reactjs.org/docs/react-api.html#reactforwardref)
-- [React.lazy components](https://reactjs.org/docs/react-api.html#reactlazy)
-- [React.memo components](https://reactjs.org/docs/react-api.html#reactmemo)
+- [React.forwardRef components](https://react.dev/reference/react/forwardRef)
+- [React.lazy components](https://react.dev/reference/react/lazy)
+- [React.memo components](https://react.dev/reference/react/memo)
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from
 React in your console similar to:
@@ -207,7 +207,7 @@ In some instances, an additional warning is issued to help with debugging, simil
 Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 :::
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://react.dev/reference/react/forwardRef).
 
 ```diff
 -const MyButton = () => <div role="button" />;

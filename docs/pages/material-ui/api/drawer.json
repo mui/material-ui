@@ -57,6 +57,8 @@
     "name": "MuiDrawer"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDrawer",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,

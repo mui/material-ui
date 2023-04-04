@@ -38,6 +38,10 @@ export function unstable_createStyleFunctionSx() {
       return null;
     }
 
+    if (themeKey === 'typography' && val === 'inherit') {
+      return { [prop]: val };
+    }
+
     const themeMapping = getPath(theme, themeKey) || {};
 
     if (style) {

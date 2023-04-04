@@ -19,6 +19,8 @@
     "name": "MuiStepIcon"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepIcon",
   "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-material/src/StepIcon/StepIcon.js",
   "inheritance": null,
