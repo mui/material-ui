@@ -8,7 +8,7 @@ _Apr 4, 2023_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- 💅 Added tabs on API pages of Base UI to switch between component and hook references (#36769) @mnajdova
+- 💅 Added tabs on API pages of Base UI to switch between component and hook references (#35938) @mnajdova
 - 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.16`
