@@ -7,6 +7,7 @@ import {
   emphasize,
   unstable_createGetCssVar as systemCreateGetCssVar,
   unstable_styleFunctionSx as styleFunctionSx,
+  unstable_prepareCssVars as prepareCssVars,
   SxProps,
 } from '@mui/system';
 import {
@@ -27,6 +28,7 @@ import md3State from './state';
 import { elevationLight, elevationDark } from './elevation';
 import createMotions from './motion';
 import md3shape from './shape';
+import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 
 const defaultLightOverlays: Overlays = [...Array(25)].map(() => undefined) as Overlays;
 const defaultDarkOverlays: Overlays = [...Array(25)].map((_, index) => {
@@ -49,10 +51,15 @@ function setColor(obj: any, key: string, defaultValue: any) {
   obj[key] = obj[key] || defaultValue;
 }
 
-export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
+export const createGetCssVar = (cssVarPrefix = 'md') => systemCreateGetCssVar(cssVarPrefix);
 
 export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: any[]) {
-  const { colorSchemes: colorSchemesInput = {}, cssVarPrefix = 'mui', ...input } = options;
+  const {
+    colorSchemes: colorSchemesInput = {},
+    cssVarPrefix = 'md',
+    shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
+    ...input
+  } = options;
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const md3LightColors = createMd3LightColorScheme(getCssVar, md3CommonPalette);
@@ -435,6 +442,19 @@ export default function extendTheme(options: CssVarsThemeOptions = {}, ...args: 
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  const parserConfig = {
+    prefix: cssVarPrefix,
+    shouldSkipGeneratingVar,
+  };
+
+  const { vars: themeVars, generateCssVars } = prepareCssVars<Theme, Theme['vars']>(
+    theme,
+    parserConfig,
+  );
+  theme.vars = themeVars;
+  theme.generateCssVars = generateCssVars;
+  theme.shouldSkipGeneratingVar = shouldSkipGeneratingVar;
 
   theme.unstable_sxConfig = {
     ...defaultSxConfig,

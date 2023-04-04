@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import { OptionState } from '../ListboxUnstyled';
-import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
+import { OptionState } from '../useListbox';
+import { UseSelectOptionSlotProps } from '../useSelect';
 import { SlotComponentProps } from '../utils';
 
-export interface OptionUnstyledComponentsPropsOverrides {}
+export interface OptionUnstyledRootSlotPropsOverrides {}
 
 export interface OptionUnstyledOwnProps<TValue> {
   /**
@@ -25,7 +25,7 @@ export interface OptionUnstyledOwnProps<TValue> {
   slotProps?: {
     root?: SlotComponentProps<
       'li',
-      OptionUnstyledComponentsPropsOverrides,
+      OptionUnstyledRootSlotPropsOverrides,
       OptionUnstyledOwnerState<TValue>
     >;
   };
@@ -34,14 +34,20 @@ export interface OptionUnstyledOwnProps<TValue> {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: OptionUnstyledSlots;
   /**
    * A text representation of the option's content.
    * Used for keyboard text navigation matching.
    */
   label?: string;
+}
+
+export interface OptionUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
 }
 
 export interface OptionUnstyledTypeMap<TValue, P = {}, D extends React.ElementType = 'li'> {

@@ -5,7 +5,6 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import * as prettier from 'prettier';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
@@ -13,7 +12,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-
+import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -22,10 +21,8 @@ import createDescribeableProp, {
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
 import parseStyles, { Styles } from '../utils/parseStyles';
-import { ComponentInfo } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-
-const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
+import parseSlots, { Slot } from '../utils/parseSlots';
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -43,10 +40,17 @@ export interface ReactApi extends ReactDocgenApi {
   description: string;
   spread: boolean | undefined;
   /**
+   * If `true`, the component supports theme default props customization.
+   * If `null`, we couldn't infer this information.
+   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
+   */
+  themeDefaultProps: boolean | undefined | null;
+  /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
   styles: Styles;
+  slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
     required: boolean | undefined;
@@ -58,31 +62,11 @@ export interface ReactApi extends ReactDocgenApi {
     componentDescription: string;
     propDescriptions: { [key: string]: string | undefined };
     classDescriptions: { [key: string]: { description: string; conditions?: string } };
+    slotDescriptions?: { [key: string]: string };
   };
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
-
-export function writePrettifiedFile(
-  filename: string,
-  data: string,
-  prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
-  options: object = {},
-) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
-
-  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-    ...options,
-  });
-}
 
 /**
  * Produces markdown of the description that can be hosted anywhere.
@@ -217,9 +201,9 @@ async function annotateComponentDefinition(api: ReactApi) {
   markdownLines.push(
     'Demos:',
     '',
-    ...api.demos.map((item) => {
-      return `- [${item.name}](${
-        item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+    ...api.demos.map((demo) => {
+      return `- [${demo.demoPageTitle}](${
+        demo.demoPathname.startsWith('http') ? demo.demoPathname : `${HOST}${demo.demoPathname}`
       })`;
     }),
     '',
@@ -322,7 +306,12 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiPage = (
+  apiPagesDirectory: string,
+  translationPagesDirectory: string,
+  reactApi: ReactApi,
+  onlyJsonFile: boolean = false,
+) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -350,7 +339,12 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
       ),
       name: reactApi.styles.name,
     },
+    ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
     spread: reactApi.spread,
+    themeDefaultProps: reactApi.themeDefaultProps,
+    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+      ? reactApi.muiName.replace('Mui', 'Joy')
+      : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
@@ -360,43 +354,45 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
         }
       : null,
     demos: `<ul>${reactApi.demos
-      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
   writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
+    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
   );
 
-  writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import ApiPage from 'docs/src/modules/components/ApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
+  if (!onlyJsonFile) {
+    writePrettifiedFile(
+      path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
+      `import * as React from 'react';
+  import ApiPage from 'docs/src/modules/components/ApiPage';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
+  export default function Page(props) {
+    const { descriptions, pageContent } = props;
+    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  }
 
-Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
+  Page.getInitialProps = () => {
+    const req = require.context(
+      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      false,
+      /${kebabCase(reactApi.name)}.*.json$/,
+    );
+    const descriptions = mapApiPageTranslations(req);
 
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
+    return {
+      descriptions,
+      pageContent: jsonPageContent,
+    };
   };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
-  );
+  `.replace(/\r?\n/g, reactApi.EOL),
+    );
+  }
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -421,13 +417,42 @@ const attachTranslations = (reactApi: ReactApi) => {
       } else if (propName === 'sx') {
         description +=
           ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
+      } else if (propName === 'slots' && !reactApi.apiPathname.startsWith('/material-ui')) {
+        description += ' See <a href="#slots">Slots API</a> below for more details.';
+      } else if (reactApi.apiPathname.startsWith('/joy-ui')) {
+        switch (propName) {
+          case 'size':
+            description +=
+              ' To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.';
+            break;
+          case 'color':
+            description +=
+              ' To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.';
+            break;
+          case 'variant':
+            description +=
+              ' To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.';
+            break;
+          default:
+        }
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
   });
 
   /**
-   * CSS class descriptiohs.
+   * Slot descriptions.
+   */
+  if (reactApi.slots?.length > 0) {
+    translations.slotDescriptions = {};
+    reactApi.slots.forEach((slot: Slot) => {
+      const { name, description } = slot;
+      translations.slotDescriptions![name] = description;
+    });
+  }
+
+  /**
+   * CSS class descriptions.
    */
   translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 
@@ -503,7 +528,10 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeScriptProject) => {
+export default async function generateComponentApi(
+  componentInfo: ComponentInfo,
+  project: TypeScriptProject,
+) {
   const {
     filename,
     name,
@@ -549,6 +577,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
                   }
                 }
               });
+
               return false;
             },
           });
@@ -595,8 +624,10 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
+  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.styles = await parseStyles({ project, componentName: reactApi.name });
+  reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+  reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
     reactApi.styles.name = reactApi.muiName;
@@ -614,14 +645,19 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    const translationPagesDirectory =
+      reactApi.apiPathname.indexOf('/joy-ui/') === 0
+        ? 'docs/translations/api-docs-joy'
+        : 'docs/translations/api-docs';
+    generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
+
+    // Once we have the tabs API in all projects, we can make this default
+    const generateOnlyJsonFile = reactApi.apiPathname.startsWith('/base');
+    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);
   }
 
   return reactApi;
-};
-
-export default generateComponentApi;
+}

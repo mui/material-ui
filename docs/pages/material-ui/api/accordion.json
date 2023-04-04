@@ -24,6 +24,8 @@
     "name": "MuiAccordion"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordion",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Accordion/Accordion.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },

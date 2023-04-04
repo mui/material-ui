@@ -56,6 +56,8 @@
   "name": "Popover",
   "styles": { "classes": ["root", "paper"], "globalClasses": {}, "name": "MuiPopover" },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiPopover",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popover/Popover.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },

@@ -1,0 +1,22 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "color": "The color of the link. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "endDecorator": "Element placed after the children.",
+    "level": "Applies the theme typography styles.",
+    "overlay": "If <code>true</code>, the ::after psuedo element is added to cover the area of interaction. The parent of the overlay Link should have <code>relative</code> CSS position.",
+    "startDecorator": "Element placed before the children.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "textColor": "The system color.",
+    "underline": "Controls when the link should have an underline.",
+    "variant": "Applies the theme link styles. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator."
+  }
+}

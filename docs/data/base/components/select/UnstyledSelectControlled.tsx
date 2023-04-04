@@ -139,8 +139,8 @@ const Paragraph = styled('p')(
   `,
 );
 
-function CustomSelect(props: SelectUnstyledProps<number>) {
-  const slots: SelectUnstyledProps<number>['slots'] = {
+function CustomSelect(props: SelectUnstyledProps<number, false>) {
+  const slots: SelectUnstyledProps<number, false>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
     popper: StyledPopper,

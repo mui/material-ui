@@ -106,6 +106,7 @@
     "classes": [
       "root",
       "fullWidth",
+      "expanded",
       "focused",
       "tag",
       "tagSizeSmall",
@@ -129,10 +130,12 @@
       "groupLabel",
       "groupUl"
     ],
-    "globalClasses": { "focused": "Mui-focused" },
+    "globalClasses": { "expanded": "Mui-expanded", "focused": "Mui-focused" },
     "name": "MuiAutocomplete"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAutocomplete",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,

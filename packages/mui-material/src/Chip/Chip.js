@@ -76,7 +76,6 @@ const ChipRoot = styled('div', {
   },
 })(
   ({ theme, ownerState }) => {
-    const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
     const textColor =
       theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
     return {
@@ -147,14 +146,14 @@ const ChipRoot = styled('div', {
         WebkitTapHighlightColor: 'transparent',
         color: theme.vars
           ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
-          : deleteIconColor,
+          : alpha(theme.palette.text.primary, 0.26),
         fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
           color: theme.vars
             ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-            : alpha(deleteIconColor, 0.4),
+            : alpha(theme.palette.text.primary, 0.4),
         },
         ...(ownerState.size === 'small' && {
           fontSize: 16,

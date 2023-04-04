@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -97,9 +97,6 @@ const CheckboxCheckbox = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       flexShrink: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
@@ -127,18 +124,16 @@ const CheckboxAction = styled('span', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
-    borderRadius: `var(--Checkbox-action-radius, ${
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    borderRadius: `var(--Checkbox-actionRadius, ${
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
+    textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon
@@ -186,7 +181,16 @@ const CheckboxLabel = styled('label', {
 
 const defaultCheckedIcon = <CheckIcon />;
 const defaultIndeterminateIcon = <IndeterminateIcon />;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Checkbox](https://mui.com/joy-ui/react-checkbox/)
+ *
+ * API:
+ *
+ * - [Checkbox API](https://mui.com/joy-ui/api/checkbox/)
+ */
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -382,7 +386,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -412,7 +416,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   indeterminate: PropTypes.bool,
   /**
    * The icon to display when the component is indeterminate.
-   * @default <IndeterminateCheckBoxIcon />
+   * @default <IndeterminateIcon />
    */
   indeterminateIcon: PropTypes.node,
   /**
@@ -461,10 +465,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['sm', 'md', 'lg']),
-    PropTypes.string,
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -487,13 +488,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Checkbox;

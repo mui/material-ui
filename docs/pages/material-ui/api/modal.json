@@ -61,8 +61,10 @@
     }
   },
   "name": "Modal",
-  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
+  "styles": { "classes": ["root", "hidden", "backdrop"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiModal",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Modal/Modal.js",
   "inheritance": null,

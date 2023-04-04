@@ -92,6 +92,10 @@ describe('<Switch />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 
+  it('should not show warnings when custom `type` is provided', () => {
+    expect(() => render(<Switch type="submit" />)).not.toErrorDev();
+  });
+
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {

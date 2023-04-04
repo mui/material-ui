@@ -123,7 +123,7 @@ export default function SandboxDependencies(
       const name =
         fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
-      if (!deps[name] && name !== '.') {
+      if (!deps[name] && !name.startsWith('.')) {
         deps[name] = versions[name] ? versions[name] : 'latest';
       }
 
@@ -134,14 +134,17 @@ export default function SandboxDependencies(
       if (dateAdapterMatch !== null) {
         /**
          * Mapping from the date adapter sub-packages to the npm packages they require.
-         * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+         * @example `@mui/x-date-pickers/AdapterDayjs` has a peer dependency on `dayjs`.
          */
         const packageName = (
           {
             AdapterDateFns: 'date-fns',
+            AdapterDateFnsJalali: 'date-fns-jalali',
             AdapterDayjs: 'dayjs',
             AdapterLuxon: 'luxon',
             AdapterMoment: 'moment',
+            AdapterMomentHijri: 'moment-hijri',
+            AdapterMomentJalaali: 'moment-jalaali',
           } as Record<string, string>
         )[dateAdapterMatch.groups?.adapterName || ''];
         if (packageName === undefined) {

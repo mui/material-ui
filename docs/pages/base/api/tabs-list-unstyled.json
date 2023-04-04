@@ -13,7 +13,16 @@
   },
   "name": "TabsListUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabsList-root"
+    }
+  ],
   "spread": true,
+  "muiName": "MuiTabsList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsListUnstyled/TabsListUnstyled.tsx",
   "inheritance": null,

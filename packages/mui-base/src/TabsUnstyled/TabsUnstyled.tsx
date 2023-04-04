@@ -9,8 +9,9 @@ import {
   TabsUnstyledRootSlotProps,
   TabsUnstyledTypeMap,
 } from './TabsUnstyled.types';
-import useTabs from './useTabs';
+import useTabs from '../useTabs';
 import Context from './TabsContext';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
@@ -19,7 +20,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
     root: ['root', orientation],
   };
 
-  return composeClasses(slots, getTabsUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTabsUnstyledUtilityClass));
 };
 
 /**
@@ -30,7 +31,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * API:
  *
- * - [TabsUnstyled API](https://mui.com/base/api/tabs-unstyled/)
+ * - [TabsUnstyled API](https://mui.com/base/react-tabs/components-api/#tabs-unstyled)
  */
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {

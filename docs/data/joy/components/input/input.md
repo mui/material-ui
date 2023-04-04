@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Input component
+components: FormControl, FormHelperText, FormLabel, Input
 unstyled: /base/react-input/
 ---
 
@@ -98,7 +99,7 @@ These props may include HTML attributes such as `min`, `max`, and `autocomplete`
 
 ## CSS variable playground
 
-Play around with the CSS variables available to the Avatar component to see how the design changes.
+Play around with the CSS variables available to the Input component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "InputVariables.js", "hideToolbar": true}}
@@ -129,7 +130,7 @@ Alternatively, you can do this manually by targeting the input slot—see [inner
 The Input component is composed of a root `<div>` with an `<input>` nested inside:
 
 ```html
-<div class="JoyInput-root">
-  <input class="JoyInput-input" />
+<div class="MuiInput-root">
+  <input class="MuiInput-input" />
 </div>
 ```

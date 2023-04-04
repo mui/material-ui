@@ -251,22 +251,35 @@ Copy and paste the code below into the file:
 
 ```tsx
 import * as React from 'react';
-import SliderUnstyled, { SliderUnstyledThumbSlotProps, SliderUnstyledProps } from '@mui/base/SliderUnstyled';
+import SliderUnstyled, {
+  SliderUnstyledThumbSlotProps,
+  SliderUnstyledProps,
+} from '@mui/base/SliderUnstyled';
 
 const Slider = React.forwardRef(function Slider(
   props: SliderUnstyledProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
-){
-  return (<SliderUnstyled
-    {...props}
-    ref={ref}
-    slotProps={{
-      thumb: { className: 'ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute' }
-      root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
-      rail: { className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute' },
-      track: { className: 'bg-cyan-500 dark:bg-cyan-400 h-2 absolute rounded-full' }
-    }}
-  />);
+) {
+  return (
+    <SliderUnstyled
+      {...props}
+      ref={ref}
+      slotProps={{
+        thumb: {
+          className:
+            'ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute',
+        },
+        root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
+        rail: {
+          className:
+            'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute',
+        },
+        track: {
+          className: 'bg-cyan-500 dark:bg-cyan-400 h-2 absolute rounded-full',
+        },
+      }}
+    />
+  );
 });
 
 export default Slider;
@@ -308,7 +321,7 @@ Let's add the `Slider` into the `Player` component now:
 
 You should see this:
 
-<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 745px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
 
 ### Customize the slider thumb
 
@@ -379,7 +392,7 @@ We'll create a custom Button component that uses the `focusVisible` state from t
 
 This is what it'll look like:
 
-<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="width: 745px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="margin-top: 8px; margin-bottom: 8px;" width="1490" height="760" />
 
 Create a `Button.tsx` file and copy the following code:
 
@@ -503,4 +516,4 @@ These are the things we covered in this guide:
 We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `slotProps` prop.
 
-Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css) example project.
+Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/base-cra-tailwind-ts) example project.

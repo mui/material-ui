@@ -283,10 +283,9 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
       checkHighlightIs(getByRole('listbox'), 'three');
       fireEvent.keyDown(textbox, { key: 'Enter' }); // selects the last option (three)
-      const input = getByRole('combobox');
       act(() => {
-        input.blur();
-        input.focus(); // opens the listbox again
+        textbox.blur();
+        textbox.focus(); // opens the listbox again
       });
       checkHighlightIs(getByRole('listbox'), null);
     });
@@ -649,14 +648,12 @@ describe('Joy <Autocomplete />', () => {
     specify('when closed', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<Autocomplete options={[]} />);
 
-      const combobox = getByRole('combobox');
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      const textbox = getByRole('combobox');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
       // reflected aria-haspopup is `listbox`
       // this assertion can fail if the value is `listbox`
-      expect(combobox).not.to.have.attribute('aria-haspopup');
+      expect(textbox).not.to.have.attribute('aria-haspopup');
 
-      const textbox = getByRole('combobox');
-      expect(combobox).to.contain(textbox);
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
       expect(textbox).to.have.attribute('aria-autocomplete', 'list');
@@ -679,10 +676,8 @@ describe('Joy <Autocomplete />', () => {
     specify('when open', () => {
       const { getAllByRole, getByRole } = render(<Autocomplete open options={['one', 'two']} />);
 
-      const combobox = getByRole('combobox');
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
-
       const textbox = getByRole('combobox');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
 
       const listbox = getByRole('listbox');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id')!);
@@ -764,6 +759,15 @@ describe('Joy <Autocomplete />', () => {
         expect(handleOpen.callCount).to.equal(2);
         expect(textbox).not.to.have.attribute('aria-activedescendant');
       });
+    });
+
+    it('should open popup when clicked on the root element', () => {
+      const handleOpen = spy();
+      render(<Autocomplete onOpen={handleOpen} options={['one']} />);
+
+      const root = document.querySelector(`.${classes.root}`)!;
+      fireEvent.click(root);
+      expect(handleOpen.callCount).to.equal(1);
     });
 
     it('does not clear the textbox on Escape', () => {
@@ -926,30 +930,29 @@ describe('Joy <Autocomplete />', () => {
         <Autocomplete options={['one', 'two', 'three']} openOnFocus autoFocus />,
       );
       const textbox = getByRole('combobox');
-      const combobox = getByRole('combobox');
 
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
       expect(textbox).toHaveFocus();
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
 
       act(() => {
         (document.activeElement as HTMLElement).blur();
       });
 
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
       expect(textbox).not.toHaveFocus();
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
       expect(textbox).toHaveFocus();
 
       fireEvent.mouseDown(textbox);
       fireEvent.click(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
     });
   });
 
@@ -1393,10 +1396,9 @@ describe('Joy <Autocomplete />', () => {
     it("should display a 'no options' message if no options are available", () => {
       const { getByRole } = render(<Autocomplete open options={[]} />);
 
-      const combobox = getByRole('combobox');
       const textbox = getByRole('combobox');
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
-      expect(combobox).not.to.have.attribute('aria-owns');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).not.to.have.attribute('aria-owns');
       expect(textbox).not.to.have.attribute('aria-controls');
       expect(document.querySelector(`.${classes.noOptions}`)).to.have.text('No options');
     });
@@ -1470,12 +1472,11 @@ describe('Joy <Autocomplete />', () => {
     it('when `openOnFocus` toggles if empty', () => {
       const { getByRole } = render(<Autocomplete openOnFocus options={['one', 'two']} />);
       const textbox = getByRole('combobox');
-      const combobox = getByRole('combobox');
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
       fireEvent.mouseDown(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
     });
 
     it('selects all the first time', () => {
@@ -1505,31 +1506,29 @@ describe('Joy <Autocomplete />', () => {
 
     it('should maintain list box open clicking on input when it is not empty', () => {
       const { getByRole, getAllByRole } = render(<Autocomplete options={['one']} />);
-      const combobox = getByRole('combobox');
       const textbox = getByRole('combobox');
 
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox); // Open listbox
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
       const options = getAllByRole('option');
       fireEvent.click(options[0]);
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox); // Open listbox
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
       fireEvent.mouseDown(textbox); // Remain open listbox
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
 
     it('should not toggle list box', () => {
       const { getByRole } = render(<Autocomplete value="one" options={['one']} />);
-      const combobox = getByRole('combobox');
       const textbox = getByRole('combobox');
 
-      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
       fireEvent.mouseDown(textbox);
-      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
   });
 
@@ -1975,6 +1974,25 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(textbox).to.have.property('value', 'a');
     });
+
+    it('should not throw error when nested options are provided', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          openOnFocus
+          autoHighlight
+          options={[
+            { property: { name: 'one' } },
+            { property: { name: 'two' } },
+            { property: { name: 'three' } },
+          ]}
+          getOptionLabel={(option) => option.property.name}
+        />,
+      );
+
+      expect(() => {
+        fireEvent.focus(getByRole('combobox'));
+      }).not.to.throw();
+    });
   });
 
   describe('prop: onHighlightChange', () => {
@@ -2040,7 +2058,7 @@ describe('Joy <Autocomplete />', () => {
         <Autocomplete onHighlightChange={handleHighlightChange} options={options} open autoFocus />,
       );
       const firstOption = getAllByRole('option')[0];
-      fireEvent.mouseOver(firstOption);
+      fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
         React.version.startsWith('18') ? 4 : 3,
@@ -2100,17 +2118,16 @@ describe('Joy <Autocomplete />', () => {
       <Autocomplete autoFocus openOnFocus options={['one', 'two']} onChange={handleChange} />,
     );
     const textbox = getByRole('combobox');
-    const combobox = getByRole('combobox');
 
     fireEvent.change(textbox, { target: { value: 'one' } });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.deep.equal('one');
-    expect(combobox).to.have.attribute('aria-expanded', 'false');
+    expect(textbox).to.have.attribute('aria-expanded', 'false');
 
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-    expect(combobox).to.have.attribute('aria-expanded', 'true');
+    expect(textbox).to.have.attribute('aria-expanded', 'true');
 
     expect(getAllByRole('option')).to.have.length(2);
 

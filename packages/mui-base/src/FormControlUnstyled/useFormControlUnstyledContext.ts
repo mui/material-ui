@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { UseFormControlUnstyledContextReturnValue } from './FormControlUnstyled.types';
 import FormControlUnstyledContext from './FormControlUnstyledContext';
 /**
  *
@@ -8,8 +9,10 @@ import FormControlUnstyledContext from './FormControlUnstyledContext';
  *
  * API:
  *
- * - [useFormControlUnstyledContext API](https://mui.com/base/api/use-form-control-unstyled-context/)
+ * - [useFormControlUnstyledContext API](https://mui.com/base/react-form-control/hooks-api/#use-form-control-unstyled-context)
  */
-export default function useFormControlUnstyledContext() {
+export default function useFormControlUnstyledContext():
+  | UseFormControlUnstyledContextReturnValue
+  | undefined {
   return React.useContext(FormControlUnstyledContext);
 }

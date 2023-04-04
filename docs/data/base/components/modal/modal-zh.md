@@ -112,7 +112,7 @@ As with any performance optimization, the `keepMounted` prop won't necessarily s
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 
 In order to display a modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 

@@ -6,13 +6,14 @@ import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
-import useSlider, { valueToPercent } from './useSlider';
+import useSlider, { valueToPercent } from '../useSlider';
 import useSlotProps from '../utils/useSlotProps';
 import {
   SliderUnstyledOwnerState,
   SliderUnstyledProps,
   SliderUnstyledTypeMap,
 } from './SliderUnstyled.types';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 // @ts-ignore
 function Identity(x) {
@@ -20,7 +21,7 @@ function Identity(x) {
 }
 
 const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
-  const { disabled, dragging, marked, orientation, track, classes } = ownerState;
+  const { disabled, dragging, marked, orientation, track } = ownerState;
 
   const slots = {
     root: [
@@ -45,7 +46,7 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
     focusVisible: ['focusVisible'],
   };
 
-  return composeClasses(slots, getSliderUtilityClass, classes);
+  return composeClasses(slots, useClassNamesOverride(getSliderUtilityClass));
 };
 
 /**
@@ -56,7 +57,7 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
  *
  * API:
  *
- * - [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/)
+ * - [SliderUnstyled API](https://mui.com/base/react-slider/components-api/#slider-unstyled)
  */
 const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
@@ -67,7 +68,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     'aria-labelledby': ariaLabelledby,
     className,
     component,
-    classes: classesProp,
     disableSwap = false,
     disabled = false,
     getAriaLabel,
@@ -100,7 +100,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   > = {
     ...props,
     marks: marksProp,
-    classes: classesProp,
     disabled,
     isRtl,
     defaultValue,
@@ -273,7 +272,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
           <Thumb
             key={index}
             data-index={index}
-            data-focusvisible={focusedThumbIndex === index}
             {...thumbProps}
             className={clsx(classes.thumb, thumbProps.className, {
               [classes.active]: active === index,
@@ -358,10 +356,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

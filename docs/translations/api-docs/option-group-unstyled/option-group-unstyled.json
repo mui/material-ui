@@ -5,7 +5,12 @@
     "disabled": "If <code>true</code> all the options in the group will be disabled.",
     "label": "The human-readable description of the group.",
     "slotProps": "The props used for each slot inside the Input.",
-    "slots": "The components used for each slot inside the OptionGroupUnstyled. Either a string to use a HTML element or a component."
+    "slots": "The components used for each slot inside the OptionGroupUnstyled. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
   },
-  "classDescriptions": {}
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "label": "The component that renders the label.",
+    "list": "The component that renders the list."
+  }
 }

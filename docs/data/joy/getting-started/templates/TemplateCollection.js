@@ -1,8 +1,6 @@
 import * as React from 'react';
-import LZString from 'lz-string';
 import startCase from 'lodash/startCase';
 import NextLink from 'next/link';
-import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
@@ -14,28 +12,7 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import extractTemplates from 'docs/src/modules/utils/extractTemplates';
-
-const cache = {};
-const req = require.context('./?raw', true, /^\.\/[^/]+\/.*\.(js|tsx|ts)$/);
-req.keys().forEach((key) => {
-  cache[key] = req(key);
-});
-
-function compress(object) {
-  return LZString.compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
-}
-
-function addHiddenInput(form, name, value) {
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = name;
-  input.value = value;
-  form.appendChild(input);
-}
+import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 
 /**
  * To display a template on the site:
@@ -70,15 +47,18 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  'order-dashboard': {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
 };
 
 export default function TemplateCollection() {
-  const newTemplates = ['sign-in-side']; // Stay at the top of the page with `new` badge
-  const templates = extractTemplates(cache);
-  const theme = useTheme();
+  const newTemplates = ['order-dashboard', 'sign-in-side']; // Stay at the top of the page with `new` badge
+  const { names: templateNames, map: templateMap } = sourceJoyTemplates();
   const names = [
     ...newTemplates,
-    ...Object.keys(templates).filter((name) => !newTemplates.includes(name)),
+    ...templateNames.filter((name) => !newTemplates.includes(name)),
   ];
   return (
     <List
@@ -91,48 +71,37 @@ export default function TemplateCollection() {
       }}
     >
       {names.map((name) => {
-        const item = templates[name];
+        const item = templateMap.get(name);
         const author = AUTHORS[name];
         return (
           <Card
             component="li"
+            variant="outlined"
             key={name}
             sx={{
               bgcolor: 'initial',
               boxShadow: 'none',
               p: 0,
+              overflow: 'auto',
             }}
           >
-            <Typography
-              component="h3"
-              fontSize="xl"
-              fontWeight="xl"
-              startDecorator={
-                newTemplates.includes(name) ? (
-                  <Chip
-                    size="sm"
-                    color="success"
-                    variant="outlined"
-                    sx={{ bgcolor: 'success.softBg', borderRadius: 'xs' }}
-                  >
-                    New
-                  </Chip>
-                ) : null
-              }
-              slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
-              sx={{ mb: 1 }}
+            <AspectRatio
+              ratio="2"
+              variant="plain"
+              sx={{
+                borderRadius: 0,
+                borderBottom: '1px solid',
+                borderColor: 'divider',
+              }}
             >
-              {startCase(name)}
-            </Typography>
-
-            <AspectRatio ratio="2" variant="outlined">
               <Box
-                sx={{
-                  background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}${
-                    theme.palette.mode === 'dark' ? '-dark' : ''
-                  }.jpg)`,
+                sx={(theme) => ({
+                  background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}.jpg)`,
                   transition: '0.3s',
-                }}
+                  [theme.getColorSchemeSelector('dark')]: {
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}-dark.jpg)`,
+                  },
+                })}
               />
               <NextLink
                 href={`/joy-ui/getting-started/templates/${name}/`}
@@ -152,80 +121,113 @@ export default function TemplateCollection() {
             </AspectRatio>
             <Box
               sx={{
-                py: 1,
+                p: 2,
                 gap: 1,
                 display: 'flex',
-                alignItems: 'center',
+                alignItems: 'start',
                 flexWrap: 'wrap',
+                justifyContent: 'space-between',
               }}
             >
-              <NextLink
-                href={`/joy-ui/getting-started/templates/${name}/`}
-                passHref
-                legacyBehavior
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'start',
+                }}
               >
+                <Typography
+                  component="h3"
+                  fontSize="lg"
+                  fontWeight="lg"
+                  endDecorator={
+                    newTemplates.includes(name) ? (
+                      <Chip
+                        size="sm"
+                        color="success"
+                        variant="outlined"
+                        sx={{
+                          ml: 1,
+                          bgcolor: 'success.softBg',
+                          borderRadius: 'xs',
+                          textTransform: 'uppercase',
+                          fontWeight: 'xl',
+                          letterSpacing: 'md',
+                        }}
+                      >
+                        New
+                      </Chip>
+                    ) : null
+                  }
+                  slotProps={{ endDecorator: { sx: { ml: 'auto' } } }}
+                  sx={{ mb: 1 }}
+                >
+                  {startCase(name)}
+                </Typography>
+                {author && (
+                  <Typography level="body2" fontWeight="md">
+                    Designed by{' '}
+                    <Link
+                      href={author.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <b>{author.name}</b>
+                    </Link>
+                  </Typography>
+                )}
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                }}
+              >
+                <NextLink
+                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  passHref
+                  legacyBehavior
+                >
+                  <IconButton
+                    component="a"
+                    variant="outlined"
+                    color="neutral"
+                    size="sm"
+                    aria-label="See live preview"
+                    data-ga-event-category="joy-template"
+                    data-ga-event-label={name}
+                    data-ga-event-action="preview"
+                  >
+                    <Visibility />
+                  </IconButton>
+                </NextLink>
                 <IconButton
-                  component="a"
                   variant="outlined"
                   color="neutral"
                   size="sm"
-                  aria-label="See live preview"
+                  aria-label="Code sandbox playground"
                   data-ga-event-category="joy-template"
                   data-ga-event-label={name}
-                  data-ga-event-action="preview"
+                  data-ga-event-action="codesandbox"
+                  onClick={() =>
+                    codeSandbox
+                      .createJoyTemplate({
+                        ...item,
+                        title: `${startCase(name)} Template - Joy UI`,
+                        githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                          process.env.LIB_VERSION
+                        }/docs/data/joy/templates/${name}/App.${
+                          item.codeVariant === 'TS' ? 'tsx' : 'js'
+                        }`,
+                      })
+                      .openSandbox()
+                  }
                 >
-                  <Visibility />
+                  <SvgIcon viewBox="0 0 1080 1080">
+                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                  </SvgIcon>
                 </IconButton>
-              </NextLink>
-              <IconButton
-                variant="outlined"
-                color="neutral"
-                size="sm"
-                aria-label="Code sandbox playground"
-                data-ga-event-category="joy-template"
-                data-ga-event-label={name}
-                data-ga-event-action="codesandbox"
-                onClick={() => {
-                  const { files } = codeSandbox.createJoyTemplate({
-                    ...item,
-                    title: `${startCase(name)} Template - Joy UI`,
-                    githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                      process.env.LIB_VERSION
-                    }/docs/data/joy/templates/${name}/App.${
-                      item.codeVariant === 'TS' ? 'tsx' : 'js'
-                    }`,
-                  });
-                  const parameters = compress({ files });
-
-                  // ref: https://codesandbox.io/docs/api/#define-api
-                  const form = document.createElement('form');
-                  form.method = 'POST';
-                  form.target = '_blank';
-                  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-                  addHiddenInput(form, 'parameters', parameters);
-                  addHiddenInput(
-                    form,
-                    'query',
-                    item.codeVariant === 'TS' ? 'file=/App.tsx' : 'file=/App.js',
-                  );
-                  document.body.appendChild(form);
-                  form.submit();
-                  document.body.removeChild(form);
-                }}
-              >
-                <SvgIcon viewBox="0 0 1080 1080">
-                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                </SvgIcon>
-              </IconButton>
-
-              {author && (
-                <Typography level="body2" fontWeight="md" sx={{ ml: 'auto', pr: 1 }}>
-                  Created by{' '}
-                  <Link href={author.link} target="_blank" rel="noopener noreferrer">
-                    <b>{author.name}</b>
-                  </Link>
-                </Typography>
-              )}
+              </Box>
             </Box>
           </Card>
         );

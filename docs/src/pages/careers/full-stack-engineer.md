@@ -6,7 +6,7 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
+- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
@@ -117,3 +117,6 @@ If that goes well, you'll be invited to up to four additional conversations, tho
 All these conversations will be 1:1 and over video chat. Please ask as many questions as you wish throughout the whole process, it's a two-way discussion. If you happen to need additional conversations as well, feel free to ask; we'll be happy to schedule them. Lastly, please note that we're unable to offer individual feedback during the initial screening process, as we're a small team and don't have the bandwidth to do so.
 
 We look forward to hearing from you! ☺️
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

@@ -17,7 +17,16 @@
   },
   "name": "TabPanelUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabPanel-root"
+    }
+  ],
   "spread": true,
+  "muiName": "MuiTabPanel",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabPanelUnstyled/TabPanelUnstyled.tsx",
   "inheritance": null,

@@ -9,7 +9,8 @@ import {
   TabsListUnstyledRootSlotProps,
   TabsListUnstyledTypeMap,
 } from './TabsListUnstyled.types';
-import useTabsList from './useTabsList';
+import useTabsList from '../useTabsList';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
@@ -18,7 +19,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
     root: ['root', orientation],
   };
 
-  return composeClasses(slots, getTabsListUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getTabsListUnstyledUtilityClass));
 };
 
 /**
@@ -29,7 +30,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * API:
  *
- * - [TabsListUnstyled API](https://mui.com/base/api/tabs-list-unstyled/)
+ * - [TabsListUnstyled API](https://mui.com/base/react-tabs/components-api/#tabs-list-unstyled)
  */
 const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props, ref) => {
   const { children, component, slotProps = {}, slots = {}, ...other } = props;

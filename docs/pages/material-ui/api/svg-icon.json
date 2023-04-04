@@ -47,6 +47,8 @@
     "name": "MuiSvgIcon"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSvgIcon",
   "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-material/src/SvgIcon/SvgIcon.js",
   "inheritance": null,

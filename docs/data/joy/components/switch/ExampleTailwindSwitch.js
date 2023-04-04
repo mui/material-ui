@@ -10,21 +10,22 @@ export default function ExampleTailwindSwitch() {
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
         sx={(theme) => ({
-          '--Switch-thumb-shadow': theme.vars.shadow.sm,
-          '--Switch-thumb-size': '18px',
-          '--Switch-track-width': '42px',
-          '--Switch-track-height': '22px',
-          '--Switch-track-background': '#E9E9EA',
+          display: 'inherit',
+          '--Switch-thumbShadow': theme.vars.shadow.sm,
+          '--Switch-thumbSize': '18px',
+          '--Switch-trackWidth': '42px',
+          '--Switch-trackHeight': '22px',
+          '--Switch-trackBackground': '#E9E9EA',
           '&:hover': {
-            '--Switch-track-background': '#E9E9EA',
+            '--Switch-trackBackground': '#E9E9EA',
           },
           [theme.getColorSchemeSelector('dark')]: {
-            '--Switch-track-background': 'rgba(255 255 255 / 0.4)',
+            '--Switch-trackBackground': 'rgba(255 255 255 / 0.4)',
           },
           [`&.${switchClasses.checked}`]: {
-            '--Switch-track-background': '#65C466',
+            '--Switch-trackBackground': '#65C466',
             '&:hover': {
-              '--Switch-track-background': '#65C466',
+              '--Switch-trackBackground': '#65C466',
             },
           },
         })}
@@ -33,21 +34,22 @@ export default function ExampleTailwindSwitch() {
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
         sx={(theme) => ({
-          '--Switch-thumb-shadow': `0 0 0 1px ${theme.vars.palette.background.level3}, 0 1px 4px 0 rgb(0 0 0 / 0.3), 0 1px 2px 0px rgb(0 0 0 / 0.3)`,
-          '--Switch-thumb-size': '18px',
-          '--Switch-track-width': '36px',
-          '--Switch-track-height': '14px',
-          '--Switch-track-background': '#E9E9EA',
+          display: 'inherit',
+          '--Switch-thumbShadow': `0 0 0 1px ${theme.vars.palette.background.level3}, 0 1px 4px 0 rgb(0 0 0 / 0.3), 0 1px 2px 0px rgb(0 0 0 / 0.3)`,
+          '--Switch-thumbSize': '18px',
+          '--Switch-trackWidth': '36px',
+          '--Switch-trackHeight': '14px',
+          '--Switch-trackBackground': '#E9E9EA',
           '&:hover': {
-            '--Switch-track-background': '#E9E9EA',
+            '--Switch-trackBackground': '#E9E9EA',
           },
           [theme.getColorSchemeSelector('dark')]: {
-            '--Switch-track-background': 'rgba(255 255 255 / 0.4)',
+            '--Switch-trackBackground': 'rgba(255 255 255 / 0.4)',
           },
           [`&.${switchClasses.checked}`]: {
-            '--Switch-track-background': '#65C466',
+            '--Switch-trackBackground': '#65C466',
             '&:hover': {
-              '--Switch-track-background': '#65C466',
+              '--Switch-trackBackground': '#65C466',
             },
           },
         })}

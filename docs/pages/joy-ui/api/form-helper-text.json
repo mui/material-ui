@@ -1,0 +1,22 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "FormHelperText",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormHelperText",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/FormHelperText/FormHelperText.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-input/\">Input</a></li></ul>",
+  "cssComponent": false
+}

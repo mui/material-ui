@@ -1,5 +1,4 @@
 import * as ts from 'typescript';
-import * as prettier from 'prettier';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
@@ -11,8 +10,14 @@ import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
-import { HookInfo } from '../buildApiUtils';
+import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
+import {
+  getSymbolDescription,
+  getSymbolJSDocTags,
+  HookInfo,
+  stringifySymbol,
+  writePrettifiedFile,
+} from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
 
@@ -23,52 +28,6 @@ interface ParsedProperty {
   required: boolean;
   typeStr: string;
 }
-
-export const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
-  symbol
-    .getDocumentationComment(project.checker)
-    .flatMap((comment) => comment.text.split('\n'))
-    .filter((line) => !line.startsWith('TODO'))
-    .join('\n');
-
-export const formatType = (rawType: string) => {
-  if (!rawType) {
-    return '';
-  }
-
-  const prefix = 'type FakeType = ';
-  const signatureWithTypeName = `${prefix}${rawType}`;
-
-  const prettifiedSignatureWithTypeName = prettier.format(signatureWithTypeName, {
-    printWidth: 999,
-    singleQuote: true,
-    semi: false,
-    trailingComma: 'none',
-    parser: 'typescript',
-  });
-
-  return prettifiedSignatureWithTypeName.slice(prefix.length).replace(/\n$/, '');
-};
-
-export const getSymbolJSDocTags = (symbol: ts.Symbol) =>
-  Object.fromEntries(symbol.getJsDocTags().map((tag) => [tag.name, tag]));
-
-export const stringifySymbol = (symbol: ts.Symbol, project: TypeScriptProject) => {
-  let rawType: string;
-
-  const declaration = symbol.declarations?.[0];
-  if (declaration && ts.isPropertySignature(declaration)) {
-    rawType = declaration.type?.getText() ?? '';
-  } else {
-    rawType = project.checker.typeToString(
-      project.checker.getTypeOfSymbolAtLocation(symbol, symbol.valueDeclaration!),
-      symbol.valueDeclaration,
-      ts.TypeFormatFlags.NoTruncation,
-    );
-  }
-
-  return formatType(rawType);
-};
 
 const parseProperty = (propertySymbol: ts.Symbol, project: TypeScriptProject): ParsedProperty => ({
   name: propertySymbol.name,
@@ -215,7 +174,7 @@ async function annotateHookDefinition(api: ReactApi) {
       'Demos:',
       '',
       ...api.demos.map((item) => {
-        return `- [${item.name}](${
+        return `- [${item.demoPageTitle}](${
           item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
         })`;
       }),
@@ -264,12 +223,19 @@ const attachTable = (
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
-
+      const typeDescription = (propDescriptor.typeStr ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
       return {
         [propName]: {
           type: {
-            name: propDescriptor.typeStr,
-            description: propDescriptor.description ?? undefined,
+            // The docgen generates this structure for the components. For consistency in the structure
+            // we are adding the same value in both the name and the description
+            name: typeDescription,
+            description: typeDescription,
           },
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
@@ -326,7 +292,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -357,41 +323,13 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     name: reactApi.name,
     filename: toGitHubPath(reactApi.filename),
     demos: `<ul>${reactApi.demos
-      .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
+      .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
   };
 
   writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
-  );
-
-  writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import HookApiPage from 'docs/src/modules/components/HookApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
-
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
-
-Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
-
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
-  };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
   );
 };
 
@@ -467,7 +405,7 @@ const extractInfoFromInterface = (
   return result;
 };
 
-const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) => {
+export default async function generateHookApi(hooksInfo: HookInfo, project: TypeScriptProject) {
   const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
     hooksInfo;
 
@@ -531,13 +469,11 @@ const generateHookApi = async (hooksInfo: HookInfo, project: TypeScriptProject) 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);
   }
 
   return reactApi;
-};
-
-export default generateHookApi;
+}

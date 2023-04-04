@@ -7,6 +7,7 @@ const dummyGetOptionState = () => ({
   disabled: false,
   highlighted: false,
   selected: false,
+  index: 0,
 });
 
 const dummyGetOptionProps = () => ({
@@ -19,7 +20,7 @@ const dummyGetOptionProps = () => ({
   value: '',
 });
 
-describe('OptionUnstyled', () => {
+describe('<OptionUnstyled />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
@@ -32,6 +33,8 @@ describe('OptionUnstyled', () => {
             getOptionState: dummyGetOptionState,
             getOptionProps: dummyGetOptionProps,
             listboxRef: React.createRef(),
+            registerHighlightChangeHandler: () => () => {},
+            registerSelectionChangeHandler: () => () => {},
           }}
         >
           {node}
@@ -45,6 +48,8 @@ describe('OptionUnstyled', () => {
             getOptionState: dummyGetOptionState,
             getOptionProps: dummyGetOptionProps,
             listboxRef: React.createRef(),
+            registerHighlightChangeHandler: () => () => {},
+            registerSelectionChangeHandler: () => () => {},
           }}
         >
           {node}

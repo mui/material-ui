@@ -13,11 +13,11 @@ import {
   getBaseHookInfo,
   getSystemComponentInfo,
   extractApiPage,
-} from './buildApiUtils';
-import generateComponentApi, {
+  getJoyComponentInfo,
+  generateBaseUIApiPages,
   writePrettifiedFile,
-  ReactApi,
-} from './ApiBuilders/ComponentApiBuilder';
+} from './buildApiUtils';
+import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
 import generateHookApi from './ApiBuilders/HookApiBuilder';
 import { createTypeScriptProject, TypeScriptProject } from './utils/createTypeScriptProject';
 
@@ -155,6 +155,20 @@ const SETTINGS: Settings[] = [
   },
   {
     output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
+    },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'joy',
+        rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+        entryPointPath: 'src/index.ts',
+      }),
+    ],
+    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
+    getComponentInfo: getJoyComponentInfo,
+  },
+  {
+    output: {
       apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
     },
     getProjects: () => [
@@ -192,8 +206,13 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         (component) => {
           if (
             component.filename.includes('ThemeProvider') ||
-            (component.filename.includes('mui-material') &&
-              component.filename.includes('CssVarsProvider'))
+            component.filename.includes('CssVarsProvider') ||
+            (component.filename.includes('mui-joy') &&
+              // Box's demo isn't ready
+              // Container's demo isn't ready
+              // Grid has problem with react-docgen
+              // Stack has problem with react-docgen
+              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/))
           ) {
             return false;
           }
@@ -257,13 +276,55 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       process.exit(1);
     }
 
+    const apiLinks: { pathname: string; title: string }[] = [];
+
+    // Generate the api links, in a format that would point to the appropriate API tab
+    // @ts-ignore there are no failed builds at this point
+    const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
+    if (baseBuilds.length >= 0) {
+      baseBuilds.forEach((build) => {
+        // @ts-ignore
+        const { value } = build;
+        const { name, demos } = value;
+        // find a potential # in the pathname
+        const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+
+        let pathname = null;
+
+        if (demos.length > 0) {
+          // make sure the pathname doesn't contain #
+          pathname =
+            hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
+        }
+
+        if (pathname !== null) {
+          // add the new apiLink, where pathame is in format of /react-component/components-api
+          apiLinks.push({
+            pathname: `${pathname}${
+              name.startsWith('use') ? 'hooks-api' : 'components-api'
+            }/#${kebabCase(name)}`,
+            title: name,
+          });
+        }
+      });
+    }
+
     // @ts-ignore ignore hooks builds for now
     allBuilds = [...allBuilds, ...builds];
 
-    const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
+    let source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    if (apiLinks.length > 0) {
+      // @ts-ignore
+      source = `module.exports = ${JSON.stringify(apiLinks)}`;
+    }
+
     writePrettifiedFile(apiPagesManifestPath, source);
     return Promise.resolve();
   }, Promise.resolve());
+
+  // update the component pages to show the API tabs
+  generateBaseUIApiPages();
 
   if (grep === null) {
     const componentApis = allBuilds

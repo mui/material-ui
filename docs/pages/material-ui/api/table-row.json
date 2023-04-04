@@ -19,6 +19,8 @@
     "name": "MuiTableRow"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableRow",
   "forwardsRefTo": "HTMLTableRowElement",
   "filename": "/packages/mui-material/src/TableRow/TableRow.js",
   "inheritance": null,

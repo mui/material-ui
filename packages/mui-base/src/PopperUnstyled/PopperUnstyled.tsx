@@ -24,6 +24,7 @@ import {
   PopperUnstyledTransitionProps,
   PopperUnstyledTypeMap,
 } from './PopperUnstyled.types';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl') {
   if (direction === 'ltr') {
@@ -69,7 +70,7 @@ const useUtilityClasses = () => {
     root: ['root'],
   };
 
-  return composeClasses(slots, getPopperUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getPopperUnstyledUtilityClass));
 };
 
 const defaultPopperOptions = {};
@@ -246,7 +247,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * API:
  *
- * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ * - [PopperUnstyled API](https://mui.com/base/react-popper/components-api/#popper-unstyled)
  */
 const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   props: PopperUnstyledProps,

@@ -10,7 +10,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 
-function getTranslatedHeader(t, header) {
+export function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
@@ -52,6 +52,8 @@ Heading.propTypes = {
   level: PropTypes.string,
 };
 
+const nonDefaultHooks = ['useFormControlUnstyledContext'];
+
 export default function ApiPage(props) {
   const { descriptions, disableAd = false, pageContent } = props;
   const t = useTranslate();
@@ -67,10 +69,10 @@ export default function ApiPage(props) {
   } = descriptions[userLanguage];
   const description = t('api-docs.hooksPageDescription').replace(/{{name}}/, hookName);
 
-  const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
-    // convert things like `/Table/Table.js` to ``
-    .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+  const source = filename.replace(
+    /\/packages\/mui(-(.+?))?\/src/,
+    (match, dash, pkg) => `@mui/${pkg}`,
+  );
 
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
@@ -126,7 +128,10 @@ export default function ApiPage(props) {
         <Heading hash="import" />
         <HighlightedCode
           code={`
-import { ${hookName} } from '${source.split('/').slice(0, -1).join('/')}';`}
+import ${nonDefaultHooks.includes(hookName) ? `{ ${hookName} }` : hookName} from '${source
+            .split('/')
+            .slice(0, -1)
+            .join('/')}';`}
           language="jsx"
         />
         {/* TODO: Add this once the hooks are in dedicated folders */}

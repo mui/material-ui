@@ -2,19 +2,15 @@ import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/ty
 import * as React from 'react';
 import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
-import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
-export interface ModalUnstyledComponentsPropsOverrides {}
+export interface ModalUnstyledRootSlotPropsOverrides {}
+export interface ModalUnstyledBackdropSlotPropsOverrides {}
 
 export interface ModalUnstyledOwnProps {
   /**
    * A single child content element.
    */
   children: React.ReactElement;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: Partial<ModalUnstyledClasses>;
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
@@ -103,14 +99,10 @@ export interface ModalUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      ModalUnstyledComponentsPropsOverrides,
-      ModalUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', ModalUnstyledRootSlotPropsOverrides, ModalUnstyledOwnerState>;
     backdrop?: SlotComponentProps<
       'div',
-      ModalUnstyledComponentsPropsOverrides,
+      ModalUnstyledBackdropSlotPropsOverrides,
       ModalUnstyledOwnerState
     >;
   };
@@ -119,10 +111,19 @@ export interface ModalUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    backdrop?: React.ElementType;
-  };
+  slots?: ModalUnstyledSlots;
+}
+
+export interface ModalUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the backdrop.
+   */
+  backdrop?: React.ElementType;
 }
 
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

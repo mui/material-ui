@@ -11,6 +11,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 
 <p class="description">The Menu components provide your users with a list of options on temporary surfaces.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Menu component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
@@ -20,8 +24,6 @@ Use the Unstyled Menu Item to add items to the menu.
 These are rendered as `<li>` elements.
 
 {{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Components
 
@@ -111,8 +113,8 @@ Unstyled Menu Item can set the following classes:
 ## Hooks
 
 ```jsx
-import { useMenu } from '@mui/base/MenuUnstyled';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import useMenu from '@mui/base/useMenu';
+import useMenuItem from '@mui/base/useMenuItem';
 ```
 
 The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu components to fully custom components.

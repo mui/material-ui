@@ -115,19 +115,19 @@ const TableRoot = styled('table', {
       '--TableCell-borderColor': variantStyle?.borderColor ?? theme.vars.palette.divider,
       '--TableCell-headBackground': `var(--Sheet-background, ${theme.vars.palette.background.surface})`,
       ...(ownerState.size === 'sm' && {
-        '--private_TableCell-height': 'var(--TableCell-height, 32px)',
+        '--unstable_TableCell-height': 'var(--TableCell-height, 32px)',
         '--TableCell-paddingX': '0.25rem',
         '--TableCell-paddingY': '0.25rem',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
-        '--private_TableCell-height': 'var(--TableCell-height, 40px)',
+        '--unstable_TableCell-height': 'var(--TableCell-height, 40px)',
         '--TableCell-paddingX': '0.5rem',
         '--TableCell-paddingY': '0.375rem',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
-        '--private_TableCell-height': 'var(--TableCell-height, 48px)',
+        '--unstable_TableCell-height': 'var(--TableCell-height, 48px)',
         '--TableCell-paddingX': '0.75rem',
         '--TableCell-paddingY': '0.5rem',
         fontSize: theme.vars.fontSize.md,
@@ -144,7 +144,7 @@ const TableRoot = styled('table', {
       },
       [tableSelector.getDataCell()]: {
         padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
-        height: 'var(--private_TableCell-height)',
+        height: 'var(--unstable_TableCell-height)',
         borderColor: 'var(--TableCell-borderColor)', // must come after border bottom
         backgroundColor: 'var(--TableCell-dataBackground)', // use `background-color` in case the Sheet has gradient background
         ...(ownerState.noWrap && {
@@ -157,7 +157,7 @@ const TableRoot = styled('table', {
         textAlign: 'left',
         padding: 'var(--TableCell-paddingY) var(--TableCell-paddingX)',
         backgroundColor: 'var(--TableCell-headBackground)', // use `background-color` in case the Sheet has gradient background
-        height: 'var(--private_TableCell-height)',
+        height: 'var(--unstable_TableCell-height)',
         fontWeight: theme.vars.fontWeight.lg,
         borderColor: 'var(--TableCell-borderColor)',
         color: theme.vars.palette.text.secondary,
@@ -169,20 +169,20 @@ const TableRoot = styled('table', {
         verticalAlign: 'bottom',
         // Automatic radius adjustment with Sheet
         '&:first-child': {
-          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
-          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
       '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
         '&:first-child': {
-          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
-          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--internal-action-radius))',
+          borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
     },
@@ -259,16 +259,25 @@ const TableRoot = styled('table', {
         top: 0,
       },
       [tableSelector.getHeaderCell()]: {
-        zIndex: 1,
+        zIndex: theme.vars.zIndex.table,
       },
       [tableSelector.getHeaderCellOfRow(2)]: {
         // support upto 2 rows for the sticky header
-        top: 'var(--private_TableCell-height)',
+        top: 'var(--unstable_TableCell-height)',
       },
     },
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Table](https://mui.com/joy-ui/react-table/)
+ *
+ * API:
+ *
+ * - [Table API](https://mui.com/joy-ui/api/table/)
+ */
 const Table = React.forwardRef(function Table(inProps, ref) {
   const props = useThemeProps<typeof inProps & TableProps>({
     props: inProps,
@@ -401,7 +410,7 @@ Table.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

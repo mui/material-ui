@@ -1,0 +1,8 @@
+{
+  "componentDescription": "Kickstart an elegant, consistent, and simple baseline to build upon.",
+  "propDescriptions": {
+    "children": "You can wrap a node.",
+    "disableColorScheme": "Disable <code>color-scheme</code> CSS property.<br>For more details, check out <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme\">https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme</a> For browser support, check out <a href=\"https://caniuse.com/?search=color-scheme\">https://caniuse.com/?search=color-scheme</a>"
+  },
+  "classDescriptions": {}
+}

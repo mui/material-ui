@@ -49,6 +49,8 @@
     "name": "MuiSpeedDial"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSpeedDial",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SpeedDial/SpeedDial.js",
   "inheritance": null,

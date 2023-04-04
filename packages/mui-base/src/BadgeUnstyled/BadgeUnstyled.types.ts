@@ -2,7 +2,8 @@ import * as React from 'react';
 import { OverrideProps, OverridableTypeMap, OverridableComponent } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-export interface BadgeUnstyledComponentsPropsOverrides {}
+export interface BadgeUnstyledRootSlotPropsOverrides {}
+export interface BadgeUnstyledBadgeSlotPropsOverrides {}
 
 export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
   badgeContent: React.ReactNode;
@@ -35,14 +36,10 @@ export interface BadgeUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'span',
-      BadgeUnstyledComponentsPropsOverrides,
-      BadgeUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'span', BadgeUnstyledRootSlotPropsOverrides, BadgeUnstyledOwnerState>;
     badge?: SlotComponentProps<
       'span',
-      BadgeUnstyledComponentsPropsOverrides,
+      BadgeUnstyledBadgeSlotPropsOverrides,
       BadgeUnstyledOwnerState
     >;
   };
@@ -51,15 +48,25 @@ export interface BadgeUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    badge?: React.ElementType;
-  };
+  slots?: BadgeUnstyledSlots;
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    * @default false
    */
   showZero?: boolean;
+}
+
+export interface BadgeUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the badge.
+   * @default 'span'
+   */
+  badge?: React.ElementType;
 }
 
 export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {

@@ -4,7 +4,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabContext } from '@mui/base/TabsUnstyled';
-import { useTabPanel } from '@mui/base/TabPanelUnstyled';
+import useTabPanel from '@mui/base/useTabPanel';
 import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
@@ -45,7 +45,16 @@ const TabPanelRoot = styled('div', {
   flexGrow: 1,
   fontFamily: theme.vars.fontFamily.body,
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [TabPanel API](https://mui.com/joy-ui/api/tab-panel/)
+ */
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,

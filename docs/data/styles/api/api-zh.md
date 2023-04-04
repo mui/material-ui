@@ -8,7 +8,7 @@ title: '@mui/core/styles 的 API 参考文档。'
 
 > ⚠️ `@mui/styles`是MUI的_**传统**_样式解决方案。 它依赖于 [JSS ](https://cssinjs.org/)作为样式解决方案，在`@mui/material`中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
-> ⚠️ `@mui/styles`与 [React.StrictMode](https://reactjs.org/docs/strict-mode.html) 或 React 18 不兼容。
+> ⚠️ `@mui/styles`与 [React.StrictMode](https://react.dev/reference/react/StrictMode) 或 React 18 不兼容。
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -115,7 +115,7 @@ export default function MyComponent(props) {
 这是一个处理服务器端渲染的类助手（class helper）。 [你可以遵循本指南的实用方法](/material-ui/guides/server-rendering/)
 
 ```jsx
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
