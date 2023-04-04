@@ -52,13 +52,16 @@ That means you'll be working closely with your engineering lead counterpart to s
 As our [design philosophy](https://mui-org.notion.site/Design-philosophy-bdbef60d6fad4134a43870df3e452ebc) states, you'll be conducting and guiding the whole team, making sure everything we do is adding a special design spice that only you can add.
 We imagine a world where design execution is a definitive product differentiator.
 
-### What you'll do on a day-to-day basis
+### What you'll do on your first 3 months
 
-- Ensure high-quality user interface and UX work across MUI Core or MUI X components and design systems
-- Oversee the design kits production of the component set you'll be responsible for
-- Lead the design process for your team, from research to testing to implementation
-- Collaborate with product managers and engineers to strategize work that is aligned with business goals and user needs
-- Review designs from other team members and provide feedback to ensure all MUI design output has the same level of quality
+Initiatives that you'll likely come across in your inital 90 days and that will probably persist across your journey at the team.
+
+- Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
+- Improve existing components documentation by revamping their demos' visual design or clarifying the writing
+- Design new templates for either Joy UI or Material UI and also support their implementation
+- Review new Figma Design kit versions and coordinate their next release
+- Conduct one on one user interviews with community members
+- Review and give feedback to work from other designers in the team
 
 ## About you
 
