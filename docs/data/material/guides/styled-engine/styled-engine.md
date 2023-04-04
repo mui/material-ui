@@ -113,3 +113,75 @@ You can use these `styled-component` examples as a reference:
 :::
 
 This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
+
+## Using with Theme UI
+
+:::warning
+Having more than one styling libraries could introduce unnecessary complexity to your project. You should have a very good reason to do this.
+:::
+
+Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
+
+When you use Material UI's APIs such as `styled`, `sx` prop, and `useTheme`, you will get theme that you provide to the `THEME_ID` property.
+
+```js
+import { ThemeProvider as ThemeUIThemeProvider } from 'theme-ui';
+import { createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
+
+const themeUITheme = {
+  fonts: {
+    body: 'system-ui, sans-serif',
+    heading: '"Avenir Next", sans-serif',
+    monospace: 'Menlo, monospace',
+  },
+  colors: {
+    text: '#000',
+    background: '#fff',
+    primary: '#33e',
+  },
+};
+
+const materialTheme = materialCreateTheme();
+
+function App() {
+  return (
+    <ThemeUIThemeProvider theme={themeUITheme}>
+      <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>
+        Theme UI components and Material UI components
+      </MaterialThemeProvider>
+    </ThemeUIThemeProvider>
+  );
+}
+```
+
+## Using wit Chakra UI
+
+:::warning
+Having more than one styling libraries could introduce unnecessary complexity to your project. You should have a very good reason to do this.
+:::
+
+Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
+
+When you use Material UI's APIs such as `styled`, `sx` prop, and `useTheme`, you will get theme that you provide to the `THEME_ID` property.
+
+```js
+import { ChakraProvider, chakraExtendTheme } from '@chakra-ui/react';
+import {
+  ThemeProvider as MaterialThemeProvider,
+  createTheme as muiCreateTheme,
+  THEME_ID,
+} from '@mui/material/styles';
+
+const chakraTheme = chakraExtendTheme();
+const materialTheme = muiCreateTheme();
+
+function App() {
+  return (
+    <ChakraProvider theme={chakraTheme} resetCSS>
+      <MaterialThemeProvider theme={{ [THEME_ID]: materialTheme }}>
+        Chakra UI components and Material UI components
+      </MaterialThemeProvider>
+    </ChakraProvider>
+  );
+}
+```
