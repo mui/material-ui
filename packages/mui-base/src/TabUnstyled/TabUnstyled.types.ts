@@ -9,7 +9,7 @@ export interface TabUnstyledRootSlotPropsOverrides {}
 export interface TabUnstyledOwnProps
   extends Omit<ButtonUnstyledOwnProps, 'onChange' | 'slots' | 'slotProps'> {
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * You can provide your own value. Otherwise, it falls back to the child position index.
    */
   value?: number | string;
   /**

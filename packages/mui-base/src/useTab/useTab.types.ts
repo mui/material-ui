@@ -5,11 +5,14 @@ export interface UseTabParameters {
   /**
    * The value of the tab.
    * It's used to associate the tab with a tab panel(s) with the same value.
+   * If the value is not provided, it falls back to the position index.
    */
   value?: number | string;
   /**
    * If `true`, the tab will be disabled.
    */
+  onChange?: (event: React.SyntheticEvent, value: number | string) => void;
+  onClick?: React.MouseEventHandler;
   disabled?: boolean;
   /**
    * The id of the tab.

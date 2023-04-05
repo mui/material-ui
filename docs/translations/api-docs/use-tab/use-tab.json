@@ -1,10 +1,10 @@
 {
   "hookDescription": "",
   "parametersDescriptions": {
-    "disabled": "If <code>true</code>, the tab will be disabled.",
     "id": "The id of the tab.\nIf not provided, it will be automatically generated.",
+    "onChange": "If <code>true</code>, the tab will be disabled.",
     "ref": "Ref to the DOM element associated with the tab.",
-    "value": "The value of the tab.\nIt's used to associate the tab with a tab panel(s) with the same value."
+    "value": "The value of the tab.\nIt's used to associate the tab with a tab panel(s) with the same value.\nIf the value is not provided, it falls back to the position index."
   },
   "returnValueDescriptions": {
     "active": "If <code>true</code>, the tab is active (as in </code>:active</code> pseudo-class; in other words, pressed).",

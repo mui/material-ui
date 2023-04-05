@@ -2,6 +2,15 @@
   "parameters": {
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
     "id": { "type": { "name": "string", "description": "string" } },
+    "onChange": {
+      "type": {
+        "name": "(event: React.SyntheticEvent, value: number | string) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: number | string) =&gt; void"
+      }
+    },
+    "onClick": {
+      "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
+    },
     "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
     "value": { "type": { "name": "number | string", "description": "number | string" } }
   },

@@ -1,5 +1,67 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.11.16
+
+<!-- generated comparing v5.11.15..master -->
+
+_Apr 4, 2023_
+
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 Added tabs on API pages of Base UI to switch between component and hook references (#35938) @mnajdova
+- 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.11.16`
+
+- [Autocomplete] Listen for click on the root element (#36369) @sai6855
+- [Autocomplete] Fix navigation issue on mouse hover (#35196) @sai6855
+- [Card] Fix Card focus effect overflowing parent card (#36329) @mj12albert
+- [Grid] Missing slot (#36765) @siriwatknp
+- [Select] Make error part of the `ownerState` to enable overriding styles with it in theme (#36422) @gitstart
+- [Slider] Fix ValueLabel UI issues comes when size="small" and orientation="vertical (#36738) @yushanwebdev
+
+### `@mui/icons-material@5.11.16`
+
+- [icons] Do not ignore popular icons (#36608) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.74`
+
+- [Joy] Add `ModalOverflow` component (#36262) @siriwatknp
+- [Joy] Fix `Checkbox` custom color prop type warning (#36691) @amal-qb
+
+### Docs
+
+- [docs][base] Add return type for `useFormControlUnstyledContext` hook (#36302) @HeVictor
+- [docs][base] Move styles to the bottom of demos code for `FormControl` (#36579) @gitstart
+- [docs][base] Move styles to the bottom of demos code for `Menu` (#36582) @gitstart
+- [docs][base] Move styles code to bottom in the `Button` demos (#36590) @sai6855
+- [docs][base] Show components & hooks API on the components page (#35938) @mnajdova
+- [docs] Describe slotProps in MUI Base customization doc (#36206) @michaldudak
+- [docs] Fix double API page redirection (#36743) @oliviertassinari
+- [docs] Remove hash property and leverage pathname (#36764) @siriwatknp
+- [docs] Introduce markdown permalink to source (#36729) @oliviertassinari
+- [docs] Tabs API add slots section (#36769) @mnajdova
+- [docs] Update feedbacks management on slack (#36705) @alexfauquette
+- [docs] Fix Joy UI URL to tokens (#36742) @oliviertassinari
+- [docs] Add toggle-button coming soon page (#36618) @siriwatknp
+- [docs] Fix typo on the Joy UI theme builder (#36734) @danilo-leal
+- [docs] Fix small typo (#36727) @RBerthier
+- [docs] Fix Joy UI template broken image loading @oliviertassinari
+- [docs] Hide the default API column if it's empty (#36715) @mnajdova
+- [docs] Update Material UI Related Projects page (#34203) @viclafouch
+- [docs] Revise Joy UI "Circular Progress" page (#36126) @LadyBluenotes
+- [docs] Revise Joy UI "Radio" page (#35893) @DevinCLane
+- [docs] Support Google Analytics 4 (#36123) @alexfauquette
+- [docs][material] Keep consistency in description of classes (#36631) @hbjORbj
+- [docs] Remove redundant files and fix regression (#36775) @ZeeshanTamboli
+
+### Core
+
+- [blog] Compress images @oliviertassinari
+- [core] Remove unused token (#36722) @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @amal-qb, @danilo-leal, @DevinCLane, @gitstart, @hbjORbj, @HeVictor, @LadyBluenotes, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @RBerthier, @sai6855, @siriwatknp, @viclafouch, @yushanwebdev
+
 ## 5.11.15
 
 <!-- generated comparing v5.11.14..master -->
@@ -5406,7 +5468,7 @@ _Sep 1, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui/material-ui/discussions/27803).
-- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/migration/migration-v4/#preset-safe)
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/migration/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://mui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
 ### `@mui/material@5.0.0-rc.0`
@@ -5438,7 +5500,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   > **Note**: `@mui/base` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
-  We encourage you to use the [codemod](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
+  We encourage you to use the [codemod](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md#mui-replace) for smooth migration.
 
 #### Changes
 
@@ -6573,7 +6635,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
 - 📦 Save [10 kB gzipped](https://bundlephobia.com/package/@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
-- ⚒️ Add many new [codemods](https://github.com/mui/material-ui/blob/HEAD/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
+- ⚒️ Add many new [codemods](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.35`
@@ -8841,7 +8903,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [Box] Remove deprecated props (#23716) @mnajdova
   All props are now available under the `sx` prop. A deprecation will be landing in v4.
-  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#box-sx-prop).
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui/material-ui/blob/v5.0.0/packages/mui-codemod/README.md#box-sx-prop).
 
   ```diff
   -<Box p={2} bgcolor="primary.main">
