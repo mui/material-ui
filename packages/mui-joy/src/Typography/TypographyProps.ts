@@ -45,6 +45,7 @@ export type TypographySlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
+    TypographySlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -111,7 +112,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        */
       variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
-    } & TypographySlotsAndSlotProps;
+    };
   defaultComponent: D;
 }
 

@@ -41,27 +41,28 @@ export type BreadcrumbsSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Custom separator node.
-     * @default '/'
-     */
-    separator?: React.ReactNode;
-    /**
-     * The size of the component.
-     * It accepts theme values between 'sm' and 'lg'.
-     * @default 'md'
-     */
-    size?: OverridableStringUnion<'sm' | 'md' | 'lg', BreadcrumbsPropsSizeOverrides>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps;
-  } & BreadcrumbsSlotsAndSlotProps;
+  props: P &
+    BreadcrumbsSlotsAndSlotProps & {
+      /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
+       * Custom separator node.
+       * @default '/'
+       */
+      separator?: React.ReactNode;
+      /**
+       * The size of the component.
+       * It accepts theme values between 'sm' and 'lg'.
+       * @default 'md'
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', BreadcrumbsPropsSizeOverrides>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+    };
   defaultComponent: D;
 }
 

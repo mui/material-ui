@@ -51,7 +51,8 @@ export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    UseSwitchParameters & {
+    UseSwitchParameters &
+    CheckboxSlotsAndSlotProps & {
       /**
        * The icon to display when the component is checked.
        * @default <CheckIcon />
@@ -121,7 +122,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The browser uses "on" as the default value.
        */
       value?: React.AllHTMLAttributes<HTMLInputElement>['value'];
-    } & CheckboxSlotsAndSlotProps;
+    };
   defaultComponent: D;
 }
 

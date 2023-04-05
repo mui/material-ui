@@ -159,37 +159,38 @@ export interface SelectStaticProps {
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }
 
-export type SelectOwnProps<TValue extends {}> = SelectStaticProps & {
-  /**
-   * The default selected value. Use when the component is not controlled.
-   */
-  defaultValue?: TValue | null;
+export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
+  SelectSlotsAndSlotProps & {
+    /**
+     * The default selected value. Use when the component is not controlled.
+     */
+    defaultValue?: TValue | null;
 
-  /**
-   * A function to convert the currently selected value to a string.
-   * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
-   */
-  getSerializedValue?: (
-    option: SelectOption<TValue> | null,
-  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
-  /**
-   * Callback fired when an option is selected.
-   */
-  onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: TValue | null,
-  ) => void;
-  /**
-   * Function that customizes the rendering of the selected value.
-   */
-  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
-  /**
-   * The selected value.
-   * Set to `null` to deselect all options.
-   */
-  value?: TValue | null;
-} & SelectSlotsAndSlotProps;
+    /**
+     * A function to convert the currently selected value to a string.
+     * Used to set a value of a hidden input associated with the select,
+     * so that the selected value can be posted with a form.
+     */
+    getSerializedValue?: (
+      option: SelectOption<TValue> | null,
+    ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+    /**
+     * Callback fired when an option is selected.
+     */
+    onChange?: (
+      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      value: TValue | null,
+    ) => void;
+    /**
+     * Function that customizes the rendering of the selected value.
+     */
+    renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+    /**
+     * The selected value.
+     * Set to `null` to deselect all options.
+     */
+    value?: TValue | null;
+  };
 
 export interface SelectOwnerState<TValue extends {}>
   extends ApplyColorInversion<SelectOwnProps<TValue>> {

@@ -44,6 +44,7 @@ export type TextareaSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    TextareaSlotsAndSlotProps &
     Pick<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       | 'autoComplete'
@@ -105,7 +106,7 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, TextareaPropsVariantOverrides>;
-    } & TextareaSlotsAndSlotProps;
+    };
   defaultComponent: D;
 }
 

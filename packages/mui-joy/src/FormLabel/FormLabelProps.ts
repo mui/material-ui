@@ -27,20 +27,21 @@ export type FormLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * The asterisk is added if required=`true`
-     */
-    required?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps;
-  } & FormLabelSlotsAndSlotProps;
+  props: P &
+    FormLabelSlotsAndSlotProps & {
+      /**
+       * The content of the component.
+       */
+      children?: React.ReactNode;
+      /**
+       * The asterisk is added if required=`true`
+       */
+      required?: boolean;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps;
+    };
   defaultComponent: D;
 }
 

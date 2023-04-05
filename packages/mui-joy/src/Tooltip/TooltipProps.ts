@@ -37,6 +37,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
+    TooltipSlotsAndSlotProps &
     Pick<PopperUnstyledProps, 'disablePortal' | 'direction' | 'keepMounted' | 'modifiers'> & {
       /**
        * If `true`, adds an arrow to the tooltip.
@@ -167,7 +168,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, TooltipPropsVariantOverrides>;
-    } & TooltipSlotsAndSlotProps;
+    };
   defaultComponent: D;
 }
 
