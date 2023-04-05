@@ -12,7 +12,7 @@ import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import PopperUnstyled, { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -566,15 +566,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     className: classes.listbox,
     elementType: AutocompleteListbox,
     getSlotProps: getListboxProps,
-    externalForwardedProps: {
-      ...other,
-      slotProps: {
-        ...props.slotProps,
-        ...(props.slotProps?.listbox && {
-          listbox: { ...props.slotProps.listbox, component: undefined },
-        }),
-      },
-    },
+    externalForwardedProps: other,
     ownerState,
     getSlotOwnerState: (mergedProps) => ({
       size: mergedProps.size || size,
@@ -583,7 +575,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       disableColorInversion: !mergedProps.disablePortal,
     }),
     additionalProps: {
-      as: PopperUnstyled,
       anchorEl,
       open: popupOpen,
       style: anchorEl
@@ -591,9 +582,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             width: anchorEl.clientWidth,
           }
         : {},
-      slots: {
-        root: (props.slotProps?.listbox as SlotCommonProps)?.component || 'ul',
-      },
     },
   });
 
@@ -695,6 +683,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           )}
           // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
           modifiers={modifiers}
+          {...(!props.slots?.listbox && {
+            as: PopperUnstyled,
+            slots: { root: listboxProps.component || 'ul' },
+          })}
         >
           {groupedOptions.map((option, index) => {
             if (groupBy) {

@@ -14,10 +14,24 @@ import findOutermostIntrinsic from './findOutermostIntrinsic';
 import { MuiRenderResult } from './createRenderer';
 
 export interface SlotTestingOptions {
+  /**
+   * A custom React component to test if the receiving props are correct.
+   *
+   * It must:
+   * - contains at least one DOM which has `data-testid="custom"`
+   * - spread `className` to the DOM
+   *
+   * If not provided, the default custom component tests if the class name is spread.
+   */
   testWithComponent?: React.ComponentType;
+  /**
+   * A custom HTML tag to use for the `slots` prop.
+   */
   testWithElement?: keyof JSX.IntrinsicElements | null;
+  /**
+   * To ensure that the slot has this class name when `slotProps` is provided.
+   */
   expectedClassName: string;
-  isOptional?: boolean;
 }
 
 interface SlotTestOverride {
@@ -262,9 +276,14 @@ function forEachSlot(
 function testSlotsProp(element: React.ReactElement, getOptions: () => ConformanceOptions) {
   const { render, slots, testLegacyComponentsProp } = getOptions();
 
-  const CustomComponent = React.forwardRef<HTMLElement, { className?: string }>(
-    ({ className }, ref) => <i className={className} ref={ref} data-testid="custom" />,
-  );
+  const CustomComponent = React.forwardRef<
+    HTMLElement,
+    React.PropsWithChildren<{ className?: string }>
+  >(({ className, children }, ref) => (
+    <i className={className} ref={ref} data-testid="custom">
+      {children}
+    </i>
+  ));
 
   forEachSlot(slots, (slotName, slotOptions) => {
     it(`allows overriding the ${slotName} slot with a component using the slots.${slotName} prop`, () => {

@@ -37,7 +37,7 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
 describe('Joy <Autocomplete />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Autocomplete options={[]} />, () => ({
+  describeConformance(<Autocomplete options={['one', 'two']} defaultValue="one" open />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -46,7 +46,31 @@ describe('Joy <Autocomplete />', () => {
     muiName: 'JoyAutocomplete',
     testDeepOverrides: { slotName: 'popupIndicator', slotClassName: classes.popupIndicator },
     testVariantProps: { size: 'lg' },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: [
+      'componentsProp',
+      'classesRoot',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      input: {
+        testWithComponent: React.forwardRef<HTMLInputElement>((props, ref) => (
+          <input ref={ref} {...props} data-testid="custom" />
+        )),
+        testWithElement: 'input',
+        expectedClassName: classes.input,
+      },
+      listbox: {
+        testWithComponent: React.forwardRef<HTMLDivElement>((props, ref) => (
+          <div ref={ref} {...props} data-testid="custom" />
+        )),
+        testWithElement: 'div',
+        expectedClassName: classes.listbox,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Autocomplete options={[]} open />, {
