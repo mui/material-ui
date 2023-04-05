@@ -21,18 +21,17 @@ export type CardContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    CardContentSlotsAndSlotProps & {
-      /**
-       * Used to render icon or text elements inside the CardContent if `src` is not set.
-       * This can be an element, or just a string.
-       */
-      children?: React.ReactNode;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * Used to render icon or text elements inside the CardContent if `src` is not set.
+     * This can be an element, or just a string.
+     */
+    children?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & CardContentSlotsAndSlotProps;
   defaultComponent: D;
 }
 

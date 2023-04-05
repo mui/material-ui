@@ -43,46 +43,45 @@ export type CircularProgressSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P &
-    CircularProgressSlotsAndSlotProps & {
-      /**
-       * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'primary'
-       */
-      color?: OverridableStringUnion<ColorPaletteProp, CircularProgressPropsColorOverrides>;
-      /**
-       * The boolean to select a variant.
-       * Use indeterminate when there is no progress value.
-       * @default false
-       */
-      determinate?: true | false;
-      /**
-       * The size of the component.
-       * It accepts theme values between 'sm' and 'lg'.
-       * @default 'md'
-       */
-      size?: OverridableStringUnion<'sm' | 'md' | 'lg', CircularProgressPropsSizeOverrides>;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-      /**
-       * The thickness of the circle.
-       */
-      thickness?: number;
-      /**
-       * The value of the progress indicator for the determinate variant.
-       * Value between 0 and 100.
-       *
-       * @default determinate ? 0 : 25
-       */
-      value?: number;
-      /**
-       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       * @default 'soft'
-       */
-      variant?: OverridableStringUnion<VariantProp, CircularProgressPropsVariantOverrides>;
-    };
+  props: P & {
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, CircularProgressPropsColorOverrides>;
+    /**
+     * The boolean to select a variant.
+     * Use indeterminate when there is no progress value.
+     * @default false
+     */
+    determinate?: true | false;
+    /**
+     * The size of the component.
+     * It accepts theme values between 'sm' and 'lg'.
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', CircularProgressPropsSizeOverrides>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+    /**
+     * The thickness of the circle.
+     */
+    thickness?: number;
+    /**
+     * The value of the progress indicator for the determinate variant.
+     * Value between 0 and 100.
+     *
+     * @default determinate ? 0 : 25
+     */
+    value?: number;
+    /**
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'soft'
+     */
+    variant?: OverridableStringUnion<VariantProp, CircularProgressPropsVariantOverrides>;
+  } & CircularProgressSlotsAndSlotProps;
   defaultComponent: D;
 }
 

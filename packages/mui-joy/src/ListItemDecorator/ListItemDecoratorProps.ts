@@ -21,17 +21,16 @@ export type ListItemDecoratorSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface ListItemDecoratorTypeMap<P = {}, D extends React.ElementType = 'span'> {
-  props: P &
-    ListItemDecoratorSlotsAndSlotProps & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & ListItemDecoratorSlotsAndSlotProps;
   defaultComponent: D;
 }
 

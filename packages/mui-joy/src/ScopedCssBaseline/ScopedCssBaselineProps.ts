@@ -20,24 +20,23 @@ export type ScopedCssBaselineSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    ScopedCssBaselineSlotsAndSlotProps & {
-      /**
-       * You can wrap a node.
-       */
-      children?: React.ReactNode;
-      /**
-       * Disable `color-scheme` CSS property.
-       * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
-       * For browser support, check out https://caniuse.com/?search=color-scheme
-       * @default false
-       */
-      disableColorScheme?: boolean;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * You can wrap a node.
+     */
+    children?: React.ReactNode;
+    /**
+     * Disable `color-scheme` CSS property.
+     * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+     * For browser support, check out https://caniuse.com/?search=color-scheme
+     * @default false
+     */
+    disableColorScheme?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & ScopedCssBaselineSlotsAndSlotProps;
   defaultComponent: D;
 }
 

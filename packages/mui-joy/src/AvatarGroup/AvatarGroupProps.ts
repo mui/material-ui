@@ -23,7 +23,6 @@ export type AvatarGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface AvatarGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    AvatarGroupSlotsAndSlotProps &
     Pick<AvatarProps, 'color' | 'size' | 'variant'> & {
       /**
        * The color context for the avatar children.
@@ -51,7 +50,7 @@ export interface AvatarGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
        * @default 'soft'
        */
       variant?: AvatarProps['variant'];
-    };
+    } & AvatarGroupSlotsAndSlotProps;
   defaultComponent: D;
 }
 

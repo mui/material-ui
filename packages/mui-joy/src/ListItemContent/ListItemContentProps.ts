@@ -21,17 +21,16 @@ export type ListItemContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface ListItemContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    ListItemContentSlotsAndSlotProps & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & ListItemContentSlotsAndSlotProps;
   defaultComponent: D;
 }
 

@@ -23,32 +23,31 @@ export type ListDividerSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface ListDividerInsetOverrides {}
 
 export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P &
-    ListDividerSlotsAndSlotProps & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * The empty space on the side(s) of the divider in a vertical list.
-       *
-       * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
-       * @default 'context'
-       */
-      inset?: OverridableStringUnion<
-        'context' | 'gutter' | 'startDecorator' | 'startContent',
-        ListDividerInsetOverrides
-      >;
-      /**
-       * The component orientation.
-       * @default 'horizontal'
-       */
-      orientation?: 'horizontal' | 'vertical';
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * The empty space on the side(s) of the divider in a vertical list.
+     *
+     * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
+     * @default 'context'
+     */
+    inset?: OverridableStringUnion<
+      'context' | 'gutter' | 'startDecorator' | 'startContent',
+      ListDividerInsetOverrides
+    >;
+    /**
+     * The component orientation.
+     * @default 'horizontal'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & ListDividerSlotsAndSlotProps;
   defaultComponent: D;
 }
 

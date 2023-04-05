@@ -25,28 +25,27 @@ export interface AutocompleteListboxPropsColorOverrides {}
 export interface AutocompleteListboxPropsVariantOverrides {}
 
 export interface AutocompleteListboxTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P &
-    AutocompleteListboxSlotsAndSlotProps & {
-      /**
-       * The color of the component. It supports those theme colors that make sense for this component.
-       * @default 'neutral'
-       */
-      color?: OverridableStringUnion<ColorPaletteProp, AutocompleteListboxPropsColorOverrides>;
-      /**
-       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       * @default 'outlined'
-       */
-      variant?: OverridableStringUnion<VariantProp, AutocompleteListboxPropsVariantOverrides>;
-      /**
-       * The size of the component (affect other nested list* components).
-       * @default 'md'
-       */
-      size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompleteListboxPropsSizeOverrides>;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, AutocompleteListboxPropsColorOverrides>;
+    /**
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     * @default 'outlined'
+     */
+    variant?: OverridableStringUnion<VariantProp, AutocompleteListboxPropsVariantOverrides>;
+    /**
+     * The size of the component (affect other nested list* components).
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompleteListboxPropsSizeOverrides>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & AutocompleteListboxSlotsAndSlotProps;
   defaultComponent: D;
 }
 

@@ -21,17 +21,16 @@ export type FormHelperTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
-  props: P &
-    FormHelperTextSlotsAndSlotProps & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & FormHelperTextSlotsAndSlotProps;
   defaultComponent: D;
 }
 

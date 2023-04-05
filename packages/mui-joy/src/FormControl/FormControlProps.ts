@@ -24,47 +24,46 @@ export interface FormControlPropsColorOverrides {}
 export interface FormControlPropsSizeOverrides {}
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    FormControlSlotsAndSlotProps & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * The color of the component. It supports those theme colors that make sense for this component.
-       */
-      color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
-      /**
-       * If `true`, the children are in disabled state.
-       * @default false
-       */
-      disabled?: boolean;
-      /**
-       * If `true`, the children will indicate an error.
-       * @default false
-       */
-      error?: boolean;
-      /**
-       * The content direction flow.
-       * @default 'vertical'
-       */
-      orientation?: 'vertical' | 'horizontal';
-      /**
-       * If `true`, the user must specify a value for the input before the owning form can be submitted.
-       * If `true`, the asterisk appears on the FormLabel.
-       * @default false
-       */
-      required?: boolean;
-      /**
-       * The size of the component.
-       * @default 'md'
-       */
-      size?: OverridableStringUnion<'sm' | 'md' | 'lg', FormControlPropsSizeOverrides>;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-    };
+  props: P & {
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
+    /**
+     * If `true`, the children are in disabled state.
+     * @default false
+     */
+    disabled?: boolean;
+    /**
+     * If `true`, the children will indicate an error.
+     * @default false
+     */
+    error?: boolean;
+    /**
+     * The content direction flow.
+     * @default 'vertical'
+     */
+    orientation?: 'vertical' | 'horizontal';
+    /**
+     * If `true`, the user must specify a value for the input before the owning form can be submitted.
+     * If `true`, the asterisk appears on the FormLabel.
+     * @default false
+     */
+    required?: boolean;
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', FormControlPropsSizeOverrides>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+  } & FormControlSlotsAndSlotProps;
   defaultComponent: D;
 }
 

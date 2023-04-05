@@ -46,7 +46,6 @@ export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
-    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -99,7 +98,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, LinkPropsVariantOverrides>;
-    };
+    } & LinkSlotsAndSlotProps;
   defaultComponent: D;
 }
 

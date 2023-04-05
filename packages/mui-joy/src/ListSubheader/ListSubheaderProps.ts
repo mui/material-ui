@@ -24,30 +24,29 @@ export interface ListSubheaderVariantOverrides {}
 export interface ListSubheaderColorOverrides {}
 
 export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    ListSubheaderSlotsAndSlotProps & {
-      /**
-       * The color of the component. It supports those theme colors that make sense for this component.
-       */
-      color?: OverridableStringUnion<ColorPaletteProp, ListSubheaderColorOverrides>;
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps;
-      /**
-       * If `true`, the component has sticky position (with top = 0).
-       * @default false
-       */
-      sticky?: boolean;
-      /**
-       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-       */
-      variant?: OverridableStringUnion<VariantProp, ListSubheaderVariantOverrides>;
-    };
+  props: P & {
+    /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, ListSubheaderColorOverrides>;
+    /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps;
+    /**
+     * If `true`, the component has sticky position (with top = 0).
+     * @default false
+     */
+    sticky?: boolean;
+    /**
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+     */
+    variant?: OverridableStringUnion<VariantProp, ListSubheaderVariantOverrides>;
+  } & ListSubheaderSlotsAndSlotProps;
   defaultComponent: D;
 }
 
