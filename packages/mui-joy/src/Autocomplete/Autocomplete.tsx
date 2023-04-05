@@ -220,7 +220,7 @@ const AutocompletePopupIndicator = styled(StyledIconButton as unknown as 'button
   }),
 }));
 
-const AutocompleteListbox = styled(StyledAutocompleteListbox as unknown as 'ul', {
+const AutocompleteListbox = styled(StyledAutocompleteListbox, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
@@ -402,20 +402,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const modifiers = React.useMemo(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      ...((props.slotProps?.listbox as Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>)
-        ?.modifiers || []),
-    ],
-    [props.slotProps?.listbox],
-  );
 
   let selectedOptions;
 
@@ -605,12 +591,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             width: anchorEl.clientWidth,
           }
         : {},
-      modifiers,
       slots: {
         root: (props.slotProps?.listbox as SlotCommonProps)?.component || 'ul',
       },
     },
   });
+
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(listboxProps.modifiers || []),
+    ],
+    [listboxProps.modifiers],
+  );
 
   const [SlotLoading, loadingProps] = useSlot('loading', {
     className: classes.loading,
@@ -694,6 +693,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             listboxProps.className,
             listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
           )}
+          // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+          modifiers={modifiers}
         >
           {groupedOptions.map((option, index) => {
             if (groupBy) {
