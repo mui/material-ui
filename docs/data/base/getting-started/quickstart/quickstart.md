@@ -130,8 +130,7 @@ After installing Tailwind, simply pass Tailwind's utility classes to `className`
 
 Here's a complete demo of the same button styled with Tailwind instead:
 
-{{"demo": "BaseButtonTailwind.light.js", "excludeByCurrentColorMode": true}}
-{{"demo": "BaseButtonTailwind.dark.js", "excludeByCurrentColorMode": true}}
+{{"demo": "BaseButtonTailwind.js", "hideToolbar": true}}
 
 ### Styling with MUI System
 
