@@ -110,9 +110,9 @@ See [Disabling default CSS classes](#disabling-default-css-classes) for instruct
 
 ### Overriding subcomponent slots
 
-If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see the guide on [Overriding component structure](/base/guides/overriding-component-structure/) for more details.
+If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
 
-The following demo uses the [Unstyled Switch](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
+The following demo uses [SwitchUnstyled](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
 
 Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
@@ -184,7 +184,7 @@ See ["Components vs. hooks" on the Base Usage page](/base/getting-started/usage/
 
 Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
-In the case of the [Unstyled Switch](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
+In the case of [SwitchUnstyled](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 
 It returns the following object:
 
