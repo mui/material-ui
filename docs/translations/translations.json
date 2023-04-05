@@ -439,6 +439,7 @@
     "/joy-ui/customization/default-theme-viewer": "Default theme viewer",
     "/joy-ui/customization/theme-builder": "Theme builder",
     "/joy-ui/guides": "How-to guides",
+    "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
     "/joy-ui/guides/using-icon-libraries": "Using icon libraries"
   }
