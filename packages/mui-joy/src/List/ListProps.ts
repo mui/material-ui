@@ -20,10 +20,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListPropsColorOverrides>;
     /**
-     * If `true`, display the list in horizontal direction.
-     * @default false
+     * The component orientation.
+     * @default 'vertical'
      */
-    row?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
@@ -34,7 +34,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;

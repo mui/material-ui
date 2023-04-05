@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React List component
+components: List, ListDivider, ListItem, ListItemButton, ListItemContent, ListItemDecorator, ListSubheader
 githubLabel: 'component: list'
 ---
 
@@ -61,7 +62,7 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
 
-It comes with a minimum set width that you can adjust via the `--List-decorator-size` CSS variable within the `List` component.
+It comes with a minimum set width that you can adjust via the `--ListItemDecorator-size` CSS variable within the `List` component.
 
 {{"demo": "DecoratedList.js"}}
 
@@ -101,7 +102,7 @@ It works by default on both light and dark modes.
 Use the `nested` prop, within the `ListItem` component, to create a nested list.
 Note that layout and spacing of the nested list remain intact, as if it isn't nested.
 
-The nested list inherits the list `size` and a few other CSS variables, such as `--List-radius` and `--List-item-radius` from the root `List` component to adjust the design consistently.
+The nested list inherits the list `size` and a few other CSS variables, such as `--List-radius` and `--ListItem-radius` from the root `List` component to adjust the design consistently.
 
 {{"demo": "NestedList.js"}}
 
@@ -117,7 +118,7 @@ To add spacing to the start of the nested list, use `--List-nestedInsetStart: ${
 
 ### Horizontal list
 
-To show a list in a horizontal direction, use the `row` prop on the `List` component.
+To show a list in a horizontal direction, use the `orientation="horizontal"` prop on the `List` component.
 
 :::warning
 Nested lists don't work in the horizontal direction.
@@ -170,6 +171,10 @@ The `ListItemButton` and the secondary action render as siblings, that way, the 
 Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
 It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
 
+:::info
+A selected `ListItemButton` does not apply `:hover` and `:active` global variant styles.
+:::
+
 {{"demo": "SelectedList.js"}}
 
 ## CSS variables
@@ -203,7 +208,7 @@ This example uses the start action (a prop of `ListItem`) prop to create a colla
 
 ### Navigation menu
 
-Inspired by the [APG Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html) design pattern.
+Inspired by the [APG Navigation Menubar](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/examples/menubar-navigation/) design pattern.
 This example uses a combination of horizontal and vertical lists to form the navigation menu bar.
 
 It also supports keyboard navigation, inspired by the [Roving UX](https://github.com/argyleink/roving-ux) technique.

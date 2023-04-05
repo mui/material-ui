@@ -11,15 +11,16 @@ import {
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
-import useSnackbar from './useSnackbar';
+import useSnackbar from '../useSnackbar';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getSnackbarUnstyledUtilityClass, undefined);
+  return composeClasses(slots, useClassNamesOverride(getSnackbarUnstyledUtilityClass));
 };
 /**
  *

@@ -3,7 +3,8 @@ import { Transition } from 'react-transition-group';
 import { styled } from '@mui/system';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
-import SnackbarUnstyled, { SnackbarCloseReason } from '@mui/base/SnackbarUnstyled';
+import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 const blue = {
   50: '#F0F7FF',

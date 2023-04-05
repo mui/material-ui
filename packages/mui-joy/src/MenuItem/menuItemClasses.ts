@@ -36,10 +36,10 @@ export interface MenuItemClasses {
 export type MenuItemClassKey = keyof MenuItemClasses;
 
 export function getMenuItemUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyMenuItem', slot);
+  return generateUtilityClass('MuiMenuItem', slot);
 }
 
-const menuItemClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', [
+const menuItemClasses: MenuItemClasses = generateUtilityClasses('MuiMenuItem', [
   'root',
   'focusVisible',
   'disabled',

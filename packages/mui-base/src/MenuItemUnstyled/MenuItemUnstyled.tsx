@@ -7,18 +7,19 @@ import {
   MenuItemUnstyledTypeMap,
 } from './MenuItemUnstyled.types';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
-import useMenuItem from './useMenuItem';
+import useMenuItem from '../useMenuItem';
 import composeClasses from '../composeClasses';
 import useSlotProps from '../utils/useSlotProps';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-function getUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
+function useUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
   const { disabled, focusVisible } = ownerState;
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
   };
 
-  return composeClasses(slots, getMenuItemUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getMenuItemUnstyledUtilityClass));
 }
 
 /**
@@ -44,15 +45,15 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
     ...other
   } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({
+  const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
     disabled: disabledProp,
     ref,
     label,
   });
 
-  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible };
+  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible, highlighted };
 
-  const classes = getUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   const Root = component ?? slots.root ?? 'li';
   const rootProps = useSlotProps({

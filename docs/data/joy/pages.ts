@@ -1,3 +1,5 @@
+import pagesApi from './pagesApi';
+
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
@@ -51,8 +53,9 @@ const pages = [
           { pathname: '/joy-ui/react-chip' },
           { pathname: '/joy-ui/react-divider' },
           { pathname: '/joy-ui/react-list' },
-          { pathname: '/joy-ui/react-typography' },
+          { pathname: '/joy-ui/react-table' },
           { pathname: '/joy-ui/react-tooltip' },
+          { pathname: '/joy-ui/react-typography' },
         ],
       },
       {
@@ -63,12 +66,17 @@ const pages = [
           { pathname: '/joy-ui/react-circular-progress', title: 'Circular Progress' },
           { pathname: '/joy-ui/react-linear-progress', title: 'Linear Progress' },
           { pathname: '/joy-ui/react-modal' },
+          { pathname: '/joy-ui/react-snackbar', comingSoon: true },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
-        children: [{ pathname: '/joy-ui/react-card' }, { pathname: '/joy-ui/react-sheet' }],
+        children: [
+          { pathname: '/joy-ui/react-accordion', comingSoon: true },
+          { pathname: '/joy-ui/react-card' },
+          { pathname: '/joy-ui/react-sheet' },
+        ],
       },
       {
         pathname: '/joy-ui/components/navigation',
@@ -93,16 +101,36 @@ const pages = [
     ],
   },
   {
+    title: 'Component API',
+    pathname: '/joy-ui/api',
+    icon: 'CodeIcon',
+    children: pagesApi,
+  },
+  {
     pathname: '/joy-ui/customization',
     icon: 'CreateIcon',
     children: [
       { pathname: '/joy-ui/customization/approaches' },
       { pathname: '/joy-ui/customization/dark-mode' },
-      { pathname: '/joy-ui/customization/default-theme' },
-      { pathname: '/joy-ui/customization/theme-tokens' },
-      { pathname: '/joy-ui/customization/theme-typography' },
-      { pathname: '/joy-ui/customization/themed-components' },
       { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
+      {
+        pathname: '/joy-ui/customization/theme',
+        subheader: 'Theme',
+        children: [
+          { pathname: '/joy-ui/customization/theme-colors', title: 'Colors' },
+          { pathname: '/joy-ui/customization/theme-shadow', title: 'Shadow' },
+          { pathname: '/joy-ui/customization/theme-typography', title: 'Typography' },
+          { pathname: '/joy-ui/customization/themed-components', title: 'Components' },
+        ],
+      },
+      {
+        subheader: 'Tools',
+        pathname: '/joy-ui/customization/tool',
+        children: [
+          { pathname: '/joy-ui/customization/default-theme-viewer' },
+          { pathname: '/joy-ui/customization/theme-builder' },
+        ],
+      },
     ],
   },
   {

@@ -281,6 +281,14 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * Color schemes configuration
    */
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
@@ -392,6 +400,10 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: ThemeVars;
+  };
 
   // Default theme tokens
   spacing: Theme['spacing'];
@@ -402,6 +414,14 @@ export interface CssVarsTheme extends ColorSystem {
   shadows: Theme['shadows'];
   mixins: Theme['mixins'];
   zIndex: Theme['zIndex'];
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
 }

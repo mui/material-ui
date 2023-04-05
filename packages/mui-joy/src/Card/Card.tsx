@@ -16,15 +16,15 @@ import { resolveSxValue } from '../styles/styleUtils';
 import { CardRowContext } from './CardContext';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
-  const { size, variant, color, row } = ownerState;
+  const { size, variant, color, orientation } = ownerState;
 
   const slots = {
     root: [
       'root',
+      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
-      row && 'row',
     ],
   };
 
@@ -43,9 +43,9 @@ const CardRoot = styled('div', {
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth, 0px))',
+    '--unstable_actionMargin': 'calc(-1 * var(--variant-borderWidth, 0px))',
     // Link, Radio, Checkbox integration
-    '--internal-action-radius': resolveSxValue(
+    '--unstable_actionRadius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',
@@ -75,12 +75,9 @@ const CardRoot = styled('div', {
     boxShadow: theme.shadow.sm,
     backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
-    // TODO: discuss the theme transition.
-    // This value is copied from mui-material Sheet.
-    transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: ownerState.row ? 'row' : 'column',
+    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   ownerState.color !== 'context' &&
@@ -88,6 +85,16 @@ const CardRoot = styled('div', {
     theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
 ]);
 
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [Card API](https://mui.com/joy-ui/api/card/)
+ */
 const Card = React.forwardRef(function Card(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardProps>({
     props: inProps,
@@ -102,7 +109,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     size = 'md',
     variant = 'plain',
     children,
-    row = false,
+    orientation = 'vertical',
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -112,7 +119,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ...props,
     color,
     component,
-    row,
+    orientation,
     size,
     variant,
   };
@@ -120,7 +127,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const result = (
-    <CardRowContext.Provider value={row}>
+    <CardRowContext.Provider value={orientation === 'horizontal'}>
       <CardRoot
         as={component}
         ownerState={ownerState}
@@ -136,9 +143,9 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           if (isMuiElement(child, ['Divider'])) {
             extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const orientation = row ? 'vertical' : 'horizontal';
+            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
             extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : orientation;
+              'orientation' in child.props ? child.props.orientation : dividerOrientation;
           }
           if (index === 0) {
             extraProps['data-first-child'] = '';
@@ -191,10 +198,10 @@ Card.propTypes /* remove-proptypes */ = {
    */
   invertedColors: PropTypes.bool,
   /**
-   * If `true`, flex direction is set to 'row'.
-   * @default false
+   * The component orientation.
+   * @default 'vertical'
    */
-  row: PropTypes.bool,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
@@ -213,7 +220,7 @@ Card.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

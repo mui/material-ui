@@ -11,7 +11,7 @@
     "id": { "type": { "name": "string" } },
     "maxRows": { "type": { "name": "number" } },
     "minRows": { "type": { "name": "number" } },
-    "multiline": { "type": { "name": "bool" } },
+    "multiline": { "type": { "name": "bool" }, "default": "false" },
     "name": { "type": { "name": "string" } },
     "placeholder": { "type": { "name": "string" } },
     "readOnly": { "type": { "name": "bool" } },
@@ -43,7 +43,28 @@
   },
   "name": "InputUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiInput-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiInput-input"
+    },
+    {
+      "name": "textarea",
+      "description": "The component that renders the textarea.",
+      "default": "'textarea'",
+      "class": null
+    }
+  ],
   "spread": true,
+  "muiName": "MuiInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,

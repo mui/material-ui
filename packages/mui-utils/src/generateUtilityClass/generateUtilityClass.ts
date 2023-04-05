@@ -5,6 +5,7 @@ export type GlobalStateSlot =
   | 'checked'
   | 'completed'
   | 'disabled'
+  | 'readOnly'
   | 'error'
   | 'expanded'
   | 'focused'
@@ -17,6 +18,7 @@ const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
   checked: 'checked',
   completed: 'completed',
   disabled: 'disabled',
+  readOnly: 'readOnly',
   error: 'error',
   expanded: 'expanded',
   focused: 'focused',

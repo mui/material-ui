@@ -7,19 +7,19 @@ import {
   useSlotProps,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
-import { useSlider, getSliderUtilityClass } from '@mui/base/SliderUnstyled';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
-import SliderValueLabelComponent from './SliderValueLabel';
-import sliderClasses from './sliderClasses';
+import SliderValueLabel from './SliderValueLabel';
+import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
-const valueToPercent = (value, min, max) => ((value - min) * 100) / (max - min);
-
-const Identity = (x) => x;
+function Identity(x) {
+  return x;
+}
 
 const SliderRoot = styled('span', {
   name: 'MuiSlider',
@@ -296,7 +296,7 @@ SliderThumb.propTypes /* remove-proptypes */ = {
 
 export { SliderThumb };
 
-const SliderValueLabel = styled(SliderValueLabelComponent, {
+const StyledSliderValueLabel = styled(SliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -355,7 +355,7 @@ const SliderValueLabel = styled(SliderValueLabelComponent, {
   }),
 }));
 
-SliderValueLabel.propTypes /* remove-proptypes */ = {
+StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -366,7 +366,7 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
 };
 
-export { SliderValueLabel };
+export { StyledSliderValueLabel as SliderValueLabel };
 
 const SliderMark = styled('span', {
   name: 'MuiSlider',
@@ -506,7 +506,6 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     componentsProps = {},
     color = 'primary',
     classes: classesProp,
-    // eslint-disable-next-line react/prop-types
     className,
     disableSwap = false,
     disabled = false,
@@ -579,7 +578,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
   const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
   const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
-  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? SliderValueLabel;
+  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? StyledSliderValueLabel;
   const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
   const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
   const InputSlot = slots?.input ?? components.Input ?? 'input';
@@ -641,6 +640,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
       ...ownerState,
       ...thumbSlotProps?.ownerState,
     },
+    className: classes.thumb,
   });
 
   const valueLabelProps = useSlotProps({
@@ -664,6 +664,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     elementType: MarkLabelSlot,
     externalSlotProps: markLabelSlotProps,
     ownerState,
+    className: classes.markLabel,
   });
 
   const inputSliderProps = useSlotProps({
@@ -737,50 +738,48 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelSlot;
 
         return (
-          <React.Fragment key={index}>
-            {/* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure.  */}
-            <ValueLabelComponent
-              {...(!isHostComponent(ValueLabelComponent) && {
-                valueLabelFormat,
-                valueLabelDisplay,
-                value:
-                  typeof valueLabelFormat === 'function'
-                    ? valueLabelFormat(scale(value), index)
-                    : valueLabelFormat,
-                index,
-                open: open === index || active === index || valueLabelDisplay === 'on',
-                disabled,
+          /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
+          <ValueLabelComponent
+            key={index}
+            {...(!isHostComponent(ValueLabelComponent) && {
+              valueLabelFormat,
+              valueLabelDisplay,
+              value:
+                typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat,
+              index,
+              open: open === index || active === index || valueLabelDisplay === 'on',
+              disabled,
+            })}
+            {...valueLabelProps}
+          >
+            <ThumbSlot
+              data-index={index}
+              {...thumbProps}
+              className={clsx(classes.thumb, thumbProps.className, {
+                [classes.active]: active === index,
+                [classes.focusVisible]: focusedThumbIndex === index,
               })}
-              {...valueLabelProps}
+              style={{
+                ...style,
+                pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                ...thumbProps.style,
+              }}
             >
-              <ThumbSlot
+              <InputSlot
                 data-index={index}
-                data-focusvisible={focusedThumbIndex === index}
-                {...thumbProps}
-                className={clsx(classes.thumb, thumbProps.className, {
-                  [classes.active]: active === index,
-                  [classes.focusVisible]: focusedThumbIndex === index,
-                })}
-                style={{
-                  ...style,
-                  pointerEvents: disableSwap && active !== index ? 'none' : undefined,
-                  ...thumbProps.style,
-                }}
-              >
-                <InputSlot
-                  data-index={index}
-                  aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                  aria-valuenow={scale(value)}
-                  aria-labelledby={ariaLabelledby}
-                  aria-valuetext={
-                    getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
-                  }
-                  value={values[index]}
-                  {...inputSliderProps}
-                />
-              </ThumbSlot>
-            </ValueLabelComponent>
-          </React.Fragment>
+                aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                aria-valuenow={scale(value)}
+                aria-labelledby={ariaLabelledby}
+                aria-valuetext={
+                  getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                }
+                value={values[index]}
+                {...inputSliderProps}
+              />
+            </ThumbSlot>
+          </ValueLabelComponent>
         );
       })}
     </RootSlot>
@@ -832,6 +831,10 @@ Slider.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
@@ -973,7 +976,11 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -1074,7 +1081,11 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

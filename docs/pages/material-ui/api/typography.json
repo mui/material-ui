@@ -10,9 +10,9 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "gutterBottom": { "type": { "name": "bool" } },
-    "noWrap": { "type": { "name": "bool" } },
-    "paragraph": { "type": { "name": "bool" } },
+    "gutterBottom": { "type": { "name": "bool" }, "default": "false" },
+    "noWrap": { "type": { "name": "bool" }, "default": "false" },
+    "paragraph": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -61,6 +61,8 @@
     "name": "MuiTypography"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTypography",
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-material/src/Typography/Typography.js",
   "inheritance": null,

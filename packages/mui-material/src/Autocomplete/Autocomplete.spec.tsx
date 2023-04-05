@@ -17,9 +17,9 @@ interface MyAutocompleteProps<
 
 function MyAutocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
 >(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
   return <Autocomplete {...props} />;
 }
@@ -39,6 +39,13 @@ function MyAutocomplete<
   onChange={(event, value) => {
     expectType<string | null, typeof value>(value);
   }}
+  renderInput={() => null}
+/>;
+
+// Tests presence of sx prop in ListboxProps
+<Autocomplete
+  options={['1', '2', '3']}
+  ListboxProps={{ sx: { height: '10px' } }}
   renderInput={() => null}
 />;
 

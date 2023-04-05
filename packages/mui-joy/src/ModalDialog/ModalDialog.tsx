@@ -41,22 +41,31 @@ const ModalDialogRoot = styled(SheetRoot, {
   '--ModalClose-radius':
     'max((var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth, 0px)) / 2))',
   ...(ownerState.size === 'sm' && {
-    '--ModalDialog-padding': theme.spacing(1.25),
+    '--ModalDialog-padding': theme.spacing(2),
     '--ModalDialog-radius': theme.vars.radius.sm,
-    '--ModalClose-inset': theme.spacing(0.75),
+    '--ModalDialog-gap': theme.spacing(0.75),
+    '--ModalDialog-titleOffset': theme.spacing(0.25),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.25),
+    '--ModalClose-inset': theme.spacing(1.25),
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
-    '--ModalDialog-padding': theme.spacing(2),
+    '--ModalDialog-padding': theme.spacing(2.5),
     '--ModalDialog-radius': theme.vars.radius.md,
-    '--ModalClose-inset': theme.spacing(1),
+    '--ModalDialog-gap': theme.spacing(1.5),
+    '--ModalDialog-titleOffset': theme.spacing(0.25),
+    '--ModalDialog-descriptionOffset': theme.spacing(0.75),
+    '--ModalClose-inset': theme.spacing(1.5),
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalDialog-padding': theme.spacing(3),
     '--ModalDialog-radius': theme.vars.radius.md,
+    '--ModalDialog-gap': theme.spacing(2),
+    '--ModalDialog-titleOffset': theme.spacing(0.75),
+    '--ModalDialog-descriptionOffset': theme.spacing(1),
     '--ModalClose-inset': theme.spacing(1.5),
-    fontSize: theme.vars.fontSize.md,
+    fontSize: theme.vars.fontSize.lg,
   }),
   boxSizing: 'border-box',
   boxShadow: theme.shadow.md,
@@ -67,6 +76,8 @@ const ModalDialogRoot = styled(SheetRoot, {
   minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
   outline: 0,
   position: 'absolute',
+  display: 'flex',
+  flexDirection: 'column',
   ...(ownerState.layout === 'fullscreen' && {
     top: 0,
     left: 0,
@@ -79,9 +90,36 @@ const ModalDialogRoot = styled(SheetRoot, {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    maxHeight: 'calc(100% - 2 * var(--ModalDialog-padding))',
   }),
+  [`& [id="${ownerState['aria-labelledby']}"]`]: {
+    '--Typography-margin': 'calc(-1 * var(--ModalDialog-titleOffset)) 0 var(--ModalDialog-gap) 0',
+    '--Typography-fontSize': '1.125em',
+    [`& + [id="${ownerState['aria-describedby']}"]`]: {
+      '--unstable_ModalDialog-descriptionOffset': 'calc(-1 * var(--ModalDialog-descriptionOffset))',
+    },
+  },
+  [`& [id="${ownerState['aria-describedby']}"]`]: {
+    '--Typography-fontSize': '1em',
+    '--Typography-margin':
+      'var(--unstable_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 0 0',
+    '&:not(:last-child)': {
+      // create spacing between description and the next element.
+      '--Typography-margin':
+        'var(--unstable_ModalDialog-descriptionOffset, var(--ModalDialog-gap)) 0 var(--ModalDialog-gap) 0',
+    },
+  },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalDialog API](https://mui.com/joy-ui/api/modal-dialog/)
+ */
 const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalDialogProps>({
     props: inProps,
@@ -197,8 +235,8 @@ ModalDialog.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
-   * @default 'plain'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

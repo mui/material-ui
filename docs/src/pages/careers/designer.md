@@ -11,7 +11,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
@@ -41,9 +41,9 @@ Therefore, we need to grow the design team to help us push these initiatives fur
 
 Some criteria for applying to this role:
 
-- Location: fully remote (preference for UTC-6 to UTC +3).
-- Type of work: full-time (as a contractor or employee, [depending primarily on location](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
-- Level: [3 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
+- **Location**: fully remote (preference for UTC-6 to UTC +3).
+- **Type of work**: full-time (as a contractor or employee, [depending primarily on location](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
+- **Level**: [3 or above](https://mui-org.notion.site/Design-levels-aa01996ca7e0481e80479ad47c8f28a4).
 
 We need someone experienced enough to help two different teams with hard problems.
 You'll be responsible for ensuring that the MUI Toolpad and MUI X teams have spot-on design and product work.
@@ -99,3 +99,6 @@ If you happen to need additional conversations as well, feel free to ask; we'll 
 Lastly, please note that we're unable to offer individual feedback during the initial screening process, as we're a small team and don't have the bandwidth to do so.
 
 We look forward to hearing from you! ☺️
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

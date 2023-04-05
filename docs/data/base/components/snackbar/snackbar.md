@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Snackbar component and hook
 components: SnackbarUnstyled
+hooks: useSnackbar
 githubLabel: 'component: snackbar'
 ---
 
@@ -71,7 +72,7 @@ Use the `component` prop to override the root slot with a custom element:
 ## Hook
 
 ```js
-import { useSnackbar } from '@mui/base/SnackbarUnstyled';
+import useSnackbar from '@mui/base/useSnackbar';
 ```
 
 The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.
@@ -106,7 +107,7 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 You can animate the open and close states of the snackbar with a render prop child and a transition component, as long as the component meets these conditions:
 
-- Is a direct child descendent of the snackbar
+- Is a direct child descendant of the snackbar
 - Has an `in` prop—this corresponds to the open state
 - Passes the `exited` prop to Unstyled Snackbar
 - Calls the `onEnter` callback prop when the enter transition starts—sets `exited` to false

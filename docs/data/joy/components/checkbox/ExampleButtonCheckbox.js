@@ -14,7 +14,7 @@ export default function ExampleButtonCheckbox() {
       variant="outlined"
       aria-label="Screens"
       role="group"
-      row
+      orientation="horizontal"
       sx={{
         bgcolor: 'background.body',
         flexGrow: 0,

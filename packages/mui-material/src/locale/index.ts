@@ -463,6 +463,91 @@ export const bnBD: Localization = {
   },
 };
 
+export const beBY: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Паказаць шлях',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Перайсці на першую старонку';
+          }
+          if (type === 'last') {
+            return 'Перайсці на апошнюю старонку';
+          }
+          if (type === 'next') {
+            return 'Перайсці на наступную старонку';
+          }
+          // if (type === 'previous') {
+          return 'Перайсці на папярэднюю старонку';
+        },
+        labelRowsPerPage: 'Радкоў на старонцы:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} з ${count !== -1 ? count : `больш чым ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          let pluralForm = 'Зорак';
+          const lastDigit = value % 10;
+
+          if (lastDigit > 1 && lastDigit < 5 && (value < 10 || value > 20)) {
+            pluralForm = 'Зоркі';
+          } else if (lastDigit === 1 && value % 100 !== 11) {
+            pluralForm = 'Зорка';
+          }
+
+          return `${value} ${pluralForm}`;
+        },
+        emptyLabelText: 'Рэйтынг адсутнічае',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Ачысціць',
+        closeText: 'Закрыць',
+        loadingText: 'Загрузка…',
+        noOptionsText: 'Няма варыянтаў',
+        openText: 'Адкрыць',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Закрыць',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Навігацыя па старонкам',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            if (selected) {
+              return `${page} старонка`;
+            }
+            return `Перайсці на ${page} старонку`;
+          }
+          if (type === 'first') {
+            return 'Перайсці на першую старонку';
+          }
+          if (type === 'last') {
+            return 'Перайсці на апошнюю старонку';
+          }
+          if (type === 'next') {
+            return 'Перайсці на наступную старонку';
+          }
+          // if (type === 'previous') {
+          return 'Перайсці на папярэднюю старонку';
+        },
+      },
+    },
+  },
+};
+
 export const bgBG: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -2104,6 +2189,77 @@ export const koKR: Localization = {
           }
           // if (type === 'previous') {
           return '이전 페이지로 이동';
+        },
+      },
+    },
+  },
+};
+
+export const kuCKB: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'ڕێچکە پیشان بدە',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'چوونە یەکەم پەڕە';
+          }
+          if (type === 'last') {
+            return 'چوونە کۆتا پەڕە';
+          }
+          if (type === 'next') {
+            return 'چوونە پەڕەی دواتر';
+          }
+          // if (type === 'previous') {
+          return 'گەڕانەوە بۆ پەڕەی پێشوو';
+        },
+        labelRowsPerPage: 'ژمارەی ڕیزەکان لە هەر پەڕەیەک:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} لە ${count !== -1 ? count : ` زیاترە لە${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ${value !== 1 ? 'ئەستێرەکان' : 'ئەستێرە'}`,
+        emptyLabelText: 'خاڵیە',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'سڕینەوە',
+        closeText: 'داخستن',
+        loadingText: 'لە بارکردندایە...',
+        noOptionsText: 'هیچ بژاردەیەک نیە',
+        openText: 'کردنەوە',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'داخستن',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'گەڕان لە پەڕەکان',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'چوون بۆ '} پەڕەی ${page}`;
+          }
+          if (type === 'first') {
+            return 'چوونە یەکەم پەڕە';
+          }
+          if (type === 'last') {
+            return 'چوونە کۆتا پەڕە';
+          }
+          if (type === 'next') {
+            return 'چوونە پەڕەی دواتر';
+          }
+          // if (type === 'previous') {
+          return 'گەڕانەوە بۆ پەڕەی پێشوو';
         },
       },
     },

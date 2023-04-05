@@ -26,10 +26,10 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     invertedColors?: boolean;
     /**
-     * If `true`, flex direction is set to 'row'.
-     * @default false
+     * The component orientation.
+     * @default 'vertical'
      */
-    row?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
@@ -41,7 +41,7 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, CardPropsVariantOverrides>;

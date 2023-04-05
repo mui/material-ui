@@ -11,6 +11,7 @@ export interface AvatarGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
       /**
        * The color context for the avatar children.
        * It has no effect on the AvatarGroup.
+       * @default 'neutral'
        */
       color?: AvatarProps['color'];
       /**
@@ -30,6 +31,7 @@ export interface AvatarGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
       /**
        * The variant context for the avatar children.
        * It has no effect on the AvatarGroup.
+       * @default 'soft'
        */
       variant?: AvatarProps['variant'];
     };

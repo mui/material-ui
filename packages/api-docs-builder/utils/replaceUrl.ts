@@ -17,7 +17,10 @@ export const replaceMaterialLinks = (url: string) => {
   if (isNewLocation(url)) {
     return url;
   }
-  return url.replace(/(guides|customization|getting-started|discover-more)/, 'material-ui/$1');
+  return url.replace(
+    /(guides|customization|getting-started|discover-more|experimental-api|migration)/,
+    'material-ui/$1',
+  );
 };
 
 export const replaceComponentLinks = (url: string) => {
@@ -34,6 +37,8 @@ export const replaceComponentLinks = (url: string) => {
     url = url.replace(/\/components\/(.*)/, '/material-ui/$1');
   } else {
     url = url.replace(/\/components\/(.*)/, '/material-ui/react-$1');
+
+    // TODO remove, fix the markdown files to match the URLs
     if (!url.match(/\/react-(tabs|breadcrumbs)/)) {
       url = url
         .replace(/(react-[-a-z]+)(x|ch)es([^a-z-])/, '$1$2$3')
@@ -41,6 +46,8 @@ export const replaceComponentLinks = (url: string) => {
         .replace(/(react-[-a-z]+)(x|ch)es$/, '$1$2')
         .replace(/(react-[-a-z]+)s$/, '$1')
         .replace(/react-trap-focu/, 'react-trap-focus')
+        .replace(/react-circular-progres/, 'react-circular-progress')
+        .replace(/react-linear-progres/, 'react-linear-progress')
         .replace(/react-progres/, 'react-progress');
     }
   }

@@ -10,10 +10,6 @@ import experimental_extendTheme, {
 import createTypography from './createTypography';
 import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
-const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
-  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
-
 const defaultTheme = experimental_extendTheme();
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
@@ -41,13 +37,11 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
 
       return newTheme;
     },
-    shouldSkipGeneratingVar,
     excludeVariablesFromRoot,
   });
 
 export {
   useColorScheme,
   getInitColorSchemeScript,
-  shouldSkipGeneratingVar,
   CssVarsProvider as Experimental_CssVarsProvider,
 };

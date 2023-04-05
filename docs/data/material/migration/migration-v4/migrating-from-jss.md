@@ -18,7 +18,7 @@ Note that you may continue to use JSS for adding overrides for the components (e
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
 :::
 
 This document reviews all the steps necessary to migrate away from JSS.
@@ -113,7 +113,6 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  import Chip from '@mui/material/Chip';
 -import makeStyles from '@mui/styles/makeStyles';
 +import Box from '@mui/material/Box';
-+import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -128,7 +127,7 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  function App() {
 -  const classes = useStyles();
    return (
--    <div>
+-    <div className={classes.wrapper}>
 -      <Chip className={classes.chip} label="Chip" />
 -    </div>
 +    <Box sx={{ display: 'flex' }}>
@@ -440,7 +439,7 @@ Follow the instructions in the relevant section of the [Breaking changes](/mater
 In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
 By default, TSS is only able to provide the theme.
-If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-global-styleoverrides).
 
 :::warning
 tss-react is _not_ maintained by MUI.

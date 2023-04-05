@@ -80,7 +80,7 @@ return (
 );
 ```
 
-Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
+Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previously defined `@font-face` declarations won't be replaced.
 
 ## Font size
 
@@ -106,10 +106,10 @@ const theme = createTheme({
 The computed font size by the browser follows this mathematical equation:
 
 <div class="only-light-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size.svg" width="436" height="48" />
 </div>
 <div class="only-dark-mode">
-  <img alt="font size calculation" style="width: 458px;" src="/static/images/font-size-dark.svg" />
+  <img alt="font size calculation" style="width: 550px;" src="/static/images/font-size-dark.svg" width="436" height="48" />
 </div>
 
 <!-- https://latex.codecogs.com/svg.latex?\dpi{200}&space;\text{computed}&space;=&space;\text{specification}\cdot\frac{\text{typography.fontSize}}{14}\cdot\frac{\text{html&space;fontsize}}{\text{typography.htmlFontSize}} -->
@@ -229,10 +229,13 @@ In addition to using the default typography variants, you can add custom ones, o
 
 **Step 1. Update the theme's typography object**
 
+The code snippet below adds a custom variant to the theme called `poster`, and removes the default `h3` variant:
+
 ```js
 const theme = createTheme({
   typography: {
     poster: {
+      fontSize: '4rem',
       color: 'red',
     },
     // Disable h3 variant
@@ -241,7 +244,37 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. (Optional) Set the default semantic element for your new variant**
+
+At this point, you can already use the new `poster` variant, which will render a `<span>` by default with your custom styles.
+Sometimes you may want to default to a different HTML element for semantic purposes, or to replace the inline `<span>` with a block-level element for styling purposes.
+
+To do this, update the `variantMapping` prop of the `Typography` component globally, at the theme level:
+
+```js
+const theme = createTheme({
+  typography: {
+    poster: {
+      fontSize: 64,
+      color: 'red',
+    },
+    // Disable h3 variant
+    h3: undefined,
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          // Map the new variant to render a <h1> by default
+          poster: 'h1',
+        },
+      },
+    },
+  },
+});
+```
+
+**Step 3. Update the necessary typings (if you are using TypeScript)**
 
 :::info
 If you aren't using TypeScript you should skip this step.
@@ -272,14 +305,14 @@ declare module '@mui/material/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Step 4. You can now use the new variant**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
 ```jsx
 <Typography variant="poster">poster</Typography>;
 
-/* This variant is no longer supported */
+/* This variant is no longer supported. If you are using TypeScript it will give an error */
 <Typography variant="h3">h3</Typography>;
 ```
 

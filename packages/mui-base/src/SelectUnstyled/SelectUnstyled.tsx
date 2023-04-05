@@ -13,20 +13,47 @@ import {
   SelectUnstyledType,
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
-import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelect.types';
+import useSelect, { SelectChild, SelectOption, SelectValue } from '../useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
-import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
+import { SelectUnstyledContext } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
 import defaultOptionStringifier from './defaultOptionStringifier';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
-  return selectedOption?.label ?? '';
+function defaultRenderValue<TValue>(
+  selectedOptions: SelectOption<TValue> | SelectOption<TValue>[] | null,
+) {
+  if (Array.isArray(selectedOptions)) {
+    return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+  }
+
+  return selectedOptions?.label ?? '';
 }
 
-function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
+function defaultFormValueProvider<TValue>(
+  selectedOption: SelectOption<TValue> | SelectOption<TValue>[] | null,
+) {
+  if (Array.isArray(selectedOption)) {
+    if (selectedOption.length === 0) {
+      return '';
+    }
+
+    if (
+      selectedOption.every(
+        (o) =>
+          typeof o.value === 'string' ||
+          typeof o.value === 'number' ||
+          typeof o.value === 'boolean',
+      )
+    ) {
+      return selectedOption.map((o) => String(o.value));
+    }
+
+    return JSON.stringify(selectedOption.map((o) => o.value));
+  }
+
   if (selectedOption?.value == null) {
     return '';
   }
@@ -38,7 +65,7 @@ function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> |
   return JSON.stringify(selectedOption.value);
 }
 
-function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
+function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any, any>) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
@@ -53,7 +80,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
     popper: ['popper'],
   };
 
-  return composeClasses(slots, getSelectUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getSelectUnstyledUtilityClass));
 }
 
 /**
@@ -67,10 +94,10 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
  *
  * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
-const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {}>(
-  props: SelectUnstyledProps<TValue>,
-  forwardedRef: React.ForwardedRef<any>,
-) {
+const SelectUnstyled = React.forwardRef(function SelectUnstyled<
+  TValue extends {},
+  Multiple extends boolean,
+>(props: SelectUnstyledProps<TValue, Multiple>, forwardedRef: React.ForwardedRef<any>) {
   const {
     autoFocus,
     children,
@@ -81,6 +108,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
+    multiple = false as Multiple,
     name,
     onChange,
     onListboxOpenChange,
@@ -92,7 +120,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     ...other
   } = props;
 
-  const renderValue = renderValueProp ?? defaultRenderSingleValue;
+  const renderValue = renderValueProp ?? defaultRenderValue;
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -127,10 +155,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     }
   }, [autoFocus]);
 
-  const handleOpenChange = (isOpen: boolean) => {
-    setListboxOpen(isOpen);
-    onListboxOpenChange?.(isOpen);
-  };
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      setListboxOpen(isOpen);
+      onListboxOpenChange?.(isOpen);
+    },
+    [setListboxOpen, onListboxOpenChange],
+  );
 
   const {
     buttonActive,
@@ -138,51 +169,66 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     disabled,
     getButtonProps,
     getListboxProps,
-    getOptionProps,
-    getOptionState,
+    contextValue,
     value,
   } = useSelect({
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
     listboxId,
-    multiple: false,
+    multiple,
+    open: listboxOpen,
     onChange,
     onOpenChange: handleOpenChange,
-    open: listboxOpen,
     options,
     optionStringifier,
     value: valueProp,
   });
 
-  const ownerState: SelectUnstyledOwnerState<TValue> = {
+  const ownerState: SelectUnstyledOwnerState<TValue, Multiple> = {
     ...props,
     active: buttonActive,
     defaultListboxOpen,
     disabled,
     focusVisible: buttonFocusVisible,
     open: listboxOpen,
+    multiple,
     renderValue,
     value,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOption = React.useMemo(() => {
-    return options.find((o) => value === o.value) ?? null;
-  }, [options, value]);
+  const selectedOption: SelectValue<SelectOption<TValue>, Multiple> = React.useMemo(() => {
+    if (multiple) {
+      if (value == null) {
+        return [] as unknown as SelectValue<SelectOption<TValue>, Multiple>;
+      }
 
-  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = useSlotProps({
-    elementType: Button,
-    getSlotProps: getButtonProps,
-    externalSlotProps: slotProps.root,
-    externalForwardedProps: other,
-    ownerState,
-    className: classes.root,
-  });
+      return options.filter((o) => (value as TValue[]).includes(o.value)) as SelectValue<
+        SelectOption<TValue>,
+        Multiple
+      >;
+    }
 
-  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue>> = useSlotProps(
-    {
+    return (options.find((o) => value === o.value) ?? null) as SelectValue<
+      SelectOption<TValue>,
+      Multiple
+    >;
+  }, [options, value, multiple]);
+
+  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue, Multiple>> =
+    useSlotProps({
+      elementType: Button,
+      getSlotProps: getButtonProps,
+      externalSlotProps: slotProps.root,
+      externalForwardedProps: other,
+      ownerState,
+      className: classes.root,
+    });
+
+  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue, Multiple>> =
+    useSlotProps({
       elementType: ListboxRoot,
       getSlotProps: getListboxProps,
       externalSlotProps: slotProps.listbox,
@@ -191,10 +237,9 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
       },
       ownerState,
       className: classes.listbox,
-    },
-  );
+    });
 
-  const popperProps: SelectUnstyledPopperSlotProps<TValue> = useSlotProps({
+  const popperProps: SelectUnstyledPopperSlotProps<TValue, Multiple> = useSlotProps({
     elementType: Popper,
     externalSlotProps: slotProps.popper,
     additionalProps: {
@@ -208,22 +253,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {
     className: classes.popper,
   });
 
-  const context: SelectUnstyledContextType = React.useMemo(
-    () => ({
-      getOptionProps,
-      getOptionState,
-      listboxRef,
-    }),
-    [getOptionProps, getOptionState],
-  );
-
   return (
     <React.Fragment>
       <Button {...buttonProps}>{renderValue(selectedOption as any)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
-            <SelectUnstyledContext.Provider value={context}>
+            <SelectUnstyledContext.Provider value={contextValue}>
               {children}
             </SelectUnstyledContext.Provider>
           </ListboxRoot>
@@ -284,6 +320,12 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * @default undefined
    */
   listboxOpen: PropTypes.bool,
+  /**
+   * If `true`, selecting multiple values is allowed.
+   *
+   * @default false
+   */
+  multiple: PropTypes.bool,
   /**
    * Name of the element. For example used by the server to identify the fields in form submits.
    * If the name is provided, the component will render a hidden input element that can be submitted to a server.

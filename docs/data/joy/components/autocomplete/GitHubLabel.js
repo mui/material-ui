@@ -23,8 +23,8 @@ const Listbox = React.forwardRef((props, ref) => (
     sx={{
       '--List-padding': '0px',
       '--List-radius': '0px',
-      '--List-item-paddingX': '8px',
-      '--List-item-paddingY': '8px',
+      '--ListItem-paddingX': '8px',
+      '--ListItem-paddingY': '8px',
       minWidth: '100%',
     }}
   />
@@ -82,11 +82,11 @@ export default function GitHubLabel() {
           sx={{
             '--List-radius': '0px',
             '--List-gap': '3px',
-            '--List-item-minHeight': '20px',
-            '--List-item-paddingX': '4px',
-            '--List-item-paddingY': '0.15em',
-            '--List-item-radius': '2px',
-            '--List-item-fontSize': '13px',
+            '--ListItem-minHeight': '20px',
+            '--ListItem-paddingX': '4px',
+            '--ListItem-paddingY': '0.15em',
+            '--ListItem-radius': '2px',
+            '--ListItem-fontSize': '13px',
           }}
         >
           {value.map((label) => (

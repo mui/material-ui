@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
 
 # Unstyled menu

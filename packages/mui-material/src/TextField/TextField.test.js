@@ -111,7 +111,7 @@ describe('<TextField />', () => {
       const [, fakeLabel] = getAllByTestId('label');
       const notch = container.querySelector('.notch legend');
       expect(notch).to.contain(fakeLabel);
-      expect(notch).to.have.text('label\u00a0*');
+      expect(notch).to.have.text('label\u2009*');
     });
 
     it('should set shrink prop on outline from label', () => {
@@ -127,7 +127,7 @@ describe('<TextField />', () => {
       );
 
       const notch = container.querySelector('.notch legend');
-      expect(notch).to.have.text('0\u00a0*');
+      expect(notch).to.have.text('0\u2009*');
     });
 
     it('should not set padding for empty, null or undefined label props', function test() {

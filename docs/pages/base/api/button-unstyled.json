@@ -7,8 +7,8 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "focusableWhenDisabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
@@ -20,7 +20,16 @@
   },
   "name": "ButtonUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "props.href || props.to ? 'a' : 'button'",
+      "class": ".MuiButton-root"
+    }
+  ],
   "spread": true,
+  "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx",
   "inheritance": null,

@@ -28,7 +28,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 :::
 
 :::info
-If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration).
 :::
 
 ## Why you should migrate
@@ -193,7 +193,7 @@ yarn add @mui/icons-material
 
 The date and time picker components have been moved to MUI X.
 If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`.
-See [Migration from the lab](https://mui.com/x/react-date-pickers/migration-lab/) for details.
+See [Migration from the lab](https://mui.com/x/migration/migration-pickers-lab/) for details.
 
 ### Peer dependencies
 

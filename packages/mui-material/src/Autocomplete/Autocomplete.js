@@ -28,6 +28,7 @@ const useUtilityClasses = (ownerState) => {
   const {
     classes,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
@@ -177,6 +179,20 @@ const AutocompleteRoot = styled('div', {
   },
   [`& .${inputBaseClasses.hiddenLabel}`]: {
     paddingTop: 8,
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 16,
+      paddingBottom: 17,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
+    [`& .${autocompleteClasses.input}`]: {
+      paddingTop: 8,
+      paddingBottom: 9,
+    },
   },
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
@@ -442,6 +458,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionProps,
     value,
     dirty,
+    expanded,
     id,
     popupOpen,
     focused,
@@ -459,6 +476,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const ownerState = {
     ...props,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -686,6 +704,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * When using `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect: PropTypes.bool,
@@ -952,7 +973,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**

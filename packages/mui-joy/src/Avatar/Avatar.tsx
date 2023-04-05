@@ -136,7 +136,16 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 
   return loaded;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [Avatar API](https://mui.com/joy-ui/api/avatar/)
+ */
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
@@ -150,7 +159,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color: colorProp = 'neutral',
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
-    imgProps,
     src,
     srcSet,
     children: childrenProp,
@@ -186,7 +194,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       alt,
       src,
       srcSet,
-      ...imgProps,
     },
     className: classes.img,
     elementType: AvatarImg,
@@ -203,7 +210,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
-    ...imgProps,
     ...imageProps,
     src,
     srcSet,
@@ -249,11 +255,6 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-   * It can be used to listen for the loading error event.
-   */
-  imgProps: PropTypes.object,
-  /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
@@ -280,7 +281,7 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

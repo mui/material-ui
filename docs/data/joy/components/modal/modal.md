@@ -1,8 +1,9 @@
 ---
 product: joy-ui
 title: React Modal component
+components: Modal, ModalClose, ModalDialog
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Modal
@@ -74,9 +75,11 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Dialog
+### Modal Dialog
 
 To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
+
+It will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
 
 {{"demo": "BasicModalDialog.js"}}
 
@@ -146,6 +149,14 @@ Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA
 
 {{"demo": "AlertDialogModal.js"}}
 
+### Vertical scroll
+
+By default, `ModalDialog` will not overflow the screen when the content is longer than the viewport.
+
+You have to apply CSS [`overflow="scroll | auto"`](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) to the content.
+
+{{"demo": "DialogVerticalScroll.js"}}
+
 ### Nested modals
 
 The modal components can be nested:
@@ -161,7 +172,7 @@ This is because each successive modal blocks interaction with all elements behin
 
 The modal components **do not** come with built-in transitions.
 
-Here is one example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition) to create a fade animation:
+Here is one example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition/) to create a fade animation:
 
 {{"demo": "FadeModalDialog.js"}}
 
@@ -183,7 +194,7 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 Therefore, in order to display a modal rendered on the server, disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
@@ -200,7 +211,7 @@ If the user needs to interact with another part of the page－for example, to in
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices. Here are a couple of highlights:
+See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices. Here are a couple of highlights:
 
 - All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
@@ -212,7 +223,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
   A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

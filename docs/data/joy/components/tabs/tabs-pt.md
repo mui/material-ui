@@ -1,8 +1,9 @@
 ---
 product: joy-ui
 title: React Tabs component
+components: Tab, TabList, TabPanel, Tabs
 githubLabel: 'component: tabs'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 unstyled: /base/react-tabs/
 ---
 
@@ -47,7 +48,7 @@ export default function MyApp() {
 
 ### Basic usage
 
-The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/). To target the initially selected tab, specify the `value` prop to the `TabPanel` and use `Tabs`'s `defaultValue`.
+The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). To target the initially selected tab, specify the `value` prop to the `TabPanel` and use `Tabs`'s `defaultValue`.
 
 {{"demo": "TabsBasic.js"}}
 
@@ -83,7 +84,7 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 
 ### Accessibility
 
-For ensuring proper accessibility, it's recommended by [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/#wai-aria-roles-states-and-properties-22) to associate a label to the Tabs component. To do that, there are two options:
+For ensuring proper accessibility, it's recommended by [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#wai-aria-roles-states-and-properties-22) to associate a label to the Tabs component. To do that, there are two options:
 
 #### Option one
 

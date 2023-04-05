@@ -4,7 +4,7 @@ import { SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface FormControlUnstyledComponentsPropsOverrides {}
+export interface FormControlUnstyledRootSlotPropsOverrides {}
 
 export interface FormControlUnstyledOwnProps {
   /**
@@ -39,7 +39,7 @@ export interface FormControlUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      FormControlUnstyledComponentsPropsOverrides,
+      FormControlUnstyledRootSlotPropsOverrides,
       FormControlUnstyledOwnerState
     >;
   };
@@ -48,10 +48,16 @@ export interface FormControlUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: FormControlUnstyledSlots;
   value?: unknown;
+}
+
+export interface FormControlUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormControlUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
