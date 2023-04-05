@@ -81,9 +81,9 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ## Best practices
 
-Use `component` or `slotProps.component` prop to override the element by preserving the styles of the slot.
+Use `component` or `slotProps.{slot}.component` prop to override the element by preserving the styles of the slot.
 
-Use `slots` prop to replace the default styled component for that specific slot.
+Use `slots` prop to replace the slot's styles and functionality with your custom component.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you replace the Unstyled Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
