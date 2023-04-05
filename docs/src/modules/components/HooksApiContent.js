@@ -76,14 +76,14 @@ import { ${hookName} } from '${source.split('/').slice(0, 2).join('/')}';`}
             language="jsx"
           />
           <span dangerouslySetInnerHTML={{ __html: t('api-docs.importDifference') }} />
-          {Object.keys(parameters).length > 0 && (
-            <React.Fragment>
-              <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
-              <PropertiesTable
-                properties={parameters}
-                propertiesDescriptions={parametersDescriptions}
-              />
-            </React.Fragment>
+          <Heading text="parameters" hash={`${hookNameKebabCase}-parameters`} level="h3" />
+          {Object.keys(parameters).length > 0 ? (
+            <PropertiesTable
+              properties={parameters}
+              propertiesDescriptions={parametersDescriptions}
+            />
+          ) : (
+            <span>{t('api-docs.hooksNoParameters')}</span>
           )}
           <Heading text="return-value" hash={`${hookNameKebabCase}-return-value`} level="h3" />
           <PropertiesTable
