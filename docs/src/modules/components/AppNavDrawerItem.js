@@ -175,7 +175,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const sxChip = (color) => [
+export const sxChip = (color) => [
   (theme) => ({
     ml: 1.5,
     fontSize: theme.typography.pxToRem(10),

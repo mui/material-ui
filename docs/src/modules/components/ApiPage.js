@@ -3,12 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
+import { sxChip } from './AppNavDrawerItem';
 
 function ClassesTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -24,29 +26,42 @@ function ClassesTable(props) {
         </tr>
       </thead>
       <tbody>
-        {componentStyles.classes.map((className) => (
-          <tr key={className}>
-            <td align="left">
-              <span className="prop-name">{className}</span>
-            </td>
-            <td align="left">
-              <span className="prop-name">
-                .
-                {componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`}
-              </span>
-            </td>
-            <td
-              align="left"
-              dangerouslySetInnerHTML={{
-                __html:
-                  classDescriptions[className] &&
-                  classDescriptions[className].description
-                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
-                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
-              }}
-            />
-          </tr>
-        ))}
+        {componentStyles.classes.map((className) => {
+          const isGlobalStateClass = !!componentStyles.globalClasses[className];
+          return (
+            <tr key={className}>
+              <td align="left">
+                <span className="prop-name">
+                  {isGlobalStateClass ? (
+                    <React.Fragment>
+                      {className}
+                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
+                    </React.Fragment>
+                  ) : (
+                    className
+                  )}
+                </span>
+              </td>
+              <td align="left">
+                <span className="prop-name">
+                  .
+                  {componentStyles.globalClasses[className] ||
+                    `${componentStyles.name}-${className}`}
+                </span>
+              </td>
+              <td
+                align="left"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    classDescriptions[className] &&
+                    classDescriptions[className].description
+                      .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                      .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
+                }}
+              />
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
@@ -340,6 +355,7 @@ import { ${pageContent.name} } from '${source}';`}
         {Object.keys(componentStyles.classes).length ? (
           <React.Fragment>
             <Heading hash="css" />
+            <p dangerouslySetInnerHTML={{ __html: t('api-docs.cssDescription') }} />
             <ClassesTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
             <br />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
