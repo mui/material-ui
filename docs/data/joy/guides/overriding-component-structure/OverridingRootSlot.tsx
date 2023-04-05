@@ -2,5 +2,14 @@ import * as React from 'react';
 import Button from '@mui/joy/Button';
 
 export default function DivButton() {
-  return <Button component="div">Button</Button>;
+  return (
+    <Button
+      component="a"
+      href="https://mui.com/about-us/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      About us
+    </Button>
+  );
 }
