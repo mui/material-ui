@@ -88,7 +88,7 @@ If you use a CSS-in-JS solution with a styled-components-like API (such as [MUI 
 
 Alternatively, you can wrap the whole unstyled component in a `styled` utility and target the individual subcomponents using CSS classes:
 
-{{"demo": "StylingSlotsSingleComponent.js", "defaultCodeOpen": true}}
+{{"demo": "StylingSlots.js", "defaultCodeOpen": true}}
 
 ---
 
