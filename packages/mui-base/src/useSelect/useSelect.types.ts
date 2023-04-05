@@ -32,7 +32,7 @@ export type SelectChangeEventType =
 
 export type SelectValue<Value, Multiple> = Multiple extends true ? Value[] : Value | null;
 
-export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
+export interface UseSelectParameters<TValue, Multiple extends boolean = false> {
   defaultValue?: SelectValue<TValue, Multiple>;
   disabled?: boolean;
   buttonRef?: React.Ref<Element>;
@@ -56,7 +56,7 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
   options: SelectOption<TValue>[];
   optionStringifier?: (option: SelectOption<TValue>) => string;
   value?: SelectValue<TValue, Multiple>;
-};
+}
 
 interface UseSelectButtonSlotEventHandlers {
   onClick: React.MouseEventHandler;

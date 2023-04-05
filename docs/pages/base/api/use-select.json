@@ -1,5 +1,56 @@
 {
-  "parameters": {},
+  "parameters": {
+    "options": {
+      "type": {
+        "name": "SelectOption&lt;TValue&gt;[]",
+        "description": "SelectOption&lt;TValue&gt;[]"
+      },
+      "required": true
+    },
+    "buttonRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "defaultValue": {
+      "type": {
+        "name": "SelectValue&lt;TValue, Multiple&gt;",
+        "description": "SelectValue&lt;TValue, Multiple&gt;"
+      }
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "listboxId": { "type": { "name": "string", "description": "string" } },
+    "listboxRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "multiple": { "type": { "name": "Multiple", "description": "Multiple" } },
+    "onChange": {
+      "type": {
+        "name": "(e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;TValue, Multiple&gt;) =&gt; void",
+        "description": "(e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;TValue, Multiple&gt;) =&gt; void"
+      }
+    },
+    "onHighlightChange": {
+      "type": {
+        "name": "(e: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: TValue | null) =&gt; void",
+        "description": "(e: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: TValue | null) =&gt; void"
+      }
+    },
+    "onOpenChange": {
+      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } },
+    "optionStringifier": {
+      "type": {
+        "name": "(option: SelectOption&lt;TValue&gt;) =&gt; string",
+        "description": "(option: SelectOption&lt;TValue&gt;) =&gt; string"
+      }
+    },
+    "value": {
+      "type": {
+        "name": "SelectValue&lt;TValue, Multiple&gt;",
+        "description": "SelectValue&lt;TValue, Multiple&gt;"
+      }
+    }
+  },
   "returnValue": {},
   "name": "useSelect",
   "filename": "/packages/mui-base/src/useSelect/useSelect.ts",
