@@ -585,20 +585,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
-  const modifiers = React.useMemo(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      ...(listboxProps.modifiers || []),
-    ],
-    [listboxProps.modifiers],
-  );
-
   const [SlotLoading, loadingProps] = useSlot('loading', {
     className: classes.loading,
     elementType: AutocompleteLoading,
@@ -670,6 +656,20 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       ownerState,
     });
   };
+
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(listboxProps.modifiers || []),
+    ],
+    [listboxProps.modifiers],
+  );
 
   let popup = null;
   if (anchorEl) {
