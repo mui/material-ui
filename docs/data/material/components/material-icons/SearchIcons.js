@@ -138,9 +138,17 @@ const Icons = React.memo(function Icons(props) {
         eventAction: 'click',
         eventLabel: icon.name,
       });
+      window.gtag('event', 'material-icons', {
+        eventAction: 'click',
+        eventLabel: icon.name,
+      });
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'material-icons-theme',
+        eventAction: 'click',
+        eventLabel: icon.theme,
+      });
+      window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
         eventLabel: icon.theme,
       });
@@ -496,6 +504,10 @@ export default function SearchIcons() {
               window.ga('send', {
                 hitType: 'event',
                 eventCategory: 'material-icons',
+                eventAction: 'no-results',
+                eventLabel: value,
+              });
+              window.gtag('event', 'material-icons', {
                 eventAction: 'no-results',
                 eventLabel: value,
               });

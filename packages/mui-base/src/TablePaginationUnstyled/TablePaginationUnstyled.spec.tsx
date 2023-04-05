@@ -67,5 +67,11 @@ const styledTablePagination = (
       toolbar: Toolbar,
       spacer: Spacer,
     }}
+    slotProps={{
+      actions: {
+        showFirstButton: true,
+        showLastButton: true,
+      },
+    }}
   />
 );
