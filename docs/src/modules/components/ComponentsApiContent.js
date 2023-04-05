@@ -5,10 +5,12 @@ import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { SlotsTable, ClassesTable } from 'docs/src/modules/components/ApiPage';
+import Chip from '@mui/material/Chip';
 import Divider from 'docs/src/modules/components/ApiDivider';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { sxChip } from './AppNavDrawerItem';
 
 function CSSTable(props) {
   const { componentStyles, classDescriptions } = props;
@@ -24,29 +26,42 @@ function CSSTable(props) {
         </tr>
       </thead>
       <tbody>
-        {componentStyles.classes.map((className) => (
-          <tr key={className}>
-            <td align="left">
-              <span className="prop-name">{className}</span>
-            </td>
-            <td align="left">
-              <span className="prop-name">
-                .
-                {componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`}
-              </span>
-            </td>
-            <td
-              align="left"
-              dangerouslySetInnerHTML={{
-                __html:
-                  classDescriptions[className] &&
-                  classDescriptions[className].description
-                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
-                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
-              }}
-            />
-          </tr>
-        ))}
+        {componentStyles.classes.map((className) => {
+          const isGlobalStateClass = !!componentStyles.globalClasses[className];
+          return (
+            <tr key={className}>
+              <td align="left">
+                <span className="prop-name">
+                  {isGlobalStateClass ? (
+                    <React.Fragment>
+                      {className}
+                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
+                    </React.Fragment>
+                  ) : (
+                    className
+                  )}
+                </span>
+              </td>
+              <td align="left">
+                <span className="prop-name">
+                  .
+                  {componentStyles.globalClasses[className] ||
+                    `${componentStyles.name}-${className}`}
+                </span>
+              </td>
+              <td
+                align="left"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    classDescriptions[className] &&
+                    classDescriptions[className].description
+                      .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                      .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
+                }}
+              />
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

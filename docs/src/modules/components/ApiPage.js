@@ -139,27 +139,36 @@ export function ClassesTable(props) {
         </tr>
       </thead>
       <tbody style={{ display: 'table', width: '100%' }}>
-        {componentClasses.classes.map((className) => (
-          <tr key={className}>
-            <td align="left" width="50%">
-              <span className="prop-name">
-                .
-                {componentClasses.globalClasses[className] ||
-                  `Mui${componentName.replace('Unstyled', '')}-${className}`}
-              </span>
-            </td>
-            <td
-              align="left"
-              dangerouslySetInnerHTML={{
-                __html:
-                  classDescriptions[className] &&
-                  classDescriptions[className].description
-                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
-                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
-              }}
-            />
-          </tr>
-        ))}
+        {componentClasses.classes.map((className) => {
+          const isGlobalStateClass = !!componentClasses.globalClasses[className];
+          return (
+            <tr key={className}>
+              <td align="left" width="50%">
+                <span className="prop-name">
+                  .
+                  {isGlobalStateClass ? (
+                    <React.Fragment>
+                      {componentClasses.globalClasses[className]}
+                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
+                    </React.Fragment>
+                  ) : (
+                    `Mui${componentName.replace('Unstyled', '')}-${className}`
+                  )}
+                </span>
+              </td>
+              <td
+                align="left"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    classDescriptions[className] &&
+                    classDescriptions[className].description
+                      .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                      .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
+                }}
+              />
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
