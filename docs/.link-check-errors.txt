@@ -1,6 +1,4 @@
 Broken links found by `yarn docs:link-check` that exist:
 
 - https://mui.com/blog/material-ui-v4-is-out/#premium-themes-store-✨
-- https://mui.com/joy-ui/react-list/#actionable
-- https://mui.com/joy-ui/react-list/#selected
 - https://mui.com/size-snapshot

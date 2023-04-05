@@ -152,7 +152,7 @@ You could also display a dialog when the user wants to add a new value.
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 :::info
-The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
+The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#interactive-list-items), so that you get the same customization experience.
 :::
 
 ### Validation

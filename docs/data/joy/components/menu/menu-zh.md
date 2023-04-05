@@ -58,7 +58,7 @@ When specifying a size for the `Menu` component, menu items inside of it will in
 
 Use the `selected` prop to signal whether a `MenuItem` is selected or not.
 
-The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected).
+The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#interactive-list-items).
 
 {{"demo": "SelectedMenu.js"}}
 

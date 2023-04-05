@@ -64,7 +64,7 @@ To learn how to add more sizes to the component, check out [Themed components—
 
 Use the `selected` prop to signal whether a `MenuItem` is selected or not.
 
-The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected).
+The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#interactive-list-items).
 
 {{"demo": "SelectedMenu.js"}}
 
