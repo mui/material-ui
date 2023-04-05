@@ -2,24 +2,8 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { Breakpoint } from '@mui/system';
 import { SxProps } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ContainerSlot = 'root';
-
-export interface ContainerSlots {
-  /**
-   * The component that renders the root.
-   * @default 'div'
-   */
-  root: React.ElementType;
-}
-
-export type ContainerSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ContainerSlots,
-  {
-    root: SlotProps<'div', {}, ContainerOwnerState>;
-  }
->;
 
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -48,7 +32,7 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  } & ContainerSlotsAndSlotProps;
+  };
   defaultComponent: D;
 }
 
