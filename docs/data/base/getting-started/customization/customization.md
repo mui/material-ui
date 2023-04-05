@@ -6,8 +6,6 @@ With MUI Base, you have the freedom to decide how much you want to customize a c
 
 ## Styling the components
 
-> > > > > > > master
-
 This section reviews several methods of customization that are available: applying custom CSS rules, overriding default subcomponent slots, customizing the slot props, and using hooks to build fully custom components.
 
 ### Which option to choose?
