@@ -30,17 +30,17 @@ pnpm add @mui/base
 
 [`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
-## Tutorial
+## Implementing a Button
 
-Let's replicate a button from Github's UI as a quick tutorial. We'll use their [style guide](https://primer.style) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base components by replicating a button from Github's UI, using their [style guide](https://primer.style) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
 ### Components & Hooks
 
-Base UI provides a `ButtonUnstyled` component and a `useButton` hook, both of which can be used to build a button, each with its own [benefits and trade-offs](/base/getting-started/usage/#components-vs-hooks).
+Base UI provides a ButtonUnstyled component and a useButton hook, both of which can be used to build a button, each with its own [benefits and trade-offs](/base/getting-started/usage/#components-vs-hooks).
 
-#### `ButtonUnstyled` Component
+#### ButtonUnstyled Component
 
 ```tsx
 import * as React from 'react';
@@ -55,7 +55,7 @@ export default function App() {
 }
 ```
 
-#### `useButton` Hook
+#### useButton Hook
 
 ```tsx
 import * as React from 'react';
@@ -104,7 +104,7 @@ Pass a `className` prop and use it as a styling hook:
 <ButtonUnstyled className="btn">Create Repository</ButtonUnstyled>
 ```
 
-Base UI components like `ButtonUnstyled` come with a classes object (e.g. `buttonUnstyledClasses`) that provide class hooks for styling a particular state.
+Base UI components like ButtonUnstyled come with a classes object (e.g. `buttonUnstyledClasses`) that provide class hooks for styling a particular state.
 
 ```css
 /* To style the disabled state: */
@@ -114,7 +114,7 @@ Base UI components like `ButtonUnstyled` come with a classes object (e.g. `butto
 }
 ```
 
-Here's a complete demo of using `ButtonUnstyled` and `useButton` with plain CSS:
+Here's a complete demo of using ButtonUnstyled and useButton with plain CSS:
 
 {{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
@@ -164,7 +164,7 @@ render(
 
 Most of the demos and examples in the Base UI documentation are styled with MUI system in this way. You can inspect the `theme` object used on this site in your browser console, or explore the default structure [here](/material-ui/customization/default-theme/).
 
-#### Styling `ButtonUnstyled` with MUI System
+#### Styling ButtonUnstyled with MUI System
 
 ```tsx
 import * as React from 'react';
@@ -187,7 +187,7 @@ export default function App() {
 }
 ```
 
-#### Styling `useButton` with MUI System
+#### Styling useButton with MUI System
 
 ```tsx
 import * as React from 'react';
@@ -214,7 +214,7 @@ export default function App() {
 }
 ```
 
-#### Using the `sx` prop
+#### Using the sx prop
 
 MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
 
@@ -237,7 +237,7 @@ export default function App() {
 }
 ```
 
-Here's a complete demo of styling `ButtonUnstyled` and `useButton` with MUI System:
+Here's a complete demo of styling ButtonUnstyled and useButton with MUI System:
 
 {{"demo": "BaseButtonMuiSystem.js", "defaultCodeOpen": false}}
 
