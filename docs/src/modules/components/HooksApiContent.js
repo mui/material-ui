@@ -5,7 +5,7 @@ import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import Divider from 'docs/src/modules/components/ApiDivider';
-import PropertiesTable from 'docs/src/modules/components/PropretiesTable';
+import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 

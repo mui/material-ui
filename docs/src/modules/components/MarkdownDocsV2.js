@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
-import { getTranslatedHeader as getHookTranslatedHeader } from 'docs/src/modules/components/HookApiPage';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -29,6 +28,27 @@ function JoyModeObserver({ mode }) {
 JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
+
+function getHookTranslatedHeader(t, header) {
+  const translations = {
+    demos: t('api-docs.demos'),
+    import: t('api-docs.import'),
+    'hook-name': t('api-docs.hookName'),
+    parameters: t('api-docs.parameters'),
+    'return-value': t('api-docs.returnValue'),
+  };
+
+  // TODO Drop runtime type-checking once we type-check this file
+  if (!translations.hasOwnProperty(header)) {
+    throw new TypeError(
+      `Unable to translate header '${header}'. Did you mean one of '${Object.keys(
+        translations,
+      ).join("', '")}'`,
+    );
+  }
+
+  return translations[header] || header;
+}
 
 export default function MarkdownDocsV2(props) {
   const theme = useTheme();
