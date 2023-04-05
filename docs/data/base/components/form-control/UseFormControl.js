@@ -3,6 +3,15 @@ import FormControlUnstyled, {
   useFormControlUnstyledContext,
 } from '@mui/base/FormControlUnstyled';
 
+export default function UseFormControl() {
+  return (
+    <FormControlUnstyled defaultValue="" required>
+      <CustomInput />
+      <ControlStateDisplay />
+    </FormControlUnstyled>
+  );
+}
+
 function CustomInput() {
   const formControlContext = useFormControlUnstyledContext();
 
@@ -38,14 +47,5 @@ function ControlStateDisplay() {
       {filled ? 'filled' : 'empty'}&nbsp;|&nbsp;
       {focused ? 'focused' : 'not focused'}
     </p>
-  );
-}
-
-export default function UseFormControl() {
-  return (
-    <FormControlUnstyled defaultValue="" required>
-      <CustomInput />
-      <ControlStateDisplay />
-    </FormControlUnstyled>
   );
 }

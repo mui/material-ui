@@ -130,6 +130,6 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * API:
  *
- * - [OptionUnstyled API](https://mui.com/base/api/option-unstyled/)
+ * - [OptionUnstyled API](https://mui.com/base/react-select/components-api/#option-unstyled)
  */
 export default React.memo(OptionUnstyled) as OptionUnstyledType;

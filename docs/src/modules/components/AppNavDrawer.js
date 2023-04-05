@@ -219,7 +219,6 @@ function reduceChildRoutes(context) {
   }
 
   const title = pageToTitleI18n(page, t);
-
   if (page.children && page.children.length >= 1) {
     const topLevel =
       activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
@@ -231,16 +230,21 @@ function reduceChildRoutes(context) {
     }
 
     const subheader = Boolean(page.subheader);
-
+    const [path, hash] = firstChild.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={firstChild.pathname}
+        href={{
+          pathname: path,
+          ...(firstChild.query && { query: firstChild.query }),
+          ...(hash && { hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -258,16 +262,21 @@ function reduceChildRoutes(context) {
     );
   } else {
     page = page.children && page.children.length === 1 ? page.children[0] : page;
-
+    const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={page.pathname}
+        href={{
+          pathname: path,
+          ...(page.query && { query: page.query }),
+          ...(hash && { hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}

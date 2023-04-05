@@ -177,7 +177,7 @@ export default function UnstyledPaginationIntroduction() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
-                } as any,
+                },
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}

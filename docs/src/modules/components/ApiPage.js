@@ -57,7 +57,7 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-function SlotsTable(props) {
+export function SlotsTable(props) {
   const { componentSlots, slotDescriptions } = props;
   const t = useTranslate();
 
@@ -107,7 +107,7 @@ SlotsTable.propTypes = {
   slotDescriptions: PropTypes.object.isRequired,
 };
 
-function getTranslatedHeader(t, header) {
+export function getTranslatedHeader(t, header) {
   const translations = {
     demos: t('api-docs.demos'),
     import: t('api-docs.import'),
@@ -191,17 +191,6 @@ export default function ApiPage(props) {
     slotDescriptions,
   } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, pageContent.name);
-  const slotExtraDescription = slotGuideLink
-    ? t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink)
-    : '';
-  if (slotDescriptions && slotExtraDescription) {
-    Object.keys(slotDescriptions).forEach((slot) => {
-      if (slotDescriptions[slot].match(slotExtraDescription)) {
-        return;
-      }
-      slotDescriptions[slot] += ` ${slotExtraDescription}`;
-    });
-  }
 
   const source = filename
     .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
@@ -367,6 +356,13 @@ import { ${pageContent.name} } from '${source}';`}
         {componentSlots?.length ? (
           <React.Fragment>
             <Heading hash="slots" />
+            {slotGuideLink && (
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.slotDescription').replace(/{{slotGuideLink}}/, slotGuideLink),
+                }}
+              />
+            )}
             <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
             <br />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
