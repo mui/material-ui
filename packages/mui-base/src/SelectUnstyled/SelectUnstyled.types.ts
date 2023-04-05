@@ -41,7 +41,6 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
   ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
   /**
    * `id` attribute of the listbox element.
-   * Also used to derive the `id` attributes of options.
    */
   listboxId?: string;
   /**
@@ -51,6 +50,7 @@ export interface SelectUnstyledOwnProps<TValue extends {}, Multiple extends bool
   listboxOpen?: boolean;
   /**
    * If `true`, selecting multiple values is allowed.
+   * This affects the type of the `value`, `defaultValue`, and `onChange` props.
    *
    * @default false
    */

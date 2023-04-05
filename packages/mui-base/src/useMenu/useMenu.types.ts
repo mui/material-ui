@@ -5,10 +5,27 @@ import { EventHandlers } from '../utils/types';
 import { MenuProviderValue } from './MenuProvider';
 
 export interface UseMenuParameters {
+  /**
+   * If `true`, the menu will be initially open.
+   * @default false
+   */
   defaultOpen?: boolean;
+  /**
+   * If `true`, the menu will be open.
+   * This is the controlled equivalent of the `defaultOpen` parameter.
+   */
   open?: boolean;
+  /**
+   * Callback fired when the menu is opened or closed.
+   */
   onOpenChange?: (open: boolean) => void;
+  /**
+   * Id of the menu listbox.
+   */
   listboxId?: string;
+  /**
+   * Ref of the menu listbox.
+   */
   listboxRef?: React.Ref<any>;
 }
 
@@ -57,5 +74,8 @@ export type UseMenuListboxSlotProps<TOther = {}> = UseListRootSlotProps<
 };
 
 export interface MenuInternalState extends ListState<string> {
+  /**
+   * If `true`, the menu is open.
+   */
   open: boolean;
 }

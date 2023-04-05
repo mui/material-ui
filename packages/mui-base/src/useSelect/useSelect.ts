@@ -14,7 +14,7 @@ import {
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
   UseSelectParameters,
-  UseSelectResult,
+  UseSelectReturnValue,
 } from './useSelect.types';
 import useList, {
   listReducer,
@@ -41,7 +41,7 @@ import { SelectOption } from '../useOption/useOption.types';
  */
 function useSelect<TValue, Multiple extends boolean = false>(
   props: UseSelectParameters<TValue, Multiple>,
-): UseSelectResult<TValue, Multiple> {
+): UseSelectReturnValue<TValue, Multiple> {
   const {
     buttonRef: buttonRefProp,
     defaultOpen = false,

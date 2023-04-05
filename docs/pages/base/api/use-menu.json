@@ -1,6 +1,6 @@
 {
   "parameters": {
-    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" } },
+    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" }

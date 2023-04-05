@@ -285,7 +285,6 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   getSerializedValue: PropTypes.func,
   /**
    * `id` attribute of the listbox element.
-   * Also used to derive the `id` attributes of options.
    */
   listboxId: PropTypes.string,
   /**
@@ -295,6 +294,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   listboxOpen: PropTypes.bool,
   /**
    * If `true`, selecting multiple values is allowed.
+   * This affects the type of the `value`, `defaultValue`, and `onChange` props.
    *
    * @default false
    */

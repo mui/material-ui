@@ -1,1 +1,17 @@
-{ "hookDescription": "", "parametersDescriptions": {}, "returnValueDescriptions": {} }
+{
+  "hookDescription": "",
+  "parametersDescriptions": {},
+  "returnValueDescriptions": {
+    "buttonActive": "If <code>true</code>, the trigger button is active (pressed).",
+    "buttonFocusVisible": "If <code>true</code>, the trigger button has a visible focus.",
+    "contextValue": "A value to be passed to the <code>SelectProvider</code> component.",
+    "disabled": "If <code>true</code>, the select is disabled.",
+    "getButtonProps": "Resolver for the button slot's props.",
+    "getListboxProps": "Resolver for the listbox slot's props.",
+    "getOptionMetadata": "A function that returns the metadata of an option with a given value.",
+    "highlightedOption": "The value of the highlighted option.",
+    "open": "If <code>true</code>, the listbox is open.",
+    "options": "Values of all the registered options.",
+    "value": "The value of the selected option(s)."
+  }
+}

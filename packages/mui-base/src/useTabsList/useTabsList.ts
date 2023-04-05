@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useTabsContext } from '../TabsUnstyled';
 import {
-  TabsListContextValue,
   UseTabsListParameters,
   UseTabsListReturnValue,
   UseTabsListRootSlotProps,
@@ -16,8 +15,6 @@ import useList, {
   ListState,
   UseListParameters,
 } from '../useList';
-
-export const TabsListContext = React.createContext<TabsListContextValue | null>(null);
 
 /**
  *
@@ -121,7 +118,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     [onSelected],
   );
 
-  const controlledState = React.useMemo(() => {
+  const controlledProps = React.useMemo(() => {
     if (value === undefined) {
       return {};
     }
@@ -136,7 +133,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     highlightedOption,
     selectedOptions,
   } = useList({
-    controlledProps: controlledState,
+    controlledProps,
     disabledItemsFocusable: !selectionFollowsFocus,
     focusManagement: 'DOM',
     getItemDomElement: getTabElement,
@@ -154,6 +151,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
       return;
     }
 
+    // when a value changes externally, the highlighted value should be synced to it
     if (value != null) {
       dispatch({
         type: ListActionTypes.setState,

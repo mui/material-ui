@@ -24,16 +24,15 @@ export type ListActionAddOnValue<ItemValue> = Simplify<
   Required<Pick<UseListParameters<ItemValue, any, any>, ListActionAddOnValueRequiredKeys>>
 >;
 
-export type ListReducerAction<ItemValue, State extends ListState<ItemValue>> = ListAction<
-  ItemValue,
-  State
-> & {
-  props: React.RefObject<ListActionAddOnValue<ItemValue>>;
-};
-
 export type ListActionAddOn<ItemValue> = {
   props: React.RefObject<ListActionAddOnValue<ItemValue>>;
 };
+
+export type ListReducerAction<ItemValue, State extends ListState<ItemValue>> = ListAction<
+  ItemValue,
+  State
+> &
+  ListActionAddOn<ItemValue>;
 
 export interface ListState<ItemValue> {
   /**

@@ -12,7 +12,13 @@ export interface UseTabParameters {
    * If `true`, the tab will be disabled.
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
+  /**
+   * Callback fired when the tab is clicked.
+   */
   onClick?: React.MouseEventHandler;
+  /**
+   * If `true`, the tab will be disabled.
+   */
   disabled?: boolean;
   /**
    * The id of the tab.

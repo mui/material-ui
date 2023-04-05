@@ -1,23 +1,11 @@
 import * as React from 'react';
-import { ListItemState, UseListItemRootSlotProps } from '../useList';
-import { EventHandlers } from '../utils';
 import { TabsListProviderValue } from './TabsListProvider';
 
-export interface TabsListContextValue {
-  getTabProps: <TOther extends EventHandlers = {}>(
-    tabValue: string | number,
-    otherHandlers?: TOther,
-  ) => UseListItemRootSlotProps;
-  getTabState: (tabValue: string | number) => ListItemState;
-}
-
 export interface UseTabsListParameters {
+  /**
+   * Ref to the root element.
+   */
   ref: React.Ref<unknown>;
-  value?: string | number | null;
-  defaultValue?: string | number | null;
-  onChange?: (event: React.SyntheticEvent | null, value: string | number | null) => void;
-  orientation?: 'horizontal' | 'vertical';
-  direction?: 'ltr' | 'rtl';
 }
 
 export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
@@ -31,7 +19,7 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
 
 export interface UseTabsListReturnValue {
   /**
-   * The value of the currently highlighted `Tab`.
+   * The value of the currently highlighted tab.
    */
   highlightedValue: string | number | null;
   /**
@@ -45,7 +33,7 @@ export interface UseTabsListReturnValue {
    */
   orientation: 'horizontal' | 'vertical';
   /**
-   * The value of the currently selected `Tab`.
+   * The value of the currently selected tab.
    */
   selectedValue: string | number | null;
   /**

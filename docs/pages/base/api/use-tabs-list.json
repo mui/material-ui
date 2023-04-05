@@ -3,30 +3,6 @@
     "ref": {
       "type": { "name": "React.Ref&lt;unknown&gt;", "description": "React.Ref&lt;unknown&gt;" },
       "required": true
-    },
-    "defaultValue": {
-      "type": { "name": "string | number | null", "description": "string | number | null" }
-    },
-    "direction": {
-      "type": {
-        "name": "&#39;ltr&#39; | &#39;rtl&#39;",
-        "description": "&#39;ltr&#39; | &#39;rtl&#39;"
-      }
-    },
-    "onChange": {
-      "type": {
-        "name": "(event: React.SyntheticEvent | null, value: string | number | null) =&gt; void",
-        "description": "(event: React.SyntheticEvent | null, value: string | number | null) =&gt; void"
-      }
-    },
-    "orientation": {
-      "type": {
-        "name": "&#39;horizontal&#39; | &#39;vertical&#39;",
-        "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
-      }
-    },
-    "value": {
-      "type": { "name": "string | number | null", "description": "string | number | null" }
     }
   },
   "returnValue": {
