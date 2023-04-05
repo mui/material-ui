@@ -15,7 +15,6 @@ import * as React from 'react';
  */
 export default function useLatest<T>(value: T, deps?: React.DependencyList) {
   const ref = React.useRef<T>(value);
-  ref.current = value;
 
   React.useEffect(() => {
     ref.current = value;
