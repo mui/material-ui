@@ -14,13 +14,13 @@ import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
-import defaultOptionStringifier from './defaultOptionStringifier';
+import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { SelectOption } from '../useOption';
 import SelectProvider from '../useSelect/SelectProvider';
 
-function defaultRenderValue<TValue>(
-  selectedOptions: SelectOption<TValue> | SelectOption<TValue>[] | null,
+function defaultRenderValue<OptionValue>(
+  selectedOptions: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
 ) {
   if (Array.isArray(selectedOptions)) {
     return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
@@ -29,8 +29,8 @@ function defaultRenderValue<TValue>(
   return selectedOptions?.label ?? '';
 }
 
-function defaultFormValueProvider<TValue>(
-  selectedOption: SelectOption<TValue> | SelectOption<TValue>[] | null,
+function defaultFormValueProvider<OptionValue>(
+  selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,
 ) {
   if (Array.isArray(selectedOption)) {
     if (selectedOption.length === 0) {
@@ -92,9 +92,9 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any, any>) {
  * - [SelectUnstyled API](https://mui.com/base/react-select/components-api/#select-unstyled)
  */
 const SelectUnstyled = React.forwardRef(function SelectUnstyled<
-  TValue extends {},
+  OptionValue extends {},
   Multiple extends boolean,
->(props: SelectUnstyledProps<TValue, Multiple>, forwardedRef: React.ForwardedRef<any>) {
+>(props: SelectUnstyledProps<OptionValue, Multiple>, forwardedRef: React.ForwardedRef<any>) {
   const {
     autoFocus,
     children,
@@ -117,7 +117,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     ...other
   } = props;
 
-  const renderValue: (option: SelectValue<SelectOption<TValue>, Multiple>) => React.ReactNode =
+  const renderValue: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode =
     renderValueProp ?? defaultRenderValue;
 
   const [buttonDefined, setButtonDefined] = React.useState(false);
@@ -164,7 +164,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     value: valueProp,
   });
 
-  const ownerState: SelectUnstyledOwnerState<TValue, Multiple> = {
+  const ownerState: SelectUnstyledOwnerState<OptionValue, Multiple> = {
     ...props,
     active: buttonActive,
     defaultListboxOpen,
@@ -178,7 +178,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue, Multiple>> =
+  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<OptionValue, Multiple>> =
     useSlotProps({
       elementType: Button,
       getSlotProps: getButtonProps,
@@ -188,19 +188,20 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
       className: classes.root,
     });
 
-  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue, Multiple>> =
-    useSlotProps({
-      elementType: ListboxRoot,
-      getSlotProps: getListboxProps,
-      externalSlotProps: slotProps.listbox,
-      additionalProps: {
-        ref: listboxRef,
-      },
-      ownerState,
-      className: classes.listbox,
-    });
+  const listboxProps: WithOptionalOwnerState<
+    SelectUnstyledListboxSlotProps<OptionValue, Multiple>
+  > = useSlotProps({
+    elementType: ListboxRoot,
+    getSlotProps: getListboxProps,
+    externalSlotProps: slotProps.listbox,
+    additionalProps: {
+      ref: listboxRef,
+    },
+    ownerState,
+    className: classes.listbox,
+  });
 
-  const popperProps: SelectUnstyledPopperSlotProps<TValue, Multiple> = useSlotProps({
+  const popperProps: SelectUnstyledPopperSlotProps<OptionValue, Multiple> = useSlotProps({
     elementType: Popper,
     externalSlotProps: slotProps.popper,
     additionalProps: {
@@ -214,14 +215,14 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<
     className: classes.popper,
   });
 
-  let selectedOptionsMetadata: SelectValue<SelectOption<TValue>, Multiple>;
+  let selectedOptionsMetadata: SelectValue<SelectOption<OptionValue>, Multiple>;
   if (multiple) {
-    selectedOptionsMetadata = (value as TValue[])
+    selectedOptionsMetadata = (value as OptionValue[])
       .map((v) => getOptionMetadata(v))
-      .filter((o) => o !== undefined) as SelectValue<SelectOption<TValue>, Multiple>;
+      .filter((o) => o !== undefined) as SelectValue<SelectOption<OptionValue>, Multiple>;
   } else {
-    selectedOptionsMetadata = (getOptionMetadata(value as TValue) ?? null) as SelectValue<
-      SelectOption<TValue>,
+    selectedOptionsMetadata = (getOptionMetadata(value as OptionValue) ?? null) as SelectValue<
+      SelectOption<OptionValue>,
       Multiple
     >;
   }

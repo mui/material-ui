@@ -12,7 +12,7 @@ import { useSlotProps } from '../utils';
 import useOption from '../useOption';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
-function useUtilityClasses<TValue>(ownerState: OptionUnstyledOwnerState<TValue>) {
+function useUtilityClasses<OptionValue>(ownerState: OptionUnstyledOwnerState<OptionValue>) {
   const { disabled, highlighted, selected } = ownerState;
 
   const slots = {
@@ -25,8 +25,8 @@ function useUtilityClasses<TValue>(ownerState: OptionUnstyledOwnerState<TValue>)
 /**
  * An unstyled option to be used within a SelectUnstyled.
  */
-const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
-  props: OptionUnstyledProps<TValue>,
+const OptionUnstyled = React.forwardRef(function OptionUnstyled<OptionValue>(
+  props: OptionUnstyledProps<OptionValue>,
   ref: React.ForwardedRef<HTMLLIElement>,
 ) {
   const {
@@ -57,7 +57,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     value,
   });
 
-  const ownerState: OptionUnstyledOwnerState<TValue> = {
+  const ownerState: OptionUnstyledOwnerState<OptionValue> = {
     ...props,
     disabled,
     highlighted,

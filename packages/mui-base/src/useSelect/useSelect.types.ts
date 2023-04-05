@@ -19,7 +19,7 @@ export interface SelectOptionDefinition<Value> {
   label: string;
 }
 
-export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
+export type UseSelectParameters<OptionValue, Multiple extends boolean = false> = {
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -28,7 +28,7 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue?: SelectValue<TValue, Multiple>;
+  defaultValue?: SelectValue<OptionValue, Multiple>;
   /**
    * If `true`, the select is disabled.
    * @default false
@@ -58,7 +58,7 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
    */
   onChange?: (
     e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
-    value: SelectValue<TValue, Multiple>,
+    value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**
    * Callback fired when an option is highlighted.
@@ -69,7 +69,7 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
       | React.KeyboardEvent<Element>
       | React.FocusEvent<Element, Element>
       | null,
-    highlighted: TValue | null,
+    highlighted: OptionValue | null,
   ) => void;
   /**
    * Callback fired when the listbox is opened or closed.
@@ -84,7 +84,7 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
    * An alternative way to specify the options.
    * If this parameter is set, options defined as JSX children are ignored.
    */
-  options?: SelectOptionDefinition<TValue>[];
+  options?: SelectOptionDefinition<OptionValue>[];
   /**
    * A function used to convert the option label to a string.
    * It's useful when labels are elements and need to be converted to plain text
@@ -92,12 +92,12 @@ export type UseSelectParameters<TValue, Multiple extends boolean = false> = {
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<TValue>) => string;
+  optionStringifier?: (option: SelectOption<OptionValue>) => string;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value?: SelectValue<TValue, Multiple>;
+  value?: SelectValue<OptionValue, Multiple>;
 };
 
 interface UseSelectButtonSlotEventHandlers {
@@ -200,6 +200,6 @@ export interface ButtonArrowKeyDownAction {
 
 export type SelectAction = ButtonClickAction | ButtonArrowKeyDownAction;
 
-export interface SelectInternalState<TValue> extends ListState<TValue> {
+export interface SelectInternalState<OptionValue> extends ListState<OptionValue> {
   open: boolean;
 }

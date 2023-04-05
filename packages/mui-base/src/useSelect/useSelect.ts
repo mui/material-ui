@@ -24,7 +24,7 @@ import useList, {
   ListActionAddOn,
 } from '../useList';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
+import defaultOptionStringifier from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption/useOption.types';
@@ -39,9 +39,9 @@ import { SelectOption } from '../useOption/useOption.types';
  *
  * - [useSelect API](https://mui.com/base/react-select/hooks-api/#use-select)
  */
-function useSelect<TValue, Multiple extends boolean = false>(
-  props: UseSelectParameters<TValue, Multiple>,
-): UseSelectReturnValue<TValue, Multiple> {
+function useSelect<OptionValue, Multiple extends boolean = false>(
+  props: UseSelectParameters<OptionValue, Multiple>,
+): UseSelectReturnValue<OptionValue, Multiple> {
   const {
     buttonRef: buttonRefProp,
     defaultOpen = false,
@@ -65,24 +65,26 @@ function useSelect<TValue, Multiple extends boolean = false>(
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const listboxId = useId(listboxIdProp);
 
-  let defaultValue: TValue[] | undefined;
+  let defaultValue: OptionValue[] | undefined;
   if (valueProp === undefined && defaultValueProp === undefined) {
     defaultValue = [];
   } else if (defaultValueProp !== undefined) {
-    defaultValue = multiple ? (defaultValueProp as TValue[]) : [defaultValueProp as TValue];
+    defaultValue = multiple
+      ? (defaultValueProp as OptionValue[])
+      : [defaultValueProp as OptionValue];
   }
 
   const value = React.useMemo(() => {
     if (valueProp !== undefined) {
-      return multiple ? (valueProp as TValue[]) : [valueProp as TValue];
+      return multiple ? (valueProp as OptionValue[]) : [valueProp as OptionValue];
     }
 
     return undefined;
   }, [valueProp, multiple]);
 
   const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
-    TValue,
-    SelectOption<TValue>
+    OptionValue,
+    SelectOption<OptionValue>
   >();
 
   const options = React.useMemo(() => {
@@ -125,9 +127,9 @@ function useSelect<TValue, Multiple extends boolean = false>(
 
   const stateReducer = React.useCallback(
     (
-      state: SelectInternalState<TValue>,
-      action: (ListAction<TValue, SelectInternalState<TValue>> | SelectAction) &
-        ListActionAddOn<TValue>,
+      state: SelectInternalState<OptionValue>,
+      action: (ListAction<OptionValue, SelectInternalState<OptionValue>> | SelectAction) &
+        ListActionAddOn<OptionValue>,
     ) => {
       const { open } = state;
 
@@ -160,9 +162,10 @@ function useSelect<TValue, Multiple extends boolean = false>(
           break;
       }
 
-      const newState: SelectInternalState<TValue> = listReducer(
+      const newState: SelectInternalState<OptionValue> = listReducer(
         state,
-        action as ListAction<TValue, SelectInternalState<TValue>> & ListActionAddOn<TValue>,
+        action as ListAction<OptionValue, SelectInternalState<OptionValue>> &
+          ListActionAddOn<OptionValue>,
       );
 
       switch (action.type) {
@@ -240,7 +243,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
   const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);
 
   const isItemDisabled = React.useCallback(
-    (valueToCheck: TValue) => {
+    (valueToCheck: OptionValue) => {
       const option = options.get(valueToCheck);
       return option?.disabled ?? false;
     },
@@ -248,7 +251,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
   );
 
   const stringifyOption = React.useCallback(
-    (valueToCheck: TValue) => {
+    (valueToCheck: OptionValue) => {
       const option = options.get(valueToCheck);
       if (!option) {
         return '';
@@ -268,8 +271,8 @@ function useSelect<TValue, Multiple extends boolean = false>(
   );
 
   const useListboxParameters: UseListParameters<
-    TValue,
-    SelectInternalState<TValue>,
+    OptionValue,
+    SelectInternalState<OptionValue>,
     SelectAction
   > = {
     getInitialState: () => ({
@@ -283,9 +286,9 @@ function useSelect<TValue, Multiple extends boolean = false>(
     listRef: handleListboxRef,
     onChange: (e, newValues) => {
       if (multiple) {
-        onChange?.(e, newValues as SelectValue<TValue, Multiple>);
+        onChange?.(e, newValues as SelectValue<OptionValue, Multiple>);
       } else {
-        onChange?.(e, (newValues[0] ?? null) as SelectValue<TValue, Multiple>);
+        onChange?.(e, (newValues[0] ?? null) as SelectValue<OptionValue, Multiple>);
       }
     },
     onHighlightChange: (e, newValue) => {
@@ -418,7 +421,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
   };
 
   const getOptionMetadata = React.useCallback(
-    (optionValue: TValue) => options.get(optionValue),
+    (optionValue: OptionValue) => options.get(optionValue),
     [options],
   );
 
@@ -442,7 +445,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
     open,
   });
 
-  const contextValue: SelectProviderValue<TValue> = React.useMemo(
+  const contextValue: SelectProviderValue<OptionValue> = React.useMemo(
     () => ({
       ...listContextValue,
       ...compoundComponentContextValue,
@@ -461,7 +464,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
       contextValue,
       open,
       options: optionValues,
-      value: selectedOptions as SelectValue<TValue, Multiple>,
+      value: selectedOptions as SelectValue<OptionValue, Multiple>,
       highlightedOption,
     };
   }
@@ -477,7 +480,7 @@ function useSelect<TValue, Multiple extends boolean = false>(
     open,
     options: optionValues,
     value: (selectedOptions.length > 0 ? selectedOptions[0] : null) as SelectValue<
-      TValue,
+      OptionValue,
       Multiple
     >,
     highlightedOption,
