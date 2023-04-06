@@ -69,6 +69,7 @@ function useList<
     onChange,
     onHighlightChange,
     orientation = 'vertical',
+    pageSize = 5,
     selectionLimit = null,
     stateReducer: externalReducer,
   } = params;
@@ -158,6 +159,7 @@ function useList<
       itemStringifier,
       onHighlightChange: handleHighlightChange,
       orientation,
+      pageSize,
       selectionLimit,
       stateComparers,
     },

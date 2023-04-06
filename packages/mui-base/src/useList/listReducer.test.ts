@@ -26,6 +26,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -55,6 +56,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -85,6 +87,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -114,6 +117,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: 1,
           },
         },
@@ -143,6 +147,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -173,6 +178,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: 2,
           },
         },
@@ -201,6 +207,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -214,7 +221,7 @@ describe('listReducer', () => {
 
   describe('action: keyDown', () => {
     interface KeydownTestCase {
-      name: string;
+      description: string;
       key: string;
       initialHighlightedItem: string | null;
       disabledItemFocusable: boolean;
@@ -225,7 +232,7 @@ describe('listReducer', () => {
 
     const testCases: KeydownTestCase[] = [
       {
-        name: 'happy path',
+        description: 'happy path',
         key: 'Home',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -234,7 +241,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'highlights the first enabled item',
+        description: 'highlights the first enabled item',
         key: 'Home',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -243,7 +250,7 @@ describe('listReducer', () => {
         expected: '2',
       },
       {
-        name: 'highlights the first enabled item',
+        description: 'highlights the first enabled item',
         key: 'Home',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -252,7 +259,7 @@ describe('listReducer', () => {
         expected: '3',
       },
       {
-        name: 'highlights the first item even if it is disabled',
+        description: 'highlights the first item even if it is disabled',
         key: 'Home',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -261,7 +268,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'all disabled',
+        description: 'all disabled',
         key: 'Home',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -270,7 +277,7 @@ describe('listReducer', () => {
         expected: null,
       },
       {
-        name: 'all disabled but focusable',
+        description: 'all disabled but focusable',
         key: 'Home',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -279,7 +286,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'happy path',
+        description: 'happy path',
         key: 'End',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -288,7 +295,7 @@ describe('listReducer', () => {
         expected: '5',
       },
       {
-        name: 'highlights the last enabled item',
+        description: 'highlights the last enabled item',
         key: 'End',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -297,7 +304,7 @@ describe('listReducer', () => {
         expected: '4',
       },
       {
-        name: 'highlights the last enabled item',
+        description: 'highlights the last enabled item',
         key: 'End',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -306,7 +313,7 @@ describe('listReducer', () => {
         expected: '3',
       },
       {
-        name: 'highlights the last item even if it is disabled',
+        description: 'highlights the last item even if it is disabled',
         key: 'End',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -315,7 +322,7 @@ describe('listReducer', () => {
         expected: '5',
       },
       {
-        name: 'all disabled',
+        description: 'all disabled',
         key: 'End',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -324,7 +331,7 @@ describe('listReducer', () => {
         expected: null,
       },
       {
-        name: 'all disabled but focusable',
+        description: 'all disabled but focusable',
         key: 'End',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -333,7 +340,7 @@ describe('listReducer', () => {
         expected: '5',
       },
       {
-        name: 'happy path',
+        description: 'happy path',
         key: 'ArrowDown',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -342,7 +349,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'happy path',
+        description: 'happy path',
         key: 'ArrowDown',
         initialHighlightedItem: '1',
         disabledItemFocusable: false,
@@ -351,7 +358,7 @@ describe('listReducer', () => {
         expected: '2',
       },
       {
-        name: 'skips the disabled item',
+        description: 'skips the disabled item',
         key: 'ArrowDown',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -360,7 +367,7 @@ describe('listReducer', () => {
         expected: '2',
       },
       {
-        name: 'skips multiple disabled items',
+        description: 'skips multiple disabled items',
         key: 'ArrowDown',
         initialHighlightedItem: '1',
         disabledItemFocusable: false,
@@ -369,7 +376,7 @@ describe('listReducer', () => {
         expected: '4',
       },
       {
-        name: 'skips the disabled items and wraps around',
+        description: 'skips the disabled items and wraps around',
         key: 'ArrowDown',
         initialHighlightedItem: '3',
         disabledItemFocusable: false,
@@ -378,7 +385,7 @@ describe('listReducer', () => {
         expected: '2',
       },
       {
-        name: 'focuses the disabled item',
+        description: 'focuses the disabled item',
         key: 'ArrowDown',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -387,7 +394,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'does not wrap around',
+        description: 'does not wrap around',
         key: 'ArrowDown',
         initialHighlightedItem: '5',
         disabledItemFocusable: false,
@@ -396,7 +403,7 @@ describe('listReducer', () => {
         expected: '5',
       },
       {
-        name: 'remains on the same item when all the next are disabled',
+        description: 'remains on the same item when all the next are disabled',
         key: 'ArrowDown',
         initialHighlightedItem: '3',
         disabledItemFocusable: false,
@@ -405,7 +412,7 @@ describe('listReducer', () => {
         expected: '3',
       },
       {
-        name: 'all disabled',
+        description: 'all disabled',
         key: 'ArrowDown',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -414,7 +421,7 @@ describe('listReducer', () => {
         expected: null,
       },
       {
-        name: 'all disabled but focusable',
+        description: 'all disabled but focusable',
         key: 'ArrowDown',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -423,7 +430,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'happy path',
+        description: 'happy path',
         key: 'ArrowUp',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -432,7 +439,7 @@ describe('listReducer', () => {
         expected: '5',
       },
       {
-        name: 'happy path',
+        description: 'happy path',
         key: 'ArrowUp',
         initialHighlightedItem: '2',
         disabledItemFocusable: false,
@@ -441,7 +448,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'skips the disabled item',
+        description: 'skips the disabled item',
         key: 'ArrowUp',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -450,7 +457,7 @@ describe('listReducer', () => {
         expected: '4',
       },
       {
-        name: 'skips multiple disabled items',
+        description: 'skips multiple disabled items',
         key: 'ArrowUp',
         initialHighlightedItem: '1',
         disabledItemFocusable: false,
@@ -459,7 +466,7 @@ describe('listReducer', () => {
         expected: '3',
       },
       {
-        name: 'skips the disabled items and wraps around',
+        description: 'skips the disabled items and wraps around',
         key: 'ArrowUp',
         initialHighlightedItem: '2',
         disabledItemFocusable: false,
@@ -468,7 +475,7 @@ describe('listReducer', () => {
         expected: '3',
       },
       {
-        name: 'focuses the disabled item',
+        description: 'focuses the disabled item',
         key: 'ArrowUp',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
@@ -477,7 +484,7 @@ describe('listReducer', () => {
         expected: '5',
       },
       {
-        name: 'does not wrap around',
+        description: 'does not wrap around',
         key: 'ArrowUp',
         initialHighlightedItem: '1',
         disabledItemFocusable: false,
@@ -486,7 +493,7 @@ describe('listReducer', () => {
         expected: '1',
       },
       {
-        name: 'remains on the same item when all the previous are disabled',
+        description: 'remains on the same item when all the previous are disabled',
         key: 'ArrowUp',
         initialHighlightedItem: '3',
         disabledItemFocusable: false,
@@ -495,7 +502,7 @@ describe('listReducer', () => {
         expected: '3',
       },
       {
-        name: 'all disabled',
+        description: 'all disabled',
         key: 'ArrowUp',
         initialHighlightedItem: null,
         disabledItemFocusable: false,
@@ -504,13 +511,85 @@ describe('listReducer', () => {
         expected: null,
       },
       {
-        name: 'all disabled but focusable',
+        description: 'all disabled but focusable',
         key: 'ArrowUp',
         initialHighlightedItem: null,
         disabledItemFocusable: true,
         disabledItems: ['1', '2', '3', '4', '5'],
         disableListWrap: false,
         expected: '5',
+      },
+      {
+        description: 'happy path',
+        key: 'PageDown',
+        initialHighlightedItem: null,
+        disabledItemFocusable: false,
+        disabledItems: [],
+        disableListWrap: false,
+        expected: '3',
+      },
+      {
+        description: 'skips the disabled item',
+        key: 'PageDown',
+        initialHighlightedItem: null,
+        disabledItemFocusable: false,
+        disabledItems: ['3'],
+        disableListWrap: false,
+        expected: '4',
+      },
+      {
+        description: 'does not wrap around, no matter the setting',
+        key: 'PageDown',
+        initialHighlightedItem: '4',
+        disabledItemFocusable: false,
+        disabledItems: [],
+        disableListWrap: false,
+        expected: '5',
+      },
+      {
+        description: 'does not wrap around, no matter the setting, and skips the disabled item',
+        key: 'PageDown',
+        initialHighlightedItem: '3',
+        disabledItemFocusable: false,
+        disabledItems: ['5'],
+        disableListWrap: false,
+        expected: '4',
+      },
+      {
+        description: 'happy path',
+        key: 'PageUp',
+        initialHighlightedItem: null,
+        disabledItemFocusable: false,
+        disabledItems: [],
+        disableListWrap: false,
+        expected: '1',
+      },
+      {
+        description: 'skips the disabled item',
+        key: 'PageUp',
+        initialHighlightedItem: '5',
+        disabledItemFocusable: false,
+        disabledItems: ['2'],
+        disableListWrap: false,
+        expected: '1',
+      },
+      {
+        description: 'does not wrap around, no matter the setting',
+        key: 'PageUp',
+        initialHighlightedItem: '2',
+        disabledItemFocusable: false,
+        disabledItems: [],
+        disableListWrap: false,
+        expected: '1',
+      },
+      {
+        description: 'does not wrap around, no matter the setting, and skips the disabled item',
+        key: 'PageUp',
+        initialHighlightedItem: '3',
+        disabledItemFocusable: false,
+        disabledItems: ['1'],
+        disableListWrap: false,
+        expected: '2',
       },
     ];
 
@@ -520,7 +599,7 @@ describe('listReducer', () => {
       }', disabledItemsFocusable: ${spec.disabledItemFocusable}, disableListWrap: ${
         spec.disableListWrap
       }, disabledItems: [${spec.disabledItems.join()}]`, () => {
-        it(`${spec.name}: should highlight the '${spec.expected}' item after the ${spec.key} is pressed`, () => {
+        it(`${spec.description}: should highlight the '${spec.expected}' item after the ${spec.key} is pressed`, () => {
           const state: ListState<string> = {
             highlightedValue: spec.initialHighlightedItem,
             selectedValues: [],
@@ -540,6 +619,7 @@ describe('listReducer', () => {
                 itemComparer: (o, v) => o === v,
                 itemStringifier: (option) => option,
                 orientation: 'vertical',
+                pageSize: 3,
                 selectionLimit: null,
               },
             },
@@ -572,6 +652,7 @@ describe('listReducer', () => {
               itemComparer: (o, v) => o === v,
               itemStringifier: (option) => option,
               orientation: 'vertical',
+              pageSize: 5,
               selectionLimit: null,
             },
           },
@@ -601,6 +682,7 @@ describe('listReducer', () => {
               itemComparer: (o, v) => o === v,
               itemStringifier: (option) => option,
               orientation: 'vertical',
+              pageSize: 5,
               selectionLimit: 1,
             },
           },
@@ -630,6 +712,7 @@ describe('listReducer', () => {
               itemComparer: (o, v) => o === v,
               itemStringifier: (option) => option,
               orientation: 'vertical',
+              pageSize: 5,
               selectionLimit: null,
             },
           },
@@ -659,6 +742,7 @@ describe('listReducer', () => {
               itemComparer: (o, v) => o === v,
               itemStringifier: (option) => option,
               orientation: 'vertical',
+              pageSize: 5,
               selectionLimit: 2,
             },
           },
@@ -691,6 +775,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -720,6 +805,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -749,6 +835,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -778,6 +865,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -807,6 +895,7 @@ describe('listReducer', () => {
             itemComparer: (o, v) => o === v,
             itemStringifier: (option) => option,
             orientation: 'vertical',
+            pageSize: 5,
             selectionLimit: null,
           },
         },
@@ -825,6 +914,7 @@ describe('listReducer', () => {
       isItemDisabled: () => false,
       itemStringifier: (option: any) => option,
       orientation: 'vertical' as const,
+      pageSize: 5,
       selectionLimit: null,
     };
 

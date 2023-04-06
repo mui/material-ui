@@ -8,9 +8,6 @@ import {
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 
-// TODO: make page size configurable
-const pageSize = 5;
-
 /**
  * Looks up the next valid item to highlight within the list.
  *
@@ -248,7 +245,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
   parameters: ListActionAddOnValue<ItemValue>,
 ): State {
   const previouslySelectedValue = state.highlightedValue;
-  const { orientation } = parameters;
+  const { orientation, pageSize } = parameters;
 
   switch (key) {
     case 'Home':

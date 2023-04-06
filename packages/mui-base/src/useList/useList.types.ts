@@ -15,6 +15,7 @@ type ListActionAddOnValueRequiredKeys =
   | 'items'
   | 'itemStringifier'
   | 'orientation'
+  | 'pageSize'
   | 'selectionLimit';
 
 /**
@@ -134,6 +135,12 @@ export interface UseListParameters<
    * `onChange` and `onHighlightChange` callbacks are also fired.
    */
   onStateChange?: StateChangeCallback<State>;
+  /**
+   * The number of items skip when using the page up and page down keys.
+   *
+   * @default 5
+   */
+  pageSize?: number;
   /**
    * A function that tests equality between two items' values.
    * @default (a, b) => a === b
