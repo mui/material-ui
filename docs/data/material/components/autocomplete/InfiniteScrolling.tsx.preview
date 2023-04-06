@@ -1,6 +1,6 @@
 <Autocomplete
   id="infinite-scrolling-demo"
-  options={films}
+  options={options}
   disablePortal
   sx={{ width: 300 }}
   loading={isLoading}

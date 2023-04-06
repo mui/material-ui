@@ -1,6 +1,7 @@
 <Autocomplete
   id="infinite-scrolling-demo"
-  options={films}
+  options={options}
+  getOptionLabel={(option) => option}
   sx={{ width: 300 }}
   loading={isLoading}
   onScrollToBottom={handleOnScrollToBottom}
