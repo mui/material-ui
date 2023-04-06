@@ -7,7 +7,7 @@ import PopperUnstyled, {
   PopperUnstyledProps,
   PopperUnstyledTypeMap,
 } from '@mui/base/PopperUnstyled';
-import useSelect, { SelectProvider } from '@mui/base/useSelect';
+import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
@@ -423,6 +423,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     buttonFocusVisible,
     contextValue,
     disabled,
+    dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
@@ -476,7 +477,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
-          handleOpenChange(true);
+          dispatch({ type: SelectActionTypes.buttonClick, event });
         }
         handlers.onMouseDown?.(event);
       },

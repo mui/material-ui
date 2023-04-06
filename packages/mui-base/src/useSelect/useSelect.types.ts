@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UseButtonRootSlotProps } from '../useButton';
-import { ListState, UseListRootSlotProps } from '../useList';
+import { ListAction, ListState, UseListRootSlotProps } from '../useList';
 import { SelectOption } from '../useOption/useOption.types';
 import { EventHandlers } from '../utils/types';
 import { SelectProviderValue } from './SelectProvider';
@@ -135,6 +135,11 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * If `true`, the select is disabled.
    */
   disabled: boolean;
+  /**
+   * Action dispatcher for the select component.
+   * Allows to programmatically control the select.
+   */
+  dispatch: (action: ListAction<Value, SelectInternalState<Value>> | SelectAction) => void;
   /**
    * Resolver for the button slot's props.
    * @param otherHandlers event handlers for the button slot

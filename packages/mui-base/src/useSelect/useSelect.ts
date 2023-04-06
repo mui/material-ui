@@ -356,6 +356,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     buttonActive,
     buttonFocusVisible,
     disabled,
+    dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
