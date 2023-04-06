@@ -29,24 +29,39 @@ function getControlledState<State>(internalState: State, controlledProps: Partia
   return augmentedState;
 }
 
-/**
- * Triggers the change event handler when reducer returns changed state.
- *
- * @param nextState The next state returned by the reducer.
- * @param internalPreviousState The previous state. If the component is controlled, this is merged with the props to determine the final state.
- * @param stateComparers Comparers for each state item. If a state item has a corresponding comparer, it will be used to determine if the state has changed.
- * @param onStateChange The change event handler.
- * @param controlledProps The external props used to override the state items.
- * @param lastActionRef The last action that was dispatched.
- */
+interface UseStateChangeDetectionParameters<State extends {}> {
+  /**
+   * The next state returned by the reducer.
+   */
+  nextState: State;
+  /**
+   * The initial state.
+   */
+  initialState: State;
+  /**
+   * Comparers for each state item. If a state item has a corresponding comparer, it will be used to determine if the state has changed.
+   */
+  stateComparers: StateComparers<State>;
+  /**
+   * The function called when the state has changed.
+   */
+  onStateChange: StateChangeCallback<State>;
+  /**
+   * The external props used to override the state items.
+   */
+  controlledProps: Partial<State>;
+  /**
+   * The last action that was dispatched.
+   */
+  lastActionRef: React.MutableRefObject<ControllableReducerAction | null>;
+}
+
 function useStateChangeDetection<State extends {}>(
-  nextState: State,
-  initialState: State,
-  stateComparers: StateComparers<State>,
-  onStateChange: StateChangeCallback<State>,
-  controlledProps: Partial<State>,
-  lastActionRef: React.MutableRefObject<ControllableReducerAction | null>,
+  parameters: UseStateChangeDetectionParameters<State>,
 ) {
+  const { nextState, initialState, stateComparers, onStateChange, controlledProps, lastActionRef } =
+    parameters;
+
   const internalPreviousStateRef = React.useRef<State>(initialState);
 
   React.useEffect(() => {
@@ -118,7 +133,7 @@ export default function useControllableReducer<
 >(
   parameters: ControllableReducerParameters<State, Action, ActionAddOn>,
 ): [State, (action: Action) => void] {
-  const actionRef = React.useRef<Action | null>(null);
+  const lastActionRef = React.useRef<Action | null>(null);
 
   const {
     reducer,
@@ -132,7 +147,7 @@ export default function useControllableReducer<
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
   const reducerWithControlledState = React.useCallback(
     (state: State, action: Action & ActionAddOn) => {
-      actionRef.current = action;
+      lastActionRef.current = action;
       const controlledState = getControlledState(state, controlledProps);
       return reducer(controlledState, action);
     },
@@ -152,14 +167,14 @@ export default function useControllableReducer<
     [actionAddOn],
   );
 
-  useStateChangeDetection<State>(
+  useStateChangeDetection<State>({
     nextState,
     initialState,
-    stateComparers ?? EMPTY_OBJECT,
-    onStateChange ?? NOOP,
+    stateComparers: stateComparers ?? EMPTY_OBJECT,
+    onStateChange: onStateChange ?? NOOP,
     controlledProps,
-    actionRef,
-  );
+    lastActionRef,
+  });
 
   return [getControlledState(nextState, controlledProps), dispatchWithAddOn];
 }
