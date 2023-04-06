@@ -140,7 +140,6 @@ describe('<SelectUnstyled />', () => {
 
           const listbox = getByRole('listbox');
 
-          userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '1'
           userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
           fireEvent.keyDown(listbox, { key });
 

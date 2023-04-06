@@ -22,6 +22,7 @@ import useList, {
   UseListParameters,
   ListAction,
   ListActionAddOn,
+  moveHighlight,
 } from '../useList';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
@@ -134,25 +135,40 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       const { open } = state;
 
       switch (action.type) {
-        case SelectActionTypes.buttonClick:
+        case SelectActionTypes.buttonClick: {
+          const itemToHighlight =
+            state.selectedValues[0] ??
+            moveHighlight<OptionValue>(null, 'start', action.props.current!);
+
           return {
             ...state,
             open: !open,
+            highlightedValue: !open ? itemToHighlight : null,
           };
+        }
 
         case SelectActionTypes.buttonArrowKeyDown:
           if (action.event.key === 'ArrowDown') {
+            const itemToHighlight =
+              state.selectedValues[0] ??
+              moveHighlight<OptionValue>(null, 'start', action.props.current!);
+
             return {
               ...state,
               open: true,
+              highlightedValue: itemToHighlight,
             };
           }
 
           if (action.event.key === 'ArrowUp') {
+            const itemToHighlight =
+              state.selectedValues[0] ??
+              moveHighlight<OptionValue>(null, 'end', action.props.current!);
+
             return {
               ...state,
               open: true,
-              // TODO: highlight last item
+              highlightedValue: itemToHighlight,
             };
           }
 
@@ -170,18 +186,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
       switch (action.type) {
         case ListActionTypes.keyDown:
-          // change selection when listbox is closed
-          if (
-            (action.event.key === 'ArrowUp' || action.event.key === 'ArrowDown') &&
-            !open &&
-            !multiple
-          ) {
-            return {
-              ...newState,
-              selectedValues: newState.highlightedValue != null ? [newState.highlightedValue] : [],
-            };
-          }
-
           if (
             !multiple &&
             (action.event.key === 'Enter' ||
@@ -206,19 +210,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
           break;
 
-        case ListActionTypes.setState:
-        case ListActionTypes.itemsChange:
-          return {
-            ...newState,
-            highlightedValue:
-              newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
-          };
-
         case ListActionTypes.blur:
           return {
             ...newState,
-            highlightedValue:
-              newState.selectedValues.length > 0 ? newState.selectedValues[0] : null,
             open: false,
           };
 

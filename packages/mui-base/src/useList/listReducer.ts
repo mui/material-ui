@@ -59,18 +59,16 @@ function findValidItemToHighlight<ItemValue>(
   }
 }
 
-// TODO: expose these functions for use in custom reducers
-
 /**
  * Gets the next item to highlight based on the current highlighted item and the search direction.
  *
  * @param previouslyHighlightedValue The item from which to start the search for the next candidate.
  * @param offset The offset from the previously highlighted item to search for the next candidate or a special named value ('reset', 'start', 'end').
- * @param props
+ * @param listConfig The confguration of the list.
  *
  * @returns The next item to highlight or null if no item is valid.
  */
-function moveHighlight<ItemValue>(
+export function moveHighlight<ItemValue>(
   previouslyHighlightedValue: ItemValue | null,
   offset: number | 'reset' | 'start' | 'end',
   listConfig: ListActionAddOnValue<ItemValue>,
@@ -179,7 +177,7 @@ function moveHighlight<ItemValue>(
  *
  * @returns The new array of selected items.
  */
-function toggleSelection<ItemValue>(
+export function toggleSelection<ItemValue>(
   item: ItemValue,
   selectedValues: ItemValue[],
   selectionLimit: number | null,
