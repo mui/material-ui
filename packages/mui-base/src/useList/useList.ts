@@ -51,7 +51,8 @@ function useList<
   ItemValue,
   State extends ListState<ItemValue> = ListState<ItemValue>,
   CustomAction extends ControllableReducerAction = never,
->(params: UseListParameters<ItemValue, State, CustomAction>) {
+  CustomActionAddon = {},
+>(params: UseListParameters<ItemValue, State, CustomAction, CustomActionAddon>) {
   const {
     controlledProps = EMPTY_OBJECT,
     disabledItemsFocusable = false,
@@ -70,6 +71,7 @@ function useList<
     onHighlightChange,
     orientation = 'vertical',
     pageSize = 5,
+    reducerActionAddon: externalActionAddon = {} as CustomActionAddon,
     selectionLimit = null,
     stateReducer: externalReducer,
   } = params;
@@ -169,9 +171,9 @@ function useList<
   const initialState = getInitialState();
   const reducer = externalReducer ?? defaultReducer;
 
-  const actionAddOn: ListActionAddOn<ItemValue> = React.useMemo(
-    () => ({ props: propsWithDefaults }),
-    [propsWithDefaults],
+  const actionAddOn: ListActionAddOn<ItemValue> & CustomActionAddon = React.useMemo(
+    () => ({ ...externalActionAddon, props: propsWithDefaults }),
+    [propsWithDefaults, externalActionAddon],
   );
 
   type ListActionsWithCustomActions = CustomAction | ListAction<ItemValue, State>;
@@ -179,7 +181,7 @@ function useList<
   const [state, dispatch] = useControllableReducer<
     State,
     ListActionsWithCustomActions,
-    ListActionAddOn<ItemValue>
+    ListActionAddOn<ItemValue> & CustomActionAddon
   >({
     reducer: reducer as any,
     actionAddOn,

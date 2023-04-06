@@ -29,11 +29,11 @@ export type ListActionAddOn<ItemValue> = {
   props: React.RefObject<ListActionAddOnValue<ItemValue>>;
 };
 
-export type ListReducerAction<ItemValue, State extends ListState<ItemValue>> = ListAction<
+export type ListReducerAction<
   ItemValue,
-  State
-> &
-  ListActionAddOn<ItemValue>;
+  State extends ListState<ItemValue>,
+  CustomActionAddon = {},
+> = ListAction<ItemValue, State> & ListActionAddOn<ItemValue> & CustomActionAddon;
 
 export interface ListState<ItemValue> {
   /**
@@ -46,9 +46,9 @@ export interface ListState<ItemValue> {
   selectedValues: ItemValue[];
 }
 
-export type ListReducer<ItemValue, State extends ListState<ItemValue>> = (
+export type ListReducer<ItemValue, State extends ListState<ItemValue>, CustomActionAddon> = (
   state: State,
-  action: ListReducerAction<ItemValue, State>,
+  action: ListReducerAction<ItemValue, State, CustomActionAddon>,
 ) => State;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
@@ -57,6 +57,7 @@ export interface UseListParameters<
   ItemValue,
   State extends ListState<ItemValue> = ListState<ItemValue>,
   CustomAction extends ControllableReducerAction = never,
+  CustomActionAddon = {},
 > {
   /**
    * The externally controlled values (highlighted and selected item(s)) of the list.
@@ -156,10 +157,13 @@ export interface UseListParameters<
    */
   items: ItemValue[];
   /**
+   * Additional data to be passed to all the reducer actions.
+   */
+  reducerActionAddon?: CustomActionAddon;
+  /**
    * Orientation of the items in the list.
    * Determines the actions that are performed when arrow keys are pressed.
    */
-  // TODO: add vertical-reverse
   orientation?: 'horizontal-ltr' | 'horizontal-rtl' | 'vertical';
   /**
    * Maximum number of items that can be selected at once.
@@ -174,7 +178,9 @@ export interface UseListParameters<
    */
   stateReducer?: (
     state: State,
-    action: (ListAction<ItemValue, State> | CustomAction) & ListActionAddOn<ItemValue>,
+    action: (ListAction<ItemValue, State> | CustomAction) &
+      ListActionAddOn<ItemValue> &
+      CustomActionAddon,
   ) => State;
 }
 

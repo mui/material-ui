@@ -16,19 +16,13 @@ import {
   UseSelectParameters,
   UseSelectReturnValue,
 } from './useSelect.types';
-import useList, {
-  listReducer,
-  ListActionTypes,
-  UseListParameters,
-  ListAction,
-  ListActionAddOn,
-  moveHighlight,
-} from '../useList';
+import useList, { UseListParameters } from '../useList';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
 import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption/useOption.types';
+import selectReducer from './selectReducer';
 
 /**
  *
@@ -126,105 +120,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
   const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
 
-  const stateReducer = React.useCallback(
-    (
-      state: SelectInternalState<OptionValue>,
-      action: (ListAction<OptionValue, SelectInternalState<OptionValue>> | SelectAction) &
-        ListActionAddOn<OptionValue>,
-    ) => {
-      const { open } = state;
-
-      switch (action.type) {
-        case SelectActionTypes.buttonClick: {
-          const itemToHighlight =
-            state.selectedValues[0] ??
-            moveHighlight<OptionValue>(null, 'start', action.props.current!);
-
-          return {
-            ...state,
-            open: !open,
-            highlightedValue: !open ? itemToHighlight : null,
-          };
-        }
-
-        case SelectActionTypes.buttonArrowKeyDown:
-          if (action.event.key === 'ArrowDown') {
-            const itemToHighlight =
-              state.selectedValues[0] ??
-              moveHighlight<OptionValue>(null, 'start', action.props.current!);
-
-            return {
-              ...state,
-              open: true,
-              highlightedValue: itemToHighlight,
-            };
-          }
-
-          if (action.event.key === 'ArrowUp') {
-            const itemToHighlight =
-              state.selectedValues[0] ??
-              moveHighlight<OptionValue>(null, 'end', action.props.current!);
-
-            return {
-              ...state,
-              open: true,
-              highlightedValue: itemToHighlight,
-            };
-          }
-
-          break;
-
-        default:
-          break;
-      }
-
-      const newState: SelectInternalState<OptionValue> = listReducer(
-        state,
-        action as ListAction<OptionValue, SelectInternalState<OptionValue>> &
-          ListActionAddOn<OptionValue>,
-      );
-
-      switch (action.type) {
-        case ListActionTypes.keyDown:
-          if (
-            !multiple &&
-            (action.event.key === 'Enter' ||
-              action.event.key === ' ' ||
-              action.event.key === 'Escape')
-          ) {
-            return {
-              ...newState,
-              open: false,
-            };
-          }
-
-          break;
-
-        case ListActionTypes.itemClick:
-          if (!multiple) {
-            return {
-              ...newState,
-              open: false,
-            };
-          }
-
-          break;
-
-        case ListActionTypes.blur:
-          return {
-            ...newState,
-            open: false,
-          };
-
-        default:
-          return newState;
-      }
-
-      return newState;
-    },
-    [multiple],
-  );
-
   const {
     getRootProps: getButtonRootProps,
     active: buttonActive,
@@ -267,7 +162,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   const useListParameters: UseListParameters<
     OptionValue,
     SelectInternalState<OptionValue>,
-    SelectAction
+    SelectAction,
+    { multiple: boolean }
   > = {
     getInitialState: () => ({
       highlightedValue: null,
@@ -296,10 +192,11 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         }
       }
     },
+    reducerActionAddon: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
     itemStringifier: stringifyOption,
     selectionLimit: multiple ? null : 1,
-    stateReducer,
+    stateReducer: selectReducer,
   };
 
   const {
@@ -356,7 +253,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
         event.preventDefault();
-        dispatch({ type: SelectActionTypes.buttonArrowKeyDown, event });
+        dispatch({ type: SelectActionTypes.buttonArrowKeyDown, key: event.key, event });
       }
     };
 

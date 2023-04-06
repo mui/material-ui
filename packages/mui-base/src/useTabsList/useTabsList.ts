@@ -8,13 +8,8 @@ import {
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useList, {
-  ListActionTypes,
-  listReducer,
-  ListReducer,
-  ListState,
-  UseListParameters,
-} from '../useList';
+import useList, { ListActionTypes, UseListParameters } from '../useList';
+import tabsListReducer from './tabsListReducer';
 
 /**
  *
@@ -74,36 +69,6 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     listOrientation = isRtl ? 'horizontal-rtl' : 'horizontal-ltr';
   }
 
-  const stateReducer: ListReducer<string | number, ListState<string | number>> = React.useCallback(
-    (state, action) => {
-      const newState = listReducer(state, action);
-
-      if (action.type === ListActionTypes.itemsChange) {
-        return {
-          ...newState,
-          highlightedValue: newState.selectedValues[0] ?? null,
-        };
-      }
-
-      if (action.type === ListActionTypes.setState && action.value.selectedValues != null) {
-        return {
-          ...newState,
-          highlightedValue: action.value.selectedValues[0],
-        };
-      }
-
-      if (selectionFollowsFocus && newState.highlightedValue != null) {
-        return {
-          ...newState,
-          selectedValues: [newState.highlightedValue],
-        };
-      }
-
-      return newState;
-    },
-    [selectionFollowsFocus],
-  );
-
   const handleChange = React.useCallback(
     (
       event:
@@ -142,8 +107,12 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     listRef: externalRef,
     onChange: handleChange,
     orientation: listOrientation,
+    reducerActionAddon: React.useMemo(
+      () => ({ selectionFollowsFocus: selectionFollowsFocus || false }),
+      [selectionFollowsFocus],
+    ),
     selectionLimit: 1,
-    stateReducer,
+    stateReducer: tabsListReducer,
   });
 
   React.useEffect(() => {

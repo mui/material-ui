@@ -195,6 +195,7 @@ export interface ButtonClickAction {
 
 export interface ButtonArrowKeyDownAction {
   type: typeof ACTION_TYPES_BUTTON_ARROW_KEY_DOWN;
+  key: string;
   event: React.KeyboardEvent;
 }
 

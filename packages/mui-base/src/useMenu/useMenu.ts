@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useList, { listReducer, ListActionTypes, ListActionAddOn, ListAction } from '../useList';
+import useList from '../useList';
 import {
   MenuInternalState,
   UseMenuListboxSlotProps,
@@ -11,6 +11,7 @@ import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { MenuItemMetadata } from '../useMenuItem';
 import { StateChangeCallback } from '../utils/useControllableReducer.types';
+import menuReducer from './menuReducer';
 
 /**
  *
@@ -46,49 +47,6 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     [subitems],
   );
 
-  const menuReducer = React.useCallback(
-    (
-      state: MenuInternalState,
-      action: ListAction<string, MenuInternalState> & ListActionAddOn<string>,
-    ): MenuInternalState => {
-      if (action.type === ListActionTypes.itemHover || action.type === ListActionTypes.setState) {
-        return state;
-      }
-
-      const newState = listReducer(state, action);
-
-      // make sure an item is always highlighted
-      if (newState.highlightedValue === null && action.props.current!.items.length > 0) {
-        return {
-          ...newState,
-          highlightedValue: action.props.current!.items[0],
-        };
-      }
-
-      if (action.type === ListActionTypes.keyDown) {
-        if (action.event.key === 'Escape') {
-          return {
-            ...newState,
-            open: false,
-          };
-        }
-      }
-
-      if (action.type === ListActionTypes.blur) {
-        if (!listboxRef.current?.contains(action.event.relatedTarget)) {
-          return {
-            ...newState,
-            open: false,
-            highlightedValue: action.props.current!.items[0],
-          };
-        }
-      }
-
-      return newState;
-    },
-    [],
-  );
-
   const controlledProps = React.useMemo(() => ({ open: openProp }), [openProp]);
 
   const stateChangeHandler: StateChangeCallback<MenuInternalState> = React.useCallback(
@@ -110,7 +68,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     highlightedOption,
     contextValue: listContextValue,
     state: { open },
-  } = useList<string, MenuInternalState>({
+  } = useList({
     controlledProps,
     disabledItemsFocusable: true,
     focusManagement: 'DOM',
@@ -126,6 +84,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
     listRef: handleRef,
     onStateChange: stateChangeHandler,
+    reducerActionAddon: { listboxRef },
     selectionLimit: 0,
     stateReducer: menuReducer,
   });
