@@ -107,7 +107,6 @@ describe('<NativeSelect />', () => {
   it('should not add `type` attribute to <select/> element', () => {
     const { getByRole } = render(
       <NativeSelect inputProps={{ type: 'number' }}>
-        <option value="">empty</option>
         <option value={10}>Ten</option>
         <option value={20}>Twenty</option>
         <option value={30}>Thirty</option>
