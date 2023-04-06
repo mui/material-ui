@@ -103,4 +103,17 @@ describe('<NativeSelect />', () => {
     expect(getByTestId('root')).to.have.class('foo');
     expect(getByTestId('root')).to.have.class('bar');
   });
+
+  it('should not add `type` attribute to <select/> element', () => {
+    const { getByRole } = render(
+      <NativeSelect inputProps={{ type: 'number' }}>
+        <option value="">empty</option>
+        <option value={10}>Ten</option>
+        <option value={20}>Twenty</option>
+        <option value={30}>Thirty</option>
+      </NativeSelect>,
+    );
+
+    expect(getByRole('combobox')).to.not.have.attribute('type');
+  });
 });

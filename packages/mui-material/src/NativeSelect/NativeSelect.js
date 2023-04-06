@@ -59,9 +59,9 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
           classes: otherClasses,
           IconComponent,
           variant: fcs.variant,
-          type: undefined, // We render a select. We can ignore the type provided by the `Input`.
           ...inputProps,
           ...(input ? input.props.inputProps : {}),
+          type: undefined, // We render a select. We can ignore the type provided by the `Input`.
         },
         ref,
         ...other,
