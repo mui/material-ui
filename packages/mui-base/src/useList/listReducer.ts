@@ -30,7 +30,10 @@ function findValidItemToHighlight<ItemValue>(
   isItemDisabled: ItemPredicate<ItemValue>,
   wrapAround: boolean,
 ): number {
-  if (items.length === 0 || items.every((item, itemIndex) => isItemDisabled(item, itemIndex))) {
+  if (
+    items.length === 0 ||
+    (!includeDisabledItems && items.every((item, itemIndex) => isItemDisabled(item, itemIndex)))
+  ) {
     return -1;
   }
 
@@ -148,6 +151,15 @@ function moveHighlight<ItemValue>(
     isItemDisabled,
     wrapAround,
   );
+
+  // If there are no valid items to highlight, return the previously highlighted item (if it's still valid).
+  if (
+    nextIndex === -1 &&
+    previouslyHighlightedValue !== null &&
+    !isItemDisabled(previouslyHighlightedValue, previouslyHighlightedIndex)
+  ) {
+    return previouslyHighlightedValue;
+  }
 
   return items[nextIndex] ?? null;
 }
@@ -358,7 +370,6 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
     ? state.highlightedValue
     : moveHighlight(state.highlightedValue, 1, props);
 
-  // use `for` instead of `while` prevent infinite loop
   for (let index = 0; index < items.length; index += 1) {
     // Return un-mutated state if looped back to the currently highlighted value
     if (!nextItem || (!startWithCurrentItem && state.highlightedValue === nextItem)) {
