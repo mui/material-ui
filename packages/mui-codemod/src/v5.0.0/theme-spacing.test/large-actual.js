@@ -171,7 +171,7 @@ function DocSearcHit(props) {
       text = 'Joy UI';
     }
     if (pathname.startsWith('/base/')) {
-      text = 'MUI Base';
+      text = 'Base UI';
     }
     return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
   }

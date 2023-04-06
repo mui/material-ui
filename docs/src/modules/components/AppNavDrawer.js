@@ -449,7 +449,7 @@ export default function AppNavDrawer(props) {
           )}
           {canonicalAs.startsWith('/base/') && (
             <ProductIdentifier
-              name="MUI Base"
+              name="Base UI"
               metadata="MUI Core"
               versionSelector={renderVersionSelector([
                 { text: `v${basePkgJson.version}`, current: true },

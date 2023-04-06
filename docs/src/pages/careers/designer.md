@@ -27,7 +27,7 @@ The new brand was fundamental to set the stage for MUI to become larger than Mat
 Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](/core/):
-  - [MUI Base](/base/getting-started/overview/): the unstyled version of the components.
+  - [Base UI](/base/getting-started/overview/): the unstyled version of the components.
   - [MUI System](/system/getting-started/overview/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](/x/): as mentioned, a growing set of advanced components.
