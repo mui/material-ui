@@ -1,4 +1,6 @@
 import * as React from 'react';
+import SelectUnstyled from '@mui/base/SelectUnstyled';
+import OptionUnstyled from '@mui/base/OptionUnstyled';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
@@ -6,6 +8,35 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
+
+function Demo() {
+  return (
+    <div>
+      <SelectUnstyled listboxOpen slotProps={{ popper: { placement: 'bottom' } }}>
+        <li role="none">
+          <ul role="group" aria-label="input components">
+            <li role="presentation">Input components</li>
+            <OptionUnstyled value="1">Button</OptionUnstyled>
+            <OptionUnstyled value="2">Input</OptionUnstyled>
+            <OptionUnstyled value="3">Select</OptionUnstyled>
+            <OptionUnstyled value="4">Switch</OptionUnstyled>
+            <OptionUnstyled value="5">Slider</OptionUnstyled>
+          </ul>
+        </li>
+        <li role="none">
+          <ul role="group" aria-label="Utils">
+            <li role="presentation">Utils</li>
+            <OptionUnstyled value="6">Click-away listener</OptionUnstyled>
+            <OptionUnstyled value="7">Form control</OptionUnstyled>
+            <OptionUnstyled value="8">Modal</OptionUnstyled>
+            <OptionUnstyled value="9">No SSR</OptionUnstyled>
+            <OptionUnstyled value="10">Textarea autosize</OptionUnstyled>
+          </ul>
+        </li>
+      </SelectUnstyled>
+    </div>
+  );
+}
 
 export default function BaseUIHero() {
   return (
@@ -55,7 +86,43 @@ export default function BaseUIHero() {
           <GetStartedButtons to={ROUTES.baseDocs} installation="npm install @mui/base" />
         </Box>
       }
-      right={<div />}
+      right={
+        <Box
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            pb: '288px',
+            maxWidth: 570,
+            height: '100%',
+          }}
+        >
+          <Demo />
+          <Box
+            sx={{
+              inset: 0,
+              position: 'absolute',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              pb: '288px',
+              '--Select-width': '240px',
+              '--Select-radius': '12px',
+              '& .MuiSelect-root': {
+                width: 'var(--Select-width)',
+                maxWidth: '100%',
+                border: '1px solid',
+                borderColor: 'var(--muidocs-palette-grey-300)',
+                borderRadius: 'var(--Select-radius)',
+                height: '45px',
+              },
+            }}
+          >
+            <Demo />
+          </Box>
+        </Box>
+      }
     />
   );
 }
