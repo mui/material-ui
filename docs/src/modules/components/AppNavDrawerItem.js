@@ -293,7 +293,7 @@ export default function AppNavDrawerItem(props) {
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {comingSoon && <Chip label="Coming soon" sx={sxChip('primary')} />}
+        {comingSoon && <Chip label="Coming soon" sx={sxChip('grey')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
