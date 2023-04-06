@@ -270,7 +270,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [value, openProp],
   );
 
-  const useListboxParameters: UseListParameters<
+  const useListParameters: UseListParameters<
     OptionValue,
     SelectInternalState<OptionValue>,
     SelectAction
@@ -314,10 +314,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     highlightedOption,
     selectedOptions,
     contextValue: listContextValue,
-    state,
-  } = useList(useListboxParameters);
-
-  const { open } = state;
+    state: { open },
+  } = useList(useListParameters);
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -453,20 +451,14 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [listContextValue, compoundComponentContextValue],
   );
 
+  let selectValue: SelectValue<OptionValue, Multiple>;
   if (props.multiple) {
-    return {
-      buttonActive,
-      buttonFocusVisible,
-      disabled,
-      getButtonProps,
-      getListboxProps,
-      getOptionMetadata,
-      contextValue,
-      open,
-      options: optionValues,
-      value: selectedOptions as SelectValue<OptionValue, Multiple>,
-      highlightedOption,
-    };
+    selectValue = selectedOptions as SelectValue<OptionValue, Multiple>;
+  } else {
+    selectValue = (selectedOptions.length > 0 ? selectedOptions[0] : null) as SelectValue<
+      OptionValue,
+      Multiple
+    >;
   }
 
   return {
@@ -479,10 +471,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     contextValue,
     open,
     options: optionValues,
-    value: (selectedOptions.length > 0 ? selectedOptions[0] : null) as SelectValue<
-      OptionValue,
-      Multiple
-    >,
+    value: selectValue,
     highlightedOption,
   };
 }
