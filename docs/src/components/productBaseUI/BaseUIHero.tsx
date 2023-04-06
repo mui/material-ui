@@ -1,25 +1,54 @@
 import * as React from 'react';
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
+import DragIndicator from '@mui/icons-material/DragIndicator';
+import ToggleOn from '@mui/icons-material/ToggleOn';
+import { useResizeHandle } from '../productCore/CoreStyling';
 
-function Demo() {
+const Div = React.forwardRef<
+  HTMLDivElement,
+  { anchorEl?: any; ownerState?: any; open?: any; placement?: any }
+>(function Div({ anchorEl, ownerState, open, placement, ...props }, ref) {
+  return <div ref={ref} {...props} />;
+});
+
+function Demo({ label }: { label: string }) {
   return (
-    <div>
-      <SelectUnstyled listboxOpen slotProps={{ popper: { placement: 'bottom' } }}>
+    <Box
+      sx={{
+        position: 'relative',
+        width: 'var(--Select-width)',
+        '& > button': {
+          width: '100%',
+          '&:empty:before': { content: '"Select an option"', color: 'text.tertiary' },
+        },
+        '&:is(ul)': {
+          margin: 0,
+        },
+      }}
+    >
+      <Typography sx={{ mb: 0.5, fontSize: 12, color: 'text.tertiary', fontWeight: 'bold' }}>
+        {label}
+      </Typography>
+      <SelectUnstyled listboxOpen autoFocus={false} slots={{ popper: Div }}>
         <li role="none">
           <ul role="group" aria-label="input components">
             <li role="presentation">Input components</li>
             <OptionUnstyled value="1">Button</OptionUnstyled>
             <OptionUnstyled value="2">Input</OptionUnstyled>
             <OptionUnstyled value="3">Select</OptionUnstyled>
-            <OptionUnstyled value="4">Switch</OptionUnstyled>
+            <OptionUnstyled value="4">
+              <ToggleOn /> Switch
+            </OptionUnstyled>
             <OptionUnstyled value="5">Slider</OptionUnstyled>
           </ul>
         </li>
@@ -34,7 +63,77 @@ function Demo() {
           </ul>
         </li>
       </SelectUnstyled>
-    </div>
+    </Box>
+  );
+}
+
+function Wrapper({ sx, children, ...props }: BoxProps) {
+  return (
+    <Box
+      {...props}
+      sx={[
+        { width: '100%', height: '100%', overflow: 'hidden' },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <Box
+        sx={{
+          width: 'var(--frame-width)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+        }}
+      >
+        {children}
+      </Box>
+    </Box>
+  );
+}
+
+function Resizable({ sx, ...props }: BoxProps) {
+  const container = React.useRef<HTMLDivElement | null>(null);
+  const { dragging, getDragHandlers } = useResizeHandle(container, { minWidth: '64px' });
+  return (
+    <Box
+      ref={container}
+      {...props}
+      sx={[
+        {
+          borderRight: '1px solid',
+          borderColor: dragging ? 'primary.400' : 'primary.200',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <Wrapper>{props.children}</Wrapper>
+      <Tooltip
+        title="Drag it over to see it unstyled!"
+        open={!dragging}
+        placement="left"
+        arrow
+        PopperProps={{ sx: { zIndex: 1000 } }}
+      >
+        <IconButton
+          sx={{
+            border: '1px solid',
+            borderColor: 'primary.200',
+            bgcolor: 'background.paper',
+            position: 'absolute',
+            right: 0,
+            bottom: 'min(80px, 8%)',
+            transform: 'translateX(50%)',
+            '&:hover': {
+              bgcolor: 'background.paper',
+              borderColor: 'primary.400',
+            },
+          }}
+          {...getDragHandlers()}
+        >
+          <DragIndicator />
+        </IconButton>
+      </Tooltip>
+    </Box>
   );
 }
 
@@ -89,38 +188,118 @@ export default function BaseUIHero() {
       right={
         <Box
           sx={{
+            '--frame-width': 'min(570px, 36vw)',
+            '--Select-width': '240px',
+            '--Select-radius': '12px',
+            '--Select-spacing': '8px',
             position: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            pb: '288px',
-            maxWidth: 570,
+            width: 'var(--frame-width)',
             height: '100%',
+            backgroundColor: 'inherit',
           }}
         >
-          <Demo />
-          <Box
-            sx={{
+          <Wrapper
+            sx={(theme) => ({
+              bgcolor: 'rgba(0 0 0 / 0.04)',
+              ...theme.applyDarkStyles({ bgcolor: 'rgba(255 255 255 / 0.04)' }),
+            })}
+          >
+            <Demo label="Unstyled select" />
+          </Wrapper>
+          <Resizable
+            sx={(theme) => ({
               inset: 0,
               position: 'absolute',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              pb: '288px',
-              '--Select-width': '240px',
-              '--Select-radius': '12px',
+              backgroundColor: 'inherit',
               '& .MuiSelect-root': {
-                width: 'var(--Select-width)',
+                width: '100%',
                 maxWidth: '100%',
                 border: '1px solid',
-                borderColor: 'var(--muidocs-palette-grey-300)',
+                borderColor: 'grey.300',
                 borderRadius: 'var(--Select-radius)',
                 height: '45px',
+                padding: 'var(--Select-spacing) calc(var(--Select-spacing) * 1.5)',
+                bgcolor: 'background.paper',
+                display: 'flex',
+                color: 'text.secondary',
+                alignItems: 'center',
+                ...theme.typography.body2,
+                '& svg:first-child': {
+                  marginRight: 'var(--Select-spacing)',
+                },
+                '&:not(:empty)': {
+                  fontWeight: 500,
+                },
               },
-            }}
+              '& .MuiSelect-popper': {
+                width: '100%',
+                margin: 'var(--Select-spacing) 0',
+              },
+              '& .MuiSelect-listbox': {
+                display: 'flex',
+                flexDirection: 'column',
+                margin: 0,
+                border: '1px solid',
+                borderColor: 'grey.300',
+                borderRadius: 'var(--Select-radius)',
+                bgcolor: 'background.paper',
+                boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.05)',
+                padding: 'calc(var(--Select-spacing) * 1.5)',
+                gap: 'calc(var(--Select-spacing) * 1.5)',
+                ...theme.typography.body2,
+                '& ul': {
+                  padding: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                },
+                '& li': {
+                  minHeight: 32,
+                  display: 'flex',
+                  borderRadius: '4px',
+                  '&[role="none"]': {
+                    flexDirection: 'column',
+                    padding: 0,
+                    '& > ul': {
+                      padding: 0,
+                    },
+                  },
+                  '&[role="presentation"]': {
+                    fontSize: 10,
+                    color: 'text.tertiary',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    alignItems: 'center',
+                  },
+                  '&[role="option"]': {
+                    border: '1px solid transparent',
+                    padding: 'calc(var(--Select-spacing) * 0.75)',
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'text.secondary',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    '&:hover, &.MuiOption-highlighted': {
+                      bgcolor: 'grey.50',
+                      color: 'text.primary',
+                    },
+                    '&.Mui-selected': {
+                      bgcolor: 'grey.50',
+                      borderColor: 'grey.100',
+                      color: 'text.primary',
+                    },
+                    '& svg:first-child': {
+                      color: 'primary.main',
+                      marginRight: 'var(--Select-spacing)',
+                      fontSize: 18,
+                    },
+                  },
+                },
+              },
+            })}
           >
-            <Demo />
-          </Box>
+            <Demo label="Customized select" />
+          </Resizable>
         </Box>
       }
     />

@@ -72,7 +72,7 @@ const startLine = [32, 25, 5];
 const endLine = [44, 30, 8];
 const scrollTo = [540, 320, 0];
 
-const useResizeHandle = (
+export const useResizeHandle = (
   target: React.MutableRefObject<HTMLDivElement | null>,
   options?: { minWidth?: string; maxWidth?: string },
 ) => {
