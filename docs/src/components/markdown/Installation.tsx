@@ -7,18 +7,17 @@ import TabUnstyled from '@mui/base/TabUnstyled';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const TabsList = styled(TabsListUnstyled)(({ theme }) => ({
-  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
   borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
   borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
 }));
 
 const TabPanel = styled(TabPanelUnstyled)<{ ownerState: { mounted: boolean } }>(
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     '& pre': {
       marginTop: 0,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
-      borderTopColor: (theme.vars || theme).palette.primaryDark[500],
       '& code': {
         opacity: ownerState.mounted ? 1 : 0,
       },
@@ -28,17 +27,17 @@ const TabPanel = styled(TabPanelUnstyled)<{ ownerState: { mounted: boolean } }>(
 
 const Tab = styled(TabUnstyled)<{ ownerState: { mounted: boolean } }>(({ theme, ownerState }) =>
   theme.unstable_sx({
-    py: 1.25,
+    py: 1.5,
     px: 2,
     border: 'none',
     borderBottom: '2px solid transparent',
     bgcolor: 'primaryDark.800',
-    color: 'rgba(255 255 255 / 0.72)',
+    color: 'rgba(255 255 255 / 0.6)',
     fontSize: '0.75rem',
     fontWeight: 600,
     fontFamily: theme.typography.fontFamilyCode,
     outline: 'none',
-    minWidth: 60,
+    minWidth: 80,
     '&:first-child /* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */':
       {
         borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
@@ -52,7 +51,7 @@ const Tab = styled(TabUnstyled)<{ ownerState: { mounted: boolean } }>(({ theme, 
     ...(ownerState.mounted && {
       '&[aria-selected="true"]': {
         color: '#fff',
-        borderColor: (theme.vars || theme).palette.primary.main,
+        borderColor: (theme.vars || theme).palette.primary.light,
       },
     }),
     '&:hover, &:focus-visible': {
