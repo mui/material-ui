@@ -20,6 +20,7 @@ import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRou
 import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
 import ScienceIcon from '@mui/icons-material/Science';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 const iconsMap = {
   DescriptionIcon: ArticleRoundedIcon,
@@ -35,6 +36,7 @@ const iconsMap = {
   TableViewIcon: TableViewRoundedIcon,
   ExperimentIcon: ScienceIcon,
   DatePickerIcon: DateRangeRounded,
+  DeploymentIcon: RocketLaunchIcon,
 };
 
 const Item = styled(
