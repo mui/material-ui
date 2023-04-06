@@ -20,7 +20,7 @@ const pageSize = 5;
  * @param includeDisabledItems Whether to include disabled items in the search.
  * @param isItemDisabled A function that determines whether an item is disabled.
  * @param wrapAround Whether to wrap around the list when searching.
- * @returns
+ * @returns The index of the next valid item to highlight or -1 if no valid item is found.
  */
 function findValidItemToHighlight<ItemValue>(
   currentIndex: number,
@@ -78,11 +78,19 @@ function moveHighlight<ItemValue>(
   offset: number | 'reset' | 'start' | 'end',
   listConfig: ListActionAddOnValue<ItemValue>,
 ) {
-  const { items, isItemDisabled, disableListWrap, disabledItemsFocusable, itemComparer } =
-    listConfig;
+  const {
+    items,
+    isItemDisabled,
+    disableListWrap,
+    disabledItemsFocusable,
+    itemComparer,
+    focusManagement,
+  } = listConfig;
 
   // TODO: make this configurable
-  const defaultHighlightedIndex = -1;
+  // The always should be an item highlighted when focus is managed by the DOM
+  // so that it's accessible by the `tab` key.
+  const defaultHighlightedIndex = focusManagement === 'DOM' ? 0 : -1;
   const maxIndex = items.length - 1;
 
   const previouslyHighlightedIndex =
@@ -407,8 +415,7 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   if (state.highlightedValue != null) {
     newHighlightedValue = items.find((item) => itemComparer(item, state.highlightedValue!)) ?? null;
   } else if (focusManagement === 'DOM' && previousItems.length === 0) {
-    // TODO: exclude disabled items
-    newHighlightedValue = items[0] ?? null;
+    newHighlightedValue = moveHighlight(null, 'reset', props);
   }
 
   // exclude selected values that are no longer in the items list
