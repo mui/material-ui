@@ -41,7 +41,7 @@ However, despite Material UI – our biggest library – being [the leading](htt
 More importantly, our challenges go way beyond the ones of design systems.
 
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we've been expanding our offering with Joy UI, MUI Base, and MUI Toolpad.
+It's why we've been expanding our offering with Joy UI, Base UI, and MUI Toolpad.
 Design is foundational to achieving this goal.
 
 ## About the role

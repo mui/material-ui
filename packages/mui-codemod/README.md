@@ -79,7 +79,7 @@ npx @mui/codemod v5.0.0/rename-css-variables <path>
 
 #### `base-hook-imports`
 
-Updates the sources of the imports of the MUI Base hooks to adapt to the new directories of the hooks.
+Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
 
 ```diff
 -  import { useBadge } from '@mui/base/BadgeUnstyled';
@@ -397,7 +397,7 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 Also, changes `slots`' fields names to camelCase.
 
-This change only affects MUI Base components.
+This change only affects Base UI components.
 
 ```diff
  <BadgeUnstyled
