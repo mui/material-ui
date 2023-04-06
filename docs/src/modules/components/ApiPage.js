@@ -126,49 +126,54 @@ export function ClassesTable(props) {
   const { componentClasses, classDescriptions, componentName } = props;
   const t = useTranslate();
 
+  const list = componentClasses.classes.map((classes) => ({
+    classes,
+    className:
+      componentClasses.globalClasses[classes] ||
+      `Mui${componentName.replace('Unstyled', '')}-${classes}`,
+  }));
+
   return (
-    <table>
-      <thead style={{ display: 'table', width: '100%' }}>
+    <table style={{ display: 'table', width: '100%' }}>
+      <thead>
         <tr>
-          <th align="left" width="50%">
-            {t('api-docs.globalClass')}
-          </th>
-          <th align="left" width="50%">
-            {t('api-docs.description')}
-          </th>
+          <th align="left">{t('api-docs.globalClass')}</th>
+          <th align="left">{t('api-docs.description')}</th>
         </tr>
       </thead>
-      <tbody style={{ display: 'table', width: '100%' }}>
-        {componentClasses.classes.map((className) => {
-          const isGlobalStateClass = !!componentClasses.globalClasses[className];
-          return (
-            <tr key={className}>
-              <td align="left" width="50%">
-                <span className="prop-name">
-                  .
-                  {isGlobalStateClass ? (
-                    <React.Fragment>
-                      {componentClasses.globalClasses[className]}
-                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
-                    </React.Fragment>
-                  ) : (
-                    `Mui${componentName.replace('Unstyled', '')}-${className}`
-                  )}
-                </span>
-              </td>
-              <td
-                align="left"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    classDescriptions[className] &&
-                    classDescriptions[className].description
-                      .replace(/{{conditions}}/, classDescriptions[className].conditions)
-                      .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
-                }}
-              />
-            </tr>
-          );
-        })}
+      <tbody>
+        {list
+          .sort((a, b) => a.className.localeCompare(b.className))
+          .map((item) => {
+            const isGlobalStateClass = !!componentClasses.globalClasses[item.classes];
+            return (
+              <tr key={item.classes}>
+                <td align="left">
+                  <span className="prop-name">
+                    .
+                    {isGlobalStateClass ? (
+                      <React.Fragment>
+                        {item.className}
+                        <Chip size="small" label={t('api-docs.state')} sx={sxChip('grey')} />
+                      </React.Fragment>
+                    ) : (
+                      item.className
+                    )}
+                  </span>
+                </td>
+                <td
+                  align="left"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      classDescriptions[item.classes] &&
+                      classDescriptions[item.classes].description
+                        .replace(/{{conditions}}/, classDescriptions[item.classes].conditions)
+                        .replace(/{{nodeName}}/, classDescriptions[item.classes].nodeName),
+                  }}
+                />
+              </tr>
+            );
+          })}
       </tbody>
     </table>
   );
@@ -275,6 +280,10 @@ export default function ApiPage(props) {
   // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
   const apiSourceLocation = filename.replace('.js', '.d.ts');
 
+  const hasClasses =
+    componentClasses?.classes?.length ||
+    Object.keys(componentClasses?.classes?.globalClasses || {}).length;
+
   function createTocEntry(sectionName) {
     return {
       text: getTranslatedHeader(t, sectionName),
@@ -297,6 +306,7 @@ export default function ApiPage(props) {
     createTocEntry('props'),
     componentStyles.classes.length > 0 && createTocEntry('css'),
     componentSlots?.length > 0 && createTocEntry('slots'),
+    hasClasses && createTocEntry('classes'),
   ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
@@ -452,8 +462,7 @@ import { ${pageContent.name} } from '${source}';`}
             />
           </React.Fragment>
         ) : null}
-        {componentClasses?.classes?.length ||
-        Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
+        {hasClasses ? (
           <React.Fragment>
             <Heading hash="classes" />
             <p

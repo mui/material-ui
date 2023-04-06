@@ -41,7 +41,7 @@
       "nodeName": "the track element"
     },
     "focusVisible": {
-      "description": "Class name applied to the root element if the switch has visible focus"
+      "description": "State class applied to the root element if the switch has visible focus"
     },
     "readOnly": {
       "description": "Class name applied to the root element if the switch is read-only"

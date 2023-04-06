@@ -15,7 +15,7 @@ export interface SwitchClasses {
   thumb: string;
   /** Class name applied to the track element. */
   track: string;
-  /** Class name applied to the root element if the switch has visible focus */
+  /** State class applied to the root element if the switch has visible focus */
   focusVisible: string;
   /** Class name applied to the root element if the switch is read-only */
   readOnly: string;
