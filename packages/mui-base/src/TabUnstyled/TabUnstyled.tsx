@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: TabUnstyledOwnerState) => {
  *
  * API:
  *
- * - [TabUnstyled API](https://mui.com/base/api/tab-unstyled/)
+ * - [TabUnstyled API](https://mui.com/base/react-tabs/components-api/#tab-unstyled)
  */
 const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
   const {
@@ -151,7 +151,7 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * You can provide your own value. Otherwise, it falls back to the child position index.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;

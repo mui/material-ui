@@ -175,7 +175,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const sxChip = (color) => [
+export const sxChip = (color) => [
   (theme) => ({
     ml: 1.5,
     fontSize: theme.typography.pxToRem(10),
@@ -293,7 +293,7 @@ export default function AppNavDrawerItem(props) {
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {comingSoon && <Chip label="Coming soon" sx={sxChip('primary')} />}
+        {comingSoon && <Chip label="Coming soon" sx={sxChip('grey')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
@@ -311,7 +311,7 @@ AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.string,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,

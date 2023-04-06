@@ -3,7 +3,7 @@ import { UseButtonRootSlotProps } from '../useButton';
 
 export interface UseTabParameters {
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * You can provide your own value. Otherwise, it falls back to the child position index.
    */
   value?: number | string;
   /**
@@ -11,6 +11,10 @@ export interface UseTabParameters {
    */
   onChange?: (event: React.SyntheticEvent, value: number | string) => void;
   onClick?: React.MouseEventHandler;
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
   disabled?: boolean;
   onFocus?: React.FocusEventHandler;
   ref: React.Ref<any>;

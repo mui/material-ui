@@ -4,7 +4,7 @@
       "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
       "required": true
     },
-    "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "onChange": {
       "type": {
         "name": "(event: React.SyntheticEvent, value: number | string) =&gt; void",

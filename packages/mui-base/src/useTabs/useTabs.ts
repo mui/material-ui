@@ -10,7 +10,7 @@ import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
  *
  * API:
  *
- * - [useTabs API](https://mui.com/base/api/use-tabs/)
+ * - [useTabs API](https://mui.com/base/react-tabs/hooks-api/#use-tabs)
  */
 function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   const {

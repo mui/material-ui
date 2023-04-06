@@ -82,7 +82,7 @@ For the right candidate:
 - Revamp the blog post infrastructure to empower the rest of the team to create more content.
 - Start a monthly newsletter to engage with the community.
 - Organize a MUIConf (once we go >50 people)
-- Think about creative ways to promote MUI Base, Joy UI, MUI X, MUI X Pro, and new products.
+- Think about creative ways to promote Base UI, Joy UI, MUI X, MUI X Pro, and new products.
 
 ## About you
 

@@ -415,6 +415,53 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/material-ui/guides/flow/ https://v4.mui.com/:lang/guides/flow/ 301
 # 2023
 
+# APIs
+
+## Base UI
+
+/base/api/badge-unstyled/ /base/react-badge/components-api/#badge-unstyled 301
+/base/api/button-unstyled/ /base/react-button/components-api/#button-unstyled 301
+/base/api/click-away-listener/ /base/react-click-away-listener/components-api/#click-away-listener 301
+/base/api/focus-trap/ /base/react-focus-trap/components-api/#focus-trap 301
+/base/api/form-control-unstyled/ /base/react-form-control/components-api/#form-control-unstyled 301
+/base/api/input-unstyled/ /base/react-input/components-api/#input-unstyled 301
+/base/api/menu-item-unstyled/ /base/react-menu/components-api/#menu-item-unstyled 301
+/base/api/menu-unstyled/ /base/react-menu/components-api/#menu-unstyled 301
+/base/api/modal-unstyled/ /base/react-modal/components-api/#modal-unstyled 301
+/base/api/no-ssr/ /base/react-no-ssr/components-api/#no-ssr 301
+/base/api/option-group-unstyled/ /base/react-select/components-api/#option-group-unstyled 301
+/base/api/option-unstyled/ /base/react-select/components-api/#option-unstyled 301
+/base/api/popper-unstyled/ /base/react-popper/components-api/#popper-unstyled 301
+/base/api/portal/ /base/react-portal/components-api/#portal 301
+/base/api/select-unstyled/ /base/react-select/components-api/#select-unstyled 301
+/base/api/slider-unstyled/ /base/react-slider/components-api/#slider-unstyled 301
+/base/api/snackbar-unstyled/ /base/react-snackbar/components-api/#snackbar-unstyled 301
+/base/api/switch-unstyled/ /base/react-switch/components-api/#switch-unstyled 301
+/base/api/table-pagination-unstyled/ /base/react-table-pagination/components-api/#table-pagination-unstyled 301
+/base/api/tab-panel-unstyled/ /base/react-tabs/components-api/#tab-panel-unstyled 301
+/base/api/tabs-list-unstyled/ /base/react-tabs/components-api/#tabs-list-unstyled 301
+/base/api/tabs-unstyled/ /base/react-tabs/components-api/#tabs-unstyled 301
+/base/api/tab-unstyled/ /base/react-tabs/components-api/#tab-unstyled 301
+/base/api/textarea-autosize/ /base/react-textarea-autosize/components-api/#textarea-autosize 301
+/base/api/use-badge/ /base/react-badge/hooks-api/#use-badge 301
+/base/api/use-button/ /base/react-button/hooks-api/#use-button 301
+/base/api/use-form-control-unstyled-context/ /base/react-form-control/hooks-api/#use-form-control-unstyled-context 301
+/base/api/use-input/ /base/react-input/hooks-api/#use-input 301
+/base/api/use-menu/ /base/react-menu/hooks-api/#use-menu 301
+/base/api/use-menu-item/ /base/react-menu/hooks-api/#use-menu-item 301
+/base/api/use-option/ /base/react-select/hooks-api/#use-option 301
+/base/api/use-select/ /base/react-select/hooks-api/#use-select 301
+/base/api/use-slider/ /base/react-slider/hooks-api/#use-slider 301
+/base/api/use-snackbar/ /base/react-snackbar/hooks-api/#use-snackbar 301
+/base/api/use-switch/ /base/react-switch/hooks-api/#use-switch 301
+/base/api/use-tab/ /base/react-tabs/hooks-api/#use-tab 301
+/base/api/use-tab-panel/ /base/react-tabs/hooks-api/#use-tab-panel 301
+/base/api/use-tabs/ /base/react-tabs/hooks-api/#use-tabs 301
+/base/api/use-tabs-list/ /base/react-tabs/hooks-api/#use-tabs-list 301
+
+/joy-ui/customization/theme-tokens/ /joy-ui/customization/theme-colors/ 301
+/joy-ui/guides/apply-dark-mode/ /joy-ui/customization/dark-mode/ 301
+
 # Proxies
 
 ## MUI Store
