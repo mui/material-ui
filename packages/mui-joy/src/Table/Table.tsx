@@ -29,18 +29,21 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
   return composeClasses(slots, getTableUtilityClass, {});
 };
 
+const DISABLE_EMOTION_SSR =
+  '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */';
+
 const tableSelector = {
   getColumn(col: number | string) {
     if (typeof col === 'number' && col < 0) {
-      return `& tr > *:nth-last-child(${Math.abs(col)})`;
+      return `& tr > *:nth-last-child(${Math.abs(col)}) ${DISABLE_EMOTION_SSR}`;
     }
-    return `& tr > *:nth-child(${col})`;
+    return `& tr > *:nth-child(${col}) ${DISABLE_EMOTION_SSR}`;
   },
   /**
    * Except first column
    */
   getColumnExceptFirst() {
-    return '& tr > *:not(:first-child)';
+    return `& tr > *:not(:first-child) ${DISABLE_EMOTION_SSR}`;
   },
   /**
    * Every cell in the table
@@ -61,13 +64,13 @@ const tableSelector = {
     return '& thead th';
   },
   getHeaderCellOfRow(row: number | string) {
-    return `& thead tr:nth-child(${row}) th`;
+    return `& thead tr:nth-child(${row}) th ${DISABLE_EMOTION_SSR}`;
   },
   getBottomHeaderCell() {
     return '& thead th:not([colspan])';
   },
   getHeaderNestedFirstColumn() {
-    return '& thead tr:not(:first-of-type) th:not([colspan]):first-child';
+    return `& thead tr:not(:first-of-type) th:not([colspan]):first-child ${DISABLE_EMOTION_SSR}`;
   },
   /**
    * The body cell that contains data
@@ -88,15 +91,15 @@ const tableSelector = {
     if (typeof row === 'number' && row < 0) {
       return `& tbody tr:nth-last-child(${Math.abs(row)}) td, & tbody tr:nth-last-child(${Math.abs(
         row,
-      )}) th[scope="row"]`;
+      )}) th[scope="row"] ${DISABLE_EMOTION_SSR}`;
     }
-    return `& tbody tr:nth-child(${row}) td, & tbody tr:nth-child(${row}) th[scope="row"]`;
+    return `& tbody tr:nth-child(${row}) td, & tbody tr:nth-child(${row}) th[scope="row"] ${DISABLE_EMOTION_SSR}`;
   },
   getBodyRow(row?: number | string) {
     if (row === undefined) {
       return `& tbody tr`;
     }
-    return `& tbody tr:nth-child(${row})`;
+    return `& tbody tr:nth-child(${row}) ${DISABLE_EMOTION_SSR}`;
   },
   getFooterCell() {
     return '& tfoot th, & tfoot td';
@@ -168,7 +171,7 @@ const TableRoot = styled('table', {
       [tableSelector.getHeaderCell()]: {
         verticalAlign: 'bottom',
         // Automatic radius adjustment with Sheet
-        '&:first-child': {
+        [`&:first-child ${DISABLE_EMOTION_SSR}`]: {
           borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
@@ -178,7 +181,7 @@ const TableRoot = styled('table', {
       '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
-        '&:first-child': {
+        [`&:first-child ${DISABLE_EMOTION_SSR}`]: {
           borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
         '&:last-child': {
