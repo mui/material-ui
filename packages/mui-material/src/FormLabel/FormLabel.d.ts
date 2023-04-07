@@ -7,6 +7,9 @@ import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides { }
 
+/** This type kept for compatibilty reasons */
+export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+
 export interface FormLabelOwnProps extends FormLabelBaseProps {
   /**
    * The content of the component.
@@ -69,8 +72,6 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  * - [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
-
-export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export interface ExtendFormLabelTypeMap<M extends OverridableTypeMap> {
   props: M['props'] & Pick<FormLabelOwnProps, 'filled' | 'color'>;
