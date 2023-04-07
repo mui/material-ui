@@ -6,41 +6,42 @@ import { Theme } from '../styles';
 import { TypographyProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 
+export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'> {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<LinkClasses>;
+  /**
+   * The color of the link.
+   * @default 'primary'
+   */
+  color?: TypographyProps['color'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+   */
+  TypographyClasses?: TypographyProps['classes'];
+  /**
+   * Controls when the link should have an underline.
+   * @default 'always'
+   */
+  underline?: 'none' | 'hover' | 'always';
+  /**
+   * Applies the theme typography styles.
+   * @default 'inherit'
+   */
+  variant?: TypographyProps['variant'];
+}
+
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
-  props: P &
-    DistributiveOmit<LinkBaseProps, 'classes'> & {
-      /**
-       * The content of the component.
-       */
-      children?: React.ReactNode;
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<LinkClasses>;
-      /**
-       * The color of the link.
-       * @default 'primary'
-       */
-      color?: TypographyProps['color'];
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<Theme>;
-      /**
-       * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
-       */
-      TypographyClasses?: TypographyProps['classes'];
-      /**
-       * Controls when the link should have an underline.
-       * @default 'always'
-       */
-      underline?: 'none' | 'hover' | 'always';
-      /**
-       * Applies the theme typography styles.
-       * @default 'inherit'
-       */
-      variant?: TypographyProps['variant'];
-    };
+  props: P & LinkOwnProps;
   defaultComponent: D;
 }
 

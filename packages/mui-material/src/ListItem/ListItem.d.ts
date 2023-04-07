@@ -5,8 +5,12 @@ import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
-export interface ListItemComponentsPropsOverrides {}
+export interface ListItemComponentsPropsOverrides { }
 
+/**
+ * This interface kept for backward compatibility. To extend `ListItem`
+ * props through module augmentation, use `ListItemOwnProps`!
+ */
 export interface ListItemBaseProps {
   /**
    * Defines the `align-items` style property.
@@ -84,54 +88,55 @@ export interface ListItemBaseProps {
   sx?: SxProps<Theme>;
 }
 
+export interface ListItemOwnProps extends ListItemBaseProps {
+  /**
+ * The components used for each slot inside.
+ *
+ * This prop is an alias for the `slots` prop.
+ * It's recommended to use the `slots` prop instead.
+ *
+ * @default {}
+ */
+  components?: {
+    Root?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
+   * @default {}
+   */
+  componentsProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
+  };
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+  };
+}
+
 export interface ListItemTypeMap<P, D extends React.ElementType> {
-  props: P &
-    ListItemBaseProps & {
-      /**
-       * The components used for each slot inside.
-       *
-       * This prop is an alias for the `slots` prop.
-       * It's recommended to use the `slots` prop instead.
-       *
-       * @default {}
-       */
-      components?: {
-        Root?: React.ElementType;
-      };
-      /**
-       * The extra props for the slot components.
-       * You can override the existing props or add new ones.
-       *
-       * This prop is an alias for the `slotProps` prop.
-       * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
-       *
-       * @default {}
-       */
-      componentsProps?: {
-        root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
-      };
-      /**
-       * The extra props for the slot components.
-       * You can override the existing props or add new ones.
-       *
-       * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-       *
-       * @default {}
-       */
-      slotProps?: {
-        root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
-      };
-      /**
-       * The components used for each slot inside.
-       *
-       * This prop is an alias for the `components` prop, which will be deprecated in the future.
-       *
-       * @default {}
-       */
-      slots?: {
-        root?: React.ElementType;
-      };
-    };
+  props: P & ListItemOwnProps;
   defaultComponent: D;
 }
 

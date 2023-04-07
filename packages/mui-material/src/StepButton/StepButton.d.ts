@@ -10,29 +10,31 @@ import { StepButtonClasses } from './stepButtonClasses';
  */
 export type StepButtonIcon = React.ReactNode;
 
+export interface StepButtonOwnProps {
+  /**
+   * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<StepButtonClasses>;
+  /**
+   * The icon displayed by the step label.
+   */
+  icon?: React.ReactNode;
+  /**
+   * The optional node to display.
+   */
+  optional?: React.ReactNode;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
-  props: P & {
-    /**
-     * Can be a `StepLabel` or a node to place inside `StepLabel` as children.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<StepButtonClasses>;
-    /**
-     * The icon displayed by the step label.
-     */
-    icon?: React.ReactNode;
-    /**
-     * The optional node to display.
-     */
-    optional?: React.ReactNode;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
+  props: P & StepButtonOwnProps;
   defaultComponent: D;
 
   ignoredProps: 'disabled';

@@ -4,21 +4,23 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableHeadClasses } from './tableHeadClasses';
 
+export interface TableHeadOwnProps {
+  /**
+   * The content of the component, normally `TableRow`.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TableHeadClasses>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'> {
-  props: P & {
-    /**
-     * The content of the component, normally `TableRow`.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<TableHeadClasses>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
+  props: P & TableHeadOwnProps;
   defaultComponent: D;
 }
 /**

@@ -4,21 +4,23 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { CardContentClasses } from './cardContentClasses';
 
+export interface CardContentOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<CardContentClasses>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface CardContentTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<CardContentClasses>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
+  props: P & CardContentOwnProps;
   defaultComponent: D;
 }
 /**

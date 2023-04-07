@@ -5,9 +5,9 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 import { FormLabelClasses } from './formLabelClasses';
 
-export interface FormLabelPropsColorOverrides {}
+export interface FormLabelPropsColorOverrides { }
 
-export interface FormLabelOwnProps {
+export interface FormLabelOwnProps extends FormLabelBaseProps {
   /**
    * The content of the component.
    */
@@ -52,7 +52,7 @@ export interface FormLabelOwnProps {
 }
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
-  props: P & FormLabelBaseProps & FormLabelOwnProps;
+  props: P & FormLabelOwnProps;
   defaultComponent: D;
 }
 

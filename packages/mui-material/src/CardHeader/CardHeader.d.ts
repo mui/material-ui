@@ -6,12 +6,12 @@ import { Theme } from '..';
 import { CardHeaderClasses } from './cardHeaderClasses';
 
 export interface CardHeaderTypeMap<
-  Props = {},
+  P = {},
   DefaultComponent extends React.ElementType = 'div',
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
-  props: Props & {
+  props: P & {
     /**
      * The action to display in the card header.
      */

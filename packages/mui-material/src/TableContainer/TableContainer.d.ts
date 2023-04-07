@@ -4,21 +4,23 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableContainerClasses } from './tableContainerClasses';
 
+export interface TableContainerOwnProps {
+  /**
+   * The content of the component, normally `Table`.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<TableContainerClasses>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface TableContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
-    /**
-     * The content of the component, normally `Table`.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<TableContainerClasses>;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
+  props: P & TableContainerOwnProps;
   defaultComponent: D;
 }
 /**

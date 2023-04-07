@@ -4,27 +4,29 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
 
+export interface ScopedCssBaselineOwnProps {
+  /**
+   * The content of the component.
+   */
+  children?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<ScopedCssBaselineClasses>;
+  /**
+   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
+   * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
+   * For browser support, check out https://caniuse.com/?search=color-scheme
+   */
+  enableColorScheme?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
+
 export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & {
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ScopedCssBaselineClasses>;
-    /**
-     * Enable `color-scheme` CSS property to use `theme.palette.mode`.
-     * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
-     * For browser support, check out https://caniuse.com/?search=color-scheme
-     */
-    enableColorScheme?: boolean;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-  };
+  props: P & ScopedCssBaselineOwnProps;
   defaultComponent: D;
 }
 /**

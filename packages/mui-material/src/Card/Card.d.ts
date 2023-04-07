@@ -7,25 +7,26 @@ import { PaperProps } from '../Paper';
 import { CardClasses } from './cardClasses';
 
 // TODO: v6 remove this interface, it is not used
-export interface CardPropsColorOverrides {}
+export interface CardPropsColorOverrides { }
+
+export interface CardOwnProps extends DistributiveOmit<PaperProps, 'classes'> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<CardClasses>;
+  /**
+   * If `true`, the card will use raised styling.
+   * @default false
+   */
+  raised?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+}
 
 export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    DistributiveOmit<PaperProps, 'classes'> & {
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<CardClasses>;
-      /**
-       * If `true`, the card will use raised styling.
-       * @default false
-       */
-      raised?: boolean;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<Theme>;
-    };
+  props: P & CardOwnProps;
   defaultComponent: D;
 }
 
