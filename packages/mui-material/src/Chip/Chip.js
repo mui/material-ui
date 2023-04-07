@@ -337,6 +337,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onDelete,
     onKeyDown,
     onKeyUp,
+    id,
     size = 'medium',
     variant = 'filled',
     tabIndex,
