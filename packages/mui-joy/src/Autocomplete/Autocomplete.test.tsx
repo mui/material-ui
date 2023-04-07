@@ -15,9 +15,10 @@ import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/joy/Autocomplete';
+import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import Chip, { chipClasses } from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, styled } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -36,6 +37,8 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
 
 describe('Joy <Autocomplete />', () => {
   const { render } = createRenderer();
+
+  const StyledInput = styled('input')({});
 
   describeConformance(<Autocomplete options={['one', 'two']} defaultValue="one" open />, () => ({
     classes,
@@ -58,16 +61,16 @@ describe('Joy <Autocomplete />', () => {
       },
       input: {
         testWithComponent: React.forwardRef<HTMLInputElement>((props, ref) => (
-          <input ref={ref} {...props} data-testid="custom" />
+          <StyledInput ref={ref} {...props} data-testid="custom" />
         )),
-        testWithElement: 'input',
+        testWithElement: null,
         expectedClassName: classes.input,
       },
       listbox: {
-        testWithComponent: React.forwardRef<HTMLDivElement>((props, ref) => (
-          <div ref={ref} {...props} data-testid="custom" />
+        testWithComponent: React.forwardRef<HTMLUListElement>((props, ref) => (
+          <AutocompleteListbox ref={ref} {...props} data-testid="custom" />
         )),
-        testWithElement: 'div',
+        testWithElement: null,
         expectedClassName: classes.listbox,
       },
     },

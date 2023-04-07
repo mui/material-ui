@@ -684,7 +684,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           modifiers={modifiers}
           {...(!props.slots?.listbox && {
             as: PopperUnstyled,
-            slots: { root: listboxProps.component || 'ul' },
+            slots: { root: listboxProps.as || 'ul' },
           })}
         >
           {groupedOptions.map((option, index) => {
