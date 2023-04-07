@@ -4,7 +4,7 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListItemClasses } from './imageListItemClasses';
 
-export interface ImageListOwnProps {
+export interface ImageListItemOwnProps {
   /**
    * The content of the component, normally an `<img>`.
    */
@@ -30,7 +30,7 @@ export interface ImageListOwnProps {
 }
 
 export interface ImageListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & ImageListOwnProps;
+  props: P & ImageListItemOwnProps;
   defaultComponent: D;
 }
 /**
