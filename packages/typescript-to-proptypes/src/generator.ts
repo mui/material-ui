@@ -127,12 +127,11 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
       return `${importedName}.shape({\n${propType.types
         .slice()
         .sort((a, b) => a[0].localeCompare(b[0]))
-        .map(
-          ([name, type]) =>
-            `"${name}": ${generatePropType(type, context)}${
-              type.type !== 'UnionNode' && type.type !== 'DOMElementNode' ? '.isRequired' : ''
-            }`,
-        )
+        .map(([name, type]) => {
+          return `"${name}": ${generatePropType(type, context)}${
+            !type.type.match(/^(UnionNode|DOMElementNode|ElementNode)$/) ? '.isRequired' : ''
+          }`;
+        })
         .join(',\n')}\n})`;
     }
 

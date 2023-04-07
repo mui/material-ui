@@ -1056,18 +1056,18 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   slots: PropTypes.shape({
-    clearIndicator: PropTypes.elementType.isRequired,
-    endDecorator: PropTypes.elementType.isRequired,
-    input: PropTypes.elementType.isRequired,
-    limitTag: PropTypes.elementType.isRequired,
-    listbox: PropTypes.elementType.isRequired,
-    loading: PropTypes.elementType.isRequired,
-    noOptions: PropTypes.elementType.isRequired,
-    option: PropTypes.elementType.isRequired,
-    popupIndicator: PropTypes.elementType.isRequired,
-    root: PropTypes.elementType.isRequired,
-    startDecorator: PropTypes.elementType.isRequired,
-    wrapper: PropTypes.elementType.isRequired,
+    clearIndicator: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    input: PropTypes.elementType,
+    limitTag: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    loading: PropTypes.elementType,
+    noOptions: PropTypes.elementType,
+    option: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
   }),
   /**
    * Leading adornment for this input.
