@@ -5,11 +5,10 @@ import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
-export interface ListItemComponentsPropsOverrides {}
+export interface ListItemComponentsPropsOverrides { }
 
 /**
- * This interface kept for backward compatibility. To extend `ListItem`
- * props through module augmentation, use `ListItemOwnProps`!
+ * This type kept for compatibility, use `ListItemOwnProps` instead
  */
 export interface ListItemBaseProps {
   /**

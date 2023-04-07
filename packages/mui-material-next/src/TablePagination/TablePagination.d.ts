@@ -38,7 +38,9 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   showLastButton: boolean;
 }
 
-/** This type kept for compatibility reasons */
+/**
+ * This type kept for compatibility, use `TablePaginationOwnProps` instead
+ */
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export interface TablePaginationOwnProps extends TablePaginationBaseProps {
@@ -127,9 +129,9 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
   rowsPerPageOptions?: Array<
     | number
     | {
-        value: number;
-        label: string;
-      }
+      value: number;
+      label: string;
+    }
   >;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.

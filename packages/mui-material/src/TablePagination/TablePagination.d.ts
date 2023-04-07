@@ -16,8 +16,7 @@ export interface LabelDisplayedRowsArgs {
 }
 
 /**
- * This interface kept for backward compatibility. To refer on `TablePagination`
- * props, use `TablePaginationOwnProps`!
+ * This type kept for compatibility, use `TablePaginationOwnProps` instead
  */
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
@@ -107,9 +106,9 @@ interface TablePaginationOwnProps extends TablePaginationBaseProps {
   rowsPerPageOptions?: Array<
     | number
     | {
-        value: number;
-        label: string;
-      }
+      value: number;
+      label: string;
+    }
   >;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.

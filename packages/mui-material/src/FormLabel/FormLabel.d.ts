@@ -5,9 +5,11 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 import { FormLabelClasses } from './formLabelClasses';
 
-export interface FormLabelPropsColorOverrides {}
+export interface FormLabelPropsColorOverrides { }
 
-/** This type kept for compatibilty reasons */
+/**
+ * This type kept for compatibility, use `FormLabelOwnProps` instead
+ */
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export interface FormLabelOwnProps extends FormLabelBaseProps {
