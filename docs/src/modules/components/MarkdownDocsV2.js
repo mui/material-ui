@@ -8,7 +8,6 @@ import Box from '@mui/material/Box';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
-import { getTranslatedHeader as getHookTranslatedHeader } from 'docs/src/modules/components/HookApiPage';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElementV2';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -29,6 +28,27 @@ function JoyModeObserver({ mode }) {
 JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
+
+function getHookTranslatedHeader(t, header) {
+  const translations = {
+    demos: t('api-docs.demos'),
+    import: t('api-docs.import'),
+    'hook-name': t('api-docs.hookName'),
+    parameters: t('api-docs.parameters'),
+    'return-value': t('api-docs.returnValue'),
+  };
+
+  // TODO Drop runtime type-checking once we type-check this file
+  if (!translations.hasOwnProperty(header)) {
+    throw new TypeError(
+      `Unable to translate header '${header}'. Did you mean one of '${Object.keys(
+        translations,
+      ).join("', '")}'`,
+    );
+  }
+
+  return translations[header] || header;
+}
 
 export default function MarkdownDocsV2(props) {
   const theme = useTheme();
@@ -90,13 +110,20 @@ export default function MarkdownDocsV2(props) {
     });
   });
 
-  function createComponentTocEntry(componentName, sectionName, hasInheritance = false) {
+  function createComponentTocEntry(
+    componentName,
+    sectionName,
+    options = { inheritance: false, themeDefaultProps: false },
+  ) {
     return {
       text: getComponentTranslatedHeader(t, sectionName),
       hash: `${componentName}-${sectionName}`,
       children: [
-        ...(hasInheritance
+        ...(options.inheritance
           ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+          : []),
+        ...(options.themeDefaultProps
+          ? [{ text: t('api-docs.themeDefaultProps'), hash: 'theme-default-props', children: [] }]
           : []),
       ],
     };
@@ -106,23 +133,22 @@ export default function MarkdownDocsV2(props) {
 
   Object.keys(componentsApiPageContents).forEach((key) => {
     const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
-
-    const { name: componentName } = componentsApiPageContents[key];
-
+    const {
+      name: componentName,
+      styles,
+      inheritance,
+      slots,
+      themeDefaultProps,
+    } = componentsApiPageContents[key];
     const componentNameKebabCase = kebabCase(componentName);
 
     const componentApiToc = [
       createComponentTocEntry(componentNameKebabCase, 'import'),
       ...componentDescriptionToc,
-      componentsApiPageContents[key].styles.name &&
-        createComponentTocEntry(componentNameKebabCase, 'component-name'),
-      createComponentTocEntry(
-        componentNameKebabCase,
-        'props',
-        componentsApiPageContents[key].inheritance,
-      ),
-      componentsApiPageContents[key].styles.classes.length > 0 &&
-        createComponentTocEntry(componentNameKebabCase, 'css'),
+      styles.name && createComponentTocEntry(componentNameKebabCase, 'component-name'),
+      createComponentTocEntry(componentNameKebabCase, 'props', { inheritance, themeDefaultProps }),
+      styles.classes.length > 0 && createComponentTocEntry(componentNameKebabCase, 'css'),
+      slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
     ].filter(Boolean);
 
     componentsApiToc.push({

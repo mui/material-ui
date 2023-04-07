@@ -151,7 +151,7 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * You can provide your own value. Otherwise, it falls back to the child position index.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;

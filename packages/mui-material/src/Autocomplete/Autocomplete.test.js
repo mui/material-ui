@@ -963,6 +963,23 @@ describe('<Autocomplete />', () => {
       });
     });
 
+    it('should open popup when clicked on the root element', () => {
+      const handleOpen = spy();
+      const ref = React.createRef();
+      render(
+        <Autocomplete
+          onOpen={handleOpen}
+          options={['one']}
+          renderInput={(params) => (
+            <TextField {...params} InputProps={{ ...params.InputProps, ref }} />
+          )}
+        />,
+      );
+
+      fireEvent.click(ref.current);
+      expect(handleOpen.callCount).to.equal(1);
+    });
+
     it('does not clear the textbox on Escape', () => {
       const handleChange = spy();
       render(
@@ -2520,7 +2537,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const firstOption = getAllByRole('option')[0];
-      fireEvent.mouseOver(firstOption);
+      fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
         React.version.startsWith('18') ? 4 : 3,

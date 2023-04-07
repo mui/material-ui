@@ -34,7 +34,7 @@ The data grid team (part of MUI X) needs your help.
 The component is off [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-data-grid&package=react-table&package=ag-grid-community&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
 We need to:
 
-- build an headless version for MUI Base.
+- build an headless version for Base UI.
 - build advanced, in browsers, data analysis features like pivoting and charts integration.
 - build a strong integration with backend APIs, e.g. to handle >100M rows.
 

@@ -18,6 +18,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import classes from './selectClasses';
+import { nativeSelectClasses } from '../NativeSelect';
 
 describe('<Select />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -1437,6 +1438,72 @@ describe('<Select />', () => {
       nativeInputStyle,
     );
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
+  });
+
+  describe('theme styleOverrides:', () => {
+    it('should override with error style when `native select` has `error` state', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const iconStyle = { color: 'rgb(255, 0, 0)' };
+
+      const theme = createTheme({
+        components: {
+          MuiNativeSelect: {
+            styleOverrides: {
+              icon: (props) => ({
+                ...(props.ownerState.error && iconStyle),
+              }),
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Select value="first" error IconComponent="div" native>
+            <option value="first">first</option>
+          </Select>
+        </ThemeProvider>,
+      );
+
+      expect(container.querySelector(`.${nativeSelectClasses.icon}`)).toHaveComputedStyle(
+        iconStyle,
+      );
+    });
+
+    it('should override with error style when `select` has `error` state', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const iconStyle = { color: 'rgb(255, 0, 0)' };
+      const selectStyle = { color: 'rgb(255, 192, 203)' };
+
+      const theme = createTheme({
+        components: {
+          MuiSelect: {
+            styleOverrides: {
+              icon: (props) => ({
+                ...(props.ownerState.error && iconStyle),
+              }),
+              select: (props) => ({
+                ...(props.ownerState.error && selectStyle),
+              }),
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Select value="" error IconComponent="div" />
+        </ThemeProvider>,
+      );
+      expect(container.querySelector(`.${classes.select}`)).toHaveComputedStyle(selectStyle);
+      expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle(iconStyle);
+    });
   });
 
   ['standard', 'outlined', 'filled'].forEach((variant) => {
