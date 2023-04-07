@@ -42,7 +42,6 @@ import {
 import FormControlContext from '../FormControl/FormControlContext';
 import { StyledAutocompleteListbox } from '../AutocompleteListbox/AutocompleteListbox';
 import { StyledAutocompleteOption } from '../AutocompleteOption/AutocompleteOption';
-import { SlotCommonProps } from '../utils/types';
 import useSlot from '../utils/useSlot';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 
@@ -1056,19 +1055,19 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  slotProps: PropTypes.shape({
-    clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    limitTag: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    loading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    option: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    wrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType.isRequired,
+    endDecorator: PropTypes.elementType.isRequired,
+    input: PropTypes.elementType.isRequired,
+    limitTag: PropTypes.elementType.isRequired,
+    listbox: PropTypes.elementType.isRequired,
+    loading: PropTypes.elementType.isRequired,
+    noOptions: PropTypes.elementType.isRequired,
+    option: PropTypes.elementType.isRequired,
+    popupIndicator: PropTypes.elementType.isRequired,
+    root: PropTypes.elementType.isRequired,
+    startDecorator: PropTypes.elementType.isRequired,
+    wrapper: PropTypes.elementType.isRequired,
   }),
   /**
    * Leading adornment for this input.

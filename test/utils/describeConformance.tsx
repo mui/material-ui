@@ -32,6 +32,7 @@ export interface SlotTestingOptions {
    * To ensure that the slot has this class name when `slotProps` is provided.
    */
   expectedClassName: string;
+  isOptional?: boolean;
 }
 
 interface SlotTestOverride {
