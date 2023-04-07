@@ -288,7 +288,7 @@ import { ${pageContent.name} } from '${source}';`}
           {componentClasses?.classes?.length ||
           Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
             <React.Fragment>
-              <Heading hash="classes" level="h3" />
+              <Heading text="classes" hash={`${componentNameKebabCase}-classes`} level="h3" />
               <p
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.classesDescription'),
