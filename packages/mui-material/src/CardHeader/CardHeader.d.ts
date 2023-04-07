@@ -5,7 +5,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { CardHeaderClasses } from './cardHeaderClasses';
 
-export interface CardHeaderOwnProps<SubheaderTypographyComponent extends React.ElementType = 'span', TitleTypographyComponent extends React.ElementType = 'span'> {
+export interface CardHeaderOwnProps<
+  SubheaderTypographyComponent extends React.ElementType = 'span',
+  TitleTypographyComponent extends React.ElementType = 'span',
+> {
   /**
    * The action to display in the card header.
    */
@@ -34,9 +37,12 @@ export interface CardHeaderOwnProps<SubheaderTypographyComponent extends React.E
    * These props will be forwarded to the subheader
    * (as long as disableTypography is not `true`).
    */
-  subheaderTypographyProps?: TypographyProps<SubheaderTypographyComponent, {
-    component?: SubheaderTypographyComponent;
-  }>;
+  subheaderTypographyProps?: TypographyProps<
+    SubheaderTypographyComponent,
+    {
+      component?: SubheaderTypographyComponent;
+    }
+  >;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -49,9 +55,12 @@ export interface CardHeaderOwnProps<SubheaderTypographyComponent extends React.E
    * These props will be forwarded to the title
    * (as long as disableTypography is not `true`).
    */
-  titleTypographyProps?: TypographyProps<TitleTypographyComponent, {
-    component?: TitleTypographyComponent;
-  }>;
+  titleTypographyProps?: TypographyProps<
+    TitleTypographyComponent,
+    {
+      component?: TitleTypographyComponent;
+    }
+  >;
 }
 
 export interface CardHeaderTypeMap<
