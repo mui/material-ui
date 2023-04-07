@@ -665,7 +665,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
+   * Override or extend the Class name applied to the component.
    */
   classes: PropTypes.object,
   /**
