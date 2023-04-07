@@ -6,7 +6,7 @@ import { Theme } from '../styles';
 import { InputLabelClasses } from './inputLabelClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface InputLabelPropsSizeOverrides { }
+export interface InputLabelPropsSizeOverrides {}
 
 export interface InputLabelOwnProps {
   /**

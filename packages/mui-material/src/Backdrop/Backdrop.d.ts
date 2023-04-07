@@ -6,7 +6,7 @@ import { Theme } from '../styles';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface BackdropComponentsPropsOverrides { }
+export interface BackdropComponentsPropsOverrides {}
 
 export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
   /**
@@ -85,9 +85,11 @@ export interface BackdropOwnProps extends Partial<Omit<FadeProps, 'children'>> {
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
-  TransitionComponent?: React.JSXElementConstructor<TransitionProps & {
-    children: React.ReactElement<any, any>;
-  }>;
+  TransitionComponent?: React.JSXElementConstructor<
+    TransitionProps & {
+      children: React.ReactElement<any, any>;
+    }
+  >;
 }
 
 export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {

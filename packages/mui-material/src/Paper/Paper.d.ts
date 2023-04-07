@@ -5,7 +5,7 @@ import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { PaperClasses } from './paperClasses';
 
-export interface PaperPropsVariantOverrides { }
+export interface PaperPropsVariantOverrides {}
 
 export interface PaperOwnProps {
   /**

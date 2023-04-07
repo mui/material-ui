@@ -5,11 +5,11 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ChipClasses } from './chipClasses';
 
-export interface ChipPropsVariantOverrides { }
+export interface ChipPropsVariantOverrides {}
 
-export interface ChipPropsSizeOverrides { }
+export interface ChipPropsSizeOverrides {}
 
-export interface ChipPropsColorOverrides { }
+export interface ChipPropsColorOverrides {}
 
 export interface ChipOwnProps {
   /**
@@ -40,7 +40,10 @@ export interface ChipOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
-  color?: OverridableStringUnion<'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', ChipPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    ChipPropsColorOverrides
+  >;
   /**
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */

@@ -5,9 +5,9 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { SvgIconClasses } from './svgIconClasses';
 
-export interface SvgIconPropsSizeOverrides { }
+export interface SvgIconPropsSizeOverrides {}
 
-export interface SvgIconPropsColorOverrides { }
+export interface SvgIconPropsColorOverrides {}
 
 export interface SvgIconOwnProps {
   /**
@@ -25,12 +25,26 @@ export interface SvgIconOwnProps {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */
-  color?: OverridableStringUnion<'inherit' | 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', SvgIconPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    | 'inherit'
+    | 'action'
+    | 'disabled'
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'info'
+    | 'success'
+    | 'warning',
+    SvgIconPropsColorOverrides
+  >;
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize?: OverridableStringUnion<'inherit' | 'large' | 'medium' | 'small', SvgIconPropsSizeOverrides>;
+  fontSize?: OverridableStringUnion<
+    'inherit' | 'large' | 'medium' | 'small',
+    SvgIconPropsSizeOverrides
+  >;
   /**
    * Applies a color attribute to the SVG element.
    */

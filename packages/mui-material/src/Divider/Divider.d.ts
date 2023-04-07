@@ -5,7 +5,7 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { DividerClasses } from './dividerClasses';
 
-export interface DividerPropsVariantOverrides { }
+export interface DividerPropsVariantOverrides {}
 
 export interface DividerOwnProps {
   /**

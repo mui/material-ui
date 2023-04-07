@@ -5,7 +5,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
-export interface FormHelperTextPropsVariantOverrides { }
+export interface FormHelperTextPropsVariantOverrides {}
 
 export interface FormHelperTextOwnProps {
   /**
@@ -50,7 +50,10 @@ export interface FormHelperTextOwnProps {
   /**
    * The variant to use.
    */
-  variant?: OverridableStringUnion<'standard' | 'outlined' | 'filled', FormHelperTextPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    'standard' | 'outlined' | 'filled',
+    FormHelperTextPropsVariantOverrides
+  >;
 }
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {

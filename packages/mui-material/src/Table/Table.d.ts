@@ -5,7 +5,7 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableClasses } from './tableClasses';
 
-export interface TablePropsSizeOverrides { }
+export interface TablePropsSizeOverrides {}
 
 export interface TableOwnProps {
   /**

@@ -5,9 +5,9 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { ButtonGroupClasses } from './buttonGroupClasses';
 
-export interface ButtonGroupPropsColorOverrides { }
-export interface ButtonGroupPropsVariantOverrides { }
-export interface ButtonGroupPropsSizeOverrides { }
+export interface ButtonGroupPropsColorOverrides {}
+export interface ButtonGroupPropsVariantOverrides {}
+export interface ButtonGroupPropsSizeOverrides {}
 
 export interface ButtonGroupOwnProps {
   /**
@@ -24,7 +24,10 @@ export interface ButtonGroupOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', ButtonGroupPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'inherit' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    ButtonGroupPropsColorOverrides
+  >;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -65,7 +68,10 @@ export interface ButtonGroupOwnProps {
    * The variant to use.
    * @default 'outlined'
    */
-  variant?: OverridableStringUnion<'text' | 'outlined' | 'contained', ButtonGroupPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    'text' | 'outlined' | 'contained',
+    ButtonGroupPropsVariantOverrides
+  >;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

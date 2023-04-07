@@ -5,7 +5,7 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { SkeletonClasses } from './skeletonClasses';
 
-export interface SkeletonPropsVariantOverrides { }
+export interface SkeletonPropsVariantOverrides {}
 
 export interface SkeletonOwnProps {
   /**
@@ -35,7 +35,10 @@ export interface SkeletonOwnProps {
    * The type of content that will be rendered.
    * @default 'text'
    */
-  variant?: OverridableStringUnion<'text' | 'rectangular' | 'rounded' | 'circular', SkeletonPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    'text' | 'rectangular' | 'rounded' | 'circular',
+    SkeletonPropsVariantOverrides
+  >;
   /**
    * Width of the skeleton.
    * Useful when the skeleton is inside an inline element with no width of its own.

@@ -5,11 +5,11 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { FabClasses } from './fabClasses';
 
-export interface FabPropsVariantOverrides { }
+export interface FabPropsVariantOverrides {}
 
-export interface FabPropsSizeOverrides { }
+export interface FabPropsSizeOverrides {}
 
-export interface FabPropsColorOverrides { }
+export interface FabPropsColorOverrides {}
 
 export interface FabOwnProps {
   /**
@@ -26,7 +26,10 @@ export interface FabOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
-  color?: OverridableStringUnion<PropTypes.Color | 'success' | 'error' | 'info' | 'warning', FabPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    PropTypes.Color | 'success' | 'error' | 'info' | 'warning',
+    FabPropsColorOverrides
+  >;
   /**
    * If `true`, the component is disabled.
    * @default false

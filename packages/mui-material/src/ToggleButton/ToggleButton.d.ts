@@ -6,9 +6,9 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ToggleButtonClasses } from './toggleButtonClasses';
 
-export interface ToggleButtonPropsSizeOverrides { }
+export interface ToggleButtonPropsSizeOverrides {}
 
-export interface ToggleButtonPropsColorOverrides { }
+export interface ToggleButtonPropsColorOverrides {}
 
 export interface ToggleButtonOwnProps {
   /**
@@ -25,7 +25,10 @@ export interface ToggleButtonOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'standard'
    */
-  color?: OverridableStringUnion<'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', ToggleButtonPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    ToggleButtonPropsColorOverrides
+  >;
   /**
    * If `true`, the component is disabled.
    * @default false

@@ -7,7 +7,7 @@ import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
 
-export interface ModalComponentsPropsOverrides { }
+export interface ModalComponentsPropsOverrides {}
 
 export interface ModalOwnerState extends ModalProps {
   exited: boolean;

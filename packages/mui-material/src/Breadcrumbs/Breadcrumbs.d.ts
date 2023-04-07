@@ -6,7 +6,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BreadcrumbsClasses } from './breadcrumbsClasses';
 import SvgIcon from '../SvgIcon';
 
-export interface BreadcrumbsCollapsedIconSlotPropsOverrides { }
+export interface BreadcrumbsCollapsedIconSlotPropsOverrides {}
 
 export interface BreadcrumbsOwnerState extends BreadcrumbsProps {
   expanded: boolean;
@@ -38,7 +38,11 @@ export interface BreadcrumbsOwnProps {
      * Props applied to the CollapsedIcon slot.
      * @default {}
      */
-    collapsedIcon?: SlotComponentProps<typeof SvgIcon, BreadcrumbsCollapsedIconSlotPropsOverrides, BreadcrumbsOwnerState>;
+    collapsedIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      BreadcrumbsCollapsedIconSlotPropsOverrides,
+      BreadcrumbsOwnerState
+    >;
   };
   /**
    * Override the default label for the expand button.

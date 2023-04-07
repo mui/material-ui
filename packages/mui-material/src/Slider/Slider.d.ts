@@ -8,11 +8,11 @@ import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import SliderValueLabelComponent from './SliderValueLabel';
 import { SliderClasses } from './sliderClasses';
 
-export interface SliderPropsColorOverrides { }
+export interface SliderPropsColorOverrides {}
 
-export interface SliderPropsSizeOverrides { }
+export interface SliderPropsSizeOverrides {}
 
-export interface SliderComponentsPropsOverrides { }
+export interface SliderComponentsPropsOverrides {}
 
 export interface SliderOwnerState extends SliderProps {
   dragging: boolean;
@@ -74,7 +74,11 @@ export interface SliderOwnProps {
     thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
     mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
     markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<typeof SliderValueLabelComponent, SliderComponentsPropsOverrides, SliderOwnerState>;
+    valueLabel?: SlotComponentProps<
+      typeof SliderValueLabelComponent,
+      SliderComponentsPropsOverrides,
+      SliderOwnerState
+    >;
     input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
   };
   /**
@@ -184,7 +188,11 @@ export interface SliderOwnProps {
     thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
     mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
     markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<typeof SliderValueLabelComponent, SliderComponentsPropsOverrides, SliderOwnerState>;
+    valueLabel?: SlotComponentProps<
+      typeof SliderValueLabelComponent,
+      SliderComponentsPropsOverrides,
+      SliderOwnerState
+    >;
     input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
   };
   /**

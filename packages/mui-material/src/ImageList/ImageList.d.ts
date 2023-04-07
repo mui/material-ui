@@ -5,7 +5,7 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ImageListClasses } from './imageListClasses';
 
-export interface ImageListPropsVariantOverrides { }
+export interface ImageListPropsVariantOverrides {}
 
 export interface ImageListOwnProps {
   /**
@@ -39,7 +39,10 @@ export interface ImageListOwnProps {
    * The variant to use.
    * @default 'standard'
    */
-  variant?: OverridableStringUnion<'masonry' | 'quilted' | 'standard' | 'woven', ImageListPropsVariantOverrides>;
+  variant?: OverridableStringUnion<
+    'masonry' | 'quilted' | 'standard' | 'woven',
+    ImageListPropsVariantOverrides
+  >;
 }
 
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {

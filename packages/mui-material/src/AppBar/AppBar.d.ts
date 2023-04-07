@@ -6,9 +6,10 @@ import { PropTypes, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { AppBarClasses } from './appBarClasses';
 
-export interface AppBarPropsColorOverrides { }
+export interface AppBarPropsColorOverrides {}
 
-export interface AppBarOwnProps extends DistributiveOmit<PaperProps, 'position' | 'color' | 'classes'> {
+export interface AppBarOwnProps
+  extends DistributiveOmit<PaperProps, 'position' | 'color' | 'classes'> {
   /**
    * Override or extend the styles applied to the component.
    */

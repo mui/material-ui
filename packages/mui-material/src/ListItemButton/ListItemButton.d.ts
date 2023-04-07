@@ -62,7 +62,7 @@ export interface ListItemButtonBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ListItemButtonOwnProps extends ListItemButtonBaseProps { }
+export interface ListItemButtonOwnProps extends ListItemButtonBaseProps {}
 
 export type ListItemButtonTypeMap<
   P = {},

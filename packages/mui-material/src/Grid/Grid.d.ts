@@ -74,7 +74,7 @@ export interface RegularBreakpoints {
 
 type CustomBreakpoints = Partial<Record<Breakpoint, boolean | GridSize>>;
 
-interface BreakpointOverridesEmpty { }
+interface BreakpointOverridesEmpty {}
 
 type Breakpoints = IfEquals<
   BreakpointOverrides,

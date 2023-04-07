@@ -104,10 +104,13 @@ interface TablePaginationOwnProps extends TablePaginationBaseProps {
    * Use -1 for the value with a custom label to show all the rows.
    * @default [10, 25, 50, 100]
    */
-  rowsPerPageOptions?: Array<number | {
-    value: number;
-    label: string;
-  }>;
+  rowsPerPageOptions?: Array<
+    | number
+    | {
+        value: number;
+        label: string;
+      }
+  >;
   /**
    * Props applied to the rows per page [`Select`](/material-ui/api/select/) element.
    * @default {}

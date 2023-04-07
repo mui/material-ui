@@ -5,7 +5,7 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { AvatarClasses } from './avatarClasses';
 
-export interface AvatarPropsVariantOverrides { }
+export interface AvatarPropsVariantOverrides {}
 
 export interface AvatarOwnProps {
   /**

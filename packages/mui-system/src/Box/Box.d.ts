@@ -170,21 +170,22 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
+export interface BoxOwnProps<T extends object = Theme> extends SystemProps<T> {
+  children?: React.ReactNode;
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  ref?: React.Ref<unknown>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<T>;
+}
+
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div', T extends object = Theme> {
-  props: P &
-    SystemProps<T> & {
-      children?: React.ReactNode;
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component?: React.ElementType;
-      ref?: React.Ref<unknown>;
-      /**
-       * The system prop that allows defining system overrides as well as additional CSS styles.
-       */
-      sx?: SxProps<T>;
-    };
+  props: P & BoxOwnProps<T>;
   defaultComponent: D;
 }
 /**

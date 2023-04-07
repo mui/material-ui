@@ -5,9 +5,9 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { IconClasses } from './iconClasses';
 
-export interface IconPropsSizeOverrides { }
+export interface IconPropsSizeOverrides {}
 
-export interface IconPropsColorOverrides { }
+export interface IconPropsColorOverrides {}
 
 export interface IconOwnProps {
   /**
@@ -30,12 +30,26 @@ export interface IconOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'inherit'
    */
-  color?: OverridableStringUnion<'inherit' | 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', IconPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    | 'inherit'
+    | 'action'
+    | 'disabled'
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'info'
+    | 'success'
+    | 'warning',
+    IconPropsColorOverrides
+  >;
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    * @default 'medium'
    */
-  fontSize?: OverridableStringUnion<'inherit' | 'large' | 'medium' | 'small', IconPropsSizeOverrides>;
+  fontSize?: OverridableStringUnion<
+    'inherit' | 'large' | 'medium' | 'small',
+    IconPropsSizeOverrides
+  >;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

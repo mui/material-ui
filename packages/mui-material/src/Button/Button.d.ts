@@ -6,11 +6,11 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonClasses } from './buttonClasses';
 
-export interface ButtonPropsVariantOverrides { }
+export interface ButtonPropsVariantOverrides {}
 
-export interface ButtonPropsColorOverrides { }
+export interface ButtonPropsColorOverrides {}
 
-export interface ButtonPropsSizeOverrides { }
+export interface ButtonPropsSizeOverrides {}
 
 export interface ButtonOwnProps {
   /**
@@ -27,7 +27,10 @@ export interface ButtonOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning', ButtonPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+    ButtonPropsColorOverrides
+  >;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -93,9 +96,9 @@ export type ButtonTypeMap<
  */
 export interface ExtendButtonTypeMap<M extends OverridableTypeMap> {
   props: M['props'] &
-  (M['props'] extends { classes?: Record<string, string> }
-    ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
-    : ButtonTypeMap['props']);
+    (M['props'] extends { classes?: Record<string, string> }
+      ? DistributiveOmit<ButtonTypeMap['props'], 'classes'>
+      : ButtonTypeMap['props']);
   defaultComponent: M['defaultComponent'];
 }
 

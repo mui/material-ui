@@ -5,7 +5,7 @@ import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ToolbarClasses } from './toolbarClasses';
 
-export interface ToolbarPropsVariantOverrides { }
+export interface ToolbarPropsVariantOverrides {}
 
 export interface ToolbarOwnProps {
   /**

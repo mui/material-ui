@@ -6,9 +6,9 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
 
-export interface BadgePropsVariantOverrides { }
+export interface BadgePropsVariantOverrides {}
 
-export interface BadgePropsColorOverrides { }
+export interface BadgePropsColorOverrides {}
 
 export interface BadgeOrigin {
   vertical: 'top' | 'bottom';
@@ -38,7 +38,10 @@ export interface BadgeOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
-  color?: OverridableStringUnion<'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning', BadgePropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'default' | 'error' | 'info' | 'success' | 'warning',
+    BadgePropsColorOverrides
+  >;
   /**
    * The extra props for the slot components.
    * You can override the existing props or add new ones.

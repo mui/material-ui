@@ -9,10 +9,10 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
-export interface TabsPropsIndicatorColorOverrides { }
+export interface TabsPropsIndicatorColorOverrides {}
 
-export interface TabsStartScrollButtonIconSlotPropsOverrides { }
-export interface TabsEndScrollButtonIconSlotPropsOverrides { }
+export interface TabsStartScrollButtonIconSlotPropsOverrides {}
+export interface TabsEndScrollButtonIconSlotPropsOverrides {}
 
 export interface TabsOwnerState extends TabsProps {
   vertical: boolean;
@@ -76,14 +76,25 @@ export interface TabsOwnProps {
    * @default {}
    */
   slotProps?: {
-    startScrollButtonIcon?: SlotComponentProps<typeof SvgIcon, TabsStartScrollButtonIconSlotPropsOverrides, TabsOwnerState>;
-    endScrollButtonIcon?: SlotComponentProps<typeof SvgIcon, TabsEndScrollButtonIconSlotPropsOverrides, TabsOwnerState>;
+    startScrollButtonIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      TabsStartScrollButtonIconSlotPropsOverrides,
+      TabsOwnerState
+    >;
+    endScrollButtonIcon?: SlotComponentProps<
+      typeof SvgIcon,
+      TabsEndScrollButtonIconSlotPropsOverrides,
+      TabsOwnerState
+    >;
   };
   /**
    * Determines the color of the indicator.
    * @default 'primary'
    */
-  indicatorColor?: OverridableStringUnion<'secondary' | 'primary', TabsPropsIndicatorColorOverrides>;
+  indicatorColor?: OverridableStringUnion<
+    'secondary' | 'primary',
+    TabsPropsIndicatorColorOverrides
+  >;
   /**
    * Callback fired when the value changes.
    *

@@ -6,7 +6,7 @@ import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Variant } from '../styles/createTypography';
 import { TypographyClasses } from './typographyClasses';
 
-export interface TypographyPropsVariantOverrides { }
+export interface TypographyPropsVariantOverrides {}
 
 export interface TypographyOwnProps extends SystemProps<Theme> {
   /**
@@ -68,7 +68,9 @@ export interface TypographyOwnProps extends SystemProps<Theme> {
    *   inherit: 'p',
    * }
    */
-  variantMapping?: Partial<Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>>;
+  variantMapping?: Partial<
+    Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>
+  >;
 }
 
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {

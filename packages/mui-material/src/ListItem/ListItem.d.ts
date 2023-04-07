@@ -5,7 +5,7 @@ import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
-export interface ListItemComponentsPropsOverrides { }
+export interface ListItemComponentsPropsOverrides {}
 
 /**
  * This interface kept for backward compatibility. To extend `ListItem`
@@ -90,13 +90,13 @@ export interface ListItemBaseProps {
 
 export interface ListItemOwnProps extends ListItemBaseProps {
   /**
- * The components used for each slot inside.
- *
- * This prop is an alias for the `slots` prop.
- * It's recommended to use the `slots` prop instead.
- *
- * @default {}
- */
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
+   * @default {}
+   */
   components?: {
     Root?: React.ElementType;
   };

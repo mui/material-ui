@@ -6,9 +6,9 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { IconButtonClasses } from './iconButtonClasses';
 
-export interface IconButtonPropsColorOverrides { }
+export interface IconButtonPropsColorOverrides {}
 
-export interface IconButtonPropsSizeOverrides { }
+export interface IconButtonPropsSizeOverrides {}
 
 export interface IconButtonOwnProps {
   /**
@@ -25,7 +25,10 @@ export interface IconButtonOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
-  color?: OverridableStringUnion<'inherit' | 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', IconButtonPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'inherit' | 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    IconButtonPropsColorOverrides
+  >;
   /**
    * If `true`, the component is disabled.
    * @default false

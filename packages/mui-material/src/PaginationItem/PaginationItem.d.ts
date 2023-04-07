@@ -6,11 +6,11 @@ import { Theme } from '../styles';
 import { UsePaginationItem } from '../usePagination/usePagination';
 import { PaginationItemClasses } from './paginationItemClasses';
 
-export interface PaginationItemPropsVariantOverrides { }
+export interface PaginationItemPropsVariantOverrides {}
 
-export interface PaginationItemPropsSizeOverrides { }
+export interface PaginationItemPropsSizeOverrides {}
 
-export interface PaginationItemPropsColorOverrides { }
+export interface PaginationItemPropsColorOverrides {}
 
 export interface PaginationItemOwnProps {
   /**
@@ -23,7 +23,10 @@ export interface PaginationItemOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'standard'
    */
-  color?: OverridableStringUnion<'standard' | 'primary' | 'secondary', PaginationItemPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'standard' | 'primary' | 'secondary',
+    PaginationItemPropsColorOverrides
+  >;
   /**
    * The components used for each slot inside.
    *

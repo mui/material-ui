@@ -5,8 +5,8 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { FormControlClasses } from './formControlClasses';
 
-export interface FormControlPropsSizeOverrides { }
-export interface FormControlPropsColorOverrides { }
+export interface FormControlPropsSizeOverrides {}
+export interface FormControlPropsColorOverrides {}
 
 export interface FormControlOwnProps {
   /**
@@ -23,7 +23,10 @@ export interface FormControlOwnProps {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
-  color?: OverridableStringUnion<'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning', FormControlPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    FormControlPropsColorOverrides
+  >;
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    * @default false
