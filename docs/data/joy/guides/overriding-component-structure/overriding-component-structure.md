@@ -86,7 +86,7 @@ Use `component` or `slotProps.{slot}.component` prop to override the element by 
 Use `slots` prop to replace the slot's styles and functionality with your custom component.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
-For instance, if you replace the Unstyled Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
+For instance, if you override the Button's root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
 If you did the same with `slots.root`, you would need to place this attribute on the `slotProps.root` object in order to avoid a TypeScript error.
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
