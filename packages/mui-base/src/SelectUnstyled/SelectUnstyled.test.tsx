@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import SelectUnstyled, {
+  SelectUnstyledListboxSlotProps,
+  selectUnstyledClasses,
+} from '@mui/base/SelectUnstyled';
 import { SelectOption } from '@mui/base/useOption';
 import OptionUnstyled, {
   OptionUnstyledProps,
@@ -356,6 +359,70 @@ describe('<SelectUnstyled />', () => {
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
       expect(queryByRole('listbox', { hidden: true })).not.toBeVisible();
+    });
+
+    it('scrolls to highlighted option so it is visible', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      // two options are visible at a time
+      const SelectListbox = React.forwardRef(function SelectListbox(
+        props: SelectUnstyledListboxSlotProps<string, false>,
+        ref: React.ForwardedRef<HTMLUListElement>,
+      ) {
+        const { ownerState, ...other } = props;
+        return <ul {...other} ref={ref} style={{ maxHeight: '100px', overflow: 'auto' }} />;
+      });
+
+      const Option = React.forwardRef(function Option(
+        props: { value: string; children?: React.ReactNode },
+        ref: React.Ref<HTMLLIElement>,
+      ) {
+        return (
+          <OptionUnstyled
+            {...props}
+            ref={ref}
+            slotProps={{ root: { style: { height: '50px' } } }}
+          />
+        );
+      });
+
+      const { getByRole } = render(
+        <SelectUnstyled slots={{ listbox: SelectListbox }}>
+          <Option value="1">1</Option>
+          <Option value="2">2</Option>
+          <Option value="3">3</Option>
+          <Option value="4">4</Option>
+          <Option value="5">5</Option>
+          <Option value="6">6</Option>
+        </SelectUnstyled>,
+      );
+
+      const select = getByRole('combobox');
+
+      act(() => {
+        select.focus();
+      });
+
+      fireEvent.keyDown(select, { key: 'ArrowDown' }); // opens the listbox and highlights 1
+
+      const listbox = getByRole('listbox');
+
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights 2
+      expect(listbox.scrollTop).to.equal(0);
+
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights 3
+      expect(listbox.scrollTop).to.equal(50);
+
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights 4
+      expect(listbox.scrollTop).to.equal(100);
+
+      fireEvent.keyDown(listbox, { key: 'ArrowUp' }); // highlights 3
+      expect(listbox.scrollTop).to.equal(100);
+
+      fireEvent.keyDown(listbox, { key: 'ArrowUp' }); // highlights 2
+      expect(listbox.scrollTop).to.equal(50);
     });
   });
 
@@ -777,6 +844,126 @@ describe('<SelectUnstyled />', () => {
     });
   });
 
+  describe('open/close behavior', () => {
+    it('closes the listbox without selecting an option when focus is lost', () => {
+      const { getByRole, getByTestId } = render(
+        <div>
+          <SelectUnstyled defaultValue={1}>
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </SelectUnstyled>
+          <p data-testid="focus-target" tabIndex={0}>
+            focus target
+          </p>
+        </div>,
+      );
+
+      const select = getByRole('combobox');
+
+      act(() => {
+        select.click();
+      });
+
+      const listbox = getByRole('listbox');
+      userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
+
+      const focusTarget = getByTestId('focus-target');
+      act(() => {
+        focusTarget.focus();
+      });
+
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('1');
+      expect(listbox).not.toBeVisible();
+    });
+
+    it('closes the listbox when already selected option is selected again with a click', () => {
+      const { getByRole, getByTestId } = render(
+        <SelectUnstyled defaultValue={1}>
+          <OptionUnstyled data-testid="selected-option" value={1}>
+            1
+          </OptionUnstyled>
+          <OptionUnstyled value={2}>2</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const select = getByRole('combobox');
+
+      act(() => {
+        select.click();
+      });
+
+      const selectedOption = getByTestId('selected-option');
+      fireEvent.click(selectedOption);
+
+      expect(select).to.have.attribute('aria-expanded', 'false');
+      expect(select).to.have.text('1');
+    });
+
+    it('focuses the listbox after it is opened', () => {
+      const { getByRole } = render(
+        <SelectUnstyled>
+          <OptionUnstyled value={1}>1</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const select = getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      expect(document.activeElement).to.equal(getByRole('listbox'));
+    });
+
+    it('scrolls to initially highlighted option after opening', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      // two options are visible at a time
+      const SelectListbox = React.forwardRef(function SelectListbox(
+        props: SelectUnstyledListboxSlotProps<string, false>,
+        ref: React.ForwardedRef<HTMLUListElement>,
+      ) {
+        const { ownerState, ...other } = props;
+        return <ul {...other} ref={ref} style={{ maxHeight: '100px', overflow: 'auto' }} />;
+      });
+
+      const Option = React.forwardRef(function Option(
+        props: { value: string; children?: React.ReactNode },
+        ref: React.Ref<HTMLLIElement>,
+      ) {
+        return (
+          <OptionUnstyled
+            {...props}
+            ref={ref}
+            slotProps={{ root: { style: { height: '50px' } } }}
+          />
+        );
+      });
+
+      const { getByRole } = render(
+        <SelectUnstyled slots={{ listbox: SelectListbox }} defaultValue={'4'}>
+          <Option value="1">1</Option>
+          <Option value="2">2</Option>
+          <Option value="3">3</Option>
+          <Option value="4">4</Option>
+          <Option value="5">5</Option>
+          <Option value="6">6</Option>
+        </SelectUnstyled>,
+      );
+
+      const select = getByRole('combobox');
+
+      act(() => {
+        select.click();
+      });
+
+      const listbox = getByRole('listbox');
+      expect(listbox.scrollTop).to.equal(100);
+    });
+  });
+
   it('sets a value correctly when interacted by a user and external code', () => {
     function TestComponent() {
       const [value, setValue] = React.useState<number[]>([]);
@@ -814,75 +1001,5 @@ describe('<SelectUnstyled />', () => {
     act(() => option2.click());
 
     expect(selectButton).to.have.text('1, 2');
-  });
-
-  it('closes the listbox without selecting an option when focus is lost', () => {
-    const { getByRole, getByTestId } = render(
-      <div>
-        <SelectUnstyled defaultValue={1}>
-          <OptionUnstyled value={1}>1</OptionUnstyled>
-          <OptionUnstyled value={2}>2</OptionUnstyled>
-        </SelectUnstyled>
-        <p data-testid="focus-target" tabIndex={0}>
-          focus target
-        </p>
-      </div>,
-    );
-
-    const select = getByRole('combobox');
-
-    act(() => {
-      select.click();
-    });
-
-    const listbox = getByRole('listbox');
-    userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
-
-    const focusTarget = getByTestId('focus-target');
-    act(() => {
-      focusTarget.focus();
-    });
-
-    expect(select).to.have.attribute('aria-expanded', 'false');
-    expect(select).to.have.text('1');
-    expect(listbox).not.toBeVisible();
-  });
-
-  it('closes the listbox when already selected option is selected again with a click', () => {
-    const { getByRole, getByTestId } = render(
-      <SelectUnstyled defaultValue={1}>
-        <OptionUnstyled data-testid="selected-option" value={1}>
-          1
-        </OptionUnstyled>
-        <OptionUnstyled value={2}>2</OptionUnstyled>
-      </SelectUnstyled>,
-    );
-
-    const select = getByRole('combobox');
-
-    act(() => {
-      select.click();
-    });
-
-    const selectedOption = getByTestId('selected-option');
-    fireEvent.click(selectedOption);
-
-    expect(select).to.have.attribute('aria-expanded', 'false');
-    expect(select).to.have.text('1');
-  });
-
-  it('focuses the listbox after it is opened', () => {
-    const { getByRole } = render(
-      <SelectUnstyled>
-        <OptionUnstyled value={1}>1</OptionUnstyled>
-      </SelectUnstyled>,
-    );
-
-    const select = getByRole('combobox');
-    act(() => {
-      select.click();
-    });
-
-    expect(document.activeElement).to.equal(getByRole('listbox'));
   });
 });

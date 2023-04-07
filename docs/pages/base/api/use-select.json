@@ -14,6 +14,13 @@
       "required": true
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;Value, SelectInternalState&lt;Value&gt;&gt; | SelectAction) =&gt; void",
+        "description": "(action: ListAction&lt;Value, SelectInternalState&lt;Value&gt;&gt; | SelectAction) =&gt; void"
+      },
+      "required": true
+    },
     "getButtonProps": {
       "type": {
         "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;",

@@ -6,6 +6,7 @@
     "buttonFocusVisible": "If <code>true</code>, the trigger button has a visible focus.",
     "contextValue": "A value to be passed to the <code>SelectProvider</code> component.",
     "disabled": "If <code>true</code>, the select is disabled.",
+    "dispatch": "Action dispatcher for the select component.\nAllows to programmatically control the select.",
     "getButtonProps": "Resolver for the button slot's props.",
     "getListboxProps": "Resolver for the listbox slot's props.",
     "getOptionMetadata": "A function that returns the metadata of an option with a given value.",
