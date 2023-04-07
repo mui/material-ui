@@ -150,8 +150,8 @@ function useList<
     [handleHighlightChange, onChange, onStateChange],
   );
 
-  const propsWithDefaults: React.RefObject<ListActionAddOnValue<ItemValue>> = useLatest(
-    {
+  const reducerContext: ListActionAddOnValue<ItemValue> = React.useMemo(
+    () => ({
       disabledItemsFocusable,
       disableListWrap,
       focusManagement,
@@ -164,16 +164,29 @@ function useList<
       pageSize,
       selectionLimit,
       stateComparers,
-    },
-    [params],
+    }),
+    [
+      disabledItemsFocusable,
+      disableListWrap,
+      focusManagement,
+      isItemDisabled,
+      itemComparer,
+      items,
+      itemStringifier,
+      handleHighlightChange,
+      orientation,
+      pageSize,
+      selectionLimit,
+      stateComparers,
+    ],
   );
 
   const initialState = getInitialState();
   const reducer = externalReducer ?? defaultReducer;
 
   const actionAddOn: ListActionAddOn<ItemValue> & CustomActionAddon = React.useMemo(
-    () => ({ ...externalActionAddon, props: propsWithDefaults }),
-    [propsWithDefaults, externalActionAddon],
+    () => ({ ...externalActionAddon, ...reducerContext }),
+    [externalActionAddon, reducerContext],
   );
 
   type ListActionsWithCustomActions = CustomAction | ListAction<ItemValue, State>;
@@ -241,28 +254,6 @@ function useList<
   React.useEffect(() => {
     notifyHighlightChanged(highlightedValue);
   }, [highlightedValue, notifyHighlightChanged]);
-
-  const setSelectedValue = React.useCallback(
-    (values: ItemValue[]) => {
-      dispatch({
-        type: ListActionTypes.setState,
-        event: null,
-        value: { selectedValues: values } as Partial<State>,
-      });
-    },
-    [dispatch],
-  );
-
-  const setHighlightedValue = React.useCallback(
-    (item: ItemValue | null) => {
-      dispatch({
-        type: ListActionTypes.setState,
-        event: null,
-        value: { highlightedValue: item } as Partial<State>,
-      });
-    },
-    [dispatch],
-  );
 
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
@@ -431,8 +422,6 @@ function useList<
     getRootProps,
     highlightedOption: highlightedValue,
     selectedOptions: selectedValues,
-    setHighlightedValue,
-    setSelectedValue,
     state,
   };
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  ActionContext,
   ControllableReducerAction,
   ControllableReducerParameters,
   setStateActionType,
@@ -129,9 +130,9 @@ function useStateChangeDetection<State extends {}>(
 export default function useControllableReducer<
   State extends {},
   Action extends ControllableReducerAction,
-  ActionAddOn = {},
+  ActionContextValue = undefined,
 >(
-  parameters: ControllableReducerParameters<State, Action, ActionAddOn>,
+  parameters: ControllableReducerParameters<State, Action, ActionContextValue>,
 ): [State, (action: Action) => void] {
   const lastActionRef = React.useRef<Action | null>(null);
 
@@ -146,7 +147,7 @@ export default function useControllableReducer<
 
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
   const reducerWithControlledState = React.useCallback(
-    (state: State, action: Action & ActionAddOn) => {
+    (state: State, action: Action & ActionContext<ActionContextValue>) => {
       lastActionRef.current = action;
       const controlledState = getControlledState(state, controlledProps);
       return reducer(controlledState, action);
@@ -161,8 +162,8 @@ export default function useControllableReducer<
     (action: Action) => {
       dispatch({
         ...action,
-        ...actionAddOn,
-      } as Action & ActionAddOn);
+        context: actionAddOn,
+      } as Action & ActionContext<ActionContextValue>);
     },
     [actionAddOn],
   );

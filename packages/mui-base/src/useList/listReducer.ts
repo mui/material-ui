@@ -1,3 +1,4 @@
+import { ActionContext } from '../utils/useControllableReducer.types';
 import { ListActionTypes } from './listActions.types';
 import {
   ListState,
@@ -5,6 +6,10 @@ import {
   ListReducerAction,
   ListActionAddOn,
 } from './useList.types';
+
+export type ListActionContext<ItemValue, AdditionalContext> = ActionContext<
+  ListActionAddOn<ItemValue> & AdditionalContext
+>;
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 
@@ -428,27 +433,26 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
 
 export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
-  action: ListReducerAction<ItemValue, State> & ListActionAddOn<ItemValue>,
+  action: ListReducerAction<ItemValue, State> & { context: ListActionAddOn<ItemValue> },
 ): State {
-  const { type, props } = action;
-  const parameters = props.current!;
+  const { type, context } = action;
 
   switch (type) {
     case ListActionTypes.keyDown:
-      return handleKeyDown(action.key, state, parameters);
+      return handleKeyDown(action.key, state, context);
     case ListActionTypes.itemClick:
-      return handleItemSelection(action.item, state, parameters);
+      return handleItemSelection(action.item, state, context);
     case ListActionTypes.blur:
-      return handleBlur(state, parameters);
+      return handleBlur(state, context);
     case ListActionTypes.setState:
       return {
         ...state,
         ...action.value,
       };
     case ListActionTypes.textNavigation:
-      return handleTextNavigation(state, action.searchString, parameters);
+      return handleTextNavigation(state, action.searchString, context);
     case ListActionTypes.itemsChange:
-      return handleItemsChange(action.items, action.previousItems, state, parameters);
+      return handleItemsChange(action.items, action.previousItems, state, context);
     default:
       return state;
   }

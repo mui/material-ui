@@ -1,7 +1,6 @@
 import { expect } from 'chai';
-import selectReducer from './selectReducer';
+import selectReducer, { SelectActionContext } from './selectReducer';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
-import { ListActionAddOn } from '../useList';
 
 describe('selectReducer', () => {
   const irrelevantConfig = {
@@ -25,13 +24,13 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: SelectAction & ListActionAddOn<unknown> & { multiple: boolean } = {
+      const action: SelectAction & SelectActionContext<unknown> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
-        props: {
-          current: irrelevantConfig,
+        context: {
+          ...irrelevantConfig,
+          multiple: false,
         },
-        multiple: false,
       };
 
       const result = selectReducer(state, action);
@@ -45,13 +44,13 @@ describe('selectReducer', () => {
         open: true,
       };
 
-      const action: SelectAction & ListActionAddOn<unknown> & { multiple: boolean } = {
+      const action: SelectAction & SelectActionContext<unknown> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
-        props: {
-          current: irrelevantConfig,
+        context: {
+          ...irrelevantConfig,
+          multiple: false,
         },
-        multiple: false,
       };
 
       const result = selectReducer(state, action);
@@ -65,16 +64,14 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: SelectAction & ListActionAddOn<string> & { multiple: boolean } = {
+      const action: SelectAction & SelectActionContext<string> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
-        props: {
-          current: {
-            ...irrelevantConfig,
-            items: ['1', '2', '3'],
-          },
+        context: {
+          ...irrelevantConfig,
+          items: ['1', '2', '3'],
+          multiple: false,
         },
-        multiple: false,
       };
 
       const result = selectReducer(state, action);
@@ -88,16 +85,14 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: SelectAction & ListActionAddOn<string> & { multiple: boolean } = {
+      const action: SelectAction & SelectActionContext<string> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
-        props: {
-          current: {
-            ...irrelevantConfig,
-            items: ['1', '2', '3'],
-          },
+        context: {
+          ...irrelevantConfig,
+          items: ['1', '2', '3'],
+          multiple: false,
         },
-        multiple: false,
       };
 
       const result = selectReducer(state, action);
@@ -118,14 +113,14 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: SelectAction & ListActionAddOn<unknown> & { multiple: boolean } = {
+          const action: SelectAction & SelectActionContext<unknown> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
-            props: {
-              current: irrelevantConfig,
+            context: {
+              ...irrelevantConfig,
+              multiple: false,
             },
-            multiple: false,
           };
 
           const result = selectReducer(state, action);
@@ -139,17 +134,15 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: SelectAction & ListActionAddOn<string> & { multiple: boolean } = {
+          const action: SelectAction & SelectActionContext<string> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
-            props: {
-              current: {
-                ...irrelevantConfig,
-                items: ['1', '2', '3'],
-              },
+            context: {
+              ...irrelevantConfig,
+              items: ['1', '2', '3'],
+              multiple: false,
             },
-            multiple: false,
           };
 
           const result = selectReducer(state, action);
@@ -163,17 +156,15 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: SelectAction & ListActionAddOn<string> & { multiple: boolean } = {
+          const action: SelectAction & SelectActionContext<string> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
-            props: {
-              current: {
-                ...irrelevantConfig,
-                items: ['1', '2', '3'],
-              },
+            context: {
+              ...irrelevantConfig,
+              items: ['1', '2', '3'],
+              multiple: false,
             },
-            multiple: false,
           };
 
           const result = selectReducer(state, action);

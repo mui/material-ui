@@ -10,13 +10,17 @@ export type StateChangeCallback<State> = <StateKey extends keyof State>(
   state: State,
 ) => void;
 
+export type ActionContext<Value> = {
+  context: Value;
+};
+
 /**
  * Parameters of the useControllableReducer hook.
  */
 export interface ControllableReducerParameters<
   State,
   Action extends ControllableReducerAction,
-  ActionAddOn = {},
+  ActionContextValue = undefined,
 > {
   /**
    * The reducer function.
@@ -25,7 +29,7 @@ export interface ControllableReducerParameters<
    * @param action The action to dispatch. The action can be augmented with the `actionAddOn`.
    * @returns The updated state.
    */
-  reducer: (state: State, action: Action & ActionAddOn) => State;
+  reducer: (state: State, action: Action & ActionContext<ActionContextValue>) => State;
   /**
    * The controlled props that will override the state items.
    */
@@ -47,7 +51,7 @@ export interface ControllableReducerParameters<
   /**
    * Additional properties that will be added to the action.
    */
-  actionAddOn?: ActionAddOn;
+  actionAddOn?: ActionContextValue;
 }
 
 export const setStateActionType = 'controlledReducer:setState';

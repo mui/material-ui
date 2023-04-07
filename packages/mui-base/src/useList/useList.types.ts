@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { ListAction } from './listActions.types';
 import {
+  ActionContext,
   ControllableReducerAction,
   StateChangeCallback,
 } from '../utils/useControllableReducer.types';
+import type { ListActionContext } from './listReducer';
 
 type ListActionAddOnValueRequiredKeys =
   | 'disabledItemsFocusable'
@@ -25,15 +27,14 @@ export type ListActionAddOnValue<ItemValue> = Simplify<
   Required<Pick<UseListParameters<ItemValue, any, any>, ListActionAddOnValueRequiredKeys>>
 >;
 
-export type ListActionAddOn<ItemValue> = {
-  props: React.RefObject<ListActionAddOnValue<ItemValue>>;
-};
+// TODO: not needed
+export type ListActionAddOn<ItemValue> = ListActionAddOnValue<ItemValue>;
 
 export type ListReducerAction<
   ItemValue,
   State extends ListState<ItemValue>,
   CustomActionAddon = {},
-> = ListAction<ItemValue, State> & ListActionAddOn<ItemValue> & CustomActionAddon;
+> = ListAction<ItemValue, State> & ListActionContext<ItemValue, CustomActionAddon>;
 
 export interface ListState<ItemValue> {
   /**
@@ -179,8 +180,7 @@ export interface UseListParameters<
   stateReducer?: (
     state: State,
     action: (ListAction<ItemValue, State> | CustomAction) &
-      ListActionAddOn<ItemValue> &
-      CustomActionAddon,
+      ActionContext<ListActionAddOn<ItemValue> & CustomActionAddon>,
   ) => State;
 }
 

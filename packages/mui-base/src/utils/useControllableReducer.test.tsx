@@ -65,7 +65,7 @@ describe('useControllableReducer', () => {
       }
 
       const { container } = render(<TestComponent />);
-      expect(reducer.getCalls()[0].args[1]).to.deep.equal({ ...actionToDispatch });
+      expect(reducer.getCalls()[0].args[1]).to.include({ ...actionToDispatch });
       expect(container.firstChild).to.have.text('BMW 3 (2022)');
     });
   });
@@ -281,12 +281,12 @@ describe('useControllableReducer', () => {
     it('augments actions with the object provided to the reducer', () => {
       const reducer = (
         state: TestState,
-        action: SetStateAction<TestState> & { overrideProductionYear: number },
+        action: SetStateAction<TestState> & { context: { overrideProductionYear: number } },
       ) => {
         return {
           ...state,
           ...action.value,
-          productionYear: action.overrideProductionYear,
+          productionYear: action.context.overrideProductionYear,
         };
       };
 

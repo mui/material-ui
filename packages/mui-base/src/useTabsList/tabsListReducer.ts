@@ -1,13 +1,19 @@
 import { ListState, ListAction, ListActionAddOn, listReducer, ListActionTypes } from '../useList';
+import { ActionContext } from '../utils/useControllableReducer.types';
+
+export type TabsListActionContext = ActionContext<
+  ListActionAddOn<string | number> & { selectionFollowsFocus: boolean }
+>;
 
 export default function tabsListReducer(
   state: ListState<string | number>,
-  action: ListAction<string | number, ListState<string | number>> &
-    ListActionAddOn<string | number> & { selectionFollowsFocus: boolean },
+  action: ListAction<string | number, ListState<string | number>> & TabsListActionContext,
 ) {
   const newState = listReducer(state, action);
 
-  const { selectionFollowsFocus } = action;
+  const {
+    context: { selectionFollowsFocus },
+  } = action;
 
   if (action.type === ListActionTypes.itemsChange) {
     return {

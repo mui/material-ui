@@ -8,7 +8,7 @@ import {
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useList, { ListActionTypes, UseListParameters } from '../useList';
+import useList, { UseListParameters } from '../useList';
 import tabsListReducer from './tabsListReducer';
 
 /**
@@ -115,23 +115,6 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     stateReducer: tabsListReducer,
   });
 
-  React.useEffect(() => {
-    if (value === undefined) {
-      return;
-    }
-
-    // when a value changes externally, the highlighted value should be synced to it
-    if (value != null) {
-      dispatch({
-        type: ListActionTypes.setState,
-        event: null,
-        value: {
-          highlightedValue: value,
-        },
-      });
-    }
-  }, [dispatch, value]);
-
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,
   ): UseTabsListRootSlotProps<TOther> => {
@@ -144,6 +127,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
   };
 
   return {
+    dispatch,
     isRtl,
     orientation,
     selectedValue: selectedOptions[0] ?? null,

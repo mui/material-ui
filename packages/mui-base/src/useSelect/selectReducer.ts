@@ -5,20 +5,27 @@ import {
   listReducer,
   ListActionTypes,
 } from '../useList';
+import { ActionContext } from '../utils/useControllableReducer.types';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
+
+export type SelectActionContext<OptionValue> = ActionContext<
+  ListActionAddOn<OptionValue> & { multiple: boolean }
+>;
 
 export default function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,
   action: (ListAction<OptionValue, SelectInternalState<OptionValue>> | SelectAction) &
-    ListActionAddOn<OptionValue> & { multiple: boolean },
+    SelectActionContext<OptionValue>,
 ) {
   const { open } = state;
-  const { multiple: actionMultiple } = action;
+  const {
+    context: { multiple },
+  } = action;
 
   switch (action.type) {
     case SelectActionTypes.buttonClick: {
       const itemToHighlight =
-        state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.props.current!);
+        state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.context);
 
       return {
         ...state,
@@ -30,8 +37,7 @@ export default function selectReducer<OptionValue>(
     case SelectActionTypes.buttonArrowKeyDown:
       if (action.key === 'ArrowDown') {
         const itemToHighlight =
-          state.selectedValues[0] ??
-          moveHighlight<OptionValue>(null, 'start', action.props.current!);
+          state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'start', action.context);
 
         return {
           ...state,
@@ -42,7 +48,7 @@ export default function selectReducer<OptionValue>(
 
       if (action.key === 'ArrowUp') {
         const itemToHighlight =
-          state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'end', action.props.current!);
+          state.selectedValues[0] ?? moveHighlight<OptionValue>(null, 'end', action.context);
 
         return {
           ...state,
@@ -60,13 +66,13 @@ export default function selectReducer<OptionValue>(
   const newState: SelectInternalState<OptionValue> = listReducer(
     state,
     action as ListAction<OptionValue, SelectInternalState<OptionValue>> &
-      ListActionAddOn<OptionValue>,
+      SelectActionContext<OptionValue>,
   );
 
   switch (action.type) {
     case ListActionTypes.keyDown:
       if (
-        !actionMultiple &&
+        !multiple &&
         (action.event.key === 'Enter' || action.event.key === ' ' || action.event.key === 'Escape')
       ) {
         return {
@@ -78,7 +84,7 @@ export default function selectReducer<OptionValue>(
       break;
 
     case ListActionTypes.itemClick:
-      if (!actionMultiple) {
+      if (!multiple) {
         return {
           ...newState,
           open: false,
