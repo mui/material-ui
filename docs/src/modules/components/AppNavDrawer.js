@@ -144,7 +144,7 @@ function PersistScroll(props) {
 
     if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewHeight > window.innerHeight) {
       // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
-      activeDrawerLink.scrollIntoView(false);
+      activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
     return () => {
