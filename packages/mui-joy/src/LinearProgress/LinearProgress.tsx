@@ -187,7 +187,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       className={clsx(classes.root, className)}
       role="progressbar"
       style={{
-        // Setting this CSS varaible via inline-style
+        // Setting this CSS variable via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
         ...({ '--LinearProgress-percent': value } as React.CSSProperties),

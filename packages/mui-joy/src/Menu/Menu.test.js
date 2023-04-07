@@ -28,7 +28,7 @@ describe('Joy <Menu />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'classesRoot',
       'componentProp',
       'componentsProp',

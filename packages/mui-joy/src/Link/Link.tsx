@@ -333,7 +333,7 @@ Link.propTypes /* remove-proptypes */ = {
    */
   onFocus: PropTypes.func,
   /**
-   * If `true`, the ::after psuedo element is added to cover the area of interaction.
+   * If `true`, the ::after pseudo element is added to cover the area of interaction.
    * The parent of the overlay Link should have `relative` CSS position.
    * @default false
    */

@@ -101,7 +101,7 @@ function getInheritComponentName(valueNode: babel.types.Node): string | undefine
 function getSkippedTests(valueNode: babel.types.Node): string[] {
   if (!babel.types.isArrayExpression(valueNode)) {
     throw new TypeError(
-      `Unabled to determine skipped tests from '${valueNode.type}'. Expected an 'ArrayExpression' i.e. \`skippedTests: ["a", "b"]\`.`,
+      `Unable to determine skipped tests from '${valueNode.type}'. Expected an 'ArrayExpression' i.e. \`skippedTests: ["a", "b"]\`.`,
     );
   }
 
