@@ -4,10 +4,10 @@ import { MenuInternalState } from './useMenu.types';
 
 export default function menuReducer(
   state: MenuInternalState,
-  action: ListAction<string, MenuInternalState> &
+  action: ListAction<string> &
     ActionContext<ListActionAddOn<string> & { listboxRef: React.RefObject<HTMLElement> }>,
 ) {
-  if (action.type === ListActionTypes.itemHover || action.type === ListActionTypes.setState) {
+  if (action.type === ListActionTypes.itemHover) {
     return state;
   }
 

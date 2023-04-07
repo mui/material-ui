@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { useTabsContext } from '../TabsUnstyled';
 import {
+  TabsListActionTypes,
   UseTabsListParameters,
   UseTabsListReturnValue,
   UseTabsListRootSlotProps,
+  ValueChangeAction,
 } from './useTabsList.types';
 import { EventHandlers } from '../utils';
 import { useCompoundParent } from '../utils/useCompound';
 import { TabMetadata } from '../useTabs/useTabs';
-import useList, { UseListParameters } from '../useList';
+import useList, { ListState, UseListParameters } from '../useList';
 import tabsListReducer from './tabsListReducer';
 
 /**
@@ -91,18 +93,28 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     return value != null ? { selectedValues: [value] } : { selectedValues: [] };
   }, [value]);
 
+  const isItemDisabled = React.useCallback(
+    (item: string | number) => subitems.get(item)?.disabled ?? false,
+    [subitems],
+  );
+
   const {
     contextValue: listContextValue,
     dispatch,
     getRootProps: getListboxRootProps,
     highlightedOption,
     selectedOptions,
-  } = useList({
+  } = useList<
+    string | number,
+    ListState<string | number>,
+    ValueChangeAction,
+    { selectionFollowsFocus: boolean }
+  >({
     controlledProps,
     disabledItemsFocusable: !selectionFollowsFocus,
     focusManagement: 'DOM',
     getItemDomElement: getTabElement,
-    isItemDisabled: (item) => subitems.get(item)?.disabled ?? false,
+    isItemDisabled,
     items: subitemKeys,
     listRef: externalRef,
     onChange: handleChange,
@@ -114,6 +126,20 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     selectionLimit: 1,
     stateReducer: tabsListReducer,
   });
+
+  React.useEffect(() => {
+    if (value === undefined) {
+      return;
+    }
+
+    // when a value changes externally, the highlighted value should be synced to it
+    if (value != null) {
+      dispatch({
+        type: TabsListActionTypes.valueChange,
+        value,
+      });
+    }
+  }, [dispatch, value]);
 
   const getRootProps = <TOther extends EventHandlers = {}>(
     otherHandlers: TOther = {} as TOther,

@@ -3,7 +3,6 @@ import {
   ActionContext,
   ControllableReducerAction,
   ControllableReducerParameters,
-  setStateActionType,
   StateChangeCallback,
   StateComparers,
 } from './useControllableReducer.types';
@@ -68,11 +67,6 @@ function useStateChangeDetection<State extends {}>(
   React.useEffect(() => {
     if (lastActionRef.current === null) {
       // Detect changes only if an action has been dispatched.
-      return;
-    }
-
-    if (lastActionRef.current.type === setStateActionType) {
-      // Don't fire change events when the value has been changed externally (e.g. by changing the controlled prop).
       return;
     }
 

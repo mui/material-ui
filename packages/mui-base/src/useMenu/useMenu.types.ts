@@ -38,7 +38,7 @@ export interface UseMenuReturnValue {
    * Action dispatcher for the menu component.
    * Allows to programmatically control the menu.
    */
-  dispatch: (action: ListAction<string, MenuInternalState>) => void;
+  dispatch: (action: ListAction<string>) => void;
   /**
    * Resolver for the listbox component's props.
    * @param otherHandlers event handlers for the listbox component

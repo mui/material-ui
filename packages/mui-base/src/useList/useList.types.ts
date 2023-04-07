@@ -30,11 +30,8 @@ export type ListActionAddOnValue<ItemValue> = Simplify<
 // TODO: not needed
 export type ListActionAddOn<ItemValue> = ListActionAddOnValue<ItemValue>;
 
-export type ListReducerAction<
-  ItemValue,
-  State extends ListState<ItemValue>,
-  CustomActionAddon = {},
-> = ListAction<ItemValue, State> & ListActionContext<ItemValue, CustomActionAddon>;
+export type ListReducerAction<ItemValue, CustomActionAddon = {}> = ListAction<ItemValue> &
+  ListActionContext<ItemValue, CustomActionAddon>;
 
 export interface ListState<ItemValue> {
   /**
@@ -49,7 +46,7 @@ export interface ListState<ItemValue> {
 
 export type ListReducer<ItemValue, State extends ListState<ItemValue>, CustomActionAddon> = (
   state: State,
-  action: ListReducerAction<ItemValue, State, CustomActionAddon>,
+  action: ListReducerAction<ItemValue, CustomActionAddon>,
 ) => State;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
@@ -179,7 +176,7 @@ export interface UseListParameters<
    */
   stateReducer?: (
     state: State,
-    action: (ListAction<ItemValue, State> | CustomAction) &
+    action: (ListAction<ItemValue> | CustomAction) &
       ActionContext<ListActionAddOn<ItemValue> & CustomActionAddon>,
   ) => State;
 }

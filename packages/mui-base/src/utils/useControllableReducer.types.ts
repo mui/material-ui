@@ -54,14 +54,6 @@ export interface ControllableReducerParameters<
   actionAddOn?: ActionContextValue;
 }
 
-export const setStateActionType = 'controlledReducer:setState';
-
-export interface SetStateAction<State> {
-  type: typeof setStateActionType;
-  event: null;
-  value: Partial<State>;
-}
-
 /*
  * The standard shape of the action accepted by the controllable reducer
  */

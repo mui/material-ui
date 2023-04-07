@@ -150,8 +150,8 @@ function useList<
     [handleHighlightChange, onChange, onStateChange],
   );
 
-  const reducerContext: ListActionAddOnValue<ItemValue> = React.useMemo(
-    () => ({
+  const reducerContext: ListActionAddOnValue<ItemValue> = React.useMemo(() => {
+    return {
       disabledItemsFocusable,
       disableListWrap,
       focusManagement,
@@ -164,22 +164,21 @@ function useList<
       pageSize,
       selectionLimit,
       stateComparers,
-    }),
-    [
-      disabledItemsFocusable,
-      disableListWrap,
-      focusManagement,
-      isItemDisabled,
-      itemComparer,
-      items,
-      itemStringifier,
-      handleHighlightChange,
-      orientation,
-      pageSize,
-      selectionLimit,
-      stateComparers,
-    ],
-  );
+    };
+  }, [
+    disabledItemsFocusable,
+    disableListWrap,
+    focusManagement,
+    isItemDisabled,
+    itemComparer,
+    items,
+    itemStringifier,
+    handleHighlightChange,
+    orientation,
+    pageSize,
+    selectionLimit,
+    stateComparers,
+  ]);
 
   const initialState = getInitialState();
   const reducer = externalReducer ?? defaultReducer;
@@ -189,7 +188,7 @@ function useList<
     [externalActionAddon, reducerContext],
   );
 
-  type ListActionsWithCustomActions = CustomAction | ListAction<ItemValue, State>;
+  type ListActionsWithCustomActions = CustomAction | ListAction<ItemValue>;
 
   const [state, dispatch] = useControllableReducer<
     State,
@@ -401,7 +400,7 @@ function useList<
     ],
   );
 
-  const contextValue: ListContextValue<ItemValue, State> = React.useMemo(
+  const contextValue: ListContextValue<ItemValue> = React.useMemo(
     () => ({
       dispatch,
       getItemState,

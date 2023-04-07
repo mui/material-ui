@@ -2,10 +2,9 @@ import * as React from 'react';
 import { ListContext, ListContextValue } from '../useList/ListContext';
 import { MenuItemMetadata } from '../useMenuItem';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
-import type { MenuInternalState } from './useMenu.types';
 
 export type MenuProviderValue = CompoundComponentContextValue<string, MenuItemMetadata> &
-  ListContextValue<string, MenuInternalState>;
+  ListContextValue<string>;
 
 export interface MenuProviderProps {
   value: MenuProviderValue;
@@ -30,7 +29,7 @@ export default function MenuProvider(props: MenuProviderProps) {
     totalSubitemCount,
   } = value;
 
-  const listContextValue: ListContextValue<string, MenuInternalState> = React.useMemo(
+  const listContextValue: ListContextValue<string> = React.useMemo(
     () => ({
       dispatch,
       getItemState,

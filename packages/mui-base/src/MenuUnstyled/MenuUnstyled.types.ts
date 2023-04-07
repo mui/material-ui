@@ -2,14 +2,14 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
-import { MenuInternalState, UseMenuListboxSlotProps } from '../useMenu';
+import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
 
 export interface MenuUnstyledRootSlotPropsOverrides {}
 export interface MenuUnstyledListboxSlotPropsOverrides {}
 
 export interface MenuUnstyledActions {
-  dispatch: (action: ListAction<string, MenuInternalState>) => void;
+  dispatch: (action: ListAction<string>) => void;
 }
 
 export interface MenuUnstyledOwnProps {

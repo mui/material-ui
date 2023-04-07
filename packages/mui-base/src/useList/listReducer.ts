@@ -433,7 +433,7 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
 
 export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
-  action: ListReducerAction<ItemValue, State> & { context: ListActionAddOn<ItemValue> },
+  action: ListReducerAction<ItemValue> & { context: ListActionAddOn<ItemValue> },
 ): State {
   const { type, context } = action;
 
@@ -444,11 +444,6 @@ export default function listReducer<ItemValue, State extends ListState<ItemValue
       return handleItemSelection(action.item, state, context);
     case ListActionTypes.blur:
       return handleBlur(state, context);
-    case ListActionTypes.setState:
-      return {
-        ...state,
-        ...action.value,
-      };
     case ListActionTypes.textNavigation:
       return handleTextNavigation(state, action.searchString, context);
     case ListActionTypes.itemsChange:

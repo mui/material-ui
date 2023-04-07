@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TabsListProviderValue } from './TabsListProvider';
-import { ListAction, ListState } from '../useList';
+import { ListAction } from '../useList';
 
 export interface UseTabsListParameters {
   /**
@@ -23,7 +23,7 @@ export interface UseTabsListReturnValue {
    * Action dispatcher for the tabs list component.
    * Allows to programmatically control the tabs list.
    */
-  dispatch: (action: ListAction<string | number, ListState<string | number>>) => void;
+  dispatch: (action: ListAction<string | number>) => void;
   /**
    * The value of the currently highlighted tab.
    */
@@ -54,4 +54,13 @@ export interface UseTabsListReturnValue {
    * The value to be passed to the TabListProvider above all the tabs.
    */
   contextValue: TabsListProviderValue;
+}
+
+export const TabsListActionTypes = {
+  valueChange: 'valueChange',
+} as const;
+
+export interface ValueChangeAction {
+  type: typeof TabsListActionTypes.valueChange;
+  value: string | number | null;
 }

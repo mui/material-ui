@@ -3,17 +3,18 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
 import useControllableReducer from './useControllableReducer';
-import {
-  ControllableReducerParameters,
-  SetStateAction,
-  setStateActionType,
-} from './useControllableReducer.types';
+import { ControllableReducerParameters } from './useControllableReducer.types';
 
 interface TestState {
   make: string;
   model: string;
   productionYear: number;
   features?: string[];
+}
+
+interface SetMakeAction {
+  type: 'setMake';
+  value: string;
 }
 
 interface UpdateProductionYearAction {
@@ -32,23 +33,19 @@ describe('useControllableReducer', () => {
 
   describe('param: reducer', () => {
     it('calls the provided reducer', () => {
-      const reducer = spy((state: TestState, action: SetStateAction<TestState>) => {
+      const reducer = spy((state: TestState, action: SetMakeAction) => {
         return {
           ...state,
-          ...action.value,
+          make: action.value,
         };
       });
 
-      const actionToDispatch: SetStateAction<TestState> = {
-        type: setStateActionType,
-        value: { make: 'BMW' },
-        event: null,
+      const actionToDispatch: SetMakeAction = {
+        type: 'setMake',
+        value: 'BMW',
       };
 
-      const reducerParameters: ControllableReducerParameters<
-        TestState,
-        SetStateAction<TestState>
-      > = {
+      const reducerParameters: ControllableReducerParameters<TestState, SetMakeAction> = {
         reducer,
         controlledProps: {},
         initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
@@ -72,10 +69,7 @@ describe('useControllableReducer', () => {
 
   describe('param: initialProps', () => {
     it('sets the initial state', () => {
-      const reducerParameters: ControllableReducerParameters<
-        TestState,
-        SetStateAction<TestState>
-      > = {
+      const reducerParameters: ControllableReducerParameters<TestState, SetMakeAction> = {
         reducer: (state) => state,
         controlledProps: {},
         initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
@@ -97,32 +91,28 @@ describe('useControllableReducer', () => {
 
   describe('param: controlledProps', () => {
     it('overwrites the state field with the corresponding controlled prop value', () => {
-      const reducer = (state: TestState, action: SetStateAction<TestState>) => {
+      const reducer = (state: TestState, action: SetMakeAction) => {
         // Even though the initial state is set to 'Mazda', the controlled prop overwrites it.
         expect(state.make).to.equal('Tesla');
 
         return {
           ...state,
-          ...action.value,
+          make: action.value,
         };
       };
 
-      const actionToDispatch: SetStateAction<TestState> = {
-        type: setStateActionType,
-        value: { make: 'BMW' },
-        event: null,
+      const actionToDispatch: SetMakeAction = {
+        type: 'setMake',
+        value: 'BMW',
       };
 
-      const reducerParameters: ControllableReducerParameters<
-        TestState,
-        SetStateAction<TestState>
-      > = {
+      const reducerParameters: ControllableReducerParameters<TestState, SetMakeAction> = {
         reducer,
         initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
       };
 
       function TestComponent(props: { make: string }) {
-        const [state, dispatch] = useControllableReducer<TestState, SetStateAction<TestState>>({
+        const [state, dispatch] = useControllableReducer<TestState, SetMakeAction>({
           ...reducerParameters,
           controlledProps: { make: props.make },
         });
@@ -239,66 +229,29 @@ describe('useControllableReducer', () => {
         },
       ]);
     });
-
-    it('does not call onStateChange when the state is updated via the SetStateAction', () => {
-      const reducer = spy((state: TestState, action: SetStateAction<TestState>) => {
-        return {
-          ...state,
-          ...action.value,
-        };
-      });
-
-      const actionToDispatch: SetStateAction<TestState> = {
-        type: setStateActionType,
-        event: null,
-        value: { productionYear: 2010 },
-      };
-
-      const handleChange = spy();
-
-      const reducerParameters: ControllableReducerParameters<
-        TestState,
-        SetStateAction<TestState>
-      > = {
-        reducer,
-        controlledProps: {},
-        initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
-        onStateChange: handleChange,
-      };
-
-      function TestComponent() {
-        const [, dispatch] = useControllableReducer(reducerParameters);
-        React.useEffect(() => dispatch(actionToDispatch), [dispatch]);
-        return null;
-      }
-
-      render(<TestComponent />);
-      expect(handleChange.called).to.equal(false);
-    });
   });
 
   describe('param: actionAddOn', () => {
     it('augments actions with the object provided to the reducer', () => {
       const reducer = (
         state: TestState,
-        action: SetStateAction<TestState> & { context: { overrideProductionYear: number } },
+        action: UpdateProductionYearAction & { context: { overrideProductionYear: number } },
       ) => {
         return {
           ...state,
-          ...action.value,
           productionYear: action.context.overrideProductionYear,
         };
       };
 
-      const actionToDispatch: SetStateAction<TestState> = {
-        type: setStateActionType,
+      const actionToDispatch: UpdateProductionYearAction = {
+        type: 'updateProductionYear',
         event: null,
-        value: { productionYear: 2010, make: 'BMW' },
+        value: 2010,
       };
 
       const reducerParameters: ControllableReducerParameters<
         TestState,
-        SetStateAction<TestState>,
+        UpdateProductionYearAction,
         { overrideProductionYear: number }
       > = {
         reducer,
@@ -318,7 +271,7 @@ describe('useControllableReducer', () => {
       }
 
       const { container } = render(<TestComponent />);
-      expect(container.firstChild).to.have.text('BMW 3 (2016)');
+      expect(container.firstChild).to.have.text('Mazda 3 (2016)');
     });
   });
 });

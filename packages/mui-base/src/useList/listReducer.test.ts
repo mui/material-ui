@@ -5,35 +5,6 @@ import { ListReducerAction, ListState } from './useList.types';
 import { ListActionTypes } from './listActions.types';
 
 describe('listReducer', () => {
-  describe('action: setControlledValue', () => {
-    it("assigns the provided value to the state's selectedValues", () => {
-      const state: ListState<string> = {
-        highlightedValue: 'a',
-        selectedValues: [],
-      };
-
-      const action: ListReducerAction<string, ListState<string>> = {
-        type: ListActionTypes.setState,
-        value: { selectedValues: ['foo'] },
-        event: null,
-        context: {
-          items: ['foo', 'bar'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          focusManagement: 'activeDescendant',
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          pageSize: 5,
-          selectionLimit: null,
-        },
-      };
-      const result = listReducer(state, action);
-      expect(result.selectedValues).to.deep.equal(['foo']);
-    });
-  });
-
   describe('action: blur', () => {
     it('resets the highlightedValue', () => {
       const state: ListState<string> = {
@@ -41,7 +12,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.blur,
         event: {} as any, // not relevant
         context: {
@@ -70,7 +41,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         context: {
@@ -98,7 +69,7 @@ describe('listReducer', () => {
         selectedValues: ['one'],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         context: {
@@ -126,7 +97,7 @@ describe('listReducer', () => {
         selectedValues: ['one'],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         context: {
@@ -154,7 +125,7 @@ describe('listReducer', () => {
         selectedValues: ['one', 'two'],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.itemClick,
         event: {} as any,
         item: 'three',
@@ -182,7 +153,7 @@ describe('listReducer', () => {
         selectedValues: ['one', 'two'],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.itemClick,
         event: {} as any, // not relevant
         context: {
@@ -591,7 +562,7 @@ describe('listReducer', () => {
             selectedValues: [],
           };
 
-          const action: ListReducerAction<string, ListState<string>> = {
+          const action: ListReducerAction<string> = {
             type: ListActionTypes.keyDown,
             key: spec.key,
             event: null as any, // not relevant
@@ -622,7 +593,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.keyDown,
           key: 'Enter',
           event: {} as any,
@@ -650,7 +621,7 @@ describe('listReducer', () => {
           selectedValues: ['one'],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.keyDown,
           key: 'Enter',
           event: {} as any,
@@ -678,7 +649,7 @@ describe('listReducer', () => {
           selectedValues: ['one'],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.keyDown,
           key: 'Enter',
           event: {} as any,
@@ -706,7 +677,7 @@ describe('listReducer', () => {
           selectedValues: ['one', 'two'],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.keyDown,
           key: 'Enter',
           event: {} as any,
@@ -737,7 +708,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.textNavigation,
         searchString: 'th',
         event: {} as React.KeyboardEvent,
@@ -765,7 +736,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.textNavigation,
         searchString: 'z',
         event: {} as React.KeyboardEvent,
@@ -793,7 +764,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
@@ -821,7 +792,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.textNavigation,
         searchString: 't',
         event: {} as React.KeyboardEvent,
@@ -849,7 +820,7 @@ describe('listReducer', () => {
         selectedValues: [],
       };
 
-      const action: ListReducerAction<string, ListState<string>> = {
+      const action: ListReducerAction<string> = {
         type: ListActionTypes.textNavigation,
         searchString: 'one',
         event: {} as React.KeyboardEvent,
@@ -891,7 +862,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: ['1', '2'],
@@ -913,7 +884,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: ['1', '2'],
@@ -935,7 +906,7 @@ describe('listReducer', () => {
           selectedValues: ['1', '2'],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: ['1', '2'],
@@ -957,7 +928,7 @@ describe('listReducer', () => {
           selectedValues: ['0', '2'],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: ['1', '2'],
@@ -982,7 +953,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<ItemType, ListState<ItemType>> = {
+        const action: ListReducerAction<ItemType> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: [{ v: '1' }, { v: '2' }],
@@ -1004,7 +975,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<ItemType, ListState<ItemType>> = {
+        const action: ListReducerAction<ItemType> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: [{ v: '1' }, { v: '2' }],
@@ -1026,7 +997,7 @@ describe('listReducer', () => {
           selectedValues: [{ v: '1' }, { v: '2' }],
         };
 
-        const action: ListReducerAction<ItemType, ListState<ItemType>> = {
+        const action: ListReducerAction<ItemType> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: [{ v: '1' }, { v: '2' }],
@@ -1048,7 +1019,7 @@ describe('listReducer', () => {
           selectedValues: [{ v: '0' }, { v: '2' }],
         };
 
-        const action: ListReducerAction<ItemType, ListState<ItemType>> = {
+        const action: ListReducerAction<ItemType> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: [{ v: '1' }, { v: '2' }],
@@ -1072,7 +1043,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: ['1', '2'],
@@ -1095,7 +1066,7 @@ describe('listReducer', () => {
           selectedValues: [],
         };
 
-        const action: ListReducerAction<string, ListState<string>> = {
+        const action: ListReducerAction<string> = {
           type: ListActionTypes.itemsChange,
           event: null,
           items: ['1', '2', '3'],

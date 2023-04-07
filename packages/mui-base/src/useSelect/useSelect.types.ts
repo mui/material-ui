@@ -139,7 +139,7 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * Action dispatcher for the select component.
    * Allows to programmatically control the select.
    */
-  dispatch: (action: ListAction<Value, SelectInternalState<Value>> | SelectAction) => void;
+  dispatch: (action: ListAction<Value> | SelectAction) => void;
   /**
    * Resolver for the button slot's props.
    * @param otherHandlers event handlers for the button slot
@@ -185,21 +185,18 @@ export interface UseSelectReturnValue<Value, Multiple> {
   value: SelectValue<Value, Multiple>;
 }
 
-const ACTION_TYPES_BUTTON_CLICK = 'buttonClick';
-const ACTION_TYPES_BUTTON_ARROW_KEY_DOWN = 'buttonArrowKeyDown';
-
 export const SelectActionTypes = {
-  buttonClick: ACTION_TYPES_BUTTON_CLICK,
-  buttonArrowKeyDown: ACTION_TYPES_BUTTON_ARROW_KEY_DOWN,
+  buttonClick: 'buttonClick',
+  buttonArrowKeyDown: 'buttonArrowKeyDown',
 } as const;
 
 export interface ButtonClickAction {
-  type: typeof ACTION_TYPES_BUTTON_CLICK;
+  type: typeof SelectActionTypes.buttonClick;
   event: React.MouseEvent;
 }
 
 export interface ButtonArrowKeyDownAction {
-  type: typeof ACTION_TYPES_BUTTON_ARROW_KEY_DOWN;
+  type: typeof SelectActionTypes.buttonArrowKeyDown;
   key: string;
   event: React.KeyboardEvent;
 }

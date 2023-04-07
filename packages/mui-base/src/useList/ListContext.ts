@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ListAction } from './listActions.types';
-import { ListState, ListItemState } from './useList.types';
+import { ListItemState } from './useList.types';
 
-export interface ListContextValue<ItemValue, State extends ListState<ItemValue>> {
-  dispatch: (action: ListAction<ItemValue, State>) => void;
+export interface ListContextValue<ItemValue> {
+  dispatch: (action: ListAction<ItemValue>) => void;
   getItemState: (item: ItemValue) => ListItemState;
   registerHighlightChangeHandler: (handler: (item: ItemValue | null) => void) => () => void;
   registerSelectionChangeHandler: (
@@ -11,7 +11,7 @@ export interface ListContextValue<ItemValue, State extends ListState<ItemValue>>
   ) => () => void;
 }
 
-export const ListContext = React.createContext<ListContextValue<any, any> | null>(null);
+export const ListContext = React.createContext<ListContextValue<any> | null>(null);
 if (process.env.NODE_ENV !== 'production') {
   ListContext.displayName = 'ListContext';
 }

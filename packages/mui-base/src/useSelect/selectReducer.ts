@@ -14,8 +14,7 @@ export type SelectActionContext<OptionValue> = ActionContext<
 
 export default function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,
-  action: (ListAction<OptionValue, SelectInternalState<OptionValue>> | SelectAction) &
-    SelectActionContext<OptionValue>,
+  action: (ListAction<OptionValue> | SelectAction) & SelectActionContext<OptionValue>,
 ) {
   const { open } = state;
   const {
@@ -65,8 +64,7 @@ export default function selectReducer<OptionValue>(
 
   const newState: SelectInternalState<OptionValue> = listReducer(
     state,
-    action as ListAction<OptionValue, SelectInternalState<OptionValue>> &
-      SelectActionContext<OptionValue>,
+    action as ListAction<OptionValue> & SelectActionContext<OptionValue>,
   );
 
   switch (action.type) {

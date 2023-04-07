@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { ListState } from '../useList';
 import { ListContextValue, ListContext } from '../useList/ListContext';
 import { TabMetadata } from '../useTabs/useTabs';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 
 export type TabsListProviderValue = CompoundComponentContextValue<string | number, TabMetadata> &
-  ListContextValue<string | number, ListState<string | number>>;
+  ListContextValue<string | number>;
 
 export interface TabsListProviderProps {
   value: TabsListProviderValue;
@@ -29,10 +28,7 @@ export default function TabsListProvider(props: TabsListProviderProps) {
     totalSubitemCount,
   } = value;
 
-  const listContextValue: ListContextValue<
-    string | number,
-    ListState<string | number>
-  > = React.useMemo(
+  const listContextValue: ListContextValue<string | number> = React.useMemo(
     () => ({
       dispatch,
       getItemState,

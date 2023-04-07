@@ -1,6 +1,3 @@
-import { SetStateAction, setStateActionType } from '../utils/useControllableReducer.types';
-import type { ListState } from './useList.types';
-
 export const ListActionTypes = {
   blur: 'list:blur',
   focus: 'list:focus',
@@ -8,7 +5,6 @@ export const ListActionTypes = {
   itemClick: 'list:itemClick',
   itemHover: 'list:itemHover',
   itemsChange: 'list:itemsChange',
-  setState: setStateActionType,
   textNavigation: 'list:textNavigation',
 } as const;
 
@@ -53,12 +49,11 @@ interface ItemsChangeAction<ItemValue> {
   previousItems: ItemValue[];
 }
 
-export type ListAction<ItemValue, State extends ListState<ItemValue>> =
+export type ListAction<ItemValue> =
   | BlurAction
   | FocusAction
   | ItemClickAction<ItemValue>
   | ItemHoverAction<ItemValue>
   | ItemsChangeAction<ItemValue>
   | KeyDownAction
-  | SetStateAction<State>
   | TextNavigationAction;
