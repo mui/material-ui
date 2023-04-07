@@ -56,19 +56,19 @@ We imagine a world where design execution is a definitive product differentiator
 
 - Understand how your role fits into the organization and get acquainted with team members and processes
 - Learn about MUI's products, business, goals, and how users experience the MUI ecosystem
-- Possibly your first contribution to either MUI Core or MUI X on a self-contained, small, problem
+- Make your first contribution to either MUI Core or MUI X on an approachable, simple problem
 
 ### What you'll do in your first 3 months
 
 - Conduct one-on-one user interviews with community members
 - Review and give feedback to work from other designers on the team
-- Understand the MUI Core and MUI X libraries patterns to improve existing components' UX & UI
-- Open your first PR improving existing components documentation or straight-forward demo design improvement
+- Understand the MUI Core and MUI X library patterns to improve existing components' UX & UI
+- Open your first PR improving documentation or demos
 
 ### What you'll do in your first 6 months
 
 - Design a new component for one of the MUI Core libraries from scratch in partnership with a developer
-- Design new templates for either Joy UI or Material UI and also support their implementation
+- Design new templates for either Joy UI or Material UI and support their implementation
 - Review new Figma Design kit versions and coordinate their next release
 
 ### What you'll have done in your first year
@@ -76,9 +76,9 @@ We imagine a world where design execution is a definitive product differentiator
 Aside from all of the above, by the time you complete your first year, you should be able to:
 
 - Proactively identify improvement opportunities across MUI's ecosystem
-- Help your team structure and a follow a plan that tackles user pain points that you help to discover
-- Foster an even more design-oriented, user-centered, culture at MUI
-- Contribute at a code capacity more confidently, able to do your own design tweaks and improvements
+- Help your team structure and follow a plan to tackle user pain points that you help to discover
+- Foster an even more design-oriented, user-centered culture at MUI
+- Contribute in a code capacity more confidently, with the ability to tweak and improve your own designs
 
 ## About you
 
