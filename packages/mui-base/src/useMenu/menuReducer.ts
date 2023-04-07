@@ -1,11 +1,14 @@
-import { ListAction, ListActionAddOn, ListActionTypes, listReducer } from '../useList';
-import { ActionContext } from '../utils/useControllableReducer.types';
+import { ListAction, ListActionContext, ListActionTypes, listReducer } from '../useList';
+import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { MenuInternalState } from './useMenu.types';
+
+export type MenuActionContext = ListActionContext<string> & {
+  listboxRef: React.RefObject<HTMLElement>;
+};
 
 export default function menuReducer(
   state: MenuInternalState,
-  action: ListAction<string> &
-    ActionContext<ListActionAddOn<string> & { listboxRef: React.RefObject<HTMLElement> }>,
+  action: ActionWithContext<ListAction<string>, MenuActionContext>,
 ) {
   if (action.type === ListActionTypes.itemHover) {
     return state;

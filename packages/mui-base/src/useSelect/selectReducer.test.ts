@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import selectReducer, { SelectActionContext } from './selectReducer';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
+import { ActionWithContext } from '../utils/useControllableReducer.types';
 
 describe('selectReducer', () => {
   const irrelevantConfig = {
@@ -24,7 +25,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: SelectAction & SelectActionContext<unknown> = {
+      const action: ActionWithContext<SelectAction, SelectActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -44,7 +45,7 @@ describe('selectReducer', () => {
         open: true,
       };
 
-      const action: SelectAction & SelectActionContext<unknown> = {
+      const action: ActionWithContext<SelectAction, SelectActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -64,7 +65,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: SelectAction & SelectActionContext<string> = {
+      const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -85,7 +86,7 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: SelectAction & SelectActionContext<string> = {
+      const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
@@ -113,7 +114,7 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: SelectAction & SelectActionContext<unknown> = {
+          const action: ActionWithContext<SelectAction, SelectActionContext<unknown>> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
@@ -134,7 +135,7 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: SelectAction & SelectActionContext<string> = {
+          const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
@@ -156,7 +157,7 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: SelectAction & SelectActionContext<string> = {
+          const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant

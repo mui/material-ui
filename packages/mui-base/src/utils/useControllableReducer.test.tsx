@@ -231,7 +231,7 @@ describe('useControllableReducer', () => {
     });
   });
 
-  describe('param: actionAddOn', () => {
+  describe('param: actionContext', () => {
     it('augments actions with the object provided to the reducer', () => {
       const reducer = (
         state: TestState,
@@ -257,7 +257,7 @@ describe('useControllableReducer', () => {
         reducer,
         controlledProps: {},
         initialState: { make: 'Mazda', model: '3', productionYear: 2022 },
-        actionAddOn: { overrideProductionYear: 2016 },
+        actionContext: { overrideProductionYear: 2016 },
       };
 
       function TestComponent() {

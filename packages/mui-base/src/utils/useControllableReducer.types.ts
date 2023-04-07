@@ -1,3 +1,6 @@
+/**
+ * Functions that compare fields of a given State object
+ */
 export type StateComparers<State> = {
   [key in keyof State]?: (value1: State[key], value2: State[key]) => boolean;
 };
@@ -10,8 +13,8 @@ export type StateChangeCallback<State> = <StateKey extends keyof State>(
   state: State,
 ) => void;
 
-export type ActionContext<Value> = {
-  context: Value;
+export type ActionWithContext<Action, ContextValue> = Action & {
+  context: ContextValue;
 };
 
 /**
@@ -20,16 +23,16 @@ export type ActionContext<Value> = {
 export interface ControllableReducerParameters<
   State,
   Action extends ControllableReducerAction,
-  ActionContextValue = undefined,
+  ActionContext = undefined,
 > {
   /**
    * The reducer function.
    *
    * @param state The previous state. If controlledProps are defined, the state will contain the values of the controlledProps.
-   * @param action The action to dispatch. The action can be augmented with the `actionAddOn`.
+   * @param action The action to dispatch. The action can be augmented with the `actionContext`.
    * @returns The updated state.
    */
-  reducer: (state: State, action: Action & ActionContext<ActionContextValue>) => State;
+  reducer: (state: State, action: ActionWithContext<Action, ActionContext>) => State;
   /**
    * The controlled props that will override the state items.
    */
@@ -51,7 +54,7 @@ export interface ControllableReducerParameters<
   /**
    * Additional properties that will be added to the action.
    */
-  actionAddOn?: ActionContextValue;
+  actionContext?: ActionContext;
 }
 
 /*

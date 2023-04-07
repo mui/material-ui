@@ -119,7 +119,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     listRef: externalRef,
     onChange: handleChange,
     orientation: listOrientation,
-    reducerActionAddon: React.useMemo(
+    reducerActionContext: React.useMemo(
       () => ({ selectionFollowsFocus: selectionFollowsFocus || false }),
       [selectionFollowsFocus],
     ),

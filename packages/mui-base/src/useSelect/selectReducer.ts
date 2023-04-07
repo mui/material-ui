@@ -1,20 +1,23 @@
 import {
   ListAction,
-  ListActionAddOn,
+  ListActionContext,
   moveHighlight,
   listReducer,
   ListActionTypes,
 } from '../useList';
-import { ActionContext } from '../utils/useControllableReducer.types';
+import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 
-export type SelectActionContext<OptionValue> = ActionContext<
-  ListActionAddOn<OptionValue> & { multiple: boolean }
->;
+export type SelectActionContext<OptionValue> = ListActionContext<OptionValue> & {
+  multiple: boolean;
+};
 
 export default function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,
-  action: (ListAction<OptionValue> | SelectAction) & SelectActionContext<OptionValue>,
+  action: ActionWithContext<
+    ListAction<OptionValue> | SelectAction,
+    SelectActionContext<OptionValue>
+  >,
 ) {
   const { open } = state;
   const {
@@ -64,7 +67,7 @@ export default function selectReducer<OptionValue>(
 
   const newState: SelectInternalState<OptionValue> = listReducer(
     state,
-    action as ListAction<OptionValue> & SelectActionContext<OptionValue>,
+    action as ActionWithContext<ListAction<OptionValue>, SelectActionContext<OptionValue>>,
   );
 
   switch (action.type) {

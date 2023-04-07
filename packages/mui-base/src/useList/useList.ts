@@ -2,11 +2,10 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import {
   UseListParameters,
-  ListActionAddOnValue,
   ListItemState,
   UseListRootSlotProps,
   ListState,
-  ListActionAddOn,
+  ListActionContext,
 } from './useList.types';
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
@@ -45,14 +44,19 @@ const defaultGetInitialState = () => ({
  *
  * Supports highlighting a single item and selecting an arbitrary number of items.
  *
+ * @template ItemValue The type of the item values.
+ * @template State The type of the list state. This should be a subtype of `ListState<ItemValue>`.
+ * @template CustomAction The type of the actions that can be dispatched (besides the standard ListAction).
+ * @template CustomActionContext The shape of additional properties that will be added to actions when dispatched.
+ *
  * @ignore - internal hook.
  */
 function useList<
   ItemValue,
   State extends ListState<ItemValue> = ListState<ItemValue>,
   CustomAction extends ControllableReducerAction = never,
-  CustomActionAddon = {},
->(params: UseListParameters<ItemValue, State, CustomAction, CustomActionAddon>) {
+  CustomActionContext = {},
+>(params: UseListParameters<ItemValue, State, CustomAction, CustomActionContext>) {
   const {
     controlledProps = EMPTY_OBJECT,
     disabledItemsFocusable = false,
@@ -71,7 +75,7 @@ function useList<
     onHighlightChange,
     orientation = 'vertical',
     pageSize = 5,
-    reducerActionAddon: externalActionAddon = {} as CustomActionAddon,
+    reducerActionContext = EMPTY_OBJECT as CustomActionContext,
     selectionLimit = null,
     stateReducer: externalReducer,
   } = params;
@@ -79,13 +83,13 @@ function useList<
   if (process.env.NODE_ENV !== 'production') {
     if (focusManagement === 'DOM' && getItemDomElement == null) {
       throw new Error(
-        'The `getItemDomElement` prop is required when using the `DOM` focus management.',
+        'useList: The `getItemDomElement` prop is required when using the `DOM` focus management.',
       );
     }
 
     if (focusManagement === 'activeDescendant' && getItemId == null) {
       throw new Error(
-        'The `getItemId` prop is required when using the `activeDescendant` focus management.',
+        'useList: The `getItemId` prop is required when using the `activeDescendant` focus management.',
       );
     }
   }
@@ -124,6 +128,7 @@ function useList<
     [itemComparer],
   );
 
+  // This gets called whenever a reducer changes the state.
   const handleStateChange: StateChangeCallback<State> = React.useCallback(
     (event, field, value, reason, state) => {
       onStateChange?.(event, field, value, reason, state);
@@ -150,7 +155,9 @@ function useList<
     [handleHighlightChange, onChange, onStateChange],
   );
 
-  const reducerContext: ListActionAddOnValue<ItemValue> = React.useMemo(() => {
+  // The following object is added to each action when it's dispatched.
+  // It's accessible in the reducer via the `action.context` field.
+  const listActionContext: ListActionContext<ItemValue> = React.useMemo(() => {
     return {
       disabledItemsFocusable,
       disableListWrap,
@@ -181,22 +188,23 @@ function useList<
   ]);
 
   const initialState = getInitialState();
-  const reducer = externalReducer ?? defaultReducer;
+  const reducer = (externalReducer ?? defaultReducer) as React.Reducer<
+    State,
+    ListAction<ItemValue> | CustomAction
+  >;
 
-  const actionAddOn: ListActionAddOn<ItemValue> & CustomActionAddon = React.useMemo(
-    () => ({ ...externalActionAddon, ...reducerContext }),
-    [externalActionAddon, reducerContext],
+  const actionContext: ListActionContext<ItemValue> & CustomActionContext = React.useMemo(
+    () => ({ ...reducerActionContext, ...listActionContext }),
+    [reducerActionContext, listActionContext],
   );
-
-  type ListActionsWithCustomActions = CustomAction | ListAction<ItemValue>;
 
   const [state, dispatch] = useControllableReducer<
     State,
-    ListActionsWithCustomActions,
-    ListActionAddOn<ItemValue> & CustomActionAddon
+    ListAction<ItemValue> | CustomAction,
+    ListActionContext<ItemValue> & CustomActionContext
   >({
-    reducer: reducer as any,
-    actionAddOn,
+    reducer,
+    actionContext,
     initialState: initialState as State,
     controlledProps,
     stateComparers,
@@ -213,18 +221,14 @@ function useList<
     }),
   );
 
-  const highlightedIndex = React.useMemo(() => {
-    return highlightedValue == null
-      ? -1
-      : items.findIndex((item) => itemComparer(item, highlightedValue));
-  }, [highlightedValue, items, itemComparer]);
-
   // introducing refs to avoid recreating the getOptionState function on each change.
   const latestSelectedValues = useLatest(selectedValues);
-  const latestHighlightedIndex = useLatest(highlightedIndex);
+  const latestHighlightedValue = useLatest(highlightedValue);
   const previousItems = React.useRef<ItemValue[]>([]);
 
   React.useEffect(() => {
+    // Whenever the `items` object changes, we need to determine if the actual items changed.
+    // If they did, we need to dispatch an `itemsChange` action, so the selected/highlighted state is updated.
     if (areArraysEqual(previousItems.current, items, itemComparer)) {
       return;
     }
@@ -379,7 +383,9 @@ function useList<
       );
 
       const disabled = isItemDisabled(item, index);
-      const highlighted = latestHighlightedIndex.current === index && index !== -1;
+      const highlighted =
+        latestHighlightedValue.current != null &&
+        itemComparer(item, latestHighlightedValue.current);
       const focusable = isItemFocusable(item, highlighted, disabled);
 
       return {
@@ -395,7 +401,7 @@ function useList<
       isItemDisabled,
       itemComparer,
       latestSelectedValues,
-      latestHighlightedIndex,
+      latestHighlightedValue,
       isItemFocusable,
     ],
   );
@@ -413,6 +419,7 @@ function useList<
   React.useDebugValue({
     highlightedOption: highlightedValue,
     selectedOptions: selectedValues,
+    state,
   });
 
   return {

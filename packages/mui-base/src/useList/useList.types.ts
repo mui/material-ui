@@ -2,13 +2,12 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { ListAction } from './listActions.types';
 import {
-  ActionContext,
+  ActionWithContext,
   ControllableReducerAction,
   StateChangeCallback,
 } from '../utils/useControllableReducer.types';
-import type { ListActionContext } from './listReducer';
 
-type ListActionAddOnValueRequiredKeys =
+type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
   | 'disableListWrap'
   | 'focusManagement'
@@ -23,16 +22,26 @@ type ListActionAddOnValueRequiredKeys =
 /**
  * The subset of `UseListParameters` that is passed to the list reducer actions.
  */
-export type ListActionAddOnValue<ItemValue> = Simplify<
-  Required<Pick<UseListParameters<ItemValue, any, any>, ListActionAddOnValueRequiredKeys>>
+export type ListActionContext<ItemValue> = Simplify<
+  Required<Pick<UseListParameters<ItemValue, any, any>, ListActionContextRequiredKeys>>
 >;
 
-// TODO: not needed
-export type ListActionAddOn<ItemValue> = ListActionAddOnValue<ItemValue>;
+/**
+ * The action object augmented with the action context ({@linkcode ListActionContext} instance).
+ * Instances of this type are passed to the reducer.
+ *
+ * @template ItemValue The type of the item values.
+ * @template CustomActionContext The shape of additional properties that will be added to actions when dispatched.
+ */
+export type ListReducerAction<ItemValue, CustomActionContext = {}> = ActionWithContext<
+  ListAction<ItemValue>,
+  ListActionContext<ItemValue> & CustomActionContext
+>;
 
-export type ListReducerAction<ItemValue, CustomActionAddon = {}> = ListAction<ItemValue> &
-  ListActionContext<ItemValue, CustomActionAddon>;
-
+/**
+ * The state of the list.
+ * Modifications to this state should be done via the reducer.
+ */
 export interface ListState<ItemValue> {
   /**
    * The item that is currently highlighted.
@@ -44,18 +53,33 @@ export interface ListState<ItemValue> {
   selectedValues: ItemValue[];
 }
 
-export type ListReducer<ItemValue, State extends ListState<ItemValue>, CustomActionAddon> = (
+/**
+ * Type of the reducer that operates on the list state.
+ *
+ * @template ItemValue The type of the item values.
+ * @template State The type of the list state. This should be a subtype of ListState<ItemValue>.
+ * @template CustomActionContext The shape of additional properties that will be added to actions when dispatched.
+ */
+export type ListReducer<ItemValue, State extends ListState<ItemValue>, CustomActionContext> = (
   state: State,
-  action: ListReducerAction<ItemValue, CustomActionAddon>,
+  action: ListReducerAction<ItemValue, CustomActionContext>,
 ) => State;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
 
+/**
+ * Parameters of the useList hook.
+ *
+ * @template ItemValue The type of the item values.
+ * @template State The type of the list state. This should be a subtype of `ListState<ItemValue>`.
+ * @template CustomAction The type of the actions that can be dispatched (besides the standard ListAction).
+ * @template CustomActionContext The shape of additional properties that will be added to actions when dispatched.
+ */
 export interface UseListParameters<
   ItemValue,
   State extends ListState<ItemValue> = ListState<ItemValue>,
   CustomAction extends ControllableReducerAction = never,
-  CustomActionAddon = {},
+  CustomActionContext = {},
 > {
   /**
    * The externally controlled values (highlighted and selected item(s)) of the list.
@@ -156,8 +180,9 @@ export interface UseListParameters<
   items: ItemValue[];
   /**
    * Additional data to be passed to all the reducer actions.
+   * It will be available in the `context` property of the action when dispatched.
    */
-  reducerActionAddon?: CustomActionAddon;
+  reducerActionContext?: CustomActionContext;
   /**
    * Orientation of the items in the list.
    * Determines the actions that are performed when arrow keys are pressed.
@@ -176,8 +201,10 @@ export interface UseListParameters<
    */
   stateReducer?: (
     state: State,
-    action: (ListAction<ItemValue> | CustomAction) &
-      ActionContext<ListActionAddOn<ItemValue> & CustomActionAddon>,
+    action: ActionWithContext<
+      ListAction<ItemValue> | CustomAction,
+      ListActionContext<ItemValue> & CustomActionContext
+    >,
   ) => State;
 }
 

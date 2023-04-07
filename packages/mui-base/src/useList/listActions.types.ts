@@ -49,6 +49,9 @@ interface ItemsChangeAction<ItemValue> {
   previousItems: ItemValue[];
 }
 
+/**
+ * A union of all standard actions that can be dispatched to the list reducer.
+ */
 export type ListAction<ItemValue> =
   | BlurAction
   | FocusAction

@@ -84,7 +84,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
     listRef: handleRef,
     onStateChange: stateChangeHandler,
-    reducerActionAddon: { listboxRef },
+    reducerActionContext: { listboxRef },
     selectionLimit: 0,
     stateReducer: menuReducer,
   });

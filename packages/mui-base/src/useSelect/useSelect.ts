@@ -192,7 +192,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         }
       }
     },
-    reducerActionAddon: React.useMemo(() => ({ multiple }), [multiple]),
+    reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
     itemStringifier: stringifyOption,
     selectionLimit: multiple ? null : 1,

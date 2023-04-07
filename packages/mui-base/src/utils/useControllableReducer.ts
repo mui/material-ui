@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  ActionContext,
+  ActionWithContext,
   ControllableReducerAction,
   ControllableReducerParameters,
   StateChangeCallback,
@@ -56,6 +56,11 @@ interface UseStateChangeDetectionParameters<State extends {}> {
   lastActionRef: React.MutableRefObject<ControllableReducerAction | null>;
 }
 
+/**
+ * Defines an effect that compares the next state with the previous state and calls
+ * the `onStateChange` callback if the state has changed.
+ * The comparison is done based on the `stateComparers` parameter.
+ */
 function useStateChangeDetection<State extends {}>(
   parameters: UseStateChangeDetectionParameters<State>,
 ) {
@@ -117,16 +122,21 @@ function useStateChangeDetection<State extends {}>(
  * If a state item has a corresponding comparer, it will be used to determine if the state has changed.
  * This is useful when the state item is an object and you want to compare only a subset of its properties or if it's an array and you want to compare its contents.
  *
- * An additional feature is the `actionAddOn` parameter. It allows you to add additional properties to every action object.
+ * An additional feature is the `actionContext` parameter. It allows you to add additional properties to every action object,
+ * similarly to how React context is implicitly available to every component.
+ *
+ * @template State - The type of the state calculated by the reducer.
+ * @template Action - The type of the actions that can be dispatched.
+ * @template ActionContext - The type of the additional properties that will be added to every action object.
  *
  * @ignore - internal hook.
  */
 export default function useControllableReducer<
   State extends {},
   Action extends ControllableReducerAction,
-  ActionContextValue = undefined,
+  ActionContext = undefined,
 >(
-  parameters: ControllableReducerParameters<State, Action, ActionContextValue>,
+  parameters: ControllableReducerParameters<State, Action, ActionContext>,
 ): [State, (action: Action) => void] {
   const lastActionRef = React.useRef<Action | null>(null);
 
@@ -136,12 +146,12 @@ export default function useControllableReducer<
     controlledProps = EMPTY_OBJECT,
     stateComparers = EMPTY_OBJECT,
     onStateChange = NOOP,
-    actionAddOn,
+    actionContext,
   } = parameters;
 
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
   const reducerWithControlledState = React.useCallback(
-    (state: State, action: Action & ActionContext<ActionContextValue>) => {
+    (state: State, action: ActionWithContext<Action, ActionContext>) => {
       lastActionRef.current = action;
       const controlledState = getControlledState(state, controlledProps);
       return reducer(controlledState, action);
@@ -151,15 +161,15 @@ export default function useControllableReducer<
 
   const [nextState, dispatch] = React.useReducer(reducerWithControlledState, initialState);
 
-  // The action that is passed to dispatch is augmented with the actionAddOn.
-  const dispatchWithAddOn = React.useCallback(
+  // The action that is passed to dispatch is augmented with the actionContext.
+  const dispatchWithContext = React.useCallback(
     (action: Action) => {
       dispatch({
         ...action,
-        context: actionAddOn,
-      } as Action & ActionContext<ActionContextValue>);
+        context: actionContext,
+      } as ActionWithContext<Action, ActionContext>);
     },
-    [actionAddOn],
+    [actionContext],
   );
 
   useStateChangeDetection<State>({
@@ -171,5 +181,5 @@ export default function useControllableReducer<
     lastActionRef,
   });
 
-  return [getControlledState(nextState, controlledProps), dispatchWithAddOn];
+  return [getControlledState(nextState, controlledProps), dispatchWithContext];
 }

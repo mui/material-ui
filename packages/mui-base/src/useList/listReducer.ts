@@ -1,15 +1,5 @@
-import { ActionContext } from '../utils/useControllableReducer.types';
 import { ListActionTypes } from './listActions.types';
-import {
-  ListState,
-  ListActionAddOnValue,
-  ListReducerAction,
-  ListActionAddOn,
-} from './useList.types';
-
-export type ListActionContext<ItemValue, AdditionalContext> = ActionContext<
-  ListActionAddOn<ItemValue> & AdditionalContext
->;
+import { ListState, ListReducerAction, ListActionContext } from './useList.types';
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 
@@ -69,14 +59,14 @@ function findValidItemToHighlight<ItemValue>(
  *
  * @param previouslyHighlightedValue The item from which to start the search for the next candidate.
  * @param offset The offset from the previously highlighted item to search for the next candidate or a special named value ('reset', 'start', 'end').
- * @param listConfig The confguration of the list.
+ * @param context The list action context.
  *
  * @returns The next item to highlight or null if no item is valid.
  */
 export function moveHighlight<ItemValue>(
   previouslyHighlightedValue: ItemValue | null,
   offset: number | 'reset' | 'start' | 'end',
-  listConfig: ListActionAddOnValue<ItemValue>,
+  context: ListActionContext<ItemValue>,
 ) {
   const {
     items,
@@ -85,7 +75,7 @@ export function moveHighlight<ItemValue>(
     disabledItemsFocusable,
     itemComparer,
     focusManagement,
-  } = listConfig;
+  } = context;
 
   // TODO: make this configurable
   // The always should be an item highlighted when focus is managed by the DOM
@@ -221,12 +211,12 @@ export function toggleSelection<ItemValue>(
 function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   item: ItemValue,
   state: State,
-  props: ListActionAddOnValue<ItemValue>,
+  context: ListActionContext<ItemValue>,
 ): State {
-  const { itemComparer = (o, v) => o === v, isItemDisabled = () => false, selectionLimit } = props;
+  const { itemComparer, isItemDisabled, selectionLimit, items } = context;
   const { selectedValues } = state;
 
-  const itemIndex = props.items.findIndex((i) => itemComparer(item, i));
+  const itemIndex = items.findIndex((i) => itemComparer(item, i));
 
   if (isItemDisabled(item, itemIndex)) {
     return state;
@@ -245,34 +235,34 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
 function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
   key: string,
   state: State,
-  parameters: ListActionAddOnValue<ItemValue>,
+  context: ListActionContext<ItemValue>,
 ): State {
   const previouslySelectedValue = state.highlightedValue;
-  const { orientation, pageSize } = parameters;
+  const { orientation, pageSize } = context;
 
   switch (key) {
     case 'Home':
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, 'start', parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, 'start', context),
       };
 
     case 'End':
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, 'end', parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, 'end', context),
       };
 
     case 'PageUp':
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, -pageSize, parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, -pageSize, context),
       };
 
     case 'PageDown':
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, pageSize, parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, pageSize, context),
       };
 
     case 'ArrowUp':
@@ -282,7 +272,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
 
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, -1, parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, -1, context),
       };
 
     case 'ArrowDown':
@@ -292,7 +282,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
 
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, 1, parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, 1, context),
       };
 
     case 'ArrowLeft': {
@@ -304,7 +294,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
 
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, offset, parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, offset, context),
       };
     }
 
@@ -317,7 +307,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
 
       return {
         ...state,
-        highlightedValue: moveHighlight(previouslySelectedValue, offset, parameters),
+        highlightedValue: moveHighlight(previouslySelectedValue, offset, context),
       };
     }
 
@@ -327,7 +317,7 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
         return state;
       }
 
-      return handleItemSelection(state.highlightedValue, state, parameters);
+      return handleItemSelection(state.highlightedValue, state, context);
 
     default:
       break;
@@ -338,9 +328,9 @@ function handleKeyDown<ItemValue, State extends ListState<ItemValue>>(
 
 function handleBlur<ItemValue, State extends ListState<ItemValue>>(
   state: State,
-  props: ListActionAddOnValue<ItemValue>,
+  context: ListActionContext<ItemValue>,
 ): State {
-  if (props.focusManagement === 'DOM') {
+  if (context.focusManagement === 'DOM') {
     return state;
   }
 
@@ -368,15 +358,15 @@ function textCriteriaMatches<ItemValue>(
 function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   searchString: string,
-  props: ListActionAddOnValue<ItemValue>,
+  context: ListActionContext<ItemValue>,
 ): State {
-  const { items, isItemDisabled, disabledItemsFocusable, itemStringifier } = props;
+  const { items, isItemDisabled, disabledItemsFocusable, itemStringifier } = context;
 
   const startWithCurrentItem = searchString.length > 1;
 
   let nextItem = startWithCurrentItem
     ? state.highlightedValue
-    : moveHighlight(state.highlightedValue, 1, props);
+    : moveHighlight(state.highlightedValue, 1, context);
 
   for (let index = 0; index < items.length; index += 1) {
     // Return un-mutated state if looped back to the currently highlighted value
@@ -395,7 +385,7 @@ function handleTextNavigation<ItemValue, State extends ListState<ItemValue>>(
       };
     }
     // Move to the next element.
-    nextItem = moveHighlight(nextItem, 1, props);
+    nextItem = moveHighlight(nextItem, 1, context);
   }
 
   // No item matches the text search criteria
@@ -406,16 +396,16 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   items: ItemValue[],
   previousItems: ItemValue[],
   state: State,
-  props: ListActionAddOnValue<ItemValue>,
+  context: ListActionContext<ItemValue>,
 ): State {
-  const { itemComparer, focusManagement } = props;
+  const { itemComparer, focusManagement } = context;
 
   let newHighlightedValue: ItemValue | null = null;
 
   if (state.highlightedValue != null) {
     newHighlightedValue = items.find((item) => itemComparer(item, state.highlightedValue!)) ?? null;
   } else if (focusManagement === 'DOM' && previousItems.length === 0) {
-    newHighlightedValue = moveHighlight(null, 'reset', props);
+    newHighlightedValue = moveHighlight(null, 'reset', context);
   }
 
   // exclude selected values that are no longer in the items list
@@ -433,7 +423,7 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
 
 export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
-  action: ListReducerAction<ItemValue> & { context: ListActionAddOn<ItemValue> },
+  action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> },
 ): State {
   const { type, context } = action;
 
