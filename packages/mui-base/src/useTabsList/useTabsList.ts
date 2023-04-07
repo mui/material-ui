@@ -102,8 +102,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     contextValue: listContextValue,
     dispatch,
     getRootProps: getListboxRootProps,
-    highlightedOption,
-    selectedOptions,
+    state: { highlightedValue, selectedValues },
   } = useList<
     string | number,
     ListState<string | number>,
@@ -156,8 +155,8 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     dispatch,
     isRtl,
     orientation,
-    selectedValue: selectedOptions[0] ?? null,
-    highlightedValue: highlightedOption,
+    selectedValue: selectedValues[0] ?? null,
+    highlightedValue,
     getRootProps,
     contextValue: {
       ...compoundComponentContextValue,

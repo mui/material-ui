@@ -202,10 +202,8 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   const {
     dispatch,
     getRootProps: getListboxRootProps,
-    highlightedOption,
-    selectedOptions,
     contextValue: listContextValue,
-    state: { open },
+    state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
   } = useList(useListParameters);
 
   React.useEffect(() => {

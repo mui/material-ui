@@ -417,8 +417,6 @@ function useList<
   );
 
   React.useDebugValue({
-    highlightedOption: highlightedValue,
-    selectedOptions: selectedValues,
     state,
   });
 
@@ -426,8 +424,6 @@ function useList<
     contextValue,
     dispatch,
     getRootProps,
-    highlightedOption: highlightedValue,
-    selectedOptions: selectedValues,
     state,
   };
 }

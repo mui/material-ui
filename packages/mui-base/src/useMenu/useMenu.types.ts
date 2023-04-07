@@ -50,7 +50,7 @@ export interface UseMenuReturnValue {
   /**
    * The highlighted option in the menu listbox.
    */
-  highlightedOption: string | null;
+  highlightedValue: string | null;
   /**
    * Items in the menu listbox.
    */

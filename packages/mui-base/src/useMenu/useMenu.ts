@@ -65,9 +65,8 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
   const {
     dispatch,
     getRootProps,
-    highlightedOption,
     contextValue: listContextValue,
-    state: { open },
+    state: { open, highlightedValue },
   } = useList({
     controlledProps,
     disabledItemsFocusable: true,
@@ -90,17 +89,17 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
   });
 
   React.useEffect(() => {
-    if (open && highlightedOption === subitemKeys[0]) {
+    if (open && highlightedValue === subitemKeys[0]) {
       subitems.get(subitemKeys[0])?.ref?.current?.focus();
     }
-  }, [open, highlightedOption, subitems, subitemKeys]);
+  }, [open, highlightedValue, subitems, subitemKeys]);
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
-    if (listboxRef.current?.contains(document.activeElement) && highlightedOption !== null) {
-      subitems?.get(highlightedOption)?.ref.current?.focus();
+    if (listboxRef.current?.contains(document.activeElement) && highlightedValue !== null) {
+      subitems?.get(highlightedValue)?.ref.current?.focus();
     }
-  }, [highlightedOption, subitems]);
+  }, [highlightedValue, subitems]);
 
   const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
@@ -113,7 +112,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     };
   };
 
-  React.useDebugValue({ subitems, highlightedOption });
+  React.useDebugValue({ subitems, highlightedValue });
 
   return {
     contextValue: {
@@ -122,7 +121,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     },
     dispatch,
     getListboxProps,
-    highlightedOption,
+    highlightedValue,
     menuItems: subitems,
     open,
   };
