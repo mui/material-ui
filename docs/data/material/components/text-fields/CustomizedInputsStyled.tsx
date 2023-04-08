@@ -106,7 +106,7 @@ const ValidationTextField = styled(TextField)({
   },
 });
 
-export default function CustomizedInputs() {
+export default function CustomizedInputsStyled() {
   return (
     <Box
       component="form"
