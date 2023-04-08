@@ -75,6 +75,8 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
 
   const { notifyHighlightChanged, registerHighlightChangeHandler } = useMenuChangeNotifiers();
 
+  const options = Object.keys(menuItems);
+
   const {
     getOptionState,
     getOptionProps,
@@ -82,7 +84,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     highlightedOption,
     setHighlightedValue: setListboxHighlight,
   } = useListbox({
-    options: Object.keys(menuItems),
+    options,
     optionStringifier: (id: string) => menuItems[id].label || menuItems[id].ref.current?.innerText,
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
@@ -174,6 +176,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       registerItem,
       unregisterItem,
       open,
+      optionsLength: options.length,
     }),
     [
       getOptionProps,
@@ -182,6 +185,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       registerItem,
       unregisterItem,
       open,
+      options.length,
     ],
   );
 
