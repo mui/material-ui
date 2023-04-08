@@ -11,7 +11,7 @@ export interface MenuUnstyledContextType {
   ) => Record<string, any>;
   open: boolean;
   registerHighlightChangeHandler: (handler: (itemId: string | null) => void) => void;
-  optionsLength: number;
+  optionsLength?: number;
 }
 
 const MenuUnstyledContext = React.createContext<MenuUnstyledContextType | null>(null);
