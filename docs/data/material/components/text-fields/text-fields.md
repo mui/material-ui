@@ -131,7 +131,13 @@ The `color` prop changes the highlight color of the text field when focused.
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedInputs.js"}}
+### Using `styled` API:
+
+{{"demo": "CustomizedInputsStyled.js"}}
+
+### Using [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) API:
+
+{{"demo": "CustomizedInputsStyleOverrides.js"}}
 
 Customization does not stop at CSS.
 You can use composition to build custom components and give your app a unique feel.
