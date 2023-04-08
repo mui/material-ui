@@ -72,7 +72,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       level?: keyof TypographySystem | 'inherit';
       /**
-       * If `true`, the ::after psuedo element is added to cover the area of interaction.
+       * If `true`, the ::after pseudo element is added to cover the area of interaction.
        * The parent of the overlay Link should have `relative` CSS position.
        * @default false
        */

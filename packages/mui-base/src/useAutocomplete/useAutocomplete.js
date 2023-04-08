@@ -1097,7 +1097,7 @@ export default function useAutocomplete(props) {
       onFocus: handleFocus,
       onChange: handleInputChange,
       onMouseDown: handleInputMouseDown,
-      // if open then this is handled imperativeley so don't let react override
+      // if open then this is handled imperatively so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',

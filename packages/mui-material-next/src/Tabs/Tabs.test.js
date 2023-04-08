@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Tab from '@mui/material-next/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material-next/Tabs';
@@ -90,10 +90,10 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });

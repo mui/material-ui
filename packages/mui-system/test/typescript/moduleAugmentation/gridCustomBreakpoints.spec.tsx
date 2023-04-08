@@ -41,11 +41,11 @@ const theme = createTheme({
 </ThemeProvider>;
 
 <ThemeProvider theme={theme}>
-  {/* @ts-expect-error unknow desk */}
+  {/* @ts-expect-error unknown desk */}
   <Grid desk={4} />
 </ThemeProvider>;
 
 <ThemeProvider theme={theme}>
-  {/* @ts-expect-error unknow deskOffset */}
+  {/* @ts-expect-error unknown deskOffset */}
   <Grid deskOffset={4} />
 </ThemeProvider>;
