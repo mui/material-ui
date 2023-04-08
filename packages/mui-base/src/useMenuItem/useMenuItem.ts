@@ -40,7 +40,7 @@ export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemRe
     if (id === undefined) {
       return undefined;
     }
-    
+
     registerItem(id, { disabled, id, ref: itemRef, label });
 
     return () => unregisterItem(id);
