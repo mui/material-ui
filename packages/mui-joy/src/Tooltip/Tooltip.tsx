@@ -243,7 +243,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
-    component,
     slots = {},
     slotProps = {},
     ...other
