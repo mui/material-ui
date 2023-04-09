@@ -20,11 +20,6 @@ describe('Joy <Stack />', () => {
     muiName: 'JoyStack',
     skip: ['componentsProp', 'rootClass'],
     testVariantProps: { direction: 'row' },
-    slots: {
-      root: {
-        expectedClassName: classes.root,
-      },
-    },
   }));
 
   it('className should be prefixed with Mui', () => {
