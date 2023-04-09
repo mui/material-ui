@@ -1,5 +1,6 @@
 {
   "parameters": {
+    "isAnchorElExist": { "type": { "name": "boolean", "description": "boolean" } },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" }
