@@ -14,7 +14,7 @@ describe('useMenu', () => {
       const [options, setOptions] = React.useState(['1', '2', '3', '4', '5']);
       return (
         <React.Fragment>
-          <button onClick={() => setOptions(['5', '6', '7', '8', '9'])}>update options</button>
+          <button onClick={() => setOptions([ '6','7','3','8','9'])}>update options</button>
           <ul {...getListboxProps()}>
             {
               <MenuUnstyledContext.Provider value={contextValue}>
