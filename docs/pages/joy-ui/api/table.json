@@ -56,6 +56,35 @@
       "class": ".MuiTable-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "borderAxisBoth",
+      "borderAxisBothBetween",
+      "borderAxisNone",
+      "borderAxisX",
+      "borderAxisXBetween",
+      "borderAxisY",
+      "borderAxisYBetween",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "hoverRow",
+      "noWrap",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "stickyHeader",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyTable",

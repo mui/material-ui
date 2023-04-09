@@ -32,6 +32,24 @@
       "class": ".MuiAutocompleteOption-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "focused",
+      "focusVisible",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyAutocompleteOption",

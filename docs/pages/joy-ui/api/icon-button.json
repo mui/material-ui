@@ -47,6 +47,27 @@
       "class": ".MuiIconButton-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyIconButton",

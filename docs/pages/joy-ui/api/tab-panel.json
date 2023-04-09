@@ -29,6 +29,10 @@
       "class": ".MuiTabPanel-root"
     }
   ],
+  "classes": {
+    "classes": ["hidden", "horizontal", "sizeLg", "sizeMd", "sizeSm", "vertical"],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyTabPanel",

@@ -30,6 +30,16 @@
       "class": ".MuiListDivider-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "horizontal",
+      "insetGutter",
+      "insetStartContent",
+      "insetStartDecorator",
+      "vertical"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyListDivider",

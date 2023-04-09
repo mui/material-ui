@@ -39,6 +39,24 @@
       "class": ".MuiFormControl-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "horizontal",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "vertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyFormControl",

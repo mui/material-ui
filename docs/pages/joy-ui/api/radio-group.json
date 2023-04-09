@@ -50,6 +50,26 @@
       "class": ".MuiRadioGroup-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "horizontal",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": {}
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyRadioGroup",

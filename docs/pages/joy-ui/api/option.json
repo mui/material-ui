@@ -36,6 +36,25 @@
       "class": ".MuiOption-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "highlighted",
+      "selected",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
+  },
   "spread": true,
   "themeDefaultProps": null,
   "muiName": "JoyOption",

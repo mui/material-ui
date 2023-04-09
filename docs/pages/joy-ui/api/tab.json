@@ -45,6 +45,31 @@
       "class": ".MuiTab-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "horizontal",
+      "selected",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible",
+      "selected": "Mui-selected"
+    }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyTab",

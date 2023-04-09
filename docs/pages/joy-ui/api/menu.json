@@ -55,6 +55,27 @@
       "class": ".MuiMenu-root"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "expanded",
+      "listbox",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "expanded": "Mui-expanded" }
+  },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyMenu",

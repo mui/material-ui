@@ -7,6 +7,44 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "sizeSm": { "description": "Classname applied to the root element if `size=\"sm\"`." },
+    "sizeMd": { "description": "Classname applied to the root element if `size=\"md\"`." },
+    "sizeLg": { "description": "Classname applied to the root element if `size=\"lg\"`." },
+    "colorPrimary": {
+      "description": "Classname applied to the root element if `color=\"primary\"`."
+    },
+    "colorNeutral": {
+      "description": "Classname applied to the root element if `color=\"neutral\"`."
+    },
+    "colorDanger": {
+      "description": "Classname applied to the root element if `color=\"danger\"`."
+    },
+    "colorInfo": { "description": "Classname applied to the root element if `color=\"info\"`." },
+    "colorSuccess": {
+      "description": "Classname applied to the root element if `color=\"success\"`."
+    },
+    "colorWarning": {
+      "description": "Classname applied to the root element if `color=\"warning\"`."
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "variantPlain": {
+      "description": "Classname applied to the root element if `variant=\"plain\"`."
+    },
+    "variantOutlined": {
+      "description": "Classname applied to the root element if `variant=\"outlined\"`."
+    },
+    "variantSoft": {
+      "description": "Classname applied to the root element if `variant=\"soft\"`."
+    },
+    "variantSolid": {
+      "description": "Classname applied to the root element if `variant=\"solid\"`."
+    }
+  },
   "slotDescriptions": { "root": "The component that renders the root." }
 }
