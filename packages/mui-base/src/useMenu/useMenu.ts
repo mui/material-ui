@@ -50,7 +50,13 @@ function stateReducer(
  * - [useMenu API](https://mui.com/base/react-menu/hooks-api/#use-menu)
  */
 export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
-  const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
+  const {
+    listboxRef: listboxRefProp,
+    open = false,
+    onClose,
+    listboxId,
+    isAnchorElExist,
+  } = parameters;
 
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
 
@@ -108,6 +114,12 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       setListboxHighlight(menuItems[Object.keys(menuItems)[Object.keys(menuItems).length - 1]].id);
     }
   }, [menuItems, setListboxHighlight]);
+
+  React.useEffect(() => {
+    if (open && isAnchorElExist) {
+      menuItems?.[Object.keys(menuItems)[0]]?.ref.current?.focus();
+    }
+  }, [isAnchorElExist, open, highlightFirstItem, menuItems]);
 
   React.useEffect(() => {
     if (!open) {

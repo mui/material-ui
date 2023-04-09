@@ -9,6 +9,7 @@ export interface UseMenuParameters {
   onClose?: () => void;
   listboxId?: string;
   listboxRef?: React.Ref<any>;
+  isAnchorElExist?: boolean;
 }
 
 export interface UseMenuReturnValue {
