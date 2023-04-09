@@ -64,7 +64,15 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const { orientation } = useTabContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
 
-  const { children, value = 0, component, size: sizeProp, slots, slotProps, ...other } = props;
+  const {
+    children,
+    value = 0,
+    component,
+    size: sizeProp,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const { hidden, getRootProps } = useTabPanel({ ...props, value });
 

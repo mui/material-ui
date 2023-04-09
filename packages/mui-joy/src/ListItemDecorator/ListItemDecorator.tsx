@@ -50,7 +50,7 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
     name: 'JoyListItemDecorator',
   });
 
-  const { component, className, children, slots, slotProps, ...other } = props;
+  const { component, className, children, slots = {}, slotProps = {}, ...other } = props;
   const parentOrientation = React.useContext(ListItemButtonOrientationContext);
 
   const ownerState = {

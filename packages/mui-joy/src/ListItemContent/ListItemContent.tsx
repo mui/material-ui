@@ -40,7 +40,7 @@ const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) 
     name: 'JoyListItemContent',
   });
 
-  const { component, className, children, slots, slotProps, ...other } = props;
+  const { component, className, children, slots = {}, slotProps = {}, ...other } = props;
 
   const ownerState = {
     ...props,
