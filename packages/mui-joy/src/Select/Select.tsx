@@ -761,7 +761,8 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The components used for each slot inside.
+   * @default {}
    */
   slots: PropTypes.shape({
     button: PropTypes.elementType,
