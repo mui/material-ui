@@ -18,6 +18,11 @@ describe('Joy <Tabs />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Tabs />, { muiName: 'JoyTabs', classes });

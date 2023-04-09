@@ -26,6 +26,11 @@ describe('<ChipDelete />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<ChipDelete />, { muiName: 'JoyChipDelete', classes });

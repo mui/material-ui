@@ -20,6 +20,11 @@ describe('Joy UI <Grid />', () => {
     muiName: 'JoyGrid',
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot', 'rootClass'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('className should be prefixed with Mui', () => {
