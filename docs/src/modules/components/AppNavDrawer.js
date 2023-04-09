@@ -124,7 +124,7 @@ ProductIdentifier.propTypes = {
 };
 
 // To match scrollMarginBottom
-const browserUrlPreviewHeight = 30;
+const browserUrlPreviewMarge = 120;
 
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
@@ -142,7 +142,7 @@ function PersistScroll(props) {
 
     const activeBox = activeDrawerLink.getBoundingClientRect();
 
-    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewHeight > window.innerHeight) {
+    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
       // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
       activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }

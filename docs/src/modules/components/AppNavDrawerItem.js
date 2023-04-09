@@ -85,8 +85,8 @@ const Item = styled(
         paddingLeft: 2,
       }),
       '&.app-drawer-active': {
-        // To match browserUrlPreviewHeight
-        scrollMarginBottom: 30,
+        // To match browserUrlPreviewMarge
+        scrollMarginBottom: 120,
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
