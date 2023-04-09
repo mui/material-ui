@@ -162,7 +162,7 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The Class name applied to the divider to shrink or stretch the line based on the orientation.
+   * Class name applied to the divider to shrink or stretch the line based on the orientation.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['none', 'context']),
