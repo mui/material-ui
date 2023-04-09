@@ -27,10 +27,7 @@
       },
       "default": "'md'"
     },
-    "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
-    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "sx": {
       "type": {
         "name": "union",
