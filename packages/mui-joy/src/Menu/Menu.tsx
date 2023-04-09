@@ -144,11 +144,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
       open,
       disablePortal,
       keepMounted,
-      as: PopperUnstyled,
       modifiers,
-      slots: {
-        root: component || 'ul',
-      },
     },
     className: classes.root,
   });
@@ -162,7 +158,15 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   );
 
   const result = (
-    <MenuRoot {...rootProps}>
+    <MenuRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: PopperUnstyled,
+        slots: {
+          root: component || 'ul',
+        },
+      })}
+    >
       <MenuUnstyledContext.Provider value={menuContextValue}>
         <ListProvider nested>
           {disablePortal ? (

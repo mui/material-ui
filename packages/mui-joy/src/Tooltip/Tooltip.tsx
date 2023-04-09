@@ -611,10 +611,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       disablePortal,
       keepMounted,
       direction,
-      as: PopperUnstyled,
-      slots: {
-        root: component || 'div',
-      },
       modifiers,
       ...interactiveWrapperListeners,
     },
@@ -634,7 +630,15 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const result = (
-    <SlotRoot {...rootProps}>
+    <SlotRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: PopperUnstyled,
+        slots: {
+          root: component || 'div',
+        },
+      })}
+    >
       {title}
       {arrow ? <SlotArrow {...arrowProps} /> : null}
     </SlotRoot>
