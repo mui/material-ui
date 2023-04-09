@@ -569,6 +569,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [color, contextValue],
   );
 
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
     [listboxProps.modifiers],
