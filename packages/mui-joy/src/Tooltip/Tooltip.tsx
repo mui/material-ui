@@ -838,6 +838,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * @ignore
+   */
+  slots: PropTypes.shape({
+    arrow: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
