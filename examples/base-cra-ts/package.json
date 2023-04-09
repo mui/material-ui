@@ -1,5 +1,5 @@
 {
-  "name": "base-cra-ts",
+  "name": "base-cra-system-ts",
   "version": "5.0.0",
   "private": true,
   "dependencies": {
