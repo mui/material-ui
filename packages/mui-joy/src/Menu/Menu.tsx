@@ -93,6 +93,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     open,
     onClose,
     listboxId: id,
+    isAnchorElExist: !!anchorEl,
   });
 
   React.useImperativeHandle(

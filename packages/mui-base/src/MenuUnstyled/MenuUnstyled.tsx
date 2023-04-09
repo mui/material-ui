@@ -56,6 +56,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     open,
     onClose,
     listboxId,
+    isAnchorElExist: !!anchorEl,
   });
 
   React.useImperativeHandle(
