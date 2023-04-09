@@ -20,9 +20,9 @@ import createDescribeableProp, {
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import parseStyles, { Styles } from '../utils/parseStyles';
+import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlots, { Slot } from '../utils/parseSlots';
+import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -50,6 +50,7 @@ export interface ReactApi extends ReactDocgenApi {
    */
   src: string;
   styles: Styles;
+  classes: Classes;
   slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
@@ -340,6 +341,14 @@ const generateApiPage = (
       name: reactApi.styles.name,
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
+    ...((reactApi.classes?.classes.length > 0 ||
+      (reactApi.classes?.globalClasses &&
+        Object.keys(reactApi.classes.globalClasses).length > 0)) && {
+      classes: {
+        classes: reactApi.classes.classes,
+        globalClasses: reactApi.classes.globalClasses,
+      },
+    }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
     muiName: reactApi.apiPathname.startsWith('/joy-ui')
@@ -454,7 +463,11 @@ const attachTranslations = (reactApi: ReactApi) => {
   /**
    * CSS class descriptions.
    */
-  translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+  translations.classDescriptions = extractClassConditions(
+    reactApi.styles.classes.length || Object.keys(reactApi.styles.globalClasses).length
+      ? reactApi.styles.descriptions
+      : reactApi.classes.descriptions,
+  );
 
   reactApi.translations = translations;
 };
@@ -626,7 +639,18 @@ export default async function generateComponentApi(
   reactApi.spread = testInfo.spread ?? spread;
   reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+
+  // Both `slots` and `classes` are empty if
+  // interface `${componentName}Slots` wasn't found.
+  // Currently, Base UI and Joy UI components support this interface
+  const { slots, classes } = parseSlotsAndClasses({
+    project,
+    componentName: reactApi.name,
+    muiName: reactApi.muiName,
+  });
+  reactApi.slots = slots;
+  reactApi.classes = classes;
+
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
@@ -636,6 +660,17 @@ export default async function generateComponentApi(
     const globalClass = generateUtilityClass(reactApi.styles.name || reactApi.muiName, key);
     reactApi.styles.globalClasses[key] = globalClass;
   });
+
+  // if `reactApi.classes` and `reactApi.styles` both exist,
+  // API documentation includes both "CSS" Section and "State classes" Section;
+  // we either want (1) "Slots" section and "State classes" section, or (2) "CSS" section
+  if (
+    (reactApi.styles.classes?.length || Object.keys(reactApi.styles.globalClasses || {})?.length) &&
+    (reactApi.classes.classes?.length || Object.keys(reactApi.classes.globalClasses || {})?.length)
+  ) {
+    reactApi.styles.classes = [];
+    reactApi.styles.globalClasses = {};
+  }
 
   attachPropsTable(reactApi);
   attachTranslations(reactApi);

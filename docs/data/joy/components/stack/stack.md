@@ -13,7 +13,7 @@ githubLabel: 'component: stack'
 The Stack component manages the layout of its immediate children along the vertical or horizontal axis, with optional spacing and dividers between each child.
 
 :::info
-Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ hortizontal arrangement.
+Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ horizontal arrangement.
 :::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}

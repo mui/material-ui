@@ -139,6 +139,7 @@ export default function MarkdownDocsV2(props) {
       inheritance,
       slots,
       themeDefaultProps,
+      classes,
     } = componentsApiPageContents[key];
     const componentNameKebabCase = kebabCase(componentName);
 
@@ -149,6 +150,8 @@ export default function MarkdownDocsV2(props) {
       createComponentTocEntry(componentNameKebabCase, 'props', { inheritance, themeDefaultProps }),
       styles.classes.length > 0 && createComponentTocEntry(componentNameKebabCase, 'css'),
       slots?.length > 0 && createComponentTocEntry(componentNameKebabCase, 'slots'),
+      (classes?.classes?.length || Object.keys(classes?.classes?.globalClasses || {}).length) &&
+        createComponentTocEntry(componentNameKebabCase, 'classes'),
     ].filter(Boolean);
 
     componentsApiToc.push({

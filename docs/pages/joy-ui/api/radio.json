@@ -82,6 +82,31 @@
       "class": ".MuiRadio-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoyRadio",

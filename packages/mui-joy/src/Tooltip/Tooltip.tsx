@@ -135,7 +135,7 @@ const TooltipArrow = styled('span', {
     width: 'var(--Tooltip-arrowSize)',
     height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
-    // use psuedo element because Popper controls the `transform` property of the arrow.
+    // use pseudo element because Popper controls the `transform` property of the arrow.
     '&:before': {
       content: '""',
       display: 'block',

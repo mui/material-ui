@@ -91,6 +91,7 @@
       "class": ".MuiTablePagination-spacer"
     }
   ],
+  "classes": { "classes": ["input", "selectIcon", "selectRoot"], "globalClasses": {} },
   "spread": true,
   "muiName": "MuiTablePagination",
   "forwardsRefTo": "HTMLTableCellElement",

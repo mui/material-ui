@@ -5,7 +5,7 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
-import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
@@ -85,6 +85,8 @@ const Item = styled(
         paddingLeft: 2,
       }),
       '&.app-drawer-active': {
+        // To match browserUrlPreviewMarge
+        scrollMarginBottom: 120,
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
@@ -239,7 +241,7 @@ export default function AppNavDrawerItem(props) {
   const [open, setOpen] = React.useState(openImmediately);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
-    if (shoudHandleLinkClick(event)) {
+    if (shouldHandleLinkClick(event)) {
       return;
     }
 

@@ -80,7 +80,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
     Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
     SliderSlotsAndSlotProps & {
       /**
-       * Override or extend the styles applied to the component.
+       * Override or extend the Class name applied to the component.
        */
       classes?: Partial<SliderUnstyledClasses>;
       /**
