@@ -17,6 +17,7 @@ const testContext = {
   unregisterItem: () => {},
   open: false,
   registerHighlightChangeHandler: () => () => {},
+  optionsOrder: '',
 };
 
 describe('<MenuItemUnstyled />', () => {
