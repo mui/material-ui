@@ -186,7 +186,7 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
     clickAwayListener: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.shape({
-        children: PropTypes.element.isRequired,
+        children: PropTypes.element,
         disableReactTree: PropTypes.bool,
         mouseEvent: PropTypes.oneOf([
           'onClick',
