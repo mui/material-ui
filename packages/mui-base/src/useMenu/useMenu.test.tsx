@@ -14,7 +14,7 @@ describe('useMenu', () => {
       const [options, setOptions] = React.useState(['1', '2', '3', '4', '5']);
       return (
         <React.Fragment>
-          <button onClick={() => setOptions([ '6','7','3','8','9'])}>update options</button>
+          <button onClick={() => setOptions(['6', '7', '3', '8', '9'])}>update options</button>
           <ul {...getListboxProps()}>
             {
               <MenuUnstyledContext.Provider value={contextValue}>
@@ -40,29 +40,33 @@ describe('useMenu', () => {
       menu.focus();
     });
 
+    const checkFocusedOption = (option: HTMLLIElement) => {
+      expect(document.activeElement).to.equal(option);
+    };
+
     fireEvent.keyDown(menu, { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(options[1]);
+    checkFocusedOption(options[1]);
     fireEvent.keyDown(options[1], { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(options[2]);
+    checkFocusedOption(options[2]);
     fireEvent.keyDown(options[2], { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(options[3]);
+    checkFocusedOption(options[3]);
     fireEvent.keyDown(options[3], { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(options[4]);
+    checkFocusedOption(options[4]);
 
     fireEvent.click(button);
 
     act(() => {
-      getByRole('menu').focus();
+      menu.focus();
     });
     const updatedOptions = menu.querySelectorAll('li');
 
-    fireEvent.keyDown(getByRole('menu'), { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(updatedOptions[1]);
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    checkFocusedOption(updatedOptions[1]);
     fireEvent.keyDown(updatedOptions[1], { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(updatedOptions[2]);
+    checkFocusedOption(updatedOptions[2]);
     fireEvent.keyDown(updatedOptions[2], { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(updatedOptions[3]);
+    checkFocusedOption(updatedOptions[3]);
     fireEvent.keyDown(updatedOptions[3], { key: 'ArrowDown' });
-    expect(document.activeElement).to.equal(updatedOptions[4]);
+    checkFocusedOption(updatedOptions[4]);
   });
 });
