@@ -75,7 +75,17 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
 
   const { notifyHighlightChanged, registerHighlightChangeHandler } = useMenuChangeNotifiers();
 
-  const options = Object.keys(menuItems);
+  const { options, labelsOrder } = Object.entries(menuItems).reduce(
+    (acc: { options: Array<string>; labelsOrder: string }, [key, value]) => ({
+      ...acc,
+      options: [...acc.options, key],
+      labelsOrder: `${acc.labelsOrder} ${value ?? ''}`,
+    }),
+    {
+      options: [],
+      labelsOrder: '',
+    },
+  );
 
   const {
     getOptionState,
@@ -176,7 +186,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       registerItem,
       unregisterItem,
       open,
-      optionsLength: options.length,
+      labelsOrder,
     }),
     [
       getOptionProps,
@@ -185,7 +195,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
       registerItem,
       unregisterItem,
       open,
-      options.length,
+      labelsOrder,
     ],
   );
 

@@ -33,7 +33,7 @@ export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemRe
     throw new Error('MenuItemUnstyled must be used within a MenuUnstyled');
   }
 
-  const { registerItem, unregisterItem, open, registerHighlightChangeHandler, optionsLength } =
+  const { registerItem, unregisterItem, open, registerHighlightChangeHandler, labelsOrder } =
     menuContext;
 
   React.useEffect(() => {
@@ -44,7 +44,7 @@ export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemRe
     registerItem(id, { disabled, id, ref: itemRef, label });
 
     return () => unregisterItem(id);
-  }, [id, registerItem, unregisterItem, disabled, ref, label, optionsLength]);
+  }, [id, registerItem, unregisterItem, disabled, ref, label, labelsOrder]);
 
   const { getRootProps: getButtonProps, focusVisible } = useButton({
     disabled,
