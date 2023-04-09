@@ -33,7 +33,7 @@ export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemRe
     throw new Error('MenuItemUnstyled must be used within a MenuUnstyled');
   }
 
-  const { registerItem, unregisterItem, open, registerHighlightChangeHandler } = menuContext;
+  const { registerItem, unregisterItem, registerHighlightChangeHandler } = menuContext;
 
   React.useEffect(() => {
     if (id === undefined) {
@@ -84,11 +84,6 @@ export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemRe
 
     return registerHighlightChangeHandler(updateHighlightedState);
   });
-
-  React.useEffect(() => {
-    // TODO: this should be handled by the MenuButton
-    requestFocus(highlighted && open);
-  }, [highlighted, open]);
 
   if (id === undefined) {
     return {
