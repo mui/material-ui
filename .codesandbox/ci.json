@@ -39,7 +39,7 @@
     "/examples/material-cra",
     "/examples/material-cra-ts",
     "/examples/joy-cra-ts",
-    "/examples/base-cra-ts"
+    "/examples/base-cra-system-ts"
   ],
   "silent": true
 }
