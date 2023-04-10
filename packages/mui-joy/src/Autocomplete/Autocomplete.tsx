@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
 import {
   chainPropTypes,
   integerPropType,
@@ -13,7 +12,7 @@ import useAutocomplete, {
   AutocompleteGroupedOption,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import PopperUnstyled, { PopperUnstyledTypeMap } from '@mui/base/PopperUnstyled';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -564,7 +563,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    elementType: AutocompleteListbox,
     getSlotProps: getListboxProps,
     externalForwardedProps: other,
     ownerState,
@@ -582,9 +581,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             width: anchorEl.clientWidth,
           }
         : {},
-    },
-    internalForwardedProps: {
-      component: AutocompleteListbox,
     },
   });
 
@@ -660,6 +656,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [
       {
@@ -683,7 +680,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             listboxProps.className,
             listboxProps.ownerState?.color === 'context' && autocompleteClasses.colorContext,
           )}
+          // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
           modifiers={modifiers}
+          {...(!props.slots?.listbox && {
+            as: PopperUnstyled,
+            slots: { root: listboxProps.as || 'ul' },
+          })}
         >
           {groupedOptions.map((option, index) => {
             if (groupBy) {
@@ -1050,6 +1052,23 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  slots: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    input: PropTypes.elementType,
+    limitTag: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    loading: PropTypes.elementType,
+    noOptions: PropTypes.elementType,
+    option: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+    wrapper: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for this input.
    */

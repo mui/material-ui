@@ -170,10 +170,6 @@ Popper.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * @ignore
-   */
-  ownerState: PropTypes.any,
-  /**
    * Popper placement.
    * @default 'bottom'
    */
