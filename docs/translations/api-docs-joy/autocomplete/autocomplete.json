@@ -52,7 +52,155 @@
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "wrapper": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the wrapper element"
+    },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "startDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the startDecorator element"
+    },
+    "endDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the endDecorator element"
+    },
+    "formControl": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is a descendant of <code>FormControl</code>"
+    },
+    "focused": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
+    },
+    "disabled": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "multiple": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the wrapper element",
+      "conditions": "<code>multiple={true}</code>"
+    },
+    "limitTag": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the limitTag element"
+    },
+    "hasPopupIcon": { "description": "Class name applied when the popup icon is rendered." },
+    "hasClearIcon": { "description": "Class name applied when the clear icon is rendered." },
+    "clearIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the clear indicator"
+    },
+    "popupIndicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the popup indicator"
+    },
+    "popupIndicatorOpen": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the popup indicator",
+      "conditions": "the popup is open"
+    },
+    "listbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the listbox component"
+    },
+    "option": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the option component"
+    },
+    "loading": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the loading wrapper"
+    },
+    "noOptions": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the no option wrapper"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
+  },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "wrapper": "The component that renders the wrapper.",

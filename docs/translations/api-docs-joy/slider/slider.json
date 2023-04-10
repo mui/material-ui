@@ -3,7 +3,7 @@
   "propDescriptions": {
     "aria-label": "The label of the slider.",
     "aria-valuetext": "A string value that provides a user-friendly name for the current value of the slider.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the Class name applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",
@@ -51,6 +51,11 @@
       "nodeName": "the root",
       "conditions": "a thumb is being dragged"
     },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb element",
+      "conditions": "it has keyboard focused"
+    },
     "rail": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the rail element"
@@ -73,33 +78,97 @@
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the thumb element"
     },
-    "active": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb element",
-      "conditions": "it's active"
+    "valueLabel": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the thumb label element"
     },
-    "focusVisible": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb element",
-      "conditions": "keyboard focused"
+    "valueLabelOpen": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the thumb label element",
+      "conditions": "it's open"
     },
     "mark": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the mark element"
     },
     "markActive": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the mark element",
-      "conditions": "active (depending on the value)"
+      "conditions": "it is active"
     },
     "markLabel": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the mark label element"
     },
-    "markLabelActive": {
+    "colorPrimary": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the mark label element",
-      "conditions": "active (depending on the value)"
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
     }
   },
   "slotDescriptions": {

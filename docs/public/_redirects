@@ -403,22 +403,11 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/experimental-api/css-variables/ /:lang/material-ui/experimental-api/css-theme-variables/overview/ 301
 /joy-ui/customization/default-theme/ /joy-ui/tools/default-theme-viewer/ 301
 /:lang/joy-ui/customization/default-theme/ /:lang/joy-ui/tools/default-theme-viewer/ 301
-/pt/material-ui/* /material-ui/:splat 301
-/zh/material-ui/* /material-ui/:splat 301
-/pt/joy-ui/* /joy-ui/:splat 301
-/zh/joy-ui/* /joy-ui/:splat 301
-/pt/base/* /base/:splat 301
-/zh/base/* /base/:splat 301
-/pt/system/* /system/:splat 301
-/zh/system/* /system/:splat 301
 /material-ui/guides/flow/ https://v4.mui.com/guides/flow/ 301
 /:lang/material-ui/guides/flow/ https://v4.mui.com/:lang/guides/flow/ 301
+/pt/* /:splat 301
+/zh/* /:splat 301
 # 2023
-
-# APIs
-
-## Base UI
-
 /base/api/badge-unstyled/ /base/react-badge/components-api/#badge-unstyled 301
 /base/api/button-unstyled/ /base/react-button/components-api/#button-unstyled 301
 /base/api/click-away-listener/ /base/react-click-away-listener/components-api/#click-away-listener 301
@@ -458,7 +447,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base/api/use-tab-panel/ /base/react-tabs/hooks-api/#use-tab-panel 301
 /base/api/use-tabs/ /base/react-tabs/hooks-api/#use-tabs 301
 /base/api/use-tabs-list/ /base/react-tabs/hooks-api/#use-tabs-list 301
-
 /joy-ui/customization/theme-tokens/ /joy-ui/customization/theme-colors/ 301
 /joy-ui/guides/apply-dark-mode/ /joy-ui/customization/dark-mode/ 301
 

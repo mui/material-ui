@@ -13,7 +13,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      */
     children?: React.ReactNode;
     /**
-     * The styles applied to the divider to shrink or stretch the line based on the orientation.
+     * The Class name applied to the divider to shrink or stretch the line based on the orientation.
      */
     inset?: OverridableStringUnion<'none' | 'context', DividerInsetOverrides>;
     /**

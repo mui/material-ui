@@ -25,6 +25,7 @@
       "class": ".MuiTabPanel-root"
     }
   ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "muiName": "MuiTabPanel",
   "forwardsRefTo": "HTMLDivElement",

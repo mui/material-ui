@@ -265,7 +265,7 @@ describe('<InputBase />', () => {
     });
 
     describe('errors', () => {
-      it('throws on change if the target isnt mocked', () => {
+      it("throws on change if the target isn't mocked", () => {
         /**
          * This component simulates a custom input component that hides the inner
          * input value for security reasons e.g. react-stripe-element.
@@ -538,7 +538,7 @@ describe('<InputBase />', () => {
       });
 
       it('should not warn when toggling between inputs', () => {
-        // this will ensure that unregistering was called during unmount
+        // this will ensure that deregistering was called during unmount
         function ToggleFormInputs() {
           const [flag, setFlag] = React.useState(true);
 
