@@ -181,6 +181,7 @@ function IconContainer(props) {
 }
 
 IconContainer.propTypes = {
+  isActive: PropTypes.bool,
   value: PropTypes.number.isRequired,
 };
 
@@ -219,6 +220,7 @@ function RatingItem(props) {
     <RatingIcon
       as={IconContainerComponent}
       value={itemValue}
+      isActive={isFilled}
       className={clsx(classes.icon, {
         [classes.iconEmpty]: !isFilled,
         [classes.iconFilled]: isFilled,

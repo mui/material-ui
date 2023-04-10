@@ -6,6 +6,7 @@ import { RatingClasses } from './ratingClasses';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
+  isActive: boolean;
 }
 
 export interface RatingPropsSizeOverrides {}
