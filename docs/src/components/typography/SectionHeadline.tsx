@@ -5,11 +5,16 @@ interface SectionHeadlineProps {
   description?: React.ReactNode;
   id?: string;
   overline: React.ReactNode;
-  title: React.ReactNode;
+  title: string | React.ReactElement;
+  alwaysCenter?: boolean;
+  /**
+   * For using with dark background.
+   */
+  inverted?: boolean;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
-  const { description, id, overline, title } = props;
+  const { description, id, overline, title, alwaysCenter = false, inverted = false } = props;
   return (
     <React.Fragment>
       <Typography
@@ -23,24 +28,46 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
           ...theme.applyDarkStyles({
             color: 'primary.300',
           }),
+          ...(alwaysCenter && {
+            textAlign: 'center',
+          }),
         })}
       >
         {overline}
       </Typography>
+      {/* eslint-disable-next-line no-nested-ternary */}
       {typeof title === 'string' ? (
         <Typography
           variant="h2"
           sx={(theme) => ({
-            color: 'primaryDark.900',
-            ...theme.applyDarkStyles({
-              color: 'grey.100',
+            ...(inverted
+              ? {
+                  color: '#fff',
+                }
+              : {
+                  color: 'primaryDark.900',
+                  ...theme.applyDarkStyles({
+                    color: 'grey.100',
+                  }),
+                }),
+            ...(alwaysCenter && {
+              textAlign: 'center',
             }),
           })}
         >
           {title}
         </Typography>
       ) : (
-        title
+        React.cloneElement(title, {
+          style: {
+            ...(alwaysCenter && {
+              textAlign: 'center',
+            }),
+            ...(inverted && {
+              color: '#fff',
+            }),
+          },
+        })
       )}
       {description && (
         <Typography
@@ -48,9 +75,20 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             mt: 1,
             mb: 2,
             maxWidth: 450,
-            color: 'grey.800',
-            ...theme.applyDarkStyles({
-              color: 'grey.500',
+            ...(inverted
+              ? {
+                  color: 'grey.400',
+                }
+              : {
+                  color: 'grey.800',
+                  ...theme.applyDarkStyles({
+                    color: 'grey.500',
+                  }),
+                }),
+            ...(alwaysCenter && {
+              textAlign: 'center',
+              mx: 'auto',
+              maxWidth: 'auto',
             }),
           })}
         >

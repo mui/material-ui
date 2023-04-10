@@ -5,7 +5,10 @@ import Typography from '@mui/material/Typography';
 import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
-export default (function More(props: ButtonBaseProps) {
+export default (function More({
+  disableStartIcon = false,
+  ...props
+}: { disableStartIcon?: boolean } & ButtonBaseProps) {
   const ref = React.useRef<null | HTMLButtonElement>(null);
   return (
     <ButtonBase
@@ -58,9 +61,11 @@ export default (function More(props: ButtonBaseProps) {
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}
     >
-      <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
-        <AddCircleOutlineRounded color="primary" fontSize="small" />
-      </Box>
+      {!disableStartIcon && (
+        <Box component="span" sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
+          <AddCircleOutlineRounded color="primary" fontSize="small" />
+        </Box>
+      )}
       <Typography component="span" color="primary.main" variant="body2" fontWeight="bold">
         Much more{' '}
         <KeyboardArrowRightRounded
@@ -71,4 +76,4 @@ export default (function More(props: ButtonBaseProps) {
       </Typography>
     </ButtonBase>
   );
-} as typeof ButtonBase);
+});
