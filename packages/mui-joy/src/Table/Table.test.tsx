@@ -28,6 +28,11 @@ describe('<Table />', () => {
       'reactTestRenderer',
       'refForwarding',
     ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes, emotionCompat: true });

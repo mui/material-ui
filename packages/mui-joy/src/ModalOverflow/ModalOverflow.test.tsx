@@ -15,5 +15,10 @@ describe('<ModalOverflow />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 });

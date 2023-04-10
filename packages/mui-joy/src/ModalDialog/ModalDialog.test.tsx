@@ -18,6 +18,11 @@ describe('<ModalDialog />', () => {
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'solid' },
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<ModalDialog />, { muiName: 'JoyModalDialog', classes });

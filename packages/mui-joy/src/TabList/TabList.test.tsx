@@ -26,6 +26,11 @@ describe('Joy <TabList />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<TabList />, {

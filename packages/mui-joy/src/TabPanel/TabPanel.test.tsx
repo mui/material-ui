@@ -26,6 +26,11 @@ describe('Joy <TabPanel />', () => {
     testVariantProps: { size: 'sm' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('size', () => {
