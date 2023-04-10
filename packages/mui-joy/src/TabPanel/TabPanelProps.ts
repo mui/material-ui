@@ -2,8 +2,24 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { TabPanelUnstyledOwnProps } from '@mui/base/TabPanelUnstyled';
 import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabPanelSlot = 'root';
+
+export interface TabPanelSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type TabPanelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabPanelSlots,
+  {
+    root: SlotProps<'div', {}, TabPanelOwnerState>;
+  }
+>;
 
 export interface TabPanelPropsSizeOverrides {}
 
@@ -23,7 +39,7 @@ export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
-    };
+    } & TabPanelSlotsAndSlotProps;
   defaultComponent: D;
 }
 

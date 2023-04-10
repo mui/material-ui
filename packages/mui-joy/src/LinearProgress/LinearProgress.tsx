@@ -14,6 +14,7 @@ import {
   LinearProgressProps,
   LinearProgressTypeMap,
 } from './LinearProgressProps';
+import useSlot from '../utils/useSlot';
 
 // TODO: replace `left` with `inset-inline-start` in the future to work with writing-mode. https://caniuse.com/?search=inset-inline-start
 //       replace `width` with `inline-size`, not sure why inline-size does not work with animation in Safari.
@@ -180,29 +181,30 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <LinearProgressRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      role="progressbar"
-      style={{
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: LinearProgressRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'progressbar',
+      style: {
         // Setting this CSS variable via inline-style
         // prevents the generation of new CSS every time
         // `value` prop updates
         ...({ '--LinearProgress-percent': value } as React.CSSProperties),
         ...style,
-      }}
-      ownerState={ownerState}
-      {...(typeof value === 'number' &&
+      },
+      ...(typeof value === 'number' &&
         determinate && {
           'aria-valuenow': Math.round(value),
-        })}
-      {...other}
-    >
-      {children}
-    </LinearProgressRoot>
-  );
+        }),
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<LinearProgressTypeMap>;
 
 LinearProgress.propTypes /* remove-proptypes */ = {

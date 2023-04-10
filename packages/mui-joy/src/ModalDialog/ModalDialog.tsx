@@ -14,6 +14,7 @@ import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;
@@ -156,18 +157,23 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     [color, variant],
   );
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ModalDialogRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'dialog',
+      'aria-modal': 'true',
+    },
+  });
+
   return (
     <ModalDialogSizeContext.Provider value={size}>
       <ModalDialogVariantColorContext.Provider value={contextValue}>
-        <ModalDialogRoot
-          as={component}
-          ownerState={ownerState}
-          className={clsx(classes.root, className)}
-          ref={ref}
-          role="dialog"
-          aria-modal="true"
-          {...other}
-        >
+        <SlotRoot {...rootProps}>
           {React.Children.map(children, (child) => {
             if (!React.isValidElement(child)) {
               return child;
@@ -179,7 +185,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
             }
             return child;
           })}
-        </ModalDialogRoot>
+        </SlotRoot>
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );

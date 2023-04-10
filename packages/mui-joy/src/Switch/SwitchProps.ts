@@ -70,7 +70,6 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SwitchSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
@@ -99,7 +98,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
-    };
+    } & SwitchSlotsAndSlotProps;
   defaultComponent: D;
 }
 

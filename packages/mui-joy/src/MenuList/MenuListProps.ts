@@ -2,8 +2,24 @@ import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type MenuListSlot = 'root';
+
+export interface MenuListSlots {
+  /**
+   * The component that renders the root.
+   * @default 'ul'
+   */
+  root: React.ElementType;
+}
+
+export type MenuListSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  MenuListSlots,
+  {
+    root: SlotProps<'ul', {}, MenuListOwnerState>;
+  }
+>;
 
 export interface MenuListPropsSizeOverrides {}
 export interface MenuListPropsColorOverrides {}
@@ -37,7 +53,7 @@ export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, MenuListPropsVariantOverrides>;
-  };
+  } & MenuListSlotsAndSlotProps;
   defaultComponent: D;
 }
 
