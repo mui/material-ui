@@ -20,6 +20,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 ### Docs
 
+- &#8203;<!-- 18 -->[docs][Backdrop] Improvements to the docs (#34244) @alirezahekmati
 - &#8203;<!-- 15 -->[docs] Simplify language redirection @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Add missing `readOnly` state class in the list (#36788) @ZeeshanTamboli
 - &#8203;<!-- 13 -->[docs] Improve side nav scroll into view (#36732) @oliviertassinari
@@ -38,7 +39,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - &#8203;<!-- 02 -->[website] Fix backlinks to homepage (#36801) @oliviertassinari
 - &#8203;<!-- 01 -->[website] Tweaks to the Designer position ad (#36771) @danilo-leal
 
-All contributors of this release in alphabetical order: @danilo-leal, @hbjORbj, @Lioness100, @mnajdova, @oliviertassinari, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @@alirezahekmati, @danilo-leal, @hbjORbj, @Lioness100, @mnajdova, @oliviertassinari, @ZeeshanTamboli
 
 ## 5.11.16
 
