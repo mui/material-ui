@@ -7,7 +7,7 @@ import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 
 describe('useMenu', () => {
   const { render } = createRenderer();
-  it('should register options in correct order', () => {
+  it('should register options in correct order when options change', () => {
     function Menu() {
       const ref = React.createRef();
       const { getListboxProps, contextValue } = useMenu({ listboxRef: ref });
