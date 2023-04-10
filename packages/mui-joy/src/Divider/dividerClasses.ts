@@ -1,15 +1,15 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface DividerClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `orientation="horizontal"`. */
+  /** Class name applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
-  /** Styles applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
-  /** Styles applied to the root element if `inset="context"`. */
+  /** Class name applied to the root element if `inset="context"`. */
   insetContext: string;
-  /** Styles applied to the root element if `inset="none"`. */
+  /** Class name applied to the root element if `inset="none"`. */
   insetNone: string;
 }
 

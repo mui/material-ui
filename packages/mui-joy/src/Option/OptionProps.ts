@@ -7,11 +7,26 @@ import {
 } from '@mui/types';
 import { OptionState } from '@mui/base/useListbox';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type OptionSlot = 'root';
 
-export interface OptionPropsVariantOverrides {}
+export interface OptionSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root: React.ElementType;
+}
 
+export type OptionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  OptionSlots,
+  {
+    root: SlotProps<'li', {}, OptionOwnerState>;
+  }
+>;
+
+export interface OptionPropsVariantOverrides {}
 export interface OptionPropsColorOverrides {}
 
 export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
@@ -48,7 +63,7 @@ export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & OptionSlotsAndSlotProps;
   defaultComponent: D;
 }
 

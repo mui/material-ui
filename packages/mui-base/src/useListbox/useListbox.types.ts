@@ -25,7 +25,7 @@ enum ActionTypes {
   optionsChange = 'optionsChange',
   setValue = 'setValue',
   setHighlight = 'setHighlight',
-  textNavigation = 'textNagivation',
+  textNavigation = 'textNavigation',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435

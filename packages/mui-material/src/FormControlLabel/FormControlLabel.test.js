@@ -41,7 +41,7 @@ describe('<FormControlLabel />', () => {
       expect(getByText(/Pizza/)).to.have.class(classes.label);
     });
 
-    it('should render numberic labels', () => {
+    it('should render numeric labels', () => {
       const { getByText } = render(<FormControlLabel label={5} control={<div />} />);
 
       expect(getByText(/5/)).not.to.equal(null);

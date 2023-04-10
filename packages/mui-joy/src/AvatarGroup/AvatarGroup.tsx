@@ -7,8 +7,9 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './AvatarGroupProps';
+import useSlot from '../utils/useSlot';
 
-export const AvatarGroupContext = React.createContext<undefined | AvatarGroupOwnerState>(undefined);
+export const AvatarGroupContext = React.createContext<AvatarGroupOwnerState | undefined>(undefined);
 
 const useUtilityClasses = () => {
   const slots = {
@@ -40,6 +41,7 @@ const AvatarGroupGroupRoot = styled('div', {
   display: 'flex',
   marginInlineStart: 'calc(-1 * var(--AvatarGroup-gap))',
 }));
+
 /**
  *
  * Demos:
@@ -71,17 +73,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarGroupGroupRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
     <AvatarGroupContext.Provider value={ownerState}>
-      <AvatarGroupGroupRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </AvatarGroupGroupRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </AvatarGroupContext.Provider>
   );
 }) as OverridableComponent<AvatarGroupTypeMap>;

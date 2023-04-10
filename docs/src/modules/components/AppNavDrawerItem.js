@@ -5,7 +5,7 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
-import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
@@ -85,6 +85,8 @@ const Item = styled(
         paddingLeft: 2,
       }),
       '&.app-drawer-active': {
+        // To match browserUrlPreviewMarge
+        scrollMarginBottom: 120,
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
@@ -175,7 +177,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const sxChip = (color) => [
+export const sxChip = (color) => [
   (theme) => ({
     ml: 1.5,
     fontSize: theme.typography.pxToRem(10),
@@ -239,7 +241,7 @@ export default function AppNavDrawerItem(props) {
   const [open, setOpen] = React.useState(openImmediately);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
-    if (shoudHandleLinkClick(event)) {
+    if (shouldHandleLinkClick(event)) {
       return;
     }
 
@@ -293,7 +295,7 @@ export default function AppNavDrawerItem(props) {
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {comingSoon && <Chip label="Coming soon" sx={sxChip('primary')} />}
+        {comingSoon && <Chip label="Coming soon" sx={sxChip('grey')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
@@ -311,7 +313,7 @@ AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.string,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,

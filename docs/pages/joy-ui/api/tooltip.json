@@ -9,6 +9,7 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "describeChild": { "type": { "name": "bool" }, "default": "false" },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
@@ -78,6 +79,31 @@
       "class": ".MuiTooltip-arrow"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "placementBottom",
+      "placementLeft",
+      "placementRight",
+      "placementTop",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "tooltipArrow",
+      "touch",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyTooltip",

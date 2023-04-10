@@ -166,7 +166,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } = props;
   const variant = inProps.variant || groupContext?.variant || variantProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color || groupContext?.color, colorProp);
+  const colorFromContext = inProps.color || groupContext?.color;
+  const color = colorFromContext !== 'context' ? getColor(colorFromContext, colorProp) : colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;

@@ -1,6 +1,6 @@
 # Instalação
 
-<p class="description">Instalar MUI Base, React UI uma biblioteca robusta de componentes em branco ("unstyled") e ganchos de baixo nível.</p>
+<p class="description">Instalar Base UI, React UI uma biblioteca robusta de componentes em branco ("unstyled") e ganchos de baixo nível.</p>
 
 ## npm
 

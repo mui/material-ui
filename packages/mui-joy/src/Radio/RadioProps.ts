@@ -59,7 +59,6 @@ export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    RadioSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The icon to display when the component is checked.
@@ -115,7 +114,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The value of the component. The DOM API casts this to a string.
        */
       value?: unknown;
-    };
+    } & RadioSlotsAndSlotProps;
   defaultComponent: D;
 }
 
