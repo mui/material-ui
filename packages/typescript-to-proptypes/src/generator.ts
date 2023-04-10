@@ -128,8 +128,12 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         .slice()
         .sort((a, b) => a[0].localeCompare(b[0]))
         .map(([name, type]) => {
+          let regex = /^(UnionNode|DOMElementNode)$/;
+          if (name !== 'children') {
+            regex = /^(UnionNode|DOMElementNode|ElementNode)$/;
+          }
           return `"${name}": ${generatePropType(type, context)}${
-            !type.type.match(/^(UnionNode|DOMElementNode|ElementNode)$/) ? '.isRequired' : ''
+            !type.type.match(regex) ? '.isRequired' : ''
           }`;
         })
         .join(',\n')}\n})`;
