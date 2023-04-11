@@ -2,21 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
-} from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import {
-  SelectUnstyledContext,
-  flattenOptionGroups,
-  getOptionsFromChildren,
-} from '@mui/base/SelectUnstyled';
-import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
+import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
+import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
@@ -386,15 +379,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
-  const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
-  const [listboxOpen, setListboxOpen] = useControlled({
-    controlled: listboxOpenProp,
-    default: defaultListboxOpen,
-    name: 'SelectUnstyled',
-    state: 'listboxOpen',
-  });
-
   const rootRef = React.useRef<HTMLElement | null>(null);
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement | null>(null);
@@ -412,10 +396,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   );
 
   React.useEffect(() => {
-    setGroupedOptions(getOptionsFromChildren(children));
-  }, [children]);
-
-  React.useEffect(() => {
     setAnchorEl(rootRef.current);
   }, []);
 
@@ -427,13 +407,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const handleOpenChange = React.useCallback(
     (isOpen: boolean) => {
-      setListboxOpen(isOpen);
       onListboxOpenChange?.(isOpen);
       if (!isOpen) {
         onClose?.();
       }
     },
-    [onClose, onListboxOpenChange, setListboxOpen],
+    [onClose, onListboxOpenChange],
   );
 
   const {
@@ -441,19 +420,22 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     buttonFocusVisible,
     contextValue,
     disabled,
+    dispatch,
     getButtonProps,
     getListboxProps,
+    getOptionMetadata,
+    open: listboxOpen,
     value,
   } = useSelect({
     buttonRef,
+    defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
     listboxId,
     multiple: false,
     onChange,
     onOpenChange: handleOpenChange,
-    open: listboxOpen,
-    options,
+    open: listboxOpenProp,
     value: valueProp,
   });
 
@@ -473,9 +455,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOption = React.useMemo(() => {
-    return options.find((o) => value === o.value) ?? null;
-  }, [options, value]);
+  const selectedOption = React.useMemo(
+    () => getOptionMetadata(value as TValue) ?? null,
+    [getOptionMetadata, value],
+  );
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
@@ -491,7 +474,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
-          handleOpenChange(true);
+          dispatch({ type: SelectActionTypes.buttonClick, event });
         }
         handlers.onMouseDown?.(event);
       },
@@ -521,6 +504,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
+      keepMounted: true,
     },
     className: classes.listbox,
     elementType: SelectListbox,
@@ -591,10 +575,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           slots: { root: listboxProps.as || 'ul' },
         })}
       >
-        <SelectUnstyledContext.Provider value={context}>
-          {/* for building grouped options */}
-          <ListProvider nested>{children}</ListProvider>
-        </SelectUnstyledContext.Provider>
+        <SelectProvider value={context}>
+          <GroupListContext.Provider value="select">
+            {/* for building grouped options */}
+            <ListProvider nested>{children}</ListProvider>
+          </GroupListContext.Provider>
+        </SelectProvider>
       </SlotListbox>
     );
 

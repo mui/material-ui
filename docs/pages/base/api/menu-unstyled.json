@@ -8,8 +8,7 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
-    "onClose": { "type": { "name": "func" } },
+    "onOpenChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {

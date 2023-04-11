@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
-import { SelectOption } from '@mui/base/useSelect';
+import { SelectOption } from '@mui/base/useOption';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
-export type { SelectOption } from '@mui/base/useSelect';
+export type { SelectOption } from '@mui/base/useOption';
 
 export type SelectSlot =
   | 'root'

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabs from '@mui/base/useTabs';
-import { TabsContext } from '@mui/base/TabsUnstyled';
+import useTabs, { TabsProvider } from '@mui/base/useTabs';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -83,7 +82,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
-  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
+  const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,
@@ -111,9 +110,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
     <SlotRoot {...rootProps}>
-      <TabsContext.Provider value={tabsContextValue}>
+      <TabsProvider value={contextValue}>
         <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
-      </TabsContext.Provider>
+      </TabsProvider>
     </SlotRoot>
   );
 }) as OverridableComponent<TabsTypeMap>;
@@ -143,7 +142,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The direction of the text.
    * @default 'ltr'
@@ -181,9 +180,9 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

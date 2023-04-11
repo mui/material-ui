@@ -4,14 +4,13 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
+import GroupListContext from './GroupListContext';
 import ListProvider from './ListProvider';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import useSlot from '../utils/useSlot';
@@ -156,8 +155,7 @@ const ListRoot = styled(StyledList, {
  */
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
-  const menuContext = React.useContext(MenuUnstyledContext);
-  const selectContext = React.useContext(SelectUnstyledContext);
+  const group = React.useContext(GroupListContext);
   const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -181,7 +179,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const size = sizeProp || (inProps.size ?? 'md');
 
   let role;
-  if (menuContext || selectContext) {
+  if (group) {
     role = 'group';
   }
   if (radioGroupContext) {
