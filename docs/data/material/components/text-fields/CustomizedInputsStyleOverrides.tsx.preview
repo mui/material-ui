@@ -1,4 +1,4 @@
-<ThemeProvider theme={customTheme}>
+<ThemeProvider theme={(outerTheme: Theme) => customTheme(outerTheme)}>
   <TextField label="Outlined" />
   <TextField label="Filled" variant="filled" />
   <TextField label="Standard" variant="standard" />
