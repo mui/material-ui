@@ -7,7 +7,7 @@ import {
   UseSelectListboxSlotProps,
 } from '../useSelect';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
-import { SlotComponentProps } from '../utils';
+import { SlotComponentProps, WithOptionalOwnerState } from '../utils';
 
 export interface SelectUnstyledRootSlotPropsOverrides {}
 export interface SelectUnstyledListboxSlotPropsOverrides {}
@@ -137,7 +137,9 @@ export interface SelectUnstyledSlots<TValue extends {}, Multiple extends boolean
    * The component that renders the popper.
    * @default PopperUnstyled
    */
-  popper?: React.ComponentType<SelectUnstyledPopperSlotProps<TValue, Multiple>>;
+  popper?: React.ComponentType<
+    WithOptionalOwnerState<SelectUnstyledPopperSlotProps<TValue, Multiple>>
+  >;
 }
 
 export interface SelectUnstyledTypeMap<

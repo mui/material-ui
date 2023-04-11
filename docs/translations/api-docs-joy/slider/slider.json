@@ -3,7 +3,7 @@
   "propDescriptions": {
     "aria-label": "The label of the slider.",
     "aria-valuetext": "A string value that provides a user-friendly name for the current value of the slider.",
-    "classes": "Override or extend the Class name applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",

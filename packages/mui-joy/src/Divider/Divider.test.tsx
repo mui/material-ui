@@ -17,6 +17,11 @@ describe('Joy <Divider />', () => {
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical' },
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('prop: children', () => {

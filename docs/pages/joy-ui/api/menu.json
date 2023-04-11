@@ -27,6 +27,7 @@
       },
       "default": "'md'"
     },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
     "sx": {
       "type": {
         "name": "union",
@@ -43,6 +44,35 @@
   },
   "name": "Menu",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiMenu-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "expanded",
+      "listbox",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "expanded": "Mui-expanded" }
+  },
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "JoyMenu",

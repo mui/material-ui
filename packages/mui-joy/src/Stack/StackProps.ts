@@ -2,8 +2,24 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { ResponsiveStyleValue } from '@mui/system';
 import { SxProps, SystemProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type StackSlot = 'root';
+
+export interface StackSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type StackSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  StackSlots,
+  {
+    root: SlotProps<'div', {}, StackOwnerState>;
+  }
+>;
 
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -40,11 +56,14 @@ export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The system prop, which allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  } & SystemProps;
+  } & StackSlotsAndSlotProps &
+    SystemProps;
   defaultComponent: D;
 }
 
 export type StackProps<
   D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {},
+  P = { component?: React.ElementType },
 > = OverrideProps<StackTypeMap<P, D>, D>;
+
+export interface StackOwnerState extends StackProps {}
