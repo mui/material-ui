@@ -444,7 +444,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 :::success
-[MUI Base](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+[Base UI](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
         `);
       }

@@ -77,8 +77,7 @@ export interface SliderPropsSizeOverrides {}
 
 export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
   props: P &
-    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
-    SliderSlotsAndSlotProps & {
+    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> & {
       /**
        * Override or extend the styles applied to the component.
        */
@@ -112,7 +111,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
-    };
+    } & SliderSlotsAndSlotProps;
   defaultComponent: D;
 };
 

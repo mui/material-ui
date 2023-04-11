@@ -4,7 +4,6 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useTab from '@mui/base/useTab';
-import { useSlotProps } from '@mui/base/utils';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -13,6 +12,7 @@ import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
@@ -122,15 +122,11 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });
@@ -138,7 +134,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
       {/* @ts-ignore ListItemButton base is div which conflict with TabProps 'button' */}
-      <TabRoot {...tabRootProps}>{children}</TabRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as OverridableComponent<TabTypeMap>;

@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type AutocompleteListboxSlot = 'root';
+
+export interface AutocompleteListboxSlots {
+  /**
+   * The component that renders the root.
+   * @default 'ul'
+   */
+  root: React.ElementType;
+}
+
+export type AutocompleteListboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  AutocompleteListboxSlots,
+  {
+    root: SlotProps<'ul', {}, AutocompleteListboxOwnerState>;
+  }
+>;
 
 export interface AutocompleteListboxPropsSizeOverrides {}
 export interface AutocompleteListboxPropsColorOverrides {}
@@ -29,7 +45,7 @@ export interface AutocompleteListboxTypeMap<P = {}, D extends React.ElementType 
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & AutocompleteListboxSlotsAndSlotProps;
   defaultComponent: D;
 }
 

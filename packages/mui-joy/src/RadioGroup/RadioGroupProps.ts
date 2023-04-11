@@ -1,9 +1,25 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { RadioProps } from '../Radio/RadioProps';
-import { SxProps } from '../styles/types';
+import { ApplyColorInversion, SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type RadioGroupSlot = 'root';
+
+export interface RadioGroupSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type RadioGroupSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  RadioGroupSlots,
+  {
+    root: SlotProps<'div', {}, RadioGroupOwnerState>;
+  }
+>;
 
 export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -70,7 +86,7 @@ export interface RadioGroupTypeMap<P = {}, D extends React.ElementType = 'div'> 
      * @default 'plain'
      */
     variant?: RadioProps['variant'];
-  };
+  } & RadioGroupSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -81,4 +97,4 @@ export type RadioGroupProps<
   },
 > = OverrideProps<RadioGroupTypeMap<P, D>, D>;
 
-export interface RadioGroupOwnerState extends RadioGroupProps {}
+export interface RadioGroupOwnerState extends ApplyColorInversion<RadioGroupProps> {}

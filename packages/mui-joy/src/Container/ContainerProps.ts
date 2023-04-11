@@ -38,5 +38,7 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 export type ContainerProps<
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],
-  P = {},
+  P = { component?: React.ElementType },
 > = OverrideProps<ContainerTypeMap<P, D>, D>;
+
+export interface ContainerOwnerState extends ContainerProps {}

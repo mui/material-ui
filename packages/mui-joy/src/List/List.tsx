@@ -13,6 +13,7 @@ import ComponentListContext from './ComponentListContext';
 import GroupListContext from './GroupListContext';
 import ListProvider from './ListProvider';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListOwnerState) => {
   const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
@@ -202,16 +203,21 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      'aria-labelledby': typeof nesting === 'string' ? nesting : undefined,
+    },
+  });
+
   return (
-    <ListRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
@@ -219,7 +225,7 @@ const List = React.forwardRef(function List(inProps, ref) {
           {children}
         </ListProvider>
       </ComponentListContext.Provider>
-    </ListRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ListTypeMap>;
 

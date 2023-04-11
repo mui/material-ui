@@ -30,7 +30,7 @@ const Slider = React.forwardRef(function Slider(
       {...props}
       ref={ref}
       slots={{
-        Thumb,
+        thumb: Thumb,
       }}
       slotProps={{
         root: { className: 'w-full relative inline-block h-2 cursor-pointer' },

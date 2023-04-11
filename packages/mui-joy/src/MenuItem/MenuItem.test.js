@@ -52,6 +52,11 @@ describe('Joy <MenuItem />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<MenuItem />, {

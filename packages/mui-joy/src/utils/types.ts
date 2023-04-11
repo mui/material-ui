@@ -1,6 +1,6 @@
 import { SxProps } from '../styles/types';
 
-type SlotCommonProps = {
+export type SlotCommonProps = {
   component?: React.ElementType;
   sx?: SxProps;
 };

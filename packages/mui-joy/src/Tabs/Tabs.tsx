@@ -4,13 +4,13 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import useTabs, { TabsProvider } from '@mui/base/useTabs';
-import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabsOwnerState) => {
   const { orientation, variant, color, size } = ownerState;
@@ -95,9 +95,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabsRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabsRoot,
-    externalSlotProps: {},
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -109,11 +109,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
-    <TabsRoot {...tabsRootProps}>
+    <SlotRoot {...rootProps}>
       <TabsProvider value={contextValue}>
         <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
       </TabsProvider>
-    </TabsRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<TabsTypeMap>;
 

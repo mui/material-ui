@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
+import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
@@ -13,6 +13,7 @@ import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
+import { ListOwnerState } from '../List';
 
 const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;
@@ -53,6 +54,7 @@ const MenuRoot = styled(StyledList, {
     }),
   };
 });
+
 /**
  *
  * Demos:
@@ -64,7 +66,7 @@ const MenuRoot = styled(StyledList, {
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
  * - inherits [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
  */
-const Menu = React.forwardRef(function Menu(inProps, ref) {
+const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
@@ -74,8 +76,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
-    component,
     color: colorProp = 'neutral',
+    component,
     disablePortal = false,
     keepMounted = false,
     id,
@@ -125,24 +127,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: MenuRoot,
-    externalForwardedProps: other,
-    getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    additionalProps: {
-      anchorEl,
-      open,
-      disablePortal,
-      keepMounted,
-      ref,
-      component: MenuRoot,
-      as: component, // use `as` to insert the component inside of the MenuRoot
-    },
-    className: classes.root,
-    ownerState,
-  });
-
   const modifiers = React.useMemo(
     () => [
       {
@@ -156,8 +140,33 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     [modifiersProp],
   );
 
+  const rootProps = useSlotProps({
+    elementType: MenuRoot,
+    getSlotProps: getListboxProps,
+    externalForwardedProps: other,
+    externalSlotProps: {},
+    ownerState: ownerState as MenuOwnerState & ListOwnerState,
+    additionalProps: {
+      ref,
+      anchorEl,
+      open,
+      disablePortal,
+      keepMounted,
+      modifiers,
+    },
+    className: classes.root,
+  });
+
   const result = (
-    <PopperUnstyled {...rootProps} modifiers={modifiers}>
+    <MenuRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: PopperUnstyled,
+        slots: {
+          root: component || 'ul',
+        },
+      })}
+    >
       <MenuProvider value={contextValue}>
         <GroupListContext.Provider value="menu">
           <ListProvider nested>
@@ -170,7 +179,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           </ListProvider>
         </GroupListContext.Provider>
       </MenuProvider>
-    </PopperUnstyled>
+    </MenuRoot>
   );
 
   return disablePortal ? (
@@ -280,6 +289,13 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -113,6 +113,7 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | expanded      | `.Mui-expanded`     |
 | focus visible | `.Mui-focusVisible` |
 | focused       | `.Mui-focused`      |
+| readOnly      | `.Mui-readOnly`     |
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 

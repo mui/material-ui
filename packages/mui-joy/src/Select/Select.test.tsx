@@ -293,7 +293,7 @@ describe('Joy <Select />', () => {
       expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');

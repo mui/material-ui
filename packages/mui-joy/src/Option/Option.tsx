@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/base/composeClasses';
 import useOption from '@mui/base/useOption';
-import { useSlotProps } from '@mui/base/utils';
+import useSlot from '../utils/useSlot';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: OptionOwnerState) => {
   return composeClasses(slots, getOptionUtilityClass, {});
 };
 
-const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
+const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -43,7 +43,7 @@ const OptionRoot = styled(StyledListItemButton as unknown as 'button', {
  *
  * - [Option API](https://mui.com/joy-ui/api/option/)
  */
-const Option = React.forwardRef(function Option(inProps, ref) {
+const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef<HTMLLIElement>) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyOption',
@@ -91,19 +91,16 @@ const Option = React.forwardRef(function Option(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     getSlotProps: getRootProps,
     elementType: OptionRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     className: classes.root,
     ownerState,
   });
 
-  return <OptionRoot {...rootProps}>{children}</OptionRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as ExtendOption<OptionTypeMap>;
 
 Option.propTypes /* remove-proptypes */ = {

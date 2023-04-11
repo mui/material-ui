@@ -1,12 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent, OverrideProps, DefaultComponentProps } from '@mui/types';
+import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import PopperUnstyled, {
-  PopperUnstyledProps,
-  PopperUnstyledTypeMap,
-} from '@mui/base/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
@@ -507,9 +504,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
+      keepMounted: true,
     },
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
+    elementType: SelectListbox,
     externalForwardedProps: other,
     getSlotProps: getListboxProps,
     ownerState: {
@@ -524,9 +522,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       color: mergedProps.color || 'neutral',
       disableColorInversion: !mergedProps.disablePortal,
     }),
-    internalForwardedProps: {
-      component: SelectListbox,
-    },
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
@@ -558,6 +553,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [color, contextValue],
   );
 
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
     [listboxProps.modifiers],
@@ -568,12 +564,16 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     result = (
       <SlotListbox
         {...listboxProps}
-        keepMounted
         className={clsx(
           listboxProps.className,
           listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
         )}
+        // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
         modifiers={modifiers}
+        {...(!props.slots?.listbox && {
+          as: PopperUnstyled,
+          slots: { root: listboxProps.as || 'ul' },
+        })}
       >
         <SelectProvider value={context}>
           <GroupListContext.Provider value="select">
@@ -743,6 +743,17 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  slots: PropTypes.shape({
+    button: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    indicator: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for the select.
    */

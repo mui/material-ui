@@ -33,6 +33,7 @@
       "class": ".MuiTabs-root"
     }
   ],
+  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
   "spread": true,
   "muiName": "MuiTabs",
   "forwardsRefTo": "HTMLDivElement",

@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ModalDialogSlot = 'root';
+
+export interface ModalDialogSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type ModalDialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ModalDialogSlots,
+  {
+    root: SlotProps<'div', {}, ModalDialogOwnerState>;
+  }
+>;
 
 export interface ModalDialogPropsColorOverrides {}
 export interface ModalDialogPropsVariantOverrides {}
@@ -39,7 +55,7 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, ModalDialogPropsVariantOverrides>;
-  };
+  } & ModalDialogSlotsAndSlotProps;
   defaultComponent: D;
 }
 

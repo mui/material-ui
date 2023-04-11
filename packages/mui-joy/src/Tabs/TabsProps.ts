@@ -2,13 +2,27 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { TabsUnstyledOwnProps } from '@mui/base/TabsUnstyled';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabsSlot = 'root';
 
+export interface TabsSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabsSlots,
+  {
+    root: SlotProps<'div', {}, TabsOwnerState>;
+  }
+>;
+
 export interface TabsPropsColorOverrides {}
-
 export interface TabsPropsVariantOverrides {}
-
 export interface TabsPropsSizeOverrides {}
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -33,7 +47,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, TabsPropsVariantOverrides>;
-    };
+    } & TabsSlotsAndSlotProps;
   defaultComponent: D;
 }
 
