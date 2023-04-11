@@ -34,6 +34,7 @@ const joyTheme = joy.extendTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           color: theme.vars.palette.text.primary,
+          mixBlendMode: 'darken',
         }),
       },
     },
@@ -52,6 +53,7 @@ const materialTheme = material.createTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           color: theme.palette.text.primary,
+          mixBlendMode: 'darken',
         }),
       },
     },
@@ -132,7 +134,9 @@ describe('Multiple nested theme providers', () => {
     );
     // these test if `useThemeProps` works with theme scoping
     expect(getByText('Joy')).to.have.class(joy.buttonClasses.variantOutlined);
+    expect(getByText('Joy')).toHaveComputedStyle({ mixBlendMode: 'darken' });
     expect(getByText('Material')).to.have.class(material.buttonClasses.outlinedPrimary);
+    expect(getByText('Material')).toHaveComputedStyle({ mixBlendMode: 'darken' });
   });
 
   it('MD3 + Joy UI', () => {
