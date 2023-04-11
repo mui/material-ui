@@ -567,6 +567,11 @@ If you have customized the color of the border, you will need to update the CSS 
  }
 ```
 
+### Update the margin spacing from vertical alignment on middle position
+
+In the v4, the `orientation` prop with "vertical" and the `variant` prop with "middle" added a margin-left and margin-right of `16px`.
+However, in the v5, this margin was decreased to `8px`.
+
 ## ExpansionPanel
 
 ### ✅ Rename components
@@ -1985,4 +1990,8 @@ This leads to differences when applied to union types.
 ```diff
 -import { Omit } from '@mui/types';
 +import { DistributiveOmit } from '@mui/types';
+```
+
+```
+
 ```
