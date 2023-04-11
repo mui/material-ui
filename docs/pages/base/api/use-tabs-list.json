@@ -10,6 +10,13 @@
       "type": { "name": "TabsListProviderValue", "description": "TabsListProviderValue" },
       "required": true
     },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;string | number&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;string | number&gt;) =&gt; void"
+      },
+      "required": true
+    },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabsListRootSlotProps&lt;TOther&gt;",

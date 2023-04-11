@@ -16,8 +16,8 @@
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "dispatch": {
       "type": {
-        "name": "(action: ListAction&lt;Value, SelectInternalState&lt;Value&gt;&gt; | SelectAction) =&gt; void",
-        "description": "(action: ListAction&lt;Value, SelectInternalState&lt;Value&gt;&gt; | SelectAction) =&gt; void"
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void"
       },
       "required": true
     },

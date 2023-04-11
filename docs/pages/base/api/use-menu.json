@@ -17,8 +17,8 @@
     },
     "dispatch": {
       "type": {
-        "name": "(action: ListAction&lt;string, MenuInternalState&gt;) =&gt; void",
-        "description": "(action: ListAction&lt;string, MenuInternalState&gt;) =&gt; void"
+        "name": "(action: ListAction&lt;string&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;string&gt;) =&gt; void"
       },
       "required": true
     },
@@ -29,7 +29,7 @@
       },
       "required": true
     },
-    "highlightedOption": {
+    "highlightedValue": {
       "type": { "name": "string | null", "description": "string | null" },
       "required": true
     },
