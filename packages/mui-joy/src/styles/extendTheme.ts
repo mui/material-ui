@@ -390,27 +390,21 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     xs: 200,
     sm: 300,
     md: 500,
-    lg: 600,
-    xl: 700,
-    xl2: 800,
-    xl3: 900,
+    lg: 700,
+    xl: 900,
     ...scalesInput.fontWeight,
   };
 
   const fontSize = {
-    xs3: '0.5rem',
-    xs2: '0.625rem',
-    xs: '0.75rem',
-    sm: '0.875rem',
-    md: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    xl2: '1.5rem',
-    xl3: '1.875rem',
-    xl4: '2.25rem',
-    xl5: '3rem',
-    xl6: '3.75rem',
-    xl7: '4.5rem',
+    xs: '0.75rem', // 12px
+    sm: '0.875rem', // 14px
+    md: '1rem', // 16px
+    lg: '1.125rem', // 18px
+    xl: '1.25rem', // 20px
+    xl2: '1.5rem', // 24px
+    xl3: '1.875rem', // 30px
+    xl4: '2.25rem', // 36px
+    xl5: '3rem', // 48px
     ...scalesInput.fontSize,
   };
 
@@ -555,7 +549,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       display1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl7', fontSize.xl7),
+        fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
@@ -563,7 +557,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       display2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-xl', fontWeight.xl.toString()),
-        fontSize: getCssVar('fontSize-xl6', fontSize.xl6),
+        fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
@@ -571,7 +565,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       h1: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
-        fontSize: getCssVar('fontSize-xl5', fontSize.xl5),
+        fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
@@ -579,7 +573,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       h2: {
         fontFamily: getCssVar('fontFamily-display', fontFamily.display),
         fontWeight: getCssVar('fontWeight-lg', fontWeight.lg.toString()),
-        fontSize: getCssVar('fontSize-xl4', fontSize.xl4),
+        fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         letterSpacing: getCssVar('letterSpacing-sm', letterSpacing.sm),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
@@ -587,25 +581,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       h3: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-xl3', fontSize.xl3),
+        fontSize: getCssVar('fontSize-xl', fontSize.xl),
         lineHeight: getCssVar('lineHeight-sm', lineHeight.sm.toString()),
         color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
       },
       h4: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-xl2', fontSize.xl2),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-      },
-      h5: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
-        fontSize: getCssVar('fontSize-xl', fontSize.xl),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-primary', lightColorSystem.palette.text.primary),
-      },
-      h6: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontWeight: getCssVar('fontWeight-md', fontWeight.md.toString()),
         fontSize: getCssVar('fontSize-lg', fontSize.lg),
@@ -627,18 +607,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       body3: {
         fontFamily: getCssVar('fontFamily-body', fontFamily.body),
         fontSize: getCssVar('fontSize-xs', fontSize.xs),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
-      },
-      body4: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-xs2', fontSize.xs2),
-        lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
-        color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
-      },
-      body5: {
-        fontFamily: getCssVar('fontFamily-body', fontFamily.body),
-        fontSize: getCssVar('fontSize-xs3', fontSize.xs3),
         lineHeight: getCssVar('lineHeight-md', lineHeight.md.toString()),
         color: getCssVar('palette-text-tertiary', lightColorSystem.palette.text.tertiary),
       },
