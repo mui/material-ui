@@ -72,9 +72,9 @@ export default function CustomizedInputsStyleOverrides() {
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: { sm: '1fr 1fr 1fr' },
+        gap: 2,
       }}
     >
       <ThemeProvider theme={(outerTheme: Theme) => customTheme(outerTheme)}>
