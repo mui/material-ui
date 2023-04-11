@@ -280,7 +280,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
 
     let tabMeta;
-    if (tabsNode && value !== false) {
+    if (tabsNode && value !== null) {
       const currentChildren = tabListRef.current.children;
 
       if (currentChildren.length > 0) {
