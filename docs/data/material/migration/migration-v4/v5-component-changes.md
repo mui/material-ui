@@ -2010,7 +2010,3 @@ This leads to differences when applied to union types.
 -import { Omit } from '@mui/types';
 +import { DistributiveOmit } from '@mui/types';
 ```
-
-```
-
-```
