@@ -114,15 +114,36 @@ You can use these `styled-component` examples as a reference:
 
 This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.
 
-## Using with Theme UI
+## Theme scoping
 
 :::warning
 Having more than one styling libraries could introduce unnecessary complexity to your project. You should have a very good reason to do this.
 :::
 
-Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
+Material UI can coexist with other libraries that depend on emotion or styled-components. To do that, render Material UI's `ThemeProvider` as an inner provider and use the `THEME_ID` to store the theme.
 
-When you use Material UI's APIs such as `styled`, `sx` prop, and `useTheme`, you will get theme that you provide to the `THEME_ID` property.
+```js
+import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
+import { AnotherThemeProvider } from 'another-ui-library';
+
+const materialTheme = createTheme(…your theme);
+
+function App() {
+  return (
+    <AnotherThemeProvider>
+      <ThemeProvider theme={{ [THEME_ID]: materialTheme }}>
+        …components from another library and Material UI
+      </ThemeProvider>
+    </AnotherThemeProvider>
+  )
+}
+```
+
+The theme of Material UI will be separated from the other library, so when you use APIs such as `styled`, `sx` prop, and `useTheme`, you will be able to access Material UI's theme like you normally would.
+
+### Using with [Theme UI](https://theme-ui.com/)
+
+Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
 
 ```js
 import { ThemeProvider as ThemeUIThemeProvider } from 'theme-ui';
@@ -154,15 +175,9 @@ function App() {
 }
 ```
 
-## Using wit Chakra UI
+### Using with Chakra UI
 
-:::warning
-Having more than one styling libraries could introduce unnecessary complexity to your project. You should have a very good reason to do this.
-:::
-
-Render Material UI's theme provider below Theme UI's provider and assign the material theme to the `THEME_ID` property.
-
-When you use Material UI's APIs such as `styled`, `sx` prop, and `useTheme`, you will get theme that you provide to the `THEME_ID` property.
+Render Material UI's theme provider below Chakra UI's provider and assign the material theme to the `THEME_ID` property.
 
 ```js
 import { ChakraProvider, chakraExtendTheme } from '@chakra-ui/react';
