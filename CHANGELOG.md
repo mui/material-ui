@@ -8,7 +8,7 @@ _Apr 11, 2023_
 
 A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
-- 💫 Added theme scope for using multiple design systems (#36664) @siriwatknp
+- 💫 Added [theme scope](https://mui.com/material-ui/guides/styled-engine) for using multiple design systems (#36664) @siriwatknp
 - 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/system@5.12.0`
