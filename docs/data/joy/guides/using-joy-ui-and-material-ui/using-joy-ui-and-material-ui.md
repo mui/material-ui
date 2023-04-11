@@ -18,7 +18,7 @@ Additionally, keep these in mind when using them together:
 - Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
 - Theme scoping must be done on one of the libraries.
 
-## Set up providers
+## Set up the providers
 
 Render Material UI's `CssVarsProvider` inside Joy UI's provider and use `THEME_ID` to separate the themes from each other.
 
@@ -41,54 +41,61 @@ export default function App() {
 }
 ```
 
-[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/using-joy-ui-and-material-ui-together-tx58w5?file=/demo.tsx)
+<iframe src="https://codesandbox.io/embed/using-joy-ui-and-material-ui-together-tx58w5?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+     style="width:100%; height:400px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Joy UI - Human Interface Guidelines Typography System"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 ### Sync the color mode
 
-- If you want to change the `defaultMode`, you have to do it on both of the providers:
+To sync the color mode between the providers, call `setMode` from both of the libraries:
 
-  ```js
-  <MaterialCssVarsProvider
-    defaultMode="system"
-    theme={{ [MATERIAL_THEME_ID]: materialTheme }}
-  >
-    <JoyCssVarsProvider defaultMode="system">
-      ...Material UI and Joy UI components
-    </JoyCssVarsProvider>
-  </MaterialCssVarsProvider>
-  ```
+```js
+import { useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
+import { useColorScheme as useMaterialColorScheme } from '@mui/material/styles';
 
-- To sync the color mode between the providers, call `setMode` from both of the libraries:
+const ModeToggle = () => {
+  const { mode, setMode: setMaterialMode } = useMaterialColorScheme();
+  const { setMode: setJoyMode } = useJoyColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    // prevent server-side rendering mismatch
+    // because `mode` is undefined on the server.
+    return null;
+  }
+  return (
+    <IconButton
+      onClick={() => {
+        setMode(mode === 'dark' ? 'light' : 'dark');
+        setJoyMode(mode === 'dark' ? 'light' : 'dark');
+      }}
+    >
+      {/** You can use `mode` from Joy UI or Material UI since they are synced **/}
+      {mode === 'dark' ? <DarkMode /> : <LightMode />}
+    </IconButton>
+  );
+};
+```
 
-  ```js
-  import { useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
-  import { useColorScheme as useMaterialColorScheme } from '@mui/material/styles';
+### Default mode
 
-  const ModeToggle = () => {
-    const { mode, setMode: setMaterialMode } = useMaterialColorScheme();
-    const { setMode: setJoyMode } = useJoyColorScheme();
-    const [mounted, setMounted] = React.useState(false);
-    React.useEffect(() => {
-      setMounted(true);
-    }, []);
-    if (!mounted) {
-      // prevent server-side rendering mismatch
-      // because `mode` is undefined on the server.
-      return null;
-    }
-    return (
-      <IconButton
-        onClick={() => {
-          setMode(mode === 'dark' ? 'light' : 'dark');
-          setJoyMode(mode === 'dark' ? 'light' : 'dark');
-        }}
-      >
-        {/** You can use `mode` from Joy UI or Material UI since they are synced **/}
-        {mode === 'dark' ? <DarkMode /> : <LightMode />}
-      </IconButton>
-    );
-  };
-  ```
+If you want to change the `defaultMode`, you have to specify the prop to both of the providers:
+
+```js
+<MaterialCssVarsProvider
+  defaultMode="system"
+  theme={{ [MATERIAL_THEME_ID]: materialTheme }}
+>
+  <JoyCssVarsProvider defaultMode="system">
+    ...Material UI and Joy UI components
+  </JoyCssVarsProvider>
+</MaterialCssVarsProvider>
+```
 
 ## Caveat
 
