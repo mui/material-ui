@@ -4,9 +4,11 @@ import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const customTheme = (theme) =>
+const customTheme = (outerTheme) =>
   createTheme({
-    ...theme,
+    palette: {
+      mode: outerTheme.palette.mode,
+    },
     components: {
       MuiTextField: {
         styleOverrides: {
