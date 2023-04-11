@@ -131,11 +131,14 @@ The `color` prop changes the highlight color of the text field when focused.
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-### Using `styled` API
+### Using the styled API
 
 {{"demo": "CustomizedInputsStyled.js"}}
 
-### Using [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) API
+### Using the theme style overrides API
+
+Use the `styleOverrides` key to change any style injected by Material UI into the DOM.
+See the [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) documentation for further details.
 
 {{"demo": "CustomizedInputsStyleOverrides.js"}}
 
