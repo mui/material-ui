@@ -82,7 +82,7 @@ function useList<
     orientation = 'vertical',
     pageSize = 5,
     reducerActionContext = EMPTY_OBJECT as CustomActionContext,
-    selectionLimit = null,
+    selectionMode = 'single',
     stateReducer: externalReducer,
   } = params;
 
@@ -175,7 +175,7 @@ function useList<
       onHighlightChange: handleHighlightChange,
       orientation,
       pageSize,
-      selectionLimit,
+      selectionMode,
       stateComparers,
     };
   }, [
@@ -189,7 +189,7 @@ function useList<
     handleHighlightChange,
     orientation,
     pageSize,
-    selectionLimit,
+    selectionMode,
     stateComparers,
   ]);
 

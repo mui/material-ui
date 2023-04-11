@@ -1,5 +1,5 @@
 import { ListActionTypes } from './listActions.types';
-import { ListState, ListReducerAction, ListActionContext } from './useList.types';
+import { ListState, ListReducerAction, ListActionContext, SelectionMode } from './useList.types';
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 
@@ -167,7 +167,7 @@ export function moveHighlight<ItemValue>(
  *
  * @param item Item to toggle.
  * @param selectedValues Already selected items.
- * @param selectionLimit The number of items that can be simultanously selected. If null, there is no limit.
+ * @param selectionMode The number of items that can be simultanously selected.
  * @param itemComparer A custom item comparer function.
  *
  * @returns The new array of selected items.
@@ -175,15 +175,15 @@ export function moveHighlight<ItemValue>(
 export function toggleSelection<ItemValue>(
   item: ItemValue,
   selectedValues: ItemValue[],
-  selectionLimit: number | null,
+  selectionMode: SelectionMode,
   itemComparer: (item1: ItemValue, item2: ItemValue) => boolean,
 ) {
-  if (selectionLimit === 0) {
+  if (selectionMode === 'none') {
     return [];
   }
 
-  // Selection limit = 1 is a special case - we don't want to allow deselecting the item.
-  if (selectionLimit === 1) {
+  if (selectionMode === 'single') {
+    // if the item to select has already been selected, return the original array
     if (itemComparer(selectedValues[0], item)) {
       return selectedValues;
     }
@@ -196,16 +196,8 @@ export function toggleSelection<ItemValue>(
     return selectedValues.filter((sv) => !itemComparer(sv, item));
   }
 
-  // The toggled item is not selected and the selected array is shorter than the limit - add to the selection.
-  if (selectionLimit === null || selectedValues.length < selectionLimit) {
-    return [...selectedValues, item];
-  }
-
-  // Truncate the selection to the limit (discard items with lower indexes).
-  const newSelection = selectedValues.slice(selectedValues.length - selectionLimit + 1);
-  newSelection.push(item);
-
-  return newSelection;
+  // The toggled item is not selected - add it to the selection.
+  return [...selectedValues, item];
 }
 
 function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
@@ -213,7 +205,7 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   context: ListActionContext<ItemValue>,
 ): State {
-  const { itemComparer, isItemDisabled, selectionLimit, items } = context;
+  const { itemComparer, isItemDisabled, selectionMode, items } = context;
   const { selectedValues } = state;
 
   const itemIndex = items.findIndex((i) => itemComparer(item, i));
@@ -223,7 +215,7 @@ function handleItemSelection<ItemValue, State extends ListState<ItemValue>>(
   }
 
   // if the item is already selected, remove it from the selection, otherwise add it
-  const newSelectedValues = toggleSelection(item, selectedValues, selectionLimit, itemComparer);
+  const newSelectedValues = toggleSelection(item, selectedValues, selectionMode, itemComparer);
 
   return {
     ...state,

@@ -1,7 +1,8 @@
 import { expect } from 'chai';
-import selectReducer, { SelectActionContext } from './selectReducer';
+import selectReducer from './selectReducer';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 import { ActionWithContext } from '../utils/useControllableReducer.types';
+import { ListActionContext } from '../useList';
 
 describe('selectReducer', () => {
   const irrelevantConfig = {
@@ -14,7 +15,7 @@ describe('selectReducer', () => {
     itemStringifier: (option: any) => option,
     orientation: 'vertical' as const,
     pageSize: 5,
-    selectionLimit: null,
+    selectionMode: 'single' as const,
   };
 
   describe('action: buttonClick', () => {
@@ -25,13 +26,10 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, SelectActionContext<unknown>> = {
+      const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
-        context: {
-          ...irrelevantConfig,
-          multiple: false,
-        },
+        context: irrelevantConfig,
       };
 
       const result = selectReducer(state, action);
@@ -45,12 +43,11 @@ describe('selectReducer', () => {
         open: true,
       };
 
-      const action: ActionWithContext<SelectAction, SelectActionContext<unknown>> = {
+      const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
           ...irrelevantConfig,
-          multiple: false,
         },
       };
 
@@ -65,13 +62,12 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
+      const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
           ...irrelevantConfig,
           items: ['1', '2', '3'],
-          multiple: false,
         },
       };
 
@@ -86,13 +82,12 @@ describe('selectReducer', () => {
         open: false,
       };
 
-      const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
+      const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
         type: SelectActionTypes.buttonClick,
         event: {} as any, // not relevant
         context: {
           ...irrelevantConfig,
           items: ['1', '2', '3'],
-          multiple: false,
         },
       };
 
@@ -114,14 +109,11 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: ActionWithContext<SelectAction, SelectActionContext<unknown>> = {
+          const action: ActionWithContext<SelectAction, ListActionContext<unknown>> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
-            context: {
-              ...irrelevantConfig,
-              multiple: false,
-            },
+            context: irrelevantConfig,
           };
 
           const result = selectReducer(state, action);
@@ -135,14 +127,13 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
+          const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
             context: {
               ...irrelevantConfig,
               items: ['1', '2', '3'],
-              multiple: false,
             },
           };
 
@@ -157,14 +148,13 @@ describe('selectReducer', () => {
             open: false,
           };
 
-          const action: ActionWithContext<SelectAction, SelectActionContext<string>> = {
+          const action: ActionWithContext<SelectAction, ListActionContext<string>> = {
             type: SelectActionTypes.buttonArrowKeyDown,
             key: testCase.key,
             event: {} as any, // not relevant
             context: {
               ...irrelevantConfig,
               items: ['1', '2', '3'],
-              multiple: false,
             },
           };
 

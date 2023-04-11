@@ -84,7 +84,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     listRef: handleRef,
     onStateChange: stateChangeHandler,
     reducerActionContext: { listboxRef },
-    selectionLimit: 0,
+    selectionMode: 'none',
     stateReducer: menuReducer,
   });
 

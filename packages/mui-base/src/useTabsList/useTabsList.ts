@@ -122,7 +122,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
       () => ({ selectionFollowsFocus: selectionFollowsFocus || false }),
       [selectionFollowsFocus],
     ),
-    selectionLimit: 1,
+    selectionMode: 'single',
     stateReducer: tabsListReducer,
   });
 

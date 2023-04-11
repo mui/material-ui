@@ -17,7 +17,7 @@ type ListActionContextRequiredKeys =
   | 'itemStringifier'
   | 'orientation'
   | 'pageSize'
-  | 'selectionLimit';
+  | 'selectionMode';
 
 /**
  * The subset of `UseListParameters` that is passed to the list reducer actions.
@@ -66,6 +66,8 @@ export type ListReducer<ItemValue, State extends ListState<ItemValue>, CustomAct
 ) => State;
 
 export type FocusManagementType = 'DOM' | 'activeDescendant';
+
+export type SelectionMode = 'none' | 'single' | 'multiple';
 
 /**
  * Parameters of the useList hook.
@@ -189,12 +191,10 @@ export interface UseListParameters<
    */
   orientation?: 'horizontal-ltr' | 'horizontal-rtl' | 'vertical';
   /**
-   * Maximum number of items that can be selected at once.
-   * Set to `null` to disable the limit.
-   *
-   * @default null
+   * Controls how many items can be selected at once: none (the selection functionality is disabled in this case), one, or indefinitely many.
+   * @default 'single'
    */
-  selectionLimit?: number | null;
+  selectionMode?: SelectionMode;
   /**
    * Custom state reducer function. It calculates the new state (highlighted and selected items + optional custom state)
    * based on the previous one and the performed action.

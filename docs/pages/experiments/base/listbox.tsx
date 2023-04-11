@@ -137,7 +137,7 @@ function List() {
     getItemId: React.useCallback((item: number) => `item-${item}`, []),
     orientation,
     focusManagement,
-    selectionLimit: 1,
+    selectionMode: 'single',
   });
 
   const {

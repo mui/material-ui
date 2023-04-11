@@ -8,20 +8,13 @@ import {
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
 
-export type SelectActionContext<OptionValue> = ListActionContext<OptionValue> & {
-  multiple: boolean;
-};
-
 export default function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,
-  action: ActionWithContext<
-    ListAction<OptionValue> | SelectAction,
-    SelectActionContext<OptionValue>
-  >,
+  action: ActionWithContext<ListAction<OptionValue> | SelectAction, ListActionContext<OptionValue>>,
 ) {
   const { open } = state;
   const {
-    context: { multiple },
+    context: { selectionMode },
   } = action;
 
   switch (action.type) {
@@ -67,13 +60,13 @@ export default function selectReducer<OptionValue>(
 
   const newState: SelectInternalState<OptionValue> = listReducer(
     state,
-    action as ActionWithContext<ListAction<OptionValue>, SelectActionContext<OptionValue>>,
+    action as ActionWithContext<ListAction<OptionValue>, ListActionContext<OptionValue>>,
   );
 
   switch (action.type) {
     case ListActionTypes.keyDown:
       if (
-        !multiple &&
+        selectionMode === 'single' &&
         (action.event.key === 'Enter' || action.event.key === ' ' || action.event.key === 'Escape')
       ) {
         return {
@@ -85,7 +78,7 @@ export default function selectReducer<OptionValue>(
       break;
 
     case ListActionTypes.itemClick:
-      if (!multiple) {
+      if (selectionMode === 'single') {
         return {
           ...newState,
           open: false,

@@ -229,7 +229,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
     itemStringifier: stringifyOption,
-    selectionLimit: multiple ? null : 1,
+    selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
   };
 

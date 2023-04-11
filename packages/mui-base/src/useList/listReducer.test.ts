@@ -25,7 +25,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
       };
 
@@ -54,7 +54,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
         item: 'two',
       };
@@ -63,7 +63,7 @@ describe('listReducer', () => {
       expect(result.selectedValues).to.deep.equal(['two']);
     });
 
-    it('replaces the selectedValues with the clicked value if selectionLimit = 1', () => {
+    it('replaces the selectedValues with the clicked value if selectionMode = "single"', () => {
       const state: ListState<string> = {
         highlightedValue: 'a',
         selectedValues: ['one'],
@@ -82,7 +82,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: 1,
+          selectionMode: 'single',
         },
         item: 'two',
       };
@@ -91,7 +91,7 @@ describe('listReducer', () => {
       expect(result.selectedValues).to.deep.equal(['two']);
     });
 
-    it('add the clicked value to the selection if selectionLimit is not set', () => {
+    it('add the clicked value to the selection if selectionMode = "multiple"', () => {
       const state: ListState<string> = {
         highlightedValue: 'one',
         selectedValues: ['one'],
@@ -110,7 +110,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'multiple',
         },
         item: 'two',
       };
@@ -119,35 +119,7 @@ describe('listReducer', () => {
       expect(result.selectedValues).to.deep.equal(['one', 'two']);
     });
 
-    it('limits the selection to specified number of items', () => {
-      const state: ListState<string> = {
-        highlightedValue: 'three',
-        selectedValues: ['one', 'two'],
-      };
-
-      const action: ListReducerAction<string> = {
-        type: ListActionTypes.itemClick,
-        event: {} as any,
-        item: 'three',
-        context: {
-          items: ['one', 'two', 'three'],
-          disableListWrap: false,
-          disabledItemsFocusable: false,
-          focusManagement: 'activeDescendant',
-          isItemDisabled: () => false,
-          itemComparer: (o, v) => o === v,
-          itemStringifier: (option) => option,
-          orientation: 'vertical',
-          pageSize: 5,
-          selectionLimit: 2,
-        },
-      };
-
-      const result = listReducer(state, action);
-      expect(result.selectedValues).to.deep.equal(['two', 'three']);
-    });
-
-    it('remove the clicked value from the selection if selectionLimit is not set and it was selected already', () => {
+    it('remove the clicked value from the selection if selectionMode = "multiple" and it was selected already', () => {
       const state: ListState<string> = {
         highlightedValue: 'three',
         selectedValues: ['one', 'two'],
@@ -166,13 +138,41 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'multiple',
         },
         item: 'two',
       };
 
       const result = listReducer(state, action);
       expect(result.selectedValues).to.deep.equal(['one']);
+    });
+
+    it('does not select the clicked value to the selection if selectionMode = "none"', () => {
+      const state: ListState<string> = {
+        highlightedValue: 'one',
+        selectedValues: [],
+      };
+
+      const action: ListReducerAction<string> = {
+        type: ListActionTypes.itemClick,
+        event: {} as any, // not relevant
+        context: {
+          items: ['one', 'two', 'three'],
+          disableListWrap: false,
+          disabledItemsFocusable: false,
+          focusManagement: 'activeDescendant',
+          isItemDisabled: () => false,
+          itemComparer: (o, v) => o === v,
+          itemStringifier: (option) => option,
+          orientation: 'vertical',
+          pageSize: 5,
+          selectionMode: 'none',
+        },
+        item: 'two',
+      };
+
+      const result = listReducer(state, action);
+      expect(result.selectedValues).to.deep.equal([]);
     });
   });
 
@@ -576,7 +576,7 @@ describe('listReducer', () => {
               itemStringifier: (option) => option,
               orientation: 'vertical',
               pageSize: 3,
-              selectionLimit: null,
+              selectionMode: 'single',
             },
           };
 
@@ -607,7 +607,7 @@ describe('listReducer', () => {
             itemStringifier: (option) => option,
             orientation: 'vertical',
             pageSize: 5,
-            selectionLimit: null,
+            selectionMode: 'single',
           },
         };
 
@@ -615,7 +615,7 @@ describe('listReducer', () => {
         expect(result.selectedValues).to.deep.equal(['two']);
       });
 
-      it('replaces the selectedValues with the highlighted value if selectionLimit = 1', () => {
+      it('replaces the selectedValues with the highlighted value if selectionMode = "single"', () => {
         const state: ListState<string> = {
           highlightedValue: 'two',
           selectedValues: ['one'],
@@ -635,7 +635,7 @@ describe('listReducer', () => {
             itemStringifier: (option) => option,
             orientation: 'vertical',
             pageSize: 5,
-            selectionLimit: 1,
+            selectionMode: 'single',
           },
         };
 
@@ -643,7 +643,7 @@ describe('listReducer', () => {
         expect(result.selectedValues).to.deep.equal(['two']);
       });
 
-      it('add the highlighted value to the selection if selectionLimit is not set', () => {
+      it('add the highlighted value to the selection if selectionMode = "multiple"', () => {
         const state: ListState<string> = {
           highlightedValue: 'two',
           selectedValues: ['one'],
@@ -663,40 +663,12 @@ describe('listReducer', () => {
             itemStringifier: (option) => option,
             orientation: 'vertical',
             pageSize: 5,
-            selectionLimit: null,
+            selectionMode: 'multiple',
           },
         };
 
         const result = listReducer(state, action);
         expect(result.selectedValues).to.deep.equal(['one', 'two']);
-      });
-
-      it('limits the selection to specified number of items', () => {
-        const state: ListState<string> = {
-          highlightedValue: 'three',
-          selectedValues: ['one', 'two'],
-        };
-
-        const action: ListReducerAction<string> = {
-          type: ListActionTypes.keyDown,
-          key: 'Enter',
-          event: {} as any,
-          context: {
-            items: ['one', 'two', 'three'],
-            disableListWrap: false,
-            disabledItemsFocusable: false,
-            focusManagement: 'activeDescendant',
-            isItemDisabled: () => false,
-            itemComparer: (o, v) => o === v,
-            itemStringifier: (option) => option,
-            orientation: 'vertical',
-            pageSize: 5,
-            selectionLimit: 2,
-          },
-        };
-
-        const result = listReducer(state, action);
-        expect(result.selectedValues).to.deep.equal(['two', 'three']);
       });
     });
   });
@@ -722,7 +694,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
       };
 
@@ -750,7 +722,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
       };
 
@@ -778,7 +750,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
       };
 
@@ -806,7 +778,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
       };
 
@@ -834,7 +806,7 @@ describe('listReducer', () => {
           itemStringifier: (option) => option,
           orientation: 'vertical',
           pageSize: 5,
-          selectionLimit: null,
+          selectionMode: 'single',
         },
       };
 
@@ -852,7 +824,7 @@ describe('listReducer', () => {
       itemStringifier: (option: any) => option,
       orientation: 'vertical' as const,
       pageSize: 5,
-      selectionLimit: null,
+      selectionMode: 'single' as const,
     };
 
     describe('using default item comparer', () => {
