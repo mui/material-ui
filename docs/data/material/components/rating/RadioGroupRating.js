@@ -43,6 +43,7 @@ function IconContainer(props) {
 }
 
 IconContainer.propTypes = {
+  isActive: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };
 
