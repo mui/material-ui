@@ -50,6 +50,35 @@ describe('Theme scoping', () => {
     ).not.to.throw();
   });
 
+  it('theme scoping works with custom theme', () => {
+    // @ts-ignore
+    const useStyles = makeStyles<material.Theme>((theme) => ({
+      root: {
+        mixBlendMode: theme.palette.divider,
+      },
+    }));
+    function Component() {
+      const classes = useStyles();
+
+      return <div className={classes.root}>Component</div>;
+    }
+
+    const { container } = render(
+      <material.ThemeProvider
+        theme={{
+          [material.THEME_ID]: material.createTheme({
+            palette: {
+              divider: 'darken',
+            },
+          }),
+        }}
+      >
+        <Component />
+      </material.ThemeProvider>,
+    );
+    expect(container.firstChild).toHaveComputedStyle({ mixBlendMode: 'darken' });
+  });
+
   it('should get Material UI theme even it is inside Joy provider', () => {
     const useStyles = makeStyles<material.Theme>((theme) => ({
       root: {
