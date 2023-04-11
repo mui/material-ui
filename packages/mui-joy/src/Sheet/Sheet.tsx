@@ -1,9 +1,9 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
 import { getPath } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -11,6 +11,7 @@ import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {
   const { variant, color } = ownerState;
@@ -100,15 +101,15 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const result = (
-    <SheetRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    />
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: SheetRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  const result = <SlotRoot {...rootProps} />;
 
   if (invertedColors) {
     return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;

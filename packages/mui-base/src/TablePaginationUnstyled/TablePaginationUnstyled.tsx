@@ -11,7 +11,6 @@ import {
   TablePaginationUnstyledProps,
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
-  ItemAriaLabelType,
   TablePaginationUnstyledRootSlotProps,
   TablePaginationUnstyledSelectSlotProps,
   TablePaginationUnstyledActionsSlotProps,
@@ -21,6 +20,7 @@ import {
   TablePaginationUnstyledToolbarSlotProps,
   TablePaginationUnstyledSpacerSlotProps,
 } from './TablePaginationUnstyled.types';
+import { ItemAriaLabelType } from './common.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
@@ -57,7 +57,7 @@ const useUtilityClasses = () => {
  *
  * API:
  *
- * - [TablePaginationUnstyled API](https://mui.com/base/api/table-pagination-unstyled/)
+ * - [TablePaginationUnstyled API](https://mui.com/base/react-table-pagination/components-api/#table-pagination-unstyled)
  */
 const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyledProps>(
   function TablePaginationUnstyled(props, ref) {

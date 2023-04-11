@@ -99,6 +99,8 @@
     "name": "MuiInputBase"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInputBase",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/InputBase/InputBase.js",
   "inheritance": null,

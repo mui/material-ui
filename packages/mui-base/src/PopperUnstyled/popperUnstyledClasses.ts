@@ -2,6 +2,7 @@ import generateUtilityClass from '../generateUtilityClass';
 import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface PopperUnstyledClasses {
+  /** Class name applied to the root element. */
   root: string;
 }
 

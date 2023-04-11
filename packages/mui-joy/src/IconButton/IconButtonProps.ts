@@ -6,8 +6,24 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type IconButtonSlot = 'root';
+
+export interface IconButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root: React.ElementType;
+}
+
+export type IconButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  IconButtonSlots,
+  {
+    root: SlotProps<'button', {}, IconButtonOwnerState>;
+  }
+>;
 
 export interface IconButtonPropsVariantOverrides {}
 export interface IconButtonPropsColorOverrides {}
@@ -58,7 +74,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
      * @default 'soft'
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;
-  };
+  } & IconButtonSlotsAndSlotProps;
   defaultComponent: D;
 }
 

@@ -54,7 +54,7 @@ function isEmpty(obj: State) {
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/base/react-textarea-autosize/components-api/#textarea-autosize)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -167,7 +167,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     });
   }, [getUpdatedState]);
 
-  const syncHeightWithFlushSycn = () => {
+  const syncHeightWithFlushSync = () => {
     const newState = getUpdatedState();
 
     if (isEmpty(newState)) {
@@ -193,7 +193,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       // access a dom node that is no longer there (as the fallback component is being shown instead).
       // See https://github.com/mui/material-ui/issues/32640
       if (inputRef.current) {
-        syncHeightWithFlushSycn();
+        syncHeightWithFlushSync();
       }
     });
     let resizeObserver: ResizeObserver;

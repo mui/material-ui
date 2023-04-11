@@ -40,7 +40,9 @@
       "class": ".MuiOptionGroup-list"
     }
   ],
+  "classes": { "classes": ["disabled"], "globalClasses": { "disabled": "Mui-disabled" } },
   "spread": true,
+  "muiName": "MuiOptionGroup",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionGroupUnstyled/OptionGroupUnstyled.tsx",
   "inheritance": null,

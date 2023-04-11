@@ -4,7 +4,6 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import useTabsList from '@mui/base/useTabsList';
-import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -13,6 +12,7 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabListOwnerState) => {
   const { orientation, size, variant, color } = ownerState;
@@ -87,14 +87,11 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabsListRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabListRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });
@@ -103,11 +100,11 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   return (
     // @ts-ignore conflicted ref types
-    <TabListRoot {...tabsListRootProps}>
+    <SlotRoot {...rootProps}>
       <ListProvider row={orientation === 'horizontal'} nested>
         {processedChildren}
       </ListProvider>
-    </TabListRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 

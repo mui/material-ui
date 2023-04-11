@@ -153,7 +153,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
     }
 
     if (slotOptions.isOptional) {
-      it(`alows omitting the optional ${slotName} slot by providing null`, () => {
+      it(`allows omitting the optional ${slotName} slot by providing null`, () => {
         const components = {
           [slotName]: null,
         };

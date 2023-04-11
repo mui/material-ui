@@ -82,10 +82,37 @@
       "class": ".MuiRadio-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyRadio",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Radio/Radio.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio Group</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio</a></li></ul>",
   "cssComponent": false
 }

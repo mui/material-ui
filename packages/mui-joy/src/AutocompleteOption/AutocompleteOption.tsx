@@ -11,6 +11,7 @@ import autocompleteOptionClasses, {
 } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
   const { color, variant } = ownerState;
@@ -85,18 +86,19 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <AutocompleteOptionRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      role="option"
-      {...other}
-    >
-      {children}
-    </AutocompleteOptionRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteOptionRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'option',
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AutocompleteOptionTypeMap>;
 
 AutocompleteOption.propTypes /* remove-proptypes */ = {

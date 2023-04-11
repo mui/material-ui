@@ -15,6 +15,7 @@ import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { WithOptionalOwnerState } from '../utils';
 
 function useUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -33,7 +34,7 @@ function useUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * API:
  *
- * - [MenuUnstyled API](https://mui.com/base/api/menu-unstyled/)
+ * - [MenuUnstyled API](https://mui.com/base/react-menu/components-api/#menu-unstyled)
  */
 const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   BaseComponentType extends React.ElementType = MenuUnstyledTypeMap['defaultComponent'],
@@ -75,7 +76,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   const classes = useUtilityClasses(ownerState);
 
   const Root = component ?? slots.root ?? PopperUnstyled;
-  const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<MenuUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
@@ -88,7 +89,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     },
     className: classes.root,
     ownerState,
-  }) as MenuUnstyledRootSlotProps;
+  });
 
   const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({

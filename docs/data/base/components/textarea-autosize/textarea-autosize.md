@@ -9,13 +9,15 @@ githubLabel: 'component: TextareaAutosize'
 
 <p class="description">The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Textarea Autosize is a utility component that replaces the native `<textarea>` HTML.
 
 The height of the Textarea Autosize component automatically adjusts as a response to keyboard inputs and window resizing events.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

@@ -49,7 +49,28 @@
       "class": ".MuiListItem-endAction"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "nested",
+      "nesting",
+      "sticky",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/ListItem/ListItem.tsx",
   "inheritance": null,

@@ -10,11 +10,11 @@ export interface SwitchUnstyledClasses {
   track: string;
   /** Class applied to the thumb element */
   thumb: string;
-  /** Class applied to the root element if the switch is checked */
+  /** State class applied to the root element if the switch is checked */
   checked: string;
-  /** Class applied to the root element if the switch is disabled */
+  /** State class applied to the root element if the switch is disabled */
   disabled: string;
-  /** Class applied to the root element if the switch has visible focus */
+  /** State class applied to the root element if the switch has visible focus */
   focusVisible: string;
   /** Class applied to the root element if the switch is read-only */
   readOnly: string;

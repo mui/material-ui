@@ -5,25 +5,18 @@ import FormControlUnstyled, {
 import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#80BFFF',
-  400: '#3399FF',
-  600: '#0072E5',
-};
-
-const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
-};
+export default function FormControlFunctionChild() {
+  return (
+    <FormControlUnstyled defaultValue="" required>
+      {({ filled, focused }: FormControlUnstyledState) => (
+        <React.Fragment>
+          <Input className={filled ? 'filled' : ''} />
+          {filled && !focused && <OkMark>✔</OkMark>}
+        </React.Fragment>
+      )}
+    </FormControlUnstyled>
+  );
+}
 
 const Input = styled(InputUnstyled)(
   ({ theme }) => `
@@ -65,15 +58,22 @@ const OkMark = styled('span')`
   color: rgba(125, 200, 0, 1);
 `;
 
-export default function FormControlFunctionChild() {
-  return (
-    <FormControlUnstyled defaultValue="" required>
-      {({ filled, focused }: FormControlUnstyledState) => (
-        <React.Fragment>
-          <Input className={filled ? 'filled' : ''} />
-          {filled && !focused && <OkMark>✔</OkMark>}
-        </React.Fragment>
-      )}
-    </FormControlUnstyled>
-  );
-}
+const blue = {
+  100: '#DAECFF',
+  200: '#80BFFF',
+  400: '#3399FF',
+  600: '#0072E5',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#E7EBF0',
+  200: '#E0E3E7',
+  300: '#CDD2D7',
+  400: '#B2BAC2',
+  500: '#A0AAB4',
+  600: '#6F7E8C',
+  700: '#3E5060',
+  800: '#2D3843',
+  900: '#1A2027',
+};

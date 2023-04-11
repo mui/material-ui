@@ -58,7 +58,31 @@
       "class": ".MuiTextarea-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error", "focused": "Mui-focused" }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyTextarea",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",
   "inheritance": null,

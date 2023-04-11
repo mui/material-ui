@@ -8,7 +8,7 @@ import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.typ
  *
  * API:
  *
- * - [useTabPanel API](https://mui.com/base/api/use-tab-panel/)
+ * - [useTabPanel API](https://mui.com/base/react-tabs/hooks-api/#use-tab-panel)
  */
 function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
   const { value } = parameters;

@@ -88,6 +88,8 @@
     "name": "MuiPaginationItem"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiPaginationItem",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/PaginationItem/PaginationItem.js",
   "inheritance": null,

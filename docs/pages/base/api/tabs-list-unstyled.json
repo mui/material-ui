@@ -21,7 +21,9 @@
       "class": ".MuiTabsList-root"
     }
   ],
+  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
   "spread": true,
+  "muiName": "MuiTabsList",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsListUnstyled/TabsListUnstyled.tsx",
   "inheritance": null,

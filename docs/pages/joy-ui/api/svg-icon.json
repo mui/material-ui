@@ -30,7 +30,40 @@
   },
   "name": "SvgIcon",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'svg'",
+      "class": ".MuiSvgIcon-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorDanger",
+      "colorInfo",
+      "colorInherit",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "fontSizeInherit",
+      "fontSizeLg",
+      "fontSizeMd",
+      "fontSizeSm",
+      "fontSizeXl",
+      "fontSizeXl2",
+      "fontSizeXl3",
+      "fontSizeXl4",
+      "fontSizeXl5",
+      "fontSizeXl6",
+      "fontSizeXs"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoySvgIcon",
   "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-joy/src/SvgIcon/SvgIcon.tsx",
   "inheritance": null,

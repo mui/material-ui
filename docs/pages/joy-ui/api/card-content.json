@@ -11,7 +11,17 @@
   },
   "name": "CardContent",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiCardContent-root"
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCardContent",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/CardContent/CardContent.tsx",
   "inheritance": null,
