@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## 5.11.17
+## 5.12.0
 
 <!-- generated comparing v5.11.16..master -->
 
@@ -11,7 +11,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - 💫 Added theme scope for using multiple design systems (#36664) @siriwatknp
 - 🐛 bug fixes and 📚 documentation improvements.
 
-### `@mui/system@5.11.17`
+### `@mui/system@5.12.0`
 
 - &#8203;<!-- 05 -->[system] Introduce theme scope for using multiple design systems (#36664) @siriwatknp
 
