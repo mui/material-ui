@@ -87,8 +87,9 @@ const tableSelector = {
   },
   getBodyCellOfRow(row: number | string) {
     if (typeof row === 'number' && row < 0) {
-      return `& tbody tr:last-of-type(${Math.abs(row)}) td, & tbody tr:last-of-type(${
-        Math.abs(row)}) th[scope="row"]`;
+      return `& tbody tr:last-of-type(${Math.abs(row)}) td, & tbody tr:last-of-type(${Math.abs(
+        row,
+      )}) th[scope="row"]`;
     }
     return `& tbody tr:nth-of-type(${row}) td, & tbody tr:nth-of-type(${row}) th[scope="row"]`;
   },
