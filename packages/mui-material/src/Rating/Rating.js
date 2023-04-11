@@ -176,12 +176,12 @@ const RatingDecimal = styled('span', {
 }));
 
 function IconContainer(props) {
-  const { value, ...other } = props;
+  const { value, isActive, ...other } = props;
   return <span {...other} />;
 }
 
 IconContainer.propTypes = {
-  isActive: PropTypes.bool,
+  isActive: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };
 
