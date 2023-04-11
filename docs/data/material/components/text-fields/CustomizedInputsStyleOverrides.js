@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 const customTheme = (outerTheme) =>
   createTheme({
@@ -71,6 +71,8 @@ const customTheme = (outerTheme) =>
   });
 
 export default function CustomizedInputsStyleOverrides() {
+  const outerTheme = useTheme();
+
   return (
     <Box
       sx={{
@@ -79,7 +81,7 @@ export default function CustomizedInputsStyleOverrides() {
         gap: 2,
       }}
     >
-      <ThemeProvider theme={(outerTheme) => customTheme(outerTheme)}>
+      <ThemeProvider theme={customTheme(outerTheme)}>
         <TextField label="Outlined" />
         <TextField label="Filled" variant="filled" />
         <TextField label="Standard" variant="standard" />
