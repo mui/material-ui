@@ -214,10 +214,9 @@ export interface ListItemState {
    */
   disabled: boolean;
   /**
-   * Determines if the item is focusable.
-   * If `undefined`, focusing doesn't apply as focusManagement is set to 'activeDescendant'.
+   * Determines if the item is focusable (its focus is managed by the DOM).
    */
-  focusable: boolean | undefined;
+  focusable: boolean;
   /**
    * If `true` the item is highlighted.
    */

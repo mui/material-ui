@@ -341,50 +341,6 @@ function useList<
     };
   };
 
-  const firstFocusableItem = React.useMemo(() => {
-    if (focusManagement === 'activeDescendant') {
-      // items are not focusable when using activeDescendant
-      return undefined;
-    }
-
-    if (disabledItemsFocusable) {
-      return items[0];
-    }
-
-    for (let i = 0; i < items.length; i += 1) {
-      const item = items[i];
-      if (!isItemDisabled(item, i)) {
-        return item;
-      }
-    }
-
-    return undefined;
-  }, [items, disabledItemsFocusable, focusManagement, isItemDisabled]);
-
-  const isItemFocusable = React.useCallback(
-    (item: ItemValue, highlighted: boolean, disabled: boolean) => {
-      if (focusManagement === 'activeDescendant') {
-        return undefined;
-      }
-
-      // TODO: check if using highlightedValue instead of latestHighlightedValue.current does not kill performance
-      if (highlightedValue == null) {
-        return item === firstFocusableItem;
-      }
-
-      if (!highlighted) {
-        return false;
-      }
-
-      if (disabled && !disabledItemsFocusable) {
-        return false;
-      }
-
-      return true;
-    },
-    [focusManagement, disabledItemsFocusable, firstFocusableItem, highlightedValue],
-  );
-
   const getItemState = React.useCallback(
     (item: ItemValue): ListItemState => {
       const index = items.findIndex((i) => itemComparer(i, item));
@@ -396,7 +352,7 @@ function useList<
       const highlighted =
         latestHighlightedValue.current != null &&
         itemComparer(item, latestHighlightedValue.current);
-      const focusable = isItemFocusable(item, highlighted, disabled);
+      const focusable = focusManagement === 'DOM';
 
       return {
         disabled,
@@ -412,7 +368,7 @@ function useList<
       itemComparer,
       latestSelectedValues,
       latestHighlightedValue,
-      isItemFocusable,
+      focusManagement,
     ],
   );
 

@@ -8,7 +8,7 @@ const dummyGetItemState = () => ({
   highlighted: false,
   selected: false,
   index: 0,
-  focusable: undefined,
+  focusable: false,
 });
 
 describe('<OptionUnstyled />', () => {

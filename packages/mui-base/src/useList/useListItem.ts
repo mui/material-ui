@@ -98,8 +98,8 @@ export default function useListItem<ItemValue>(
   );
 
   let tabIndex: number | undefined;
-  if (focusable !== undefined) {
-    tabIndex = focusable ? 0 : -1;
+  if (focusable) {
+    tabIndex = highlighted ? 0 : -1;
   }
 
   const getRootProps = <TOther extends EventHandlers = {}>(

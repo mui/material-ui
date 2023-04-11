@@ -1,4 +1,11 @@
-import { ListState, ListAction, ListActionContext, listReducer, ListActionTypes } from '../useList';
+import {
+  ListState,
+  ListAction,
+  ListActionContext,
+  listReducer,
+  ListActionTypes,
+  moveHighlight,
+} from '../useList';
 import { ActionWithContext } from '../utils/useControllableReducer.types';
 import { TabsListActionTypes, ValueChangeAction } from './useTabsList.types';
 
@@ -24,10 +31,14 @@ export default function tabsListReducer(
   } = action;
 
   if (action.type === ListActionTypes.itemsChange) {
-    return {
-      ...newState,
-      highlightedValue: newState.selectedValues[0] ?? null,
-    };
+    if (newState.selectedValues.length > 0) {
+      return {
+        ...newState,
+        highlightedValue: newState.selectedValues[0],
+      };
+    }
+
+    moveHighlight(null, 'reset', action.context);
   }
 
   if (selectionFollowsFocus && newState.highlightedValue != null) {

@@ -159,6 +159,55 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     [value, openProp],
   );
 
+  const getItemId = React.useCallback(
+    (itemValue: OptionValue) => options.get(itemValue)?.id,
+    [options],
+  );
+
+  const handleSelectionChange = React.useCallback(
+    (
+      event:
+        | React.MouseEvent<Element, MouseEvent>
+        | React.KeyboardEvent<Element>
+        | React.FocusEvent<Element, Element>
+        | null,
+      newValues: OptionValue[],
+    ) => {
+      if (multiple) {
+        onChange?.(event, newValues as SelectValue<OptionValue, Multiple>);
+      } else {
+        onChange?.(event, (newValues[0] ?? null) as SelectValue<OptionValue, Multiple>);
+      }
+    },
+    [multiple, onChange],
+  );
+
+  const handleHighlightChange = React.useCallback(
+    (
+      event:
+        | React.MouseEvent<Element, MouseEvent>
+        | React.KeyboardEvent<Element>
+        | React.FocusEvent<Element, Element>
+        | null,
+      newValue: OptionValue | null,
+    ) => {
+      onHighlightChange?.(event, newValue ?? null);
+    },
+    [onHighlightChange],
+  );
+
+  const handleStateChange = React.useCallback(
+    (e: React.SyntheticEvent | null, field: string, fieldValue: any) => {
+      if (field === 'open') {
+        onOpenChange?.(fieldValue as boolean);
+        if (fieldValue === false && e?.type !== 'blur') {
+          buttonRef.current?.focus();
+        }
+      }
+    },
+    [onOpenChange],
+  );
+
   const useListParameters: UseListParameters<
     OptionValue,
     SelectInternalState<OptionValue>,
@@ -170,28 +219,13 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       selectedValues: defaultValue ?? [],
       open: defaultOpen,
     }),
-    getItemId: (itemValue) => options.get(itemValue)?.id,
+    getItemId,
     controlledProps: controlledState,
     isItemDisabled,
     listRef: handleListboxRef,
-    onChange: (e, newValues) => {
-      if (multiple) {
-        onChange?.(e, newValues as SelectValue<OptionValue, Multiple>);
-      } else {
-        onChange?.(e, (newValues[0] ?? null) as SelectValue<OptionValue, Multiple>);
-      }
-    },
-    onHighlightChange: (e, newValue) => {
-      onHighlightChange?.(e, newValue ?? null);
-    },
-    onStateChange: (e, field, fieldValue) => {
-      if (field === 'open') {
-        onOpenChange?.(fieldValue as boolean);
-        if (fieldValue === false && e?.type !== 'blur') {
-          buttonRef.current?.focus();
-        }
-      }
-    },
+    onChange: handleSelectionChange,
+    onHighlightChange: handleHighlightChange,
+    onStateChange: handleStateChange,
     reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
     itemStringifier: stringifyOption,

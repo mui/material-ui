@@ -133,14 +133,18 @@ function List() {
   const itemRefs = React.useRef(new Map<number, HTMLElement>());
   const listbox = useList({
     items,
-    getItemDomElement: (item) => itemRefs.current.get(item) || null,
-    getItemId: (item) => `item-${item}`,
+    getItemDomElement: React.useCallback((item: number) => itemRefs.current.get(item) || null, []),
+    getItemId: React.useCallback((item: number) => `item-${item}`, []),
     orientation,
     focusManagement,
     selectionLimit: 1,
   });
 
-  const { getRootProps, contextValue, selectedOptions, highlightedOption } = listbox;
+  const {
+    getRootProps,
+    contextValue,
+    state: { selectedValues, highlightedValue },
+  } = listbox;
 
   const handleItemRef = React.useCallback((item: number, node: HTMLElement | null) => {
     if (node) {
@@ -196,8 +200,8 @@ function List() {
         </div>
       </div>
       <div className="state">
-        <pre>Selected: {selectedOptions.join(', ')}</pre>
-        <pre>Highlighted: {highlightedOption ?? '(none)'}</pre>
+        <pre>Selected: {selectedValues.join(', ')}</pre>
+        <pre>Highlighted: {highlightedValue ?? '(none)'}</pre>
       </div>
       <div {...getRootProps()} className="list" style={{ flexDirection }}>
         <ListContext.Provider value={contextValue}>
