@@ -238,7 +238,7 @@ const styles = `
       border-color: ${grey[300]};
     }
   
-    &:focus {
+    &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${blue[200]};
     }

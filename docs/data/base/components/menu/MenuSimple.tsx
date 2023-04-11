@@ -3,6 +3,7 @@ import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 import { ListActionTypes } from '@mui/base/useList';
@@ -168,7 +169,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   `,
 );
 
-const TriggerButton = styled('button')(
+const TriggerButton = styled(ButtonUnstyled)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -190,7 +191,7 @@ const TriggerButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &:focus {
+  &.${buttonUnstyledClasses.focusVisible} {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
