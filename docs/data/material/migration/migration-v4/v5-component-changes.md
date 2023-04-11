@@ -572,6 +572,25 @@ If you have customized the color of the border, you will need to update the CSS 
 In the v4, the `orientation` prop with "vertical" and the `variant` prop with "middle" added a margin-left and margin-right of `16px`.
 However, in the v5, this margin was decreased to `8px`.
 
+If you want to revert it, you can do in the theme:
+
+```diff
+const theme = createTheme({
+  components: {
+   MuiDivider: {
++     styleOverrides: {
++       root: ({ ownerState, theme }) => ({
++         ...(ownerState.orientation === 'vertical' && ownerState.variant === 'middle' && {
++           marginLeft: theme.spacing(2),
++           marginRight: theme.spacing(2),
++         }),
++       })
++     }
+    },
+  },
+});
+```
+
 ## ExpansionPanel
 
 ### ✅ Rename components
