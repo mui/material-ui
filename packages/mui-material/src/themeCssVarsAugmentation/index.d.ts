@@ -1,6 +1,7 @@
 import type {
   CssVarsTheme,
   CssVarsPalette,
+  PaletteBackgroundChannel,
   PaletteCommonChannel,
   PaletteColorChannel,
   PaletteTextChannel,
@@ -18,6 +19,7 @@ declare module '@mui/material/styles' {
   // Extend the type that will be used in palette
   interface CommonColors extends PaletteCommonChannel {}
   interface PaletteColor extends PaletteColorChannel {}
+  interface TypeBackground extends PaletteBackgroundChannel {}
   interface TypeText extends PaletteTextChannel {}
   interface TypeAction extends PaletteActionChannel {}
 

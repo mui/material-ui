@@ -135,7 +135,7 @@ export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps
  *
  * Demos:
  *
- * - [Tree view](https://mui.com/material-ui/react-tree-view/)
+ * - [Tree View](https://mui.com/material-ui/react-tree-view/)
  *
  * API:
  *

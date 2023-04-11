@@ -14,6 +14,7 @@ import {
 } from './FormControlUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
@@ -33,7 +34,7 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
     ],
   };
 
-  return composeClasses(slots, getFormControlUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getFormControlUnstyledUtilityClass));
 }
 
 /**
@@ -62,11 +63,11 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
  *
  * Demos:
  *
- * - [Unstyled form control](https://mui.com/base/react-form-control/)
+ * - [Unstyled Form Control](https://mui.com/base/react-form-control/)
  *
  * API:
  *
- * - [FormControlUnstyled API](https://mui.com/base/api/form-control-unstyled/)
+ * - [FormControlUnstyled API](https://mui.com/base/react-form-control/components-api/#form-control-unstyled)
  */
 const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
@@ -75,12 +76,12 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     defaultValue,
     children,
     component,
-    components = {},
-    componentsProps = {},
     disabled = false,
     error = false,
     onChange,
     required = false,
+    slotProps = {},
+    slots = {},
     value: incomingValue,
     ...other
   } = props;
@@ -94,10 +95,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const filled = hasValue(value);
 
-  const [focused, setFocused] = React.useState(false);
-  if (disabled && focused) {
-    setFocused(false);
-  }
+  const [focusedState, setFocused] = React.useState(false);
+  const focused = focusedState && !disabled;
+
+  React.useEffect(() => setFocused((isFocused) => (disabled ? false : isFocused)), [disabled]);
 
   const ownerState: FormControlUnstyledOwnerState = {
     ...props,
@@ -108,26 +109,26 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     required,
   };
 
-  const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
-    setValue(event.target.value);
-    onChange?.(event);
-  };
-
-  const childContext: FormControlUnstyledState = {
-    disabled,
-    error,
-    filled,
-    focused,
-    onBlur: () => {
-      setFocused(false);
-    },
-    onChange: handleChange,
-    onFocus: () => {
-      setFocused(true);
-    },
-    required,
-    value: value ?? '',
-  };
+  const childContext: FormControlUnstyledState = React.useMemo(() => {
+    return {
+      disabled,
+      error,
+      filled,
+      focused,
+      onBlur: () => {
+        setFocused(false);
+      },
+      onChange: (event: React.ChangeEvent<NativeFormControlElement>) => {
+        setValue(event.target.value);
+        onChange?.(event);
+      },
+      onFocus: () => {
+        setFocused(true);
+      },
+      required,
+      value: value ?? '',
+    };
+  }, [disabled, error, filled, focused, onChange, required, setValue, value]);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -139,10 +140,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     return children;
   };
 
-  const Root = component ?? components.Root ?? 'div';
+  const Root = component ?? slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -177,20 +178,6 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside the FormControl.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * @ignore
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * @ignore
    */
   defaultValue: PropTypes.any,
@@ -205,7 +192,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * @ignore
+   * Callback fired when the form element's value is modified.
    */
   onChange: PropTypes.func,
   /**
@@ -214,7 +201,22 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
-   * @ignore
+   * The props used for each slot inside the FormControl.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The value of the form element.
    */
   value: PropTypes.any,
 } as any;

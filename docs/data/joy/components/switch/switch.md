@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Switch component
+components: Switch
 githubLabel: 'component: switch'
 unstyled: /base/react-switch/
 ---
@@ -15,9 +16,9 @@ Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"demo": "SwitchUsage.js", "hideToolbar": true}}
+{{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
-:::success
+:::info
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
@@ -41,9 +42,17 @@ To create a controlled switch, use the `checked` and `onChange` props.
 
 {{"demo": "SwitchControlled.js"}}
 
+:::info
+By default, the color of the switch changes from `neutral` to `primary` when it is checked unless you specify the `color` prop directly to the component.
+:::
+
 ### Label
 
-Use the `Switch` component inside the `Typography`'s `endDecorator` prop for having labels.
+When a `Switch` is used together with `FormControl` and `FormLabel`, the switch is labelled automatically. You can also use `FormHelperText` to include a description to the switch as well.
+
+{{"demo": "SwitchControl.js"}}
+
+An alternative way is to place the `Switch` component inside a label element. The `Typography` is used in this case to leverage the typography scale from the theme.
 
 {{"demo": "SwitchLabel.js"}}
 
@@ -55,13 +64,17 @@ To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
 
 ### Track child
 
-Target the track's children using the `componentsProps` prop to display a text inside of it.
+Target the track's children using the `slotProps` prop to display a text inside of it.
 
 {{"demo": "ExampleTrackChild.js"}}
 
+:::warning
+The track text **should not** be used to label the switch, you should use [proper methods](#label) to achieve it.
+:::
+
 ### Thumb child
 
-Simmilarly to the above, target the thumb's children to display icons inside of it.
+Similarly to the above, target the thumb's children to display icons inside of it.
 
 {{"demo": "ExampleThumbChild.js"}}
 
@@ -80,18 +93,18 @@ Here are a few tips to make sure you have an accessible switch component:
 - The `Switch` will render with the `checkbox` role as opposed to `switch`.
   This is mainly because the latter isn't widely supported yet.
   However, if you believe your audience will support it, make sure to test with assistive technology.
-  Use the `componentProps` prop to change the role:
+  Use the `slotProps` prop to change the role:
 
   ```jsx
-  <Switch componentsProps={{ input: { role: 'switch' } }}>
+  <Switch slotProps={{ input: { role: 'switch' } }}>
   ```
 
 - Every form control component should have proper labels.
   This includes radio buttons, checkboxes, and switches.
   In most cases, this is done using the `<label>` element.
-  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `componentProps` prop.
+  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
   ```jsx
-  <Switch value="checkedA" componentsProps={{ 'aria-label': 'Switch A' }} />
+  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
   ```
 
 ## Common examples
@@ -113,7 +126,7 @@ Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Flu
 
 ### iOS
 
-Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and holder the switch.
+Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and hold the switch.
 
 {{"demo": "ExampleIosSwitch.js"}}
 

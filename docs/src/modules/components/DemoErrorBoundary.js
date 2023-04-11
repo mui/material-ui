@@ -42,7 +42,7 @@ export default class DemoErrorBoundary extends React.Component {
         repo: 'material-ui',
         title,
         body: `
-<!-- Please make sure you have fullfilled the following items before submitting -->
+<!-- Please make sure you have fulfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
 - [ ] I have [searched for similar issues](https://github.com/mui/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
@@ -55,7 +55,7 @@ export default class DemoErrorBoundary extends React.Component {
 | Tech         | Version |
 |--------------|---------|
 | MUI  | v${process.env.LIB_VERSION}  |
-| netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
+| Netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
 | Browser      | ${
           typeof window !== 'undefined' && window.navigator
             ? window.navigator.userAgent

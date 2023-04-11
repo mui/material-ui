@@ -7,6 +7,10 @@ import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
 const ratio = 900 / 494;
 
+// 'transparent' is interpreted as transparent black in Safari
+// See https://css-tricks.com/thing-know-gradients-transparent-black/
+const transparent = 'rgba(255,255,255,0)';
+
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
   width: 200,
@@ -20,30 +24,35 @@ const Image = styled('img')(({ theme }) => ({
     height: 450 / ratio,
   },
   border: '6px solid',
-  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
+  borderColor: (theme.vars || theme).palette.grey[400],
   borderRadius: theme.shape.borderRadius,
   objectFit: 'cover',
   transitionProperty: 'all',
   transitionDuration: '150ms',
-  boxShadow:
-    theme.palette.mode === 'dark'
-      ? '0px 4px 20px rgba(0, 0, 0, 0.6)'
-      : '0px 4px 20px rgba(61, 71, 82, 0.25)',
+  boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+  ...theme.applyDarkStyles({
+    borderColor: (theme.vars || theme).palette.grey[800],
+    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
+  }),
 }));
 
-const Anchor = styled('a')(({ theme }) => ({
-  display: 'inline-block',
-  position: 'relative',
-  transitionProperty: 'all',
-  transitionDuration: '150ms',
-  borderRadius: '50%',
-  '&:hover, &:focus': {
-    boxShadow:
-      theme.palette.mode === 'dark'
-        ? `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`
-        : '0 6px 20px 0 rgba(0,0,0,0.2)',
+const Anchor = styled('a')(({ theme }) => [
+  {
+    display: 'inline-block',
+    position: 'relative',
+    transitionProperty: 'all',
+    transitionDuration: '150ms',
+    borderRadius: '50%',
+    '&:hover, &:focus': {
+      boxShadow: '0 6px 20px 0 rgba(0,0,0,0.2)',
+    },
   },
-}));
+  theme.applyDarkStyles({
+    '&:hover, &:focus': {
+      boxShadow: `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`,
+    },
+  }),
+]);
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
@@ -80,43 +89,45 @@ const DesignToolLogo = React.forwardRef<
       src={`/static/branding/design-kits/designkits-${brand}.png`}
       alt=""
       {...props}
-      sx={{
-        boxShadow: (theme) =>
-          `0px 3.57436px 44.6795px ${
-            theme.palette.mode === 'dark'
-              ? theme.palette.primaryDark[900]
-              : 'rgba(90, 105, 120, 0.36)'
-          }`,
-        ...props.sx,
-      }}
+      sx={[
+        (theme) => ({
+          boxShadow: `0px 3.57436px 44.6795px ${'rgba(90, 105, 120, 0.36)'}`,
+          ...theme.applyDarkStyles({
+            boxShadow: `0px 3.57436px 44.6795px ${(theme.vars || theme).palette.primaryDark[900]}`,
+          }),
+        }),
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
     />
   );
 });
 
-export const PrefetchDesignKitImages = () => (
-  <Box
-    sx={{
-      width: 0,
-      height: 0,
-      position: 'fixed',
-      top: -1000,
-      zIndex: -1,
-      '& > img': {
-        position: 'absolute',
-      },
-    }}
-  >
-    <img src="/static/branding/design-kits/designkits1.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits2.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits3.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits-figma.png" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
-    <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
-  </Box>
-);
+export function PrefetchDesignKitImages() {
+  return (
+    <Box
+      sx={{
+        width: 0,
+        height: 0,
+        position: 'fixed',
+        top: -1000,
+        zIndex: -1,
+        '& > img': {
+          position: 'absolute',
+        },
+      }}
+    >
+      <img src="/static/branding/design-kits/designkits1.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits2.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits3.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits-figma.png" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
+      <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
+    </Box>
+  );
+}
 
 const defaultSlideUp = {
   '0%': {
@@ -223,64 +234,60 @@ export default function DesignKits() {
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           position: 'absolute',
           width: '100%',
           height: '100%',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+          bgcolor: 'grey.50',
           opacity: 0.6,
           zIndex: 1,
-        }}
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+          }),
+        })}
       />
       <Box
-        sx={{
+        sx={(theme) => ({
           display: { xs: 'block', md: 'none' },
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          background: (theme) =>
-            `linear-gradient(to bottom, ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[50]
-            } 0%, ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0)
-                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            } 30%, ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0)
-                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            } 70%, ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[50]
-            } 100%)`,
+          background: `linear-gradient(to bottom, ${
+            (theme.vars || theme).palette.grey[50]
+          } 0%, ${transparent} 30%, ${transparent} 70%, ${
+            (theme.vars || theme).palette.grey[50]
+          } 100%)`,
           zIndex: 2,
-        }}
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(to bottom, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            } 0%, ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
+              theme.palette.primaryDark[900],
+              0,
+            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+          }),
+        })}
       />
       <Box
-        sx={{
+        sx={(theme) => ({
           display: { xs: 'none', md: 'block' },
           position: 'absolute',
           top: 0,
           left: 0,
           width: 400,
           height: '100%',
-          background: (theme) =>
-            `linear-gradient(to right, ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[50]
-            }, ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0)
-                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            })`,
+          background: `linear-gradient(to right, ${
+            (theme.vars || theme).palette.grey[50]
+          }, ${transparent})`,
           zIndex: 2,
-        }}
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(to right, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            }, ${alpha(theme.palette.primaryDark[900], 0)})`,
+          }),
+        })}
       />
       <DesignKitTools
         sx={{

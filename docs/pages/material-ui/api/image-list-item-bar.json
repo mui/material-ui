@@ -42,9 +42,11 @@
     "name": "MuiImageListItemBar"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItemBar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ImageListItemBar/ImageListItemBar.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image list</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",
   "cssComponent": false
 }

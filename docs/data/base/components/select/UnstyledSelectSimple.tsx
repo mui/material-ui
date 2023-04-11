@@ -130,20 +130,24 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect<TValue extends {}>(
-  props: SelectUnstyledProps<TValue>,
+const CustomSelect = React.forwardRef(function CustomSelect<
+  TValue extends {},
+  Multiple extends boolean,
+>(
+  props: SelectUnstyledProps<TValue, Multiple>,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
-  const components: SelectUnstyledProps<TValue>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
-}) as <TValue extends {}>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
+  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
+}) as <TValue extends {}, Multiple extends boolean>(
+  props: SelectUnstyledProps<TValue, Multiple> &
+    React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
 
 export default function UnstyledSelectSimple() {

@@ -5,11 +5,12 @@ import {
   SelectUnstyledRootSlotProps,
   SelectUnstyledPopperSlotProps,
   PopperUnstyled,
+  WithOptionalOwnerState,
 } from '@mui/base';
 
-const SelectUnstyledComponentsPropsOverridesTest = (
+const SelectUnstyledSlotPropsOverridesTest = (
   <SelectUnstyled
-    componentsProps={{
+    slotProps={{
       root: {
         // @ts-expect-error - requires module augmentation
         size: 'red',
@@ -27,30 +28,34 @@ const SelectUnstyledComponentsPropsOverridesTest = (
   />
 );
 
-function CustomRoot<TValue extends {}>(props: SelectUnstyledRootSlotProps<TValue>) {
+function CustomRoot<TValue extends {}, Multiple extends boolean>(
+  props: SelectUnstyledRootSlotProps<TValue, Multiple>,
+) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
 }
 
-function CustomPopper<TValue extends {}>(props: SelectUnstyledPopperSlotProps<TValue>) {
+function CustomPopper<TValue extends {}, Multiple extends boolean>(
+  props: WithOptionalOwnerState<SelectUnstyledPopperSlotProps<TValue, Multiple>>,
+) {
   const { ownerState, ...other } = props;
   return <PopperUnstyled {...other} />;
 }
 
 const SelectUnstyledRootComponentOverridesTest = (
   <SelectUnstyled
-    components={{
-      Root: CustomRoot,
-      Listbox: 'ul',
-      Popper: PopperUnstyled,
+    slots={{
+      root: CustomRoot,
+      listbox: 'ul',
+      popper: PopperUnstyled,
     }}
   />
 );
 
 const SelectUnstyledPopperComponentOverridesTest = (
   <SelectUnstyled
-    components={{
-      Popper: CustomPopper,
+    slots={{
+      popper: CustomPopper,
     }}
   />
 );
@@ -59,26 +64,29 @@ function InvalidPopper({ requiredProp }: { requiredProp: string }) {
   return <div />;
 }
 
-const SelectUnstyledComponentsOverridesUsingInvalidComponentTest = (
+const SelectUnstyledSlotsOverridesUsingInvalidComponentTest = (
   <SelectUnstyled
-    components={{
+    slots={{
       // @ts-expect-error - provided a component that requires a prop SelectUnstyled does not provide
-      Popper: InvalidPopper,
+      popper: InvalidPopper,
     }}
   />
 );
 
-const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
+const SelectUnstyledSlotsOverridesUsingHostComponentTest = (
   <SelectUnstyled
-    components={{
+    slots={{
       // @ts-expect-error - provided a host element instead of a component
-      Popper: 'div',
+      popper: 'div',
     }}
   />
 );
 
-const PolymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

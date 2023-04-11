@@ -63,11 +63,11 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-away listener](https://mui.com/base/react-click-away-listener/)
+ * - [Click-Away Listener](https://mui.com/base/react-click-away-listener/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/base/api/click-away-listener/)
+ * - [ClickAwayListener API](https://mui.com/base/react-click-away-listener/components-api/#click-away-listener)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): JSX.Element {
   const {

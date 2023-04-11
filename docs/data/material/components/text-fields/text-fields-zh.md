@@ -3,7 +3,7 @@ product: material-ui
 title: Text field React component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
-materialDesign: https://material.io/components/text-fields
+materialDesign: https://m2.material.io/components/text-fields
 unstyled: /base/react-input/
 ---
 
@@ -21,7 +21,7 @@ unstyled: /base/react-input/
 
 {{"demo": "BasicTextFields.js"}}
 
-**友情提示：** [Material 设计指南](https://material.io/)不再记录 `TextField` 的 standard 布局，（[原因见此](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)），但是 Material-UI 会继续支持此布局。
+**友情提示：** [Material 设计指南](https://m2.material.io/)不再记录 `TextField` 的 standard 布局，（[原因见此](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)），但是 Material-UI 会继续支持此布局。
 
 ## Form props 表单的属性
 
@@ -280,4 +280,4 @@ For more advanced use cases, you might be able to take advantage of:
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
+- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

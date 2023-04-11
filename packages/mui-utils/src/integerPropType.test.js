@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
@@ -34,7 +35,7 @@ describe('integerPropType', () => {
     }).toErrorDev(errorMessage);
   }
 
-  describe('passes on undefined but failes on null value', () => {
+  describe('passes on undefined but fails on null value', () => {
     beforeEach(() => {
       PropTypes.resetWarningCache();
     });

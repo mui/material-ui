@@ -7,6 +7,12 @@ on:
       # We don't need to run CI twice (push+pull_request)
       - 'renovate/**'
   pull_request:
+    paths-ignore:
+      # should sync with ci-check.yml as a workaround to bypass github checks
+      - 'docs/**'
+      - 'examples/**'
+
+permissions: {}
 
 jobs:
   # Tests dev-only scripts across all supported dev environments
@@ -19,12 +25,12 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: 14
           cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies

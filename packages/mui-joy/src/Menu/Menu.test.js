@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, describeConformance, screen, fireEvent } from 'test/utils';
+import {
+  act,
+  createRenderer,
+  describeConformance,
+  screen,
+  fireEvent,
+  describeJoyColorInversion,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
@@ -21,7 +28,7 @@ describe('Joy <Menu />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'classesRoot',
       'componentProp',
       'componentsProp',
@@ -29,6 +36,25 @@ describe('Joy <Menu />', () => {
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));
+
+  describeJoyColorInversion(
+    <Menu
+      open
+      disablePortal
+      anchorEl={() => document.createElement('div')}
+      data-testid="test-element"
+    />,
+    {
+      muiName: 'JoyMenu',
+      classes,
+      portalSlot: 'root',
+    },
+  );
+
+  it('should render with `ul` by default', () => {
+    render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+    expect(screen.getByTestId('popover')).to.have.tagName('ul');
+  });
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();

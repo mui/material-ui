@@ -17,8 +17,17 @@ describe('<FormControlLabel />', () => {
     render,
     muiName: 'MuiFormControlLabel',
     testVariantProps: { disabled: true },
+    testLegacyComponentsProp: true,
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp', 'componentsProp'],
+    slots: {
+      typography: { expectedClassName: classes.label },
+    },
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'slotsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   describe('prop: label', () => {
@@ -32,7 +41,7 @@ describe('<FormControlLabel />', () => {
       expect(getByText(/Pizza/)).to.have.class(classes.label);
     });
 
-    it('should render numberic labels', () => {
+    it('should render numeric labels', () => {
       const { getByText } = render(<FormControlLabel label={5} control={<div />} />);
 
       expect(getByText(/5/)).not.to.equal(null);
@@ -312,7 +321,9 @@ describe('<FormControlLabel />', () => {
   });
 
   it('should not inject extra props', () => {
-    const Control = (props) => <div data-testid="control" name="Dave" {...props} />;
+    function Control(props) {
+      return <div data-testid="control" name="Dave" {...props} />;
+    }
     const { getByTestId } = render(<FormControlLabel label="Pizza" control={<Control />} />);
 
     expect(getByTestId('control')).to.have.attribute('name', 'Dave');

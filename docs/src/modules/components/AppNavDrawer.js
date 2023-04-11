@@ -54,8 +54,7 @@ function ProductDrawerButton(props) {
           minWidth: 0,
           fontSize: theme.typography.pxToRem(13),
           fontWeight: theme.typography.fontWeightMedium,
-          color:
-            theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+          color: (theme.vars || theme).palette.primary[600],
           '& svg': {
             ml: -0.6,
             width: 18,
@@ -64,6 +63,9 @@ function ProductDrawerButton(props) {
           '& > span': {
             ml: '4px',
           },
+          ...theme.applyDarkStyles({
+            color: (theme.vars || theme).palette.primary[300],
+          }),
         })}
       >
         {props.productName}
@@ -92,26 +94,28 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-const ProductIdentifier = ({ name, metadata, versionSelector }) => (
-  <Box sx={{ flexGrow: 1 }}>
-    <Typography
-      sx={(theme) => ({
-        ml: 1,
-        color: theme.palette.grey[600],
-        fontSize: theme.typography.pxToRem(11),
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: '.08rem',
-      })}
-    >
-      {metadata}
-    </Typography>
-    <Box sx={{ display: 'flex' }}>
-      <ProductDrawerButton productName={name} />
-      {versionSelector}
+function ProductIdentifier({ name, metadata, versionSelector }) {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Typography
+        sx={(theme) => ({
+          ml: 1,
+          color: (theme.vars || theme).palette.grey[600],
+          fontSize: theme.typography.pxToRem(11),
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '.08rem',
+        })}
+      >
+        {metadata}
+      </Typography>
+      <Box sx={{ display: 'flex' }}>
+        <ProductDrawerButton productName={name} />
+        {versionSelector}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+}
 
 ProductIdentifier.propTypes = {
   metadata: PropTypes.string,
@@ -119,28 +123,32 @@ ProductIdentifier.propTypes = {
   versionSelector: PropTypes.element,
 };
 
+// To match scrollMarginBottom
+const browserUrlPreviewMarge = 120;
+
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
   useEnhancedEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = parent.querySelector('.app-drawer-active');
+    const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
+    const activeDrawerLink = scrollContainer.querySelector('.app-drawer-active');
 
-    if (!enabled || !parent || !activeElement || !activeElement.scrollIntoView) {
+    if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
     }
 
-    parent.scrollTop = savedScrollTop[slot];
+    scrollContainer.scrollTop = savedScrollTop[slot];
 
-    const activeBox = activeElement.getBoundingClientRect();
+    const activeBox = activeDrawerLink.getBoundingClientRect();
 
-    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
-      parent.scrollTop += activeBox.top - 8 - 32;
+    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
+      // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
+      activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
     return () => {
-      savedScrollTop[slot] = parent.scrollTop;
+      savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
 
@@ -157,6 +165,7 @@ const ToolbarDiv = styled('div')(({ theme }) => ({
   padding: theme.spacing(1.45, 2),
   paddingRight: 0,
   height: 'var(--MuiDocs-header-height)',
+  boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   display: 'flex',
   flexGrow: 1,
   flexDirection: 'row',
@@ -177,6 +186,7 @@ const AppNavPaperComponent = styled('div')(({ theme }) => {
   return {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
+    boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
     paddingBottom: theme.spacing(5),
     [theme.breakpoints.up('xs')]: {
       borderRadius: '0px 10px 10px 0px',
@@ -206,19 +216,17 @@ function renderNavItems(options) {
  * @param {import('docs/src/pages').MuiPage} context.page
  */
 function reduceChildRoutes(context) {
-  const { onClose, activePage, items, depth, t } = context;
+  const { onClose, activePageParents, items, depth, t } = context;
   let { page } = context;
   if (page.inSideNav === false) {
     return items;
   }
 
   const title = pageToTitleI18n(page, t);
-
   if (page.children && page.children.length >= 1) {
-    const topLevel = activePage
-      ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
-        page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
-      : false;
+    const topLevel =
+      activePageParents.map((parentPage) => parentPage.pathname).indexOf(page.pathname) !== -1;
+
     let firstChild = page.children[0];
 
     if (firstChild.subheader && firstChild.children) {
@@ -226,16 +234,21 @@ function reduceChildRoutes(context) {
     }
 
     const subheader = Boolean(page.subheader);
-
+    const [path, hash] = firstChild.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={firstChild.pathname}
+        href={{
+          pathname: path,
+          ...(firstChild.query && { query: firstChild.query }),
+          ...(hash && { hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -245,7 +258,7 @@ function reduceChildRoutes(context) {
         {renderNavItems({
           onClose,
           pages: page.children,
-          activePage,
+          activePageParents,
           depth: subheader ? depth : depth + 1,
           t,
         })}
@@ -253,16 +266,21 @@ function reduceChildRoutes(context) {
     );
   } else {
     page = page.children && page.children.length === 1 ? page.children[0] : page;
-
+    const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
-        href={page.pathname}
+        href={{
+          pathname: path,
+          ...(page.query && { query: page.query }),
+          ...(hash && { hash }),
+        }}
         legacy={page.legacy}
         newFeature={page.newFeature}
+        comingSoon={page.comingSoon}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -281,7 +299,7 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 
 export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
-  const { activePage, pages } = React.useContext(PageContext);
+  const { activePageParents, pages } = React.useContext(PageContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const userLanguage = useUserLanguage();
@@ -292,12 +310,14 @@ export default function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const { canonicalAs } = pathnameToLanguage(router.asPath);
 
-    const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
+    const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions = [], sx) => {
+    const renderVersionSelector = (versions, sx) => {
       if (!versions?.length) {
         return null;
       }
+
+      const currentVersion = versions.find((version) => version.current) || versions[0];
       return (
         <React.Fragment>
           <Button
@@ -316,20 +336,20 @@ export default function AppNavDrawer(props) {
                 minWidth: 0,
                 fontSize: theme.typography.pxToRem(13),
                 fontWeight: 500,
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[300]
-                    : theme.palette.primary[600],
+                color: (theme.vars || theme).palette.primary[600],
                 '& svg': {
                   ml: -0.6,
                   width: 18,
                   height: 18,
                 },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[300],
+                }),
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
           >
-            {versions[0].text}
+            {currentVersion.text}
           </Button>
           <Menu
             id="mui-version-menu"
@@ -373,20 +393,20 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref>
+          <NextLink href="/" passHref legacyBehavior>
             <Box
               component="a"
               onClick={onClose}
               aria-label={t('goToHome')}
-              sx={{
+              sx={(theme) => ({
                 pr: '12px',
                 mr: '4px',
                 borderRight: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primary[100], 0.08)
-                    : theme.palette.grey[200],
-              }}
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ...theme.applyDarkStyles({
+                  borderColor: alpha(theme.palette.primary[100], 0.08),
+                }),
+              })}
             >
               <SvgMuiLogo width={30} />
             </Box>
@@ -433,7 +453,7 @@ export default function AppNavDrawer(props) {
           )}
           {canonicalAs.startsWith('/base/') && (
             <ProductIdentifier
-              name="MUI Base"
+              name="Base UI"
               metadata="MUI Core"
               versionSelector={renderVersionSelector([
                 { text: `v${basePkgJson.version}`, current: true },
@@ -450,7 +470,28 @@ export default function AppNavDrawer(props) {
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATA_GRID_VERSION is set from the X repo
-                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                {
+                  text: 'v6',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('6')
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
+                {
+                  text: 'v5',
+                  ...(process.env.DATA_GRID_VERSION.startsWith('5')
+                    ? {
+                        text: `v${process.env.DATA_GRID_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
                 { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
               ])}
             />
@@ -462,7 +503,28 @@ export default function AppNavDrawer(props) {
               metadata="MUI X"
               versionSelector={renderVersionSelector([
                 // DATE_PICKERS_VERSION is set from the X repo
-                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+                {
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('6')
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v6`,
+                        href: `https://next.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
+                {
+                  ...(process.env.DATE_PICKERS_VERSION.startsWith('5')
+                    ? {
+                        text: `v${process.env.DATE_PICKERS_VERSION}`,
+                        current: true,
+                      }
+                    : {
+                        text: `v5`,
+                        href: `https://v5.mui.com${languagePrefix}/components/data-grid/`,
+                      }),
+                },
               ])}
             />
           )}
@@ -471,18 +533,18 @@ export default function AppNavDrawer(props) {
           )}
         </ToolbarDiv>
         <Divider
-          sx={{
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
-          }}
+          sx={(theme) => ({
+            borderColor: (theme.vars || theme).palette.grey[100],
+            ...theme.applyDarkStyles({
+              borderColor: alpha(theme.palette.primary[100], 0.08),
+            }),
+          })}
         />
         <DiamondSponsors />
         {navItems}
       </React.Fragment>
     );
-  }, [activePage, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
+  }, [activePageParents, pages, onClose, languagePrefix, t, anchorEl, setAnchorEl, router.asPath]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>

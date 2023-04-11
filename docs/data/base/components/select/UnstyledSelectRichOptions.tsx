@@ -136,17 +136,17 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 const CustomSelect = React.forwardRef(function CustomSelect(
-  props: SelectUnstyledProps<number>,
+  props: SelectUnstyledProps<number, false>,
   ref: React.ForwardedRef<any>,
 ) {
-  const components: SelectUnstyledProps<number>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<number, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
 });
 
 export default function UnstyledSelectRichOptions() {
@@ -542,7 +542,7 @@ const countries = [
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
-    label: 'Taiwan, Province of China',
+    label: 'Taiwan, Republic of China',
     phone: '886',
   },
   {

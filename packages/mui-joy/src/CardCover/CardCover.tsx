@@ -7,6 +7,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardCoverUtilityClass } from './cardCoverClasses';
 import { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -25,8 +26,8 @@ const CardCoverRoot = styled('div', {
   zIndex: 0,
   top: 0,
   left: 0,
-  width: '100%',
-  height: '100%',
+  right: 0,
+  bottom: 0,
   borderRadius: 'var(--CardCover-radius)',
   // use data-attribute instead of :first-child to support zero config SSR (emotion)
   // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
@@ -49,7 +50,16 @@ const CardCoverRoot = styled('div', {
     },
   },
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardCover API](https://mui.com/joy-ui/api/card-cover/)
+ */
 const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardCoverProps>({
     props: inProps,
@@ -65,20 +75,22 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardCoverRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
-    <CardCoverRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
           ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
-    </CardCoverRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<CardCoverTypeMap>;
 

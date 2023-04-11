@@ -103,6 +103,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     name,
     onChange,
     required: requiredProp,
+    slotProps = {},
     value,
     ...other
   } = props;
@@ -139,10 +140,16 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
+  const typographySlotProps = slotProps.typography ?? componentsProps.typography;
+
   let label = labelProp;
   if (label != null && label.type !== Typography && !disableTypography) {
     label = (
-      <Typography component="span" className={classes.label} {...componentsProps.typography}>
+      <Typography
+        component="span"
+        {...typographySlotProps}
+        className={clsx(classes.label, typographySlotProps?.className)}
+      >
         {label}
       </Typography>
     );
@@ -230,6 +237,13 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * If `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    typography: PropTypes.object,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

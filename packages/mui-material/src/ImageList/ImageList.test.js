@@ -36,12 +36,7 @@ describe('<ImageList />', () => {
   );
 
   const children = itemsData.map((item) => (
-    <span
-      key={item.title}
-      title={item.title}
-      subtitle={<span>by: {item.author}</span>}
-      data-testid="test-children"
-    >
+    <span key={item.title} title={item.title} data-testid="test-children">
       <img src={item.img} alt="foo" />
     </span>
   ));

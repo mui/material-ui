@@ -1,8 +1,9 @@
 ---
 product: joy-ui
 title: React Modal component
+components: Modal, ModalClose, ModalDialog, ModalOverflow
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Modal
@@ -17,7 +18,7 @@ Joy UI provides three modal-related components:
 - [`ModalClose`](#dialog): A button for closing the modal.
 - [`ModalDialog`](#dialog): A component for rendering a modal dialog.
 
-{{"demo": "ModalUsage.js", "hideToolbar": true}}
+{{"demo": "ModalUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ### Features
 
@@ -30,7 +31,6 @@ Joy UI provides three modal-related components:
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
-**Note:**
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
 
 A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action.
@@ -52,15 +52,15 @@ export default function MyApp() {
 
 ### Basic usage
 
-The `Modal` accepts only a single React element as a child.
+The Modal accepts only a single React element as a child.
 That can be either a Joy UI component, e.g. [`Sheet`](/joy-ui/react-sheet/), or any other custom element.
 
-Use the `ModalClose` component to render a close button that inherits the modal's `onClose` function.
+Use the Modal Close component to render a close button that inherits the modal's `onClose` function.
 
 {{"demo": "BasicModal.js"}}
 
 :::info
-💡 **Quick tip:** The `ModalClose` accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
+Modal Close accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
 :::
 
 ### Close reason
@@ -75,31 +75,46 @@ The possible values are:
 
 {{"demo": "CloseModal.js"}}
 
-### Dialog
+### Modal Dialog
 
-To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
+To create a modal dialog, render the Modal Dialog component inside the Modal.
+
+The Dialog will apply spacing to the elements that have `aria-labelledby` or `aria-describedby` attribute.
 
 {{"demo": "BasicModalDialog.js"}}
 
+#### Variant
+
+The Modal Dialog supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+
+The Modal Close component's variant adapts automatically to contrast with the Modal Dialog, as demonstrated below:
+
+{{"demo": "VariantModalDialog.js"}}
+
+#### Size
+
+The Modal Dialog comes in 3 sizes: `sm`, `md` (default), and `lg`.
+
+The Modal Close and Modal Dialog Title components inherit the size from the Modal Dialog unless specified in each component directly.
+
+{{"demo": "SizeModalDialog.js"}}
+
 #### Layout
 
-The `ModalDialog`'s layout can be:
+The Modal Dialog's layout can be:
 
 - `center` (default): the modal dialog appears at the center of the viewport.
 - `fullScreen`: the modal dialog covers the whole viewport.
 
 {{"demo": "LayoutModalDialog.js"}}
 
-To add more layout, apply a style to the theme like this:
+To add more layout, create a new theme with [`styleOverrides`](/joy-ui/customization/themed-components/#theme-style-overrides) like this:
 
 ```js
-// Add a new `top` layout to the ModalDialog
-extendTheme({
+const theme = extendTheme({
   components: {
     JoyModalDialog: {
-      defaultProps: {
-        layout: 'top',
-      },
+      defaultProps: { layout: 'top' },
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.layout === 'top' && {
@@ -125,23 +140,33 @@ declare module '@mui/joy/ModalDialog' {
 }
 ```
 
-#### Variant
+#### Vertical scroll
 
-The `ModalDialog` supports the [global variants](/joy-ui/main-features/global-variants/) feature.
+By default, content within the Modal Dialog won't overflow the screen when its height is bigger than the viewport.
 
-The `ModalClose`'s variant adapts automatically to have a proper contrast to the `ModalDialog`.
+To ensure your content is visible, make the container holding it overflow by adding the [`overflow` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow) with either `scroll` or `auto` values.
 
-{{"demo": "VariantModalDialog.js"}}
+{{"demo": "DialogVerticalScroll.js"}}
 
-#### Size
+### Modal Overflow
 
-The `ModalDialog` comes with 3 sizes, `sm`, `md` (default), and `lg`.
+The previous section demonstrated how to make content _within_ the modal scrollable.
 
-The `ModalClose` and `ModalDialogTitle` inherits the size from the `ModalDialog` unless it is specified in each component directly.
+To make the _whole_ modal scrollable, in case its higher than the viewport, use the Modal Overflow component.
+It will allow the Modal Dialog to vertically overflow the screen.
 
-{{"demo": "SizeModalDialog.js"}}
+The Modal Overflow supports both `center` and `fullScreen` built-in layouts.
 
-### Alert Dialog
+{{"demo": "ModalDialogOverflow.js"}}
+
+You can achieve the same result by using the Box component and CSS with the `sx` prop.
+However, the Modal Overflow component adds greater convenience:
+
+- It makes your styling more consistent, as you won't need to copy styles across different instances.
+- You can also add theming customization to it directly from the theme.
+- It automatically handles the close action when the user clicks on the Modal's backdrop.
+
+### Alert dialog
 
 Use `role="alertdialog"` to create an [alert dialog](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/) that interrupts the user's workflow.
 
@@ -154,7 +179,6 @@ The modal components can be nested:
 {{"demo": "NestedModals.js"}}
 
 :::warning
-⚠️ **Keep in mind:**
 Though it is possible to create nested modals, stacking more than two at a time is discouraged.
 This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
 :::
@@ -163,7 +187,7 @@ This is because each successive modal blocks interaction with all elements behin
 
 The modal components **do not** come with built-in transitions.
 
-Here is one example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition) to create a fade animation:
+Here is one example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition/) to create a fade animation:
 
 {{"demo": "FadeModalDialog.js"}}
 
@@ -185,7 +209,7 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 Therefore, in order to display a modal rendered on the server, disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
@@ -202,7 +226,7 @@ If the user needs to interact with another part of the page－for example, to in
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices. Here are a couple of highlights:
+See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices. Here are a couple of highlights:
 
 - All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
@@ -214,9 +238,9 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
-  **Keep in mind:** A modal window can sit on top of either the parent application, or another modal window.
+  A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.
   This can lead to [conflicting behaviors](#focus-trap).
   :::

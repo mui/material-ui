@@ -7,6 +7,19 @@ import { styled, Theme, useThemeProps } from '../styles';
 
 export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  componentsProps?: PopperUnstyledProps['slotProps'];
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -35,9 +48,25 @@ const Popper = React.forwardRef(function Popper(
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const theme = useTheme<{ direction?: Direction }>();
-  const props = useThemeProps({ props: inProps, name: 'MuiPopper' });
-  return <PopperRoot direction={theme?.direction} {...props} ref={ref} />;
-});
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiPopper',
+  });
+
+  const { components, componentsProps, slots, slotProps, ...other } = props;
+
+  const RootComponent = slots?.root ?? components?.Root;
+
+  return (
+    <PopperRoot
+      direction={theme?.direction}
+      slots={{ root: RootComponent }}
+      slotProps={slotProps ?? componentsProps}
+      {...other}
+      ref={ref}
+    />
+  );
+}) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -191,6 +220,21 @@ Popper.propTypes /* remove-proptypes */ = {
    * A ref that points to the used popper instance.
    */
   popperRef: refType,
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

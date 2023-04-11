@@ -50,6 +50,7 @@ export interface InputOwnProps {
   components?: {
     Root?: React.ElementType;
     Input?: React.ElementType;
+    Textarea?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Input.
@@ -58,6 +59,7 @@ export interface InputOwnProps {
   componentsProps?: {
     root?: React.HTMLAttributes<HTMLDivElement> & InputComponentsPropsOverrides;
     input?: React.InputHTMLAttributes<HTMLInputElement> & InputComponentsPropsOverrides;
+    textarea?: React.TextareaHTMLAttributes<HTMLTextAreaElement> & InputComponentsPropsOverrides;
   };
   /**
    * The default value. Use when the component is not controlled.
@@ -161,6 +163,25 @@ export interface InputOwnProps {
    * The size of the component.
    */
   size?: OverridableStringUnion<'small' | 'medium', InputBasePropsSizeOverrides>;
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  slotProps?: {
+    root?: React.HTMLAttributes<HTMLDivElement> & InputComponentsPropsOverrides;
+    input?: React.InputHTMLAttributes<HTMLInputElement> & InputComponentsPropsOverrides;
+    textarea?: React.TextareaHTMLAttributes<HTMLTextAreaElement> & InputComponentsPropsOverrides;
+  };
+  /**
+   * The components used for each slot inside the Input.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots?: {
+    root?: React.ElementType;
+    input?: React.ElementType;
+    textarea?: React.ElementType;
+  };
   /**
    * Start `InputAdornment` for this component.
    */

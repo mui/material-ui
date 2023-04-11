@@ -30,14 +30,14 @@ Usually this means that the selector with more classes applied to it is more spe
 For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted sub components" />
 
 Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 
 I'm not a designer, so I made an ugly switch example using only CSS—
 you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-kv85p5?file=/src/App.js):
 
-<img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 692px; margin-top: 16px; margin-bottom: 8px;" alt="Switch customized with CSS" />
+<img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 8px;" loading="lazy" alt="Switch customized with CSS" />
 
 ```jsx
 <Switch className="uglySwitch" />
@@ -46,13 +46,15 @@ you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-
 ```css
 /* two classes are more specific than the default single class selector */
 .uglySwitch .MuiSwitch-thumb {
-  background-color: 'green';
+  background-color: green;
 }
+
 .uglySwitch .MuiTouchRipple-root {
-  border: 'solid red 2px';
+  border: 2px solid red;
 }
+
 .uglySwitch .MuiSwitch-track {
-  background-color: 'orange';
+  background-color: orange;
   opacity: 1;
 }
 ```
@@ -94,7 +96,7 @@ To give you an idea of how complex this component can get, let's look at an exam
 When I open the filter panel, the input listing the names of the columns is sorted according to column position.
 I would like to be able to sort it by alphabetical order.
 
-<img src="/static/blog/making-customizable-components/issueScreenshot.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Screen shot of the filter panel with column selector un sorted" />
+<img src="/static/blog/making-customizable-components/issueScreenshot.png" style="width: 692px; aspect-ratio: 329/212; margin-top: 16px; margin-bottom: 8px;" loading="lazy" alt="Screen shot of the filter panel with column selector un sorted" />
 :::
 
 This request makes sense.
@@ -108,7 +110,7 @@ It just doesn't scale.
 There are too many different props that developers might need to modify.
 You will end up with API documentation so long that it will take an eternity to scroll to the end—meaning nobody will read it.
 
-<img src="/static/blog/making-customizable-components/bruce.gif" style="width: 500px; margin-top: 16px; margin-bottom: 8px;" alt="Your user opening the list of props" />
+<img src="/static/blog/making-customizable-components/bruce.gif" style="width: 500px; aspect-ratio: 500/281; margin-top: 16px; margin-bottom: 8px;" loading="lazy" alt="Your user opening the list of props" />
 
 Instead, consider these alternative solutions that can scale more efficiently with complex components:
 
@@ -188,9 +190,9 @@ But the reason why is quite simple: the `TextField` component is itself composed
 
 <FormControl>
   <FormControl>
-    <Label />
+    <InputLabel />
     <Input />
-    <HelperText />
+    <FormHelperText />
   </FormControl>
 </FormControl>
 ```
@@ -223,7 +225,7 @@ There's an **x** icon on the left side of the panel for deleting the current fil
 Say you want to replace this **x** with a trash icon.
 You can't do it with CSS—you need DOM modification to replace the SVG icon.
 
-<img src="/static/blog/making-customizable-components/FilterPanel.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Default view of filter panel" />
+<img src="/static/blog/making-customizable-components/FilterPanel.png" style="width: 692px; aspect-ratio: ; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Default view of filter panel" />
 
 To manage such a scenario, the `DataGrid` has a prop called `components`.
 This prop lets you replace some internal grid components with your own custom ones.
@@ -257,14 +259,14 @@ By adding this prop to the default filter panel, we can derive a customized pane
 ```jsx
 import { GridFilterPanel } from '@mui/x-data-grid';
 
-const CustomFilterPanel = (props) => (
-  <GridFilterPanel {...props} columnsSort="asc" />
-);
+function CustomFilterPanel(props) {
+  return <GridFilterPanel {...props} columnsSort="asc" />;
+}
 ```
 
 But this strategy of adding props to customize components is a bit verbose.
-So we added a way to pass props to an existing component using `componentsProps`.
-You can pass props to every slot on `components` using `componentsProps`.
+So we added a way to pass props to an existing component using `slotProps`.
+You can pass props to every slot on `slots` using `slotProps`.
 
 Here's how to pass `columnsSort='asc'` to the filter panel slot:
 
@@ -303,7 +305,7 @@ In our last two annual [developer surveys](/blog/2021-developer-survey-results/)
 
 Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
 
-[Material UI](https://mui.com/material-ui/getting-started/overview/) and [Joy UI](https://mui.com/joy-ui/getting-started/overview/) are designed to be both beautiful and flexible right out of the box, while [MUI Base](https://mui.com/base/getting-started/overview/) gives you the most freedom to implement your own custom styling solution.
+[Material UI](https://mui.com/material-ui/getting-started/overview/) and [Joy UI](https://mui.com/joy-ui/getting-started/overview/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base/getting-started/overview/) gives you the most freedom to implement your own custom styling solution.
 [MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
 Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.

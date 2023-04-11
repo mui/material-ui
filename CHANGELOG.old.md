@@ -444,7 +444,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 - Minify error messages in production (#21214) @eps1lon.
 
-  Using the [React error decoder](https://reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material UI in production are now minified.
+  Using the [React error decoder](https://legacy.reactjs.org/docs/error-decoder.html/) as inspiration, the exceptions thrown by Material UI in production are now minified.
   You will be redirected to the documentation to [decode the error](https://mui.com/production-error/?code=4&args%5B%5D=500).
 
 ### `@material-ui/core@v4.10.2`
@@ -2192,7 +2192,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 
 ### Core
 
-- [test] Build all `@material-ui/*` packages for Codesandbox CI (#18100) @eps1lon
+- [test] Build all `@material-ui/*` packages for CodeSandbox CI (#18100) @eps1lon
 - [test] Fix tests failing on subsequent runs in watchmode (#18076) @eps1lon
 - [test] Fix tests polluting DOM (#18163) @eps1lon
 - [core] Batch small changes (#18041) @oliviertassinari
@@ -6875,7 +6875,7 @@ Here are some highlights ✨:
 
 - After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
   With this version, you can take advantage of all the icons recently released by Google:
-  https://material.io/tools/icons/. There are more than 5,000 icons.
+  https://m2.material.io/tools/icons/. There are more than 5,000 icons.
   (#12016, #12036, #12170, #12111, #12225)
 
 - The 1.4.0 release of Material UI has introduced a new implementation of the Tooltip and Popper component.
@@ -8464,7 +8464,7 @@ The `inputType` property was renamed `type`.
 
 - [Checkbox, Radio, Switch] Change default color, add color prop (#10138) @mbrookes
 
-The Material Design specification says that selection controls elements should [use the application's secondary color](https://material.io/guidelines/components/selection-controls.html).
+The Material Design specification says that selection controls elements should [use the application's secondary color](https://m2.material.io/guidelines/components/selection-controls.html).
 
 ```diff
 -<Checkbox />
@@ -9002,7 +9002,7 @@ Here are some highlights ✨:
 
 - [core] Revise the theme.palette.primary & secondary approach (#9794) @mbrookes
 
-It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://material.io/color/).
+It's an important simplification of the palette system. You can now directly use the "official" Color Tool](https://m2.material.io/color/).
 
 - Instead of using a rich color object of 14 different keys, we rely on an object of 4 different keys: `light`, `main`, `dark` and `contrastText`.
 - Providing the full-color object used to be required. Now, we will provide a nice default to the different values using the `main` value.
@@ -11757,7 +11757,7 @@ We are releasing sooner than we use to for this **special day** :christmas_tree:
 That wouldn't have been possible without this awesome community.
 **Thank you!**
 
-But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/next/ROADMAP.md) is coming in 2017 :sparkles:.
+But this's just the beginning, some [exciting stuff](https://github.com/mui/material-ui/blob/v0.16.6/ROADMAP.md) is coming in 2017 :sparkles:.
 You can preview a **very early** version of the `next` branch following [this link](https://material-ui-next.com).
 
 ### Component Fixes / Enhancements
@@ -11775,7 +11775,7 @@ You can preview a **very early** version of the `next` branch following [this li
 
 ### Docs
 
-- [AutoComplete] Add a controlled example (#5795)
+- [Autocomplete] Add a controlled example (#5795)
 - [Slider] Add onChange callback signatures to docs (#5760)
 - [TextField] Add callback signatures to docs (#5804)
 - [docs] Add link to babel-plugin-material-ui (#5754)
@@ -11795,8 +11795,8 @@ This is another release improving the stability of `v0.16.x`.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Add an onClose callback property (#5655)
-- [AutoComplete] Fix the controlled behavior (#5685)
+- [Autocomplete] Add an onClose callback property (#5655)
+- [Autocomplete] Fix the controlled behavior (#5685)
 - [DatePicker] Auto switch the view when a year is selected (#5700)
 - [DropDownMenu] Add an onClose callback property (#5653)
 - [DropDownMenu] Do not wrap below dropdown menu (#4755)
@@ -11818,7 +11818,7 @@ This is another release improving the stability of `v0.16.x`.
 ### Docs
 
 - [docs] Add a Q&A section around the next branch (#5718)
-- [docs] Fix typo with sentence for AutoComplete (#5596)
+- [docs] Fix typo with sentence for Autocomplete (#5596)
 - [docs] Fix origin documentation (#5676)
 - [docs] Fix Linear Progress Prop Documentation (#5680)
 - [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
@@ -11859,8 +11859,8 @@ This is another release improving the stability of `v0.16.x` while we are workin
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
-- [AutoComplete] Fix Popover's style overriding popoverProps (#5516)
+- [Autocomplete] Fire onUpdateInput when an item from the dropdown is selected (#5518)
+- [Autocomplete] Fix Popover's style overriding popoverProps (#5516)
 - [Card] Add closeIcon and openIcon for customizability (#5513)
 - [FloatingActionButton] Fix regression with n children (#5468)
 - [GridList] Add the support for cellHeight="auto" (#5452)
@@ -11978,7 +11978,7 @@ _Sep 24, 2016_
 ### Component Fixes / Enhancements
 
 - [AppBar] Fix onTouchTap handler (#5245)
-- [AutoComplete] Add popoverProps to pass to Popover (#5064)
+- [Autocomplete] Add popoverProps to pass to Popover (#5064)
 - [DatePicker] Improve the RTL support (#5155)
 - [DatePicker] Improve the i18n support (#5187)
 - [IconButton] Remove dead code (#5226)
@@ -12102,8 +12102,8 @@ v15.2.1 and v15.3.0 should be addressed in this version.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Add a textFieldStyle property (#4853)
-- [AutoComplete] Call onNewRequest once the animation is done (#4817)
+- [Autocomplete] Add a textFieldStyle property (#4853)
+- [Autocomplete] Call onNewRequest once the animation is done (#4817)
 - [Card] Fix bottom padding (#4820)
 - [Chip] Fix invalid `labelColor` being passed (#4766)
 - [DropDownMenu] Display the first item in case there's no one with the corresponding value (#4822)
@@ -12162,7 +12162,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 ### Component Fixes / Enhancements
 
 - [AppBar] Improve props checking to be more resilient (#4557)
-- [AutoComplete] Use the right dataSource key (#4642)
+- [Autocomplete] Use the right dataSource key (#4642)
 - [Badge] Fixed incorrect color usage (primary/accent were swapped) (#4449)
 - [Button] Never allow a disabled button to be in a hovered state (#4626)
 - [Button] Improve the propType definition for the label (#4618)
@@ -12224,10 +12224,10 @@ _Jun 16, 2016_
 
 - [AppBar] Add `iconStyleLeft` prop (#4266)
 - [AppBar] Fix a styling regression (#4471)
-- [AutoComplete] Add text and value field keys for objects list dataSource (#4111)
-- [AutoComplete] Fix filter property leaking (#4209)
-- [AutoComplete] Fix first item selection on keyboard focus (#4193)
-- [AutoComplete] Use sublime text like search instead of Levenshtein Distance for fuzzy search (#4164)
+- [Autocomplete] Add text and value field keys for objects list dataSource (#4111)
+- [Autocomplete] Fix filter property leaking (#4209)
+- [Autocomplete] Fix first item selection on keyboard focus (#4193)
+- [Autocomplete] Use sublime text like search instead of Levenshtein Distance for fuzzy search (#4164)
 - [Avatar] Fix a layout regression (#4409)
 - [Avatar] Remove the border (#4365)
 - [Button] Save some bytes on the production build (#4346)
@@ -12322,7 +12322,7 @@ _Apr 21, 2016_
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Change `error`, `hint`, `floatingLabel` property validators to `PropTypes.node` (#4019)
+- [Autocomplete] Change `error`, `hint`, `floatingLabel` property validators to `PropTypes.node` (#4019)
 - [Dialog] Add border to title and actions when content is scrollable (#4001)
 - [Dialog] Add support for the Alert (#4022)
 - [Dialog] Merge title style when title it a node (#4033)
@@ -12432,8 +12432,8 @@ Although we discourage you to use this library like that.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Add `onKeyDown` property (#3853)
-- [AutoComplete] Fix the regressions (#3858)
+- [Autocomplete] Add `onKeyDown` property (#3853)
+- [Autocomplete] Fix the regressions (#3858)
 - [Avatar] Use semi-transparent border (#3859)
 - [DatePicker] ok/cancel labels in date pickers should be of PropTypes.node (#3869)
 - [DropDownMenu] Fix support for autoWidth and custom width (#3823)
@@ -12499,7 +12499,7 @@ import MUI from 'material-ui'; // no changes here :D
 - [Docs] Add return types (#3542)
 - [Docs] Add support for multi-line function (#3570)
 - [Docs] Document callback signatures ( Thanks to @theosherry )
-  - [AutoComplete](#3550)
+  - [Autocomplete](#3550)
   - [Card](#3552)
   - [Checkbox](#3607)
   - [DatePicker](#3652)
@@ -12523,11 +12523,11 @@ import MUI from 'material-ui'; // no changes here :D
 ### Component Fixes / Enhancements
 
 - [AppBar] Fix the title height variation (#3509)
-- [AutoComplete] Add key support for `dataSource` (#3662)
-- [AutoComplete] Fix browser compatibility (#3581)
-- [AutoComplete] Fix `openOnFocus` and item click (#3669)
-- [AutoComplete] Proxy focus and blur calls (#3551)
-- [AutoComplete] Set `canAutoPosition` to `false` for `Popover` (#3620)
+- [Autocomplete] Add key support for `dataSource` (#3662)
+- [Autocomplete] Fix browser compatibility (#3581)
+- [Autocomplete] Fix `openOnFocus` and item click (#3669)
+- [Autocomplete] Proxy focus and blur calls (#3551)
+- [Autocomplete] Set `canAutoPosition` to `false` for `Popover` (#3620)
 - [CardHeader] Handle wide titles, allow them to wrap (#3503)
 - [CardHeader] Remove `title` from injected node attributes (to avoid native tooltip) (#3534)
 - [DatePicker] Add a check to fetch current system date (#3656)
@@ -12640,11 +12640,11 @@ from the code with the 0.16.0 release.
 
 ### Component Fixes / Enhancements
 
-- [AutoComplete] Added `maxSearchResults` property (#3262)
-- [AutoComplete] Apply the style property only on the root component (#3243)
-- [AutoComplete] Apply various improvement (#3214) (Thanks to @oliviertassinari)
+- [Autocomplete] Added `maxSearchResults` property (#3262)
+- [Autocomplete] Apply the style property only on the root component (#3243)
+- [Autocomplete] Apply various improvement (#3214) (Thanks to @oliviertassinari)
 - [Autocomplete] Disable browser default autocomplete popup (#3253)
-- [AutoComplete] Fix the focus / blur issue (#3356) (Thanks to @oliviertassinari)
+- [Autocomplete] Fix the focus / blur issue (#3356) (Thanks to @oliviertassinari)
 - [Card] Removed hidden overflow (#3447)
 - [Card] Support for controlled expansion (#3258) (Thanks to @cgestes)
 - [CardActions] Allow to accept false as child (#3215)
@@ -12714,7 +12714,7 @@ _Feb 02, 2016_
 - [Tabs] Removed the calc style property (#3058)
 - [Tabs] Added icon and text (#3042)
 - [Tabs] Use `FlatButtons` for tabs (#3051)
-- [AutoComplete] Fixed regression of undefined muiTheme (#3069)
+- [Autocomplete] Fixed regression of undefined muiTheme (#3069)
 - [List] Auto-expand SelectableList (#3039)
 - [DatePicker] Added `disabled` property (#3060)
 - [Buttons] Fixed the vertical alignment issue (#3100)
@@ -12747,7 +12747,7 @@ Unless you have used these implementation details in your code.
   1. [Table](#2848)
   1. [Switches](#2872)
   1. [Buttons](#2874)
-  1. [AutoComplete](#2871)
+  1. [Autocomplete](#2871)
   1. [Popover](#2870)
   1. [IconMenu](#2882)
 - Added the following eslint rules:
@@ -12802,7 +12802,7 @@ _Jan 08, 2016_
 ### Component Fixes / Enhancements
 
 - [DatePicker] Update slide direction (#2791)
-- [AutoComplete] Add 2 extra filters for text matching (#2755)
+- [Autocomplete] Add 2 extra filters for text matching (#2755)
 - [TableRow] Fix row height in IE (#2812)
 
 ## 0.14.1
@@ -12862,7 +12862,7 @@ Have a look at them as well.
 
 - [SelectField][textfield] Fixed error styling issue (#2539)
 - [TextField] Implemented optional underline (#2476)
-- [AutoComplete] Migrated to use popover (#2634)
+- [Autocomplete] Migrated to use popover (#2634)
 
 ### Deprecations
 
@@ -12940,8 +12940,8 @@ _Dec 4, 2015_
 - [DropdownMenu] add labelMember prop (#2285)
 - Add new ESLint rules (#2293, #2314, #2319, #2348, #2360, #2365, #2366)
 - Add unit tests for Dialog (#2298)
-- [AutoComplete] Support changing searchText via props (#2306)
-- [AutoComplete] dataSource prop is of type array (#2286)
+- [Autocomplete] Support changing searchText via props (#2306)
+- [Autocomplete] dataSource prop is of type array (#2286)
 - [AppBar] add titleStyle prop (#2324)
 - [TimePicker] update as per spec (#2358)
 - [Popover] add useLayerForClickAway prop (#2359)
@@ -12965,7 +12965,7 @@ _Nov 24, 2015_
 
 - Introduced SelectableEnhance HOC to wrap List with valueLink (#1976)
 - Added color prop to LinearProgress and RefreshIndicator (#2206)
-- [AutoComplete] new component! (#2187) (thanks @yongxu)
+- [Autocomplete] new component! (#2187) (thanks @yongxu)
 - [Table] added wrapperStyle prop to override table wrapper's styles (#2238)
 - Updated SVG icons (#2240)
 - [Table] added props for headerStyle, bodyStyle and footerStyle (#2246)
@@ -13577,7 +13577,7 @@ _May 24, 2015_
       that you are trying to override, [submit an issue](https://github.com/mui/material-ui/issues/new)
       requesting to have it added.
     - _If you are using any of Material UI's Less files:_ These files have been
-      refactored into their [own javascript files](https://github.com/mui/material-ui/tree/css-in-js/src/styles)
+      refactored into their [own JavaScript files](https://github.com/mui/material-ui/tree/css-in-js/src/styles)
       and can be accessed like so `var FILENAME = require('material-ui').Styles.FILENAME;`.
       Material UI has moved away from being a CSS Framework to being simply a
       set of React components.

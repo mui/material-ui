@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Select components and hook
 components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: select'
-waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
 
 # Unstyled select
@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-
 
 A select is a UI element that gives users a list of options to choose from.
 
-MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`. It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
+Base UI offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`. It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
 
 ### Features
 

@@ -6,6 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
 import { getListItemContentUtilityClass } from './listItemContentClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -23,7 +24,16 @@ const ListItemContentRoot = styled('div', {
   flex: '1 1 auto',
   minWidth: 0,
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemContent API](https://mui.com/joy-ui/api/list-item-content/)
+ */
 const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -38,17 +48,15 @@ const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) 
 
   const classes = useUtilityClasses();
 
-  return (
-    <ListItemContentRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListItemContentRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemContentRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListItemContentTypeMap>;
 
 ListItemContent.propTypes /* remove-proptypes */ = {
@@ -60,10 +68,6 @@ ListItemContent.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

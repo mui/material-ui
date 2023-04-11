@@ -1,13 +1,27 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListSlot = 'root';
 
+export interface ListSlots {
+  /**
+   * The component that renders the root.
+   * @default 'ul'
+   */
+  root: React.ElementType;
+}
+
+export type ListSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListSlots,
+  {
+    root: SlotProps<'ul', {}, ListOwnerState>;
+  }
+>;
+
 export interface ListPropsSizeOverrides {}
-
 export interface ListPropsVariantOverrides {}
-
 export interface ListPropsColorOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
@@ -22,10 +36,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListPropsColorOverrides>;
     /**
-     * If `true`, display the list in horizontal direction.
-     * @default false
+     * The component orientation.
+     * @default 'vertical'
      */
-    row?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
@@ -36,7 +50,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
@@ -47,7 +61,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default false
      */
     wrap?: boolean;
-  };
+  } & ListSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -58,7 +72,7 @@ export type ListProps<
   },
 > = OverrideProps<ListTypeMap<P, D>, D>;
 
-export interface ListOwnerState extends ListProps {
+export interface ListOwnerState extends ApplyColorInversion<ListProps> {
   /**
    * @internal
    * The explicit size specified on the element instance.
@@ -68,5 +82,5 @@ export interface ListOwnerState extends ListProps {
    * @internal
    * If `true`, the element is rendered in a nested list item.
    */
-  nesting: boolean | string;
+  nesting?: boolean | string;
 }

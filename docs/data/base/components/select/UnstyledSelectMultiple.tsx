@@ -1,8 +1,8 @@
 import * as React from 'react';
-import MultiSelectUnstyled, {
-  MultiSelectUnstyledProps,
-} from '@mui/base/MultiSelectUnstyled';
-import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import SelectUnstyled, {
+  SelectUnstyledProps,
+  selectUnstyledClasses,
+} from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
@@ -131,17 +131,17 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(
-  props: MultiSelectUnstyledProps<number>,
+  props: SelectUnstyledProps<number, true>,
   ref: React.ForwardedRef<any>,
 ) {
-  const components: MultiSelectUnstyledProps<number>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+  const slots: SelectUnstyledProps<number, true>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <MultiSelectUnstyled {...props} ref={ref} components={components} />;
+  return <SelectUnstyled {...props} multiple ref={ref} slots={slots} />;
 });
 
 export default function UnstyledSelectsMultiple() {

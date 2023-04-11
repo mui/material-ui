@@ -6,10 +6,11 @@ import {
   describeConformance,
   screen,
   fireEvent,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -24,11 +25,11 @@ describe('<Menu />', () => {
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'menu' },
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
       'reactTestRenderer', // react-transition-group issue
-      'themeDefaultProps', // portal, can't determin the root
+      'themeDefaultProps', // portal, can't determine the root
     ],
   }));
 
@@ -110,6 +111,19 @@ describe('<Menu />', () => {
       );
 
       expect(screen.getByTestId('paper')).to.have.class('bar');
+    });
+
+    it('should be able to change the Popover root element style when Menu classes prop is also provided', () => {
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          data-testid="popover"
+          classes={{ paper: 'bar' }}
+          PopoverClasses={{ root: 'foo' }}
+        />,
+      );
+      expect(screen.getByTestId('popover')).to.have.class('foo');
     });
   });
 
@@ -249,14 +263,81 @@ describe('<Menu />', () => {
       expect(() => {
         render(
           <Menu anchorEl={document.createElement('div')} open={false}>
+            {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
             <React.Fragment />
           </Menu>,
         );
       }).toErrorDev([
         "MUI: The Menu component doesn't accept a Fragment as a child.",
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           "MUI: The Menu component doesn't accept a Fragment as a child.",
       ]);
+    });
+  });
+
+  describe('should be customizable in theme', () => {
+    it('should override Paper styles in Menu taking MuiMenu.paper styles into account', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const theme = createTheme({
+        components: {
+          MuiMenu: { styleOverrides: { paper: { borderRadius: 4 } } },
+          MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Menu
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{
+              'data-testid': 'paper',
+            }}
+          />
+        </ThemeProvider>,
+      );
+
+      const paper = screen.getByTestId('paper');
+      expect(paper).toHaveComputedStyle({
+        borderTopLeftRadius: '4px',
+        borderBottomLeftRadius: '4px',
+        borderTopRightRadius: '4px',
+        borderBottomRightRadius: '4px',
+      });
+    });
+
+    it('should override Paper styles in Menu using styles in MuiPaper slot', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiPaper: { styleOverrides: { rounded: { borderRadius: 90 } } },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Menu
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{
+              'data-testid': 'paper',
+            }}
+          />
+        </ThemeProvider>,
+      );
+
+      const paper = screen.getByTestId('paper');
+      expect(paper).toHaveComputedStyle({
+        borderTopLeftRadius: '90px',
+        borderBottomLeftRadius: '90px',
+        borderTopRightRadius: '90px',
+        borderBottomRightRadius: '90px',
+      });
     });
   });
 });

@@ -6,26 +6,23 @@ import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
 import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ChatRounded from '@mui/icons-material/ChatRounded';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
 import { styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Root = styled('ul')(({ theme }) => ({
+const Root = styled('ul')({
   margin: 0,
   padding: 0,
   listStyle: 'none',
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: theme.spacing(2),
-  '& li': {
-    margin: theme.spacing(0.5),
-  },
+  gap: 8,
   '& .MuiChip-root .MuiChip-iconSmall': {
     marginLeft: 4,
   },
-}));
+});
 
 const defaultPackageNames = {
   'material-ui': '@mui/material',
@@ -35,14 +32,14 @@ const defaultPackageNames = {
 };
 
 export default function ComponentLinkHeader(props) {
-  const { headers, options } = props;
+  const {
+    markdown: { headers },
+    design,
+  } = props;
   const t = useTranslate();
 
-  let packageName = props.headers.packageName;
-  if (!packageName) {
-    const { product } = props.headers;
-    packageName = defaultPackageNames[product] || '@mui/material';
-  }
+  const packageName =
+    headers.packageName ?? defaultPackageNames[headers.product] ?? '@mui/material';
 
   return (
     <Root>
@@ -58,31 +55,12 @@ export default function ComponentLinkHeader(props) {
             href={`${process.env.SOURCE_CODE_REPO}/labels/${encodeURIComponent(
               headers.githubLabel,
             )}`}
-            icon={<InfoOutlinedIcon />}
+            icon={<ChatRounded color="primary" />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
             data-ga-event-label={t('githubLabel')}
             data-ga-event-split="0.1"
             label={t('githubLabel')}
-          />
-        </li>
-      ) : null}
-      {headers.waiAria ? (
-        <li>
-          <Chip
-            clickable
-            role={undefined}
-            component="a"
-            size="small"
-            variant="outlined"
-            rel="nofollow"
-            href={headers.waiAria}
-            icon={<W3CIcon />}
-            data-ga-event-category="ComponentLinkHeader"
-            data-ga-event-action="click"
-            data-ga-event-label="WAI-ARIA"
-            data-ga-event-split="0.1"
-            label="WAI-ARIA"
           />
         </li>
       ) : null}
@@ -96,7 +74,7 @@ export default function ComponentLinkHeader(props) {
             variant="outlined"
             rel="nofollow"
             href={`https://bundlephobia.com/package/${packageName}@latest`}
-            icon={<BundleSizeIcon />}
+            icon={<BundleSizeIcon color="primary" />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"
             data-ga-event-label={t('bundleSize')}
@@ -105,6 +83,25 @@ export default function ComponentLinkHeader(props) {
           />
         </Tooltip>
       </li>
+      {headers.waiAria ? (
+        <li>
+          <Chip
+            clickable
+            role={undefined}
+            component="a"
+            size="small"
+            variant="outlined"
+            rel="nofollow"
+            href={headers.waiAria}
+            icon={<W3CIcon color="primary" />}
+            data-ga-event-category="ComponentLinkHeader"
+            data-ga-event-action="click"
+            data-ga-event-label="WAI-ARIA"
+            data-ga-event-split="0.1"
+            label="WAI-ARIA"
+          />
+        </li>
+      ) : null}
       {headers.materialDesign ? (
         <li>
           <Chip
@@ -124,7 +121,7 @@ export default function ComponentLinkHeader(props) {
           />
         </li>
       ) : null}
-      {options.design !== false ? (
+      {design !== false ? (
         <React.Fragment>
           <li>
             <Chip
@@ -184,6 +181,8 @@ export default function ComponentLinkHeader(props) {
 }
 
 ComponentLinkHeader.propTypes = {
-  headers: PropTypes.object.isRequired,
-  options: PropTypes.object.isRequired,
+  design: PropTypes.bool,
+  markdown: PropTypes.shape({
+    headers: PropTypes.object.isRequired,
+  }).isRequired,
 };

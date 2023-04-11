@@ -2,30 +2,24 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses } from '@mui/base';
-import SliderUnstyled, {
-  SliderValueLabelUnstyled,
-  sliderUnstyledClasses,
-  getSliderUtilityClass,
-} from '@mui/base/SliderUnstyled';
+import {
+  isHostComponent,
+  useSlotProps,
+  unstable_composeClasses as composeClasses,
+} from '@mui/base';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
+import SliderValueLabel from './SliderValueLabel';
+import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
-export const sliderClasses = {
-  ...sliderUnstyledClasses,
-  ...generateUtilityClasses('MuiSlider', [
-    'colorPrimary',
-    'colorSecondary',
-    'thumbColorPrimary',
-    'thumbColorSecondary',
-    'sizeSmall',
-    'thumbSizeSmall',
-  ]),
-};
+function Identity(x) {
+  return x;
+}
 
 const SliderRoot = styled('span', {
   name: 'MuiSlider',
@@ -302,13 +296,15 @@ SliderThumb.propTypes /* remove-proptypes */ = {
 
 export { SliderThumb };
 
-const SliderValueLabel = styled(SliderValueLabelUnstyled, {
+const StyledSliderValueLabel = styled(SliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
 })(({ theme, ownerState }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
-    transform: 'translateY(-100%) scale(1)',
+    transform: `${
+      ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
+    } scale(1)`,
   },
   zIndex: 1,
   whiteSpace: 'nowrap',
@@ -317,7 +313,9 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  transform: 'translateY(-100%) scale(0)',
+  transform: `${
+    ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
+  } scale(0)`,
   position: 'absolute',
   backgroundColor: (theme.vars || theme).palette.grey[600],
   borderRadius: 2,
@@ -341,18 +339,18 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
     },
   }),
   ...(ownerState.orientation === 'vertical' && {
-    right: '30px',
-    top: '24px',
+    right: ownerState.size === 'small' ? '20px' : '30px',
+    top: '50%',
     transformOrigin: 'right center',
     '&:before': {
       position: 'absolute',
       content: '""',
       width: 8,
       height: 8,
-      transform: 'translate(-50%, 50%) rotate(45deg)',
+      transform: 'translate(-50%, -50%) rotate(45deg)',
       backgroundColor: 'inherit',
       right: '-20%',
-      top: '25%',
+      top: '50%',
     },
   }),
   ...(ownerState.size === 'small' && {
@@ -361,7 +359,7 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   }),
 }));
 
-SliderValueLabel.propTypes /* remove-proptypes */ = {
+StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -372,13 +370,17 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
 };
 
-export { SliderValueLabel };
+export { StyledSliderValueLabel as SliderValueLabel };
 
 const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
-  overridesResolver: (props, styles) => styles.mark,
+  overridesResolver: (props, styles) => {
+    const { markActive } = props;
+
+    return [styles.mark, markActive && styles.markActive];
+  },
 })(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,
@@ -454,27 +456,43 @@ SliderMarkLabel.propTypes /* remove-proptypes */ = {
 
 export { SliderMarkLabel };
 
-const extendUtilityClasses = (ownerState) => {
-  const { color, size, classes = {} } = ownerState;
+const useUtilityClasses = (ownerState) => {
+  const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
 
-  return {
-    ...classes,
-    root: clsx(
-      classes.root,
-      getSliderUtilityClass(`color${capitalize(color)}`),
-      classes[`color${capitalize(color)}`],
-      size && getSliderUtilityClass(`size${capitalize(size)}`),
-      size && classes[`size${capitalize(size)}`],
-    ),
-    thumb: clsx(
-      classes.thumb,
-      getSliderUtilityClass(`thumbColor${capitalize(color)}`),
-      classes[`thumbColor${capitalize(color)}`],
-      size && getSliderUtilityClass(`thumbSize${capitalize(size)}`),
-      size && classes[`thumbSize${capitalize(size)}`],
-    ),
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      dragging && 'dragging',
+      marked && 'marked',
+      orientation === 'vertical' && 'vertical',
+      track === 'inverted' && 'trackInverted',
+      track === false && 'trackFalse',
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
+    rail: ['rail'],
+    track: ['track'],
+    mark: ['mark'],
+    markActive: ['markActive'],
+    markLabel: ['markLabel'],
+    markLabelActive: ['markLabelActive'],
+    valueLabel: ['valueLabel'],
+    thumb: [
+      'thumb',
+      disabled && 'disabled',
+      size && `thumbSize${capitalize(size)}`,
+      color && `thumbColor${capitalize(color)}`,
+    ],
+    active: ['active'],
+    disabled: ['disabled'],
+    focusVisible: ['focusVisible'],
   };
+
+  return composeClasses(slots, getSliderUtilityClass, classes);
 };
+
+const Forward = ({ children }) => children;
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
@@ -483,64 +501,292 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const {
+    'aria-label': ariaLabel,
+    'aria-valuetext': ariaValuetext,
+    'aria-labelledby': ariaLabelledby,
     // eslint-disable-next-line react/prop-types
     component = 'span',
     components = {},
     componentsProps = {},
     color = 'primary',
+    classes: classesProp,
+    className,
+    disableSwap = false,
+    disabled = false,
+    getAriaLabel,
+    getAriaValueText,
+    marks: marksProp = false,
+    max = 100,
+    min = 0,
+    name,
+    onChange,
+    onChangeCommitted,
+    orientation = 'horizontal',
     size = 'medium',
+    step = 1,
+    scale = Identity,
+    slotProps,
+    slots,
+    tabIndex,
+    track = 'normal',
+    value: valueProp,
+    valueLabelDisplay = 'off',
+    valueLabelFormat = Identity,
     ...other
   } = props;
 
-  const ownerState = { ...props, color, size };
+  const ownerState = {
+    ...props,
+    isRtl,
+    max,
+    min,
+    classes: classesProp,
+    disabled,
+    disableSwap,
+    orientation,
+    marks: marksProp,
+    color,
+    size,
+    step,
+    scale,
+    track,
+    valueLabelDisplay,
+    valueLabelFormat,
+  };
 
-  const classes = extendUtilityClasses(ownerState);
+  const {
+    axisProps,
+    getRootProps,
+    getHiddenInputProps,
+    getThumbProps,
+    open,
+    active,
+    axis,
+    focusedThumbIndex,
+    range,
+    dragging,
+    marks,
+    values,
+    trackOffset,
+    trackLeap,
+  } = useSlider({ ...ownerState, ref });
+
+  ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
+  ownerState.dragging = dragging;
+  ownerState.focusedThumbIndex = focusedThumbIndex;
+
+  const classes = useUtilityClasses(ownerState);
+
+  // support both `slots` and `components` for backward compatibility
+  const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
+  const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
+  const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
+  const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
+  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? StyledSliderValueLabel;
+  const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
+  const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
+  const InputSlot = slots?.input ?? components.Input ?? 'input';
+
+  const rootSlotProps = slotProps?.root ?? componentsProps.root;
+  const railSlotProps = slotProps?.rail ?? componentsProps.rail;
+  const trackSlotProps = slotProps?.track ?? componentsProps.track;
+  const thumbSlotProps = slotProps?.thumb ?? componentsProps.thumb;
+  const valueLabelSlotProps = slotProps?.valueLabel ?? componentsProps.valueLabel;
+  const markSlotProps = slotProps?.mark ?? componentsProps.mark;
+  const markLabelSlotProps = slotProps?.markLabel ?? componentsProps.markLabel;
+  const inputSlotProps = slotProps?.input ?? componentsProps.input;
+
+  const rootProps = useSlotProps({
+    elementType: RootSlot,
+    getSlotProps: getRootProps,
+    externalSlotProps: rootSlotProps,
+    externalForwardedProps: other,
+    additionalProps: {
+      ...(shouldSpreadAdditionalProps(RootSlot) && {
+        as: component,
+      }),
+    },
+    ownerState: {
+      ...ownerState,
+      ...rootSlotProps?.ownerState,
+    },
+    className: [classes.root, className],
+  });
+
+  const railProps = useSlotProps({
+    elementType: RailSlot,
+    externalSlotProps: railSlotProps,
+    ownerState,
+    className: classes.rail,
+  });
+
+  const trackProps = useSlotProps({
+    elementType: TrackSlot,
+    externalSlotProps: trackSlotProps,
+    additionalProps: {
+      style: {
+        ...axisProps[axis].offset(trackOffset),
+        ...axisProps[axis].leap(trackLeap),
+      },
+    },
+    ownerState: {
+      ...ownerState,
+      ...trackSlotProps?.ownerState,
+    },
+    className: classes.track,
+  });
+
+  const thumbProps = useSlotProps({
+    elementType: ThumbSlot,
+    getSlotProps: getThumbProps,
+    externalSlotProps: thumbSlotProps,
+    ownerState: {
+      ...ownerState,
+      ...thumbSlotProps?.ownerState,
+    },
+    className: classes.thumb,
+  });
+
+  const valueLabelProps = useSlotProps({
+    elementType: ValueLabelSlot,
+    externalSlotProps: valueLabelSlotProps,
+    ownerState: {
+      ...ownerState,
+      ...valueLabelSlotProps?.ownerState,
+    },
+    className: classes.valueLabel,
+  });
+
+  const markProps = useSlotProps({
+    elementType: MarkSlot,
+    externalSlotProps: markSlotProps,
+    ownerState,
+    className: classes.mark,
+  });
+
+  const markLabelProps = useSlotProps({
+    elementType: MarkLabelSlot,
+    externalSlotProps: markLabelSlotProps,
+    ownerState,
+    className: classes.markLabel,
+  });
+
+  const inputSliderProps = useSlotProps({
+    elementType: InputSlot,
+    getSlotProps: getHiddenInputProps,
+    externalSlotProps: inputSlotProps,
+    ownerState,
+  });
 
   return (
-    <SliderUnstyled
-      {...other}
-      isRtl={isRtl}
-      components={{
-        Root: SliderRoot,
-        Rail: SliderRail,
-        Track: SliderTrack,
-        Thumb: SliderThumb,
-        ValueLabel: SliderValueLabel,
-        Mark: SliderMark,
-        MarkLabel: SliderMarkLabel,
-        ...components,
-      }}
-      componentsProps={{
-        ...componentsProps,
-        root: {
-          ...componentsProps.root,
-          ...(shouldSpreadAdditionalProps(components.Root) && {
-            as: component,
-            ownerState: { ...componentsProps.root?.ownerState, color, size },
-          }),
-        },
-        thumb: {
-          ...componentsProps.thumb,
-          ...(shouldSpreadAdditionalProps(components.Thumb) && {
-            ownerState: { ...componentsProps.thumb?.ownerState, color, size },
-          }),
-        },
-        track: {
-          ...componentsProps.track,
-          ...(shouldSpreadAdditionalProps(components.Track) && {
-            ownerState: { ...componentsProps.track?.ownerState, color, size },
-          }),
-        },
-        valueLabel: {
-          ...componentsProps.valueLabel,
-          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
-            ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
-          }),
-        },
-      }}
-      classes={classes}
-      ref={ref}
-    />
+    <RootSlot {...rootProps}>
+      <RailSlot {...railProps} />
+      <TrackSlot {...trackProps} />
+      {marks
+        .filter((mark) => mark.value >= min && mark.value <= max)
+        .map((mark, index) => {
+          const percent = valueToPercent(mark.value, min, max);
+          const style = axisProps[axis].offset(percent);
+
+          let markActive;
+          if (track === false) {
+            markActive = values.indexOf(mark.value) !== -1;
+          } else {
+            markActive =
+              (track === 'normal' &&
+                (range
+                  ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                  : mark.value <= values[0])) ||
+              (track === 'inverted' &&
+                (range
+                  ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                  : mark.value >= values[0]));
+          }
+
+          return (
+            <React.Fragment key={index}>
+              <MarkSlot
+                data-index={index}
+                {...markProps}
+                {...(!isHostComponent(MarkSlot) && {
+                  markActive,
+                })}
+                style={{ ...style, ...markProps.style }}
+                className={clsx(markProps.className, {
+                  [classes.markActive]: markActive,
+                })}
+              />
+              {mark.label != null ? (
+                <MarkLabelSlot
+                  aria-hidden
+                  data-index={index}
+                  {...markLabelProps}
+                  {...(!isHostComponent(MarkLabelSlot) && {
+                    markLabelActive: markActive,
+                  })}
+                  style={{ ...style, ...markLabelProps.style }}
+                  className={clsx(classes.markLabel, markLabelProps.className, {
+                    [classes.markLabelActive]: markActive,
+                  })}
+                >
+                  {mark.label}
+                </MarkLabelSlot>
+              ) : null}
+            </React.Fragment>
+          );
+        })}
+      {values.map((value, index) => {
+        const percent = valueToPercent(value, min, max);
+        const style = axisProps[axis].offset(percent);
+
+        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelSlot;
+
+        return (
+          /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */
+          <ValueLabelComponent
+            key={index}
+            {...(!isHostComponent(ValueLabelComponent) && {
+              valueLabelFormat,
+              valueLabelDisplay,
+              value:
+                typeof valueLabelFormat === 'function'
+                  ? valueLabelFormat(scale(value), index)
+                  : valueLabelFormat,
+              index,
+              open: open === index || active === index || valueLabelDisplay === 'on',
+              disabled,
+            })}
+            {...valueLabelProps}
+          >
+            <ThumbSlot
+              data-index={index}
+              {...thumbProps}
+              className={clsx(classes.thumb, thumbProps.className, {
+                [classes.active]: active === index,
+                [classes.focusVisible]: focusedThumbIndex === index,
+              })}
+              style={{
+                ...style,
+                pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+                ...thumbProps.style,
+              }}
+            >
+              <InputSlot
+                data-index={index}
+                aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+                aria-valuenow={scale(value)}
+                aria-labelledby={ariaLabelledby}
+                aria-valuetext={
+                  getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+                }
+                value={values[index]}
+                {...inputSliderProps}
+              />
+            </ThumbSlot>
+          </ValueLabelComponent>
+        );
+      })}
+    </RootSlot>
   );
 });
 
@@ -590,6 +836,10 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
@@ -600,8 +850,11 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `slots` prop.
+   * It's recommended to use the `slots` prop instead.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -615,7 +868,12 @@ Slider.propTypes /* remove-proptypes */ = {
     ValueLabel: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Slider.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `slotProps` prop.
+   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   *
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -631,9 +889,6 @@ Slider.propTypes /* remove-proptypes */ = {
       PropTypes.shape({
         children: PropTypes.element,
         className: PropTypes.string,
-        components: PropTypes.shape({
-          Root: PropTypes.elementType,
-        }),
         open: PropTypes.bool,
         style: PropTypes.object,
         value: PropTypes.number,
@@ -670,11 +925,6 @@ Slider.propTypes /* remove-proptypes */ = {
    * @returns {string}
    */
   getAriaValueText: PropTypes.func,
-  /**
-   * Indicates whether the theme context has rtl direction. It is set automatically.
-   * @default false
-   */
-  isRtl: PropTypes.bool,
   /**
    * Marks indicate predetermined values to which the user can move the slider.
    * If `true` the marks are spaced according the value of the `step` prop.
@@ -730,7 +980,11 @@ Slider.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * A transformation function, to change the scale of the slider.
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   scale: PropTypes.func,
   /**
@@ -741,6 +995,45 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+      }),
+    ]),
+  }),
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    mark: PropTypes.elementType,
+    markLabel: PropTypes.elementType,
+    rail: PropTypes.elementType,
+    root: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+    valueLabel: PropTypes.elementType,
+  }),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -792,7 +1085,11 @@ Slider.propTypes /* remove-proptypes */ = {
    *
    * - {number} value The value label's value to format
    * - {number} index The value label's index to format
-   * @default (x) => x
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
    */
   valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };

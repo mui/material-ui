@@ -7,6 +7,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardContentUtilityClass } from './cardContentClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -26,7 +27,16 @@ const CardContentRoot = styled('div', {
   flexGrow: 1,
   zIndex: 1,
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardContent API](https://mui.com/joy-ui/api/card-content/)
+ */
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardContentProps>({
     props: inProps,
@@ -42,17 +52,15 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 
   const classes = useUtilityClasses();
 
-  return (
-    <CardContentRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {children}
-    </CardContentRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardContentRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<CardContentTypeMap>;
 
 CardContent.propTypes /* remove-proptypes */ = {

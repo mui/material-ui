@@ -19,7 +19,9 @@ describe('<SpeedDial />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
   const icon = <Icon>font_icon</Icon>;
-  const FakeAction = () => <div />;
+  function FakeAction() {
+    return <div />;
+  }
   const defaultProps = {
     open: true,
     icon,

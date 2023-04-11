@@ -7,6 +7,7 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -24,16 +25,25 @@ const ListItemDecoratorRoot = styled('span', {
   boxSizing: 'border-box',
   display: 'inline-flex',
   alignItems: 'center',
-  color: `var(--List-decorator-color)`,
+  color: `var(--ListItemDecorator-color)`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
-        minInlineSize: 'var(--List-decorator-size)',
+        minInlineSize: 'var(--ListItemDecorator-size)',
       }
     : {
-        minBlockSize: 'var(--List-decorator-size)',
+        minBlockSize: 'var(--ListItemDecorator-size)',
       }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemDecorator API](https://mui.com/joy-ui/api/list-item-decorator/)
+ */
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -50,17 +60,15 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
 
   const classes = useUtilityClasses();
 
-  return (
-    <ListItemDecoratorRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListItemDecoratorRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemDecoratorRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListItemDecoratorTypeMap>;
 
 ListItemDecorator.propTypes /* remove-proptypes */ = {
@@ -72,10 +80,6 @@ ListItemDecorator.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * @ignore
    */

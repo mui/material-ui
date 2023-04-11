@@ -153,15 +153,17 @@ const Pre = styled('pre')(
   `,
 );
 
-function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
-  const components: SelectUnstyledProps<TValue>['components'] = {
-    Root: StyledButton,
-    Listbox: StyledListbox,
-    Popper: StyledPopper,
-    ...props.components,
+function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+  props: SelectUnstyledProps<TValue, Multiple>,
+) {
+  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
   };
 
-  return <SelectUnstyled {...props} components={components} />;
+  return <SelectUnstyled {...props} slots={slots} />;
 }
 
 interface Character {
@@ -181,14 +183,16 @@ export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState<Character | null>(characters[0]);
   return (
     <div>
-      <CustomSelect value={character} onChange={setCharacter}>
+      <CustomSelect
+        value={character}
+        onChange={(e, newValue) => setCharacter(newValue)}
+      >
         {characters.map((c) => (
           <StyledOption key={c.name} value={c}>
             {c.name}
           </StyledOption>
         ))}
       </CustomSelect>
-
       <Paragraph>Selected character:</Paragraph>
       <Pre>{JSON.stringify(character, null, 2)}</Pre>
     </div>

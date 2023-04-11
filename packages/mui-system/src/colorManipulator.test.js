@@ -145,8 +145,8 @@ describe('utils/colorManipulator', () => {
     });
 
     it('should throw error with inexistent color color space', () => {
-      const decimposeWithError = () => decomposeColor('color(foo 0 1 0)');
-      expect(decimposeWithError).to.throw();
+      const decomposeWithError = () => decomposeColor('color(foo 0 1 0)');
+      expect(decomposeWithError).to.throw();
     });
 
     it('idempotent', () => {
@@ -199,6 +199,14 @@ describe('utils/colorManipulator', () => {
       expect(getLuminance('rgb(255, 255, 255)')).to.equal(1);
     });
 
+    it('returns a valid luminance for hsla black', () => {
+      expect(getLuminance('hsla(0, 100%, 0%, 1)')).to.equal(0);
+    });
+
+    it('returns a valid luminance for hsla white', () => {
+      expect(getLuminance('hsla(0, 100%, 100%, 1)')).to.equal(1);
+    });
+
     it('returns a valid luminance for rgb mid-grey', () => {
       expect(getLuminance('rgba(127, 127, 127)')).to.equal(0.212);
       expect(getLuminance('rgb(127, 127, 127)')).to.equal(0.212);
@@ -210,6 +218,10 @@ describe('utils/colorManipulator', () => {
 
     it('returns a valid luminance from an hsl color', () => {
       expect(getLuminance('hsl(100, 100%, 50%)')).to.equal(0.735);
+    });
+
+    it('returns a valid luminance from an hsla color', () => {
+      expect(getLuminance('hsla(100, 100%, 50%, 1)')).to.equal(0.735);
     });
 
     it('returns an equal luminance for the same color in different formats', () => {

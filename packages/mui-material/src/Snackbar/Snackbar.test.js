@@ -8,7 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 describe('<Snackbar />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
    *
    * @remarks
    * This is for all intents and purposes the same as our client render method.
@@ -528,7 +528,9 @@ describe('<Snackbar />', () => {
 
     it('accepts a different component that handles the transition', () => {
       const transitionRef = React.createRef();
-      const Transition = () => <div className="cloned-element-class" ref={transitionRef} />;
+      function Transition() {
+        return <div className="cloned-element-class" ref={transitionRef} />;
+      }
       const { container } = render(<Snackbar open TransitionComponent={Transition} />);
       expect(container).to.contain(transitionRef.current);
     });

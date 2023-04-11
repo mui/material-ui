@@ -1,23 +1,46 @@
-import React from 'react';
+import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
-import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
+export interface InputSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface InputPropsVariantOverrides {}
-
 export interface InputPropsColorOverrides {}
-
 export interface InputPropsSizeOverrides {}
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, InputOwnerState>;
-  input?: SlotComponentProps<'input', { sx?: SxProps }, InputOwnerState>;
-  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
-  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
-}
+export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  InputSlots,
+  {
+    root: SlotProps<'div', {}, InputOwnerState>;
+    input: SlotProps<'input', {}, InputOwnerState>;
+    startDecorator: SlotProps<'span', {}, InputOwnerState>;
+    endDecorator: SlotProps<'span', {}, InputOwnerState>;
+  }
+>;
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
@@ -51,17 +74,13 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
-       * The props used for each slot inside the component.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
-      /**
        * Trailing adornment for this input.
        */
       endDecorator?: React.ReactNode;
       /**
        * If `true`, the `input` will indicate an error.
        * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+       * @default false
        */
       error?: boolean;
       /**
@@ -83,11 +102,11 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
-    };
+    } & InputSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -100,13 +119,9 @@ export type InputProps<
 
 export default InputProps;
 
-export interface InputOwnerState extends InputProps {
+export interface InputOwnerState extends ApplyColorInversion<InputProps> {
   /**
    * If `true`, the input is focused.
    */
   focused: boolean;
-  /**
-   * The data from the parent form control.
-   */
-  formControlContext: FormControlUnstyledState | undefined;
 }

@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, act, fireEvent } from 'test/utils';
+import {
+  describeConformance,
+  describeJoyColorInversion,
+  createRenderer,
+  act,
+  fireEvent,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ListItemButton, { listItemButtonClasses as classes } from '@mui/joy/ListItemButton';
 
@@ -17,7 +23,14 @@ describe('Joy <ListItemButton />', () => {
     testVariantProps: { color: 'primary' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
+
+  describeJoyColorInversion(<ListItemButton />, { muiName: 'JoyListItemButton', classes });
 
   it('should render with the selected class', () => {
     const { getByRole } = render(<ListItemButton selected />);

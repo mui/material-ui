@@ -2,27 +2,27 @@ import generateUtilityClass from '../generateUtilityClass';
 import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface InputUnstyledClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if the component is a descendant of `FormControl`. */
+  /** Class name applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
-  /** Styles applied to the root element if `startAdornment` is provided. */
+  /** Class name applied to the root element if `startAdornment` is provided. */
   adornedStart: string;
-  /** Styles applied to the root element if `endAdornment` is provided. */
+  /** Class name applied to the root element if `endAdornment` is provided. */
   adornedEnd: string;
-  /** Styles applied to the root element if the component is focused. */
+  /** State class applied to the root element if the component is focused. */
   focused: string;
-  /** Styles applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Styles applied to the root element if `multiline={true}`. */
+  /** Class name applied to the root element if `multiline={true}`. */
   multiline: string;
-  /** Styles applied to the input element. */
+  /** Class name applied to the input element. */
   input: string;
-  /** Styles applied to the input element if `multiline={true}`. */
+  /** Class name applied to the input element if `multiline={true}`. */
   inputMultiline: string;
-  /** Styles applied to the input element if `type="search"`. */
+  /** Class name applied to the input element if `type="search"`. */
   inputTypeSearch: string;
 }
 
@@ -32,7 +32,7 @@ export function getInputUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInput', slot);
 }
 
-const inputBaseClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput', [
+const inputUnstyledClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput', [
   'root',
   'formControl',
   'focused',
@@ -46,4 +46,4 @@ const inputBaseClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput'
   'adornedEnd',
 ]);
 
-export default inputBaseClasses;
+export default inputUnstyledClasses;

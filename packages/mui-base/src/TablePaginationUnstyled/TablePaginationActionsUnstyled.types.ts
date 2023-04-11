@@ -2,58 +2,48 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
+export interface TablePaginationActionsUnstyledRootSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledFirstButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledLastButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledNextButtonSlotPropsOverrides {}
+export interface TablePaginationActionsUnstyledBackButtonSlotPropsOverrides {}
 
 export interface TablePaginationActionsUnstyledOwnProps {
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {};
   count: number;
   /**
    * The components used for each slot inside the TablePagination.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: {
-    Root?: React.ElementType;
-    FirstButton?: React.ElementType;
-    LastButton?: React.ElementType;
-    NextButton?: React.ElementType;
-    BackButton?: React.ElementType;
-    FirstPageIcon?: React.ElementType;
-    LastPageIcon?: React.ElementType;
-    NextPageIcon?: React.ElementType;
-    BackPageIcon?: React.ElementType;
-  };
+  slots?: TablePaginationActionsUnstyledSlots;
   /**
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  componentsProps?: {
+  slotProps?: {
     root?: SlotComponentProps<
       'div',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledRootSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     firstButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledFirstButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     lastButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledLastButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     nextButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledNextButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
     backButton?: SlotComponentProps<
       'button',
-      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledBackButtonSlotPropsOverrides,
       TablePaginationActionsUnstyledOwnerState
     >;
   };
@@ -76,6 +66,54 @@ export interface TablePaginationActionsUnstyledOwnProps {
   rowsPerPage: number;
   showFirstButton: boolean;
   showLastButton: boolean;
+}
+
+export interface TablePaginationActionsUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the first button.
+   * @default 'button'
+   */
+  firstButton?: React.ElementType;
+  /**
+   * The component that renders the last button.
+   * @default 'button'
+   */
+  lastButton?: React.ElementType;
+  /**
+   * The component that renders the next button.
+   * @default 'button'
+   */
+  nextButton?: React.ElementType;
+  /**
+   * The component that renders the back button.
+   * @default 'button'
+   */
+  backButton?: React.ElementType;
+  /**
+   * The component that renders the first page icon.
+   * @default FirstPageIconDefault
+   */
+  firstPageIcon?: React.ElementType;
+  /**
+   * The component that renders the last page icon.
+   * @default LastPageIconDefault
+   */
+  lastPageIcon?: React.ElementType;
+  /**
+   * The component that renders the next page icon.
+   * @default NextPageIconDefault
+   */
+  nextPageIcon?: React.ElementType;
+  /**
+   * The component that renders the back page icon.
+   * @default BackPageIconDefault
+   */
+  backPageIcon?: React.ElementType;
 }
 
 export type TablePaginationActionsUnstyledProps<

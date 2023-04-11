@@ -1,23 +1,35 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, describeJoyColorInversion } from 'test/utils';
 import Button, { buttonClasses as classes } from '@mui/joy/Button';
 import { ThemeProvider } from '@mui/joy/styles';
 
 describe('Joy <Button />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
-    render,
-    classes,
-    ThemeProvider,
-    refInstanceof: window.HTMLButtonElement,
-    muiName: 'JoyButton',
-    testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
-    testVariantProps: { variant: 'solid', fullWidth: true },
-    testCustomVariant: true,
-    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
-  }));
+  describeConformance(
+    <Button startDecorator="icon" endDecorator="icon">
+      Conformance?
+    </Button>,
+    () => ({
+      render,
+      classes,
+      ThemeProvider,
+      refInstanceof: window.HTMLButtonElement,
+      muiName: 'JoyButton',
+      testDeepOverrides: { slotName: 'startDecorator', slotClassName: classes.startDecorator },
+      testVariantProps: { variant: 'solid', fullWidth: true },
+      testCustomVariant: true,
+      slots: {
+        root: { expectedClassName: classes.root },
+        startDecorator: { expectedClassName: classes.startDecorator },
+        endDecorator: { expectedClassName: classes.endDecorator },
+      },
+      skip: ['propsSpread', 'componentsProp', 'classesRoot'],
+    }),
+  );
+
+  describeJoyColorInversion(<Button>Button</Button>, { muiName: 'JoyButton', classes });
 
   it('by default, should render with the root, variantSolid, sizeMd and colorPrimary classes', () => {
     const { getByRole } = render(<Button>Hello World</Button>);
@@ -76,21 +88,117 @@ describe('Joy <Button />', () => {
     expect(button).to.have.class(classes.fullWidth);
   });
 
-  it('should render a button with startIcon', () => {
-    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+  it('should render a button with startDecorator', () => {
+    const { getByRole } = render(<Button startDecorator={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const startIcon = button.querySelector(`.${classes.startIcon}`);
+    const startDecorator = button.querySelector(`.${classes.startDecorator}`);
 
     expect(button).to.have.class(classes.root);
-    expect(startIcon).not.to.have.class(classes.endIcon);
+    expect(startDecorator).not.to.have.class(classes.endDecorator);
   });
 
-  it('should render a button with endIcon', () => {
-    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+  it('should render a button with endDecorator', () => {
+    const { getByRole } = render(<Button endDecorator={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const endIcon = button.querySelector(`.${classes.endIcon}`);
+    const endDecorator = button.querySelector(`.${classes.endDecorator}`);
 
     expect(button).to.have.class(classes.root);
-    expect(endIcon).not.to.have.class(classes.startIcon);
+    expect(endDecorator).not.to.have.class(classes.startDecorator);
+  });
+
+  describe('prop: loading', () => {
+    it('disables the button', () => {
+      const { getByRole } = render(<Button loading />);
+
+      const button = getByRole('button');
+      expect(button).to.have.property('disabled', true);
+    });
+
+    it('renders a progressbar', () => {
+      const { getByRole } = render(<Button loading>Submit</Button>);
+
+      const progressbar = getByRole('progressbar');
+      expect(progressbar).toBeVisible();
+    });
+  });
+
+  describe('prop: loadingIndicator', () => {
+    it('is not rendered by default', () => {
+      const { getByRole } = render(<Button loadingIndicator="loading">Test</Button>);
+
+      expect(getByRole('button')).to.have.text('Test');
+    });
+
+    it('is rendered properly when `loading` and children should not be visible', function test() {
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const { container, getByRole } = render(
+        <Button loadingIndicator="loading.." loading>
+          Test
+        </Button>,
+      );
+
+      expect(container.querySelector(`.${classes.loadingIndicatorCenter}`)).to.have.text(
+        'loading..',
+      );
+      expect(getByRole('button')).toHaveComputedStyle({ color: 'transparent' });
+    });
+  });
+
+  describe('prop: loadingPosition', () => {
+    it('center is rendered by default', () => {
+      const { getByRole } = render(<Button loading>Test</Button>);
+      const loader = getByRole('progressbar');
+
+      expect(loader.parentElement).to.have.class(classes.loadingIndicatorCenter);
+    });
+
+    it('there should be only one loading indicator', () => {
+      const { getAllByRole } = render(
+        <Button loading startDecorator="🚀" endDecorator="👍">
+          Test
+        </Button>,
+      );
+      const loaders = getAllByRole('progressbar');
+
+      expect(loaders).to.have.length(1);
+    });
+
+    it('loading indicator with `position="start"` replaces the `startDecorator` content', () => {
+      const { getByRole } = render(
+        <Button
+          loading
+          startDecorator={<span>icon</span>}
+          loadingPosition="start"
+          loadingIndicator={<span role="progressbar">loading..</span>}
+        >
+          Test
+        </Button>,
+      );
+      const loader = getByRole('progressbar');
+      const button = getByRole('button');
+
+      expect(loader).toBeVisible();
+      expect(button).to.have.text('loading..Test');
+    });
+
+    it('loading indicator with `position="end"` replaces the `startDecorator` content', () => {
+      const { getByRole } = render(
+        <Button
+          loading
+          endDecorator={<span>icon</span>}
+          loadingPosition="end"
+          loadingIndicator={<span role="progressbar">loading..</span>}
+        >
+          Test
+        </Button>,
+      );
+      const loader = getByRole('progressbar');
+      const button = getByRole('button');
+
+      expect(loader).toBeVisible();
+      expect(button).to.have.text('Testloading..');
+    });
   });
 });

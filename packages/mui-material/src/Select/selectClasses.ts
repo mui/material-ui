@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface SelectClasses {
   /** Styles applied to the select component `select` class. */
@@ -25,6 +26,8 @@ export interface SelectClasses {
   iconStandard: string;
   /** Styles applied to the underlying native input component. */
   nativeInput: string;
+  /** State class applied to the root element if `error={true}`. */
+  error: string;
 }
 
 export type SelectClassKey = keyof SelectClasses;
@@ -47,6 +50,7 @@ const selectClasses: SelectClasses = generateUtilityClasses('MuiSelect', [
   'iconOutlined',
   'iconStandard',
   'nativeInput',
+  'error',
 ]);
 
 export default selectClasses;

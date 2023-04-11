@@ -3,8 +3,8 @@ product: material-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
-materialDesign: https://material.io/components/sliders
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
+materialDesign: https://m2.material.io/components/sliders
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 unstyled: /base/react-slider/
 ---
 
@@ -135,7 +135,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/)
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:
@@ -150,7 +150,7 @@ However, you need to make sure that:
 ### IE 11
 
 The slider's value label is not centered in IE 11.
-The alignement is not handled to make customizations easier with the lastest browsers.
+The alignment is not handled to make customizations easier with the latest browsers.
 You can solve the issue with:
 
 ```css

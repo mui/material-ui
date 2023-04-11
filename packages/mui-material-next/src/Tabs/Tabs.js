@@ -10,7 +10,8 @@ import {
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
+import { TabsContext } from '@mui/base/TabsUnstyled';
+import useTabs from '@mui/base/useTabs';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import animate from '@mui/material/internal/animate';
 import TabScrollButton from '../TabScrollButton';
@@ -412,7 +413,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     moveTabsScroll(getScrollSize());
   };
 
-  // TODO Remove <ScrollbarSize /> as browser support for hidding the scrollbar
+  // TODO Remove <ScrollbarSize /> as browser support for hiding the scrollbar
   // with CSS improves.
   const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
     setScrollerStyle({

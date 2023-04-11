@@ -7,6 +7,7 @@ import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Popover, { popoverClasses as classes } from '@mui/material/Popover';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 
@@ -45,11 +46,11 @@ describe('<Popover />', () => {
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
-      'themeDefaultProps', // portal, can't determin the root
-      'themeStyleOverrides', // portal, can't determin the root
+      'themeDefaultProps', // portal, can't determine the root
+      'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',
       'reactTestRenderer', // react-transition-group issue
     ],
@@ -876,5 +877,29 @@ describe('<Popover />', () => {
       );
       expect(screen.getByTestId('transition')).not.to.have.attribute('data-timeout');
     });
+  });
+
+  it("should not throw if ownerState is used in slot's styleOverrides", () => {
+    expect(() =>
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            components: {
+              MuiPopover: {
+                styleOverrides: {
+                  paper: ({ ownerState }) => ({
+                    marginTop: ownerState.transformOrigin?.vertical === 'top' ? '4px' : 0,
+                  }),
+                },
+              },
+            },
+          })}
+        >
+          <Popover anchorEl={document.createElement('div')} open>
+            <div />
+          </Popover>
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });

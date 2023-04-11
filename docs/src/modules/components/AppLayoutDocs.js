@@ -11,49 +11,61 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
-import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
-import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => ({
-  display: 'flex',
+  display: 'grid',
   width: '100%',
-  ...(disableToc && {
-    [theme.breakpoints.up('lg')]: {
-      marginRight: '5%',
-    },
-  }),
-  [theme.breakpoints.up('lg')]: {
-    width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
+  ...(disableToc
+    ? {
+        [theme.breakpoints.up('lg')]: {
+          marginRight: '5%',
+        },
+      }
+    : {
+        [theme.breakpoints.up('md')]: {
+          gridTemplateColumns: '1fr 242px',
+        },
+      }),
+  '& .markdown-body .comment-link': {
+    display: 'inline-block',
   },
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
-})(({ disableAd, disableToc, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs',
+})(({ disableAd, hasTabs, theme }) => {
   return {
     position: 'relative',
+    // By default, a grid item cannot be smaller than the size of its content.
+    // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+    minWidth: 0,
     ...(!disableAd && {
-      '&& .description': {
-        marginBottom: 198,
-      },
-      '&& .description.ad': {
-        marginBottom: 40,
-      },
+      ...(!hasTabs && {
+        '&& .description': {
+          marginBottom: 198,
+        },
+        '&& .description.ad': {
+          marginBottom: 40,
+        },
+      }),
+      ...(hasTabs && {
+        '&& .component-tabs .MuiTabs-root': {
+          marginBottom: 193,
+        },
+        '&& .component-tabs.ad .MuiTabs-root': {
+          marginBottom: 35,
+        },
+      }),
     }),
-    ...(!disableToc && {
-      [theme.breakpoints.up('sm')]: {
-        width: 'calc(100% - var(--MuiDocs-toc-width))',
-      },
-      [theme.breakpoints.up('lg')]: {
-        paddingLeft: '60px',
-        paddingRight: '60px',
-      },
-    }),
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: '60px',
+      paddingRight: '60px',
+    },
   };
 });
 
@@ -69,6 +81,7 @@ const ActionsDiv = styled('div')(({ theme }) => ({
 function AppLayoutDocs(props) {
   const router = useRouter();
   const {
+    BannerComponent,
     children,
     description,
     disableAd = false,
@@ -76,6 +89,7 @@ function AppLayoutDocs(props) {
     location,
     title,
     toc,
+    hasTabs = false,
   } = props;
 
   if (description === undefined) {
@@ -87,7 +101,7 @@ function AppLayoutDocs(props) {
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
   } else if (canonicalAs.startsWith('/base/')) {
-    productName = 'MUI Base';
+    productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
   } else if (canonicalAs.startsWith('/system/')) {
@@ -99,35 +113,36 @@ function AppLayoutDocs(props) {
   }
 
   return (
-    <AppFrame>
+    <AppFrame BannerComponent={BannerComponent}>
       <GlobalStyles
         styles={{
           ':root': {
             '--MuiDocs-navDrawer-width': '300px',
-            '--MuiDocs-toc-width': '240px',
           },
         }}
       />
-      <AdManager>
-        <Head title={`${title} - ${productName}`} description={description} />
-        {disableAd ? null : (
-          <AdGuest>
-            <Ad />
-          </AdGuest>
-        )}
+      <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
+        <Head
+          title={`${title} - ${productName}`}
+          description={description}
+          largeCard={false}
+          card="https://mui.com/static/logo.png"
+        />
         <Main disableToc={disableToc}>
           {/*
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          {disableToc ? null : <AppTableOfContents toc={toc} />}
-          <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
-            <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
+            <ActionsDiv>
+              <EditPage markdownLocation={location} />
+            </ActionsDiv>
             {children}
             <NoSsr>
-              <AppLayoutDocsFooter />
+              <AppLayoutDocsFooter tableOfContents={toc} />
             </NoSsr>
           </StyledAppContainer>
+          {disableToc ? null : <AppTableOfContents toc={toc} />}
         </Main>
       </AdManager>
       <BackToTop />
@@ -136,11 +151,13 @@ function AppLayoutDocs(props) {
 }
 
 AppLayoutDocs.propTypes = {
+  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
-  location: PropTypes.string,
+  hasTabs: PropTypes.bool,
+  location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
 };

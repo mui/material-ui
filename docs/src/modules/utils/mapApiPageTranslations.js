@@ -1,4 +1,5 @@
 import { createRender } from '@mui/markdown';
+import { LANGUAGES_IGNORE_PAGES } from '../../../config';
 
 const notEnglishJsonRegExp = /-([a-z]{2})\.json$/;
 
@@ -29,6 +30,12 @@ export default function mapApiPageTranslations(req) {
         toc: componentDescriptionToc,
         userLanguage,
         location: filenames,
+        options: {
+          ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+          env: {
+            SOURCE_CODE_REPO: '',
+          },
+        },
       });
       translation.componentDescription = render(translation.componentDescription);
       translation.componentDescriptionToc = componentDescriptionToc;

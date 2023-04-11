@@ -44,11 +44,16 @@ const StyledInputRoot = styled('div')(
 
   &.${inputUnstyledClasses.focused} {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
   &:hover {
     border-color: ${blue[400]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
@@ -89,13 +94,13 @@ const InputAdornment = styled('div')`
 `;
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { components, ...other } = props;
+  const { slots, ...other } = props;
   return (
     <InputUnstyled
-      components={{
-        Root: StyledInputRoot,
-        Input: StyledInputElement,
-        ...components,
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInputElement,
+        ...slots,
       }}
       {...other}
       ref={ref}
@@ -109,10 +114,10 @@ CustomInput.propTypes = {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Textarea: PropTypes.elementType,
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    textarea: PropTypes.elementType,
   }),
 };
 

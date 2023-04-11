@@ -1,51 +1,51 @@
 ---
-title: 'Introducing MUI Base: the headless alternative to Material UI'
-description: The MUI Base component library gives you complete control over the look and feel of your app.
+title: 'Introducing Base UI: the headless alternative to Material UI'
+description: The Base UI component library gives you complete control over the look and feel of your app.
 date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['News', 'MUI Core']
 card: true
 ---
 
-<img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with MUI Base, a newly introduced library of unstyled components and hooks" />
+<a href="/base/getting-started/overview/"><img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with Base UI, a newly introduced library of unstyled components and hooks" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
 We've all been there.
 
-That's why we're building an entirely new library of headless React UI components and hooks called **MUI Base**—to give you complete control over the look and feel of your user interface, with no defaults to override.
+That's why we're building an entirely new library of headless React UI components and hooks called **Base UI**—to give you complete control over the look and feel of your user interface, with no defaults to override.
 
-MUI Base is easy to pick up if you're already familiar with Material UI, as the APIs are very similar—indeed, they were designed to be complementary to one another.
-Start from scratch with MUI Base, or use Material UI for rapid prototyping, and then switch to MUI Base when you need more customization options.
+Base UI is easy to pick up if you're already familiar with Material UI, as the APIs are very similar—indeed, they were designed to be complementary to one another.
+Start from scratch with Base UI, or use Material UI for rapid prototyping, and then switch to Base UI when you need more customization options.
 
-## Why MUI Base?
+## Why Base UI?
 
-MUI Base was created to serve a different set of needs than those addressed by Material UI.
+Base UI was created to serve a different set of needs than those addressed by Material UI.
 Material UI shines at providing you with the means to quickly create user interfaces that look close to the Material Design specification.
-MUI Base, on the other hand, prioritizes customizability over the speed of development.
+Base UI, on the other hand, prioritizes customizability over the speed of development.
 This makes it better suited for public-facing projects where pixel-perfect implementation is crucial.
 
 So, why not use any of the headless libraries already present on the market instead?
 There are other alternatives like Headless UI, Radix UI, and React Aria, to name a few.
-MUI Base's significant advantage is that it takes the best parts from Material UI, which is a complete, mature library.
+Base UI's significant advantage is that it takes the best parts from Material UI, which is a complete, mature library.
 It is free from many of the issues that have been reported and fixed in Material UI.
-Also, many of the improvements to Material UI proposed by the community over the years are included in MUI Base.
+Also, many of the improvements to Material UI proposed by the community over the years are included in Base UI.
 
 While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
-MUI Base's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
+Base UI's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
 We aim to create [unstyled versions of all Material UI components](https://github.com/mui/material-ui/issues/27170) (that make sense to do so).
 
 ## Components and hooks
 
-MUI Base offers two kinds of building blocks: unstyled components and hooks.
+Base UI offers two kinds of building blocks: unstyled components and hooks.
 
 Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
-You can, of course, still use [MUI System](https://mui.com/system/](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
+You can, of course, still use [MUI System](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
 Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for an example of using this library.
 
-In contrast to Material UI, MUI Base's components do not have any default styles.
+In contrast to Material UI, Base UI's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
 
 Each unstyled component lets you modify or override its _slots_—smaller subcomponents representing the interior elements that comprise the component's DOM structure.
@@ -58,7 +58,7 @@ See how it works on the live demo:
 
 <iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark"
   style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
-  title="MUI Base Switch overview"
+  title="Base UI Switch overview"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
@@ -84,19 +84,19 @@ function MySwitch(props: UseSwitchParameters) {
 ## What's included
 
 The initial version of the library contains 17 components.
-Check out the [MUI Base documentation](/base/getting-started/overview/) for details.
+Check out the [Base UI documentation](/base/getting-started/overview/) for details.
 
 You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
 
 The @mui/base package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.
 However, we believe the library is solid enough at this point to start building design systems with it.
-In fact, we're using MUI Base to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
-In the future, MUI Base will also be used as the foundation for Material UI components to provide a consistent developer experience across our entire suite of products.
+In fact, we're using Base UI to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
+In the future, Base UI will also be used as the foundation for Material UI components to provide a consistent developer experience across our entire suite of products.
 
 ## Feedback needed
 
-Give MUI Base a try today by installing the package via npm:
+Give Base UI a try today by installing the package via npm:
 
 ```sh
 npm install @mui/base
@@ -108,7 +108,7 @@ or yarn:
 yarn add @mui/base
 ```
 
-Chek out [the docs](/base/getting-started/overview/), play with the components, and be sure to let us know what you think!
+Check out [the docs](/base/getting-started/overview/), play with the components, and be sure to let us know what you think!
 
 If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
 Be sure to include "[base]" in the issue title to help us keep things organized.

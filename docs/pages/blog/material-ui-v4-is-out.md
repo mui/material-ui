@@ -21,7 +21,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it 
 - [High-level goals for v4](#high-level-goals-for-v4)
 - [What's new?](#whats-new)
 - [What's next?](#whats-next)
-- [Premium themes store](#premium-themes-store)
+- [Premium themes store](#premium-themes-store-✨)
 
 ## High-level goals for v4
 
@@ -29,11 +29,11 @@ Material UI v1 was [released](https://medium.com/material-ui/material-ui-v1-is-o
 
 This release happens within our [fixed frequency](https://mui.com/versions/#release-frequency) release strategy. We try to release a major at least every 12 months and at most every 6 months. The migration from v0 to v1 was painful, it almost felt like using two different UI libraries. We've done our best to minimize the time needed to migrate from v3 to v4. To help ease the transition, you can follow this [migration guide](/material-ui/migration/migration-v3/) 📚. It shouldn't take more than a few hours.
 
-This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/material-ui/discover-more/roadmap/#our-priorities) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
+This release is influenced by two major factors. First, following the Developer Survey we ran in March, we have [analyzed the results](/blog/2019-developer-survey-results/) and used them to change [our priorities](/material-ui/discover-more/roadmap/#priorities) for the coming year. Secondly, we needed to be up to date with the latest best practices in the React community and with the Material Design Specification.
 
 ### Customization
 
-The Material Design team at Google has made the customization of their design system framework a core feature: [Material Theming](https://material.io/design/material-theming/overview.html). It's an important dimension of the library for us. Since the release of v1, we have been improving the component customization demos, release after release. We demonstrate a wide range of different designs:
+The Material Design team at Google has made the customization of their design system framework a core feature: [Material Theming](https://m2.material.io/design/material-theming/overview.html). It's an important dimension of the library for us. Since the release of v1, we have been improving the component customization demos, release after release. We demonstrate a wide range of different designs:
 
 ![Demo1](/static/blog/material-ui-v4-is-out/demo1.png)
 
@@ -66,7 +66,7 @@ import { StylesProvider } from '@mui/styles';
 
 - **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, e.g. `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
   We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
-  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/system/styles/advanced/#with-material-ui-core), while keeping the `classes` API working as before 💅.
+  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/system/styles/advanced/), while keeping the `classes` API working as before 💅.
 
 ![styled-components](/static/blog/material-ui-v4-is-out/styled-components.png)
 
@@ -163,14 +163,14 @@ import {
 
 <p class="blog-description">Fine level tracking</p>
 
-- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui/material-ui/blob/HEAD/examples/preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
+- **Preact X.** We have introduced a working [integration example with Preact](https://github.com/mui/material-ui/blob/HEAD/examples/material-preact/README.md). Preact is a fast, 1/10 smaller alternative to React, with the same modern API. We will do our best to support it.
 - **Runtime performance**. We have heard that some people struggle with the runtime cost of using Material UI. We have solved a few problems reported, but nothing systematic. We have observed [a slight gain](https://github.com/mui/material-ui/pull/15023) by moving from the classes API to the hooks API. However, it's hard to make progress as we lack a properly setup performance bench. It's something to consider for v5.
 
 ### Preparing for the future
 
-Material UI v4 depends on React ≥16.8.0. This is the first version of React that supports the [new Hooks API](https://reactjs.org/docs/hooks-intro.html).
+Material UI v4 depends on React ≥16.8.0. This is the first version of React that supports the [new Hooks API](https://legacy.reactjs.org/docs/hooks-intro.html).
 
-- **Ref forwarding**. Most of the time, you use the `ref` prop to access the underlying DOM node of a React element. You might want to focus an element, compute the position of an element, and so on. You should never need to access a Material UI component's instance methods, they are considered private. The components expose an `action` when it's really needed. For instance, you might want to update the tab indicator position when it goes out of sync with the tab item position. To ease this use case, Sebastian has lead an effort to implement [`React.forwardRef()`](https://reactjs.org/docs/react-api.html#reactforwardref). In practice, this means that you can retrieve a reference to the DOM node like you would do with a built-in component (`button`, `div`, etc.):
+- **Ref forwarding**. Most of the time, you use the `ref` prop to access the underlying DOM node of a React element. You might want to focus an element, compute the position of an element, and so on. You should never need to access a Material UI component's instance methods, they are considered private. The components expose an `action` when it's really needed. For instance, you might want to update the tab indicator position when it goes out of sync with the tab item position. To ease this use case, Sebastian has lead an effort to implement [`React.forwardRef()`](https://legacy.reactjs.org/docs/forwarding-refs.html). In practice, this means that you can retrieve a reference to the DOM node like you would do with a built-in component (`button`, `div`, etc.):
 
 ```jsx
 import { Button } from '@mui/material';
@@ -182,7 +182,7 @@ function MyButton() {
 }
 ```
 
-- **Hooks migration**. While there is [no plan](https://reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React, the React Team [encourages](https://reactjs.org/docs/hooks-faq.html#do-i-need-to-rewrite-all-my-class-components) new code to be written with the hooks API.
+- **Hooks migration**. While there is [no plan](https://legacy.reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React, the React Team [encourages](https://legacy.reactjs.org/docs/hooks-faq.html#do-i-need-to-rewrite-all-my-class-components) new code to be written with the hooks API.
   Josh has led an effort to rewrite the vast majority of our components with the hooks API. The change has a couple of advantages.
 
   Not all [the platforms we support](/material-ui/getting-started/supported-platforms/) can use the class API natively, so we transpile the syntax with Babel. Functions are supported everywhere, they require fewer line of code. We have observed a -2% gzipped bundle reduction by removing the need to transpile classes.
@@ -195,7 +195,7 @@ function MyButton() {
 
   <p class="blog-description">React Dev Tools output for one Typography element in production (<a href="https://github.com/mui/material-ui/pull/15023">this POC</a> might further improve the situation).</p>
 
-- **Concurrent mode**. React has shared its [release timeline](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) for the important features coming into React. [Concurrent mode](https://reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) should be released within the next few months. Concurrent Mode lets React apps be more responsive by rendering component trees without blocking the main thread. We have worked on getting ready for it. Most of the work was related to fixing the [<React.StrictMode>](https://reactjs.org/docs/strict-mode.html) warnings. You should soon be able to leverage it 🔥.
+- **Concurrent mode**. React has shared its [release timeline](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) for the important features coming into React. [Concurrent mode](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) should be released within the next few months. Concurrent Mode lets React apps be more responsive by rendering component trees without blocking the main thread. We have worked on getting ready for it. Most of the work was related to fixing the [<React.StrictMode>](https://legacy.reactjs.org/docs/strict-mode.html) warnings. You should soon be able to leverage it 🔥.
 - **Shallow tests.** We have removed the majority of our internal shallow tests to rely on [full mount tests](https://twitter.com/dan_abramov/status/1109461529227866112).
 
 ### Material Design
@@ -273,7 +273,7 @@ export default function Hook() {
 }
 ```
 
-⚠️ Be aware of the difference between _@mui/styles_ and _@mui/material/styles_. The latter contains the [default theme](/material-ui/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
+⚠️ Be aware of the difference between _@mui/styles_ and _@mui/material/styles_. The latter contains the [default theme](/material-ui/customization/default-theme/).
 
 - A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for _@mui/styles_.
 - A [Cookbook](https://www.packtpub.com/product/react-material-ui-cookbook/9781789615227) published by Packt and written by Adam Boduch.
@@ -286,7 +286,7 @@ Together, we have accomplished most of the objectives we defined a year ago in t
 
 - **More components.** This is, by far, the most requested improvement dimension of the library. We have identified a few useful components we are interested in building:
   - Layout components
-  - AutoComplete/ ComboBox / Dropdown List / MultiSelect
+  - Autocomplete/ ComboBox / Dropdown List / MultiSelect
   - Slider in core and the support for range values
   - Tree view
   - Dropzone / Upload

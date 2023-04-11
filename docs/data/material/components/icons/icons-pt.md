@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React para Ícones
 components: Icon, SvgIcon
 githubLabel: 'components: SvgIcon'
-materialDesign: https://material.io/design/iconography/system-icons.html
+materialDesign: https://m2.material.io/design/iconography/system-icons.html
 ---
 
 # Ícones
@@ -55,7 +55,7 @@ Import icons using one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-The safest for bundle size is Option 1, but some developers prefer Option 2. Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
+The safest for bundle size is Option 1, but some developers prefer Option 2. Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
@@ -170,7 +170,7 @@ FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct d
 
 #### MDI
 
-[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
+[materialdesignicons.com](https://pictogrammers.com/library/mdi/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
 
 Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 

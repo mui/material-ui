@@ -27,8 +27,8 @@
       "default": "[10, 25, 50, 100]"
     },
     "SelectProps": { "type": { "name": "object" }, "default": "{}" },
-    "showFirstButton": { "type": { "name": "bool" } },
-    "showLastButton": { "type": { "name": "bool" } },
+    "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
+    "showLastButton": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -55,6 +55,8 @@
     "name": "MuiTablePagination"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTablePagination",
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-material/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/material-ui/api/table-cell/" },

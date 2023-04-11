@@ -1,6 +1,6 @@
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import { LANGUAGES } from '../constants';
+import { LANGUAGES } from 'docs/config';
 
 function pascalCase(str: string) {
   return upperFirst(camelCase(str));
@@ -12,6 +12,7 @@ function titleize(hyphenedString: string): string {
 
 export interface Page {
   pathname: string;
+  query?: object;
   subheader?: string;
   title?: string | false;
 }
@@ -35,7 +36,7 @@ export function pageToTitle(page: Page): string | null {
 
   // TODO support more than React component API (PascalCase)
   if (path.indexOf('/api/') !== -1) {
-    return pascalCase(name);
+    return name.startsWith('use') ? camelCase(name) : pascalCase(name);
   }
 
   return titleize(name);
@@ -45,7 +46,9 @@ export type Translate = (id: string, options?: Partial<{ ignoreWarning: boolean 
 
 export function pageToTitleI18n(page: Page, t: Translate): string | null {
   const path = page.subheader || page.pathname;
-  return t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
+  return page.query
+    ? pageToTitle(page)
+    : t(`pages.${path}`, { ignoreWarning: true }) || pageToTitle(page);
 }
 
 /**
@@ -78,6 +81,7 @@ export function getCookie(name: string): string | undefined {
 export function pathnameToLanguage(pathname: string): {
   userLanguage: string;
   canonicalAs: string;
+  canonicalAsServer: string;
   canonicalPathname: string;
 } {
   let userLanguage;
@@ -93,19 +97,15 @@ export function pathnameToLanguage(pathname: string): {
   }
 
   const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3);
-  const canonicalPathname = canonicalAs
-    .replace(/^\/api/, '/api-docs')
-    .replace(/#(.*)$/, '')
-    .replace(/\/$/, '');
+  // Remove hash as it's never sent to the server
+  // https://github.com/vercel/next.js/issues/25202
+  const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '');
+  const canonicalPathname = canonicalAsServer.replace(/^\/api/, '/api-docs').replace(/\/$/, '');
 
   return {
     userLanguage,
     canonicalAs,
+    canonicalAsServer,
     canonicalPathname,
   };
-}
-
-export function escapeCell(value: string): string {
-  // As the pipe is use for the table structure
-  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
 }
