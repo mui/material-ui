@@ -575,7 +575,7 @@ However, in the v5, this margin was decreased to `8px`.
 If you want to revert it, you can do in the theme:
 
 ```diff
-const theme = createTheme({
+ const theme = createTheme({
   components: {
    MuiDivider: {
 +     styleOverrides: {
@@ -588,7 +588,7 @@ const theme = createTheme({
 +     }
     },
   },
-});
+ });
 ```
 
 ## ExpansionPanel
