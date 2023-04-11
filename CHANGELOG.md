@@ -1,5 +1,56 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.12.0
+
+<!-- generated comparing v5.11.16..master -->
+
+_Apr 11, 2023_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- 💫 Added [theme scope](https://mui.com/material-ui/guides/styled-engine/#theme-scoping) for using multiple design systems (#36664) @siriwatknp
+- 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/system@5.12.0`
+
+- &#8203;<!-- 05 -->[system] Introduce theme scope for using multiple design systems (#36664) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.125`
+
+- &#8203;<!-- 06 -->[PopperUnstyled] Do not merge internal `ownerState` with `ownerState` from props (#36599) @hbjORbj
+
+### `@mui/joy@5.0.0-alpha.75`
+
+- &#8203;<!-- 08 -->[Joy] Add tests for slots/slotProps for all components (#36828) @hbjORbj
+- &#8203;<!-- 07 -->[Joy] Support `slots`/`slotsProps` for every component (components with only root slot too) (#36540) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs][Backdrop] Improvements to the docs (#34244) @alirezahekmati
+- &#8203;<!-- 20 -->[docs] Fix base API redirects (#36833) @mnajdova
+- &#8203;<!-- 19 -->[docs] Improve perf on tab APIs (#36832) @mnajdova
+- &#8203;<!-- 18 -->[docs] Revert CircularProgress component text to be proper noun instead (#36837) @ZeeshanTamboli
+- &#8203;<!-- 17 -->[docs] Simplify language redirection @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Add missing `readOnly` state class in the list (#36788) @ZeeshanTamboli
+- &#8203;<!-- 15 -->[docs] Improve side nav scroll into view (#36732) @oliviertassinari
+- &#8203;<!-- 14 -->[docs][base & joy] Display "Classes" Section in API docs (#36589) @hbjORbj
+- &#8203;<!-- 13 -->[docs] Fix 100+ typos throughout the Material UI docs (#36194) @Lioness100
+- &#8203;<!-- 12 -->[docs] Change "coming soon" chip color (#36786) @danilo-leal
+- &#8203;<!-- 11 -->[docs][Joy] Fix wrong prop descriptions (#36826) @hbjORbj
+- &#8203;<!-- 10 -->[docs][material] Highlight global state classes in CSS table in API docs (#36633) @hbjORbj
+- &#8203;<!-- 09 -->[examples] Fix `SliderUnstyled` slots `key` name (#36830) @sai6855
+- &#8203;<!-- 04 -->[Tabs] Improve useTab() API page (#36725) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 22 -->[core] Increase margin to scroll @oliviertassinari
+- &#8203;<!-- 21 -->[core] Replace MUI Base with Base UI (#36716) @mnajdova
+- &#8203;<!-- 03 -->[website] Fix broken career website links @oliviertassinari
+- &#8203;<!-- 02 -->[website] Fix backlinks to homepage (#36801) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Tweaks to the Designer position ad (#36771) @danilo-leal
+
+All contributors of this release in alphabetical order: @alirezahekmati, @danilo-leal, @hbjORbj, @Lioness100, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 5.11.16
 
 <!-- generated comparing v5.11.15..master -->
