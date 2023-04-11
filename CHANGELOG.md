@@ -6,7 +6,7 @@
 
 _Apr 11, 2023_
 
-A big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
 
 - 💫 Added theme scope for using multiple design systems (#36664) @siriwatknp
 - 🐛 bug fixes and 📚 documentation improvements.
