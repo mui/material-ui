@@ -4,6 +4,19 @@ import { styled } from '@mui/system';
 import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import MailIcon from '@mui/icons-material/Mail';
 
+export default function ShowZeroBadge() {
+  return (
+    <Stack spacing={4} direction="row">
+      <StyledBadge badgeContent={0}>
+        <MailIcon />
+      </StyledBadge>
+      <StyledBadge badgeContent={0} showZero>
+        <MailIcon />
+      </StyledBadge>
+    </Stack>
+  );
+}
+
 const blue = {
   500: '#007FFF',
 };
@@ -51,16 +64,3 @@ const StyledBadge = styled(BadgeUnstyled)(
   }
   `,
 );
-
-export default function ShowZeroBadge() {
-  return (
-    <Stack spacing={4} direction="row">
-      <StyledBadge badgeContent={0}>
-        <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={0} showZero>
-        <MailIcon />
-      </StyledBadge>
-    </Stack>
-  );
-}
