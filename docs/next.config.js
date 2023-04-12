@@ -99,6 +99,10 @@ module.exports = withDocsInfra({
                     options: {
                       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
                       languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      env: {
+                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
+                        LIB_VERSION: options.config.env.LIB_VERSION,
+                      },
                     },
                   },
                 ],

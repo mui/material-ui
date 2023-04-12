@@ -6,7 +6,7 @@
 
 - If you want to build a design system based on Material Design, use `@mui/material`.
 - If you want to build with components that give you complete control over your app's CSS, use `@mui/base`.
-- For CSS utilities to help in laying out custom designs with Material UI or MUI Base, use `@mui/system`.
+- For CSS utilities to help in laying out custom designs with Material UI or Base UI, use `@mui/system`.
 
 ### Glossary
 
@@ -42,9 +42,9 @@ Material UI is a comprehensive library of components that features our implement
 
 `@mui/system` is included as dependency, meaning you don't need to install or import it separately—you can import its components and functions directly from `@mui/material`.
 
-### MUI Base
+### Base UI
 
-[MUI Base](/base/getting-started/overview/) is our library of "unstyled" components and hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+[Base UI](/base/getting-started/overview/) is our library of "unstyled" components and hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
 The Base package includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 

@@ -363,7 +363,7 @@ describe('replaceMarkdownLinks', () => {
     `);
   });
 
-  it('does not trasform material-ui', () => {
+  it('does not transform material-ui', () => {
     expect(
       replaceMarkdownLinks(`[Focus Trap](https://mui.com/material-ui/react-trap-focus/)`),
     ).to.equal(`[Focus Trap](https://mui.com/material-ui/react-trap-focus/)`);

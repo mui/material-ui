@@ -46,7 +46,6 @@ export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
-    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -72,7 +71,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       level?: keyof TypographySystem | 'inherit';
       /**
-       * If `true`, the ::after psuedo element is added to cover the area of interaction.
+       * If `true`, the ::after pseudo element is added to cover the area of interaction.
        * The parent of the overlay Link should have `relative` CSS position.
        * @default false
        */
@@ -99,7 +98,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, LinkPropsVariantOverrides>;
-    };
+    } & LinkSlotsAndSlotProps;
   defaultComponent: D;
 }
 

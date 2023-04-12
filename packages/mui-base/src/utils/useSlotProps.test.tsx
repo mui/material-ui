@@ -183,7 +183,7 @@ describe('useSlotProps', () => {
       test: true,
     };
 
-    // provided by the user by appending additonal props on the unstyled component:
+    // provided by the user by appending additional props on the unstyled component:
     const forwardedProps = {
       'data-test': 'externalForwarded',
       className: 'externalForwarded',

@@ -3,9 +3,9 @@ import { createTheme } from '@mui/material/styles';
 import createTransitions, { easing, duration } from './createTransitions';
 
 describe('createTransitions', () => {
-  const transitons = createTransitions({});
-  const create = transitons.create;
-  const getAutoHeightDuration = transitons.getAutoHeightDuration;
+  const transitions = createTransitions({});
+  const create = transitions.create;
+  const getAutoHeightDuration = transitions.getAutoHeightDuration;
 
   it('should allow to customize the default duration', () => {
     const theme = createTheme({

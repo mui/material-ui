@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type DividerSlot = 'root';
+
+export interface DividerSlots {
+  /**
+   * The component that renders the root.
+   * @default 'hr'
+   */
+  root: React.ElementType;
+}
+
+export type DividerSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  DividerSlots,
+  {
+    root: SlotProps<'hr', {}, DividerOwnerState>;
+  }
+>;
 
 export interface DividerInsetOverrides {}
 
@@ -13,7 +29,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      */
     children?: React.ReactNode;
     /**
-     * The styles applied to the divider to shrink or stretch the line based on the orientation.
+     * Class name applied to the divider to shrink or stretch the line based on the orientation.
      */
     inset?: OverridableStringUnion<'none' | 'context', DividerInsetOverrides>;
     /**
@@ -25,7 +41,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-  };
+  } & DividerSlotsAndSlotProps;
   defaultComponent: D;
 }
 
