@@ -187,10 +187,10 @@ const noSEOadvantage = [
  * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
  * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
  * @param {string} context.userLanguage
- * @param {function(string):boolean} context.ignoreLanguagePages
+ * @param {object} context.options
  */
 function createRender(context) {
-  const { headingHashes, toc, userLanguage, ignoreLanguagePages } = context;
+  const { headingHashes, toc, userLanguage, options } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
 
@@ -280,8 +280,19 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !ignoreLanguagePages(href)) {
+      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !options.ignoreLanguagePages(href)) {
         finalHref = `/${userLanguage}${href}`;
+      }
+
+      // This logic turns link like:
+      // https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts
+      // into a permalink:
+      // https://github.com/mui/material-ui/blob/v5.11.15/packages/mui-joy/src/styles/components.d.ts
+      if (finalHref.startsWith(`${options.env.SOURCE_CODE_REPO}/blob/-/`)) {
+        finalHref = finalHref.replace(
+          `${options.env.SOURCE_CODE_REPO}/blob/-/`,
+          `${options.env.SOURCE_CODE_REPO}/blob/v${options.env.LIB_VERSION}/`,
+        );
       }
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
@@ -385,10 +396,10 @@ function resolveComponentApiUrl(product, componentPkg, component) {
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
- * @param {function(string):boolean} config.ignoreLanguagePages
+ * @param {object} config.options - provided to the webpack loader
  */
 function prepareMarkdown(config) {
-  const { pageFilename, translations, componentPackageMapping = {}, ignoreLanguagePages } = config;
+  const { pageFilename, translations, componentPackageMapping = {}, options } = config;
 
   const demos = {};
   /**
@@ -433,7 +444,7 @@ function prepareMarkdown(config) {
 ## Unstyled
 
 :::success
-[MUI Base](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
+[Base UI](/base/getting-started/overview/) provides a headless ("unstyled") version of this [${title}](${headers.unstyled}). Try it if you need more flexibility in customization and a smaller bundle size.
 :::
         `);
       }
@@ -471,7 +482,7 @@ ${headers.hooks
         toc,
         userLanguage,
         location,
-        ignoreLanguagePages,
+        options,
       });
 
       const rendered = contents.map((content) => {

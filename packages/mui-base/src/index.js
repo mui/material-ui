@@ -80,9 +80,6 @@ export * from './useButton';
 export { default as useInput } from './useInput';
 export * from './useInput';
 
-export { default as useListbox } from './useListbox';
-export * from './useListbox';
-
 export { default as useMenu } from './useMenu';
 export * from './useMenu';
 

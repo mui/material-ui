@@ -1,7 +1,6 @@
 export interface MuiPage {
   pathname: string;
   query?: object;
-  hash?: string;
   children?: MuiPage[];
   disableDrawer?: boolean;
   icon?: string;

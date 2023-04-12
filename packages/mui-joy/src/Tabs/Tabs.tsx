@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabs from '@mui/base/useTabs';
-import { TabsContext } from '@mui/base/TabsUnstyled';
-import { useSlotProps } from '@mui/base/utils';
+import useTabs, { TabsProvider } from '@mui/base/useTabs';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabsOwnerState) => {
   const { orientation, variant, color, size } = ownerState;
@@ -83,7 +82,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
-  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
+  const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,
@@ -96,9 +95,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabsRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabsRoot,
-    externalSlotProps: {},
     externalForwardedProps: other,
     additionalProps: {
       ref,
@@ -110,11 +109,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
-    <TabsRoot {...tabsRootProps}>
-      <TabsContext.Provider value={tabsContextValue}>
+    <SlotRoot {...rootProps}>
+      <TabsProvider value={contextValue}>
         <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
-      </TabsContext.Provider>
-    </TabsRoot>
+      </TabsProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<TabsTypeMap>;
 
@@ -143,7 +142,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The direction of the text.
    * @default 'ltr'
@@ -181,9 +180,9 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

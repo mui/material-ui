@@ -4,9 +4,22 @@ const querystring = require('node:querystring');
 const { JWT } = require('google-auth-library');
 const { sheets } = require('@googleapis/sheets');
 
-const slackChannelIds = {
-  'mui-x': 'C04U3R2V9UK',
-  'mui-core': 'C041SDSF32L',
+const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
+const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';
+const TOOLPAD_FEEBACKS_CHANNEL_ID = 'C050MHU703Z';
+const CORE_FEEBACKS_CHANNEL_ID = 'C041SDSF32L';
+
+const getSlackChannelId = (url) => {
+  if (url.includes('/x/')) {
+    return X_FEEBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/joy-ui/')) {
+    return JOY_FEEBACKS_CHANNEL_ID;
+  }
+  if (url.includes('/toolpad/')) {
+    return TOOLPAD_FEEBACKS_CHANNEL_ID;
+  }
+  return CORE_FEEBACKS_CHANNEL_ID;
 };
 
 const spreadSheetsIds = {
@@ -110,11 +123,12 @@ exports.handler = async (event, context, callback) => {
         }`,
       ].join('\n\n');
 
-      const isDocsX = currentLocationURL.includes('/x/');
       await slackClient.chat.postMessage({
-        channel: slackChannelIds[isDocsX ? 'mui-x' : 'mui-core'],
+        channel: getSlackChannelId(currentLocationURL),
         text: simpleSlackMessage,
         as_user: true,
+        unfurl_links: false,
+        unfurl_media: false,
       });
     } else {
       const handler = await awsLambdaReceiver.start();

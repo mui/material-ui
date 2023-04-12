@@ -39,6 +39,7 @@ module.exports = [
   { pathname: '/joy-ui/api/modal' },
   { pathname: '/joy-ui/api/modal-close' },
   { pathname: '/joy-ui/api/modal-dialog' },
+  { pathname: '/joy-ui/api/modal-overflow' },
   { pathname: '/joy-ui/api/option' },
   { pathname: '/joy-ui/api/radio' },
   { pathname: '/joy-ui/api/radio-group' },
