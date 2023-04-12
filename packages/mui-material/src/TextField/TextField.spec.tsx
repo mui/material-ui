@@ -17,11 +17,20 @@ import { expectType } from '@mui/types';
   const filledInputTypeSearch = (
     <TextField variant="filled" InputProps={{ classes: { inputTypeSearch: 'search-input' } }} />
   );
-  const StandardInputAdornedStart = (
-    <TextField variant="standard" InputProps={{ classes: { inputAdornedStart: 'search-input' } }} />
+  const StandardInputAdorned = (
+    <TextField
+      variant="standard"
+      InputProps={{
+        classes: { inputAdornedStart: 'search-input', inputAdornedEnd: 'search-input' },
+      }}
+    />
   );
-  const DefaultInputAdornedStart = (
-    <TextField InputProps={{ classes: { inputAdornedStart: 'search-input' } }} />
+  const DefaultInputAdorned = (
+    <TextField
+      InputProps={{
+        classes: { inputAdornedStart: 'search-input', inputAdornedEnd: 'search-input' },
+      }}
+    />
   );
   const standardOutlinedClassname = (
     <TextField
