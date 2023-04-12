@@ -21,23 +21,17 @@ const filledProps = {
 
 // baseline behavior
 <TextField variant="filled" {...filledProps} />;
-// @ts-expect-error
-<TextField {...filledProps} />; // desired to throw
 
 // styled
 {
   const StyledTextField = styled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />; // desired to pass
-  // @ts-expect-error
-  <StyledTextField {...filledProps} />; // undesired, should throw
 }
 
 // @emotion/styled
 {
   const StyledTextField = emotionStyled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />;
-  // @ts-expect-error
-  <StyledTextField {...filledProps} />; // desired to throw
 }
 
 // https://github.com/mui/material-ui/issues/14586
