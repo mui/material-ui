@@ -6,7 +6,13 @@
     "required": "The asterisk is added if required=<code>true</code>",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "asterisk": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the asterisk element"
+    }
+  },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "asterisk": "The component that renders the asterisk."

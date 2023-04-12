@@ -123,28 +123,32 @@ ProductIdentifier.propTypes = {
   versionSelector: PropTypes.element,
 };
 
+// To match scrollMarginBottom
+const browserUrlPreviewMarge = 120;
+
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
   useEnhancedEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = parent.querySelector('.app-drawer-active');
+    const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
+    const activeDrawerLink = scrollContainer.querySelector('.app-drawer-active');
 
-    if (!enabled || !parent || !activeElement || !activeElement.scrollIntoView) {
+    if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
     }
 
-    parent.scrollTop = savedScrollTop[slot];
+    scrollContainer.scrollTop = savedScrollTop[slot];
 
-    const activeBox = activeElement.getBoundingClientRect();
+    const activeBox = activeDrawerLink.getBoundingClientRect();
 
-    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
-      parent.scrollTop += activeBox.top - 8 - 32;
+    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
+      // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
+      activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
     return () => {
-      savedScrollTop[slot] = parent.scrollTop;
+      savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
 
@@ -230,7 +234,7 @@ function reduceChildRoutes(context) {
     }
 
     const subheader = Boolean(page.subheader);
-
+    const [path, hash] = firstChild.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -238,9 +242,9 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={{
-          pathname: firstChild.pathname,
+          pathname: path,
           ...(firstChild.query && { query: firstChild.query }),
-          ...(firstChild.hash && { hash: firstChild.hash }),
+          ...(hash && { hash }),
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
@@ -262,7 +266,7 @@ function reduceChildRoutes(context) {
     );
   } else {
     page = page.children && page.children.length === 1 ? page.children[0] : page;
-
+    const [path, hash] = page.pathname.split('#');
     items.push(
       <AppNavDrawerItem
         linkProps={page.linkProps}
@@ -270,9 +274,9 @@ function reduceChildRoutes(context) {
         key={title}
         title={title}
         href={{
-          pathname: page.pathname,
+          pathname: path,
           ...(page.query && { query: page.query }),
-          ...(page.hash && { hash: page.hash }),
+          ...(hash && { hash }),
         }}
         legacy={page.legacy}
         newFeature={page.newFeature}
@@ -449,7 +453,7 @@ export default function AppNavDrawer(props) {
           )}
           {canonicalAs.startsWith('/base/') && (
             <ProductIdentifier
-              name="MUI Base"
+              name="Base UI"
               metadata="MUI Core"
               versionSelector={renderVersionSelector([
                 { text: `v${basePkgJson.version}`, current: true },

@@ -212,7 +212,8 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
               // Container's demo isn't ready
               // Grid has problem with react-docgen
               // Stack has problem with react-docgen
-              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/))
+              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/)) ||
+            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
           ) {
             return false;
           }
@@ -276,7 +277,7 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
       process.exit(1);
     }
 
-    const apiLinks: { pathname: string; title: string; hash: string }[] = [];
+    const apiLinks: { pathname: string; title: string }[] = [];
 
     // Generate the api links, in a format that would point to the appropriate API tab
     // @ts-ignore there are no failed builds at this point
@@ -300,8 +301,9 @@ async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
         if (pathname !== null) {
           // add the new apiLink, where pathame is in format of /react-component/components-api
           apiLinks.push({
-            pathname: `${pathname}${name.startsWith('use') ? 'hooks-api' : 'components-api'}`,
-            hash: kebabCase(name),
+            pathname: `${pathname}${
+              name.startsWith('use') ? 'hooks-api' : 'components-api'
+            }/#${kebabCase(name)}`,
             title: name,
           });
         }

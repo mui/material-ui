@@ -29,7 +29,6 @@ export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    ModalSlotsAndSlotProps &
     Pick<
       ModalUnstyledOwnProps,
       | 'children'
@@ -58,7 +57,7 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
-    };
+    } & ModalSlotsAndSlotProps;
   defaultComponent: D;
 }
 

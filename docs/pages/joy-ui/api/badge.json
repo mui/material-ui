@@ -60,6 +60,32 @@
       "class": ".MuiBadge-badge"
     }
   ],
+  "classes": {
+    "classes": [
+      "anchorOriginBottomLeft",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginTopRight",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "invisible",
+      "locationInside",
+      "locationOutside",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoyBadge",

@@ -1,11 +1,26 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListSubheaderSlot = 'root';
 
-export interface ListSubheaderVariantOverrides {}
+export interface ListSubheaderSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
 
+export type ListSubheaderSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListSubheaderSlots,
+  {
+    root: SlotProps<'div', {}, ListSubheaderOwnerState>;
+  }
+>;
+
+export interface ListSubheaderVariantOverrides {}
 export interface ListSubheaderColorOverrides {}
 
 export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -31,7 +46,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'div
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      */
     variant?: OverridableStringUnion<VariantProp, ListSubheaderVariantOverrides>;
-  };
+  } & ListSubheaderSlotsAndSlotProps;
   defaultComponent: D;
 }
 

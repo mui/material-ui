@@ -7,7 +7,6 @@ import {
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -18,6 +17,7 @@ import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
+import GroupListContext from '../List/GroupListContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
@@ -149,8 +149,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'JoyListItem',
   });
 
-  const menuContext = React.useContext(MenuUnstyledContext);
-
+  const group = React.useContext(GroupListContext);
   const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
   const wrap = React.useContext(WrapListContext);
@@ -178,7 +177,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const component =
     componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
 
-  let role = menuContext ? 'none' : undefined;
+  let role = group === 'menu' ? 'none' : undefined;
 
   if (listComponent) {
     // ListItem can be used inside Menu to create nested menus, so it should have role="none"

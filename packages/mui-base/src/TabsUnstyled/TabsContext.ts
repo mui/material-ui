@@ -2,30 +2,40 @@ import * as React from 'react';
 
 export interface TabsContextValue {
   /**
-   * Id used as a prefix for the current Tabs.
-   */
-  idPrefix: string | undefined;
-  /**
    * The currently selected tab's value.
    */
-  value: number | string | false;
+  value: number | string | null;
   /**
    * Callback for setting new value.
    */
-  onSelected: (event: React.SyntheticEvent, value: number | string | false) => void;
+  onSelected: (event: React.SyntheticEvent | null, value: number | string | null) => void;
   /**
    * The component orientation (layout flow direction).
    */
   orientation?: 'horizontal' | 'vertical';
   /**
-   * The direction of the text.
+   * The direction of the tabs.
    */
   direction?: 'ltr' | 'rtl';
+  /**
+   * Registers a function that returns the id of the tab with the given value.
+   */
+  registerTabIdLookup: (lookupFunction: (id: string | number) => string | undefined) => void;
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.
    */
   selectionFollowsFocus?: boolean;
+  /**
+   * Gets the id of the tab with the given value.
+   * @param value Value to find the tab for.
+   */
+  getTabId: (value: number | string) => string | undefined;
+  /**
+   * Gets the id of the tab panel with the given value.
+   * @param value Value to find the tab panel for.
+   */
+  getTabPanelId: (value: number | string) => string | undefined;
 }
 
 /**
@@ -37,27 +47,13 @@ if (process.env.NODE_ENV !== 'production') {
   Context.displayName = 'TabsContext';
 }
 
-/**
- * @returns {unknown}
- */
-export function useTabContext() {
-  return React.useContext(Context);
-}
-
-export function getPanelId(context: TabsContextValue, value: number | string | false) {
-  const { idPrefix } = context;
-  if (idPrefix === null) {
-    return null;
+export function useTabsContext() {
+  const context = React.useContext(Context);
+  if (context == null) {
+    throw new Error('No TabsContext provided');
   }
-  return `${context.idPrefix}-P-${value}`;
-}
 
-export function getTabId(context: TabsContextValue, value: number | string | false) {
-  const { idPrefix } = context;
-  if (idPrefix === null) {
-    return null;
-  }
-  return `${context.idPrefix}-T-${value}`;
+  return context;
 }
 
 export default Context;

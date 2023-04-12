@@ -15,7 +15,13 @@
     "open": "If <code>true</code>, the component is shown.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
-  "classDescriptions": {},
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "backdrop": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the backdrop element"
+    }
+  },
   "slotDescriptions": {
     "root": "The component that renders the root.",
     "backdrop": "The component that renders the backdrop."

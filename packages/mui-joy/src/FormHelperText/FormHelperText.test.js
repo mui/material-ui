@@ -15,6 +15,11 @@ describe('Joy <FormHelperText />', () => {
     muiName: 'JoyFormHelperText',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('should have root className', () => {
