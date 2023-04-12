@@ -60,6 +60,10 @@ export interface FormControlLabelProps
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
   /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required?: boolean;
+  /**
    * The props used for each slot inside.
    * @default {}
    */
@@ -75,10 +79,6 @@ export interface FormControlLabelProps
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
-  /**
-   * If `true`, the label will indicate that the `input` is required.
-   */
-  required?: boolean;
   /**
    * The value of the component.
    */
