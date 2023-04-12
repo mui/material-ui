@@ -6,7 +6,7 @@ import { OverrideProps } from '../OverridableComponent';
 import { ListItemButtonClasses } from './listItemButtonClasses';
 
 /**
- * This interface kept for backward compatibility. To extend `LitItemButton`
+ * This interface is kept for backward compatibility. To extend `LitItemButton`
  * props through module augmentation, use `ListItemButtonOwnProps`!
  */
 export interface ListItemButtonBaseProps {
@@ -62,7 +62,7 @@ export interface ListItemButtonBaseProps {
   sx?: SxProps<Theme>;
 }
 
-export interface ListItemButtonOwnProps extends ListItemButtonBaseProps {}
+export interface ListItemButtonOwnProps extends ListItemButtonBaseProps { }
 
 export type ListItemButtonTypeMap<
   P = {},

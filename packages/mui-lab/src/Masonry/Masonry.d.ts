@@ -3,7 +3,7 @@ import { OverridableComponent, OverrideProps } from '@mui/material/OverridableCo
 import { Theme } from '@mui/material/styles';
 import { MasonryClasses } from './masonryClasses';
 
-export interface MansoryOwnProps {
+export interface MasonryOwnProps {
   /**
    * The content of the component.
    */
@@ -41,7 +41,7 @@ export interface MansoryOwnProps {
 }
 
 export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & MansoryOwnProps;
+  props: P & MasonryOwnProps;
   defaultComponent: D;
 }
 /**

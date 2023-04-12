@@ -64,12 +64,12 @@ export interface CardHeaderOwnProps<
 }
 
 export interface CardHeaderTypeMap<
-  P = {},
+  Props = {},
   DefaultComponent extends React.ElementType = 'div',
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
-  props: P & CardHeaderOwnProps<SubheaderTypographyComponent, TitleTypographyComponent>;
+  props: Props & CardHeaderOwnProps<SubheaderTypographyComponent, TitleTypographyComponent>;
   defaultComponent: DefaultComponent;
 }
 /**
