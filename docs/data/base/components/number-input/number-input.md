@@ -41,6 +41,24 @@ The following demo shows how to create a number input component, apply some styl
 
 {{"demo": "UnstyledNumberInputBasic.js"}}
 
+The `min` and `max` props can be used to define a range of accepted values. You can pass only one of them to define an open-ended range.
+
+```tsx
+  <NumberInputUnstyled min={-10} max={10} />
+
+  // Open-ended
+  <NumberInputUnstyled min={0} />
+```
+
+The `step` prop can be used to defined the granularity of the change in value when incrementing or decrementing. For example, if `min={0}` and `step={2}`, valid values for the component would be 0, 2, 4… since the value can only be changed in increments of 2.
+
+```tsx
+// valid values: 0, 2, 4, 6, 8...
+<NumberInputUnstyled min={0} step={2} />
+```
+
+When the input field is in focus, you can enter values that fall outside the valid range. The value will be clamped based on `min`, `max` and `step` once the input field is blurred.
+
 Here's another demo of a Unstyled Number Input with fully customized styles:
 
 {{"demo": "QuantityInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
