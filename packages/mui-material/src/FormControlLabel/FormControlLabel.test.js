@@ -185,7 +185,7 @@ describe('<FormControlLabel />', () => {
 
       expect(container.querySelector('label')).to.have.text('Pizza\u2009*');
       expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
-      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeInaccessible();
     });
 
     it('should not show an asterisk by default', () => {
