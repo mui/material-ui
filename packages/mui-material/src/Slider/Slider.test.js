@@ -1137,16 +1137,15 @@ describe('<Slider />', () => {
         </div>
       );
     }
-    render(<Test />);
-    const slider = screen.getByTestId('slider');
+    const { container } = render(<Test />);
 
-    fireEvent.touchStart(slider, createTouches([{ identifier: 1 }]));
+    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1 }]));
 
     expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
-    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
+    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
     expect(handleEvent.callCount).to.equal(1);
-    expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
+    expect(handleEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
   });
 
   it('should not override the event.target on mouse events', () => {
@@ -1167,16 +1166,15 @@ describe('<Slider />', () => {
         </div>
       );
     }
-    render(<Test />);
-    const slider = screen.getByTestId('slider');
+    const { container } = render(<Test />);
 
-    fireEvent.mouseDown(slider);
+    fireEvent.mouseDown(container.firstChild);
 
     expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
-    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
+    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
     expect(handleEvent.callCount).to.equal(1);
-    expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
+    expect(handleEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
   });
 
   describe('dragging state', () => {

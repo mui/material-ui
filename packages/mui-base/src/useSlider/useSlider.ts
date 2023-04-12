@@ -140,6 +140,12 @@ function focusThumb({
   }
 }
 
+function areValuesEqual(newValue: number | Array<number>, oldValue: number | Array<number>): boolean {
+  return typeof newValue === 'number'
+    ? newValue === oldValue
+    : areArraysEqual(newValue, oldValue as number[]);
+};
+
 const axisProps = {
   horizontal: {
     offset: (percent: number) => ({ left: `${percent}%` }),
@@ -223,12 +229,6 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     default: defaultValue ?? min,
     name: 'Slider',
   });
-
-  const isValueUnchanged = (newValue: number | Array<number>): boolean => {
-    return typeof newValue === 'number'
-      ? newValue === valueDerived
-      : areArraysEqual(newValue, valueDerived as number[]);
-  };
 
   const handleChange =
     onChange &&
@@ -362,7 +362,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       setValueState(newValue);
       setFocusedThumbIndex(index);
 
-      if (handleChange && !isValueUnchanged(newValue)) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(event, newValue, index);
       }
 
@@ -472,7 +472,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       setDragging(true);
     }
 
-    if (handleChange && !isValueUnchanged(newValue)) {
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -523,7 +523,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
       setValueState(newValue);
 
-      if (handleChange && !isValueUnchanged(newValue)) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(nativeEvent, newValue, activeIndex);
       }
     }
@@ -590,7 +590,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
         setValueState(newValue);
 
-        if (handleChange && !isValueUnchanged(newValue)) {
+        if (handleChange && !areValuesEqual(newValue, valueDerived)) {
           handleChange(event, newValue, activeIndex);
         }
       }
