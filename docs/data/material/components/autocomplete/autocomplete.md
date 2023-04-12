@@ -228,7 +228,7 @@ The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
 :::warning
-If you're using a custom input component inside the Autocomplete, you might need to include `forwardRef`. 
+If you're using a custom input component inside the Autocomplete, you might need to include `forwardRef`.
 When incorporating the [Text Field](/material-ui/react-text-field/) component, you should pass `ref` to `inputRef`.
 :::
 
