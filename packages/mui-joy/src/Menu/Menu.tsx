@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
@@ -91,19 +91,27 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose],
+  );
+
+  const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
-    onClose,
+    onOpenChange: handleOpenChange,
     listboxId: id,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {
@@ -149,14 +157,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     className: classes.root,
   });
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      ...contextValue,
-      open,
-    }),
-    [contextValue, open],
-  );
-
   const result = (
     <MenuRoot
       {...rootProps}
@@ -167,16 +167,18 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
         },
       })}
     >
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        <ListProvider nested>
-          {disablePortal ? (
-            children
-          ) : (
-            // For portal popup, the children should not inherit color inversion from the upper parent.
-            <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
-          )}
-        </ListProvider>
-      </MenuUnstyledContext.Provider>
+      <MenuProvider value={contextValue}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>
+            {disablePortal ? (
+              children
+            ) : (
+              // For portal popup, the children should not inherit color inversion from the upper parent.
+              <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
+            )}
+          </ListProvider>
+        </GroupListContext.Provider>
+      </MenuProvider>
     </MenuRoot>
   );
 
