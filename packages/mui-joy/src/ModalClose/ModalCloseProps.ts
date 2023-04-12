@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ModalCloseSlot = 'root';
+
+export interface ModalCloseSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root: React.ElementType;
+}
+
+export type ModalCloseSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ModalCloseSlots,
+  {
+    root: SlotProps<'button', {}, ModalCloseOwnerState>;
+  }
+>;
 
 export interface ModalClosePropsColorOverrides {}
 export interface ModalClosePropsVariantOverrides {}
@@ -29,7 +45,7 @@ export interface ModalCloseTypeMap<P = {}, D extends React.ElementType = 'button
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ModalClosePropsVariantOverrides>;
-  };
+  } & ModalCloseSlotsAndSlotProps;
   defaultComponent: D;
 }
 

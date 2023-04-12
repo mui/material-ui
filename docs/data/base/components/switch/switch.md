@@ -11,13 +11,15 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Switch component provides users with a switch for toggling between two mutually exclusive states.
 
 {{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

@@ -44,7 +44,6 @@ export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    InputSlotsAndSlotProps &
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'autoComplete'
@@ -107,7 +106,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
-    };
+    } & InputSlotsAndSlotProps;
   defaultComponent: D;
 }
 

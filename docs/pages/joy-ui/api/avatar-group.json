@@ -32,7 +32,17 @@
   },
   "name": "AvatarGroup",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiAvatarGroup-root"
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAvatarGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/AvatarGroup/AvatarGroup.tsx",
   "inheritance": null,

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabsList from '@mui/base/useTabsList';
-import { useSlotProps } from '@mui/base/utils';
+import useTabsList, { TabsListProvider } from '@mui/base/useTabsList';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -13,6 +12,7 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabListOwnerState) => {
   const { orientation, size, variant, color } = ownerState;
@@ -71,7 +71,9 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
+  const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
+    ref,
+  });
 
   const size = sizeProp ?? tabsSize;
 
@@ -87,27 +89,24 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabsListRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabListRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });
 
-  const processedChildren = processChildren();
-
   return (
     // @ts-ignore conflicted ref types
-    <TabListRoot {...tabsListRootProps}>
-      <ListProvider row={orientation === 'horizontal'} nested>
-        {processedChildren}
-      </ListProvider>
-    </TabListRoot>
+    <SlotRoot {...rootProps}>
+      <TabsListProvider value={contextValue}>
+        <ListProvider row={orientation === 'horizontal'} nested>
+          {children}
+        </ListProvider>
+      </TabsListProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 

@@ -5,6 +5,7 @@
       "required": true
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "id": { "type": { "name": "string", "description": "string" } },
     "label": { "type": { "name": "string", "description": "string" } },
     "onClick": {
       "type": {
@@ -14,16 +15,8 @@
     }
   },
   "returnValue": {
-    "disabled": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focusVisible": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseMenuItemRootSlotProps&lt;TOther&gt;",
@@ -31,11 +24,16 @@
       },
       "required": true
     },
-    "highlighted": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
+    "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "ref": {
+      "type": {
+        "name": "((instance: unknown) =&gt; void) | null",
+        "description": "((instance: unknown) =&gt; void) | null"
+      },
       "required": true
-    }
+    },
+    "totalItemCount": { "type": { "name": "number", "description": "number" }, "required": true }
   },
   "name": "useMenuItem",
   "filename": "/packages/mui-base/src/useMenuItem/useMenuItem.ts",

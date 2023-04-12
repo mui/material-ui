@@ -52,7 +52,17 @@
       "class": ".MuiSelect-popper"
     }
   ],
+  "classes": {
+    "classes": ["active", "disabled", "expanded", "focusVisible"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "expanded": "Mui-expanded",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
+  "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/SelectUnstyled/SelectUnstyled.tsx",
   "inheritance": null,

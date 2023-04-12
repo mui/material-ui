@@ -1,8 +1,24 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type SheetSlot = 'root';
+
+export interface SheetSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type SheetSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SheetSlots,
+  {
+    root: SlotProps<'div', {}, SheetOwnerState>;
+  }
+>;
 
 export interface SheetPropsColorOverrides {}
 export interface SheetPropsVariantOverrides {}
@@ -32,7 +48,7 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, SheetPropsVariantOverrides>;
-  };
+  } & SheetSlotsAndSlotProps;
   defaultComponent: D;
 }
 

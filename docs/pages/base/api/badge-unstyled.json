@@ -34,7 +34,9 @@
       "class": ".MuiBadge-badge"
     }
   ],
+  "classes": { "classes": ["invisible"], "globalClasses": {} },
   "spread": true,
+  "muiName": "MuiBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/BadgeUnstyled/BadgeUnstyled.tsx",
   "inheritance": null,

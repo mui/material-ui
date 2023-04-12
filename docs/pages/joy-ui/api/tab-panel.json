@@ -21,7 +21,21 @@
   },
   "name": "TabPanel",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabPanel-root"
+    }
+  ],
+  "classes": {
+    "classes": ["hidden", "horizontal", "sizeLg", "sizeMd", "sizeSm", "vertical"],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTabPanel",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/TabPanel/TabPanel.tsx",
   "inheritance": null,

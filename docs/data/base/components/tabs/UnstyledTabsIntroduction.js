@@ -10,9 +10,9 @@ export default function UnstyledTabsIntroduction() {
   return (
     <TabsUnstyled defaultValue={0}>
       <TabsList>
-        <Tab>My account</Tab>
-        <Tab>Profile</Tab>
-        <Tab>Language</Tab>
+        <Tab value={0}>My account</Tab>
+        <Tab value={1}>Profile</Tab>
+        <Tab value={2}>Language</Tab>
       </TabsList>
       <TabPanel value={0}>My account page</TabPanel>
       <TabPanel value={1}>Profile page</TabPanel>

@@ -5,6 +5,7 @@ import {
   SelectUnstyledRootSlotProps,
   SelectUnstyledPopperSlotProps,
   PopperUnstyled,
+  WithOptionalOwnerState,
 } from '@mui/base';
 
 const SelectUnstyledSlotPropsOverridesTest = (
@@ -27,15 +28,15 @@ const SelectUnstyledSlotPropsOverridesTest = (
   />
 );
 
-function CustomRoot<TValue extends {}, Multiple extends boolean>(
-  props: SelectUnstyledRootSlotProps<TValue, Multiple>,
+function CustomRoot<OptionValue extends {}, Multiple extends boolean>(
+  props: SelectUnstyledRootSlotProps<OptionValue, Multiple>,
 ) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
 }
 
-function CustomPopper<TValue extends {}, Multiple extends boolean>(
-  props: SelectUnstyledPopperSlotProps<TValue, Multiple>,
+function CustomPopper<OptionValue extends {}, Multiple extends boolean>(
+  props: WithOptionalOwnerState<SelectUnstyledPopperSlotProps<OptionValue, Multiple>>,
 ) {
   const { ownerState, ...other } = props;
   return <PopperUnstyled {...other} />;

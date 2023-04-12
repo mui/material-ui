@@ -1,12 +1,11 @@
 import * as React from 'react';
+import { TabsListProviderValue } from './TabsListProvider';
+import { ListAction } from '../useList';
 
 export interface UseTabsListParameters {
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
   /**
-   * The content of the component.
+   * Ref to the root element.
    */
-  children?: React.ReactNode;
   ref: React.Ref<unknown>;
 }
 
@@ -21,6 +20,15 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
 
 export interface UseTabsListReturnValue {
   /**
+   * Action dispatcher for the tabs list component.
+   * Allows to programmatically control the tabs list.
+   */
+  dispatch: (action: ListAction<string | number>) => void;
+  /**
+   * The value of the currently highlighted tab.
+   */
+  highlightedValue: string | number | null;
+  /**
    * If `true`, it will indicate that the text's direction in right-to-left.
    * @default false
    */
@@ -31,16 +39,9 @@ export interface UseTabsListReturnValue {
    */
   orientation: 'horizontal' | 'vertical';
   /**
-   * The value of the currently selected `Tab`.
+   * The value of the currently selected tab.
    */
-  value: string | number | false;
-  /**
-   * Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation.
-   */
-  processChildren: () =>
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>[]
-    | null
-    | undefined;
+  selectedValue: string | number | null;
   /**
    * Resolver for the root slot's props.
    * @param externalProps props for the root slot
@@ -49,4 +50,17 @@ export interface UseTabsListReturnValue {
   getRootProps: <TOther extends Record<string, any> = {}>(
     externalProps?: TOther,
   ) => UseTabsListRootSlotProps<TOther>;
+  /**
+   * The value to be passed to the TabListProvider above all the tabs.
+   */
+  contextValue: TabsListProviderValue;
+}
+
+export const TabsListActionTypes = {
+  valueChange: 'valueChange',
+} as const;
+
+export interface ValueChangeAction {
+  type: typeof TabsListActionTypes.valueChange;
+  value: string | number | null;
 }

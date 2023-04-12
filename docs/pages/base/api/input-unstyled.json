@@ -63,7 +63,22 @@
       "class": null
     }
   ],
+  "classes": {
+    "classes": [
+      "adornedEnd",
+      "adornedStart",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "inputMultiline",
+      "inputTypeSearch",
+      "multiline"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
   "spread": true,
+  "muiName": "MuiInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,

@@ -10,7 +10,7 @@ import {
   TabsUnstyledTypeMap,
 } from './TabsUnstyled.types';
 import useTabs from '../useTabs';
-import Context from './TabsContext';
+import TabsProvider from '../useTabs/TabsProvider';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
@@ -31,9 +31,12 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * API:
  *
- * - [TabsUnstyled API](https://mui.com/base/api/tabs-unstyled/)
+ * - [TabsUnstyled API](https://mui.com/base/react-tabs/components-api/#tabs-unstyled)
  */
-const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
+const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>(function TabsUnstyled(
+  props,
+  ref,
+) {
   const {
     children,
     value: valueProp,
@@ -48,7 +51,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     ...other
   } = props;
 
-  const { tabsContextValue } = useTabs(props);
+  const { contextValue } = useTabs(props);
 
   const ownerState = {
     ...props,
@@ -72,7 +75,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
 
   return (
     <TabsRoot {...tabsRootProps}>
-      <Context.Provider value={tabsContextValue}>{children}</Context.Provider>
+      <TabsProvider value={contextValue}>{children}</TabsProvider>
     </TabsRoot>
   );
 }) as OverridableComponent<TabsUnstyledTypeMap>;
@@ -94,7 +97,7 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The direction of the text.
    * @default 'ltr'
@@ -131,9 +134,9 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 } as any;
 
 export default TabsUnstyled;
