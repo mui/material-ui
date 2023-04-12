@@ -10,13 +10,15 @@ githubLabel: 'component: NumberInput'
 
 <p class="description">The Unstyled Number Input component provides users with a field for integer values, and buttons to increment or decrement the value.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
-🚧
+Lorem ipsum etc etc
 
 {{"demo": "UnstyledNumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
