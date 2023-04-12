@@ -7,7 +7,7 @@ import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
 
-export interface ModalComponentsPropsOverrides {}
+export interface ModalComponentsPropsOverrides { }
 
 export interface ModalOwnerState extends ModalProps {
   exited: boolean;
@@ -31,7 +31,7 @@ export interface ModalOwnProps extends Omit<ModalUnstyledTypeMap['props'], 'slot
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.backdrop` instead.
+   * @deprecated Use `slotProps.backdrop` instead..
    */
   BackdropProps?: Partial<BackdropProps>;
   /**

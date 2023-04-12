@@ -8,7 +8,7 @@ import { ListItemClasses } from './listItemClasses';
 export interface ListItemComponentsPropsOverrides { }
 
 /**
- * This type is kept for compatibility, use `ListItemOwnProps` instead
+ * This type is kept for compatibility. Use `ListItemOwnProps` instead.
  */
 export interface ListItemBaseProps {
   /**

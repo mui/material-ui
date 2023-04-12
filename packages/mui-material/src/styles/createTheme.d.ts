@@ -36,7 +36,7 @@ interface BaseTheme extends SystemTheme {
 }
 
 // shut off automatic exporting for the `BaseTheme` above
-export {};
+export { };
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
@@ -49,7 +49,7 @@ export interface Theme extends BaseTheme {
 
 /**
  * @deprecated
- * Use `import { createTheme } from '@mui/material/styles'` instead.
+ * Use `import { createTheme } from '@mui/material/styles'` instead..
  */
 export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
 

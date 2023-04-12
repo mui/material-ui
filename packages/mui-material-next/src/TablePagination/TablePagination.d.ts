@@ -39,7 +39,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
 }
 
 /**
- * This type is kept for compatibility, use `TablePaginationOwnProps` instead
+ * This type is kept for compatibility. Use `TablePaginationOwnProps` instead.
  */
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 

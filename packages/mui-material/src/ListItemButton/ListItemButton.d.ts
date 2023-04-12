@@ -7,7 +7,7 @@ import { ListItemButtonClasses } from './listItemButtonClasses';
 
 /**
  * This interface is kept for backward compatibility. To extend `LitItemButton`
- * props through module augmentation, use `ListItemButtonOwnProps`!
+ * props through module augmentation, use `ListItemButtonOwnProps`.
  */
 export interface ListItemButtonBaseProps {
   /**

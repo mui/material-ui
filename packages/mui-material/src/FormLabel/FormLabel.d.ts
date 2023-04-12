@@ -8,7 +8,7 @@ import { FormLabelClasses } from './formLabelClasses';
 export interface FormLabelPropsColorOverrides { }
 
 /**
- * This type is kept for compatibility, use `FormLabelOwnProps` instead
+ * This type is kept for compatibility. Use `FormLabelOwnProps` instead.
  */
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 

@@ -6,7 +6,7 @@ import { Theme } from '../styles';
 import { StepButtonClasses } from './stepButtonClasses';
 
 /**
- * @deprecated use `StepButtonProps['icon']` instead
+ * @deprecated use `StepButtonProps['icon']` instead.
  */
 export type StepButtonIcon = React.ReactNode;
 
