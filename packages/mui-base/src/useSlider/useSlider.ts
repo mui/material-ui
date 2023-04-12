@@ -140,11 +140,14 @@ function focusThumb({
   }
 }
 
-function areValuesEqual(newValue: number | Array<number>, oldValue: number | Array<number>): boolean {
+function areValuesEqual(
+  newValue: number | Array<number>,
+  oldValue: number | Array<number>,
+): boolean {
   return typeof newValue === 'number'
     ? newValue === oldValue
     : areArraysEqual(newValue, oldValue as number[]);
-};
+}
 
 const axisProps = {
   horizontal: {
