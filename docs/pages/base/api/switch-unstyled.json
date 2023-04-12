@@ -50,7 +50,16 @@
       "class": ".MuiSwitch-track"
     }
   ],
+  "classes": {
+    "classes": ["checked", "disabled", "focusVisible", "readOnly"],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
+  "muiName": "MuiSwitch",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SwitchUnstyled/SwitchUnstyled.tsx",
   "inheritance": null,

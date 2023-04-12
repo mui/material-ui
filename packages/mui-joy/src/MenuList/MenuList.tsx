@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: MenuListOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -77,7 +77,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const { contextValue, getListboxProps, dispatch } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
   });
@@ -85,10 +85,9 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {
@@ -102,14 +101,11 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const listboxProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });
@@ -120,16 +116,18 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
         ...contextValue,
         getListboxProps,
         open: true,
-      } as MenuUnstyledContextType),
+      } as MenuProviderValue),
     [contextValue, getListboxProps],
   );
 
   return (
-    <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        <ListProvider nested>{children}</ListProvider>
-      </MenuUnstyledContext.Provider>
-    </MenuListRoot>
+    <SlotRoot {...rootProps}>
+      <MenuProvider value={menuContextValue}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>{children}</ListProvider>
+        </GroupListContext.Provider>
+      </MenuProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;
 
@@ -146,8 +144,7 @@ MenuList.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.shape({
       current: PropTypes.shape({
-        highlightFirstItem: PropTypes.func.isRequired,
-        highlightLastItem: PropTypes.func.isRequired,
+        dispatch: PropTypes.func.isRequired,
       }),
     }),
   ]),

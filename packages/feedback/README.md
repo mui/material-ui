@@ -34,13 +34,13 @@ with:
   --billing-mode PAY_PER_REQUEST \
 ```
 
-The project includes an IAM access policy that will grant the lambda function access to the tables. You can edit the [policies/access-dynamodb.json](policies/access-dynamodb.json) file to change the access permissions. These are only applied on create (`yarn setup`). Alternatively, to avoid inadvetantly pushing changes, use the `--policies` flag with `yarn setup` to refer to a copy of this directory, and exclude it in your `~/.gitignore`.
+The project includes an IAM access policy that will grant the lambda function access to the tables. You can edit the [policies/access-dynamodb.json](policies/access-dynamodb.json) file to change the access permissions. These are only applied on create (`yarn setup`). Alternatively, to avoid inadvertently pushing changes, use the `--policies` flag with `yarn setup` to refer to a copy of this directory, and exclude it in your `~/.gitignore`.
 
 > ⚠️ You will need to update the "Resource" key in this file with the value returned after creating each table.
 
 ## Get started
 
-> ⚠️ When setting up for the first time, you will need to delete the included `claudia.json` file that is specific to the MUI installation. Alternatively, if making changes to the function that you intend to submit back, then to avoid inadvetantly commiting changes to `claudia.json`, use `--config` with each command to create and use a local config file, and exclude this file in your `~/.gitignore`.
+> ⚠️ When setting up for the first time, you will need to delete the included `claudia.json` file that is specific to the MUI installation. Alternatively, if making changes to the function that you intend to submit back, then to avoid inadvertently committing changes to `claudia.json`, use `--config` with each command to create and use a local config file, and exclude this file in your `~/.gitignore`.
 
 To set this up, first [set up the credentials](https://claudiajs.com/tutorials/installing.html#configuring-access-credentials), then:
 

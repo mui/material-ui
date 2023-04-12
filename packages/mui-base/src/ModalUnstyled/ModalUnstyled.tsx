@@ -65,7 +65,7 @@ const defaultManager = new ModalManager();
  *
  * API:
  *
- * - [ModalUnstyled API](https://mui.com/base/api/modal-unstyled/)
+ * - [ModalUnstyled API](https://mui.com/base/react-modal/components-api/#modal-unstyled)
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled<
   BaseComponentType extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
@@ -292,7 +292,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
 
   return (
     <Portal
-      // @ts-expect-error TODO: include ref to MUI Base Portal props
+      // @ts-expect-error TODO: include ref to Base UI Portal props
       ref={handlePortalRef}
       container={container}
       disablePortal={disablePortal}

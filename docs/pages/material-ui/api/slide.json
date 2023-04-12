@@ -32,6 +32,8 @@
   "name": "Slide",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiSlide",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Slide/Slide.js",
   "inheritance": {

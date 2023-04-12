@@ -9,12 +9,7 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
-    "defaultValue": {
-      "type": {
-        "name": "union",
-        "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "defaultValue": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
       "default": "'ltr'"
@@ -38,12 +33,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "value": {
-      "type": {
-        "name": "union",
-        "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "variant": {
       "type": {
         "name": "union",
@@ -54,7 +44,38 @@
   },
   "name": "Tabs",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabs-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "horizontal",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTabs",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Tabs/Tabs.tsx",
   "inheritance": null,

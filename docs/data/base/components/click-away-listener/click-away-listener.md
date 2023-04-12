@@ -9,6 +9,10 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">The Click-Away Listener component detects when a click event happens outside of its child element.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Click-Away Listener is a utility component that listens for click events outside of its child.
@@ -17,8 +21,6 @@ Click-Away Listener is a utility component that listens for click events outside
 This is useful for components like the [Unstyled Popper](/base/react-popper/) which should close when the user clicks anywhere else in the document.
 
 Click-Away Listener also supports the [Portal](/base/react-portal/) component.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

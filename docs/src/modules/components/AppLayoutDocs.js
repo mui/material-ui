@@ -37,20 +37,30 @@ const Main = styled('main', {
 }));
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd',
-})(({ disableAd, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'hasTabs',
+})(({ disableAd, hasTabs, theme }) => {
   return {
     position: 'relative',
     // By default, a grid item cannot be smaller than the size of its content.
     // https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
     minWidth: 0,
     ...(!disableAd && {
-      '&& .description': {
-        marginBottom: 198,
-      },
-      '&& .description.ad': {
-        marginBottom: 40,
-      },
+      ...(!hasTabs && {
+        '&& .description': {
+          marginBottom: 198,
+        },
+        '&& .description.ad': {
+          marginBottom: 40,
+        },
+      }),
+      ...(hasTabs && {
+        '&& .component-tabs .MuiTabs-root': {
+          marginBottom: 193,
+        },
+        '&& .component-tabs.ad .MuiTabs-root': {
+          marginBottom: 35,
+        },
+      }),
     }),
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '60px',
@@ -79,6 +89,7 @@ function AppLayoutDocs(props) {
     location,
     title,
     toc,
+    hasTabs = false,
   } = props;
 
   if (description === undefined) {
@@ -90,7 +101,7 @@ function AppLayoutDocs(props) {
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
   } else if (canonicalAs.startsWith('/base/')) {
-    productName = 'MUI Base';
+    productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
   } else if (canonicalAs.startsWith('/system/')) {
@@ -110,7 +121,7 @@ function AppLayoutDocs(props) {
           },
         }}
       />
-      <AdManager>
+      <AdManager {...(hasTabs && { classSelector: '.component-tabs' })}>
         <Head
           title={`${title} - ${productName}`}
           description={description}
@@ -122,7 +133,7 @@ function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd}>
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs}>
             <ActionsDiv>
               <EditPage markdownLocation={location} />
             </ActionsDiv>
@@ -145,6 +156,7 @@ AppLayoutDocs.propTypes = {
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
+  hasTabs: PropTypes.bool,
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,

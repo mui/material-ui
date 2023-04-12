@@ -77,32 +77,7 @@
     }
   },
   "name": "Slider",
-  "styles": {
-    "classes": [
-      "root",
-      "marked",
-      "vertical",
-      "disabled",
-      "dragging",
-      "rail",
-      "track",
-      "trackFalse",
-      "trackInverted",
-      "thumb",
-      "active",
-      "focusVisible",
-      "mark",
-      "markActive",
-      "markLabel",
-      "markLabelActive"
-    ],
-    "globalClasses": {
-      "disabled": "Mui-disabled",
-      "active": "Mui-active",
-      "focusVisible": "Mui-focusVisible"
-    },
-    "name": "MuiSlider"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSlider" },
   "slots": [
     {
       "name": "root",
@@ -153,7 +128,37 @@
       "class": null
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "dragging",
+      "focusVisible",
+      "markActive",
+      "marked",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "trackFalse",
+      "trackInverted",
+      "valueLabelOpen",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoySlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Slider/Slider.tsx",
   "inheritance": null,

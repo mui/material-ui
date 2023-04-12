@@ -85,6 +85,8 @@
     "name": "MuiTooltip"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTooltip",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Tooltip/Tooltip.js",
   "inheritance": null,

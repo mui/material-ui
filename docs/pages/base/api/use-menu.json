@@ -1,15 +1,25 @@
 {
   "parameters": {
+    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" }
     },
-    "onClose": { "type": { "name": "() =&gt; void", "description": "() =&gt; void" } },
+    "onOpenChange": {
+      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
+    },
     "open": { "type": { "name": "boolean", "description": "boolean" } }
   },
   "returnValue": {
     "contextValue": {
-      "type": { "name": "MenuUnstyledContextType", "description": "MenuUnstyledContextType" },
+      "type": { "name": "MenuProviderValue", "description": "MenuProviderValue" },
+      "required": true
+    },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;string&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;string&gt;) =&gt; void"
+      },
       "required": true
     },
     "getListboxProps": {
@@ -19,7 +29,7 @@
       },
       "required": true
     },
-    "highlightedOption": {
+    "highlightedValue": {
       "type": { "name": "string | null", "description": "string | null" },
       "required": true
     },
@@ -37,7 +47,8 @@
         "description": "Record&lt;string, MenuItemMetadata&gt;"
       },
       "required": true
-    }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useMenu",
   "filename": "/packages/mui-base/src/useMenu/useMenu.ts",

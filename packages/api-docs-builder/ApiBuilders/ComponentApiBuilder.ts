@@ -5,7 +5,6 @@ import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import * as prettier from 'prettier';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
 import { Link } from 'mdast';
@@ -13,6 +12,7 @@ import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-doc
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
+import { ComponentInfo, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
@@ -20,12 +20,9 @@ import createDescribeableProp, {
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import parseStyles, { Styles } from '../utils/parseStyles';
-import { ComponentInfo } from '../buildApiUtils';
+import parseStyles, { Classes, Styles } from '../utils/parseStyles';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
-import parseSlots, { Slot } from '../utils/parseSlots';
-
-const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
+import parseSlotsAndClasses, { Slot } from '../utils/parseSlotsAndClasses';
 
 export interface ReactApi extends ReactDocgenApi {
   demos: ReturnType<ComponentInfo['getDemos']>;
@@ -43,10 +40,17 @@ export interface ReactApi extends ReactDocgenApi {
   description: string;
   spread: boolean | undefined;
   /**
+   * If `true`, the component supports theme default props customization.
+   * If `null`, we couldn't infer this information.
+   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
+   */
+  themeDefaultProps: boolean | undefined | null;
+  /**
    * result of path.readFileSync from the `filename` in utf-8
    */
   src: string;
   styles: Styles;
+  classes: Classes;
   slots: Slot[];
   propsTable: _.Dictionary<{
     default: string | undefined;
@@ -64,27 +68,6 @@ export interface ReactApi extends ReactDocgenApi {
 }
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
-
-export function writePrettifiedFile(
-  filename: string,
-  data: string,
-  prettierConfigPath: string = DEFAULT_PRETTIER_CONFIG_PATH,
-  options: object = {},
-) {
-  const prettierConfig = prettier.resolveConfig.sync(filename, {
-    config: prettierConfigPath,
-  });
-  if (prettierConfig === null) {
-    throw new Error(
-      `Could not resolve config for '${filename}' using prettier config path '${prettierConfigPath}'.`,
-    );
-  }
-
-  writeFileSync(filename, prettier.format(data, { ...prettierConfig, filepath: filename }), {
-    encoding: 'utf8',
-    ...options,
-  });
-}
 
 /**
  * Produces markdown of the description that can be hosted anywhere.
@@ -328,6 +311,7 @@ const generateApiPage = (
   apiPagesDirectory: string,
   translationPagesDirectory: string,
   reactApi: ReactApi,
+  onlyJsonFile: boolean = false,
 ) => {
   /**
    * Gather the metadata needed for the component's API page.
@@ -357,7 +341,19 @@ const generateApiPage = (
       name: reactApi.styles.name,
     },
     ...(reactApi.slots?.length > 0 && { slots: reactApi.slots }),
+    ...((reactApi.classes?.classes.length > 0 ||
+      (reactApi.classes?.globalClasses &&
+        Object.keys(reactApi.classes.globalClasses).length > 0)) && {
+      classes: {
+        classes: reactApi.classes.classes,
+        globalClasses: reactApi.classes.globalClasses,
+      },
+    }),
     spread: reactApi.spread,
+    themeDefaultProps: reactApi.themeDefaultProps,
+    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+      ? reactApi.muiName.replace('Mui', 'Joy')
+      : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
     filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
@@ -377,33 +373,35 @@ const generateApiPage = (
     JSON.stringify(pageContent),
   );
 
-  writePrettifiedFile(
-    path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import ApiPage from 'docs/src/modules/components/ApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
+  if (!onlyJsonFile) {
+    writePrettifiedFile(
+      path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
+      `import * as React from 'react';
+  import ApiPage from 'docs/src/modules/components/ApiPage';
+  import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+  import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
+  export default function Page(props) {
+    const { descriptions, pageContent } = props;
+    return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
+  }
 
-Page.getInitialProps = () => {
-  const req = require.context(
-    '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
+  Page.getInitialProps = () => {
+    const req = require.context(
+      '${translationPagesDirectory}/${kebabCase(reactApi.name)}',
+      false,
+      /${kebabCase(reactApi.name)}.*.json$/,
+    );
+    const descriptions = mapApiPageTranslations(req);
 
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
+    return {
+      descriptions,
+      pageContent: jsonPageContent,
+    };
   };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
-  );
+  `.replace(/\r?\n/g, reactApi.EOL),
+    );
+  }
 };
 
 const attachTranslations = (reactApi: ReactApi) => {
@@ -465,7 +463,11 @@ const attachTranslations = (reactApi: ReactApi) => {
   /**
    * CSS class descriptions.
    */
-  translations.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
+  translations.classDescriptions = extractClassConditions(
+    reactApi.styles.classes.length || Object.keys(reactApi.styles.globalClasses).length
+      ? reactApi.styles.descriptions
+      : reactApi.classes.descriptions,
+  );
 
   reactApi.translations = translations;
 };
@@ -539,7 +541,10 @@ const attachPropsTable = (reactApi: ReactApi) => {
  * - Add the comment in the component filename with its demo & API urls (including the inherited component).
  *   this process is done by sourcing markdown files and filter matched `components` in the frontmatter
  */
-const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeScriptProject) => {
+export default async function generateComponentApi(
+  componentInfo: ComponentInfo,
+  project: TypeScriptProject,
+) {
   const {
     filename,
     name,
@@ -632,8 +637,20 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
   // no Object.assign to visually check for collisions
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
+  reactApi.themeDefaultProps = testInfo.themeDefaultProps;
   reactApi.inheritance = getInheritance(testInfo.inheritComponent);
-  reactApi.slots = parseSlots({ project, componentName: reactApi.name, muiName: reactApi.muiName });
+
+  // Both `slots` and `classes` are empty if
+  // interface `${componentName}Slots` wasn't found.
+  // Currently, Base UI and Joy UI components support this interface
+  const { slots, classes } = parseSlotsAndClasses({
+    project,
+    componentName: reactApi.name,
+    muiName: reactApi.muiName,
+  });
+  reactApi.slots = slots;
+  reactApi.classes = classes;
+
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
   if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
@@ -643,6 +660,17 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
     const globalClass = generateUtilityClass(reactApi.styles.name || reactApi.muiName, key);
     reactApi.styles.globalClasses[key] = globalClass;
   });
+
+  // if `reactApi.classes` and `reactApi.styles` both exist,
+  // API documentation includes both "CSS" Section and "State classes" Section;
+  // we either want (1) "Slots" section and "State classes" section, or (2) "CSS" section
+  if (
+    (reactApi.styles.classes?.length || Object.keys(reactApi.styles.globalClasses || {})?.length) &&
+    (reactApi.classes.classes?.length || Object.keys(reactApi.classes.globalClasses || {})?.length)
+  ) {
+    reactApi.styles.classes = [];
+    reactApi.styles.globalClasses = {};
+  }
 
   attachPropsTable(reactApi);
   attachTranslations(reactApi);
@@ -657,13 +685,14 @@ const generateComponentApi = async (componentInfo: ComponentInfo, project: TypeS
         ? 'docs/translations/api-docs-joy'
         : 'docs/translations/api-docs';
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
-    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi);
+
+    // Once we have the tabs API in all projects, we can make this default
+    const generateOnlyJsonFile = reactApi.apiPathname.startsWith('/base');
+    generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     // Add comment about demo & api links (including inherited component) to the component file
     await annotateComponentDefinition(reactApi);
   }
 
   return reactApi;
-};
-
-export default generateComponentApi;
+}

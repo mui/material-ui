@@ -5,8 +5,8 @@
     "className": { "type": { "name": "string" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'"
     },
@@ -80,7 +80,35 @@
       "class": ".MuiCheckbox-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "indeterminate",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyCheckbox",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Checkbox/Checkbox.tsx",
   "inheritance": null,

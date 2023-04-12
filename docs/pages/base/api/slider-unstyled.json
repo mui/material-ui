@@ -111,7 +111,27 @@
       "class": null
     }
   ],
+  "classes": {
+    "classes": [
+      "active",
+      "disabled",
+      "dragging",
+      "focusVisible",
+      "markActive",
+      "marked",
+      "markLabelActive",
+      "trackFalse",
+      "trackInverted",
+      "vertical"
+    ],
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
+  "muiName": "MuiSlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.tsx",
   "inheritance": null,

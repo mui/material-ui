@@ -4,6 +4,7 @@
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "error": { "type": { "name": "bool" }, "default": "false" },
+    "onChange": { "type": { "name": "func" } },
     "required": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
@@ -12,11 +13,13 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
-    }
+    },
+    "value": { "type": { "name": "any" } }
   },
   "name": "FormControlUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "muiName": "MuiFormControl",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/FormControlUnstyled/FormControlUnstyled.tsx",
   "inheritance": null,

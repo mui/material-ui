@@ -39,6 +39,8 @@
     "name": "MuiToggleButtonGroup"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiToggleButtonGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "inheritance": null,

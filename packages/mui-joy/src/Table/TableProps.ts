@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TableSlot = 'root';
+
+export interface TableSlots {
+  /**
+   * The component that renders the root.
+   * @default 'table'
+   */
+  root: React.ElementType;
+}
+
+export type TableSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TableSlots,
+  {
+    root: SlotProps<'table', {}, TableOwnerState>;
+  }
+>;
 
 export interface TablePropsSizeOverrides {}
 export interface TablePropsColorOverrides {}
@@ -67,7 +83,7 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, TablePropsVariantOverrides>;
-  };
+  } & TableSlotsAndSlotProps;
   defaultComponent: D;
 }
 

@@ -24,7 +24,35 @@
   },
   "name": "AutocompleteOption",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiAutocompleteOption-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "focused",
+      "focusVisible",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocompleteOption",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/AutocompleteOption/AutocompleteOption.tsx",
   "inheritance": null,

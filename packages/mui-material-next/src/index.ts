@@ -11,3 +11,5 @@ export * from './Tab';
 
 export { default as TabScrollButton } from './TabScrollButton';
 export * from './TabScrollButton';
+
+export * from './styles';

@@ -10,6 +10,7 @@ import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
 import ComponentListContext from '../List/ComponentListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   const { orientation, inset } = ownerState;
@@ -109,24 +110,25 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <ListDividerRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      {...(role === 'separator' &&
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListDividerRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      ...(role === 'separator' &&
         orientation === 'vertical' && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
-        })}
-      {...other}
-    >
-      {children}
-    </ListDividerRoot>
-  );
+        }),
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListDividerTypeMap>;
 
 ListDivider.propTypes /* remove-proptypes */ = {

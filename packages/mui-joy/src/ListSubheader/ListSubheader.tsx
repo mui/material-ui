@@ -9,6 +9,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
   const { variant, color, sticky } = ownerState;
@@ -101,18 +102,19 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <ListSubheaderRoot
-      ref={ref}
-      id={id}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListSubheaderRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListSubheaderRoot,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+      id,
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListSubheaderTypeMap>;
 
 ListSubheader.propTypes /* remove-proptypes */ = {

@@ -39,6 +39,8 @@
     "name": "MuiInputAdornment"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInputAdornment",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/InputAdornment/InputAdornment.js",
   "inheritance": null,

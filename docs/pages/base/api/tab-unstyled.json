@@ -29,7 +29,12 @@
       "class": ".MuiTab-root"
     }
   ],
+  "classes": {
+    "classes": ["disabled", "selected"],
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" }
+  },
   "spread": true,
+  "muiName": "MuiTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/TabUnstyled/TabUnstyled.tsx",
   "inheritance": null,
