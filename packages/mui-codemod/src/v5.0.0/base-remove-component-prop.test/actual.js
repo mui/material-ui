@@ -2,6 +2,8 @@
 
 <InputUnstyled component={CustomRoot} />;
 
+<InputUnstyled component={CustomRoot}></InputUnstyled>;
+
 <SwitchUnstyled
   component={CustomRoot}
   randomProp="1"
@@ -19,4 +21,4 @@
   slotProps={{ badge: { className: 'badge' } }}
 />;
 
-<InputUnstyled component='a' href='someUrl' />;
+<InputUnstyled component='a' href='url'></InputUnstyled>;
