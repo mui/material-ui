@@ -80,6 +80,8 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     size = 'md',
     orientation = 'vertical',
     role = 'radiogroup',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -139,7 +141,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: RadioGroupRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps: { ...other, component, slots, slotProps },
     ownerState,
     additionalProps: {
       as: component,
@@ -242,6 +244,20 @@ RadioGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
