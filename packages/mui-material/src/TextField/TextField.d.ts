@@ -228,7 +228,7 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 type Variants = 'outlined' | 'standard' | 'filled';
 
-export type TextFieldProps<Variant extends Variants = 'outlined'> = Variant extends 'filled'
+export type TextFieldProps<Variant extends Variants = Variants> = Variant extends 'filled'
   ? FilledTextFieldProps
   : Variant extends 'standard'
   ? StandardTextFieldProps
