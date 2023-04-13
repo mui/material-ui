@@ -59,6 +59,14 @@ The `step` prop can be used to defined the granularity of the change in value wh
 
 When the input field is in focus, you can enter values that fall outside the valid range. The value will be clamped based on `min`, `max` and `step` once the input field is blurred.
 
+Holding down the <kbd>Shift</kbd> key when interacting with the stepper buttons applies a multipler (default 10x) to the value change of each step.
+
+This can be customized with the `shiftMultiplier` prop. In the following snippet, if <kbd>Shift</kbd> is held when clicking the increment button, the value will change from 0 to 5, then to 10 etc.
+
+```tsx
+<NumberInputUnstyled min={0} step={1} shiftMultiplier={5} />
+```
+
 Here's another demo of a Unstyled Number Input with fully customized styles:
 
 {{"demo": "QuantityInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
