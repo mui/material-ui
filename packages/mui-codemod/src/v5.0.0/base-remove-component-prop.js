@@ -46,7 +46,7 @@ export default function transformer(file, api, options) {
             ? `<${valueNode.raw}>`
             : `<typeof ${valueNode.name}>`;
       }
-      
+
       if (attributeName === 'slots') {
         if (slotsPropNode && slotsPropNode.value.expression && attributeNode.value.expression) {
           slotsPropNode.value.expression.properties = [
