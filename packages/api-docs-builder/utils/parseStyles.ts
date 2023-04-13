@@ -1,12 +1,16 @@
 import * as ts from 'typescript';
+import { getSymbolDescription } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import getPropsFromComponentSymbol from './getPropsFromComponentSymbol';
 
-export interface Styles {
+export interface Classes {
   classes: string[];
   globalClasses: Record<string, string>;
-  name: string | null;
   descriptions: Record<string, string>;
+}
+
+export interface Styles extends Classes {
+  name: string | null;
 }
 
 const EMPTY_STYLES: Styles = {
@@ -26,13 +30,6 @@ function removeUndefinedFromType(type: ts.Type) {
 
   return type;
 }
-
-const getSymbolDescription = (symbol: ts.Symbol, project: TypeScriptProject) =>
-  symbol
-    .getDocumentationComment(project.checker)
-    .flatMap((comment) => comment.text.split('\n'))
-    .filter((line) => !line.startsWith('TODO'))
-    .join('\n');
 
 export default function parseStyles({
   project,

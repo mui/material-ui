@@ -6,7 +6,7 @@ import { ColorPaletteProp, VariantProp } from './types';
 const ColorInversion = React.createContext<undefined | Array<VariantProp>>(undefined);
 
 export const useColorInversion = (childVariant: VariantProp | undefined) => {
-  const overriableVariants = React.useContext(ColorInversion);
+  const overridableVariants = React.useContext(ColorInversion);
   return {
     /**
      * Resolve the `color` value for the component.
@@ -17,8 +17,8 @@ export const useColorInversion = (childVariant: VariantProp | undefined) => {
       instanceColorProp: ColorPaletteProp | 'inherit' | undefined,
       defaultColorProp: ColorPaletteProp | 'inherit' | undefined,
     ): ColorPaletteProp | 'context' | undefined => {
-      if (overriableVariants && childVariant) {
-        if (overriableVariants.includes(childVariant)) {
+      if (overridableVariants && childVariant) {
+        if (overridableVariants.includes(childVariant)) {
           // @ts-ignore internal logic
           return instanceColorProp || 'context';
         }
@@ -37,7 +37,14 @@ interface ColorInversionProviderProps {
 export function ColorInversionProvider({ children, variant }: ColorInversionProviderProps) {
   const theme = useSystemTheme(defaultTheme);
   return (
-    <ColorInversion.Provider value={variant ? theme.colorInversionConfig[variant] : undefined}>
+    <ColorInversion.Provider
+      value={
+        variant
+          ? // `theme` could come from other emotion/styled-components context.
+            (theme.colorInversionConfig ?? defaultTheme.colorInversionConfig)[variant]
+          : undefined
+      }
+    >
       {children}
     </ColorInversion.Provider>
   );

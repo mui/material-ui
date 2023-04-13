@@ -52,23 +52,23 @@ const TooltipRoot = styled('div', {
   return {
     ...(ownerState.size === 'sm' && {
       '--Icon-fontSize': '1rem',
-      '--Tooltip-arrow-size': '8px',
+      '--Tooltip-arrowSize': '8px',
       padding: theme.spacing(0.5, 0.625),
       fontSize: theme.vars.fontSize.xs,
     }),
     ...(ownerState.size === 'md' && {
       '--Icon-fontSize': '1.125rem',
-      '--Tooltip-arrow-size': '10px',
+      '--Tooltip-arrowSize': '10px',
       padding: theme.spacing(0.625, 0.75),
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'lg' && {
       '--Icon-fontSize': '1.25rem',
-      '--Tooltip-arrow-size': '12px',
+      '--Tooltip-arrowSize': '12px',
       padding: theme.spacing(0.75, 1),
       fontSize: theme.vars.fontSize.md,
     }),
-    zIndex: 1500,
+    zIndex: theme.vars.zIndex.tooltip,
     pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
     boxShadow: theme.shadow.sm,
@@ -131,18 +131,18 @@ const TooltipArrow = styled('span', {
 })<{ ownerState: TooltipOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    '--unstable_Tooltip-arrow-rotation': 0,
-    width: 'var(--Tooltip-arrow-size)',
-    height: 'var(--Tooltip-arrow-size)',
+    '--unstable_Tooltip-arrowRotation': 0,
+    width: 'var(--Tooltip-arrowSize)',
+    height: 'var(--Tooltip-arrowSize)',
     boxSizing: 'border-box',
-    // use psuedo element because Popper controls the `transform` property of the arrow.
+    // use pseudo element because Popper controls the `transform` property of the arrow.
     '&:before': {
       content: '""',
       display: 'block',
       position: 'absolute',
       width: 0,
       height: 0,
-      border: 'calc(var(--Tooltip-arrow-size) / 2) solid',
+      border: 'calc(var(--Tooltip-arrowSize) / 2) solid',
       borderLeftColor: 'transparent',
       borderBottomColor: 'transparent',
       borderTopColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
@@ -150,28 +150,29 @@ const TooltipArrow = styled('span', {
       borderRadius: `0px 2px 0px 0px`,
       boxShadow: `var(--variant-borderWidth, 0px) calc(-1 * var(--variant-borderWidth, 0px)) 0px 0px ${variantStyle.borderColor}`,
       transformOrigin: 'center center',
-      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrow-rotation)))',
+      transform: 'rotate(calc(-45deg + 90deg * var(--unstable_Tooltip-arrowRotation)))',
     },
     '[data-popper-placement*="bottom"] &': {
-      top: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
+      top: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)', // 0.5px is for perfect overlap with the Tooltip
     },
     '[data-popper-placement*="top"] &': {
-      '--unstable_Tooltip-arrow-rotation': 2,
-      bottom: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_Tooltip-arrowRotation': 2,
+      bottom: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="left"] &': {
-      '--unstable_Tooltip-arrow-rotation': 1,
-      right: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_Tooltip-arrowRotation': 1,
+      right: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
     '[data-popper-placement*="right"] &': {
-      '--unstable_Tooltip-arrow-rotation': 3,
-      left: 'calc(0.5px + var(--Tooltip-arrow-size) * -1 / 2)',
+      '--unstable_Tooltip-arrowRotation': 3,
+      left: 'calc(0.5px + var(--Tooltip-arrowSize) * -1 / 2)',
     },
   };
 });
 
 let hystersisOpen = false;
 let hystersisTimer: ReturnType<typeof setTimeout> | null = null;
+let cursorPosition = { x: 0, y: 0 };
 
 export function testReset() {
   hystersisOpen = false;
@@ -203,7 +204,16 @@ function composeFocusEventHandler(
     handler(event);
   };
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tooltip](https://mui.com/joy-ui/react-tooltip/)
+ *
+ * API:
+ *
+ * - [Tooltip API](https://mui.com/joy-ui/api/tooltip/)
+ */
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useThemeProps<typeof inProps & TooltipProps>({
     props: inProps,
@@ -213,6 +223,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const {
     children,
     className,
+    component,
     arrow = false,
     describeChild = false,
     disableFocusListener = false,
@@ -463,7 +474,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     open = false;
   }
 
-  const positionRef = React.useRef({ x: 0, y: 0 });
   const popperRef = React.useRef(null);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
@@ -472,7 +482,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       childrenProps.onMouseMove(event);
     }
 
-    positionRef.current = { x: event.clientX, y: event.clientY };
+    cursorPosition = { x: event.clientX, y: event.clientY };
 
     if (popperRef.current) {
       (popperRef.current as { update: () => void }).update();
@@ -556,48 +566,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const [SlotRoot, rootProps] = useSlot('root', {
-    additionalProps: {
-      id,
-      popperRef,
-      placement,
-      anchorEl: followCursor
-        ? {
-            getBoundingClientRect: () =>
-              ({
-                top: positionRef.current.y,
-                left: positionRef.current.x,
-                right: positionRef.current.x,
-                bottom: positionRef.current.y,
-                width: 0,
-                height: 0,
-              } as DOMRect),
-          }
-        : childNode,
-      open: childNode ? open : false,
-      disablePortal,
-      keepMounted,
-      direction,
-      ...interactiveWrapperListeners,
-    },
-    ref: null,
-    className: classes.root,
-    elementType: PopperUnstyled,
-    externalForwardedProps: other,
-    ownerState,
-    internalForwardedProps: {
-      component: TooltipRoot,
-    },
-  });
-
-  const [SlotArrow, arrowProps] = useSlot('arrow', {
-    ref: setArrowRef,
-    className: classes.arrow,
-    elementType: TooltipArrow,
-    externalForwardedProps: other,
-    ownerState,
-  });
-
   const modifiers = React.useMemo(
     () => [
       {
@@ -616,13 +584,61 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
           offset: [0, 10],
         },
       },
-      ...(rootProps.modifiers || []),
+      ...(modifiersProp || []),
     ],
-    [arrowRef, rootProps.modifiers],
+    [arrowRef, modifiersProp],
   );
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: {
+      id,
+      popperRef,
+      placement,
+      anchorEl: followCursor
+        ? {
+            getBoundingClientRect: () =>
+              ({
+                top: cursorPosition.y,
+                left: cursorPosition.x,
+                right: cursorPosition.x,
+                bottom: cursorPosition.y,
+                width: 0,
+                height: 0,
+              } as DOMRect),
+          }
+        : childNode,
+      open: childNode ? open : false,
+      disablePortal,
+      keepMounted,
+      direction,
+      modifiers,
+      ...interactiveWrapperListeners,
+    },
+    ref: null,
+    className: classes.root,
+    elementType: TooltipRoot,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
+  const [SlotArrow, arrowProps] = useSlot('arrow', {
+    ref: setArrowRef,
+    className: classes.arrow,
+    elementType: TooltipArrow,
+    externalForwardedProps: other,
+    ownerState,
+  });
+
   const result = (
-    <SlotRoot {...rootProps} modifiers={modifiers}>
+    <SlotRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: PopperUnstyled,
+        slots: {
+          root: component || 'div',
+        },
+      })}
+    >
       {title}
       {arrow ? <SlotArrow {...arrowProps} /> : null}
     </SlotRoot>
@@ -661,9 +677,14 @@ Tooltip.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
+   * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -817,6 +838,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * @ignore
+   */
+  slots: PropTypes.shape({
+    arrow: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -829,8 +857,8 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   title: PropTypes.node,
   /**
-   * The variant to use.
-   * @default 'soft'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'solid'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;

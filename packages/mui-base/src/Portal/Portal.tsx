@@ -24,7 +24,7 @@ function getContainer(container: PortalProps['container']) {
  *
  * API:
  *
- * - [Portal API](https://mui.com/base/api/portal/)
+ * - [Portal API](https://mui.com/base/react-portal/components-api/#portal)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -67,7 +67,7 @@ const Portal = React.forwardRef(function Portal(
       {mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode}
     </React.Fragment>
   );
-});
+}) as React.ForwardRefExoticComponent<PortalProps & React.RefAttributes<Element>>;
 
 Portal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

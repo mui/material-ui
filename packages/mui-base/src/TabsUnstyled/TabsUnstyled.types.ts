@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
-interface TabsUnstyledComponentsPropsOverrides {}
+export interface TabsUnstyledRootSlotPropsOverrides {}
 
 type TabsUnstyledOrientation = 'horizontal' | 'vertical';
 
@@ -15,13 +15,13 @@ export interface TabsUnstyledOwnProps {
   children?: React.ReactNode;
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
-  value?: string | number | false;
+  value?: string | number | null;
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue?: string | number | false;
+  defaultValue?: string | number | null;
   /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
@@ -36,7 +36,7 @@ export interface TabsUnstyledOwnProps {
   /**
    * Callback invoked when new value is being set.
    */
-  onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
+  onChange?: (event: React.SyntheticEvent | null, value: number | string | null) => void;
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.
@@ -47,16 +47,22 @@ export interface TabsUnstyledOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', TabsUnstyledComponentsPropsOverrides, TabsUnstyledOwnerState>;
+    root?: SlotComponentProps<'div', TabsUnstyledRootSlotPropsOverrides, TabsUnstyledOwnerState>;
   };
   /**
    * The components used for each slot inside the Tabs.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: TabsUnstyledSlots;
+}
+
+export interface TabsUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface TabsUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {

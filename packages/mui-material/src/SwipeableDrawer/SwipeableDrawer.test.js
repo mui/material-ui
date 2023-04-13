@@ -305,7 +305,7 @@ describe('<SwipeableDrawer />', () => {
           const handleOpen = spy();
           render(
             <SwipeableDrawer
-              acnhor={params.anchor}
+              anchor={params.anchor}
               onOpen={handleOpen}
               onClose={() => {}}
               open={false}
@@ -501,15 +501,188 @@ describe('<SwipeableDrawer />', () => {
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
     });
 
-    it('should be able to attach paper ref passed through PaperProps', () => {
-      const ref = React.createRef();
-      render(
-        <SwipeableDrawer onOpen={() => {}} onClose={() => {}} PaperProps={{ ref }} open>
-          <div />
-        </SwipeableDrawer>,
-      );
-      expect(ref.current).not.to.equal(null);
+    const openTouchesForSwipingChildren = [
+      { pageX: 0, clientY: windowHeight - 20 },
+      { pageX: 0, clientY: windowHeight - 60 },
+      { pageX: 0, clientY: windowHeight - 180 },
+    ];
+
+    const handleHeight = 60;
+
+    describe('prop: allowSwipeInChildren', () => {
+      it('should allow swiping on children to open', () => {
+        const handleOpen = spy();
+        render(
+          <SwipeableDrawer
+            anchor={'bottom'}
+            allowSwipeInChildren
+            onOpen={handleOpen}
+            onClose={() => {}}
+            open={false}
+            swipeAreaWidth={20}
+            SwipeAreaProps={{
+              style: {
+                // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
+                pointerEvents: 'none',
+              },
+            }}
+            PaperProps={{ component: FakePaper }}
+            ModalProps={{
+              keepMounted: true,
+              sx: {
+                transform: `translateY(${handleHeight}px) !important`,
+              },
+            }}
+          >
+            <div data-testid="drawer" style={{ position: 'relative', pointerEvents: 'all' }}>
+              <div
+                data-testid="handle"
+                style={{
+                  position: 'absolute',
+                  height: `${handleHeight}px`,
+                  marginTop: `-${handleHeight}px`,
+                }}
+              >
+                SwipeableDrawer
+              </div>
+            </div>
+          </SwipeableDrawer>,
+        );
+
+        const handle = screen.getAllByTestId('handle').slice(-1)[0];
+
+        fireEvent.touchStart(handle, {
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[0] }),
+          ],
+        });
+        fireEvent.touchMove(handle, {
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[1] }),
+          ],
+        });
+        fireEvent.touchMove(handle, {
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] }),
+          ],
+        });
+        fireEvent.touchEnd(handle, {
+          changedTouches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] }),
+          ],
+        });
+        expect(handleOpen.callCount).to.equal(1);
+      });
+
+      it('should not allow swiping on children to open that are excluded via a function', () => {
+        const handleOpen = spy();
+        render(
+          <SwipeableDrawer
+            anchor={'bottom'}
+            allowSwipeInChildren={(e) => {
+              const elem = e.target;
+              // ignore touch events from .ignore &^ from swipe area
+              return (
+                !elem.classList.contains('ignore') &&
+                !elem.classList.contains('PrivateSwipeArea-root')
+              );
+            }}
+            onOpen={handleOpen}
+            onClose={() => {}}
+            open={false}
+            swipeAreaWidth={20}
+            SwipeAreaProps={{
+              style: {
+                // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
+                pointerEvents: 'none',
+              },
+            }}
+            PaperProps={{ component: FakePaper }}
+            ModalProps={{
+              keepMounted: true,
+              sx: {
+                '& > *': {
+                  pointerEvents: 'auto',
+                },
+              },
+            }}
+          >
+            <div
+              className="ignore"
+              data-testid="drawer"
+              style={{ position: 'relative', height: '40px', pointerEvents: 'all' }}
+            >
+              <div
+                data-testid="handle"
+                style={{ position: 'absolute', height: '40px', marginTop: '-40px' }}
+              >
+                SwipeableDrawer
+              </div>
+            </div>
+          </SwipeableDrawer>,
+        );
+
+        // should ignore the drawer touch events
+        const drawer = screen.getAllByTestId('drawer').slice(-1)[0];
+
+        fireEvent.touchStart(drawer, {
+          touches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[0] }),
+          ],
+        });
+        fireEvent.touchMove(drawer, {
+          touches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[1] }),
+          ],
+        });
+        fireEvent.touchMove(drawer, {
+          touches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[2] }),
+          ],
+        });
+        fireEvent.touchEnd(drawer, {
+          changedTouches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[2] }),
+          ],
+        });
+        expect(handleOpen.callCount).to.equal(0);
+
+        // should allow opening the drawer via handle
+        const handle = screen.getAllByTestId('handle').slice(-1)[0];
+
+        fireEvent.touchStart(handle, {
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[0] }),
+          ],
+        });
+        fireEvent.touchMove(handle, {
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[1] }),
+          ],
+        });
+        fireEvent.touchMove(handle, {
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] }),
+          ],
+        });
+        fireEvent.touchEnd(handle, {
+          changedTouches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] }),
+          ],
+        });
+        expect(handleOpen.callCount).to.equal(1);
+      });
     });
+  });
+
+  it('should be able to attach paper ref passed through PaperProps', () => {
+    const ref = React.createRef();
+    render(
+      <SwipeableDrawer onOpen={() => {}} onClose={() => {}} PaperProps={{ ref }} open>
+        <div />
+      </SwipeableDrawer>,
+    );
+    expect(ref.current).not.to.equal(null);
   });
 
   describe('disableSwipeToOpen', () => {

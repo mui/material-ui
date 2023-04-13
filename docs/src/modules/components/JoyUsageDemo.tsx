@@ -301,10 +301,10 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       fontSize: 'xs',
                       color: 'text.secondary',
                       textTransform: 'capitalize',
-                      '--Switch-track-background': (theme) =>
+                      '--Switch-trackBackground': (theme) =>
                         `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
                       '&:hover': {
-                        '--Switch-track-background': (theme) =>
+                        '--Switch-trackBackground': (theme) =>
                           `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
                       },
                     }}
@@ -318,7 +318,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={resolvedValue}
                     onChange={(event) => {
@@ -371,7 +371,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={finalValue}
                     onChange={(event) => {
@@ -421,7 +421,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} sx={{ mb: 1 }} size="sm">
                   <FormLabel>Color</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>
@@ -506,7 +506,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     slotProps={{
                       listbox: {
                         sx: {
-                          '--List-decorator-size': '24px',
+                          '--ListItemDecorator-size': '24px',
                         },
                       },
                     }}

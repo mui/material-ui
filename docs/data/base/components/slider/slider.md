@@ -2,8 +2,9 @@
 product: base
 title: Unstyled React Slider component and hook
 components: SliderUnstyled
+hooks: useSlider
 githubLabel: 'component: slider'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 ---
 
 # Unstyled Slider
@@ -11,15 +12,17 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Slider component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledSliderIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -128,7 +131,7 @@ The following code snippet applies a CSS class called `my-rail` to the rail slot
 ## Hook
 
 ```js
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider from '@mui/base/useSlider';
 ```
 
 The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
@@ -174,9 +177,21 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 {{"demo": "RangeSlider.js"}}
 
+### Value label
+
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
+
+- always
+- only when hovering over the thumb (using CSS)
+- while interacting with the thumb (hovering or dragging)
+
+The following demo shows how to render the value label when the mouse is hovering over the thumb:
+
+{{"demo": "LabeledValuesSlider.js"}}
+
 ## Accessibility
 
-See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/) for complete details on accessibility best practices.
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:

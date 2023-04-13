@@ -8,6 +8,13 @@ import {
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
+  const defaultParams = {
+    pageFilename: '/test',
+    options: {
+      env: {},
+    },
+  };
+
   describe('getTitle', () => {
     it('remove backticks', () => {
       expect(
@@ -61,6 +68,7 @@ describe('parseMarkdown', () => {
 ---
 title: React Alert component
 components: Alert, AlertTitle
+hooks: useAlert
 githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
@@ -69,6 +77,7 @@ authors: ['foo', 'bar']
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
+        hooks: ['useAlert'],
         githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
@@ -92,6 +101,7 @@ authors:
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
+        hooks: [],
         githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
@@ -118,6 +128,7 @@ authors:
     `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
+        hooks: [],
         githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
@@ -167,7 +178,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: '/test',
+        ...defaultParams,
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -201,7 +212,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: '/test',
+        ...defaultParams,
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -425,7 +436,7 @@ authors:
 
       expect(() => {
         prepareMarkdown({
-          pageFilename: '/test',
+          ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
       }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);

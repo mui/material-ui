@@ -14,6 +14,7 @@ import {
   CardOverflowTypeMap,
 } from './CardOverflowProps';
 import { CardRowContext } from '../Card/CardContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
@@ -87,7 +88,16 @@ const CardOverflowRoot = styled('div', {
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardOverflow API](https://mui.com/joy-ui/api/card-overflow/)
+ */
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
@@ -117,17 +127,15 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <CardOverflowRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {children}
-    </CardOverflowRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardOverflowRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<CardOverflowTypeMap>;
 
 CardOverflow.propTypes /* remove-proptypes */ = {
@@ -166,7 +174,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

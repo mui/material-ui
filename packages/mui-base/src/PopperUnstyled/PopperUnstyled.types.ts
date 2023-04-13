@@ -6,7 +6,7 @@ import { SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
-interface PopperUnstyledComponentsPropsOverrides {}
+export interface PopperUnstyledRootSlotPropsOverrides {}
 
 export interface PopperUnstyledTransitionProps {
   in: boolean;
@@ -91,7 +91,7 @@ export interface PopperUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      PopperUnstyledComponentsPropsOverrides,
+      PopperUnstyledRootSlotPropsOverrides,
       PopperUnstyledOwnerState
     >;
   };
@@ -100,19 +100,23 @@ export interface PopperUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: PopperUnstyledSlots;
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false
    */
   transition?: boolean;
-
-  ownerState?: any;
 }
 
-export type PopperUnstyledOwnerState = Omit<PopperUnstyledOwnProps, 'ownerState'>;
+export interface PopperUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type PopperUnstyledOwnerState = PopperUnstyledOwnProps;
 
 export interface PopperUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & PopperUnstyledOwnProps;

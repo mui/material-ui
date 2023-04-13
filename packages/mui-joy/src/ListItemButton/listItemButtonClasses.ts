@@ -1,25 +1,25 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListItemButtonClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element, if `orientation="vertical"`. */
+  /** Class name applied to the root element, if `orientation="vertical"`. */
   vertical: string;
-  /** Styles applied to the root element, if `orientation="horizontal"`. */
+  /** Class name applied to the root element, if `orientation="horizontal"`. */
   horizontal: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `color="context"`. */
+  /** Class name applied to the root element if `color="context"`. */
   colorContext: string;
   /** State class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
@@ -40,10 +40,10 @@ export interface ListItemButtonClasses {
 export type ListItemButtonClassKey = keyof ListItemButtonClasses;
 
 export function getListItemButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyListItemButton', slot);
+  return generateUtilityClass('MuiListItemButton', slot);
 }
 
-const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('JoyListItemButton', [
+const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('MuiListItemButton', [
   'root',
   'horizontal',
   'vertical',

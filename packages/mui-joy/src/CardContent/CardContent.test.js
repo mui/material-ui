@@ -15,5 +15,10 @@ describe('<CardContent />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 });

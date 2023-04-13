@@ -88,7 +88,9 @@ export function DeferredAppSearch() {
 const RootDiv = styled('div')(({ theme }) => {
   return {
     display: 'flex',
-    background: theme.palette.mode === 'dark' && theme.palette.primaryDark[900],
+    ...theme.applyDarkStyles({
+      background: (theme.vars || theme).palette.primaryDark[900],
+    }),
     // TODO: Should be handled by the main component
   };
 });
@@ -110,17 +112,16 @@ const StyledAppBar = styled(AppBar, {
     boxShadow: 'none',
     backdropFilter: 'blur(8px)',
     borderStyle: 'solid',
-    borderColor:
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette.primary[100], 0.08)
-        : theme.palette.grey[100],
+    borderColor: (theme.vars || theme).palette.grey[100],
     borderWidth: 0,
     borderBottomWidth: 'thin',
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette.primaryDark[900], 0.7)
-        : 'rgba(255,255,255,0.8)',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    color: (theme.vars || theme).palette.grey[800],
+    ...theme.applyDarkStyles({
+      borderColor: alpha(theme.palette.primary[100], 0.08),
+      backgroundColor: alpha(theme.palette.primaryDark[900], 0.8),
+      color: (theme.vars || theme).palette.grey[500],
+    }),
   };
 });
 
@@ -154,7 +155,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 export default function AppFrame(props) {
-  const { children, disableDrawer = false, className } = props;
+  const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -200,7 +201,7 @@ export default function AppFrame(props) {
           </NextLink>
           <GrowingDiv />
           <Stack direction="row" spacing="10px">
-            <AppFrameBanner />
+            <BannerComponent />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -235,6 +236,7 @@ export default function AppFrame(props) {
 }
 
 AppFrame.propTypes = {
+  BannerComponent: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   disableDrawer: PropTypes.bool,

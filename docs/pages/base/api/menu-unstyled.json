@@ -8,9 +8,8 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "keepMounted": { "type": { "name": "bool" } },
-    "onClose": { "type": { "name": "func" } },
-    "open": { "type": { "name": "bool" } },
+    "onOpenChange": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
         "name": "shape",
@@ -25,7 +24,23 @@
   },
   "name": "MenuUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "PopperUnstyled",
+      "class": ".MuiMenu-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": ".MuiMenu-listbox"
+    }
+  ],
+  "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
   "spread": false,
+  "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",
   "inheritance": null,

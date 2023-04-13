@@ -2,16 +2,6 @@ import * as React from 'react';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
-const StyledPopperDiv = styled('div')(
-  ({ theme }) => `
-  padding: 0.5rem;
-  border: 1px solid;
-  background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#fff'};
-  opacity: 1;
-  margin: 0.25rem 0px;
-`,
-);
-
 export default function SimplePopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -33,3 +23,13 @@ export default function SimplePopper() {
     </div>
   );
 }
+
+const StyledPopperDiv = styled('div')(
+  ({ theme }) => `
+  padding: 0.5rem;
+  border: 1px solid;
+  background-color: ${theme.palette.mode === 'dark' ? '#121212' : '#fff'};
+  opacity: 1;
+  margin: 0.25rem 0px;
+`,
+);

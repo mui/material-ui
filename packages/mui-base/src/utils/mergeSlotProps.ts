@@ -1,3 +1,4 @@
+import * as React from 'react';
 import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
@@ -136,7 +137,7 @@ export default function mergeSlotProps<
   const internalSlotProps = getSlotProps(eventHandlers);
 
   // The order of classes is important here.
-  // Emotion (that we use in libraries consuming MUI Base) depends on this order
+  // Emotion (that we use in libraries consuming Base UI) depends on this order
   // to properly override style. It requires the most important classes to be last
   // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
   const joinedClasses = clsx(

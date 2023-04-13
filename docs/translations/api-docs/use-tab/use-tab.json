@@ -1,0 +1,21 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {
+    "disabled": "If <code>true</code>, the tab will be disabled.",
+    "id": "The id of the tab.\nIf not provided, it will be automatically generated.",
+    "onChange": "If <code>true</code>, the tab will be disabled.",
+    "onClick": "Callback fired when the tab is clicked.",
+    "ref": "Ref to the DOM element associated with the tab.",
+    "value": "The value of the tab.\nIt's used to associate the tab with a tab panel(s) with the same value.\nIf the value is not provided, it falls back to the position index."
+  },
+  "returnValueDescriptions": {
+    "active": "If <code>true</code>, the tab is active (as in </code>:active</code> pseudo-class; in other words, pressed).",
+    "focusVisible": "If <code>true</code>, the tab has visible focus.\nThis is a workaround for browsers that do not support this feature natively.",
+    "getRootProps": "Resolver for the root slot's props.",
+    "highlighted": "If <code>true</code>, the tab is highlighted.",
+    "index": "0-based index of the tab in the list of tabs.",
+    "selected": "If <code>true</code>, the tab is selected.",
+    "setFocusVisible": "Sets the focus-visible state of the tab.\nThis is a workaround for browsers that do not support this feature natively.",
+    "totalTabsCount": "Total number of tabs in the nearest parent TabsList.\nThis can be used to determine if the tab is the last one to style it accordingly."
+  }
+}

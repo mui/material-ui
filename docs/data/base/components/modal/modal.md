@@ -3,12 +3,16 @@ product: base
 title: Unstyled React Modal component
 components: ModalUnstyled
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Unstyled Modal
 
 <p class="description">The Unstyled Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
@@ -22,8 +26,6 @@ This lets you create an element that your users must interact with before contin
 - 🔐 Disables page scrolling while open
 - ⌨️ Manages focus correctly between the modal and its parent app
 - ♿️ Adds the appropriate ARIA roles automatically
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
@@ -82,7 +84,7 @@ The following demo shows how to nest one Modal within another:
 
 You can animate the open and close states of a Modal using a transition component, as long as that component fulfills the following requirements:
 
-- Is a direct child descendent of the modal
+- Is a direct child descendant of the modal
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
@@ -120,7 +122,7 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 
 In order to display an Unstyled Modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
@@ -150,7 +152,7 @@ If the user needs to interact with another part of the page—for example, to in
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices.
 
 - All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your Modal component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the Modal:
@@ -162,7 +164,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the Modal.
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the Modal.
   :::warning
   A modal window can sit on top of either the parent application, or another modal window.
   _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.

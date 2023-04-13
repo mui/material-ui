@@ -4,7 +4,6 @@
     "aria-label": "The label of the slider.",
     "aria-labelledby": "The id of the element containing a label for the slider.",
     "aria-valuetext": "A string value that provides a user-friendly name for the current value of the slider.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",
@@ -21,12 +20,11 @@
     "orientation": "The component orientation.",
     "scale": "A transformation function, to change the scale of the slider.<br><br><strong>Signature:</strong><br><code>function(x: any) =&gt; any</code><br>",
     "slotProps": "The props used for each slot inside the Slider.",
-    "slots": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component.",
+    "slots": "The components used for each slot inside the Slider. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details.",
     "step": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop.",
     "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
     "track": "The track presentation:<br>- <code>normal</code> the track will render a bar representing the slider value. - <code>inverted</code> the track will render a bar representing the remaining slider value. - <code>false</code> the track will render without a bar.",
     "value": "The value of the slider. For ranged sliders, provide an array with two values.",
-    "valueLabelDisplay": "Controls when the value label is displayed:<br>- <code>auto</code> the value label will display when the thumb is hovered or focused. - <code>on</code> will display persistently. - <code>off</code> will never display.",
     "valueLabelFormat": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"
   },
   "classDescriptions": {
@@ -83,23 +81,6 @@
       "nodeName": "the thumb element",
       "conditions": "keyboard focused"
     },
-    "valueLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label element"
-    },
-    "valueLabelOpen": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the thumb label element",
-      "conditions": "it's open"
-    },
-    "valueLabelCircle": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's circle element"
-    },
-    "valueLabelLabel": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb label's label element"
-    },
     "mark": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the mark element"
@@ -118,5 +99,15 @@
       "nodeName": "the mark label element",
       "conditions": "active (depending on the value)"
     }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "track": "The component that renders the track.",
+    "rail": "The component that renders the rail.",
+    "thumb": "The component that renders the thumb.",
+    "mark": "The component that renders the mark.",
+    "markLabel": "The component that renders the mark label.",
+    "valueLabel": "The component that renders the value label.",
+    "input": "The component that renders the input."
   }
 }

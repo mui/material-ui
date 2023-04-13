@@ -7,6 +7,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardCoverUtilityClass } from './cardCoverClasses';
 import { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -49,7 +50,16 @@ const CardCoverRoot = styled('div', {
     },
   },
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardCover API](https://mui.com/joy-ui/api/card-cover/)
+ */
 const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardCoverProps>({
     props: inProps,
@@ -65,20 +75,22 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardCoverRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
   return (
-    <CardCoverRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
           ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
-    </CardCoverRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<CardCoverTypeMap>;
 

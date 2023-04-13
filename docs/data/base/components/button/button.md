@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Button component and hook
 components: ButtonUnstyled
+hooks: useButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
@@ -10,13 +11,15 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
-{{"demo": "UnstyledButtonIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -66,7 +69,7 @@ Use the `component` prop to override the root slot with a custom element:
 
 If you provide a non-interactive element such as a `<span>`, the Unstyled Button component will automatically add the necessary accessibility attributes.
 
-Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your brower's dev tools:
+Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
@@ -78,7 +81,7 @@ Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its p
 ## Hook
 
 ```js
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 ```
 
 The `useButton` hook lets you apply the functionality of a button to a fully custom component.
@@ -124,7 +127,7 @@ Instead, `aria-disabled` is used, which makes the button focusable.
 
 This should be used whenever the disabled button needs to be read by screen readers.
 
-MUI Base uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+Base UI uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second button accepts the focus:
 

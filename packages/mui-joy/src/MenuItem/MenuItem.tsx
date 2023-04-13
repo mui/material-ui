@@ -2,14 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import useMenuItem from '@mui/base/useMenuItem';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
   const { focusVisible, disabled, selected, color, variant } = ownerState;
@@ -34,7 +34,17 @@ const MenuItemRoot = styled(StyledListItemButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuItemOwnerState }>({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
+ * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
+ */
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
@@ -73,19 +83,16 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    additionalProps: {
-      as: component,
-    },
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, component },
     className: classes.root,
     ownerState,
   });
 
-  return <MenuItemRoot {...rootProps}>{children}</MenuItemRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as ExtendMenuItem<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
@@ -99,7 +106,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * @default selected ? 'primary' : 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -119,7 +126,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   selected: PropTypes.bool,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

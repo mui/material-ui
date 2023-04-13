@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useTab } from '@mui/base/TabUnstyled';
-import { useSlotProps } from '@mui/base/utils';
+import useTab from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -13,6 +12,7 @@ import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled, focusVisible, variant, color, orientation } = ownerState;
@@ -41,6 +41,10 @@ const TabRoot = styled(StyledListItemButton, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
+    ...(!ownerState.row &&
+      ownerState.orientation === 'horizontal' && {
+        justifyContent: 'flex-start',
+      }),
     ...(ownerState.selected && {
       boxShadow: theme.shadow.sm,
       fontWeight: 'initial',
@@ -50,7 +54,16 @@ const TabRoot = styled(StyledListItemButton, {
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Tabs](https://mui.com/joy-ui/react-tabs/)
+ *
+ * API:
+ *
+ * - [Tab API](https://mui.com/joy-ui/api/tab/)
+ */
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -109,15 +122,11 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
+    externalForwardedProps: { ...other, component },
     ownerState,
     className: classes.root,
   });
@@ -125,7 +134,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
       {/* @ts-ignore ListItemButton base is div which conflict with TabProps 'button' */}
-      <TabRoot {...tabRootProps}>{children}</TabRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as OverridableComponent<TabTypeMap>;
@@ -194,11 +203,11 @@ Tab.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * You can provide your own value. Otherwise, we fall back to the child position index.
+   * You can provide your own value. Otherwise, it falls back to the child position index.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -1,13 +1,27 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabListSlot = 'root';
 
+export interface TabListSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+}
+
+export type TabListSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabListSlots,
+  {
+    root: SlotProps<'div', {}, TabListOwnerState>;
+  }
+>;
+
 export interface TabListPropsColorOverrides {}
-
 export interface TabListPropsVariantOverrides {}
-
 export interface TabListPropsSizeOverrides {}
 
 export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -31,11 +45,11 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'soft'
      */
     variant?: OverridableStringUnion<VariantProp, TabListPropsVariantOverrides>;
-  };
+  } & TabListSlotsAndSlotProps;
   defaultComponent: D;
 }
 

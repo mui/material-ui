@@ -5,12 +5,35 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
+export interface InputSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator: React.ElementType;
+}
+
 export interface InputPropsVariantOverrides {}
 export interface InputPropsColorOverrides {}
 export interface InputPropsSizeOverrides {}
 
 export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  InputSlot,
+  InputSlots,
   {
     root: SlotProps<'div', {}, InputOwnerState>;
     input: SlotProps<'input', {}, InputOwnerState>;
@@ -21,7 +44,6 @@ export type InputSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    InputSlotsAndSlotProps &
     Pick<
       React.InputHTMLAttributes<HTMLInputElement>,
       | 'autoComplete'
@@ -58,6 +80,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * If `true`, the `input` will indicate an error.
        * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+       * @default false
        */
       error?: boolean;
       /**
@@ -79,11 +102,11 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'outlined'
        */
       variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
-    };
+    } & InputSlotsAndSlotProps;
   defaultComponent: D;
 }
 

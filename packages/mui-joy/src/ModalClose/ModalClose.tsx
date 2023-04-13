@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
+import useSlot from '../utils/useSlot';
 import { useThemeProps, styled } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledIconButton } from '../IconButton/IconButton';
@@ -50,7 +50,7 @@ export const ModalCloseRoot = styled(StyledIconButton, {
   top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
   right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
   borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
-  // for variant without a background, use `tertiary` text color to reduce the importancy of the close icon.
+  // for variant without a background, use `tertiary` text color to reduce the importance of the close icon.
   ...(!theme.variants[ownerState.variant!]?.[ownerState.color!]?.backgroundColor && {
     color: theme.vars.palette.text.secondary,
   }),
@@ -62,7 +62,16 @@ const modalDialogVariantMapping = {
   soft: 'soft',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [ModalClose API](https://mui.com/joy-ui/api/modal-close/)
+ */
 const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   const props = useThemeProps<typeof inProps & ModalCloseProps>({
     props: inProps,
@@ -104,27 +113,26 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: ModalCloseRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {
+    externalForwardedProps: {
       onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
         closeModalContext?.(event, 'closeClick');
         onClick?.(event);
       },
       ...other,
-    },
-    additionalProps: {
-      as: component,
+      component,
     },
     className: classes.root,
     ownerState,
   });
 
   return (
-    <ModalCloseRoot {...rootProps}>
+    <SlotRoot {...rootProps}>
       <CloseIcon />
-    </ModalCloseRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<ModalCloseTypeMap>;
 
@@ -171,7 +179,7 @@ ModalClose.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

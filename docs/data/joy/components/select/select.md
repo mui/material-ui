@@ -1,8 +1,9 @@
 ---
 product: joy-ui
 title: React Select component
+components: Select, Option
 githubLabel: 'component: select'
-waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 unstyled: /base/react-select/
 ---
 
@@ -95,9 +96,49 @@ const App = () => (
 );
 ```
 
+### Listbox
+
+#### Maximum height
+
+To change the listbox's maximum height, use `slotProps` prop to target listbox slot:
+
+```jsx
+<Select
+  slotProps={{
+    listbox: {
+      sx: {
+        maxHeight: '300px',
+      },
+    },
+  }}
+>
+  ...
+</Select>
+```
+
+#### Minimum width
+
+By default, the listbox's width is equal to Select's button or the maximum content of its children. You can control the minimum width by using `slotProps` prop to target listbox slot.
+
+{{"demo": "SelectMinWidth.js"}}
+
+:::success
+To control the placement of the listbox, use `placement`:
+
+```js
+<Select
+  slotProps={{
+    // the left-edge of the listbox will align with button.
+    listbox: { placement: 'bottom-start' },
+  }}
+>
+```
+
+:::
+
 ### `Option` component
 
-The `Option` component is used for the chooseable options within the select.
+The `Option` component is used for the choosable options within the select.
 
 The selected option inherits the `color` from the Select parent, and it uses the `primary` palette by default.
 However, it does not inherit the Select's used `variant`.
@@ -117,7 +158,7 @@ Take a look at [selected value appearance](#selected-value-appearance) to see ho
 
 ### Grouped options
 
-To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-grouped/), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
 That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}

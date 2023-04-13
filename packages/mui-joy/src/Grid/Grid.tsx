@@ -7,9 +7,9 @@ import { GridTypeMap } from './GridProps';
 const Grid = createGrid({
   createStyledComponent: styled('div', {
     name: 'JoyGrid',
+    slot: 'Root',
     overridesResolver: (props, styles) => styles.root,
   }),
-  componentName: 'JoyGrid',
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyGrid' }),
 }) as OverridableComponent<GridTypeMap>;
 

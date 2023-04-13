@@ -1,6 +1,6 @@
 # 安装
 
-<p class="description">Install MUI Base, a robust library of blank ("unstyled") React UI components and low-level hooks.</p>
+<p class="description">Install Base UI, a robust library of blank ("unstyled") React UI components and low-level hooks.</p>
 
 ## npm
 

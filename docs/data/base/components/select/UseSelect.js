@@ -1,6 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelect } from '@mui/base';
+import clsx from 'clsx';
+import useSelect, { SelectProvider } from '@mui/base/useSelect';
+import useOption from '@mui/base/useOption';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
@@ -144,17 +146,41 @@ function renderSelectedValue(value, options) {
   return selectedOption ? `${selectedOption.label} (${value})` : null;
 }
 
+function CustomOption(props) {
+  const { children, value, className, disabled = false } = props;
+  const { getRootProps, highlighted } = useOption({
+    value,
+    disabled,
+    label: children,
+  });
+
+  return (
+    <Option
+      {...getRootProps()}
+      className={clsx({ highlighted }, className)}
+      style={{ '--color': value }}
+    >
+      {children}
+    </Option>
+  );
+}
+
+CustomOption.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+};
+
 function CustomSelect({ options, placeholder }) {
   const listboxRef = React.useRef(null);
   const [listboxVisible, setListboxVisible] = React.useState(false);
 
-  const { getButtonProps, getListboxProps, getOptionProps, getOptionState, value } =
-    useSelect({
-      listboxRef,
-      onOpenChange: setListboxVisible,
-      open: listboxVisible,
-      options,
-    });
+  const { getButtonProps, getListboxProps, contextValue, value } = useSelect({
+    listboxRef,
+    onOpenChange: setListboxVisible,
+    open: listboxVisible,
+  });
 
   React.useEffect(() => {
     if (listboxVisible) {
@@ -176,19 +202,15 @@ function CustomSelect({ options, placeholder }) {
         aria-hidden={!listboxVisible}
         className={listboxVisible ? '' : 'hidden'}
       >
-        {options.map((option) => {
-          const optionState = getOptionState(option);
-          return (
-            <Option
-              key={option.value}
-              {...getOptionProps(option)}
-              style={{ '--color': option.value }}
-              className={optionState.highlighted ? 'highlighted' : ''}
-            >
-              {option.label}
-            </Option>
-          );
-        })}
+        <SelectProvider value={contextValue}>
+          {options.map((option) => {
+            return (
+              <CustomOption key={option.value} value={option.value}>
+                {option.label}
+              </CustomOption>
+            );
+          })}
+        </SelectProvider>
       </Listbox>
     </Root>
   );
@@ -198,7 +220,7 @@ CustomSelect.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       disabled: PropTypes.bool,
-      label: PropTypes.node,
+      label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
     }),
   ).isRequired,

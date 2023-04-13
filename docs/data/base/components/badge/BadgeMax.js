@@ -4,6 +4,21 @@ import { styled } from '@mui/system';
 import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import MailIcon from '@mui/icons-material/Mail';
 
+export default function BadgeMax() {
+  return (
+    <Stack spacing={4} direction="row">
+      <StyledBadge badgeContent={99}>
+        <MailIcon />
+      </StyledBadge>
+      <StyledBadge badgeContent={100}>
+        <MailIcon />
+      </StyledBadge>
+      <StyledBadge badgeContent={1000} max={999}>
+        <MailIcon />
+      </StyledBadge>
+    </Stack>
+  );
+}
 const blue = {
   500: '#007FFF',
 };
@@ -47,19 +62,3 @@ const StyledBadge = styled(BadgeUnstyled)(
   }
   `,
 );
-
-export default function BadgeMax() {
-  return (
-    <Stack spacing={4} direction="row">
-      <StyledBadge badgeContent={99}>
-        <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={100}>
-        <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={1000} max={999}>
-        <MailIcon />
-      </StyledBadge>
-    </Stack>
-  );
-}

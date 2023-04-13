@@ -68,7 +68,7 @@ export default function ColorInversionNavigation() {
         </Select>
         <List
           sx={{
-            '--List-item-radius': '8px',
+            '--ListItem-radius': '8px',
             '--List-gap': '4px',
             flexGrow: 0,
             minWidth: 256,
@@ -108,7 +108,7 @@ export default function ColorInversionNavigation() {
             </List>
           </ListItem>
         </List>
-        <Card variant="soft" row sx={{ mt: 1, mb: 2 }}>
+        <Card variant="soft" orientation="horizontal" sx={{ mt: 1, mb: 2 }}>
           <CircularProgress value={35} determinate thickness={2} size="lg">
             35%
           </CircularProgress>

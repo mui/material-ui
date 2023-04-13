@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "5.11.5",
+  "version": "5.12.0",
   "bin": "./codemod.js",
   "private": false,
   "author": "MUI Team",
@@ -30,12 +30,12 @@
     "url": "https://opencollective.com/mui"
   },
   "dependencies": {
-    "@babel/core": "^7.20.7",
-    "@babel/runtime": "^7.20.7",
-    "@babel/traverse": "^7.20.10",
+    "@babel/core": "^7.21.3",
+    "@babel/runtime": "^7.21.0",
+    "@babel/traverse": "^7.21.3",
     "jscodeshift": "^0.13.1",
     "jscodeshift-add-imports": "^1.0.10",
-    "yargs": "^17.6.2"
+    "yargs": "^17.7.1"
   },
   "devDependencies": {
     "@types/jscodeshift": "0.11.5"

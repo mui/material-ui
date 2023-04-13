@@ -4,8 +4,9 @@ export { default as FormControlUnstyledContext } from './FormControlUnstyledCont
 
 export type {
   FormControlUnstyledProps,
-  FormControlUnstyledComponentsPropsOverrides,
+  FormControlUnstyledRootSlotPropsOverrides,
   FormControlUnstyledState,
+  UseFormControlUnstyledContextReturnValue,
 } from './FormControlUnstyled.types';
 
 export { default as formControlUnstyledClasses } from './formControlUnstyledClasses';

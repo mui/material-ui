@@ -4,7 +4,7 @@ import { SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface FormControlUnstyledComponentsPropsOverrides {}
+export interface FormControlUnstyledRootSlotPropsOverrides {}
 
 export interface FormControlUnstyledOwnProps {
   /**
@@ -26,6 +26,9 @@ export interface FormControlUnstyledOwnProps {
    * @default false
    */
   error?: boolean;
+  /**
+   * Callback fired when the form element's value is modified.
+   */
   onChange?: React.ChangeEventHandler<NativeFormControlElement>;
   /**
    * If `true`, the label will indicate that the `input` is required.
@@ -39,7 +42,7 @@ export interface FormControlUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'div',
-      FormControlUnstyledComponentsPropsOverrides,
+      FormControlUnstyledRootSlotPropsOverrides,
       FormControlUnstyledOwnerState
     >;
   };
@@ -48,10 +51,19 @@ export interface FormControlUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: FormControlUnstyledSlots;
+  /**
+   * The value of the form element.
+   */
   value?: unknown;
+}
+
+export interface FormControlUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
 }
 
 export interface FormControlUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -80,9 +92,21 @@ type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'val
 
 export type FormControlUnstyledState = Simplify<
   Pick<FormControlUnstyledProps, ContextFromPropsKey> & {
+    /**
+     * If `true`, the form element has some value.
+     */
     filled: boolean;
+    /**
+     * If `true`, the form element is focused and not disabled.
+     */
     focused: boolean;
+    /**
+     * Callback fired when the form element has lost focus.
+     */
     onBlur: () => void;
+    /**
+     * Callback fired when the form element receives focus.
+     */
     onFocus: () => void;
   }
 >;
@@ -92,3 +116,5 @@ export type FormControlUnstyledRootSlotProps = {
   className?: string;
   ownerState: FormControlUnstyledOwnerState;
 };
+
+export interface UseFormControlUnstyledContextReturnValue extends FormControlUnstyledState {}

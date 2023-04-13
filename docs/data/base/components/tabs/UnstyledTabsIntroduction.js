@@ -6,6 +6,21 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 
+export default function UnstyledTabsIntroduction() {
+  return (
+    <TabsUnstyled defaultValue={0}>
+      <TabsList>
+        <Tab value={0}>My account</Tab>
+        <Tab value={1}>Profile</Tab>
+        <Tab value={2}>Language</Tab>
+      </TabsList>
+      <TabPanel value={0}>My account page</TabPanel>
+      <TabPanel value={1}>Profile page</TabPanel>
+      <TabPanel value={2}>Language page</TabPanel>
+    </TabsUnstyled>
+  );
+}
+
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -93,18 +108,3 @@ const TabsList = styled(TabsListUnstyled)(
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
-
-export default function UnstyledTabsIntroduction() {
-  return (
-    <TabsUnstyled defaultValue={0}>
-      <TabsList>
-        <Tab>My account</Tab>
-        <Tab>Profile</Tab>
-        <Tab>Language</Tab>
-      </TabsList>
-      <TabPanel value={0}>My account page</TabPanel>
-      <TabPanel value={1}>Profile page</TabPanel>
-      <TabPanel value={2}>Language page</TabPanel>
-    </TabsUnstyled>
-  );
-}

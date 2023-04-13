@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Switch component and hook
 components: SwitchUnstyled
+hooks: useSwitch
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
@@ -10,13 +11,15 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Switch component provides users with a switch for toggling between two mutually exclusive states.
 
-{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -83,7 +86,7 @@ The following code snippet applies a CSS class called `my-thumb` to the thumb sl
 ## Hook
 
 ```js
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 ```
 
 The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.

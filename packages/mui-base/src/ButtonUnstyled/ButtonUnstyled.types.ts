@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
-import { UseButtonParameters, UseButtonRootSlotProps } from './useButton.types';
+import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
 
 export interface ButtonUnstyledActions {
   focusVisible(): void;
 }
 
-export interface ButtonUnstyledComponentsPropsOverrides {}
+export interface ButtonUnstyledRootSlotPropsOverrides {}
 
 export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'> {
   /**
@@ -23,7 +23,7 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
   slotProps?: {
     root?: SlotComponentProps<
       'button',
-      ButtonUnstyledComponentsPropsOverrides,
+      ButtonUnstyledRootSlotPropsOverrides,
       ButtonUnstyledOwnerState
     >;
   };
@@ -32,9 +32,15 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: ButtonUnstyledSlots;
+}
+
+export interface ButtonUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default props.href || props.to ? 'a' : 'button'
+   */
+  root?: React.ElementType;
 }
 
 export type ButtonUnstyledProps<

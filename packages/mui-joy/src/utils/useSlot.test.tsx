@@ -107,7 +107,7 @@ describe('useSlot', () => {
       expect(getByRole('button').firstChild).to.have.class('size-md');
     });
 
-    it('slot ownerstate should be overriable', () => {
+    it('slot ownerstate should be overridable', () => {
       const { getByRole } = render(<Item slotProps={{ decorator: { size: 'sm' } }} />);
       expect(getByRole('button').firstChild).to.have.class('size-sm');
     });
@@ -305,7 +305,10 @@ describe('useSlot', () => {
       HTMLButtonElement,
       Props &
         CreateSlotsAndSlotProps<
-          'root' | 'decorator',
+          {
+            root: React.ElementType;
+            decorator: React.ElementType;
+          },
           {
             root: SlotProps<'button', {}, OwnerState>;
             decorator: SlotProps<'span', {}, OwnerState>;

@@ -31,6 +31,7 @@ function moduleIDToJSIdentifier(moduleID) {
 const componentPackageMapping = {
   'material-ui': {},
   base: {},
+  'joy-ui': {},
 };
 
 const packages = [
@@ -45,6 +46,10 @@ const packages = [
   {
     product: 'base',
     paths: [path.join(__dirname, '../../packages/mui-base/src')],
+  },
+  {
+    product: 'joy-ui',
+    paths: [path.join(__dirname, '../../packages/mui-joy/src')],
   },
 ];
 
@@ -73,7 +78,7 @@ packages.forEach((pkg) => {
  */
 module.exports = async function demoLoader() {
   const englishFilepath = this.resourcePath;
-  const config = this.getOptions();
+  const options = this.getOptions();
 
   const englishFilename = path.basename(englishFilepath, '.md');
 
@@ -93,7 +98,7 @@ module.exports = async function demoLoader() {
         if (
           filename.startsWith(englishFilename) &&
           matchNotEnglishMarkdown !== null &&
-          config.languagesInProgress.indexOf(matchNotEnglishMarkdown[1]) !== -1
+          options.languagesInProgress.indexOf(matchNotEnglishMarkdown[1]) !== -1
         ) {
           return {
             filename,
@@ -124,7 +129,7 @@ module.exports = async function demoLoader() {
     pageFilename,
     translations,
     componentPackageMapping,
-    ignoreLanguagePages: config.ignoreLanguagePages,
+    options,
   });
 
   const demos = {};

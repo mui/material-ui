@@ -21,16 +21,17 @@ import ModalManager, { ariaHidden } from './ModalManager';
 import FocusTrap from '../FocusTrap';
 import { getModalUtilityClass } from './modalUnstyledClasses';
 import { useSlotProps } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: ModalUnstyledOwnerState) => {
-  const { open, exited, classes } = ownerState;
+  const { open, exited } = ownerState;
 
   const slots = {
     root: ['root', !open && exited && 'hidden'],
     backdrop: ['backdrop'],
   };
 
-  return composeClasses(slots, getModalUtilityClass, classes);
+  return composeClasses(slots, useClassNamesOverride(getModalUtilityClass));
 };
 
 function getContainer(container: ModalUnstyledOwnProps['container']) {
@@ -64,14 +65,13 @@ const defaultManager = new ModalManager();
  *
  * API:
  *
- * - [ModalUnstyled API](https://mui.com/base/api/modal-unstyled/)
+ * - [ModalUnstyled API](https://mui.com/base/react-modal/components-api/#modal-unstyled)
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled<
   BaseComponentType extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
 >(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<Element> | undefined) {
   const {
     children,
-    classes: classesProp,
     closeAfterTransition = false,
     component,
     container,
@@ -171,7 +171,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
 
   const ownerState: ModalUnstyledOwnerState = {
     ...props,
-    classes: classesProp,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -293,7 +292,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
 
   return (
     <Portal
-      // @ts-expect-error TODO: include ref to MUI Base Portal props
+      // @ts-expect-error TODO: include ref to Base UI Portal props
       ref={handlePortalRef}
       container={container}
       disablePortal={disablePortal}
@@ -329,10 +328,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
 import formLabelClasses from '../FormLabel/formLabelClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -18,7 +18,7 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getFormHelperTextUtilityClass, {});
 };
 
-const FormHelperTextRoot = styled('p', {
+const FormHelperTextRoot = styled('div', {
   name: 'JoyFormHelperText',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -34,7 +34,16 @@ const FormHelperTextRoot = styled('p', {
     '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
   },
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormHelperText API](https://mui.com/joy-ui/api/form-helper-text/)
+ */
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -54,26 +63,21 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     };
   }, [setHelperText]);
 
-  const ownerState = {
-    ...props,
-  };
-
   const classes = useUtilityClasses();
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref: handleRef,
     elementType: FormHelperTextRoot,
-    externalSlotProps: {},
     externalForwardedProps: other,
-    ownerState,
+    ownerState: props,
     additionalProps: {
-      ref: handleRef,
       as: component,
       id: formControl?.['aria-describedby'],
     },
     className: classes.root,
   });
 
-  return <FormHelperTextRoot {...rootProps}>{children}</FormHelperTextRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {
@@ -85,10 +89,6 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

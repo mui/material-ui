@@ -1,4 +1,4 @@
-import pagesApi from './pagesApi';
+import pagesApi from 'docs/data/base/pagesApi';
 
 const pages = [
   {
@@ -73,7 +73,7 @@ const pages = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/base/api',
     icon: 'CodeIcon',
     children: pagesApi,

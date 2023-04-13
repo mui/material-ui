@@ -73,7 +73,7 @@ export default function InteractiveGrid() {
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
                 <RadioGroup
-                  row
+                  orientation="horizontal"
                   name="direction"
                   aria-label="direction"
                   value={direction}
@@ -95,7 +95,7 @@ export default function InteractiveGrid() {
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
                 <RadioGroup
-                  row
+                  orientation="horizontal"
                   name="justifyContent"
                   aria-label="justifyContent"
                   value={justifyContent}
@@ -119,7 +119,7 @@ export default function InteractiveGrid() {
               <FormControl>
                 <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
                 <RadioGroup
-                  row
+                  orientation="horizontal"
                   name="alignItems"
                   aria-label="align items"
                   value={alignItems}

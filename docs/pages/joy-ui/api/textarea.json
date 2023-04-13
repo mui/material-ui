@@ -1,0 +1,91 @@
+{
+  "props": {
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
+    "endDecorator": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      }
+    },
+    "startDecorator": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+      }
+    }
+  },
+  "name": "Textarea",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTextarea-root"
+    },
+    {
+      "name": "textarea",
+      "description": "The component that renders the textarea.",
+      "default": "'textarea'",
+      "class": ".MuiTextarea-textarea"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-endDecorator"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error", "focused": "Mui-focused" }
+  },
+  "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyTextarea",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-textarea/\">Textarea</a></li></ul>",
+  "cssComponent": false
+}

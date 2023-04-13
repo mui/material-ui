@@ -9,6 +9,10 @@ githubLabel: 'component: TablePagination'
 
 <p class="description">Table Pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Table Pagination component lets you add pagination controls to a table.
@@ -21,9 +25,7 @@ Table Pagination renders its internal elements in a `<td>` tag by default so it 
 You can use the `component` or `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 See the [Slot props section](#slot-props) for details.
 
-{{"demo": "UnstyledPaginationIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledPaginationIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/base';
+import useButton from '@mui/base/useButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -11,6 +11,7 @@ import Cancel from '../internal/svg-icons/Cancel';
 import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   const { focusVisible, variant, color, disabled } = ownerState;
@@ -36,10 +37,10 @@ const ChipDeleteRoot = styled('button', {
     '--Icon-margin': 'initial', // prevent overrides from parent
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
     cursor: 'pointer',
-    width: 'var(--Chip-delete-size, 2rem)',
-    height: 'var(--Chip-delete-size, 2rem)',
-    borderRadius: 'var(--Chip-delete-radius, 50%)',
-    margin: 'var(--Chip-delete-margin)',
+    width: 'var(--Chip-deleteSize, 2rem)',
+    height: 'var(--Chip-deleteSize, 2rem)',
+    borderRadius: 'var(--Chip-deleteRadius, 50%)',
+    margin: 'var(--Chip-deleteMargin)',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -64,7 +65,16 @@ const chipVariantMapping = {
   soft: 'solid',
   solid: 'solid',
 } as const;
-
+/**
+ *
+ * Demos:
+ *
+ * - [Chip](https://mui.com/joy-ui/react-chip/)
+ *
+ * API:
+ *
+ * - [ChipDelete API](https://mui.com/joy-ui/api/chip-delete/)
+ */
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipDeleteProps>({
     props: inProps,
@@ -128,10 +138,10 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     }
   };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: ChipDeleteRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
     externalForwardedProps: other,
     ownerState,
     additionalProps: {
@@ -143,7 +153,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const { onDelete: excludeOnDelete, ...restOfRootProps } = rootProps;
-  return <ChipDeleteRoot {...restOfRootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
+  return <SlotRoot {...restOfRootProps}>{children ?? <Cancel />}</SlotRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
@@ -196,7 +206,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

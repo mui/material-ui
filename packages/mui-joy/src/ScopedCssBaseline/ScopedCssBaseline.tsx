@@ -12,6 +12,7 @@ import {
   ScopedCssBaselineProps,
 } from './ScopedCssBaselineProps';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -60,7 +61,16 @@ const ScopedCssBaselineRoot = styled('div', {
     ...colorSchemeStyles,
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [CSS Baseline](https://mui.com/joy-ui/react-css-baseline/)
+ *
+ * API:
+ *
+ * - [ScopedCssBaseline API](https://mui.com/joy-ui/api/scoped-css-baseline/)
+ */
 const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, ref) {
   const props = useThemeProps<typeof inProps & ScopedCssBaselineProps>({
     props: inProps,
@@ -77,15 +87,15 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
 
   const classes = useUtilityClasses();
 
-  return (
-    <ScopedCssBaselineRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    />
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ScopedCssBaselineRoot,
+    externalForwardedProps: { ...other, component },
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps} />;
 }) as OverridableComponent<ScopedCssBaselineTypeMap>;
 
 ScopedCssBaseline.propTypes /* remove-proptypes */ = {
@@ -108,7 +118,6 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * Disable `color-scheme` CSS property.
-   *
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false

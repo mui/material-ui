@@ -31,12 +31,12 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
   The [design kits](https://mui.com/design-kits/) streamline your workflow and boost consistency between designers and developers.
 - **Trusted by thousands of organizations:** Material UI has the largest UI community in the React ecosystem.
   It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
-  You can count on community's support for years to come (e.g. [Stack Overflow](https://insights.stackoverflow.com/trends?tags=material-ui)).
+  You can count on the community's support for years to come (e.g. [Stack Overflow](https://insights.stackoverflow.com/trends?tags=material-ui)).
 
-## Material UI vs. MUI Base
+## Material UI vs. Base UI
 
-Material UI and [MUI Base](/base/getting-started/overview/) feature many of the same UI components, but MUI Base comes without any default styles or styling solutions.
+Material UI and [Base UI](/base/getting-started/overview/) feature many of the same UI components, but Base UI comes without any default styles or styling solutions.
 
 Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/) (or [styled-components](https://styled-components.com/)).
 
-MUI Base, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, Material UI v6 will use MUI Base components and hooks for its foundational structure.
+Base UI, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use Base UI components and hooks for its foundational structure.

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { EventHandlers } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
@@ -54,33 +53,33 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         ...(ownerState.size === 'sm' && {
           '--Input-minHeight': '2rem',
           '--Input-paddingInline': '0.5rem',
-          '--Input-decorator-childHeight': 'min(1.5rem, var(--Input-minHeight))',
+          '--Input-decoratorChildHeight': 'min(1.5rem, var(--Input-minHeight))',
           '--Icon-fontSize': '1.25rem',
         }),
         ...(ownerState.size === 'md' && {
           '--Input-minHeight': '2.5rem',
           '--Input-paddingInline': '0.75rem',
-          '--Input-decorator-childHeight': 'min(2rem, var(--Input-minHeight))',
+          '--Input-decoratorChildHeight': 'min(2rem, var(--Input-minHeight))',
           '--Icon-fontSize': '1.5rem',
         }),
         ...(ownerState.size === 'lg' && {
           '--Input-minHeight': '3rem',
           '--Input-paddingInline': '1rem',
           '--Input-gap': '0.75rem',
-          '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
+          '--Input-decoratorChildHeight': 'min(2.375rem, var(--Input-minHeight))',
           '--Icon-fontSize': '1.75rem',
         }),
         // variables for controlling child components
-        '--Input-decorator-childOffset':
-          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
+        '--Input-decoratorChildOffset':
+          'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2), var(--Input-paddingInline))',
         '--_Input-paddingBlock':
-          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
-        '--Input-decorator-childRadius':
+          'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Input-decoratorChildHeight)) / 2, 0px)',
+        '--Input-decoratorChildRadius':
           'max(var(--Input-radius) - var(--variant-borderWidth, 0px) - var(--_Input-paddingBlock), min(var(--_Input-paddingBlock) + var(--variant-borderWidth, 0px), var(--Input-radius) / 2))',
-        '--Button-minHeight': 'var(--Input-decorator-childHeight)',
-        '--IconButton-size': 'var(--Input-decorator-childHeight)',
-        '--Button-radius': 'var(--Input-decorator-childRadius)',
-        '--IconButton-radius': 'var(--Input-decorator-childRadius)',
+        '--Button-minHeight': 'var(--Input-decoratorChildHeight)',
+        '--IconButton-size': 'var(--Input-decoratorChildHeight)',
+        '--Button-radius': 'var(--Input-decoratorChildRadius)',
+        '--IconButton-radius': 'var(--Input-decoratorChildRadius)',
         boxSizing: 'border-box',
         minWidth: 0,
         minHeight: 'var(--Input-minHeight)',
@@ -98,9 +97,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         ...(ownerState.size === 'sm' && {
           fontSize: theme.vars.fontSize.sm,
         }),
-        // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-        transition:
-          'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         '&:before': {
           boxSizing: 'border-box',
           content: '""',
@@ -191,12 +187,12 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
 
 export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
-    '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
-    '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
+    '--Button-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
+    '--IconButton-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
     '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
     display: 'inherit',
     alignItems: 'center',
-    paddingBlock: 'var(--unstable_Input-paddingBlock)', // for wrapping Autocomplete's tags
+    paddingBlock: 'var(--unstable_InputPaddingBlock)', // for wrapping Autocomplete's tags
     flexWrap: 'wrap', // for wrapping Autocomplete's tags
     marginInlineEnd: 'var(--Input-gap)',
     color: theme.vars.palette.text.tertiary,
@@ -212,8 +208,8 @@ export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwner
 
 export const StyledInputEndDecorator = styled('span')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
-    '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
-    '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
+    '--Button-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
+    '--IconButton-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
     '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
     display: 'inherit',
     alignItems: 'center',
@@ -249,7 +245,16 @@ const InputEndDecorator = styled(StyledInputEndDecorator, {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [Input API](https://mui.com/joy-ui/api/input/)
+ */
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -262,7 +267,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     inputStateClasses,
     getRootProps,
     getInputProps,
-    component = 'div',
     formControl,
     focused,
     error: errorProp = false,
@@ -305,14 +309,13 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: InputRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -325,23 +328,23 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     }),
     className: [classes.input, inputStateClasses],
     elementType: InputInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalForwardedProps,
+    getSlotProps: getInputProps,
+    internalForwardedProps: propsToForward,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: InputStartDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: InputEndDecorator,
-    externalForwardedProps,
+    externalForwardedProps: other,
     ownerState,
   });
 
@@ -405,6 +408,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @default false
    */
   error: PropTypes.bool,
   /**
@@ -465,7 +469,7 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

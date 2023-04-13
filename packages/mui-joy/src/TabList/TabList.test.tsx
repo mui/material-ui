@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen, describeJoyColorInversion } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import useTabs, { TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabList, { tabListClasses as classes } from '@mui/joy/TabList';
 import RowListContext from '../List/RowListContext';
 
 function TabsProvider({ children, ...props }: TabsUnstyledProps) {
-  const { tabsContextValue } = useTabs(props);
-  return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
+  const { contextValue } = useTabs(props);
+  return <BaseTabsProvider value={contextValue}>{children}</BaseTabsProvider>;
 }
 
 describe('Joy <TabList />', () => {
@@ -25,6 +26,11 @@ describe('Joy <TabList />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<TabList />, {

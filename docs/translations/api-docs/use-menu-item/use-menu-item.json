@@ -1,0 +1,13 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {},
+  "returnValueDescriptions": {
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "focusVisible": "If <code>true</code>, the component is being focused using keyboard.",
+    "getRootProps": "Resolver for the root slot's props.",
+    "highlighted": "If <code>true</code>, the component is being highlighted.",
+    "index": "0-based index of the item in the menu.",
+    "ref": "The ref to the component's root DOM element.",
+    "totalItemCount": "Total number of items in the menu."
+  }
+}

@@ -4,17 +4,21 @@ import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import * as yargs from 'yargs';
 import findComponents from './utils/findComponents';
+import findHooks from './utils/findHooks';
 import {
   ComponentInfo,
+  HookInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getBaseHookInfo,
   getSystemComponentInfo,
   extractApiPage,
-} from './buildApiUtils';
-import generateComponentApi, {
+  getJoyComponentInfo,
+  generateBaseUIApiPages,
   writePrettifiedFile,
-  ReactApi,
-} from './ApiBuilders/ComponentApiBuilder';
+} from './buildApiUtils';
+import generateComponentApi, { ReactApi } from './ApiBuilders/ComponentApiBuilder';
+import generateHookApi from './ApiBuilders/HookApiBuilder';
 import { createTypeScriptProject, TypeScriptProject } from './utils/createTypeScriptProject';
 
 const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
@@ -111,6 +115,7 @@ interface Settings {
   getProjects: () => TypeScriptProject[];
   getApiPages: () => Array<{ pathname: string }>;
   getComponentInfo: (filename: string) => ComponentInfo;
+  getHookInfo?: (filename: string) => HookInfo;
 }
 
 const SETTINGS: Settings[] = [
@@ -146,6 +151,21 @@ const SETTINGS: Settings[] = [
     ],
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
+    getHookInfo: getBaseHookInfo,
+  },
+  {
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/joy/pagesApi.js'),
+    },
+    getProjects: () => [
+      createTypeScriptProject({
+        name: 'joy',
+        rootPath: path.join(process.cwd(), 'packages/mui-joy'),
+        entryPointPath: 'src/index.ts',
+      }),
+    ],
+    getApiPages: () => findApiPages('docs/pages/joy-ui/api'),
+    getComponentInfo: getJoyComponentInfo,
   },
   {
     output: {
@@ -165,7 +185,7 @@ const SETTINGS: Settings[] = [
 
 type CommandOptions = { grep?: string };
 
-async function run(argv: CommandOptions) {
+async function run(argv: yargs.ArgumentsCamelCase<CommandOptions>) {
   const grep = argv.grep == null ? null : new RegExp(argv.grep);
   let allBuilds: Array<PromiseSettledResult<ReactApi | null>> = [];
   await SETTINGS.reduce(async (resolvedPromise, setting) => {
@@ -181,13 +201,19 @@ async function run(argv: CommandOptions) {
       mkdirSync(manifestDir, { recursive: true });
     }
 
-    const componentBuilds = projects.flatMap((project) => {
+    const apiBuilds = projects.flatMap((project) => {
       const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
         (component) => {
           if (
             component.filename.includes('ThemeProvider') ||
-            (component.filename.includes('mui-material') &&
-              component.filename.includes('CssVarsProvider'))
+            component.filename.includes('CssVarsProvider') ||
+            (component.filename.includes('mui-joy') &&
+              // Box's demo isn't ready
+              // Container's demo isn't ready
+              // Grid has problem with react-docgen
+              // Stack has problem with react-docgen
+              component.filename.match(/(Box|Container|ColorInversion|Grid|Stack)/)) ||
+            (component.filename.includes('mui-system') && component.filename.match(/GlobalStyles/))
           ) {
             return false;
           }
@@ -198,7 +224,14 @@ async function run(argv: CommandOptions) {
         },
       );
 
-      return projectComponents.map(async (component) => {
+      const projectHooks = findHooks(path.join(project.rootPath, 'src')).filter((hook) => {
+        if (grep === null) {
+          return true;
+        }
+        return grep.test(hook.filename);
+      });
+
+      const componentsBuilds = projectComponents.map(async (component) => {
         try {
           const { filename } = component;
           const componentInfo = setting.getComponentInfo(filename);
@@ -211,9 +244,27 @@ async function run(argv: CommandOptions) {
           throw error;
         }
       });
+
+      const hooksBuilds = projectHooks.map(async (hook) => {
+        if (!setting.getHookInfo) {
+          return [];
+        }
+        try {
+          const { filename } = hook;
+          const hookInfo = setting.getHookInfo(filename);
+
+          mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+          return generateHookApi(hookInfo, project);
+        } catch (error: any) {
+          error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
+          throw error;
+        }
+      });
+
+      return [...componentsBuilds, ...hooksBuilds];
     });
 
-    const builds = await Promise.allSettled(componentBuilds);
+    const builds = await Promise.allSettled(apiBuilds);
 
     const fails = builds.filter(
       (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
@@ -226,12 +277,55 @@ async function run(argv: CommandOptions) {
       process.exit(1);
     }
 
+    const apiLinks: { pathname: string; title: string }[] = [];
+
+    // Generate the api links, in a format that would point to the appropriate API tab
+    // @ts-ignore there are no failed builds at this point
+    const baseBuilds = builds.filter((build) => build?.value?.filename?.indexOf('mui-base') >= 0);
+    if (baseBuilds.length >= 0) {
+      baseBuilds.forEach((build) => {
+        // @ts-ignore
+        const { value } = build;
+        const { name, demos } = value;
+        // find a potential # in the pathname
+        const hashIdx = demos.length > 0 ? demos[0].demoPathname.indexOf('#') : -1;
+
+        let pathname = null;
+
+        if (demos.length > 0) {
+          // make sure the pathname doesn't contain #
+          pathname =
+            hashIdx >= 0 ? demos[0].demoPathname.substr(0, hashIdx) : demos[0].demoPathname;
+        }
+
+        if (pathname !== null) {
+          // add the new apiLink, where pathame is in format of /react-component/components-api
+          apiLinks.push({
+            pathname: `${pathname}${
+              name.startsWith('use') ? 'hooks-api' : 'components-api'
+            }/#${kebabCase(name)}`,
+            title: name,
+          });
+        }
+      });
+    }
+
+    // @ts-ignore ignore hooks builds for now
     allBuilds = [...allBuilds, ...builds];
 
-    const source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    apiLinks.sort((a, b) => (a.title > b.title ? 1 : -1));
+    let source = `module.exports = ${JSON.stringify(setting.getApiPages())}`;
+    if (apiLinks.length > 0) {
+      // @ts-ignore
+      source = `module.exports = ${JSON.stringify(apiLinks)}`;
+    }
+
     writePrettifiedFile(apiPagesManifestPath, source);
     return Promise.resolve();
   }, Promise.resolve());
+
+  // update the component pages to show the API tabs
+  generateBaseUIApiPages();
 
   if (grep === null) {
     const componentApis = allBuilds
@@ -246,7 +340,7 @@ async function run(argv: CommandOptions) {
 }
 
 yargs
-  .command<CommandOptions>({
+  .command({
     command: '$0',
     describe: 'formats codebase',
     builder: (command) => {

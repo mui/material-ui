@@ -136,7 +136,16 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 
   return loaded;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [Avatar API](https://mui.com/joy-ui/api/avatar/)
+ */
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
@@ -157,7 +166,8 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } = props;
   const variant = inProps.variant || groupContext?.variant || variantProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color || groupContext?.color, colorProp);
+  const colorFromContext = inProps.color || groupContext?.color;
+  const color = colorFromContext !== 'context' ? getColor(colorFromContext, colorProp) : colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -272,7 +282,7 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

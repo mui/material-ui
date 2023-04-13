@@ -3,6 +3,15 @@ import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled'
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
+export default function UnstyledButtonsSimple() {
+  return (
+    <Stack spacing={2} direction="row">
+      <CustomButton>Button</CustomButton>
+      <CustomButton disabled>Disabled</CustomButton>
+    </Stack>
+  );
+}
+
 const blue = {
   500: '#007FFF',
   600: '#0072E5',
@@ -39,12 +48,3 @@ const CustomButton = styled(ButtonUnstyled)`
     cursor: not-allowed;
   }
 `;
-
-export default function UnstyledButtonsSimple() {
-  return (
-    <Stack spacing={2} direction="row">
-      <CustomButton>Button</CustomButton>
-      <CustomButton disabled>Disabled</CustomButton>
-    </Stack>
-  );
-}

@@ -14,7 +14,6 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
   components?: {
     Root?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the Popper.
    * @default {}
@@ -67,7 +66,7 @@ const Popper = React.forwardRef(function Popper(
       ref={ref}
     />
   );
-});
+}) as React.ForwardRefExoticComponent<PopperProps & React.RefAttributes<HTMLDivElement>>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -170,10 +169,6 @@ Popper.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
-  /**
-   * @ignore
-   */
-  ownerState: PropTypes.any,
   /**
    * Popper placement.
    * @default 'bottom'

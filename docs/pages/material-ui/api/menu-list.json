@@ -1,10 +1,10 @@
 {
   "props": {
-    "autoFocus": { "type": { "name": "bool" } },
-    "autoFocusItem": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocusItem": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
-    "disabledItemsFocusable": { "type": { "name": "bool" } },
-    "disableListWrap": { "type": { "name": "bool" } },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
+    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
       "default": "'selectedMenu'"
@@ -17,6 +17,8 @@
     "name": "MuiMenuList"
   },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiMenuList",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-material/src/MenuList/MenuList.js",
   "inheritance": { "component": "List", "pathname": "/material-ui/api/list/" },

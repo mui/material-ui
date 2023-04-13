@@ -19,7 +19,7 @@ const filledProps = {
   InputProps: { classes: { inputAdornedStart: 'adorned' } },
 };
 
-// baseline behavvior
+// baseline behavior
 <TextField variant="filled" {...filledProps} />;
 // @ts-expect-error
 <TextField {...filledProps} />; // desired to throw
