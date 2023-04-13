@@ -1,3 +1,4 @@
+// @ts-nocheck
 <Input component={CustomRoot} />;
 
 <InputUnstyled component={CustomRoot} />;
