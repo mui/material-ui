@@ -179,7 +179,7 @@ export interface ComponentsPropsList {
   MuiInputBase: InputBaseProps;
   MuiInputLabel: InputLabelProps;
   MuiLinearProgress: LinearProgressProps;
-  MuiLink: LinkProps;
+  MuiLink: LinkProps<React.ElementType>;
   MuiList: ListProps;
   MuiListItem: ListItemProps;
   MuiListItemButton: ListItemButtonProps;
