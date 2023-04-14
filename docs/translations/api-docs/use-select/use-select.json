@@ -1,6 +1,21 @@
 {
   "hookDescription": "",
-  "parametersDescriptions": {},
+  "parametersDescriptions": {
+    "buttonRef": "The ref of the trigger button element.",
+    "defaultOpen": "If <code>true</code>, the select will be initially open.",
+    "defaultValue": "The default selected value. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the select is disabled.",
+    "listboxId": "<code>id</code> attribute of the listbox element.",
+    "listboxRef": "The ref of the listbox element.",
+    "multiple": "If <code>true</code>, selecting multiple values is allowed.\nThis affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props.",
+    "onChange": "Callback fired when an option is selected.",
+    "onHighlightChange": "Callback fired when an option is highlighted.",
+    "onOpenChange": "Callback fired when the listbox is opened or closed.",
+    "open": "Controls the open state of the select's listbox.\nThis is the controlled equivaled of the <code>defaultOpen</code> prop.",
+    "options": "An alternative way to specify the options.\nIf this parameter is set, options defined as JSX children are ignored.",
+    "optionStringifier": "A function used to convert the option label to a string.\nIt's useful when labels are elements and need to be converted to plain text\nto enable navigation using character keys on a keyboard.",
+    "value": "The selected value.\nSet to <code>null</code> to deselect all options."
+  },
   "returnValueDescriptions": {
     "buttonActive": "If <code>true</code>, the trigger button is active (pressed).",
     "buttonFocusVisible": "If <code>true</code>, the trigger button has a visible focus.",
