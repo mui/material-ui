@@ -90,6 +90,8 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     children,
     inset = 'context',
     orientation: orientationProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -109,12 +111,13 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: ListDividerRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       as: component,
@@ -168,6 +171,20 @@ ListDivider.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

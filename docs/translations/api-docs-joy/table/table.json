@@ -8,6 +8,8 @@
     "hoverRow": "If <code>true</code>, the table row will shade on hover.",
     "noWrap": "If <code>true</code>, the body cells will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note: Header cells are always truncated with overflow ellipsis.",
     "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "stickyHeader": "Set the header sticky.<br>⚠️ It doesn&#39;t work with IE11.",
     "stripe": "The odd or even row of the table body will have subtle background color.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",

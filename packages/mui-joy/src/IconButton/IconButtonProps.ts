@@ -15,7 +15,7 @@ export interface IconButtonSlots {
    * The component that renders the root.
    * @default 'button'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type IconButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<

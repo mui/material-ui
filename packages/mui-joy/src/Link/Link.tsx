@@ -204,6 +204,9 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     underline = 'hover',
     endDecorator,
     startDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -249,6 +252,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -258,21 +262,21 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     ref: handleRef,
     className: classes.root,
     elementType: LinkRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: StartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: EndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -308,6 +312,11 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -338,6 +347,24 @@ Link.propTypes /* remove-proptypes */ = {
    * @default false
    */
   overlay: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Element placed before the children.
    */

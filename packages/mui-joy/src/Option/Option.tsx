@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/base/composeClasses';
 import useOption from '@mui/base/useOption';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useSlot from '../utils/useSlot';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
@@ -56,21 +57,29 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     label,
     variant = 'plain',
     color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const row = React.useContext(RowListContext);
+  const optionRef = React.useRef<HTMLLIElement>(null);
+  const combinedRef = useForkRef(optionRef, ref);
+
+  const computedLabel =
+    label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
+    label: computedLabel,
     value,
-    optionRef: ref,
+    optionRef: combinedRef,
   });
 
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
-  const ownerState = {
+  const ownerState: OptionOwnerState = {
     ...props,
     disabled,
     selected,
@@ -83,12 +92,13 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     getSlotProps: getRootProps,
     elementType: OptionRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     className: classes.root,
     ownerState,
   });
@@ -129,6 +139,20 @@ Option.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -139,7 +163,7 @@ Option.propTypes /* remove-proptypes */ = {
   /**
    * The option value.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

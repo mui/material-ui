@@ -18,17 +18,17 @@ export interface LinkSlots {
    * The component that renders the root.
    * @default 'a'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface LinkPropsVariantOverrides {}

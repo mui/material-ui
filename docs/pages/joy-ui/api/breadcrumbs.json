@@ -1,6 +1,7 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
     "size": {
       "type": {
@@ -8,6 +9,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ li?: func<br>&#124;&nbsp;object, ol?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, separator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ li?: elementType, ol?: elementType, root?: elementType, separator?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {
