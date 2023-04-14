@@ -8,10 +8,12 @@ const babelConfigPath = path.join(workspaceRoot, 'babel.config.js');
 
 function getTestFilesNames(filepath: string) {
   return glob.sync(
-    path.join(
-      path.dirname(filepath),
-      `/{tests/,}{*.,}${path.basename(filepath, path.extname(filepath))}.test.{js,ts,tsx}`,
-    ),
+    path
+      .join(
+        path.dirname(filepath),
+        `/{tests/,}{*.,}${path.basename(filepath, path.extname(filepath))}.test.{js,ts,tsx}`,
+      )
+      .replace(/\\/g, '/'),
     { absolute: true },
   );
 }
