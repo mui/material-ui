@@ -49,7 +49,7 @@ export interface Theme extends BaseTheme {
 
 /**
  * @deprecated
- * Use `import { createTheme } from '@mui/material/styles'` instead..
+ * Use `import { createTheme } from '@mui/material/styles'` instead.
  */
 export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
 
