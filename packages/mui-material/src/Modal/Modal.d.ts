@@ -31,7 +31,7 @@ export interface ModalOwnProps extends Omit<ModalUnstyledTypeMap['props'], 'slot
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.backdrop` instead..
+   * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps?: Partial<BackdropProps>;
   /**
