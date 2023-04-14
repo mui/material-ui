@@ -33,15 +33,16 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
 const tableSelector = {
   getColumn(col: number | string) {
     if (typeof col === 'number' && col < 0) {
-      return `& tr > td:last-of-type(${Math.abs(col)}), & tr > th:last-of-type(${Math.abs(col)})`;
+      return `& tr > *:nth-last-of-type(${Math.abs(col)})`;
     }
-    return `& tr > td:nth-of-type(${col}), & tr > th:nth-of-type(${col})`;
+    return `& tr > *:nth-of-type(${col})`;
   },
   /**
-   * Except first column
+   * According to https://www.w3.org/TR/2014/REC-html5-20141028/tabular-data.html#the-tr-element,
+   * `tr` can only have `td | th` as children, so using :first-of-type is better than :first-child to prevent emotion SSR warning
    */
   getColumnExceptFirst() {
-    return '& tr > td:not(:first-of-type), & tr > th:not(:first-of-type)';
+    return '& tr > *:not(:first-of-type), & tr > th + td, & tr > td + th';
   },
   /**
    * Every cell in the table
@@ -87,9 +88,9 @@ const tableSelector = {
   },
   getBodyCellOfRow(row: number | string) {
     if (typeof row === 'number' && row < 0) {
-      return `& tbody tr:last-of-type(${Math.abs(row)}) td, & tbody tr:last-of-type(${Math.abs(
+      return `& tbody tr:nth-last-of-type(${Math.abs(
         row,
-      )}) th[scope="row"]`;
+      )}) td, & tbody tr:nth-last-of-type(${Math.abs(row)}) th[scope="row"]`;
     }
     return `& tbody tr:nth-of-type(${row}) td, & tbody tr:nth-of-type(${row}) th[scope="row"]`;
   },
@@ -176,7 +177,7 @@ const TableRoot = styled('table', {
           borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
-      '& tfoot tr > td, & tfoot tr > th': {
+      '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
         '&:first-of-type': {
