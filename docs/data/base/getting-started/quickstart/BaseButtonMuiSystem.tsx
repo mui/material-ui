@@ -89,11 +89,7 @@ const GithubButtonComponent = styled(ButtonUnstyled)(getStyles);
 const GithubButtonHook = styled('button')(getStyles);
 
 export default function App() {
-  const buttonRef = React.useRef();
-
-  const { getRootProps } = useButton({
-    ref: buttonRef,
-  });
+  const { getRootProps } = useButton({});
 
   return (
     <Stack spacing={2} direction="row">

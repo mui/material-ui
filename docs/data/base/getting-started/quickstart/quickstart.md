@@ -65,11 +65,7 @@ import * as React from 'react';
 import useButton from '@mui/base/useButton';
 
 export default function App() {
-  const buttonRef = React.useRef();
-
-  const { getRootProps } = useButton({
-    ref: buttonRef,
-  });
+  const { getRootProps } = useButton();
   return (
     <div>
       <button type="button" {...getRootProps()}>

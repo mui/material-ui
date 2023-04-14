@@ -80,12 +80,7 @@ const css = `
 `;
 
 export default function App() {
-  const buttonRef = React.useRef();
-
-  const { getRootProps } = useButton({
-    ref: buttonRef,
-  });
-
+  const { getRootProps } = useButton({});
   return (
     <React.Fragment>
       <style type="text/css">{css}</style>
