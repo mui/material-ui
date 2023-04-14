@@ -88,7 +88,7 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             ...(alwaysCenter && {
               textAlign: 'center',
               mx: 'auto',
-              maxWidth: 'auto',
+              maxWidth: 600,
             }),
           })}
         >
