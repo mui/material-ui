@@ -8,11 +8,13 @@ export default function HeroContainer({
   right,
   rightRef,
   rightSx,
+  enablePattern,
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
   rightRef?: React.MutableRefObject<HTMLDivElement | null>;
   rightSx?: BoxProps['sx'];
+  enablePattern?: boolean;
 }) {
   return (
     <Box sx={{ overflow: 'hidden' }}>
@@ -49,10 +51,21 @@ export default function HeroContainer({
                   transition: 'max-height 0.3s',
                   position: 'relative',
                   overflow: 'hidden',
+                  ...(enablePattern && {
+                    borderLeft: '1px solid',
+                    borderBottom: '1px solid',
+                    borderColor: 'divider',
+                    backgroundImage:
+                      'url(/static/branding/background-pattern.svg), linear-gradient(315deg, rgba(194 224 255 / 0.4), #fff, rgba(240 247 255 / 0.7))',
+                  }),
                 },
                 (theme) =>
                   theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
+                    ...(enablePattern && {
+                      backgroundImage:
+                        'url(/static/branding/background-pattern-dark.svg), linear-gradient(315deg, rgba(0 76 153 / 1), rgba(20 25 31 / 1), rgba(0 58 117 / 1))',
+                    }),
                   }),
                 ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
               ]}
