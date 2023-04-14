@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Box, Stack, styled } from '@mui/system';
+import Box from '@mui/system/Box';
+import Stack from '@mui/system/Stack';
+import styled from 'mui/system/styled';
 
 const Item = styled('div')({
   border: '1px solid #000000',
