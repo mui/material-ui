@@ -100,6 +100,13 @@ The following demo shows how to build the same buttons as those found in the [Ba
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
 
+If you use a ref to store a reference to the button, pass it to the `useButton`'s `ref` parameter, as shown in the demo above.
+It will get merged with a ref used internally in the hook.
+
+:::warning
+Do not add the `ref` parameter to the button element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+:::
+
 ## Customization
 
 :::info
