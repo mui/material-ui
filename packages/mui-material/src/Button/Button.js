@@ -81,7 +81,7 @@ const ButtonRoot = styled(ButtonBase, {
 
     const inheritContainedHoverBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
-      
+
     return {
       ...theme.typography.button,
       minWidth: 64,
