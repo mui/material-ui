@@ -5,7 +5,7 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
 import { FormLabelClasses } from './formLabelClasses';
 
-export interface FormLabelPropsColorOverrides { }
+export interface FormLabelPropsColorOverrides {}
 
 /**
  * This type is kept for compatibility. Use `FormLabelOwnProps` instead.
