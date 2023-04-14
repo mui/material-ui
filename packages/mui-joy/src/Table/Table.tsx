@@ -229,13 +229,7 @@ const TableRoot = styled('table', {
         borderLeftWidth: 1,
         borderLeftStyle: 'solid',
       },
-      '& tr > th + td, & tr > td + th': {
-        borderLeftWidth: 0,
-      },
-      '& tr > th + th, & tr > td + td': {
-        borderRightWidth: 0,
-      },
-      '& tr > *:last-of-type': {
+      '& tr > *:last-of-type:not(:first-of-type)': {
         borderRightWidth: 1,
         borderRightStyle: 'solid',
       },
