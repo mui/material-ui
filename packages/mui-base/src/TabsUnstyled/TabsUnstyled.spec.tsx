@@ -10,7 +10,10 @@ function Root(props: TabsUnstyledRootSlotProps) {
 const styledTabs = <TabsUnstyled slots={{ root: Root }} />;
 
 const polymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

@@ -7,28 +7,13 @@ githubLabel: 'component: Portal'
 
 # Portal
 
-<p class="description">The portal component renders its children into a new "subtree" outside of current DOM hierarchy.</p>
+<p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
-The children of the portal component will be appended to the `container` specified.
-The component is used internally by the [`Modal`](/material-ui/react-modal/) and [`Popper`](/material-ui/react-popper/) components.
+## This document has moved
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+:::warning
+Please refer to the [Portal](/base/react-portal/) component page in the Base UI docs for demos and details on usage.
 
-## Example
-
-{{"demo": "SimplePortal.js"}}
-
-## Server-side
-
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
-You have to wait for the client-side hydration to see the children.
-
-## Unstyled
-
-- 📦 [970 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
-
-```js
-import Portal from '@mui/base/Portal';
-```
+Portal is a part of the standalone [Base UI](/base/getting-started/overview/) component library.
+It is currently re-exported from `@mui/material` for your convenience, but it will be removed from this package in a future major version, after `@mui/base` gets a stable release.
+:::

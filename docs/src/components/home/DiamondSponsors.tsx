@@ -22,7 +22,7 @@ const DIAMONDs = [
     srcSet: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
-    href: 'https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://www.doit.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://brand.zesty.io/zesty-io-logo.svg',
@@ -83,7 +83,7 @@ export default function DiamondSponsors() {
               <IconButton
                 aria-label="Become MUI sponsor"
                 component="a"
-                href="mailto:diamond@mui.com"
+                href="mailto:sales@mui.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="primary"
@@ -103,8 +103,8 @@ export default function DiamondSponsors() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   To join us, contact us at{' '}
-                  <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
-                    diamond@mui.com
+                  <Link href="mailto:sales@mui.com" target="_blank" rel="noopener noreferrer">
+                    sales@mui.com
                   </Link>{' '}
                   for pre-approval.
                 </Typography>

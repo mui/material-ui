@@ -1,0 +1,62 @@
+{
+  "parameters": {},
+  "returnValue": {
+    "buttonActive": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "buttonFocusVisible": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "required": true
+    },
+    "contextValue": {
+      "type": {
+        "name": "SelectProviderValue&lt;Value&gt;",
+        "description": "SelectProviderValue&lt;Value&gt;"
+      },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void",
+        "description": "(action: ListAction&lt;Value&gt; | SelectAction) =&gt; void"
+      },
+      "required": true
+    },
+    "getButtonProps": {
+      "type": {
+        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;",
+        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectButtonSlotProps&lt;OtherHandlers&gt;"
+      },
+      "required": true
+    },
+    "getListboxProps": {
+      "type": {
+        "name": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectListboxSlotProps&lt;OtherHandlers&gt;",
+        "description": "&lt;OtherHandlers extends EventHandlers = {}&gt;(otherHandlers?: OtherHandlers) =&gt; UseSelectListboxSlotProps&lt;OtherHandlers&gt;"
+      },
+      "required": true
+    },
+    "getOptionMetadata": {
+      "type": {
+        "name": "(optionValue: Value) =&gt; SelectOption&lt;Value&gt; | undefined",
+        "description": "(optionValue: Value) =&gt; SelectOption&lt;Value&gt; | undefined"
+      },
+      "required": true
+    },
+    "highlightedOption": {
+      "type": { "name": "Value | null", "description": "Value | null" },
+      "required": true
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "options": { "type": { "name": "Value[]", "description": "Value[]" }, "required": true },
+    "value": {
+      "type": {
+        "name": "SelectValue&lt;Value, Multiple&gt;",
+        "description": "SelectValue&lt;Value, Multiple&gt;"
+      },
+      "required": true
+    }
+  },
+  "name": "useSelect",
+  "filename": "/packages/mui-base/src/useSelect/useSelect.ts",
+  "demos": "<ul><li><a href=\"/base/react-select/#hooks\">Unstyled Select</a></li></ul>"
+}

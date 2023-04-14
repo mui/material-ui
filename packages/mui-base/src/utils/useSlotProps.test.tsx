@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { EventHandlers } from '@mui/base';
@@ -107,7 +107,9 @@ describe('useSlotProps', () => {
       id: 'test',
     });
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,
@@ -181,7 +183,7 @@ describe('useSlotProps', () => {
       test: true,
     };
 
-    // provided by the user by appending additonal props on the unstyled component:
+    // provided by the user by appending additional props on the unstyled component:
     const forwardedProps = {
       'data-test': 'externalForwarded',
       className: 'externalForwarded',
@@ -207,7 +209,9 @@ describe('useSlotProps', () => {
       ref: additionalRef,
     };
 
-    const TestComponent = (props: any) => <div {...props} />;
+    function TestComponent(props: any) {
+      return <div {...props} />;
+    }
 
     const result = callUseSlotProps({
       elementType: TestComponent,

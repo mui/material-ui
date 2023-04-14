@@ -1,8 +1,24 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CardSlot = 'root';
+
+export interface CardSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
+
+export type CardSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CardSlots,
+  {
+    root: SlotProps<'div', {}, CardOwnerState>;
+  }
+>;
 
 export interface CardPropsColorOverrides {}
 export interface CardPropsVariantOverrides {}
@@ -21,10 +37,15 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, CardPropsColorOverrides>;
     /**
-     * If `true`, flex direction is set to 'row'.
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
      * @default false
      */
-    row?: boolean;
+    invertedColors?: boolean;
+    /**
+     * The component orientation.
+     * @default 'vertical'
+     */
+    orientation?: 'horizontal' | 'vertical';
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
@@ -36,11 +57,11 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, CardPropsVariantOverrides>;
-  };
+  } & CardSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -49,4 +70,4 @@ export type CardProps<
   P = { component?: React.ElementType },
 > = OverrideProps<CardTypeMap<P, D>, D>;
 
-export interface CardOwnerState extends CardProps {}
+export interface CardOwnerState extends ApplyColorInversion<CardProps> {}

@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Select component
+components: Select, Option
 githubLabel: 'component: select'
 unstyled: /base/react-select/
 ---
@@ -53,6 +54,19 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 
 {{"demo": "SelectDecorators.js"}}
 
+If you have interactive elements as the select's decorators, call `stopPropagation()` from the mouse down event to prevent the popup from being opened.
+
+  ```jsx
+  <IconButton
+    onMouseDown={(event) => {
+      // don't open the popup when clicking on this button
+      event.stopPropagation();
+    }}
+    onClick={() => {
+      // click handler goes here
+    }
+  >...</IconButton>
+  ```
 ### Indicator
 
 To change the default indicator, use the `indicator` prop with either any React element (including string) or `null` as value (to remove the indicator completely).
@@ -100,7 +114,7 @@ In the demo below, we're using the `ListItemDecorator` to provide space between 
 
 #### Group options
 
-To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-grouped/), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}
 
@@ -109,7 +123,7 @@ To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/examp
 
 ```jsx
 <Select
-  componentsProps={{
+  slotProps={{
     listbox: {
       sx: {
         maxHeight: 300,

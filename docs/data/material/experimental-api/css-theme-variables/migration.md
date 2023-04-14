@@ -1,4 +1,4 @@
-# Migrating to CSS variables
+# Migrating to CSS theme variables
 
 <p class="description">A step-by-step migration guide to start using CSS theme variables in your project.</p>
 
@@ -277,14 +277,14 @@ const Button = styled('button')(({ theme }) => ({
 }));
 ```
 
-:::info
+:::warning
 The `theme.getColorSchemeSelector()` is a utility function that returns an attribute selector `'[data-mui-color-scheme="dark"] &'`.
 
-⚠️ Note that the attribute selector creates higher CSS specificity which could be cumbersome for theming.
+Note that the attribute selector creates higher CSS specificity which could be cumbersome for theming.
 :::
 
 ## 5. Test dark-mode flickering
 
 1. Toggle dark mode in your application
-2. Open DevTools and set the [CPU throttling](https://developer.chrome.com/docs/devtools/evaluate-performance/#simulate_a_mobile_cpu) to the lowest value (don't close the DevTools).
+2. Open DevTools and set the [CPU throttling](https://developer.chrome.com/docs/devtools/performance/#simulate_a_mobile_cpu) to the lowest value (don't close the DevTools).
 3. Refresh the page. You should see the all components in dark mode at first glance.

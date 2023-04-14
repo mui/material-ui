@@ -2,6 +2,31 @@ import * as React from 'react';
 import { styled, Box } from '@mui/system';
 import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 
+function BadgeContent() {
+  return (
+    <Box
+      component="span"
+      sx={{
+        width: 40,
+        height: 40,
+        borderRadius: '12px',
+        background: (theme) =>
+          theme.palette.mode === 'dark' ? grey[400] : grey[300],
+        display: 'inline-block',
+        verticalAlign: 'middle',
+      }}
+    />
+  );
+}
+
+export default function UnstyledBadge() {
+  return (
+    <StyledBadge badgeContent={5}>
+      <BadgeContent />
+    </StyledBadge>
+  );
+}
+
 const blue = {
   500: '#007FFF',
 };
@@ -47,28 +72,3 @@ const StyledBadge = styled(BadgeUnstyled)(
   }
   `,
 );
-
-function BadgeContent() {
-  return (
-    <Box
-      component="span"
-      sx={{
-        width: 40,
-        height: 40,
-        borderRadius: '12px',
-        background: (theme) =>
-          theme.palette.mode === 'dark' ? grey[400] : grey[300],
-        display: 'inline-block',
-        verticalAlign: 'middle',
-      }}
-    />
-  );
-}
-
-export default function UnstyledBadge() {
-  return (
-    <StyledBadge badgeContent={5}>
-      <BadgeContent />
-    </StyledBadge>
-  );
-}

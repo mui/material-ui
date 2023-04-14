@@ -1,0 +1,4 @@
+<SelectUnstyled slots={{ listbox: 'ol' }} defaultValue="First option">
+  <OptionUnstyled value="First option">First option</OptionUnstyled>
+  <OptionUnstyled value="Second option">Second option</OptionUnstyled>
+</SelectUnstyled>

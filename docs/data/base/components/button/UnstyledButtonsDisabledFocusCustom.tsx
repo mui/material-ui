@@ -7,6 +7,19 @@ import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import { OverridableComponent } from '@mui/types';
 
+export default function UnstyledButtonsDisabledFocusCustom() {
+  return (
+    <Stack spacing={2}>
+      <CustomButton component="span" disabled>
+        focusableWhenDisabled = false
+      </CustomButton>
+      <CustomButton component="span" disabled focusableWhenDisabled>
+        focusableWhenDisabled = true
+      </CustomButton>
+    </Stack>
+  );
+}
+
 const blue = {
   500: '#007FFF',
   600: '#0072E5',
@@ -43,16 +56,3 @@ const CustomButton = styled(ButtonUnstyled)`
     cursor: not-allowed;
   }
 ` as OverridableComponent<ButtonUnstyledTypeMap>;
-
-export default function UnstyledButtonsDisabledFocusCustom() {
-  return (
-    <Stack spacing={2}>
-      <CustomButton component="span" disabled>
-        focusableWhenDisabled = false
-      </CustomButton>
-      <CustomButton component="span" disabled focusableWhenDisabled>
-        focusableWhenDisabled = true
-      </CustomButton>
-    </Stack>
-  );
-}

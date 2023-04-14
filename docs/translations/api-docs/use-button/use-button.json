@@ -1,0 +1,16 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "focusableWhenDisabled": "If <code>true</code>, allows a disabled button to receive focus.",
+    "type": "Type attribute applied when the <code>component</code> is <code>button</code>."
+  },
+  "returnValueDescriptions": {
+    "active": "If <code>true</code>, the component is active (pressed).",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "focusVisible": "If <code>true</code>, the component is being focused using keyboard.",
+    "getRootProps": "Resolver for the root slot's props.",
+    "ref": "A ref to the component's root DOM element.",
+    "setFocusVisible": "Callback for setting the <code>focusVisible</code> param."
+  }
+}

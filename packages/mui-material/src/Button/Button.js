@@ -156,10 +156,6 @@ const ButtonRoot = styled(ButtonBase, {
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
       }),
-      ...(ownerState.variant === 'outlined' &&
-        ownerState.color === 'secondary' && {
-          border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
-        }),
       ...(ownerState.variant === 'contained' && {
         color: (theme.vars || theme).palette.action.disabled,
         boxShadow: (theme.vars || theme).shadows[0],

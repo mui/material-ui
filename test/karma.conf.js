@@ -19,7 +19,7 @@ if (process.env.CIRCLECI) {
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
-  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
@@ -27,16 +27,17 @@ const browserStack = {
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
   // https://github.com/browserstack/api#timeout300
-  timeout: 10 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
+  timeout: 5 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
+process.env.FIREFOX_BIN = playwright.firefox.executablePath();
 
 // BrowserStack rate limit after 1600 calls every 5 minutes.
 // Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
 // Estimate the max number of concurrent karma builds
-// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+// For each PR, 6 concurrent builds are used, only one is using BrowserStack.
 const AVERAGE_KARMA_BUILD = 1 / 6;
 // CircleCI accepts up to 83 concurrent builds.
 const MAX_CIRCLE_CI_CONCURRENCY = 83;
@@ -45,7 +46,7 @@ const MAX_CIRCLE_CI_CONCURRENCY = 83;
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
-    browsers: ['chromeHeadless'],
+    browsers: ['chromeHeadless', 'FirefoxHeadless'],
     browserDisconnectTimeout: 3 * 60 * 1000, // default 2000
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
@@ -83,6 +84,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-coverage-istanbul-reporter',
       'karma-sourcemap-loader',
       'karma-webpack',
+      'karma-firefox-launcher',
     ],
     /**
      * possible values:
@@ -124,7 +126,7 @@ module.exports = function setKarmaConfig(config) {
       module: {
         rules: [
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
@@ -169,7 +171,7 @@ module.exports = function setKarmaConfig(config) {
             },
           },
           {
-            test: /\.(js|ts|tsx)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -182,7 +184,7 @@ module.exports = function setKarmaConfig(config) {
         ],
       },
       resolve: {
-        extensions: ['.js', '.ts', '.tsx'],
+        extensions: ['.js', '.mjs', '.ts', '.tsx'],
         fallback: {
           // needed by sourcemap
           fs: false,
@@ -212,7 +214,7 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safari', 'edge']),
+      browsers: baseConfig.browsers.concat(['chrome', 'safari', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
@@ -225,13 +227,6 @@ module.exports = function setKarmaConfig(config) {
           // However, >=88 fails on seemingly all focus-related tests.
           // TODO: Investigate why.
           browser_version: '87.0',
-        },
-        firefox: {
-          base: 'BrowserStack',
-          os: 'Windows',
-          os_version: '10',
-          browser: 'firefox',
-          browser_version: '78.0',
         },
         safari: {
           base: 'BrowserStack',

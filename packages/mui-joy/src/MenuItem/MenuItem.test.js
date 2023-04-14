@@ -1,28 +1,37 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
+import {
+  act,
+  describeConformance,
+  createRenderer,
+  fireEvent,
+  screen,
+  describeJoyColorInversion,
+} from 'test/utils';
+import { MenuProvider } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 
 const testContext = {
+  registerItem: () => ({ id: 0, deregister: () => {} }),
+  getItemIndex: () => 0,
+  totalSubitemCount: 1,
+  dispatch: () => {},
   getItemState: () => ({
     disabled: false,
     highlighted: false,
     selected: false,
     index: 0,
   }),
-  getItemProps: () => ({}),
-  registerItem: () => {},
-  unregisterItem: () => {},
-  open: false,
+  registerHighlightChangeHandler: () => () => {},
+  registerSelectionChangeHandler: () => () => {},
 };
 
-const Wrapper = ({ children }) => (
-  <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
-);
+function Wrapper({ children }) {
+  return <MenuProvider value={testContext}>{children}</MenuProvider>;
+}
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
@@ -31,14 +40,9 @@ describe('Joy <MenuItem />', () => {
   describeConformance(<MenuItem />, () => ({
     classes,
     inheritComponent: ListItemButton,
-    render: (node) =>
-      render(
-        <MenuUnstyledContext.Provider value={testContext}>{node}</MenuUnstyledContext.Provider>,
-      ),
+    render: (node) => render(<MenuProvider value={testContext}>{node}</MenuProvider>),
     wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <MenuUnstyledContext.Provider value={testContext}>{node}</MenuUnstyledContext.Provider>,
-      );
+      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
       return wrapper.childAt(0);
     },
     ThemeProvider,
@@ -48,7 +52,18 @@ describe('Joy <MenuItem />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot', 'reactTestRenderer'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
+
+  describeJoyColorInversion(<MenuItem />, {
+    muiName: 'JoyMenuItem',
+    classes,
+    wrapper: (node) => <MenuProvider value={testContext}>{node}</MenuProvider>,
+  });
 
   it('should render with the variant class', () => {
     const { getByRole } = render(<MenuItem variant="outlined" />);

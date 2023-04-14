@@ -4,8 +4,7 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
-import acceptLanguage from 'accept-language';
-import pages from 'docs/src/pages';
+import generalPages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -14,7 +13,6 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
-import { LANGUAGES } from 'docs/src/modules/constants';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import { UserLanguageProvider } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
@@ -28,9 +26,6 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-
-// Set the locales that the documentation automatically redirects to.
-acceptLanguage.languages(LANGUAGES);
 
 let reloadInterval;
 
@@ -147,18 +142,22 @@ function AppWrapper(props) {
     }
   }, []);
 
-  let productPages = pages;
-  if (product === 'base') {
-    productPages = basePages;
-  } else if (product === 'material-ui') {
-    productPages = materialPages;
-  } else if (product === 'joy-ui') {
-    productPages = joyPages;
-  } else if (product === 'system') {
-    productPages = systemPages;
-  }
+  const pageContextValue = React.useMemo(() => {
+    let pages = generalPages;
+    if (product === 'base') {
+      pages = basePages;
+    } else if (product === 'material-ui') {
+      pages = materialPages;
+    } else if (product === 'joy-ui') {
+      pages = joyPages;
+    } else if (product === 'system') {
+      pages = systemPages;
+    }
 
-  const activePage = findActivePage(productPages, router.pathname);
+    const { activePage, activePageParents } = findActivePage(pages, router.pathname);
+
+    return { activePage, activePageParents, pages };
+  }, [product, router.pathname]);
 
   let fonts = [];
   if (asPathWithoutLang.match(/onepirate/)) {
@@ -178,7 +177,7 @@ function AppWrapper(props) {
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <CodeCopyProvider>
           <CodeVariantProvider>
-            <PageContext.Provider value={{ activePage, pages: productPages }}>
+            <PageContext.Provider value={pageContextValue}>
               <ThemeProvider>
                 <DocsStyledEngineProvider cacheLtr={emotionCache}>
                   {children}
@@ -201,10 +200,11 @@ AppWrapper.propTypes = {
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </AppWrapper>
   );
 }
@@ -231,8 +231,9 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
 
 // Track fraction of actual events to prevent exceeding event quota.
 // Filter sessions instead of individual events so that we can track multiple metrics per device.
+// See https://github.com/GoogleChromeLabs/web-vitals-report to use this data
 const disableWebVitalsReporting = Math.random() > 0.0001;
-export function reportWebVitals({ id, name, label, value }) {
+export function reportWebVitals({ id, name, label, delta, value }) {
   if (disableWebVitalsReporting) {
     return;
   }
@@ -243,5 +244,12 @@ export function reportWebVitals({ id, name, label, value }) {
     eventValue: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
     eventLabel: id, // id unique to current page load
     nonInteraction: true, // avoids affecting bounce rate.
+  });
+  window.gtag('event', name, {
+    value: delta,
+    metric_label: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    metric_value: value,
+    metric_delta: delta,
+    metric_id: id, // id unique to current page load
   });
 }

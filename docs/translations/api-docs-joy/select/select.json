@@ -1,0 +1,149 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "action": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action.",
+    "autoFocus": "If <code>true</code>, the select element is focused during the first mount",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "defaultListboxOpen": "If <code>true</code>, the select will be initially open.",
+    "defaultValue": "The default selected value. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "endDecorator": "Trailing adornment for the select.",
+    "getSerializedValue": "A function to convert the currently selected value to a string. Used to set a value of a hidden input associated with the select, so that the selected value can be posted with a form.",
+    "indicator": "The indicator(*) for the select.    ________________   [ value        * ]    ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾",
+    "listboxId": "<code>id</code> attribute of the listbox element. Also used to derive the <code>id</code> attributes of options.",
+    "listboxOpen": "Controls the open state of the select&#39;s listbox.",
+    "name": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server.",
+    "onChange": "Callback fired when an option is selected.",
+    "onClose": "Triggered when focus leaves the menu and the menu should close.",
+    "onListboxOpenChange": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen).",
+    "placeholder": "Text to show when there is no selected value.",
+    "renderValue": "Function that customizes the rendering of the selected value.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "startDecorator": "Leading adornment for the select.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "value": "The selected value. Set to <code>null</code> to deselect all options.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {
+    "root": { "description": "Class name applied to {{nodeName}}.", "nodeName": "the root slot" },
+    "button": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the button slot"
+    },
+    "indicator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the indicator slot"
+    },
+    "startDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the startDecorator slot"
+    },
+    "endDecorator": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the endDecorator slot"
+    },
+    "popper": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the popper slot"
+    },
+    "listbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the listbox slot"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "focusVisible": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the SelectBase root slot",
+      "conditions": "the button is keyboard focused"
+    },
+    "disabled": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "expanded": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root slot",
+      "conditions": "listbox open"
+    }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "button": "The component that renders the button.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator.",
+    "indicator": "The component that renders the indicator.",
+    "listbox": "The component that renders the listbox."
+  }
+}

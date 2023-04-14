@@ -17,7 +17,6 @@ export default function TabsPageExample() {
         bgcolor: 'background.body',
         flexGrow: 1,
         m: -3,
-        p: 3,
         overflowX: 'hidden',
         borderRadius: 'md',
       }}
@@ -26,11 +25,15 @@ export default function TabsPageExample() {
         aria-label="Pipeline"
         value={index}
         onChange={(event, value) => setIndex(value as number)}
-        sx={{ '--Tabs-gap': '0px', maxWidth: 400, mx: 'auto' }}
+        sx={{ '--Tabs-gap': '0px' }}
       >
         <TabList
           variant="plain"
           sx={{
+            width: '100%',
+            maxWidth: 400,
+            mx: 'auto',
+            pt: 2,
             alignSelf: 'flex-start',
             [`& .${tabClasses.root}`]: {
               bgcolor: 'transparent',
@@ -47,8 +50,8 @@ export default function TabsPageExample() {
                   position: 'absolute',
                   zIndex: 1,
                   bottom: '-1px',
-                  left: 'var(--List-item-paddingLeft)',
-                  right: 'var(--List-item-paddingRight)',
+                  left: 'var(--ListItem-paddingLeft)',
+                  right: 'var(--ListItem-paddingRight)',
                   height: '3px',
                   borderTopLeftRadius: '3px',
                   borderTopRightRadius: '3px',
@@ -93,40 +96,40 @@ export default function TabsPageExample() {
         />
         <Box
           sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level1,
+            '--bg': theme.vars.palette.background.surface,
             background: 'var(--bg)',
             boxShadow: '0 0 0 100vmax var(--bg)',
             clipPath: 'inset(0 -100vmax)',
-            px: 1.5,
+            px: 4,
             py: 2,
           })}
         >
           <TabPanel value={0}>
             <Typography
-              level="h1"
+              level="h2"
               component="div"
-              fontSize="xl2"
+              fontSize="lg"
               mb={2}
-              textColor="text.secondary"
+              textColor="text.primary"
             >
-              Deals
+              Deals panel
             </Typography>
           </TabPanel>
           <TabPanel value={1}>
             <Typography
-              level="h1"
+              level="h2"
               component="div"
-              fontSize="xl2"
+              fontSize="lg"
               mb={2}
-              textColor="text.secondary"
+              textColor="text.primary"
             >
-              Library
+              Library panel
             </Typography>
           </TabPanel>
           <TabPanel value={2}>
             <Input
               autoFocus
-              placeholder="type a library..."
+              placeholder="Type in third panel..."
               startDecorator={<SearchRounded />}
             />
           </TabPanel>

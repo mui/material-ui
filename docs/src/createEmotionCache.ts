@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 import createCache from '@emotion/cache';
-import { Element, RULESET } from 'stylis';
+import { prefixer, Element, RULESET } from 'stylis';
 
 // A workaround to https://github.com/emotion-js/emotion/issues/2836
 // to be able to use `:where` selector for styling.
@@ -19,5 +19,5 @@ function globalSelector(element: Element) {
 
 export default function createEmotionCache() {
   // TODO remove prepend: true once JSS is out
-  return createCache({ key: 'css', prepend: true, stylisPlugins: [globalSelector] });
+  return createCache({ key: 'css', prepend: true, stylisPlugins: [prefixer, globalSelector] });
 }

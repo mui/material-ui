@@ -1,0 +1,18 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {
+    "defaultOpen": "If <code>true</code>, the menu will be initially open.",
+    "listboxId": "Id of the menu listbox.",
+    "listboxRef": "Ref of the menu listbox.",
+    "onOpenChange": "Callback fired when the menu is opened or closed.",
+    "open": "If <code>true</code>, the menu will be open.\nThis is the controlled equivalent of the <code>defaultOpen</code> parameter."
+  },
+  "returnValueDescriptions": {
+    "contextValue": "The value to be passed into the MenuProvider.",
+    "dispatch": "Action dispatcher for the menu component.\nAllows to programmatically control the menu.",
+    "getListboxProps": "Resolver for the listbox component's props.",
+    "highlightedValue": "The highlighted option in the menu listbox.",
+    "menuItems": "Items in the menu listbox.",
+    "open": "If <code>true</code>, the menu is open."
+  }
+}

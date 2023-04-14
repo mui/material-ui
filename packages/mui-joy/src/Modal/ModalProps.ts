@@ -1,15 +1,31 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '@mui/base/utils';
 import { ModalUnstyledOwnProps } from '@mui/base/ModalUnstyled';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ModalSlot = 'root' | 'backdrop';
 
-interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, ModalOwnerState>;
-  backdrop?: SlotComponentProps<'div', { sx?: SxProps }, ModalOwnerState>;
+export interface ModalSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the backdrop.
+   * @default 'div'
+   */
+  backdrop?: React.ElementType;
 }
+
+export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ModalSlots,
+  {
+    root: SlotProps<'div', {}, ModalOwnerState>;
+    backdrop: SlotProps<'div', {}, ModalOwnerState>;
+  }
+>;
 
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
@@ -28,11 +44,6 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'open'
     > & {
       /**
-       * The props used for each slot inside the Modal.
-       * @default {}
-       */
-      componentsProps?: ComponentsProps;
-      /**
        * Callback fired when the component requests to be closed.
        * The `reason` parameter can optionally be used to control the response to `onClose`.
        *
@@ -46,7 +57,7 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
-    };
+    } & ModalSlotsAndSlotProps;
   defaultComponent: D;
 }
 

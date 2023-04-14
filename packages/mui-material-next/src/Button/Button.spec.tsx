@@ -14,11 +14,11 @@ const FakeIcon = <div>Icon</div>;
 const buttonTest = () => (
   <div>
     <Button>I am a button!</Button>
-    <Button color="inherit">Contrast</Button>
+    <Button color="secondary">Secondary</Button>
     <Button disabled>Disabled</Button>
     <Button href="#link-button">Link</Button>
     <Button size="small">Small</Button>
-    <Button variant="contained">Contained</Button>
+    <Button variant="filled">Contained</Button>
     <Button variant="outlined" aria-label="add">
       Outlined
     </Button>
@@ -86,9 +86,9 @@ const buttonTest = () => (
 );
 
 const ReactRouterLinkTest = () => {
-  const ButtonLink = (props: ButtonProps<typeof ReactRouterLink>) => (
-    <Button {...props} component={ReactRouterLink} />
-  );
+  function ButtonLink(props: ButtonProps<typeof ReactRouterLink>) {
+    return <Button {...props} component={ReactRouterLink} />;
+  }
 
   const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 

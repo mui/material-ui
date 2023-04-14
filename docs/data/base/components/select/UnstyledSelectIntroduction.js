@@ -33,7 +33,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   return (
     <button type="button" {...other} ref={ref}>
       {other.children}
-      {ownerState.open ? <UnfoldMoreRoundedIcon /> : <UnfoldMoreRoundedIcon />}
+      <UnfoldMoreRoundedIcon />
     </button>
   );
 });
@@ -52,6 +52,7 @@ Button.propTypes = {
     getSerializedValue: PropTypes.func,
     listboxId: PropTypes.string,
     listboxOpen: PropTypes.bool,
+    multiple: PropTypes.bool,
     name: PropTypes.string,
     onChange: PropTypes.func,
     onListboxOpenChange: PropTypes.func,

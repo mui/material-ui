@@ -1,6 +1,6 @@
 ---
 product: material-ui
-title: Image Kist React component
+title: Image List React component
 components: ImageList, ImageListItem, ImageListItemBar
 materialDesign: https://m2.material.io/components/image-lists
 githubLabel: 'component: image list'

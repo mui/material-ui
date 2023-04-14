@@ -46,11 +46,11 @@ describe('<Popover />', () => {
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'componentProp',
       'componentsProp',
-      'themeDefaultProps', // portal, can't determin the root
-      'themeStyleOverrides', // portal, can't determin the root
+      'themeDefaultProps', // portal, can't determine the root
+      'themeStyleOverrides', // portal, can't determine the root
       'themeVariants',
       'reactTestRenderer', // react-transition-group issue
     ],

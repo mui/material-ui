@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
+import { SxConfig, SxProps, CSSObject } from '@mui/system';
 import { ThemeOptions, Theme } from './createTheme';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
@@ -34,6 +35,8 @@ export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 export interface Opacity {
   inputPlaceholder: number;
   inputUnderline: number;
+  switchTrackDisabled: number;
+  switchTrack: number;
 }
 
 export type Overlays = [
@@ -63,6 +66,10 @@ export type Overlays = [
   string | undefined,
   string | undefined,
 ];
+
+export interface PaletteBackgroundChannel {
+  defaultChannel: string;
+}
 
 export interface PaletteCommonChannel {
   background: string;
@@ -194,6 +201,7 @@ export interface PaletteTooltip {
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
   palette?: PaletteOptions & {
+    background?: Partial<PaletteBackgroundChannel>;
     common?: Partial<PaletteCommonChannel>;
     primary?: Partial<PaletteColorChannel>;
     secondary?: Partial<PaletteColorChannel>;
@@ -233,6 +241,7 @@ export interface CssVarsPalette {
   success: PaletteColorChannel;
   warning: PaletteColorChannel;
   text: PaletteTextChannel;
+  background: PaletteBackgroundChannel;
   dividerChannel: string;
   action: PaletteActionChannel;
   Alert: PaletteAlert;
@@ -272,6 +281,14 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * Color schemes configuration
    */
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
@@ -383,6 +400,30 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: ThemeVars;
+  };
+
+  // Default theme tokens
+  spacing: Theme['spacing'];
+  breakpoints: Theme['breakpoints'];
+  shape: Theme['shape'];
+  typography: Theme['typography'];
+  transitions: Theme['transitions'];
+  shadows: Theme['shadows'];
+  mixins: Theme['mixins'];
+  zIndex: Theme['zIndex'];
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
 }
 
 /**

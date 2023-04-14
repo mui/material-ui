@@ -19,6 +19,11 @@
       "default": "'end'"
     },
     "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ typography?: object }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -36,12 +41,20 @@
       "labelPlacementBottom",
       "disabled",
       "label",
-      "error"
+      "error",
+      "required",
+      "asterisk"
     ],
-    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "error": "Mui-error",
+      "required": "Mui-required"
+    },
     "name": "MuiFormControlLabel"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormControlLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/FormControlLabel/FormControlLabel.js",
   "inheritance": null,

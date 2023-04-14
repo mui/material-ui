@@ -98,11 +98,13 @@ describe('<SvgIcon />', () => {
   });
 
   describe('prop: inheritViewBox', () => {
-    const CustomSvg = (props) => (
-      <svg viewBox="-4 -4 24 24" {...props}>
-        {path}
-      </svg>
-    );
+    function CustomSvg(props) {
+      return (
+        <svg viewBox="-4 -4 24 24" {...props}>
+          {path}
+        </svg>
+      );
+    }
 
     it('should render with the default viewBox if neither inheritViewBox nor viewBox are provided', () => {
       const { container } = render(<SvgIcon component={CustomSvg} />);

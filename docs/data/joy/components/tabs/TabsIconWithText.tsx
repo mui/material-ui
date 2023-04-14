@@ -10,7 +10,11 @@ import PersonPinIcon from '@mui/icons-material/PersonPin';
 export default function TabsIconWithText() {
   return (
     <div>
-      <Tabs aria-label="Icon tabs" defaultValue={0} sx={{ mb: 2 }}>
+      <Tabs
+        aria-label="Icon tabs"
+        defaultValue={0}
+        sx={{ mb: 2, borderRadius: 'lg' }}
+      >
         <TabList>
           <Tab>
             <ListItemDecorator>
@@ -32,7 +36,7 @@ export default function TabsIconWithText() {
           </Tab>
         </TabList>
       </Tabs>
-      <Tabs aria-label="Icon tabs" defaultValue={0}>
+      <Tabs aria-label="Icon tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
         <TabList>
           <Tab orientation="vertical">
             <ListItemDecorator>

@@ -14,6 +14,7 @@ import {
 } from './FormControlUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
@@ -33,7 +34,7 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
     ],
   };
 
-  return composeClasses(slots, getFormControlUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getFormControlUnstyledUtilityClass));
 }
 
 /**
@@ -66,7 +67,7 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
  *
  * API:
  *
- * - [FormControlUnstyled API](https://mui.com/base/api/form-control-unstyled/)
+ * - [FormControlUnstyled API](https://mui.com/base/react-form-control/components-api/#form-control-unstyled)
  */
 const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
@@ -94,10 +95,10 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const filled = hasValue(value);
 
-  const [focused, setFocused] = React.useState(false);
-  if (disabled && focused) {
-    setFocused(false);
-  }
+  const [focusedState, setFocused] = React.useState(false);
+  const focused = focusedState && !disabled;
+
+  React.useEffect(() => setFocused((isFocused) => (disabled ? false : isFocused)), [disabled]);
 
   const ownerState: FormControlUnstyledOwnerState = {
     ...props,
@@ -108,26 +109,26 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     required,
   };
 
-  const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
-    setValue(event.target.value);
-    onChange?.(event);
-  };
-
-  const childContext: FormControlUnstyledState = {
-    disabled,
-    error,
-    filled,
-    focused,
-    onBlur: () => {
-      setFocused(false);
-    },
-    onChange: handleChange,
-    onFocus: () => {
-      setFocused(true);
-    },
-    required,
-    value: value ?? '',
-  };
+  const childContext: FormControlUnstyledState = React.useMemo(() => {
+    return {
+      disabled,
+      error,
+      filled,
+      focused,
+      onBlur: () => {
+        setFocused(false);
+      },
+      onChange: (event: React.ChangeEvent<NativeFormControlElement>) => {
+        setValue(event.target.value);
+        onChange?.(event);
+      },
+      onFocus: () => {
+        setFocused(true);
+      },
+      required,
+      value: value ?? '',
+    };
+  }, [disabled, error, filled, focused, onChange, required, setValue, value]);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -191,7 +192,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * @ignore
+   * Callback fired when the form element's value is modified.
    */
   onChange: PropTypes.func,
   /**
@@ -215,7 +216,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
   }),
   /**
-   * @ignore
+   * The value of the form element.
    */
   value: PropTypes.any,
 } as any;

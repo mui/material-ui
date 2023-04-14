@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import LZString from 'lz-string';
 import { useTheme, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -27,41 +26,33 @@ import { useRouter } from 'next/router';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
-function compress(object) {
-  return LZString.compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
-}
-
-function addHiddenInput(form, name, value) {
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = name;
-  input.value = value;
-  form.appendChild(input);
-}
-
-const Root = styled('div')(({ theme }) => ({
-  display: 'none',
-  [theme.breakpoints.up('sm')]: {
-    display: 'flex',
-    top: 0,
-    height: theme.spacing(8),
-    ...(theme.direction === 'rtl' && {
-      left: theme.spacing(1),
-    }),
-    ...(theme.direction !== 'rtl' && {
-      right: theme.spacing(1),
-    }),
+const Root = styled('div')(({ theme }) => [
+  {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+      top: 0,
+      height: theme.spacing(8),
+      ...(theme.direction === 'rtl' && {
+        left: theme.spacing(1),
+      }),
+      ...(theme.direction !== 'rtl' && {
+        right: theme.spacing(1),
+      }),
+    },
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '& .MuiSvgIcon-root': {
+      fontSize: 17,
+      color: (theme.vars || theme).palette.grey[800],
+    },
   },
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  '& .MuiSvgIcon-root': {
-    fontSize: 17,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
-  },
-}));
+  theme.applyDarkStyles({
+    '& .MuiSvgIcon-root': {
+      color: (theme.vars || theme).palette.grey[400],
+    },
+  }),
+]);
 
 function DemoTooltip(props) {
   return (
@@ -264,54 +255,6 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const handleCodeSandboxClick = () => {
-    const { files } = codeSandbox.createReactApp(demoData);
-    const parameters = compress({ files });
-
-    // ref: https://codesandbox.io/docs/api/#define-api
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-    addHiddenInput(form, 'parameters', parameters);
-    addHiddenInput(
-      form,
-      'query',
-      codeVariant === CODE_VARIANTS.TS ? 'file=/demo.tsx' : 'file=/demo.js',
-    );
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-  };
-
-  const handleStackBlitzClick = () => {
-    const demoConfig = stackBlitz.createReactApp(demoData);
-
-    // ref: https://developer.stackblitz.com/docs/platform/post-api/
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = `https://stackblitz.com/run?file=demo.${
-      codeVariant === CODE_VARIANTS.TS ? 'tsx' : 'js'
-    }`;
-    addHiddenInput(form, 'project[template]', 'create-react-app');
-    addHiddenInput(form, 'project[title]', demoConfig.title);
-    addHiddenInput(
-      form,
-      'project[description]',
-      `# ${demoConfig.title}\n${demoConfig.description}`,
-    );
-    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
-    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
-    Object.keys(demoConfig.files).forEach((key) => {
-      const value = demoConfig.files[key];
-      addHiddenInput(form, `project[files][${key}]`, value);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-  };
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleMoreClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -356,9 +299,9 @@ export default function DemoToolbar(props) {
     setSourceHintSeen(true);
   };
 
-  function handleResetFocusClick() {
+  const handleResetFocusClick = () => {
     initialFocusRef.current.focusVisible();
-  }
+  };
 
   const showSourceHint = demoHovered && !sourceHintSeen;
 
@@ -401,7 +344,7 @@ export default function DemoToolbar(props) {
         <MenuItem
           key="link-deploy-preview"
           data-ga-event-category="demo"
-          data-ga-event-label={demoOptions.demo}
+          data-ga-event-label={demo.gaLabel}
           data-ga-event-action="link-deploy-preview"
           component="a"
           href={`https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
@@ -418,7 +361,7 @@ export default function DemoToolbar(props) {
       <MenuItem
         key="link-next"
         data-ga-event-category="demo"
-        data-ga-event-label={demoOptions.demo}
+        data-ga-event-label={demo.gaLabel}
         data-ga-event-action="link-next"
         component="a"
         href={`https://next--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
@@ -431,7 +374,7 @@ export default function DemoToolbar(props) {
       <MenuItem
         key="permalink"
         data-ga-event-category="demo"
-        data-ga-event-label={demoOptions.demo}
+        data-ga-event-label={demo.gaLabel}
         data-ga-event-action="permalink"
         component="a"
         href={`${process.env.NETLIFY_DEPLOY_URL}${router.route}#${demoName}`}
@@ -444,7 +387,7 @@ export default function DemoToolbar(props) {
       <MenuItem
         key="link-master"
         data-ga-event-category="demo"
-        data-ga-event-label={demoOptions.demo}
+        data-ga-event-label={demo.gaLabel}
         data-ga-event-action="link-master"
         component="a"
         href={`https://master--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
@@ -469,41 +412,41 @@ export default function DemoToolbar(props) {
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={{
+              sx={(theme) => ({
                 padding: '5px 10px',
                 borderRadius: 0.5,
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200],
-              }}
+                borderColor: 'grey.200',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.700',
+                }),
+              })}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
               data-ga-event-action="source-js"
-              data-ga-event-label={demoOptions.demo}
+              data-ga-event-label={demo.gaLabel}
               {...getControlProps(0)}
             >
               <JavaScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={{
+              sx={(theme) => ({
                 padding: '5px 10px',
                 borderRadius: 0.5,
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200],
+                borderColor: 'grey.200',
                 '&.Mui-disabled': {
                   opacity: 0.5,
                 },
-              }}
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.700',
+                }),
+              })}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
               data-ga-event-category="demo"
               data-ga-event-action="source-ts"
-              data-ga-event-label={demoOptions.demo}
+              data-ga-event-label={demo.gaLabel}
               {...getControlProps(1)}
             >
               <TypeScriptIcon sx={{ fontSize: 20 }} />
@@ -521,7 +464,7 @@ export default function DemoToolbar(props) {
               size="large"
               aria-controls={openDemoSource ? demoSourceId : null}
               data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
+              data-ga-event-label={demo.gaLabel}
               data-ga-event-action="expand"
               onClick={handleCodeOpenClick}
               color="default"
@@ -536,9 +479,9 @@ export default function DemoToolbar(props) {
                 <IconButton
                   size="large"
                   data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={handleCodeSandboxClick}
+                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
                   {...getControlProps(3)}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
@@ -550,9 +493,9 @@ export default function DemoToolbar(props) {
                 <IconButton
                   size="large"
                   data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={handleStackBlitzClick}
+                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
                   {...getControlProps(4)}
                 >
                   <SvgIcon viewBox="0 0 19 28">
@@ -566,7 +509,7 @@ export default function DemoToolbar(props) {
             <IconButton
               size="large"
               data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
+              data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
               onClick={handleCopyClick}
               {...getControlProps(5)}
@@ -578,7 +521,7 @@ export default function DemoToolbar(props) {
             <IconButton
               size="large"
               data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
+              data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
               {...getControlProps(6)}
@@ -591,7 +534,7 @@ export default function DemoToolbar(props) {
               size="large"
               aria-controls={demoId}
               data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
+              data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
               {...getControlProps(7)}
@@ -627,7 +570,7 @@ export default function DemoToolbar(props) {
       >
         <MenuItem
           data-ga-event-category="demo"
-          data-ga-event-label={demoOptions.demo}
+          data-ga-event-label={demo.gaLabel}
           data-ga-event-action="github"
           component="a"
           href={demoData.githubLocation}
@@ -639,7 +582,7 @@ export default function DemoToolbar(props) {
         </MenuItem>
         <MenuItem
           data-ga-event-category="demo"
-          data-ga-event-label={demoOptions.demo}
+          data-ga-event-label={demo.gaLabel}
           data-ga-event-action="copy-js-source-link"
           onClick={createHandleCodeSourceLink(`${demoName}.js`)}
         >
@@ -647,7 +590,7 @@ export default function DemoToolbar(props) {
         </MenuItem>
         <MenuItem
           data-ga-event-category="demo"
-          data-ga-event-label={demoOptions.demo}
+          data-ga-event-label={demo.gaLabel}
           data-ga-event-action="copy-ts-source-link"
           onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
         >

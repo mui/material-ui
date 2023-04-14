@@ -1,0 +1,214 @@
+{
+  "props": {
+    "options": { "type": { "name": "array" }, "required": true },
+    "aria-describedby": { "type": { "name": "string" } },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"md\" />" },
+    "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
+    "closeText": { "type": { "name": "string" }, "default": "'Close'" },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+      },
+      "default": "'neutral'"
+    },
+    "defaultValue": {
+      "type": { "name": "custom", "description": "any" },
+      "default": "props.multiple ? [] : null"
+    },
+    "disableClearable": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "endDecorator": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "filterOptions": { "type": { "name": "func" } },
+    "forcePopupIcon": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
+      "default": "'auto'"
+    },
+    "freeSolo": { "type": { "name": "bool" }, "default": "false" },
+    "getLimitTagsText": {
+      "type": { "name": "func" },
+      "default": "(more: string | number) => `+${more}`"
+    },
+    "getOptionDisabled": { "type": { "name": "func" } },
+    "getOptionLabel": {
+      "type": { "name": "func" },
+      "default": "(option) => option.label ?? option"
+    },
+    "groupBy": { "type": { "name": "func" } },
+    "id": { "type": { "name": "string" } },
+    "inputValue": { "type": { "name": "string" } },
+    "isOptionEqualToValue": { "type": { "name": "func" } },
+    "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
+    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "noOptionsText": { "type": { "name": "node" }, "default": "'No options'" },
+    "onChange": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onHighlightChange": { "type": { "name": "func" } },
+    "onInputChange": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "openText": { "type": { "name": "string" }, "default": "'Open'" },
+    "placeholder": { "type": { "name": "string" } },
+    "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
+    "readOnly": { "type": { "name": "bool" }, "default": "false" },
+    "renderGroup": { "type": { "name": "func" } },
+    "renderOption": { "type": { "name": "func" } },
+    "renderTags": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
+      "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, limitTag?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, loading?: func<br>&#124;&nbsp;object, noOptions?: func<br>&#124;&nbsp;object, option?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object, wrapper?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: elementType, endDecorator?: elementType, input?: elementType, limitTag?: elementType, listbox?: elementType, loading?: elementType, noOptions?: elementType, option?: elementType, popupIndicator?: elementType, root?: elementType, startDecorator?: elementType, wrapper?: elementType }"
+      },
+      "default": "{}"
+    },
+    "startDecorator": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "type": { "type": { "name": "string" } },
+    "value": { "type": { "name": "custom", "description": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "Autocomplete",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-root"
+    },
+    {
+      "name": "wrapper",
+      "description": "The component that renders the wrapper.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-wrapper"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiAutocomplete-input"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-endDecorator"
+    },
+    {
+      "name": "clearIndicator",
+      "description": "The component that renders the clear indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-clearIndicator"
+    },
+    {
+      "name": "popupIndicator",
+      "description": "The component that renders the popup indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-popupIndicator"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": ".MuiAutocomplete-listbox"
+    },
+    {
+      "name": "option",
+      "description": "The component that renders the option.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-option"
+    },
+    {
+      "name": "loading",
+      "description": "The component that renders the loading.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-loading"
+    },
+    {
+      "name": "noOptions",
+      "description": "The component that renders the no-options.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-noOptions"
+    },
+    {
+      "name": "limitTag",
+      "description": "The component that renders the limit tag.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-limitTag"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "hasClearIcon",
+      "hasPopupIcon",
+      "multiple",
+      "popupIndicatorOpen",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocomplete",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/Autocomplete/Autocomplete.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-autocomplete/\">Autocomplete</a></li></ul>",
+  "cssComponent": false
+}

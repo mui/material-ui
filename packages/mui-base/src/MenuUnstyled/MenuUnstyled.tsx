@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
@@ -10,19 +9,22 @@ import {
   MenuUnstyledTypeMap,
 } from './MenuUnstyled.types';
 import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
-import useMenu from './useMenu';
+import useMenu from '../useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
+import { WithOptionalOwnerState } from '../utils';
+import MenuProvider from '../useMenu/MenuProvider';
 
-function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
+function useUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
   const slots = {
     root: ['root', open && 'expanded'],
     listbox: ['listbox', open && 'expanded'],
   };
 
-  return composeClasses(slots, getMenuUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getMenuUnstyledUtilityClass));
 }
 /**
  *
@@ -32,7 +34,7 @@ function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  *
  * API:
  *
- * - [MenuUnstyled API](https://mui.com/base/api/menu-unstyled/)
+ * - [MenuUnstyled API](https://mui.com/base/react-menu/components-api/#menu-unstyled)
  */
 const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   BaseComponentType extends React.ElementType = MenuUnstyledTypeMap['defaultComponent'],
@@ -42,60 +44,49 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     anchorEl,
     children,
     component,
-    keepMounted = false,
+    defaultOpen,
     listboxId,
-    onClose,
-    open = false,
+    onOpenChange,
+    open: openProp,
     slotProps = {},
     slots = {},
     ...other
   } = props;
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
-    open,
-    onClose,
+  const { contextValue, getListboxProps, dispatch, open } = useMenu({
+    defaultOpen,
+    open: openProp,
+    onOpenChange,
     listboxId,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
-  const ownerState: MenuUnstyledOwnerState = {
-    ...props,
-    open,
-  };
+  const ownerState: MenuUnstyledOwnerState = { ...props, open };
 
-  const classes = getUtilityClasses(ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   const Root = component ?? slots.root ?? PopperUnstyled;
-  const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<MenuUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
       anchorEl,
       open,
-      keepMounted,
+      keepMounted: true,
       role: undefined,
       ref: forwardedRef,
     },
     className: classes.root,
     ownerState,
-  }) as MenuUnstyledRootSlotProps;
+  });
 
   const Listbox = slots.listbox ?? 'ul';
   const listboxProps = useSlotProps({
@@ -106,18 +97,10 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled<
     className: classes.listbox,
   });
 
-  const contextValue: MenuUnstyledContextType = {
-    registerItem,
-    unregisterItem,
-    getItemState,
-    getItemProps,
-    open,
-  };
-
   return (
     <Root {...rootProps}>
       <Listbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
+        <MenuProvider value={contextValue}>{children}</MenuProvider>
       </Listbox>
     </Root>
   );
@@ -153,12 +136,9 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * Always keep the menu in the DOM.
-   * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
-   *
-   * @default false
+   * @ignore
    */
-  keepMounted: PropTypes.bool,
+  defaultOpen: PropTypes.bool,
   /**
    * @ignore
    */
@@ -166,7 +146,7 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onClose: PropTypes.func,
+  onOpenChange: PropTypes.func,
   /**
    * Controls whether the menu is displayed.
    * @default false

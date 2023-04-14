@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Menu, { menuClasses } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import IconButton from '@mui/joy/IconButton';
@@ -11,6 +12,7 @@ import Person from '@mui/icons-material/Person';
 
 // The Menu is built on top of Popper v2, so it accepts `modifiers` prop that will be passed to the Popper.
 // https://popper.js.org/docs/v2/modifiers/offset/
+
 const modifiers = [
   {
     name: 'offset',
@@ -89,7 +91,7 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         actions: menuActions,
         anchorEl: buttonRef.current,
         modifiers,
-        componentsProps: {
+        slotProps: {
           listbox: {
             id: `nav-example-menu-${label}`,
             'aria-label': label,
@@ -99,13 +101,22 @@ function MenuButton({ children, menu, open, onOpen, onLeaveMenu, label, ...props
         sx: {
           width: 288,
           [`& .${menuClasses.listbox}`]: {
-            '--List-padding': 'var(--List-divider-gap)',
+            '--List-padding': 'var(--ListDivider-gap)',
           },
         },
       })}
     </React.Fragment>
   );
 }
+
+MenuButton.propTypes = {
+  children: PropTypes.node,
+  label: PropTypes.string.isRequired,
+  menu: PropTypes.element.isRequired,
+  onLeaveMenu: PropTypes.func.isRequired,
+  onOpen: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
 
 export default function MenuIconSideNavExample() {
   const [menuIndex, setMenuIndex] = React.useState(null);
@@ -126,7 +137,7 @@ export default function MenuIconSideNavExample() {
     }, 200);
   };
   return (
-    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20 }}>
+    <Sheet sx={{ borderRadius: 'sm', py: 1, mr: 20, bgcolor: 'background.body' }}>
       <List>
         <ListItem>
           <MenuButton

@@ -13,7 +13,7 @@ import SnackbarUnstyled, { snackbarUnstyledClasses as classes } from '@mui/base/
 describe('<SnackbarUnstyled />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : enver} args
+   * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
    *
    * @remarks
    * This is for all intents and purposes the same as our client render method.

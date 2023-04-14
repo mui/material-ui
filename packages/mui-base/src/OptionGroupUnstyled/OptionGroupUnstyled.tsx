@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
@@ -11,6 +11,7 @@ import {
   OptionGroupUnstyledTypeMap,
 } from './OptionGroupUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(disabled: boolean) {
   const slots = {
@@ -19,7 +20,7 @@ function useUtilityClasses(disabled: boolean) {
     list: ['list'],
   };
 
-  return composeClasses(slots, getOptionGroupUnstyledUtilityClass, {});
+  return composeClasses(slots, useClassNamesOverride(getOptionGroupUnstyledUtilityClass));
 }
 
 /**
@@ -31,7 +32,7 @@ function useUtilityClasses(disabled: boolean) {
  *
  * API:
  *
- * - [OptionGroupUnstyled API](https://mui.com/base/api/option-group-unstyled/)
+ * - [OptionGroupUnstyled API](https://mui.com/base/react-select/components-api/#option-group-unstyled)
  */
 const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
   BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],

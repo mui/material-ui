@@ -1,14 +1,15 @@
 import { OverrideProps } from '@mui/types';
-import React from 'react';
+import * as React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from './useMenu.types';
+import { UseMenuListboxSlotProps } from '../useMenu';
+import { ListAction } from '../useList';
 
-export interface MenuUnstyledComponentsPropsOverrides {}
+export interface MenuUnstyledRootSlotPropsOverrides {}
+export interface MenuUnstyledListboxSlotPropsOverrides {}
 
 export interface MenuUnstyledActions {
-  highlightFirstItem: () => void;
-  highlightLastItem: () => void;
+  dispatch: (action: ListAction<string>) => void;
 }
 
 export interface MenuUnstyledOwnProps {
@@ -25,18 +26,12 @@ export interface MenuUnstyledOwnProps {
   anchorEl?: PopperUnstyledProps['anchorEl'];
   children?: React.ReactNode;
   className?: string;
-  /**
-   * Always keep the menu in the DOM.
-   * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
-   *
-   * @default false
-   */
-  keepMounted?: boolean;
+  defaultOpen?: boolean;
   listboxId?: string;
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onClose?: () => void;
+  onOpenChange?: (open: boolean) => void;
   /**
    * Controls whether the menu is displayed.
    * @default false
@@ -49,12 +44,12 @@ export interface MenuUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       typeof PopperUnstyled,
-      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledRootSlotPropsOverrides,
       MenuUnstyledOwnerState
     >;
     listbox?: SlotComponentProps<
       'ul',
-      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledListboxSlotPropsOverrides,
       MenuUnstyledOwnerState
     >;
   };
@@ -63,10 +58,20 @@ export interface MenuUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-    listbox?: React.ElementType;
-  };
+  slots?: MenuUnstyledSlots;
+}
+
+export interface MenuUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default PopperUnstyled
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
 }
 
 export interface MenuUnstyledTypeMap<P = {}, D extends React.ElementType = 'ul'> {

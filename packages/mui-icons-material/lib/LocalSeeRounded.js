@@ -1,16 +1,12 @@
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
 var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
-
 var _jsxRuntime = require("react/jsx-runtime");
-
 var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M9.5 14c0 1.38 1.12 2.5 2.5 2.5 1.23 0 2.25-.9 2.46-2.07-1-1.01-1.83-1.98-2.48-2.93-1.37.02-2.48 1.13-2.48 2.5z"
 }, "0"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
@@ -18,5 +14,4 @@ var _default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, _jsxRuntime.jsx)("p
 }, "1"), /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M17.34 14.42c.37.33.95.33 1.33 0C22.22 11.25 24 8.5 24 6.15 24 2.42 21.15 0 18 0s-6 2.42-6 6.15c0 2.35 1.78 5.1 5.34 8.27zm-.07-9.17L18 3l.73 2.25H21l-1.85 1.47.7 2.28L18 7.59 16.15 9l.7-2.28L15 5.25h2.27z"
 }, "2")], 'LocalSeeRounded');
-
 exports.default = _default;

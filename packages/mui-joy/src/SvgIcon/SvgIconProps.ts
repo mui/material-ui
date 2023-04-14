@@ -1,12 +1,26 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, FontSize, SxProps } from '../styles/types';
-import { SvgIconClasses } from './svgIconClasses';
+import { ColorPaletteProp, FontSize, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type SvgIconSlot = 'root';
 
-export interface SvgIconPropsSizeOverrides {}
+export interface SvgIconSlots {
+  /**
+   * The component that renders the root.
+   * @default 'svg'
+   */
+  root?: React.ElementType;
+}
 
+export type SvgIconSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SvgIconSlots,
+  {
+    root: SlotProps<'svg', {}, SvgIconOwnerState>;
+  }
+>;
+
+export interface SvgIconPropsSizeOverrides {}
 export interface SvgIconPropsColorOverrides {}
 
 export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
@@ -15,10 +29,6 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * Node passed into the SVG element.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<SvgIconClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
@@ -66,7 +76,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * @default '0 0 24 24'
      */
     viewBox?: string;
-  };
+  } & SvgIconSlotsAndSlotProps;
   defaultComponent: D;
 }
 
@@ -77,7 +87,7 @@ export type SvgIconProps<
   },
 > = OverrideProps<SvgIconTypeMap<P, D>, D>;
 
-export interface SvgIconOwnerState extends SvgIconProps {
+export interface SvgIconOwnerState extends ApplyColorInversion<SvgIconProps> {
   /**
    * The `size` specified explicitly on the instance.
    */

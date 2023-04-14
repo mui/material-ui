@@ -11,25 +11,26 @@ import {
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
-import useSnackbar from './useSnackbar';
+import useSnackbar from '../useSnackbar';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = () => {
   const slots = {
     root: ['root'],
   };
 
-  return composeClasses(slots, getSnackbarUnstyledUtilityClass, undefined);
+  return composeClasses(slots, useClassNamesOverride(getSnackbarUnstyledUtilityClass));
 };
 /**
  *
  * Demos:
  *
- * - [Unstyled snackbar](https://mui.com/base/react-snackbar/)
+ * - [Unstyled Snackbar](https://mui.com/base/react-snackbar/)
  *
  * API:
  *
- * - [SnackbarUnstyled API](https://mui.com/base/api/snackbar-unstyled/)
+ * - [SnackbarUnstyled API](https://mui.com/base/react-snackbar/components-api/#snackbar-unstyled)
  */
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   props: SnackbarUnstyledProps,

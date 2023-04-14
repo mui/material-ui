@@ -7,8 +7,9 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './AvatarGroupProps';
+import useSlot from '../utils/useSlot';
 
-export const AvatarGroupContext = React.createContext<undefined | AvatarGroupOwnerState>(undefined);
+export const AvatarGroupContext = React.createContext<AvatarGroupOwnerState | undefined>(undefined);
 
 const useUtilityClasses = () => {
   const slots = {
@@ -41,35 +42,58 @@ const AvatarGroupGroupRoot = styled('div', {
   marginInlineStart: 'calc(-1 * var(--AvatarGroup-gap))',
 }));
 
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [AvatarGroup API](https://mui.com/joy-ui/api/avatar-group/)
+ */
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarGroupProps>({
     props: inProps,
     name: 'JoyAvatarGroup',
   });
 
-  const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
-
-  const ownerState = {
-    ...props,
+  const {
+    className,
     color,
-    component,
-    size,
+    component = 'div',
+    size = 'md',
     variant,
-  };
+    children,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
+
+  const ownerState = React.useMemo(
+    () => ({
+      ...props,
+      color,
+      component,
+      size,
+      variant,
+    }),
+    [color, component, props, size, variant],
+  );
 
   const classes = useUtilityClasses();
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarGroupGroupRoot,
+    externalForwardedProps: { ...other, component, slots, slotProps },
+    ownerState,
+  });
+
   return (
     <AvatarGroupContext.Provider value={ownerState}>
-      <AvatarGroupGroupRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </AvatarGroupGroupRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </AvatarGroupContext.Provider>
   );
 }) as OverridableComponent<AvatarGroupTypeMap>;
@@ -111,6 +135,20 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -119,7 +157,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

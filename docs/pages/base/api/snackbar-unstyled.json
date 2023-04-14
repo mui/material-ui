@@ -2,7 +2,7 @@
   "props": {
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
     "component": { "type": { "name": "elementType" } },
-    "disableWindowBlurListener": { "type": { "name": "bool" } },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "exited": { "type": { "name": "bool" }, "default": "true" },
     "onClose": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
@@ -21,10 +21,19 @@
   },
   "name": "SnackbarUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiSnackbar-root"
+    }
+  ],
   "spread": true,
+  "muiName": "MuiSnackbar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/SnackbarUnstyled/SnackbarUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-snackbar/\">Unstyled snackbar</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-snackbar/\">Unstyled Snackbar</a></li></ul>",
   "cssComponent": false
 }

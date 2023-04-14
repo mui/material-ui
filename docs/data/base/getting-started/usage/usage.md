@@ -1,10 +1,10 @@
 # Usage
 
-<p class="description">Learn the basics of working with MUI Base components.</p>
+<p class="description">Learn the basics of working with Base UI components.</p>
 
 ## Quickstart
 
-The following code snippet demonstrates a simple app that uses the MUI Base [Unstyled Button](/base/react-button/) component:
+The following code snippet demonstrates a simple app that uses the Base UI [Unstyled Button](/base/react-button/) component:
 
 ```jsx
 import * as React from 'react';
@@ -26,7 +26,7 @@ Try importing an [Unstyled Input](/base/react-input/) component and adding it to
 
 ## Responsive meta tag
 
-MUI Base is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
+Base UI is a _mobile-first_ component library—we write code for mobile devices first, and then scale up the components as necessary using CSS media queries.
 
 To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element:
 
@@ -114,14 +114,14 @@ If you did the same with `slots.root`, you would need to place this attribute on
 
 ## Components vs. hooks
 
-MUI Base includes two kinds of building blocks: **components** and **hooks**.
+Base UI includes two kinds of building blocks: **components** and **hooks**.
 
 :::info
 💡 Hooks encapsulate _logic_; components provide _structure_.
 :::
 
 Many Base components are implemented with the help of hooks.
-(Visit the [React documentation on hooks](https://reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
+(Visit the [React documentation on hooks](https://legacy.reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
 
 You can use components or hooks—or a combination thereof—when building custom components.
 

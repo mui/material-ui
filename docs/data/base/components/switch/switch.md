@@ -2,6 +2,7 @@
 product: base
 title: Unstyled React Switch component and hook
 components: SwitchUnstyled
+hooks: useSwitch
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
@@ -10,13 +11,15 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 
 <p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
-The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.
+The Unstyled Switch component provides users with a switch for toggling between two mutually exclusive states.
 
-{{"demo": "UnstyledSwitchIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledSwitchIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
@@ -34,13 +37,13 @@ export default function MyApp() {
 
 ### Basics
 
-The following demo shows how to assign styles and props to the `SwitchUnstyled` component:
+The following demo shows how to assign styles and props to the Unstyled Switch component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
 ### Anatomy
 
-The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
+The Unstyled Switch component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 
 ```html
 <span class="MuiSwitch-root">
@@ -83,10 +86,10 @@ The following code snippet applies a CSS class called `my-thumb` to the thumb sl
 ## Hook
 
 ```js
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 ```
 
-The `useSwitch` hook lets you apply the functionality of `SwitchUnstyled` to a fully custom component.
+The `useSwitch` hook lets you apply the functionality of a switch to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -95,7 +98,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [HTML structure](#anatomy).
 :::
 
 ### Basic example

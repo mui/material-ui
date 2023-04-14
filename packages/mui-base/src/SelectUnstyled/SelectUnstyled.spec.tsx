@@ -5,9 +5,10 @@ import {
   SelectUnstyledRootSlotProps,
   SelectUnstyledPopperSlotProps,
   PopperUnstyled,
+  WithOptionalOwnerState,
 } from '@mui/base';
 
-const SelectUnstyledComponentsPropsOverridesTest = (
+const SelectUnstyledSlotPropsOverridesTest = (
   <SelectUnstyled
     slotProps={{
       root: {
@@ -27,12 +28,16 @@ const SelectUnstyledComponentsPropsOverridesTest = (
   />
 );
 
-function CustomRoot<TValue extends {}>(props: SelectUnstyledRootSlotProps<TValue>) {
+function CustomRoot<OptionValue extends {}, Multiple extends boolean>(
+  props: SelectUnstyledRootSlotProps<OptionValue, Multiple>,
+) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
 }
 
-function CustomPopper<TValue extends {}>(props: SelectUnstyledPopperSlotProps<TValue>) {
+function CustomPopper<OptionValue extends {}, Multiple extends boolean>(
+  props: WithOptionalOwnerState<SelectUnstyledPopperSlotProps<OptionValue, Multiple>>,
+) {
   const { ownerState, ...other } = props;
   return <PopperUnstyled {...other} />;
 }
@@ -59,7 +64,7 @@ function InvalidPopper({ requiredProp }: { requiredProp: string }) {
   return <div />;
 }
 
-const SelectUnstyledComponentsOverridesUsingInvalidComponentTest = (
+const SelectUnstyledSlotsOverridesUsingInvalidComponentTest = (
   <SelectUnstyled
     slots={{
       // @ts-expect-error - provided a component that requires a prop SelectUnstyled does not provide
@@ -68,7 +73,7 @@ const SelectUnstyledComponentsOverridesUsingInvalidComponentTest = (
   />
 );
 
-const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
+const SelectUnstyledSlotsOverridesUsingHostComponentTest = (
   <SelectUnstyled
     slots={{
       // @ts-expect-error - provided a host element instead of a component
@@ -78,7 +83,10 @@ const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
 );
 
 const polymorphicComponentTest = () => {
-  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
 
   return (
     <div>

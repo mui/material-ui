@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Modal component
 components: ModalUnstyled
 githubLabel: 'component: modal'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
 # Unstyled modal
@@ -76,7 +76,7 @@ The following demo shows how to nest one modal within another:
 
 You can animate the open and close states of a modal using a transition component, as long as that component fulfills the following requirements:
 
-- Is a direct child descendent of the modal
+- Is a direct child descendant of the modal
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
@@ -112,7 +112,7 @@ As with any performance optimization, the `keepMounted` prop won't necessarily s
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 
 In order to display a modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
@@ -130,7 +130,7 @@ If the user needs to interact with another part of the page—for example, to in
 
 ## Accessibility
 
-See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices.
 
 - All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name. You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
 
@@ -141,7 +141,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
 :::warning
 A modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
 :::

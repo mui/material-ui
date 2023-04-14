@@ -37,6 +37,17 @@
       },
       "default": "'success'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ closeButton?: object, closeIcon?: object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ closeButton?: elementType, closeIcon?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -78,6 +89,8 @@
     "name": "MuiAlert"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAlert",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },

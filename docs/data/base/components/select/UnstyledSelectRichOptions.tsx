@@ -136,10 +136,10 @@ const StyledPopper = styled(PopperUnstyled)`
 `;
 
 const CustomSelect = React.forwardRef(function CustomSelect(
-  props: SelectUnstyledProps<number>,
+  props: SelectUnstyledProps<number, false>,
   ref: React.ForwardedRef<any>,
 ) {
-  const slots: SelectUnstyledProps<number>['slots'] = {
+  const slots: SelectUnstyledProps<number, false>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
     popper: StyledPopper,

@@ -42,6 +42,8 @@
     "name": "MuiFormLabel"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/FormLabel/FormLabel.js",
   "inheritance": null,

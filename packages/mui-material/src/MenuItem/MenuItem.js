@@ -161,10 +161,13 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      disableGutters,
+    }),
+    [context.dense, dense, disableGutters],
+  );
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -274,7 +277,8 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * @ignore
+   * If `true`, the component is selected.
+   * @default false
    */
   selected: PropTypes.bool,
   /**

@@ -7,7 +7,7 @@ const yargs = require('yargs');
 async function run(argv) {
   const workspaceRoot = path.resolve(__dirname, '../');
 
-  const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf-8' });
+  const gitignore = fs.readFileSync(path.join(workspaceRoot, '.gitignore'), { encoding: 'utf8' });
   const ignore = gitignore
     .split(/\r?\n/)
     .filter((pattern) => {

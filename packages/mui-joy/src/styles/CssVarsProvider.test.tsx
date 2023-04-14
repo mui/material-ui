@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
   let originalMatchmedia: typeof window.matchMedia;
@@ -51,7 +51,7 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('All CSS vars', () => {
     it('palette', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -70,7 +70,7 @@ describe('[Joy] CssVarsProvider', () => {
             </div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -113,9 +113,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-primary-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-primary-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-primary-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-primary-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-primary-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-primary-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-primary-mainChannel)',
           lightChannel: 'var(--joy-palette-primary-lightChannel)',
           darkChannel: 'var(--joy-palette-primary-darkChannel)',
@@ -159,9 +156,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-neutral-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-neutral-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-neutral-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-neutral-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-neutral-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-neutral-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-neutral-mainChannel)',
           lightChannel: 'var(--joy-palette-neutral-lightChannel)',
           darkChannel: 'var(--joy-palette-neutral-darkChannel)',
@@ -202,9 +196,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-danger-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-danger-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-danger-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-danger-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-danger-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-danger-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-danger-mainChannel)',
           lightChannel: 'var(--joy-palette-danger-lightChannel)',
           darkChannel: 'var(--joy-palette-danger-darkChannel)',
@@ -245,9 +236,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-info-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-info-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-info-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-info-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-info-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-info-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-info-mainChannel)',
           lightChannel: 'var(--joy-palette-info-lightChannel)',
           darkChannel: 'var(--joy-palette-info-darkChannel)',
@@ -288,9 +276,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-success-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-success-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-success-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-success-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-success-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-success-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-success-mainChannel)',
           lightChannel: 'var(--joy-palette-success-lightChannel)',
           darkChannel: 'var(--joy-palette-success-darkChannel)',
@@ -331,9 +316,6 @@ describe('[Joy] CssVarsProvider', () => {
           solidActiveBg: 'var(--joy-palette-warning-solidActiveBg)',
           solidDisabledColor: 'var(--joy-palette-warning-solidDisabledColor)',
           solidDisabledBg: 'var(--joy-palette-warning-solidDisabledBg)',
-          overrideTextPrimary: 'var(--joy-palette-warning-overrideTextPrimary)',
-          overrideTextSecondary: 'var(--joy-palette-warning-overrideTextSecondary)',
-          overrideTextTertiary: 'var(--joy-palette-warning-overrideTextTertiary)',
           mainChannel: 'var(--joy-palette-warning-mainChannel)',
           lightChannel: 'var(--joy-palette-warning-lightChannel)',
           darkChannel: 'var(--joy-palette-warning-darkChannel)',
@@ -350,6 +332,7 @@ describe('[Joy] CssVarsProvider', () => {
         JSON.stringify({
           body: 'var(--joy-palette-background-body)',
           surface: 'var(--joy-palette-background-surface)',
+          popup: 'var(--joy-palette-background-popup)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',
@@ -363,7 +346,7 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('font', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -374,7 +357,7 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="letter-spacing">{JSON.stringify(theme.vars.letterSpacing)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -435,14 +418,14 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('shape', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
             <div data-testid="radius">{JSON.stringify(theme.vars.radius)}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -462,7 +445,7 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('shadow ring & channel', () => {
-      const Vars = () => {
+      function Vars() {
         const theme = useTheme();
         return (
           <div>
@@ -470,7 +453,7 @@ describe('[Joy] CssVarsProvider', () => {
             <div data-testid="shadow-channel">{theme.vars.shadowChannel}</div>
           </div>
         );
-      };
+      }
 
       render(
         <CssVarsProvider>
@@ -481,14 +464,105 @@ describe('[Joy] CssVarsProvider', () => {
       expect(screen.getByTestId('shadow-ring').textContent).to.equal('var(--joy-shadowRing)');
       expect(screen.getByTestId('shadow-channel').textContent).to.equal('var(--joy-shadowChannel)');
     });
+
+    it('zIndex', () => {
+      function Vars() {
+        const theme = useTheme();
+        return (
+          <div>
+            <div data-testid="zIndex-badge">{theme.vars.zIndex.badge}</div>
+            <div data-testid="zIndex-table">{theme.vars.zIndex.table}</div>
+            <div data-testid="zIndex-popup">{theme.vars.zIndex.popup}</div>
+            <div data-testid="zIndex-modal">{theme.vars.zIndex.modal}</div>
+            <div data-testid="zIndex-tooltip">{theme.vars.zIndex.tooltip}</div>
+          </div>
+        );
+      }
+
+      render(
+        <CssVarsProvider>
+          <Vars />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('zIndex-badge').textContent).to.equal('var(--joy-zIndex-badge)');
+      expect(screen.getByTestId('zIndex-table').textContent).to.equal('var(--joy-zIndex-table)');
+      expect(screen.getByTestId('zIndex-popup').textContent).to.equal('var(--joy-zIndex-popup)');
+      expect(screen.getByTestId('zIndex-modal').textContent).to.equal('var(--joy-zIndex-modal)');
+      expect(screen.getByTestId('zIndex-tooltip').textContent).to.equal(
+        'var(--joy-zIndex-tooltip)',
+      );
+    });
+  });
+
+  describe('Color Inversion', () => {
+    it('should be customizable', () => {
+      function Text() {
+        const theme = useTheme();
+        return <div>{theme.colorInversion.solid.primary['--variant-plain'] as string}</div>;
+      }
+
+      const { container } = render(
+        <CssVarsProvider
+          theme={extendTheme({
+            colorInversion: {
+              solid: {
+                primary: {
+                  '--variant-plain': 'black',
+                },
+              },
+            },
+          })}
+        >
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('black');
+    });
+
+    it('should be customizable with a callback', () => {
+      function Text() {
+        const theme = useTheme();
+        return (
+          <div>
+            {
+              (theme.colorInversion.soft.primary['[data-joy-color-scheme="dark"] &'] as any)[
+                '--variant-plain'
+              ]
+            }
+          </div>
+        );
+      }
+
+      const { container } = render(
+        <CssVarsProvider
+          theme={extendTheme({
+            colorInversion: (theme) => ({
+              soft: {
+                primary: {
+                  [theme.getColorSchemeSelector('dark')]: {
+                    '--variant-plain': 'red',
+                  },
+                },
+              },
+            }),
+          })}
+        >
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal('red');
+    });
   });
 
   describe('Focus', () => {
     it('contain expected focus', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.focus).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -502,10 +576,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Typography', () => {
     it('contain expected typography', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.typography).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -521,10 +595,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Variant', () => {
     it('contain expected variants', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{Object.keys(theme.variants).join(',')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -550,21 +624,32 @@ describe('[Joy] CssVarsProvider', () => {
           'solidHover',
           'solidActive',
           'solidDisabled',
-          'plainOverrides',
-          'outlinedOverrides',
-          'softOverrides',
-          'solidOverrides',
         ].join(','),
       );
+    });
+
+    it('contain expected colorInversion', function test() {
+      function Text() {
+        const theme = useTheme();
+        return <div>{Object.keys(theme.colorInversion).join(',')}</div>;
+      }
+
+      const { container } = render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(container.firstChild?.textContent).to.equal(['soft', 'solid'].join(','));
     });
   });
 
   describe('Spacing', () => {
     it('provides spacing utility', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.spacing(2)}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -578,10 +663,10 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Breakpoints', () => {
     it('provides breakpoint utilities', function test() {
-      const Text = () => {
+      function Text() {
         const theme = useTheme();
         return <div>{theme.breakpoints.up('sm')}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -595,11 +680,11 @@ describe('[Joy] CssVarsProvider', () => {
 
   describe('Skipped vars', () => {
     it('should not contain `variants` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.variants ? 'variants' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -611,11 +696,11 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('should not contain `typography` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         // @ts-expect-error
         return <div>{theme.vars.typography ? 'typography' : ''}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>
@@ -627,10 +712,10 @@ describe('[Joy] CssVarsProvider', () => {
     });
 
     it('should contain only `focus.thickness` in theme.vars', () => {
-      const Consumer = () => {
+      function Consumer() {
         const theme = useTheme();
         return <div>{JSON.stringify(theme.vars.focus)}</div>;
-      };
+      }
 
       const { container } = render(
         <CssVarsProvider>

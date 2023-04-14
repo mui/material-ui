@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import useOption from '@mui/base/useOption';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import useSlot from '../utils/useSlot';
+import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
@@ -20,17 +21,29 @@ const useUtilityClasses = (ownerState: OptionOwnerState) => {
   return composeClasses(slots, getOptionUtilityClass, {});
 };
 
-const OptionRoot = styled(ListItemButtonRoot as unknown as 'button', {
+const OptionRoot = styled(StyledListItemButton as unknown as 'li', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => ({
-  [`&.${optionClasses.highlighted}`]: {
-    backgroundColor: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
-  },
-}));
-
-const Option = React.forwardRef(function Option(inProps, ref) {
+})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!];
+  return {
+    [`&.${optionClasses.highlighted}`]: {
+      backgroundColor: variantStyle?.backgroundColor,
+    },
+  };
+});
+/**
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/joy-ui/react-select/)
+ *
+ * API:
+ *
+ * - [Option API](https://mui.com/joy-ui/api/option/)
+ */
+const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef<HTMLLIElement>) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyOption',
@@ -39,81 +52,58 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const {
     component = 'li',
     children,
-    disabled,
+    disabled = false,
     value,
     label,
     variant = 'plain',
     color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const row = React.useContext(RowListContext);
-  const selectContext = React.useContext(SelectUnstyledContext);
+  const optionRef = React.useRef<HTMLLIElement>(null);
+  const combinedRef = useForkRef(optionRef, ref);
 
-  if (!selectContext) {
-    throw new Error('OptionUnstyled must be used within a SelectUnstyled');
-  }
+  const computedLabel =
+    label ?? (typeof children === 'string' ? children : optionRef.current?.innerText);
 
-  const selectOption = {
-    value,
-    label: label || children,
+  const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
-  };
+    label: computedLabel,
+    value,
+    optionRef: combinedRef,
+  });
 
-  const optionState = selectContext.getOptionState(selectOption);
-  const optionProps = selectContext.getOptionProps(selectOption);
-  const listboxRef = selectContext.listboxRef;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, selected ? 'primary' : colorProp);
 
-  let color = colorProp;
-  if (optionState.selected && !inProps.color) {
-    color = 'primary';
-  }
-
-  const ownerState = {
+  const ownerState: OptionOwnerState = {
     ...props,
-    ...optionState,
+    disabled,
+    selected,
+    highlighted,
+    index,
     component,
     variant,
     color,
     row,
   };
 
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const handleRef = useForkRef(ref, optionRef);
-
-  React.useEffect(() => {
-    // Scroll to the currently highlighted option
-    if (optionState.highlighted) {
-      if (!listboxRef.current || !optionRef.current) {
-        return;
-      }
-      const listboxClientRect = listboxRef.current.getBoundingClientRect();
-      const optionClientRect = optionRef.current.getBoundingClientRect();
-
-      if (optionClientRect.top < listboxClientRect.top) {
-        listboxRef.current.scrollTop -= listboxClientRect.top - optionClientRect.top;
-      } else if (optionClientRect.bottom > listboxClientRect.bottom) {
-        listboxRef.current.scrollTop += optionClientRect.bottom - listboxClientRect.bottom;
-      }
-    }
-  }, [optionState.highlighted, listboxRef]);
-
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    getSlotProps: getRootProps,
     elementType: OptionRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      ...optionProps,
-      ref: handleRef,
-      as: component,
-    },
+    externalForwardedProps,
     className: classes.root,
     ownerState,
   });
 
-  return <OptionRoot {...rootProps}>{children}</OptionRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as ExtendOption<OptionTypeMap>;
 
 Option.propTypes /* remove-proptypes */ = {
@@ -149,6 +139,20 @@ Option.propTypes /* remove-proptypes */ = {
    */
   label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -159,9 +163,9 @@ Option.propTypes /* remove-proptypes */ = {
   /**
    * The option value.
    */
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

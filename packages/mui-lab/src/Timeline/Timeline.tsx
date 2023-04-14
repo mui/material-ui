@@ -91,8 +91,11 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
   const { position = 'right', className, ...other } = props;
   const ownerState = { ...props, position };
   const classes = useUtilityClasses(ownerState);
+
+  const contextValue = React.useMemo(() => ({ position }), [position]);
+
   return (
-    <TimelineContext.Provider value={{ position }}>
+    <TimelineContext.Provider value={contextValue}>
       <TimelineRoot
         className={clsx(classes.root, className)}
         ownerState={ownerState}
@@ -102,7 +105,7 @@ const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Time
       />
     </TimelineContext.Provider>
   );
-});
+}) as React.ForwardRefExoticComponent<TimelineProps & React.RefAttributes<HTMLUListElement>>;
 
 Timeline.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

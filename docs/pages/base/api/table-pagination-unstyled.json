@@ -41,10 +41,62 @@
   },
   "name": "TablePaginationUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'td'",
+      "class": ".MuiTablePagination-root"
+    },
+    {
+      "name": "actions",
+      "description": "The component that renders the actions.",
+      "default": "TablePaginationActionsUnstyled",
+      "class": ".MuiTablePagination-actions"
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select.",
+      "default": "'select'",
+      "class": ".MuiTablePagination-select"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The component that renders the select label.",
+      "default": "'p'",
+      "class": ".MuiTablePagination-selectLabel"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component that renders the menu item.",
+      "default": "'option'",
+      "class": ".MuiTablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The component that renders the displayed rows.",
+      "default": "'p'",
+      "class": ".MuiTablePagination-displayedRows"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component that renders the toolbar.",
+      "default": "'div'",
+      "class": ".MuiTablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The component that renders the spacer.",
+      "default": "'div'",
+      "class": ".MuiTablePagination-spacer"
+    }
+  ],
+  "classes": { "classes": ["input", "selectIcon", "selectRoot"], "globalClasses": {} },
   "spread": true,
+  "muiName": "MuiTablePagination",
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-table-pagination/\">Unstyled table pagination</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-table-pagination/\">Unstyled Table Pagination</a></li></ul>",
   "cssComponent": false
 }

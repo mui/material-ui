@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
-import useBadge from './useBadge';
+import useBadge from '../useBadge';
 import { getBadgeUnstyledUtilityClass } from './badgeUnstyledClasses';
 import {
   BadgeUnstyledProps,
@@ -12,6 +12,7 @@ import {
   BadgeUnstyledBadgeSlotProps,
 } from './BadgeUnstyled.types';
 import { WithOptionalOwnerState, useSlotProps } from '../utils';
+import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
   const { invisible } = ownerState;
@@ -21,7 +22,7 @@ const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
     badge: ['badge', invisible && 'invisible'],
   };
 
-  return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
+  return composeClasses(slots, useClassNamesOverride(getBadgeUnstyledUtilityClass));
 };
 /**
  *
@@ -31,7 +32,7 @@ const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
  *
  * API:
  *
- * - [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
+ * - [BadgeUnstyled API](https://mui.com/base/react-badge/components-api/#badge-unstyled)
  */
 const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props: BadgeUnstyledProps, ref) {
   const {

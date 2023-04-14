@@ -19,5 +19,10 @@ export default GlobalStyles;
 
 GlobalStyles.propTypes = {
   defaultTheme: PropTypes.object,
-  styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]),
+  styles: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.func,
+  ]),
 };

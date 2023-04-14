@@ -123,7 +123,7 @@ export default function Hero() {
             with Material UI, our fully-loaded component library, or bring your own design system to
             our production-ready components.
           </Typography>
-          <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
+          <GetStartedButtons />
         </Box>
       }
       rightSx={{

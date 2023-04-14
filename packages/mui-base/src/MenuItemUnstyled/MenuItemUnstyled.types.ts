@@ -2,11 +2,12 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 
-export interface MenuItemUnstyledComponentsPropsOverrides {}
+export interface MenuItemUnstyledRootSlotPropsOverrides {}
 
 export interface MenuItemUnstyledOwnerState extends MenuItemUnstyledOwnProps {
   disabled: boolean;
   focusVisible: boolean;
+  highlighted: boolean;
 }
 
 export interface MenuItemUnstyledOwnProps {
@@ -23,9 +24,7 @@ export interface MenuItemUnstyledOwnProps {
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  slots?: {
-    root?: React.ElementType;
-  };
+  slots?: MenuItemUnstyledSlots;
   /**
    * The props used for each slot inside the MenuItem.
    * @default {}
@@ -33,7 +32,7 @@ export interface MenuItemUnstyledOwnProps {
   slotProps?: {
     root?: SlotComponentProps<
       'li',
-      MenuItemUnstyledComponentsPropsOverrides,
+      MenuItemUnstyledRootSlotPropsOverrides,
       MenuItemUnstyledOwnerState
     >;
   };
@@ -42,6 +41,14 @@ export interface MenuItemUnstyledOwnProps {
    * Used for keyboard text navigation matching.
    */
   label?: string;
+}
+
+export interface MenuItemUnstyledSlots {
+  /**
+   * The component that renders the root.
+   * @default 'li'
+   */
+  root?: React.ElementType;
 }
 
 export interface MenuItemUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {
@@ -54,3 +61,8 @@ export type MenuItemUnstyledProps<
 > = OverrideProps<MenuItemUnstyledTypeMap<{}, D>, D> & {
   component?: D;
 };
+
+export interface MenuItemState {
+  disabled: boolean;
+  highlighted: boolean;
+}

@@ -3,7 +3,12 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
+const {
+  LANGUAGES,
+  LANGUAGES_SSR,
+  LANGUAGES_IGNORE_PAGES,
+  LANGUAGES_IN_PROGRESS,
+} = require('./config');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -87,7 +92,20 @@ module.exports = withDocsInfra({
             oneOf: [
               {
                 resourceQuery: /@mui\/markdown/,
-                use: [options.defaultLoaders.babel, require.resolve('@mui/markdown/loader')],
+                use: [
+                  options.defaultLoaders.babel,
+                  {
+                    loader: require.resolve('@mui/markdown/loader'),
+                    options: {
+                      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+                      languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      env: {
+                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
+                        LIB_VERSION: options.config.env.LIB_VERSION,
+                      },
+                    },
+                  },
+                ],
               },
               {
                 // used in some /getting-started/templates
@@ -150,12 +168,14 @@ module.exports = withDocsInfra({
     };
   },
   env: {
-    GITHUB_AUTH: process.env.GITHUB_AUTH,
+    GITHUB_AUTH: process.env.GITHUB_AUTH
+      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
+      : null,
     LIB_VERSION: pkg.version,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SLACK_FEEDBACKS_TOKEN: process.env.SLACK_FEEDBACKS_TOKEN,
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master', // #default-branch-switch
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
+    GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
@@ -168,7 +188,11 @@ module.exports = withDocsInfra({
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (page.pathname.startsWith('/experiments') && process.env.DEPLOY_ENV !== 'production') {
+        // The experiments pages are only meant for experiments, they shouldn't leak to production.
+        if (
+          (page.pathname.startsWith('/experiments/') || page.pathname === '/experiments') &&
+          process.env.DEPLOY_ENV === 'production'
+        ) {
           return;
         }
         // The blog is not translated

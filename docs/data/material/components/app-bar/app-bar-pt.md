@@ -36,7 +36,7 @@ Uma barra de pesquisa lateral
 
 ## Responsive App bar with Drawer
 
-{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+{{"demo": "DrawerAppBar.js", "bg": true, "iframe": true, "disableLiveEdit": true}}
 
 ## App bar with a primary search field
 
@@ -103,19 +103,19 @@ You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 The app bar hides on scroll down to leave more space for reading.
 
-{{"demo": "HideAppBar.js", "iframe": true}}
+{{"demo": "HideAppBar.js", "iframe": true, "disableLiveEdit": true}}
 
 ### Elevate App bar
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
-{{"demo": "ElevateAppBar.js", "iframe": true}}
+{{"demo": "ElevateAppBar.js", "iframe": true, "disableLiveEdit": true}}
 
 ### Voltar ao topo
 
 A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
-{{"demo": "BackToTop.js", "iframe": true}}
+{{"demo": "BackToTop.js", "iframe": true, "disableLiveEdit": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 

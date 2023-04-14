@@ -2,8 +2,8 @@ import * as React from 'react';
 import SelectUnstyled, {
   SelectUnstyledProps,
   selectUnstyledClasses,
-  SelectOption,
 } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useOption';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
@@ -155,8 +155,10 @@ const Button = styled('button')`
   }
 `;
 
-function CustomSelect<TValue extends {}>(props: SelectUnstyledProps<TValue>) {
-  const slots: SelectUnstyledProps<TValue>['slots'] = {
+function CustomSelect<TValue extends {}, Multiple extends boolean = false>(
+  props: SelectUnstyledProps<TValue, Multiple>,
+) {
+  const slots: SelectUnstyledProps<TValue, Multiple>['slots'] = {
     root: StyledButton,
     listbox: StyledListbox,
     popper: StyledPopper,

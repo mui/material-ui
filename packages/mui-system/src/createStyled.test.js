@@ -4,7 +4,6 @@ import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
-import sx from './sx';
 
 describe('createStyled', () => {
   const { render } = createRenderer();
@@ -156,7 +155,7 @@ describe('createStyled', () => {
       slot: 'Icon',
       overridesResolver: (props, styles) => styles.icon,
     })({});
-    const Button = ({ children, startIcon, endIcon, color = 'primary', ...props }) => {
+    function Button({ children, startIcon, endIcon, color = 'primary', ...props }) {
       const ownerState = { startIcon, endIcon, color, ...props };
       return (
         <ButtonRoot ownerState={ownerState}>
@@ -165,7 +164,7 @@ describe('createStyled', () => {
           {endIcon && <ButtonIcon ownerState={ownerState}>{endIcon}</ButtonIcon>}
         </ButtonRoot>
       );
-    };
+    }
 
     it('spread ownerState as props to the slot styleOverrides', () => {
       const finalTheme = createTheme({
@@ -294,12 +293,13 @@ describe('createStyled', () => {
         components: {
           MuiButton: {
             styleOverrides: {
-              root: sx({
-                pt: 10,
-              }),
-              icon: ({ ownerState }) => [
+              root: ({ theme }) =>
+                theme.unstable_sx({
+                  pt: 10,
+                }),
+              icon: ({ ownerState, theme }) => [
                 ownerState.color === 'primary' &&
-                  sx({
+                  theme.unstable_sx({
                     mr: 10,
                   }),
               ],
@@ -366,7 +366,9 @@ describe('createStyled', () => {
     it('able to pass props to `as` styled component', () => {
       const styled = createStyled({});
       const ChildRoot = styled('div')({});
-      const Child = ({ component }) => <ChildRoot as={component}>content</ChildRoot>;
+      function Child({ component }) {
+        return <ChildRoot as={component}>content</ChildRoot>;
+      }
       const Button = styled('button')({});
       const { container } = render(<Button as={Child} component="span" />);
 
