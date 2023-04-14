@@ -5,7 +5,10 @@
     "componentsApi": "Components API",
     "themeDefaultProps": "Theme default props",
     "themeDefaultPropsDescription": "You can use <code>{{muiName}}</code> to change the default props of this component <a href={{defaultPropsLink}}>with the theme</a>.",
+    "classes": "CSS classes",
+    "classesDescription": "These class names are useful for styling with CSS. They are applied to the root slot when specific states are triggered.",
     "cssDescription": "The following class names are useful for styling with CSS (the <a href=\"/material-ui/customization/how-to-customize/#state-classes\">state classes</a> are marked). <br /> To learn more, visit the <a href=\"/material-ui/customization/theme-components/\">component customization</a> page.",
+    "css": "CSS",
     "cssComponent": "As a CSS utility, the {{name}} component also supports all <a href=\"/system/properties/\"><code>system</code></a> properties. You can use them as props directly on the component.",
     "default": "Default",
     "defaultValue": "Default value",
@@ -282,6 +285,7 @@
     "/base/react-tabs/hooks-api/#use-tabs-list": "useTabsList",
     "/base/guides": "How-to guides",
     "/base/guides/working-with-tailwind-css": "Working with Tailwind CSS",
+    "/base/guides/overriding-component-structure": "Overriding component structure",
     "/material-ui/getting-started": "Getting started",
     "/material-ui/getting-started/overview": "Overview",
     "/material-ui/getting-started/installation": "Installation",
@@ -482,6 +486,7 @@
     "/joy-ui/customization/default-theme-viewer": "Default theme viewer",
     "/joy-ui/customization/theme-builder": "Theme builder",
     "/joy-ui/guides": "How-to guides",
+    "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
     "/joy-ui/guides/using-icon-libraries": "Using icon libraries"
   }

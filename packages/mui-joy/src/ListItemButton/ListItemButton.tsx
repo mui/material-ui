@@ -14,6 +14,7 @@ import {
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -133,6 +134,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     selected = false,
     color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -170,21 +173,22 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = getRootProps();
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemButtonRoot,
+    externalForwardedProps,
+    ownerState,
+    getSlotProps: getRootProps,
+  });
 
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
-      <ListItemButtonRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...other}
-        {...rootProps}
-        role={role ?? rootProps.role}
-      >
+      <SlotRoot {...rootProps} role={role ?? rootProps.role}>
         {children}
-      </ListItemButtonRoot>
+      </SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
@@ -260,6 +264,20 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

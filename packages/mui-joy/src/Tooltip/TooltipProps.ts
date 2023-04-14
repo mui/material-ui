@@ -11,12 +11,12 @@ export interface TooltipSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the arrow.
    * @default 'span'
    */
-  arrow: React.ElementType;
+  arrow?: React.ElementType;
 }
 
 export interface TooltipPropsVariantOverrides {}

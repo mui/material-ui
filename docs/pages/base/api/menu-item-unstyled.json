@@ -22,6 +22,10 @@
       "class": ".MuiMenuItem-root"
     }
   ],
+  "classes": {
+    "classes": ["disabled", "focusVisible"],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
   "muiName": "MuiMenuItem",
   "forwardsRefTo": "HTMLLIElement",

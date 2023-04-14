@@ -10,22 +10,22 @@ export interface BreadcrumbsSlots {
    * The component that renders the root.
    * @default 'nav'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the ol.
    * @default 'ol'
    */
-  ol: React.ElementType;
+  ol?: React.ElementType;
   /**
    * The component that renders the li.
    * @default 'li'
    */
-  li: React.ElementType;
+  li?: React.ElementType;
   /**
    * The component that renders the separator.
    * @default 'li'
    */
-  separator: React.ElementType;
+  separator?: React.ElementType;
 }
 
 export interface BreadcrumbsPropsSizeOverrides {}

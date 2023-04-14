@@ -108,6 +108,9 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     onClose,
     onKeyDown,
     open,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -199,6 +202,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) {
@@ -240,7 +244,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     ref: handleRef,
     className: classes.root,
     elementType: ModalRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -252,7 +256,7 @@ const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
     },
     className: classes.backdrop,
     elementType: ModalBackdrop,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -300,6 +304,11 @@ Modal.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -378,6 +387,22 @@ Modal.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

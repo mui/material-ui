@@ -48,6 +48,13 @@
       },
       "required": true
     },
+    "ref": {
+      "type": {
+        "name": "((instance: unknown) =&gt; void) | null",
+        "description": "((instance: unknown) =&gt; void) | null"
+      },
+      "required": true
+    },
     "setFocusVisible": {
       "type": {
         "name": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;",
