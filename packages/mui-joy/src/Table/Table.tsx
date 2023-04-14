@@ -31,12 +31,6 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
 };
 
 const tableSelector = {
-  getColumn(col: number | string) {
-    if (typeof col === 'number' && col < 0) {
-      return `& tr > *:nth-last-of-type(${Math.abs(col)})`;
-    }
-    return `& tr > *:nth-of-type(${col})`;
-  },
   /**
    * According to https://www.w3.org/TR/2014/REC-html5-20141028/tabular-data.html#the-tr-element,
    * `tr` can only have `td | th` as children, so using :first-of-type is better than :first-child to prevent emotion SSR warning
@@ -231,11 +225,17 @@ const TableRoot = styled('table', {
     },
     (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
       // insert border on the left of first column and right of the last column
-      [tableSelector.getColumn(1)]: {
+      '& tr > *:first-of-type': {
         borderLeftWidth: 1,
         borderLeftStyle: 'solid',
       },
-      [tableSelector.getColumn(-1)]: {
+      '& tr > th + td, & tr > td + th': {
+        borderLeftWidth: 0,
+      },
+      '& tr > th + th, & tr > td + td': {
+        borderRightWidth: 0,
+      },
+      '& tr > *:last-of-type': {
         borderRightWidth: 1,
         borderRightStyle: 'solid',
       },
