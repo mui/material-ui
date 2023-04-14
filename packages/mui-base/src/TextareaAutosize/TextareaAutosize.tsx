@@ -195,13 +195,24 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       if (inputRef.current) {
         syncHeightWithFlushSync();
       }
+    }, 0);
+    const handleResizeWindow = debounce(() => {
+      renders.current = 0;
+
+      // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
+      // ResizeObserver's handler that runs because of the change in the layout is trying to
+      // access a dom node that is no longer there (as the fallback component is being shown instead).
+      // See https://github.com/mui/material-ui/issues/32640
+      if (inputRef.current) {
+        syncHeightWithFlushSync();
+      }
     });
     let resizeObserver: ResizeObserver;
 
     const input = inputRef.current!;
     const containerWindow = ownerWindow(input);
 
-    containerWindow.addEventListener('resize', handleResize);
+    containerWindow.addEventListener('resize', handleResizeWindow);
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(handleResize);
@@ -210,7 +221,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     return () => {
       handleResize.clear();
-      containerWindow.removeEventListener('resize', handleResize);
+      handleResizeWindow.clear();
+      containerWindow.removeEventListener('resize', handleResizeWindow);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
