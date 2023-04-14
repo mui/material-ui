@@ -27,6 +27,14 @@
       "class": ".MuiButton-root"
     }
   ],
+  "classes": {
+    "classes": ["active", "disabled", "focusVisible"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
   "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",

@@ -308,7 +308,7 @@ export default function AppLayoutDocsFooter(props) {
       setCommentOpen(true);
     }
 
-    // Manualy move focus if commment is already open.
+    // Manually move focus if comment is already open.
     // If the comment is closed, onEntered will call focus itself;
     if (inputRef.current) {
       inputRef.current.focus();
@@ -357,7 +357,7 @@ export default function AppLayoutDocsFooter(props) {
         setCommentOpen(true);
         setCommentedSection(section);
 
-        // Manualy move focus if commment is already open.
+        // Manually move focus if comment is already open.
         // If the comment is closed, onEntered will call focus itself;
         if (inputRef.current) {
           inputRef.current.focus();

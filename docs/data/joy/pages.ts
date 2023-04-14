@@ -41,6 +41,7 @@ const pages = [
           { pathname: '/joy-ui/react-switch' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
+          { pathname: '/joy-ui/react-toggle-button', title: 'Toggle Button', comingSoon: true },
         ],
       },
       {
@@ -138,6 +139,10 @@ const pages = [
     title: 'How-to guides',
     icon: 'VisibilityIcon',
     children: [
+      {
+        pathname: '/joy-ui/guides/overriding-component-structure',
+        title: 'Overriding component structure',
+      },
       {
         pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
         title: 'Joy UI and Material UI together',

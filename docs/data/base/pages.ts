@@ -73,7 +73,7 @@ const pages = [
     ],
   },
   {
-    title: 'API',
+    title: 'APIs',
     pathname: '/base/api',
     icon: 'CodeIcon',
     children: pagesApi,
@@ -86,6 +86,10 @@ const pages = [
       {
         pathname: '/base/guides/working-with-tailwind-css',
         title: 'Working with Tailwind CSS',
+      },
+      {
+        pathname: '/base/guides/overriding-component-structure',
+        title: 'Overriding component structure',
       },
     ],
   },

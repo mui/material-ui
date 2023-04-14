@@ -35,7 +35,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * API:
  *
- * - [ButtonUnstyled API](https://mui.com/base/api/button-unstyled/)
+ * - [ButtonUnstyled API](https://mui.com/base/react-button/components-api/#button-unstyled)
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled(
   props: ButtonUnstyledProps,

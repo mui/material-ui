@@ -1,11 +1,135 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import clsx from 'clsx';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import useMenuItem from '@mui/base/useMenuItem';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { GlobalStyles } from '@mui/system';
-import clsx from 'clsx';
+
+const Menu = React.forwardRef(function Menu(props, ref) {
+  const { children, onOpenChange, open, ...other } = props;
+
+  const { contextValue, getListboxProps } = useMenu({
+    listboxRef: ref,
+    onOpenChange,
+    open,
+  });
+
+  return (
+    <ul className="menu-root" {...other} {...getListboxProps()}>
+      <MenuProvider value={contextValue}>{children}</MenuProvider>
+    </ul>
+  );
+});
+
+Menu.propTypes = {
+  children: PropTypes.node,
+  onOpenChange: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
+
+const MenuItem = React.forwardRef(function MenuItem(props, ref) {
+  const { children, onClick, ...other } = props;
+
+  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
+
+  const classes = {
+    'focus-visible': focusVisible,
+    'menu-item': true,
+    disabled,
+  };
+
+  return (
+    <li
+      className={clsx(classes)}
+      {...other}
+      {...getRootProps({ onClick: onClick ?? (() => {}) })}
+    >
+      {children}
+    </li>
+  );
+});
+
+MenuItem.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+};
+
+export default function UseMenu() {
+  const [buttonElement, setButtonElement] = React.useState(null);
+
+  const [isOpen, setOpen] = React.useState(false);
+  const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node) => {
+    setButtonElement(node);
+  }, []);
+
+  const handleOnClick = (event) => {
+    if (preventReopen.current) {
+      event.preventDefault();
+      preventReopen.current = false;
+      return;
+    }
+
+    setOpen((open) => !open);
+  };
+
+  const handleButtonMouseDown = () => {
+    if (isOpen) {
+      // Prevents the menu from reopening right after closing
+      // when clicking the button.
+      preventReopen.current = true;
+    }
+  };
+
+  const handleButtonKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setOpen(true);
+    }
+  };
+
+  const createHandleMenuClick = (menuItem) => {
+    return () => {
+      console.log(`Clicked on ${menuItem}`);
+      setOpen(false);
+      buttonElement?.focus();
+    };
+  };
+
+  return (
+    <React.Fragment>
+      <GlobalStyles styles={styles} />
+      <button
+        type="button"
+        className="button"
+        onClick={handleOnClick}
+        onMouseDown={handleButtonMouseDown}
+        onKeyDown={handleButtonKeyDown}
+        ref={updateAnchor}
+        aria-controls="hooks-menu"
+        aria-expanded={isOpen || undefined}
+        aria-haspopup="menu"
+      >
+        Commands
+      </button>
+      <PopperUnstyled open={isOpen} anchorEl={buttonElement}>
+        <Menu
+          onOpenChange={(open) => {
+            setOpen(open);
+          }}
+          open={isOpen}
+          id="hooks-menu"
+        >
+          <MenuItem onClick={createHandleMenuClick('Cut')}>Cut</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Copy')}>Copy</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Paste')}>Paste</MenuItem>
+        </Menu>
+      </PopperUnstyled>
+    </React.Fragment>
+  );
+}
 
 const grey = {
   50: '#f6f8fa',
@@ -135,110 +259,3 @@ const styles = `
     }
   }
 `;
-
-const Menu = React.forwardRef(function Menu(props, ref) {
-  const { children, onClose, open, ...other } = props;
-
-  const { contextValue, getListboxProps } = useMenu({
-    listboxRef: ref,
-    onClose,
-    open,
-  });
-
-  const menuContextValue = React.useMemo(
-    () => ({
-      ...contextValue,
-      open: true,
-    }),
-    [contextValue],
-  );
-
-  return (
-    <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        {children}
-      </MenuUnstyledContext.Provider>
-    </ul>
-  );
-});
-
-Menu.propTypes = {
-  children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-};
-
-const MenuItem = React.forwardRef(function MenuItem(props, ref) {
-  const { children, ...other } = props;
-
-  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
-
-  const classes = {
-    'focus-visible': focusVisible,
-    'menu-item': true,
-    disabled,
-  };
-
-  return (
-    <li className={clsx(classes)} {...other} {...getRootProps()}>
-      {children}
-    </li>
-  );
-});
-
-MenuItem.propTypes = {
-  children: PropTypes.node,
-};
-
-export default function UseMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const preventReopen = React.useRef(false);
-  const buttonRef = React.useRef(null);
-
-  const handleOnClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-
-  const handleOnClose = () => {
-    setAnchorEl(null);
-    buttonRef.current.focus();
-  };
-
-  const open = Boolean(anchorEl);
-
-  const handleButtonMouseDown = () => {
-    if (open) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  return (
-    <React.Fragment>
-      <GlobalStyles styles={styles} />
-      <button
-        type="button"
-        className="button"
-        onClick={handleOnClick}
-        onMouseDown={handleButtonMouseDown}
-        ref={buttonRef}
-      >
-        Commands
-      </button>
-      <PopperUnstyled open={open} anchorEl={anchorEl}>
-        <Menu onClose={handleOnClose} open={open}>
-          <MenuItem>Cut</MenuItem>
-          <MenuItem>Copy</MenuItem>
-          <MenuItem>Paste</MenuItem>
-        </Menu>
-      </PopperUnstyled>
-    </React.Fragment>
-  );
-}

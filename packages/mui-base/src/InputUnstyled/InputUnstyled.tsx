@@ -44,7 +44,7 @@ const useUtilityClasses = (ownerState: InputUnstyledOwnerState) => {
  *
  * API:
  *
- * - [InputUnstyled API](https://mui.com/base/api/input-unstyled/)
+ * - [InputUnstyled API](https://mui.com/base/react-input/components-api/#input-unstyled)
  */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,

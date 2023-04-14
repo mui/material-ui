@@ -7,7 +7,7 @@ import {
   createMount,
   createRenderer,
   fireEvent,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 
@@ -308,8 +308,8 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSupressed && 'MUI: Too many re-renders.',
-          !strictModeDoubleLoggingSupressed && 'MUI: Too many re-renders.',
+          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
+          !strictModeDoubleLoggingSuppressed && 'MUI: Too many re-renders.',
         ]);
       });
     });

@@ -3,6 +3,19 @@ import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled'
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
+export default function UnstyledButtonsDisabledFocusCustom() {
+  return (
+    <Stack spacing={2}>
+      <CustomButton slots={{ root: 'span' }} disabled>
+        focusableWhenDisabled = false
+      </CustomButton>
+      <CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
+        focusableWhenDisabled = true
+      </CustomButton>
+    </Stack>
+  );
+}
+
 const blue = {
   500: '#007FFF',
   600: '#0072E5',
@@ -39,16 +52,3 @@ const CustomButton = styled(ButtonUnstyled)`
     cursor: not-allowed;
   }
 `;
-
-export default function UnstyledButtonsDisabledFocusCustom() {
-  return (
-    <Stack spacing={2}>
-      <CustomButton slots={{ root: 'span' }} disabled>
-        focusableWhenDisabled = false
-      </CustomButton>
-      <CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
-        focusableWhenDisabled = true
-      </CustomButton>
-    </Stack>
-  );
-}

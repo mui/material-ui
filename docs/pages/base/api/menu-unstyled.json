@@ -8,8 +8,7 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
-    "onClose": { "type": { "name": "func" } },
+    "onOpenChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": {
@@ -39,6 +38,7 @@
       "class": ".MuiMenu-listbox"
     }
   ],
+  "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
   "spread": false,
   "muiName": "MuiMenu",
   "forwardsRefTo": "HTMLDivElement",

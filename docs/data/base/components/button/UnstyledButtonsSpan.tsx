@@ -2,6 +2,18 @@ import * as React from 'react';
 import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
+import { OverridableComponent } from '@mui/types';
+
+export default function UnstyledButtonsSpan() {
+  return (
+    <Stack spacing={2} direction="row">
+      <CustomButton slots={{ root: 'span' }}>Button</CustomButton>
+      <CustomButton slots={{ root: 'span' }} disabled>
+        Disabled
+      </CustomButton>
+    </Stack>
+  );
+}
 
 const blue = {
   500: '#007FFF',
@@ -38,15 +50,4 @@ const CustomButton = styled(ButtonUnstyled)`
     opacity: 0.5;
     cursor: not-allowed;
   }
-`;
-
-export default function UnstyledButtonsSpan() {
-  return (
-    <Stack spacing={2} direction="row">
-      <CustomButton slots={{ root: 'span' }}>Button</CustomButton>
-      <CustomButton slots={{ root: 'span' }} disabled>
-        Disabled
-      </CustomButton>
-    </Stack>
-  );
-}
+` as OverridableComponent<ButtonUnstyledTypeMap>;

@@ -10,6 +10,10 @@ githubLabel: 'component: badge'
 
 <p class="description">The Unstyled Badge component generates a small label that is attached to its child element.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 A badge is a small descriptor for UI elements.
@@ -18,8 +22,6 @@ It typically sits on or near an element and indicates the status of that element
 The Unstyled Badge component creates a badge that is applied to its child element.
 
 {{"demo": "UnstyledBadgeIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

@@ -104,13 +104,13 @@ export { DefaultTheme } from '@mui/private-theming';
 export {
   css,
   keyframes,
-  GlobalStyles,
-  GlobalStylesProps,
   StyledEngineProvider,
   Interpolation,
   CSSInterpolation,
   CSSObject,
 } from '@mui/styled-engine';
+export { default as GlobalStyles } from './GlobalStyles';
+export type { GlobalStylesProps } from './GlobalStyles';
 
 export * from './style';
 export * from './spacing';

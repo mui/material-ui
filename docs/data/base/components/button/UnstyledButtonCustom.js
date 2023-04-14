@@ -21,6 +21,14 @@ ButtonRoot.propTypes = {
   children: PropTypes.node,
 };
 
+const SvgButton = React.forwardRef(function SvgButton(props, ref) {
+  return <ButtonUnstyled {...props} slots={{ root: CustomButtonRoot }} ref={ref} />;
+});
+
+export default function UnstyledButtonCustom() {
+  return <SvgButton>Button</SvgButton>;
+}
+
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -106,11 +114,3 @@ const CustomButtonRoot = styled(ButtonRoot)(
     }
   }`,
 );
-
-const SvgButton = React.forwardRef(function SvgButton(props, ref) {
-  return <ButtonUnstyled {...props} slots={{ root: CustomButtonRoot }} ref={ref} />;
-});
-
-export default function UnstyledButtonCustom() {
-  return <SvgButton>Button</SvgButton>;
-}

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelect, useOption, SelectUnstyledContext } from '@mui/base';
+import clsx from 'clsx';
+import useSelect, { SelectProvider } from '@mui/base/useSelect';
+import useOption from '@mui/base/useOption';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import clsx from 'clsx';
 
 const blue = {
   100: '#DAECFF',
@@ -150,6 +151,7 @@ function CustomOption(props) {
   const { getRootProps, highlighted } = useOption({
     value,
     disabled,
+    label: children,
   });
 
   return (
@@ -178,7 +180,6 @@ function CustomSelect({ options, placeholder }) {
     listboxRef,
     onOpenChange: setListboxVisible,
     open: listboxVisible,
-    options,
   });
 
   React.useEffect(() => {
@@ -201,7 +202,7 @@ function CustomSelect({ options, placeholder }) {
         aria-hidden={!listboxVisible}
         className={listboxVisible ? '' : 'hidden'}
       >
-        <SelectUnstyledContext.Provider value={contextValue}>
+        <SelectProvider value={contextValue}>
           {options.map((option) => {
             return (
               <CustomOption key={option.value} value={option.value}>
@@ -209,7 +210,7 @@ function CustomSelect({ options, placeholder }) {
               </CustomOption>
             );
           })}
-        </SelectUnstyledContext.Provider>
+        </SelectProvider>
       </Listbox>
     </Root>
   );
@@ -219,7 +220,7 @@ CustomSelect.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       disabled: PropTypes.bool,
-      label: PropTypes.node,
+      label: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
     }),
   ).isRequired,

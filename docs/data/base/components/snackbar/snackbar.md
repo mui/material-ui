@@ -10,13 +10,15 @@ githubLabel: 'component: snackbar'
 
 <p class="description">The Unstyled Snackbar component informs users that an action has been or will be performed by the app.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 A snackbar provides users with a brief, temporary message about app processes without interrupting their activity or experience.
 
 The Unstyled Snackbar component is built to appear on-screen to inform users about an action that the app is taking.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

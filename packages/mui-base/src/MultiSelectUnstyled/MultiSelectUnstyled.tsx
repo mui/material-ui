@@ -4,7 +4,7 @@ const warn = () => {
   if (!warnedOnce) {
     console.error(
       [
-        'MUI Base: The MultiSelectUnstyled component was removed from the library.',
+        'Base UI: The MultiSelectUnstyled component was removed from the library.',
         '',
         'The multi-select functionality is now available in the SelectUnstyled component.',
         'Replace <MultiSelectUnstyled> with <SelectUnstyled multiple /> in your code to remove this error.',
