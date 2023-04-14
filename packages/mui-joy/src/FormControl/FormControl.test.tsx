@@ -28,6 +28,11 @@ describe('<FormControl />', () => {
     testComponentPropWith: 'fieldset',
     testVariantProps: { color: 'success' },
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('prop: color', () => {

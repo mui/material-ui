@@ -19,7 +19,7 @@ if (process.env.CIRCLECI) {
 
 const browserStack = {
   // |commits in PRs| >> |Merged commits|.
-  // Since we have limited ressources on BrowserStack we often time out on PRs.
+  // Since we have limited resources on BrowserStack we often time out on PRs.
   // However, BrowserStack rarely fails with a true-positive so we use it as a stop gap for release not merge.
   // But always enable it locally since people usually have to explicitly have to expose their BrowserStack access key anyway.
   enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
@@ -37,7 +37,7 @@ process.env.FIREFOX_BIN = playwright.firefox.executablePath();
 // Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
 const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
 // Estimate the max number of concurrent karma builds
-// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+// For each PR, 6 concurrent builds are used, only one is using BrowserStack.
 const AVERAGE_KARMA_BUILD = 1 / 6;
 // CircleCI accepts up to 83 concurrent builds.
 const MAX_CIRCLE_CI_CONCURRENCY = 83;

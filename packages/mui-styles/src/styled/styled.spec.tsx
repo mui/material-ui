@@ -93,14 +93,14 @@ function acceptanceTest() {
       fontFamily: theme.fontFamily,
     }),
   );
-  const StyledInferedPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
+  const StyledInferredPropsMyComponent = styled(MyComponent)(({ defaulted }) => ({
     content: defaulted,
   }));
   const renderedMyComponent = (
     <React.Fragment>
       <MyComponent className="test" />
       <StyledMyComponent theme={MyThemeInstance} />
-      <StyledInferedPropsMyComponent defaulted="Hi!" />
+      <StyledInferredPropsMyComponent defaulted="Hi!" />
     </React.Fragment>
   );
 }

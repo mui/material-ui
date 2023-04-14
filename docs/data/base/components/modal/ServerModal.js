@@ -2,27 +2,6 @@ import * as React from 'react';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { Box, styled } from '@mui/system';
 
-const StyledModal = styled(ModalUnstyled)`
-  position: fixed;
-  z-index: 1300;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  background: inherit;
-`;
-
-const style = {
-  position: 'relative',
-  width: 400,
-  border: '2px solid currentColor',
-  padding: '16px 32px 24px 32px',
-};
-
 export default function ServerModal() {
   const rootRef = React.useRef(null);
 
@@ -60,3 +39,24 @@ export default function ServerModal() {
     </Box>
   );
 }
+
+const StyledModal = styled(ModalUnstyled)`
+  position: fixed;
+  z-index: 1300;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: inherit;
+`;
+
+const style = {
+  position: 'relative',
+  width: 400,
+  border: '2px solid currentColor',
+  padding: '16px 32px 24px 32px',
+};

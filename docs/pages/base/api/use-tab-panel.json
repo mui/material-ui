@@ -1,9 +1,7 @@
 {
   "parameters": {
-    "value": {
-      "type": { "name": "number | string", "description": "number | string" },
-      "required": true
-    }
+    "id": { "type": { "name": "string", "description": "string" } },
+    "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
     "getRootProps": {

@@ -123,28 +123,32 @@ ProductIdentifier.propTypes = {
   versionSelector: PropTypes.element,
 };
 
+// To match scrollMarginBottom
+const browserUrlPreviewMarge = 120;
+
 function PersistScroll(props) {
   const { slot, children, enabled } = props;
   const rootRef = React.useRef();
 
   useEnhancedEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentElement : null;
-    const activeElement = parent.querySelector('.app-drawer-active');
+    const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
+    const activeDrawerLink = scrollContainer.querySelector('.app-drawer-active');
 
-    if (!enabled || !parent || !activeElement || !activeElement.scrollIntoView) {
+    if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
     }
 
-    parent.scrollTop = savedScrollTop[slot];
+    scrollContainer.scrollTop = savedScrollTop[slot];
 
-    const activeBox = activeElement.getBoundingClientRect();
+    const activeBox = activeDrawerLink.getBoundingClientRect();
 
-    if (activeBox.top < 0 || activeBox.top > window.innerHeight) {
-      parent.scrollTop += activeBox.top - 8 - 32;
+    if (activeBox.top < 0 || activeBox.bottom + browserUrlPreviewMarge > window.innerHeight) {
+      // Scroll the least possible from the initial render, e.g. server-side, scrollTop = 0.
+      activeDrawerLink.scrollIntoView({ block: 'nearest' });
     }
 
     return () => {
-      savedScrollTop[slot] = parent.scrollTop;
+      savedScrollTop[slot] = scrollContainer.scrollTop;
     };
   }, [enabled, slot]);
 
@@ -449,7 +453,7 @@ export default function AppNavDrawer(props) {
           )}
           {canonicalAs.startsWith('/base/') && (
             <ProductIdentifier
-              name="MUI Base"
+              name="Base UI"
               metadata="MUI Core"
               versionSelector={renderVersionSelector([
                 { text: `v${basePkgJson.version}`, current: true },

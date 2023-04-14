@@ -8,6 +8,7 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "endDecorator": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
@@ -20,6 +21,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, endDecorator?: elementType, input?: elementType, root?: elementType, startDecorator?: elementType, thumb?: elementType, track?: elementType }"
+      },
+      "default": "{}"
     },
     "startDecorator": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
     "sx": {
@@ -82,6 +97,31 @@
       "class": ".MuiSwitch-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "readOnly",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "JoySwitch",

@@ -87,6 +87,10 @@ const pages = [
         pathname: '/base/guides/working-with-tailwind-css',
         title: 'Working with Tailwind CSS',
       },
+      {
+        pathname: '/base/guides/overriding-component-structure',
+        title: 'Overriding component structure',
+      },
     ],
   },
 ];

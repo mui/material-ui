@@ -1,6 +1,6 @@
 ---
 title: An introduction to the MUI ecosystem
-description: MUI is more than just Material UI. Consider Joy UI, MUI Base, MUI X, and Toolpad for your next project.
+description: MUI is more than just Material UI. Consider Joy UI, Base UI, MUI X, and Toolpad for your next project.
 date: 2022-11-01T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
@@ -34,7 +34,7 @@ It grew out of Material UI, and that library's legacy lives on in the name of th
 
 But this repo contains much more than just Material UI these days.
 We've carefully deconstructed this library to expose its best parts as isolated open-source projects.
-More recent additions include Joy UI and MUI Base, as well as our in-house styling solution, MUI System.
+More recent additions include Joy UI and Base UI, as well as our in-house styling solution, MUI System.
 
 MUI Core is open-source, and we invite you to contribute wherever you see fit!
 
@@ -80,23 +80,23 @@ Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
 - Design systems that would benefit from less opinionated defaults when customizing.
 - Client-facing apps that need to look and feel distinctly like _your_ brand.
 
-### MUI Base
+### Base UI
 
-MUI Base is an open-source library of headless ("unstyled") React UI components and hooks.
+Base UI is an open-source library of headless ("unstyled") React UI components and hooks.
 These components were extracted from Material UI, and are now available as a standalone package.
 They feature the same robust engineering but without any default styling solution or theme.
 
-MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+Base UI includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
-Get started in the [MUI Base docs](/base/getting-started/overview/).
+Get started in the [Base UI docs](/base/getting-started/overview/).
 
 #### Key features
 
-- **Total control over styles:** Unlike Material UI and Joy UI, MUI Base doesn't ship with any default styles or styling solution.
+- **Total control over styles:** Unlike Material UI and Joy UI, Base UI doesn't ship with any default styles or styling solution.
   Write CSS however you'd prefer—vanilla, modules, styled-components—or integrate a styling library like Tailwind CSS or Emotion.
 - **Hooks for fully custom components:** When pre-built components aren't flexible enough, low-level hooks enable you to quickly add sophisticated functionality to your custom components.
-- **Accessibility:** MUI Base components are built with accessibility in mind. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
-- **The core of MUI Core:** MUI Base serves as the scaffold for Joy UI components, and future versions Material UI will also be built with MUI Base as the foundation.
+- **Accessibility:** Base UI components are built with accessibility in mind. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
+- **The core of MUI Core:** Base UI serves as the scaffold for Joy UI components, and future versions Material UI will also be built with Base UI as the foundation.
 
 #### Ideal use cases
 
@@ -106,7 +106,7 @@ Get started in the [MUI Base docs](/base/getting-started/overview/).
 
 ### MUI System
 
-MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and MUI Base.
+MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and Base UI.
 
 The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the `sx` prop.
 This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant `const` definitions with styled-components.
@@ -123,7 +123,7 @@ Get started in the [MUI System docs](/system/getting-started/overview/).
 
 #### Ideal use cases
 
-- Quickly prototyping custom styles in Material UI, Joy UI, or MUI Base.
+- Quickly prototyping custom styles in Material UI, Joy UI, or Base UI.
 - Creating one-off custom components.
 
 ## MUI X
@@ -148,7 +148,7 @@ It features an intuitive UI and corresponding API to display different views of 
 
 - **Data management:** Create, retrieve, update and delete your data with ease.
 - **Sophisticated data analysis:** Pin rows and columns, group and aggregate values, export your view of the data to other formats. MUI X's Data Grid is one of the most feature-rich grids available on the market today.
-- **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familar with Material UI—no new concepts to master along the way.
+- **Intuitive customization:** Customizing the Data Grid's styles and behaviors works just like you'd expect if you're familiar with Material UI—no new concepts to master along the way.
 - **Accessibility:** It's notoriously difficult to optimize a data grid's accessibility, which is precisely why we make it a top priority—we obsess over these details so you don't have to.
 
 #### Ideal use cases

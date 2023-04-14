@@ -63,6 +63,20 @@
       "class": null
     }
   ],
+  "classes": {
+    "classes": [
+      "adornedEnd",
+      "adornedStart",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "inputMultiline",
+      "inputTypeSearch",
+      "multiline"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
   "spread": true,
   "muiName": "MuiInput",
   "forwardsRefTo": "HTMLDivElement",

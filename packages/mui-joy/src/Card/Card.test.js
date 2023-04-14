@@ -19,6 +19,11 @@ describe('<Card />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Card />, { muiName: 'JoyCard', classes });
