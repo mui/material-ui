@@ -32,15 +32,18 @@ pnpm add @mui/base
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base components by replicating a button from Github's UI, using their [style guide](https://primer.style) as a reference.
+This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
-### Components & Hooks
+### Components and hooks
 
-Base UI provides a ButtonUnstyled component and a useButton hook, both of which can be used to build a button, each with its own [benefits and trade-offs](/base/getting-started/usage/#components-vs-hooks).
+Base UI provides an Unstyled Button component and a `useButton` hook.
+Both can be used to build a button, and each has its own benefits and trade-offs — see [Components vs. hooks](/base/getting-started/usage/#components-vs-hooks) for details.
 
-#### ButtonUnstyled Component
+The code snippets below demonstrate the basic implementation of each:
+
+#### Unstyled Button component
 
 ```tsx
 import * as React from 'react';
@@ -55,7 +58,7 @@ export default function App() {
 }
 ```
 
-#### useButton Hook
+#### useButton hook
 
 ```tsx
 import * as React from 'react';
@@ -77,11 +80,11 @@ export default function App() {
 }
 ```
 
-Base UI comes with no styles or styling solution, and looks like this out-of-the-box:
+Base UI comes with no styles or styling solution - here's what the Unstyled Button looks like out of the box:
 
 {{"demo": "BaseButton.js", "defaultCodeOpen": false}}
 
-You are free to integrate with any styling method of your choice to make fully customizable components for your application or library. Read more about customization strategies [here](/base/getting-started/customization/).
+You can use any styling method of your choice to make fully customizable components for your app. See [Customization](/base/getting-started/customization/) for more details on customization strategies.
 
 Here are some styling examples:
 
@@ -104,7 +107,7 @@ Pass a `className` prop and use it as a styling hook:
 <ButtonUnstyled className="btn">Create Repository</ButtonUnstyled>
 ```
 
-Base UI components like ButtonUnstyled come with a classes object (e.g. `buttonUnstyledClasses`) that provide class hooks for styling a particular state.
+Base UI components like the Unstyled Button come with a classes object (e.g. `buttonUnstyledClasses`) that provides class hooks for styling a particular state.
 
 ```css
 /* To style the disabled state: */
@@ -114,13 +117,13 @@ Base UI components like ButtonUnstyled come with a classes object (e.g. `buttonU
 }
 ```
 
-Here's a complete demo of using ButtonUnstyled and useButton with plain CSS:
+The demo below shows how to create the Primer button using plain CSS with Base UI's Unstyled Button and `useButton` hook:
 
 {{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
 ### Styling with Tailwind CSS
 
-After installing Tailwind, simply pass Tailwind's utility classes to `className`.
+After installing Tailwind CSS, its utility classes to `className`, as shown below:
 
 ```tsx
 <ButtonUnstyled className="bg-green-600 rounded-md py-1 px-4...">
@@ -128,7 +131,7 @@ After installing Tailwind, simply pass Tailwind's utility classes to `className`
 </ButtonUnstyled>
 ```
 
-Here's a complete demo of the same button styled with Tailwind instead:
+The demo below shows how to build the Primer button using Tailwind CSS:
 
 {{"demo": "BaseButtonTailwind.js", "hideToolbar": true}}
 
@@ -136,11 +139,13 @@ Here's a complete demo of the same button styled with Tailwind instead:
 
 [MUI System](/system/getting-started/overview/) is a small set of CSS utilties that provide a styled-components-like API for building out designs that adhere to a theme.
 
-MUI System's core utility is a [`styled` function](/system/styled/) that is equivalent to emotion's or styled-components' styled(). Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
+MUI System's core utility is a [`styled` function](/system/styled/) that's equivalent to the `styled()` function in emotion and styled-components.
+Interpolations or arguments that are functions called by `styled` receive the `theme` from an upper `ThemeProvider`.
 
 ```tsx
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
+import { styled } from '@mui/system';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 const theme = {
@@ -162,9 +167,12 @@ render(
 );
 ```
 
-Most of the demos and examples in the Base UI documentation are styled with MUI system in this way. You can inspect the `theme` object used on this site in your browser console, or explore the default structure [here](/material-ui/customization/default-theme/).
+Most of the demos in the Base UI docs are styled with MUI System in this way.
+You can inspect the `theme` object used on this site in your browser console, or explore the default structure in the Material UI [Default theme](/material-ui/customization/default-theme/) documentation.
 
-#### Styling ButtonUnstyled with MUI System
+The demos below show how to create the Primer button using MUI System:
+
+#### Unstyled Button with MUI System
 
 ```tsx
 import * as React from 'react';
@@ -187,7 +195,7 @@ export default function App() {
 }
 ```
 
-#### Styling useButton with MUI System
+#### useButton hook with MUI System
 
 ```tsx
 import * as React from 'react';
@@ -214,7 +222,7 @@ export default function App() {
 }
 ```
 
-#### Using the sx prop
+### Using the sx prop
 
 MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
 
@@ -237,8 +245,8 @@ export default function App() {
 }
 ```
 
-Here's a complete demo of styling ButtonUnstyled and useButton with MUI System:
+The demo below shows how to build the Primer button using MUI System along with the `sx` prop:
 
 {{"demo": "BaseButtonMuiSystem.js", "defaultCodeOpen": false}}
 
-Read more about working with MUI System and its utilities [here](/system/getting-started/usage/).
+Read the [MUI System Usage](/system/getting-started/usage/) doc for further details.
