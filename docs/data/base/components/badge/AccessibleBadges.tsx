@@ -3,6 +3,25 @@ import { styled } from '@mui/system';
 import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import MailIcon from '@mui/icons-material/Mail';
 
+function notificationsLabel(count: number) {
+  if (count === 0) {
+    return 'no notifications';
+  }
+  if (count > 99) {
+    return 'more than 99 notifications';
+  }
+  return `${count} notifications`;
+}
+
+export default function AccessibleBadges() {
+  return (
+    <div aria-label={notificationsLabel(100)}>
+      <StyledBadge badgeContent={100}>
+        <MailIcon />
+      </StyledBadge>
+    </div>
+  );
+}
 const blue = {
   500: '#007FFF',
 };
@@ -46,23 +65,3 @@ const StyledBadge = styled(BadgeUnstyled)(
   }
   `,
 );
-
-function notificationsLabel(count: number) {
-  if (count === 0) {
-    return 'no notifications';
-  }
-  if (count > 99) {
-    return 'more than 99 notifications';
-  }
-  return `${count} notifications`;
-}
-
-export default function AccessibleBadges() {
-  return (
-    <div aria-label={notificationsLabel(100)}>
-      <StyledBadge badgeContent={100}>
-        <MailIcon />
-      </StyledBadge>
-    </div>
-  );
-}

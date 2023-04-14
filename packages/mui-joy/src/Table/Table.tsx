@@ -10,6 +10,7 @@ import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
 import { TypographyInheritContext } from '../Typography/Typography';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TableOwnerState) => {
   const { size, variant, color, borderAxis, stickyHeader, noWrap, hoverRow } = ownerState;
@@ -296,6 +297,8 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     color: colorProp = 'neutral',
     stripe,
     stickyHeader = false,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -315,18 +318,19 @@ const Table = React.forwardRef(function Table(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: TableRoot,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
     <TypographyInheritContext.Provider value>
-      <TableRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </TableRoot>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
     </TypographyInheritContext.Provider>
   );
 }) as OverridableComponent<TableTypeMap>;
@@ -387,6 +391,20 @@ Table.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * Set the header sticky.
    *

@@ -10,7 +10,7 @@ githubLabel: 'component: Grid'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-The `Grid` component works well for a layout with known columns. The columns can be configured in multple breakpoints which you have to specify the column span of each child.
+The `Grid` component works well for a layout with known columns. The columns can be configured in multiple breakpoints which you have to specify the column span of each child.
 
 ## How it works
 

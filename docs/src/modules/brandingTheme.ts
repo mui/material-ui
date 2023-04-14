@@ -339,7 +339,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      * }
      *
      * -------------------------------------------------------------------------------------------------
-     * 💡 This util should be used in an array if the styles contain psuedo classes or nested selectors:
+     * 💡 This util should be used in an array if the styles contain pseudo classes or nested selectors:
      *
      * ❌ There is a chance that the upper selectors could be overridden
      * {

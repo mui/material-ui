@@ -293,7 +293,7 @@ describe('Joy <Select />', () => {
       expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('combobox')).to.have.attribute('aria-expanded', 'false');
@@ -612,11 +612,11 @@ describe('Joy <Select />', () => {
 
   it('should show dropdown if the children of the select button is clicked', () => {
     const { getByTestId, getByRole } = render(
-      <Select defaultValue="1">
-        <Option value="1">
-          <span data-testid="test-element" />
-          Eric
-        </Option>
+      <Select
+        defaultValue="1"
+        renderValue={(option) => <span data-testid="test-element">{option?.label}</span>}
+      >
+        <Option value="1">Eric</Option>
       </Select>,
     );
     // Fire Click of the avatar

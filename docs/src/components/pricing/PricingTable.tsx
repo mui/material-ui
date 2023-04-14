@@ -374,9 +374,9 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
+      label="Base UI"
       tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
@@ -616,7 +616,7 @@ const no = <IconImage name="no" title="Not included" />;
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -675,7 +675,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -734,7 +734,7 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -1049,7 +1049,7 @@ export default function PricingTable({
       {divider}
       {renderRow('Joy UI')}
       {divider}
-      {renderRow('MUI Base')}
+      {renderRow('Base UI')}
       {divider}
       {renderRow('MUI System')}
       <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>

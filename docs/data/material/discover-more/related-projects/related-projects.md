@@ -42,11 +42,11 @@ Feel free to submit a pull request!
 
 ### One-Time Password
 
-- [mui-otp-input](https://viclafouch.github.io/mui-otp-input): A One-Time Password input designed for use with Material UI.
+- [mui-otp-input](https://viclafouch.github.io/mui-otp-input/): A One-Time Password input designed for use with Material UI.
 
 ### File
 
-- [mui-file-input](https://viclafouch.github.io/mui-file-input): A file input designed for use with Material UI.
+- [mui-file-input](https://viclafouch.github.io/mui-file-input/): A file input designed for use with Material UI.
 
 ### Color picker
 

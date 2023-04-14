@@ -1,7 +1,12 @@
 {
   "parameters": {
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "label": {
+      "type": { "name": "string | React.ReactNode", "description": "string | React.ReactNode" },
+      "required": true
+    },
     "value": { "type": { "name": "Value", "description": "Value" }, "required": true },
+    "id": { "type": { "name": "string", "description": "string" } },
     "optionRef": {
       "type": {
         "name": "React.Ref&lt;HTMLElement&gt;",
@@ -19,6 +24,13 @@
     },
     "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "ref": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLElement&gt;",
+        "description": "React.RefCallback&lt;HTMLElement&gt;"
+      },
+      "required": true
+    },
     "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useOption",
