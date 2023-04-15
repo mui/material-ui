@@ -21,7 +21,7 @@ export interface SelectOptionDefinition<Value> {
 
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
   /**
-   * If `true`, the select will be initially open.
+   * If `true`, the select will be open by default.
    * @default false
    */
   defaultOpen?: boolean;
@@ -39,7 +39,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   buttonRef?: React.Ref<Element>;
   /**
-   * `id` attribute of the listbox element.
+   * The `id` attribute of the listbox element.
    */
   listboxId?: string;
   /**
@@ -47,7 +47,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    */
   listboxRef?: React.Ref<Element>;
   /**
-   * If `true`, selecting multiple values is allowed.
+   * If `true`, the end user can select multiple values.
    * This affects the type of the `value`, `defaultValue`, and `onChange` props.
    *
    * @default false
@@ -77,7 +77,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
   onOpenChange?: (open: boolean) => void;
   /**
    * Controls the open state of the select's listbox.
-   * This is the controlled equivaled of the `defaultOpen` prop.
+   * This is the controlled equivalent of the `defaultOpen` prop.
    */
   open?: boolean;
   /**
@@ -87,8 +87,8 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
   options?: SelectOptionDefinition<OptionValue>[];
   /**
    * A function used to convert the option label to a string.
-   * It's useful when labels are elements and need to be converted to plain text
-   * to enable navigation using character keys on a keyboard.
+   * This is useful when labels are elements and need to be converted to plain text
+   * to enable keyboard navigation with character keys.
    *
    * @default defaultOptionStringifier
    */
