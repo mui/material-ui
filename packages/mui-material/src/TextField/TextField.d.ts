@@ -111,10 +111,10 @@ export interface BaseTextFieldProps
   name?: string;
   onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
-    /**
+  /**
    * @ignore
    */
-     onClick?: InputBaseProps['onClick'];
+  onClick?: InputBaseProps['onClick'];
   /**
    * The short hint displayed in the `input` before the user enters a value.
    */
