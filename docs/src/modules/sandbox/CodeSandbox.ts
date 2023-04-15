@@ -1,11 +1,15 @@
 // @ts-ignore
 import LZString from 'lz-string';
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
-import SandboxDependencies from './Dependencies';
+import SandboxDependencies, { Demo } from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+import PackagesConfig from './PackageConfig';
 
-function compress(object: any) {
+
+type Files = Record<string, object>
+
+function compress(object: { files: Files }) {
   return LZString.compressToBase64(JSON.stringify(object))
     .replace(/\+/g, '-') // Convert '+' to '-'
     .replace(/\//g, '_') // Convert '/' to '_'
@@ -31,19 +35,11 @@ function openSandbox({ files, codeVariant, initialFile = '/App' }: any) {
   form.submit();
   document.body.removeChild(form);
 }
-
-const createReactApp = (demo: {
-  title: string;
-  language: string;
-  raw: string;
-  codeVariant: 'TS' | 'JS';
-  githubLocation: string;
-  product?: 'joy-ui' | 'base';
-}) => {
+const createReactApp = (demo: Demo) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
 
-  const files: Record<string, object> = {
+  const files: Files = {
     'public/index.html': {
       content: CRA.getHtml(demo),
     },
@@ -64,11 +60,13 @@ const createReactApp = (demo: {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
   });
 
+
   files['package.json'] = {
     content: {
       description,
       dependencies,
       devDependencies,
+      ...PackagesConfig(demo),
       ...(demo.codeVariant === 'TS' && {
         main: 'index.tsx',
         scripts: {

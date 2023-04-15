@@ -92,7 +92,7 @@ export default function StyledComponents() {
 }
 ```
 
-{{"demo": "StyledComponents.js"}}
+{{"demo": "StyledComponents.js", "styleEngine" : "styled-components}}
 
 ### Higher-order component API
 

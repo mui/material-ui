@@ -329,7 +329,7 @@ Se você tentar estilizar o Slider, você provavelmente gostaria de afetar algun
 
 Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além dos estilos customizados no slider em si.
 
-{{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true}}
+{{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true, "styleEngine" : "styled-components"}}
 
 The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
 
@@ -384,7 +384,7 @@ const CustomizedSlider = styled(Slider)(
 );
 ```
 
-{{"demo": "StyledComponentsTheme.js"}}
+{{"demo": "StyledComponentsTheme.js", "styleEngine" : "styled-components"}}
 
 ### Portais
 
@@ -407,7 +407,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 `;
 ```
 
-{{"demo": "StyledComponentsPortal.js"}}
+{{"demo": "StyledComponentsPortal.js", "styleEngine" : "styled-components"}}
 
 ## Módulos CSS
 

@@ -7,12 +7,22 @@ type RegExpMatchArrayWithGroupsOnly<T> = {
 };
 type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGroupsOnly<T>) | null;
 
+export type StyleEngine = 'styled-components' | 'emotion'
+
+export interface Demo {
+  title: string;
+  language: string;
+  raw: string;
+  codeVariant: keyof typeof CODE_VARIANTS
+  githubLocation: string;
+  product?: 'joy-ui' | 'base';
+  styleEngine?: StyleEngine
+}
+
+
+
 export default function SandboxDependencies(
-  demo: {
-    raw: string;
-    product?: 'joy-ui' | 'base';
-    codeVariant: keyof typeof CODE_VARIANTS;
-  },
+  demo: Pick<Demo, 'codeVariant' | 'styleEngine' | 'raw' | 'product'>,
   options?: { commitRef?: string },
 ) {
   const { commitRef } = options || {};
@@ -60,17 +70,34 @@ export default function SandboxDependencies(
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
   }
 
+
+
+  function mapDependencyVersion(deps: string[], versions: Record<string, string>) {
+    return deps.reduce<Record<string, string>>((acc, dep) => {
+      if (versions[dep]) {
+        acc[dep] = versions[dep];
+      }
+      return acc;
+    }, {})
+  }
+
   function extractDependencies(raw: string) {
     function includePeerDependencies(
       deps: Record<string, string>,
       versions: Record<string, string>,
     ): Record<string, string> {
+
+      const config: { [key in StyleEngine]: string[] } = {
+        "styled-components": ["styled-components", "@mui/styled-engine-sc"],
+        'emotion': ['@emotion/react', '@emotion/styled']
+      }
+
+
       let newDeps: Record<string, string> = {
         ...deps,
         'react-dom': versions['react-dom'],
         react: versions.react,
-        '@emotion/react': versions['@emotion/react'],
-        '@emotion/styled': versions['@emotion/styled'],
+        ...mapDependencyVersion(config[demo.styleEngine || 'emotion'], versions),
       };
 
       if (newDeps['@mui/lab'] || newDeps['@mui/icons-material']) {
@@ -89,11 +116,14 @@ export default function SandboxDependencies(
       return newDeps;
     }
     let deps: Record<string, string> = {};
+
     let versions: Record<string, string> = {
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      'styled-components': 'latest',
+      '@mui/styled-engine-sc': 'latest',
       '@mui/material': getMuiPackageVersion('material'),
       '@mui/icons-material': getMuiPackageVersion('icons-material'),
       '@mui/lab': getMuiPackageVersion('lab'),

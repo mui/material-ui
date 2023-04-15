@@ -326,7 +326,8 @@ export default function StyledComponents() {
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
-{{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true}}
+{{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true, "styleEngine" : "styled-components"}}
+
 
 The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `componentsProps` API.
 
@@ -381,7 +382,7 @@ const CustomizedSlider = styled(Slider)(
 );
 ```
 
-{{"demo": "StyledComponentsTheme.js"}}
+{{"demo": "StyledComponentsTheme.js", "styleEngine" : "styled-components"}}
 
 ### Portals（传送门组件）
 
@@ -404,7 +405,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 `;
 ```
 
-{{"demo": "StyledComponentsPortal.js"}}
+{{"demo": "StyledComponentsPortal.js", "styleEngine" : "styled-components"}}
 
 ## CSS Modules
 

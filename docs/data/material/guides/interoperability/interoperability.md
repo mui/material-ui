@@ -332,7 +332,7 @@ In MUI, all child elements have an increased specificity of 2: `.parent .child {
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true}}
+{{"demo": "StyledComponentsDeep.js", "defaultCodeOpen": true, "styleEngine" : "styled-components"}}
 
 The above demo relies on the [default `className` values](/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
@@ -392,7 +392,7 @@ const CustomizedSlider = styled(Slider)(
 );
 ```
 
-{{"demo": "StyledComponentsTheme.js"}}
+{{"demo": "StyledComponentsTheme.js", "styleEngine" : "styled-components"}}
 
 ### Portals
 
@@ -418,7 +418,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 `;
 ```
 
-{{"demo": "StyledComponentsPortal.js"}}
+{{"demo": "StyledComponentsPortal.js", "styleEngine" : "styled-components"}}
 
 ## CSS Modules
 

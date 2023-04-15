@@ -1,17 +1,11 @@
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import SandboxDependencies from './Dependencies';
+import SandboxDependencies, { Demo } from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+// import PackagesConfig from './PackageConfig';
 
-const createReactApp = (demo: {
-  title: string;
-  language: string;
-  raw: string;
-  codeVariant: 'TS' | 'JS';
-  githubLocation: string;
-  product?: 'joy-ui' | 'base';
-}) => {
+const createReactApp = (demo: Demo) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
 
@@ -41,22 +35,29 @@ const createReactApp = (demo: {
       const form = document.createElement('form');
       form.method = 'POST';
       form.target = '_blank';
-      form.action = `https://stackblitz.com/run?file=${initialFile}${
-        initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension
-      }`;
+      form.action = `https://stackblitz.com/run?file=${initialFile}${initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension
+        }`;
       addHiddenInput(form, 'project[template]', 'create-react-app');
       addHiddenInput(form, 'project[title]', title);
       addHiddenInput(form, 'project[description]', `# ${title}\n${description}`);
       addHiddenInput(form, 'project[dependencies]', JSON.stringify(dependencies));
       addHiddenInput(form, 'project[devDependencies]', JSON.stringify(devDependencies));
-      Object.keys(files).forEach((key) => {
-        const value = files[key];
+
+      // //FIXME : This is not providing the alias property to package.json- Pending fix
+      // Object.entries(PackagesConfig(demo)).forEach(([key, value]) => {
+      //   addHiddenInput(form, `project[${key}]`, JSON.stringify(value || {}));
+      // });
+
+      Object.entries(files).forEach(([key, value]) => {
         addHiddenInput(form, `project[files][${key}]`, value);
       });
+
+
       document.body.appendChild(form);
       form.submit();
       document.body.removeChild(form);
     },
+
   };
 };
 

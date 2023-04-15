@@ -137,7 +137,7 @@ function useToolbar(controlRefs, options = {}) {
       if (process.env.NODE_ENV !== 'production') {
         console.error(
           'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
-            'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
+          'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
     }
@@ -149,7 +149,7 @@ function useToolbar(controlRefs, options = {}) {
       if (findControlIndex(event.target) === -1) {
         console.error(
           'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
-            'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
+          'Make sure you have attached `getControlProps(index)` to every focusable element within this toolbar.',
         );
       }
     };
@@ -481,7 +481,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
+                  onClick={() => codeSandbox.createReactApp({ ...(demoOptions ?? {}), ...(demoData ?? {}) }).openSandbox('/demo')}
                   {...getControlProps(3)}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
@@ -495,7 +495,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
+                  onClick={() => stackBlitz.createReactApp({ ...(demoOptions ?? {}), ...(demoData ?? {}) }).openSandbox('demo')}
                   {...getControlProps(4)}
                 >
                   <SvgIcon viewBox="0 0 19 28">
