@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, describeConformance } from 'test/utils';
 import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
@@ -151,6 +152,20 @@ describe('<TextField />', () => {
       );
 
       expect(getByTestId('InputComponent')).not.to.equal(null);
+    });
+  });
+
+  describe('prop: disabled', () => {
+    it('should not run click event when disabled', () => {
+      const handleClick = spy();
+      render(<TextField disabled onClick={handleClick} />);
+      expect(handleClick.callCount).to.equal(0);
+    });
+
+    it('should not run click event disabled and onClick prop is set through InputProps', () => {
+      const handleClick = spy();
+      render(<TextField disabled InputProps={{ onClick: handleClick }} />);
+      expect(handleClick.callCount).to.equal(0);
     });
   });
 
