@@ -9336,10 +9336,10 @@ ignore@^5.0.4, ignore@^5.1.4, ignore@^5.1.8, ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
 
-imask@^6.4.3:
-  version "6.4.3"
-  resolved "https://registry.yarnpkg.com/imask/-/imask-6.4.3.tgz#b81b247043807995e048f559e98930c2fec8004a"
-  integrity sha512-aH2GHemGkr3cbRBfhogHMIx05eUxdHrZNlKTTLmz8VxpSopuHHJ8+85FsDlBVQqxPlDLhZuwj4lpHHWbLOdBSw==
+imask@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.5.1.tgz#3a6d7821abebe55461527a36c498a167a1472626"
+  integrity sha512-kw7Qtck2D/qb6TPsVFo0bzdQMf0YRzt/di12MpzDFuG724rrA7ULwa4XWxHWuaGQUNhOSkJgI1jNqoZGa4yYow==
 
 immediate@~3.0.5:
   version "3.0.6"
@@ -13810,13 +13810,13 @@ react-final-form@^6.5.9:
   dependencies:
     "@babel/runtime" "^7.15.4"
 
-react-imask@^6.4.3:
-  version "6.4.3"
-  resolved "https://registry.yarnpkg.com/react-imask/-/react-imask-6.4.3.tgz#845de954e03e98179a23b92722ed3661cbd11037"
-  integrity sha512-5WyCbubQErO8Wr/zLDyUyC1zCqQXP979QXW6BNirUGsM1VxFmVG0nNfXA1PSXlgdbaXWBiBj+VJBvg/8BDzieA==
+react-imask@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/react-imask/-/react-imask-6.5.1.tgz#b6c8619b4c564b5a4c0dce43e43a7d383b650cde"
+  integrity sha512-LS94u0BXNmiuUUbIHC9KSsjbrret708VlyN5PXYT5JqGpOm6tiRPG4+slcboTmnZFsnZLKqdtJ66g7jM3sEt3Q==
   dependencies:
-    imask "^6.4.3"
-    prop-types "^15.7.2"
+    imask "^6.5.1"
+    prop-types "^15.8.1"
 
 react-intersection-observer@^9.4.3:
   version "9.4.3"
