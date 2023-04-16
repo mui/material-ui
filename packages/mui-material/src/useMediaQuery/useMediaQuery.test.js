@@ -197,7 +197,10 @@ describe('useMediaQuery', () => {
           );
         }
 
-        const { hydrate } = renderToString(<Test />);
+        const { hydrate } = renderToString(<Test />, {
+          // https://github.com/facebook/react/issues/26095
+          strict: false,
+        });
         hydrate();
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(2);
