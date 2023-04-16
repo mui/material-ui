@@ -228,11 +228,11 @@
     "**/@types/react-is": "^17.0.3",
     "**/cross-fetch": "^3.1.5",
     "**/react-is": "^18.2.0",
-    "react": "18.3.0-next-ee8509801-20230117",
-    "scheduler": "0.24.0-next-ee8509801-20230117",
-    "react-is": "18.3.0-next-ee8509801-20230117",
-    "react-test-renderer": "18.3.0-next-ee8509801-20230117",
-    "react-dom": "18.3.0-next-ee8509801-20230117"
+    "react": "18.3.0-next-39a3b72c6-20230414",
+    "scheduler": "0.24.0-next-39a3b72c6-20230414",
+    "react-is": "18.3.0-next-39a3b72c6-20230414",
+    "react-test-renderer": "18.3.0-next-39a3b72c6-20230414",
+    "react-dom": "18.3.0-next-39a3b72c6-20230414"
   },
   "nyc": {
     "include": [
