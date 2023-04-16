@@ -19,42 +19,42 @@ export interface SliderSlots {
    * The component that renders the root.
    * @default 'span'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the track.
    * @default 'span'
    */
-  track: React.ElementType;
+  track?: React.ElementType;
   /**
    * The component that renders the rail.
    * @default 'span'
    */
-  rail: React.ElementType;
+  rail?: React.ElementType;
   /**
    * The component that renders the thumb.
    * @default 'span'
    */
-  thumb: React.ElementType;
+  thumb?: React.ElementType;
   /**
    * The component that renders the mark.
    * @default 'span'
    */
-  mark: React.ElementType;
+  mark?: React.ElementType;
   /**
    * The component that renders the mark label.
    * @default 'span'
    */
-  markLabel: React.ElementType;
+  markLabel?: React.ElementType;
   /**
    * The component that renders the value label.
    * @default 'span'
    */
-  valueLabel: React.ElementType;
+  valueLabel?: React.ElementType;
   /**
    * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
 }
 
 export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -77,10 +77,9 @@ export interface SliderPropsSizeOverrides {}
 
 export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
   props: P &
-    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> &
-    SliderSlotsAndSlotProps & {
+    Omit<SliderUnstyledOwnProps, 'slots' | 'slotProps'> & {
       /**
-       * Override or extend the Class name applied to the component.
+       * Override or extend the styles applied to the component.
        */
       classes?: Partial<SliderUnstyledClasses>;
       /**
@@ -112,7 +111,7 @@ export type SliderTypeMap<D extends React.ElementType = 'span', P = {}> = {
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
-    };
+    } & SliderSlotsAndSlotProps;
   defaultComponent: D;
 };
 

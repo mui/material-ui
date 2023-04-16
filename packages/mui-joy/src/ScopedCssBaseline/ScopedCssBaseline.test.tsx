@@ -16,5 +16,10 @@ describe('<ScopedCssBaseline />', () => {
     testComponentPropWith: 'span',
     testVariantProps: { disableColorScheme: true },
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 });

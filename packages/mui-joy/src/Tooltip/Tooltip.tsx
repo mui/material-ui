@@ -18,12 +18,6 @@ import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { getTooltipUtilityClass } from './tooltipClasses';
 import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
-// Create a function to prevent typescript-to-proptypes from generating `slots` and `slotProps` proptypes.
-const excludeSlotsAndSlotProps = <T extends { slots?: any; slotProps?: any }>(props: T) => {
-  const { slots, slotProps, ...otherProps } = props;
-  return otherProps;
-};
-
 const useUtilityClasses = (ownerState: TooltipOwnerState) => {
   const { arrow, variant, color, size, placement, touch } = ownerState;
 
@@ -223,6 +217,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const {
     children,
     className,
+    component,
     arrow = false,
     describeChild = false,
     disableFocusListener = false,
@@ -248,6 +243,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     color: colorProp = 'neutral',
     variant = 'solid',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -505,7 +502,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const childrenProps = {
     ...nameOrDescProps,
-    ...excludeSlotsAndSlotProps(other),
+    ...other,
+    component,
     ...children.props,
     className: clsx(className, children.props.className),
     onTouchStart: detectTouchStart,
@@ -564,6 +562,30 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const modifiers = React.useMemo(
+    () => [
+      {
+        name: 'arrow',
+        enabled: Boolean(arrowRef),
+        options: {
+          element: arrowRef,
+          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
+          // make the arrow looks nice with the Tooltip's border radius
+          padding: 6,
+        },
+      },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+      ...(modifiersProp || []),
+    ],
+    [arrowRef, modifiersProp],
+  );
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -587,51 +609,34 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       disablePortal,
       keepMounted,
       direction,
+      modifiers,
       ...interactiveWrapperListeners,
     },
     ref: null,
     className: classes.root,
-    elementType: PopperUnstyled,
-    externalForwardedProps: other,
+    elementType: TooltipRoot,
+    externalForwardedProps,
     ownerState,
-    internalForwardedProps: {
-      component: TooltipRoot,
-    },
   });
 
   const [SlotArrow, arrowProps] = useSlot('arrow', {
     ref: setArrowRef,
     className: classes.arrow,
     elementType: TooltipArrow,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
-  const modifiers = React.useMemo(
-    () => [
-      {
-        name: 'arrow',
-        enabled: Boolean(arrowRef),
-        options: {
-          element: arrowRef,
-          // https://popper.js.org/docs/v2/modifiers/arrow/#padding
-          // make the arrow looks nice with the Tooltip's border radius
-          padding: 6,
-        },
-      },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 10],
-        },
-      },
-      ...(rootProps.modifiers || []),
-    ],
-    [arrowRef, rootProps.modifiers],
-  );
-
   const result = (
-    <SlotRoot {...rootProps} modifiers={modifiers}>
+    <SlotRoot
+      {...rootProps}
+      {...(!props.slots?.root && {
+        as: PopperUnstyled,
+        slots: {
+          root: component || 'div',
+        },
+      })}
+    >
       {title}
       {arrow ? <SlotArrow {...arrowProps} /> : null}
     </SlotRoot>
@@ -673,6 +678,11 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -825,6 +835,22 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    arrow: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
