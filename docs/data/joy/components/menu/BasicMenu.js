@@ -8,7 +8,9 @@ export default function BasicMenu() {
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    if (!anchorEl) {
+      setAnchorEl(event.currentTarget);
+    }
   };
 
   const handleClose = () => {

@@ -159,7 +159,7 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 0}
-          onOpen={() => setMenuIndex(0)}
+          onOpen={() => (menuIndex === 0 ? null : setMenuIndex(0))}
           onKeyDown={createHandleButtonKeyDown(0)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -203,7 +203,7 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 1}
-          onOpen={() => setMenuIndex(1)}
+          onOpen={() => (menuIndex === 1 ? null : setMenuIndex(1))}
           onKeyDown={createHandleButtonKeyDown(1)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
@@ -243,7 +243,7 @@ export default function MenuToolbarExample() {
       <ListItem>
         <MenuButton
           open={menuIndex === 2}
-          onOpen={() => setMenuIndex(2)}
+          onOpen={() => (menuIndex === 2 ? null : setMenuIndex(2))}
           onKeyDown={createHandleButtonKeyDown(2)}
           onMouseEnter={() => {
             if (typeof menuIndex === 'number') {
