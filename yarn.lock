@@ -3337,13 +3337,13 @@
   resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.5.tgz#9768264221e8fd422e4989c8cfdab2ff781f4eb6"
   integrity sha512-JJwEeFy8Sl9ctiugU4h4DGN9hCB47oyhUkM2H8g8xZr4tHTEXtmV4U6krKrU8Ng0S7RlG/J7fkta1rGu3pq+YQ==
 
-"@types/enzyme@^3.10.12":
-  version "3.10.12"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.12.tgz#ac4494801b38188935580642f772ad18f72c132f"
-  integrity sha512-xryQlOEIe1TduDWAOphR0ihfebKFSWOXpIsk+70JskCfRfW+xALdnJ0r1ZOTo85F9Qsjk6vtlU7edTYHbls9tA==
+"@types/enzyme@^3.10.13":
+  version "3.10.13"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.13.tgz#332c0ed59b01f7b1c398c532a1c21a5feefabeb1"
+  integrity sha512-FCtoUhmFsud0Yx9fmZk179GkdZ4U9B0GFte64/Md+W/agx0L5SxsIIbhLBOxIb9y2UfBA4WQnaG1Od/UsUQs9Q==
   dependencies:
     "@types/cheerio" "*"
-    "@types/react" "*"
+    "@types/react" "^16"
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
@@ -3645,7 +3645,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16", "@types/react@^18.0.26":
+"@types/react@*", "@types/react@>=16", "@types/react@^16", "@types/react@^18.0.26":
   version "18.0.26"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.26.tgz#8ad59fc01fef8eaf5c74f4ea392621749f0b7917"
   integrity sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==
