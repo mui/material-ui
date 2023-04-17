@@ -4,7 +4,7 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
@@ -72,7 +72,7 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ * - inherits [Popper API](https://mui.com/base/api/popper-unstyled/)
  */
 const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({
@@ -186,7 +186,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     <MenuRoot
       {...rootProps}
       {...(!props.slots?.root && {
-        as: PopperUnstyled,
+        as: Popper,
         slots: {
           root: component || 'ul',
         },
