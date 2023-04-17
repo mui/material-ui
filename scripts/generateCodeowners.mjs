@@ -335,7 +335,7 @@ function run() {
   write(processComponents('material'));
   write(processDocs('material'));
 
-  write('\n# Components - MUI Base\n');
+  write('\n# Components - Base UI\n');
   write(processComponents('base'));
   write(processDocs('base'));
 

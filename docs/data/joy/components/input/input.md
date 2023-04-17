@@ -11,7 +11,7 @@ unstyled: /base/react-input/
 
 ## Introduction
 
-The Input component enhances the functionality of the native HTML `<input>` tag by providing expanded customization options and accessibilty features.
+The Input component enhances the functionality of the native HTML `<input>` tag by providing expanded customization options and accessibility features.
 
 {{"demo": "InputUsage.js", "hideToolbar": true, "bg": "gradient"}}
 

@@ -6,6 +6,21 @@ import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
 
+export default function UnstyledTabsCustomized() {
+  return (
+    <TabsUnstyled defaultValue={1}>
+      <TabsList>
+        <Tab value={1}>One</Tab>
+        <Tab value={2}>Two</Tab>
+        <Tab value={3}>Three</Tab>
+      </TabsList>
+      <TabPanel value={1}>First page</TabPanel>
+      <TabPanel value={2}>Second page</TabPanel>
+      <TabPanel value={3}>Third page</TabPanel>
+    </TabsUnstyled>
+  );
+}
+
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -86,18 +101,3 @@ const TabsList = styled(TabsListUnstyled)(
   box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
-
-export default function UnstyledTabsCustomized() {
-  return (
-    <TabsUnstyled defaultValue={0}>
-      <TabsList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-        <Tab>Three</Tab>
-      </TabsList>
-      <TabPanel value={0}>First page</TabPanel>
-      <TabPanel value={1}>Second page</TabPanel>
-      <TabPanel value={2}>Third page</TabPanel>
-    </TabsUnstyled>
-  );
-}

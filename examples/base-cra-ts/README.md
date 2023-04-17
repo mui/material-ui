@@ -1,6 +1,6 @@
-# MUI Base - Create React App example with TypeScript
+# Base UI - Create React App example with TypeScript
 
-[MUI Base](https://mui.com/base/getting-started/overview/) is a library of unstyled React UI components which includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+[Base UI](https://mui.com/base/getting-started/overview/) is a library of unstyled React UI components which includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
 ## How to use
 

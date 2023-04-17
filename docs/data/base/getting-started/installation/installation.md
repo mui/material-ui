@@ -1,8 +1,8 @@
 # Installation
 
-<p class="description">Install MUI Base, a library of headless ("unstyled") React UI components and low-level hooks.</p>
+<p class="description">Install Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
-Run one of the following commands to add MUI Base to your project:
+Run one of the following commands to add Base UI to your project:
 
 ## npm
 

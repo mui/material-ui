@@ -20,7 +20,7 @@ Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%
 
 - **更快交付：** Joy UI 给了您大量你开发网页应用所需的预定义组件， 圆润而细致的外观感，让你能够在没有设计师的情况下取得很好的结果。
 - **深度自定义：** 你可以自定义 Joy UI 每一个小块组件，使得它们符合你的设计风格。
-- **可访问性：** Joy UI 是建立在 [MUI Base  的无样式基础组件和低级钩子上](/base/getting-started/overview/)的一套新组件，并给予您开箱即用的一些辅助功能支持。 我们尽最大努力使所有组件对屏幕阅读器友好，同时文档中也提供了无障碍访问的建议。
+- **可访问性：** Joy UI 是建立在 [Base UI  的无样式基础组件和低级钩子上](/base/getting-started/overview/)的一套新组件，并给予您开箱即用的一些辅助功能支持。 我们尽最大努力使所有组件对屏幕阅读器友好，同时文档中也提供了无障碍访问的建议。
 
 ## Joy UI 与 Material UI 对比
 

@@ -28,7 +28,7 @@ describe('Joy <Menu />', () => {
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     skip: [
-      'rootClass', // portal, can't determin the root
+      'rootClass', // portal, can't determine the root
       'classesRoot',
       'componentProp',
       'componentsProp',
@@ -50,6 +50,11 @@ describe('Joy <Menu />', () => {
       portalSlot: 'root',
     },
   );
+
+  it('should render with `ul` by default', () => {
+    render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+    expect(screen.getByTestId('popover')).to.have.tagName('ul');
+  });
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();

@@ -4,6 +4,33 @@ import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
+export default function KeepMountedModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <button type="button" onClick={handleOpen}>
+        Open modal
+      </button>
+      <Modal
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+        open={open}
+        onClose={handleClose}
+        slots={{ backdrop: Backdrop }}
+        keepMounted
+      >
+        <Box sx={style}>
+          <h2 id="keep-mounted-modal-title">Text in a modal</h2>
+          <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
 const BackdropUnstyled = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
@@ -52,30 +79,3 @@ const style = (theme) => ({
   border: '2px solid currentColor',
   padding: '16px 32px 24px 32px',
 });
-
-export default function ModalUnstyledDemo() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        Open modal
-      </button>
-      <Modal
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-        open={open}
-        onClose={handleClose}
-        slots={{ backdrop: Backdrop }}
-        keepMounted
-      >
-        <Box sx={style}>
-          <h2 id="keep-mounted-modal-title">Text in a modal</h2>
-          <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
-        </Box>
-      </Modal>
-    </div>
-  );
-}

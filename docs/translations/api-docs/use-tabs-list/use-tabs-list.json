@@ -1,11 +1,13 @@
 {
   "hookDescription": "",
-  "parametersDescriptions": { "children": "The content of the component." },
+  "parametersDescriptions": { "ref": "Ref to the root element." },
   "returnValueDescriptions": {
+    "contextValue": "The value to be passed to the TabListProvider above all the tabs.",
+    "dispatch": "Action dispatcher for the tabs list component.\nAllows to programmatically control the tabs list.",
     "getRootProps": "Resolver for the root slot's props.",
+    "highlightedValue": "The value of the currently highlighted tab.",
     "isRtl": "If <code>true</code>, it will indicate that the text's direction in right-to-left.",
     "orientation": "The component orientation (layout flow direction).",
-    "processChildren": "Callback for processing the children of the tabs list. It adds the necessary attributes for correct a11y and navigation.",
-    "value": "The value of the currently selected <code>Tab</code>."
+    "selectedValue": "The value of the currently selected tab."
   }
 }

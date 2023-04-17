@@ -17,6 +17,11 @@ describe('Joy <ListDivider />', () => {
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { inset: 'gutter' },
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('should have role separator', () => {

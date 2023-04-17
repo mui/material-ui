@@ -11,12 +11,12 @@ export interface ModalSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the backdrop.
    * @default 'div'
    */
-  backdrop: React.ElementType;
+  backdrop?: React.ElementType;
 }
 
 export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -29,7 +29,6 @@ export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    ModalSlotsAndSlotProps &
     Pick<
       ModalUnstyledOwnProps,
       | 'children'
@@ -58,7 +57,7 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
-    };
+    } & ModalSlotsAndSlotProps;
   defaultComponent: D;
 }
 

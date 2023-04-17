@@ -15,7 +15,7 @@ To customize a specific component in the theme, specify the component identifier
 - Use `styleOverrides` to apply styles to each component slots.
   - Every Joy UI component contains the `root` slot.
 
-Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
+Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
