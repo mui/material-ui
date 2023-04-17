@@ -582,11 +582,15 @@ export default async function generateComponentApi(
               }
 
               definitions.forEach((definition) => {
-                if (definition.value?.callee) {
-                  const definitionName = definition.value.callee.name;
+                // definition.value.expression is defined when the source is in TypeScript.
+                const expression = definition.value.expression
+                  ? definition.get('expression')
+                  : definition;
+                if (expression.value?.callee) {
+                  const definitionName = expression.value.callee.name;
 
                   if (definitionName === `create${name}`) {
-                    node = definition;
+                    node = expression;
                   }
                 }
               });

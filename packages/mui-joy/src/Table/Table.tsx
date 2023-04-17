@@ -31,17 +31,12 @@ const useUtilityClasses = (ownerState: TableOwnerState) => {
 };
 
 const tableSelector = {
-  getColumn(col: number | string) {
-    if (typeof col === 'number' && col < 0) {
-      return `& tr > *:nth-last-child(${Math.abs(col)})`;
-    }
-    return `& tr > *:nth-child(${col})`;
-  },
   /**
-   * Except first column
+   * According to https://www.w3.org/TR/2014/REC-html5-20141028/tabular-data.html#the-tr-element,
+   * `tr` can only have `td | th` as children, so using :first-of-type is better than :first-child to prevent emotion SSR warning
    */
   getColumnExceptFirst() {
-    return '& tr > *:not(:first-child)';
+    return '& tr > *:not(:first-of-type), & tr > th + td, & tr > td + th';
   },
   /**
    * Every cell in the table
@@ -62,13 +57,13 @@ const tableSelector = {
     return '& thead th';
   },
   getHeaderCellOfRow(row: number | string) {
-    return `& thead tr:nth-child(${row}) th`;
+    return `& thead tr:nth-of-type(${row}) th`;
   },
   getBottomHeaderCell() {
     return '& thead th:not([colspan])';
   },
   getHeaderNestedFirstColumn() {
-    return '& thead tr:not(:first-of-type) th:not([colspan]):first-child';
+    return '& thead tr:not(:first-of-type) th:not([colspan]):first-of-type';
   },
   /**
    * The body cell that contains data
@@ -77,27 +72,27 @@ const tableSelector = {
     return '& td';
   },
   getDataCellExceptLastRow() {
-    return '& tr:not(:last-child) > td';
+    return '& tr:not(:last-of-type) > td';
   },
   /**
    * The body cell either `td` or `th`
    */
   getBodyCellExceptLastRow() {
-    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-child) > th[scope="row"]`;
+    return `${this.getDataCellExceptLastRow()}, & tr:not(:last-of-type) > th[scope="row"]`;
   },
   getBodyCellOfRow(row: number | string) {
     if (typeof row === 'number' && row < 0) {
-      return `& tbody tr:nth-last-child(${Math.abs(row)}) td, & tbody tr:nth-last-child(${Math.abs(
+      return `& tbody tr:nth-last-of-type(${Math.abs(
         row,
-      )}) th[scope="row"]`;
+      )}) td, & tbody tr:nth-last-of-type(${Math.abs(row)}) th[scope="row"]`;
     }
-    return `& tbody tr:nth-child(${row}) td, & tbody tr:nth-child(${row}) th[scope="row"]`;
+    return `& tbody tr:nth-of-type(${row}) td, & tbody tr:nth-of-type(${row}) th[scope="row"]`;
   },
   getBodyRow(row?: number | string) {
     if (row === undefined) {
       return `& tbody tr`;
     }
-    return `& tbody tr:nth-child(${row})`;
+    return `& tbody tr:nth-of-type(${row})`;
   },
   getFooterCell() {
     return '& tfoot th, & tfoot td';
@@ -169,20 +164,20 @@ const TableRoot = styled('table', {
       [tableSelector.getHeaderCell()]: {
         verticalAlign: 'bottom',
         // Automatic radius adjustment with Sheet
-        '&:first-child': {
+        '&:first-of-type': {
           borderTopLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
-        '&:last-child': {
+        '&:last-of-type': {
           borderTopRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
       '& tfoot tr > *': {
         backgroundColor: `var(--TableCell-footBackground, ${theme.vars.palette.background.level1})`,
         // Automatic radius adjustment with Sheet
-        '&:first-child': {
+        '&:first-of-type': {
           borderBottomLeftRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
-        '&:last-child': {
+        '&:last-of-type': {
           borderBottomRightRadius: 'var(--TableCell-cornerRadius, var(--unstable_actionRadius))',
         },
       },
@@ -230,11 +225,11 @@ const TableRoot = styled('table', {
     },
     (ownerState.borderAxis === 'y' || ownerState.borderAxis === 'both') && {
       // insert border on the left of first column and right of the last column
-      [tableSelector.getColumn(1)]: {
+      '& tr > *:first-of-type': {
         borderLeftWidth: 1,
         borderLeftStyle: 'solid',
       },
-      [tableSelector.getColumn(-1)]: {
+      '& tr > *:last-of-type:not(:first-of-type)': {
         borderRightWidth: 1,
         borderRightStyle: 'solid',
       },
