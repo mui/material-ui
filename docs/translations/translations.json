@@ -285,6 +285,8 @@
     "/base/react-tabs/hooks-api/#use-tabs": "useTabs",
     "/base/react-tabs/hooks-api/#use-tabs-list": "useTabsList",
     "/base/guides": "How-to guides",
+    "/base/guides/framework-setup": "Framework setup",
+    "/base/guides/vite": "Vite",
     "/base/guides/working-with-tailwind-css": "Working with Tailwind CSS",
     "/base/guides/overriding-component-structure": "Overriding component structure",
     "/material-ui/getting-started": "Getting started",

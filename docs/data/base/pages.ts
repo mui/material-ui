@@ -85,6 +85,11 @@ const pages = [
     icon: standardNavIcons.VisibilityIcon,
     children: [
       {
+        pathname: '/base/guides/framework-setup',
+        subheader: '/base/guides/framework-setup',
+        children: [{ pathname: '/base/guides/vite', title: 'Vite' }],
+      },
+      {
         pathname: '/base/guides/working-with-tailwind-css',
         title: 'Working with Tailwind CSS',
       },
