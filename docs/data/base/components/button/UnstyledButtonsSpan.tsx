@@ -1,8 +1,11 @@
 import * as React from 'react';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import ButtonUnstyled, {
+  buttonUnstyledClasses,
+  ButtonUnstyledTypeMap,
+} from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsSpan() {
   return (

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
+import { PolymorphicProps } from '../utils/OverridableComponent';
 
 export interface ButtonUnstyledActions {
   focusVisible(): void;
@@ -43,8 +44,17 @@ export interface ButtonUnstyledSlots {
   root?: React.ElementType;
 }
 
-export type ButtonUnstyledProps = ButtonUnstyledOwnProps &
-  React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonUnstyledProps<
+  RootComponent extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
+> = PolymorphicProps<ButtonUnstyledTypeMap<{}, RootComponent>, RootComponent>;
+
+export interface ButtonUnstyledTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'button',
+> {
+  props: AdditionalProps & ButtonUnstyledOwnProps;
+  defaultComponent: DefaultComponent;
+}
 
 export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
   active: boolean;

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '../utils/OverridableComponent';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
   ButtonUnstyledProps,
   ButtonUnstyledOwnProps,
+  ButtonUnstyledTypeMap,
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
 import useButton from '../useButton';
@@ -37,10 +39,9 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  *
  * - [ButtonUnstyled API](https://mui.com/base/react-button/components-api/#button-unstyled)
  */
-const ButtonUnstyled = React.forwardRef(function ButtonUnstyled(
-  props: ButtonUnstyledProps,
-  forwardedRef: React.ForwardedRef<any>,
-) {
+const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
+  BaseComponentType extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
+>(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const {
     action,
     children,
@@ -100,7 +101,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled(
   });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OverridableComponent<ButtonUnstyledTypeMap>;
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -139,31 +140,7 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
   /**
    * The props used for each slot inside the Button.
    * @default {}
