@@ -51,9 +51,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 export default function App() {
   return (
-    <div>
-      <ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>
-    </div>
+    <ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>
   );
 }
 ```
@@ -67,11 +65,9 @@ import useButton from '@mui/base/useButton';
 export default function App() {
   const { getRootProps } = useButton();
   return (
-    <div>
-      <button type="button" {...getRootProps()}>
-        useButton
-      </button>
-    </div>
+    <button type="button" {...getRootProps()}>
+      useButton
+    </button>
   );
 }
 ```

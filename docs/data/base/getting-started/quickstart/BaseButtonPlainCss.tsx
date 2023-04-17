@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import useButton from '@mui/base/useButton';
 import Stack from '@mui/material/Stack';
 
@@ -61,17 +61,17 @@ const css = `
     transition: none;
   }
 
-  .github-button:hover:not([disabled]) {
+  .github-button:hover:not(.${buttonUnstyledClasses.disabled}) {
     color: var(--btn-text);
     background-color: var(--btn-hover);
   }
 
-  .github-button:active:not([disabled]) {
+  .github-button:active:not(.${buttonUnstyledClasses.disabled}) {
     background-color: var(--btn-active-bg);
     box-shadow: var(--btn-active-box-shadow);
   }
 
-  .github-button[disabled] {
+  .github-button.${buttonUnstyledClasses.disabled} {
     cursor: not-allowed;
     box-shadow: none;
     color: var(--btn-disabled);
