@@ -33,6 +33,7 @@ pnpm add @mui/base
 ## Implementing a Button
 
 This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style) as a reference.
+Base UI components help you abstract away low-level UI implementation details such as accessibility patterns, cross-browser compatibility, event handling etc while remaining unopinionated about styling, giving you complete control over your app's CSS.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
