@@ -150,7 +150,7 @@
     "fs-extra": "^10.1.0",
     "globby": "^13.1.4",
     "google-auth-library": "^8.7.0",
-    "html-webpack-plugin": "^5.5.0",
+    "html-webpack-plugin": "^5.5.1",
     "jsdom": "^21.1.1",
     "karma": "^6.4.1",
     "karma-browserstack-launcher": "~1.6.0",
