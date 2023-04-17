@@ -9,6 +9,7 @@ import BaseUISummary from 'docs/src/components/productBaseUI/BaseUISummary';
 import BaseUIComponents from 'docs/src/components/productBaseUI/BaseUIComponents';
 import BaseUICustomization from 'docs/src/components/productBaseUI/BaseUICustomization';
 import BaseUIEnd from 'docs/src/components/productBaseUI/BaseUIEnd';
+import BaseUITestimonial from 'docs/src/components/productBaseUI/BaseUITestimonial';
 
 export default function Core() {
   return (
@@ -25,6 +26,7 @@ export default function Core() {
         <BaseUISummary />
         <BaseUIComponents />
         <BaseUICustomization />
+        <BaseUITestimonial />
         <BaseUIEnd />
       </main>
       <AppFooter />

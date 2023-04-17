@@ -61,8 +61,9 @@ export default function BaseUISummary() {
                   borderLeft: '1px solid',
                   borderBottom: '1px solid',
                   borderColor: 'divider',
-                  backgroundImage:
-                    'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), url(/static/branding/background-pattern.svg), linear-gradient(45deg, rgba(194 224 255 / 0.4), #fff, rgba(240 247 255 / 0.7))',
+                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
+                    (theme.vars || theme).palette.patterns.triangle
+                  }`,
                   '&:hover': {
                     borderColor: 'primary.500',
                     boxShadow:
@@ -70,8 +71,6 @@ export default function BaseUISummary() {
                   },
                   ...theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
-                    backgroundImage:
-                      'linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), url(/static/branding/background-pattern-dark.svg), linear-gradient(45deg, rgba(0 76 153 / 0.6), rgba(11 13 14 / 0.6), rgba(0 58 117 / 0.6))',
                     '&:hover': {
                       borderColor: 'primary.500',
                       boxShadow:

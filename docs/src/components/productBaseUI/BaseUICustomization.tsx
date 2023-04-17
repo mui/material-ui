@@ -254,14 +254,22 @@ export default function BaseUICustomization() {
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
-              sx={{
+              sx={(theme) => ({
                 bgcolor: 'background.paper',
                 overflow: 'auto',
                 flexGrow: 1,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-              }}
+                backgroundImage: `${(theme.vars || theme).palette.gradients.lightGrayRadio}, ${
+                  (theme.vars || theme).palette.patterns.triangle
+                }`,
+                ...theme.applyDarkStyles({
+                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
+                    (theme.vars || theme).palette.patterns.triangle
+                  }`,
+                }),
+              })}
             >
               <SwitchUnstyled
                 slots={{
@@ -270,7 +278,7 @@ export default function BaseUICustomization() {
                   thumb: StyledSwitchThumb,
                 }}
               />
-              <SwitchFromHook />
+              <SwitchFromHook defaultChecked />
             </Frame.Demo>
             <Frame.Info
               ref={infoRef}

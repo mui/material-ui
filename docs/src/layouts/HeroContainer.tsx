@@ -41,7 +41,7 @@ export default function HeroContainer({
               id="hero-container-right-area"
               aria-hidden="true"
               sx={[
-                {
+                (theme) => ({
                   bgcolor: 'grey.50',
                   minWidth: '50vw',
                   minHeight: 500,
@@ -55,16 +55,18 @@ export default function HeroContainer({
                     borderLeft: '1px solid',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
-                    backgroundImage:
-                      'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), url(/static/branding/background-pattern.svg), linear-gradient(315deg, rgba(194 224 255 / 0.4), #fff, rgba(240 247 255 / 0.7))',
+                    backgroundImage: `linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), ${
+                      (theme.vars || theme).palette.patterns.triangle
+                    }, linear-gradient(315deg, rgba(194 224 255 / 0.4), #fff, rgba(240 247 255 / 0.7))`,
                   }),
-                },
+                }),
                 (theme) =>
                   theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
                     ...(enablePattern && {
-                      backgroundImage:
-                        'linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), url(/static/branding/background-pattern-dark.svg), linear-gradient(315deg, rgba(0 76 153 / 0.6), rgba(11 13 14 / 0.6), rgba(0 58 117 / 0.6))',
+                      backgroundImage: `linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), ${
+                        (theme.vars || theme).palette.patterns.triangle
+                      }, linear-gradient(315deg, rgba(0 76 153 / 0.6), rgba(11 13 14 / 0.6), rgba(0 58 117 / 0.6))`,
                     }),
                   }),
                 ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
