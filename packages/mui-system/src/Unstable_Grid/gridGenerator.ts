@@ -20,29 +20,29 @@ function appendLevel(level: number | undefined) {
 }
 
 function isNestedContainer(ownerState: Props['ownerState']) {
-  return ownerState.level > 0 && ownerState.container;
+  return ownerState.unstable_level > 0 && ownerState.container;
 }
 
 function createGetSelfSpacing(ownerState: Props['ownerState']) {
   return function getSelfSpacing(axis: 'row' | 'column') {
-    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.level)})`;
+    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level)})`;
   };
 }
 
 function createGetParentSpacing(ownerState: Props['ownerState']) {
   return function getParentSpacing(axis: 'row' | 'column') {
-    if (ownerState.level === 0) {
+    if (ownerState.unstable_level === 0) {
       return `var(--Grid-${axis}Spacing)`;
     }
-    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.level - 1)})`;
+    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level - 1)})`;
   };
 }
 
 function getParentColumns(ownerState: Props['ownerState']) {
-  if (ownerState.level === 0) {
+  if (ownerState.unstable_level === 0) {
     return `var(--Grid-columns)`;
   }
-  return `var(--Grid-columns${appendLevel(ownerState.level - 1)})`;
+  return `var(--Grid-columns${appendLevel(ownerState.unstable_level - 1)})`;
 }
 
 export const filterBreakpointKeys = (breakpointsKeys: Breakpoint[], responsiveKeys: string[]) =>
@@ -166,10 +166,10 @@ export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
     return {};
   }
   const styles = isNestedContainer(ownerState)
-    ? { [`--Grid-columns${appendLevel(ownerState.level)}`]: getParentColumns(ownerState) }
+    ? { [`--Grid-columns${appendLevel(ownerState.unstable_level)}`]: getParentColumns(ownerState) }
     : { '--Grid-columns': 12 };
   traverseBreakpoints<number>(theme.breakpoints, ownerState.columns, (appendStyle, value) => {
-    appendStyle(styles, { [`--Grid-columns${appendLevel(ownerState.level)}`]: value });
+    appendStyle(styles, { [`--Grid-columns${appendLevel(ownerState.unstable_level)}`]: value });
   });
   return styles;
 };
@@ -183,7 +183,7 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     ? {
         // Set the default spacing as its parent spacing.
         // It will be overridden if spacing props are provided
-        [`--Grid-rowSpacing${appendLevel(ownerState.level)}`]: getParentSpacing('row'),
+        [`--Grid-rowSpacing${appendLevel(ownerState.unstable_level)}`]: getParentSpacing('row'),
       }
     : {};
   traverseBreakpoints<number | string>(
@@ -191,7 +191,7 @@ export const generateGridRowSpacingStyles = ({ theme, ownerState }: Props) => {
     ownerState.rowSpacing,
     (appendStyle, value) => {
       appendStyle(styles, {
-        [`--Grid-rowSpacing${appendLevel(ownerState.level)}`]:
+        [`--Grid-rowSpacing${appendLevel(ownerState.unstable_level)}`]:
           typeof value === 'string' ? value : theme.spacing?.(value),
       });
     },
@@ -208,7 +208,8 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     ? {
         // Set the default spacing as its parent spacing.
         // It will be overridden if spacing props are provided
-        [`--Grid-columnSpacing${appendLevel(ownerState.level)}`]: getParentSpacing('column'),
+        [`--Grid-columnSpacing${appendLevel(ownerState.unstable_level)}`]:
+          getParentSpacing('column'),
       }
     : {};
   traverseBreakpoints<number | string>(
@@ -216,7 +217,7 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     ownerState.columnSpacing,
     (appendStyle, value) => {
       appendStyle(styles, {
-        [`--Grid-columnSpacing${appendLevel(ownerState.level)}`]:
+        [`--Grid-columnSpacing${appendLevel(ownerState.unstable_level)}`]:
           typeof value === 'string' ? value : theme.spacing?.(value),
       });
     },
