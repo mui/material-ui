@@ -27,11 +27,13 @@ export default function StressNestedGrid2() {
           <Paper>xs=6</Paper>
         </Grid>
         <Box sx={{ p: 2, width: '100%' }}>
+          {/* This grid should start as a new root grid (doesn't inherit spacing from the top) */}
           <Grid container spacing={3}>
             <Grid xs={6}>
               <Paper>xs=6</Paper>
             </Grid>
-            <Grid container spacing={2} xs={6}>
+            <Grid container xs={6}>
+              {/* nested spacing can be override by the explicit `spacing` prop */}
               <Grid container spacing={1} xs={6}>
                 <Grid xs={7}>
                   <Paper>xs=7</Paper>
@@ -62,7 +64,9 @@ export default function StressNestedGrid2() {
             <Paper>xs=4</Paper>
           </Grid>
         </Grid>
-        <Grid container xs={6} spacing={2}>
+
+        {/* The grids below should inherit spacing from the top */}
+        <Grid container xs={6}>
           <Grid xs={4}>
             <Paper>xs=4</Paper>
           </Grid>
@@ -73,7 +77,7 @@ export default function StressNestedGrid2() {
             <Paper>xs=4</Paper>
           </Grid>
         </Grid>
-        <Grid container xs={6} spacing={5}>
+        <Grid container xs={6}>
           <Grid xs={6}>
             <Paper>xs=6</Paper>
           </Grid>
