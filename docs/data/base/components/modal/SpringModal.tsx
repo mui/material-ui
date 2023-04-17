@@ -4,6 +4,35 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
 import { useSpring, animated } from '@react-spring/web';
 
+export default function SpringModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <Button onClick={handleOpen}>Open modal</Button>
+      <Modal
+        aria-labelledby="spring-modal-title"
+        aria-describedby="spring-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <h2 id="spring-modal-title">Text in a modal</h2>
+            <span id="spring-modal-description" style={{ marginTop: 16 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </span>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
+  );
+}
+
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
   { children: React.ReactElement; open: boolean }
@@ -78,32 +107,3 @@ const style = (theme: Theme) => ({
   boxShadow: 24,
   padding: '16px 32px 24px 32px',
 });
-
-export default function SpringModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <h2 id="spring-modal-title">Text in a modal</h2>
-            <span id="spring-modal-description" style={{ marginTop: 16 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </span>
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-  );
-}

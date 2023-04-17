@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
@@ -86,24 +86,34 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     modifiers: modifiersProp,
     variant = 'outlined',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const { contextValue, getListboxProps, highlightFirstItem, highlightLastItem } = useMenu({
+  const handleOpenChange = React.useCallback(
+    (isOpen: boolean) => {
+      if (!isOpen) {
+        onClose?.();
+      }
+    },
+    [onClose],
+  );
+
+  const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
-    onClose,
+    onOpenChange: handleOpenChange,
     listboxId: id,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {
@@ -118,6 +128,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const modifiers = React.useMemo(
     () => [
@@ -135,7 +146,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const rootProps = useSlotProps({
     elementType: MenuRoot,
     getSlotProps: getListboxProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     externalSlotProps: {},
     ownerState: ownerState as MenuOwnerState & ListOwnerState,
     additionalProps: {
@@ -149,14 +160,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     className: classes.root,
   });
 
-  const menuContextValue: MenuUnstyledContextType = React.useMemo(
-    () => ({
-      ...contextValue,
-      open,
-    }),
-    [contextValue, open],
-  );
-
   const result = (
     <MenuRoot
       {...rootProps}
@@ -167,16 +170,18 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
         },
       })}
     >
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        <ListProvider nested>
-          {disablePortal ? (
-            children
-          ) : (
-            // For portal popup, the children should not inherit color inversion from the upper parent.
-            <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
-          )}
-        </ListProvider>
-      </MenuUnstyledContext.Provider>
+      <MenuProvider value={contextValue}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>
+            {disablePortal ? (
+              children
+            ) : (
+              // For portal popup, the children should not inherit color inversion from the upper parent.
+              <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
+            )}
+          </ListProvider>
+        </GroupListContext.Provider>
+      </MenuProvider>
     </MenuRoot>
   );
 
@@ -288,8 +293,15 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
    */
   slots: PropTypes.shape({
     root: PropTypes.elementType,

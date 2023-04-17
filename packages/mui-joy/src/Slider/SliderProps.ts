@@ -19,42 +19,42 @@ export interface SliderSlots {
    * The component that renders the root.
    * @default 'span'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the track.
    * @default 'span'
    */
-  track: React.ElementType;
+  track?: React.ElementType;
   /**
    * The component that renders the rail.
    * @default 'span'
    */
-  rail: React.ElementType;
+  rail?: React.ElementType;
   /**
    * The component that renders the thumb.
    * @default 'span'
    */
-  thumb: React.ElementType;
+  thumb?: React.ElementType;
   /**
    * The component that renders the mark.
    * @default 'span'
    */
-  mark: React.ElementType;
+  mark?: React.ElementType;
   /**
    * The component that renders the mark label.
    * @default 'span'
    */
-  markLabel: React.ElementType;
+  markLabel?: React.ElementType;
   /**
    * The component that renders the value label.
    * @default 'span'
    */
-  valueLabel: React.ElementType;
+  valueLabel?: React.ElementType;
   /**
    * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
 }
 
 export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
