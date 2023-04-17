@@ -142,6 +142,7 @@ export interface GridBaseProps extends Breakpoints {
    */
   disableEqualOverflow?: boolean;
   /**
+   * @internal
    * The level of the grid starts from `0`
    * and increases when the grid nests inside another grid regardless of container or item.
    *
@@ -162,7 +163,7 @@ export interface GridBaseProps extends Breakpoints {
    *       <Grid> // level 1
    * ```
    */
-  level?: number;
+  unstable_level?: number;
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
@@ -183,7 +184,7 @@ export interface GridBaseProps extends Breakpoints {
 }
 
 export interface GridOwnerState extends GridBaseProps {
-  level: number;
+  unstable_level: number;
   gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
   gridOffset: Partial<Record<Breakpoint, GridSize>>;
 }

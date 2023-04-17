@@ -106,7 +106,7 @@ export default function createGrid(
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
       disableEqualOverflow: themeDisableEqualOverflow,
-      level = 0,
+      unstable_level: level = 0,
       ...rest
     } = props;
     // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
@@ -164,7 +164,7 @@ export default function createGrid(
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
             return React.cloneElement(child, {
-              level: child.props.level ?? level + 1,
+              unstable_level: child.props.unstable_level ?? level + 1,
             } as GridProps);
           }
           return child;
