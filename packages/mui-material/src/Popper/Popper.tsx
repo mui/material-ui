@@ -1,11 +1,11 @@
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import BasePopper, { PopperProps as BasePopperProps } from '@mui/base/Popper';
 import { Direction, SxProps, useThemeWithoutDefault as useTheme } from '@mui/system';
 import { HTMLElementType, refType } from '@mui/utils';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { styled, Theme, useThemeProps } from '../styles';
 
-export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
+export type PopperProps = Omit<BasePopperProps, 'direction'> & {
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
@@ -18,14 +18,14 @@ export type PopperProps = Omit<PopperUnstyledProps, 'direction'> & {
    * The props used for each slot inside the Popper.
    * @default {}
    */
-  componentsProps?: PopperUnstyledProps['slotProps'];
+  componentsProps?: BasePopperProps['slotProps'];
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 };
 
-const PopperRoot = styled(PopperUnstyled, {
+const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

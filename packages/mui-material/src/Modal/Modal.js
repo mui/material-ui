@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import BaseModal, { modalClasses as baseModalClasses } from '@mui/base/Modal';
 import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
-export const modalClasses = modalUnstyledClasses;
+export const modalClasses = baseModalClasses;
 
 const ModalRoot = styled('div', {
   name: 'MuiModal',
@@ -108,7 +108,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
 
   return (
-    <ModalUnstyled
+    <BaseModal
       slots={{
         root: RootSlot,
         backdrop: BackdropSlot,
@@ -137,7 +137,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       {...commonProps}
     >
       {children}
-    </ModalUnstyled>
+    </BaseModal>
   );
 });
 
