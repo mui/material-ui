@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTabsContext } from '../TabsUnstyled';
+import { useTabsContext } from '../Tabs';
 import {
   TabsListActionTypes,
   UseTabsListParameters,

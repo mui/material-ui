@@ -1,5 +1,5 @@
 import { unstable_useId as useId } from '@mui/utils';
-import { useTabsContext } from '../TabsUnstyled';
+import { useTabsContext } from '../Tabs';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
 
