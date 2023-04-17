@@ -18,7 +18,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
   inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
-    <StyledInputRoot {...getRootProps()} focused={focused}>
+    <StyledInputRoot {...getRootProps()} className={focused ? 'focused' : null}>
       <StyledStepperButton className="increment" {...getIncrementButtonProps()}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ const grey = {
 };
 
 const StyledInputRoot = styled('div')(
-  ({ theme, focused }) => `
+  ({ theme }) => `
     width: 320px;
 
     font-family: IBM Plex Sans, sans-serif;
@@ -101,26 +101,18 @@ const StyledInputRoot = styled('div')(
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
     background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
-    ${
-      // can be massively simplified with has:() once firefox supports it
-      // ETA first half 2023 - https://connect.mozilla.org/t5/discussions/when-is-has-css-selector-going-to-be-fully-implemented-in/m-p/27010/highlight/true#M10711
-      focused
-        ? `
-        border-color: ${blue[400]};
-        box-shadow:
-          inset 0 0 0 1px ${blue[400]},
-          0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
-        & button:hover {
-          background: ${blue[400]};
-        }
-      `
-        : `
-        border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-        box-shadow: 0px 2px 2px ${
-          theme.palette.mode === 'dark' ? grey[900] : grey[50]
-        };
-    `
+    &.focused {
+      border-color: ${blue[400]};
+      box-shadow:
+        inset 0 0 0 1px ${blue[400]},
+        0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+
+      & button:hover {
+        background: ${blue[400]};
+      }
     }
   `,
 );
