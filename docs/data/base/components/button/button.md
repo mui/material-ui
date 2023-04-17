@@ -96,11 +96,16 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The `useButton` hook requires the `ref` of the element it's used on.
-
 The following demo shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+If you use a ref to store a reference to the button, pass it to the `useButton`'s `ref` parameter, as shown in the demo above.
+It will get merged with a ref used internally in the hook.
+
+:::warning
+Do not add the `ref` parameter to the button element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+:::
 
 ## Customization
 
