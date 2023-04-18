@@ -67,7 +67,7 @@ function getSystemComponents() {
 }
 
 function getMuiName(name: string) {
-  return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
+  return `Mui${name.replace('Styled', '')}`;
 }
 
 export function extractPackageFile(filePath: string) {
@@ -168,27 +168,27 @@ export type HookInfo = {
 };
 
 const migratedBaseComponents = [
-  'BadgeUnstyled',
-  'ButtonUnstyled',
+  'Badge',
+  'Button',
   'ClickAwayListener',
   'FocusTrap',
-  'InputUnstyled',
-  'MenuItemUnstyled',
-  'MenuUnstyled',
-  'ModalUnstyled',
+  'Input',
+  'MenuItem',
+  'Menu',
+  'Modal',
   'NoSsr',
-  'OptionGroupUnstyled',
-  'OptionUnstyled',
-  'PopperUnstyled',
+  'OptionGroup',
+  'Option',
+  'Popper',
   'Portal',
-  'SelectUnstyled',
-  'SliderUnstyled',
-  'SwitchUnstyled',
-  'TablePaginationUnstyled',
-  'TabPanelUnstyled',
-  'TabsListUnstyled',
-  'TabsUnstyled',
-  'TabUnstyled',
+  'Select',
+  'Slider',
+  'Switch',
+  'TablePagination',
+  'TabPanel',
+  'TabsList',
+  'Tabs',
+  'Tab',
 ];
 
 export function getMaterialComponentInfo(filename: string): ComponentInfo {

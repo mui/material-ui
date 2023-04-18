@@ -42,7 +42,7 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
+   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**
@@ -657,7 +657,7 @@ export default async function generateComponentApi(
 
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
-  if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+  if (reactApi.styles.classes.length > 0) {
     reactApi.styles.name = reactApi.muiName;
   }
   reactApi.styles.classes.forEach((key) => {
@@ -684,10 +684,13 @@ export default async function generateComponentApi(
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    const translationPagesDirectory =
-      reactApi.apiPathname.indexOf('/joy-ui/') === 0
-        ? 'docs/translations/api-docs-joy'
-        : 'docs/translations/api-docs';
+    let translationPagesDirectory = 'docs/translations/api-docs';
+    if (reactApi.apiPathname.startsWith('/joy-ui') &&  reactApi.filename.includes('mui-joy/src')) {
+      translationPagesDirectory = 'docs/translations/api-docs-joy';
+    } else if (reactApi.apiPathname.startsWith('/base') &&  reactApi.filename.includes('mui-base/src')) {
+      translationPagesDirectory = 'docs/translations/api-docs-base';
+    }
+
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
 
     // Once we have the tabs API in all projects, we can make this default
