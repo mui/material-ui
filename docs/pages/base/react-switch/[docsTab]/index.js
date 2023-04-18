@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/switch/switch.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import SwitchUnstyledApiJsonPageContent from '../../api/switch-unstyled.json';
+import SwitchApiJsonPageContent from '../../api/switch.json';
 import useSwitchApiJsonPageContent from '../../api/use-switch.json';
 
 export default function Page(props) {
@@ -23,12 +23,12 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const SwitchUnstyledApiReq = require.context(
-    'docs/translations/api-docs/switch-unstyled',
+  const SwitchApiReq = require.context(
+    'docs/translations/api-docs/switch',
     false,
-    /switch-unstyled.*.json$/,
+    /switch.*.json$/,
   );
-  const SwitchUnstyledApiDescriptions = mapApiPageTranslations(SwitchUnstyledApiReq);
+  const SwitchApiDescriptions = mapApiPageTranslations(SwitchApiReq);
 
   const useSwitchApiReq = require.context(
     'docs/translations/api-docs/use-switch',
@@ -39,8 +39,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { SwitchUnstyled: SwitchUnstyledApiDescriptions },
-      componentsApiPageContents: { SwitchUnstyled: SwitchUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Switch: SwitchApiDescriptions },
+      componentsApiPageContents: { Switch: SwitchApiJsonPageContent },
       hooksApiDescriptions: { useSwitch: useSwitchApiDescriptions },
       hooksApiPageContents: { useSwitch: useSwitchApiJsonPageContent },
     },

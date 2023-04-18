@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/input/input.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import InputUnstyledApiJsonPageContent from '../../api/input-unstyled.json';
+import InputApiJsonPageContent from '../../api/input.json';
 import useInputApiJsonPageContent from '../../api/use-input.json';
 
 export default function Page(props) {
@@ -23,12 +23,8 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const InputUnstyledApiReq = require.context(
-    'docs/translations/api-docs/input-unstyled',
-    false,
-    /input-unstyled.*.json$/,
-  );
-  const InputUnstyledApiDescriptions = mapApiPageTranslations(InputUnstyledApiReq);
+  const InputApiReq = require.context('docs/translations/api-docs/input', false, /input.*.json$/);
+  const InputApiDescriptions = mapApiPageTranslations(InputApiReq);
 
   const useInputApiReq = require.context(
     'docs/translations/api-docs/use-input',
@@ -39,8 +35,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { InputUnstyled: InputUnstyledApiDescriptions },
-      componentsApiPageContents: { InputUnstyled: InputUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Input: InputApiDescriptions },
+      componentsApiPageContents: { Input: InputApiJsonPageContent },
       hooksApiDescriptions: { useInput: useInputApiDescriptions },
       hooksApiPageContents: { useInput: useInputApiJsonPageContent },
     },

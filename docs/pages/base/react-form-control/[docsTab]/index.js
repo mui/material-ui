@@ -3,8 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/form-control/form-control.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import FormControlUnstyledApiJsonPageContent from '../../api/form-control-unstyled.json';
-import useFormControlUnstyledContextApiJsonPageContent from '../../api/use-form-control-unstyled-context.json';
+import FormControlApiJsonPageContent from '../../api/form-control.json';
+import useFormControlContextApiJsonPageContent from '../../api/use-form-control-context.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -23,32 +23,26 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const FormControlUnstyledApiReq = require.context(
-    'docs/translations/api-docs/form-control-unstyled',
+  const FormControlApiReq = require.context(
+    'docs/translations/api-docs/form-control',
     false,
-    /form-control-unstyled.*.json$/,
+    /form-control.*.json$/,
   );
-  const FormControlUnstyledApiDescriptions = mapApiPageTranslations(FormControlUnstyledApiReq);
+  const FormControlApiDescriptions = mapApiPageTranslations(FormControlApiReq);
 
-  const useFormControlUnstyledContextApiReq = require.context(
-    'docs/translations/api-docs/use-form-control-unstyled-context',
+  const useFormControlContextApiReq = require.context(
+    'docs/translations/api-docs/use-form-control-context',
     false,
-    /use-form-control-unstyled-context.*.json$/,
+    /use-form-control-context.*.json$/,
   );
-  const useFormControlUnstyledContextApiDescriptions = mapApiPageTranslations(
-    useFormControlUnstyledContextApiReq,
-  );
+  const useFormControlContextApiDescriptions = mapApiPageTranslations(useFormControlContextApiReq);
 
   return {
     props: {
-      componentsApiDescriptions: { FormControlUnstyled: FormControlUnstyledApiDescriptions },
-      componentsApiPageContents: { FormControlUnstyled: FormControlUnstyledApiJsonPageContent },
-      hooksApiDescriptions: {
-        useFormControlUnstyledContext: useFormControlUnstyledContextApiDescriptions,
-      },
-      hooksApiPageContents: {
-        useFormControlUnstyledContext: useFormControlUnstyledContextApiJsonPageContent,
-      },
+      componentsApiDescriptions: { FormControl: FormControlApiDescriptions },
+      componentsApiPageContents: { FormControl: FormControlApiJsonPageContent },
+      hooksApiDescriptions: { useFormControlContext: useFormControlContextApiDescriptions },
+      hooksApiPageContents: { useFormControlContext: useFormControlContextApiJsonPageContent },
     },
   };
 };

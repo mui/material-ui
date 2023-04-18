@@ -46,13 +46,13 @@
     },
     "transition": { "type": { "name": "bool" }, "default": "false" }
   },
-  "name": "PopperUnstyled",
+  "name": "Popper",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/PopperUnstyled/PopperUnstyled.tsx",
+  "filename": "/packages/mui-base/src/Popper/Popper.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-popper/\">Unstyled Popper</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-popper/\">Popper</a></li></ul>",
   "cssComponent": false
 }

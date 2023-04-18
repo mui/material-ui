@@ -65,5 +65,5 @@
   },
   "name": "useButton",
   "filename": "/packages/mui-base/src/useButton/useButton.ts",
-  "demos": "<ul><li><a href=\"/base/react-button/#hook\">Unstyled Button</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-button/#hook\">Button</a></li></ul>"
 }

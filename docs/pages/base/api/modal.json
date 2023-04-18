@@ -31,7 +31,7 @@
       "default": "{}"
     }
   },
-  "name": "ModalUnstyled",
+  "name": "Modal",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
@@ -50,8 +50,8 @@
   "spread": true,
   "muiName": "MuiModal",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.tsx",
+  "filename": "/packages/mui-base/src/Modal/Modal.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-modal/\">Unstyled Modal</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-modal/\">Modal</a></li></ul>",
   "cssComponent": false
 }

@@ -16,13 +16,13 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "name": "FormControlUnstyled",
+  "name": "FormControl",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "muiName": "MuiFormControl",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/FormControlUnstyled/FormControlUnstyled.tsx",
+  "filename": "/packages/mui-base/src/FormControl/FormControl.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-form-control/\">Unstyled Form Control</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-form-control/\">Form Control</a></li>\n<li><a href=\"/joy/react-input/\">Input</a></li>\n<li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

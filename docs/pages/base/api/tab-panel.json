@@ -9,24 +9,25 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
-    }
+    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
-  "name": "TabsListUnstyled",
+  "name": "TabPanel",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
       "name": "root",
       "description": "The component that renders the root.",
       "default": "'div'",
-      "class": ".MuiTabsList-root"
+      "class": ".MuiTabPanel-root"
     }
   ],
-  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
-  "muiName": "MuiTabsList",
+  "muiName": "MuiTabPanel",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/TabsListUnstyled/TabsListUnstyled.tsx",
+  "filename": "/packages/mui-base/src/TabPanel/TabPanel.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-tabs/\">Unstyled Tabs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-tabs/\">Tabs</a></li></ul>",
   "cssComponent": false
 }

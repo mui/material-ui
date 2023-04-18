@@ -30,7 +30,7 @@
     },
     "value": { "type": { "name": "any" } }
   },
-  "name": "SelectUnstyled",
+  "name": "Select",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
@@ -48,7 +48,7 @@
     {
       "name": "popper",
       "description": "The component that renders the popper.",
-      "default": "PopperUnstyled",
+      "default": "Popper",
       "class": ".MuiSelect-popper"
     }
   ],
@@ -64,8 +64,8 @@
   "spread": true,
   "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/mui-base/src/SelectUnstyled/SelectUnstyled.tsx",
+  "filename": "/packages/mui-base/src/Select/Select.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-select/\">Unstyled Select</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
   "cssComponent": false
 }

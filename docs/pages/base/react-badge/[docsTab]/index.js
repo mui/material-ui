@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/badge/badge.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import BadgeUnstyledApiJsonPageContent from '../../api/badge-unstyled.json';
+import BadgeApiJsonPageContent from '../../api/badge.json';
 import useBadgeApiJsonPageContent from '../../api/use-badge.json';
 
 export default function Page(props) {
@@ -23,12 +23,8 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const BadgeUnstyledApiReq = require.context(
-    'docs/translations/api-docs/badge-unstyled',
-    false,
-    /badge-unstyled.*.json$/,
-  );
-  const BadgeUnstyledApiDescriptions = mapApiPageTranslations(BadgeUnstyledApiReq);
+  const BadgeApiReq = require.context('docs/translations/api-docs/badge', false, /badge.*.json$/);
+  const BadgeApiDescriptions = mapApiPageTranslations(BadgeApiReq);
 
   const useBadgeApiReq = require.context(
     'docs/translations/api-docs/use-badge',
@@ -39,8 +35,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { BadgeUnstyled: BadgeUnstyledApiDescriptions },
-      componentsApiPageContents: { BadgeUnstyled: BadgeUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Badge: BadgeApiDescriptions },
+      componentsApiPageContents: { Badge: BadgeApiJsonPageContent },
       hooksApiDescriptions: { useBadge: useBadgeApiDescriptions },
       hooksApiPageContents: { useBadge: useBadgeApiJsonPageContent },
     },

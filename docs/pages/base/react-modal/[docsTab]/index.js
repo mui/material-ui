@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/modal/modal.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import ModalUnstyledApiJsonPageContent from '../../api/modal-unstyled.json';
+import ModalApiJsonPageContent from '../../api/modal.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -22,17 +22,13 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const ModalUnstyledApiReq = require.context(
-    'docs/translations/api-docs/modal-unstyled',
-    false,
-    /modal-unstyled.*.json$/,
-  );
-  const ModalUnstyledApiDescriptions = mapApiPageTranslations(ModalUnstyledApiReq);
+  const ModalApiReq = require.context('docs/translations/api-docs/modal', false, /modal.*.json$/);
+  const ModalApiDescriptions = mapApiPageTranslations(ModalApiReq);
 
   return {
     props: {
-      componentsApiDescriptions: { ModalUnstyled: ModalUnstyledApiDescriptions },
-      componentsApiPageContents: { ModalUnstyled: ModalUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Modal: ModalApiDescriptions },
+      componentsApiPageContents: { Modal: ModalApiJsonPageContent },
       hooksApiDescriptions: {},
       hooksApiPageContents: {},
     },

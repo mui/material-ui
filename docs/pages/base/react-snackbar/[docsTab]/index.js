@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/snackbar/snackbar.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import SnackbarUnstyledApiJsonPageContent from '../../api/snackbar-unstyled.json';
+import SnackbarApiJsonPageContent from '../../api/snackbar.json';
 import useSnackbarApiJsonPageContent from '../../api/use-snackbar.json';
 
 export default function Page(props) {
@@ -23,12 +23,12 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const SnackbarUnstyledApiReq = require.context(
-    'docs/translations/api-docs/snackbar-unstyled',
+  const SnackbarApiReq = require.context(
+    'docs/translations/api-docs/snackbar',
     false,
-    /snackbar-unstyled.*.json$/,
+    /snackbar.*.json$/,
   );
-  const SnackbarUnstyledApiDescriptions = mapApiPageTranslations(SnackbarUnstyledApiReq);
+  const SnackbarApiDescriptions = mapApiPageTranslations(SnackbarApiReq);
 
   const useSnackbarApiReq = require.context(
     'docs/translations/api-docs/use-snackbar',
@@ -39,8 +39,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { SnackbarUnstyled: SnackbarUnstyledApiDescriptions },
-      componentsApiPageContents: { SnackbarUnstyled: SnackbarUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Snackbar: SnackbarApiDescriptions },
+      componentsApiPageContents: { Snackbar: SnackbarApiJsonPageContent },
       hooksApiDescriptions: { useSnackbar: useSnackbarApiDescriptions },
       hooksApiPageContents: { useSnackbar: useSnackbarApiJsonPageContent },
     },

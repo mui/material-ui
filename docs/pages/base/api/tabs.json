@@ -23,7 +23,7 @@
     },
     "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
-  "name": "TabsUnstyled",
+  "name": "Tabs",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
@@ -37,8 +37,8 @@
   "spread": true,
   "muiName": "MuiTabs",
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-base/src/TabsUnstyled/TabsUnstyled.tsx",
+  "filename": "/packages/mui-base/src/Tabs/Tabs.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-tabs/\">Unstyled Tabs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-tabs/\">Tabs</a></li></ul>",
   "cssComponent": false
 }

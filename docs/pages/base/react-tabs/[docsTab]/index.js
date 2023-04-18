@@ -3,10 +3,10 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/tabs/tabs.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import TabPanelUnstyledApiJsonPageContent from '../../api/tab-panel-unstyled.json';
-import TabUnstyledApiJsonPageContent from '../../api/tab-unstyled.json';
-import TabsListUnstyledApiJsonPageContent from '../../api/tabs-list-unstyled.json';
-import TabsUnstyledApiJsonPageContent from '../../api/tabs-unstyled.json';
+import TabApiJsonPageContent from '../../api/tab.json';
+import TabPanelApiJsonPageContent from '../../api/tab-panel.json';
+import TabsApiJsonPageContent from '../../api/tabs.json';
+import TabsListApiJsonPageContent from '../../api/tabs-list.json';
 import useTabApiJsonPageContent from '../../api/use-tab.json';
 import useTabPanelApiJsonPageContent from '../../api/use-tab-panel.json';
 import useTabsApiJsonPageContent from '../../api/use-tabs.json';
@@ -29,33 +29,25 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const TabPanelUnstyledApiReq = require.context(
-    'docs/translations/api-docs/tab-panel-unstyled',
-    false,
-    /tab-panel-unstyled.*.json$/,
-  );
-  const TabPanelUnstyledApiDescriptions = mapApiPageTranslations(TabPanelUnstyledApiReq);
+  const TabApiReq = require.context('docs/translations/api-docs/tab', false, /tab.*.json$/);
+  const TabApiDescriptions = mapApiPageTranslations(TabApiReq);
 
-  const TabUnstyledApiReq = require.context(
-    'docs/translations/api-docs/tab-unstyled',
+  const TabPanelApiReq = require.context(
+    'docs/translations/api-docs/tab-panel',
     false,
-    /tab-unstyled.*.json$/,
+    /tab-panel.*.json$/,
   );
-  const TabUnstyledApiDescriptions = mapApiPageTranslations(TabUnstyledApiReq);
+  const TabPanelApiDescriptions = mapApiPageTranslations(TabPanelApiReq);
 
-  const TabsListUnstyledApiReq = require.context(
-    'docs/translations/api-docs/tabs-list-unstyled',
-    false,
-    /tabs-list-unstyled.*.json$/,
-  );
-  const TabsListUnstyledApiDescriptions = mapApiPageTranslations(TabsListUnstyledApiReq);
+  const TabsApiReq = require.context('docs/translations/api-docs/tabs', false, /tabs.*.json$/);
+  const TabsApiDescriptions = mapApiPageTranslations(TabsApiReq);
 
-  const TabsUnstyledApiReq = require.context(
-    'docs/translations/api-docs/tabs-unstyled',
+  const TabsListApiReq = require.context(
+    'docs/translations/api-docs/tabs-list',
     false,
-    /tabs-unstyled.*.json$/,
+    /tabs-list.*.json$/,
   );
-  const TabsUnstyledApiDescriptions = mapApiPageTranslations(TabsUnstyledApiReq);
+  const TabsListApiDescriptions = mapApiPageTranslations(TabsListApiReq);
 
   const useTabApiReq = require.context(
     'docs/translations/api-docs/use-tab',
@@ -88,16 +80,16 @@ export const getStaticProps = () => {
   return {
     props: {
       componentsApiDescriptions: {
-        TabPanelUnstyled: TabPanelUnstyledApiDescriptions,
-        TabUnstyled: TabUnstyledApiDescriptions,
-        TabsListUnstyled: TabsListUnstyledApiDescriptions,
-        TabsUnstyled: TabsUnstyledApiDescriptions,
+        Tab: TabApiDescriptions,
+        TabPanel: TabPanelApiDescriptions,
+        Tabs: TabsApiDescriptions,
+        TabsList: TabsListApiDescriptions,
       },
       componentsApiPageContents: {
-        TabPanelUnstyled: TabPanelUnstyledApiJsonPageContent,
-        TabUnstyled: TabUnstyledApiJsonPageContent,
-        TabsListUnstyled: TabsListUnstyledApiJsonPageContent,
-        TabsUnstyled: TabsUnstyledApiJsonPageContent,
+        Tab: TabApiJsonPageContent,
+        TabPanel: TabPanelApiJsonPageContent,
+        Tabs: TabsApiJsonPageContent,
+        TabsList: TabsListApiJsonPageContent,
       },
       hooksApiDescriptions: {
         useTab: useTabApiDescriptions,
