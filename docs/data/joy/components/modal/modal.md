@@ -218,7 +218,7 @@ Therefore, in order to display a modal rendered on the server, disable the porta
 
 ### Focus trap
 
-`ModalUnstyled` moves the focus back to the body of the component if the focus tries to escape it.
+Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
