@@ -6,6 +6,36 @@ import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(
+  props: NumberInputUnstyledProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <NumberInputUnstyled
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInput,
+        incrementButton: StyledButton,
+        decrementButton: StyledButton,
+      }}
+      slotProps={{
+        incrementButton: {
+          children: <AddIcon />,
+        },
+        decrementButton: {
+          children: <RemoveIcon />,
+        },
+      }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+export default function QuantityInput() {
+  return <CustomNumberInput aria-label="Quantity Input" min={1} max={99} />;
+}
+
 const blue = {
   100: '#daecff',
   200: '#b6daff',
@@ -115,33 +145,3 @@ const StyledButton = styled('button')(
   }
 `,
 );
-
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(
-  props: NumberInputUnstyledProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  return (
-    <NumberInputUnstyled
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInput,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton,
-      }}
-      slotProps={{
-        incrementButton: {
-          children: <AddIcon />,
-        },
-        decrementButton: {
-          children: <RemoveIcon />,
-        },
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-export default function QuantityInput() {
-  return <CustomNumberInput aria-label="Quantity Input" min={1} max={99} />;
-}

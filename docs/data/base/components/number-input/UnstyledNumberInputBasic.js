@@ -4,6 +4,43 @@ import NumberInputUnstyled, {
 } from '@mui/base/NumberInputUnstyled';
 import { styled } from '@mui/system';
 
+const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
+  return (
+    <NumberInputUnstyled
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInputElement,
+        incrementButton: StyledButton,
+        decrementButton: StyledButton,
+      }}
+      slotProps={{
+        incrementButton: {
+          children: '▴',
+        },
+        decrementButton: {
+          // it's flipped with CSS, the downward pointing
+          // triangle looks weird
+          children: '▴',
+        },
+      }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+export default function UnstyledNumberInputBasic() {
+  const [value, setValue] = React.useState();
+  return (
+    <CustomNumberInput
+      aria-label="Demo number input"
+      placeholder="Type a number…"
+      value={value}
+      onValueChange={(val) => setValue(val)}
+    />
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#b6daff',
@@ -107,40 +144,3 @@ const StyledButton = styled('button')(
   }
 `,
 );
-
-const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
-  return (
-    <NumberInputUnstyled
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInputElement,
-        incrementButton: StyledButton,
-        decrementButton: StyledButton,
-      }}
-      slotProps={{
-        incrementButton: {
-          children: '▴',
-        },
-        decrementButton: {
-          // it's flipped with CSS, the downward pointing
-          // triangle looks weird
-          children: '▴',
-        },
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-export default function UnstyledNumberInputBasic() {
-  const [value, setValue] = React.useState();
-  return (
-    <CustomNumberInput
-      aria-label="Demo number input"
-      placeholder="Type a number…"
-      value={value}
-      onValueChange={(val) => setValue(val)}
-    />
-  );
-}
