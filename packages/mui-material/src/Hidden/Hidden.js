@@ -95,7 +95,7 @@ Hidden.propTypes /* remove-proptypes */ = {
    */
   lgUp: PropTypes.bool,
   /**
-   * * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   mdDown: PropTypes.bool,
@@ -112,7 +112,7 @@ Hidden.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']).isRequired),
   ]),
   /**
-   * * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   smDown: PropTypes.bool,
@@ -122,7 +122,7 @@ Hidden.propTypes /* remove-proptypes */ = {
    */
   smUp: PropTypes.bool,
   /**
-   * * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   xlDown: PropTypes.bool,
@@ -132,7 +132,7 @@ Hidden.propTypes /* remove-proptypes */ = {
    */
   xlUp: PropTypes.bool,
   /**
-   * * If `true`, component is hidden on screens below (but not including) this size.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   xsDown: PropTypes.bool,
