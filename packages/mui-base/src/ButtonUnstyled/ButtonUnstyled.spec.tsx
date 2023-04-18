@@ -29,6 +29,10 @@ const polymorphicComponentTest = () => {
       return <div />;
     };
 
+  const Root: React.FC<{}> = function Root() {
+    return <div />;
+  };
+
   return (
     <div>
       {/* @ts-expect-error */}
@@ -36,14 +40,10 @@ const polymorphicComponentTest = () => {
 
       <ButtonUnstyled slots={{ root: 'a' }} href="#" />
 
-      <ButtonUnstyled<typeof CustomComponent>
-        slots={{ root: CustomComponent }}
-        stringProp="test"
-        numberProp={0}
-        onClick={() => {}}
-      />
+      {/* @ts-expect-error onClick must be specified in the custom root component */}
+      <ButtonUnstyled<typeof Root> slots={{ root: Root }} onClick={() => {}} />
 
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error required props not specified*/}
       <ButtonUnstyled<typeof CustomComponent> slots={{ root: CustomComponent }} />
 
       <ButtonUnstyled
