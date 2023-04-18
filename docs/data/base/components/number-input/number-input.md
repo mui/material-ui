@@ -69,7 +69,7 @@ This can be customized with the `shiftMultiplier` prop. In the following snippet
 
 Here's another demo of a Unstyled Number Input with fully customized styles:
 
-{{"demo": "QuantityInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "QuantityInput.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
@@ -138,9 +138,9 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 Here's an example of a custom component built using the `useNumberInput` hook with all the required props:
 
-{{"demo": "UseNumberInput.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UseNumberInput.js", "defaultCodeOpen": false}}
 
 Here's an example of a "compact" number input component using the hook that only consists of the stepper buttons.
 In this demo, `onValueChange` is used to write the latest value of the component to a state variable.
 
-{{"demo": "UseNumberInputCompact.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UseNumberInputCompact.js", "defaultCodeOpen": false}}

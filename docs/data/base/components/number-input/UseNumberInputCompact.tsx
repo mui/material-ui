@@ -101,27 +101,20 @@ const grey = {
 
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
     display: grid;
     grid-template-columns: 2.5rem;
     grid-template-rows: 2rem 2rem;
-    row-gap: 2px;
+    row-gap: 1px;
     border-radius: 0.5rem;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[600] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[500] : grey[200]};
-    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+    overflow: auto;
 
     &:hover {
-      border-color: ${theme.palette.mode === 'dark' ? blue[600] : blue[400]};
-      box-shadow:
-        0 0 0 1px ${theme.palette.mode === 'dark' ? blue[600] : blue[400]},
-        0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+      border-color: ${blue[500]};
     }
   `,
 );
@@ -142,16 +135,17 @@ const StyledStepperButton = styled('button')(
   box-sizing: border-box;
   border: 0;
   color: inherit;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
   &:hover {
     cursor: pointer;
-    background: ${theme.palette.mode === 'dark' ? blue[600] : blue[400]};
+    background: ${blue[500]};
     color: ${grey[50]};
   }
 
   &:focus-visible {
     outline: 0;
-    background: ${theme.palette.mode === 'dark' ? blue[400] : blue[200]};
+    background: ${blue[500]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[50]};
   }
 

@@ -7,11 +7,13 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
 const blue = {
-  100: '#DAECFF',
+  100: '#daecff',
   200: '#b6daff',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
+  300: '#66b2ff',
+  400: '#3399ff',
+  500: '#007fff',
+  600: '#0072e5',
+  800: '#004c99',
 };
 
 const grey = {
@@ -89,7 +91,7 @@ const StyledButton = styled('button')(
   line-height: 1.5;
   border: 0;
   border-radius: 999px;
-  color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
+  color: ${theme.palette.mode === 'dark' ? blue[300] : blue[600]};
   background: transparent;
 
   width: 40px;
@@ -104,8 +106,7 @@ const StyledButton = styled('button')(
   transition-duration: 120ms;
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : blue[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+    background: ${theme.palette.mode === 'dark' ? blue[800] : blue[100]};
     cursor: pointer;
   }
 
