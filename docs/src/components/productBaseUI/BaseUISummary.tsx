@@ -41,11 +41,11 @@ export default function BaseUISummary() {
         overline="Why Base UI"
         title={
           <Typography variant="h2" sx={{ mt: 1, maxWidth: 600, mx: 'auto' }}>
-            Assemble sleek and sophisticated UIs in a{' '}
-            <GradientText>fraction of the time</GradientText>
+            Essential building blocks
+            <br /> for <GradientText>sleek and accessible</GradientText> UIs
           </Typography>
         }
-        description="Base UI components were extracted from Material UI, featuring the same robust engineering, and quickly trusted by many community members."
+        description="Base UI abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
       />
       <Box sx={{ py: 5 }}>
         <Grid container spacing={2}>

@@ -52,7 +52,7 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             flexShrink: 0,
-            mr: { xs: 0, md: 2 },
+            mr: { xs: 0, md: 1.5 },
             mb: { xs: 2, md: 0 },
           }}
         >
@@ -63,11 +63,20 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
           component={Link}
           noLinkStyle
           variant="outlined"
+          size="large"
           endIcon={<KeyboardArrowRightRounded />}
           sx={(theme) => ({
             color: 'text.primary',
+            bgcolor: 'grey.50',
             borderColor: 'grey.300',
-            ...theme.applyDarkStyles({ color: '#fff', borderColor: 'primaryDark.400' }),
+            boxShadow:
+              '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
+            ...theme.applyDarkStyles({
+              color: 'gray.100',
+              borderColor: 'primaryDark.400',
+              bgcolor: 'primaryDark.700',
+              boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
+            }),
           })}
         >
           {learnLabel}
@@ -77,15 +86,25 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
         // @ts-ignore
         variant="code"
         onClick={handleCopy}
-        endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
-        sx={{
+        endIcon={
+          copied ? (
+            <CheckRounded color="primary" fontSize="small" />
+          ) : (
+            <ContentCopyRounded fontSize="small" />
+          )
+        }
+        sx={(theme) => ({
           width: 'max-content',
           bgcolor: 'transparent',
           border: 'none',
           mt: 2,
+          ml: -2,
           cursor: 'copy',
           '& .MuiButton-endIcon': { mr: 0, color: 'primary.main', position: 'relative' },
-        }}
+          ...theme.applyDarkStyles({
+            bgcolor: 'transparent',
+          }),
+        })}
       >
         $ {installation}
       </Button>

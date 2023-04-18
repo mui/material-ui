@@ -90,17 +90,17 @@ export const blue = {
   900: '#003A75',
 };
 export const blueDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  main: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C', // contrast 13.64:1
-  800: '#001E3C',
-  900: '#0A1929',
+  50: '#EAEDF1',
+  100: '#DAE0E7',
+  200: '#ACBAC8',
+  300: '#7B91A7',
+  main: '#7B91A7',
+  400: '#4B5E71',
+  500: '#3B4A59',
+  600: '#2F3A46',
+  700: '#1F262E', // contrast 13.64:1
+  800: '#141A1F',
+  900: '#101418',
 };
 export const grey = {
   50: '#F3F6F9',
@@ -194,7 +194,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         },
       }),
       common: {
-        black: '#1D1D1D',
+        black: '#0B0D0E',
       },
       text: {
         ...(mode === 'light' && {
@@ -246,9 +246,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
     },
     shape: {
-      borderRadius: 10,
+      borderRadius: 12,
     },
-    spacing: 10,
+    spacing: 8,
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       // Match VS Code
@@ -266,7 +266,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
-        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4rem)',
+        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 3.375rem)',
         fontWeight: 800,
         lineHeight: 78 / 70,
         ...(mode === 'light' && {
@@ -422,7 +422,7 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             ...(ownerState.size === 'large' && {
-              padding: '0.875rem 1rem',
+              padding: theme.spacing(1.5, 1.25, 1.5, 1.5), // 12px 10px
               ...theme.typography.body1,
               lineHeight: 21 / 16,
               fontWeight: 700,
@@ -432,8 +432,13 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
-                backgroundColor: (theme.vars || theme).palette.primary[500],
-                color: '#fff',
+                background: 'linear-gradient(180deg, #007FFF 0%, #66B2FF 100%)',
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.primary[400],
+                boxShadow:
+                  '0px 2px 4px rgba(29, 29, 29, 0.1), inset 0px 4px 8px rgba(102, 178, 255, 0.6)',
+                textShadow: '0px 1px 1px rgba(0, 58, 117, 0.6)',
+                color: '#FFF',
               }),
           }),
         },
@@ -449,7 +454,7 @@ export function getThemedComponents(): ThemeOptions {
                 backgroundColor: (theme.vars || theme).palette.grey[50],
                 fontFamily: theme.typography.fontFamilyCode,
                 fontWeight: 400,
-                fontSize: defaultTheme.typography.pxToRem(13), // 14px
+                fontSize: defaultTheme.typography.pxToRem(12),
                 lineHeight: 21 / 14,
                 letterSpacing: 0,
                 WebkitFontSmoothing: 'subpixel-antialiased',

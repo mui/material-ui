@@ -168,12 +168,12 @@ export default function BaseUIHero() {
               justifyContent: { xs: 'center', md: 'flex-start' },
               '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
-                color: 'primary.400',
+                color: 'primary.300',
               }),
             })}
           >
             <IconImage width={28} height={28} name="product-core" /> MUI Core{' '}
-            <Typography component="span" variant="inherit" sx={{ color: 'text.tertiary' }}>
+            <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
               &nbsp;&nbsp;
               <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
                 /
@@ -191,7 +191,8 @@ export default function BaseUIHero() {
               zIndex: 1,
             }}
           >
-            Ship <GradientText>accessible & sleek</GradientText> components
+            A <GradientText>blank canvas</GradientText> for <br />
+            total flexibility
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Base UI gives you a set of foundational &quot;headless&quot; components that you can
