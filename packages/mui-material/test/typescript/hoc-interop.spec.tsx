@@ -22,14 +22,14 @@ const filledProps = {
 // baseline behavior
 <TextField variant="filled" {...filledProps} />;
 
-<TextField {...filledProps} />; // desired to throw
+<TextField {...filledProps} />;
 
 // styled
 {
   const StyledTextField = styled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />; // desired to pass
 
-  <StyledTextField {...filledProps} />; // undesired, should throw
+  <StyledTextField {...filledProps} />;
 }
 
 // @emotion/styled
@@ -37,7 +37,7 @@ const filledProps = {
   const StyledTextField = emotionStyled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />;
 
-  <StyledTextField {...filledProps} />; // desired to throw
+  <StyledTextField {...filledProps} />;
 }
 
 // https://github.com/mui/material-ui/issues/14586
