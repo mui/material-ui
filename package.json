@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.12.0",
+  "version": "5.12.1",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -96,7 +96,7 @@
     "@testing-library/react": "^14.0.0",
     "@types/chai": "^4.3.4",
     "@types/chai-dom": "^1.11.0",
-    "@types/enzyme": "^3.10.12",
+    "@types/enzyme": "^3.10.13",
     "@types/format-util": "^1.0.2",
     "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^21.1.1",
@@ -165,7 +165,7 @@
     "markdownlint-cli2": "^0.6.0",
     "mocha": "^10.2.0",
     "node-fetch": "^2.6.9",
-    "nx": "^15.7.2",
+    "nx": "^15.9.2",
     "nyc": "^15.1.0",
     "piscina": "^3.2.0",
     "playwright": "^1.31.2",
