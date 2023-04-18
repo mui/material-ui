@@ -35,7 +35,7 @@ describe('<MenuUnstyled />', () => {
         expectedClassName: menuUnstyledClasses.listbox,
       },
     },
-    skip: ['reactTestRenderer', 'propsSpread', 'slotsProp'],
+    skip: ['reactTestRenderer', 'propsSpread', 'componentProp', 'slotsProp'],
   }));
 
   describe('after initialization', () => {

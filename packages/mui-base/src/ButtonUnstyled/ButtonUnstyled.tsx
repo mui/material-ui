@@ -47,13 +47,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     children,
     disabled,
     focusableWhenDisabled = false,
-    onBlur,
-    onClick,
-    onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
-    onMouseLeave,
     slotProps = {},
     slots = {},
     ...other

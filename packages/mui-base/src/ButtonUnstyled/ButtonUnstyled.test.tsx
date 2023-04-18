@@ -26,6 +26,7 @@ describe('<ButtonUnstyled />', () => {
         expectedClassName: buttonUnstyledClasses.root,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('role attribute', () => {

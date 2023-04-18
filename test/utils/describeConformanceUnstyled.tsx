@@ -9,6 +9,7 @@ import {
   describeRef,
   randomStringValue,
   testClassName,
+  testComponentProp,
   testReactTestRenderer,
 } from './describeConformance';
 
@@ -101,7 +102,7 @@ function testPropForwarding(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
-  const { render, slots } = getOptions();
+  const { render, slots, skip, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -161,6 +162,40 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
         expect(container.querySelectorAll(`.${slotOptions.expectedClassName}`)).to.have.length(0);
       });
     }
+  });
+
+  it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', () => {
+    if (skip && skip.indexOf('componentProp') >= 0) {
+      return;
+    }
+
+    const RootComponentA = React.forwardRef(
+      ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
+        // @ts-ignore
+        <Element data-testid="a" ref={ref}>
+          {children}
+        </Element>
+      ),
+    );
+
+    const RootComponentB = React.forwardRef(
+      ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
+        // @ts-ignore
+        <Element data-testid="b" ref={ref}>
+          {children}
+        </Element>
+      ),
+    );
+
+    const { queryByTestId } = render(
+      React.cloneElement(element, {
+        component: RootComponentA,
+        slots: { root: RootComponentB },
+      }),
+    );
+
+    expect(queryByTestId('a')).not.to.equal(null);
+    expect(queryByTestId('b')).to.equal(null);
   });
 }
 
@@ -311,6 +346,7 @@ function testDisablingClassGeneration(
 }
 
 const fullSuite = {
+  componentProp: testComponentProp,
   slotsProp: testSlotsProp,
   slotPropsProp: testSlotPropsProp,
   slotPropsCallbacks: testSlotPropsCallbacks,

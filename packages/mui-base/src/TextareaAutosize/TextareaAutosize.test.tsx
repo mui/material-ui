@@ -23,6 +23,7 @@ describe('<TextareaAutosize />', () => {
     slots: {},
     skip: [
       // doesn't have slots, so these tests are irrelevant:
+      'componentProp',
       'mergeClassName',
       'ownerStatePropagation',
       'propsSpread',
