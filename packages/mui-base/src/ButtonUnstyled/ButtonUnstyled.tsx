@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '../utils/OverridableComponent';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -95,7 +95,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<ButtonUnstyledTypeMap>;
+}) as PolymorphicComponent<ButtonUnstyledTypeMap>;
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

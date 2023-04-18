@@ -40,7 +40,9 @@ const polymorphicComponentTest = () => {
         slots={{ root: CustomComponent }}
         stringProp="test"
         numberProp={0}
+        onClick={() => {}}
       />
+
       {/* @ts-expect-error */}
       <ButtonUnstyled<typeof CustomComponent> slots={{ root: CustomComponent }} />
 

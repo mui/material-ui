@@ -7,7 +7,7 @@ import { OverridableTypeMap } from '@mui/types';
  *
  * @template TypeMap The interface the defines the props and a default root element of the component.
  */
-export type OverridableComponent<TypeMap extends OverridableTypeMap> = {
+export type PolymorphicComponent<TypeMap extends OverridableTypeMap> = {
   <RootComponent extends React.ElementType = TypeMap['defaultComponent']>(
     props: PolymorphicProps<TypeMap, RootComponent>,
   ): JSX.Element | null;

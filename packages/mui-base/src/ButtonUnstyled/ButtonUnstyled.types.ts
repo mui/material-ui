@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
-import { PolymorphicProps } from '../utils/OverridableComponent';
+import { PolymorphicProps } from '../utils/PolymorphicComponent';
 
 export interface ButtonUnstyledActions {
   focusVisible(): void;
