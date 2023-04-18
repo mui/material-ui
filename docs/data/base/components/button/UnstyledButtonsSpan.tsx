@@ -5,7 +5,7 @@ import ButtonUnstyled, {
 } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { OverridableComponent } from '@mui/base/utils';
+import { PolymorphicComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsSpan() {
   return (
@@ -53,4 +53,4 @@ const CustomButton = styled(ButtonUnstyled)`
     opacity: 0.5;
     cursor: not-allowed;
   }
-` as OverridableComponent<ButtonUnstyledTypeMap>;
+` as PolymorphicComponent<ButtonUnstyledTypeMap>;
