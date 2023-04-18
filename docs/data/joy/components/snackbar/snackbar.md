@@ -57,12 +57,12 @@ React Aria provides the `useToast` hook that can be used with Joy UI's `Alert` c
 
 ### With Sonner
 
-Sonner provides a `Toaster` component providing an opinionated styling for toasts. 
-Using Sonner and Joy ui css variables, it is possible to customize `sonner` to look and 
-feel like joy components. 
+Sonner provides a `Toaster` component providing an opinionated styling for toasts.
+Using Sonner and Joy ui css variables, it is possible to customize `sonner` to look and
+feel like joy components.
 
-It is also possible to enhance `sonner`'s `toast` function with custom toasting functions 
-that closely resemble `joy ui`'s semantics (i.e.: adding a `warning` toast). 
+It is also possible to enhance `sonner`'s `toast` function with custom toasting functions
+that closely resemble `joy ui`'s semantics (i.e.: adding a `warning` toast).
 
 - [Sonner documentation](https://github.com/emilkowalski/sonner#introduction)
 
