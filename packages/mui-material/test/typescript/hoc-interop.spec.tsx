@@ -19,17 +19,21 @@ const filledProps = {
   InputProps: { classes: { inputAdornedStart: 'adorned' } },
 };
 
+const outlinedProps = {
+  InputProps: { classes: { inputAdornedStart: 'adorned' } },
+};
+
 // baseline behavior
 <TextField variant="filled" {...filledProps} />;
 
-<TextField {...filledProps} />;
+<TextField {...outlinedProps} />;
 
 // styled
 {
   const StyledTextField = styled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />; // desired to pass
 
-  <StyledTextField {...filledProps} />;
+  <StyledTextField {...outlinedProps} />;
 }
 
 // @emotion/styled
@@ -37,7 +41,7 @@ const filledProps = {
   const StyledTextField = emotionStyled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />;
 
-  <StyledTextField {...filledProps} />;
+  <StyledTextField {...outlinedProps} />;
 }
 
 // https://github.com/mui/material-ui/issues/14586
