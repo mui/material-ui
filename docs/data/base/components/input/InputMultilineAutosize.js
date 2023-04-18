@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InputUnstyled from '@mui/base/InputUnstyled';
+import Input from '@mui/base/Input';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
@@ -86,7 +86,7 @@ const StyledTextareaElement = styled(TextareaAutosize)(
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   return (
-    <InputUnstyled
+    <Input
       slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
       {...props}
       ref={ref}

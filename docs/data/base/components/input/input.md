@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React Input component and hook
-components: InputUnstyled
+title: React Input component and hook
+components: Input
 hooks: useInput
 githubLabel: 'component: input'
 ---
 
-# Unstyled Input
+# Input
 
-<p class="description">The Unstyled Input component provides users with a field to enter and edit text.</p>
+<p class="description">The Input component provides users with a field to enter and edit text.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -17,7 +17,7 @@ githubLabel: 'component: input'
 ## Introduction
 
 An input is a UI element that accepts text data from the user.
-The Unstyled Input component replaces the native HTML `<input>` tag, and offers expanded customization and accessibility features.
+The Input component replaces the native HTML `<input>` tag, and offers expanded customization and accessibility features.
 It can also be transformed into a `<textarea>` as needed.
 
 {{"demo": "UnstyledInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -29,16 +29,16 @@ It can also be transformed into a `<textarea>` as needed.
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import InputUnstyled from '@mui/base/InputUnstyled';
+import Input from '@mui/base/Input';
 
 export default function MyApp() {
-  return <InputUnstyled />;
+  return <Input />;
 }
 ```
 
 ### Basics
 
-Unstyled Input behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Anatomy](#anatomy) for details.
+Input behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Anatomy](#anatomy) for details.
 
 The following demo shows how to create and style an input component, including `placeholder` text:
 
@@ -46,7 +46,7 @@ The following demo shows how to create and style an input component, including `
 
 ### Anatomy
 
-The Unstyled Input component is composed of a root `<div>` slot that houses one interior `<input>` slot:
+The Input component is composed of a root `<div>` slot that houses one interior `<input>` slot:
 
 ```html
 <div class="MuiInput-root">
@@ -64,13 +64,13 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
-<InputUnstyled component="aside" />
+<Input component="aside" />
 ```
 
 Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<InputUnstyled slots={{ root: 'aside' }} />
+<Input slots={{ root: 'aside' }} />
 ```
 
 :::warning
@@ -81,7 +81,7 @@ Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-input` to the input slot:
 
 ```jsx
-<InputUnstyled slotProps={{ input: { className: 'my-input' } }} />
+<Input slotProps={{ input: { className: 'my-input' } }} />
 ```
 
 ## Hook
@@ -131,6 +131,6 @@ If you want the `<textarea>` to grow with the content, you can use the [Textarea
 When using Textarea Autosize, the height of the `<textarea>` element dynamically matches its content unless you set the `rows` prop.
 To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 
-The following demo shows how to insert a Textarea Autosize component into an Unstyled Input so that its height grows with the length of the content:
+The following demo shows how to insert a Textarea Autosize component into an Input so that its height grows with the length of the content:
 
 {{"demo": "InputMultilineAutosize.js"}}

@@ -1,13 +1,13 @@
 ---
 product: base
-title: Unstyled React Slider component and hook
-components: SliderUnstyled
+title: React Slider component and hook
+components: Slider
 hooks: useSlider
 githubLabel: 'component: slider'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 ---
 
-# Unstyled Slider
+# Slider
 
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>
@@ -18,7 +18,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 
 ## Introduction
 
-The Unstyled Slider component lets users make selections from a range of values along a horizontal or vertical bar.
+The Slider component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
@@ -31,10 +31,10 @@ Sliders are ideal for interface controls that benefit from a visual representati
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import Slider from '@mui/base/Slider';
 
 export default function MyApp() {
-  return <SliderUnstyled />;
+  return <Slider />;
 }
 ```
 
@@ -47,7 +47,7 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 ### Anatomy
 
-The Unstyled Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
+The Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
 
 - rail: the full length of the slider
 - track: the section of the slider that's active
@@ -108,13 +108,13 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
-<SliderUnstyled component="div" />
+<Slider component="div" />
 ```
 
 Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SliderUnstyled slots={{ root: 'div', thumb: 'div' }} />
+<Slider slots={{ root: 'div', thumb: 'div' }} />
 ```
 
 :::warning
@@ -125,7 +125,7 @@ Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-rail` to the rail slot:
 
 ```jsx
-<SliderUnstyled slotProps={{ rail: { className: 'my-rail' } }} />
+<Slider slotProps={{ rail: { className: 'my-rail' } }} />
 ```
 
 ## Hook
