@@ -9,13 +9,13 @@ unstyled: /base/react-input/
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Input component enhances the functionality of the native HTML `<input>` tag by providing expanded customization options and accessibility features.
 
 {{"demo": "InputUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 

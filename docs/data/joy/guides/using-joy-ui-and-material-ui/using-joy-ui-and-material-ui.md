@@ -9,8 +9,8 @@ There are two main use cases for using them together:
 1. Your existing project already uses Material UI but you're willing to explore the new components and style Joy UI offers.
 2. You've started your project with Joy UI but you find a key component you need is missing.
 
-:::success
-Once Joy UI reaches component parity with Material UI, we recommend that you _choose one or the other_. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
+:::info
+Once Joy UI reaches component parity with Material UI, we recommend that you **_choose one or the other_**. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
 :::
 
 Additionally, keep these in mind when using them together:
@@ -99,29 +99,29 @@ If you want to change the `defaultMode`, you have to specify the prop to both of
 
 ## Caveat
 
-- Both libraries have the same class name prefix:
+Both libraries have the same class name prefix:
 
-  ```js
-  import MaterialTypography, {
-    typographyClasses as muiTypographyClasses,
-  } from '@mui/material/Typography';
-  import JoyTypography, {
-    typographyClasses as joyTyographyClasses,
-  } from '@mui/joy/Typography';
-  import Stack from '@mui/material/Stack';
+```js
+import MaterialTypography, {
+  typographyClasses as muiTypographyClasses,
+} from '@mui/material/Typography';
+import JoyTypography, {
+  typographyClasses as joyTyographyClasses,
+} from '@mui/joy/Typography';
+import Stack from '@mui/material/Stack';
 
-  <Stack
-    sx={{
-      // similar to `& .${joyTyographyClasses.root}`
-      [`& .${muiTypographyClasses.root}`]: {
-        color: 'red',
-      },
-    }}
-  >
-    {/* Both components are red. */}
-    <MaterialTypography>Red</MaterialTypography>
-    <JoyTypography>Red</JoyTypography>
-  </Stack>;
-  ```
+<Stack
+  sx={{
+    // similar to `& .${joyTyographyClasses.root}`
+    [`& .${muiTypographyClasses.root}`]: {
+      color: 'red',
+    },
+  }}
+>
+  {/* Both components are red. */}
+  <MaterialTypography>Red</MaterialTypography>
+  <JoyTypography>Red</JoyTypography>
+</Stack>;
+```
 
-- Joy UI and Material UI components have different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.
+Joy UI and Material UI components have different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.

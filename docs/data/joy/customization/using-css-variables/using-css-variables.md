@@ -9,32 +9,38 @@ It also creates an object that refers to the generated CSS variables under `them
 
 The `theme.vars` is available in all styling APIs that Joy UI offers:
 
-- `styled` function
-  ```js
-  const Div = styled('div')(({ theme }) => ({
-    // The result is 'var(--joy-palette-primary-500)'
-    color: theme.vars.palette.primary[500],
-  }));
-  ```
-- `sx` prop
-  ```jsx
-  // The result is 'var(--joy-shadow-sm)'
-  <Chip sx={(theme) => ({ boxShadow: theme.vars.shadow.sm })} />
-  ```
-- style overrides (themed components)
-  ```jsx
-  extendTheme({
-    components: {
-      JoyButton: {
-        root: ({ theme }) => ({
-          // The result is 'var(--joy-fontFamily-display)'
-          fontFamily: theme.vars.fontFamily.display,
-        }),
-      },
+1. The `styled` function
+
+```js
+const Div = styled('div')(({ theme }) => ({
+  // The result is 'var(--joy-palette-primary-500)'
+  color: theme.vars.palette.primary[500],
+}));
+```
+
+2. The `sx` prop
+
+```jsx
+// The result is 'var(--joy-shadow-sm)'
+<Chip sx={(theme) => ({ boxShadow: theme.vars.shadow.sm })} />
+```
+
+3. Style overrides (themed components)
+
+```jsx
+extendTheme({
+  components: {
+    JoyButton: {
+      root: ({ theme }) => ({
+        // The result is 'var(--joy-fontFamily-display)'
+        fontFamily: theme.vars.fontFamily.display,
+      }),
     },
-  });
-  ```
-- `useTheme` hook
+  },
+});
+```
+
+4. The `useTheme` hook.
 
 ### Alpha channel colors
 
