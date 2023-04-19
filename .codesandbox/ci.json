@@ -38,7 +38,8 @@
     "material-ui-issue-latest-s2dsx",
     "/examples/material-cra",
     "/examples/material-cra-ts",
-    "/examples/joy-cra-ts"
+    "/examples/joy-cra-ts",
+    "/examples/base-cra-ts"
   ],
   "silent": true
 }
