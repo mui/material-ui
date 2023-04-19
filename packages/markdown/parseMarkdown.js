@@ -410,37 +410,33 @@ function findPagesMarkdown(
   return pagesMarkdown;
 }
 
-
+// returns information about all pages containing demos for the component or hook specified in the importName prop
 function findBaseDemos(importName, pagesMarkdown) {
   return pagesMarkdown
     .filter((page) => page.components.includes(importName))
     .map((page) => ({
       demoPageTitle: getTitle(page.markdownContent),
-      demoPathname: page.pathname.match(/material\//)
-        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-        : `${page.pathname.replace('/components/', '/react-')}/`,
+      demoPathname: `${page.pathname.replace('/components/', '/react-')}/`,
     }));
 }
 
 /**
  * @param {string} product
  * @example 'material'
- * @param {string} componentPkg
+ * @param {string} package
  * @example 'mui-base'
  * @param {string} importName (hook or component)
  * @example 'ButtonUnstyled'
  * @returns {string}
  */
-function resolveApiUrl(product, componentPkg, importName) {
+function resolveApiUrl(product, package, importName) {
   if (!product) {
     return `/api/${kebabCase(importName)}/`;
   }
   if (product === 'date-pickers') {
     return `/x/api/date-pickers/${kebabCase(importName)}/`;
   }
-  if (componentPkg === 'mui-base' || product === 'base') {
-    // TODO: Duplicated from buildApiUrl
-
+  if (package === 'mui-base' || product === 'base') {
     const allMarkdowns = findPagesMarkdown()
       .filter((markdown) => {
         return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);

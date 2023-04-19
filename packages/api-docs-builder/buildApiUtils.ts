@@ -290,7 +290,7 @@ const getApiPath = (
   let demo = demos && demos.length > 0 ? demos[0] : null;
   let idx = 0;
 
-  while(demo && demo.demoPathname.indexOf('/base/') < 0) {
+  while (demo && demo.demoPathname.indexOf('/base/') < 0 && idx < demos.length) {
     idx += 1;
     demo = demos[idx];
   }
@@ -302,7 +302,7 @@ const getApiPath = (
       name.startsWith('use') ? 'hooks-api' : 'components-api'
     }/#${kebabCase(name)}`;
   } else {
-    console.log(`Warning: No demos found for ${name}`)
+    console.log(`Warning: No demos found for ${name}`);
   }
 
   return apiPath;
