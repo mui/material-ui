@@ -1,20 +1,10 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import { visuallyHidden } from 'packages/mui-utils/src';
 
 export default function CircularDeterminate() {
   const [progress, setProgress] = React.useState(0);
-  const srOnlyStyle: React.CSSProperties = {
-    position: 'absolute',
-    width: '1px',
-    height: '1px',
-    padding: '0',
-    margin: '-1px',
-    overflow: 'hidden',
-    clip: 'rect(0,0,0,0)',
-    whiteSpace: 'nowrap',
-    border: '0'
-  };
   
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -40,9 +30,8 @@ export default function CircularDeterminate() {
         value={progress}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-valuetext={progressDescription}
         />
-        <div id="progress-description" style={srOnlyStyle}>
+        <div id="progress-description" style={visuallyHidden}>
           {progressDescription}
         </div>
       </div>
