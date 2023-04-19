@@ -35,7 +35,7 @@ const content = [
 
 export default function BaseUISummary() {
   return (
-    <Container sx={{ py: { xs: 6, sm: 10, md: 24 } }}>
+    <Container sx={{ py: { xs: 6, sm: 10, md: 20 } }}>
       <SectionHeadline
         alwaysCenter
         overline="Why Base UI"

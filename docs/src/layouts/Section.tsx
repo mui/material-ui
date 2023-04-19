@@ -35,13 +35,13 @@ export default function Section(props: SelectionProps) {
         (theme) => ({
           ...(bg === 'gradient'
             ? {
-                background: `linear-gradient(180deg, ${
+                background: `linear-gradient(180deg, #FFF 0%, ${
                   (theme.vars || theme).palette.grey[50]
-                } 0%, #FFFFFF 100%)`,
+                } 100%)`,
                 ...theme.applyDarkStyles({
                   background: `linear-gradient(180deg, ${
-                    (theme.vars || theme).palette.primaryDark[900]
-                  } 0%, #001E3C 100%)`,
+                    (theme.vars || theme).palette.primaryDark[800]
+                  } 0%, ${(theme.vars || theme).palette.primaryDark[700]} 100%)`,
                 }),
               }
             : {
@@ -50,7 +50,7 @@ export default function Section(props: SelectionProps) {
                   bgcolor: map[bg].dark,
                 }),
               }),
-          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 6, md: 8 },
+          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 16 },
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

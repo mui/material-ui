@@ -213,7 +213,7 @@ export default function BaseUICustomization() {
     }
   }, [index]);
   return (
-    <Section bg="comfort">
+    <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -221,10 +221,11 @@ export default function BaseUICustomization() {
               overline="Customization"
               title={
                 <Typography variant="h2">
-                  <GradientText>Freedom to decide</GradientText> how to customize
+                  <GradientText>Endless possibilities </GradientText>
+                  <br /> with a lightweight API
                 </Typography>
               }
-              description="With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style."
+              description="With Base UI, you have the freedom to decide how much you want to customize a component's structure and style."
             />
           </Box>
           <Group sx={{ mt: 4 }}>

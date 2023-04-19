@@ -417,13 +417,11 @@ export default function BaseUIComponents() {
               overline="Unstyled components"
               title={
                 <Typography variant="h2">
-                  Prebuilt components{' '}
-                  <GradientText>
-                    with <br /> production-ready functionality
-                  </GradientText>
+                  Choose your own
+                  <br /> <GradientText>CSS adventure</GradientText>
                 </Typography>
               }
-              description="MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components."
+              description="Base UI’s skeletal components give you a sturdy foundation to apply custom styles with ease. With no defaults to override, you’re free to start from scratch using vanilla CSS, Tailwind CSS, MUI System, or any other framework you prefer."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

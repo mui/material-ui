@@ -19,10 +19,11 @@ export default function BaseUITestimonial() {
             sx={{
               border: '1px solid',
               borderColor: 'divider',
-              borderRadius: '12px',
+              borderRadius: 1,
               pt: 3,
               pl: 3,
-              background: 'linear-gradient(260.43deg, #3399FF 0%, #0059B3 93.75%)',
+              background: 'linear-gradient(260deg, #3399FF 0%, #0059B3 95%)',
+              overflow: 'auto',
             }}
           >
             <Typography variant="h4" mb={2.5} sx={{ color: '#fff' }}>
@@ -34,12 +35,11 @@ export default function BaseUITestimonial() {
               sx={{
                 width: '100%',
                 borderTopLeftRadius: '12px',
-                borderBottomRightRadius: '11px',
                 display: 'block',
               }}
             />
           </Box>
-          <Typography variant="body2" sx={{ mt: 1.5 }}>
+          <Typography variant="body2" sx={{ mt: 2 }}>
             Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
             <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
               /
@@ -50,7 +50,7 @@ export default function BaseUITestimonial() {
             </Link>
           </Typography>
         </Grid>
-        <Grid xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+        <Grid xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <Typography>
             “After considering various options, we decided to migrate our custom components to MUI,
             and that&apos;s when we discovered Base UI. As a set of headless components, it offered
@@ -63,10 +63,12 @@ export default function BaseUITestimonial() {
           <Box sx={{ display: 'flex', gap: 1 }}>
             <Avatar src="https://media.licdn.com/dms/image/C4D03AQHm6cbz2UDXpw/profile-displayphoto-shrink_800_800/0/1642674447256?e=2147483647&v=beta&t=L8g2vW_8mG8AvB3lwui0CT8969_Cx9QQ0iJXIS47i0o" />
             <Box sx={{ flex: 1 }}>
-              <Typography variant="body2">
-                <b>Szilárd Dóró</b>
+              <Typography variant="body2" fontWeight={600}>
+                Szilárd Dóró
               </Typography>
-              <Typography variant="body2">Senior Software Engineer</Typography>
+              <Typography variant="body2" color="text.secondary">
+                Senior Software Engineer
+              </Typography>
             </Box>
             <img src="https://docs.nhost.io/img/logo.svg" alt="" width="80" />
           </Box>
