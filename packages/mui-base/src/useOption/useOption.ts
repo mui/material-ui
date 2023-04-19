@@ -20,7 +20,7 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
 
   const {
     getRootProps: getListItemProps,
-    ref: listItemRefHandler,
+    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({

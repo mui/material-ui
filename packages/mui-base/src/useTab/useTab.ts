@@ -40,7 +40,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
 
   const {
     getRootProps: getTabProps,
-    ref: listItemRefHandler,
+    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({

@@ -35,7 +35,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
   const {
     getRootProps: getListRootProps,
     highlighted,
-    ref: listItemRefHandler,
+    rootRef: listItemRefHandler,
   } = useListItem({
     item: id,
   });

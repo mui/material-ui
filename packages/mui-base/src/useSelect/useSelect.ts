@@ -222,7 +222,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getItemId,
     controlledProps: controlledState,
     isItemDisabled,
-    listRef: handleListboxRef,
+    rootRef: handleListboxRef,
     onChange: handleSelectionChange,
     onHighlightChange: handleHighlightChange,
     onStateChange: handleStateChange,

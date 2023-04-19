@@ -6,7 +6,7 @@ export interface UseTabsListParameters {
   /**
    * Ref to the root element.
    */
-  ref: React.Ref<unknown>;
+  ref: React.Ref<Element>;
 }
 
 export type UseTabsListRootSlotProps<TOther = {}> = TOther & {

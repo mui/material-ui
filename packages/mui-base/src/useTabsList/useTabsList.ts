@@ -115,7 +115,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     getItemDomElement: getTabElement,
     isItemDisabled,
     items: subitemKeys,
-    listRef: externalRef,
+    rootRef: externalRef,
     onChange: handleChange,
     orientation: listOrientation,
     reducerActionContext: React.useMemo(

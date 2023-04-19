@@ -81,7 +81,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     items: subitemKeys,
     itemStringifier: (id: string) =>
       subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
-    listRef: handleRef,
+    rootRef: handleRef,
     onStateChange: stateChangeHandler,
     reducerActionContext: { listboxRef },
     selectionMode: 'none',

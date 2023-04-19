@@ -33,7 +33,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * - [TabsListUnstyled API](https://mui.com/base/react-tabs/components-api/#tabs-list-unstyled)
  */
-const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>(function TabsListUnstyled(
+const TabsListUnstyled = React.forwardRef<Element, TabsListUnstyledProps>(function TabsListUnstyled(
   props,
   ref,
 ) {
