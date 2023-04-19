@@ -63,7 +63,6 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     onClose,
     open,
     resumeHideDuration,
-    ref,
   });
 
   const ownerState: SnackbarUnstyledOwnerState = props;

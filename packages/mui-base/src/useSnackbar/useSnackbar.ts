@@ -24,7 +24,6 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
     disableWindowBlurListener = false,
     onClose,
     open,
-    ref,
     resumeHideDuration,
   } = parameters;
 
@@ -157,7 +156,6 @@ export default function useSnackbar(parameters: UseSnackbarParameters): UseSnack
     };
 
     return {
-      ref,
       // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
       // See https://github.com/mui/material-ui/issues/29080
       role: 'presentation',
