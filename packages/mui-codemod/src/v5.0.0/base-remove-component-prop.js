@@ -67,7 +67,6 @@ export default function transformer(file, api, options) {
                   ...attributeNode.value.expression.properties,
                 ];
               } else {
-                attributeNodes.push(attributeNode);
                 slotsPropNode = attributeNode;
               }
               if (!slotPropNodeInserted) {
