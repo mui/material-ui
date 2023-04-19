@@ -28,10 +28,10 @@ import Badge from '@mui/base/Badge';
     badge: CustomBadge,
     root: CustomRoot
   }}
+  slotProps={{ badge: { className: 'badge' } }}
   randomProp="1"
   randomProp2="2"
-  randomProp3="3"
-  slotProps={{ badge: { className: 'badge' } }} />;
+  randomProp3="3" />;
 
 <Input slots={{
   root: 'a'

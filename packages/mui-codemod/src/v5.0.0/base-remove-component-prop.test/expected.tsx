@@ -29,6 +29,7 @@ import Badge from '@mui/base/Badge';
     badge: CustomBadge,
     root: CustomRoot
   }}
+  slotProps={{ badge: { className: 'badge' } }}
   randomProp="1"
   randomProp2="2"
   randomProp3="3"
