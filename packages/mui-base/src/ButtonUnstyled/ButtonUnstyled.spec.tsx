@@ -51,6 +51,7 @@ const polymorphicComponentTest = () => {
       />
 
       <ButtonUnstyled<'div'>
+         slotProps={{ root: 'div' }}
         ref={(elem) => {
           expectType<HTMLDivElement | null, typeof elem>(elem);
         }}
