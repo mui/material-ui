@@ -17,7 +17,13 @@ githubLabel: 'component: NumberInput'
 ## Introduction
 
 A number input is a UI element that accepts numeric values from the user.
-The Unstyled Number Input component is a customizable replacement for the native HTML `<input type="number" />` that solves common usability [issues](/material-ui/react-text-field/#type-quot-number-quot) of the native counterpart.
+The Unstyled Number Input component is a customizable replacement for the native HTML `<input type="number" />` that solves common usability issues of the native counterpart, such as:
+
+- Inconsistencies across browsers in the appearance and behavior of the stepper buttons
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
+- Incompatibilities with assistive technologies and limited accessibility features
+
+See [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) by the GOV.UK Design System team for a more detailed explanation.
 
 {{"demo": "UnstyledNumberInputIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
