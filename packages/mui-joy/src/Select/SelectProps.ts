@@ -20,32 +20,32 @@ export interface SelectSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the button.
    * @default 'button'
    */
-  button: React.ElementType;
+  button?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
   /**
    * The component that renders the indicator.
    * @default 'span'
    */
-  indicator: React.ElementType;
+  indicator?: React.ElementType;
   /**
    * The component that renders the listbox.
    * @default 'ul'
    */
-  listbox: React.ElementType;
+  listbox?: React.ElementType;
 }
 
 export interface SelectPropsVariantOverrides {}

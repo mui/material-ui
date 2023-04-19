@@ -1,5 +1,57 @@
 {
-  "parameters": {},
+  "parameters": {
+    "buttonRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "defaultValue": {
+      "type": {
+        "name": "SelectValue&lt;OptionValue, Multiple&gt;",
+        "description": "SelectValue&lt;OptionValue, Multiple&gt;"
+      }
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "listboxId": { "type": { "name": "string", "description": "string" } },
+    "listboxRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
+    "onChange": {
+      "type": {
+        "name": "(e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
+        "description": "(e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void"
+      }
+    },
+    "onHighlightChange": {
+      "type": {
+        "name": "(e: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void",
+        "description": "(e: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void"
+      }
+    },
+    "onOpenChange": {
+      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } },
+    "options": {
+      "type": {
+        "name": "SelectOptionDefinition&lt;OptionValue&gt;[]",
+        "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
+      }
+    },
+    "optionStringifier": {
+      "type": {
+        "name": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string",
+        "description": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string"
+      },
+      "default": "defaultOptionStringifier"
+    },
+    "value": {
+      "type": {
+        "name": "SelectValue&lt;OptionValue, Multiple&gt;",
+        "description": "SelectValue&lt;OptionValue, Multiple&gt;"
+      }
+    }
+  },
   "returnValue": {
     "buttonActive": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "buttonFocusVisible": {

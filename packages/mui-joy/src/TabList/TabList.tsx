@@ -66,6 +66,8 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant = 'soft',
     color: colorProp = 'neutral',
     size: sizeProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -88,12 +90,13 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     elementType: TabListRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
     className: classes.root,
   });
@@ -140,6 +143,20 @@ TabList.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

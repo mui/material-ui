@@ -12,7 +12,7 @@ export interface MenuSlots {
    * The component that renders the root.
    * @default 'ul'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<

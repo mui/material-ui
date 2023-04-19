@@ -344,6 +344,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     'aria-labelledby': ariaLabelledby,
     id,
     name,
+    slots = {},
+    slotProps = {},
     ...other
   } = props as typeof inProps & {
     // need to cast types because SelectOwnProps does not have these properties
@@ -454,6 +456,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, slots, slotProps };
 
   const selectedOption = React.useMemo(
     () => getOptionMetadata(value as TValue) ?? null,
@@ -464,7 +467,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (
@@ -492,7 +495,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.button,
     elementType: SelectButton,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getButtonProps,
     ownerState,
   });
@@ -508,7 +511,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.listbox,
     elementType: SelectListbox,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,
@@ -527,21 +530,21 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -744,7 +747,8 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The components used for each slot inside.
+   * @default {}
    */
   slots: PropTypes.shape({
     button: PropTypes.elementType,

@@ -58,7 +58,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     name: 'JoyAvatarGroup',
   });
 
-  const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
+  const {
+    className,
+    color,
+    component = 'div',
+    size = 'md',
+    variant,
+    children,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = React.useMemo(
     () => ({
@@ -77,7 +87,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: AvatarGroupGroupRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps: { ...other, component, slots, slotProps },
     ownerState,
   });
 
@@ -124,6 +134,20 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

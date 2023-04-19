@@ -20,6 +20,7 @@
     "defaultClass": "Default class",
     "hookName": "Hook name",
     "hooksApi": "Hooks API",
+    "hooksNoParameters": "This hook does not accept any input parameters.",
     "hooksPageDescription": "API reference docs for the {{name}} hook. Learn about the input parameters and other APIs of this exported module.",
     "import": "Import",
     "importDifference": "You can learn about the difference by <a href=\"/material-ui/guides/minimizing-bundle-size/\">reading this guide on minimizing bundle size</a>.",
@@ -285,6 +286,7 @@
     "/base/react-tabs/hooks-api/#use-tabs-list": "useTabsList",
     "/base/guides": "How-to guides",
     "/base/guides/working-with-tailwind-css": "Working with Tailwind CSS",
+    "/base/guides/overriding-component-structure": "Overriding component structure",
     "/material-ui/getting-started": "Getting started",
     "/material-ui/getting-started/overview": "Overview",
     "/material-ui/getting-started/installation": "Installation",
@@ -485,6 +487,7 @@
     "/joy-ui/customization/default-theme-viewer": "Default theme viewer",
     "/joy-ui/customization/theme-builder": "Theme builder",
     "/joy-ui/guides": "How-to guides",
+    "/joy-ui/guides/overriding-component-structure": "Overriding component structure",
     "/joy-ui/guides/using-joy-ui-and-material-ui-together": "Joy UI and Material UI together",
     "/joy-ui/guides/using-icon-libraries": "Using icon libraries"
   }
