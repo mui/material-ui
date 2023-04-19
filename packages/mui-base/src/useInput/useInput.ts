@@ -214,6 +214,7 @@ export default function useInput(parameters: UseInputParameters): UseInputReturn
     formControlContext,
     getInputProps,
     getRootProps,
+    inputRef: handleInputRef,
     required,
     value,
   };
