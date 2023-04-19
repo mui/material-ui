@@ -3,15 +3,10 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Breadcrumbs from '@mui/joy/Breadcrumbs';
-import Link from '@mui/joy/Link';
-import Typography from '@mui/joy/Typography';
 import useScript from './useScript';
-import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
 import Sidebar from './components/Sidebar';
-// import Header from './components/Header';
+import Header from './components/Header';
 import MyProfile from './components/MyProfile';
 
 const useEnhancedEffect =
@@ -44,6 +39,7 @@ export default function JoyOrderDashboardTemplate() {
       />
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+        <Header />
         <Sidebar />
         <Box
           component="main"

@@ -48,7 +48,7 @@ export default function MyProfile() {
             '--_shadow-height': '16px',
             height: 0,
             position: 'sticky',
-            top: 'calc(var(--Tab-height) - var(--main-paddingTop) - (var(--_shadow-height) / 2))',
+            top: 'calc(var(--Tab-height) - var(--main-paddingTop, 0px) + var(--Header-height, 0px) - (var(--_shadow-height) / 2))',
             zIndex: 1,
             '&::before': {
               content: '""',
@@ -71,7 +71,7 @@ export default function MyProfile() {
             bgcolor: 'background.body',
             boxShadow: `inset 0 -1px 0 0 ${theme.vars.palette.divider}`,
             position: 'sticky',
-            top: 'calc(-1 * var(--main-paddingTop))',
+            top: 'calc(-1 * (var(--main-paddingTop, 0px) - var(--Header-height, 0px)))',
             zIndex: 10,
             width: '100%',
             overflow: 'auto hidden',
