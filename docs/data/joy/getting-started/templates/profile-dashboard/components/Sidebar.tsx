@@ -88,123 +88,138 @@ export default function Sidebar() {
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
       <Input startDecorator={<i data-feather="search" />} placeholder="Search" />
-      <List
+      <Box
         sx={{
-          '--ListItem-radius': '8px',
-          '--List-gap': '4px',
-          '--List-nestedInsetStart': '40px',
+          minHeight: 0,
+          overflow: 'hidden auto',
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="home" />
-            </ListItemDecorator>
-            <ListItemContent>Home</ListItemContent>
-            <Dropdown data-feather="chevron-down" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="bar-chart-2" />
-            </ListItemDecorator>
-            <ListItemContent>Dashboard</ListItemContent>
-            <Dropdown data-feather="chevron-down" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="layers" />
-            </ListItemDecorator>
-            <ListItemContent>Projects</ListItemContent>
-            <Dropdown data-feather="chevron-down" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="check-square" />
-            </ListItemDecorator>
-            <ListItemContent>Tasks</ListItemContent>
-            <Dropdown data-feather="chevron-down" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="flag" />
-            </ListItemDecorator>
-            <ListItemContent>Reporting</ListItemContent>
-            <Dropdown data-feather="chevron-down" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem nested>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="bar-chart-2" />
-            </ListItemDecorator>
-            <ListItemContent>Users</ListItemContent>
-            <i data-feather="chevron-up" />
-          </ListItemButton>
-          <List>
-            <ListItem>
-              <ListItemButton selected variant="soft" color="primary">
-                My Profile
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>New user</ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>Role & Permission</ListItemButton>
-            </ListItem>
-          </List>
-        </ListItem>
-      </List>
-      <List
-        sx={{
-          mt: 'auto',
-          flexGrow: 0,
-          '--ListItem-radius': '8px',
-          '--List-gap': '8px',
-        }}
-      >
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="life-buoy" />
-            </ListItemDecorator>
-            <ListItemContent>Supports</ListItemContent>
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <i data-feather="settings" />
-            </ListItemDecorator>
-            <ListItemContent>Settings</ListItemContent>
-          </ListItemButton>
-        </ListItem>
-      </List>
-      <Card variant="soft" color="primary" invertedColors sx={{ boxShadow: 'none' }}>
-        <Typography fontSize="sm" fontWeight="md" mb={0.5}>
-          Used space
-        </Typography>
-        <Typography level="body2">
-          Your team has used 80% of your available space. Need more?
-        </Typography>
-        <LinearProgress value={80} determinate sx={{ my: 1.5 }} />
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Link fontSize="sm" component="button">
-            Dismiss
-          </Link>
-          <Link fontSize="sm" component="button" fontWeight="lg">
-            Upgrade plain
-          </Link>
-        </Box>
-      </Card>
+        <List
+          sx={{
+            '--ListItem-radius': '8px',
+            '--List-gap': '4px',
+            '--List-nestedInsetStart': '40px',
+          }}
+        >
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="home" />
+              </ListItemDecorator>
+              <ListItemContent>Home</ListItemContent>
+              <Dropdown data-feather="chevron-down" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="bar-chart-2" />
+              </ListItemDecorator>
+              <ListItemContent>Dashboard</ListItemContent>
+              <Dropdown data-feather="chevron-down" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="layers" />
+              </ListItemDecorator>
+              <ListItemContent>Projects</ListItemContent>
+              <Dropdown data-feather="chevron-down" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="check-square" />
+              </ListItemDecorator>
+              <ListItemContent>Tasks</ListItemContent>
+              <Dropdown data-feather="chevron-down" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="flag" />
+              </ListItemDecorator>
+              <ListItemContent>Reporting</ListItemContent>
+              <Dropdown data-feather="chevron-down" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem nested>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="bar-chart-2" />
+              </ListItemDecorator>
+              <ListItemContent>Users</ListItemContent>
+              <i data-feather="chevron-up" />
+            </ListItemButton>
+            <List>
+              <ListItem>
+                <ListItemButton selected variant="soft" color="primary">
+                  My Profile
+                </ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>New user</ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>Role & Permission</ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+        </List>
+        <List
+          sx={{
+            mt: 'auto',
+            flexGrow: 0,
+            '--ListItem-radius': '8px',
+            '--List-gap': '8px',
+          }}
+        >
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="life-buoy" />
+              </ListItemDecorator>
+              <ListItemContent>Supports</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator>
+                <i data-feather="settings" />
+              </ListItemDecorator>
+              <ListItemContent>Settings</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <Card
+          variant="soft"
+          color="primary"
+          invertedColors
+          sx={{ boxShadow: 'none' }}
+        >
+          <Typography fontSize="sm" fontWeight="md" mb={0.5}>
+            Used space
+          </Typography>
+          <Typography level="body2">
+            Your team has used 80% of your available space. Need more?
+          </Typography>
+          <LinearProgress value={80} determinate sx={{ my: 1.5 }} />
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Link fontSize="sm" component="button">
+              Dismiss
+            </Link>
+            <Link fontSize="sm" component="button" fontWeight="lg">
+              Upgrade plain
+            </Link>
+          </Box>
+        </Card>
+      </Box>
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
