@@ -57,7 +57,7 @@ The Unstyled Button component is composed of a root `<button>` slot with no inte
 ### Slot props
 
 :::info
-The following props are available on all non-utility Base components.
+The following prop is available on all non-utility Base components.
 See [Usage](/base/getting-started/usage/) for full details.
 :::
 
@@ -77,6 +77,23 @@ Compare the attributes on the `<span>` in this demo with the Button from the pre
 If an Unstyled Button is customized with a non-button element (i.e. `<ButtonUnstyled slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
 Similarly, `<ButtonUnstyled slots={{ root: "span" }} type="reset">` will not reset its parent form.
 :::
+
+#### Usage with TypeScript
+
+If you are using TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the unstyled compnent:
+
+```tsx
+<ButtonUnstyled<typeof CustomComponent>
+  slots={{ root: CustomComponent }}
+  customProp
+/>
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<ButtonUnstyled<'svg'> viewBox="0 0 24 24" />
+```
 
 ## Hook
 

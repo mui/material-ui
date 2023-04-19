@@ -46,12 +46,14 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error required props not specified */}
       <ButtonUnstyled<typeof CustomComponent> slots={{ root: CustomComponent }} />
 
+      <ButtonUnstyled<'svg'> viewBox="" />
+
       <ButtonUnstyled
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <ButtonUnstyled<'div'>
-         slotProps={{ root: 'div' }}
+        slotProps={{ root: 'div' }}
         ref={(elem) => {
           expectType<HTMLDivElement | null, typeof elem>(elem);
         }}
