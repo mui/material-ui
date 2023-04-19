@@ -67,6 +67,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     getRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue },
+    rootRef: mergedListRef,
   } = useList({
     controlledProps,
     disabledItemsFocusable: true,
@@ -122,6 +123,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     dispatch,
     getListboxProps,
     highlightedValue,
+    listboxRef: mergedListRef,
     menuItems: subitems,
     open,
   };
