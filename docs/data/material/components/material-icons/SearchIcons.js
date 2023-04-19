@@ -412,6 +412,9 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   alignItems: 'center',
   marginBottom: theme.spacing(2),
   width: '100%',
+  borderRadius: '12px',
+  border: '1px solid',
+  borderColor: theme.palette.divider,
 }));
 
 function formatNumber(value) {
