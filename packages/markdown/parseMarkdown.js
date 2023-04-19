@@ -562,7 +562,7 @@ ${headers.components
 
     product = product ?? headers.product;
 
-    const componentPkgMap = componentPackageMapping[product ?? product];
+    const componentPkgMap = componentPackageMapping[product];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
     return `- [\`<${component} />\`](${resolveApiUrl(product, componentPkg, component)})`;
   })
@@ -578,7 +578,7 @@ ${headers.hooks
     }
 
     product = product ?? headers.product;
-    const hookPkgMap = componentPackageMapping[headers.product];
+    const hookPkgMap = componentPackageMapping[product];
     const hookPkg = hookPkgMap ? hookPkgMap[hook] : null;
     return `- [\`${hook}\`](${resolveApiUrl(headers.product, hookPkg, hook)})`;
   })
