@@ -22,7 +22,7 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  * - [useMenuItem API](https://mui.com/base/react-menu/hooks-api/#use-menu-item)
  */
 export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
-  const { disabled = false, id: idParam, ref: externalRef, label } = params;
+  const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
 
   const id = useId(idParam);
   const itemRef = React.useRef<HTMLElement>(null);
@@ -71,7 +71,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
       highlighted: false,
       index: -1,
       totalItemCount: 0,
-      ref: handleRef,
+      rootRef: handleRef,
     };
   }
 
@@ -104,6 +104,6 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
     highlighted,
     index,
     totalItemCount,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }
