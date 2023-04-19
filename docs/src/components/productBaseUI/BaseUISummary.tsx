@@ -35,7 +35,7 @@ const content = [
 
 export default function BaseUISummary() {
   return (
-    <Container sx={{ py: { xs: 6, sm: 10, md: 12 } }}>
+    <Container sx={{ py: { xs: 6, sm: 10, md: 24 } }}>
       <SectionHeadline
         alwaysCenter
         overline="Why Base UI"
@@ -47,8 +47,8 @@ export default function BaseUISummary() {
         }
         description="Base UI abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
       />
-      <Box sx={{ py: 5 }}>
-        <Grid container spacing={2}>
+      <Box sx={{ mt: 8 }}>
+        <Grid container spacing={3}>
           {content.map(({ icon, title, description }) => (
             <Grid key={title} item xs={12} md={4}>
               <Paper
@@ -58,23 +58,25 @@ export default function BaseUISummary() {
                   height: '100%',
                   position: 'relative',
                   borderRadius: '12px',
-                  borderLeft: '1px solid',
-                  borderBottom: '1px solid',
-                  borderColor: 'divider',
+                  border: '1px solid',
+                  borderColor: 'grey.100',
                   backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
                     (theme.vars || theme).palette.patterns.triangle
                   }`,
+
                   '&:hover': {
                     borderColor: 'primary.500',
                     boxShadow:
                       '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
                   },
+
                   ...theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
+                    borderColor: 'primaryDark.700',
+
                     '&:hover': {
                       borderColor: 'primary.500',
-                      boxShadow:
-                        '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
+                      boxShadow: '0px 1px 6px #0059B3, inset 0px 2px 30px rgba(0, 0, 0, 0.1)',
                     },
                   }),
                 })}
@@ -86,7 +88,7 @@ export default function BaseUISummary() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: '12px',
+                    borderRadius: 1,
                     border: '1px solid',
                     borderColor: 'primary.200',
                     bgcolor: 'primary.50',
@@ -112,7 +114,7 @@ export default function BaseUISummary() {
                 >
                   {title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" mb={1.5}>
+                <Typography variant="body2" color="text.secondary" mb={2}>
                   {description}
                 </Typography>
                 <Link
@@ -130,10 +132,10 @@ export default function BaseUISummary() {
           ))}
         </Grid>
       </Box>
-      <Typography fontWeight={500} textAlign="center" mb={1} fontSize="0.875rem">
+      <Typography fontWeight={500} textAlign="center" mt={8} mb={2} fontSize="0.875rem">
         Alternative to libraries such as:
       </Typography>
-      <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
         <Box
           sx={(theme) => ({
             background: 'url(/static/branding/base-ui/radix.svg)',
