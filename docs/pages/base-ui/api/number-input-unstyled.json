@@ -7,6 +7,7 @@
     "id": { "type": { "name": "string" } },
     "max": { "type": { "name": "number" } },
     "min": { "type": { "name": "number" } },
+    "onChange": { "type": { "name": "func" } },
     "onValueChange": { "type": { "name": "func" } },
     "required": { "type": { "name": "bool" } },
     "slotProps": {

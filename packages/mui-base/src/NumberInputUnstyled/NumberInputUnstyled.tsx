@@ -217,7 +217,9 @@ NumberInputUnstyled.propTypes /* remove-proptypes */ = {
    */
   onBlur: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the <input> value changes, before clamping is applied. Note that
+   * `event.target.value` may contain values that fall outside of `min` and `max` or
+   * are otherwise "invalid".
    */
   onChange: PropTypes.func,
   /**

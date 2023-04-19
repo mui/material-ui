@@ -40,7 +40,7 @@ export default function UnstyledNumberInputBasic() {
       aria-label="Demo number input"
       placeholder="Type a number…"
       value={value}
-      onValueChange={(val) => setValue(val)}
+      onValueChange={(event, val) => setValue(val)}
     />
   );
 }

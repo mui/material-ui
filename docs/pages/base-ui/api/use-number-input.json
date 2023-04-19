@@ -31,8 +31,8 @@
     },
     "onValueChange": {
       "type": {
-        "name": "(value: number | undefined) =&gt; void",
-        "description": "(value: number | undefined) =&gt; void"
+        "name": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | undefined) =&gt; void",
+        "description": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | undefined) =&gt; void"
       }
     },
     "required": { "type": { "name": "boolean", "description": "boolean" } },

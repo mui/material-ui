@@ -140,9 +140,9 @@ export default function useNumberInput(
       // formControlContext?.onValueChange?.(newValue);
 
       if (isNumber(newValue)) {
-        onValueChange?.(newValue);
+        onValueChange?.(event, newValue);
       } else {
-        onValueChange?.(undefined);
+        onValueChange?.(event, undefined);
       }
     };
 

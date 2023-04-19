@@ -8,6 +8,7 @@
     "id": "The id of the <code>input</code> element.",
     "max": "The maximum value.",
     "min": "The minimum value.",
+    "onChange": "Callback fired when the &lt;input&gt; value changes, before clamping is applied. Note that <code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or are otherwise &quot;invalid&quot;.",
     "onValueChange": "Callback fired after the value is clamped and changes. Called with <code>undefined</code> when the value is unset.",
     "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
     "slotProps": "The props used for each slot inside the NumberInput.",

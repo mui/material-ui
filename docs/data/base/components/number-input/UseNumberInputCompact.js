@@ -67,7 +67,7 @@ export default function UseNumberInputCompact() {
         aria-label="Compact number input"
         placeholder="Type a number…"
         value={value}
-        onValueChange={(val) => setValue(val)}
+        onValueChange={(event, val) => setValue(val)}
       />
       <pre>Current value: {value ?? ' '}</pre>
     </Layout>

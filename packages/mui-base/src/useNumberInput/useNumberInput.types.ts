@@ -40,13 +40,21 @@ export interface UseNumberInputParameters {
   error?: boolean;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler;
+  /**
+   * Callback fired when the <input> value changes, before clamping is applied. Note that
+   * `event.target.value` may contain values that fall outside of `min` and `max` or
+   * are otherwise "invalid".
+   */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
   /**
    * Callback fired after the value is clamped and changes.
    * Called with `undefined` when the value is unset.
    */
-  onValueChange?: (value: number | undefined) => void;
+  onValueChange?: (
+    event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
+    value: number | undefined,
+  ) => void;
   inputRef?: React.Ref<HTMLInputElement>;
   /**
    * If `true`, the `input` element is required.
