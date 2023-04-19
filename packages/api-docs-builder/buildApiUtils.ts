@@ -301,8 +301,6 @@ const getApiPath = (
     apiPath = `${cleanedDemosPathname}${
       name.startsWith('use') ? 'hooks-api' : 'components-api'
     }/#${kebabCase(name)}`;
-  } else {
-    console.log(`Warning: No demos found for ${name}`);
   }
 
   return apiPath;

@@ -493,10 +493,7 @@ function resolveApiUrl(product, packageName, importName) {
     // Once the docs for all products support tabs, this will need to be generalized for all products
     const allMarkdowns = findPagesMarkdown()
       .filter((markdown) => {
-        if (migratedBaseComponents.some((component) => filename.includes(component))) {
-          return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-        }
-        return true;
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
       })
       .map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
@@ -599,7 +596,8 @@ ${headers.components
   .join('\n')}
 ${headers.hooks
   .map((hookInput) => {
-    let hook, product;
+    let hook;
+    let product;
 
     if (hookInput.indexOf(':') >= 0) {
       [product, hook] = hookInput.split(':');
