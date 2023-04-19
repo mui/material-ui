@@ -9,10 +9,10 @@ const CustomButton = React.forwardRef(function CustomButton(
   props: ButtonUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
-  const { children } = props;
-  const { active, disabled, focusVisible, getRootProps } = useButton({
+  const { children, disabled } = props;
+  const { active, focusVisible, getRootProps } = useButton({
     ...props,
-    ref,
+    rootRef: ref,
   });
 
   const classes = {

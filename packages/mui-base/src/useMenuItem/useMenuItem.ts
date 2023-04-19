@@ -45,7 +45,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
   const {
     getRootProps: getButtonProps,
     focusVisible,
-    ref: buttonRefHandler,
+    rootRef: buttonRefHandler,
   } = useButton({
     disabled,
     focusableWhenDisabled: true,

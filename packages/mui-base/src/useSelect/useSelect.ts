@@ -126,7 +126,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     focusVisible: buttonFocusVisible,
   } = useButton({
     disabled,
-    ref: handleButtonRef,
+    rootRef: handleButtonRef,
   });
 
   const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);

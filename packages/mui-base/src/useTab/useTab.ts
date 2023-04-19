@@ -49,7 +49,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
 
   const {
     getRootProps: getButtonProps,
-    ref: buttonRefHandler,
+    rootRef: buttonRefHandler,
     active,
     focusVisible,
     setFocusVisible,
