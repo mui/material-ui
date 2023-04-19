@@ -23,7 +23,7 @@ function tabValueGenerator(otherTabValues: Set<string | number>) {
  * - [useTab API](https://mui.com/base/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
-  const { value: valueParam, ref: externalRef, disabled = false, id: idParam } = parameters;
+  const { value: valueParam, rootRef: externalRef, disabled = false, id: idParam } = parameters;
 
   const tabRef = React.useRef<HTMLElement>(null);
   const id = useId(idParam);
@@ -92,6 +92,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     focusVisible,
     highlighted,
     index,
+    rootRef: handleRef,
     // the `selected` state isn't set on the server (it relies on effects to be calculated),
     // so we fall back to checking the `value` prop with the selectedValue from the TabsContext
     selected: selected || value === selectedValue,

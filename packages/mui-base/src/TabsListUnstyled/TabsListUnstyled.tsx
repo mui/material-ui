@@ -40,7 +40,7 @@ const TabsListUnstyled = React.forwardRef<Element, TabsListUnstyledProps>(functi
   const { children, component, slotProps = {}, slots = {}, ...other } = props;
 
   const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
-    ref,
+    rootRef: ref,
   });
 
   const ownerState = {

@@ -9,7 +9,7 @@ import Tab, { tabClasses as classes } from '@mui/joy/Tab';
 
 function TabsListProvider({ children }: React.PropsWithChildren<{}>) {
   const { contextValue: tabsListContextValue } = useTabsList({
-    ref: { current: null },
+    rootRef: { current: null },
   });
   return <BaseTabsListProvider value={tabsListContextValue}>{children}</BaseTabsListProvider>;
 }

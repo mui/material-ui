@@ -53,7 +53,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
 
   const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   const ownerState = {

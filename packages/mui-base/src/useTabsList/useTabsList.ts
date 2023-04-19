@@ -24,7 +24,7 @@ import tabsListReducer from './tabsListReducer';
  * - [useTabsList API](https://mui.com/base/react-tabs/hooks-api/#use-tabs-list)
  */
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
-  const { ref: externalRef } = parameters;
+  const { rootRef: externalRef } = parameters;
 
   const {
     direction = 'ltr',
@@ -103,6 +103,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     dispatch,
     getRootProps: getListboxRootProps,
     state: { highlightedValue, selectedValues },
+    rootRef: mergedRootRef,
   } = useList<
     string | number,
     ListState<string | number>,
@@ -152,16 +153,14 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
   };
 
   return {
+    contextValue: { ...compoundComponentContextValue, ...listContextValue },
     dispatch,
+    getRootProps,
+    highlightedValue,
     isRtl,
     orientation,
+    rootRef: mergedRootRef,
     selectedValue: selectedValues[0] ?? null,
-    highlightedValue,
-    getRootProps,
-    contextValue: {
-      ...compoundComponentContextValue,
-      ...listContextValue,
-    },
   };
 }
 
