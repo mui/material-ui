@@ -372,6 +372,8 @@ function createRender(context) {
   return render;
 }
 
+// Taken from buildApiUtils and sligthly adjusted.
+// Returns all markdown pages specified in the docs/data directory.
 function findPagesMarkdown(
   directory = path.resolve(__dirname, '../../docs/data'),
   pagesMarkdown = [],
@@ -410,6 +412,7 @@ function findPagesMarkdown(
   return pagesMarkdown;
 }
 
+// Taken from buildApiUtils and sligthly adjusted.
 // Returns information about all pages containing demos
 // for the component or hook specified in the importName prop
 function findBaseDemos(importName, pagesMarkdown) {
@@ -421,6 +424,7 @@ function findBaseDemos(importName, pagesMarkdown) {
     }));
 }
 
+// Taken from buildApiUtils and sligthly adjusted.
 // Navigates trough the demos for the base components and creates
 // the API link for the specified name (component or hook)
 const getBaseApiPath = (demos, name) => {
@@ -445,6 +449,30 @@ const getBaseApiPath = (demos, name) => {
   return apiPath;
 };
 
+const migratedBaseComponents = [
+  'BadgeUnstyled',
+  'ButtonUnstyled',
+  'ClickAwayListener',
+  'FocusTrap',
+  'InputUnstyled',
+  'MenuItemUnstyled',
+  'MenuUnstyled',
+  'ModalUnstyled',
+  'NoSsr',
+  'OptionGroupUnstyled',
+  'OptionUnstyled',
+  'PopperUnstyled',
+  'Portal',
+  'SelectUnstyled',
+  'SliderUnstyled',
+  'SwitchUnstyled',
+  'TablePaginationUnstyled',
+  'TabPanelUnstyled',
+  'TabsListUnstyled',
+  'TabsUnstyled',
+  'TabUnstyled',
+];
+
 /**
  * @param {string} product
  * @example 'material'
@@ -465,7 +493,10 @@ function resolveApiUrl(product, packageName, importName) {
     // Once the docs for all products support tabs, this will need to be generalized for all products
     const allMarkdowns = findPagesMarkdown()
       .filter((markdown) => {
-        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+        if (migratedBaseComponents.some((component) => filename.includes(component))) {
+          return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+        }
+        return true;
       })
       .map((markdown) => {
         const markdownContent = fs.readFileSync(markdown.filename, 'utf8');

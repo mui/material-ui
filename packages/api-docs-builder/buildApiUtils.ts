@@ -318,7 +318,10 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
   // resolve demos, so that we can getch the API url
   const allMarkdowns = findPagesMarkdown()
     .filter((markdown) => {
-      return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      if (migratedBaseComponents.some((component) => filename.includes(component))) {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      }
+      return true;
     })
     .map((markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
@@ -370,7 +373,10 @@ export function getBaseHookInfo(filename: string): HookInfo {
 
   const allMarkdowns = findPagesMarkdown()
     .filter((markdown) => {
-      return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      if (migratedBaseComponents.some((component) => filename.includes(component))) {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      }
+      return true;
     })
     .map((markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
