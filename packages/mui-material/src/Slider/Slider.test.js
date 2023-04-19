@@ -330,40 +330,21 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
-      );
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 20 }]));
 
-      fireEvent.touchMove(
-        document.body,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 21 }]));
 
       fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 21 }]));
 
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
-      );
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 21 }]));
 
-      fireEvent.touchMove(
-        document.body,
-        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
-      );
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22 }]));
 
       fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 22 }]));
 
-      // TODO, consider not firing this change event since the values are the same to improve the DX.
-      fireEvent.touchStart(
-        container.firstChild,
-        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
-      );
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1, clientX: 22 }]));
 
-      fireEvent.touchMove(
-        document.body,
-        createTouches([{ identifier: 1, clientX: 22.1, clientY: 0 }]),
-      );
+      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22.1 }]));
 
       fireEvent.touchEnd(document.body, createTouches([{ identifier: 1, clientX: 22.1 }]));
 

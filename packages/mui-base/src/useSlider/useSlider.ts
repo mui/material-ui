@@ -144,9 +144,9 @@ function areValuesEqual(
   newValue: number | Array<number>,
   oldValue: number | Array<number>,
 ): boolean {
-  return typeof newValue === 'number'
+  return typeof newValue === 'number' || typeof oldValue === 'number'
     ? newValue === oldValue
-    : areArraysEqual(newValue, oldValue as number[]);
+    : areArraysEqual(newValue, oldValue);
 }
 
 const axisProps = {
