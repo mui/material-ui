@@ -69,7 +69,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
-    ref,
+    rootRef: ref,
   });
 
   const ownerState = {

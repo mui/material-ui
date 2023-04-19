@@ -53,7 +53,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<OptionValue>(
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
     label: computedLabel,
-    optionRef: combinedRef,
+    rootRef: combinedRef,
     value,
   });
 
