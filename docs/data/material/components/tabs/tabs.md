@@ -1,7 +1,7 @@
 ---
 product: material-ui
 title: React Tabs component
-components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
+components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, base:TabsUnstyled, base:TabUnstyled, base:TabPanelUnstyled, base:TabsListUnstyled
 githubLabel: 'component: tabs'
 materialDesign: https://m2.material.io/components/tabs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/

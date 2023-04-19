@@ -1,4 +1,6 @@
 const { marked } = require('marked');
+const path = require('path');
+const fs = require('fs');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
@@ -370,27 +372,120 @@ function createRender(context) {
   return render;
 }
 
+function findPagesMarkdown(
+  directory = path.resolve(__dirname, '../../docs/data'),
+  pagesMarkdown = [],
+) {
+  const items = fs.readdirSync(directory);
+
+  items.forEach((item) => {
+    const itemPath = path.resolve(directory, item);
+
+    if (fs.statSync(itemPath).isDirectory()) {
+      findPagesMarkdown(itemPath, pagesMarkdown);
+      return;
+    }
+
+    // Ignore non en-US source markdown.
+    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
+      return;
+    }
+
+    let pathname = itemPath
+      .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+      .replace(/^.*\/data/, '')
+      .replace('.md', '');
+
+    // Remove the last pathname segment.
+    pathname = pathname.split('/').slice(0, 4).join('/');
+
+    pagesMarkdown.push({
+      // Relative location in the path (URL) system.
+      pathname,
+      // Relative location in the file system.
+      filename: itemPath,
+    });
+  });
+
+  return pagesMarkdown;
+}
+
+
+function findBaseDemos(importName, pagesMarkdown) {
+  return pagesMarkdown
+    .filter((page) => page.components.includes(importName))
+    .map((page) => ({
+      demoPageTitle: getTitle(page.markdownContent),
+      demoPathname: page.pathname.match(/material\//)
+        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
+        : `${page.pathname.replace('/components/', '/react-')}/`,
+    }));
+}
+
 /**
  * @param {string} product
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
- * @param {string} component
+ * @param {string} importName (hook or component)
  * @example 'ButtonUnstyled'
  * @returns {string}
  */
-function resolveComponentApiUrl(product, componentPkg, component) {
+function resolveApiUrl(product, componentPkg, importName) {
   if (!product) {
-    return `/api/${kebabCase(component)}/`;
+    return `/api/${kebabCase(importName)}/`;
   }
   if (product === 'date-pickers') {
-    return `/x/api/date-pickers/${kebabCase(component)}/`;
+    return `/x/api/date-pickers/${kebabCase(importName)}/`;
   }
-  if (componentPkg === 'mui-base') {
-    return `/base/api/${kebabCase(component)}/`;
+  if (componentPkg === 'mui-base' || product === 'base') {
+    // TODO: Duplicated from buildApiUrl
+
+    const allMarkdowns = findPagesMarkdown()
+      .filter((markdown) => {
+        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+      })
+      .map((markdown) => {
+        const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
+        const markdownHeaders = getHeaders(markdownContent);
+
+        return {
+          ...markdown,
+          markdownContent,
+          components: markdownHeaders.components,
+          hooks: markdownHeaders.hooks,
+        };
+      });
+
+    const demos = findBaseDemos(importName, allMarkdowns);
+    return getBaseApiPath(demos, importName);
   }
-  return `/${product}/api/${kebabCase(component)}/`;
+  return `/${product}/api/${kebabCase(importName)}/`;
 }
+
+const getBaseApiPath = (demos, name) => {
+  let apiPath = null;
+
+  let demo = demos && demos.length > 0 ? demos[0] : null;
+  let idx = 0;
+
+  while (demo && demo.demoPathname.indexOf('/base/') < 0) {
+    idx += 1;
+    demo = demos[idx];
+  }
+
+  if (demo) {
+    // remove the hash from the demoPathname, for e.g. "#hooks"
+    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0];
+    apiPath = `${cleanedDemosPathname}${
+      name.startsWith('use') ? 'hooks-api' : 'components-api'
+    }/#${kebabCase(name)}`;
+  } else {
+    console.log(`Warning: No demos found for ${name}`);
+  }
+
+  return apiPath;
+};
 
 /**
  * @param {object} config
@@ -456,21 +551,36 @@ function prepareMarkdown(config) {
 See the documentation below for a complete reference to all of the props and classes available to the components mentioned here.
 
 ${headers.components
-  .map((component) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
+  .map((componentInput) => {
+    let component, product;
+
+    if (componentInput.indexOf(':') >= 0) {
+      [product, component] = componentInput.split(':');
+    } else {
+      component = componentInput;
+    }
+
+    product = product ?? headers.product;
+
+    const componentPkgMap = componentPackageMapping[product ?? product];
     const componentPkg = componentPkgMap ? componentPkgMap[component] : null;
-    return `- [\`<${component} />\`](${resolveComponentApiUrl(
-      headers.product,
-      componentPkg,
-      component,
-    )})`;
+    return `- [\`<${component} />\`](${resolveApiUrl(product, componentPkg, component)})`;
   })
   .join('\n')}
 ${headers.hooks
-  .map((hook) => {
-    const componentPkgMap = componentPackageMapping[headers.product];
-    const componentPkg = componentPkgMap ? componentPkgMap[hook] : null;
-    return `- [\`${hook}\`](${resolveComponentApiUrl(headers.product, componentPkg, hook)})`;
+  .map((hookInput) => {
+    let hook, product;
+
+    if (hookInput.indexOf(':') >= 0) {
+      [product, hook] = hookInput.split(':');
+    } else {
+      hook = hookInput;
+    }
+
+    product = product ?? headers.product;
+    const hookPkgMap = componentPackageMapping[headers.product];
+    const hookPkg = hookPkgMap ? hookPkgMap[hook] : null;
+    return `- [\`${hook}\`](${resolveApiUrl(headers.product, hookPkg, hook)})`;
   })
   .join('\n')}
   `);

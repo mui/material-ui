@@ -287,12 +287,22 @@ const getApiPath = (
 ) => {
   let apiPath = null;
 
-  if (demos && demos.length > 0) {
+  let demo = demos && demos.length > 0 ? demos[0] : null;
+  let idx = 0;
+
+  while(demo && demo.demoPathname.indexOf('/base/') < 0) {
+    idx += 1;
+    demo = demos[idx];
+  }
+
+  if (demo) {
     // remove the hash from the demoPathname, for e.g. "#hooks"
     const cleanedDemosPathname = demos[0].demoPathname.split('#')[0];
     apiPath = `${cleanedDemosPathname}${
       name.startsWith('use') ? 'hooks-api' : 'components-api'
     }/#${kebabCase(name)}`;
+  } else {
+    console.log(`Warning: No demos found for ${name}`)
   }
 
   return apiPath;
@@ -308,10 +318,7 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
   // resolve demos, so that we can getch the API url
   const allMarkdowns = findPagesMarkdown()
     .filter((markdown) => {
-      if (migratedBaseComponents.some((component) => filename.includes(component))) {
-        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-      }
-      return true;
+      return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
     })
     .map((markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
@@ -363,10 +370,7 @@ export function getBaseHookInfo(filename: string): HookInfo {
 
   const allMarkdowns = findPagesMarkdown()
     .filter((markdown) => {
-      if (migratedBaseComponents.some((component) => filename.includes(component))) {
-        return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
-      }
-      return true;
+      return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
     })
     .map((markdown) => {
       const markdownContent = fs.readFileSync(markdown.filename, 'utf8');
