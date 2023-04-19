@@ -215,8 +215,7 @@ export default function BaseUIHero() {
             '--Select-radius': '12px',
             '--Select-spacing': {
               xs: '8px',
-              lg: '10px',
-              xl: '12px',
+              lg: '12px',
             },
             position: 'relative',
             width: 'var(--frame-width)',

@@ -42,12 +42,11 @@ export default function HeroContainer({
               aria-hidden="true"
               sx={[
                 (theme) => ({
-                  bgcolor: 'grey.50',
                   minWidth: '50vw',
                   minHeight: 500,
                   height: 'calc(100vh - 120px)',
                   maxHeight: { md: 700, xl: 1000 },
-                  borderBottomLeftRadius: 10,
+                  borderBottomLeftRadius: 12,
                   transition: 'max-height 0.3s',
                   position: 'relative',
                   overflow: 'hidden',
@@ -55,18 +54,20 @@ export default function HeroContainer({
                     borderLeft: '1px solid',
                     borderBottom: '1px solid',
                     borderColor: 'divider',
-                    backgroundImage: `linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), ${
+                    backgroundImage: `radial-gradient(50% 50% at 50% 50%, transparent 20%, rgba(102, 178, 255, 0.2)
+                    1%, rgba(240, 247, 255, 0.5) 120%), ${
                       (theme.vars || theme).palette.patterns.triangle
-                    }, linear-gradient(315deg, rgba(194 224 255 / 0.4), #fff, rgba(240 247 255 / 0.7))`,
+                    }`,
                   }),
                 }),
                 (theme) =>
                   theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
                     ...(enablePattern && {
-                      backgroundImage: `linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), ${
+                      backgroundImage: `radial-gradient(50% 50% at 50% 50%, transparent 20%, rgba(0, 89, 178, 0.2)
+                      1%, rgba(29, 36, 43, 0.8) 120%), ${
                         (theme.vars || theme).palette.patterns.triangle
-                      }, linear-gradient(315deg, rgba(0 76 153 / 0.6), rgba(11 13 14 / 0.6), rgba(0 58 117 / 0.6))`,
+                      }`,
                     }),
                   }),
                 ...(Array.isArray(rightSx) ? rightSx : [rightSx]),
