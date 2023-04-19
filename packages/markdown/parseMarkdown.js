@@ -410,7 +410,8 @@ function findPagesMarkdown(
   return pagesMarkdown;
 }
 
-// returns information about all pages containing demos for the component or hook specified in the importName prop
+// Returns information about all pages containing demos
+// for the component or hook specified in the importName prop
 function findBaseDemos(importName, pagesMarkdown) {
   return pagesMarkdown
     .filter((page) => page.components.includes(importName))
@@ -420,23 +421,48 @@ function findBaseDemos(importName, pagesMarkdown) {
     }));
 }
 
+// Navigates trough the demos for the base components and creates
+// the API link for the specified name (component or hook)
+const getBaseApiPath = (demos, name) => {
+  let apiPath = null;
+
+  let demo = demos && demos.length > 0 ? demos[0] : null;
+  let idx = 0;
+
+  while (demo && demo.demoPathname.indexOf('/base/') < 0) {
+    idx += 1;
+    demo = demos[idx];
+  }
+
+  if (demo) {
+    // remove the hash from the demoPathname, for e.g. "#hooks"
+    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0];
+    apiPath = `${cleanedDemosPathname}${
+      name.startsWith('use') ? 'hooks-api' : 'components-api'
+    }/#${kebabCase(name)}`;
+  }
+
+  return apiPath;
+};
+
 /**
  * @param {string} product
  * @example 'material'
- * @param {string} package
+ * @param {string} packageName
  * @example 'mui-base'
  * @param {string} importName (hook or component)
  * @example 'ButtonUnstyled'
  * @returns {string}
  */
-function resolveApiUrl(product, package, importName) {
+function resolveApiUrl(product, packageName, importName) {
   if (!product) {
     return `/api/${kebabCase(importName)}/`;
   }
   if (product === 'date-pickers') {
     return `/x/api/date-pickers/${kebabCase(importName)}/`;
   }
-  if (package === 'mui-base' || product === 'base') {
+  if (packageName === 'mui-base' || product === 'base') {
+    // Once the docs for all products support tabs, this will need to be generalized for all products
     const allMarkdowns = findPagesMarkdown()
       .filter((markdown) => {
         return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
@@ -458,30 +484,6 @@ function resolveApiUrl(product, package, importName) {
   }
   return `/${product}/api/${kebabCase(importName)}/`;
 }
-
-const getBaseApiPath = (demos, name) => {
-  let apiPath = null;
-
-  let demo = demos && demos.length > 0 ? demos[0] : null;
-  let idx = 0;
-
-  while (demo && demo.demoPathname.indexOf('/base/') < 0) {
-    idx += 1;
-    demo = demos[idx];
-  }
-
-  if (demo) {
-    // remove the hash from the demoPathname, for e.g. "#hooks"
-    const cleanedDemosPathname = demos[0].demoPathname.split('#')[0];
-    apiPath = `${cleanedDemosPathname}${
-      name.startsWith('use') ? 'hooks-api' : 'components-api'
-    }/#${kebabCase(name)}`;
-  } else {
-    console.log(`Warning: No demos found for ${name}`);
-  }
-
-  return apiPath;
-};
 
 /**
  * @param {object} config
@@ -548,7 +550,8 @@ See the documentation below for a complete reference to all of the props and cla
 
 ${headers.components
   .map((componentInput) => {
-    let component, product;
+    let component;
+    let product;
 
     if (componentInput.indexOf(':') >= 0) {
       [product, component] = componentInput.split(':');
