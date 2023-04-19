@@ -85,6 +85,7 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
       <Button
         // @ts-ignore
         variant="code"
+        size="small"
         onClick={handleCopy}
         endIcon={
           copied ? (
@@ -97,16 +98,25 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
           width: 'max-content',
           bgcolor: 'transparent',
           border: 'none',
+          p: 0,
           mt: 2,
-          ml: -2,
           cursor: 'copy',
-          '& .MuiButton-endIcon': { mr: 0, color: 'primary.main', position: 'relative' },
+          '&:hover': {
+            bgcolor: 'transparent',
+          },
+          '& .MuiButton-endIcon': {
+            mr: 0,
+            mt: 0.5,
+            right: -1,
+            color: 'primary.main',
+            position: 'relative',
+          },
           ...theme.applyDarkStyles({
             bgcolor: 'transparent',
           }),
         })}
       >
-        $ {installation}
+        <strong>$</strong>&nbsp;{installation}
       </Button>
     </React.Fragment>
   );
