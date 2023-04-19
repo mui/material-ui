@@ -143,6 +143,7 @@ const ChipAction = styled('button', {
     left: 0,
     bottom: 0,
     right: 0,
+    width: '100%',
     border: 'none',
     cursor: 'pointer',
     padding: 'initial',
