@@ -54,18 +54,18 @@ The Unstyled Button component is composed of a root `<button>` slot with no inte
 </button>
 ```
 
-### Slot props
-
-:::info
-The following prop is available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
+### Custom structure
 
 Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
 <ButtonUnstyled slots={{ root: 'div' }} />
 ```
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
 
 If you provide a non-interactive element such as a `<span>`, the Unstyled Button component will automatically add the necessary accessibility attributes.
 
@@ -74,13 +74,13 @@ Compare the attributes on the `<span>` in this demo with the Button from the pre
 {{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
-If an Unstyled Button is customized with a non-button element (i.e. `<ButtonUnstyled slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
+If an Unstyled Button is customized with a non-button element (for instance, `<ButtonUnstyled slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
 Similarly, `<ButtonUnstyled slots={{ root: "span" }} type="reset">` will not reset its parent form.
 :::
 
 #### Usage with TypeScript
 
-If you are using TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the unstyled compnent:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the unstyled compnent:
 
 ```tsx
 <ButtonUnstyled<typeof CustomComponent>
