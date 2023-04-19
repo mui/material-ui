@@ -25,14 +25,14 @@ import Badge from '@mui/base/Badge';
 />;
 
 <Badge<typeof CustomRoot>
-  slotProps={{ badge: { className: 'badge' } }}
   slots={{
-    root: CustomRoot,
-    badge: CustomBadge
+    badge: CustomBadge,
+    root: CustomRoot
   }}
   randomProp="1"
   randomProp2="2"
-  randomProp3="3" />;
+  randomProp3="3"
+  slotProps={{ badge: { className: 'badge' } }} />;
 
 <Input<'a'> slots={{
   root: 'a'

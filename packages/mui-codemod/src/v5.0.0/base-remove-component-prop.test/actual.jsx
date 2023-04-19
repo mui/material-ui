@@ -18,12 +18,12 @@ import Badge from '@mui/base/Badge';
 />;
 
 <Badge
-  slotProps={{ badge: { className: 'badge' } }}
+  slots={{ badge: CustomBadge }}
   component={CustomRoot}
   randomProp="1"
   randomProp2="2"
   randomProp3="3"
-  slots={{ badge: CustomBadge }}
+  slotProps={{ badge: { className: 'badge' } }}
 />;
 
 <Input component='a' href='url'></Input>;

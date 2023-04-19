@@ -25,8 +25,8 @@ import Badge from '@mui/base/Badge';
 
 <Badge
   slots={{
-    root: CustomRoot,
-    badge: CustomBadge
+    badge: CustomBadge,
+    root: CustomRoot
   }}
   randomProp="1"
   randomProp2="2"

@@ -20,6 +20,7 @@ export default function transformer(file, api, options) {
 
           const attributeNodes = [];
 
+          let slotPropNodeInserted = false;
           let slotsPropNode;
           elementPath.node.openingElement.attributes.forEach((attributeNode) => {
             if (attributeNode.type !== 'JSXAttribute') {
@@ -41,7 +42,10 @@ export default function transformer(file, api, options) {
                   j.jsxIdentifier('slots'),
                   j.jsxExpressionContainer(j.objectExpression([rootObject])),
                 );
-                attributeNodes.push(slotsPropNode);
+                if (!slotPropNodeInserted) {
+                  slotPropNodeInserted = true;
+                  attributeNodes.push(slotsPropNode);
+                }
               }
 
               if (file.path.endsWith('.ts') || file.path.endsWith('.tsx')) {
@@ -65,8 +69,13 @@ export default function transformer(file, api, options) {
               } else {
                 slotsPropNode = attributeNode;
               }
+              if (!slotPropNodeInserted) {
+                slotPropNodeInserted = true;
+                attributeNodes.push(slotsPropNode);
+              }
             }
           });
+
           elementPath.node.openingElement.attributes = attributeNodes;
         });
       });
