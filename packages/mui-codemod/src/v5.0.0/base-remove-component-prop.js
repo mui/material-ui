@@ -43,10 +43,13 @@ export default function transformer(file, api, options) {
                 );
                 attributeNodes.push(slotsPropNode);
               }
-              elementPath.node.openingElement.name.name +=
-                valueNode.type === 'Literal' && valueNode.value && valueNode.raw
-                  ? `<${valueNode.raw}>`
-                  : `<typeof ${valueNode.name}>`;
+
+              if (file.path.endsWith('.ts') || file.path.endsWith('.tsx')) {
+                elementPath.node.openingElement.name.name +=
+                  valueNode.type === 'Literal' && valueNode.value && valueNode.raw
+                    ? `<${valueNode.raw}>`
+                    : `<typeof ${valueNode.name}>`;
+              }
             }
 
             if (attributeName === 'slots') {

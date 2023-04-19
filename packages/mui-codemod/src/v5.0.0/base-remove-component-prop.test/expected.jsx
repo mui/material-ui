@@ -1,4 +1,3 @@
-// @ts-nocheck
 import MaterialInput from '@mui/material/Input';
 import Input from '@mui/base/Input';
 import Switch from '@mui/base/Switch';
@@ -6,12 +5,18 @@ import Badge from '@mui/base/Badge';
 
 <MaterialInput component={CustomRoot} />;
 
-<Input component={CustomRoot} />;
+<Input slots={{
+  root: CustomRoot
+}} />;
 
-<Input component={CustomRoot}></Input>;
+<Input slots={{
+  root: CustomRoot
+}}></Input>;
 
 <Switch
-  component={CustomRoot}
+  slots={{
+    root: CustomRoot
+  }}
   randomProp="1"
   randomProp2="2"
   randomProp3="3"
@@ -19,12 +24,15 @@ import Badge from '@mui/base/Badge';
 />;
 
 <Badge
-  slotProps={{ badge: { className: 'badge' } }}
-  component={CustomRoot}
+  slots={{
+    root: CustomRoot,
+    badge: CustomBadge
+  }}
   randomProp="1"
   randomProp2="2"
   randomProp3="3"
-  slots={{ badge: CustomBadge }}
-/>;
+  slotProps={{ badge: { className: 'badge' } }} />;
 
-<Input component='a' href='url'></Input>;
+<Input slots={{
+  root: 'a'
+}} href='url'></Input>;

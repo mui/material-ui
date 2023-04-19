@@ -1,4 +1,3 @@
-// @ts-nocheck
 import MaterialInput from '@mui/material/Input';
 import Input from '@mui/base/Input';
 import Switch from '@mui/base/Switch';

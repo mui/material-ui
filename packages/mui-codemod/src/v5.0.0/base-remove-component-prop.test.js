@@ -25,5 +25,19 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    it('does not add generics if js is used', () => {
+      const actual = transform(
+        {
+          source: read('./base-remove-component-prop.test/actual.jsx'),
+          path: require.resolve('./base-remove-component-prop.test/actual.jsx'),
+        },
+        { jscodeshift },
+        {},
+      );
+
+      const expected = read('./base-remove-component-prop.test/expected.jsx');
+      expect(actual).to.equal(expected, 'The transformed version should be correct');
+    });
   });
 });
