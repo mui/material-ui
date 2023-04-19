@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import BaseModal, { modalClasses as baseModalClasses } from '@mui/base/Modal';
+import ModalUnstyled, { modalClasses as modalUnstyledClasses } from '@mui/base/Modal';
 import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
-export const modalClasses = baseModalClasses;
+export const modalClasses = modalUnstyledClasses;
 
 const ModalRoot = styled('div', {
   name: 'MuiModal',
@@ -63,6 +63,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     className,
     closeAfterTransition = false,
     children,
+    container,
     component,
     components = {},
     componentsProps = {},
@@ -74,6 +75,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    onBackdropClick,
+    onClose,
+    open,
     slotProps,
     slots,
     // eslint-disable-next-line react/prop-types
@@ -84,6 +88,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const [exited, setExited] = React.useState(true);
 
   const commonProps = {
+    container,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -93,6 +98,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
+    onBackdropClick,
+    onClose,
+    open,
   };
 
   const ownerState = {
@@ -108,7 +116,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
 
   return (
-    <BaseModal
+    <ModalUnstyled
       slots={{
         root: RootSlot,
         backdrop: BackdropSlot,
@@ -137,7 +145,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       {...commonProps}
     >
       {children}
-    </BaseModal>
+    </ModalUnstyled>
   );
 });
 

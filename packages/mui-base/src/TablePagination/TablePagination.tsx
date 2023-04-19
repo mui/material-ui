@@ -53,11 +53,11 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [ Table Pagination](https://mui.com/base/react-table-pagination/)
+ * - [Table Pagination](https://mui.com/base/react-table-pagination/)
  *
  * API:
  *
- * - [TablePagination API](https://mui.com/base/react-table-pagination/components-api/#table-pagination-unstyled)
+ * - [TablePagination API](https://mui.com/base/react-table-pagination/components-api/#table-pagination)
  */
 const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function TablePagination(
   props,

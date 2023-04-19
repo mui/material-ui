@@ -85,11 +85,11 @@ function useUtilityClasses(ownerState: SelectOwnerState<any, any>) {
  *
  * Demos:
  *
- * - [ Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/base/react-select/components-api/#select-unstyled)
+ * - [Select API](https://mui.com/base/react-select/components-api/#select)
  */
 const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple extends boolean>(
   props: SelectProps<OptionValue, Multiple>,

@@ -23,11 +23,11 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [ Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabsList API](https://mui.com/base/react-tabs/components-api/#tabs-list-unstyled)
+ * - [TabsList API](https://mui.com/base/react-tabs/components-api/#tabs-list)
  */
 const TabsList = React.forwardRef<unknown, TabsListProps>(function TabsList(props, ref) {
   const { children, component, slotProps = {}, slots = {}, ...other } = props;

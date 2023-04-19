@@ -25,11 +25,11 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const MenuApiReq = require.context('docs/translations/api-docs/menu', false, /menu.*.json$/);
+  const MenuApiReq = require.context('docs/translations/api-docs-base/menu', false, /menu.*.json$/);
   const MenuApiDescriptions = mapApiPageTranslations(MenuApiReq);
 
   const MenuItemApiReq = require.context(
-    'docs/translations/api-docs/menu-item',
+    'docs/translations/api-docs-base/menu-item',
     false,
     /menu-item.*.json$/,
   );

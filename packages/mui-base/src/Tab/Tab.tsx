@@ -22,11 +22,11 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
  *
  * Demos:
  *
- * - [ Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [Tab API](https://mui.com/base/react-tabs/components-api/#tab-unstyled)
+ * - [Tab API](https://mui.com/base/react-tabs/components-api/#tab)
  */
 const Tab = React.forwardRef<unknown, TabProps>(function Tab(props, ref) {
   const {

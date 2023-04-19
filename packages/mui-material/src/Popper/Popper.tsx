@@ -53,16 +53,46 @@ const Popper = React.forwardRef(function Popper(
     name: 'MuiPopper',
   });
 
-  const { components, componentsProps, slots, slotProps, ...other } = props;
+  const {
+    anchorEl,
+    component,
+    components,
+    componentsProps,
+    container,
+    disablePortal,
+    keepMounted,
+    modifiers,
+    open,
+    placement,
+    popperOptions,
+    popperRef,
+    transition,
+    slots,
+    slotProps,
+    ...other
+  } = props;
 
   const RootComponent = slots?.root ?? components?.Root;
-
+  const otherProps = {
+    anchorEl,
+    component,
+    container,
+    disablePortal,
+    keepMounted,
+    modifiers,
+    open,
+    placement,
+    popperOptions,
+    popperRef,
+    transition,
+    ...other,
+  };
   return (
     <PopperRoot
       direction={theme?.direction}
       slots={{ root: RootComponent }}
       slotProps={slotProps ?? componentsProps}
-      {...other}
+      {...otherProps}
       ref={ref}
     />
   );

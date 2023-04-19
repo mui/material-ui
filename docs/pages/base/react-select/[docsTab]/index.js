@@ -27,21 +27,21 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const OptionApiReq = require.context(
-    'docs/translations/api-docs/option',
+    'docs/translations/api-docs-base/option',
     false,
     /option.*.json$/,
   );
   const OptionApiDescriptions = mapApiPageTranslations(OptionApiReq);
 
   const OptionGroupApiReq = require.context(
-    'docs/translations/api-docs/option-group',
+    'docs/translations/api-docs-base/option-group',
     false,
     /option-group.*.json$/,
   );
   const OptionGroupApiDescriptions = mapApiPageTranslations(OptionGroupApiReq);
 
   const SelectApiReq = require.context(
-    'docs/translations/api-docs/select',
+    'docs/translations/api-docs-base/select',
     false,
     /select.*.json$/,
   );

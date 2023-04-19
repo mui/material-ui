@@ -28,11 +28,11 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  *
  * Demos:
  *
- * - [ Button](https://mui.com/base/react-button/)
+ * - [Button](https://mui.com/base/react-button/)
  *
  * API:
  *
- * - [Button API](https://mui.com/base/react-button/components-api/#button-unstyled)
+ * - [Button API](https://mui.com/base/react-button/components-api/#button)
  */
 const Button = React.forwardRef(function Button<
   BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],

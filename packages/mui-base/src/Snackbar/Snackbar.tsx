@@ -26,11 +26,12 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [ Snackbar](https://mui.com/base/react-snackbar/)
+ * - [Snackbar](https://mui.com/base/react-snackbar/)
+ * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/base/react-snackbar/components-api/#snackbar-unstyled)
+ * - [Snackbar API](https://mui.com/base/react-snackbar/components-api/#snackbar)
  */
 const Snackbar = React.forwardRef(function Snackbar(
   props: SnackbarProps,

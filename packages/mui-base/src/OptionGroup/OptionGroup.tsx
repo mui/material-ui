@@ -28,11 +28,11 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [ Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [OptionGroup API](https://mui.com/base/react-select/components-api/#option-group-unstyled)
+ * - [OptionGroup API](https://mui.com/base/react-select/components-api/#option-group)
  */
 const OptionGroup = React.forwardRef(function OptionGroup<
   BaseComponentType extends React.ElementType = OptionGroupTypeMap['defaultComponent'],

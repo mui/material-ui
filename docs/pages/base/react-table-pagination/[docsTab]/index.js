@@ -23,7 +23,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const TablePaginationApiReq = require.context(
-    'docs/translations/api-docs/table-pagination',
+    'docs/translations/api-docs-base/table-pagination',
     false,
     /table-pagination.*.json$/,
   );

@@ -7,7 +7,7 @@ export default function transformer(file, api) {
   const root = j(file.source);
   const variableNameMap = new Map();
   let final = file.source;
-  
+
   root
     .find(j.ImportDeclaration)
     .filter(({ node }) => node.source.value.startsWith('@mui/base'))

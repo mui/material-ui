@@ -21,11 +21,11 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * Demos:
  *
- * - [ Tabs](https://mui.com/base/react-tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabPanel API](https://mui.com/base/react-tabs/components-api/#tab-panel-unstyled)
+ * - [TabPanel API](https://mui.com/base/react-tabs/components-api/#tab-panel)
  */
 const TabPanel = React.forwardRef<unknown, TabPanelProps>(function TabPanel(props, ref) {
   const { children, component, value, slotProps = {}, slots = {}, ...other } = props;

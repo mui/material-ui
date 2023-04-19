@@ -24,7 +24,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const ButtonApiReq = require.context(
-    'docs/translations/api-docs/button',
+    'docs/translations/api-docs-base/button',
     false,
     /button.*.json$/,
   );

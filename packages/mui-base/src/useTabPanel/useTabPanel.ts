@@ -11,7 +11,7 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *

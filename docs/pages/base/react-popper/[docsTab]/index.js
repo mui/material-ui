@@ -23,7 +23,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const PopperApiReq = require.context(
-    'docs/translations/api-docs/popper',
+    'docs/translations/api-docs-base/popper',
     false,
     /popper.*.json$/,
   );

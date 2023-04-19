@@ -86,7 +86,7 @@
   "muiName": "JoyMenu",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/Menu/Menu.tsx",
-  "inheritance": { "component": "PopperUnstyled", "pathname": "/base/api/popper-unstyled/" },
+  "inheritance": { "component": "Popper", "pathname": "/base/api/popper/" },
   "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

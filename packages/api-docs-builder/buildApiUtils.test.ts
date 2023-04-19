@@ -149,7 +149,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            demoPageTitle: 'Base UI Button',
+            demoPageTitle: 'Button',
             demoPathname: '/base/react-button/',
           },
         ]);
@@ -176,7 +176,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            demoPageTitle: 'Base UI Button',
+            demoPageTitle: 'Button',
             demoPathname: '/base/react-button/#hook',
           },
         ]);

@@ -29,21 +29,21 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const TabApiReq = require.context('docs/translations/api-docs/tab', false, /tab.*.json$/);
+  const TabApiReq = require.context('docs/translations/api-docs-base/tab', false, /tab.*.json$/);
   const TabApiDescriptions = mapApiPageTranslations(TabApiReq);
 
   const TabPanelApiReq = require.context(
-    'docs/translations/api-docs/tab-panel',
+    'docs/translations/api-docs-base/tab-panel',
     false,
     /tab-panel.*.json$/,
   );
   const TabPanelApiDescriptions = mapApiPageTranslations(TabPanelApiReq);
 
-  const TabsApiReq = require.context('docs/translations/api-docs/tabs', false, /tabs.*.json$/);
+  const TabsApiReq = require.context('docs/translations/api-docs-base/tabs', false, /tabs.*.json$/);
   const TabsApiDescriptions = mapApiPageTranslations(TabsApiReq);
 
   const TabsListApiReq = require.context(
-    'docs/translations/api-docs/tabs-list',
+    'docs/translations/api-docs-base/tabs-list',
     false,
     /tabs-list.*.json$/,
   );

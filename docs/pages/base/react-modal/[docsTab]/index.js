@@ -22,7 +22,11 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const ModalApiReq = require.context('docs/translations/api-docs/modal', false, /modal.*.json$/);
+  const ModalApiReq = require.context(
+    'docs/translations/api-docs-base/modal',
+    false,
+    /modal.*.json$/,
+  );
   const ModalApiDescriptions = mapApiPageTranslations(ModalApiReq);
 
   return {

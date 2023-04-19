@@ -22,11 +22,11 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
  *
  * Demos:
  *
- * - [ Menu](https://mui.com/base/react-menu/)
+ * - [Menu](https://mui.com/base/react-menu/)
  *
  * API:
  *
- * - [MenuItem API](https://mui.com/base/react-menu/components-api/#menu-item-unstyled)
+ * - [MenuItem API](https://mui.com/base/react-menu/components-api/#menu-item)
  */
 const MenuItem = React.forwardRef(function MenuItem<
   BaseComponentType extends React.ElementType = MenuItemTypeMap['defaultComponent'],

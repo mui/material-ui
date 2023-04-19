@@ -241,11 +241,11 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * Demos:
  *
- * - [ Popper](https://mui.com/base/react-popper/)
+ * - [Popper](https://mui.com/base/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/base/react-popper/components-api/#popper-unstyled)
+ * - [Popper API](https://mui.com/base/react-popper/components-api/#popper)
  */
 const Popper = React.forwardRef(function Popper(
   props: PopperProps,

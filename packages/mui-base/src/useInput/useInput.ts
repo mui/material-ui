@@ -13,7 +13,7 @@ import {
  *
  * Demos:
  *
- * - [ Input](https://mui.com/base/react-input/#hook)
+ * - [Input](https://mui.com/base/react-input/#hook)
  *
  * API:
  *

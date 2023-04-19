@@ -24,7 +24,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const SwitchApiReq = require.context(
-    'docs/translations/api-docs/switch',
+    'docs/translations/api-docs-base/switch',
     false,
     /switch.*.json$/,
   );

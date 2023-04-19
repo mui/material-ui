@@ -56,11 +56,11 @@ const defaultManager = new ModalManager();
  *
  * Demos:
  *
- * - [ Modal](https://mui.com/base/react-modal/)
+ * - [Modal](https://mui.com/base/react-modal/)
  *
  * API:
  *
- * - [Modal API](https://mui.com/base/react-modal/components-api/#modal-unstyled)
+ * - [Modal API](https://mui.com/base/react-modal/components-api/#modal)
  */
 const Modal = React.forwardRef(function Modal<
   BaseComponentType extends React.ElementType = ModalTypeMap['defaultComponent'],

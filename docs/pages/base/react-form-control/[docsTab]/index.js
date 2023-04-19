@@ -24,7 +24,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const FormControlApiReq = require.context(
-    'docs/translations/api-docs/form-control',
+    'docs/translations/api-docs-base/form-control',
     false,
     /form-control.*.json$/,
   );

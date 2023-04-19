@@ -64,7 +64,7 @@ export const replaceAPILinks = (url: string) => {
       /\/api\/(unstable-trap-focus|click-away-listener|no-ssr|portal|textarea-autosize)(.*)/,
       '/base/api/$1$2',
     )
-    .replace(/\/api\/([^/]+-unstyled)(.*)/, '/base/api/$1$2');
+    .replace(/\/api\/([^/]+)(-unstyled)(.*)/, '/base/api/$1$3');
 
   if (isNewLocation(url)) {
     return url;

@@ -213,12 +213,12 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
         return null;
       }
       return {
-        name: inheritedComponent,
+        name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material-ui'}/api/${kebabCase(
-                inheritedComponent,
+                inheritedComponent.replace(/unstyled/i, ''),
               )}/`,
       };
     },
@@ -432,9 +432,9 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
         return null;
       }
       return {
-        name: inheritedComponent,
+        name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
-          inheritedComponent,
+          inheritedComponent.replace(/unstyled/i, ''),
         )}/`,
       };
     },
@@ -586,7 +586,7 @@ export function generateBaseUIApiPages() {
           apiTabImportStatements += `import ${component}ApiJsonPageContent from '../../api/${componentNameKebabCase}.json';`;
           staticProps += `
           const ${component}ApiReq = require.context(
-            'docs/translations/api-docs/${componentNameKebabCase}',
+            'docs/translations/api-docs-base/${componentNameKebabCase}',
             false,
             /${componentNameKebabCase}.*.json$/,
           );

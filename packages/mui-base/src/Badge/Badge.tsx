@@ -28,11 +28,11 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
  *
  * Demos:
  *
- * - [ badge](https://mui.com/base/react-badge/)
+ * - [Badge](https://mui.com/base/react-badge/)
  *
  * API:
  *
- * - [Badge API](https://mui.com/base/react-badge/components-api/#badge-unstyled)
+ * - [Badge API](https://mui.com/base/react-badge/components-api/#badge)
  */
 const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
   const {
@@ -76,7 +76,7 @@ const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
 
   const BadgeComponent = slots.badge || 'span';
   const badgeProps: WithOptionalOwnerState<BadgeBadgeSlotProps> = useSlotProps({
-    elementType: Badge,
+    elementType: BadgeComponent,
     externalSlotProps: slotProps.badge,
     ownerState,
     className: classes.badge,

@@ -25,7 +25,7 @@ Additionally, you can pass custom props to interior slots using `slotProps`.
 The root slot represents the component's outermost element.
 For simpler components, the root slot is often filled by the native HTML element that the component is intended to replace.
 
-For example, the [ Button's](/base/react-button/) root slot is a `<button>` element.
+For example, the [Button's](/base/react-button/) root slot is a `<button>` element.
 This component _only_ has a root slot; more complex components may have additional [interior slots](#interior-slots).
 
 ### The component prop

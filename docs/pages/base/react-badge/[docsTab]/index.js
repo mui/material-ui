@@ -23,7 +23,11 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const BadgeApiReq = require.context('docs/translations/api-docs/badge', false, /badge.*.json$/);
+  const BadgeApiReq = require.context(
+    'docs/translations/api-docs-base/badge',
+    false,
+    /badge.*.json$/,
+  );
   const BadgeApiDescriptions = mapApiPageTranslations(BadgeApiReq);
 
   const useBadgeApiReq = require.context(

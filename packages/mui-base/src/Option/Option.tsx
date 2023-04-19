@@ -125,10 +125,10 @@ Option.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [ Select](https://mui.com/base/react-select/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [Option API](https://mui.com/base/react-select/components-api/#option-unstyled)
+ * - [Option API](https://mui.com/base/react-select/components-api/#option)
  */
 export default React.memo(Option) as OptionType;

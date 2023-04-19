@@ -25,8 +25,6 @@ export interface MenuListPropsSizeOverrides {}
 export interface MenuListPropsColorOverrides {}
 export interface MenuListPropsVariantOverrides {}
 
-export interface MenuActions extends BaseMenuActions {}
-
 export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**

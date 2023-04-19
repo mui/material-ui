@@ -24,7 +24,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const SliderApiReq = require.context(
-    'docs/translations/api-docs/slider',
+    'docs/translations/api-docs-base/slider',
     false,
     /slider.*.json$/,
   );

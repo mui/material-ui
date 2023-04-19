@@ -27,4 +27,3 @@ describe('@mui/codemod', () => {
     });
   });
 });
-

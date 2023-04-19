@@ -24,7 +24,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const SnackbarApiReq = require.context(
-    'docs/translations/api-docs/snackbar',
+    'docs/translations/api-docs-base/snackbar',
     false,
     /snackbar.*.json$/,
   );

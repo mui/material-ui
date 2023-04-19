@@ -23,7 +23,11 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const InputApiReq = require.context('docs/translations/api-docs/input', false, /input.*.json$/);
+  const InputApiReq = require.context(
+    'docs/translations/api-docs-base/input',
+    false,
+    /input.*.json$/,
+  );
   const InputApiDescriptions = mapApiPageTranslations(InputApiReq);
 
   const useInputApiReq = require.context(

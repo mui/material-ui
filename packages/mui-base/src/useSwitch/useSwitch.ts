@@ -11,7 +11,7 @@ import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
  *
  * Demos:
  *
- * - [Unstyled Switch](https://mui.com/base/react-switch/#hook)
+ * - [Switch](https://mui.com/base/react-switch/#hook)
  *
  * API:
  *

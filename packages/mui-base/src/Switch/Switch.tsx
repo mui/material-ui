@@ -40,11 +40,11 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
  *
  * Demos:
  *
- * - [ Switch](https://mui.com/base/react-switch/)
+ * - [Switch](https://mui.com/base/react-switch/)
  *
  * API:
  *
- * - [Switch API](https://mui.com/base/react-switch/components-api/#switch-unstyled)
+ * - [Switch API](https://mui.com/base/react-switch/components-api/#switch)
  */
 const Switch = React.forwardRef(function Switch<
   BaseComponentType extends React.ElementType = SwitchTypeMap['defaultComponent'],
