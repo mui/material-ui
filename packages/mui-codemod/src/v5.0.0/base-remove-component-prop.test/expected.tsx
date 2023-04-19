@@ -1,15 +1,20 @@
 // @ts-nocheck
-<Input component={CustomRoot} />;
+import MaterialInput from '@mui/material/Input';
+import Input from '@mui/base/Input';
+import Switch from '@mui/base/Switch';
+import Badge from '@mui/base/Badge';
 
-<InputUnstyled<typeof CustomRoot> slots={{
+<MaterialInput component={CustomRoot} />;
+
+<Input<typeof CustomRoot> slots={{
   root: CustomRoot
 }} />;
 
-<InputUnstyled<typeof CustomRoot> slots={{
+<Input<typeof CustomRoot> slots={{
   root: CustomRoot
-}}></InputUnstyled>;
+}}></Input>;
 
-<SwitchUnstyled<typeof CustomRoot>
+<Switch<typeof CustomRoot>
   slots={{
     root: CustomRoot
   }}
@@ -19,7 +24,7 @@
   slotProps={{ root: { className: 'root' } }}
 />;
 
-<BadgeUnstyled<typeof CustomRoot>
+<Badge<typeof CustomRoot>
   slots={{
     root: CustomRoot,
     badge: CustomBadge
@@ -29,6 +34,6 @@
   randomProp3="3"
   slotProps={{ badge: { className: 'badge' } }} />;
 
-<InputUnstyled<'a'> slots={{
+<Input<'a'> slots={{
   root: 'a'
-}} href='url'></InputUnstyled>;
+}} href='url'></Input>;

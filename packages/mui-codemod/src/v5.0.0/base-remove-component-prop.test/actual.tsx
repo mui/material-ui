@@ -1,11 +1,16 @@
 // @ts-nocheck
+import MaterialInput from '@mui/material/Input';
+import Input from '@mui/base/Input';
+import Switch from '@mui/base/Switch';
+import Badge from '@mui/base/Badge';
+
+<MaterialInput component={CustomRoot} />;
+
 <Input component={CustomRoot} />;
 
-<InputUnstyled component={CustomRoot} />;
+<Input component={CustomRoot}></Input>;
 
-<InputUnstyled component={CustomRoot}></InputUnstyled>;
-
-<SwitchUnstyled
+<Switch
   component={CustomRoot}
   randomProp="1"
   randomProp2="2"
@@ -13,7 +18,7 @@
   slotProps={{ root: { className: 'root' } }}
 />;
 
-<BadgeUnstyled
+<Badge
   component={CustomRoot}
   randomProp="1"
   randomProp2="2"
@@ -22,4 +27,4 @@
   slotProps={{ badge: { className: 'badge' } }}
 />;
 
-<InputUnstyled component='a' href='url'></InputUnstyled>;
+<Input component='a' href='url'></Input>;
