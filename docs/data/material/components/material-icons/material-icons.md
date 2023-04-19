@@ -10,20 +10,23 @@ githubLabel: 'package: icons'
 
 <p class="description">2,100+ ready-to-use React Material Icons from the official website.</p>
 
-The following npm package,
-[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material),
-includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+<br/>
 
-:::info
-The `@mui/icons-material` package depends on `@mui/material`, which requires Emotion packages.
-If you don't use Material UI in your project yet, install the icons package with:
-`npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`.
+[@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
+includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+It depends on `@mui/material`, which requires Emotion packages.
+Use the following command to install it:
+
+```sh
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+```
 
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
-:::
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+<hr/>
+
+Browse through all the icons and find the one you need!
+The search below support synonyms－for example, try searching for "hamburger" or "logout".
 
 {{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
-
-ℹ️ The search supports synonyms. Try searching for "hamburger" or "logout".
