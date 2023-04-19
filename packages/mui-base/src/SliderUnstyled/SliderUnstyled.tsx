@@ -126,7 +126,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...partialOwnerState, ref });
+  } = useSlider({ ...partialOwnerState, rootRef: ref });
 
   const ownerState: SliderUnstyledOwnerState = {
     ...partialOwnerState,
