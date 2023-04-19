@@ -13,6 +13,10 @@ import ROUTES from 'docs/src/route';
 // import DragIndicator from '@mui/icons-material/DragIndicator';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import ToggleOn from '@mui/icons-material/ToggleOn';
+import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
+import InputRoundedIcon from '@mui/icons-material/InputRounded';
+import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
+import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
 // import { useResizeHandle } from '../productCore/CoreStyling';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
 
@@ -58,13 +62,25 @@ function Demo({ label }: { label: string }) {
         <li role="none">
           <ul role="group" aria-label="input components">
             <li role="presentation">Input components</li>
-            <OptionUnstyled value="1">Button</OptionUnstyled>
-            <OptionUnstyled value="2">Input</OptionUnstyled>
-            <OptionUnstyled value="3">Select</OptionUnstyled>
+            <OptionUnstyled value="1">
+              <SmartButtonRoundedIcon />
+              Button
+            </OptionUnstyled>
+            <OptionUnstyled value="2">
+              <InputRoundedIcon />
+              Input
+            </OptionUnstyled>
+            <OptionUnstyled value="3">
+              <PlaylistAddCheckRoundedIcon />
+              Select
+            </OptionUnstyled>
             <OptionUnstyled value="4">
               <ToggleOn /> Switch
             </OptionUnstyled>
-            <OptionUnstyled value="5">Slider</OptionUnstyled>
+            <OptionUnstyled value="5">
+              <LinearScaleRoundedIcon />
+              Slider
+            </OptionUnstyled>
           </ul>
         </li>
         <li role="none">
@@ -95,7 +111,7 @@ function Wrapper({ sx, children, ...props }: BoxProps) {
         sx={{
           width: 'var(--frame-width)',
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           alignItems: 'center',
           height: '100%',
         }}
@@ -210,7 +226,6 @@ export default function BaseUIHero() {
       right={
         <Box
           sx={{
-            '--frame-width': 'min(570px, 36vw)',
             '--Select-width': '320px',
             '--Select-radius': '12px',
             '--Select-spacing': {
@@ -218,8 +233,11 @@ export default function BaseUIHero() {
               lg: '12px',
             },
             position: 'relative',
-            width: 'var(--frame-width)',
             height: '100%',
+            padding: '16px',
+            '&:focus': {
+              outlineColor: '#202020',
+            },
           }}
         >
           <Wrapper
@@ -232,7 +250,7 @@ export default function BaseUIHero() {
                   width: '100%',
                   maxWidth: '100%',
                   border: '1px solid',
-                  borderColor: 'grey.300',
+                  borderColor: 'grey.200',
                   borderRadius: 'var(--Select-radius)',
                   height: '45px',
                   padding: 'var(--Select-spacing) calc(var(--Select-spacing) * 1.5)',
@@ -260,10 +278,10 @@ export default function BaseUIHero() {
                   flexDirection: 'column',
                   margin: 0,
                   border: '1px solid',
-                  borderColor: 'grey.300',
+                  borderColor: 'grey.200',
                   borderRadius: 'var(--Select-radius)',
                   bgcolor: 'background.paper',
-                  boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.05)',
+                  boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.1)',
                   padding: 'calc(var(--Select-spacing) * 1.5)',
                   gap: 'calc(var(--Select-spacing) * 1.5)',
                   ...theme.typography.body2,
@@ -290,6 +308,7 @@ export default function BaseUIHero() {
                       textTransform: 'uppercase',
                       letterSpacing: '1px',
                       alignItems: 'center',
+                      minHeight: 0,
                     },
                     '&[role="option"]': {
                       border: '1px solid transparent',
@@ -299,6 +318,7 @@ export default function BaseUIHero() {
                       color: 'text.secondary',
                       alignItems: 'center',
                       cursor: 'pointer',
+                      borderRadius: 'var(--Select-radius)',
                       '&:hover, &.MuiOption-highlighted': {
                         bgcolor: 'grey.50',
                         color: 'text.primary',
@@ -326,6 +346,7 @@ export default function BaseUIHero() {
                   '& svg': { color: 'primary.300' },
                   '& .MuiSelect-listbox': {
                     borderColor: 'primaryDark.700',
+                    boxShadow: '0px 4px 40px rgba(11, 13, 14, 0.5)',
                     '& li[role="presentation"]': {
                       color: 'grey.600',
                     },
