@@ -226,13 +226,14 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
   InputProps?: Partial<OutlinedInputProps>;
 }
 
-type Variants = 'outlined' | 'standard' | 'filled';
+export type TextFieldVariants = 'outlined' | 'standard' | 'filled';
 
-export type TextFieldProps<Variant extends Variants = Variants> = Variant extends 'filled'
-  ? FilledTextFieldProps
-  : Variant extends 'standard'
-  ? StandardTextFieldProps
-  : OutlinedTextFieldProps;
+export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants> =
+  Variant extends 'filled'
+    ? FilledTextFieldProps
+    : Variant extends 'standard'
+    ? StandardTextFieldProps
+    : OutlinedTextFieldProps;
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -276,7 +277,7 @@ export type TextFieldProps<Variant extends Variants = Variants> = Variant extend
  * - [TextField API](https://mui.com/material-ui/api/text-field/)
  * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
-export default function TextField<V extends Variants>(
+export default function TextField<V extends TextFieldVariants>(
   props: {
     /**
      * The variant to use.
