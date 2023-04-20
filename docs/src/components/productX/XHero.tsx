@@ -289,7 +289,7 @@ export default function XHero() {
                 hideFooter
                 loading={loading}
                 isGroupExpandedByDefault={() => {
-                  rowGroupingCounter = rowGroupingCounter + 1;
+                  rowGroupingCounter += 1;
                   return rowGroupingCounter === 3;
                 }}
                 rowGroupingModel={rowGroupingModel}
