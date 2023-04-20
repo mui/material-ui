@@ -1,9 +1,18 @@
-import Button, {
+import ButtonUnstyled, {
   ButtonProps,
   ButtonRootSlotProps,
   buttonClasses,
-} from '@mui/base/Button';
+} from "@mui/base/Button";
+import { Switch as SwitchUnstyled } from "@mui/base";
+import { Input as BaseInput } from "@mui/base";
+import BaseSlider from "@mui/base/Slider";
 
 function App() {
-  return <Button />;
+  return;
+  <>
+    <ButtonUnstyled />;
+    <SwitchUnstyled />;
+    <BaseInput />;
+    <BaseSlider />;
+  </>;
 }

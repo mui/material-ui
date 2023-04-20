@@ -11,7 +11,7 @@ function read(fileName) {
 describe('@mui/codemod', () => {
   describe('v5.0.0', () => {
     describe('base-remove-unstyled-suffix', () => {
-      it('removes `Unstyled` suffix from Base UI components', () => {
+      it('removes `Unstyled` suffix from Base UI components except default import declarations', () => {
         const actual = transform(
           {
             source: read('./base-remove-unstyled-suffix.test/actual.js'),
