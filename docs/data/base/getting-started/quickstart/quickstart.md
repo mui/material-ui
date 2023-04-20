@@ -33,14 +33,14 @@ pnpm add @mui/base
 ## Implementing a Button
 
 This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style) as a reference.
-Base UI components help you abstract away low-level UI implementation details such as accessibility patterns, cross-browser compatibility, event handling etc while remaining unopinionated about styling, giving you complete control over your app's CSS.
+Base UI components help you abstract away low-level UI implementation details such as accessibility patterns, cross-browser compatibility, event handling, and more, while remaining unopinionated about styling, giving you complete control over your app's CSS.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
 ### Components and hooks
 
 Base UI provides an Unstyled Button component and a `useButton` hook.
-Both can be used to build a button, and each has its own benefits and trade-offs — see [Components vs. hooks](/base/getting-started/usage/#components-vs-hooks) for details.
+Both can be used to build a button, and each has its own benefits and trade-offs—see [Components vs. hooks](/base/getting-started/usage/#components-vs-hooks) for details.
 
 The code snippets below demonstrate the basic implementation of each:
 
@@ -51,9 +51,7 @@ import * as React from 'react';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 export default function App() {
-  return (
-    <ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>
-  );
+  return <ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>;
 }
 ```
 
@@ -73,7 +71,7 @@ export default function App() {
 }
 ```
 
-Base UI comes with no styles or styling solution - here's what the Unstyled Button looks like out of the box:
+Base UI comes with no styles or styling solution—here's what the Unstyled Button looks like out of the box:
 
 {{"demo": "BaseButton.js", "defaultCodeOpen": false}}
 
@@ -116,7 +114,7 @@ The demo below shows how to create the Primer button using plain CSS with Base U
 
 ### Styling with Tailwind CSS
 
-After installing Tailwind CSS, its utility classes to `className`, as shown below:
+After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
 
 ```tsx
 <ButtonUnstyled className="bg-green-600 rounded-md py-1 px-4...">
