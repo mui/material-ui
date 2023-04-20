@@ -130,7 +130,7 @@ const TabsRoot = styled('div', {
 }));
 
 const TabsScroller = styled('div', {
-  name: 'MuiTabs',
+  name: 'test',
   slot: 'Scroller',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
