@@ -97,9 +97,7 @@ export default function ThemeDatePicker() {
               }),
           ]}
         >
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-          />
+          <StaticDatePicker displayStaticWrapperAs="desktop" />
         </Box>
       </Fade>
     </LocalizationProvider>
