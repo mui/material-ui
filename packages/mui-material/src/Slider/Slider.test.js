@@ -1118,15 +1118,24 @@ describe('<Slider />', () => {
         </div>
       );
     }
-    const { container } = render(<Test />);
 
-    fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 1 }]));
+    render(<Test />);
+    const slider = screen.getByTestId('slider');
+
+    stub(slider, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
+    fireEvent.touchStart(slider, createTouches([{ identifier: 1, clientX: 0 }]));
 
     expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
-    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
+    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
     expect(handleEvent.callCount).to.equal(1);
-    expect(handleEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
+    expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
   });
 
   it('should not override the event.target on mouse events', () => {
@@ -1147,15 +1156,23 @@ describe('<Slider />', () => {
         </div>
       );
     }
-    const { container } = render(<Test />);
+    render(<Test />);
+    const slider = screen.getByTestId('slider');
 
-    fireEvent.mouseDown(container.firstChild);
+    stub(slider, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
+    fireEvent.mouseDown(slider);
 
     expect(handleChange.callCount).to.equal(0);
     expect(handleNativeEvent.callCount).to.equal(1);
-    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
+    expect(handleNativeEvent.firstCall.args[0]).to.have.property('target', slider);
     expect(handleEvent.callCount).to.equal(1);
-    expect(handleEvent.firstCall.args[0]).to.have.property('target', container.firstChild);
+    expect(handleEvent.firstCall.args[0]).to.have.property('target', slider);
   });
 
   describe('dragging state', () => {
