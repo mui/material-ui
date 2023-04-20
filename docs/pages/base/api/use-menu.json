@@ -33,18 +33,10 @@
       "type": { "name": "string | null", "description": "string | null" },
       "required": true
     },
-    "highlightFirstItem": {
-      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
-      "required": true
-    },
-    "highlightLastItem": {
-      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
-      "required": true
-    },
     "menuItems": {
       "type": {
-        "name": "Record&lt;string, MenuItemMetadata&gt;",
-        "description": "Record&lt;string, MenuItemMetadata&gt;"
+        "name": "Map&lt;string, MenuItemMetadata&gt;",
+        "description": "Map&lt;string, MenuItemMetadata&gt;"
       },
       "required": true
     },
