@@ -449,30 +449,6 @@ const getBaseApiPath = (demos, name) => {
   return apiPath;
 };
 
-const migratedBaseComponents = [
-  'BadgeUnstyled',
-  'ButtonUnstyled',
-  'ClickAwayListener',
-  'FocusTrap',
-  'InputUnstyled',
-  'MenuItemUnstyled',
-  'MenuUnstyled',
-  'ModalUnstyled',
-  'NoSsr',
-  'OptionGroupUnstyled',
-  'OptionUnstyled',
-  'PopperUnstyled',
-  'Portal',
-  'SelectUnstyled',
-  'SliderUnstyled',
-  'SwitchUnstyled',
-  'TablePaginationUnstyled',
-  'TabPanelUnstyled',
-  'TabsListUnstyled',
-  'TabsUnstyled',
-  'TabUnstyled',
-];
-
 /**
  * @param {string} product
  * @example 'material'
