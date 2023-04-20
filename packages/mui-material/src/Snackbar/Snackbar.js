@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import { Portal, unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import useSnackbar from '@mui/base/useSnackbar';
 import styled from '../styles/styled';
@@ -148,21 +148,23 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   }
 
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
-      <SnackbarRoot {...rootProps}>
-        <TransitionComponent
-          appear
-          in={open}
-          timeout={transitionDuration}
-          direction={vertical === 'top' ? 'down' : 'up'}
-          onEnter={handleEnter}
-          onExited={handleExited}
-          {...TransitionProps}
-        >
-          {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-        </TransitionComponent>
-      </SnackbarRoot>
-    </ClickAwayListener>
+    <Portal>
+      <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
+        <SnackbarRoot {...rootProps}>
+          <TransitionComponent
+            appear
+            in={open}
+            timeout={transitionDuration}
+            direction={vertical === 'top' ? 'down' : 'up'}
+            onEnter={handleEnter}
+            onExited={handleExited}
+            {...TransitionProps}
+          >
+            {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
+          </TransitionComponent>
+        </SnackbarRoot>
+      </ClickAwayListener>
+    </Portal>
   );
 });
 
