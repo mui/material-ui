@@ -4,8 +4,6 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -32,8 +30,8 @@ import {
   renderStatus,
   renderTotalPrice,
   useDemoData,
-  STATUS_OPTIONS,
 } from '@mui/x-data-grid-generator';
+import { STATUS_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -117,7 +115,6 @@ export default function XHero() {
     maxColumns: 40,
     editable: true,
   });
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
   const [columnVisibilityModel, setColumnVisibilityModel] =
     React.useState<GridColumnVisibilityModel>({
       commodity: false,
@@ -374,17 +371,6 @@ export default function XHero() {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(startProps, endProps) => (
-                    <React.Fragment>
-                      <TextField {...startProps} />
-                      <Box sx={{ mx: 2 }}> to </Box>
-                      <TextField {...endProps} />
-                    </React.Fragment>
-                  )}
                 />
               </LocalizationProvider>
             </Paper>

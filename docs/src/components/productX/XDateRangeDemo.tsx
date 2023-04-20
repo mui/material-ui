@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { PickersShortcutsItem, DateRange } from '@mui/x-date-pickers-pro';
+import { PickersShortcutsItem, PickersShortcutsProps, DateRange } from '@mui/x-date-pickers-pro';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -16,14 +16,14 @@ startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
-function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
+function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Date>>) {
   const { items, onChange, isValid } = props;
 
   if (items == null || items.length === 0) {
     return null;
   }
 
-  const resolvedItems = items.map((item) => {
+  const resolvedItems = items.map((item: PickersShortcutsItem<DateRange<Date>>) => {
     const newValue = item.getValue({ isValid });
 
     return {
@@ -67,7 +67,6 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
 }
 
 export default function XDateRangeDemo() {
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
   const today = new Date();
   const shortcutsItems: PickersShortcutsItem<DateRange<Date>>[] = [
     {
@@ -142,10 +141,6 @@ export default function XDateRangeDemo() {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
               slots={{
                 shortcuts: CustomRangeShortcuts,
               }}
