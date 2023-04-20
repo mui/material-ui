@@ -470,7 +470,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
-  const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
+  const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== true;
 
   const { onMouseDown: handleInputMouseDown } = getInputProps();
 
