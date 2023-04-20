@@ -203,19 +203,19 @@ export default function Sidebar() {
           invertedColors
           sx={{ boxShadow: 'none' }}
         >
-          <Typography fontSize="sm" fontWeight="md" mb={0.5}>
+          <Typography fontSize="sm" fontWeight="lg" mb={0.5}>
             Used space
           </Typography>
-          <Typography level="body2">
+          <Typography level="body3">
             Your team has used 80% of your available space. Need more?
           </Typography>
           <LinearProgress value={80} determinate sx={{ my: 1.5 }} />
           <Box sx={{ display: 'flex', gap: 2 }}>
+            <Link fontSize="sm" component="button" fontWeight="lg">
+              Upgrade plan
+            </Link>
             <Link fontSize="sm" component="button">
               Dismiss
-            </Link>
-            <Link fontSize="sm" component="button" fontWeight="lg">
-              Upgrade plain
             </Link>
           </Box>
         </Card>

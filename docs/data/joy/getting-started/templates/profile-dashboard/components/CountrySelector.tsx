@@ -13,7 +13,7 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
       {...props}
       sx={[{ display: { sm: 'contents' } }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <FormLabel>Contry</FormLabel>
+      <FormLabel>Country</FormLabel>
       <Autocomplete
         autoHighlight
         isOptionEqualToValue={(option, value) => option.code === value.code}

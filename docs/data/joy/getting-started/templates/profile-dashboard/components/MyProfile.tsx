@@ -130,26 +130,23 @@ export default function MyProfile() {
             },
           })}
         >
-          <Tab value={0}>My detail</Tab>
-          <Tab value={1}>Profile</Tab>
-          <Tab value={2}>Password</Tab>
-          <Tab value={3}>
+          <Tab value={0}>Account settings</Tab>
+          <Tab value={1}>
             Team{' '}
             <Chip size="sm" variant="soft" color="neutral" sx={{ ml: 1 }}>
               2
             </Chip>
           </Tab>
-          <Tab value={4}>Plan</Tab>
-          <Tab value={5}>
+          <Tab value={2}>Plan</Tab>
+          <Tab value={3}>
             Billing{' '}
             <Chip size="sm" variant="soft" color="neutral" sx={{ ml: 1 }}>
               4
             </Chip>
           </Tab>
-          <Tab value={6}>Email</Tab>
-          <Tab value={7}>Notifications</Tab>
-          <Tab value={8}>Integrations</Tab>
-          <Tab value={9}>API</Tab>
+          <Tab value={4}>Notifications</Tab>
+          <Tab value={5}>Integrations</Tab>
+          <Tab value={6}>API</Tab>
         </TabList>
         <Box
           sx={{
@@ -168,29 +165,6 @@ export default function MyProfile() {
             },
           }}
         >
-          <Box>
-            <Typography fontWeight="md">Personal info</Typography>
-            <Typography level="body3" sx={{ whiteSpace: { sm: 'nowrap' } }}>
-              Update your photo and personal details here.
-            </Typography>
-          </Box>
-          <Box sx={{ display: { xs: 'contents', lg: 'block' } }} />
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 1,
-              alignSelf: 'center',
-              justifySelf: { xs: 'flex-start', sm: 'flex-end' },
-            }}
-          >
-            <Button variant="outlined" color="neutral" size="sm">
-              Cancel
-            </Button>
-            <Button size="sm">Save</Button>
-          </Box>
-
-          <Divider role="presentation" />
-
           <FormLabel sx={{ display: { xs: 'none', sm: 'block' } }}>Name</FormLabel>
           <Box sx={{ display: { xs: 'contents', sm: 'flex' }, gap: 2 }}>
             <FormControl sx={{ flex: 1 }}>
@@ -272,14 +246,14 @@ export default function MyProfile() {
 
           <Box>
             <FormLabel>Bio</FormLabel>
-            <FormHelperText>Write a short introduction</FormHelperText>
+            <FormHelperText>Write a short introduction.</FormHelperText>
           </Box>
           <Box>
             <EditorToolbar />
             <Textarea
               minRows={4}
               sx={{ mt: 1.5 }}
-              defaultValue="I'm a software developer based in Bangkok, Thailand. My goal is to solve UI problems with neat CSS without using too much Javascript."
+              defaultValue="I'm a software developer based in Bangkok, Thailand. My goal is to solve UI problems with neat CSS without using too much JavaScript."
             />
             <FormHelperText sx={{ mt: 0.75, fontSize: 'xs' }}>
               275 characters left
