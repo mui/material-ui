@@ -686,9 +686,10 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         .filter((mark) => mark.value >= min && mark.value <= max)
         .map((mark, index) => {
           const percent = valueToPercent(mark.value, min, max);
-          const style = (axis==='horizontal' && percent === 100)
-          ? {right: "0", transform: "unset"}
-          : axisProps[axis].offset(percent);
+          const style =
+            axis === 'horizontal' && percent === 100
+              ? { right: '0', transform: 'unset' }
+              : axisProps[axis].offset(percent);
 
           let markActive;
           if (track === false) {
