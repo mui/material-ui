@@ -82,7 +82,6 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const {
-    component,
     children,
     variant: variantProp,
     color: colorProp,
@@ -90,6 +89,9 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     onKeyDown,
     onDelete,
     onClick,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const chipContext = React.useContext(ChipContext);
@@ -116,6 +118,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const handleClickDelete = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!disabled && onDelete) {
@@ -142,7 +145,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     ref,
     elementType: ChipDeleteRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       as: component,
@@ -197,6 +200,20 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -10,7 +10,7 @@ export interface SvgIconSlots {
    * The component that renders the root.
    * @default 'svg'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type SvgIconSlotsAndSlotProps = CreateSlotsAndSlotProps<

@@ -166,6 +166,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     startAction,
     endAction,
     role: roleProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -204,7 +206,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const externalForwardedProps = { ...other, component };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -296,6 +298,24 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endAction: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startAction: PropTypes.elementType,
+  }),
   /**
    * The element to display at the start of ListItem.
    */

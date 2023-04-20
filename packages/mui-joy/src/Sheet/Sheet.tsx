@@ -86,6 +86,8 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     component = 'div',
     variant = 'plain',
     invertedColors = false,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -100,12 +102,13 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: SheetRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -148,6 +151,20 @@ Sheet.propTypes /* remove-proptypes */ = {
    * @default false
    */
   invertedColors: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -268,7 +268,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       />
     </React.Fragment>
   );
-});
+}) as React.ForwardRefExoticComponent<TextareaAutosizeProps & React.RefAttributes<Element>>;
 
 TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
