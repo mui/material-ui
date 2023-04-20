@@ -147,7 +147,7 @@ export default function TemplateCollection() {
             <Box
               sx={{
                 p: 2,
-                gap: 1,
+                gap: 0.5,
                 display: 'flex',
                 alignItems: 'start',
                 flexWrap: 'wrap',
@@ -164,7 +164,7 @@ export default function TemplateCollection() {
                 <Typography
                   component="h3"
                   fontSize="lg"
-                  fontWeight="lg"
+                  fontWeight="xl"
                   endDecorator={
                     newTemplates.includes(name) ? (
                       <Chip
@@ -178,6 +178,9 @@ export default function TemplateCollection() {
                           textTransform: 'uppercase',
                           fontWeight: 'xl',
                           letterSpacing: 'md',
+                          fontSize: '0.625rem',
+                          '--Chip-paddingInline': '0.2rem',
+                          '--_Chip-minHeight': '1.3rem',
                         }}
                       >
                         New
@@ -241,10 +244,10 @@ export default function TemplateCollection() {
                   </SvgIcon>
                 </IconButton>
               </Box>
-              <Box sx={{ width: '100%' }}>
+              <Box sx={{ width: '100%', display: 'flex' }}>
                 {author && (
                   <Typography level="body2" fontWeight="md">
-                    By{' '}
+                    Built by{' '}
                     <Link
                       href={author.link}
                       target="_blank"
@@ -255,16 +258,21 @@ export default function TemplateCollection() {
                   </Typography>
                 )}
                 {design && (
-                  <Typography level="body2" fontWeight="md">
-                    Design inspiration{' '}
-                    <Link
-                      href={design.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <b>{design.name}</b>
-                    </Link>
-                  </Typography>
+                  <React.Fragment>
+                    <Typography level="caption" fontWeight="md" sx={{ mx: 0.5 }}>
+                      •
+                    </Typography>
+                    <Typography level="body2" fontWeight="md">
+                      Designed by{' '}
+                      <Link
+                        href={design.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <b>{design.name}</b>
+                      </Link>
+                    </Typography>
+                  </React.Fragment>
                 )}
               </Box>
             </Box>
