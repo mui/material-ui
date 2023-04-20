@@ -141,6 +141,7 @@ export default function XDateRangeDemo() {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
+              value={[startDate, endDate]}
               slots={{
                 shortcuts: CustomRangeShortcuts,
               }}

@@ -369,7 +369,7 @@ export default function XHero() {
               ]}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <StaticDateRangePicker displayStaticWrapperAs="desktop" />
+                <StaticDateRangePicker displayStaticWrapperAs="desktop" value={[startDate, endDate]} />
               </LocalizationProvider>
             </Paper>
           </Box>
