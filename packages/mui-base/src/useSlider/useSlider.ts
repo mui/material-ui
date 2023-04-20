@@ -16,7 +16,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { EventHandlers } from '../utils';
+import { areArraysEqual, EventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -138,6 +138,19 @@ function focusThumb({
   if (setActive) {
     setActive(activeIndex);
   }
+}
+
+function areValuesEqual(
+  newValue: number | Array<number>,
+  oldValue: number | Array<number>,
+): boolean {
+  if (typeof newValue === 'number' && typeof oldValue === 'number') {
+    return newValue === oldValue;
+  }
+  if (typeof newValue === 'object' && typeof oldValue === 'object') {
+    return areArraysEqual(newValue, oldValue);
+  }
+  return false;
 }
 
 const axisProps = {
@@ -356,7 +369,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       setValueState(newValue);
       setFocusedThumbIndex(index);
 
-      if (handleChange) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(event, newValue, index);
       }
 
@@ -466,7 +479,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       setDragging(true);
     }
 
-    if (handleChange && newValue !== valueDerived) {
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -517,7 +530,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
       setValueState(newValue);
 
-      if (handleChange) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(nativeEvent, newValue, activeIndex);
       }
     }
@@ -584,7 +597,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
 
         setValueState(newValue);
 
-        if (handleChange) {
+        if (handleChange && !areValuesEqual(newValue, valueDerived)) {
           handleChange(event, newValue, activeIndex);
         }
       }
