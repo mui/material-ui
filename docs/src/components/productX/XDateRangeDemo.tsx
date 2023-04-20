@@ -90,19 +90,6 @@ export default function XDateRangeDemo() {
         return [subDays(today, 7), today];
       },
     },
-    {
-      label: 'Current Month',
-      getValue: () => {
-        return [startOfMonth(today), endOfMonth(today)];
-      },
-    },
-    {
-      label: 'Next Month',
-      getValue: () => {
-        const nextMonth = addMonths(today, 1);
-        return [startOfMonth(nextMonth), endOfMonth(nextMonth)];
-      },
-    },
     { label: 'Reset', getValue: () => [null, null] },
   ];
 
