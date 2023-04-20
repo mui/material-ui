@@ -74,7 +74,7 @@ This change only affects Base UI components.
 ```
 
 ```sh
-npx @mui/codemod v5.0.0/base-remove-component-props <path>
+npx @mui/codemod v5.0.0/base-remove-component-prop <path>
 ```
 
 #### `rename-css-variables`
