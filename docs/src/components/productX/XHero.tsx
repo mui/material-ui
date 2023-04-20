@@ -220,6 +220,10 @@ export default function XHero() {
                       borderBottom: '1px solid',
                       borderColor: 'grey.200',
                     },
+                    [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
+                      {
+                        outline: 'none',
+                      },
                     '& .MuiDataGrid-columnHeaderTitleContainer': {
                       padding: 0,
                       color: 'text.primary',
@@ -277,12 +281,16 @@ export default function XHero() {
                 columns={columns}
                 apiRef={apiRef}
                 disableRowSelectionOnClick
-                checkboxSelection
+                groupingColDef={{
+                  renderHeader: (params) => {
+                    return <Box sx={{ pl: 5, fontWeight: 500 }}>{params.colDef.headerName}</Box>;
+                  },
+                }}
                 hideFooter
                 loading={loading}
-                isGroupExpandedByDefault={(node) => {
-                  rowGroupingCounter++;
-                  return rowGroupingCounter == 3 ? true : false;
+                isGroupExpandedByDefault={() => {
+                  rowGroupingCounter = rowGroupingCounter + 1;
+                  return rowGroupingCounter === 3;
                 }}
                 rowGroupingModel={rowGroupingModel}
                 onRowGroupingModelChange={(model) => setRowGroupingModel(model)}
