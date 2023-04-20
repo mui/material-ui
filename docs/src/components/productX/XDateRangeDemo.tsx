@@ -8,7 +8,7 @@ import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePi
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Frame from 'docs/src/components/action/Frame';
-import { startOfWeek, endOfWeek, subDays, startOfMonth, endOfMonth, addMonths } from 'date-fns';
+import { startOfWeek, endOfWeek, subDays } from 'date-fns';
 import { Chip, Divider, List, ListItem } from '@mui/material';
 
 const startDate = new Date();
@@ -49,7 +49,6 @@ function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
           px: theme.spacing(4),
           '& .MuiListItem-root': {
             py: 2,
-            pl: 0,
             pr: theme.spacing(1),
           },
         })}
