@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Portal from '@mui/material/Portal';
 import { AdContext } from 'docs/src/modules/components/AdManager';
 
-export default function AdGuest(props) {
+export default function AdGuest({ classSelector = '.description', ...props }) {
   const ad = React.useContext(AdContext);
 
   if (!ad.element) {
@@ -13,12 +13,12 @@ export default function AdGuest(props) {
   return (
     <Portal
       container={() => {
-        const description = document.querySelector('.description');
+        const element = document.querySelector(classSelector);
 
-        if (ad.element === description) {
-          description.classList.add('ad');
+        if (ad.element === element) {
+          element.classList.add('ad');
         } else {
-          description.classList.remove('ad');
+          element.classList.remove('ad');
         }
 
         return ad.element;
@@ -31,4 +31,5 @@ export default function AdGuest(props) {
 
 AdGuest.propTypes = {
   children: PropTypes.node,
+  classSelector: PropTypes.string,
 };

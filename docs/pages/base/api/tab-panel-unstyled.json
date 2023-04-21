@@ -1,9 +1,5 @@
 {
   "props": {
-    "value": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "required": true
-    },
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
     "slotProps": {
@@ -13,7 +9,8 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
-    }
+    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
   },
   "name": "TabPanelUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
@@ -25,6 +22,7 @@
       "class": ".MuiTabPanel-root"
     }
   ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "muiName": "MuiTabPanel",
   "forwardsRefTo": "HTMLDivElement",

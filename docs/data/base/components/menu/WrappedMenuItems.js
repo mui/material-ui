@@ -7,6 +7,130 @@ import MenuItemUnstyled, {
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
+import { ListActionTypes } from '@mui/base/useList';
+
+function MenuSection({ children, label }) {
+  return (
+    <MenuSectionRoot>
+      <MenuSectionLabel>{label}</MenuSectionLabel>
+      <ul>{children}</ul>
+    </MenuSectionRoot>
+  );
+}
+
+MenuSection.propTypes = {
+  children: PropTypes.node,
+  label: PropTypes.string.isRequired,
+};
+
+export default function WrappedMenuItems() {
+  const [buttonElement, setButtonElement] = React.useState(null);
+
+  const [isOpen, setOpen] = React.useState(false);
+  const menuActions = React.useRef(null);
+  const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node) => {
+    setButtonElement(node);
+  }, []);
+
+  const handleButtonClick = (event) => {
+    if (preventReopen.current) {
+      event.preventDefault();
+      preventReopen.current = false;
+      return;
+    }
+
+    setOpen((open) => !open);
+  };
+
+  const handleButtonMouseDown = () => {
+    if (isOpen) {
+      // Prevents the menu from reopening right after closing
+      // when clicking the button.
+      preventReopen.current = true;
+    }
+  };
+
+  const handleButtonKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setOpen(true);
+      if (event.key === 'ArrowUp') {
+        // Focus the last item when pressing ArrowUp.
+        menuActions.current?.dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
+      }
+    }
+  };
+
+  const createHandleMenuClick = (menuItem) => {
+    return () => {
+      console.log(`Clicked on ${menuItem}`);
+      setOpen(false);
+      buttonElement?.focus();
+    };
+  };
+
+  return (
+    <div>
+      <TriggerButton
+        type="button"
+        onClick={handleButtonClick}
+        onKeyDown={handleButtonKeyDown}
+        onMouseDown={handleButtonMouseDown}
+        ref={updateAnchor}
+        aria-controls={isOpen ? 'wrapped-menu' : undefined}
+        aria-expanded={isOpen || undefined}
+        aria-haspopup="menu"
+      >
+        Options
+      </TriggerButton>
+      <MenuUnstyled
+        actions={menuActions}
+        open={isOpen}
+        onOpenChange={(open) => {
+          setOpen(open);
+        }}
+        anchorEl={buttonElement}
+        slots={{ root: Popper, listbox: StyledListbox }}
+        slotProps={{ listbox: { id: 'simple-menu' } }}
+      >
+        <MenuSection label="Navigation">
+          <StyledMenuItem onClick={createHandleMenuClick('Back')}>
+            Back
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Forward')} disabled>
+            Forward
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Refresh')}>
+            Refresh
+          </StyledMenuItem>
+        </MenuSection>
+        <MenuSection label="Page">
+          <StyledMenuItem onClick={createHandleMenuClick('Save as...')}>
+            Save as...
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Print...')}>
+            Print...
+          </StyledMenuItem>
+        </MenuSection>
+        <MenuSection label="View">
+          <StyledMenuItem onClick={createHandleMenuClick('Zoom in')}>
+            Zoom in
+          </StyledMenuItem>
+          <StyledMenuItem onClick={createHandleMenuClick('Zoom out')}>
+            Zoom out
+          </StyledMenuItem>
+        </MenuSection>
+        <li className="helper">Current zoom level: 100%</li>
+      </MenuUnstyled>
+    </div>
+  );
+}
 
 const blue = {
   100: '#DAECFF',
@@ -127,123 +251,3 @@ const MenuSectionLabel = styled('span')`
   letter-spacing: 0.05rem;
   color: ${grey[600]};
 `;
-
-function MenuSection({ children, label }) {
-  return (
-    <MenuSectionRoot>
-      <MenuSectionLabel>{label}</MenuSectionLabel>
-      <ul>{children}</ul>
-    </MenuSectionRoot>
-  );
-}
-
-MenuSection.propTypes = {
-  children: PropTypes.node,
-  label: PropTypes.string.isRequired,
-};
-
-export default function WrappedMenuItems() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef(null);
-  const menuActions = React.useRef(null);
-  const preventReopen = React.useRef(false);
-
-  const handleButtonClick = (event) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setAnchorEl(event.currentTarget);
-      if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
-      }
-    }
-  };
-
-  const close = () => {
-    setAnchorEl(null);
-    buttonRef.current.focus();
-  };
-
-  const createHandleMenuClick = (menuItem) => {
-    return () => {
-      console.log(`Clicked on ${menuItem}`);
-      close();
-    };
-  };
-
-  return (
-    <div>
-      <TriggerButton
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={buttonRef}
-        aria-controls={isOpen ? 'wrapped-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        Options
-      </TriggerButton>
-      <MenuUnstyled
-        actions={menuActions}
-        open={isOpen}
-        onClose={close}
-        anchorEl={anchorEl}
-        slots={{ root: Popper, listbox: StyledListbox }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
-        <MenuSection label="Navigation">
-          <StyledMenuItem onClick={createHandleMenuClick('Back')}>
-            Back
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Forward')} disabled>
-            Forward
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Refresh')}>
-            Refresh
-          </StyledMenuItem>
-        </MenuSection>
-        <MenuSection label="Page">
-          <StyledMenuItem onClick={createHandleMenuClick('Save as...')}>
-            Save as...
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Print...')}>
-            Print...
-          </StyledMenuItem>
-        </MenuSection>
-        <MenuSection label="View">
-          <StyledMenuItem onClick={createHandleMenuClick('Zoom in')}>
-            Zoom in
-          </StyledMenuItem>
-          <StyledMenuItem onClick={createHandleMenuClick('Zoom out')}>
-            Zoom out
-          </StyledMenuItem>
-        </MenuSection>
-        <li className="helper">Current zoom level: 100%</li>
-      </MenuUnstyled>
-    </div>
-  );
-}

@@ -109,7 +109,7 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       return;
     }
 
-    // Unclear why this is an issue for the current occurences of this warning.
+    // Unclear why this is an issue for the current occurrences of this warning.
     // TODO: Revisit once https://github.com/facebook/react/issues/22796 is resolved
     if (
       message.indexOf(

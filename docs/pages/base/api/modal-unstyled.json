@@ -46,6 +46,7 @@
       "class": ".MuiModal-backdrop"
     }
   ],
+  "classes": { "classes": ["hidden"], "globalClasses": {} },
   "spread": true,
   "muiName": "MuiModal",
   "forwardsRefTo": "HTMLDivElement",

@@ -1,25 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent, OverrideProps, DefaultComponentProps } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
-} from '@mui/utils';
-import PopperUnstyled, {
-  PopperUnstyledProps,
-  PopperUnstyledTypeMap,
-} from '@mui/base/PopperUnstyled';
-import {
-  SelectUnstyledContext,
-  flattenOptionGroups,
-  getOptionsFromChildren,
-} from '@mui/base/SelectUnstyled';
-import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
+import { OverrideProps, DefaultComponentProps } from '@mui/types';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
+import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
@@ -354,6 +344,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     'aria-labelledby': ariaLabelledby,
     id,
     name,
+    slots = {},
+    slotProps = {},
     ...other
   } = props as typeof inProps & {
     // need to cast types because SelectOwnProps does not have these properties
@@ -389,15 +381,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
-  const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
-  const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
-  const [listboxOpen, setListboxOpen] = useControlled({
-    controlled: listboxOpenProp,
-    default: defaultListboxOpen,
-    name: 'SelectUnstyled',
-    state: 'listboxOpen',
-  });
-
   const rootRef = React.useRef<HTMLElement | null>(null);
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement | null>(null);
@@ -415,10 +398,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   );
 
   React.useEffect(() => {
-    setGroupedOptions(getOptionsFromChildren(children));
-  }, [children]);
-
-  React.useEffect(() => {
     setAnchorEl(rootRef.current);
   }, []);
 
@@ -430,13 +409,12 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
 
   const handleOpenChange = React.useCallback(
     (isOpen: boolean) => {
-      setListboxOpen(isOpen);
       onListboxOpenChange?.(isOpen);
       if (!isOpen) {
         onClose?.();
       }
     },
-    [onClose, onListboxOpenChange, setListboxOpen],
+    [onClose, onListboxOpenChange],
   );
 
   const {
@@ -444,19 +422,22 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     buttonFocusVisible,
     contextValue,
     disabled,
+    dispatch,
     getButtonProps,
     getListboxProps,
+    getOptionMetadata,
+    open: listboxOpen,
     value,
   } = useSelect({
     buttonRef,
+    defaultOpen: defaultListboxOpen,
     defaultValue,
     disabled: disabledProp,
     listboxId,
     multiple: false,
     onChange,
     onOpenChange: handleOpenChange,
-    open: listboxOpen,
-    options,
+    open: listboxOpenProp,
     value: valueProp,
   });
 
@@ -475,16 +456,18 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, slots, slotProps };
 
-  const selectedOption = React.useMemo(() => {
-    return options.find((o) => value === o.value) ?? null;
-  }, [options, value]);
+  const selectedOption = React.useMemo(
+    () => getOptionMetadata(value as TValue) ?? null,
+    [getOptionMetadata, value],
+  );
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (
@@ -494,7 +477,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
         ) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
-          handleOpenChange(true);
+          dispatch({ type: SelectActionTypes.buttonClick, event });
         }
         handlers.onMouseDown?.(event);
       },
@@ -512,7 +495,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.button,
     elementType: SelectButton,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getButtonProps,
     ownerState,
   });
@@ -524,10 +507,11 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
+      keepMounted: true,
     },
     className: classes.listbox,
-    elementType: PopperUnstyled as OverridableComponent<PopperUnstyledTypeMap<{}, 'ul'>>,
-    externalForwardedProps: other,
+    elementType: SelectListbox,
+    externalForwardedProps,
     getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,
@@ -541,29 +525,26 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
       color: mergedProps.color || 'neutral',
       disableColorInversion: !mergedProps.disablePortal,
     }),
-    internalForwardedProps: {
-      component: SelectListbox,
-    },
   });
 
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -575,6 +556,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     [color, contextValue],
   );
 
+  // Wait for `listboxProps` because `slotProps.listbox` could be a function.
   const modifiers = React.useMemo(
     () => [...defaultModifiers, ...(listboxProps.modifiers || [])],
     [listboxProps.modifiers],
@@ -589,12 +571,19 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           listboxProps.className,
           listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
         )}
+        // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
         modifiers={modifiers}
+        {...(!props.slots?.listbox && {
+          as: PopperUnstyled,
+          slots: { root: listboxProps.as || 'ul' },
+        })}
       >
-        <SelectUnstyledContext.Provider value={context}>
-          {/* for building grouped options */}
-          <ListProvider nested>{children}</ListProvider>
-        </SelectUnstyledContext.Provider>
+        <SelectProvider value={context}>
+          <GroupListContext.Provider value="select">
+            {/* for building grouped options */}
+            <ListProvider nested>{children}</ListProvider>
+          </GroupListContext.Provider>
+        </SelectProvider>
       </SlotListbox>
     );
 
@@ -757,6 +746,18 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    button: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    indicator: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
   /**
    * Leading adornment for the select.
    */

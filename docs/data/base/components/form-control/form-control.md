@@ -10,13 +10,15 @@ githubLabel: 'component: FormControl'
 
 <p class="description">The Unstyled Form Control component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Unstyled Form Control is a utility that wraps an input component with other associated components in order to make the state of the input available to those components.
 
 For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

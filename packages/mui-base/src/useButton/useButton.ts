@@ -18,9 +18,9 @@ import { EventHandlers } from '../utils/types';
  *
  * API:
  *
- * - [useButton API](https://mui.com/base/api/use-button/)
+ * - [useButton API](https://mui.com/base/react-button/hooks-api/#use-button)
  */
-export default function useButton(parameters: UseButtonParameters): UseButtonReturnValue {
+export default function useButton(parameters: UseButtonParameters = {}): UseButtonReturnValue {
   const {
     disabled = false,
     focusableWhenDisabled,
@@ -235,5 +235,6 @@ export default function useButton(parameters: UseButtonParameters): UseButtonRet
     setFocusVisible,
     disabled,
     active,
+    ref: handleRef,
   };
 }

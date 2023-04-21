@@ -29,19 +29,19 @@ describe('<PopperUnstyled />', () => {
     },
   }));
 
-  it('should pass ownerState to overridable component', () => {
+  it('should not pass ownerState to overridable component', () => {
     const CustomComponent = React.forwardRef<HTMLDivElement, any>(({ ownerState }, ref) => (
-      <div ref={ref} data-testid={ownerState.foo} />
+      <div ref={ref} data-testid="foo" id={ownerState.id} />
     ));
     render(
       <PopperUnstyled
         anchorEl={() => document.createElement('div')}
         open
         component={CustomComponent}
-        ownerState={{ foo: 'foo' }}
+        ownerState={{ id: 'id' }}
       />,
     );
 
-    expect(screen.getByTestId('foo')).toBeVisible();
+    expect(screen.getByTestId('foo')).to.not.have.attribute('id', 'id');
   });
 });

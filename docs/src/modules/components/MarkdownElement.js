@@ -69,6 +69,9 @@ const Root = styled('div')(
     '& .description': {
       ...lightTheme.typography.subtitle1,
       fontWeight: 400,
+      margin: '0 0 28px',
+    },
+    '& .component-tabs': {
       margin: '0 0 40px',
     },
     '& h2': {
@@ -108,7 +111,6 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
-      paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -340,7 +342,7 @@ const Root = styled('div')(
     },
     '& hr': {
       height: 1,
-      margin: theme.spacing(6, 0),
+      margin: theme.spacing(5, 0),
       border: 0,
       flexShrink: 0,
       backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,

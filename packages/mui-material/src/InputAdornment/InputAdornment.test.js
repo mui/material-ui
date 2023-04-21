@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, describeConformance, strictModeDoubleLoggingSuppressed } from 'test/utils';
 import { typographyClasses } from '@mui/material/Typography';
 import InputAdornment, { inputAdornmentClasses as classes } from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -136,7 +136,7 @@ describe('<InputAdornment />', () => {
       }).toErrorDev([
         'MUI: The `InputAdornment` variant infers the variant ' +
           'prop you do not have to provide one.',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: The `InputAdornment` variant infers the variant ' +
             'prop you do not have to provide one.',
       ]);

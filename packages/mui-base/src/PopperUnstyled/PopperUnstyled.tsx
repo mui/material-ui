@@ -87,13 +87,14 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
     disablePortal,
     modifiers,
     open,
-    ownerState,
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
     slotProps = {},
     slots = {},
     TransitionProps,
+    // @ts-ignore internal logic
+    ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. SelectUnstyled.
     ...other
   } = props;
 
@@ -217,6 +218,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
 
   const classes = useUtilityClasses();
   const Root = component ?? slots.root ?? 'div';
+
   const rootProps: WithOptionalOwnerState<PopperUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -225,11 +227,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
       role: 'tooltip',
       ref: ownRef,
     },
-    ownerState: {
-      // shallow merge ownerState from external component, e.g. Joy Menu.
-      ...props,
-      ...ownerState,
-    },
+    ownerState: props,
     className: classes.root,
   });
 
@@ -247,7 +245,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * API:
  *
- * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
+ * - [PopperUnstyled API](https://mui.com/base/react-popper/components-api/#popper-unstyled)
  */
 const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   props: PopperUnstyledProps,

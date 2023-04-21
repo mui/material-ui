@@ -23,6 +23,10 @@
       "class": ".MuiOption-root"
     }
   ],
+  "classes": {
+    "classes": ["disabled", "highlighted", "selected"],
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
+  },
   "spread": true,
   "muiName": "MuiOption",
   "forwardsRefTo": "HTMLLIElement",

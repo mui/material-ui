@@ -11,13 +11,15 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 The Unstyled Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
 {{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -94,11 +96,16 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The `useButton` hook requires the `ref` of the element it's used on.
-
 The following demo shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+If you use a ref to store a reference to the button, pass it to the `useButton`'s `ref` parameter, as shown in the demo above.
+It will get merged with a ref used internally in the hook.
+
+:::warning
+Do not add the `ref` parameter to the button element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+:::
 
 ## Customization
 
@@ -125,7 +132,7 @@ Instead, `aria-disabled` is used, which makes the button focusable.
 
 This should be used whenever the disabled button needs to be read by screen readers.
 
-MUI Base uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+Base UI uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second button accepts the focus:
 

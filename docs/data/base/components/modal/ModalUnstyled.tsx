@@ -3,6 +3,32 @@ import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
+export default function ModalUnstyledDemo() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  return (
+    <div>
+      <button type="button" onClick={handleOpen}>
+        Open modal
+      </button>
+      <Modal
+        aria-labelledby="unstyled-modal-title"
+        aria-describedby="unstyled-modal-description"
+        open={open}
+        onClose={handleClose}
+        slots={{ backdrop: Backdrop }}
+      >
+        <Box sx={style}>
+          <h2 id="unstyled-modal-title">Text in a modal</h2>
+          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
 const BackdropUnstyled = React.forwardRef<
   HTMLDivElement,
   { open?: boolean; className: string }
@@ -46,29 +72,3 @@ const style = (theme: Theme) => ({
   border: '2px solid currentColor',
   padding: '16px 32px 24px 32px',
 });
-
-export default function ModalUnstyledDemo() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        Open modal
-      </button>
-      <Modal
-        aria-labelledby="unstyled-modal-title"
-        aria-describedby="unstyled-modal-description"
-        open={open}
-        onClose={handleClose}
-        slots={{ backdrop: Backdrop }}
-      >
-        <Box sx={style}>
-          <h2 id="unstyled-modal-title">Text in a modal</h2>
-          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
-        </Box>
-      </Modal>
-    </div>
-  );
-}
