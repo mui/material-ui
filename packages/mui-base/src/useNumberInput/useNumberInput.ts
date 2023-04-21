@@ -82,7 +82,7 @@ export default function useNumberInput(
   // the "final" value
   const [value, setValue] = React.useState(valueProp ?? defaultValueProp);
   // the (potentially) dirty or invalid input value
-  const [dirtyValue, setInputValue] = React.useState<string | undefined>(undefined);
+  const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(undefined);
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
@@ -122,16 +122,16 @@ export default function useNumberInput(
       val: number | undefined,
     ) => {
       // 1. clamp the number
-      // 2. setInputValue(clamped_value)
-      // 3. call onValueChange(newValue)
+      // 2. setDirtyValue(clamped_value)
+      // 3. call onValueChange(event, newValue)
       let newValue;
 
       if (val === undefined) {
         newValue = val;
-        setInputValue('');
+        setDirtyValue('');
       } else {
         newValue = clamp(val, min, max, step);
-        setInputValue(String(newValue));
+        setDirtyValue(String(newValue));
       }
 
       setValue(newValue);
@@ -164,12 +164,12 @@ export default function useNumberInput(
       const val = parseInput(event.currentTarget.value);
 
       if (val === '' || val === '-') {
-        setInputValue(val);
+        setDirtyValue(val);
         setValue(undefined);
       }
 
       if (val.match(/^-?\d+?$/)) {
-        setInputValue(val);
+        setDirtyValue(val);
         setValue(parseInt(val, 10));
       }
     };
