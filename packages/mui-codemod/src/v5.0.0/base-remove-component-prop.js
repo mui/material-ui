@@ -23,7 +23,14 @@ export default function transformer(file, api, options) {
           let slotPropNodeInserted = false;
           let slotsPropNode;
           elementPath.node.openingElement.attributes.forEach((attributeNode) => {
-            if (attributeNode.type !== 'JSXAttribute') {
+            if (
+              attributeNode.type !== 'JSXAttribute' &&
+              attributeNode.type !== 'JSXSpreadAttribute'
+            ) {
+              return;
+            }
+            if (attributeNode.type === 'JSXSpreadAttribute') {
+              attributeNodes.push(attributeNode);
               return;
             }
             const attributeName = attributeNode.name.name;
