@@ -34,7 +34,7 @@ function useUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
  */
 const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
   BaseComponentType extends React.ElementType = MenuItemUnstyledTypeMap['defaultComponent'],
->(props: MenuItemUnstyledProps<BaseComponentType>, ref: React.Ref<any>) {
+>(props: MenuItemUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     children,
     disabled: disabledProp = false,
@@ -47,7 +47,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
 
   const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
     disabled: disabledProp,
-    rootRef: ref,
+    rootRef: forwardedRef,
     label,
   });
 

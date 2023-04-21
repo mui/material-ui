@@ -41,7 +41,7 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   BaseComponentType extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
->(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
+>(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     action,
     children,

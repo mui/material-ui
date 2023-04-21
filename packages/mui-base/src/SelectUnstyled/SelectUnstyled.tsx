@@ -94,7 +94,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any, any>) {
 const SelectUnstyled = React.forwardRef(function SelectUnstyled<
   OptionValue extends {},
   Multiple extends boolean,
->(props: SelectUnstyledProps<OptionValue, Multiple>, forwardedRef: React.ForwardedRef<any>) {
+>(props: SelectUnstyledProps<OptionValue, Multiple>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     autoFocus,
     children,

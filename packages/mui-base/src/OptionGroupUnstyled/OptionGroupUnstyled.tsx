@@ -36,7 +36,7 @@ function useUtilityClasses(disabled: boolean) {
  */
 const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
   BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
->(props: OptionGroupUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<HTMLLIElement>) {
+>(props: OptionGroupUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const { component, disabled = false, slotProps = {}, slots = {}, ...other } = props;
 
   const Root = component || slots?.root || 'li';
@@ -50,7 +50,7 @@ const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState: props,
     className: classes.root,

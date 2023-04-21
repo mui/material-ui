@@ -33,7 +33,10 @@ const useUtilityClasses = (ownerState: TabUnstyledOwnerState) => {
  *
  * - [TabUnstyled API](https://mui.com/base/react-tabs/components-api/#tab-unstyled)
  */
-const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
+const TabUnstyled = React.forwardRef(function TabUnstyled(
+  props: TabUnstyledProps,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     action,
     children,
@@ -49,7 +52,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
   } = props;
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
-  const handleRef = useForkRef(tabRef, ref);
+  const handleRef = useForkRef(tabRef, forwardedRef);
 
   const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
@@ -73,7 +76,7 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

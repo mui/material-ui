@@ -77,7 +77,7 @@ const defaultPopperOptions = {};
 
 const PopperTooltip = React.forwardRef(function PopperTooltip(
   props: PopperTooltipProps,
-  ref: React.ForwardedRef<HTMLElement>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     anchorEl,
@@ -99,7 +99,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   } = props;
 
   const tooltipRef = React.useRef<HTMLElement | null>(null);
-  const ownRef = useForkRef(tooltipRef, ref);
+  const ownRef = useForkRef(tooltipRef, forwardedRef);
 
   const popperRef = React.useRef<Instance | null>(null);
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
@@ -249,7 +249,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  */
 const PopperUnstyled = React.forwardRef(function PopperUnstyled(
   props: PopperUnstyledProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     anchorEl,
@@ -313,7 +313,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
         direction={direction}
         disablePortal={disablePortal}
         modifiers={modifiers}
-        ref={ref}
+        ref={forwardedRef}
         open={transition ? !exited : open}
         placement={placement}
         popperOptions={popperOptions}

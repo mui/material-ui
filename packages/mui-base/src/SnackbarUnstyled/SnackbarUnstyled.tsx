@@ -34,7 +34,7 @@ const useUtilityClasses = () => {
  */
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   props: SnackbarUnstyledProps,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     autoHideDuration = null,
@@ -75,7 +75,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

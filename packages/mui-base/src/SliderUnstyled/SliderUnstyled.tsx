@@ -61,7 +61,7 @@ const useUtilityClasses = (ownerState: SliderUnstyledOwnerState) => {
  */
 const SliderUnstyled = React.forwardRef(function SliderUnstyled<
   BaseComponentType extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
->(props: SliderUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+>(props: SliderUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
@@ -126,7 +126,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...partialOwnerState, rootRef: ref });
+  } = useSlider({ ...partialOwnerState, rootRef: forwardedRef });
 
   const ownerState: SliderUnstyledOwnerState = {
     ...partialOwnerState,

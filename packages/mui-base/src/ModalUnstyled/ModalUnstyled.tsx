@@ -69,7 +69,7 @@ const defaultManager = new ModalManager();
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled<
   BaseComponentType extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
->(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<Element> | undefined) {
+>(props: ModalUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     children,
     closeAfterTransition = false,

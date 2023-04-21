@@ -48,7 +48,7 @@ const useUtilityClasses = (ownerState: InputUnstyledOwnerState) => {
  */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,
-  forwardedRef: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     'aria-describedby': ariaDescribedby,

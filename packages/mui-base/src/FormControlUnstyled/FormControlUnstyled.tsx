@@ -71,7 +71,7 @@ function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
  */
 const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
->(props: FormControlUnstyledProps<D>, ref: React.ForwardedRef<any>) {
+>(props: FormControlUnstyledProps<D>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     defaultValue,
     children,
@@ -146,7 +146,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
       children: renderChildren(),
     },
     ownerState,

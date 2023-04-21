@@ -38,7 +38,7 @@ function useUtilityClasses(ownerState: MenuUnstyledOwnerState) {
  */
 const MenuUnstyled = React.forwardRef(function MenuUnstyled<
   BaseComponentType extends React.ElementType = MenuUnstyledTypeMap['defaultComponent'],
->(props: MenuUnstyledProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
+>(props: MenuUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     actions,
     anchorEl,

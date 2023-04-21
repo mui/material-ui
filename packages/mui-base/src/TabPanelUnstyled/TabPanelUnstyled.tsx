@@ -31,9 +31,9 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * - [TabPanelUnstyled API](https://mui.com/base/react-tabs/components-api/#tab-panel-unstyled)
  */
-const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(function TabPanelUnstyled(
-  props,
-  ref,
+const TabPanelUnstyled = React.forwardRef(function TabPanelUnstyled(
+  props: TabPanelUnstyledProps,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { children, component, value, slotProps = {}, slots = {}, ...other } = props;
 
@@ -54,7 +54,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
     externalForwardedProps: other,
     additionalProps: {
       role: 'tabpanel',
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

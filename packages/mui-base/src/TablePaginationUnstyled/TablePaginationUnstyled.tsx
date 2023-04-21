@@ -59,190 +59,189 @@ const useUtilityClasses = () => {
  *
  * - [TablePaginationUnstyled API](https://mui.com/base/react-table-pagination/components-api/#table-pagination-unstyled)
  */
-const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyledProps>(
-  function TablePaginationUnstyled(props, ref) {
-    const {
-      component,
-      colSpan: colSpanProp,
-      count,
-      getItemAriaLabel = defaultGetAriaLabel,
-      labelDisplayedRows = defaultLabelDisplayedRows,
-      labelId: labelIdProp,
-      labelRowsPerPage = 'Rows per page:',
-      onPageChange,
-      onRowsPerPageChange,
-      page,
-      rowsPerPage,
-      rowsPerPageOptions = [10, 25, 50, 100],
-      selectId: selectIdProp,
-      slotProps = {},
-      slots = {},
-      ...other
-    } = props;
+const TablePaginationUnstyled = React.forwardRef(function TablePaginationUnstyled(
+  props: TablePaginationUnstyledProps,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
+  const {
+    component,
+    colSpan: colSpanProp,
+    count,
+    getItemAriaLabel = defaultGetAriaLabel,
+    labelDisplayedRows = defaultLabelDisplayedRows,
+    labelId: labelIdProp,
+    labelRowsPerPage = 'Rows per page:',
+    onPageChange,
+    onRowsPerPageChange,
+    page,
+    rowsPerPage,
+    rowsPerPageOptions = [10, 25, 50, 100],
+    selectId: selectIdProp,
+    slotProps = {},
+    slots = {},
+    ...other
+  } = props;
 
-    const ownerState = props;
-    const classes = useUtilityClasses();
+  const ownerState = props;
+  const classes = useUtilityClasses();
 
-    let colSpan;
-    if (!component || component === 'td' || !isHostComponent(component)) {
-      colSpan = colSpanProp || 1000; // col-span over everything
+  let colSpan;
+  if (!component || component === 'td' || !isHostComponent(component)) {
+    colSpan = colSpanProp || 1000; // col-span over everything
+  }
+
+  const getLabelDisplayedRowsTo = () => {
+    if (count === -1) {
+      return (page + 1) * rowsPerPage;
     }
+    return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
+  };
 
-    const getLabelDisplayedRowsTo = () => {
-      if (count === -1) {
-        return (page + 1) * rowsPerPage;
-      }
-      return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
-    };
+  const selectId = useId(selectIdProp);
+  const labelId = useId(labelIdProp);
 
-    const selectId = useId(selectIdProp);
-    const labelId = useId(labelIdProp);
+  const Root = component ?? slots.root ?? 'td';
+  const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      colSpan,
+      ref: forwardedRef,
+    },
+    ownerState,
+    className: classes.root,
+  });
 
-    const Root = component ?? slots.root ?? 'td';
-    const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> = useSlotProps({
-      elementType: Root,
-      externalSlotProps: slotProps.root,
-      externalForwardedProps: other,
+  const Select = slots.select ?? 'select';
+  const selectProps: WithOptionalOwnerState<TablePaginationUnstyledSelectSlotProps> = useSlotProps({
+    elementType: Select,
+    externalSlotProps: slotProps.select,
+    additionalProps: {
+      value: rowsPerPage,
+      id: selectId,
+      onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+        onRowsPerPageChange && onRowsPerPageChange(e),
+      'aria-label': rowsPerPage.toString(),
+      'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
+    },
+    ownerState,
+    className: classes.select,
+  });
+
+  const Actions = slots.actions ?? TablePaginationActionsUnstyled;
+  const actionsProps: WithOptionalOwnerState<TablePaginationUnstyledActionsSlotProps> =
+    useSlotProps({
+      elementType: Actions,
+      externalSlotProps: slotProps.actions,
       additionalProps: {
-        colSpan,
-        ref,
+        page,
+        rowsPerPage,
+        count,
+        onPageChange,
+        getItemAriaLabel,
       },
       ownerState,
-      className: classes.root,
+      className: classes.actions,
     });
 
-    const Select = slots.select ?? 'select';
-    const selectProps: WithOptionalOwnerState<TablePaginationUnstyledSelectSlotProps> =
-      useSlotProps({
-        elementType: Select,
-        externalSlotProps: slotProps.select,
-        additionalProps: {
-          value: rowsPerPage,
-          id: selectId,
-          onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-            onRowsPerPageChange && onRowsPerPageChange(e),
-          'aria-label': rowsPerPage.toString(),
-          'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
-        },
-        ownerState,
-        className: classes.select,
-      });
+  const MenuItem = slots.menuItem ?? 'option';
+  const menuItemProps: WithOptionalOwnerState<TablePaginationUnstyledMenuItemSlotProps> =
+    useSlotProps({
+      elementType: MenuItem,
+      externalSlotProps: slotProps.menuItem,
+      additionalProps: {
+        value: undefined,
+      },
+      ownerState,
+      className: classes.menuItem,
+    });
 
-    const Actions = slots.actions ?? TablePaginationActionsUnstyled;
-    const actionsProps: WithOptionalOwnerState<TablePaginationUnstyledActionsSlotProps> =
-      useSlotProps({
-        elementType: Actions,
-        externalSlotProps: slotProps.actions,
-        additionalProps: {
-          page,
-          rowsPerPage,
-          count,
-          onPageChange,
-          getItemAriaLabel,
-        },
-        ownerState,
-        className: classes.actions,
-      });
+  const SelectLabel = slots.selectLabel ?? 'p';
+  const selectLabelProps: WithOptionalOwnerState<TablePaginationUnstyledSelectLabelSlotProps> =
+    useSlotProps({
+      elementType: SelectLabel,
+      externalSlotProps: slotProps.selectLabel,
+      additionalProps: {
+        id: labelId,
+      },
+      ownerState,
+      className: classes.selectLabel,
+    });
 
-    const MenuItem = slots.menuItem ?? 'option';
-    const menuItemProps: WithOptionalOwnerState<TablePaginationUnstyledMenuItemSlotProps> =
-      useSlotProps({
-        elementType: MenuItem,
-        externalSlotProps: slotProps.menuItem,
-        additionalProps: {
-          value: undefined,
-        },
-        ownerState,
-        className: classes.menuItem,
-      });
+  const DisplayedRows = slots.displayedRows ?? 'p';
+  const displayedRowsProps: WithOptionalOwnerState<TablePaginationUnstyledDisplayedRowsSlotProps> =
+    useSlotProps({
+      elementType: DisplayedRows,
+      externalSlotProps: slotProps.displayedRows,
+      ownerState,
+      className: classes.displayedRows,
+    });
 
-    const SelectLabel = slots.selectLabel ?? 'p';
-    const selectLabelProps: WithOptionalOwnerState<TablePaginationUnstyledSelectLabelSlotProps> =
-      useSlotProps({
-        elementType: SelectLabel,
-        externalSlotProps: slotProps.selectLabel,
-        additionalProps: {
-          id: labelId,
-        },
-        ownerState,
-        className: classes.selectLabel,
-      });
+  const Toolbar = slots.toolbar ?? 'div';
+  const toolbarProps: WithOptionalOwnerState<TablePaginationUnstyledToolbarSlotProps> =
+    useSlotProps({
+      elementType: Toolbar,
+      externalSlotProps: slotProps.toolbar,
+      ownerState,
+      className: classes.toolbar,
+    });
 
-    const DisplayedRows = slots.displayedRows ?? 'p';
-    const displayedRowsProps: WithOptionalOwnerState<TablePaginationUnstyledDisplayedRowsSlotProps> =
-      useSlotProps({
-        elementType: DisplayedRows,
-        externalSlotProps: slotProps.displayedRows,
-        ownerState,
-        className: classes.displayedRows,
-      });
+  const Spacer = slots.spacer ?? 'div';
+  const spacerProps: WithOptionalOwnerState<TablePaginationUnstyledSpacerSlotProps> = useSlotProps({
+    elementType: Spacer,
+    externalSlotProps: slotProps.spacer,
+    ownerState,
+    className: classes.spacer,
+  });
 
-    const Toolbar = slots.toolbar ?? 'div';
-    const toolbarProps: WithOptionalOwnerState<TablePaginationUnstyledToolbarSlotProps> =
-      useSlotProps({
-        elementType: Toolbar,
-        externalSlotProps: slotProps.toolbar,
-        ownerState,
-        className: classes.toolbar,
-      });
+  return (
+    <Root {...rootProps}>
+      <Toolbar {...toolbarProps}>
+        <Spacer {...spacerProps} />
+        {rowsPerPageOptions.length > 1 && (
+          <SelectLabel {...selectLabelProps}>{labelRowsPerPage}</SelectLabel>
+        )}
 
-    const Spacer = slots.spacer ?? 'div';
-    const spacerProps: WithOptionalOwnerState<TablePaginationUnstyledSpacerSlotProps> =
-      useSlotProps({
-        elementType: Spacer,
-        externalSlotProps: slotProps.spacer,
-        ownerState,
-        className: classes.spacer,
-      });
-
-    return (
-      <Root {...rootProps}>
-        <Toolbar {...toolbarProps}>
-          <Spacer {...spacerProps} />
-          {rowsPerPageOptions.length > 1 && (
-            <SelectLabel {...selectLabelProps}>{labelRowsPerPage}</SelectLabel>
-          )}
-
-          {rowsPerPageOptions.length > 1 && (
-            <Select {...selectProps}>
-              {rowsPerPageOptions.map(
-                (rowsPerPageOption: number | { label: string; value: number }) => (
-                  <MenuItem
-                    {...menuItemProps}
-                    key={
-                      typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
-                        ? rowsPerPageOption.label
-                        : rowsPerPageOption
-                    }
-                    value={
-                      typeof rowsPerPageOption !== 'number' && rowsPerPageOption.value
-                        ? rowsPerPageOption.value
-                        : rowsPerPageOption
-                    }
-                  >
-                    {typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
+        {rowsPerPageOptions.length > 1 && (
+          <Select {...selectProps}>
+            {rowsPerPageOptions.map(
+              (rowsPerPageOption: number | { label: string; value: number }) => (
+                <MenuItem
+                  {...menuItemProps}
+                  key={
+                    typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
                       ? rowsPerPageOption.label
-                      : rowsPerPageOption}
-                  </MenuItem>
-                ),
-              )}
-            </Select>
-          )}
+                      : rowsPerPageOption
+                  }
+                  value={
+                    typeof rowsPerPageOption !== 'number' && rowsPerPageOption.value
+                      ? rowsPerPageOption.value
+                      : rowsPerPageOption
+                  }
+                >
+                  {typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
+                    ? rowsPerPageOption.label
+                    : rowsPerPageOption}
+                </MenuItem>
+              ),
+            )}
+          </Select>
+        )}
 
-          <DisplayedRows {...displayedRowsProps}>
-            {labelDisplayedRows({
-              from: count === 0 ? 0 : page * rowsPerPage + 1,
-              to: getLabelDisplayedRowsTo(),
-              count: count === -1 ? -1 : count,
-              page,
-            })}
-          </DisplayedRows>
-          <Actions {...actionsProps} />
-        </Toolbar>
-      </Root>
-    );
-  },
-) as OverridableComponent<TablePaginationUnstyledTypeMap>;
+        <DisplayedRows {...displayedRowsProps}>
+          {labelDisplayedRows({
+            from: count === 0 ? 0 : page * rowsPerPage + 1,
+            to: getLabelDisplayedRowsTo(),
+            count: count === -1 ? -1 : count,
+            page,
+          })}
+        </DisplayedRows>
+        <Actions {...actionsProps} />
+      </Toolbar>
+    </Root>
+  );
+}) as OverridableComponent<TablePaginationUnstyledTypeMap>;
 
 TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

@@ -27,7 +27,7 @@ function useUtilityClasses<OptionValue>(ownerState: OptionUnstyledOwnerState<Opt
  */
 const OptionUnstyled = React.forwardRef(function OptionUnstyled<OptionValue>(
   props: OptionUnstyledProps<OptionValue>,
-  ref: React.ForwardedRef<HTMLLIElement>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     children,
@@ -42,8 +42,8 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<OptionValue>(
 
   const Root = component || slots.root || 'li';
 
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const combinedRef = useForkRef(optionRef, ref);
+  const optionRef = React.useRef<HTMLElement>(null);
+  const combinedRef = useForkRef(optionRef, forwardedRef);
 
   // If `label` is not explicitly provided, the `children` are used for convenience.
   // This is used to populate the select's trigger with the selected option's label.

@@ -48,7 +48,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
  */
 const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
   BaseComponentType extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],
->(props: SwitchUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+>(props: SwitchUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     checked: checkedProp,
     component,
@@ -94,7 +94,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,
