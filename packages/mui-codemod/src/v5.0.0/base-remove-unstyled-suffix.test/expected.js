@@ -1,7 +1,7 @@
 import ButtonUnstyled, {
-  ButtonProps,
-  ButtonRootSlotProps,
-  buttonClasses,
+  ButtonProps as ButtonUnstyledProps,
+  ButtonRootSlotProps as ButtonUnstyledRootSlotProps,
+  buttonClasses as buttonUnstyledClasses,
 } from "@mui/base/Button";
 import { Switch as SwitchUnstyled } from "@mui/base";
 import { Input as BaseInput } from "@mui/base";
