@@ -29,7 +29,7 @@ function fixLineEndings(source, target) {
  * @param {string} filename - the file of the styled or regular mui component
  */
 function getUnstyledFilename(filename, definitionFile = false) {
-  if (filename.indexOf('Unstyled') > -1) {
+  if (filename.indexOf('mui-base') > -1) {
     return filename;
   }
   let unstyledFile = '';
@@ -60,13 +60,6 @@ function getUnstyledFilename(filename, definitionFile = false) {
         /packages\\mui-lab|packages\\mui-material/g,
         'packages\\mui-base',
       );
-    }
-
-    unstyledFile = unstyledFile.replace(componentNameReg, `${componentName}Unstyled`);
-
-    if (directoryName !== componentName) {
-      const directoryNameReg = new RegExp(directoryName, 'g');
-      unstyledFile = unstyledFile.replace(directoryNameReg, `${directoryName}Unstyled`);
     }
   }
 
