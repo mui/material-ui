@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Autocomplete, {
+  AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
@@ -11,7 +12,8 @@ interface MyAutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
+  ChipComponent extends React.ElementType = 'div',
+> extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   myProp?: string;
 }
 
@@ -20,8 +22,21 @@ function MyAutocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
->(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
-  return <Autocomplete {...props} />;
+  ChipComponent extends React.ElementType = 'div',
+>(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
+  return (
+    <Autocomplete
+      {...props}
+      renderTags={(value, getTagProps, ownerState) => {
+        expectType<
+          AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+          typeof ownerState
+        >(ownerState);
+
+        return '';
+      }}
+    />
+  );
 }
 
 // multiple prop can be assigned for components that extend AutocompleteProps
