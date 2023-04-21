@@ -236,7 +236,7 @@ const SelectListbox = styled(StyledList, {
     boxShadow: theme.shadow.md,
     zIndex: theme.vars.zIndex.popup,
     ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.popup,
     }),
   };
 });
