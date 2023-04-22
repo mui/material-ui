@@ -43,13 +43,6 @@ function getUnstyledFilename(filename, definitionFile = false) {
       .replace(/.js$/, '');
     unstyledFile = unstyledFile.replace(/Styled/g, '');
 
-    const pathParts = unstyledFile.split(separator);
-
-    const componentName = pathParts[pathParts.length - 1];
-    const directoryName = pathParts[pathParts.length - 2];
-
-    const componentNameReg = new RegExp(componentName, 'g');
-
     if (separator === '/') {
       unstyledFile = unstyledFile.replace(
         /packages\/mui-lab|packages\/mui-material/g,
