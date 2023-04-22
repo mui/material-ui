@@ -100,10 +100,10 @@ const AlertIcon = styled('div', {
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
 })({
-  marginRight: 12,
+  marginRight: 0,
   padding: '7px 0',
   display: 'flex',
-  fontSize: 22,
+  fontSize: 2,
   opacity: 0.9,
 });
 
@@ -124,7 +124,7 @@ const AlertAction = styled('div', {
 })({
   display: 'flex',
   alignItems: 'flex-start',
-  padding: '4px 0 0 16px',
+  padding: 0,
   marginLeft: 'auto',
   marginRight: -8,
 });
