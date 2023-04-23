@@ -24,14 +24,15 @@ const ListItemDecoratorRoot = styled('span', {
 })<{ ownerState: ListItemDecoratorOwnerState }>(({ ownerState }) => ({
   boxSizing: 'border-box',
   display: 'inline-flex',
-  alignItems: 'center',
   color: `var(--ListItemDecorator-color)`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
         minInlineSize: 'var(--ListItemDecorator-size)',
+        alignItems: 'center',
       }
     : {
         minBlockSize: 'var(--ListItemDecorator-size)',
+        justifyContent: 'center',
       }),
 }));
 /**

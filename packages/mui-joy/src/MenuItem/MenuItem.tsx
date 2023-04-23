@@ -9,6 +9,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemOwnerState, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 import RowListContext from '../List/RowListContext';
+import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: MenuItemOwnerState) => {
@@ -59,6 +60,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     component = 'li',
     selected = false,
     color: colorProp = selected ? 'primary' : 'neutral',
+    orientation = 'horizontal',
     variant = 'plain',
     slots = {},
     slotProps = {},
@@ -78,6 +80,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     color,
     disabled,
     focusVisible,
+    orientation,
     selected,
     row,
     variant,
@@ -95,7 +98,11 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  return (
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <SlotRoot {...rootProps}>{children}</SlotRoot>
+    </ListItemButtonOrientationContext.Provider>
+  );
 }) as ExtendMenuItem<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {

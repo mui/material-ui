@@ -98,6 +98,12 @@ You can also access this option by using [command menu and search for it](https:
 
 ## Common examples
 
+### Apps menu
+
+This example replicates a menu that contain links to other applications.
+
+{{"demo": "AppsMenu.js"}}
+
 ### Menu bar
 
 This example replicates the application menu bar on macOS.
