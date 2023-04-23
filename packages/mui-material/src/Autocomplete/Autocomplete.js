@@ -551,7 +551,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       selected: optionProps['aria-selected'],
       index,
       inputValue,
-    });
+    },
+    ownerState);
   };
 
   const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;
