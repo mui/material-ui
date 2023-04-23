@@ -9,7 +9,9 @@
     "onFocusVisible": {
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
     },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
     "tabIndex": {
       "type": {
         "name": "NonNullable&lt;React.HTMLAttributes&lt;any&gt;[&#39;tabIndex&#39;]&gt;",
@@ -31,11 +33,6 @@
       "default": "false",
       "required": true
     },
-    "disabled": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
     "focusVisible": {
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false",
@@ -48,10 +45,10 @@
       },
       "required": true
     },
-    "ref": {
+    "rootRef": {
       "type": {
-        "name": "((instance: unknown) =&gt; void) | null",
-        "description": "((instance: unknown) =&gt; void) | null"
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
       },
       "required": true
     },
