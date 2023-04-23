@@ -222,6 +222,11 @@ Alert.propTypes /* remove-proptypes */ = {
    */
   endDecorator: PropTypes.node,
   /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
+  /**
    * The ARIA role attribute of the element.
    * @default 'alert'
    */

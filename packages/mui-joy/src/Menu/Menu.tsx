@@ -244,6 +244,11 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
+  /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Popper.
