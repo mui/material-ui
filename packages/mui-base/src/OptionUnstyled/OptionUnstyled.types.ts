@@ -63,13 +63,7 @@ export type OptionUnstyledProps<
 
 export interface OptionUnstyledType {
   <OptionValue, C extends React.ElementType>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: C;
-    } & OverrideProps<OptionUnstyledTypeMap<OptionValue>, C>,
+    props: OverrideProps<OptionUnstyledTypeMap<OptionValue>, C>,
   ): JSX.Element | null;
   <OptionValue>(
     props: DefaultComponentProps<OptionUnstyledTypeMap<OptionValue>>,

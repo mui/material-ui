@@ -32,21 +32,41 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <ModalUnstyled invalidProp={0} />
 
-      <ModalUnstyled component="a" href="#" open>
+      <ModalUnstyled
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+        open
+      >
         <div />
       </ModalUnstyled>
 
-      <ModalUnstyled component={CustomComponent} stringProp="test" numberProp={0} open>
+      <ModalUnstyled<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+        open
+      >
         <div />
       </ModalUnstyled>
 
       {/* @ts-expect-error */}
-      <ModalUnstyled component={CustomComponent} open>
+      <ModalUnstyled<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        open
+      >
         <div />
       </ModalUnstyled>
 
       <ModalUnstyled
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
         open
       >
@@ -54,7 +74,9 @@ const polymorphicComponentTest = () => {
       </ModalUnstyled>
 
       <ModalUnstyled<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

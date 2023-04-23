@@ -34,10 +34,12 @@ describe('<PopperUnstyled />', () => {
       <div ref={ref} data-testid="foo" id={ownerState.id} />
     ));
     render(
-      <PopperUnstyled
+      <PopperUnstyled<typeof CustomComponent>
         anchorEl={() => document.createElement('div')}
         open
-        component={CustomComponent}
+        slots={{
+          root: CustomComponent,
+        }}
         ownerState={{ id: 'id' }}
       />,
     );

@@ -159,13 +159,7 @@ export type SelectUnstyledProps<
 // OverridableBaseComponent cannot be used below as SelectUnstyled's props are generic.
 export interface SelectUnstyledType {
   <OptionValue extends {}, C extends React.ElementType, Multiple extends boolean = false>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: C;
-    } & OverrideProps<SelectUnstyledTypeMap<OptionValue, Multiple>, C>,
+    props: OverrideProps<SelectUnstyledTypeMap<OptionValue, Multiple>, C>,
   ): JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: DefaultComponentProps<SelectUnstyledTypeMap<OptionValue, Multiple>>,

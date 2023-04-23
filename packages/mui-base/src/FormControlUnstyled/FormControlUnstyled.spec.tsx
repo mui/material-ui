@@ -15,19 +15,38 @@ function FormControlUnstyledTest() {
       {/* @ts-expect-error */}
       <FormControlUnstyled invalidProp={0} />
 
-      <FormControlUnstyled component="a" href="#" />
+      <FormControlUnstyled
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <FormControlUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      <FormControlUnstyled<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
       {/* @ts-expect-error */}
-      <FormControlUnstyled component={CustomComponent} />
+      <FormControlUnstyled<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
       <FormControlUnstyled
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <FormControlUnstyled<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

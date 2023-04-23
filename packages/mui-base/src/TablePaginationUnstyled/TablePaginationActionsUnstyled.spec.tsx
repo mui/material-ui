@@ -56,26 +56,43 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <TablePaginationActionsUnstyled {...requiredProps} invalidProp={0} />
 
-      <TablePaginationActionsUnstyled {...requiredProps} component="a" href="#" />
-
       <TablePaginationActionsUnstyled
         {...requiredProps}
-        component={CustomComponent}
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
+
+      <TablePaginationActionsUnstyled<typeof CustomComponent>
+        {...requiredProps}
+        slots={{
+          root: CustomComponent,
+        }}
         stringProp="test"
         numberProp={0}
       />
       {/* @ts-expect-error */}
-      <TablePaginationActionsUnstyled {...requiredProps} component={CustomComponent} />
+      <TablePaginationActionsUnstyled<typeof CustomComponent>
+        {...requiredProps}
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
       <TablePaginationActionsUnstyled
         {...requiredProps}
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <TablePaginationActionsUnstyled<'button'>
         {...requiredProps}
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

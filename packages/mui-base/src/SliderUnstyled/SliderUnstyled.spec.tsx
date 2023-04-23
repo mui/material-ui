@@ -92,19 +92,38 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <SliderUnstyled invalidProp={0} />
 
-      <SliderUnstyled component="a" href="#" />
+      <SliderUnstyled
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <SliderUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      <SliderUnstyled<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
       {/* @ts-expect-error */}
-      <SliderUnstyled component={CustomComponent} />
+      <SliderUnstyled<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
       <SliderUnstyled
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <SliderUnstyled<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}
