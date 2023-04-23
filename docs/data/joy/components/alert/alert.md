@@ -69,6 +69,12 @@ Use the `startDecorator` and `endDecorator` props to append actions and icons to
 
 {{"demo": "AlertWithDecorators.js"}}
 
+### Inverted colors
+
+The Alert component supports Joy UI's [color inversion](/joy-ui/main-features/color-inversion/) by using `invertedColors` prop.
+
+{{"demo": "AlertInvertedColors.js"}}
+
 ## Common examples
 
 ### Various states
