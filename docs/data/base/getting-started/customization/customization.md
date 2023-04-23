@@ -58,7 +58,7 @@ In this example we're using the [clsx](https://www.npmjs.com/package/clsx) utili
 
 #### Tailwind CSS
 
-Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://www.tailwindcss.com/), as shown below:
+Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwind CSS](https://tailwindcss.com/), as shown below:
 
 ```tsx
 export default function Switch(props) {

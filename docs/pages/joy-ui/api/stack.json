@@ -25,12 +25,20 @@
   },
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiStack-root"
+    }
+  ],
   "spread": true,
   "themeDefaultProps": true,
-  "muiName": "MuiStack",
-  "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/mui-system/src/Stack/Stack.tsx",
+  "muiName": "JoyStack",
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/mui-joy/src/Stack/Stack.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/joy-ui/react-stack/\">Stack (Joy UI)</a></li>\n<li><a href=\"/material-ui/react-stack/\">Stack (Material UI)</a></li>\n<li><a href=\"/system/react-stack/\">Stack (MUI System)</a></li></ul>",
+  "demos": "<ul><li><a href=\"/joy-ui/react-stack/\">Stack</a></li></ul>",
   "cssComponent": true
 }
