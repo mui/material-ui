@@ -1,7 +1,6 @@
 {
   "props": {
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "component": { "type": { "name": "elementType" } },
     "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },

@@ -89,11 +89,6 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the option will be disabled.
    * @default false
    */
