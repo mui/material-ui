@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
@@ -242,7 +242,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       </Root>
     );
   },
-) as OverridableComponent<TablePaginationUnstyledTypeMap>;
+) as OverridableBaseComponent<TablePaginationUnstyledTypeMap>;
 
 TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -257,11 +257,6 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   colSpan: PropTypes.number,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The total number of rows.
    *
@@ -373,7 +368,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
     toolbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the TablePagination.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

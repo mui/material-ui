@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import {
   MenuItemUnstyledOwnerState,
   MenuItemUnstyledProps,
@@ -66,7 +66,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<MenuItemUnstyledTypeMap>;
+}) as OverridableBaseComponent<MenuItemUnstyledTypeMap>;
 
 MenuItemUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -77,11 +77,6 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the menu item will be disabled.
    * @default false
@@ -100,7 +95,7 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the MenuItem.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

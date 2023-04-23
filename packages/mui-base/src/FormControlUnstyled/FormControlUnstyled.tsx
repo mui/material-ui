@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import FormControlUnstyledContext from './FormControlUnstyledContext';
 import { getFormControlUnstyledUtilityClass } from './formControlUnstyledClasses';
@@ -158,7 +158,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
       <Root {...rootProps} />
     </FormControlUnstyledContext.Provider>
   );
-}) as OverridableComponent<FormControlUnstyledTypeMap>;
+}) as OverridableBaseComponent<FormControlUnstyledTypeMap>;
 
 FormControlUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -172,11 +172,6 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * @ignore
    */
@@ -208,7 +203,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the FormControl.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

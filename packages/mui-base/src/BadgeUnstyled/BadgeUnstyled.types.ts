@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps, OverridableTypeMap, OverridableComponent } from '@mui/types';
+import { OverrideProps, OverridableTypeMap, OverridableBaseComponent } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
 export interface BadgeUnstyledRootSlotPropsOverrides {}
@@ -82,7 +82,7 @@ export interface ExtendBadgeUnstyledTypeMap<M extends OverridableTypeMap> {
   defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableComponent<
+export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableBaseComponent<
   ExtendBadgeUnstyledTypeMap<M>
 >;
 

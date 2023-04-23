@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import { getInputUnstyledUtilityClass } from './inputUnstyledClasses';
 import {
@@ -182,7 +182,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       {endAdornment}
     </Root>
   );
-}) as OverridableComponent<InputUnstyledTypeMap>;
+}) as OverridableBaseComponent<InputUnstyledTypeMap>;
 
 InputUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -219,11 +219,6 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * Class name applied to the root element.
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -314,7 +309,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the InputBase.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

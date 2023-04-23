@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUnstyledUtilityClass } from './tabPanelUnstyledClasses';
@@ -61,7 +61,7 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
   });
 
   return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
-}) as OverridableComponent<TabPanelUnstyledTypeMap>;
+}) as OverridableBaseComponent<TabPanelUnstyledTypeMap>;
 
 TabPanelUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -73,11 +73,6 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The props used for each slot inside the TabPanel.
    * @default {}
    */
@@ -85,7 +80,7 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the TabPanel.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

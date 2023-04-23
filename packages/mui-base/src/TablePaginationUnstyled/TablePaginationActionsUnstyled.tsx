@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
   TablePaginationActionsUnstyledButtonSlotProps,
@@ -159,6 +159,6 @@ const TablePaginationActionsUnstyled = React.forwardRef<
       )}
     </Root>
   );
-}) as OverridableComponent<TablePaginationActionsUnstyledTypeMap>;
+}) as OverridableBaseComponent<TablePaginationActionsUnstyledTypeMap>;
 
 export default TablePaginationActionsUnstyled;

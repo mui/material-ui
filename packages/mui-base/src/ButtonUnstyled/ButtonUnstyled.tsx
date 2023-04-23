@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -102,7 +102,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<ButtonUnstyledTypeMap>;
+}) as OverridableBaseComponent<ButtonUnstyledTypeMap>;
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -124,11 +124,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -179,7 +174,7 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Button.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

@@ -1,4 +1,4 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import { OverridableBaseComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { SlotComponentProps } from '../utils';
 import {
@@ -188,7 +188,7 @@ export interface ExtendSliderUnstyledTypeMap<M extends OverridableTypeMap> {
   defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComponent<
+export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableBaseComponent<
   ExtendSliderUnstyledTypeMap<M>
 >;
 

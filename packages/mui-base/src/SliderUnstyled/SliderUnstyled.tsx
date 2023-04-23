@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
@@ -313,7 +313,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled<
       })}
     </Root>
   );
-}) as OverridableComponent<SliderUnstyledTypeMap>;
+}) as OverridableBaseComponent<SliderUnstyledTypeMap>;
 
 SliderUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -360,11 +360,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -476,7 +471,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     valueLabel: PropTypes.oneOfType([PropTypes.any, PropTypes.func]),
   }),
   /**
-   * The components used for each slot inside the Slider.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

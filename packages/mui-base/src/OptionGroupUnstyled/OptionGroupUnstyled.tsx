@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getOptionGroupUnstyledUtilityClass } from './optionGroupUnstyledClasses';
 import {
@@ -76,7 +76,7 @@ const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
       <List {...listProps}>{props.children}</List>
     </Root>
   );
-}) as OverridableComponent<OptionGroupUnstyledTypeMap>;
+}) as OverridableBaseComponent<OptionGroupUnstyledTypeMap>;
 
 OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -87,11 +87,6 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true` all the options in the group will be disabled.
    * @default false
@@ -111,7 +106,7 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the OptionGroupUnstyled.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

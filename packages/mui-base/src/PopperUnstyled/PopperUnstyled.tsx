@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -234,7 +234,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   return (
     <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
   );
-}) as OverridableComponent<PopperTooltipTypeMap>;
+}) as OverridableBaseComponent<PopperTooltipTypeMap>;
 
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
@@ -336,7 +336,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(
       </PopperTooltip>
     </Portal>
   );
-}) as OverridableComponent<PopperUnstyledTypeMap>;
+}) as OverridableBaseComponent<PopperUnstyledTypeMap>;
 
 PopperUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -527,7 +527,7 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Popper.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

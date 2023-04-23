@@ -8,7 +8,7 @@ import {
   unstable_createChainedFunction as createChainedFunction,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import {
   ModalUnstyledOwnerState,
   ModalUnstyledOwnProps,
@@ -317,7 +317,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled<
       </Root>
     </Portal>
   );
-}) as OverridableComponent<ModalUnstyledTypeMap>;
+}) as OverridableBaseComponent<ModalUnstyledTypeMap>;
 
 ModalUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -333,11 +333,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   closeAfterTransition: PropTypes.bool,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -430,7 +425,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Modal.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

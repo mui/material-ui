@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import useBadge from '../useBadge';
 import { getBadgeUnstyledUtilityClass } from './badgeUnstyledClasses';
@@ -88,7 +88,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props: BadgeUnstyl
       <Badge {...badgeProps}>{displayValue}</Badge>
     </Root>
   );
-}) as OverridableComponent<BadgeUnstyledTypeMap>;
+}) as OverridableBaseComponent<BadgeUnstyledTypeMap>;
 
 BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -103,11 +103,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * The badge will be added relative to this node.
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the badge is invisible.
    * @default false
@@ -132,7 +127,7 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Badge.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

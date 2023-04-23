@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUnstyledUtilityClass } from './tabsListUnstyledClasses';
@@ -66,7 +66,7 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>(functi
       <TabsListRoot {...tabsListRootProps}>{children}</TabsListRoot>
     </TabsListProvider>
   );
-}) as OverridableComponent<TabsListUnstyledTypeMap>;
+}) as OverridableBaseComponent<TabsListUnstyledTypeMap>;
 
 TabsListUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -78,11 +78,6 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The props used for each slot inside the TabsList.
    * @default {}
    */
@@ -90,7 +85,7 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the TabsList.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

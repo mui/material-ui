@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import ClickAwayListener from '../ClickAwayListener';
 import {
   SnackbarUnstyledOwnerState,
@@ -106,7 +106,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
       <Root {...rootProps}>{children}</Root>
     </ClickAwayListener>
   );
-}) as OverridableComponent<SnackbarUnstyledTypeMap>;
+}) as OverridableBaseComponent<SnackbarUnstyledTypeMap>;
 
 SnackbarUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -125,11 +125,6 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
@@ -203,7 +198,7 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Snackbar.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */

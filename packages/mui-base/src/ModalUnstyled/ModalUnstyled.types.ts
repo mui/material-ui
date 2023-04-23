@@ -1,4 +1,4 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import { OverridableBaseComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { PortalProps } from '../Portal';
 import { SlotComponentProps } from '../utils';
@@ -139,7 +139,7 @@ export interface ExtendModalUnstyledTypeMap<M extends OverridableTypeMap> {
   defaultComponent: M['defaultComponent'];
 }
 
-export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableComponent<
+export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableBaseComponent<
   ExtendModalUnstyledTypeMap<M>
 >;
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { OverridableBaseComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import useSwitch from '../useSwitch';
 import {
@@ -132,7 +132,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
       <Input {...inputProps} />
     </Root>
   );
-}) as OverridableComponent<SwitchUnstyledTypeMap>;
+}) as OverridableBaseComponent<SwitchUnstyledTypeMap>;
 
 SwitchUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -147,11 +147,6 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -199,7 +194,7 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
     track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Switch.
+   * The components used for each slot inside the component.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
