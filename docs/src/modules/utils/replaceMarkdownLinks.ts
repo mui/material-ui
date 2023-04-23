@@ -44,11 +44,3 @@ export const replaceAPILinks = (markdown: string) => {
     )
     .replace(/\(\/api\/([^)]*)\)/gm, '(/material-ui/api/$1)');
 };
-
-const replaceStylesLinks = (markdown: string) => {
-  return markdown.replace(/\(\/styles\/([^)]*)\)/gm, '(/system/styles/$1)');
-};
-
-export default function replaceMarkdownLinks(markdown: string) {
-  return replaceStylesLinks(replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(markdown))));
-}
