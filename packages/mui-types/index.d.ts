@@ -94,8 +94,6 @@ export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, 
 export interface OverridableComponent<M extends OverridableTypeMap> {
   // If you make any changes to this interface, please make sure to update the
   // `OverridableComponent` type in `mui-material/src/OverridableComponent.d.ts` as well.
-  // Also, there are types in Base UI that have a similar shape to this interface
-  // (e.g. SelectUnstyledType, OptionUnstyledType, etc.).
   <C extends React.ElementType>(
     props: {
       /**
@@ -103,6 +101,21 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        * Either a string to use a HTML element or a component.
        */
       component: C;
+    } & OverrideProps<M, C>,
+  ): JSX.Element | null;
+  (props: DefaultComponentProps<M>): JSX.Element | null;
+  propTypes?: any;
+}
+
+export interface OverridableBaseComponent<M extends OverridableTypeMap> {
+  <C extends React.ElementType>(
+    props: {
+      /**
+       * The components used for each slot inside the component.
+       * Either a string to use a HTML element or a component.
+       * @default {}
+       */
+      slots: { root: C };
     } & OverrideProps<M, C>,
   ): JSX.Element | null;
   (props: DefaultComponentProps<M>): JSX.Element | null;
