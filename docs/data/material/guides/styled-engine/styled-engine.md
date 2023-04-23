@@ -122,6 +122,8 @@ Having more than one styling libraries could introduce unnecessary complexity to
 
 Material UI can coexist with other libraries that depend on emotion or styled-components. To do that, render Material UI's `ThemeProvider` as an inner provider and use the `THEME_ID` to store the theme.
 
+These changes have been added as recently as April 2023, so be sure you're running MUI v5.12.0 or higher.
+
 ```js
 import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
 import { AnotherThemeProvider } from 'another-ui-library';
