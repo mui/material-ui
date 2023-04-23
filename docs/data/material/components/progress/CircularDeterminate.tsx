@@ -6,17 +6,17 @@ import Button from '@mui/material/Button';
 
 export default function CircularDeterminate() {
   const [progress, setProgress] = React.useState(0);
-  const [isRunning, setIsRunning] = React.useState(false);
+  const [running, setRunning] = React.useState(false);
 
   React.useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
 
-    if (isRunning) {
+    if (running) {
       timer = setInterval(() => {
-        setProgress((prevProgress) => {
-          const nextProgress = prevProgress + 25;
+        setProgress((oldProgress) => {
+          const nextProgress = oldProgress + 25;
           if (nextProgress >= 100) {
-            setIsRunning(false);
+            setRunning(false);
             return 100;
           } else {
             return nextProgress;
@@ -30,17 +30,15 @@ export default function CircularDeterminate() {
         clearInterval(timer);
       }
     };
-  }, [isRunning]);
-
-  const progressDescription = `${progress}% progress`;
+  }, [running]);
 
   const handleStart = () => {
-    setIsRunning(true);
+    setRunning(true);
     setProgress(0);
   };
 
   const handleStop = () => {
-    setIsRunning(false);
+    setRunning(false);
     setProgress(0);
   };
 
@@ -50,24 +48,21 @@ export default function CircularDeterminate() {
       <CircularProgress variant="determinate" value={50} />
       <CircularProgress variant="determinate" value={75} />
       <CircularProgress variant="determinate" value={100} />
-      <div aria-describedby="progress-description" aria-live="polite">
         <CircularProgress
           variant="determinate"
           value={progress}
           aria-valuemin={0}
           aria-valuemax={100}
         />
-        <div id="progress-description" style={visuallyHidden}>
-          {progressDescription}
-        </div>
-      </div>
+      {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
+
       <Stack spacing={2} direction="row">
-        {!isRunning && (
+        {!running && (
           <Button onClick={handleStart} variant="outlined">
             Start
           </Button>
         )}
-        {isRunning && (
+        {running && (
           <Button onClick={handleStop} variant="outlined">
             Stop
           </Button>
