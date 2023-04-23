@@ -18,6 +18,9 @@ Additionally, keep these in mind when using them together:
 - Both of them use [MUI System](/system/getting-started/overview/) as their style engine, which uses React context for theming.
 - Theme scoping must be done on one of the libraries.
 
+## Making sure you're on the right version of MUI
+These changes have been added as recently as April 2023, so be sure you're running MUI v5.12.0 or higher.
+
 ## Set up the providers
 
 Render Material UI's `CssVarsProvider` inside Joy UI's provider and use `THEME_ID` to separate the themes from each other.
