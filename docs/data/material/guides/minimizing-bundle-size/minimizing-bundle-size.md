@@ -215,13 +215,12 @@ The package published on npm is **transpiled**, with [Babel](https://github.com/
 In addition, to the default bundle, you can opt-in:
 
 - **Modern bundle**. The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
-It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
-This can be used to make separate bundles targeting different browsers.
+  It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
+  This can be used to make separate bundles targeting different browsers.
 
 - **Legacy bundle**. If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
-However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
-You don't need any additional polyfills.
-
+  However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
+  You don't need any additional polyfills.
 
 ### How to use
 
