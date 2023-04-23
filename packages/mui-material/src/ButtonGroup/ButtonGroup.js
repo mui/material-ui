@@ -116,7 +116,8 @@ const ButtonGroupRoot = styled('div', {
               }`,
         }),
       ...(ownerState.variant === 'text' &&
-        ownerState.orientation === 'vertical' && !ownerState.disabled && {
+        ownerState.orientation === 'vertical' &&
+        !ownerState.disabled && {
           borderBottom: theme.vars
             ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
             : `1px solid ${
