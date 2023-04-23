@@ -87,10 +87,34 @@ export default function UnstyledSwitches() {
 
   return (
     <div>
-      <SwitchUnstyled component={Root} {...label} defaultChecked />
-      <SwitchUnstyled component={Root} {...label} />
-      <SwitchUnstyled component={Root} {...label} defaultChecked disabled />
-      <SwitchUnstyled component={Root} {...label} disabled />
+      <SwitchUnstyled<typeof Root>
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        defaultChecked
+      />
+      <SwitchUnstyled<typeof Root>
+        slots={{
+          root: Root,
+        }}
+        {...label}
+      />
+      <SwitchUnstyled<typeof Root>
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        defaultChecked
+        disabled
+      />
+      <SwitchUnstyled<typeof Root>
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        disabled
+      />
     </div>
   );
 }

@@ -26,7 +26,15 @@ const SvgButton = React.forwardRef(function SvgButton(
   props: ButtonUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} ref={ref} />;
+  return (
+    <ButtonUnstyled<typeof CustomButtonRoot>
+      {...props}
+      slots={{
+        root: CustomButtonRoot,
+      }}
+      ref={ref}
+    />
+  );
 });
 
 export default function UnstyledButtonCustom() {

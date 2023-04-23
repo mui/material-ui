@@ -1,1 +1,7 @@
-<ButtonUnstyled component="div">Button</ButtonUnstyled>
+<ButtonUnstyled<'div'>
+  slots={{
+    root: 'div',
+  }}
+>
+  Button
+</ButtonUnstyled>
