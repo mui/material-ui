@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import replaceMarkdownLinks, {
+import {
   replaceMaterialLinks,
   replaceAPILinks,
   replaceComponentLinks,
