@@ -124,4 +124,4 @@ import Stack from '@mui/material/Stack';
 </Stack>;
 ```
 
-Joy UI and Material UI components have different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.
+Joy UI and Material UI components have a different name for [theming the components](/joy-ui/customization/themed-components/#component-identifier). For example, Joy UI's Button uses `JoyButton` whereas Material UI's Button uses `MuiButton`.
