@@ -170,7 +170,19 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     className: classes.root,
   });
 
-  const result = (
+  let result = (
+    <MenuProvider value={contextValue}>
+      <GroupListContext.Provider value="menu">
+        <ListProvider nested>{children}</ListProvider>
+      </GroupListContext.Provider>
+    </MenuProvider>
+  );
+
+  if (invertedColors) {
+    result = <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+
+  result = (
     <MenuRoot
       {...rootProps}
       {...(!props.slots?.root && {
@@ -180,17 +192,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
         },
       })}
     >
-      <MenuProvider value={contextValue}>
-        <GroupListContext.Provider value="menu">
-          <ListProvider nested>{children}</ListProvider>
-        </GroupListContext.Provider>
-      </MenuProvider>
+      {result}
     </MenuRoot>
   );
-
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
 
   return disablePortal ? (
     result

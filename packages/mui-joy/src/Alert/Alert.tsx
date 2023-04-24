@@ -175,20 +175,24 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   const result = (
-    <SlotRoot {...rootProps}>
+    <React.Fragment>
       {startDecorator && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
-
       {children}
       {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
-    </SlotRoot>
+    </React.Fragment>
   );
 
-  if (invertedColors) {
-    return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
-  }
-  return result;
+  return (
+    <SlotRoot {...rootProps}>
+      {invertedColors ? (
+        <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>
+      ) : (
+        result
+      )}
+    </SlotRoot>
+  );
 }) as OverridableComponent<AlertTypeMap>;
 
 Alert.propTypes /* remove-proptypes */ = {
