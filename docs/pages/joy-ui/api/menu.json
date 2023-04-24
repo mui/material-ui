@@ -11,6 +11,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "modifiers": {
       "type": {
