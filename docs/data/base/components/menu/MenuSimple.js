@@ -1,9 +1,7 @@
 import * as React from 'react';
-import MenuUnstyled from '@mui/base/MenuUnstyled';
-import MenuItemUnstyled, {
-  menuItemUnstyledClasses,
-} from '@mui/base/MenuItemUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Menu from '@mui/base/Menu';
+import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
+import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { ListActionTypes } from '@mui/base/useList';
 
@@ -74,14 +72,14 @@ export default function UnstyledMenuSimple() {
         Dashboard
       </TriggerButton>
 
-      <MenuUnstyled
+      <Menu
         actions={menuActions}
         open={isOpen}
         onOpenChange={(open) => {
           setOpen(open);
         }}
         anchorEl={buttonElement}
-        slots={{ root: Popper, listbox: StyledListbox }}
+        slots={{ root: StyledPopper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
@@ -93,7 +91,7 @@ export default function UnstyledMenuSimple() {
         <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
           Log out
         </StyledMenuItem>
-      </MenuUnstyled>
+      </Menu>
     </div>
   );
 }
@@ -138,7 +136,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledMenuItem = styled(MenuItemUnstyled)(
+const StyledMenuItem = styled(MenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -150,17 +148,17 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
     border-bottom: none;
   }
 
-  &.${menuItemUnstyledClasses.focusVisible} {
+  &.${menuItemClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${menuItemUnstyledClasses.disabled} {
+  &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${menuItemUnstyledClasses.disabled}) {
+  &:hover:not(.${menuItemClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
@@ -196,6 +194,6 @@ const TriggerButton = styled('button')(
   `,
 );
 
-const Popper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;

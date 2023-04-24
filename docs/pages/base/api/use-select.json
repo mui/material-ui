@@ -110,5 +110,5 @@
   },
   "name": "useSelect",
   "filename": "/packages/mui-base/src/useSelect/useSelect.ts",
-  "demos": "<ul><li><a href=\"/base/react-select/#hooks\">Unstyled Select</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-select/#hooks\">Select</a></li></ul>"
 }

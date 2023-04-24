@@ -195,7 +195,7 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Unstyled Slider](https://mui.com/base/react-slider/#hook)
+ * - [Slider](https://mui.com/base/react-slider/#hook)
  *
  * API:
  *

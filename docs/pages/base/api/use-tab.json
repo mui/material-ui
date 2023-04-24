@@ -38,5 +38,5 @@
   },
   "name": "useTab",
   "filename": "/packages/mui-base/src/useTab/useTab.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

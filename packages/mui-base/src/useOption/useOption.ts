@@ -9,7 +9,7 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base/react-select/#hooks)
  *
  * API:
  *

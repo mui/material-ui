@@ -1,0 +1,32 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "TabsList",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTabsList-root"
+    }
+  ],
+  "classes": { "classes": ["horizontal", "vertical"], "globalClasses": {} },
+  "spread": true,
+  "muiName": "MuiTabsList",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/TabsList/TabsList.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}
