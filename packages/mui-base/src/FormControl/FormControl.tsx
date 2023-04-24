@@ -64,7 +64,7 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  * Demos:
  *
  * - [Form Control](https://mui.com/base/react-form-control/)
- * - [Input](https://mui.com/joy/react-input/)
+ * - [Input](https://mui.com/joy-ui/react-input/)
  * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
  * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
  * - [Switch](https://mui.com/material-ui/react-switch/)
