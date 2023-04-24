@@ -36,10 +36,14 @@ To ignore the shading and set the background color that is not affected by eleva
 
 ## Hover Animations
 
-We can Elevate the Paper on mouse Hover by having a simple onHover state and our Elevation Prop
+If you want to add a hover effect to a Paper component, you can use the `onMouseEnter` and `onMouseLeave` props to toggle the component's elevation. This can create a simple but effective animation that elevates the Paper when the user hovers over it.
+
+To achieve this, you can create a state called `isHovered` and set it to `false` by default. Then, in the `onMouseEnter` event, you can set `isHovered` to true, and in the `onMouseLeave` event, you can set it back to `false`.
+
+Here's an example of how you can implement this in a HoverEffect component:
 
 {{"demo": "HoverEffect.js", "bg": "true"}}
 
-Here we are creating a state called `isHovered` and setting it to false by default and `onMouseEnter` we are setting
-it as true and `onMouseLeave` we are again setting it to false to revert it back to the default state, we can pass
-`onMouseEnter` and `onMouseLeave` directly to the Paper Component
+In this example, the elevation prop is set to 2 by default and 12 when the `isHovered` state is `true`. This will make the Paper component appear elevated when the user hovers over it.
+
+You can customize the elevation values to achieve the desired effect. Additionally, you can add other CSS styles to the Paper component to further enhance the hover animation.
