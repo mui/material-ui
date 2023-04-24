@@ -236,7 +236,13 @@ export default function useAutocomplete(props) {
   });
 
   React.useEffect(() => {
-    const valueChange = value !== previousProps.value;
+    // The value can be an instance of object and thus comparing it with basic equality lead to
+    // invalid results. Instead we should compare its final label to detect a value change.
+    const valueChange =
+      value !== previousProps.value &&
+      (previousProps.value === undefined ||
+        value === undefined ||
+        getOptionLabel(value) !== getOptionLabel(previousProps.value));
 
     if (focused && !valueChange) {
       return;
@@ -248,7 +254,7 @@ export default function useAutocomplete(props) {
     }
 
     resetInputValue(null, value);
-  }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
+  }, [value, resetInputValue, focused, previousProps.value, freeSolo, getOptionLabel]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
