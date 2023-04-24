@@ -48,14 +48,16 @@ export default function XHero() {
   });
   const apiRef = useGridApiRef();
 
+  const sortedColumns = React.useMemo(() => {
+    return [...data.columns].sort((a, b) => {
+      return visibleFields.indexOf(a.field) - visibleFields.indexOf(b.field);
+    });
+  }, [data.columns]);
+
   const initialState = useKeepGroupedColumnsHidden({
     apiRef,
     initialState: {
       ...data.initialState,
-      columns: {
-        ...data.initialState?.columns,
-        orderedFields: visibleFields,
-      },
       rowGrouping: {
         model: ['commodity'],
       },
@@ -219,6 +221,7 @@ export default function XHero() {
             >
               <DataGridPremium
                 {...data}
+                columns={sortedColumns}
                 apiRef={apiRef}
                 initialState={initialState}
                 disableRowSelectionOnClick
