@@ -19,7 +19,7 @@ import {
   DataGridPremium,
   useGridApiRef,
   GridColDef,
-  GridColumnVisibilityModel,
+  useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import {
   renderEditProgress,
@@ -113,11 +113,25 @@ export default function XHero() {
     maxColumns: 40,
     editable: true,
   });
-  const [columnVisibilityModel, setColumnVisibilityModel] =
-    React.useState<GridColumnVisibilityModel>({
-      commodity: false,
-    });
   const apiRef = useGridApiRef();
+
+  const initialState = useKeepGroupedColumnsHidden({
+    apiRef,
+    initialState: {
+      rowGrouping: {
+        model: ['commodity'],
+      },
+      aggregation: {
+        model: {
+          quantity: 'sum',
+          unitPrice: 'avg',
+          feeRate: 'min',
+          totalPrice: 'max',
+        },
+      },
+    },
+  });
+
   let rowGroupingCounter = 0;
   return (
     <HeroContainer
@@ -269,19 +283,7 @@ export default function XHero() {
                 {...data}
                 columns={columns}
                 apiRef={apiRef}
-                initialState={{
-                  rowGrouping: {
-                    model: ['commodity'],
-                  },
-                  aggregation: {
-                    model: {
-                      quantity: 'sum',
-                      unitPrice: 'avg',
-                      feeRate: 'min',
-                      totalPrice: 'max',
-                    },
-                  },
-                }}
+                initialState={initialState}
                 disableRowSelectionOnClick
                 groupingColDef={{
                   renderHeader: (params) => {
@@ -294,8 +296,6 @@ export default function XHero() {
                   rowGroupingCounter += 1;
                   return rowGroupingCounter === 3;
                 }}
-                columnVisibilityModel={columnVisibilityModel}
-                onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
               />
             </Box>
           </Paper>
