@@ -120,11 +120,11 @@ export default function ComponentsApiContent(props) {
   // This effects makes sure that the anchors will be correct wtih the renames
   React.useEffect(() => {
     const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
-    if (anchor && anchor.endsWith('unstyled')) {
+    if (router.isReady && anchor && anchor.endsWith('unstyled')) {
       router
         .replace(
           {
-            hash: `${anchor.replace('-unstyled', '')}`,
+            hash: `${anchor.slice(0, -'-unstyled'.length)}`,
           },
           null,
           {
