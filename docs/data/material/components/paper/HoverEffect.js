@@ -23,7 +23,7 @@ export default function SimplePaper() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isHovered ? 'Hovering' : 'Hover over me'}
+        {isHovered ? 'Hovering' : 'Hover me'}
       </Paper>
     </Box>
   );
