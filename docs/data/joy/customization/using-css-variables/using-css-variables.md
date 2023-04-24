@@ -4,7 +4,7 @@
 
 ## Theme object
 
-The `CssVarsProvider` reads the theme input (or the default theme) and create the CSS variables according to the theme structure.
+The `CssVarsProvider` reads the theme input (or the default theme) and creates the CSS variables according to the theme structure.
 It also creates an object that refers to the generated CSS variables under `theme.vars` so that you can use them from the JavaScript theme object.
 
 The `theme.vars` is available in all styling APIs that Joy UI offers:
@@ -66,8 +66,8 @@ const Div = styled('div')(({ theme }) => ({
 The format of the channel tokens uses a space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
-`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct format
-`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, 🚫 will not work
+`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct
+`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, 🚫 incorrect
 ```
 
 :::
@@ -79,7 +79,7 @@ For example, you can create the `inset` shadow from the theme like this:
 
 ```js
 const Div = styled('div')(({ theme }) => ({
-  // Note that it is using `theme.shadow` not `theme.vars.shadow`
+  // Note that it's using `theme.shadow`, not `theme.vars.shadow`
   boxShadow: theme.shadow.sm.replace(/,/g, ', inset'),
 }));
 ```
