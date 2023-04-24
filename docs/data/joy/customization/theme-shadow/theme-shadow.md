@@ -123,7 +123,7 @@ The `shadowChannel` value must be rgb channels, e.g. `187 187 187`.
 
 To customize a shadow color or shadow ring on a specific instance, use the raw value from the `theme.shadow.*`.
 
-:::error  
+:::error
 **Don't** use shadows from `theme.vars` or the shorthand syntax `{ shadow: '{key}' }` because the value points to the global CSS variable which does not work with the custom `shadowChannel` and `shadowRing` on the instance.
 :::
 
