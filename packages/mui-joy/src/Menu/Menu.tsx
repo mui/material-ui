@@ -10,7 +10,10 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
-import ColorInversion, { useColorInversion } from '../styles/ColorInversion';
+import ColorInversion, {
+  ColorInversionProvider,
+  useColorInversion,
+} from '../styles/ColorInversion';
 import { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 import { ListOwnerState } from '../List';
@@ -37,22 +40,27 @@ const MenuRoot = styled(StyledList, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  return {
-    '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
-    '--ListItem-stickyBackground':
-      variantStyle?.backgroundColor ||
-      variantStyle?.background ||
-      theme.vars.palette.background.popup,
-    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
-    ...scopedVariables,
-    boxShadow: theme.shadow.md,
-    overflow: 'auto',
-    zIndex: theme.vars.zIndex.popup,
-    ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.popup,
-    }),
-  };
+  return [
+    {
+      '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
+      '--List-radius': theme.vars.radius.sm,
+      '--ListItem-stickyBackground':
+        variantStyle?.backgroundColor ||
+        variantStyle?.background ||
+        theme.vars.palette.background.popup,
+      '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
+      ...scopedVariables,
+      boxShadow: theme.shadow.md,
+      overflow: 'auto',
+      zIndex: theme.vars.zIndex.popup,
+      ...(!variantStyle?.backgroundColor && {
+        backgroundColor: theme.vars.palette.background.popup,
+      }),
+    },
+    ownerState.color !== 'context' &&
+      ownerState.invertedColors &&
+      theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
+  ];
 });
 
 /**
@@ -80,6 +88,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     component,
     disablePortal = false,
     keepMounted = false,
+    invertedColors = false,
     id,
     onClose,
     open = false,
@@ -119,6 +128,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const ownerState = {
     ...props,
     disablePortal,
+    invertedColors,
     color,
     variant,
     size,
@@ -160,7 +170,19 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     className: classes.root,
   });
 
-  const result = (
+  let result = (
+    <MenuProvider value={contextValue}>
+      <GroupListContext.Provider value="menu">
+        <ListProvider nested>{children}</ListProvider>
+      </GroupListContext.Provider>
+    </MenuProvider>
+  );
+
+  if (invertedColors) {
+    result = <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
+  }
+
+  result = (
     <MenuRoot
       {...rootProps}
       {...(!props.slots?.root && {
@@ -170,18 +192,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
         },
       })}
     >
-      <MenuProvider value={contextValue}>
-        <GroupListContext.Provider value="menu">
-          <ListProvider nested>
-            {disablePortal ? (
-              children
-            ) : (
-              // For portal popup, the children should not inherit color inversion from the upper parent.
-              <ColorInversion.Provider value={undefined}>{children}</ColorInversion.Provider>
-            )}
-          </ListProvider>
-        </GroupListContext.Provider>
-      </MenuProvider>
+      {result}
     </MenuRoot>
   );
 
@@ -236,6 +247,11 @@ Menu.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   id: PropTypes.string,
+  /**
+   * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+   * @default false
+   */
+  invertedColors: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or

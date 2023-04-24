@@ -41,6 +41,11 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, MenuPropsColorOverrides>;
     /**
+     * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+     * @default false
+     */
+    invertedColors?: boolean;
+    /**
      * Triggered when focus leaves the menu and the menu should close.
      */
     onClose?: () => void;
