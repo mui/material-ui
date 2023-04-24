@@ -10,6 +10,7 @@ export default function SimplePaper() {
         display: 'flex',
         flexWrap: 'wrap',
         textAlign: 'center',
+        cursor: 'pointer',
         '& > :not(style)': {
           m: 1,
           p: 2,
