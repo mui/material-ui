@@ -241,7 +241,9 @@ export default function useAutocomplete(props) {
     const valueChange =
       value !== previousProps.value &&
       (previousProps.value === undefined ||
+        previousProps.value === null ||
         value === undefined ||
+        value === null ||
         !isOptionEqualToValue(value, previousProps.value));
 
     if (focused && !valueChange) {
