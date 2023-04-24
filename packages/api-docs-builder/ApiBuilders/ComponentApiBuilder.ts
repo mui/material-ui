@@ -657,7 +657,7 @@ export default async function generateComponentApi(
 
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
-  if (reactApi.styles.classes.length > 0) {
+  if (reactApi.styles.classes.length > 0 && !filename.includes('mui-base')) {
     reactApi.styles.name = reactApi.muiName;
   }
   reactApi.styles.classes.forEach((key) => {
