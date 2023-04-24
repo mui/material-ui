@@ -104,24 +104,33 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-const Root = styled('div')`
+const grey = {
+  200: '#d0d7de',
+  800: '#32383f',
+  900: '#24292f',
+};
+
+const Root = styled('div')(
+  ({ theme }) => `
   table {
-    font-family: arial, sans-serif;
+    font-family: IBM Plex Sans, sans-serif;
+    font-size: 0.875rem;
     border-collapse: collapse;
     width: 100%;
   }
 
   td,
   th {
-    border: 1px solid #ddd;
+    border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     text-align: left;
     padding: 8px;
   }
 
   th {
-    background-color: #ddd;
+    background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   }
-`;
+  `,
+);
 
 const CustomTablePagination = styled(TablePagination)`
   & .${classes.toolbar} {

@@ -27,7 +27,7 @@ const grey = {
 
 const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
   height: 6px;
   width: 100%;
   padding: 16px 0;
@@ -54,8 +54,7 @@ const StyledSlider = styled(Slider)(
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background-color: currentColor;
-    opacity: 0.4;
+    background-color: ${theme.palette.mode === 'light' ? blue[200] : blue[900]};
   }
 
   & .${sliderClasses.track} {

@@ -68,7 +68,8 @@ const StyledBackdrop = styled(Backdrop)`
 
 const style = (theme: Theme) => ({
   width: 400,
-  bgcolor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  border: '2px solid currentColor',
+  borderRadius: '12px',
   padding: '16px 32px 24px 32px',
+  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  boxShadow: 16,
 });
