@@ -79,7 +79,7 @@ export default function MyProfile() {
             alignSelf: 'flex-start',
             borderRadius: 0,
             scrollSnapType: 'inline',
-            '&::before, &::after': {
+            '&::after': {
               pointerEvents: 'none',
               display: { xs: 'block', sm: 'none' },
               content: '""',
@@ -88,14 +88,10 @@ export default function MyProfile() {
               width: 40,
               flex: 'none',
               zIndex: 1,
-            },
-            '&::before': {
-              left: 0,
-              background: 'transparent',
-            },
-            '&::after': {
               right: 0,
+              borderBottom: '1px solid transparent',
               background: `linear-gradient(to left, var(--_TabList-bg), rgb(0 0 0 / 0))`,
+              backgroundClip: 'content-box',
             },
             '&::-webkit-scrollbar': {
               width: 0,

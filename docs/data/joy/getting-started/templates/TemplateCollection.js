@@ -180,7 +180,7 @@ export default function TemplateCollection() {
                           letterSpacing: 'md',
                           fontSize: '0.625rem',
                           '--Chip-paddingInline': '0.2rem',
-                          '--_Chip-minHeight': '1.3rem',
+                          '--Chip-minHeight': '1.3rem',
                         }}
                       >
                         New
@@ -244,7 +244,7 @@ export default function TemplateCollection() {
                   </SvgIcon>
                 </IconButton>
               </Box>
-              <Box sx={{ width: '100%', display: 'flex' }}>
+              <Box sx={{ width: '100%', display: 'flex', alignItems: 'baseline' }}>
                 {author && (
                   <Typography level="body2" fontWeight="md">
                     Built by{' '}
