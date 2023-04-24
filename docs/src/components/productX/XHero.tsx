@@ -18,106 +18,44 @@ import { alpha } from '@mui/material/styles';
 import {
   DataGridPremium,
   useGridApiRef,
-  GridColDef,
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
-import {
-  renderEditProgress,
-  renderEditStatus,
-  renderProgress,
-  renderStatus,
-  renderTotalPrice,
-  useDemoData,
-} from '@mui/x-data-grid-generator';
-import { STATUS_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
+import { useDemoData } from '@mui/x-data-grid-generator';
 
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
+const visibleFields = [
+  'commodity',
+  'unitPrice',
+  'feeRate',
+  'quantity',
+  'filledQuantity',
+  'isFilled',
+  'traderName',
+  'status',
+  'totalPrice',
+];
+
 export default function XHero() {
-  const columns: GridColDef[] = [
-    {
-      field: 'commodity',
-      headerName: 'Commodity',
-      width: 180,
-    },
-    {
-      field: 'unitPrice',
-      headerName: 'Unit Price',
-      type: 'number',
-
-      valueParser: (value: number) => Number(value),
-    },
-    {
-      field: 'feeRate',
-      headerName: 'Fee Rate',
-      type: 'number',
-      width: 80,
-
-      valueParser: (value) => Number(value),
-    },
-    {
-      field: 'quantity',
-      headerName: 'Quantity',
-      type: 'number',
-      width: 140,
-      valueParser: (value: string) => Number(value),
-    },
-    {
-      field: 'filledQuantity',
-      headerName: 'Filled Quantity',
-      renderCell: renderProgress,
-      renderEditCell: renderEditProgress,
-      availableAggregationFunctions: ['min', 'max', 'avg', 'size'],
-      type: 'number',
-      width: 120,
-    },
-    {
-      field: 'isFilled',
-      headerName: 'Is Filled',
-      align: 'center',
-      type: 'boolean',
-      width: 80,
-    },
-    {
-      field: 'traderName',
-      headerName: 'Trader Name',
-      width: 120,
-    },
-    {
-      field: 'status',
-      headerName: 'Status',
-      renderCell: renderStatus,
-      renderEditCell: renderEditStatus,
-      type: 'singleSelect',
-      valueOptions: STATUS_OPTIONS,
-      width: 150,
-    },
-    {
-      field: 'totalPrice',
-      headerName: 'Total in USD',
-      valueGetter: ({ row }) =>
-        row.feeRate == null || row.quantity == null || row.unitPrice == null
-          ? null
-          : row.feeRate + row.quantity * row.unitPrice,
-      renderCell: renderTotalPrice,
-      type: 'number',
-      width: 160,
-    },
-  ];
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10000,
-    maxColumns: 40,
     editable: true,
+    visibleFields,
   });
   const apiRef = useGridApiRef();
 
   const initialState = useKeepGroupedColumnsHidden({
     apiRef,
     initialState: {
+      ...data.initialState,
+      columns: {
+        ...data.initialState?.columns,
+        orderedFields: visibleFields,
+      },
       rowGrouping: {
         model: ['commodity'],
       },
@@ -281,7 +219,6 @@ export default function XHero() {
             >
               <DataGridPremium
                 {...data}
-                columns={columns}
                 apiRef={apiRef}
                 initialState={initialState}
                 disableRowSelectionOnClick
