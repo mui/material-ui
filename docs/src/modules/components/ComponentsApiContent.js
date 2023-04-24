@@ -120,19 +120,16 @@ export default function ComponentsApiContent(props) {
   // This effects makes sure that the anchors will be correct wtih the renames
   React.useEffect(() => {
     const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
-    if (router.isReady && anchor && anchor.endsWith('unstyled')) {
-      router
-        .replace(
-          {
-            hash: `${anchor.slice(0, -'-unstyled'.length)}`,
-          },
-          null,
-          {
-            shallow: true,
-          },
-        )
-        // Added because of https://github.com/vercel/next.js/issues/37362
-        .catch(() => {});
+    if (router.isReady && anchor && anchor.indexOf('-unstyled') >= 0) {
+      router.replace(
+        {
+          hash: `${anchor.replace('-unstyled', '')}`,
+        },
+        null,
+        {
+          shallow: true,
+        },
+      );
     }
   }, [router]);
 
