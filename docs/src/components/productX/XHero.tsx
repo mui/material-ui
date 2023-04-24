@@ -223,8 +223,11 @@ export default function XHero() {
                 initialState={initialState}
                 disableRowSelectionOnClick
                 groupingColDef={{
-                  renderHeader: (params) => {
-                    return <Box sx={{ pl: 5, fontWeight: 500 }}>{params.colDef.headerName}</Box>;
+                  headerClassName: 'grouping-column-header',
+                }}
+                sx={{
+                  '& .grouping-column-header': {
+                    pl: 6,
                   },
                 }}
                 hideFooter
