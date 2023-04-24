@@ -112,7 +112,8 @@ const style = (theme) => ({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  border: '2px solid currentColor',
+  borderRadius: '12px',
   padding: '16px 32px 24px 32px',
+  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  boxShadow: 16,
 });

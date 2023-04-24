@@ -52,11 +52,14 @@ const StyledModal = styled(Modal)`
   justify-content: center;
   padding: 8px;
   background: inherit;
+  font-family: IBM Plex Sans, sans-serif;
 `;
 
-const style = {
+const style = (theme) => ({
   position: 'relative',
   width: 400,
-  border: '2px solid currentColor',
+  borderRadius: '12px',
   padding: '16px 32px 24px 32px',
-};
+  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  boxShadow: 4,
+});
