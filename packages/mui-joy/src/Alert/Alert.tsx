@@ -179,6 +179,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       {startDecorator && (
         <SlotStartDecorator {...startDecoratorProps}>{startDecorator}</SlotStartDecorator>
       )}
+
       {children}
       {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}
     </React.Fragment>
