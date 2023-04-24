@@ -109,7 +109,7 @@
     "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.5",
     "react-virtuoso": "^4.1.1",
-    "react-window": "^1.8.8",
+    "react-window": "^1.8.9",
     "recharts": "2.4.3",
     "rimraf": "^3.0.2",
     "styled-components": "^5.3.9",

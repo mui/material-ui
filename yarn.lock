@@ -13992,10 +13992,10 @@ react-virtuoso@^4.1.1:
   resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-4.1.1.tgz#df42fe867377068562890752dc9282fde71499c7"
   integrity sha512-G2lyifG5UIRZI9vgcBt+6OLDL6CO5/O6YiGS+O9z+VNRjVSTioSwfBC7sVSLspYq7iyL60aIXlVqSKVJiSVhlg==
 
-react-window@^1.8.8:
-  version "1.8.8"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.8.tgz#1b52919f009ddf91970cbdb2050a6c7be44df243"
-  integrity sha512-D4IiBeRtGXziZ1n0XklnFGu7h9gU684zepqyKzgPNzrsrk7xOCxni+TCckjg2Nr/DiaEEGVVmnhYSlT2rB47dQ==
+react-window@^1.8.9:
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.9.tgz#24bc346be73d0468cdf91998aac94e32bc7fa6a8"
+  integrity sha512-+Eqx/fj1Aa5WnhRfj9dJg4VYATGwIUP2ItwItiJ6zboKWA6EX3lYDAXfGF2hyNqplEprhbtjbipiADEcwQ823Q==
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
