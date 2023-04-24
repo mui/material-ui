@@ -131,7 +131,8 @@ export default function ComponentsApiContent(props) {
             shallow: true,
           },
         )
-        .catch((e) => {});
+        // Added because of https://github.com/vercel/next.js/issues/37362
+        .catch(() => {});
     }
   }, [router]);
 
