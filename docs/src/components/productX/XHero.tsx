@@ -18,8 +18,6 @@ import { alpha } from '@mui/material/styles';
 import {
   DataGridPremium,
   useGridApiRef,
-  GridRowGroupingModel,
-  GridAggregationModel,
   GridColDef,
   GridColumnVisibilityModel,
 } from '@mui/x-data-grid-premium';
@@ -119,15 +117,6 @@ export default function XHero() {
     React.useState<GridColumnVisibilityModel>({
       commodity: false,
     });
-  const [rowGroupingModel, setRowGroupingModel] = React.useState<GridRowGroupingModel>([
-    'commodity',
-  ]);
-  const [aggregationModel, setAggregationModel] = React.useState<GridAggregationModel>({
-    quantity: 'sum',
-    unitPrice: 'avg',
-    feeRate: 'min',
-    totalPrice: 'max',
-  });
   const apiRef = useGridApiRef();
   let rowGroupingCounter = 0;
   return (
@@ -280,6 +269,19 @@ export default function XHero() {
                 {...data}
                 columns={columns}
                 apiRef={apiRef}
+                initialState={{
+                  rowGrouping: {
+                    model: ['commodity'],
+                  },
+                  aggregation: {
+                    model: {
+                      quantity: 'sum',
+                      unitPrice: 'avg',
+                      feeRate: 'min',
+                      totalPrice: 'max',
+                    },
+                  },
+                }}
                 disableRowSelectionOnClick
                 groupingColDef={{
                   renderHeader: (params) => {
@@ -292,10 +294,6 @@ export default function XHero() {
                   rowGroupingCounter += 1;
                   return rowGroupingCounter === 3;
                 }}
-                rowGroupingModel={rowGroupingModel}
-                onRowGroupingModelChange={(model) => setRowGroupingModel(model)}
-                aggregationModel={aggregationModel}
-                onAggregationModelChange={(newModel) => setAggregationModel(newModel)}
                 columnVisibilityModel={columnVisibilityModel}
                 onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
               />
