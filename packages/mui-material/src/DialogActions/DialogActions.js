@@ -31,7 +31,9 @@ const DialogActionsRoot = styled('div', {
   justifyContent: 'flex-end',
   flex: '0 0 auto',
   ...(!ownerState.disableSpacing && {
-    '& > :not(:first-of-type)': {
+    // '& > :not(:first-of-type)': {
+    // '& > *': {
+    '& > button:first-of-type, & > *:not(:first-of-type):not(button)': {
       marginLeft: 8,
     },
   }),
