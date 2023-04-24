@@ -33,3 +33,13 @@ The elevation can be used to establish a hierarchy between other content. In pra
 The change of shade in dark mode is done by applying a semi-transparent gradient to the `background-image` property.
 This can lead to confusion when overriding the styles of `Paper`, as setting just the `background-color` property will not affect the elevation-related shading.
 To ignore the shading and set the background color that is not affected by elevation in dark mode, override the `background` property (or both `background-color` and `background-image`).
+
+## Hover Animations
+
+We can Elevate the Paper on mouse Hover by having a simple onHover state and our Elevation Prop
+
+{{"demo": "HoverEffect.js", "bg": "true"}}
+
+Here we are creating a state called `isHovered` and setting it to false by default and `onMouseEnter` we are setting
+it as true and `onMouseLeave` we are again setting it to false to revert it back to the default state, we can pass
+`onMouseEnter` and `onMouseLeave` directly to the Paper Component
