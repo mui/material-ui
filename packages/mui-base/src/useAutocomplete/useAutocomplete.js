@@ -242,7 +242,7 @@ export default function useAutocomplete(props) {
       value !== previousProps.value &&
       (previousProps.value === undefined ||
         value === undefined ||
-        getOptionLabel(value) !== getOptionLabel(previousProps.value));
+        getOptionLabelProp(value) !== getOptionLabelProp(previousProps.value));
 
     if (focused && !valueChange) {
       return;
@@ -254,7 +254,7 @@ export default function useAutocomplete(props) {
     }
 
     resetInputValue(null, value);
-  }, [value, resetInputValue, focused, previousProps.value, freeSolo, getOptionLabel]);
+  }, [value, resetInputValue, focused, previousProps.value, freeSolo, getOptionLabelProp]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
