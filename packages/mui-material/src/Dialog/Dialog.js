@@ -269,7 +269,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             as={PaperComponent}
             elevation={24}
             role="dialog"
-            // aria-modal="true"
+            aria-modal="true"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             {...PaperProps}
