@@ -94,7 +94,7 @@ export default function Album() {
                       // 16:9
                       pt: '56.25%',
                     }}
-                    image="https://source.unsplash.com/random/?album"
+                    image="https://source.unsplash.com/random/?family"
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
