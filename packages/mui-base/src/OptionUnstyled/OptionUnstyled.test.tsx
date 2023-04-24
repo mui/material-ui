@@ -1,23 +1,14 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
+import SelectProvider from '../useSelect/SelectProvider';
 
-const dummyGetOptionState = () => ({
+const dummyGetItemState = () => ({
   disabled: false,
   highlighted: false,
   selected: false,
   index: 0,
-});
-
-const dummyGetOptionProps = () => ({
-  'aria-disabled': false,
-  'aria-selected': false,
-  label: '',
-  onClick: () => {},
-  onPointerOver: () => {},
-  role: 'option',
-  value: '',
+  focusable: false,
 });
 
 describe('<OptionUnstyled />', () => {
@@ -28,32 +19,36 @@ describe('<OptionUnstyled />', () => {
     inheritComponent: 'li',
     render: (node) => {
       return render(
-        <SelectUnstyledContext.Provider
+        <SelectProvider
           value={{
-            getOptionState: dummyGetOptionState,
-            getOptionProps: dummyGetOptionProps,
-            listboxRef: React.createRef(),
+            dispatch: () => {},
+            getItemIndex: () => 0,
+            getItemState: dummyGetItemState,
             registerHighlightChangeHandler: () => () => {},
+            registerItem: () => ({ id: 0, deregister: () => {} }),
             registerSelectionChangeHandler: () => () => {},
+            totalSubitemCount: 0,
           }}
         >
           {node}
-        </SelectUnstyledContext.Provider>,
+        </SelectProvider>,
       );
     },
     mount: (node: React.ReactNode) => {
       const wrapper = mount(
-        <SelectUnstyledContext.Provider
+        <SelectProvider
           value={{
-            getOptionState: dummyGetOptionState,
-            getOptionProps: dummyGetOptionProps,
-            listboxRef: React.createRef(),
+            dispatch: () => {},
+            getItemIndex: () => 0,
+            getItemState: dummyGetItemState,
             registerHighlightChangeHandler: () => () => {},
+            registerItem: () => ({ id: 0, deregister: () => {} }),
             registerSelectionChangeHandler: () => () => {},
+            totalSubitemCount: 0,
           }}
         >
           {node}
-        </SelectUnstyledContext.Provider>,
+        </SelectProvider>,
       );
       return wrapper.childAt(0);
     },

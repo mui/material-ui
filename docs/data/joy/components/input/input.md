@@ -87,7 +87,7 @@ With inputs, decorators are typically located at the top and/or bottom of the in
 ### Inner HTML input
 
 If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: { ...props } }}`.
-These props may include HTML attributes such as `min`, `max`, and `autocomplete`.
+These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
 
 {{"demo": "InputSlotProps.js"}}
 

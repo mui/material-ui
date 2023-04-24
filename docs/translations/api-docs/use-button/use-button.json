@@ -10,6 +10,7 @@
     "disabled": "If <code>true</code>, the component is disabled.",
     "focusVisible": "If <code>true</code>, the component is being focused using keyboard.",
     "getRootProps": "Resolver for the root slot's props.",
+    "ref": "A ref to the component's root DOM element.",
     "setFocusVisible": "Callback for setting the <code>focusVisible</code> param."
   }
 }

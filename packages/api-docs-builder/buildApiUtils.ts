@@ -9,6 +9,28 @@ import { replaceComponentLinks } from './utils/replaceUrl';
 import findPagesMarkdown from './utils/findPagesMarkdown';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
+/**
+ * TODO: this should really be fixed in findPagesMarkdown().
+ * Plus replaceComponentLinks() shouldn't exist in the first place,
+ * the markdown folder location should match the URLs.
+ */
+function fixPathname(pathname: string): string {
+  let fixedPathname;
+
+  if (pathname.startsWith('/material')) {
+    fixedPathname = replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`);
+  } else if (pathname.startsWith('/joy')) {
+    fixedPathname = replaceComponentLinks(`${pathname.replace(/^\/joy/, '')}/`).replace(
+      'material-ui',
+      'joy-ui',
+    );
+  } else {
+    fixedPathname = `${pathname.replace('/components/', '/react-')}/`;
+  }
+
+  return fixedPathname;
+}
+
 const DEFAULT_PRETTIER_CONFIG_PATH = path.join(process.cwd(), 'prettier.config.js');
 
 export function writePrettifiedFile(
@@ -212,12 +234,10 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
         };
       });
       return allMarkdowns
-        .filter(
-          (page) => page.pathname.indexOf('/material/') === 0 && page.components.includes(name),
-        )
+        .filter((page) => page.pathname.startsWith('/material') && page.components.includes(name))
         .map((page) => ({
           demoPageTitle: getTitle(page.markdownContent),
-          demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`),
+          demoPathname: fixPathname(page.pathname),
         }));
     },
   };
@@ -231,13 +251,13 @@ interface PageMarkdown {
 
 function pathToSystemTitle(page: PageMarkdown) {
   const defaultTitle = page.title;
-  if (page.pathname.match(/material\//)) {
+  if (page.pathname.startsWith('/material')) {
     return `${defaultTitle} (Material UI)`;
   }
-  if (page.pathname.match(/system\//)) {
+  if (page.pathname.startsWith('/system')) {
     return `${defaultTitle} (MUI System)`;
   }
-  if (page.pathname.match(/joy\//)) {
+  if (page.pathname.startsWith('/joy')) {
     return `${defaultTitle} (Joy UI)`;
   }
   return defaultTitle;
@@ -255,9 +275,7 @@ function findBaseDemos(
     .filter((page) => page.components.includes(componentName))
     .map((page) => ({
       demoPageTitle: getTitle(page.markdownContent),
-      demoPathname: page.pathname.match(/material\//)
-        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-        : `${page.pathname.replace('/components/', '/react-')}/`,
+      demoPathname: fixPathname(page.pathname),
     }));
 }
 
@@ -273,11 +291,7 @@ function findBaseHooksDemos(
     .filter((page) => page.hooks && page.hooks.includes(hookName))
     .map((page) => ({
       demoPageTitle: getTitle(page.markdownContent),
-      demoPathname: page.pathname.match(/material\//)
-        ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-        : `${page.pathname.replace('/components/', '/react-')}/#hook${
-            page.hooks?.length > 1 ? 's' : ''
-          }`,
+      demoPathname: `${fixPathname(page.pathname)}#hook${page.hooks?.length > 1 ? 's' : ''}`,
     }));
 }
 
@@ -436,13 +450,10 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
         };
       });
       return allMarkdowns
-        .filter((page) => page.pathname.indexOf('/joy/') === 0 && page.components.includes(name))
+        .filter((page) => page.pathname.startsWith('/joy') && page.components.includes(name))
         .map((page) => ({
           demoPageTitle: getTitle(page.markdownContent),
-          demoPathname: replaceComponentLinks(`${page.pathname.replace(/^\/joy/, '')}/`).replace(
-            'material-ui',
-            'joy-ui',
-          ),
+          demoPathname: fixPathname(page.pathname),
         }));
     },
   };
@@ -493,9 +504,7 @@ export function getSystemComponentInfo(filename: string): ComponentInfo {
             ...page,
             title: getTitle(page.markdownContent),
           }),
-          demoPathname: page.pathname.match(/material\//)
-            ? replaceComponentLinks(`${page.pathname.replace(/^\/material/, '')}/`)
-            : `${page.pathname.replace('/components/', '/react-')}/`,
+          demoPathname: fixPathname(page.pathname),
         }));
     },
   };
