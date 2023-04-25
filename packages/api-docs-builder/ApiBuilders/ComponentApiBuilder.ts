@@ -691,14 +691,11 @@ export default async function generateComponentApi(
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     let translationPagesDirectory = 'docs/translations/api-docs';
-    if (
-      normalizedApiPathname.startsWith('/joy-ui') &&
-      noramlizedFilename.includes('/mui-joy/src')
-    ) {
+    if (normalizedApiPathname.startsWith('/joy-ui') && noramlizedFilename.includes('mui-joy/src')) {
       translationPagesDirectory = 'docs/translations/api-docs-joy';
     } else if (
       normalizedApiPathname.startsWith('/base') &&
-      noramlizedFilename.includes('/mui-base/src')
+      noramlizedFilename.includes('mui-base/src')
     ) {
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
