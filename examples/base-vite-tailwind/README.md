@@ -32,3 +32,5 @@ yarn start
 ```sh
 yarn build
 ```
+
+PS: Don't forget to [optimize](https://tailwindcss.com/docs/optimizing-for-production) Tailwind CSS for production!
