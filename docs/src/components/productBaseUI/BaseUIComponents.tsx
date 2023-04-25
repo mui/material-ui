@@ -3,12 +3,7 @@ import { styled } from '@mui/system';
 import { styled as materialStyled } from '@mui/material/styles';
 import { unstable_useId } from '@mui/material/utils';
 import Button from '@mui/material/Button';
-import ButtonUnstyled from '@mui/base/Button';
 import InputUnstyled from '@mui/base/Input';
-import MenuUnstyled, { MenuActions } from '@mui/base/Menu';
-import { ListActionTypes } from '@mui/base/useList';
-import MenuItemUnstyled from '@mui/base/MenuItem';
-import PopperUnstyled from '@mui/base/Popper';
 import TabsUnstyled from '@mui/base/Tabs';
 import TabsListUnstyled from '@mui/base/TabsList';
 import TabPanelUnstyled from '@mui/base/TabPanel';
@@ -32,6 +27,7 @@ import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import BaseButtonDemo from './components/BaseButtonDemo';
+import BaseMenuDemo from './components/BaseMenuDemo';
 
 const StyledButton = materialStyled(Button)(({ theme }) => ({
   borderRadius: 40,
@@ -55,14 +51,7 @@ const DEMOS = ['Button', 'Menu', 'Input', 'Tabs', 'Slider'] as const;
 
 const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => string)> = {
   Button: BaseButtonDemo.getCode,
-  Menu: `
-<ButtonUnstyled>Button</ButtonUnstyled>
-<MenuUnstyled>
-  <MenuItemUnstyled>Profile</MenuItemUnstyled>
-  <MenuItemUnstyled>Language settings</MenuItemUnstyled>
-  <MenuItemUnstyled>Log out</MenuItemUnstyled>
-</MenuUnstyled>
-`,
+  Menu: BaseMenuDemo.getCode,
   Input: `
 <InputUnstyled />`,
   Tabs: `
@@ -80,155 +69,6 @@ const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => st
 <SliderUnstyled defaultValue={10} />
 <SliderUnstyled defaultValue={10} disabled />`,
 };
-
-const StyledMenuButton = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 12px 16px;
-  line-height: 1.5;
-  background: var(--muidocs-palette-background-paper);
-  border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
-  color: var(--muidocs-palette-text-primary);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
-  outline-color: transparent;
-  &.Mui-focusVisible {
-    outline: 3px solid;
-    outline-color: var(--muidocs-palette-grey-300);
-  }
-`;
-const StyledPopper = styled(PopperUnstyled)``;
-const StyledListbox = styled('ul')`
-  margin: 4px 0;
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
-  background: var(--muidocs-palette-background-paper);
-  box-shadow: var(--muidocs-shadows-2);
-`;
-const StyledMenuItem = styled('li')`
-  display: flex;
-  align-items: center;
-  padding: 6px 12px;
-  min-height: 24px;
-  border-radius: 4px;
-  gap: 4px;
-  &:hover,
-  &.Mui-focusVisible {
-    cursor: default;
-    outline: none;
-    background: var(--muidocs-palette-grey-100);
-  }
-`;
-
-function MenuDemo({ unstyled }: { unstyled: boolean }) {
-  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(null);
-  const [isOpen, setOpen] = React.useState(false);
-  const menuActions = React.useRef<MenuActions>(null);
-  const preventReopen = React.useRef(false);
-
-  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
-    setButtonElement(node);
-  }, []);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (preventReopen.current) {
-      event.preventDefault();
-      preventReopen.current = false;
-      return;
-    }
-
-    setOpen((open) => !open);
-  };
-
-  const handleButtonMouseDown = () => {
-    if (isOpen) {
-      // Prevents the menu from reopening right after closing
-      // when clicking the button.
-      preventReopen.current = true;
-    }
-  };
-
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setOpen(true);
-      if (event.key === 'ArrowUp') {
-        // Focus the last item when pressing ArrowUp.
-        menuActions.current?.dispatch({
-          type: ListActionTypes.keyDown,
-          key: event.key,
-          event,
-        });
-      }
-    }
-  };
-
-  const createHandleMenuClick = () => {
-    return () => {
-      setOpen(false);
-      buttonElement?.focus();
-    };
-  };
-
-  return (
-    <div>
-      <ButtonUnstyled
-        slots={{ root: unstyled ? undefined : StyledMenuButton }}
-        type="button"
-        onClick={handleButtonClick}
-        onKeyDown={handleButtonKeyDown}
-        onMouseDown={handleButtonMouseDown}
-        ref={updateAnchor}
-        aria-controls={isOpen ? 'simple-menu' : undefined}
-        aria-expanded={isOpen || undefined}
-        aria-haspopup="menu"
-      >
-        My account
-      </ButtonUnstyled>
-      <MenuUnstyled
-        actions={menuActions}
-        open={isOpen}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
-        anchorEl={buttonElement}
-        slots={{
-          root: unstyled ? PopperUnstyled : StyledPopper,
-          listbox: unstyled ? undefined : StyledListbox,
-        }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
-      >
-        <MenuItemUnstyled
-          slots={{ root: unstyled ? undefined : StyledMenuItem }}
-          onClick={createHandleMenuClick()}
-        >
-          Profile
-        </MenuItemUnstyled>
-        <MenuItemUnstyled
-          slots={{ root: unstyled ? undefined : StyledMenuItem }}
-          onClick={createHandleMenuClick()}
-        >
-          Language settings
-        </MenuItemUnstyled>
-        <MenuItemUnstyled
-          slots={{ root: unstyled ? undefined : StyledMenuItem }}
-          onClick={createHandleMenuClick()}
-        >
-          Log out
-        </MenuItemUnstyled>
-      </MenuUnstyled>
-    </div>
-  );
-}
 
 const StyledTextInput = styled('div')`
   --TextInput-height: 64px;
@@ -409,7 +249,7 @@ const StyledSlider = styled('span')`
 
 export default function BaseUIComponents() {
   const [unstyled] = React.useState(false);
-  const [styling, setStyling] = React.useState<undefined | 'system'>(undefined);
+  const [styling, setStyling] = React.useState<undefined | 'system'>('system');
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number]>(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <TableChartRounded fontSize="small" />,
@@ -463,21 +303,7 @@ export default function BaseUIComponents() {
               })}
             >
               {demo === 'Button' && <BaseButtonDemo styling={styling} />}
-              {demo === 'Menu' && (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                    height: '100%',
-                    pt: 2,
-                    pb: 10,
-                  }}
-                >
-                  <MenuDemo unstyled={unstyled} />
-                </Box>
-              )}
+              {demo === 'Menu' && <BaseMenuDemo styling={styling} />}
               {demo === 'Input' && (
                 <Box
                   sx={{
@@ -569,7 +395,7 @@ export default function BaseUIComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
-                height: 240,
+                height: 256,
                 position: 'relative',
                 overflow: 'hidden',
                 pt: 5,
