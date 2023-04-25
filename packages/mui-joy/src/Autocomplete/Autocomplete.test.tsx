@@ -581,6 +581,7 @@ describe('Joy <Autocomplete />', () => {
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
     function Test(props: any) {
+      const { key, ...others } = props;
       return (
         <div
           onKeyDown={(event) => {
@@ -589,7 +590,7 @@ describe('Joy <Autocomplete />', () => {
             }
           }}
         >
-          <Autocomplete autoFocus options={['one', 'two']} {...props} />
+          <Autocomplete autoFocus options={['one', 'two']} key={key} {...others} />
         </div>
       );
     }
