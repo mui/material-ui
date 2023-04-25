@@ -11,9 +11,7 @@ export default function BasicMenu() {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
 
-  const handleClose = (
-    event?: React.MouseEvent<HTMLDivElement, MouseEvent> | null | undefined,
-  ) => {
+  const handleClose = (event?: React.MouseEvent<Element, Event>) => {
     if (event && event.relatedTarget !== anchorEl) {
       setAnchorEl(null);
     }
