@@ -1,5 +1,147 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.12.2
+
+<!-- generated comparing v5.12.1..master -->
+
+_Apr 25, 2023_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚠️ **[BREAKING CHANGE]** The `Unstyled` suffix has been removed from Base UI component names, including names of types and other related identifiers – a codemod script is provided to assist with the change.
+- 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.12.2`
+
+- &#8203;<!-- 10 -->[FormControl] Fix `filled` when value is set through `inputProps` (#36741) @sai6855
+- &#8203;<!-- 07 -->[Slider] `onChange` handler should be called only when value has changed (#36706) @gitstart
+- &#8203;<!-- 06 -->[Table] Fix `Sorting & Selecting` tables (#36898) @oliviertassinari
+
+### `@mui/base@5.0.0-alpha.127`
+
+#### Breaking changes
+
+- &#8203;<!-- 27 -->[base] Remove unstyled suffix from Base components + Codemod script (#36873) @hbjORbj
+
+  The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/src/v5.0.0/base-remove-unstyled-suffix.js) to help with the migration:
+
+  ```sh
+  npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
+  ```
+
+#### Changes
+
+- &#8203;<!-- 26 -->[codemod][base] Improve the removal of `component` prop codemod script (#36952) @hbjORbj
+- &#8203;<!-- 25 -->[codemod][base] Write a migration script for removal of `component` prop from components (#36831) @hbjORbj
+- &#8203;<!-- 24 -->[Base][useButton] Allow useButton params to be completely optional (#36922) @mj12albert
+
+### `@mui/joy@5.0.0-alpha.77`
+
+- &#8203;<!-- 23 -->[Joy][Chip] Chip button not showing up in Firefox browser (#36930) @TakhyunKim
+- &#8203;<!-- 09 -->[Joy] Add `invertedColors` to Menu and Alert (#36975) @siriwatknp
+- &#8203;<!-- 08 -->[joy][Select] Set focus visible on select options when navigating with arrow keys (#36689) @gitstart
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs] Fix console error introduced by #36408 (#36980) @alexfauquette
+- &#8203;<!-- 20 -->[docs] Add stray Joy UI documentation improvements (#36921) @danilo-leal
+- &#8203;<!-- 19 -->[docs] Add Joy profile dashboard template (#36931) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Fix 404 links (#36969) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Clarify when bundle size optimization is needed (#36823) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix Chakra UI theme scoping typo (#36950) @mj12albert
+- &#8203;<!-- 15 -->[docs] Add snackbar example using sonner (#36926) @PupoSDC
+- &#8203;<!-- 14 -->[docs] Adjust the Material Icons page design and formatting (#36937) @danilo-leal
+- &#8203;<!-- 13 -->[docs] Allows to customize menu with any icon (#36408) @alexfauquette
+- &#8203;<!-- 12 -->[docs] Add info about passing ref to input element (#36913) @tomaskebrle
+- &#8203;<!-- 11 -->[docs][material] Tabs API section cleanup (#36942) @mnajdova
+
+### Core
+
+- &#8203;<!-- 22 -->[core] Fix CI failure on `master` (#37016) @hbjORbj
+- &#8203;<!-- 05 -->[typescript] Add the missing explicit component return types (#36924) @michaldudak
+- &#8203;<!-- 04 -->[website] Update main data grid demo on X landing page (#37001) @cherniavskii
+- &#8203;<!-- 03 -->[website] Design role updates (#36997) @danilo-leal
+- &#8203;<!-- 02 -->[website] X component section improvements (#36598) @danilo-leal
+- &#8203;<!-- 01 -->[website] Developer Advocate role filled @oliviertassinari
+
+All contributors of this release in alphabetical order: @alexfauquette, @cherniavskii, @danilo-leal, @gitstart, @hbjORbj, @michaldudak, @mj12albert, @mnajdova, @oliviertassinari, @PupoSDC, @sai6855, @siriwatknp, @TakhyunKim, @tomaskebrle
+
+## 5.12.1
+
+<!-- generated comparing v5.12.0..master -->
+
+_Apr 17, 2023_
+
+A big thanks to the 16 contributors who made this release possible. This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.12.1`
+
+- &#8203;<!-- 24 -->[Autocomplete] Fix autocomplete left padding (#36649) @mj12albert
+- &#8203;<!-- 17 -->[Button] Fix contained with inherit prop not adapting on dark mode (#34508) @jesrodri
+- &#8203;<!-- 07 -->[FormControlLabel] Add `required` prop (#34207) @emlai
+- &#8203;<!-- 04 -->[Tabs] Fix null reference in ScrollbarSize after unmounting (#36485) @rkdrnf
+- &#8203;<!-- 03 -->[TextField] Fix type error when using `inputTypeSearch` class for `outlined` and `filled` inputs (#36740) @sai6855
+- &#8203;<!-- 02 -->[ThemeProvider] Fix theme proptypes (#36852) @siriwatknp
+
+### `@mui/system@5.12.1`
+
+#### Breaking changes
+
+- &#8203;<!-- 06 -->[Grid2] Replace context with `cloneElement` (#36399) @siriwatknp
+
+  `Grid2` now uses `React.cloneElement` instead of React context for passing the spacing and columns to the next container. The change is close to how CSS flexbox behaves.
+
+#### Changes
+
+- &#8203;<!-- 14 -->[CssVarsProvider] Always generate new `css` object (#36853) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.126`
+
+#### Breaking changes
+
+- &#8203;<!-- 23 -->[base] Refactor the compound components building blocks (#36400) @michaldudak
+  Components affected by the changes are:
+  - Menu
+    - `MenuUnstyledContext` is replaced by `MenuProvider`. The value to pass to the provider is returned by the `useMenu` hook.
+    - MenuUnstyled's `onClose` prop is replaced by `onOpenChange`. It has the `open` parameter and is called when a menu is opened or closed
+  - Select
+    - `SelectUnstyledContext` is replaced by `SelectProvider`. The value to pass to the provider is returned by the `useSelect` hook.
+    - `SelectUnstyled`'s popup is permanently mounted.
+    - The `defaultOpen` prop was added to the SelectUnstyled. The open/close state can now be controlled or uncontrolled, as a `value`.
+  - Tabs
+    - `TabsContext` is replaced by `TabsProvider`. The value to pass to the provider is returned by the `useTabs` hook.
+    - To deselect all tabs, pass in `null` to Tabs' `value` prop, instead of `false`. This is consistent with how Select works.
+    - The `value` prop is still technically not mandatory on TabUnstyled and TabPanel, but when omitted, the contents of the selected tab panel will not be rendered during SSR.
+
+### `@mui/joy@5.0.0-alpha.76`
+
+- &#8203;<!-- 05 -->[Table][Joy] Replace uses of css selector `*-child` to `*-of-type` (#36839) @keyvanm
+
+### Docs
+
+- &#8203;<!-- 25 --> [docs][base] Move styles to the bottom of demos code for `BadgeUnstyled` (#36723) @varunmulay22
+- &#8203;<!-- 22 -->[docs][base] Mention that the hook does not accept any parameters in the `Parameters` section of the API docs (#36773) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[docs][base] Move styles to the bottom of demos code for `ModalUnstyled` (#36580) @gitstart
+- &#8203;<!-- 20 -->[docs][base] Move styles to the bottom of demos code for `Tabs` (#36577) @gitstart
+- &#8203;<!-- 19 -->[docs][base] Move styles to the bottom of demos code for `Popper` (#36578) @gitstart
+- &#8203;<!-- 18 -->[docs][base] Move styles to the bottom of demos code for `TablePagination` (#36593) @gitstart
+- &#8203;<!-- 13 -->[docs] Remove the incorrect info about useButton's ref parameter (#36883) @michaldudak
+- &#8203;<!-- 12 -->[docs] Sync <Stack> between projects (#36785) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Add guides to overriding component structure in Base UI and Joy UI docs (#34990) @samuelsycamore
+- &#8203;<!-- 10 -->[docs] Content changed from 'row' to 'orientation=horizontal' (#36858) @navedqb
+- &#8203;<!-- 09 -->[docs][Joy] `component`, `slots`, `slotProps` must be visible in Prop table in API docs (#36666) @hbjORbj
+- &#8203;<!-- 08 -->[docs][Select] Fix duplicate ID in small size Select demo (#36792) @sai6855
+
+### Core
+
+- &#8203;<!-- 16 -->[core] Use glob to find the test files in parseTest (#36305) @flaviendelangle
+- &#8203;<!-- 15 -->[core] Fix minor SEO issues @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix visual bug appbar (#36875) @oliviertassinari
+
+All contributors of this release in alphabetical order: @emlai, @flaviendelangle, @gitstart, @hbjORbj, @jesrodri, @keyvanm, @michaldudak, @mj12albert, @navedqb, @oliviertassinari, @rkdrnf, @sai6855, @samuelsycamore, @siriwatknp, @varunmulay22, @ZeeshanTamboli
+
 ## 5.12.0
 
 <!-- generated comparing v5.11.16..master -->

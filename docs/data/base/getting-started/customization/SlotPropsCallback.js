@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+import Switch from '@mui/base/Switch';
 
 const css = `
   .my-switch {
@@ -68,7 +68,7 @@ export default function SlotPropsCallback() {
     <div>
       <style type="text/css">{css}</style>
 
-      <SwitchUnstyled slotProps={slotProps} />
+      <Switch slotProps={slotProps} />
     </div>
   );
 }

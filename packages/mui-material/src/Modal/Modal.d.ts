@@ -2,7 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base';
-import { ModalUnstyledTypeMap, ModalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import {
+  ModalTypeMap as BaseModalTypeMap,
+  ModalClasses as BaseModalClasses,
+} from '@mui/base/Modal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
@@ -13,7 +16,7 @@ export interface ModalOwnerState extends ModalProps {
   exited: boolean;
 }
 
-export interface ModalOwnProps extends Omit<ModalUnstyledTypeMap['props'], 'slotProps'> {
+export interface ModalOwnProps extends Omit<BaseModalTypeMap['props'], 'slotProps'> {
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
    * @deprecated Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
@@ -37,7 +40,7 @@ export interface ModalOwnProps extends Omit<ModalUnstyledTypeMap['props'], 'slot
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ModalUnstyledClasses>;
+  classes?: Partial<BaseModalClasses>;
   /**
    * @ignore
    */

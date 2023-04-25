@@ -15,7 +15,7 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  *
  * Demos:
  *
- * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base/react-menu/#hooks)
  *
  * API:
  *

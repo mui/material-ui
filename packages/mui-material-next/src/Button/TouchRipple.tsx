@@ -275,7 +275,7 @@ const TouchRipple = React.forwardRef<TouchRippleActions, TouchRippleProps>(funct
       </TransitionGroup>
     </TouchRippleRoot>
   );
-});
+}) as React.ForwardRefExoticComponent<TouchRippleProps & React.RefAttributes<TouchRippleActions>>;
 
 TouchRipple.propTypes = {
   /**

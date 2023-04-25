@@ -49,6 +49,11 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       endDecorator?: React.ReactNode;
       /**
+       * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
+       * @default false
+       */
+      invertedColors?: boolean;
+      /**
        * The ARIA role attribute of the element.
        * @default 'alert'
        */

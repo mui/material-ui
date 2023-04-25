@@ -5,7 +5,7 @@ export default function DivButton() {
   return (
     <Button
       component="a"
-      href="https://mui.com/about-us/"
+      href="https://mui.com/about/"
       target="_blank"
       rel="noopener noreferrer"
     >

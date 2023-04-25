@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import Button, { buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
@@ -24,7 +24,7 @@ const grey = {
   900: '#24292f',
 };
 
-const CustomButton = styled(ButtonUnstyled)(
+const CustomButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
@@ -42,16 +42,16 @@ const CustomButton = styled(ButtonUnstyled)(
     background-color: ${blue[600]};
   }
 
-  &.${buttonUnstyledClasses.active} {
+  &.${buttonClasses.active} {
     background-color: ${blue[700]};
   }
 
-  &.${buttonUnstyledClasses.focusVisible} {
+  &.${buttonClasses.focusVisible} {
     box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
 
-  &.${buttonUnstyledClasses.disabled} {
+  &.${buttonClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
   }

@@ -180,7 +180,7 @@ function App() {
 Render Material UI's theme provider below Chakra UI's provider and assign the material theme to the `THEME_ID` property.
 
 ```js
-import { ChakraProvider, chakraExtendTheme } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme as chakraExtendTheme } from '@chakra-ui/react';
 import {
   ThemeProvider as MaterialThemeProvider,
   createTheme as muiCreateTheme,
