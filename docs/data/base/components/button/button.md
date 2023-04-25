@@ -83,10 +83,7 @@ Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its p
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the unstyled compnent:
 
 ```tsx
-<Button<typeof CustomComponent>
-  slots={{ root: CustomComponent }}
-  customProp
-/>
+<Button<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
 ```
 
 The same applies for props specific to custom primitive elements:

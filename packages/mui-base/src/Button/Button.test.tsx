@@ -130,12 +130,7 @@ describe('<Button />', () => {
       it('does not respond to user actions when disabled and focused', () => {
         const handleClick = spy();
         const { getByRole } = render(
-          <Button
-            slots={{ root: 'span' }}
-            focusableWhenDisabled
-            disabled
-            onClick={handleClick}
-          />,
+          <Button slots={{ root: 'span' }} focusableWhenDisabled disabled onClick={handleClick} />,
         );
 
         const button = getByRole('button');
