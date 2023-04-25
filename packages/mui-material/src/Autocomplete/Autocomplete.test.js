@@ -2283,7 +2283,7 @@ describe('<Autocomplete />', () => {
 
       expect(handleInputChange.callCount).to.equal(1);
       expect(handleInputChange.args[0][1]).to.equal(options[0].name);
-      expect(handleInputChange.args[0][2]).to.equal('reset');
+      expect(handleInputChange.args[0][2]).to.equal('selectOption');
     });
   });
 
