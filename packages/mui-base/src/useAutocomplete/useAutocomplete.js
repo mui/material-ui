@@ -233,6 +233,7 @@ export default function useAutocomplete(props) {
   const previousProps = usePreviousProps({
     filteredOptions,
     value,
+    inputValue,
   });
 
   React.useEffect(() => {
@@ -475,6 +476,7 @@ export default function useAutocomplete(props) {
       highlightedIndexRef.current !== -1 &&
       previousProps.filteredOptions &&
       previousProps.filteredOptions.length !== filteredOptions.length &&
+      previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
           previousProps.value.every((val, i) => getOptionLabel(value[i]) === getOptionLabel(val))
@@ -500,8 +502,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    // Check if the previously highlighted option still exists in the updated filtered options list and if the value hasn't changed
-    // If it exists and the value hasn't changed, return, otherwise continue execution
+    // Check if the previously highlighted option still exists in the updated filtered options list and if the value and inputValue haven't changed
+    // If it exists and the value and the inputValue haven't changed, return, otherwise continue execution
     if (checkHighlightedOptionExists()) {
       return;
     }
