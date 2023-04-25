@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { unstable_useId } from '@mui/material/utils';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-import InputUnstyled from '@mui/base/InputUnstyled';
-import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import TabUnstyled from '@mui/base/TabUnstyled';
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import ButtonUnstyled from '@mui/base/Button';
+import InputUnstyled from '@mui/base/Input';
+import MenuUnstyled, { MenuActions } from '@mui/base/Menu';
+import { ListActionTypes } from '@mui/base/useList';
+import MenuItemUnstyled from '@mui/base/MenuItem';
+import PopperUnstyled from '@mui/base/Popper';
+import TabsUnstyled from '@mui/base/Tabs';
+import TabsListUnstyled from '@mui/base/TabsList';
+import TabPanelUnstyled from '@mui/base/TabPanel';
+import TabUnstyled from '@mui/base/Tab';
+import SliderUnstyled from '@mui/base/Slider';
 import Box from '@mui/material/Box';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
@@ -139,37 +140,52 @@ const StyledMenuItem = styled('li')`
 `;
 
 function MenuDemo({ unstyled }: { unstyled: boolean }) {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuUnstyledActions>(null);
+  const [buttonElement, setButtonElement] = React.useState<HTMLButtonElement | null>(null);
+  const [isOpen, setOpen] = React.useState(false);
+  const menuActions = React.useRef<MenuActions>(null);
+  const preventReopen = React.useRef(false);
+
+  const updateAnchor = React.useCallback((node: HTMLButtonElement | null) => {
+    setButtonElement(node);
+  }, []);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (preventReopen.current) {
+      event.preventDefault();
+      preventReopen.current = false;
+      return;
+    }
+
+    setOpen((open) => !open);
+  };
+
+  const handleButtonMouseDown = () => {
     if (isOpen) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
+      // Prevents the menu from reopening right after closing
+      // when clicking the button.
+      preventReopen.current = true;
     }
   };
 
   const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
-      setAnchorEl(event.currentTarget);
+      setOpen(true);
       if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
+        // Focus the last item when pressing ArrowUp.
+        menuActions.current?.dispatch({
+          type: ListActionTypes.keyDown,
+          key: event.key,
+          event,
+        });
       }
     }
   };
 
-  const close = () => {
-    setAnchorEl(null);
-    buttonRef.current!.focus();
-  };
-
   const createHandleMenuClick = () => {
     return () => {
-      close();
+      setOpen(false);
+      buttonElement?.focus();
     };
   };
 
@@ -180,7 +196,8 @@ function MenuDemo({ unstyled }: { unstyled: boolean }) {
         type="button"
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
-        ref={buttonRef}
+        onMouseDown={handleButtonMouseDown}
+        ref={updateAnchor}
         aria-controls={isOpen ? 'simple-menu' : undefined}
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
@@ -190,8 +207,10 @@ function MenuDemo({ unstyled }: { unstyled: boolean }) {
       <MenuUnstyled
         actions={menuActions}
         open={isOpen}
-        onClose={close}
-        anchorEl={anchorEl}
+        onOpenChange={(open) => {
+          setOpen(open);
+        }}
+        anchorEl={buttonElement}
         slots={{
           root: unstyled ? PopperUnstyled : StyledPopper,
           listbox: unstyled ? undefined : StyledListbox,

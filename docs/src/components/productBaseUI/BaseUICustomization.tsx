@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+import SwitchUnstyled from '@mui/base/Switch';
 import useSwitch, { UseSwitchParameters } from '@mui/base/useSwitch';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';

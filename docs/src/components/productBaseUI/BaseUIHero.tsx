@@ -1,23 +1,18 @@
 import * as React from 'react';
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-import OptionUnstyled from '@mui/base/OptionUnstyled';
+import SelectUnstyled from '@mui/base/Select';
+import OptionUnstyled from '@mui/base/Option';
 import Box, { BoxProps } from '@mui/material/Box';
-// import IconButton from '@mui/material/IconButton';
-// import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
-// import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
-// import DragIndicator from '@mui/icons-material/DragIndicator';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import ToggleOn from '@mui/icons-material/ToggleOn';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
-// import { useResizeHandle } from '../productCore/CoreStyling';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
 
 const Div = React.forwardRef<
@@ -121,52 +116,6 @@ function Wrapper({ sx, children, ...props }: BoxProps) {
     </Box>
   );
 }
-
-// function Resizable({ sx, ...props }: BoxProps) {
-//   const container = React.useRef<HTMLDivElement | null>(null);
-//   const { dragging, getDragHandlers } = useResizeHandle(container, { minWidth: '64px' });
-//   return (
-//     <Box
-//       ref={container}
-//       {...props}
-//       sx={[
-//         {
-//           borderRight: '1px solid',
-//           borderColor: dragging ? 'primary.400' : 'primary.200',
-//         },
-//         ...(Array.isArray(sx) ? sx : [sx]),
-//       ]}
-//     >
-//       <Wrapper>{props.children}</Wrapper>
-//       <Tooltip
-//         title="Drag it over to see it unstyled!"
-//         open={!dragging}
-//         placement="left"
-//         arrow
-//         PopperProps={{ sx: { zIndex: 1000 } }}
-//       >
-//         <IconButton
-//           sx={{
-//             border: '1px solid',
-//             borderColor: 'primary.200',
-//             bgcolor: 'background.paper',
-//             position: 'absolute',
-//             right: 0,
-//             bottom: 'min(80px, 8%)',
-//             transform: 'translateX(50%)',
-//             '&:hover': {
-//               bgcolor: 'background.paper',
-//               borderColor: 'primary.400',
-//             },
-//           }}
-//           {...getDragHandlers()}
-//         >
-//           <DragIndicator />
-//         </IconButton>
-//       </Tooltip>
-//     </Box>
-//   );
-// }
 
 export default function BaseUIHero() {
   return (
@@ -309,6 +258,7 @@ export default function BaseUIHero() {
                       letterSpacing: '1px',
                       alignItems: 'center',
                       minHeight: 0,
+                      paddingBottom: 1,
                     },
                     '&[role="option"]': {
                       border: '1px solid transparent',
@@ -369,123 +319,6 @@ export default function BaseUIHero() {
           </Wrapper>
         </Box>
       }
-      // right={
-      //   <Box
-      //     sx={{
-      //       '--frame-width': 'min(570px, 36vw)',
-      //       '--Select-width': '240px',
-      //       '--Select-radius': '12px',
-      //       '--Select-spacing': '8px',
-      //       position: 'relative',
-      //       width: 'var(--frame-width)',
-      //       height: '100%',
-      //       backgroundColor: 'inherit',
-      //     }}
-      //   >
-      //     <Wrapper
-      //       sx={(theme) => ({
-      //         bgcolor: 'rgba(0 0 0 / 0.04)',
-      //         ...theme.applyDarkStyles({ bgcolor: 'rgba(255 255 255 / 0.04)' }),
-      //       })}
-      //     >
-      //       <Demo label="Unstyled select" />
-      //     </Wrapper>
-      //     <Resizable
-      //       sx={(theme) => ({
-      //         inset: 0,
-      //         position: 'absolute',
-      //         backgroundColor: 'inherit',
-      //         '& .MuiSelect-root': {
-      //           width: '100%',
-      //           maxWidth: '100%',
-      //           border: '1px solid',
-      //           borderColor: 'grey.300',
-      //           borderRadius: 'var(--Select-radius)',
-      //           height: '45px',
-      //           padding: 'var(--Select-spacing) calc(var(--Select-spacing) * 1.5)',
-      //           bgcolor: 'background.paper',
-      //           display: 'flex',
-      //           color: 'text.secondary',
-      //           alignItems: 'center',
-      //           ...theme.typography.body2,
-      //           '& svg:first-child': {
-      //             marginRight: 'var(--Select-spacing)',
-      //           },
-      //           '&:not(:empty)': {
-      //             fontWeight: 500,
-      //           },
-      //         },
-      //         '& .MuiSelect-popper': {
-      //           width: '100%',
-      //           margin: 'var(--Select-spacing) 0',
-      //         },
-      //         '& .MuiSelect-listbox': {
-      //           display: 'flex',
-      //           flexDirection: 'column',
-      //           margin: 0,
-      //           border: '1px solid',
-      //           borderColor: 'grey.300',
-      //           borderRadius: 'var(--Select-radius)',
-      //           bgcolor: 'background.paper',
-      //           boxShadow: '0px 4px 40px rgba(62, 80, 96, 0.05)',
-      //           padding: 'calc(var(--Select-spacing) * 1.5)',
-      //           gap: 'calc(var(--Select-spacing) * 1.5)',
-      //           ...theme.typography.body2,
-      //           '& ul': {
-      //             padding: 0,
-      //             display: 'flex',
-      //             flexDirection: 'column',
-      //           },
-      //           '& li': {
-      //             minHeight: 32,
-      //             display: 'flex',
-      //             borderRadius: '4px',
-      //             '&[role="none"]': {
-      //               flexDirection: 'column',
-      //               padding: 0,
-      //               '& > ul': {
-      //                 padding: 0,
-      //               },
-      //             },
-      //             '&[role="presentation"]': {
-      //               fontSize: 10,
-      //               color: 'text.tertiary',
-      //               fontWeight: 'bold',
-      //               textTransform: 'uppercase',
-      //               letterSpacing: '1px',
-      //               alignItems: 'center',
-      //             },
-      //             '&[role="option"]': {
-      //               border: '1px solid transparent',
-      //               padding: 'calc(var(--Select-spacing) * 0.75)',
-      //               fontSize: '14px',
-      //               fontWeight: 500,
-      //               color: 'text.secondary',
-      //               alignItems: 'center',
-      //               cursor: 'pointer',
-      //               '&:hover, &.MuiOption-highlighted': {
-      //                 bgcolor: 'grey.50',
-      //                 color: 'text.primary',
-      //               },
-      //               '&.Mui-selected': {
-      //                 bgcolor: 'grey.50',
-      //                 borderColor: 'grey.100',
-      //                 color: 'text.primary',
-      //               },
-      //               '& svg:first-child': {
-      //                 color: 'primary.main',
-      //                 marginRight: 'var(--Select-spacing)',
-      //                 fontSize: 18,
-      //               },
-      //             },
-      //           },
-      //         },
-      //       })}
-      //     >
-      //       <Demo label="Customized select" />
-      //     </Resizable>
-      //   </Box>
-      // }
     />
   );
 }
