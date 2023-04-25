@@ -171,8 +171,11 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={() => {
+              onClose={(e) => {
                 menus.current[0]?.focus();
+                if (e.relatedTarget !== menus.current[0]) {
+                  setMenuIndex(null);
+                }
               }}
             >
               <ListItem nested>
@@ -214,8 +217,11 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={() => {
+              onClose={(e) => {
                 menus.current[1]?.focus();
+                if (e.relatedTarget !== menus.current[1]) {
+                  setMenuIndex(null);
+                }
               }}
             >
               <ListItem nested>
@@ -253,8 +259,11 @@ export default function MenuToolbarExample() {
           }}
           menu={
             <Menu
-              onClose={() => {
+              onClose={(e) => {
                 menus.current[2]?.focus();
+                if (e.relatedTarget !== menus.current[2]) {
+                  setMenuIndex(null);
+                }
               }}
             >
               <MenuItem {...itemProps}>Select All {renderShortcut('⌘ A')}</MenuItem>
