@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
+import Input, { InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
 const blue = {
@@ -87,11 +87,11 @@ const StyledTextareaElement = styled('textarea', {
 );
 
 const CustomInput = React.forwardRef(function CustomInput(
-  props: InputUnstyledProps,
+  props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <InputUnstyled
+    <Input
       slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
       {...props}
       ref={ref}

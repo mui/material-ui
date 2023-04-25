@@ -28,7 +28,7 @@ import selectReducer from './selectReducer';
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base/react-select/#hooks)
  *
  * API:
  *

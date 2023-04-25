@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormControlUnstyledState } from '../FormControlUnstyled';
+import { FormControlState } from '../FormControl';
 
 export interface UseInputParameters {
   /**
@@ -71,9 +71,9 @@ export interface UseInputReturnValue {
    */
   focused: boolean;
   /**
-   * Return value from the `useFormControlUnstyledContext` hook.
+   * Return value from the `useFormControlContext` hook.
    */
-  formControlContext: FormControlUnstyledState | undefined;
+  formControlContext: FormControlState | undefined;
   /**
    * Resolver for the input slot's props.
    * @param externalProps props for the input slot

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { ButtonUnstyledProps } from '@mui/base/ButtonUnstyled';
+import { ButtonProps } from '@mui/base/Button';
 import useButton from '@mui/base/useButton';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 const CustomButton = React.forwardRef(function CustomButton(
-  props: ButtonUnstyledProps,
+  props: ButtonProps,
   ref: React.ForwardedRef<any>,
 ) {
   const { children, disabled } = props;

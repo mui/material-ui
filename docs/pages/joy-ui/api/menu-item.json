@@ -8,6 +8,10 @@
       },
       "default": "selected ? 'primary' : 'neutral'"
     },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
     "selected": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },

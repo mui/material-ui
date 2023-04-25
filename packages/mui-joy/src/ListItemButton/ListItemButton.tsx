@@ -53,8 +53,13 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
       boxSizing: 'border-box',
       position: 'relative',
       display: 'flex',
-      flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+      flexDirection: 'row',
       alignItems: 'center',
+      alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+      ...(ownerState.orientation === 'vertical' && {
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }),
       textAlign: 'initial',
       textDecoration: 'initial', // reset native anchor tag
       backgroundColor: 'initial', // reset button background

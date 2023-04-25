@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTabsContext } from '../TabsUnstyled';
+import { useTabsContext } from '../Tabs';
 import {
   TabsListActionTypes,
   UseTabsListParameters,
@@ -17,7 +17,7 @@ import tabsListReducer from './tabsListReducer';
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *

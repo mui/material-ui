@@ -1,0 +1,49 @@
+{
+  "props": {
+    "actions": { "type": { "name": "custom", "description": "ref" } },
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "component": { "type": { "name": "elementType" } },
+    "onOpenChange": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "Menu",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "Popper",
+      "class": ".MuiMenu-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": ".MuiMenu-listbox"
+    }
+  ],
+  "classes": { "classes": ["expanded"], "globalClasses": { "expanded": "Mui-expanded" } },
+  "spread": false,
+  "muiName": "MuiMenu",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Menu/Menu.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

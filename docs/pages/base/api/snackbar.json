@@ -1,0 +1,39 @@
+{
+  "props": {
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "component": { "type": { "name": "elementType" } },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "exited": { "type": { "name": "bool" }, "default": "true" },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "resumeHideDuration": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clickAwayListener?: func<br>&#124;&nbsp;{ children: element, disableReactTree?: bool, mouseEvent?: 'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false, onClickAway?: func, touchEvent?: 'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false }, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "Snackbar",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiSnackbar-root"
+    }
+  ],
+  "spread": true,
+  "muiName": "MuiSnackbar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Snackbar/Snackbar.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-snackbar/\">Snackbar</a></li>\n<li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
+  "cssComponent": false
+}
