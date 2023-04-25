@@ -1841,7 +1841,7 @@ describe('Joy <Autocomplete />', () => {
       expect(handleInputChange.args[0][2]).to.equal('input');
     });
 
-    it.only('provides a reason on select reset', () => {
+    it('provides a reason on select reset', () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }, { name: 'bar' }];
 
