@@ -689,7 +689,7 @@ export default async function generateComponentApi(
       translationPagesDirectory = 'docs/translations/api-docs-joy';
     } else if (
       reactApi.apiPathname.match(/[\\/]base/) &&
-      reactApi.filename.includes('mui-base/src')
+      reactApi.filename.match(/[\\/]mui-base[\\/]src/)
     ) {
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
