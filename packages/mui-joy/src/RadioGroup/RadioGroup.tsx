@@ -45,6 +45,7 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
+  margin: 'var(--unstable_RadioGroup-margin)',
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
