@@ -2561,7 +2561,7 @@ export const myMY: Localization = {
   },
 };
 
-//Malay-Melayu
+// Malay-Melayu
 export const msMS: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -2636,7 +2636,7 @@ export const msMS: Localization = {
   },
 };
 
-//Nepali-नेपाली
+// Nepali-नेपाली
 export const neNP: Localization = {
   components: {
     MuiBreadcrumbs: {
