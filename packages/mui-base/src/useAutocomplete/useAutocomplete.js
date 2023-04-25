@@ -247,7 +247,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    resetInputValue(null, value, 'valueChange');
+    resetInputValue(null, value, 'reset');
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
