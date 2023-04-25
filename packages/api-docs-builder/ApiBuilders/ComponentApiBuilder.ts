@@ -686,16 +686,16 @@ export default async function generateComponentApi(
   console.log('Built API docs for', reactApi.name);
 
   const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
-  const noramlizedFilename = reactApi.filename.replace(/\\/g, '/');
+  const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
 
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     let translationPagesDirectory = 'docs/translations/api-docs';
-    if (normalizedApiPathname.startsWith('/joy-ui') && noramlizedFilename.includes('mui-joy/src')) {
+    if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
       translationPagesDirectory = 'docs/translations/api-docs-joy';
     } else if (
       normalizedApiPathname.startsWith('/base') &&
-      noramlizedFilename.includes('mui-base/src')
+      normalizedFilename.includes('mui-base/src')
     ) {
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
