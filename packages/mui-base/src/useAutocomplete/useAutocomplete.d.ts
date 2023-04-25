@@ -324,6 +324,7 @@ export type AutocompleteInputChangeReason =
   | 'input'
   | 'reset'
   | 'clear'
+  | 'blur'
   | 'selectOption'
   | 'removeOption';
 
