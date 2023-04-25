@@ -142,7 +142,7 @@ Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 ![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm)
 ![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
 
-This package provides dialogs for confirming user actions without writing boilerplate code.
+This [package](https://github.com/jonatanklosko/material-ui-confirm) provides dialogs for confirming user actions without writing boilerplate code.
 
 ## Accessibility
 
