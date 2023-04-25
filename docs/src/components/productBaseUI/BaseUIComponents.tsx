@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { styled as materialStyled } from '@mui/material/styles';
-import { unstable_useId } from '@mui/material/utils';
 import Button from '@mui/material/Button';
-import InputUnstyled from '@mui/base/Input';
 import TabsUnstyled from '@mui/base/Tabs';
 import TabsListUnstyled from '@mui/base/TabsList';
 import TabPanelUnstyled from '@mui/base/TabPanel';
@@ -28,6 +26,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import BaseButtonDemo from './components/BaseButtonDemo';
 import BaseMenuDemo from './components/BaseMenuDemo';
+import BaseInputDemo from './components/BaseInputDemo';
 
 const StyledButton = materialStyled(Button)(({ theme }) => ({
   borderRadius: 40,
@@ -52,8 +51,7 @@ const DEMOS = ['Button', 'Menu', 'Input', 'Tabs', 'Slider'] as const;
 const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => string)> = {
   Button: BaseButtonDemo.getCode,
   Menu: BaseMenuDemo.getCode,
-  Input: `
-<InputUnstyled />`,
+  Input: BaseInputDemo.getCode,
   Tabs: `
 <TabsUnstyled selectionFollowsFocus defaultValue={0}>
   <TabsListUnstyled>
@@ -69,79 +67,6 @@ const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => st
 <SliderUnstyled defaultValue={10} />
 <SliderUnstyled defaultValue={10} disabled />`,
 };
-
-const StyledTextInput = styled('div')`
-  --TextInput-height: 64px;
-  --TextInput-paddingTop: 1.75rem;
-  --TextInput-labelLineHeight: 21px;
-  --TextInput-labelScale: 0.85;
-  width: 256px;
-  padding: 0px 0.75rem;
-  display: inline-block;
-  position: relative;
-  height: var(--TextInput-height);
-  background: var(--muidocs-palette-background-paper);
-  border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
-  border-radius: var(--muidocs-shape-borderRadius);
-  outline-color: transparent;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
-  &:focus-within {
-    border-color: var(--muidocs-palette-primary-400);
-    outline: 3px solid;
-    outline-color: var(--muidocs-palette-primary-100);
-  }
-  & label {
-    line-height: var(--TextInput-labelLineHeight);
-    position: absolute;
-    display: flex;
-    align-items: center;
-    top: 50%;
-    left: calc(0.75rem - 1px);
-    overflow: hidden;
-    text-align: start;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    pointer-events: none;
-    border: 1px solid transparent;
-    transform-origin: 0 0;
-    transform: translateY(-50%);
-    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
-  }
-`;
-const StyledInput = styled('input')`
-  border: none;
-  padding: var(--TextInput-paddingTop) 0 0.25rem;
-  height: 100%;
-  font-size: 1rem;
-  background: unset;
-  &:focus {
-    outline: none;
-  }
-  &:not(:focus)::placeholder {
-    color: transparent;
-  }
-  &:not(:placeholder-shown) ~ label,
-  &:focus ~ label {
-    font-weight: 500;
-    color: var(--muidocs-palette-primary-main);
-    transform: scale(var(--TextInput-labelScale))
-      translateY(calc(-100% / var(--TextInput-labelScale)));
-  }
-`;
-const CustomInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
-  function CustomInput(props, ref) {
-    const id = unstable_useId(props.id);
-    return (
-      <React.Fragment>
-        <StyledInput ref={ref} {...props} id={id} />
-        <label htmlFor={id}>Floating label</label>
-      </React.Fragment>
-    );
-  },
-);
 
 const StyledTabsList = styled('div')`
   min-width: 300px;
@@ -304,26 +229,7 @@ export default function BaseUIComponents() {
             >
               {demo === 'Button' && <BaseButtonDemo styling={styling} />}
               {demo === 'Menu' && <BaseMenuDemo styling={styling} />}
-              {demo === 'Input' && (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                    height: '100%',
-                    py: 2,
-                  }}
-                >
-                  <InputUnstyled
-                    placeholder="Placeholder"
-                    slots={{
-                      root: unstyled ? undefined : StyledTextInput,
-                      input: unstyled ? undefined : CustomInput,
-                    }}
-                  />
-                </Box>
-              )}
+              {demo === 'Input' && <BaseInputDemo styling={styling} />}
               {demo === 'Tabs' && (
                 <Box
                   sx={{
