@@ -443,7 +443,7 @@
     "/joy-ui/react-button": "Button",
     "/joy-ui/react-checkbox": "Checkbox",
     "/joy-ui/react-input": "Input",
-    "/joy-ui/react-radio-button": "Radio Group",
+    "/joy-ui/react-radio-button": "Radio Button",
     "/joy-ui/react-select": "Select",
     "/joy-ui/react-slider": "Slider",
     "/joy-ui/react-switch": "Switch",
