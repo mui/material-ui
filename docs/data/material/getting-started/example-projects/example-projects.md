@@ -8,17 +8,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 <!-- #default-branch-switch -->
 
-- [Next.js](https://github.com/mui/material-ui/tree/master/examples/material-next) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-next-ts))
-- [Create React App](https://github.com/mui/material-ui/tree/master/examples/material-cra) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-cra-ts))
-- [Remix](https://github.com/mui/material-ui/tree/master/examples/material-remix-ts)
-- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/material-gatsby)
-- [Preact](https://github.com/mui/material-ui/tree/master/examples/material-preact)
-- [CDN](https://github.com/mui/material-ui/tree/master/examples/material-via-cdn)
-- [Express.js (server-rendered)](https://github.com/mui/material-ui/tree/master/examples/material-express-ssr)
-- [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts)
-- [Vite.js](https://github.com/mui/material-ui/tree/master/examples/material-vite) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-vite-ts))
-- [Use styled-components as style engine](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/material-cra-styled-components-ts))
-- [Next.js + @mui/styles (v4 migration helper)](https://github.com/mui/material-ui/tree/master/examples/material-next-ts-v4-v5-migration)
+{{"demo": "ExampleCollection.js", "hideToolbar": true, "bg": "inline"}}
 
 Create React App is an awesome project for learning React.
 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.
