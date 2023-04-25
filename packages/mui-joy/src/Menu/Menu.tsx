@@ -94,9 +94,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
   const handleOpenChange = React.useCallback(
-    (isOpen: boolean) => {
+    (isOpen: boolean, e?: React.MouseEvent<Element, Event> | null) => {
       if (!isOpen) {
-        onClose?.();
+        onClose?.(e);
       }
     },
     [onClose],

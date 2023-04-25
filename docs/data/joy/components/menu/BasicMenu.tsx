@@ -11,8 +11,12 @@ export default function BasicMenu() {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (
+    event?: React.MouseEvent<HTMLDivElement, MouseEvent> | null | undefined,
+  ) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
   };
 
   return (
@@ -32,6 +36,7 @@ export default function BasicMenu() {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
+        onClose={handleClose}
         aria-labelledby="basic-demo-button"
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
