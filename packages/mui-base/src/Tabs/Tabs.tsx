@@ -4,7 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUtilityClass } from './tabsClasses';
-import { TabsProps, TabsRootSlotProps, TabsTypeMap } from './Tabs.types';
+import { TabsOwnerState, TabsProps, TabsRootSlotProps, TabsTypeMap } from './Tabs.types';
 import useTabs from '../useTabs';
 import TabsProvider from '../useTabs/TabsProvider';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
@@ -29,8 +29,8 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * - [Tabs API](https://mui.com/base/react-tabs/components-api/#tabs)
  */
-const Tabs = React.forwardRef(function Tabs(
-  props: TabsProps,
+const Tabs = React.forwardRef(function Tabs<RootComponentType extends React.ElementType>(
+  props: TabsProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
@@ -49,7 +49,7 @@ const Tabs = React.forwardRef(function Tabs(
 
   const { contextValue } = useTabs(props);
 
-  const ownerState = {
+  const ownerState: TabsOwnerState = {
     ...props,
     orientation,
     direction,

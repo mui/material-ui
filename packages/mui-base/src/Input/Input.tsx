@@ -46,8 +46,8 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
  *
  * - [Input API](https://mui.com/base/react-input/components-api/#input)
  */
-const Input = React.forwardRef(function Input(
-  props: InputProps,
+const Input = React.forwardRef(function Input<RootComponentType extends React.ElementType>(
+  props: InputProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {

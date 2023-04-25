@@ -21,10 +21,10 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 /**
  * An unstyled option to be used within a Select.
  */
-const Option = React.forwardRef(function Option<OptionValue>(
-  props: OptionProps<OptionValue>,
-  forwardedRef: React.ForwardedRef<Element>,
-) {
+const Option = React.forwardRef(function Option<
+  OptionValue,
+  RootComponentType extends React.ElementType,
+>(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     children,
     component,

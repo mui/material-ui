@@ -28,8 +28,8 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
  *
  * - [Tab API](https://mui.com/base/react-tabs/components-api/#tab)
  */
-const Tab = React.forwardRef(function Tab(
-  props: TabProps,
+const Tab = React.forwardRef(function Tab<RootComponentType extends React.ElementType>(
+  props: TabProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
@@ -54,7 +54,7 @@ const Tab = React.forwardRef(function Tab(
     rootRef: handleRef,
   });
 
-  const ownerState = {
+  const ownerState: TabOwnerState = {
     ...props,
     active,
     disabled,

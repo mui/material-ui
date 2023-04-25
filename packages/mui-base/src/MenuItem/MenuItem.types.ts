@@ -1,14 +1,16 @@
-import { OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
 export interface MenuItemRootSlotPropsOverrides {}
 
-export interface MenuItemOwnerState extends MenuItemOwnProps {
-  disabled: boolean;
-  focusVisible: boolean;
-  highlighted: boolean;
-}
+export type MenuItemOwnerState = Simplify<
+  MenuItemOwnProps & {
+    disabled: boolean;
+    focusVisible: boolean;
+    highlighted: boolean;
+  }
+>;
 
 export interface MenuItemOwnProps {
   children?: React.ReactNode;
@@ -47,15 +49,19 @@ export interface MenuItemSlots {
   root?: React.ElementType;
 }
 
-export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
-  props: P & MenuItemOwnProps;
-  defaultComponent: D;
+export interface MenuItemTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'li',
+> {
+  props: MenuItemOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
-export type MenuItemProps<D extends React.ElementType = MenuItemTypeMap['defaultComponent']> =
-  OverrideProps<MenuItemTypeMap<{}, D>, D> & {
-    component?: D;
-  };
+export type MenuItemProps<
+  RootComponentType extends React.ElementType = MenuItemTypeMap['defaultComponent'],
+> = OverrideProps<MenuItemTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
+};
 
 export interface MenuItemState {
   disabled: boolean;

@@ -75,10 +75,9 @@ const useUtilityClasses = () => {
 
 const defaultPopperOptions = {};
 
-const PopperTooltip = React.forwardRef(function PopperTooltip(
-  props: PopperTooltipProps,
-  forwardedRef: React.ForwardedRef<HTMLDivElement>,
-) {
+const PopperTooltip = React.forwardRef(function PopperTooltip<
+  RootComponentType extends React.ElementType,
+>(props: PopperTooltipProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
     anchorEl,
     children,
@@ -247,8 +246,8 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * - [Popper API](https://mui.com/base/react-popper/components-api/#popper)
  */
-const Popper = React.forwardRef(function Popper(
-  props: PopperProps,
+const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
+  props: PopperProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {

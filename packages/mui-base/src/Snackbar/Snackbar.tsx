@@ -33,8 +33,8 @@ const useUtilityClasses = () => {
  *
  * - [Snackbar API](https://mui.com/base/react-snackbar/components-api/#snackbar)
  */
-const Snackbar = React.forwardRef(function Snackbar(
-  props: SnackbarProps,
+const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends React.ElementType>(
+  props: SnackbarProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {

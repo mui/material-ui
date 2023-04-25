@@ -31,9 +31,10 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
  *
  * - [Menu API](https://mui.com/base/react-menu/components-api/#menu)
  */
-const Menu = React.forwardRef(function Menu<
-  BaseComponentType extends React.ElementType = MenuTypeMap['defaultComponent'],
->(props: MenuProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
+const Menu = React.forwardRef(function Menu<RootComponentType extends React.ElementType>(
+  props: MenuProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     actions,
     anchorEl,

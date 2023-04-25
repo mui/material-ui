@@ -5,7 +5,12 @@ import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import useTabPanel from '../useTabPanel/useTabPanel';
-import { TabPanelProps, TabPanelRootSlotProps, TabPanelTypeMap } from './TabPanel.types';
+import {
+  TabPanelOwnerState,
+  TabPanelProps,
+  TabPanelRootSlotProps,
+  TabPanelTypeMap,
+} from './TabPanel.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: { hidden: boolean }) => {
@@ -27,15 +32,15 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * - [TabPanel API](https://mui.com/base/react-tabs/components-api/#tab-panel)
  */
-const TabPanel = React.forwardRef(function TabPanel(
-  props: TabPanelProps,
+const TabPanel = React.forwardRef(function TabPanel<RootComponentType extends React.ElementType>(
+  props: TabPanelProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { children, component, value, slotProps = {}, slots = {}, ...other } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
-  const ownerState = {
+  const ownerState: TabPanelOwnerState = {
     ...props,
     hidden,
   };

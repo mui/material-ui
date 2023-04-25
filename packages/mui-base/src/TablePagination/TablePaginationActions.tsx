@@ -29,8 +29,10 @@ function defaultGetAriaLabel(type: ItemAriaLabelType) {
 /**
  * @ignore - internal component.
  */
-const TablePaginationActions = React.forwardRef(function TablePaginationActions(
-  props: TablePaginationActionsProps,
+const TablePaginationActions = React.forwardRef(function TablePaginationActions<
+  RootComponentType extends React.ElementType,
+>(
+  props: TablePaginationActionsProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {

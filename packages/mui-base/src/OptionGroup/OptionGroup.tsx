@@ -35,8 +35,8 @@ function useUtilityClasses(disabled: boolean) {
  * - [OptionGroup API](https://mui.com/base/react-select/components-api/#option-group)
  */
 const OptionGroup = React.forwardRef(function OptionGroup<
-  BaseComponentType extends React.ElementType = OptionGroupTypeMap['defaultComponent'],
->(props: OptionGroupProps<BaseComponentType>, forwardedRef: React.ForwardedRef<Element>) {
+  RootComponentType extends React.ElementType,
+>(props: OptionGroupProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const { component, disabled = false, slotProps = {}, slots = {}, ...other } = props;
 
   const Root = component || slots?.root || 'li';
