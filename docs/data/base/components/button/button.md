@@ -89,7 +89,7 @@ In TypeScript, you can specify the custom component type used in the `slots.root
 The same applies for props specific to custom primitive elements:
 
 ```tsx
-<Button<'img'> slots={{ root: 'img' }} src="button.png" />
+<Button<'img'> slots={{ root: 'img' }} src='button.png' />
 ```
 
 ## Hook
