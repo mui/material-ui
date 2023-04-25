@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
-import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Modal from '@mui/base/Modal';
 
-export default function ModalUnstyledDemo() {
+export default function ModalDemo() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -13,23 +13,23 @@ export default function ModalUnstyledDemo() {
       <button type="button" onClick={handleOpen}>
         Open modal
       </button>
-      <Modal
+      <StyledModal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
         open={open}
         onClose={handleClose}
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
           <h2 id="unstyled-modal-title">Text in a modal</h2>
           <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }
 
-const BackdropUnstyled = React.forwardRef<
+const Backdrop = React.forwardRef<
   HTMLDivElement,
   { open?: boolean; className: string }
 >((props, ref) => {
@@ -43,7 +43,7 @@ const BackdropUnstyled = React.forwardRef<
   );
 });
 
-const Modal = styled(ModalUnstyled)`
+const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -55,7 +55,7 @@ const Modal = styled(ModalUnstyled)`
   justify-content: center;
 `;
 
-const Backdrop = styled(BackdropUnstyled)`
+const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
   right: 0;

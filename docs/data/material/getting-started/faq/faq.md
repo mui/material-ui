@@ -254,7 +254,7 @@ page](/material-ui/customization/theming/) to learn about theme customization.
 
 ## Why does component X require a DOM node in a prop instead of a ref object?
 
-Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
+Components like the [Portal](/base/react-portal/components-api/#portal) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
 It seems convenient to simply pass a ref object in those props and let MUI access the current value.
 This works in a simple scenario:
 

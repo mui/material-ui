@@ -24,14 +24,14 @@ export type UseSlotPropsParameters<
    */
   elementType: ElementType | undefined;
   /**
-   * The `slotProps.*` of the unstyled component.
+   * The `slotProps.*` of the Base UI component.
    */
   externalSlotProps:
     | ExternalSlotProps
     | ((ownerState: OwnerState) => ExternalSlotProps)
     | undefined;
   /**
-   * The ownerState of the unstyled component.
+   * The ownerState of the Base UI component.
    */
   ownerState: OwnerState;
 };

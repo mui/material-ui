@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { TabPanelUnstyledOwnProps } from '@mui/base/TabPanelUnstyled';
+import { TabPanelOwnProps } from '@mui/base/TabPanel';
 import { SxProps } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -25,7 +25,7 @@ export interface TabPanelPropsSizeOverrides {}
 
 export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<TabPanelUnstyledOwnProps, 'value' | 'slots' | 'slotProps'> & {
+    Omit<TabPanelOwnProps, 'value' | 'slots' | 'slotProps'> & {
       /**
        * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
        * @default 0

@@ -47,6 +47,7 @@ module.exports = [
   { pathname: '/joy-ui/api/select' },
   { pathname: '/joy-ui/api/sheet' },
   { pathname: '/joy-ui/api/slider' },
+  { pathname: '/joy-ui/api/stack' },
   { pathname: '/joy-ui/api/svg-icon' },
   { pathname: '/joy-ui/api/switch' },
   { pathname: '/joy-ui/api/tab' },

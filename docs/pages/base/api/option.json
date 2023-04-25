@@ -1,0 +1,37 @@
+{
+  "props": {
+    "value": { "type": { "name": "any" }, "required": true },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "Option",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiOption-root"
+    }
+  ],
+  "classes": {
+    "classes": ["disabled", "highlighted", "selected"],
+    "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" }
+  },
+  "spread": true,
+  "muiName": "MuiOption",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-base/src/Option/Option.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

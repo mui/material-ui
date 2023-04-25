@@ -200,17 +200,6 @@ const openRolesData = [
     ],
   },
   {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate',
-        description:
-          'You will build a thriving and connected developer community around our suite of products.',
-        url: '/careers/developer-advocate/',
-      },
-    ],
-  },
-  {
     title: 'Marketing',
     roles: [
       {
