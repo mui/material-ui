@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Popper from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';

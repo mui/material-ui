@@ -17,7 +17,7 @@ import menuReducer from './menuReducer';
  *
  * Demos:
  *
- * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base/react-menu/#hooks)
  *
  * API:
  *

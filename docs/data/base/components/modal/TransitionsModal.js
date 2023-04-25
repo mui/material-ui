@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Box, styled } from '@mui/system';
-import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Modal from '@mui/base/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);
@@ -13,13 +13,13 @@ export default function TransitionsModal() {
   return (
     <div>
       <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
+      <StyledModal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Fade in={open}>
           <Box sx={style}>
@@ -29,12 +29,12 @@ export default function TransitionsModal() {
             </span>
           </Box>
         </Fade>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }
 
-const BackdropUnstyled = React.forwardRef((props, ref) => {
+const Backdrop = React.forwardRef((props, ref) => {
   const { open, ...other } = props;
   return (
     <Fade in={open}>
@@ -43,11 +43,11 @@ const BackdropUnstyled = React.forwardRef((props, ref) => {
   );
 });
 
-BackdropUnstyled.propTypes = {
+Backdrop.propTypes = {
   open: PropTypes.bool,
 };
 
-const Modal = styled(ModalUnstyled)`
+const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -59,7 +59,7 @@ const Modal = styled(ModalUnstyled)`
   justify-content: center;
 `;
 
-const Backdrop = styled(BackdropUnstyled)`
+const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
   right: 0;

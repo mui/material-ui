@@ -15,5 +15,12 @@ export default function ThemeProvider({ theme: themeInput, ...props }) {
 }
 
 ThemeProvider.propTypes = {
-  theme: PropTypes.object,
+  /**
+   * Your component tree.
+   */
+  children: PropTypes.node,
+  /**
+   * A theme object. You can provide a function to extend the outer theme.
+   */
+  theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };

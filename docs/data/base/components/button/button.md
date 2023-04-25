@@ -1,13 +1,13 @@
 ---
 product: base
-title: Unstyled React Button component and hook
-components: ButtonUnstyled
+title: React Button component and hook
+components: Button
 hooks: useButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
-# Unstyled Button
+# Button
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
@@ -17,7 +17,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 ## Introduction
 
-The Unstyled Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
+The Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
 {{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -28,16 +28,16 @@ The Unstyled Button component replaces the native HTML `<button>` element, and o
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 export default function MyApp() {
-  return <ButtonUnstyled>{/* button text */}</ButtonUnstyled>;
+  return <Button>{/* button text */}</Button>;
 }
 ```
 
 ### Basics
 
-The Unstyled Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+The Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
@@ -46,7 +46,7 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 
 ### Anatomy
 
-The Unstyled Button component is composed of a root `<button>` slot with no interior slots:
+The Button component is composed of a root `<button>` slot with no interior slots:
 
 ```html
 <button class="BaseButton-root">
@@ -64,18 +64,18 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
-<ButtonUnstyled component="div" />
+<Button component="div" />
 ```
 
-If you provide a non-interactive element such as a `<span>`, the Unstyled Button component will automatically add the necessary accessibility attributes.
+If you provide a non-interactive element such as a `<span>`, the Button component will automatically add the necessary accessibility attributes.
 
 Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
-If an Unstyled Button is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
-Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+If a Button is customized with a non-button element (i.e. `<Button component="span" />`), it will not submit the form it's in when clicked.
+Similarly, `<Button component="span" type="reset">` will not reset its parent form.
 :::
 
 ## Hook
@@ -96,11 +96,16 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The `useButton` hook requires the `ref` of the element it's used on.
-
 The following demo shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+If you use a ref to store a reference to the button, pass it to the `useButton`'s `ref` parameter, as shown in the demo above.
+It will get merged with a ref used internally in the hook.
+
+:::warning
+Do not add the `ref` parameter to the button element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+:::
 
 ## Customization
 
@@ -111,14 +116,14 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 ### Custom elements
 
-The Unstyled Button accepts a wide range of custom elements beyond HTML elements.
+The Button accepts a wide range of custom elements beyond HTML elements.
 You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
 ### Focus on disabled buttons
 
-Similarly to the native HTML `<button>` element, the Unstyled Button component can't receive focus when it's disabled.
+Similarly to the native HTML `<button>` element, the Button component can't receive focus when it's disabled.
 This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
 
 The `focusableWhenDisabled` prop lets you change this behavior.

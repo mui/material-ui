@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 export default function DivButton() {
-  return <ButtonUnstyled component="div">Button</ButtonUnstyled>;
+  return <Button component="div">Button</Button>;
 }
