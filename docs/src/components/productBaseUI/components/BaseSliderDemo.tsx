@@ -96,9 +96,7 @@ BaseTabsDemo.getCode = (styling?: 'system') => {
     return `import SliderUnstyled from '@mui/base/Slider';
 import { styled } from '@mui/system';
 
-const StyledSlider = styled('span')\`
-  // 🪄 styles here.
-\`;
+const StyledSlider = styled('span')\`/* CSS… */\`;
 
 <SliderUnstyled slots={{ root: StyledSlider }} defaultValue={10} />
 `;

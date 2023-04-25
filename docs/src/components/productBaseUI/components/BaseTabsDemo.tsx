@@ -87,15 +87,9 @@ import TabPanelUnstyled from '@mui/base/TabPanel';
 import TabUnstyled from '@mui/base/Tab';
 import { styled } from '@mui/system';
 
-const StyledTabsList = styled('div')\`
-  // 🪄 styles here.
-\`;
-const StyledTabPanel = styled('div')\`
-  // 🪄 styles here.
-\`;
-const StyledTab = styled('button')\`
-  // 🪄 styles here.
-\`;
+const StyledTabsList = styled('div')\`/* CSS… */\`;
+const StyledTabPanel = styled('div')\`/* CSS… */\`;
+const StyledTab = styled('button')\`/* CSS… */\`;
 
 <TabsUnstyled selectionFollowsFocus defaultValue={0}>
   <TabsListUnstyled slots={{ root: StyledTabsList }}>

@@ -3,6 +3,7 @@ import { unstable_useId } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import InputUnstyled from '@mui/base/Input';
 import { styled } from '@mui/system';
+import Edit from '@mui/icons-material/Edit';
 
 const Field = styled('div')`
   --TextInput-height: 64px;
@@ -11,7 +12,7 @@ const Field = styled('div')`
   --TextInput-labelScale: 0.85;
   width: 256px;
   padding: 0px 0.75rem;
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   height: var(--TextInput-height);
   background: var(--muidocs-palette-background-paper);
@@ -19,13 +20,14 @@ const Field = styled('div')`
   border-color: var(--muidocs-palette-grey-300);
   border-radius: var(--muidocs-shape-borderRadius);
   outline-color: transparent;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
   &:focus-within {
     border-color: var(--muidocs-palette-primary-400);
     outline: 3px solid;
     outline-color: var(--muidocs-palette-primary-100);
+    & svg {
+      opacity: 1;
+      color: var(--muidocs-palette-grey-600);
+    }
   }
   & label {
     line-height: var(--TextInput-labelLineHeight);
@@ -37,12 +39,35 @@ const Field = styled('div')`
     overflow: hidden;
     text-align: start;
     text-overflow: ellipsis;
+    font-weight: 500;
+    color: var(--muidocs-palette-grey-600);
     white-space: nowrap;
     pointer-events: none;
     border: 1px solid transparent;
     transform-origin: 0 0;
     transform: translateY(-50%);
-    transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+    transition: transform 0.12s ease-out;
+  }
+  & svg {
+    align-self: center;
+    color: var(--muidocs-palette-grey-500);
+    opacity: 0;
+  }
+
+  :where([data-mui-color-scheme='dark']) & {
+    border-color: var(--muidocs-palette-primaryDark-800);
+    &:focus-within {
+      border-color: var(--muidocs-palette-primaryDark-300);
+      outline-color: var(--muidocs-palette-primaryDark-500);
+
+      & svg {
+        color: var(--muidocs-palette-primaryDark-300);
+      }
+    }
+
+    & label {
+      color: var(--muidocs-palette-primaryDark-300);
+    }
   }
 `;
 const StyledInput = styled('input')`
@@ -51,6 +76,7 @@ const StyledInput = styled('input')`
   height: 100%;
   font-size: 1rem;
   background: unset;
+  flex: 1;
   &:focus {
     outline: none;
   }
@@ -59,10 +85,7 @@ const StyledInput = styled('input')`
   }
   &:not(:placeholder-shown) ~ label,
   &:focus ~ label {
-    font-weight: 500;
-    color: var(--muidocs-palette-primary-main);
-    transform: scale(var(--TextInput-labelScale))
-      translateY(calc(-100% / var(--TextInput-labelScale)));
+    transform: translateY(-100%) scale(var(--TextInput-labelScale));
   }
 `;
 const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
@@ -95,6 +118,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' }) {
           root: !styling ? undefined : Field,
           input: !styling ? undefined : FloatingLabelInput,
         }}
+        endAdornment={<Edit />}
       />
     </Box>
   );
@@ -102,12 +126,10 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' }) {
 BaseInputDemo.getCode = (styling?: 'system') => {
   if (styling === 'system') {
     return `import Input from '@mui/base/Input';
-  const Field = styled('div')\`
-  // 🪄 styles here.
-\`;
-const StyledInput = styled('input')\`
-  // 🪄 styles here.
-\`;
+    
+const Field = styled('div')\`/* CSS… */\`;
+const StyledInput = styled('input')\`/* CSS… */\`;
+
 const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);

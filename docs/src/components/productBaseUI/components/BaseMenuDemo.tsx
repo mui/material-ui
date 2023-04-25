@@ -6,8 +6,12 @@ import MenuItemUnstyled from '@mui/base/MenuItem';
 import PopperUnstyled from '@mui/base/Popper';
 import { ListActionTypes } from '@mui/base/useList';
 import { styled } from '@mui/system';
+import Person from '@mui/icons-material/Person';
 
 const StyledMenuButton = styled('button')`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -17,28 +21,39 @@ const StyledMenuButton = styled('button')`
   line-height: 1.5;
   background: var(--muidocs-palette-background-paper);
   border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
+  border-color: var(--muidocs-palette-grey-200);
   color: var(--muidocs-palette-text-primary);
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
   outline-color: transparent;
+  & svg {
+    color: var(--muidocs-palette-grey-600);
+  }
   &.Mui-focusVisible {
     outline: 3px solid;
     outline-color: var(--muidocs-palette-grey-300);
   }
+  :where([data-mui-color-scheme='dark']) & {
+    border-color: var(--muidocs-palette-primaryDark-700);
+  }
 `;
 const StyledPopper = styled(PopperUnstyled)``;
 const StyledListbox = styled('ul')`
-  margin: 4px 0;
+  margin: 8px 0;
   padding: 4px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
+  border-color: var(--muidocs-palette-grey-200);
   background: var(--muidocs-palette-background-paper);
-  box-shadow: var(--muidocs-shadows-2);
+  box-shadow: 0px 4px 40px rgba(62, 80, 96, 0.1);
+
+  :where([data-mui-color-scheme='dark']) & {
+    border-color: var(--muidocs-palette-primaryDark-700);
+    box-shadow: 0px 4px 40px rgba(11, 13, 14, 0.5);
+  }
 `;
 const StyledMenuItem = styled('li')`
   display: flex;
@@ -46,12 +61,25 @@ const StyledMenuItem = styled('li')`
   padding: 6px 12px;
   min-height: 24px;
   border-radius: 4px;
+  border: 1px solid transparent;
   gap: 4px;
   &:hover,
   &.Mui-focusVisible {
     cursor: default;
     outline: none;
-    background: var(--muidocs-palette-grey-100);
+    color: var(--muidocs-palette-text-primary);
+    background: var(--muidocs-palette-grey-50);
+    border-color: var(--muidocs-palette-grey-100);
+  }
+
+  :where([data-mui-color-scheme='dark']) & {
+    color: var(--muidocs-palette-grey-300);
+    &:hover,
+    &.Mui-focusVisible {
+      color: var(--muidocs-palette-text-primary);
+      background: var(--muidocs-palette-primaryDark-700);
+      border-color: var(--muidocs-palette-primaryDark-500);
+    }
   }
 `;
 
@@ -113,8 +141,6 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' }) {
         alignItems: 'center',
         gap: 2,
         height: '100%',
-        pt: 2,
-        pb: 10,
       }}
     >
       <ButtonUnstyled
@@ -128,6 +154,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' }) {
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
       >
+        <Person />
         My account
       </ButtonUnstyled>
       <MenuUnstyled
@@ -141,7 +168,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' }) {
           root: !styling ? undefined : StyledPopper,
           listbox: !styling ? undefined : StyledListbox,
         }}
-        slotProps={{ listbox: { id: 'simple-menu' } }}
+        slotProps={{ root: { placement: 'top' }, listbox: { id: 'simple-menu' } }}
       >
         <MenuItemUnstyled
           slots={{ root: !styling ? undefined : StyledMenuItem }}
@@ -173,52 +200,9 @@ import Menu, { MenuActions } from '@mui/base/Menu';
 import MenuItem from '@mui/base/MenuItem';
 import Popper from '@mui/base/Popper';
 
-const StyledMenuButton = styled('button')\`
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 12px 16px;
-  line-height: 1.5;
-  background: var(--muidocs-palette-background-paper);
-  border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
-  color: var(--muidocs-palette-text-primary);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
-  outline-color: transparent;
-  &.Mui-focusVisible {
-    outline: 3px solid;
-    outline-color: var(--muidocs-palette-grey-300);
-  }
-\`;
-const StyledListbox = styled('ul')\`
-  margin: 4px 0;
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
-  background: var(--muidocs-palette-background-paper);
-  box-shadow: var(--muidocs-shadows-2);
-\`;
-const StyledMenuItem = styled('li')\`
-  display: flex;
-  align-items: center;
-  padding: 6px 12px;
-  min-height: 24px;
-  border-radius: 4px;
-  gap: 4px;
-  &:hover,
-  &.Mui-focusVisible {
-    cursor: default;
-    outline: none;
-    background: var(--muidocs-palette-grey-100);
-  }
-\`;
+const StyledMenuButton = styled('button')\`/* CSS… */\`;
+const StyledListbox = styled('ul')\`/* CSS… */\`;
+const StyledMenuItem = styled('li')\`/* CSS… */\`;
 
 function Demo() {
   const [buttonElement, setButtonElement] = React.useState(null);
