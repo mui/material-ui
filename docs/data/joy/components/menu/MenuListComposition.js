@@ -1,12 +1,12 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/PopperUnstyled';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
 
-const Popup = styled(PopperUnstyled)({
+const Popup = styled(Popper)({
   zIndex: 1000,
 });
 
@@ -14,9 +14,7 @@ export default function MenuListComposition() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    if (!anchorEl) {
-      setAnchorEl(event.currentTarget);
-    }
+    setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);

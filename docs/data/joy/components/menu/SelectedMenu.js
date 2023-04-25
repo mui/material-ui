@@ -9,12 +9,12 @@ export default function SelectedMenu() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    if (!anchorEl) {
-      setAnchorEl(event.currentTarget);
-    }
+    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const createHandleClose = (index) => () => {
-    setAnchorEl(null);
+  const createHandleClose = (index) => (event) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
     if (typeof index === 'number') {
       setSelectedIndex(index);
     }

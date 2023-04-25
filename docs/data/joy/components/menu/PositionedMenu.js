@@ -12,12 +12,12 @@ export default function PositionedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    if (!anchorEl) {
-      setAnchorEl(event.currentTarget);
-    }
+    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (event) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
   };
 
   return (
