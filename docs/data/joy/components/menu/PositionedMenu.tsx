@@ -37,7 +37,6 @@ export default function PositionedMenu() {
         id="positioned-demo-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
         aria-labelledby="positioned-demo-button"
         placement="bottom-end"
       >

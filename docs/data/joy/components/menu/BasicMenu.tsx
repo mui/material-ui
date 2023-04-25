@@ -8,9 +8,7 @@ export default function BasicMenu() {
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!anchorEl) {
-      setAnchorEl(event.currentTarget);
-    }
+    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
 
   const handleClose = () => {
@@ -34,7 +32,6 @@ export default function BasicMenu() {
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
         aria-labelledby="basic-demo-button"
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
