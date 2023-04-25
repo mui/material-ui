@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs/form-control',
+    'docs/translations/api-docs-joy/form-control',
     false,
     /form-control.*.json$/,
   );

@@ -2,68 +2,29 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The content of the component.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "orientation": "The component orientation.",
-    "size": "The size of the component (affect other nested list* components). To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>.",
-    "wrap": "Only for horizontal list. If <code>true</code>, the list sets the flex-wrap to &quot;wrap&quot; and adjust margin to have gap-like behavior (will move to <code>gap</code> in the future)."
+    "dense": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used for the list and list items. The prop is available to descendant components as the <code>dense</code> context.",
+    "disablePadding": "If <code>true</code>, vertical padding is removed from the list.",
+    "subheader": "The content of the subheader, normally <code>ListSubheader</code>.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Classname applied to the root element." },
-    "nesting": {
-      "description": "Classname applied to the root element if wrapped with nested context."
-    },
-    "scoped": { "description": "Classname applied to the root element if `scoped` is true." },
-    "sizeSm": { "description": "Classname applied to the root element if `size=\"sm\"`." },
-    "sizeMd": { "description": "Classname applied to the root element if `size=\"md\"`." },
-    "sizeLg": { "description": "Classname applied to the root element if `size=\"lg\"`." },
-    "colorPrimary": {
-      "description": "Classname applied to the root element if `color=\"primary\"`."
-    },
-    "colorNeutral": {
-      "description": "Classname applied to the root element if `color=\"neutral\"`."
-    },
-    "colorDanger": {
-      "description": "Classname applied to the root element if `color=\"danger\"`."
-    },
-    "colorInfo": { "description": "Classname applied to the root element if `color=\"info\"`." },
-    "colorSuccess": {
-      "description": "Classname applied to the root element if `color=\"success\"`."
-    },
-    "colorWarning": {
-      "description": "Classname applied to the root element if `color=\"warning\"`."
-    },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+    "root": { "description": "Styles applied to the root element." },
+    "padding": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+      "conditions": "<code>disablePadding={true}</code>"
     },
-    "variantPlain": {
-      "description": "Classname applied to the root element if `variant=\"plain\"`."
-    },
-    "variantOutlined": {
-      "description": "Classname applied to the root element if `variant=\"outlined\"`."
-    },
-    "variantSoft": {
-      "description": "Classname applied to the root element if `variant=\"soft\"`."
-    },
-    "variantSolid": {
-      "description": "Classname applied to the root element if `variant=\"solid\"`."
-    },
-    "horizontal": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>orientation=\"horizontal\"</code>"
+      "conditions": "dense"
     },
-    "vertical": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "subheader": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "conditions": "a <code>subheader</code> is provided"
     }
-  },
-  "slotDescriptions": { "root": "The component that renders the root." }
+  }
 }

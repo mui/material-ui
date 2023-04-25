@@ -1,94 +1,98 @@
 {
   "componentDescription": "## ARIA\n\nIf the progress bar is describing the loading progress of a particular region of a page,\nyou should use `aria-describedby` to point to the progress bar, and set the `aria-busy`\nattribute to `true` on that region until it has finished loading.",
   "propDescriptions": {
-    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "determinate": "The boolean to select a variant. Use indeterminate when there is no progress value.",
-    "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "thickness": "The thickness of the bar.",
-    "value": "The value of the progress indicator for the determinate variant. Value between 0 and 100.",
-    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+    "value": "The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.",
+    "valueBuffer": "The value for the buffer variant. Value between 0 and 100.",
+    "variant": "The variant to use. Use indeterminate or query when there is no progress value."
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
-    "determinate": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>determinate</code> is true"
-    },
+    "root": { "description": "Styles applied to the root element." },
     "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"primary\"</code>"
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root and bar2 element",
+      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant=\"buffer\"</code>"
     },
-    "colorNeutral": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>color=\"neutral\"</code>"
+    "colorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root and bar2 elements",
+      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant=\"buffer\"</code>"
     },
-    "colorDanger": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "determinate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"danger\"</code>"
+      "conditions": "<code>variant=\"determinate\"</code>"
     },
-    "colorInfo": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "indeterminate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"info\"</code>"
+      "conditions": "<code>variant=\"indeterminate\"</code>"
     },
-    "colorSuccess": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "buffer": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"success\"</code>"
+      "conditions": "<code>variant=\"buffer\"</code>"
     },
-    "colorWarning": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+    "query": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"warning\"</code>"
+      "conditions": "<code>variant=\"query\"</code>"
     },
-    "colorContext": {
-      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color inversion is triggered"
+    "dashed": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the additional bar element",
+      "conditions": "<code>variant=\"buffer\"</code>"
     },
-    "sizeSm": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"sm\"</code>"
+    "dashedColorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the additional bar element",
+      "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"primary\"</code>"
     },
-    "sizeMd": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"md\"</code>"
+    "dashedColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the additional bar element",
+      "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"secondary\"</code>"
     },
-    "sizeLg": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>size=\"lg\"</code>"
+    "bar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the layered bar1 and bar2 elements"
     },
-    "variantPlain": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"plain\"</code>"
+    "barColorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar elements",
+      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant</code> not \"buffer\""
     },
-    "variantOutlined": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"outlined\"</code>"
+    "barColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar elements",
+      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant</code> not \"buffer\""
     },
-    "variantSoft": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"soft\"</code>"
+    "bar1Indeterminate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar1 element",
+      "conditions": "<code>variant=\"indeterminate or query\"</code>"
     },
-    "variantSolid": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>variant=\"solid\"</code>"
+    "bar1Determinate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar1 element",
+      "conditions": "<code>variant=\"determinate\"</code>"
+    },
+    "bar1Buffer": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar1 element",
+      "conditions": "<code>variant=\"buffer\"</code>"
+    },
+    "bar2Indeterminate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar2 element",
+      "conditions": "<code>variant=\"indeterminate or query\"</code>"
+    },
+    "bar2Buffer": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the bar2 element",
+      "conditions": "<code>variant=\"buffer\"</code>"
     }
-  },
-  "slotDescriptions": { "root": "The component that renders the root." }
+  }
 }
