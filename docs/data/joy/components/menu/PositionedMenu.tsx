@@ -14,8 +14,10 @@ export default function PositionedMenu() {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (event?: React.MouseEvent<Element, Event>) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
   };
 
   return (
@@ -35,6 +37,7 @@ export default function PositionedMenu() {
         id="positioned-demo-menu"
         anchorEl={anchorEl}
         open={open}
+        onClose={handleClose}
         aria-labelledby="positioned-demo-button"
         placement="bottom-end"
       >

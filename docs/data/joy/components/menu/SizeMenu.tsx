@@ -12,8 +12,10 @@ export default function SizeMenu() {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (event?: React.MouseEvent<Element, Event>) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
   };
 
   return (
@@ -34,6 +36,7 @@ export default function SizeMenu() {
         size="sm"
         anchorEl={anchorEl}
         open={open}
+        onClose={handleClose}
         aria-labelledby="size-demo-button"
       >
         <MenuItem onClick={handleClose}>

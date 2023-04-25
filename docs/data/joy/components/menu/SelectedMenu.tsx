@@ -9,18 +9,17 @@ export default function SelectedMenu() {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(1);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
+    setAnchorEl(event.currentTarget);
   };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const createHandleClose = (index: number) => {
-    if (typeof index === 'number') {
-      setSelectedIndex(index);
-    }
-  };
+  const createHandleClose =
+    (index: number) => (event?: React.MouseEvent<Element, Event>) => {
+      if (event && event.relatedTarget !== anchorEl) {
+        setAnchorEl(null);
+      }
+      if (typeof index === 'number') {
+        setSelectedIndex(index);
+      }
+    };
 
   return (
     <div>
@@ -40,33 +39,24 @@ export default function SelectedMenu() {
         id="selected-demo-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={() => createHandleClose(-1)}
+        onClose={createHandleClose(-1)}
         aria-labelledby="selected-demo-button"
       >
         <MenuItem
           {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
-          onClick={() => {
-            handleClose();
-            createHandleClose(0);
-          }}
+          onClick={createHandleClose(0)}
         >
           Random project
         </MenuItem>
         <MenuItem
           {...(selectedIndex === 1 && { selected: true, variant: 'soft' })}
-          onClick={() => {
-            handleClose();
-            createHandleClose(1);
-          }}
+          onClick={createHandleClose(1)}
         >
           Production - web
         </MenuItem>
         <MenuItem
           {...(selectedIndex === 2 && { selected: true, variant: 'soft' })}
-          onClick={() => {
-            handleClose();
-            createHandleClose(2);
-          }}
+          onClick={createHandleClose(2)}
         >
           Staging - web
         </MenuItem>

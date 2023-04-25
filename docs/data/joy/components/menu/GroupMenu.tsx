@@ -17,8 +17,10 @@ export default function BasicMenu() {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (event?: React.MouseEvent<Element, Event>) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
   };
 
   return (
@@ -39,6 +41,7 @@ export default function BasicMenu() {
         id="group-menu"
         anchorEl={anchorEl}
         open={open}
+        onClose={handleClose}
         aria-labelledby="group-demo-button"
         sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}
       >
