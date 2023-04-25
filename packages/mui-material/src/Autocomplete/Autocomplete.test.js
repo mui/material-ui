@@ -2266,25 +2266,25 @@ describe('<Autocomplete />', () => {
 
     it('provides a reason on select reset', () => {
       const handleInputChange = spy();
-      const options = [{ name: 'foo' }, {name: 'bar'}];
+      const options = [{ name: 'foo' }, { name: 'bar' }];
 
-      const TestComponent = () => {
-        const [value, setValue] = React.useState(options[0])
-        return <React.Fragment> 
-          <Autocomplete
-            onInputChange={handleInputChange}
-            openOnFocus
-            options={options}
-            getOptionLabel={(option) => option.name}
-            renderInput={(params) => <TextField {...params} autoFocus />}
-            value={value}
-          />
-          <button onClick={() => setValue(options[1])}>Reset</button>
-        </React.Fragment>;
+      function MyComponent() {
+        const [value, setValue] = React.useState(options[0]);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              onInputChange={handleInputChange}
+              openOnFocus
+              options={options}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => <TextField {...params} autoFocus />}
+              value={value}
+            />
+            <button onClick={() => setValue(options[1])}>Reset</button>
+          </React.Fragment>
+        );
       };
-      render(
-        <TestComponent/>
-      );
+      render(<MyComponent />);
       const resetBtn = screen.getByText('Reset');
 
       fireEvent.click(resetBtn);
@@ -2293,7 +2293,6 @@ describe('<Autocomplete />', () => {
       expect(handleInputChange.args[2][1]).to.equal(options[1].name);
       expect(handleInputChange.args[2][2]).to.equal('reset');
     });
-
   });
 
   describe('prop: blurOnSelect', () => {
