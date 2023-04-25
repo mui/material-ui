@@ -1845,7 +1845,7 @@ describe('Joy <Autocomplete />', () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }, { name: 'bar' }];
 
-      const TestComponent = () => {
+      function MyComponent() {
         const [value, setValue] = React.useState(options[0]);
         return (
           <React.Fragment>
@@ -1861,7 +1861,7 @@ describe('Joy <Autocomplete />', () => {
           </React.Fragment>
         );
       };
-      render(<TestComponent />);
+      render(<MyComponent />);
       const resetBtn = screen.getByText('Reset');
 
       fireEvent.click(resetBtn);
