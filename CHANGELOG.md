@@ -8,7 +8,7 @@ _Apr 25, 2023_
 
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
-- ⚠️ **[BREAKING CHANGE]** The `Unstyled` suffix has been removed from Base UI component names, including names of types and CSS classes. A related codemod script is also provided.
+- ⚠️ **[BREAKING CHANGE]** The `Unstyled` suffix has been removed from Base UI component names, including names of types and other related identifiers – a codemod script is provided to assist with the change.
 - 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.12.2`
@@ -23,7 +23,13 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 27 -->[base] Remove unstyled suffix from Base components + Codemod script (#36873) @hbjORbj
 
-  The `Unstyled` suffix has been removed from component names, including names of types and CSS classes.
+  The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
+
+  You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/src/v5.0.0/base-remove-unstyled-suffix.js) to help with the migration:
+
+  ```sh
+  npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
+  ```
 
 #### Changes
 
