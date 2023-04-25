@@ -1865,7 +1865,7 @@ describe('Joy <Autocomplete />', () => {
 
       fireEvent.click(resetBtn);
 
-      expect(handleInputChange.callCount).to.equal(3);
+      expect(handleInputChange.callCount).to.equal(4);
       expect(handleInputChange.args[2][1]).to.equal(options[1].name);
       expect(handleInputChange.args[2][2]).to.equal('reset');
     });
