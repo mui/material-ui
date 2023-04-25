@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
+import { styled as materialStyled } from '@mui/material/styles';
 import { unstable_useId } from '@mui/material/utils';
+import Button from '@mui/material/Button';
 import ButtonUnstyled from '@mui/base/Button';
 import InputUnstyled from '@mui/base/Input';
 import MenuUnstyled, { MenuActions } from '@mui/base/Menu';
@@ -20,7 +22,6 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import Switch from '@mui/material/Switch';
 import TableChartRounded from '@mui/icons-material/TableChartRounded';
 import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
@@ -30,14 +31,30 @@ import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import BaseButtonDemo from './components/BaseButtonDemo';
+
+const StyledButton = materialStyled(Button)(({ theme }) => ({
+  borderRadius: 40,
+  padding: theme.spacing('2px', 1),
+  fontSize: theme.typography.pxToRem(12),
+  lineHeight: 18 / 12,
+  '&.MuiButton-text': {
+    color: theme.palette.grey[400],
+  },
+  '&.MuiButton-outlined': {
+    color: '#fff',
+    backgroundColor: theme.palette.primary[700],
+    borderColor: theme.palette.primary[500],
+    '&:hover': {
+      backgroundColor: theme.palette.primary[700],
+    },
+  },
+}));
 
 const DEMOS = ['Button', 'Menu', 'Input', 'Tabs', 'Slider'] as const;
 
-const CODES: Record<(typeof DEMOS)[number], string> = {
-  Button: `
-<ButtonUnstyled>Button</ButtonUnstyled>
-<ButtonUnstyled disabled>Button</ButtonUnstyled>
-`,
+const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => string)> = {
+  Button: BaseButtonDemo.getCode,
   Menu: `
 <ButtonUnstyled>Button</ButtonUnstyled>
 <MenuUnstyled>
@@ -63,33 +80,6 @@ const CODES: Record<(typeof DEMOS)[number], string> = {
 <SliderUnstyled defaultValue={10} />
 <SliderUnstyled defaultValue={10} disabled />`,
 };
-
-const StyledButton = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: bold;
-  font-size: 0.875rem;
-  background-color: var(--muidocs-palette-primary-500);
-  padding: 12px 24px;
-  border-radius: 12px;
-  color: white;
-  transition: all 150ms ease;
-  cursor: pointer;
-  border: none;
-
-  &.Mui-active {
-    background-color: var(--muidocs-palette-primary-600);
-  }
-
-  &.Mui-focusVisible {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
-    outline: none;
-  }
-
-  &.Mui-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
 
 const StyledMenuButton = styled('button')`
   font-family: IBM Plex Sans, sans-serif;
@@ -418,7 +408,8 @@ const StyledSlider = styled('span')`
 `;
 
 export default function BaseUIComponents() {
-  const [unstyled, setUnstyled] = React.useState(false);
+  const [unstyled] = React.useState(false);
+  const [styling, setStyling] = React.useState<undefined | 'system'>(undefined);
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number]>(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <TableChartRounded fontSize="small" />,
@@ -454,26 +445,24 @@ export default function BaseUIComponents() {
         </Grid>
         <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
-              {demo === 'Button' && (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                    height: '100%',
-                    py: 2,
-                  }}
-                >
-                  <ButtonUnstyled slots={{ root: unstyled ? undefined : StyledButton }}>
-                    Button
-                  </ButtonUnstyled>
-                  <ButtonUnstyled disabled slots={{ root: unstyled ? undefined : StyledButton }}>
-                    Disabled
-                  </ButtonUnstyled>
-                </Box>
-              )}
+            <Frame.Demo
+              className="mui-default-theme"
+              sx={(theme) => ({
+                flexGrow: 1,
+                bgcolor: 'background.paper',
+                backgroundSize: '100%, 72px',
+                backgroundImage: `${(theme.vars || theme).palette.gradients.lightGrayRadio}, ${
+                  (theme.vars || theme).palette.patterns.triangle
+                }`,
+                ...theme.applyDarkStyles({
+                  backgroundSize: '72px, 100%',
+                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
+                    (theme.vars || theme).palette.patterns.triangle
+                  }`,
+                }),
+              })}
+            >
+              {demo === 'Button' && <BaseButtonDemo styling={styling} />}
               {demo === 'Menu' && (
                 <Box
                   sx={{
@@ -580,41 +569,59 @@ export default function BaseUIComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
-                minHeight: 200,
+                height: 240,
                 position: 'relative',
                 overflow: 'hidden',
                 pt: 5,
               }}
             >
-              <Box
-                sx={{
-                  position: 'absolute',
-                  width: 'calc(100% - 2rem)',
-                  top: 0,
-                  left: '1rem',
-                  display: 'flex',
-                  gap: 2,
-                  py: 1.25,
-                  borderBottom: '1px solid',
-                  borderColor: 'grey.700',
-                }}
-              >
-                <Typography variant="body2" sx={{ color: 'grey.400' }}>
-                  Turn unstyled version on
-                </Typography>
-                <Switch
-                  sx={{ ml: 'auto' }}
-                  value={unstyled}
-                  onChange={(event) => setUnstyled(event.target.checked)}
-                />
-              </Box>
               <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2, pt: 3 }}>
                 <HighlightedCode
                   copyButtonHidden
                   component={MarkdownElement}
-                  code={CODES[demo]}
+                  code={(() => {
+                    const result = CODES[demo];
+                    if (typeof result === 'function') {
+                      return result(styling);
+                    }
+                    return result;
+                  })()}
                   language="jsx"
                 />
+              </Box>
+              <Box
+                sx={(theme) => ({
+                  pb: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  position: 'absolute',
+                  top: 12,
+                  left: 16,
+                  zIndex: 10,
+                  background: `linear-gradient(to bottom, ${
+                    (theme.vars || theme).palette.primaryDark[800]
+                  } 30%, transparent)`,
+                })}
+              >
+                <StyledButton
+                  size="small"
+                  variant={styling === 'system' ? 'outlined' : 'text'}
+                  onClick={() => {
+                    setStyling('system');
+                  }}
+                >
+                  MUI System
+                </StyledButton>
+                <StyledButton
+                  size="small"
+                  variant={!styling ? 'outlined' : 'text'}
+                  onClick={() => {
+                    setStyling(undefined);
+                  }}
+                  sx={{ ml: 1 }}
+                >
+                  Unstyled
+                </StyledButton>
               </Box>
             </Frame.Info>
           </Frame>

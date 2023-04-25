@@ -256,16 +256,18 @@ export default function BaseUICustomization() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={(theme) => ({
-                bgcolor: 'background.paper',
                 overflow: 'auto',
                 flexGrow: 1,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                bgcolor: 'background.paper',
+                backgroundSize: '100%, 72px',
                 backgroundImage: `${(theme.vars || theme).palette.gradients.lightGrayRadio}, ${
                   (theme.vars || theme).palette.patterns.triangle
                 }`,
                 ...theme.applyDarkStyles({
+                  backgroundSize: '72px, 100%',
                   backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
                     (theme.vars || theme).palette.patterns.triangle
                   }`,
