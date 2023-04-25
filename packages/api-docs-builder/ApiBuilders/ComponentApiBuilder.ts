@@ -313,6 +313,7 @@ const generateApiPage = (
   reactApi: ReactApi,
   onlyJsonFile: boolean = false,
 ) => {
+  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -351,7 +352,7 @@ const generateApiPage = (
     }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
-    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+    muiName: normalizedApiPathname.startsWith('/joy-ui')
       ? reactApi.muiName.replace('Mui', 'Joy')
       : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
@@ -421,14 +422,16 @@ const attachTranslations = (reactApi: ReactApi) => {
       let description = generatePropDescription(prop, propName);
       description = renderMarkdownInline(description);
 
+      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
         description +=
           ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
-      } else if (propName === 'slots' && !reactApi.apiPathname.startsWith('/material-ui')) {
+      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
         description += ' See <a href="#slots">Slots API</a> below for more details.';
-      } else if (reactApi.apiPathname.startsWith('/joy-ui')) {
+      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
         switch (propName) {
           case 'size':
             description +=
@@ -682,14 +685,20 @@ export default async function generateComponentApi(
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);
 
+  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+  const noramlizedFilename = reactApi.filename.replace(/\\/g, '/');
+
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     let translationPagesDirectory = 'docs/translations/api-docs';
-    if (reactApi.apiPathname.match(/[\\/]joy-ui/) && reactApi.filename.match(/[\\/]mui-joy[\\/]src/)) {
+    if (
+      normalizedApiPathname.startsWith('/joy-ui') &&
+      noramlizedFilename.includes('/mui-joy/src')
+    ) {
       translationPagesDirectory = 'docs/translations/api-docs-joy';
     } else if (
-      reactApi.apiPathname.match(/[\\/]base/) &&
-      reactApi.filename.match(/[\\/]mui-base[\\/]src/)
+      normalizedApiPathname.startsWith('/base') &&
+      noramlizedFilename.includes('/mui-base/src')
     ) {
       translationPagesDirectory = 'docs/translations/api-docs-base';
     }
@@ -697,7 +706,7 @@ export default async function generateComponentApi(
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
 
     // Once we have the tabs API in all projects, we can make this default
-    const generateOnlyJsonFile = reactApi.apiPathname.startsWith('/base');
+    const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
     generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     // Add comment about demo & api links (including inherited component) to the component file
