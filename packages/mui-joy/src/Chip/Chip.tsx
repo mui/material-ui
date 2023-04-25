@@ -143,6 +143,7 @@ const ChipAction = styled('button', {
     left: 0,
     bottom: 0,
     right: 0,
+    width: '100%', // To fix Firefox issue (https://github.com/mui/material-ui/issues/36877)
     border: 'none',
     cursor: 'pointer',
     padding: 'initial',
