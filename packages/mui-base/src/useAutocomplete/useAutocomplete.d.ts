@@ -320,7 +320,7 @@ export type AutocompleteCloseReason =
   | 'selectOption'
   | 'removeOption'
   | 'blur';
-export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear' | "selectOption" | "removeOption";
 
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
