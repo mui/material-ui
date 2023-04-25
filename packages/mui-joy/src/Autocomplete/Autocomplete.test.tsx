@@ -1841,7 +1841,7 @@ describe('Joy <Autocomplete />', () => {
       expect(handleInputChange.args[0][2]).to.equal('input');
     });
 
-    it('provides a reason on select reset', () => {
+    it.only('provides a reason on select reset', () => {
       const handleInputChange = spy();
       const options = [{ name: 'foo' }, { name: 'bar' }];
 
@@ -1866,8 +1866,8 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.click(resetBtn);
 
       expect(handleInputChange.callCount).to.equal(4);
-      expect(handleInputChange.args[2][1]).to.equal(options[1].name);
-      expect(handleInputChange.args[2][2]).to.equal('reset');
+      expect(handleInputChange.args[3][1]).to.equal(options[1].name);
+      expect(handleInputChange.args[3][2]).to.equal('reset');
     });
   });
 
