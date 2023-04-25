@@ -1854,13 +1854,12 @@ describe('Joy <Autocomplete />', () => {
               openOnFocus
               options={options}
               getOptionLabel={(option) => option.name}
-              renderInput={(params) => <TextField {...params} autoFocus />}
               value={value}
             />
             <button onClick={() => setValue(options[1])}>Reset</button>
           </React.Fragment>
         );
-      };
+      }
       render(<MyComponent />);
       const resetBtn = screen.getByText('Reset');
 
