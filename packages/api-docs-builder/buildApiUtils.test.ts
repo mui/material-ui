@@ -128,7 +128,7 @@ describe('buildApiUtils', () => {
         path.join(process.cwd(), `/packages/mui-base/src/Button/Button.tsx`),
       );
       sinon.assert.match(info, {
-        name: 'Button',
+        name: 'Unstyled Button',
         apiPathname: '/base/react-button/components-api/#button',
         muiName: 'MuiButton',
         apiPagesDirectory: sinon.match((value) =>
@@ -176,7 +176,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            demoPageTitle: 'Button',
+            demoPageTitle: 'Unstyled Button',
             demoPathname: '/base/react-button/#hook',
           },
         ]);
