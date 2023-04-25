@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 export default function DivButton() {
-  return <ButtonUnstyled slots={{ root: 'div' }}>Button</ButtonUnstyled>;
+  return <Button slots={{ root: 'div' }}>Button</Button>;
 }

@@ -3,7 +3,7 @@ import { Transition } from 'react-transition-group';
 import { styled } from '@mui/system';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
-import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
+import Snackbar from '@mui/base/Snackbar';
 
 const blue = {
   50: '#F0F7FF',
@@ -18,7 +18,7 @@ const grey = {
   800: '#2D3843',
 };
 
-const StyledSnackbar = styled(SnackbarUnstyled)`
+const StyledSnackbar = styled(Snackbar)`
   position: fixed;
   z-index: 5500;
   display: flex;

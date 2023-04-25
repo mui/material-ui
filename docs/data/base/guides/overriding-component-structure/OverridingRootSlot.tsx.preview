@@ -1,1 +1,1 @@
-<ButtonUnstyled slots={{ root: 'div' }}>Button</ButtonUnstyled>
+<Button slots={{ root: 'div' }}>Button</Button>
