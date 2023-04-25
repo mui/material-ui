@@ -97,7 +97,7 @@ export default function useAutocomplete(props) {
     filterSelectedOptions = false,
     freeSolo = false,
     getOptionDisabled,
-    getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
+    getOptionLabel: getOptionLabelProp = (option) => option?.label ?? option,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
@@ -311,9 +311,9 @@ export default function useAutocomplete(props) {
       // Same logic as MenuList.js
       const nextFocusDisabled = disabledItemsFocusable
         ? false
-        : !option || option.disabled || option.getAttribute('aria-disabled') === 'true';
+        : !option || option?.disabled || option?.getAttribute('aria-disabled') === 'true';
 
-      if ((option && !option.hasAttribute('tabindex')) || nextFocusDisabled) {
+      if ((option && !option?.hasAttribute('tabindex')) || nextFocusDisabled) {
         // Move to the next element.
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
@@ -366,9 +366,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.classList.add(`${unstable_classNamePrefix}-focused`);
+    option?.classList.add(`${unstable_classNamePrefix}-focused`);
     if (reason === 'keyboard') {
-      option.classList.add(`${unstable_classNamePrefix}-focusVisible`);
+      option?.classList.add(`${unstable_classNamePrefix}-focusVisible`);
     }
 
     // Scroll active descendant into view.
@@ -445,7 +445,7 @@ export default function useAutocomplete(props) {
       const nextIndex = validOptionIndex(getNextIndex(), direction);
       setHighlightedIndex({ index: nextIndex, reason, event });
 
-      // Sync the content of the input with the highlighted option.
+      // Sync the content of the input with the highlighted option?.
       if (autoComplete && diff !== 'reset') {
         if (nextIndex === -1) {
           inputRef.current.value = inputValue;
@@ -455,9 +455,9 @@ export default function useAutocomplete(props) {
 
           // The portion of the selected suggestion that has not been typed by the user,
           // a completion string, appears inline after the input cursor in the textbox.
-          const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
+          const index = option?.toLowerCase().indexOf(inputValue.toLowerCase());
           if (index === 0 && inputValue.length > 0) {
-            inputRef.current.setSelectionRange(inputValue.length, option.length);
+            inputRef.current.setSelectionRange(inputValue.length, option?.length);
           }
         }
       }
@@ -719,9 +719,9 @@ export default function useAutocomplete(props) {
       // Same logic as MenuList.js
       if (
         !option ||
-        !option.hasAttribute('tabindex') ||
-        option.disabled ||
-        option.getAttribute('aria-disabled') === 'true'
+        !option?.hasAttribute('tabindex') ||
+        option?.disabled ||
+        option?.getAttribute('aria-disabled') === 'true'
       ) {
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
