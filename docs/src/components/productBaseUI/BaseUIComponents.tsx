@@ -2,10 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { styled as materialStyled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import TabsUnstyled from '@mui/base/Tabs';
-import TabsListUnstyled from '@mui/base/TabsList';
-import TabPanelUnstyled from '@mui/base/TabPanel';
-import TabUnstyled from '@mui/base/Tab';
 import SliderUnstyled from '@mui/base/Slider';
 import Box from '@mui/material/Box';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -27,6 +23,7 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import BaseButtonDemo from './components/BaseButtonDemo';
 import BaseMenuDemo from './components/BaseMenuDemo';
 import BaseInputDemo from './components/BaseInputDemo';
+import BaseTabsDemo from './components/BaseTabsDemo';
 
 const StyledButton = materialStyled(Button)(({ theme }) => ({
   borderRadius: 40,
@@ -52,63 +49,12 @@ const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => st
   Button: BaseButtonDemo.getCode,
   Menu: BaseMenuDemo.getCode,
   Input: BaseInputDemo.getCode,
-  Tabs: `
-<TabsUnstyled selectionFollowsFocus defaultValue={0}>
-  <TabsListUnstyled>
-    <TabUnstyled>One</TabUnstyled>
-    <TabUnstyled>Two</TabUnstyled>
-    <TabUnstyled>Three</TabUnstyled>
-  </TabsListUnstyled>
-  <TabPanelUnstyled value={0}>First page</TabPanelUnstyled>
-  <TabPanelUnstyled value={1}>Second page</TabPanelUnstyled>
-  <TabPanelUnstyled value={2}>Third page</TabPanelUnstyled>
-</TabsUnstyled>`,
+  Tabs: BaseTabsDemo.getCode,
   Slider: `
 <SliderUnstyled defaultValue={10} />
 <SliderUnstyled defaultValue={10} disabled />`,
 };
 
-const StyledTabsList = styled('div')`
-  min-width: 300px;
-  background-color: var(--muidocs-palette-primary-main);
-  border-radius: 12px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: space-between;
-  box-shadow: var(--muidocs-shadows-2);
-`;
-const StyledTabPanel = styled('div')`
-  width: 100%;
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-`;
-const StyledTab = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
-  color: white;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: bold;
-  background-color: transparent;
-  width: 100%;
-  padding: 12px;
-  margin: 6px 6px;
-  border: none;
-  border-radius: 7px;
-  display: flex;
-  justify-content: center;
-
-  &:focus {
-    color: #fff;
-    outline: 3px solid var(--muidocs-palette-primary-200);
-  }
-
-  &.Mui-selected {
-    background-color: #fff;
-    color: var(--muidocs-palette-primary-main);
-  }
-`;
 const StyledSlider = styled('span')`
   color: var(--muidocs-palette-primary-main);
   height: 6px;
@@ -230,50 +176,7 @@ export default function BaseUIComponents() {
               {demo === 'Button' && <BaseButtonDemo styling={styling} />}
               {demo === 'Menu' && <BaseMenuDemo styling={styling} />}
               {demo === 'Input' && <BaseInputDemo styling={styling} />}
-              {demo === 'Tabs' && (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 2,
-                    height: '100%',
-                    py: 2,
-                  }}
-                >
-                  <TabsUnstyled selectionFollowsFocus defaultValue={0}>
-                    <TabsListUnstyled slots={{ root: unstyled ? undefined : StyledTabsList }}>
-                      <TabUnstyled slots={{ root: unstyled ? undefined : StyledTab }}>
-                        One
-                      </TabUnstyled>
-                      <TabUnstyled slots={{ root: unstyled ? undefined : StyledTab }}>
-                        Two
-                      </TabUnstyled>
-                      <TabUnstyled slots={{ root: unstyled ? undefined : StyledTab }}>
-                        Three
-                      </TabUnstyled>
-                    </TabsListUnstyled>
-                    <TabPanelUnstyled
-                      slots={{ root: unstyled ? undefined : StyledTabPanel }}
-                      value={0}
-                    >
-                      First page
-                    </TabPanelUnstyled>
-                    <TabPanelUnstyled
-                      slots={{ root: unstyled ? undefined : StyledTabPanel }}
-                      value={1}
-                    >
-                      Second page
-                    </TabPanelUnstyled>
-                    <TabPanelUnstyled
-                      slots={{ root: unstyled ? undefined : StyledTabPanel }}
-                      value={2}
-                    >
-                      Third page
-                    </TabPanelUnstyled>
-                  </TabsUnstyled>
-                </Box>
-              )}
+              {demo === 'Tabs' && <BaseTabsDemo styling={styling} />}
               {demo === 'Slider' && (
                 <Box
                   sx={{
