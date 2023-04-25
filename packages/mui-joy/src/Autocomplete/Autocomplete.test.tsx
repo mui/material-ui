@@ -1400,12 +1400,11 @@ describe('Joy <Autocomplete />', () => {
       const listbox = getByRole('listbox');
 
       fireEvent.change(textbox, { target: { value: 't' } });
-
       checkHighlightIs(listbox, 'two');
 
       fireEvent.change(textbox, { target: { value: '' } });
-
       checkHighlightIs(listbox, 'one');
+
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(textbox).has.value('one');
     });
