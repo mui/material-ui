@@ -28,7 +28,7 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  *
  * Demos:
  *
- * - [Unstyled Button](https://mui.com/base/react-button/)
+ * - [Button](https://mui.com/base/react-button/)
  *
  * API:
  *

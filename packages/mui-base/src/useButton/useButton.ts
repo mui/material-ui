@@ -14,7 +14,7 @@ import { EventHandlers } from '../utils/types';
  *
  * Demos:
  *
- * - [Unstyled Button](https://mui.com/base/react-button/#hook)
+ * - [Button](https://mui.com/base/react-button/#hook)
  *
  * API:
  *
