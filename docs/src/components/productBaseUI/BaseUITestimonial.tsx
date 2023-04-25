@@ -23,6 +23,7 @@ export default function BaseUITestimonial() {
               pt: 3,
               pl: 3,
               background: 'linear-gradient(260deg, #3399FF 0%, #0059B3 95%)',
+              backgroundClip: 'padding-box',
               overflow: 'auto',
             }}
           >
@@ -70,7 +71,18 @@ export default function BaseUITestimonial() {
                 Senior Software Engineer
               </Typography>
             </Box>
-            <img src="https://docs.nhost.io/img/logo.svg" alt="" width="80" />
+            <Box
+              component="img"
+              src="https://docs.nhost.io/img/logo.svg"
+              alt=""
+              sx={(theme) => ({
+                width: '80px',
+                alignSelf: 'center',
+                ...theme.applyDarkStyles({
+                  content: `url(https://nhost.io/common/logo.svg)`,
+                }),
+              })}
+            />
           </Box>
         </Grid>
       </Grid>
