@@ -142,6 +142,7 @@ export default function BaseUIComponents() {
                   position: 'absolute',
                   top: 12,
                   left: 16,
+                  right: 0,
                   zIndex: 10,
                   background: `linear-gradient(to bottom, ${
                     (theme.vars || theme).palette.primaryDark[800]
