@@ -8,7 +8,7 @@ _Apr 25, 2023_
 
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
-- ⚠️ **[BREAKING CHANGE]** The `Unstyled` suffix has been removed from component names, including names of types and CSS classes. A related codemod script is also provided.
+- ⚠️ **[BREAKING CHANGE]** The `Unstyled` suffix has been removed from Base UI component names, including names of types and CSS classes. A related codemod script is also provided.
 - 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.12.2`
