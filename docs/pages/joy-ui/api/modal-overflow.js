@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs-joy/modal-overflow',
+    'docs/translations/api-docs/modal-overflow',
     false,
     /modal-overflow.*.json$/,
   );

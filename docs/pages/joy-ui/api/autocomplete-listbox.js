@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs-joy/autocomplete-listbox',
+    'docs/translations/api-docs/autocomplete-listbox',
     false,
     /autocomplete-listbox.*.json$/,
   );

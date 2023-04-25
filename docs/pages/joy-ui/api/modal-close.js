@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs-joy/modal-close',
+    'docs/translations/api-docs/modal-close',
     false,
     /modal-close.*.json$/,
   );

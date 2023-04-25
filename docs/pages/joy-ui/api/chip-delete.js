@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs-joy/chip-delete',
+    'docs/translations/api-docs/chip-delete',
     false,
     /chip-delete.*.json$/,
   );

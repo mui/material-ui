@@ -1,63 +1,53 @@
 {
   "componentDescription": "",
-  "propDescriptions": { "children": "A list of <code>&lt;Tab /&gt;</code> elements." },
+  "propDescriptions": {
+    "children": "Used to render icon or text elements inside the TabList if <code>src</code> is not set. This can be an element, or just a string.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "vertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+    "root": { "description": "Class name applied to the root element." },
+    "colorPrimary": {
+      "description": "Classname applied to the root element if `color=\"primary\"`."
+    },
+    "colorNeutral": {
+      "description": "Classname applied to the root element if `color=\"neutral\"`."
+    },
+    "colorDanger": {
+      "description": "Classname applied to the root element if `color=\"danger\"`."
+    },
+    "colorInfo": { "description": "Classname applied to the root element if `color=\"info\"`." },
+    "colorSuccess": {
+      "description": "Classname applied to the root element if `color=\"success\"`."
+    },
+    "colorWarning": {
+      "description": "Classname applied to the root element if `color=\"warning\"`."
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "conditions": "color inversion is triggered"
     },
-    "flexContainer": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the flex container element"
+    "variantPlain": {
+      "description": "Classname applied to the root element if `variant=\"plain\"`."
     },
-    "flexContainerVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+    "variantOutlined": {
+      "description": "Classname applied to the root element if `variant=\"outlined\"`."
     },
-    "centered": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>centered={true}</code> & <code>!variant=\"scrollable\"</code>"
+    "variantSoft": {
+      "description": "Classname applied to the root element if `variant=\"soft\"`."
     },
-    "scroller": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the tablist element"
+    "variantSolid": {
+      "description": "Classname applied to the root element if `variant=\"solid\"`."
     },
-    "fixed": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the tablist element",
-      "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
-    },
-    "scrollableX": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the tablist element",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"horizontal\"</code>"
-    },
-    "scrollableY": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the tablist element",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
-    },
-    "hideScrollbar": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the tablist element",
-      "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
-    },
-    "scrollButtons": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the ScrollButtonComponent component"
-    },
-    "scrollButtonsHideMobile": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the ScrollButtonComponent component",
-      "conditions": "<code>allowScrollButtonsMobile={true}</code>"
-    },
-    "indicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the TabIndicator component"
-    }
-  }
+    "sizeSm": { "description": "Classname applied to the root element if `size=\"sm\"`." },
+    "sizeMd": { "description": "Classname applied to the root element if `size=\"md\"`." },
+    "sizeLg": { "description": "Classname applied to the root element if `size=\"lg\"`." }
+  },
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

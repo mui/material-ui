@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs-joy/radio-group',
+    'docs/translations/api-docs/radio-group',
     false,
     /radio-group.*.json$/,
   );

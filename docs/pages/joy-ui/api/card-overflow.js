@@ -10,7 +10,7 @@ export default function Page(props) {
 
 Page.getInitialProps = () => {
   const req = require.context(
-    'docs/translations/api-docs-joy/card-overflow',
+    'docs/translations/api-docs/card-overflow',
     false,
     /card-overflow.*.json$/,
   );

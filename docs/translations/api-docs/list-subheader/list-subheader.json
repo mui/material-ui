@@ -2,40 +2,76 @@
   "componentDescription": "",
   "propDescriptions": {
     "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "disableGutters": "If <code>true</code>, the List Subheader will not have gutters.",
-    "disableSticky": "If <code>true</code>, the List Subheader will not stick to the top during scroll.",
-    "inset": "If <code>true</code>, the List Subheader is indented.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "sticky": "If <code>true</code>, the component has sticky position (with top = 0).",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": { "description": "Class name applied to the root element." },
+    "sticky": {
+      "description": "Class name applied to {{nodeName}}, {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "if sticky={true}"
+    },
     "colorPrimary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
-    "colorInherit": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>color=\"inherit\"</code>"
+      "conditions": "<code>color=\"neutral\"</code>"
     },
-    "gutters": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the inner `component` element",
-      "conditions": "<code>disableGutters={true}</code>"
-    },
-    "inset": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>inset={true}</code>"
+      "conditions": "<code>color=\"danger\"</code>"
     },
-    "sticky": {
-      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>disableSticky={true}</code>"
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "variantPlain": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantSoft": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantOutlined": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSolid": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
     }
-  }
+  },
+  "slotDescriptions": { "root": "The component that renders the root." }
 }
