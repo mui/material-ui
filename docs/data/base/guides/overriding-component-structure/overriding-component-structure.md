@@ -22,7 +22,7 @@ Additionally, you can pass custom props to [interior slots](#interior-slots) usi
 The root slot represents the component's outermost element.
 For simpler components, the root slot is often filled by the native HTML element that the component is intended to replace.
 
-For example, the [Unstyled Button's](/base/react-button/) root slot is a `<button>` element.
+For example, the [Button's](/base/react-button/) root slot is a `<button>` element.
 This component _only_ has a root slot; more complex components may have additional interior slots.
 
 ## Interior slots
@@ -30,12 +30,12 @@ This component _only_ has a root slot; more complex components may have addition
 Complex components are composed of one or more interior slots in addition to the root.
 These slots are often (but not necessarily) nested within the root.
 
-For example, the [Unstyled Slider](/base/react-slider/) is composed of a root `<span>` that houses several interior slots named for the elements they represent: track, thumb, rail, and so on.
+For example, the [Slider](/base/react-slider/) is composed of a root `<span>` that houses several interior slots named for the elements they represent: track, thumb, rail, and so on.
 
 ### The slots prop
 
 Use the `slots` prop to replace the elements in a component's slots, including the root.
-The example below shows how to override the listbox slot in the [Unstyled Select](/base/react-select/) component—a `<ul>` by default—with an `<ol>`:
+The example below shows how to override the listbox slot in the [Select](/base/react-select/) component—a `<ul>` by default—with an `<ol>`:
 
 {{"demo": "OverridingInternalSlot.js"}}
 
@@ -44,7 +44,7 @@ The example below shows how to override the listbox slot in the [Unstyled Select
 The `slotProps` prop is an object that contains the props for all slots within a component.
 You can use it to define additional custom props to pass to a component's interior slots.
 
-For example, the code snippet below shows how to add a custom CSS class to the badge slot of the [Unstyled Badge](/base/react-badge/) component:
+For example, the code snippet below shows how to add a custom CSS class to the badge slot of the [Badge](/base/react-badge/) component:
 
 ```jsx
 <Badge slotProps={{ badge: { className: 'my-badge' } }} />
