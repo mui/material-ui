@@ -83,25 +83,6 @@ Note that even though Form Control supports both controlled and uncontrolled-sty
 (i.e. it accepts `value` and `defaultValue` props), `useFormControlContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input—Form Control does this for you.
 
-`useFormControlContext` returns an object with the following fields:
-
-| Name       | Type    | Description                                                                                                                                                                |
-| :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `disabled` | boolean | Represents the value of the FormControl's `disabled` prop.                                                                                                                 |
-| `error`    | boolean | Represents the value of the Form Control component's `error` prop. Note that it is not calculated automatically (i.e. it's not set when `required: true` and `value: ''`). |
-| `filled`   | boolean | Set to `true` if `value` is not empty.                                                                                                                                     |
-| `focused`  | boolean | Set to `true` if the wrapped input has received focus.                                                                                                                     |
-| `required` | boolean | Represents the value of the Form Control component's `required` prop.                                                                                                      |
-| `value`    | unknown | The current value of the form control.                                                                                                                                     |
-
-The following callbacks are also part of the returned object—they are meant to be used when creating custom inputs:
-
-| Name       | Type                      | Description                                                   |
-| :--------- | :------------------------ | :------------------------------------------------------------ |
-| `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
-| `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
-| `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
-
 ## Customization
 
 :::info
