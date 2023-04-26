@@ -50,7 +50,7 @@ export default function DelayingAppearance() {
         >
           <CircularProgress
             role="status"
-            aria-label={loading ? 'Progress loading' : 'Progress complete'}
+            aria-label={loading ? 'Progress loading' : 'Progress stopped'}
             aria-live="assertive"
           />
         </Fade>
