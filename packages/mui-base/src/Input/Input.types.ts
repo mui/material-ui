@@ -146,20 +146,22 @@ export interface InputSlots {
   textarea?: React.ElementType;
 }
 
-export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & InputOwnProps;
-  defaultComponent: D;
+export interface InputTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: InputOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type InputProps<
-  D extends React.ElementType = InputTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<InputTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = InputTypeMap['defaultComponent'],
+> = OverrideProps<InputTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
 export type InputOwnerState = Simplify<
-  Omit<InputProps, 'component' | 'slots' | 'slotProps'> & {
+  InputOwnProps & {
     formControlContext: FormControlState | undefined;
     focused: boolean;
     type: React.InputHTMLAttributes<HTMLInputElement>['type'] | undefined;

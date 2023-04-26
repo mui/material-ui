@@ -1,7 +1,7 @@
 {
   "parameters": {
-    "ref": {
-      "type": { "name": "React.Ref&lt;unknown&gt;", "description": "React.Ref&lt;unknown&gt;" },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
       "required": true
     }
   },
@@ -39,6 +39,13 @@
         "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
       },
       "default": "'horizontal'",
+      "required": true
+    },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
       "required": true
     },
     "selectedValue": {

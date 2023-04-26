@@ -66,7 +66,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const inputRef = React.useRef<any>(null);
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const createHandleFocus =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
@@ -99,14 +99,14 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
       otherProps.onBlur?.(event);
     };
 
-  const handleRefChange = useForkRef(focusVisibleRef, inputRef);
+  const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
   const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
     readOnly,
-    ref: handleRefChange,
+    ref: handleInputRef,
     required,
     type: 'checkbox',
     ...otherProps,
@@ -120,6 +120,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     disabled: Boolean(disabled),
     focusVisible,
     getInputProps,
+    inputRef: handleInputRef,
     readOnly: Boolean(readOnly),
   };
 }

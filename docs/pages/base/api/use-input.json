@@ -64,6 +64,13 @@
       },
       "required": true
     },
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+      },
+      "required": true
+    },
     "required": {
       "type": { "name": "boolean", "description": "boolean" },
       "default": "false",

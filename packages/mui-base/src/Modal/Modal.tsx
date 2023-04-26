@@ -62,9 +62,10 @@ const defaultManager = new ModalManager();
  *
  * - [Modal API](https://mui.com/base/react-modal/components-api/#modal)
  */
-const Modal = React.forwardRef(function Modal<
-  BaseComponentType extends React.ElementType = ModalTypeMap['defaultComponent'],
->(props: ModalProps<BaseComponentType>, forwardedRef: React.Ref<Element> | undefined) {
+const Modal = React.forwardRef(function Modal<RootComponentType extends React.ElementType>(
+  props: ModalProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     children,
     closeAfterTransition = false,

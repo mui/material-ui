@@ -59,10 +59,9 @@ const useUtilityClasses = () => {
  *
  * - [TablePagination API](https://mui.com/base/react-table-pagination/components-api/#table-pagination)
  */
-const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function TablePagination(
-  props,
-  ref,
-) {
+const TablePagination = React.forwardRef(function TablePagination<
+  RootComponentType extends React.ElementType,
+>(props: TablePaginationProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     component,
     colSpan: colSpanProp,
@@ -107,7 +106,7 @@ const TablePagination = React.forwardRef<unknown, TablePaginationProps>(function
     externalForwardedProps: other,
     additionalProps: {
       colSpan,
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

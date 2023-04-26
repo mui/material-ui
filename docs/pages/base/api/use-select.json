@@ -58,6 +58,13 @@
       "type": { "name": "boolean", "description": "boolean" },
       "required": true
     },
+    "buttonRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
     "contextValue": {
       "type": {
         "name": "SelectProviderValue&lt;Value&gt;",
@@ -96,6 +103,13 @@
     },
     "highlightedOption": {
       "type": { "name": "Value | null", "description": "Value | null" },
+      "required": true
+    },
+    "listboxRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
       "required": true
     },
     "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },

@@ -39,20 +39,26 @@ export interface ButtonSlots {
   root?: React.ElementType;
 }
 
-export type ButtonProps<D extends React.ElementType = ButtonTypeMap['defaultComponent']> =
-  OverrideProps<ButtonTypeMap<{}, D>, D> & {
-    component?: D;
-  };
+export type ButtonProps<
+  RootComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
+> = OverrideProps<ButtonTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
+};
 
-export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & ButtonOwnProps;
-  defaultComponent: D;
+export interface ButtonTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'button',
+> {
+  props: ButtonOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
-export type ButtonOwnerState = ButtonOwnProps & {
-  active: boolean;
-  focusVisible: boolean;
-};
+export type ButtonOwnerState = Simplify<
+  ButtonOwnProps & {
+    active: boolean;
+    focusVisible: boolean;
+  }
+>;
 
 export type ButtonRootSlotProps = Simplify<
   UseButtonRootSlotProps & {

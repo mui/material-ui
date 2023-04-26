@@ -42,19 +42,21 @@ export interface SnackbarSlots {
   root?: React.ElementType;
 }
 
-export interface SnackbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & SnackbarOwnProps;
-  defaultComponent: D;
+export interface SnackbarTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: SnackbarOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type SnackbarProps<
-  D extends React.ElementType = SnackbarTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SnackbarTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = SnackbarTypeMap['defaultComponent'],
+> = OverrideProps<SnackbarTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
-export type SnackbarOwnerState = SnackbarProps;
+export type SnackbarOwnerState = SnackbarOwnProps;
 
 export type SnackbarRootSlotProps = {
   ownerState: SnackbarOwnerState;

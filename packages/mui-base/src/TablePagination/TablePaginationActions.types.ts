@@ -117,18 +117,20 @@ export interface TablePaginationActionsSlots {
 }
 
 export type TablePaginationActionsProps<
-  D extends React.ElementType = TablePaginationActionsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TablePaginationActionsTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = TablePaginationActionsTypeMap['defaultComponent'],
+> = OverrideProps<TablePaginationActionsTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
-export interface TablePaginationActionsTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & TablePaginationActionsOwnProps;
-  defaultComponent: D;
+export interface TablePaginationActionsTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'button',
+> {
+  props: TablePaginationActionsOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
-export type TablePaginationActionsOwnerState = TablePaginationActionsProps;
+export type TablePaginationActionsOwnerState = TablePaginationActionsOwnProps;
 
 export type TablePaginationActionsRootSlotProps = {
   children?: React.ReactNode;

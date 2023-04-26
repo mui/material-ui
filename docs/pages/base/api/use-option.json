@@ -7,11 +7,8 @@
     },
     "value": { "type": { "name": "Value", "description": "Value" }, "required": true },
     "id": { "type": { "name": "string", "description": "string" } },
-    "optionRef": {
-      "type": {
-        "name": "React.Ref&lt;HTMLElement&gt;",
-        "description": "React.Ref&lt;HTMLElement&gt;"
-      }
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     }
   },
   "returnValue": {
@@ -24,10 +21,10 @@
     },
     "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "index": { "type": { "name": "number", "description": "number" }, "required": true },
-    "ref": {
+    "rootRef": {
       "type": {
-        "name": "React.RefCallback&lt;HTMLElement&gt;",
-        "description": "React.RefCallback&lt;HTMLElement&gt;"
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
       },
       "required": true
     },

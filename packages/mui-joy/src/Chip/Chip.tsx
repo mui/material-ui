@@ -241,7 +241,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...resolvedActionProps,
     disabled,
-    ref: actionRef,
+    rootRef: actionRef,
   });
 
   ownerState.focusVisible = focusVisible;

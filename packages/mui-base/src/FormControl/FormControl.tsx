@@ -75,8 +75,8 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  * - [FormControl API](https://mui.com/base/react-form-control/components-api/#form-control)
  */
 const FormControl = React.forwardRef(function FormControl<
-  D extends React.ElementType = FormControlTypeMap['defaultComponent'],
->(props: FormControlProps<D>, ref: React.ForwardedRef<any>) {
+  RootComponentType extends React.ElementType,
+>(props: FormControlProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     defaultValue,
     children,
@@ -151,7 +151,7 @@ const FormControl = React.forwardRef(function FormControl<
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
       children: renderChildren(),
     },
     ownerState,

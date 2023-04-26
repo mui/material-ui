@@ -25,7 +25,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     disabled = false,
     focusableWhenDisabled,
     href,
-    ref: externalRef,
+    rootRef: externalRef,
     tabIndex,
     to,
     type,
@@ -233,8 +233,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     getRootProps,
     focusVisible,
     setFocusVisible,
-    disabled,
     active,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }

@@ -132,6 +132,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    */
   buttonFocusVisible: boolean;
   /**
+   * Ref to the button slot DOM node.
+   */
+  buttonRef: React.RefCallback<Element> | null;
+  /**
    * If `true`, the select is disabled.
    */
   disabled: boolean;
@@ -171,6 +175,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * The value of the highlighted option.
    */
   highlightedOption: Value | null;
+  /**
+   * Ref to the listbox slot DOM node.
+   */
+  listboxRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the listbox is open.
    */
