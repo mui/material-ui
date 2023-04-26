@@ -34,7 +34,7 @@ export default function CircularIntegration() {
       timer.current = window.setTimeout(() => {
         setSuccess(true);
         setLoading(false);
-      }, 2000);
+      }, 1800);
     }
   };
 

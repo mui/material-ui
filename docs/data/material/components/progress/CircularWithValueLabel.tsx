@@ -30,7 +30,6 @@ function CircularProgressWithLabel(
           variant="caption"
           component="div"
           color="text.secondary"
-          aria-live="polite"
         >
           {`${Math.round(props.value)}%`}
         </Typography>
@@ -49,7 +48,7 @@ export default function CircularStatic() {
       timerId = setInterval(() => {
         handleProgress();
 
-      }, 1000);
+      }, 1800);
     }
     return () => {
       if (timerId) {

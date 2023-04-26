@@ -14,7 +14,7 @@ export default function CircularDeterminate() {
     if (running) {
       timer = setInterval(() => {
         setProgress((oldProgress) => {
-          const nextProgress = oldProgress + 25;
+          const nextProgress = oldProgress + 20;
           if (nextProgress >= 100) {
             setRunning(false);
             return 100;
@@ -22,7 +22,7 @@ export default function CircularDeterminate() {
             return nextProgress;
           }
         });
-      }, 2000);
+      }, 1800);
     }
 
     return () => {

@@ -14,7 +14,7 @@ export default function LinearDeterminate() {
     if (running) {
       timer = setInterval(() => {
         handleProgress();
-      }, 2000);
+      }, 1800);
     }
 
     return () => {
@@ -30,7 +30,7 @@ export default function LinearDeterminate() {
         setRunning(false);
         return 0;
       }
-      const nextProgress = oldProgress + 25;
+      const nextProgress = oldProgress + 20;
       return nextProgress;
     });
   };

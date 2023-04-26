@@ -10,13 +10,12 @@ export default function LinearBuffer() {
   const [buffer, setBuffer] = React.useState(10);
   const [running, setRunning] = React.useState(false);
 
-  const progressRef = React.useRef(() => {});
   React.useEffect(() => {
     let timer: NodeJS.Timeout | undefined;
     if (running) {
       timer = setInterval(() => {
         handleProgress();
-      }, 2000);
+      }, 1800);
     }
 
     return () => {
@@ -33,8 +32,8 @@ export default function LinearBuffer() {
         return 0;
       }
       const diff2 = Math.random() * 10;
-      setBuffer(progress + 25 + diff2);
-      const nextProgress = oldProgress + 25;
+      setBuffer(progress + 20 + diff2);
+      const nextProgress = oldProgress + 20;
       return nextProgress;
     });
   };
