@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ModalUnstyledOwnProps } from '@mui/base/ModalUnstyled';
+import { ModalOwnProps } from '@mui/base/Modal';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -30,7 +30,7 @@ export type ModalSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Pick<
-      ModalUnstyledOwnProps,
+      ModalOwnProps,
       | 'children'
       | 'container'
       | 'disableAutoFocus'

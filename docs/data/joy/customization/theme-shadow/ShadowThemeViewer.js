@@ -13,7 +13,7 @@ import Check from '@mui/icons-material/CheckCircle';
 const Table = styled('table')(({ theme }) => ({
   border: '1px solid',
   borderColor: theme.vars.palette.divider,
-  borderRadius: theme.vars.radius.xs,
+  borderRadius: theme.vars.radius.md,
   borderCollapse: 'separate',
   borderSpacing: 0,
   width: '100%',

@@ -9,7 +9,7 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
   unstable_useId as useId,
 } from '@mui/utils';
-import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
+import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -631,7 +631,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     <SlotRoot
       {...rootProps}
       {...(!props.slots?.root && {
-        as: PopperUnstyled,
+        as: Popper,
         slots: {
           root: component || 'div',
         },

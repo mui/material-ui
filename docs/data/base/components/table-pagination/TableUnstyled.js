@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePaginationUnstyled, {
-  tablePaginationUnstyledClasses as classes,
-} from '@mui/base/TablePaginationUnstyled';
+import TablePagination, {
+  tablePaginationClasses as classes,
+} from '@mui/base/TablePagination';
 
 export default function UnstyledTable() {
   const [page, setPage] = React.useState(0);
@@ -119,7 +119,7 @@ const Root = styled('div')`
   }
 `;
 
-const CustomTablePagination = styled(TablePaginationUnstyled)`
+const CustomTablePagination = styled(TablePagination)`
   & .${classes.toolbar} {
     display: flex;
     flex-direction: column;

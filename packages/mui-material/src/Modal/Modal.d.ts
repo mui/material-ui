@@ -2,7 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base';
-import { ModalUnstyledTypeMap, ModalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import {
+  ModalTypeMap as BaseModalTypeMap,
+  ModalClasses as BaseModalClasses,
+} from '@mui/base/Modal';
 import { Theme } from '../styles';
 import Backdrop, { BackdropProps } from '../Backdrop';
 import { OverridableComponent } from '../OverridableComponent';
@@ -38,7 +41,7 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: Partial<ModalUnstyledClasses>;
+    classes?: Partial<BaseModalClasses>;
     /**
      * @ignore
      */
@@ -88,7 +91,7 @@ export interface ModalTypeMap<D extends React.ElementType = 'div', P = {}> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-  } & Omit<ModalUnstyledTypeMap['props'], 'slotProps'>;
+  } & Omit<BaseModalTypeMap['props'], 'slotProps'>;
   defaultComponent: D;
 }
 

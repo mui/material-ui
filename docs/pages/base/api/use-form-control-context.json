@@ -1,0 +1,28 @@
+{
+  "parameters": {},
+  "returnValue": {
+    "filled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "onBlur": {
+      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
+      "required": true
+    },
+    "onFocus": {
+      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
+      "required": true
+    },
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "error": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "onChange": {
+      "type": {
+        "name": "React.ChangeEventHandler&lt;NativeFormControlElement&gt;",
+        "description": "React.ChangeEventHandler&lt;NativeFormControlElement&gt;"
+      }
+    },
+    "required": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "value": { "type": { "name": "unknown", "description": "unknown" } }
+  },
+  "name": "useFormControlContext",
+  "filename": "/packages/mui-base/src/FormControl/useFormControlContext.ts",
+  "demos": "<ul><li><a href=\"/base/react-form-control/#hook\">Form Control</a></li></ul>"
+}

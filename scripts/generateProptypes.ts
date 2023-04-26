@@ -205,6 +205,8 @@ async function generateProptypes(
 
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
+  // If the component inherits the props from some unstyled components
+  // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 

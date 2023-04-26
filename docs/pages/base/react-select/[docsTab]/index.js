@@ -3,9 +3,9 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/select/select.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import OptionGroupUnstyledApiJsonPageContent from '../../api/option-group-unstyled.json';
-import OptionUnstyledApiJsonPageContent from '../../api/option-unstyled.json';
-import SelectUnstyledApiJsonPageContent from '../../api/select-unstyled.json';
+import OptionApiJsonPageContent from '../../api/option.json';
+import OptionGroupApiJsonPageContent from '../../api/option-group.json';
+import SelectApiJsonPageContent from '../../api/select.json';
 import useOptionApiJsonPageContent from '../../api/use-option.json';
 import useSelectApiJsonPageContent from '../../api/use-select.json';
 
@@ -26,26 +26,26 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const OptionGroupUnstyledApiReq = require.context(
-    'docs/translations/api-docs/option-group-unstyled',
+  const OptionApiReq = require.context(
+    'docs/translations/api-docs-base/option',
     false,
-    /option-group-unstyled.*.json$/,
+    /option.*.json$/,
   );
-  const OptionGroupUnstyledApiDescriptions = mapApiPageTranslations(OptionGroupUnstyledApiReq);
+  const OptionApiDescriptions = mapApiPageTranslations(OptionApiReq);
 
-  const OptionUnstyledApiReq = require.context(
-    'docs/translations/api-docs/option-unstyled',
+  const OptionGroupApiReq = require.context(
+    'docs/translations/api-docs-base/option-group',
     false,
-    /option-unstyled.*.json$/,
+    /option-group.*.json$/,
   );
-  const OptionUnstyledApiDescriptions = mapApiPageTranslations(OptionUnstyledApiReq);
+  const OptionGroupApiDescriptions = mapApiPageTranslations(OptionGroupApiReq);
 
-  const SelectUnstyledApiReq = require.context(
-    'docs/translations/api-docs/select-unstyled',
+  const SelectApiReq = require.context(
+    'docs/translations/api-docs-base/select',
     false,
-    /select-unstyled.*.json$/,
+    /select.*.json$/,
   );
-  const SelectUnstyledApiDescriptions = mapApiPageTranslations(SelectUnstyledApiReq);
+  const SelectApiDescriptions = mapApiPageTranslations(SelectApiReq);
 
   const useOptionApiReq = require.context(
     'docs/translations/api-docs/use-option',
@@ -64,14 +64,14 @@ export const getStaticProps = () => {
   return {
     props: {
       componentsApiDescriptions: {
-        OptionGroupUnstyled: OptionGroupUnstyledApiDescriptions,
-        OptionUnstyled: OptionUnstyledApiDescriptions,
-        SelectUnstyled: SelectUnstyledApiDescriptions,
+        Option: OptionApiDescriptions,
+        OptionGroup: OptionGroupApiDescriptions,
+        Select: SelectApiDescriptions,
       },
       componentsApiPageContents: {
-        OptionGroupUnstyled: OptionGroupUnstyledApiJsonPageContent,
-        OptionUnstyled: OptionUnstyledApiJsonPageContent,
-        SelectUnstyled: SelectUnstyledApiJsonPageContent,
+        Option: OptionApiJsonPageContent,
+        OptionGroup: OptionGroupApiJsonPageContent,
+        Select: SelectApiJsonPageContent,
       },
       hooksApiDescriptions: {
         useOption: useOptionApiDescriptions,

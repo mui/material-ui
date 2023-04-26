@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Modal from '@mui/base/Modal';
 import { Box, styled } from '@mui/system';
 
 export default function ServerModal() {
@@ -40,7 +40,7 @@ export default function ServerModal() {
   );
 }
 
-const StyledModal = styled(ModalUnstyled)`
+const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
   right: 0;
