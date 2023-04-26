@@ -62,7 +62,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabRoot: React.ElementType =slots.root ?? 'button';
+  const TabRoot: React.ElementType = slots.root ?? 'button';
   const tabRootProps: WithOptionalOwnerState<TabRootSlotProps> = useSlotProps({
     elementType: TabRoot,
     getSlotProps: getRootProps,
