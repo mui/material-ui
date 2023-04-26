@@ -91,15 +91,29 @@ The following props are available on all non-utility Base components.
 See [Usage](/base/getting-started/usage/) for full details.
 :::
 
-Use the `component` prop to override the root slot with a custom element:
+Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
-<Tab component="span" />
+<Tab slots={{root:"span"}} />
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
 
 ## Customization
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the compnent:
+
+```tsx
+<Tab<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Tab<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ### Third-party routing library
 
