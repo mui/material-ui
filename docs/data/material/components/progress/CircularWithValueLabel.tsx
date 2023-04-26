@@ -71,7 +71,7 @@ export default function CircularStatic() {
     <Stack spacing={2} direction="row">
       <CircularProgressWithLabel value={progress} />
       <Button onClick={handleClick} variant="outlined" disabled={isRunning && progress !== 100}>
-        {isRunning && progress !== 100 ? 'Running' : 'Start'}
+        {isRunning && progress !== 100 ? 'Stop' : 'Start'}
       </Button>
     </Stack>
       
