@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 
 export interface TabsRootSlotPropsOverrides {}
@@ -65,22 +65,26 @@ export interface TabsSlots {
   root?: React.ElementType;
 }
 
-export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & TabsOwnProps;
-  defaultComponent: D;
+export interface TabsTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: TabsOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type TabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabsTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = TabsTypeMap['defaultComponent'],
+> = OverrideProps<TabsTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
-export type TabsOwnerState = TabsProps & {
-  orientation: TabsOrientation;
-  direction: TabsDirection;
-};
+export type TabsOwnerState = Simplify<
+  TabsOwnProps & {
+    orientation: TabsOrientation;
+    direction: TabsDirection;
+  }
+>;
 
 export type TabsRootSlotProps = {
   ownerState: TabsOwnerState;

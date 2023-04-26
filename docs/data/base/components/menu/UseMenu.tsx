@@ -33,7 +33,7 @@ const MenuItem = React.forwardRef(function MenuItem(
 ) {
   const { children, onClick, ...other } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({ rootRef: ref });
 
   const classes = {
     'focus-visible': focusVisible,

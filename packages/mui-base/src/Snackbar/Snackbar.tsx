@@ -33,9 +33,9 @@ const useUtilityClasses = () => {
  *
  * - [Snackbar API](https://mui.com/base/react-snackbar/components-api/#snackbar)
  */
-const Snackbar = React.forwardRef(function Snackbar(
-  props: SnackbarProps,
-  ref: React.ForwardedRef<any>,
+const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends React.ElementType>(
+  props: SnackbarProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     autoHideDuration = null,
@@ -64,7 +64,6 @@ const Snackbar = React.forwardRef(function Snackbar(
     onClose,
     open,
     resumeHideDuration,
-    ref,
   });
 
   const ownerState: SnackbarOwnerState = props;
@@ -77,7 +76,7 @@ const Snackbar = React.forwardRef(function Snackbar(
     externalForwardedProps: other,
     externalSlotProps: slotProps.root,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,
