@@ -7,7 +7,6 @@
 The following code snippet demonstrates a simple app that uses the Material UI [Button](/material-ui/react-button/) component:
 
 ```jsx
-import * as React from 'react';
 import Button from '@mui/material/Button';
 
 export default function MyApp() {
