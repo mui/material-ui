@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
+import { PolymorphicProps } from '../utils/PolymorphicComponent';
 
 export interface TabsRootSlotPropsOverrides {}
 
@@ -71,11 +72,8 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
 }
 
 export type TabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabsTypeMap<P, D>, D> & {
-  component?: D;
-};
+  RootComponentType extends React.ElementType = TabsTypeMap['defaultComponent'],
+> = PolymorphicProps<TabsTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type TabsOwnerState = TabsProps & {
   orientation: TabsOrientation;

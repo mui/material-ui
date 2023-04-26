@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsProps, TabsRootSlotProps, TabsTypeMap } from './Tabs.types';
@@ -36,7 +35,6 @@ const Tabs = React.forwardRef<unknown, TabsProps>(function Tabs(props, ref) {
     defaultValue,
     orientation = 'horizontal',
     direction = 'ltr',
-    component,
     onChange,
     selectionFollowsFocus,
     slotProps = {},
@@ -54,7 +52,7 @@ const Tabs = React.forwardRef<unknown, TabsProps>(function Tabs(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabsRoot: React.ElementType = component ?? slots.root ?? 'div';
+  const TabsRoot: React.ElementType = slots.root ?? 'div';
   const tabsRootProps: WithOptionalOwnerState<TabsRootSlotProps> = useSlotProps({
     elementType: TabsRoot,
     externalSlotProps: slotProps.root,
@@ -71,7 +69,7 @@ const Tabs = React.forwardRef<unknown, TabsProps>(function Tabs(props, ref) {
       <TabsProvider value={contextValue}>{children}</TabsProvider>
     </TabsRoot>
   );
-}) as OverridableComponent<TabsTypeMap>;
+}) as PolymorphicComponent<TabsTypeMap>;
 
 Tabs.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -82,11 +80,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
