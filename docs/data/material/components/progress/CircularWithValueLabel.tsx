@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-
+import { visuallyHidden } from 'packages/mui-utils/src';
 
 function CircularProgressWithLabel(
   props: CircularProgressProps & { value: number },
@@ -47,10 +47,9 @@ export default function CircularStatic() {
     let timerId: NodeJS.Timeout | null = null;
     if (isRunning) {
       timerId = setInterval(() => {
-        setProgress((prevProgress) =>
-          prevProgress >= 100 ? 100 : prevProgress + 10
-        );
-      }, 800);
+        handleProgress();
+
+      }, 1000);
     }
     return () => {
       if (timerId) {
@@ -58,6 +57,17 @@ export default function CircularStatic() {
       }
     };
   }, [isRunning]);
+
+  const handleProgress = () => {
+    setProgress((oldProgress) => {
+      if (oldProgress === 100) {
+        setIsRunning(false);
+        return 0;
+      }
+      const nextProgress = oldProgress + 20;
+      return nextProgress;
+    });
+  };
 
   const handleClick = () => {
     if (progress === 100) {
@@ -73,6 +83,7 @@ export default function CircularStatic() {
       <Button onClick={handleClick} variant="outlined" disabled={isRunning && progress !== 100}>
         {isRunning && progress !== 100 ? 'Stop' : 'Start'}
       </Button>
+      {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
     </Stack>
       
     </>
