@@ -244,7 +244,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   // Support autofill.
   const handleChange = (event) => {
-    const child = childrenArray.find((child) => child.props.value === event.target.value);
+    const child = childrenArray.find((childItem) => childItem.props.value === event.target.value);
 
     if (child === undefined) {
       return;
