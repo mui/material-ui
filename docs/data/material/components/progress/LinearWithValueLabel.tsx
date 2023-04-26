@@ -32,7 +32,7 @@ export default function LinearWithValueLabel() {
     if (isRunning) {
       timerId = setInterval(() => {
         handleProgress();
-      }, 1000);
+      }, 1800);
     }
     return () => {
       if (timerId) {
