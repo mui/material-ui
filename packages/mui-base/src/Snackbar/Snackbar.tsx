@@ -134,10 +134,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   exited: PropTypes.bool,
   /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
    * Callback fired when the component requests to be closed.
    * Typically `onClose` is used to set state in the parent component,
    * which is used to control the `Snackbar` `open` prop.
@@ -148,18 +144,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */
