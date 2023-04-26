@@ -1,12 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import { getTabUtilityClass } from './tabClasses';
 import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
 import useTab from '../useTab';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
@@ -40,7 +39,6 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
     onChange,
     onClick,
     onFocus,
-    component,
     slotProps = {},
     slots = {},
     ...other
@@ -64,7 +62,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabRoot: React.ElementType = component ?? slots.root ?? 'button';
+  const TabRoot: React.ElementType =slots.root ?? 'button';
   const tabRootProps: WithOptionalOwnerState<TabRootSlotProps> = useSlotProps({
     elementType: TabRoot,
     getSlotProps: getRootProps,
@@ -78,7 +76,7 @@ const Tab = React.forwardRef(function Tab<RootComponentType extends React.Elemen
   });
 
   return <TabRoot {...tabRootProps}>{children}</TabRoot>;
-}) as OverridableComponent<TabTypeMap>;
+}) as PolymorphicComponent<TabTypeMap>;
 
 Tab.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
