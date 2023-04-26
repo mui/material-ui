@@ -34,7 +34,7 @@ export default function CircularIntegration() {
       timer.current = window.setTimeout(() => {
         setSuccess(true);
         setLoading(false);
-      }, 2000);
+      }, 1800);
     }
   };
 
@@ -42,10 +42,13 @@ export default function CircularIntegration() {
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ m: 1, position: 'relative' }}>
         <Fab
-          aria-label="save"
           color="primary"
           sx={buttonSx}
           onClick={handleButtonClick}
+          aria-busy={loading ? 'true' : 'false'}
+          aria-live={success ? 'polite' : undefined}
+          aria-atomic={success ? 'true' : undefined}
+          aria-label={success ? 'Progress complete' : 'save'}
         >
           {success ? <CheckIcon /> : <SaveIcon />}
         </Fab>
@@ -59,6 +62,9 @@ export default function CircularIntegration() {
               left: -6,
               zIndex: 1,
             }}
+            role="status"
+            aria-label={loading ? 'Progress loading' : 'Progress complete'}
+            aria-live="assertive"
           />
         )}
       </Box>
@@ -68,6 +74,10 @@ export default function CircularIntegration() {
           sx={buttonSx}
           disabled={loading}
           onClick={handleButtonClick}
+          aria-busy={loading ? 'true' : 'false'}
+          aria-live={success ? 'polite' : undefined}
+          aria-atomic={success ? 'true' : undefined}
+          aria-label={success ? 'Progress complete' : 'Accept terms'}
         >
           Accept terms
         </Button>
@@ -82,6 +92,9 @@ export default function CircularIntegration() {
               marginTop: '-12px',
               marginLeft: '-12px',
             }}
+            role="status"
+            aria-label={loading ? 'Progress loading' : 'Progress complete'}
+            aria-live="assertive"
           />
         )}
       </Box>

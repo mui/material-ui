@@ -1,1 +1,12 @@
-<LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+<Button variant="outlined" onClick={handleButtonClick}>
+  {running ? 'Stop' : 'Start'}
+</Button>
+<Box sx={{ width: '100%' }}>
+  <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+</Box>
+{progress > 0 && (
+  <span
+    style={visuallyHidden}
+    aria-live="polite"
+  >{`${progress}% progress`}</span>
+)}

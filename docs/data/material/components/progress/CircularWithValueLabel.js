@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { visuallyHidden } from 'packages/mui-utils/src';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -38,16 +41,56 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircularStatic() {
-  const [progress, setProgress] = React.useState(10);
+  const [progress, setProgress] = React.useState(0);
+  const [isRunning, setIsRunning] = React.useState(false);
 
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-    }, 800);
+    let timerId = null;
+    if (isRunning) {
+      timerId = setInterval(() => {
+        handleProgress();
+      }, 1800);
+    }
     return () => {
-      clearInterval(timer);
+      if (timerId) {
+        clearInterval(timerId);
+      }
     };
-  }, []);
+  }, [isRunning]);
 
-  return <CircularProgressWithLabel value={progress} />;
+  const handleProgress = () => {
+    setProgress((oldProgress) => {
+      if (oldProgress === 100) {
+        setIsRunning(false);
+        return 0;
+      }
+      const nextProgress = oldProgress + 20;
+      return nextProgress;
+    });
+  };
+
+  const handleClick = () => {
+    if (progress === 100) {
+      setProgress(0);
+    }
+    setIsRunning(!isRunning);
+  };
+
+  return (
+    <Stack spacing={2} direction="row">
+      <CircularProgressWithLabel value={progress} />
+      <Button
+        onClick={handleClick}
+        variant="outlined"
+        disabled={isRunning && progress !== 100}
+      >
+        {isRunning && progress !== 100 ? 'Stop' : 'Start'}
+      </Button>
+      {progress > 0 && (
+        <span style={visuallyHidden} aria-live="polite">
+          {`${progress}% progress`}
+        </span>
+      )}
+    </Stack>
+  );
 }

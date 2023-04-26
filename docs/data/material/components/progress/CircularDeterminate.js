@@ -1,19 +1,45 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import { visuallyHidden } from 'packages/mui-utils/src';
+import Button from '@mui/material/Button';
 
 export default function CircularDeterminate() {
   const [progress, setProgress] = React.useState(0);
+  const [running, setRunning] = React.useState(false);
 
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-    }, 800);
+    let timer = null;
+
+    if (running) {
+      timer = setInterval(() => {
+        setProgress((oldProgress) => {
+          const nextProgress = oldProgress + 20;
+          if (nextProgress >= 100) {
+            setRunning(false);
+            return 100;
+          }
+          return nextProgress;
+        });
+      }, 1800);
+    }
 
     return () => {
-      clearInterval(timer);
+      if (timer) {
+        clearInterval(timer);
+      }
     };
-  }, []);
+  }, [running]);
+
+  const handleStart = () => {
+    setRunning(true);
+    setProgress(0);
+  };
+
+  const handleStop = () => {
+    setRunning(false);
+    setProgress(0);
+  };
 
   return (
     <Stack spacing={2} direction="row">
@@ -21,7 +47,31 @@ export default function CircularDeterminate() {
       <CircularProgress variant="determinate" value={50} />
       <CircularProgress variant="determinate" value={75} />
       <CircularProgress variant="determinate" value={100} />
-      <CircularProgress variant="determinate" value={progress} />
+      <CircularProgress
+        variant="determinate"
+        value={progress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      />
+      {progress > 0 && (
+        <span style={visuallyHidden} aria-live="polite">
+          {`${progress}% progress`}
+        </span>
+      )}
+
+      <Stack spacing={2} direction="row">
+        {!running && (
+          <Button onClick={handleStart} variant="outlined">
+            Start
+          </Button>
+        )}
+
+        {running && (
+          <Button onClick={handleStop} variant="outlined">
+            Stop
+          </Button>
+        )}
+      </Stack>
     </Stack>
   );
 }

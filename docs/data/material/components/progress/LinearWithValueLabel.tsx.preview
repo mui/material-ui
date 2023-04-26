@@ -1,1 +1,12 @@
-<LinearProgressWithLabel value={progress} />
+<Button variant="outlined" onClick={handleClick}>
+  {isRunning && progress !== 100 ? 'Stop' : 'Start'}
+</Button>
+<Box sx={{ width: '100%' }}>
+  <LinearProgressWithLabel value={progress} />
+</Box>
+{progress > 0 && (
+  <span
+    style={visuallyHidden}
+    aria-live="polite"
+  >{`${progress}% progress`}</span>
+)}

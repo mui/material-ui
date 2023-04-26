@@ -1,1 +1,14 @@
 <CircularProgressWithLabel value={progress} />
+<Button
+  onClick={handleClick}
+  variant="outlined"
+  disabled={isRunning && progress !== 100}
+>
+  {isRunning && progress !== 100 ? 'Stop' : 'Start'}
+</Button>
+{progress > 0 && (
+  <span
+    style={visuallyHidden}
+    aria-live="polite"
+  >{`${progress}% progress`}</span>
+)}
