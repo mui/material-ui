@@ -10,8 +10,6 @@ export default function DelayingAppearance() {
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<number>();
-  const [clicked, setClicked] = React.useState(false);
-
 
   React.useEffect(
     () => () => {
@@ -22,7 +20,6 @@ export default function DelayingAppearance() {
 
   const handleClickLoading = () => {
     setLoading((prevLoading) => !prevLoading);
-    setClicked((prevClicked) => !prevClicked);
   };
 
   const handleClickQuery = () => {
@@ -61,7 +58,6 @@ export default function DelayingAppearance() {
       <Button onClick={handleClickLoading} sx={{ m: 2 }}>
         {loading ? 'Stop loading' : 'Loading'}
       </Button>
-      {/* { clicked && <span style={visuallyHidden} aria-live="polite">{loading ? 'Progress loading' : 'Progress stopped'}</span>} */}
       <Box sx={{ height: 40 }}>
         {query === 'success' ? (
           <Typography>Success!</Typography>
