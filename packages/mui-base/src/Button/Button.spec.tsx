@@ -35,6 +35,12 @@ const polymorphicComponentTest = () => {
 
       <Button slots={{ root: 'a' }} href="#" />
 
+      <Button<typeof CustomComponent>
+        slots={{ root: CustomComponent }}
+        stringProp="test"
+        numberProp={0}
+      />
+
       {/* @ts-expect-error onClick must be specified in the custom root component */}
       <Button<typeof Root> slots={{ root: Root }} onClick={() => {}} />
 
