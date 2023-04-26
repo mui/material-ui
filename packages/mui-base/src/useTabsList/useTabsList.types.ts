@@ -6,7 +6,7 @@ export interface UseTabsListParameters {
   /**
    * Ref to the root element.
    */
-  ref: React.Ref<unknown>;
+  rootRef: React.Ref<Element>;
 }
 
 export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
@@ -14,16 +14,28 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
   'aria-labelledby'?: React.AriaAttributes['aria-labelledby'];
   'aria-orientation'?: React.AriaAttributes['aria-orientation'];
   role: React.AriaRole;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };
 
 export interface UseTabsListReturnValue {
   /**
+   * The value to be passed to the TabListProvider above all the tabs.
+   */
+  contextValue: TabsListProviderValue;
+  /**
    * Action dispatcher for the tabs list component.
    * Allows to programmatically control the tabs list.
    */
   dispatch: (action: ListAction<string | number>) => void;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends Record<string, any> = {}>(
+    externalProps?: TOther,
+  ) => UseTabsListRootSlotProps<TOther>;
   /**
    * The value of the currently highlighted tab.
    */
@@ -38,22 +50,11 @@ export interface UseTabsListReturnValue {
    * @default 'horizontal'
    */
   orientation: 'horizontal' | 'vertical';
+  rootRef: React.RefCallback<Element> | null;
   /**
    * The value of the currently selected tab.
    */
   selectedValue: string | number | null;
-  /**
-   * Resolver for the root slot's props.
-   * @param externalProps props for the root slot
-   * @returns props that should be spread on the root slot
-   */
-  getRootProps: <TOther extends Record<string, any> = {}>(
-    externalProps?: TOther,
-  ) => UseTabsListRootSlotProps<TOther>;
-  /**
-   * The value to be passed to the TabListProvider above all the tabs.
-   */
-  contextValue: TabsListProviderValue;
 }
 
 export const TabsListActionTypes = {

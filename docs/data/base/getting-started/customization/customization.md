@@ -39,7 +39,7 @@ import classes from './styles.module.css';
 
 export default function Switch(props) {
   const slotProps = {
-    root: (ownerState: SwitchUnstyledOwnerState) => ({
+    root: (ownerState: SwitchOwnerState) => ({
       className: clsx(classes.root, {
         [classes.checked]: ownerState.checked,
         [classes.disabled]: ownerState.disabled,
@@ -50,7 +50,7 @@ export default function Switch(props) {
     input: { className: classes.input },
   };
 
-  return <SwitchUnstyled {...props} slotProps={slotProps} />;
+  return <Switch {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -63,12 +63,12 @@ Use [`slotProps`](#customizing-slot-props) to apply custom styles using [Tailwin
 ```tsx
 export default function Switch(props) {
   const slotProps = {
-    root: (ownerState: SwitchUnstyledOwnerState) => ({
+    root: (ownerState: SwitchOwnerState) => ({
       className: `inline-block w-8 h-5 rounded-full cursor-pointer relative ${
         ownerState.checked ? 'bg-cyan-500' : 'bg-zinc-400'
       }`,
     }),
-    thumb: (ownerState: SwitchUnstyledOwnerState) => ({
+    thumb: (ownerState: SwitchOwnerState) => ({
       className: `bg-white block w-3.5 h-3.5 rounded-full relative top-[3px] ${
         ownerState.checked ? 'left-[3px]' : 'left-[14px]'
       }`,
@@ -76,7 +76,7 @@ export default function Switch(props) {
     input: { className: 'absolute w-full h-full inset-0 opacity-0 z-10 m-0' },
   };
 
-  return <SwitchUnstyled {...props} slotProps={slotProps} />;
+  return <Switch {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -112,7 +112,7 @@ See [Disabling default CSS classes](#disabling-default-css-classes) for instruct
 
 If you want to make changes to a component's rendered HTML structure, you can override the default subcomponents ("slots") using the `slots` and/or `component` prop—see ["Shared props" on the Base Usage page](/base/getting-started/usage/#shared-props) for more details.
 
-The following demo uses [SwitchUnstyled](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
+The following demo uses [Switch](/base/react-switch/) to show how to create a styled component by applying styles to three of its subcomponent slots: `root`, `thumb`, and `input`.
 
 Note that although this demo uses [MUI System](/system/styled/) as a styling solution, you are free to choose any alternative.
 
@@ -124,7 +124,7 @@ By convention, it contains all props passed to the owner, merged with its render
 For example:
 
 ```jsx
-<SwitchUnstyled slots={{ thumb: MyCustomThumb }} data-foo="42" />
+<Switch slots={{ thumb: MyCustomThumb }} data-foo="42" />
 ```
 
 In this case, `MyCustomThumb` component receives the `ownerState` object with the following data:
@@ -146,11 +146,11 @@ You can use this object to style your component.
 Use the `slotProps` prop to customize the inner component props.
 The most common use case is setting a class name, but you can set any prop, including event handlers.
 
-The following example shows how to add a custom class to two of the Unstyled Switch's slots:
+The following example shows how to add a custom class to two of the Switch's slots:
 
 ```tsx
-function Switch(props: SwitchUnstyledProps) {
-  const slotProps: SwitchUnstyledProps['slotProps'] = {
+function Switch(props: SwitchProps) {
+  const slotProps: SwitchProps['slotProps'] = {
     thumb: {
       className: 'my-thumb',
     },
@@ -159,7 +159,7 @@ function Switch(props: SwitchUnstyledProps) {
     },
   };
 
-  return <SwitchUnstyled {...props} slotProps={slotProps} />;
+  return <Switch {...props} slotProps={slotProps} />;
 }
 ```
 
@@ -171,9 +171,9 @@ A good example is adding `on` and `off` classes to a Switch based on its checked
 {{"demo": "SlotPropsCallback.js", "defaultCodeOpen": true}}
 
 Here, instead of an object with props, the root slot receives a callback function.
-Its only parameter is `ownerState`, which is an object that describes the state of the "owner component"—the Unstyled Switch in this case.
+Its only parameter is `ownerState`, which is an object that describes the state of the "owner component"—the Switch in this case.
 The `ownerState` holds all the props of the owner component (with defaults applied where applicable) and is augmented with the internal state of the component.
-In the case of the Unstyled Select, the additional information includes the `checked`, `disabled`, `focusVisible`, and `readOnly` boolean fields.
+In the case of the Select, the additional information includes the `checked`, `disabled`, `focusVisible`, and `readOnly` boolean fields.
 
 ### Creating custom components using hooks
 
@@ -184,7 +184,7 @@ See ["Components vs. hooks" on the Base Usage page](/base/getting-started/usage/
 
 Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
-In the case of [SwitchUnstyled](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
+In the case of [Switch](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 
 It returns the following object:
 
@@ -213,7 +213,7 @@ To do this, wrap your components in a ClassNameConfigurator component (imported 
 
 ```tsx
 <ClassNameConfigurator disableDefaultClasses>
-  <ButtonUnstyled>I'm classless!</ButtonUnstyled>
+  <Button>I'm classless!</Button>
 </ClassNameConfigurator>
 ```
 

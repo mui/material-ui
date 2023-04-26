@@ -36,7 +36,7 @@ const pages = [
           { pathname: '/joy-ui/react-button' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-input' },
-          { pathname: '/joy-ui/react-radio-button', title: 'Radio Group' },
+          { pathname: '/joy-ui/react-radio-button', title: 'Radio Button' },
           { pathname: '/joy-ui/react-select' },
           { pathname: '/joy-ui/react-slider' },
           { pathname: '/joy-ui/react-switch' },

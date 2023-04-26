@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
-import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import Tabs from '@mui/base/Tabs';
+import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
+import { buttonClasses } from '@mui/base/Button';
+import Tab, { tabClasses } from '@mui/base/Tab';
 
 export default function UnstyledTabsCustomized() {
   return (
-    <TabsUnstyled defaultValue={1}>
-      <TabsList>
-        <Tab value={1}>One</Tab>
-        <Tab value={2}>Two</Tab>
-        <Tab value={3}>Three</Tab>
-      </TabsList>
-      <TabPanel value={1}>First page</TabPanel>
-      <TabPanel value={2}>Second page</TabPanel>
-      <TabPanel value={3}>Third page</TabPanel>
-    </TabsUnstyled>
+    <Tabs defaultValue={1}>
+      <StyledTabsList>
+        <StyledTab value={1}>One</StyledTab>
+        <StyledTab value={2}>Two</StyledTab>
+        <StyledTab value={3}>Three</StyledTab>
+      </StyledTabsList>
+      <StyledTabPanel value={1}>First page</StyledTabPanel>
+      <StyledTabPanel value={2}>Second page</StyledTabPanel>
+      <StyledTabPanel value={3}>Third page</StyledTabPanel>
+    </Tabs>
   );
 }
 
@@ -47,7 +47,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Tab = styled(TabUnstyled)`
+const StyledTab = styled(Tab)`
   font-family: IBM Plex Sans, sans-serif;
   color: white;
   cursor: pointer;
@@ -71,24 +71,24 @@ const Tab = styled(TabUnstyled)`
     outline: 3px solid ${blue[200]};
   }
 
-  &.${tabUnstyledClasses.selected} {
+  &.${tabClasses.selected} {
     background-color: #fff;
     color: ${blue[600]};
   }
 
-  &.${buttonUnstyledClasses.disabled} {
+  &.${buttonClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
   }
 `;
 
-const TabPanel = styled(TabPanelUnstyled)`
+const StyledTabPanel = styled(TabPanel)`
   width: 100%;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
 `;
 
-const TabsList = styled(TabsListUnstyled)(
+const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};

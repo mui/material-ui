@@ -14,7 +14,7 @@ import { EventHandlers } from '../utils/types';
  *
  * Demos:
  *
- * - [Unstyled Button](https://mui.com/base/react-button/#hook)
+ * - [Button](https://mui.com/base/react-button/#hook)
  *
  * API:
  *
@@ -25,7 +25,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     disabled = false,
     focusableWhenDisabled,
     href,
-    ref: externalRef,
+    rootRef: externalRef,
     tabIndex,
     to,
     type,
@@ -233,8 +233,7 @@ export default function useButton(parameters: UseButtonParameters = {}): UseButt
     getRootProps,
     focusVisible,
     setFocusVisible,
-    disabled,
     active,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }

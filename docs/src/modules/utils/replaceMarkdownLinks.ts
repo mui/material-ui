@@ -33,7 +33,7 @@ export const replaceComponentLinks = (markdown: string) => {
 export const replaceAPILinks = (markdown: string) => {
   return markdown
     .replace(/\(\/api\/data-grid([^)]*)\)/gm, '(/x/api/data-grid$1)')
-    .replace(/\(\/api\/([^"/]+-unstyled)([^)]*)\)/gm, '(/base/api/$1$2)')
+    .replace(/\(\/api\/([^"/]+)(-unstyled)([^)]*)\)/gm, '(/base/api/$1$3)')
     .replace(
       /\(\/api\/(focus-trap|click-away-listener|no-ssr|portal|textarea-autosize)([^)]*)\)/gm,
       '(/base/api/$1$2)',

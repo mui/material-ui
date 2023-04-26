@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
-import ModalUnstyled from '@mui/base/ModalUnstyled';
-import Button from '@mui/base/ButtonUnstyled';
+import Modal from '@mui/base/Modal';
+import Button from '@mui/base/Button';
 
 export default function NestedModal() {
   const [open, setOpen] = React.useState(false);
@@ -48,12 +48,12 @@ function ChildModal() {
   return (
     <React.Fragment>
       <Button onClick={handleOpen}>Open Child Modal</Button>
-      <Modal
+      <StyledModal
         open={open}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={[style, { width: '200px' }]}>
           <h2 id="child-modal-title">Text in a child modal</h2>
@@ -62,12 +62,12 @@ function ChildModal() {
           </p>
           <Button onClick={handleClose}>Close Child Modal</Button>
         </Box>
-      </Modal>
+      </StyledModal>
     </React.Fragment>
   );
 }
 
-const BackdropUnstyled = React.forwardRef((props, ref) => {
+const Backdrop = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
     <div
@@ -78,12 +78,12 @@ const BackdropUnstyled = React.forwardRef((props, ref) => {
   );
 });
 
-BackdropUnstyled.propTypes = {
+Backdrop.propTypes = {
   className: PropTypes.string.isRequired,
   open: PropTypes.bool,
 };
 
-const Modal = styled(ModalUnstyled)`
+const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -95,7 +95,7 @@ const Modal = styled(ModalUnstyled)`
   justify-content: center;
 `;
 
-const Backdrop = styled(BackdropUnstyled)`
+const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
   right: 0;

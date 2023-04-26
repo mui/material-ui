@@ -4,7 +4,7 @@ import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SliderUnstyled } from '@mui/base';
+import BaseSlider from '@mui/base/Slider';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
 function createTouches(touches) {
@@ -1235,7 +1235,7 @@ describe('<Slider />', () => {
   });
 
   it('should remove the slider from the tab sequence', () => {
-    render(<SliderUnstyled tabIndex={-1} value={30} />);
+    render(<BaseSlider tabIndex={-1} value={30} />);
     expect(screen.getByRole('slider')).to.have.property('tabIndex', -1);
   });
 

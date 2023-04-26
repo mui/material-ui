@@ -58,6 +58,13 @@
       "type": { "name": "boolean", "description": "boolean" },
       "required": true
     },
+    "buttonRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
     "contextValue": {
       "type": {
         "name": "SelectProviderValue&lt;Value&gt;",
@@ -98,6 +105,13 @@
       "type": { "name": "Value | null", "description": "Value | null" },
       "required": true
     },
+    "listboxRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
     "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "options": { "type": { "name": "Value[]", "description": "Value[]" }, "required": true },
     "value": {
@@ -110,5 +124,5 @@
   },
   "name": "useSelect",
   "filename": "/packages/mui-base/src/useSelect/useSelect.ts",
-  "demos": "<ul><li><a href=\"/base/react-select/#hooks\">Unstyled Select</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-select/#hooks\">Select</a></li></ul>"
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import Switch, { switchClasses } from '@mui/base/Switch';
 import ClassNameConfigurator from '@mui/base/utils/ClassNameConfigurator';
 import { createRenderer } from 'test/utils';
 import { expect } from 'chai';
@@ -8,41 +8,41 @@ describe('ClassNameConfigurator', () => {
   const { render } = createRenderer();
 
   it('should apply default classes when not configured', () => {
-    const { container } = render(<SwitchUnstyled defaultChecked disabled />);
+    const { container } = render(<Switch defaultChecked disabled />);
 
     const switchComponent = container.firstChild!;
 
-    expect(switchComponent).to.have.class(switchUnstyledClasses.root);
-    expect(switchComponent).to.have.class(switchUnstyledClasses.checked);
-    expect(switchComponent).to.have.class(switchUnstyledClasses.disabled);
+    expect(switchComponent).to.have.class(switchClasses.root);
+    expect(switchComponent).to.have.class(switchClasses.checked);
+    expect(switchComponent).to.have.class(switchClasses.disabled);
 
-    expect(switchComponent.childNodes[0]).to.have.class(switchUnstyledClasses.track);
-    expect(switchComponent.childNodes[1]).to.have.class(switchUnstyledClasses.thumb);
-    expect(switchComponent.childNodes[2]).to.have.class(switchUnstyledClasses.input);
+    expect(switchComponent.childNodes[0]).to.have.class(switchClasses.track);
+    expect(switchComponent.childNodes[1]).to.have.class(switchClasses.thumb);
+    expect(switchComponent.childNodes[2]).to.have.class(switchClasses.input);
   });
 
   it('should not generate any classes when configured as such', () => {
     const { container } = render(
       <ClassNameConfigurator disableDefaultClasses>
-        <SwitchUnstyled defaultChecked disabled />
+        <Switch defaultChecked disabled />
       </ClassNameConfigurator>,
     );
 
     const switchComponent = container.firstChild!;
 
-    expect(switchComponent).not.to.have.class(switchUnstyledClasses.root);
-    expect(switchComponent).not.to.have.class(switchUnstyledClasses.checked);
-    expect(switchComponent).not.to.have.class(switchUnstyledClasses.disabled);
+    expect(switchComponent).not.to.have.class(switchClasses.root);
+    expect(switchComponent).not.to.have.class(switchClasses.checked);
+    expect(switchComponent).not.to.have.class(switchClasses.disabled);
 
-    expect(switchComponent.childNodes[0]).not.to.have.class(switchUnstyledClasses.track);
-    expect(switchComponent.childNodes[1]).not.to.have.class(switchUnstyledClasses.thumb);
-    expect(switchComponent.childNodes[2]).not.to.have.class(switchUnstyledClasses.input);
+    expect(switchComponent.childNodes[0]).not.to.have.class(switchClasses.track);
+    expect(switchComponent.childNodes[1]).not.to.have.class(switchClasses.thumb);
+    expect(switchComponent.childNodes[2]).not.to.have.class(switchClasses.input);
   });
 
   it('should not remove custom classes when disableDefaultClasses is set', () => {
     const { container } = render(
       <ClassNameConfigurator disableDefaultClasses>
-        <SwitchUnstyled
+        <Switch
           className="custom-switch"
           slotProps={{
             track: { className: 'custom-track' },

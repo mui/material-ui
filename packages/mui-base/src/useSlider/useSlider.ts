@@ -195,7 +195,7 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Unstyled Slider](https://mui.com/base/react-slider/#hook)
+ * - [Slider](https://mui.com/base/react-slider/#hook)
  *
  * API:
  *
@@ -215,7 +215,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
-    ref,
+    rootRef: ref,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -708,6 +708,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
     marks: marks as Mark[],
     open,
     range,
+    rootRef: handleRef,
     trackLeap,
     trackOffset,
     values,
