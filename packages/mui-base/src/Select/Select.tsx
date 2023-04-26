@@ -62,7 +62,9 @@ function defaultFormValueProvider<OptionValue>(
   return JSON.stringify(selectedOption.value);
 }
 
-function useUtilityClasses(ownerState: SelectOwnerState<any, any>) {
+function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
+  ownerState: SelectOwnerState<OptionValue, Multiple>,
+) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
@@ -91,9 +93,13 @@ function useUtilityClasses(ownerState: SelectOwnerState<any, any>) {
  *
  * - [Select API](https://mui.com/base/react-select/components-api/#select)
  */
-const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple extends boolean>(
-  props: SelectProps<OptionValue, Multiple>,
-  forwardedRef: React.ForwardedRef<any>,
+const Select = React.forwardRef(function Select<
+  OptionValue extends {},
+  Multiple extends boolean,
+  RootComponentType extends React.ElementType,
+>(
+  props: SelectProps<OptionValue, Multiple, RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     autoFocus,

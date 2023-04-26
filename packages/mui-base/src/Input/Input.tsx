@@ -46,9 +46,9 @@ const useUtilityClasses = (ownerState: InputOwnerState) => {
  *
  * - [Input API](https://mui.com/base/react-input/components-api/#input)
  */
-const Input = React.forwardRef(function Input(
-  props: InputProps,
-  forwardedRef: React.ForwardedRef<any>,
+const Input = React.forwardRef(function Input<RootComponentType extends React.ElementType>(
+  props: InputProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     'aria-describedby': ariaDescribedby,

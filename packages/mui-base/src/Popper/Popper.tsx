@@ -75,10 +75,9 @@ const useUtilityClasses = () => {
 
 const defaultPopperOptions = {};
 
-const PopperTooltip = React.forwardRef(function PopperTooltip(
-  props: PopperTooltipProps,
-  ref: React.ForwardedRef<HTMLElement>,
-) {
+const PopperTooltip = React.forwardRef(function PopperTooltip<
+  RootComponentType extends React.ElementType,
+>(props: PopperTooltipProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
     anchorEl,
     children,
@@ -99,7 +98,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
   } = props;
 
   const tooltipRef = React.useRef<HTMLElement | null>(null);
-  const ownRef = useForkRef(tooltipRef, ref);
+  const ownRef = useForkRef(tooltipRef, forwardedRef);
 
   const popperRef = React.useRef<Instance | null>(null);
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
@@ -247,9 +246,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(
  *
  * - [Popper API](https://mui.com/base/react-popper/components-api/#popper)
  */
-const Popper = React.forwardRef(function Popper(
-  props: PopperProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
+const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
+  props: PopperProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     anchorEl,
@@ -313,7 +312,7 @@ const Popper = React.forwardRef(function Popper(
         direction={direction}
         disablePortal={disablePortal}
         modifiers={modifiers}
-        ref={ref}
+        ref={forwardedRef}
         open={transition ? !exited : open}
         placement={placement}
         popperOptions={popperOptions}

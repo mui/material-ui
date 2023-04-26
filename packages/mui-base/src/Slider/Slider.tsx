@@ -55,9 +55,10 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
  *
  * - [Slider API](https://mui.com/base/react-slider/components-api/#slider)
  */
-const Slider = React.forwardRef(function Slider<
-  BaseComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
->(props: SliderProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+const Slider = React.forwardRef(function Slider<RootComponentType extends React.ElementType>(
+  props: SliderProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     'aria-label': ariaLabel,
     'aria-valuetext': ariaValuetext,
@@ -119,7 +120,7 @@ const Slider = React.forwardRef(function Slider<
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...partialOwnerState, ref });
+  } = useSlider({ ...partialOwnerState, rootRef: forwardedRef });
 
   const ownerState: SliderOwnerState = {
     ...partialOwnerState,

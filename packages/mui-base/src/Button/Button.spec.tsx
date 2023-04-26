@@ -24,24 +24,37 @@ const polymorphicComponentTest = () => {
       return <div />;
     };
 
+  const Root = function Root() {
+    return <div />;
+  };
+
   return (
     <div>
       {/* @ts-expect-error */}
       <Button invalidProp={0} />
 
-      <Button component="a" href="#" />
+      <Button slots={{ root: 'a' }} href="#" />
 
-      <Button component={CustomComponent} stringProp="test" numberProp={0} />
-      {/* @ts-expect-error */}
-      <Button component={CustomComponent} />
+      <Button<typeof CustomComponent>
+        slots={{ root: CustomComponent }}
+        stringProp="test"
+        numberProp={0}
+      />
+
+      {/* @ts-expect-error onClick must be specified in the custom root component */}
+      <Button<typeof Root> slots={{ root: Root }} onClick={() => {}} />
+
+      {/* @ts-expect-error required props not specified */}
+      <Button<typeof CustomComponent> slots={{ root: CustomComponent }} />
+
+      <Button<'svg'> viewBox="" />
 
       <Button
-        component="button"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <Button<'div'>
-        component="div"
+        slotProps={{ root: 'div' }}
         ref={(elem) => {
           expectType<HTMLDivElement | null, typeof elem>(elem);
         }}

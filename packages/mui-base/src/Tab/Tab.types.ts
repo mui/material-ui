@@ -38,24 +38,27 @@ export interface TabSlots {
   root?: React.ElementType;
 }
 
-export type TabProps<
-  D extends React.ElementType = TabTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabTypeMap<P, D>, D> & {
-  component?: D;
-};
+export type TabProps<RootComponentType extends React.ElementType = TabTypeMap['defaultComponent']> =
+  OverrideProps<TabTypeMap<{}, RootComponentType>, RootComponentType> & {
+    component?: RootComponentType;
+  };
 
-export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
-  props: P & TabOwnProps;
-  defaultComponent: D;
+export interface TabTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'button',
+> {
+  props: TabOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
-export type TabOwnerState = TabProps & {
-  active: boolean;
-  disabled: boolean;
-  highlighted: boolean;
-  selected: boolean;
-};
+export type TabOwnerState = Simplify<
+  TabOwnProps & {
+    active: boolean;
+    disabled: boolean;
+    highlighted: boolean;
+    selected: boolean;
+  }
+>;
 
 export type TabRootSlotProps = Simplify<
   UseTabRootSlotProps & {

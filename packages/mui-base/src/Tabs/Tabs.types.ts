@@ -66,19 +66,24 @@ export interface TabsSlots {
   root?: React.ElementType
 }
 
-export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & TabsOwnProps;
-  defaultComponent: D;
+export interface TabsTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: TabsOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type TabsProps<
   RootComponentType extends React.ElementType = TabsTypeMap['defaultComponent'],
 > = PolymorphicProps<TabsTypeMap<{}, RootComponentType>, RootComponentType>;
 
-export type TabsOwnerState = TabsProps & {
-  orientation: TabsOrientation;
-  direction: TabsDirection;
-};
+export type TabsOwnerState = Simplify<
+  TabsOwnProps & {
+    orientation: TabsOrientation;
+    direction: TabsDirection;
+  }
+>;
 
 export type TabsRootSlotProps = {
   ownerState: TabsOwnerState;

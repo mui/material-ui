@@ -21,10 +21,10 @@ function useUtilityClasses<OptionValue>(ownerState: OptionOwnerState<OptionValue
 /**
  * An unstyled option to be used within a Select.
  */
-const Option = React.forwardRef(function Option<OptionValue>(
-  props: OptionProps<OptionValue>,
-  ref: React.ForwardedRef<HTMLLIElement>,
-) {
+const Option = React.forwardRef(function Option<
+  OptionValue,
+  RootComponentType extends React.ElementType,
+>(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     children,
     component,
@@ -38,8 +38,8 @@ const Option = React.forwardRef(function Option<OptionValue>(
 
   const Root = component || slots.root || 'li';
 
-  const optionRef = React.useRef<HTMLLIElement>(null);
-  const combinedRef = useForkRef(optionRef, ref);
+  const optionRef = React.useRef<HTMLElement>(null);
+  const combinedRef = useForkRef(optionRef, forwardedRef);
 
   // If `label` is not explicitly provided, the `children` are used for convenience.
   // This is used to populate the select's trigger with the selected option's label.
@@ -49,7 +49,7 @@ const Option = React.forwardRef(function Option<OptionValue>(
   const { getRootProps, selected, highlighted, index } = useOption({
     disabled,
     label: computedLabel,
-    optionRef: combinedRef,
+    rootRef: combinedRef,
     value,
   });
 

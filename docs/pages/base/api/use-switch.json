@@ -36,6 +36,13 @@
       },
       "required": true
     },
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
+      },
+      "required": true
+    },
     "readOnly": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useSwitch",

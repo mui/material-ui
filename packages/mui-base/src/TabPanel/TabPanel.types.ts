@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { UseTabPanelRootSlotProps } from '../useTabPanel';
 import { SlotComponentProps } from '../utils';
 
@@ -40,21 +40,25 @@ export interface TabPanelSlots {
   root?: React.ElementType;
 }
 
-export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & TabPanelOwnProps;
-  defaultComponent: D;
+export interface TabPanelTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: TabPanelOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type TabPanelProps<
-  D extends React.ElementType = TabPanelTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabPanelTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = TabPanelTypeMap['defaultComponent'],
+> = OverrideProps<TabPanelTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
-export type TabPanelOwnerState = TabPanelProps & {
-  hidden: boolean;
-};
+export type TabPanelOwnerState = Simplify<
+  TabPanelOwnProps & {
+    hidden: boolean;
+  }
+>;
 
 export type TabPanelRootSlotProps = UseTabPanelRootSlotProps & {
   children?: React.ReactNode;

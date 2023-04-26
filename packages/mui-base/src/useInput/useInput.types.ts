@@ -42,7 +42,7 @@ export type UseInputRootSlotProps<TOther = {}> = Omit<
 export interface UseInputInputSlotOwnProps {
   'aria-invalid': React.AriaAttributes['aria-invalid'];
   defaultValue: string | number | readonly string[] | undefined;
-  ref: React.Ref<HTMLInputElement>;
+  ref: React.RefCallback<HTMLInputElement> | null;
   value: string | number | readonly string[] | undefined;
   onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -90,6 +90,7 @@ export interface UseInputReturnValue {
   getRootProps: <TOther extends Record<string, any> = {}>(
     externalProps?: TOther,
   ) => UseInputRootSlotProps<TOther>;
+  inputRef: React.RefCallback<HTMLInputElement> | null;
   /**
    * If `true`, the `input` will indicate that it's required.
    * @default false
