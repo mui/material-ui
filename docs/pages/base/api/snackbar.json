@@ -1,7 +1,6 @@
 {
   "props": {
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
-    "component": { "type": { "name": "elementType" } },
     "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
     "exited": { "type": { "name": "bool" }, "default": "true" },
     "onClose": { "type": { "name": "func" } },

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import ClickAwayListener from '../ClickAwayListener';
 import {
   SnackbarOwnerState,
@@ -12,7 +11,7 @@ import {
 import composeClasses from '../composeClasses';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 import useSnackbar from '../useSnackbar';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = () => {
@@ -40,7 +39,6 @@ const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends Re
   const {
     autoHideDuration = null,
     children,
-    component,
     disableWindowBlurListener = false,
     exited = true,
     onBlur,
@@ -68,7 +66,7 @@ const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends Re
 
   const ownerState: SnackbarOwnerState = props;
 
-  const Root = component || slots.root || 'div';
+  const Root = slots.root || 'div';
 
   const rootProps: WithOptionalOwnerState<SnackbarRootSlotProps> = useSlotProps({
     elementType: Root,
@@ -106,7 +104,7 @@ const Snackbar = React.forwardRef(function Snackbar<RootComponentType extends Re
       <Root {...rootProps}>{children}</Root>
     </ClickAwayListener>
   );
-}) as OverridableComponent<SnackbarTypeMap>;
+}) as PolymorphicComponent<SnackbarTypeMap>;
 
 Snackbar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -125,11 +123,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
