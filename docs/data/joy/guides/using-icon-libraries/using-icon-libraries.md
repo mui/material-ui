@@ -187,3 +187,17 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+### Iconify
+
+- [Browse icons](https://icon-sets.iconify.design/)
+- [Installation—React](https://docs.iconify.design/icon-components/react/)
+- [Installation—Web component](https://docs.iconify.design/iconify-icon/)
+- [Figma plugin](https://docs.iconify.design/design/figma/)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-iconify-r8fjrm?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
+     title="joy-ui-fontawesome"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
