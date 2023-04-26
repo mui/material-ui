@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
 import { SlotComponentProps } from '../utils';
+import { PolymorphicProps } from '../utils/PolymorphicComponent';
 
 export interface ButtonActions {
   focusVisible(): void;
@@ -41,9 +42,7 @@ export interface ButtonSlots {
 
 export type ButtonProps<
   RootComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
-> = OverrideProps<ButtonTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<ButtonTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface ButtonTypeMap<
   AdditionalProps = {},

@@ -1,1 +1,1 @@
-<Button component="div">Button</Button>
+<Button slots={{ root: 'div' }}>Button</Button>
