@@ -91,7 +91,7 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 
 #### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the compnent:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Menu<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
