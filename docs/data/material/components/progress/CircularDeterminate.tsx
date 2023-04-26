@@ -18,9 +18,8 @@ export default function CircularDeterminate() {
           if (nextProgress >= 100) {
             setRunning(false);
             return 100;
-          } else {
-            return nextProgress;
           }
+          return nextProgress;
         });
       }, 1800);
     }
@@ -48,13 +47,18 @@ export default function CircularDeterminate() {
       <CircularProgress variant="determinate" value={50} />
       <CircularProgress variant="determinate" value={75} />
       <CircularProgress variant="determinate" value={100} />
-        <CircularProgress
-          variant="determinate"
-          value={progress}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        />
-      {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
+      <CircularProgress
+        variant="determinate"
+        value={progress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      />
+      {progress > 0 && (
+        <span
+          style={visuallyHidden}
+          aria-live="polite"
+        >{`${progress}% progress`}</span>
+      )}
 
       <Stack spacing={2} direction="row">
         {!running && (

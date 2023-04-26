@@ -11,6 +11,18 @@ export default function LinearBuffer() {
   const [running, setRunning] = React.useState(false);
 
   React.useEffect(() => {
+    const handleProgress = () => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          setRunning(false);
+          return 0;
+        }
+        const diff2 = Math.random() * 10;
+        setBuffer(progress + 20 + diff2);
+        const nextProgress = oldProgress + 20;
+        return nextProgress;
+      });
+    };
     let timer: NodeJS.Timeout | undefined;
     if (running) {
       timer = setInterval(() => {
@@ -23,20 +35,7 @@ export default function LinearBuffer() {
         clearInterval(timer);
       }
     };
-  }, [running]);
-
-  const handleProgress = () => {
-    setProgress((oldProgress) => {
-      if (oldProgress === 100) {
-        setRunning(false);
-        return 0;
-      }
-      const diff2 = Math.random() * 10;
-      setBuffer(progress + 20 + diff2);
-      const nextProgress = oldProgress + 20;
-      return nextProgress;
-    });
-  };
+  }, [running, progress]);
 
   const handleButtonClick = () => {
     setRunning(!running);
@@ -44,11 +43,18 @@ export default function LinearBuffer() {
 
   return (
     <Stack sx={{ width: '100%', alignItems: 'center' }} spacing={2} direction="row">
-      <Button variant="outlined" onClick={handleButtonClick}>{running ? 'Stop' : 'Start'}</Button>
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
-        </Box>
-        {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
+      <Button variant="outlined" onClick={handleButtonClick}>
+        {running ? 'Stop' : 'Start'}
+      </Button>
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+      </Box>
+      {progress > 0 && (
+        <span
+          style={visuallyHidden}
+          aria-live="polite"
+        >{`${progress}% progress`}</span>
+      )}
     </Stack>
   );
 }

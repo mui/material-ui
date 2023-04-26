@@ -13,10 +13,8 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
         <LinearProgress variant="determinate" {...props} />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography 
-        variant="body2" 
-        color="text.secondary">
-          {`${Math.round(props.value,)}%`}
+        <Typography variant="body2" color="text.secondary">
+          {`${Math.round(props.value)}%`}
         </Typography>
       </Box>
     </Box>
@@ -52,22 +50,27 @@ export default function LinearWithValueLabel() {
     });
   };
 
-
   const handleClick = () => {
     if (progress === 100) {
-    setProgress(0);
-  }
-  setIsRunning(!isRunning);
+      setProgress(0);
+    }
+    setIsRunning(!isRunning);
   };
 
   return (
-
     <Stack sx={{ width: '100%', alignItems: 'center' }} spacing={2} direction="row">
-      <Button variant="outlined" onClick={handleClick}>{isRunning && progress !== 100 ? 'Stop' : 'Start'}</Button>
-        <Box sx={{ width: '100%' }}>
+      <Button variant="outlined" onClick={handleClick}>
+        {isRunning && progress !== 100 ? 'Stop' : 'Start'}
+      </Button>
+      <Box sx={{ width: '100%' }}>
         <LinearProgressWithLabel value={progress} />
-        </Box>
-        {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
+      </Box>
+      {progress > 0 && (
+        <span
+          style={visuallyHidden}
+          aria-live="polite"
+        >{`${progress}% progress`}</span>
+      )}
     </Stack>
   );
 }

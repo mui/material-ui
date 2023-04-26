@@ -48,11 +48,11 @@ export default function DelayingAppearance() {
           }}
           unmountOnExit
         >
-          <CircularProgress 
-          
-          role="status"
-          aria-label={loading ? 'Progress loading' : 'Progress complete'}
-          aria-live="assertive"/>
+          <CircularProgress
+            role="status"
+            aria-label={loading ? 'Progress loading' : 'Progress complete'}
+            aria-live="assertive"
+          />
         </Fade>
       </Box>
       <Button onClick={handleClickLoading} sx={{ m: 2 }}>
@@ -76,7 +76,11 @@ export default function DelayingAppearance() {
       <Button onClick={handleClickQuery} sx={{ m: 2 }}>
         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
       </Button>
-      {query !== 'idle' && <span style={visuallyHidden} aria-live="polite">{query === 'success' ? 'Progress complete' : 'Progress loading'}</span>}
+      {query !== 'idle' && (
+        <span style={visuallyHidden} aria-live="polite">
+          {query === 'success' ? 'Progress complete' : 'Progress loading'}
+        </span>
+      )}
     </Box>
   );
 }

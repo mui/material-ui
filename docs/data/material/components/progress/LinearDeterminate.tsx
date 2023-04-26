@@ -41,11 +41,18 @@ export default function LinearDeterminate() {
 
   return (
     <Stack sx={{ width: '100%', alignItems: 'center' }} spacing={2} direction="row">
-      <Button variant="outlined" onClick={handleButtonClick}>{running ? 'Stop' : 'Start'}</Button>
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress variant="determinate" value={progress} />
-        </Box>
-        {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
+      <Button variant="outlined" onClick={handleButtonClick}>
+        {running ? 'Stop' : 'Start'}
+      </Button>
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress variant="determinate" value={progress} />
+      </Box>
+      {progress > 0 && (
+        <span
+          style={visuallyHidden}
+          aria-live="polite"
+        >{`${progress}% progress`}</span>
+      )}
     </Stack>
   );
 }

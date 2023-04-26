@@ -26,11 +26,7 @@ function CircularProgressWithLabel(
           justifyContent: 'center',
         }}
       >
-        <Typography
-          variant="caption"
-          component="div"
-          color="text.secondary"
-        >
+        <Typography variant="caption" component="div" color="text.secondary">
           {`${Math.round(props.value)}%`}
         </Typography>
       </Box>
@@ -47,7 +43,6 @@ export default function CircularStatic() {
     if (isRunning) {
       timerId = setInterval(() => {
         handleProgress();
-
       }, 1800);
     }
     return () => {
@@ -76,15 +71,21 @@ export default function CircularStatic() {
   };
 
   return (
-    <>
     <Stack spacing={2} direction="row">
       <CircularProgressWithLabel value={progress} />
-      <Button onClick={handleClick} variant="outlined" disabled={isRunning && progress !== 100}>
+      <Button
+        onClick={handleClick}
+        variant="outlined"
+        disabled={isRunning && progress !== 100}
+      >
         {isRunning && progress !== 100 ? 'Stop' : 'Start'}
       </Button>
-      {progress > 0 && <span style={visuallyHidden} aria-live="polite">{`${progress}% progress`}</span>}
+      {progress > 0 && (
+        <span
+          style={visuallyHidden}
+          aria-live="polite"
+        >{`${progress}% progress`}</span>
+      )}
     </Stack>
-      
-    </>
   );
 }
