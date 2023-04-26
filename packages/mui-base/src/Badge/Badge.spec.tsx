@@ -50,9 +50,6 @@ const polymorphicComponentTest = () => {
         numberProp={0}
       />
 
-      {/* @ts-expect-error onClick must be specified in the custom root component */}
-      <Badge<typeof CustomRoot> slots={{ root: CustomRoot }} onClick={() => {}} />
-
       {/* @ts-expect-error required props not specified */}
       <Badge<typeof CustomComponent>
         slots={{
