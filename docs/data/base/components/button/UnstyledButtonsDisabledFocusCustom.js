@@ -6,10 +6,10 @@ import Stack from '@mui/material/Stack';
 export default function UnstyledButtonsDisabledFocusCustom() {
   return (
     <Stack spacing={2}>
-      <CustomButton component="span" disabled>
+      <CustomButton slots={{ root: 'span' }} disabled>
         focusableWhenDisabled = false
       </CustomButton>
-      <CustomButton component="span" disabled focusableWhenDisabled>
+      <CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
         focusableWhenDisabled = true
       </CustomButton>
     </Stack>

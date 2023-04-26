@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
 import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
@@ -36,16 +36,9 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
   const {
     action,
     children,
-    component,
     disabled,
     focusableWhenDisabled = false,
-    onBlur,
-    onClick,
-    onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
-    onMouseLeave,
     slotProps = {},
     slots = {},
     ...other
@@ -79,7 +72,7 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
   const classes = useUtilityClasses(ownerState);
 
   const defaultElement = other.href || other.to ? 'a' : 'button';
-  const Root: React.ElementType = component ?? slots.root ?? defaultElement;
+  const Root: React.ElementType = slots.root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -93,7 +86,7 @@ const Button = React.forwardRef(function Button<RootComponentType extends React.
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<ButtonTypeMap>;
+}) as PolymorphicComponent<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -116,11 +109,6 @@ Button.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -137,31 +125,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
   /**
    * The props used for each slot inside the Button.
    * @default {}
