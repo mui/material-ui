@@ -102,7 +102,6 @@ const DividerRoot = styled('div', {
       textAlign: 'center',
       border: 0,
       '&::before, &::after': {
-        position: 'relative',
         content: '""',
         alignSelf: 'center',
       },
