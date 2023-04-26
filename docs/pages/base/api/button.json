@@ -1,0 +1,46 @@
+{
+  "props": {
+    "action": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
+      }
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    }
+  },
+  "name": "Button",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "props.href || props.to ? 'a' : 'button'",
+      "class": ".MuiButton-root"
+    }
+  ],
+  "classes": {
+    "classes": ["active", "disabled", "focusVisible"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "spread": true,
+  "muiName": "MuiButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/Button/Button.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-button/\">Button</a></li></ul>",
+  "cssComponent": false
+}

@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -726,6 +726,7 @@ describe('<Autocomplete />', () => {
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
     function Test(props) {
+      const { key, ...others } = props;
       return (
         <div
           onKeyDown={(event) => {
@@ -737,7 +738,8 @@ describe('<Autocomplete />', () => {
           <Autocomplete
             options={['one', 'two']}
             renderInput={(props2) => <TextField {...props2} autoFocus />}
-            {...props}
+            key={key}
+            {...others}
           />
         </div>
       );
@@ -835,7 +837,7 @@ describe('<Autocomplete />', () => {
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
       expect(textbox).to.have.attribute('aria-autocomplete', 'list');
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
 
@@ -865,7 +867,7 @@ describe('<Autocomplete />', () => {
 
       const listbox = getByRole('listbox');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
 
@@ -891,7 +893,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = getByRole('combobox');
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -899,7 +901,7 @@ describe('<Autocomplete />', () => {
       const options = getAllByRole('option');
       expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
       setProps({ open: false });
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
     });
@@ -1252,7 +1254,7 @@ describe('<Autocomplete />', () => {
     });
 
     describe('prop: includeInputInList', () => {
-      it('considers the textbox the predessor of the first option when pressing Up', () => {
+      it('considers the textbox the predecessor of the first option when pressing Up', () => {
         render(
           <Autocomplete
             includeInputInList
@@ -1478,9 +1480,9 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'Enter' });
       }).toErrorDev([
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1535,13 +1537,13 @@ describe('<Autocomplete />', () => {
         );
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
         // React 18 Strict Effects run mount effects twice which lead to a cascading update
         React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
         React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSupressed &&
+          !strictModeDoubleLoggingSuppressed &&
           'None of the options match with `"not a good value"`',
       ]);
     });
@@ -1568,7 +1570,7 @@ describe('<Autocomplete />', () => {
         );
       }).toWarnDev([
         'returns duplicated headers',
-        !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
+        !strictModeDoubleLoggingSuppressed && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);

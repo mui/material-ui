@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/table-pagination/table-pagination.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import TablePaginationUnstyledApiJsonPageContent from '../../api/table-pagination-unstyled.json';
+import TablePaginationApiJsonPageContent from '../../api/table-pagination.json';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
@@ -22,23 +22,17 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const TablePaginationUnstyledApiReq = require.context(
-    'docs/translations/api-docs/table-pagination-unstyled',
+  const TablePaginationApiReq = require.context(
+    'docs/translations/api-docs-base/table-pagination',
     false,
-    /table-pagination-unstyled.*.json$/,
+    /table-pagination.*.json$/,
   );
-  const TablePaginationUnstyledApiDescriptions = mapApiPageTranslations(
-    TablePaginationUnstyledApiReq,
-  );
+  const TablePaginationApiDescriptions = mapApiPageTranslations(TablePaginationApiReq);
 
   return {
     props: {
-      componentsApiDescriptions: {
-        TablePaginationUnstyled: TablePaginationUnstyledApiDescriptions,
-      },
-      componentsApiPageContents: {
-        TablePaginationUnstyled: TablePaginationUnstyledApiJsonPageContent,
-      },
+      componentsApiDescriptions: { TablePagination: TablePaginationApiDescriptions },
+      componentsApiPageContents: { TablePagination: TablePaginationApiJsonPageContent },
       hooksApiDescriptions: {},
       hooksApiPageContents: {},
     },

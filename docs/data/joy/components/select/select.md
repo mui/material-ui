@@ -11,17 +11,13 @@ unstyled: /base/react-select/
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
 {{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -138,7 +134,7 @@ To control the placement of the listbox, use `placement`:
 
 ### `Option` component
 
-The `Option` component is used for the chooseable options within the select.
+The `Option` component is used for the choosable options within the select.
 
 The selected option inherits the `color` from the Select parent, and it uses the `primary` palette by default.
 However, it does not inherit the Select's used `variant`.

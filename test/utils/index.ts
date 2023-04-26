@@ -18,7 +18,7 @@ export * as fireDiscreteEvent from './fireDiscreteEvent';
 export * as userEvent from './userEvent';
 
 /**
- * Set to true if console logs during [lifecycles that are invoked twice in `React.StrictMode`](https://react.dev/learn/render-and-commit) are supressed.
+ * Set to true if console logs during [lifecycles that are invoked twice in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) are suppressed.
  * Useful for asserting on `console.warn` or `console.error` via `toErrorDev()`.
  */
-export const strictModeDoubleLoggingSupressed = React.version.startsWith('17');
+export const strictModeDoubleLoggingSuppressed = React.version.startsWith('17');

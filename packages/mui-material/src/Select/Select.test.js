@@ -442,7 +442,7 @@ describe('<Select />', () => {
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isn\'t displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
@@ -999,7 +999,7 @@ describe('<Select />', () => {
       }).not.to.throw();
     });
 
-    it('selects value based on their stringified equality when theyre not objects', () => {
+    it("selects value based on their stringified equality when they're not objects", () => {
       const { getAllByRole } = render(
         <Select multiple open value={['10', '20']}>
           <MenuItem value={10}>Ten</MenuItem>
@@ -1014,7 +1014,7 @@ describe('<Select />', () => {
       expect(options[2]).not.to.have.attribute('aria-selected', 'true');
     });
 
-    it('selects values based on strict equlity if theyre objects', () => {
+    it("selects values based on strict equality if they're objects", () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
       const obj3 = { id: 3 };

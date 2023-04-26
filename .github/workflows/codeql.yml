@@ -16,10 +16,10 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3.5.0
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@04df1262e6247151b5ac09cd2c303ac36ad3f62b # v2.2.9
+        uses: github/codeql-action/init@b2c19fb9a2a485599ccf4ed5d65527d94bc57226 # v2.3.0
         with:
           languages: typescript
           config-file: ./.github/codeql/codeql-config.yml
@@ -30,4 +30,4 @@ jobs:
           # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@04df1262e6247151b5ac09cd2c303ac36ad3f62b # v2.2.9
+        uses: github/codeql-action/analyze@b2c19fb9a2a485599ccf4ed5d65527d94bc57226 # v2.3.0

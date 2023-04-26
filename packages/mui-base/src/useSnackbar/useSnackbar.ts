@@ -12,7 +12,7 @@ import extractEventHandlers from '../utils/extractEventHandlers';
  *
  * Demos:
  *
- * - [Unstyled Snackbar](https://mui.com/base/react-snackbar/#hook)
+ * - [Snackbar](https://mui.com/base/react-snackbar/#hook)
  *
  * API:
  *

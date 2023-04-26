@@ -2,15 +2,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
+import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { SlotsTable } from 'docs/src/modules/components/ApiPage';
+import { SlotsTable, ClassesTable } from 'docs/src/modules/components/ApiPage';
+import Chip from '@mui/material/Chip';
 import Divider from 'docs/src/modules/components/ApiDivider';
-import PropertiesTable from 'docs/src/modules/components/PropretiesTable';
+import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { sxChip } from './AppNavDrawerItem';
 
-function ClassesTable(props) {
+function CSSTable(props) {
   const { componentStyles, classDescriptions } = props;
   const t = useTranslate();
 
@@ -24,35 +27,48 @@ function ClassesTable(props) {
         </tr>
       </thead>
       <tbody>
-        {componentStyles.classes.map((className) => (
-          <tr key={className}>
-            <td align="left">
-              <span className="prop-name">{className}</span>
-            </td>
-            <td align="left">
-              <span className="prop-name">
-                .
-                {componentStyles.globalClasses[className] || `${componentStyles.name}-${className}`}
-              </span>
-            </td>
-            <td
-              align="left"
-              dangerouslySetInnerHTML={{
-                __html:
-                  classDescriptions[className] &&
-                  classDescriptions[className].description
-                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
-                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
-              }}
-            />
-          </tr>
-        ))}
+        {componentStyles.classes.map((className) => {
+          const isGlobalStateClass = !!componentStyles.globalClasses[className];
+          return (
+            <tr key={className}>
+              <td align="left">
+                <span className="prop-name">
+                  {isGlobalStateClass ? (
+                    <React.Fragment>
+                      {className}
+                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
+                    </React.Fragment>
+                  ) : (
+                    className
+                  )}
+                </span>
+              </td>
+              <td align="left">
+                <span className="prop-name">
+                  .
+                  {componentStyles.globalClasses[className] ||
+                    `${componentStyles.name}-${className}`}
+                </span>
+              </td>
+              <td
+                align="left"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    classDescriptions[className] &&
+                    classDescriptions[className].description
+                      .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                      .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
+                }}
+              />
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
 }
 
-ClassesTable.propTypes = {
+CSSTable.propTypes = {
   classDescriptions: PropTypes.object.isRequired,
   componentStyles: PropTypes.object.isRequired,
 };
@@ -65,7 +81,8 @@ function getTranslatedHeader(t, header, text) {
     'theme-default-props': t('api-docs.themeDefaultProps'),
     inheritance: t('api-docs.inheritance'),
     slots: t('api-docs.slots'),
-    css: 'CSS',
+    classes: t('api-docs.classes'),
+    css: t('api-docs.css'),
   };
 
   return translations[header] || translations[text] || text || header;
@@ -97,6 +114,24 @@ export default function ComponentsApiContent(props) {
   const { descriptions, pageContents } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
+  const router = useRouter();
+
+  // There are legacy links where the the components had the Unstyled suffix
+  // This effects makes sure that the anchors will be correct wtih the renames
+  React.useEffect(() => {
+    const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
+    if (router.isReady && anchor && anchor.indexOf('-unstyled') >= 0) {
+      router.replace(
+        {
+          hash: `${anchor.replace('-unstyled', '')}`,
+        },
+        null,
+        {
+          shallow: true,
+        },
+      );
+    }
+  }, [router]);
 
   const components = Object.keys(pageContents);
   const numberOfComponents = components.length;
@@ -113,6 +148,7 @@ export default function ComponentsApiContent(props) {
       spread,
       styles: componentStyles,
       slots: componentSlots,
+      classes: componentClasses,
     } = pageContent;
 
     const { classDescriptions, propDescriptions, slotDescriptions } =
@@ -229,10 +265,7 @@ import { ${pageContent.name} } from '${source}';`}
           {Object.keys(componentStyles.classes).length ? (
             <React.Fragment>
               <Heading text="css" hash={`${componentName}-css`} level="h3" />
-              <ClassesTable
-                componentStyles={componentStyles}
-                classDescriptions={classDescriptions}
-              />
+              <CSSTable componentStyles={componentStyles} classDescriptions={classDescriptions} />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
               <span
@@ -269,6 +302,23 @@ import { ${pageContent.name} } from '${source}';`}
                   ),
                 }}
               />
+            </React.Fragment>
+          ) : null}
+          {componentClasses?.classes?.length ||
+          Object.keys(componentClasses?.classes?.globalClasses || {}).length ? (
+            <React.Fragment>
+              <Heading text="classes" hash={`${componentNameKebabCase}-classes`} level="h3" />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: t('api-docs.classesDescription'),
+                }}
+              />
+              <ClassesTable
+                componentClasses={componentClasses}
+                componentName={pageContent.name}
+                classDescriptions={classDescriptions}
+              />
+              <br />
             </React.Fragment>
           ) : null}
         </MarkdownElement>

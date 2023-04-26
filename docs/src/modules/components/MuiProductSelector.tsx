@@ -73,7 +73,7 @@ const products = [
     slug: 'joy-ui',
   },
   {
-    name: 'MUI Base',
+    name: 'Base UI',
     href: ROUTES.baseDocs,
     slug: 'base',
   },

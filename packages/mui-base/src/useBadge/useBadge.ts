@@ -6,7 +6,7 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
  *
  * Demos:
  *
- * - [Unstyled badge](https://mui.com/base/react-badge/#hook)
+ * - [Badge](https://mui.com/base/react-badge/#hook)
  *
  * API:
  *

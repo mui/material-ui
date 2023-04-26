@@ -107,5 +107,5 @@
   },
   "name": "useSlider",
   "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
-  "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Unstyled Slider</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Slider</a></li></ul>"
 }
