@@ -3,7 +3,7 @@
     "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
-      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" }
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "onOpenChange": {
       "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
@@ -31,6 +31,13 @@
     },
     "highlightedValue": {
       "type": { "name": "string | null", "description": "string | null" },
+      "required": true
+    },
+    "listboxRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
       "required": true
     },
     "menuItems": {

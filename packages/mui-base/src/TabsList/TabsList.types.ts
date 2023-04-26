@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { UseTabsListRootSlotProps } from '../useTabsList';
 import { SlotComponentProps } from '../utils';
 
@@ -34,22 +34,26 @@ export interface TabsListSlots {
   root?: React.ElementType;
 }
 
-export interface TabsListTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & TabsListOwnProps;
-  defaultComponent: D;
+export interface TabsListTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: TabsListOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type TabsListProps<
-  D extends React.ElementType = TabsListTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TabsListTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = TabsListTypeMap['defaultComponent'],
+> = OverrideProps<TabsListTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
-export type TabsListOwnerState = TabsListProps & {
-  isRtl: boolean;
-  orientation: 'horizontal' | 'vertical';
-};
+export type TabsListOwnerState = Simplify<
+  TabsListOwnProps & {
+    isRtl: boolean;
+    orientation: 'horizontal' | 'vertical';
+  }
+>;
 
 export type TabsListRootSlotProps = UseTabsListRootSlotProps & {
   className?: string;

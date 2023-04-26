@@ -141,31 +141,41 @@ export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
 export interface SelectTypeMap<
   OptionValue extends {},
   Multiple extends boolean,
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'button',
 > {
-  props: P & SelectOwnProps<OptionValue, Multiple>;
-  defaultComponent: D;
+  props: SelectOwnProps<OptionValue, Multiple> & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type SelectProps<
   OptionValue extends {},
   Multiple extends boolean,
-  D extends React.ElementType = SelectTypeMap<OptionValue, Multiple>['defaultComponent'],
-> = OverrideProps<SelectTypeMap<OptionValue, Multiple, {}, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = SelectTypeMap<
+    OptionValue,
+    Multiple
+  >['defaultComponent'],
+> = OverrideProps<
+  SelectTypeMap<OptionValue, Multiple, {}, RootComponentType>,
+  RootComponentType
+> & {
+  component?: RootComponentType;
 };
 
 // OverridableComponent cannot be used below as Select's props are generic.
 export interface SelectType {
-  <OptionValue extends {}, C extends React.ElementType, Multiple extends boolean = false>(
+  <
+    OptionValue extends {},
+    RootComponentType extends React.ElementType,
+    Multiple extends boolean = false,
+  >(
     props: {
       /**
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
-      component: C;
-    } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
+      component: RootComponentType;
+    } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
   ): JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
@@ -173,13 +183,14 @@ export interface SelectType {
   propTypes?: any;
 }
 
-export interface SelectOwnerState<OptionValue extends {}, Multiple extends boolean>
-  extends SelectOwnProps<OptionValue, Multiple> {
-  active: boolean;
-  disabled: boolean;
-  focusVisible: boolean;
-  open: boolean;
-}
+export type SelectOwnerState<OptionValue extends {}, Multiple extends boolean> = Simplify<
+  SelectOwnProps<OptionValue, Multiple> & {
+    active: boolean;
+    disabled: boolean;
+    focusVisible: boolean;
+    open: boolean;
+  }
+>;
 
 export type SelectRootSlotProps<OptionValue extends {}, Multiple extends boolean> = Simplify<
   UseSelectButtonSlotProps & {

@@ -195,19 +195,21 @@ export interface TablePaginationSlots {
   spacer?: React.ElementType;
 }
 
-export interface TablePaginationTypeMap<P = {}, D extends React.ElementType = 'td'> {
-  props: P & TablePaginationOwnProps;
-  defaultComponent: D;
+export interface TablePaginationTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'td',
+> {
+  props: TablePaginationOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type TablePaginationProps<
-  D extends React.ElementType = TablePaginationTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<TablePaginationTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = TablePaginationTypeMap['defaultComponent'],
+> = OverrideProps<TablePaginationTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
-export type TablePaginationOwnerState = TablePaginationProps;
+export type TablePaginationOwnerState = TablePaginationOwnProps;
 
 export type TablePaginationRootSlotProps = {
   children?: React.ReactNode;

@@ -4,7 +4,12 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUtilityClass } from './tabsListClasses';
-import { TabsListProps, TabsListRootSlotProps, TabsListTypeMap } from './TabsList.types';
+import {
+  TabsListOwnerState,
+  TabsListProps,
+  TabsListRootSlotProps,
+  TabsListTypeMap,
+} from './TabsList.types';
 import useTabsList from '../useTabsList';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import TabsListProvider from '../useTabsList/TabsListProvider';
@@ -29,14 +34,17 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * - [TabsList API](https://mui.com/base/react-tabs/components-api/#tabs-list)
  */
-const TabsList = React.forwardRef<unknown, TabsListProps>(function TabsList(props, ref) {
+const TabsList = React.forwardRef(function TabsList<RootComponentType extends React.ElementType>(
+  props: TabsListProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const { children, component, slotProps = {}, slots = {}, ...other } = props;
 
   const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
-    ref,
+    rootRef: forwardedRef,
   });
 
-  const ownerState = {
+  const ownerState: TabsListOwnerState = {
     ...props,
     isRtl,
     orientation,

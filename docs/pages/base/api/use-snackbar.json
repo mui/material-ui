@@ -15,7 +15,6 @@
       }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
     "resumeHideDuration": { "type": { "name": "number", "description": "number" } }
   },
   "returnValue": {

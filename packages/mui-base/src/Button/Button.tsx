@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
-import { ButtonProps, ButtonOwnProps, ButtonTypeMap, ButtonRootSlotProps } from './Button.types';
+import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
 import useButton from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-
-export interface ButtonOwnerState extends ButtonOwnProps {
-  focusVisible: boolean;
-  active: boolean;
-}
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const { active, disabled, focusVisible } = ownerState;
@@ -34,9 +29,10 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  *
  * - [Button API](https://mui.com/base/react-button/components-api/#button)
  */
-const Button = React.forwardRef(function Button<
-  BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
->(props: ButtonProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
+const Button = React.forwardRef(function Button<RootComponentType extends React.ElementType>(
+  props: ButtonProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     action,
     children,
