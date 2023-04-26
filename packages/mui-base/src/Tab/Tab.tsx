@@ -99,11 +99,6 @@ Tab.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -112,14 +107,6 @@ Tab.propTypes /* remove-proptypes */ = {
    * Callback invoked when new value is being set.
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
   /**
    * The props used for each slot inside the Tab.
    * @default {}
