@@ -4,11 +4,14 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
+import { visuallyHidden } from 'packages/mui-utils/src';
 
 export default function DelayingAppearance() {
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<number>();
+  const [clicked, setClicked] = React.useState(false);
+
 
   React.useEffect(
     () => () => {
@@ -19,6 +22,7 @@ export default function DelayingAppearance() {
 
   const handleClickLoading = () => {
     setLoading((prevLoading) => !prevLoading);
+    setClicked((prevClicked) => !prevClicked);
   };
 
   const handleClickQuery = () => {
@@ -34,7 +38,7 @@ export default function DelayingAppearance() {
     setQuery('progress');
     timerRef.current = window.setTimeout(() => {
       setQuery('success');
-    }, 2000);
+    }, 2500);
   };
 
   return (
@@ -47,12 +51,17 @@ export default function DelayingAppearance() {
           }}
           unmountOnExit
         >
-          <CircularProgress />
+          <CircularProgress 
+          
+          role="status"
+          aria-label={loading ? 'Progress loading' : 'Progress complete'}
+          aria-live="assertive"/>
         </Fade>
       </Box>
       <Button onClick={handleClickLoading} sx={{ m: 2 }}>
         {loading ? 'Stop loading' : 'Loading'}
       </Button>
+      {/* { clicked && <span style={visuallyHidden} aria-live="polite">{loading ? 'Progress loading' : 'Progress stopped'}</span>} */}
       <Box sx={{ height: 40 }}>
         {query === 'success' ? (
           <Typography>Success!</Typography>
@@ -71,6 +80,7 @@ export default function DelayingAppearance() {
       <Button onClick={handleClickQuery} sx={{ m: 2 }}>
         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
       </Button>
+      {query !== 'idle' && <span style={visuallyHidden} aria-live="polite">{query === 'success' ? 'Progress complete' : 'Progress loading'}</span>}
     </Box>
   );
 }
