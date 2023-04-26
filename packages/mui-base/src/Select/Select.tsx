@@ -7,10 +7,10 @@ import {
   SelectPopperSlotProps,
   SelectProps,
   SelectRootSlotProps,
-  SelectType,
+  SelectTypeMap,
 } from './Select.types';
 import useSelect, { SelectValue } from '../useSelect';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import Popper from '../Popper';
 import composeClasses from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
@@ -104,7 +104,6 @@ const Select = React.forwardRef(function Select<
   const {
     autoFocus,
     children,
-    component,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
@@ -130,7 +129,7 @@ const Select = React.forwardRef(function Select<
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? slots.root ?? 'button';
+  const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
   const PopperComponent = slots.popper ?? Popper;
 
@@ -249,7 +248,7 @@ const Select = React.forwardRef(function Select<
       )}
     </React.Fragment>
   );
-}) as SelectType;
+}) as PolymorphicComponent<SelectTypeMap<any, boolean>>;
 
 Select.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -265,11 +264,6 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the select will be initially open.
    * @default false
@@ -336,7 +330,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

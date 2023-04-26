@@ -112,17 +112,12 @@ Option renders as an `<li>`:
 </div>
 ```
 
-### Slot props
+### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
+Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
-<Select component="div" />
+<Select slots={{ root: 'div' }} />
 ```
 
 Use the `slots` prop to override any interior slots in addition to the root:
@@ -131,16 +126,25 @@ Use the `slots` prop to override any interior slots in addition to the root:
 <Select slots={{ root: 'div', listbox: 'ol' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
-
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
 <Select slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the compnent:
+
+```tsx
+<Select<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+````tsx
+<Select<'button'> slots={{ root: 'button' }} onClick={() => {}} />
 
 ## Hooks
 
@@ -207,3 +211,4 @@ Unlike the native `<select>`, groups can be nested.
 The following demo shows how to group options with the Option Group component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
+````
