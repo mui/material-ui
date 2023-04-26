@@ -94,7 +94,7 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
-<Tab slots={{root:"span"}} />
+<Tab slots={{ root: 'span' }} />
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
