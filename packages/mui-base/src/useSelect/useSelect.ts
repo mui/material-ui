@@ -198,10 +198,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   );
 
   const handleStateChange = React.useCallback(
-    (e: React.SyntheticEvent | null, field: string, fieldValue: any) => {
+    (event: React.SyntheticEvent | null, field: string, fieldValue: any) => {
       if (field === 'open') {
         onOpenChange?.(fieldValue as boolean);
-        if (fieldValue === false && e?.type !== 'blur') {
+        if (fieldValue === false && event?.type !== 'blur') {
           buttonRef.current?.focus();
         }
       }

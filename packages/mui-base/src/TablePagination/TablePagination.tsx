@@ -119,8 +119,8 @@ const TablePagination = React.forwardRef(function TablePagination<
     additionalProps: {
       value: rowsPerPage,
       id: selectId,
-      onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-        onRowsPerPageChange && onRowsPerPageChange(e),
+      onChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+        onRowsPerPageChange && onRowsPerPageChange(event),
       'aria-label': rowsPerPage.toString(),
       'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
     },
