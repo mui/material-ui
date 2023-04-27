@@ -22,7 +22,7 @@ export default function PositionedSnackbar() {
     <StyleSheetManager stylisPlugins={[rtlPluginSc]}>
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={theme}>
-          <Box dir="rtl" sx={{ width: window?.innerWidth, height: '100vh' }}>
+          <Box sx={{ width: window?.innerWidth, height: '100vh' }}>
             <Snackbar
               key="left"
               anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
-import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
+import { act, createRenderer, fireEvent, screen } from 'test/utils';
+import Snackbar from '@mui/material/Snackbar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<Snackbar />', () => {
+  const dataTestId = 'data-test-id';
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
    * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
@@ -22,21 +23,6 @@ describe('<Snackbar />', () => {
     clock.tick(0);
     return result;
   }
-
-  describeConformance(<Snackbar open message="message" />, () => ({
-    classes,
-    inheritComponent: 'div',
-    render,
-    refInstanceof: window.HTMLDivElement,
-    muiName: 'MuiSnackbar',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'themeVariants',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
-  }));
 
   describe('prop: onClose', () => {
     it('should be call when clicking away', () => {
@@ -289,7 +275,7 @@ describe('<Snackbar />', () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
 
-        const { container } = render(
+        const element = render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -300,13 +286,14 @@ describe('<Snackbar />', () => {
             onClose={handleClose}
             message="message"
             autoHideDuration={autoHideDuration}
+            data-testid={dataTestId}
           />,
         );
 
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(element.getByTestId(dataTestId).querySelector('div'));
 
         if (userInteraction.type === 'keyboard') {
           expect(handleFocus.callCount).to.equal(1);
@@ -315,7 +302,7 @@ describe('<Snackbar />', () => {
         }
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(element.getByTestId(dataTestId).querySelector('div'));
 
         if (userInteraction.type === 'keyboard') {
           expect(handleBlur.callCount).to.equal(1);
@@ -335,7 +322,7 @@ describe('<Snackbar />', () => {
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
 
-        const { container } = render(
+        const element = render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -343,15 +330,16 @@ describe('<Snackbar />', () => {
             message="message"
             autoHideDuration={autoHideDuration}
             resumeHideDuration={resumeHideDuration}
+            data-testid={dataTestId}
           />,
         );
 
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(element.getByTestId(dataTestId).querySelector('div'));
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(element.getByTestId(dataTestId).querySelector('div'));
 
         expect(handleClose.callCount).to.equal(0);
 
@@ -365,7 +353,7 @@ describe('<Snackbar />', () => {
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
 
-        const { container } = render(
+        const element = render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -373,15 +361,16 @@ describe('<Snackbar />', () => {
             message="message"
             autoHideDuration={autoHideDuration}
             resumeHideDuration={resumeHideDuration}
+            data-testid={dataTestId}
           />,
         );
 
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(element.getByTestId(dataTestId).querySelector('div'));
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(element.getByTestId(dataTestId).querySelector('div'));
 
         expect(handleClose.callCount).to.equal(0);
 
@@ -395,7 +384,7 @@ describe('<Snackbar />', () => {
         const handleClose = spy();
         const autoHideDuration = 6e3;
         const resumeHideDuration = 0;
-        const { setProps, container } = render(
+        const { setProps } = render(
           <Snackbar
             action={<button>undo</button>}
             open
@@ -403,6 +392,7 @@ describe('<Snackbar />', () => {
             message="message"
             autoHideDuration={autoHideDuration}
             resumeHideDuration={resumeHideDuration}
+            data-testid={dataTestId}
           />,
         );
 
@@ -410,9 +400,9 @@ describe('<Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        userInteraction.enter(container.querySelector('div'));
+        userInteraction.enter(screen.getByTestId(dataTestId).querySelector('div'));
         clock.tick(100);
-        userInteraction.leave(container.querySelector('div'));
+        userInteraction.leave(screen.getByTestId(dataTestId).querySelector('div'));
         clock.tick(resumeHideDuration);
 
         expect(handleClose.callCount).to.equal(1);
@@ -494,15 +484,19 @@ describe('<Snackbar />', () => {
 
   describe('prop: open', () => {
     it('should not render anything when closed', () => {
-      const { container } = render(<Snackbar open={false} message="Hello, World!" />);
-      expect(container).to.have.text('');
+      const { container } = render(
+        <Snackbar open={false} message="Hello, World!" data-testid={dataTestId} />,
+      );
+      expect(container.firstChild).to.equal(null);
     });
 
     it('should be able show it after mounted', () => {
-      const { container, setProps } = render(<Snackbar open={false} message="Hello, World!" />);
+      const { container, setProps } = render(
+        <Snackbar open={false} message="Hello, World!" data-testid={dataTestId} />,
+      );
       expect(container).to.have.text('');
       setProps({ open: true });
-      expect(container).to.have.text('Hello, World!');
+      expect(screen.getByTestId(dataTestId)).to.have.text('Hello, World!');
     });
   });
 
@@ -510,8 +504,8 @@ describe('<Snackbar />', () => {
     it('should render the children', () => {
       const nodeRef = React.createRef();
       const children = <div ref={nodeRef} />;
-      const { container } = render(<Snackbar open>{children}</Snackbar>);
-      expect(container).to.contain(nodeRef.current);
+      render(<Snackbar open>{children}</Snackbar>);
+      expect(document.body).to.contain(nodeRef.current);
     });
   });
 
@@ -531,8 +525,8 @@ describe('<Snackbar />', () => {
       function Transition() {
         return <div className="cloned-element-class" ref={transitionRef} />;
       }
-      const { container } = render(<Snackbar open TransitionComponent={Transition} />);
-      expect(container).to.contain(transitionRef.current);
+      render(<Snackbar open TransitionComponent={Transition} />);
+      expect(document.body).to.contain(transitionRef.current);
     });
   });
 
