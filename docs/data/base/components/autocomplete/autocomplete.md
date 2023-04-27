@@ -1,9 +1,9 @@
 ---
 product: base
-title: React Autocomplete component and hook
-components: Autocomplete
+title: React Autocomplete hook
 hooks: useAutocomplete
 githubLabel: 'component: autocomplete'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
 
 # Autocomplete
@@ -16,6 +16,8 @@ githubLabel: 'component: autocomplete'
 
 ## Introduction
 
-The autocomplete component is an implementation of the WAI-ARIA Combobox pattern, typically used to assist users complete a form inputs or search queries faster.
+The autocomplete component is an enhanced text input that shows a list of suggested options as users type and lets them select an option from the list. It implements the WAI-ARIA Combobox pattern, and is typically used to assist users complete a form inputs or search queries faster.
 
-{{"demo": "AutocompleteIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient", "hideToolbar": true}}
+{{"demo": "AutocompleteIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+
+## Hook
