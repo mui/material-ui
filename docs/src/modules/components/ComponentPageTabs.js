@@ -7,6 +7,8 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
 import Link from 'docs/src/modules/components/Link';
 
+export const HEIGHT = 50;
+
 export default function ComponentPageTabs(props) {
   const {
     activeTab,
