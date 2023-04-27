@@ -84,7 +84,7 @@ const TablePagination = React.forwardRef(function TablePagination<
 
   let colSpan;
   const Root = slots.root ?? 'td';
-  if (!Root || Root === 'td' || !isHostComponent(Root)) {
+  if (Root === 'td' || !isHostComponent(Root)) {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 

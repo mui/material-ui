@@ -106,7 +106,6 @@ The following props are available on all non-utility Base components.
 See [Usage](/base/getting-started/usage/) for full details.
 :::
 
-
 Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
@@ -127,7 +126,10 @@ The following code snippet applies a CSS class called `my-spacer` to the spacer 
 In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
-<TablePagination<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+<TablePagination<typeof CustomComponent>
+  slots={{ root: CustomComponent }}
+  customProp
+/>
 ```
 
 The same applies for props specific to custom primitive elements:

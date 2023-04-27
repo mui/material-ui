@@ -117,7 +117,7 @@ export interface TablePaginationActionsSlots {
 
 export type TablePaginationActionsProps<
   RootComponentType extends React.ElementType = TablePaginationActionsTypeMap['defaultComponent'],
-> = PolymorphicProps<TablePaginationActionsTypeMap<{}, RootComponentType>, RootComponentType>
+> = PolymorphicProps<TablePaginationActionsTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface TablePaginationActionsTypeMap<
   AdditionalProps = {},
