@@ -26,7 +26,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: func<br>&#124;&nbsp;{ count?: number, direction?: 'ltr'<br>&#124;&nbsp;'rtl', getItemAriaLabel?: func, onPageChange?: func, page?: number, rowsPerPage?: number, showFirstButton?: bool, showLastButton?: bool, slotProps?: { backButton?: func<br>&#124;&nbsp;object, firstButton?: func<br>&#124;&nbsp;object, lastButton?: func<br>&#124;&nbsp;object, nextButton?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }, slots?: { backButton?: elementType, backPageIcon?: elementType, firstButton?: elementType, firstPageIcon?: elementType, lastButton?: elementType, lastPageIcon?: elementType, nextButton?: elementType, nextPageIcon?: elementType, root?: elementType } }, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: func<br>&#124;&nbsp;object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
+        "description": "{ actions?: func<br>&#124;&nbsp;object, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: func<br>&#124;&nbsp;object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
