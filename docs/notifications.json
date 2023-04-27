@@ -12,6 +12,6 @@
   {
     "id": 75,
     "title": "<b>Try the new time picker UI now</b>",
-    "text": "The new time picking experience is designed for desktop and it's available on the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/time-picker/\">Time Picker</a> as well as a <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/digital-clock/\">standalone component</a>."
+    "text": "The new time-picking experience is designed for desktops, and it's available on the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/time-picker/\">Time Picker</a> as well as a <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v6\" href=\"https://mui.com/x/react-date-pickers/digital-clock/\">standalone component</a>."
   }
 ]
