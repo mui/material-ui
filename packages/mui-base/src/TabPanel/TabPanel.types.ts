@@ -50,7 +50,7 @@ export interface TabPanelTypeMap<
 
 export type TabPanelProps<
   RootComponentType extends React.ElementType = TabPanelTypeMap['defaultComponent'],
-> = PolymorphicProps<TabPanelTypeMap<{}, RootComponentType>, RootComponentType>
+> = PolymorphicProps<TabPanelTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type TabPanelOwnerState = Simplify<
   TabPanelOwnProps & {
