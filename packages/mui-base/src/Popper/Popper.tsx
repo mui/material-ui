@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PolymorphicComponent } from '@mui/base/utils';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -13,7 +12,7 @@ import PropTypes from 'prop-types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
   PopperPlacementType,
   PopperTooltipProps,
