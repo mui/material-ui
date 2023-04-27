@@ -346,11 +346,8 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    actions: /* @typescript-to-proptypes-ignore */ PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.object,
-    ]),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
