@@ -347,36 +347,9 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    actions: PropTypes.oneOfType([
+    actions: /* @typescript-to-proptypes-ignore */ PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.shape({
-        count: PropTypes.number,
-        direction: PropTypes.oneOf(['ltr', 'rtl']),
-        getItemAriaLabel: PropTypes.func,
-        onPageChange: PropTypes.func,
-        page: PropTypes.number,
-        rowsPerPage: PropTypes.number,
-        showFirstButton: PropTypes.bool,
-        showLastButton: PropTypes.bool,
-        slotProps: PropTypes.shape({
-          backButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-          firstButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-          lastButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-          nextButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-          root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-        }),
-        slots: PropTypes.shape({
-          backButton: PropTypes.elementType,
-          backPageIcon: PropTypes.elementType,
-          firstButton: PropTypes.elementType,
-          firstPageIcon: PropTypes.elementType,
-          lastButton: PropTypes.elementType,
-          lastPageIcon: PropTypes.elementType,
-          nextButton: PropTypes.elementType,
-          nextPageIcon: PropTypes.elementType,
-          root: PropTypes.elementType,
-        }),
-      }),
+      PropTypes.object,
     ]),
     displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
