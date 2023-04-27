@@ -123,7 +123,9 @@ export interface PopperTypeMap<
 
 export type PopperProps<
   RootComponentType extends React.ElementType = PopperTypeMap['defaultComponent'],
-> = PolymorphicProps<PopperTypeMap<{}, RootComponentType>, RootComponentType>;
+> = PolymorphicProps<PopperTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
+};
 
 export type PopperTooltipOwnProps = Omit<
   PopperOwnProps,
@@ -142,7 +144,9 @@ export interface PopperTooltipTypeMap<
 
 export type PopperTooltipProps<
   RootComponentType extends React.ElementType = PopperTooltipTypeMap['defaultComponent'],
-> = PolymorphicProps<PopperTooltipTypeMap<{}, RootComponentType>, RootComponentType>;
+> = PolymorphicProps<PopperTooltipTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
+};
 
 export interface PopperRootSlotProps {
   className?: string;
