@@ -612,11 +612,11 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 ### Setup
 
-If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts) example project.
+If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts) example project.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the MUI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
+2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the Material UI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
 **tailwind.config.js**
 
@@ -647,11 +647,11 @@ If you use a different framework, or already have set up your project, follow th
 ```
 
 Most of the CSS used by Material UI has as specificity of 1, hence this `important` property is unnecessary.
-However, in a few edge cases, MUI uses nested CSS selectors that win over Tailwind CSS.
+However, in a few edge cases, Material UI uses nested CSS selectors that win over Tailwind CSS.
 Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
 More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
 
-4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives MUI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in MUI:
+4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material UI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in Material UI:
 
 ```jsx
 import * as React from 'react';
@@ -660,13 +660,13 @@ import { StyledEngineProvider } from '@mui/material/styles';
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override MUI's styles. */}
+      {/* Your component tree. Now you can override Material UI's styles. */}
     </StyledEngineProvider>
   );
 }
 ```
 
-**Note:** If you are using Emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, it will override the one coming from Material UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -681,7 +681,7 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Your component tree. Now you can override MUI's styles. */}
+      {/* Your component tree. Now you can override Material UI's styles. */}
     </CacheProvider>
   );
 }
@@ -721,7 +721,7 @@ root.render(
 
 ### Usage
 
-Now it's all set up and you can start using Tailwind CSS on the MUI components!
+Now it's all set up and you can start using Tailwind CSS on the Material UI components!
 
 {{"demo": "StyledComponents.js", "hideToolbar": true}}
 
@@ -789,10 +789,10 @@ export default function SliderThumbOverrides() {
 
 ## ~~JSS~~ TSS
 
-[JSS](https://cssinjs.org/) itself is no longer supported in MUI however,
+[JSS](https://cssinjs.org/) itself is no longer supported in Material UI, however,
 if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`](https://codesandbox.io/s/j3l06yyqpw) was offering you can opt for [`tss-react`](https://github.com/garronej/tss-react).
 
-[TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better
+[TSS](https://docs.tss-react.dev) integrates well with Material UI and provide a better
 TypeScript support than JSS.
 
 :::info

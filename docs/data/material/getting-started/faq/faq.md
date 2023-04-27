@@ -4,11 +4,11 @@
 
 If you still can't find what you're looking for, you can refer to our [support page](/material-ui/getting-started/support/).
 
-## Material UI is awesome. How can I support the project?
+## MUI is awesome. How can I support the company?
 
-There are many ways to support Material UI:
+There are many ways to support MUI:
 
-- **Spread the word**. Evangelize Material UI by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
+- **Spread the word**. Evangelize MUI's products by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
   Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
