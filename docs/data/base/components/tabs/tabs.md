@@ -84,7 +84,7 @@ The Tab components are each composed of a root slot with no interior slots:
 </div>
 ```
 
-### Slot props
+### Custom structure
 
 :::info
 The following props are available on all non-utility Base components.
@@ -98,6 +98,11 @@ Use the `slots.root` prop to override the root slot with a custom element:
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
 
 ## Customization
 
