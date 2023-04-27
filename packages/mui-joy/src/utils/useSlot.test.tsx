@@ -163,7 +163,9 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
-          component: ItemRoot,
+          slots: {
+            root: ItemRoot,
+          }
         },
       });
       return <SlotRoot {...rootProps} />;
@@ -237,7 +239,9 @@ describe('useSlot', () => {
           anchorEl: () => document.createElement('div'),
         },
         internalForwardedProps: {
-          component: ItemListbox,
+          slots: {
+            root: ItemListbox,
+          }
         },
       });
       const [SlotOption, optionProps] = useSlot('option', {
