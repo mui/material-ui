@@ -86,28 +86,44 @@ export type FormControlOwnerState = Simplify<
     }
 >;
 
-type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'value';
-
-export type FormControlState = Simplify<
-  Pick<FormControlProps, ContextFromPropsKey> & {
-    /**
-     * If `true`, the form element has some value.
-     */
-    filled: boolean;
-    /**
-     * If `true`, the form element is focused and not disabled.
-     */
-    focused: boolean;
-    /**
-     * Callback fired when the form element has lost focus.
-     */
-    onBlur: () => void;
-    /**
-     * Callback fired when the form element receives focus.
-     */
-    onFocus: () => void;
-  }
->;
+export type FormControlState = {
+  /**
+   * If `true`, the label, input and helper text should be displayed in a disabled state.
+   */
+  disabled: boolean;
+  /**
+   * If `true`, the label is displayed in an error state.
+   */
+  error: boolean;
+  /**
+   * If `true`, the form element has some value.
+   */
+  filled: boolean;
+  /**
+   * If `true`, the form element is focused and not disabled.
+   */
+  focused: boolean;
+  /**
+   * Callback fired when the form element has lost focus.
+   */
+  onBlur: () => void;
+  /**
+   * Callback fired when the form element's value is modified.
+   */
+  onChange: React.ChangeEventHandler<NativeFormControlElement>;
+  /**
+   * Callback fired when the form element receives focus.
+   */
+  onFocus: () => void;
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required: boolean;
+  /**
+   * The value of the form element.
+   */
+  value: unknown;
+};
 
 export type FormControlRootSlotProps = {
   children: React.ReactNode | ((state: FormControlState) => React.ReactNode);
