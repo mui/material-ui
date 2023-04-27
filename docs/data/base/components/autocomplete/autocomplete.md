@@ -20,4 +20,52 @@ The autocomplete component is an enhanced text input that shows a list of sugges
 
 {{"demo": "AutocompleteIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
-## Hook
+## Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this hook as follows:
+
+```jsx
+import useAutocomplete from '@mui/base/useAutocomplete';
+
+export default function App() {
+  const {
+    getRootProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
+    options: [
+      { label: 'The Dark Knight', year: 2008 },
+      { label: '12 Angry Men', year: 1957 },
+      { label: "Schindler's List", year: 1993 },
+    ],
+    getOptionLabel: (option) => option.label,
+  });
+
+  return (
+    <>
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+      </div>
+      {groupedOptions.length > 0 && (
+        <ul {...getListboxProps()}>
+          {groupedOptions.map((option, index) => (
+            <li {...getOptionProps({ option, index })}>{option.label}</li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
+```
+
+## Basics
+
+The useAutocomplete hook requires a list of `options` to be displayed when the textbox receives focus. The value must be chosen from a predefined set of values.
+
+The following demo shows how to create a simple combobox, apply some styling, and write the selected value to a state variable using the `onChange` prop:
+
+{{"demo": "UseAutocomplete.js"}}
+
+&nbsp;
