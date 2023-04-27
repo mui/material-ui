@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
+import { DefaultComponentProps, Simplify } from '@mui/types';
 import { UseOptionRootSlotProps } from '../useOption';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface OptionRootSlotPropsOverrides {}
 
@@ -57,19 +57,11 @@ export interface OptionTypeMap<
 export type OptionProps<
   OptionValue,
   RootComponentType extends React.ElementType = OptionTypeMap<OptionValue>['defaultComponent'],
-> = OverrideProps<OptionTypeMap<OptionValue, {}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<OptionTypeMap<OptionValue, {}, RootComponentType>, RootComponentType>;
 
 export interface OptionType {
   <OptionValue, RootComponentType extends React.ElementType>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: RootComponentType;
-    } & OverrideProps<OptionTypeMap<OptionValue>, RootComponentType>,
+    props: PolymorphicProps<OptionTypeMap<OptionValue>, RootComponentType>,
   ): JSX.Element | null;
   <OptionValue>(props: DefaultComponentProps<OptionTypeMap<OptionValue>>): JSX.Element | null;
   propTypes?: any;
