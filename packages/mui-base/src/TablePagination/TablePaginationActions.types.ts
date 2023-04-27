@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface TablePaginationActionsRootSlotPropsOverrides {}
 export interface TablePaginationActionsFirstButtonSlotPropsOverrides {}
@@ -118,9 +117,7 @@ export interface TablePaginationActionsSlots {
 
 export type TablePaginationActionsProps<
   RootComponentType extends React.ElementType = TablePaginationActionsTypeMap['defaultComponent'],
-> = OverrideProps<TablePaginationActionsTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<TablePaginationActionsTypeMap<{}, RootComponentType>, RootComponentType>
 
 export interface TablePaginationActionsTypeMap<
   AdditionalProps = {},

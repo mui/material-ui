@@ -1,5 +1,6 @@
 import * as React from 'react';
 import TablePagination from '@mui/base/TablePagination';
+import { expectType } from '@mui/types';
 import {
   TablePaginationActionsSlotProps,
   TablePaginationDisplayedRowsSlotProps,
@@ -75,3 +76,59 @@ const styledTablePagination = (
     }}
   />
 );
+
+const polymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+    function CustomComponent() {
+      return <div />;
+    };
+
+  const requiredProps = {
+    count: 10,
+    getItemAriaLabel: () => '',
+    onPageChange: () => {},
+    page: 0,
+    rowsPerPage: 10,
+    showFirstButton: true,
+    showLastButton: true,
+  };
+
+  return (
+    <div>
+      {/* @ts-expect-error */}
+      <TablePagination {...requiredProps} invalidProp={0} />
+
+      <TablePagination<'a'> {...requiredProps} slots={{ root: 'a' }} href="#" />
+
+      <TablePagination<typeof CustomComponent>
+        {...requiredProps}
+        slots={{ root: CustomComponent }}
+        stringProp="test"
+        numberProp={0}
+      />
+      {/* @ts-expect-error */}
+      <TablePagination<typeof CustomComponent>
+        {...requiredProps}
+        slots={{ root: CustomComponent }}
+      />
+
+      <TablePagination<'button'>
+        {...requiredProps}
+        slots={{ root: 'button' }}
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+      />
+
+      <TablePagination<'button'>
+        {...requiredProps}
+        slots={{ root: 'button' }}
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onMouseDown={(e) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+          e.currentTarget.checkValidity();
+        }}
+      />
+    </div>
+  );
+};

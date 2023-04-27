@@ -22,7 +22,7 @@ It controls two properties of its parent table:
 - number of rows per page
 
 Table Pagination renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`.
-You can use the `component` or `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
+You can use the `slots.root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 See the [Slot props section](#slot-props) for details.
 
 {{"demo": "UnstyledPaginationIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -106,21 +106,12 @@ The following props are available on all non-utility Base components.
 See [Usage](/base/getting-started/usage/) for full details.
 :::
 
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<TablePagination component="div" />
-```
 
 Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
 <TablePagination slots={{ root: 'div', toolbar: 'nav' }} />
 ```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-spacer` to the spacer slot:
@@ -130,6 +121,20 @@ The following code snippet applies a CSS class called `my-spacer` to the spacer 
 ```
 
 ## Customization
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<TablePagination<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<TablePagination<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ### Custom pagination options
 
