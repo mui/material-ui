@@ -61,13 +61,7 @@ The Badge component is composed of a root `<span>` that houses the element that 
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
-
-```jsx
-<Badge slots={{ root: 'div' }} />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override the root or any other interior slot.:
 
 ```jsx
 <Badge slots={{ root: 'div', badge: 'div' }} />
