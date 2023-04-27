@@ -33,7 +33,7 @@ export const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
-  '--unstable_RadioGroup-margin': '0.375rem 0 0.5rem',
+  '--unstable_RadioGroup-margin': '0.5rem 0',
   '--FormLabel-alignSelf': ownerState.orientation === 'horizontal' ? 'align-items' : 'flex-start',
   '--FormLabel-asteriskColor': theme.vars.palette.danger[500],
   ...(ownerState.size === 'sm' && {
@@ -46,7 +46,7 @@ export const FormControlRoot = styled('div', {
     '--FormLabel-fontSize': theme.vars.fontSize.sm,
     '--FormLabel-margin':
       ownerState.orientation === 'horizontal' ? '0 0.75rem 0 0' : '0 0 0.25rem 0',
-    '--FormHelperText-fontSize': theme.vars.fontSize.xs,
+    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
