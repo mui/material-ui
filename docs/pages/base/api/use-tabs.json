@@ -1,7 +1,7 @@
 {
   "parameters": {
     "defaultValue": {
-      "type": { "name": "string | number | false", "description": "string | number | false" }
+      "type": { "name": "string | number | null", "description": "string | number | null" }
     },
     "direction": {
       "type": {
@@ -12,8 +12,8 @@
     },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt; void",
-        "description": "(event: React.SyntheticEvent, value: number | string | boolean) =&gt; void"
+        "name": "(event: React.SyntheticEvent | null, value: number | string | null) =&gt; void",
+        "description": "(event: React.SyntheticEvent | null, value: number | string | null) =&gt; void"
       }
     },
     "orientation": {
@@ -25,16 +25,16 @@
     },
     "selectionFollowsFocus": { "type": { "name": "boolean", "description": "boolean" } },
     "value": {
-      "type": { "name": "string | number | false", "description": "string | number | false" }
+      "type": { "name": "string | number | null", "description": "string | number | null" }
     }
   },
   "returnValue": {
-    "tabsContextValue": {
-      "type": { "name": "TabsContextValue", "description": "TabsContextValue" },
+    "contextValue": {
+      "type": { "name": "TabsProviderValue", "description": "TabsProviderValue" },
       "required": true
     }
   },
   "name": "useTabs",
   "filename": "/packages/mui-base/src/useTabs/useTabs.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

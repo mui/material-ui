@@ -1,0 +1,68 @@
+{
+  "props": {
+    "checked": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
+    "defaultChecked": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, root?: elementType, thumb?: elementType, track?: elementType<br>&#124;&nbsp;null }"
+      },
+      "default": "{}"
+    }
+  },
+  "name": "Switch",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": ".MuiSwitch-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": ".MuiSwitch-input"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
+      "default": "'span'",
+      "class": ".MuiSwitch-thumb"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": ".MuiSwitch-track"
+    }
+  ],
+  "classes": {
+    "classes": ["checked", "disabled", "focusVisible", "readOnly"],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "spread": true,
+  "muiName": "MuiSwitch",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-base/src/Switch/Switch.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-switch/\">Switch</a></li></ul>",
+  "cssComponent": false
+}

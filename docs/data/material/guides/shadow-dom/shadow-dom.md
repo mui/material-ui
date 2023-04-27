@@ -8,7 +8,7 @@
 
 The shadow DOM is an API that provides a way to attach a hidden separated DOM to an element.
 This is useful when you need to keep the structure, style, and behavior of different components separate from the rest of the code on the page, to prevent conflicts.
-See [the MDN docs on the shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) for more information.
+See [the MDN docs on the shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM) for more information.
 The following code snippet shows how to apply styles inside of the shadow DOM:
 
 ```tsx

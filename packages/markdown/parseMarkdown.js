@@ -376,7 +376,7 @@ function createRender(context) {
  * @param {string} componentPkg
  * @example 'mui-base'
  * @param {string} component
- * @example 'ButtonUnstyled'
+ * @example 'Button'
  * @returns {string}
  */
 function resolveComponentApiUrl(product, componentPkg, component) {

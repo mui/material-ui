@@ -1,0 +1,140 @@
+{
+  "props": {
+    "aria-label": { "type": { "name": "custom", "description": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
+    "component": { "type": { "name": "elementType" } },
+    "defaultValue": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
+    "getAriaLabel": { "type": { "name": "func" } },
+    "getAriaValueText": { "type": { "name": "func" } },
+    "isRtl": { "type": { "name": "bool" }, "default": "false" },
+    "marks": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onChangeCommitted": { "type": { "name": "func" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: any<br>&#124;&nbsp;func }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
+      },
+      "default": "{}"
+    },
+    "step": { "type": { "name": "number" }, "default": "1" },
+    "tabIndex": { "type": { "name": "number" } },
+    "track": {
+      "type": {
+        "name": "enum",
+        "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
+      },
+      "default": "'normal'"
+    },
+    "value": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "valueLabelFormat": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
+      "default": "function Identity(x) {\n  return x;\n}"
+    }
+  },
+  "name": "Slider",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": ".MuiSlider-root"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": ".MuiSlider-track"
+    },
+    {
+      "name": "rail",
+      "description": "The component that renders the rail.",
+      "default": "'span'",
+      "class": ".MuiSlider-rail"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
+      "default": "'span'",
+      "class": ".MuiSlider-thumb"
+    },
+    {
+      "name": "mark",
+      "description": "The component that renders the mark.",
+      "default": "'span'",
+      "class": ".MuiSlider-mark"
+    },
+    {
+      "name": "markLabel",
+      "description": "The component that renders the mark label.",
+      "default": "'span'",
+      "class": ".MuiSlider-markLabel"
+    },
+    {
+      "name": "valueLabel",
+      "description": "The component that renders the value label.",
+      "class": null
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": null
+    }
+  ],
+  "classes": {
+    "classes": [
+      "active",
+      "disabled",
+      "dragging",
+      "focusVisible",
+      "markActive",
+      "marked",
+      "markLabelActive",
+      "trackFalse",
+      "trackInverted",
+      "vertical"
+    ],
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "active": "Mui-active",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "spread": true,
+  "muiName": "MuiSlider",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-base/src/Slider/Slider.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-slider/\">Slider</a></li></ul>",
+  "cssComponent": false
+}

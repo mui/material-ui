@@ -13,7 +13,7 @@ export interface UseButtonRootSlotOwnProps {
   onKeyUp: React.KeyboardEventHandler;
   onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
 }
 
 export type UseButtonRootSlotProps<TOther = {}> = TOther & UseButtonRootSlotOwnProps;
@@ -31,7 +31,7 @@ export interface UseButtonParameters {
   focusableWhenDisabled?: boolean;
   href?: string;
   onFocusVisible?: React.FocusEventHandler;
-  ref?: React.Ref<any>;
+  rootRef?: React.Ref<Element>;
   tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
   to?: string;
   /**
@@ -60,13 +60,12 @@ export interface UseButtonReturnValue {
    */
   setFocusVisible: React.Dispatch<React.SetStateAction<boolean>>;
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled: boolean;
-  /**
    * If `true`, the component is active (pressed).
    * @default false
    */
   active: boolean;
+  /**
+   * A ref to the component's root DOM element.
+   */
+  rootRef: React.RefCallback<Element> | null;
 }
