@@ -54,34 +54,43 @@ The Input component is composed of a root `<div>` slot that houses one interior 
 </div>
 ```
 
-### Slot props
+### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<Input component="aside" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
 <Input slots={{ root: 'aside' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
+Use the `slots` prop to override any interior slots in addition to the root:
+
+```jsx
+<Input slots={{ root: 'aside', input: 'button' }} />
+```
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-input` to the input slot:
 
 ```jsx
 <Input slotProps={{ input: { className: 'my-input' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Input<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Input<'textarea'> slots={{ root: 'textarea' }} rows={2} />
 ```
 
 ## Hook
