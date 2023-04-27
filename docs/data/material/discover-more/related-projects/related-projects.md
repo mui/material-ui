@@ -56,3 +56,7 @@ Feel free to submit a pull request!
 ### Sparkline
 
 - [mui-plus](https://mui-plus.vercel.app/components/Sparkline): A sparkline is a tiny chart that can be used to indicate the trend of a value.
+
+## Admin frameworks
+
+- [React Admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
