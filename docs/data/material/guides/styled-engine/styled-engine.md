@@ -2,9 +2,9 @@
 
 <p class="description">Configuring your preferred styling library.</p>
 
-The default style library used for generating CSS styles for MUI components is [emotion](https://github.com/emotion-js/emotion).
-All of the MUI components rely on the `styled()` API to inject CSS into the page.
-This API is supported by multiple popular styling libraries, which makes it possible to switch between them in MUI.
+The default style library used for generating CSS styles for Material UI components is [Emotion](https://github.com/emotion-js/emotion).
+All of the Material UI components rely on the `styled()` API to inject CSS into the page.
+This API is supported by multiple popular styling libraries, which makes it possible to switch between them in Material UI.
 
 ## How to switch to styled-components
 

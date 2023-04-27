@@ -20,7 +20,7 @@ For instance, with a `Button` component:
 
 In real-life applications, using a native `<a>` element is rarely enough.
 You can improve the user experience by using an enhanced Link component systematically.
-The theme of MUI allows configuring this component once.
+The Material UI theme lets you configure this component once.
 For instance, with react-router:
 
 ```tsx
@@ -32,7 +32,7 @@ const LinkBehavior = React.forwardRef<
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (MUI) -> to (react-router)
+  // Map href (Material UI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 

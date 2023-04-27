@@ -14,7 +14,7 @@ Aspect Ratio is a wrapper component for quickly resizing content to conform to y
 Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
-A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it until browser compatibility increases to at least 94%.
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it in Joy UI until browser compatibility increases to at least 94%.
 As of Q4 2022, compatibility is at 90%.
 Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
 :::

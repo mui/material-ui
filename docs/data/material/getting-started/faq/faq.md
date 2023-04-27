@@ -4,11 +4,11 @@
 
 If you still can't find what you're looking for, you can refer to our [support page](/material-ui/getting-started/support/).
 
-## MUI is awesome. How can I support the project?
+## Material UI is awesome. How can I support the project?
 
-There are many ways to support MUI:
+There are many ways to support Material UI:
 
-- **Spread the word**. Evangelize MUI by [linking to mui.com](https://mui.com/) on your website, every backlink matters.
+- **Spread the word**. Evangelize Material UI by [linking to mui.com](https://mui.com/) on your website—every backlink matters.
   Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
@@ -20,14 +20,14 @@ There are many ways to support MUI:
   - Help [translate](https://translate.mui.com) the documentation.
   - [Improve our documentation](https://github.com/mui/material-ui/tree/HEAD/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/mui)**.
-  If you use MUI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
+  If you use Material UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the MUI home page.
 
 ## Why do the fixed positioned elements move when a modal is opened?
 
 Scrolling is blocked as soon as a modal is opened.
 This prevents interacting with the background when the modal should be the only interactive content. However, removing the scrollbar can make your **fixed positioned elements** move.
-In this situation, you can apply a global `.mui-fixed` class name to tell MUI to handle those elements.
+In this situation, you can apply a global `.mui-fixed` class name to tell Material UI to handle those elements.
 
 ## How can I disable the ripple effect globally?
 
@@ -52,7 +52,7 @@ const theme = createTheme({
 
 ## How can I disable transitions globally?
 
-MUI uses the same theme helper for creating all its transitions.
+Material UI uses the same theme helper for creating all its transitions.
 Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
@@ -105,10 +105,10 @@ If you choose not to use it, you can still disable transitions and animations by
 No, it's not required.
 But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
 
-Perhaps, however, you're adding some MUI components to an app that already uses another styling solution,
+Perhaps, however, you're adding some Material UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
 [Style library interoperability](/material-ui/guides/interoperability/) section,
-where we show how simple it is to restyle MUI components with alternative style libraries.
+where we show how simple it is to restyle Material UI components with alternative style libraries.
 
 ## When should I use inline-style vs. CSS?
 
@@ -126,9 +126,9 @@ We detail the [integration with third-party routing libraries](/material-ui/guid
 
 ## How can I access the DOM element?
 
-All MUI components that should render something in the DOM forward their
+All Material UI components that should render something in the DOM forward their
 ref to the underlying DOM component. This means that you can get DOM elements
-by reading the ref attached to MUI components:
+by reading the ref attached to Material UI components:
 
 ```jsx
 // or a ref setter function
@@ -139,7 +139,7 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-If you're not sure if the MUI component in question forwards its ref you
+If you're not sure if the Material UI component in question forwards its ref you
 can check the API documentation under "Props" e.g. the [Button API](/material-ui/api/button/#props)
 includes
 
@@ -249,13 +249,13 @@ Check out the [reference implementations](/material-ui/guides/server-rendering/#
 ## Why are the colors I am seeing different from what I see here?
 
 The documentation site is using a custom theme. Hence, the color palette is
-different from the default theme that MUI ships. Please refer to [this
+different from the default theme that Material UI ships. Please refer to [this
 page](/material-ui/customization/theming/) to learn about theme customization.
 
 ## Why does component X require a DOM node in a prop instead of a ref object?
 
 Components like the [Portal](/base/api/portal/#props) or [Popper](/material-ui/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively.
-It seems convenient to simply pass a ref object in those props and let MUI access the current value.
+It seems convenient to simply pass a ref object in those props and let Material UI access the current value.
 This works in a simple scenario:
 
 ```jsx
@@ -359,13 +359,13 @@ If you are getting the error: `TypeError: Cannot convert a Symbol value to a str
 ## [v4] Why aren't my components rendering correctly in production builds?
 
 The #1 reason this happens is likely due to class name conflicts once your code is in a production bundle.
-For MUI to work, the `className` values of all components on a page must be generated by a single instance of the [class name generator](/system/styles/advanced/#class-names).
+For Material UI to work, the `className` values of all components on a page must be generated by a single instance of the [class name generator](/system/styles/advanced/#class-names).
 
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** among them.
 
 You could end up accidentally using two class name generators in a variety of scenarios:
 
-- You accidentally **bundle** two versions of MUI. You might have a dependency not correctly setting MUI as a peer dependency.
+- You accidentally **bundle** two versions of Material UI. You might have a dependency not correctly setting Material UI as a peer dependency.
 - You are using `StylesProvider` for a **subset** of your React tree.
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
@@ -373,7 +373,7 @@ You could end up accidentally using two class name generators in a variety of sc
 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
 :::
 
-Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
+Overall, it's simple to recover from this problem by wrapping each Material UI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
 ### [v4] CSS works only on first load and goes missing
 
@@ -438,11 +438,11 @@ This generator needs to behave identically on the server and on the client. For 
      const html = ReactDOMServer.renderToString(
   ```
 
-- You need to verify that your client and server are running the **exactly the same version** of MUI.
+- You need to verify that your client and server are running the **exactly the same version** of Material UI.
   It is possible that a mismatch of even minor versions can cause styling problems.
   To check version numbers, run `npm list @mui/material` in the environment where you build your application and also in your deployment environment.
 
-  You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+  You can also ensure the same version in different environments by specifying a specific Material UI version in the dependencies of your package.json.
 
   _example of fix (package.json):_
 
