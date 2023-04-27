@@ -51,6 +51,32 @@ By default, clicking outside the popper does not hide it.
 If you need this behavior, you can use the [Click-Away Listener](/base/react-click-away-listener/) component.
 :::
 
+### Custom structure
+
+Use the `slots.root` prop to override the root slot with a custom element:
+
+```jsx
+<Popper slots={{ root: 'span' }} />
+```
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom component's props directly on the component:
+
+```tsx
+<Popper<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Popper<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
+
 ## Customization
 
 ### Placement

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '@mui/base/utils';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -81,7 +81,6 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
   const {
     anchorEl,
     children,
-    component,
     direction,
     disablePortal,
     modifiers,
@@ -216,7 +215,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
   }
 
   const classes = useUtilityClasses();
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
 
   const rootProps: WithOptionalOwnerState<PopperRootSlotProps> = useSlotProps({
     elementType: Root,
@@ -233,7 +232,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
   return (
     <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
   );
-}) as OverridableComponent<PopperTooltipTypeMap>;
+}) as PolymorphicComponent<PopperTooltipTypeMap>;
 
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
@@ -335,7 +334,7 @@ const Popper = React.forwardRef(function Popper<RootComponentType extends React.
       </PopperTooltip>
     </Portal>
   );
-}) as OverridableComponent<PopperTypeMap>;
+}) as PolymorphicComponent<PopperTypeMap>;
 
 Popper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -533,10 +532,6 @@ Popper.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * Help supporting a react-transition-group/Transition component.
    * @default false

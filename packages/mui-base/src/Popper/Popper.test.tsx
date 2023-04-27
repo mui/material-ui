@@ -21,6 +21,7 @@ describe('<Popper />', () => {
     skip: [
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
+      'componentProp',
     ],
     slots: {
       root: {
@@ -34,10 +35,12 @@ describe('<Popper />', () => {
       <div ref={ref} data-testid="foo" id={ownerState.id} />
     ));
     render(
-      <Popper
+      <Popper<typeof CustomComponent>
         anchorEl={() => document.createElement('div')}
         open
-        component={CustomComponent}
+        slots={{
+          root: CustomComponent,
+        }}
         ownerState={{ id: 'id' }}
       />,
     );
