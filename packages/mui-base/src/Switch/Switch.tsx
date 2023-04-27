@@ -46,9 +46,10 @@ const useUtilityClasses = (ownerState: SwitchOwnerState) => {
  *
  * - [Switch API](https://mui.com/base/react-switch/components-api/#switch)
  */
-const Switch = React.forwardRef(function Switch<
-  BaseComponentType extends React.ElementType = SwitchTypeMap['defaultComponent'],
->(props: SwitchProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+const Switch = React.forwardRef(function Switch<RootComponentType extends React.ElementType>(
+  props: SwitchProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     checked: checkedProp,
     component,
@@ -94,7 +95,7 @@ const Switch = React.forwardRef(function Switch<
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

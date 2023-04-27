@@ -101,7 +101,7 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const { focusVisible, getRootProps } = useButton({
     ...props,
-    ref,
+    rootRef: ref,
   });
 
   const ownerState = {

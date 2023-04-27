@@ -12,6 +12,7 @@
     "dispatch": "Action dispatcher for the menu component.\nAllows to programmatically control the menu.",
     "getListboxProps": "Resolver for the listbox component's props.",
     "highlightedValue": "The highlighted option in the menu listbox.",
+    "listboxRef": "The ref to the listbox DOM node.",
     "menuItems": "Items in the menu listbox.",
     "open": "If <code>true</code>, the menu is open."
   }

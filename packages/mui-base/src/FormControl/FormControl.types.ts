@@ -62,16 +62,18 @@ export interface FormControlSlots {
   root?: React.ElementType;
 }
 
-export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & FormControlOwnProps;
-  defaultComponent: D;
+export interface FormControlTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: FormControlOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type FormControlProps<
-  D extends React.ElementType = FormControlTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<FormControlTypeMap<P, D>, D> & {
-  component?: D;
+  RootComponentType extends React.ElementType = FormControlTypeMap['defaultComponent'],
+> = OverrideProps<FormControlTypeMap<{}, RootComponentType>, RootComponentType> & {
+  component?: RootComponentType;
 };
 
 type NonOptionalOwnerState = 'disabled' | 'error' | 'required';

@@ -34,7 +34,10 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
  *
  * - [Badge API](https://mui.com/base/react-badge/components-api/#badge)
  */
-const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
+const Badge = React.forwardRef(function Badge<RootComponentType extends React.ElementType>(
+  props: BadgeProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     badgeContent: badgeContentProp,
     component,
@@ -68,7 +71,7 @@ const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

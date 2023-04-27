@@ -28,7 +28,10 @@ const useUtilityClasses = (ownerState: TabOwnerState) => {
  *
  * - [Tab API](https://mui.com/base/react-tabs/components-api/#tab)
  */
-const Tab = React.forwardRef<unknown, TabProps>(function Tab(props, ref) {
+const Tab = React.forwardRef(function Tab<RootComponentType extends React.ElementType>(
+  props: TabProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     action,
     children,
@@ -44,14 +47,14 @@ const Tab = React.forwardRef<unknown, TabProps>(function Tab(props, ref) {
   } = props;
 
   const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
-  const handleRef = useForkRef(tabRef, ref);
+  const handleRef = useForkRef(tabRef, forwardedRef);
 
   const { active, highlighted, selected, getRootProps } = useTab({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
-  const ownerState = {
+  const ownerState: TabOwnerState = {
     ...props,
     active,
     disabled,
@@ -68,7 +71,7 @@ const Tab = React.forwardRef<unknown, TabProps>(function Tab(props, ref) {
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,

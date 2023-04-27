@@ -6,7 +6,6 @@
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
       }
     },
-    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {

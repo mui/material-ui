@@ -124,9 +124,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getButtonRootProps,
     active: buttonActive,
     focusVisible: buttonFocusVisible,
+    rootRef: mergedButtonRef,
   } = useButton({
     disabled,
-    ref: handleButtonRef,
+    rootRef: handleButtonRef,
   });
 
   const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);
@@ -222,7 +223,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getItemId,
     controlledProps: controlledState,
     isItemDisabled,
-    listRef: handleListboxRef,
+    rootRef: handleListboxRef,
     onChange: handleSelectionChange,
     onHighlightChange: handleHighlightChange,
     onStateChange: handleStateChange,
@@ -238,6 +239,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getListboxRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
+    rootRef: mergedListboxRef,
   } = useList(useListParameters);
 
   React.useEffect(() => {
@@ -387,12 +389,14 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   return {
     buttonActive,
     buttonFocusVisible,
+    buttonRef: mergedButtonRef,
+    contextValue,
     disabled,
     dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
-    contextValue,
+    listboxRef: mergedListboxRef,
     open,
     options: optionValues,
     value: selectValue,
