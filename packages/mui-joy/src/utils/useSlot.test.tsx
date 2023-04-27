@@ -165,7 +165,7 @@ describe('useSlot', () => {
         internalForwardedProps: {
           slots: {
             root: ItemRoot,
-          }
+          },
         },
       });
       return <SlotRoot {...rootProps} />;
@@ -241,7 +241,7 @@ describe('useSlot', () => {
         internalForwardedProps: {
           slots: {
             root: ItemListbox,
-          }
+          },
         },
       });
       const [SlotOption, optionProps] = useSlot('option', {
