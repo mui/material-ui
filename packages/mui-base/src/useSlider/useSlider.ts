@@ -683,7 +683,7 @@ export default function useSlider(parameters: UseSliderParameters): UseSliderRet
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step ?? undefined,
+      step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
       disabled,
       ...mergedEventHandlers,
       style: {
