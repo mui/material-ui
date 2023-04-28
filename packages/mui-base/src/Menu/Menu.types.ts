@@ -2,7 +2,7 @@ import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 import Popper, { PopperProps } from '../Popper';
 import { SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from '../useMenu';
+import { UseMenuListboxSlotProps, UseMenuParameters } from '../useMenu';
 import { ListAction } from '../useList';
 
 export interface MenuRootSlotPropsOverrides {}
@@ -31,7 +31,7 @@ export interface MenuOwnProps {
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onOpenChange?: (event: React.MouseEvent<Element, Event> | null, open: boolean) => void;
+  onOpenChange?: UseMenuParameters['onOpenChange'];
   /**
    * Controls whether the menu is displayed.
    * @default false

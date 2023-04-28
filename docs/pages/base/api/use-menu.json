@@ -7,8 +7,8 @@
     },
     "onOpenChange": {
       "type": {
-        "name": "(event: React.MouseEvent&lt;Element, Event&gt; | null, open: boolean) =&gt; void",
-        "description": "(event: React.MouseEvent&lt;Element, Event&gt; | null, open: boolean) =&gt; void"
+        "name": "(event: React.MouseEvent&lt;Element, Event&gt; | React.KeyboardEvent&lt;Event&gt; | React.FocusEvent | null, open: boolean) =&gt; void",
+        "description": "(event: React.MouseEvent&lt;Element, Event&gt; | React.KeyboardEvent&lt;Event&gt; | React.FocusEvent | null, open: boolean) =&gt; void"
       }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } }
