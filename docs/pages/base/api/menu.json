@@ -7,7 +7,6 @@
         "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
       }
     },
-    "component": { "type": { "name": "elementType" } },
     "onOpenChange": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" }, "default": "false" },
     "slotProps": {
