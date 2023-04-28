@@ -31,7 +31,7 @@ export interface MenuOwnProps {
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange?: (event: React.MouseEvent<Element, Event> | null, open: boolean) => void;
   /**
    * Controls whether the menu is displayed.
    * @default false
