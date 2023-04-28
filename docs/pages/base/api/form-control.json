@@ -1,0 +1,28 @@
+{
+  "props": {
+    "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "onChange": { "type": { "name": "func" } },
+    "required": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "FormControl",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "muiName": "MuiFormControl",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/FormControl/FormControl.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-form-control/\">Form Control</a></li>\n<li><a href=\"/joy-ui/react-input/\">Input</a></li>\n<li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li>\n<li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "cssComponent": false
+}

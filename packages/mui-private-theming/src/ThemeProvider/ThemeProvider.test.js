@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, RenderCounter, strictModeDoubleLoggingSupressed } from 'test/utils';
+import { createRenderer, RenderCounter, strictModeDoubleLoggingSuppressed } from 'test/utils';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
 
@@ -94,7 +94,7 @@ describe('ThemeProvider', () => {
         );
       }).toErrorDev([
         'However, no outer theme is present.',
-        !strictModeDoubleLoggingSupressed && 'However, no outer theme is present.',
+        !strictModeDoubleLoggingSuppressed && 'However, no outer theme is present.',
       ]);
     });
 
@@ -110,7 +110,7 @@ describe('ThemeProvider', () => {
         );
       }).toErrorDev([
         'MUI: You should return an object from your theme function',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You should return an object from your theme function',
       ]);
     });

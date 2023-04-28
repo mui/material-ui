@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.3",
-    "@mui-internal/docs-utilities": "*",
+    "@mui-internal/docs-utilities": "^1.0.0",
     "@mui/markdown": "^5.0.0",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
@@ -22,7 +22,7 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.9",
     "chai": "^4.3.7",
-    "sinon": "^15.0.3",
+    "sinon": "^15.0.4",
     "typescript": "^4.9.5"
   }
 }

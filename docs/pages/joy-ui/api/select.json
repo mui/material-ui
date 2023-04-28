@@ -34,6 +34,12 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       }
     },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ button?: elementType, endDecorator?: elementType, indicator?: elementType, listbox?: elementType, root?: elementType, startDecorator?: elementType }"
+      }
+    },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
@@ -89,6 +95,33 @@
       "class": ".MuiSelect-listbox"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "expanded",
+      "focusVisible",
+      "popper",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "focusVisible": "Mui-focusVisible",
+      "disabled": "Mui-disabled",
+      "expanded": "Mui-expanded"
+    }
+  },
   "spread": false,
   "themeDefaultProps": true,
   "muiName": "JoySelect",

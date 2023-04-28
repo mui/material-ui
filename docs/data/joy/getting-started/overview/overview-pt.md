@@ -20,7 +20,7 @@ Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%
 
 - **Ship faster:** Joy UI gives you a significant amount of prebuilt components you need to develop web apps, with a sleek and carefully designed look and feel, allowing you to achieve a good-looking result without a dedicated designer.
 - **Extensive customization:** you're encouraged to customize each and every tiny piece of the Joy UI components so they match your desired design.
-- **Accessibility in mind:** Joy UI components are built on top of [MUI Base's unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for several accessibility features out of the box. We do our best to make all components screen reader-friendly, also offering suggestions for optimizing accessibility throughout our documentation.
+- **Accessibility in mind:** Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for several accessibility features out of the box. We do our best to make all components screen reader-friendly, also offering suggestions for optimizing accessibility throughout our documentation.
 
 ## Joy UI vs. Material UI
 

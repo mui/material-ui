@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React Modal component
-components: ModalUnstyled
+title: React Modal component
+components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 ---
 
-# Unstyled Modal
+# Modal
 
-<p class="description">The Unstyled Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
+<p class="description">The Modal component lets you create dialogs, popovers, lightboxes, and other elements that force the user to take action before continuing.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -16,7 +16,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 ## Introduction
 
-Unstyled Modal is a utility component that renders its children in front of a backdrop.
+Modal is a utility component that renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
 ### Features
@@ -38,7 +38,7 @@ As such, it should be used sparingly—only when the app _requires_ user input b
 <!-- Uncomment the next line, once an unstyled dialog component is added in @mui/base -->
 <!-- If you are creating a modal dialog, the [`Dialog`](/material-ui/dialog/) component is better suited for this specific use case. -->
 
-Unstyled Modal is a lower-level construct that is used in the following Material UI components:
+Modal is a lower-level construct that is used in the following Material UI components:
 
 - [Dialog](/material-ui/react-dialog/)
 - [Drawer](/material-ui/react-drawer/)
@@ -52,10 +52,10 @@ Unstyled Modal is a lower-level construct that is used in the following Material
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Modal from '@mui/base/Modal';
 
 export default function MyApp() {
-  return <ModalUnstyled>{/* the modal's content */}</ModalUnstyled>;
+  return <Modal>{/* the modal's content */}</Modal>;
 }
 ```
 
@@ -92,11 +92,11 @@ You can animate the open and close states of a Modal using a transition componen
   The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
   :::
 
-Unstyled Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
+Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
 
 {{"demo": "TransitionsModal.js", "defaultCodeOpen": false}}
 
-You can also use [react-spring](https://github.com/pmndrs/react-spring) with Unstyled Modal, but it will require additional custom configuration:
+You can also use [react-spring](https://github.com/pmndrs/react-spring) with Modal, but it will require additional custom configuration:
 
 {{"demo": "SpringModal.js", "defaultCodeOpen": false}}
 
@@ -124,7 +124,7 @@ Explore other possible bottlenecks in performance where you could make more cons
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 
-In order to display an Unstyled Modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
+In order to display a Modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
 
@@ -144,7 +144,7 @@ You need to add the `.mui-fixed` class name on these elements so the modal can a
 
 ### Focus trap
 
-Unstyled Modal moves the focus back to the body of the component if the focus tries to escape it.
+Modal moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 
