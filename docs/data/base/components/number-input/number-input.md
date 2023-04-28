@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React Number Input component and hook
-components: NumberInputUnstyled
+title: React Number Input component and hook
+components: NumberInput
 hooks: useNumberInput
 githubLabel: 'component: NumberInput'
 ---
 
-# Unstyled Number Input
+# Number Input
 
-<p class="description">The Unstyled Number Input component provides users with a field for integer values, and buttons to increment or decrement the value.</p>
+<p class="description">The Number Input component provides users with a field for integer values, and buttons to increment or decrement the value.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -17,7 +17,7 @@ githubLabel: 'component: NumberInput'
 ## Introduction
 
 A number input is a UI element that accepts numeric values from the user.
-The Unstyled Number Input component is a customizable replacement for the native HTML `<input type="number" />` that solves common usability issues of the native counterpart, such as:
+Base UI's Number Input component is a customizable replacement for the native HTML `<input type="number">` that solves common usability issues of the native counterpart, such as:
 
 - Inconsistencies across browsers in the appearance and behavior of the stepper buttons
 - Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
@@ -34,10 +34,10 @@ See [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-desi
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import NumberInputUnstyled from '@mui/base/NumberInputUnstyled';
+import NumberInput from '@mui/base/NumberInput';
 
 export default function MyApp() {
-  return <NumberInputUnstyled />;
+  return <NumberInput />;
 }
 ```
 
@@ -50,17 +50,17 @@ The following demo shows how to create a number input component, apply some styl
 The `min` and `max` props can be used to define a range of accepted values. You can pass only one of them to define an open-ended range.
 
 ```tsx
-  <NumberInputUnstyled min={-10} max={10} />
+  <NumberInput min={-10} max={10} />
 
   // Open-ended
-  <NumberInputUnstyled min={0} />
+  <NumberInput min={0} />
 ```
 
 The `step` prop can be used to defined the granularity of the change in value when incrementing or decrementing. For example, if `min={0}` and `step={2}`, valid values for the component would be 0, 2, 4… since the value can only be changed in increments of 2.
 
 ```tsx
 // valid values: 0, 2, 4, 6, 8...
-<NumberInputUnstyled min={0} step={2} />
+<NumberInput min={0} step={2} />
 ```
 
 When the input field is in focus, you can enter values that fall outside the valid range. The value will be clamped based on `min`, `max` and `step` once the input field is blurred.
@@ -70,16 +70,16 @@ Holding down the <kbd>Shift</kbd> key when interacting with the stepper buttons 
 This can be customized with the `shiftMultiplier` prop. In the following snippet, if <kbd>Shift</kbd> is held when clicking the increment button, the value will change from 0 to 5, then to 10 etc.
 
 ```tsx
-<NumberInputUnstyled min={0} step={1} shiftMultiplier={5} />
+<NumberInput min={0} step={1} shiftMultiplier={5} />
 ```
 
-Here's another demo of a Unstyled Number Input with fully customized styles:
+Here's another demo of a Number Input with fully customized styles:
 
 {{"demo": "QuantityInput.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
-The Unstyled Number Input component consists of a root `<div>` that contains one interior `<input>` slot, and two `<button>` slots – `incrementButton` and `decrementButton` – for the stepper buttons.
+The Base UI Number Input component consists of a root `<div>` that contains one interior `<input>` slot, and two `<button>` slots – `incrementButton` and `decrementButton` – for the stepper buttons.
 
 ```html
 <div class="MuiNumberInput-root">
@@ -99,7 +99,7 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `slots` prop to override the root slot or any interior slots:
 
 ```jsx
-<NumberInputUnstyled
+<NumberInput
   slots={{
     root: 'aside',
     incrementButton: CustomButton,
@@ -115,7 +115,7 @@ The following code snippet:
 - and passes a `direction` prop to the `CustomButton` components in the increment and decrement button slots
 
 ```jsx
-<NumberInputUnstyled
+<NumberInput
   slotProps={{
     input: { className: 'my-num-input' },
     incrementButton: { direction: 'UP' },

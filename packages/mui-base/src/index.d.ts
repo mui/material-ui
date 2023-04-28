@@ -38,8 +38,8 @@ export * from './Modal';
 
 export { default as NoSsr } from './NoSsr';
 
-export { default as NumberInputUnstyled } from './NumberInputUnstyled';
-export * from './NumberInputUnstyled';
+export { default as NumberInput } from './NumberInput';
+export * from './NumberInput';
 
 export { default as OptionGroup } from './OptionGroup';
 export * from './OptionGroup';

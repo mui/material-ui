@@ -114,5 +114,5 @@
   },
   "name": "useNumberInput",
   "filename": "/packages/mui-base/src/useNumberInput/useNumberInput.ts",
-  "demos": "<ul><li><a href=\"/base/react-number-input/#hook\">Unstyled Number Input</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-number-input/#hook\">Number Input</a></li></ul>"
 }

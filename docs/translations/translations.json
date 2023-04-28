@@ -278,7 +278,7 @@
     "/base-ui/react-menu/components-api/#menu-item": "MenuItem",
     "/base-ui/react-modal/components-api/#modal": "Modal",
     "/base-ui/react-no-ssr/components-api/#no-ssr": "NoSsr",
-    "/base-ui/react-number-input/components-api/#number-input-unstyled": "NumberInputUnstyled",
+    "/base-ui/react-number-input/components-api/#number-input": "NumberInput",
     "/base-ui/react-select/components-api/#option": "Option",
     "/base-ui/react-select/components-api/#option-group": "OptionGroup",
     "/base-ui/react-popper/components-api/#popper": "Popper",

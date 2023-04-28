@@ -1,16 +1,16 @@
 import * as React from 'react';
-import NumberInputUnstyled, {
-  NumberInputUnstyledProps,
-  numberInputUnstyledClasses,
-} from '@mui/base/NumberInputUnstyled';
+import NumberInput, {
+  NumberInputProps,
+  numberInputClasses,
+} from '@mui/base/NumberInput';
 import { styled } from '@mui/system';
 
 const CustomNumberInput = React.forwardRef(function CustomNumberInput(
-  props: NumberInputUnstyledProps,
+  props: NumberInputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <NumberInputUnstyled
+    <NumberInput
       slots={{
         root: StyledInputRoot,
         input: StyledInputElement,
@@ -33,7 +33,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
   );
 });
 
-export default function UnstyledNumberInputIntroduction() {
+export default function NumberInputIntroduction() {
   return (
     <CustomNumberInput aria-label="Demo number input" placeholder="Type a number…" />
   );
@@ -75,7 +75,7 @@ const StyledInputRoot = styled('div')(
   overflow: hidden;
 
 
-  &.${numberInputUnstyledClasses.focused} {
+  &.${numberInputClasses.focused} {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
@@ -130,12 +130,12 @@ const StyledButton = styled('button')(
     cursor: pointer;
   }
 
-  &.${numberInputUnstyledClasses.incrementButton} {
+  &.${numberInputClasses.incrementButton} {
     grid-column: 2/3;
     grid-row: 1/2;
   }
   
-  &.${numberInputUnstyledClasses.decrementButton} {
+  &.${numberInputClasses.decrementButton} {
     grid-column: 2/3;
     grid-row: 2/3;
     transform: rotate(180deg);

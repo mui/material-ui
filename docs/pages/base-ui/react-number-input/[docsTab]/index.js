@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/number-input/number-input.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import NumberInputUnstyledApiJsonPageContent from '../../api/number-input-unstyled.json';
+import NumberInputApiJsonPageContent from '../../api/number-input.json';
 import useNumberInputApiJsonPageContent from '../../api/use-number-input.json';
 
 export default function Page(props) {
@@ -23,12 +23,12 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const NumberInputUnstyledApiReq = require.context(
-    'docs/translations/api-docs-base/number-input-unstyled',
+  const NumberInputApiReq = require.context(
+    'docs/translations/api-docs-base/number-input',
     false,
-    /number-input-unstyled.*.json$/,
+    /number-input.*.json$/,
   );
-  const NumberInputUnstyledApiDescriptions = mapApiPageTranslations(NumberInputUnstyledApiReq);
+  const NumberInputApiDescriptions = mapApiPageTranslations(NumberInputApiReq);
 
   const useNumberInputApiReq = require.context(
     'docs/translations/api-docs/use-number-input',
@@ -39,8 +39,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { NumberInputUnstyled: NumberInputUnstyledApiDescriptions },
-      componentsApiPageContents: { NumberInputUnstyled: NumberInputUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { NumberInput: NumberInputApiDescriptions },
+      componentsApiPageContents: { NumberInput: NumberInputApiJsonPageContent },
       hooksApiDescriptions: { useNumberInput: useNumberInputApiDescriptions },
       hooksApiPageContents: { useNumberInput: useNumberInputApiJsonPageContent },
     },

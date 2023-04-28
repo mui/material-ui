@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import { expect } from 'chai';
-import NumberInputUnstyled, { numberInputUnstyledClasses } from '@mui/base/NumberInputUnstyled';
+import NumberInput, { numberInputClasses } from '@mui/base/NumberInput';
 
-describe('<NumberInputUnstyled />', () => {
+describe('<NumberInput />', () => {
   const mount = createMount();
   const { render } = createRenderer();
 
-  describeConformanceUnstyled(<NumberInputUnstyled />, () => ({
+  describeConformanceUnstyled(<NumberInput />, () => ({
     inheritComponent: 'div',
     render,
     mount,
@@ -16,10 +16,10 @@ describe('<NumberInputUnstyled />', () => {
     muiName: 'MuiNumberInput',
     slots: {
       root: {
-        expectedClassName: numberInputUnstyledClasses.root,
+        expectedClassName: numberInputClasses.root,
       },
       input: {
-        expectedClassName: numberInputUnstyledClasses.input,
+        expectedClassName: numberInputClasses.input,
         testWithElement: 'input',
       },
     },
@@ -27,7 +27,7 @@ describe('<NumberInputUnstyled />', () => {
 
   it('should be able to attach input ref passed through props', () => {
     const inputRef = React.createRef<HTMLInputElement>();
-    const { getByRole } = render(<NumberInputUnstyled slotProps={{ input: { ref: inputRef } }} />);
+    const { getByRole } = render(<NumberInput slotProps={{ input: { ref: inputRef } }} />);
 
     expect(inputRef.current).to.deep.equal(getByRole('spinbutton'));
   });

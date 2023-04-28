@@ -8,12 +8,12 @@ import {
 } from '../useNumberInput/useNumberInput.types';
 import { SlotComponentProps } from '../utils';
 
-export interface NumberInputUnstyledRootSlotPropsOverrides {}
-export interface NumberInputUnstyledInputSlotPropsOverrides {}
-export interface NumberInputUnstyledIncrementButtonSlotPropsOverrides {}
-export interface NumberInputUnstyledDecrementButtonSlotPropsOverrides {}
+export interface NumberInputRootSlotPropsOverrides {}
+export interface NumberInputInputSlotPropsOverrides {}
+export interface NumberInputIncrementButtonSlotPropsOverrides {}
+export interface NumberInputDecrementButtonSlotPropsOverrides {}
 
-export type NumberInputUnstyledOwnProps = Omit<UseNumberInputParameters, 'error'> & {
+export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   /**
    * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute on the input and the `Mui-error` class on the root element.
    */
@@ -27,25 +27,17 @@ export type NumberInputUnstyledOwnProps = Omit<UseNumberInputParameters, 'error'
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<
-      'div',
-      NumberInputUnstyledRootSlotPropsOverrides,
-      NumberInputUnstyledOwnerState
-    >;
-    input?: SlotComponentProps<
-      'input',
-      NumberInputUnstyledInputSlotPropsOverrides,
-      NumberInputUnstyledOwnerState
-    >;
+    root?: SlotComponentProps<'div', NumberInputRootSlotPropsOverrides, NumberInputOwnerState>;
+    input?: SlotComponentProps<'input', NumberInputInputSlotPropsOverrides, NumberInputOwnerState>;
     incrementButton?: SlotComponentProps<
       'button',
-      NumberInputUnstyledIncrementButtonSlotPropsOverrides,
-      NumberInputUnstyledOwnerState
+      NumberInputIncrementButtonSlotPropsOverrides,
+      NumberInputOwnerState
     >;
     decrementButton?: SlotComponentProps<
       'button',
-      NumberInputUnstyledDecrementButtonSlotPropsOverrides,
-      NumberInputUnstyledOwnerState
+      NumberInputDecrementButtonSlotPropsOverrides,
+      NumberInputOwnerState
     >;
   };
   /**
@@ -61,20 +53,20 @@ export type NumberInputUnstyledOwnProps = Omit<UseNumberInputParameters, 'error'
   };
 };
 
-export interface NumberInputUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & NumberInputUnstyledOwnProps;
+export interface NumberInputTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & NumberInputOwnProps;
   defaultComponent: D;
 }
 
-export type NumberInputUnstyledProps<
-  D extends React.ElementType = NumberInputUnstyledTypeMap['defaultComponent'],
+export type NumberInputProps<
+  D extends React.ElementType = NumberInputTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<NumberInputUnstyledTypeMap<P, D>, D> & {
+> = OverrideProps<NumberInputTypeMap<P, D>, D> & {
   component?: D;
 };
 
-export type NumberInputUnstyledOwnerState = Simplify<
-  Omit<NumberInputUnstyledProps, 'component' | 'slots' | 'slotProps'> & {
+export type NumberInputOwnerState = Simplify<
+  Omit<NumberInputProps, 'component' | 'slots' | 'slotProps'> & {
     formControlContext: FormControlState | undefined;
     focused: boolean;
     isIncrementDisabled: boolean;
@@ -82,32 +74,32 @@ export type NumberInputUnstyledOwnerState = Simplify<
   }
 >;
 
-export type NumberInputUnstyledRootSlotProps = Simplify<
+export type NumberInputRootSlotProps = Simplify<
   UseNumberInputRootSlotProps & {
-    ownerState: NumberInputUnstyledOwnerState;
+    ownerState: NumberInputOwnerState;
     className?: string;
     children?: React.ReactNode;
     ref?: React.Ref<HTMLDivElement>;
   }
 >;
 
-export type NumberInputUnstyledInputSlotProps = Simplify<
+export type NumberInputInputSlotProps = Simplify<
   Omit<UseNumberInputRootSlotProps, 'onClick'> & {
     id: string | undefined;
-    ownerState: NumberInputUnstyledOwnerState;
+    ownerState: NumberInputOwnerState;
     placeholder: string | undefined;
     ref: React.Ref<HTMLInputElement>;
   }
 >;
 
-export type NumberInputUnstyledIncrementButtonSlotProps = Simplify<
+export type NumberInputIncrementButtonSlotProps = Simplify<
   UseNumberInputIncrementButtonSlotProps & {
-    ownerState: NumberInputUnstyledOwnerState;
+    ownerState: NumberInputOwnerState;
   }
 >;
 
-export type NumberInputUnstyledDecrementButtonSlotProps = Simplify<
+export type NumberInputDecrementButtonSlotProps = Simplify<
   UseNumberInputDecrementButtonSlotProps & {
-    ownerState: NumberInputUnstyledOwnerState;
+    ownerState: NumberInputOwnerState;
   }
 >;

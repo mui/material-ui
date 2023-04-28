@@ -29,7 +29,7 @@ const parseInput = (v: string): string => {
  *
  * Demos:
  *
- * - [Unstyled Number Input](https://mui.com/base/react-number-input/#hook)
+ * - [Number Input](https://mui.com/base/react-number-input/#hook)
  *
  * API:
  *

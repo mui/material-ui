@@ -1,7 +1,7 @@
 import generateUtilityClass from '../generateUtilityClass';
 import generateUtilityClasses from '../generateUtilityClasses';
 
-export interface NumberInputUnstyledClasses {
+export interface NumberInputClasses {
   /** Class name applied to the root element. */
   root: string;
   /** Class name applied to the root element if the component is a descendant of `FormControl`. */
@@ -24,26 +24,23 @@ export interface NumberInputUnstyledClasses {
   decrementButton: string;
 }
 
-export type NumberInputUnstyledClassKey = keyof NumberInputUnstyledClasses;
+export type NumberInputClassKey = keyof NumberInputClasses;
 
-export function getNumberInputUnstyledUtilityClass(slot: string): string {
+export function getNumberInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiNumberInput', slot);
 }
 
-const numberInputUnstyledClasses: NumberInputUnstyledClasses = generateUtilityClasses(
-  'MuiNumberInput',
-  [
-    'root',
-    'formControl',
-    'focused',
-    'disabled',
-    'error',
-    'input',
-    'incrementButton',
-    'decrementButton',
-    // 'adornedStart',
-    // 'adornedEnd',
-  ],
-);
+const numberInputClasses: NumberInputClasses = generateUtilityClasses('MuiNumberInput', [
+  'root',
+  'formControl',
+  'focused',
+  'disabled',
+  'error',
+  'input',
+  'incrementButton',
+  'decrementButton',
+  // 'adornedStart',
+  // 'adornedEnd',
+]);
 
-export default numberInputUnstyledClasses;
+export default numberInputClasses;

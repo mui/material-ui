@@ -1,12 +1,12 @@
 import * as React from 'react';
-import NumberInputUnstyled from '@mui/base/NumberInputUnstyled';
+import NumberInput from '@mui/base/NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
 const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref) {
   return (
-    <NumberInputUnstyled
+    <NumberInput
       slots={{
         root: StyledInputRoot,
         input: StyledInput,

@@ -1,17 +1,15 @@
 import * as React from 'react';
-import NumberInputUnstyled, {
-  NumberInputUnstyledProps,
-} from '@mui/base/NumberInputUnstyled';
+import NumberInput, { NumberInputProps } from '@mui/base/NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
 const CustomNumberInput = React.forwardRef(function CustomNumberInput(
-  props: NumberInputUnstyledProps,
+  props: NumberInputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <NumberInputUnstyled
+    <NumberInput
       slots={{
         root: StyledInputRoot,
         input: StyledInput,
