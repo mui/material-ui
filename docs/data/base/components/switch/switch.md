@@ -60,13 +60,7 @@ The following props are available on all non-utility Base components.
 See [Usage](/base/getting-started/usage/) for full details.
 :::
 
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<Switch component="div" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <Switch slots={{ root: 'div', track: 'div' }} />
