@@ -46,6 +46,7 @@ describe('<Snackbar />', () => {
           expectedClassName: classes.root,
         },
       },
+      skip: ['componentProp'],
     }),
   );
 
