@@ -59,7 +59,7 @@ The Input component is composed of a root `<div>` slot that houses one interior 
 Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
-<Input slots={{ root: 'aside', input: 'button' }} />
+<Input slots={{ root: 'aside', input: CustomInput }} />
 ```
 
 :::info
