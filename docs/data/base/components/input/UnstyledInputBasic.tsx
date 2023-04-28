@@ -1,14 +1,12 @@
 import * as React from 'react';
-import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
+import Input, { InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
 const CustomInput = React.forwardRef(function CustomInput(
-  props: InputUnstyledProps,
+  props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  return (
-    <InputUnstyled slots={{ input: StyledInputElement }} {...props} ref={ref} />
-  );
+  return <Input slots={{ input: StyledInputElement }} {...props} ref={ref} />;
 });
 
 export default function UnstyledInputBasic() {

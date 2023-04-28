@@ -1,10 +1,7 @@
 {
   "parameters": {
-    "ref": {
-      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
-      "required": true
-    },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
+    "id": { "type": { "name": "string", "description": "string" } },
     "onChange": {
       "type": {
         "name": "(event: React.SyntheticEvent, value: number | string) =&gt; void",
@@ -14,27 +11,27 @@
     "onClick": {
       "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
     },
-    "onFocus": {
-      "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
-    "active": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "disabled": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;",
         "description": "&lt;TOther extends Record&lt;string, any&gt; = {}&gt;(externalProps?: TOther) =&gt; UseTabRootSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
+    "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
       },
       "required": true
     },
@@ -45,9 +42,10 @@
         "description": "React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;"
       },
       "required": true
-    }
+    },
+    "totalTabsCount": { "type": { "name": "number", "description": "number" }, "required": true }
   },
   "name": "useTab",
   "filename": "/packages/mui-base/src/useTab/useTab.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

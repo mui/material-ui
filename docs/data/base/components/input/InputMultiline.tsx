@@ -1,13 +1,13 @@
 import * as React from 'react';
-import InputUnstyled, { InputUnstyledProps } from '@mui/base/InputUnstyled';
+import Input, { InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
 const CustomInput = React.forwardRef(function CustomInput(
-  props: InputUnstyledProps,
+  props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   return (
-    <InputUnstyled
+    <Input
       slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
       {...props}
       ref={ref}
@@ -15,7 +15,7 @@ const CustomInput = React.forwardRef(function CustomInput(
   );
 });
 
-export default function UnstyledInputBasic() {
+export default function InputMultiline() {
   return (
     <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
   );

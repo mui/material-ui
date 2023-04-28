@@ -1445,7 +1445,7 @@ This change is meant to encourage composition.
 
 The built-in 24px padding has been removed.
 
-To keep it intact, add the folllowing:
+To keep it intact, add the following:
 
 ```diff
 -<Stepper>

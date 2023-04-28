@@ -305,7 +305,7 @@ In our last two annual [developer surveys](/blog/2021-developer-survey-results/)
 
 Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
 
-[Material UI](https://mui.com/material-ui/getting-started/overview/) and [Joy UI](https://mui.com/joy-ui/getting-started/overview/) are designed to be both beautiful and flexible right out of the box, while [MUI Base](https://mui.com/base/getting-started/overview/) gives you the most freedom to implement your own custom styling solution.
+[Material UI](https://mui.com/material-ui/getting-started/overview/) and [Joy UI](https://mui.com/joy-ui/getting-started/overview/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base/getting-started/overview/) gives you the most freedom to implement your own custom styling solution.
 [MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
 Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.

@@ -17,7 +17,7 @@ We currently offer two main product lines:
 
 - **MUI Core**—a collection of foundational component libraries, including:
   - _Material UI_ —components that implement Google's Material Design
-  - _MUI Base_ —unstyled components for implementing your own design system
+  - _Base UI_ —unstyled components for implementing your own design system
   - _MUI System_ —CSS utilities for quickly laying out design systems
 - **MUI X**—a collection of advanced components for complex use cases, including:
   - _Data grid_ —fast, feature-rich, extendable React data table
@@ -34,7 +34,7 @@ As for the URLs, this is how they look now:
 
 - MUI Core:
   - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/overview/)
-  - MUI Base: [https://mui.com/base/](https://mui.com/base/getting-started/overview/)
+  - Base UI: [https://mui.com/base/](https://mui.com/base/getting-started/overview/)
   - MUI System: [https://mui.com/system/](https://mui.com/system/getting-started/overview/)
 - MUI X:
   - Data grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
@@ -47,7 +47,7 @@ As for the URLs, this is how they look now:
 The documentation restructuring ranks search results based on the product that you are currently looking at.
 For example, if you are looking at Material UI documentation, when you press <kbd><kbd class="key">⌘</kbd>+<kbd class="key">K</kbd></kbd> (or <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">K</kbd></kbd> on Windows) and type a keyword, you will find that most of the results are related to Material UI.
 
-We have also added product labels for Material UI and MUI Base in case it's unclear which library the search results refer to.
+We have also added product labels for Material UI and Base UI in case it's unclear which library the search results refer to.
 
 <img src="/static/blog/docs-restructure-2022/docs-product-label.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the search results displaying product labels per result" />
 
@@ -61,7 +61,7 @@ Now when viewing the MUI X section, only results related to the data grid pagina
 
 ## Moving forward
 
-This separation will become increasingly beneficial as each product grows, such as additional components in MUI X and MUI Base.
+This separation will become increasingly beneficial as each product grows, such as additional components in MUI X and Base UI.
 
 As we move forward working on [our second design system package](https://deploy-preview-30686--material-ui.netlify.app/experiments/), the separation will make it possible for us to build the documentation for each system using its default styles—so the docs themselves will serve as examples of their corresponding component libraries.
 

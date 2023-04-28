@@ -1,21 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-import InputUnstyled, {
-  InputUnstyledProps,
-  inputUnstyledClasses,
-} from '@mui/base/InputUnstyled';
+import Button from '@mui/base/Button';
+import Input, { InputProps, inputClasses } from '@mui/base/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
 
 const CustomInput = React.forwardRef(function CustomInput(
-  props: InputUnstyledProps,
+  props: InputProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const { slots, ...other } = props;
   return (
-    <InputUnstyled
+    <Input
       slots={{
         root: StyledInputRoot,
         input: StyledInputElement,
@@ -122,7 +119,7 @@ const StyledInputRoot = styled('div')(
   justify-content: center;
 
 
-  &.${inputUnstyledClasses.focused} {
+  &.${inputClasses.focused} {
     border-color: ${blue[400]};
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
@@ -154,7 +151,7 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const IconButton = styled(ButtonUnstyled)(
+const IconButton = styled(Button)(
   ({ theme }) => `
   display: inline-flex;
   align-items: center;

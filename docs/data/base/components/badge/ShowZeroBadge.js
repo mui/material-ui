@@ -1,8 +1,21 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/system';
-import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
+import Badge, { badgeClasses } from '@mui/base/Badge';
 import MailIcon from '@mui/icons-material/Mail';
+
+export default function ShowZeroBadge() {
+  return (
+    <Stack spacing={4} direction="row">
+      <StyledBadge badgeContent={0}>
+        <MailIcon />
+      </StyledBadge>
+      <StyledBadge badgeContent={0} showZero>
+        <MailIcon />
+      </StyledBadge>
+    </Stack>
+  );
+}
 
 const blue = {
   500: '#007FFF',
@@ -13,7 +26,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(BadgeUnstyled)(
+const StyledBadge = styled(Badge)(
   ({ theme }) => `
   box-sizing: border-box;
   margin: 0;
@@ -25,7 +38,7 @@ const StyledBadge = styled(BadgeUnstyled)(
   display: inline-block;
   line-height: 1;
 
-  & .${badgeUnstyledClasses.badge} {
+  & .${badgeClasses.badge} {
     z-index: auto;
     position: absolute;
     top: 0;
@@ -46,21 +59,8 @@ const StyledBadge = styled(BadgeUnstyled)(
     transform-origin: 100% 0;
   }
 
-  & .${badgeUnstyledClasses.invisible} {
+  & .${badgeClasses.invisible} {
     display: none;
   }
   `,
 );
-
-export default function ShowZeroBadge() {
-  return (
-    <Stack spacing={4} direction="row">
-      <StyledBadge badgeContent={0}>
-        <MailIcon />
-      </StyledBadge>
-      <StyledBadge badgeContent={0} showZero>
-        <MailIcon />
-      </StyledBadge>
-    </Stack>
-  );
-}
