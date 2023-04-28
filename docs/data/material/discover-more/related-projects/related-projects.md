@@ -2,7 +2,7 @@
 
 <p class="description">A carefully curated list of third-party tools that expand or build on top of Material UI's component library.</p>
 
-Developers from the MUI community have built some excellent supplemental tools for working with Material UI—this page gathers the best that we've seen.
+Developers from the community have built some excellent supplemental tools for working with Material UI—this page gathers the best that we've seen.
 
 Do you have a project that you think should be featured here?
 We'd love to see it.
