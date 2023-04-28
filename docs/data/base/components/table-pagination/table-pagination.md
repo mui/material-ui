@@ -101,11 +101,15 @@ The Table Pagination component is composed of a root `<td>` that houses up to te
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <TablePagination slots={{ root: 'div', toolbar: 'nav' }} />
 ```
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-spacer` to the spacer slot:
@@ -114,10 +118,6 @@ The following code snippet applies a CSS class called `my-spacer` to the spacer 
 <TablePagination slotProps={{ spacer: { className: 'my-spacer' } }} />
 ```
 
-:::info
-The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
-:::
 
 ## Customization
 
