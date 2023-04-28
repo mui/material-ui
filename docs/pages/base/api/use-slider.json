@@ -1,9 +1,5 @@
 {
   "parameters": {
-    "ref": {
-      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
-      "required": true
-    },
     "aria-labelledby": { "type": { "name": "string", "description": "string" } },
     "defaultValue": { "type": { "name": "number | number[]", "description": "number | number[]" } },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
@@ -34,6 +30,9 @@
         "description": "&#39;horizontal&#39; | &#39;vertical&#39;"
       },
       "default": "'horizontal'"
+    },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
     "scale": {
       "type": {
@@ -101,11 +100,18 @@
       "required": true
     },
     "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
     "trackLeap": { "type": { "name": "number", "description": "number" }, "required": true },
     "trackOffset": { "type": { "name": "number", "description": "number" }, "required": true },
     "values": { "type": { "name": "number[]", "description": "number[]" }, "required": true }
   },
   "name": "useSlider",
   "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
-  "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Unstyled Slider</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Slider</a></li></ul>"
 }

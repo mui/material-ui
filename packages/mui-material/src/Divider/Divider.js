@@ -95,21 +95,26 @@ const DividerRoot = styled('div', {
       height: 'auto',
     }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     ...(ownerState.children && {
       display: 'flex',
       whiteSpace: 'nowrap',
       textAlign: 'center',
       border: 0,
       '&::before, &::after': {
-        position: 'relative',
-        width: '100%',
-        borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
-        top: '50%',
         content: '""',
-        transform: 'translateY(50%)',
+        alignSelf: 'center',
       },
     }),
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children &&
+      ownerState.orientation !== 'vertical' && {
+        '&::before, &::after': {
+          width: '100%',
+          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+        },
+      }),
   }),
   ({ theme, ownerState }) => ({
     ...(ownerState.children &&
@@ -117,11 +122,7 @@ const DividerRoot = styled('div', {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          top: '0%',
-          left: '50%',
-          borderTop: 0,
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
-          transform: 'translateX(0%)',
         },
       }),
   }),

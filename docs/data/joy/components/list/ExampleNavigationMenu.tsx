@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
@@ -159,13 +159,7 @@ const AboutMenu = React.forwardRef(
           >
             About <KeyboardArrowDown />
           </ListItemButton>
-          <PopperUnstyled
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            disablePortal
-            keepMounted
-          >
+          <Popper id={id} open={open} anchorEl={anchorEl} disablePortal keepMounted>
             <List
               role="menu"
               aria-label="About"
@@ -205,7 +199,7 @@ const AboutMenu = React.forwardRef(
                 </ListItemButton>
               </ListItem>
             </List>
-          </PopperUnstyled>
+          </Popper>
         </Box>
       </ClickAwayListener>
     );
@@ -282,13 +276,7 @@ const AdmissionsMenu = React.forwardRef(
           >
             Admissions <KeyboardArrowDown />
           </ListItemButton>
-          <PopperUnstyled
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            disablePortal
-            keepMounted
-          >
+          <Popper id={id} open={open} anchorEl={anchorEl} disablePortal keepMounted>
             <List
               role="menu"
               aria-label="About"
@@ -330,7 +318,7 @@ const AdmissionsMenu = React.forwardRef(
                 </ListItemButton>
               </ListItem>
             </List>
-          </PopperUnstyled>
+          </Popper>
         </Box>
       </ClickAwayListener>
     );

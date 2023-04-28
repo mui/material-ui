@@ -1,0 +1,71 @@
+{
+  "props": {
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "component": { "type": { "name": "elementType" } },
+    "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "getSerializedValue": { "type": { "name": "func" } },
+    "listboxId": { "type": { "name": "string" } },
+    "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onListboxOpenChange": { "type": { "name": "func" } },
+    "optionStringifier": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
+    "renderValue": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: elementType, popper?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Select",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiSelect-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": ".MuiSelect-listbox"
+    },
+    {
+      "name": "popper",
+      "description": "The component that renders the popper.",
+      "default": "Popper",
+      "class": ".MuiSelect-popper"
+    }
+  ],
+  "classes": {
+    "classes": ["active", "disabled", "expanded", "focusVisible"],
+    "globalClasses": {
+      "active": "Mui-active",
+      "expanded": "Mui-expanded",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
+  "spread": true,
+  "muiName": "MuiSelect",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/Select/Select.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

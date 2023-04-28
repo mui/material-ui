@@ -3,7 +3,7 @@
     "styles": {
       "type": {
         "name": "union",
-        "description": "func<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;{ __emotion_styles: any }<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
+        "description": "array<br>&#124;&nbsp;func<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
       }
     }
   },

@@ -1,97 +1,103 @@
-import { useTabContext, getTabId, getPanelId } from '../TabsUnstyled';
-import useButton from '../useButton';
+import * as React from 'react';
+import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { useTabsContext } from '../Tabs';
 import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { EventHandlers } from '../utils';
+import { useCompoundItem } from '../utils/useCompoundItem';
+import { useListItem } from '../useList';
+import useButton from '../useButton';
+import { TabMetadata } from '../useTabs';
+
+function tabValueGenerator(otherTabValues: Set<string | number>) {
+  return otherTabValues.size;
+}
+
 /**
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *
  * - [useTab API](https://mui.com/base/react-tabs/hooks-api/#use-tab)
  */
 function useTab(parameters: UseTabParameters): UseTabReturnValue {
-  const { value: valueProp, onChange, onClick, onFocus } = parameters;
+  const { value: valueParam, rootRef: externalRef, disabled = false, id: idParam } = parameters;
 
-  const { getRootProps: getRootPropsButton, ...otherButtonProps } = useButton(parameters);
+  const tabRef = React.useRef<HTMLElement>(null);
+  const id = useId(idParam);
 
-  const context = useTabContext();
-  if (context === null) {
-    throw new Error('No TabContext provided');
-  }
+  const { value: selectedValue, selectionFollowsFocus, getTabPanelId } = useTabsContext();
 
-  const value = valueProp ?? 0;
-  const selected = context.value === value;
-  const selectionFollowsFocus = context.selectionFollowsFocus;
+  const tabMetadata = React.useMemo(() => ({ disabled, ref: tabRef, id }), [disabled, tabRef, id]);
 
-  const a11yAttributes = {
-    role: 'tab',
-    'aria-controls': getPanelId(context, value) ?? undefined,
-    id: getTabId(context, value) ?? undefined,
-    'aria-selected': selected,
-    disabled: otherButtonProps.disabled,
-  };
+  const {
+    id: value,
+    index,
+    totalItemCount: totalTabsCount,
+  } = useCompoundItem<string | number, TabMetadata>(valueParam, tabMetadata, tabValueGenerator);
 
-  const createHandleFocus =
-    (otherHandlers: EventHandlers) => (event: React.FocusEvent<HTMLButtonElement, Element>) => {
-      otherHandlers.onFocus?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
+  const {
+    getRootProps: getTabProps,
+    rootRef: listItemRefHandler,
+    highlighted,
+    selected,
+  } = useListItem({
+    item: value,
+  });
 
-      if (selectionFollowsFocus && !selected) {
-        if (onChange) {
-          onChange(event, value);
-        }
+  const {
+    getRootProps: getButtonProps,
+    rootRef: buttonRefHandler,
+    active,
+    focusVisible,
+    setFocusVisible,
+  } = useButton({
+    disabled,
+    focusableWhenDisabled: !selectionFollowsFocus,
+    type: 'button',
+  });
 
-        context.onSelected(event, value);
-      }
+  const handleRef = useForkRef(tabRef, externalRef, listItemRefHandler, buttonRefHandler);
 
-      if (onFocus) {
-        onFocus(event);
-      }
-    };
-
-  const createHandleClick =
-    (otherHandlers: EventHandlers) => (event: React.MouseEvent<Element, MouseEvent>) => {
-      otherHandlers.onClick?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      if (!selected) {
-        if (onChange) {
-          onChange(event, value);
-        }
-        context.onSelected(event, value);
-      }
-
-      if (onClick) {
-        onClick(event);
-      }
-    };
+  const tabPanelId = value !== undefined ? getTabPanelId(value) : undefined;
 
   const getRootProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ): UseTabRootSlotProps<TOther> => {
-    const buttonResolvedProps = getRootPropsButton({
+    const resolvedTabProps = {
       ...otherHandlers,
-      onClick: createHandleClick(otherHandlers),
-      onFocus: createHandleFocus(otherHandlers),
-    });
+      ...getTabProps(otherHandlers),
+    };
+
+    const resolvedButtonProps = {
+      ...resolvedTabProps,
+      ...getButtonProps(resolvedTabProps),
+    };
 
     return {
-      ...buttonResolvedProps,
-      ...a11yAttributes,
+      ...resolvedButtonProps,
+      role: 'tab',
+      'aria-controls': tabPanelId,
+      'aria-selected': selected,
+      id,
+      ref: handleRef,
     };
   };
 
   return {
     getRootProps,
-    ...otherButtonProps,
-    selected,
+    active,
+    focusVisible,
+    highlighted,
+    index,
+    rootRef: handleRef,
+    // the `selected` state isn't set on the server (it relies on effects to be calculated),
+    // so we fall back to checking the `value` prop with the selectedValue from the TabsContext
+    selected: selected || value === selectedValue,
+    setFocusVisible,
+    totalTabsCount,
   };
 }
 

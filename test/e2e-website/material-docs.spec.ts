@@ -53,23 +53,6 @@ test.describe('Material docs', () => {
       );
     });
 
-    test('should have correct API link to mui-base', async ({ page }) => {
-      await page.goto('/material-ui/react-tabs/');
-
-      await expect(page.locator('a[href="/base/api/tab-panel-unstyled/"]')).toContainText(
-        '<TabPanelUnstyled />',
-      );
-      await expect(page.locator('a[href="/base/api/tab-unstyled/"]')).toContainText(
-        '<TabUnstyled />',
-      );
-      await expect(page.locator('a[href="/base/api/tabs-list-unstyled/"]')).toContainText(
-        '<TabsListUnstyled />',
-      );
-      await expect(page.locator('a[href="/base/api/tabs-unstyled/"]')).toContainText(
-        '<TabsUnstyled />',
-      );
-    });
-
     test('should have correct link for sidebar anchor', async ({ page }) => {
       await page.goto('/material-ui/react-card/');
 
