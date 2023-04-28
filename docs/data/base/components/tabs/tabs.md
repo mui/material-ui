@@ -86,12 +86,7 @@ The Tab components are each composed of a root slot with no interior slots:
 
 ### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `slots.root` prop to override the root slot with a custom element:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <Tab slots={{ root: 'span' }} />
