@@ -22,7 +22,7 @@ The autocomplete component is an enhanced text input that shows a list of sugges
 
 ## Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this hook as follows:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this hook as follows:
 
 ```jsx
 import useAutocomplete from '@mui/base/useAutocomplete';
@@ -68,4 +68,101 @@ The following demo shows how to create a simple combobox, apply some styling, an
 
 {{"demo": "UseAutocomplete.js"}}
 
-&nbsp;
+## Customization
+
+### Rendering options
+
+By default, the `options` prop accepts an array of `string`s or `{ label: string }`:
+
+```js
+const options = [
+  { label: 'The Godfather', id: 1 },
+  { label: 'Pulp Fiction', id: 2 },
+];
+// or
+const options = ['The Godfather', 'Pulp Fiction'];
+```
+
+If you need to use a different structure for options, you must provide a function to the `getOptionLabel` prop that resolves each option to a unique value.
+
+```js
+const options = [
+  { issuer: 'Bank of America', brand: 'Visa', last4: '1234' },
+  { issuer: 'Bank of America', brand: 'MasterCard', last4: '5678' },
+  { issuer: 'Barclays', brand: 'Visa', last4: '4698' },
+  // ...
+];
+
+const {
+  getRootProps,
+  // etc
+} = useAutocomplete({
+  getOptionLabel: (option) => option.last4,
+});
+```
+
+### Controlled states
+
+The useAutocomplete hook has two states that can be controlled:
+
+1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
+2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
+
+:::warning
+These two states are isolated, and should be controlled independently.
+:::
+
+{{"demo": "ControlledStates.js"}}
+
+### Using a portal
+
+React Portals can be used to render the listbox outside of the DOM hierarchy, making it easier to allow it to "float" above adjacent elements.
+Base UI provides a `<Popper />` component built around React's `createPortal()` for exactly this purpose, and additionally helps you manage keyboard focus as it moves in and out of the portal.
+
+To render the listbox in Base UI's Popper, the `ref`s must be merged as follows:
+
+```jsx
+import useAutocomplete from '@mui/base/useAutocomplete';
+import Popper from '@mui/base/Popper';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
+
+export default function App() {
+  const {
+    getRootProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    popupOpen,
+    anchorEl,
+    setAnchorEl,
+    groupedOptions,
+  } = useAutocomplete({
+    ...props,
+    componentName: 'BaseAutocompleteIntroduction',
+    unstable_classNamePrefix: 'Base',
+  });
+
+  const rootRef = useForkRef(ref, setAnchorEl);
+
+  return (
+    <>
+      <div {...getRootProps()} ref={rootRef}>
+        <input {...getInputProps()} />
+      </div>
+      {anchorEl && (
+        <Popper open={popupOpen} anchorEl={anchorEl}>
+          {groupedOptions.length > 0 && (
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((option, index) => (
+                <li {...getOptionProps({ option, index })}>{option.label}</li>
+              ))}
+            </ul>
+          )}
+        </Popper>
+      )}
+    </>
+  );
+}
+```
+
+{{"demo": ""}}
