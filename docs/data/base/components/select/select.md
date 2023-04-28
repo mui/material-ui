@@ -120,6 +120,11 @@ Use the `slots` prop to override the root or any other interior slot:
 <Select slots={{ root: 'div', listbox: 'ol' }} />
 ```
 
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
+
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
