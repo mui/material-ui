@@ -27,6 +27,7 @@ const babelConfig = {
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
+  shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
 const workspaceRoot = path.join(__dirname, '../../');

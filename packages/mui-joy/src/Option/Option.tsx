@@ -57,6 +57,8 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     label,
     variant = 'plain',
     color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -71,7 +73,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     disabled,
     label: computedLabel,
     value,
-    optionRef: combinedRef,
+    rootRef: combinedRef,
   });
 
   const { getColor } = useColorInversion(variant);
@@ -90,12 +92,13 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     getSlotProps: getRootProps,
     elementType: OptionRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     className: classes.root,
     ownerState,
   });
@@ -135,6 +138,20 @@ Option.propTypes /* remove-proptypes */ = {
    * Used for keyboard text navigation matching.
    */
   label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

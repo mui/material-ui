@@ -8,6 +8,7 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "maxHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "objectFit": {
@@ -20,6 +21,17 @@
     "ratio": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "'16 / 9'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ content?: elementType, root?: elementType }" },
+      "default": "{}"
     },
     "sx": {
       "type": {

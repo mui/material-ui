@@ -34,6 +34,12 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       }
     },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ button?: elementType, endDecorator?: elementType, indicator?: elementType, listbox?: elementType, root?: elementType, startDecorator?: elementType }"
+      }
+    },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {

@@ -120,7 +120,7 @@ This package-swap approach is identical to the replacement of React with [Preact
 Having more than one styling libraries could introduce unnecessary complexity to your project. You should have a very good reason to do this.
 :::
 
-Material UI can coexist with other libraries that depend on emotion or styled-components. To do that, render Material UI's `ThemeProvider` as an inner provider and use the `THEME_ID` to store the theme.
+Material UI, starting from [v5.12.0](https://github.com/mui/material-ui/releases/tag/v5.12.0), can coexist with other libraries that depend on emotion or styled-components. To do that, render Material UI's `ThemeProvider` as an inner provider and use the `THEME_ID` to store the theme.
 
 ```js
 import { ThemeProvider, THEME_ID, createTheme } from '@mui/material/styles';
@@ -140,6 +140,10 @@ function App() {
 ```
 
 The theme of Material UI will be separated from the other library, so when you use APIs such as `styled`, `sx` prop, and `useTheme`, you will be able to access Material UI's theme like you normally would.
+
+### Minimum version
+
+[Theme scoping](https://github.com/mui/material-ui/pull/36664) has been added to Material UI v5.12.0, so be sure you're running at that version or higher.
 
 ### Using with [Theme UI](https://theme-ui.com/)
 
@@ -180,7 +184,7 @@ function App() {
 Render Material UI's theme provider below Chakra UI's provider and assign the material theme to the `THEME_ID` property.
 
 ```js
-import { ChakraProvider, chakraExtendTheme } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme as chakraExtendTheme } from '@chakra-ui/react';
 import {
   ThemeProvider as MaterialThemeProvider,
   createTheme as muiCreateTheme,

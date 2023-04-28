@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import Popper, { PopperProps } from '@mui/base/Popper';
 import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
@@ -35,7 +35,7 @@ function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> |
   return JSON.stringify(selectedOption.value);
 }
 
-const defaultModifiers: PopperUnstyledProps['modifiers'] = [
+const defaultModifiers: PopperProps['modifiers'] = [
   {
     name: 'offset',
     options: {
@@ -344,6 +344,8 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     'aria-labelledby': ariaLabelledby,
     id,
     name,
+    slots = {},
+    slotProps = {},
     ...other
   } = props as typeof inProps & {
     // need to cast types because SelectOwnProps does not have these properties
@@ -454,6 +456,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, slots, slotProps };
 
   const selectedOption = React.useMemo(
     () => getOptionMetadata(value as TValue) ?? null,
@@ -464,7 +467,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     ref: handleRef,
     className: classes.root,
     elementType: SelectRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (
@@ -492,7 +495,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.button,
     elementType: SelectButton,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getButtonProps,
     ownerState,
   });
@@ -508,7 +511,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     },
     className: classes.listbox,
     elementType: SelectListbox,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getListboxProps,
     ownerState: {
       ...ownerState,
@@ -527,21 +530,21 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: SelectStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: SelectEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIndicator, indicatorProps] = useSlot('indicator', {
     className: classes.indicator,
     elementType: SelectIndicator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -568,10 +571,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           listboxProps.className,
           listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
         )}
-        // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+        // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
         modifiers={modifiers}
         {...(!props.slots?.listbox && {
-          as: PopperUnstyled,
+          as: Popper,
           slots: { root: listboxProps.as || 'ul' },
         })}
       >
@@ -744,7 +747,8 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The components used for each slot inside.
+   * @default {}
    */
   slots: PropTypes.shape({
     button: PropTypes.elementType,

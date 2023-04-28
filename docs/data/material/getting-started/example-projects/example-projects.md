@@ -53,7 +53,12 @@ If you want to start with a more complete and real-world example, you could take
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
 
-<!-- TODO: revert this once it is migrated to v5
+- [React Admin](https://github.com/marmelab/react-admin)
+
+  - ![stars](https://img.shields.io/github/stars/marmelab/react-admin.svg?style=social&label=Star)
+  - A frontend Framework for building B2B applications running in the browser
+  - On top of REST/GraphQL APIs, using ES6, React and Material Design
+
 - [React SaaS Template](https://github.com/dunky11/react-saas-template):
 
   - ![stars](https://img.shields.io/github/stars/dunky11/react-saas-template.svg?style=social&label=Star)
@@ -62,17 +67,6 @@ If you want to start with a more complete and real-world example, you could take
   - Fully routed using react-router
   - Lazy loads components to boost performance
   - Components for statistics, text with emoji support, image upload and much more...
--->
-
-<!-- TODO: revert this once it is migrated to v5
-- [Material Sense](https://github.com/alexanmtz/material-sense):
-
-  - ![stars](https://img.shields.io/github/stars/alexanmtz/material-sense.svg?style=social&label=Star)
-  - Graph using recharts
-  - React Router included with a navigation example
-  - A docker container with an Nginx server for production build
-  - Created with Create React App
--->
 
 ### Paid
 

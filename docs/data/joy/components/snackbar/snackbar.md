@@ -54,3 +54,23 @@ React Aria provides the `useToast` hook that can be used with Joy UI's `Alert` c
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
+
+### With Sonner
+
+[Sonner](https://sonner.emilkowal.ski/), an opinionated toast component for React, comes with features like stackable toasts and swipe-to-dismiss animation.
+
+To use Sonner with Joy UI, override Sonner's CSS variables with Joy UI color tokens by targeting `[data-sonner-toaster][data-theme]` selector.
+
+You can also pass Joy UI's Alert component to [`toast.custom()`](https://github.com/emilkowalski/sonner#headless) to fully control the structure of the notification.
+
+Lastly, it is also possible to enhance Sonner's `toast` function with a new method
+that closely resemble Joy UI's semantics (i.e.: adding a `warning` toast).
+
+- [Sonner documentation](https://github.com/emilkowalski/sonner#introduction)
+
+<iframe src="https://codesandbox.io/embed/snackbar-joy-ui-feat-sonner-cs244m?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Snackbar - Joy UI feat. Sonner"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>

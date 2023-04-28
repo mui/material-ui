@@ -12,14 +12,14 @@ import {
 import { ThemeProvider } from '@mui/joy/styles';
 import Menu, { menuClasses as classes } from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import PopperUnstyled from '@mui/base/Popper';
 
 describe('Joy <Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
-    inheritComponent: PopperUnstyled,
+    inheritComponent: PopperUnstyled, // `Unstyled` suffix must exist for parser to recognise that this component inherits Base UI component
     render,
     ThemeProvider,
     muiName: 'JoyMenu',

@@ -1,14 +1,14 @@
 ---
 product: base
-title: Unstyled React Badge component and hook
-components: BadgeUnstyled
+title: React Badge component and hook
+components: Badge
 hooks: useBadge
 githubLabel: 'component: badge'
 ---
 
-# Unstyled badge
+# Badge
 
-<p class="description">The Unstyled Badge component generates a small label that is attached to its child element.</p>
+<p class="description">The Badge component generates a small label that is attached to its child element.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -19,7 +19,7 @@ githubLabel: 'component: badge'
 A badge is a small descriptor for UI elements.
 It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
 
-The Unstyled Badge component creates a badge that is applied to its child element.
+The Badge component creates a badge that is applied to its child element.
 
 {{"demo": "UnstyledBadgeIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -30,29 +30,27 @@ The Unstyled Badge component creates a badge that is applied to its child elemen
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+import Badge from '@mui/base/Badge';
 
 export default function MyApp() {
-  return (
-    <BadgeUnstyled>{/* the element that the badge is attached to */}</BadgeUnstyled>
-  );
+  return <Badge>{/* the element that the badge is attached to */}</Badge>;
 }
 ```
 
 ### Basics
 
-The Unstyled Badge wraps around the UI element that it's attached to.
+The Badge wraps around the UI element that it's attached to.
 For instance, if the badge indicates the number of emails in an inbox, then the component will be structured like this:
 
 ```jsx
-<BadgeUnstyled>
+<Badge>
   <MailIcon />
-</BadgeUnstyled>
+</Badge>
 ```
 
 ### Anatomy
 
-The Unstyled Badge component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` slot to represent the badge itself:
+The Badge component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` slot to represent the badge itself:
 
 ```html
 <span class="BaseBadge-root">
@@ -61,34 +59,38 @@ The Unstyled Badge component is composed of a root `<span>` that houses the elem
 </span>
 ```
 
-### Slot props
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Badge slots={{ root: 'div', badge: 'div' }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<BadgeUnstyled component="div" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
-
-```jsx
-<BadgeUnstyled slots={{ root: 'div', badge: 'div' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-badge` to the badge slot:
 
 ```jsx
-<BadgeUnstyled slotProps={{ badge: { className: 'my-badge' } }} />
+<Badge slotProps={{ badge: { className: 'my-badge' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Badge<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Badge<'img'> slots={{ root: 'img' }} src="badge.png" />
 ```
 
 ## Hook

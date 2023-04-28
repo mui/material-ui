@@ -40,19 +40,20 @@ const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) 
     name: 'JoyListItemContent',
   });
 
-  const { component, className, children, ...other } = props;
+  const { component, className, children, slots = {}, slotProps = {}, ...other } = props;
 
   const ownerState = {
     ...props,
   };
 
   const classes = useUtilityClasses();
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: ListItemContentRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -77,6 +78,20 @@ ListItemContent.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
