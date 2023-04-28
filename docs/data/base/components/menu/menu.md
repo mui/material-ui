@@ -70,13 +70,7 @@ The Menu Item has a single root `<li>` slot.
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
-
-```jsx
-<MenuItem slots={{ root: 'span' }} />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <Menu slots={{ root: 'nav', listbox: 'ol' }} />
