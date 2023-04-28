@@ -79,7 +79,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     hideBackdrop = false,
     keepMounted = false,
     // private
-    manager = defaultManager,
+    manager: managerProp = defaultManager,
     onBackdropClick,
     onClose,
     onKeyDown,
@@ -90,7 +90,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     slots = {},
     ...other
   } = props;
-
+  const manager = managerProp as any;
   const [exited, setExited] = React.useState(!open);
   const modal = React.useRef<{
     modalRef?: typeof modalRef.current;
