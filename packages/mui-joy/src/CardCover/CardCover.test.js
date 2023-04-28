@@ -16,6 +16,11 @@ describe('<CardCover />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     skip: ['classesRoot', 'componentsProp', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('add data-attribute to the first child', () => {

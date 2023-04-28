@@ -10,14 +10,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 <p class="description">The <code>Link</code> component allows you to customize anchor tags with theme colors and typography styles.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The `Link` component represents the HTML `<a>` element.
 It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component, as well as the system props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

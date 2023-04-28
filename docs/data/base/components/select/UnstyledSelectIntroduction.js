@@ -1,10 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Select, { selectClasses } from '@mui/base/Select';
+import Option, { optionClasses } from '@mui/base/Option';
+import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+
+export default function UnstyledSelectIntroduction() {
+  return (
+    <CustomSelect defaultValue={10}>
+      <StyledOption value={10}>Documentation</StyledOption>
+      <StyledOption value={20}>Components</StyledOption>
+      <StyledOption value={30}>Features</StyledOption>
+    </CustomSelect>
+  );
+}
 
 const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
   const slots = {
@@ -14,7 +24,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
     ...props.slots,
   };
 
-  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
+  return <Select {...props} ref={ref} slots={slots} />;
 });
 
 CustomSelect.propTypes = {
@@ -29,16 +39,6 @@ CustomSelect.propTypes = {
     root: PropTypes.elementType,
   }),
 };
-
-export default function UnstyledSelectIntroduction() {
-  return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Documentation</StyledOption>
-      <StyledOption value={20}>Components</StyledOption>
-      <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
-  );
-}
 
 const blue = {
   100: '#DAECFF',
@@ -132,7 +132,7 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
+  &.${selectClasses.focusVisible} {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
@@ -165,7 +165,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(OptionUnstyled)(
+const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -176,32 +176,32 @@ const StyledOption = styled(OptionUnstyled)(
     border-bottom: none;
   }
 
-  &.${optionUnstyledClasses.selected} {
+  &.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted} {
+  &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.disabled} {
+  &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
+  &:hover:not(.${optionClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;

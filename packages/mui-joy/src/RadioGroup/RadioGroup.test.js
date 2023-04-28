@@ -19,6 +19,11 @@ describe('<RadioGroup />', () => {
     testVariantProps: { orientation: 'horizontal' },
     testCustomVariant: true,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('should have `orientation` class', () => {

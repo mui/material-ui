@@ -1,43 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import Select, { selectClasses } from '@mui/base/Select';
 
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Option, { optionClasses } from '@mui/base/Option';
+import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import Box from '@mui/system/Box';
-
-function CustomSelect(props) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} slots={slots} />;
-}
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-const characters = [
-  { name: 'Frodo', race: 'Hobbit' },
-  { name: 'Sam', race: 'Hobbit' },
-  { name: 'Merry', race: 'Hobbit' },
-  { name: 'Gandalf', race: 'Maia' },
-  { name: 'Gimli', race: 'Dwarf' },
-];
 
 export default function UnstyledSelectObjectValuesForm() {
   const getSerializedValue = (option) => {
@@ -113,6 +81,38 @@ export default function UnstyledSelectObjectValuesForm() {
   );
 }
 
+function CustomSelect(props) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} slots={slots} />;
+}
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
+const characters = [
+  { name: 'Frodo', race: 'Hobbit' },
+  { name: 'Sam', race: 'Hobbit' },
+  { name: 'Merry', race: 'Hobbit' },
+  { name: 'Gandalf', race: 'Maia' },
+  { name: 'Gimli', race: 'Dwarf' },
+];
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -155,11 +155,11 @@ const StyledButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
+  &.${selectClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
   }
 
-  &.${selectUnstyledClasses.expanded} {
+  &.${selectClasses.expanded} {
     &::after {
       content: '▴';
     }
@@ -189,7 +189,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(OptionUnstyled)(
+const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -200,33 +200,33 @@ const StyledOption = styled(OptionUnstyled)(
     border-bottom: none;
   }
 
-  &.${optionUnstyledClasses.selected} {
+  &.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted} {
+  &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.disabled} {
+  &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
+  &:hover:not(.${optionClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
 

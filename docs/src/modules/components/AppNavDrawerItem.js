@@ -5,37 +5,9 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
-import { shoudHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
+import { shouldHandleLinkClick } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
-import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
-import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
-import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
-import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
-import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
-import ScienceIcon from '@mui/icons-material/Science';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
-
-const iconsMap = {
-  DescriptionIcon: ArticleRoundedIcon,
-  ToggleOnIcon: ToggleOffRoundedIcon,
-  CodeIcon: CodeRoundedIcon,
-  BuildIcon: HandymanRoundedIcon,
-  CreateIcon: EditRoundedIcon,
-  VisibilityIcon: VisibilityRoundedIcon,
-  StyleIcon: InvertColorsRoundedIcon,
-  AddIcon: AddCircleRoundedIcon,
-  BookIcon: BookRoundedIcon,
-  ReaderIcon: ChromeReaderModeRoundedIcon,
-  TableViewIcon: TableViewRoundedIcon,
-  ExperimentIcon: ScienceIcon,
-  DatePickerIcon: DateRangeRounded,
-};
+import standardNavIcons from './AppNavIcons';
 
 const Item = styled(
   function Item({ component: Component = 'div', ...props }) {
@@ -85,6 +57,8 @@ const Item = styled(
         paddingLeft: 2,
       }),
       '&.app-drawer-active': {
+        // To match browserUrlPreviewMarge
+        scrollMarginBottom: 120,
         color: (theme.vars || theme).palette.primary[600],
         backgroundColor: (theme.vars || theme).palette.primary[50],
         '&:hover': {
@@ -175,7 +149,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const sxChip = (color) => [
+export const sxChip = (color) => [
   (theme) => ({
     ml: 1.5,
     fontSize: theme.typography.pxToRem(10),
@@ -239,7 +213,7 @@ export default function AppNavDrawerItem(props) {
   const [open, setOpen] = React.useState(openImmediately);
   const handleClick = (event) => {
     // Ignore the action if opening the link in a new tab
-    if (shoudHandleLinkClick(event)) {
+    if (shouldHandleLinkClick(event)) {
       return;
     }
 
@@ -253,9 +227,8 @@ export default function AppNavDrawerItem(props) {
     }
   };
 
-  const hasIcon = icon && iconsMap[icon];
-  const IconComponent = hasIcon ? iconsMap[icon] : null;
-  const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
+  const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
+  const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
   const iconElement = hasIcon ? (
     <Box
       component="span"
@@ -268,7 +241,7 @@ export default function AppNavDrawerItem(props) {
         py: '2px',
       }}
     >
-      <IconComponent {...iconProps} />
+      <IconComponent fontSize="small" color="primary" />
     </Box>
   ) : null;
 
@@ -293,7 +266,7 @@ export default function AppNavDrawerItem(props) {
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
         {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
         {newFeature && <Chip label="New" sx={sxChip('success')} />}
-        {comingSoon && <Chip label="Coming soon" sx={sxChip('primary')} />}
+        {comingSoon && <Chip label="Coming soon" sx={sxChip('grey')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
@@ -312,7 +285,7 @@ AppNavDrawerItem.propTypes = {
   comingSoon: PropTypes.bool,
   depth: PropTypes.number.isRequired,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  icon: PropTypes.string,
+  icon: PropTypes.elementType,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   newFeature: PropTypes.bool,

@@ -49,15 +49,15 @@ const StyledAppContainer = styled(AppContainer, {
           marginBottom: 198,
         },
         '&& .description.ad': {
-          marginBottom: 40,
+          marginBottom: 0,
         },
       }),
       ...(hasTabs && {
         '&& .component-tabs .MuiTabs-root': {
-          marginBottom: 193,
+          marginBottom: 198,
         },
         '&& .component-tabs.ad .MuiTabs-root': {
-          marginBottom: 35,
+          marginBottom: 0,
         },
       }),
     }),
@@ -84,10 +84,10 @@ function AppLayoutDocs(props) {
     description,
     disableAd = false,
     disableToc = false,
+    hasTabs = false,
     location,
     title,
     toc,
-    hasTabs = false,
   } = props;
 
   if (description === undefined) {
@@ -99,7 +99,7 @@ function AppLayoutDocs(props) {
   if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
   } else if (canonicalAs.startsWith('/base/')) {
-    productName = 'MUI Base';
+    productName = 'Base UI';
   } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
   } else if (canonicalAs.startsWith('/system/')) {
