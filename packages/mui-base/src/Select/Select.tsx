@@ -7,10 +7,10 @@ import {
   SelectPopperSlotProps,
   SelectProps,
   SelectRootSlotProps,
-  SelectTypeMap,
+  SelectType,
 } from './Select.types';
 import useSelect, { SelectValue } from '../useSelect';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import Popper from '../Popper';
 import composeClasses from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
@@ -248,7 +248,7 @@ const Select = React.forwardRef(function Select<
       )}
     </React.Fragment>
   );
-}) as PolymorphicComponent<SelectTypeMap<any, boolean>>;
+}) as SelectType;
 
 Select.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

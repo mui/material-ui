@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
+import { DefaultComponentProps, Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
 import Popper, { PopperProps } from '../Popper';
-import { SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
@@ -155,12 +155,10 @@ export type SelectProps<
     OptionValue,
     Multiple
   >['defaultComponent'],
-> = OverrideProps<
+> = PolymorphicProps<
   SelectTypeMap<OptionValue, Multiple, {}, RootComponentType>,
   RootComponentType
-> & {
-  component?: RootComponentType;
-};
+>;
 
 // OverridableComponent cannot be used below as Select's props are generic.
 export interface SelectType {
@@ -169,13 +167,7 @@ export interface SelectType {
     RootComponentType extends React.ElementType,
     Multiple extends boolean = false,
   >(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: RootComponentType;
-    } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
+    props: PolymorphicProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
   ): JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,

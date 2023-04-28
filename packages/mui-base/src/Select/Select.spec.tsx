@@ -93,14 +93,14 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Select invalidProp={0} />
 
-      <Select<'a'>
+      <Select<string, 'a'>
         slots={{
           root: 'a',
         }}
         href="#"
       />
 
-      <Select<typeof CustomComponent>
+      <Select
         slots={{
           root: CustomComponent,
         }}
@@ -108,20 +108,20 @@ const polymorphicComponentTest = () => {
         numberProp={0}
       />
       {/* @ts-expect-error */}
-      <Select<typeof CustomComponent>
+      <Select<string, typeof CustomComponent>
         slots={{
           root: CustomComponent,
         }}
       />
 
-      <Select
+      <Select<string, 'button'>
         slots={{
           root: 'button',
         }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
-      <Select<'button'>
+      <Select<string, 'button'>
         slots={{
           root: 'button',
         }}
