@@ -81,7 +81,7 @@ function PrefetchImages() {
 }
 
 export default function XComponents() {
-  const [demo, setDemo] = React.useState(DEMOS[0]);
+  const [demo, setDemo] = React.useState(DEMOS[1]);
   const icons = {
     [DEMOS[0]]: <TableChartRounded fontSize="small" />,
     [DEMOS[1]]: <DateRangeRounded fontSize="small" />,

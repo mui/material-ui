@@ -1,48 +1,37 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
-import useMenu from '@mui/base/useMenu';
-import useMenuItem from '@mui/base/useMenuItem';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { GlobalStyles } from '@mui/system';
 import clsx from 'clsx';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import useMenuItem from '@mui/base/useMenuItem';
+import Popper from '@mui/base/Popper';
+import { GlobalStyles } from '@mui/system';
 
 const Menu = React.forwardRef(function Menu(props, ref) {
-  const { children, onClose, open, ...other } = props;
+  const { children, onOpenChange, open, ...other } = props;
 
   const { contextValue, getListboxProps } = useMenu({
     listboxRef: ref,
-    onClose,
+    onOpenChange,
     open,
   });
 
-  const menuContextValue = React.useMemo(
-    () => ({
-      ...contextValue,
-      open: true,
-    }),
-    [contextValue],
-  );
-
   return (
     <ul className="menu-root" {...other} {...getListboxProps()}>
-      <MenuUnstyledContext.Provider value={menuContextValue}>
-        {children}
-      </MenuUnstyledContext.Provider>
+      <MenuProvider value={contextValue}>{children}</MenuProvider>
     </ul>
   );
 });
 
 Menu.propTypes = {
   children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
+  onOpenChange: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
-  const { children, ...other } = props;
+  const { children, onClick, ...other } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({ rootRef: ref });
 
   const classes = {
     'focus-visible': focusVisible,
@@ -51,7 +40,11 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   };
 
   return (
-    <li className={clsx(classes)} {...other} {...getRootProps()}>
+    <li
+      className={clsx(classes)}
+      {...other}
+      {...getRootProps({ onClick: onClick ?? (() => {}) })}
+    >
       {children}
     </li>
   );
@@ -59,12 +52,18 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
 
 MenuItem.propTypes = {
   children: PropTypes.node,
+  onClick: PropTypes.func,
 };
 
 export default function UseMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [buttonElement, setButtonElement] = React.useState(null);
+
+  const [isOpen, setOpen] = React.useState(false);
   const preventReopen = React.useRef(false);
-  const buttonRef = React.useRef(null);
+
+  const updateAnchor = React.useCallback((node) => {
+    setButtonElement(node);
+  }, []);
 
   const handleOnClick = (event) => {
     if (preventReopen.current) {
@@ -73,22 +72,30 @@ export default function UseMenu() {
       return;
     }
 
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+    setOpen((open) => !open);
   };
-
-  const handleOnClose = () => {
-    setAnchorEl(null);
-    buttonRef.current.focus();
-  };
-
-  const open = Boolean(anchorEl);
 
   const handleButtonMouseDown = () => {
-    if (open) {
+    if (isOpen) {
       // Prevents the menu from reopening right after closing
       // when clicking the button.
       preventReopen.current = true;
     }
+  };
+
+  const handleButtonKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setOpen(true);
+    }
+  };
+
+  const createHandleMenuClick = (menuItem) => {
+    return () => {
+      console.log(`Clicked on ${menuItem}`);
+      setOpen(false);
+      buttonElement?.focus();
+    };
   };
 
   return (
@@ -99,17 +106,27 @@ export default function UseMenu() {
         className="button"
         onClick={handleOnClick}
         onMouseDown={handleButtonMouseDown}
-        ref={buttonRef}
+        onKeyDown={handleButtonKeyDown}
+        ref={updateAnchor}
+        aria-controls="hooks-menu"
+        aria-expanded={isOpen || undefined}
+        aria-haspopup="menu"
       >
         Commands
       </button>
-      <PopperUnstyled open={open} anchorEl={anchorEl}>
-        <Menu onClose={handleOnClose} open={open}>
-          <MenuItem>Cut</MenuItem>
-          <MenuItem>Copy</MenuItem>
-          <MenuItem>Paste</MenuItem>
+      <Popper open={isOpen} anchorEl={buttonElement}>
+        <Menu
+          onOpenChange={(open) => {
+            setOpen(open);
+          }}
+          open={isOpen}
+          id="hooks-menu"
+        >
+          <MenuItem onClick={createHandleMenuClick('Cut')}>Cut</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Copy')}>Copy</MenuItem>
+          <MenuItem onClick={createHandleMenuClick('Paste')}>Paste</MenuItem>
         </Menu>
-      </PopperUnstyled>
+      </Popper>
     </React.Fragment>
   );
 }

@@ -1,4 +1,4 @@
-<SwitchUnstyled component={Root} {...label} defaultChecked />
-<SwitchUnstyled component={Root} {...label} />
-<SwitchUnstyled component={Root} {...label} defaultChecked disabled />
-<SwitchUnstyled component={Root} {...label} disabled />
+<Switch component={Root} {...label} defaultChecked />
+<Switch component={Root} {...label} />
+<Switch component={Root} {...label} defaultChecked disabled />
+<Switch component={Root} {...label} disabled />

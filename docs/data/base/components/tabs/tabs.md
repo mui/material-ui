@@ -1,13 +1,13 @@
 ---
 product: base
-title: Unstyled React Tabs components
-components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
+title: React Tabs components
+components: Tabs, Tab, TabPanel, TabsList
 hooks: useTab, useTabPanel, useTabs, useTabsList
 githubLabel: 'component: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 ---
 
-# Unstyled Tabs
+# Tabs
 
 <p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
 
@@ -19,10 +19,10 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 
 Tabs are implemented using a collection of related components:
 
-- `<TabUnstyled />` - the tab element itself. Clicking on a tab displays its corresponding panel.
-- `<TabsListUnstyled />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
-- `<TabPanelUnstyled />` - the card that hosts the content associated with a tab.
-- `<TabsUnstyled />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
+- `<Tab />` - the tab element itself. Clicking on a tab displays its corresponding panel.
+- `<TabsList />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
+- `<TabPanel />` - the card that hosts the content associated with a tab.
+- `<Tabs />` - the top-level component that wraps the Tabs List and Tab Panel components so that tabs and their panels can communicate with one another.
 
 {{"demo": "UnstyledTabsIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -33,21 +33,21 @@ Tabs are implemented using a collection of related components:
 After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import TabUnstyled from '@mui/base/TabUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
+import Tab from '@mui/base/Tab';
+import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
+import Tabs from '@mui/base/Tabs';
 
 export default function MyApp() {
   return (
-    <TabsUnstyled>
-      <TabsListUnstyled>
-        <TabUnstyled>{/* tab one */}</TabUnstyled>
-        <TabUnstyled>{/* tab two */}</TabUnstyled>
-      </TabsListUnstyled>
-      <TabPanelUnstyled>{/* panel one */}</TabPanelUnstyled>
-      <TabPanelUnstyled>{/* panel two */}</TabPanelUnstyled>
-    </TabsUnstyled>
+    <Tabs>
+      <TabsList>
+        <Tab>{/* tab one */}</Tab>
+        <Tab>{/* tab two */}</Tab>
+      </TabsList>
+      <TabPanel>{/* panel one */}</TabPanel>
+      <TabPanel>{/* panel two */}</TabPanel>
+    </Tabs>
   );
 }
 ```
@@ -72,15 +72,15 @@ The next demo shows how to apply custom styles to a set of tabs:
 The Tab components are each composed of a root slot with no interior slots:
 
 ```html
-<div class="TabsUnstyled-root">
-  <div class="TabsListUnstyled-root">
-    <button class="TabUnstyled-root">First tab</button>
-    <button class="TabUnstyled-root">Second tab</button>
-    <button class="TabUnstyled-root">Third tab</button>
+<div class="Tabs-root">
+  <div class="TabsList-root">
+    <button class="Tab-root">First tab</button>
+    <button class="Tab-root">Second tab</button>
+    <button class="Tab-root">Third tab</button>
   </div>
-  <div class="TabPanelUnstyled-root">First panel</div>
-  <div class="TabPanelUnstyled-root">Second panel</div>
-  <div class="TabPanelUnstyled-root">Third panel</div>
+  <div class="TabPanel-root">First panel</div>
+  <div class="TabPanel-root">Second panel</div>
+  <div class="TabPanel-root">Third panel</div>
 </div>
 ```
 
@@ -94,7 +94,7 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
-<TabUnstyled component="span" />
+<Tab component="span" />
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
@@ -113,8 +113,8 @@ The Tab component provides the `component` prop to handle this use case—see [t
 
 The following steps are necessary to make the Tab component suite accessible to assistive technology:
 
-1. Label `<TabsUnstyled />` with `aria-label` or `aria-labelledby`.
-2. Connect each `<TabUnstyled />` to its corresponding `<TabPanelUnstyled />` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
+1. Label `<Tabs />` with `aria-label` or `aria-labelledby`.
+2. Connect each `<Tab />` to its corresponding `<TabPanel />` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
 
 The demos below illustrate the proper use of ARIA labels.
 
@@ -126,11 +126,11 @@ This is the preferable behavior for tabs in most cases, according to [the WAI-AR
 
 Alternatively, you can set the panels to be displayed automatically when their corresponding tabs are in focus—this behavior of the selection following the focus is known as **automatic activation**.
 
-To enable automatic activation, pass the `selectionFollowsFocus` prop to the `<TabsUnstyled />` component:
+To enable automatic activation, pass the `selectionFollowsFocus` prop to the `<Tabs />` component:
 
 ```jsx
 /* Tabs where selection follows focus */
-<TabsUnstyled selectionFollowsFocus />
+<Tabs selectionFollowsFocus />
 ```
 
 The following demo pair illustrates the difference between manual and automatic activation.

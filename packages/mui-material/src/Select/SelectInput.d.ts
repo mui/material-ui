@@ -17,6 +17,7 @@ export interface SelectInputProps<T = unknown> {
   autoWidth: boolean;
   defaultOpen?: boolean;
   disabled?: boolean;
+  error?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (
     ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<T>['value'] },

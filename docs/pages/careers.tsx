@@ -188,25 +188,9 @@ const openRolesData = [
     title: 'Design',
     roles: [
       {
-        title: 'Senior Designer',
-        description: "You will be responsible for pushing MUI's component design bar higher.",
-        url: '/careers/senior-designer/',
-      },
-      {
         title: 'Design Engineer',
         description: 'You will focus on design to implement great product experiences.',
         url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate',
-        description:
-          'You will build a thriving and connected developer community around our suite of products.',
-        url: '/careers/developer-advocate/',
       },
     ],
   },
