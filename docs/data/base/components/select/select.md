@@ -142,8 +142,9 @@ In TypeScript, you can specify the custom component type used in the `slots.root
 
 The same applies for props specific to custom primitive elements:
 
-````tsx
+```tsx
 <Select<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ## Hooks
 
@@ -210,4 +211,7 @@ Unlike the native `<select>`, groups can be nested.
 The following demo shows how to group options with the Option Group component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
-````
+
+```
+
+```
