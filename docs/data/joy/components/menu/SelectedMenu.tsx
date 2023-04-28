@@ -12,7 +12,7 @@ export default function SelectedMenu() {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
   const createHandleClose =
-    (index: number) => (event?: React.MouseEvent<Element, Event>) => {
+    (index: number) => (event: React.MouseEvent<Element, Event> | null) => {
       if (event && event.relatedTarget !== anchorEl) {
         setAnchorEl(null);
       }

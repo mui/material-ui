@@ -17,7 +17,7 @@ export default function BasicMenu() {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = (event?: React.MouseEvent<Element, Event>) => {
+  const handleClose = (event: React.MouseEvent<Element, Event> | null) => {
     if (event && event.relatedTarget !== anchorEl) {
       setAnchorEl(null);
     }
@@ -46,21 +46,21 @@ export default function BasicMenu() {
         sx={{ minWidth: 160, '--ListItemDecorator-size': '24px' }}
       >
         <MenuItem
-          onClick={(e) => {
+          onClick={(event) => {
             const nextIndex = SIZES.indexOf(size) - 1;
             const value = nextIndex < 0 ? SIZES[SIZES.length - 1] : SIZES[nextIndex];
             setSize(value);
-            handleClose(e);
+            handleClose(event);
           }}
         >
           Smaller
         </MenuItem>
         <MenuItem
-          onClick={(e) => {
+          onClick={(event) => {
             const nextIndex = SIZES.indexOf(size) + 1;
             const value = nextIndex > SIZES.length - 1 ? SIZES[0] : SIZES[nextIndex];
             setSize(value);
-            handleClose(e);
+            handleClose(event);
           }}
         >
           Larger
@@ -73,9 +73,9 @@ export default function BasicMenu() {
                 key={item}
                 role="menuitemradio"
                 aria-checked={item === size ? 'true' : 'false'}
-                onClick={(e) => {
+                onClick={(event) => {
                   setSize(item);
-                  handleClose(e);
+                  handleClose(event);
                 }}
               >
                 <ListItemDecorator>

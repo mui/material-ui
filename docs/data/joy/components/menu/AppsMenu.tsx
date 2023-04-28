@@ -11,10 +11,13 @@ export default function AppsMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+
+  const handleClose = (event: React.MouseEvent<Element, Event> | null) => {
+    if (event && event.relatedTarget !== anchorEl) {
+      setAnchorEl(null);
+    }
   };
   return (
     <Box>
