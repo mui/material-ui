@@ -16,7 +16,7 @@ const Nav = styled('nav')(({ theme }) => ({
   position: 'sticky',
   height: '100vh',
   overflowY: 'auto',
-  paddingTop: 'calc(var(--MuiDocs-header-height) + 1rem)',
+  paddingTop: `calc(var(--MuiDocs-header-height) + ${theme.spacing(4)})`,
   paddingBottom: theme.spacing(4),
   paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
   display: 'none',
