@@ -7,8 +7,8 @@
     },
     "onOpenChange": {
       "type": {
-        "name": "(open: boolean, event?: React.MouseEvent&lt;Element, Event&gt;) =&gt; void",
-        "description": "(open: boolean, event?: React.MouseEvent&lt;Element, Event&gt;) =&gt; void"
+        "name": "(event: React.MouseEvent&lt;Element, Event&gt; | null, open: boolean) =&gt; void",
+        "description": "(event: React.MouseEvent&lt;Element, Event&gt; | null, open: boolean) =&gt; void"
       }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } }
