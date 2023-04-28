@@ -245,23 +245,23 @@ describe('grid generator', () => {
         boxSizing: 'border-box',
         display: 'flex',
         flexWrap: 'wrap',
-        margin: 'calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)',
+        margin: 'calc(var(--Grid-rowSpacing, 0px) / -2) calc(var(--Grid-columnSpacing, 0px) / -2)',
       });
     });
 
     it('nested container level 1', () => {
       const result = generateGridStyles({ ownerState: { container: true, unstable_level: 1 } });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel1) / -2) calc(var(--Grid-columnSpacingLevel1) / -2)`,
-        padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+        margin: `calc(var(--Grid-rowSpacingLevel1, 0px) / -2) calc(var(--Grid-columnSpacingLevel1, 0px) / -2)`,
+        padding: `calc(var(--Grid-rowSpacing, 0px) / 2) calc(var(--Grid-columnSpacing, 0px) / 2)`,
       });
     });
 
     it('nested container level 2', () => {
       const result = generateGridStyles({ ownerState: { container: true, unstable_level: 2 } });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel2) / -2) calc(var(--Grid-columnSpacingLevel2) / -2)`,
-        padding: `calc(var(--Grid-rowSpacingLevel1) / 2) calc(var(--Grid-columnSpacingLevel1) / 2)`,
+        margin: `calc(var(--Grid-rowSpacingLevel2, 0px) / -2) calc(var(--Grid-columnSpacingLevel2, 0px) / -2)`,
+        padding: `calc(var(--Grid-rowSpacingLevel1, 0px) / 2) calc(var(--Grid-columnSpacingLevel1, 0px) / 2)`,
       });
     });
 
@@ -270,8 +270,8 @@ describe('grid generator', () => {
         ownerState: { container: true, unstable_level: 1, disableEqualOverflow: true },
       });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel1) * -1) 0px 0px calc(var(--Grid-columnSpacingLevel1) * -1)`,
-        padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
+        margin: `calc(var(--Grid-rowSpacingLevel1, 0px) * -1) 0px 0px calc(var(--Grid-columnSpacingLevel1, 0px) * -1)`,
+        padding: `var(--Grid-rowSpacing, 0px) 0px 0px var(--Grid-columnSpacing, 0px)`,
       });
     });
 
@@ -285,8 +285,8 @@ describe('grid generator', () => {
         },
       });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacingLevel1) / -2) calc(var(--Grid-columnSpacingLevel1) / -2)`,
-        padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
+        margin: `calc(var(--Grid-rowSpacingLevel1, 0px) / -2) calc(var(--Grid-columnSpacingLevel1, 0px) / -2)`,
+        padding: `var(--Grid-rowSpacing, 0px) 0px 0px var(--Grid-columnSpacing, 0px)`,
       });
     });
 
@@ -295,7 +295,7 @@ describe('grid generator', () => {
       expect(result).to.deep.equal({
         minWidth: 0,
         boxSizing: 'border-box',
-        padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+        padding: `calc(var(--Grid-rowSpacing, 0px) / 2) calc(var(--Grid-columnSpacing, 0px) / 2)`,
       });
     });
 
@@ -304,7 +304,7 @@ describe('grid generator', () => {
         ownerState: { container: false, disableEqualOverflow: true },
       });
       sinon.assert.match(result, {
-        padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
+        padding: `var(--Grid-rowSpacing, 0px) 0px 0px var(--Grid-columnSpacing, 0px)`,
       });
     });
 
@@ -313,7 +313,7 @@ describe('grid generator', () => {
         ownerState: { container: false, disableEqualOverflow: true, unstable_level: 2 },
       });
       sinon.assert.match(result, {
-        padding: `var(--Grid-rowSpacingLevel1) 0px 0px var(--Grid-columnSpacingLevel1)`,
+        padding: `var(--Grid-rowSpacingLevel1, 0px) 0px 0px var(--Grid-columnSpacingLevel1, 0px)`,
       });
     });
   });
@@ -345,7 +345,7 @@ describe('grid generator', () => {
         '@media (min-width:600px)': {
           flexBasis: 'auto',
           flexGrow: 0,
-          width: `calc(100% * 6 / var(--Grid-columns))`,
+          width: `calc(100% * 6 / var(--Grid-columns, 12))`,
         },
         '@media (min-width:900px)': {
           flexBasis: 0,
@@ -355,7 +355,7 @@ describe('grid generator', () => {
         '@media (min-width:1200px)': {
           flexBasis: 'auto',
           flexGrow: 0,
-          width: `calc(100% * 4 / var(--Grid-columns))`,
+          width: `calc(100% * 4 / var(--Grid-columns, 12))`,
         },
         '@media (min-width:1536px)': {
           flexBasis: 'auto',
@@ -475,7 +475,7 @@ describe('grid generator', () => {
         theme: { breakpoints },
         ownerState: { container: true, unstable_level: 1 },
       });
-      expect(result['--Grid-rowSpacingLevel1']).to.equal('var(--Grid-rowSpacing)');
+      expect(result['--Grid-rowSpacingLevel1']).to.equal('var(--Grid-rowSpacing, 0px)');
     });
   });
 
@@ -539,7 +539,7 @@ describe('grid generator', () => {
         theme: { breakpoints },
         ownerState: { container: true, unstable_level: 1 },
       });
-      expect(result['--Grid-columnSpacingLevel1']).to.equal('var(--Grid-columnSpacing)');
+      expect(result['--Grid-columnSpacingLevel1']).to.equal('var(--Grid-columnSpacing, 0px)');
     });
   });
 
@@ -553,7 +553,7 @@ describe('grid generator', () => {
       ).to.deep.equal({
         marginLeft: '0px',
         '@media (min-width:900px)': {
-          marginLeft: `calc(100% * 5 / var(--Grid-columns))`,
+          marginLeft: `calc(100% * 5 / var(--Grid-columns, 12))`,
         },
         '@media (min-width:1200px)': {
           marginLeft: `auto`,

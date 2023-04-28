@@ -25,7 +25,7 @@ function isNestedContainer(ownerState: Props['ownerState']) {
 
 function createGetSelfSpacing(ownerState: Props['ownerState']) {
   return function getSelfSpacing(axis: 'row' | 'column') {
-    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level)})`;
+    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level)}, 0px)`;
   };
 }
 
@@ -34,7 +34,7 @@ function createGetParentSpacing(ownerState: Props['ownerState']) {
     if (ownerState.unstable_level === 0) {
       return `var(--Grid-${axis}Spacing)`;
     }
-    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level - 1)})`;
+    return `var(--Grid-${axis}Spacing${appendLevel(ownerState.unstable_level - 1)}, 0px)`;
   };
 }
 
@@ -42,7 +42,9 @@ function getParentColumns(ownerState: Props['ownerState']) {
   if (ownerState.unstable_level === 0) {
     return `var(--Grid-columns)`;
   }
-  return `var(--Grid-columns${appendLevel(ownerState.unstable_level - 1)})`;
+  return `var(--Grid-columns${appendLevel(ownerState.unstable_level - 1)}, ${
+    ownerState.columns ?? 12
+  })`;
 }
 
 export const filterBreakpointKeys = (breakpointsKeys: Breakpoint[], responsiveKeys: string[]) =>
