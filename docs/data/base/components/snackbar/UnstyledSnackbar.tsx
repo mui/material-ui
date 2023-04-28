@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled, keyframes, css } from '@mui/system';
 import Snackbar from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
+
 export default function UnstyledSnackbar() {
   const [open, setOpen] = React.useState(false);
 

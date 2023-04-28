@@ -5,6 +5,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
+
 export default function TransitionComponentSnackbar() {
   const [open, setOpen] = React.useState(false);
   const [exited, setExited] = React.useState(true);
@@ -80,6 +81,7 @@ export default function TransitionComponentSnackbar() {
     </React.Fragment>
   );
 }
+
 const blue = {
   50: '#F0F7FF',
   100: '#DAECFF',

@@ -2,6 +2,7 @@ import * as React from 'react';
 import useSnackbar from '@mui/base/useSnackbar';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { css, keyframes, styled } from '@mui/system';
+
 export default function UseSnackbar() {
   const [open, setOpen] = React.useState(false);
 
@@ -32,6 +33,7 @@ export default function UseSnackbar() {
     </React.Fragment>
   );
 }
+
 const blue = {
   50: '#F0F7FF',
   400: '#3399FF',

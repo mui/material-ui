@@ -80,6 +80,7 @@ export default function TransitionComponentSnackbar() {
     </React.Fragment>
   );
 }
+
 const blue = {
   50: '#F0F7FF',
   100: '#DAECFF',
