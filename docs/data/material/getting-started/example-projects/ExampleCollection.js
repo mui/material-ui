@@ -1,7 +1,7 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -88,6 +88,7 @@ export default function ExampleCollection() {
             sx={[
               (theme) => ({
                 p: 2,
+                height: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
@@ -118,7 +119,7 @@ export default function ExampleCollection() {
               src={example.src}
               alt={example.name}
             />
-            <span>
+            <div>
               <Typography
                 variant="body"
                 fontWeight={600}
@@ -126,9 +127,12 @@ export default function ExampleCollection() {
               >
                 {example.name}
               </Typography>
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                alignItems={{ xs: 'start', sm: 'center' }}
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'baseline',
+                }}
               >
                 <Link
                   href={example.link}
@@ -144,18 +148,15 @@ export default function ExampleCollection() {
                   {example.label}
                   <ChevronRightRoundedIcon fontSize="small" />
                 </Link>
-                {example.tsLink ? (
-                  <Stack
-                    direction="row"
-                    spacing={{ xs: 0, sm: 1 }}
-                    alignItems="center"
-                  >
+                {!!example.tsLink && (
+                  <React.Fragment>
                     <Typography
                       variant="caption"
                       sx={{
                         fontFamily: 'IBM Plex Sans',
                         display: { xs: 'none', sm: 'block' },
                         opacity: 0.2,
+                        mr: 0.75,
                       }}
                     >
                       /
@@ -173,10 +174,10 @@ export default function ExampleCollection() {
                       {example.tsLabel}
                       <ChevronRightRoundedIcon fontSize="small" />
                     </Link>
-                  </Stack>
-                ) : null}
-              </Stack>
-            </span>
+                  </React.Fragment>
+                )}
+              </Box>
+            </div>
           </Card>
         </Grid>
       ))}
