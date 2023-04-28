@@ -73,7 +73,7 @@ export default function UnstyledMenuIntroduction() {
       <Menu
         actions={menuActions}
         open={isOpen}
-        onOpenChange={(open) => {
+        onOpenChange={(_, open) => {
           setOpen(open);
         }}
         anchorEl={buttonElement}
