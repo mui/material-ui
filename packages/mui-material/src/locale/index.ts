@@ -2668,7 +2668,7 @@ export const neNP: Localization = {
       defaultProps: {
         getLabelText: (value) => {
           const lastDigit = value % 10;
-          return `${value} तारा${lastDigit === 1 ? 's' : ''}`;
+          return `${value} तारा${lastDigit === 1 ? 'स' : ''}`;
         },
         emptyLabelText: 'खाली',
       },
