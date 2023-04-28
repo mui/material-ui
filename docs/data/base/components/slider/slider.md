@@ -100,13 +100,7 @@ Both the `mark` and `markLabel` slots have corresponding `*Active` classes that 
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
-
-```jsx
-<Slider slots={{ root: 'div' }} />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <Slider slots={{ root: 'div', thumb: 'div' }} />
@@ -115,6 +109,7 @@ Use the `slots` prop to override any interior slots in addition to the root:
 :::info
 The `slots` prop is available on all non-utility Base components.
 See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-rail` to the rail slot:
