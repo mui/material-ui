@@ -8,7 +8,11 @@ import { GlobalStyles } from '@mui/system';
 const Menu = React.forwardRef(function Menu(
   props: React.ComponentPropsWithoutRef<'ul'> & {
     onOpenChange: (
-      event: React.MouseEvent<Element, Event> | null,
+      event:
+        | React.MouseEvent<Element, Event>
+        | React.FocusEvent
+        | React.KeyboardEvent<Event>
+        | null,
       isOpen: boolean,
     ) => void;
     open: boolean;
