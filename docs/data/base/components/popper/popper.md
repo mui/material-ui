@@ -53,8 +53,6 @@ If you need this behavior, you can use the [Click-Away Listener](/base/react-cli
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
-
 ```jsx
 <Popper slots={{ root: 'span' }} />
 ```
