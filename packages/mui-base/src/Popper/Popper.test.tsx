@@ -37,8 +37,7 @@ describe('<Popper />', () => {
       <Popper
         anchorEl={() => document.createElement('div')}
         open
-        component={CustomComponent}
-        ownerState={{ id: 'id' }}
+        slots={{ root: CustomComponent }}
       />,
     );
 

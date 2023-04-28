@@ -55,7 +55,6 @@ const Popper = React.forwardRef(function Popper(
 
   const {
     anchorEl,
-    component,
     components,
     componentsProps,
     container,
@@ -75,7 +74,6 @@ const Popper = React.forwardRef(function Popper(
   const RootComponent = slots?.root ?? components?.Root;
   const otherProps = {
     anchorEl,
-    component,
     container,
     disablePortal,
     keepMounted,
@@ -121,10 +119,6 @@ Popper.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  /**
-   * @ignore
-   */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
