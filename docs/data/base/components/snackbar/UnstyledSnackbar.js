@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled, keyframes, css } from '@mui/system';
-import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
+import Snackbar from '@mui/base/Snackbar';
 
 export default function UnstyledSnackbar() {
   const [open, setOpen] = React.useState(false);
@@ -50,7 +50,7 @@ const snackbarInRight = keyframes`
   }
 `;
 
-const StyledSnackbar = styled(SnackbarUnstyled)(
+const StyledSnackbar = styled(Snackbar)(
   ({ theme }) => css`
     position: fixed;
     z-index: 5500;

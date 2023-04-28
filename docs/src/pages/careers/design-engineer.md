@@ -39,7 +39,7 @@ Our products empower React developers to build awesome applications faster – w
 
 But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
+It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
 
 ## About the role
 

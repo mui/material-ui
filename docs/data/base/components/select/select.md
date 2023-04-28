@@ -1,13 +1,13 @@
 ---
 product: base
-title: Unstyled React Select components and hook
-components: SelectUnstyled, OptionUnstyled, OptionGroupUnstyled
+title: React Select components and hook
+components: Select, Option, OptionGroup
 hooks: useSelect, useOption
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
 ---
 
-# Unstyled Select
+# Select
 
 <p class="description">The Select components let you create lists of options for users to choose from.</p>
 
@@ -19,8 +19,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 A select is a UI element that gives users a list of options to choose from.
 
-MUI Base offers a components to replace the native HTML `<select>` tag: Unstyled Select.
-It also includes Unstyled Option for creating the options on the list, and Unstyled Option Group for grouping those options.
+Base UI offers components to replace the native HTML `<select>` tag: Select.
+It also includes Option for creating the options on the list, and Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
@@ -37,15 +37,15 @@ It also includes Unstyled Option for creating the options on the list, and Unsty
 After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-import OptionUnstyled from '@mui/base/OptionUnstyled';
+import Select from '@mui/base/Select';
+import Option from '@mui/base/Option';
 
 export default function MyApp() {
   return (
-    <SelectUnstyled>
-      <OptionUnstyled>{/* option one */}</OptionUnstyled>
-      <OptionUnstyled>{/* option two */}</OptionUnstyled>
-    </SelectUnstyled>
+    <Select>
+      <Option>{/* option one */}</Option>
+      <Option>{/* option two */}</Option>
+    </Select>
   );
 }
 ```
@@ -58,7 +58,7 @@ The following demo shows how to create and style a Select component.
 
 #### Form submission
 
-The value(s) chosen in the Unstyled Select can be posted to a server using a standard HTML form.
+The value(s) chosen in the Select can be posted to a server using a standard HTML form.
 When the `name` prop is set, the Select will render a hidden input with the selected value.
 
 {{"demo": "UnstyledSelectForm.js" }}
@@ -70,7 +70,7 @@ See the [Object values](#object-values) section to learn how to do it.
 
 #### TypeScript caveat
 
-Unstyled Select accepts generic props.
+Select accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
@@ -78,13 +78,13 @@ To avoid this, you can manually cast the resulting component to the correct type
 
 ```tsx
 const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
-  props: SelectUnstyledProps<TValue>,
+  props: SelectProps<TValue>,
   ref: React.ForwardedRef<HTMLUListElement>,
 ) {
   // ...your code here...
-  return <SelectUnstyled {...props} ref={ref} />;
+  return <Select {...props} ref={ref} />;
 }) as <TValue>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLUListElement>,
+  props: SelectProps<TValue> & React.RefAttributes<HTMLUListElement>,
 ) => JSX.Element;
 ```
 
@@ -92,22 +92,22 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 
 ### Multi-select
 
-The Unstyled Select component lets your users select multiple options from the list.
+The Select component lets your users select multiple options from the list.
 Set the `multiple` prop to turn on the multi-selection mode.
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
-The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within an Unstyled Popper.
-Unstyled Option renders as an `<li>`:
+The Select component is composed of a root `<button>` along with a `<div>` that houses a `<ul>` within a Popper.
+Option renders as an `<li>`:
 
 ```html
-<button class="MuiSelectUnstyled-root" type="button">Open</button>
-<div class="MuiSelectUnstyled-popper">
-  <ul class="MuiSelectUnstyled-listbox">
-    <li class="MuiOptionUnstyled-root">Option one</li>
-    <li class="MuiOptionUnstyled-root">Option two</li>
+<button class="MuiSelect-root" type="button">Open</button>
+<div class="MuiSelect-popper">
+  <ul class="MuiSelect-listbox">
+    <li class="MuiOption-root">Option one</li>
+    <li class="MuiOption-root">Option two</li>
   </ul>
 </div>
 ```
@@ -122,13 +122,13 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
-<SelectUnstyled component="div" />
+<Select component="div" />
 ```
 
 Use the `slots` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SelectUnstyled slots={{ root: 'div', listbox: 'ol' }} />
+<Select slots={{ root: 'div', listbox: 'ol' }} />
 ```
 
 :::warning
@@ -139,7 +139,7 @@ Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
-<SelectUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
+<Select slotProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
 ## Hooks
@@ -170,13 +170,13 @@ The resulting HTML is much smaller compared to the unstyled component version, a
 
 ### Controlled select
 
-Unstyled Select can be used as an uncontrolled or controlled component:
+Select can be used as an uncontrolled or controlled component:
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 ### Object values
 
-The Unstyled Select component can be used with non-string values:
+The Select component can be used with non-string values:
 
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
@@ -204,6 +204,6 @@ You can include custom elements to be rendered inside the listbox.
 Options can be grouped, similarly to how the native `<select>` element works.
 Unlike the native `<select>`, groups can be nested.
 
-The following demo shows how to group options with the Unstyled Option Group component:
+The following demo shows how to group options with the Option Group component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}

@@ -10,22 +10,22 @@ export interface CircularProgressSlots {
    * The component that renders the root.
    * @default 'span'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the svg.
    * @default 'svg'
    */
-  svg: React.ElementType;
+  svg?: React.ElementType;
   /**
    * The component that renders the track.
    * @default 'circle'
    */
-  track: React.ElementType;
+  track?: React.ElementType;
   /**
    * The component that renders the progress.
    * @default 'circle'
    */
-  progress: React.ElementType;
+  progress?: React.ElementType;
 }
 
 export interface CircularProgressPropsColorOverrides {}

@@ -1,6 +1,6 @@
 # Theme typography
 
-<p class="description">Learn about the typography system and how to customize it.</p>
+<p class="description">Learn about the default theme's typography system and how to customize it.</p>
 
 Joy UI includes a typography system within the theme to help you create consistent text across your application. You can customize the default system or start from scratch depending on your needs.
 
@@ -124,20 +124,21 @@ There are several ways that you can use the theme typography in your application
 ## Common examples
 
 Here is a collection of well-known typography systems that you can use with Joy UI.
+Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite if it's not here. ❤️
 
-### Fluent (Microsoft)
+### Microsoft's Fluent
 
 - Design resource: [Figma](https://www.figma.com/community/file/836828295772957889)
 - Font: [Segoe UI](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fluent-typography-system-j86fct?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:360px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:360px; border:0; border-radius: 12px; overflow:hidden;"
      title="Joy UI - Fluent Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Human Interface Guidelines (Apple)
+### Apple's Human Interface Guidelines
 
 - Design resource: [Sketch library](https://developer.apple.com/design/resources/)
 - Font: [San Francisco (SF)](https://developer.apple.com/fonts/)
@@ -149,18 +150,14 @@ Here is a collection of well-known typography systems that you can use with Joy 
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
-### Material Design 3 (Google)
+### Google's Material Design 3
 
 - Design resource: [Figma](https://www.figma.com/community/file/1035203688168086460)
 - Font: [Roboto](https://fonts.google.com/specimen/Roboto)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-material-3-typography-system-lx044f?module=%2Fdemo.tsx&fontsize=14&hidenavigation=1&theme=dark&view=preview"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:500px; border:0; border-radius: 12px; overflow:hidden;"
      title="Joy UI - Joy UI - Material 3 Typography System"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
-
-:::info
-Feel free to [submit a PR](https://github.com/mui/material-ui/compare) to add your favorite typography system. ❤️
-:::

@@ -1,22 +1,23 @@
 ---
 product: joy-ui
 title: React Stack component
-githubLabel: 'component: stack'
+components: Stack
+githubLabel: 'component: Stack'
 ---
 
 # Stack
 
 <p class="description">Stack is a container component for arranging elements vertically or horizontally.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Stack component manages the layout of its immediate children along the vertical or horizontal axis, with optional spacing and dividers between each child.
 
 :::info
-Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ hortizontal arrangement.
+Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ horizontal arrangement.
 :::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -32,41 +33,33 @@ The spacing value can be any number, including decimals, or a string.
 
 {{"demo": "BasicStack.js", "bg": true}}
 
-## Customization
+### Stack vs. Grid
 
-### Direction
+`Stack` is concerned with one-dimensional layouts, while [Grid](/joy-ui/react-grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+
+## Direction
 
 By default, Stack arranges items vertically in a column.
 Use the `direction` prop to position items horizontally in a row:
 
 {{"demo": "DirectionStack.js", "bg": true}}
 
-### Dividers
+## Dividers
 
 Use the `divider` prop to insert an element between each child.
 This works particularly well with the [Divider](/joy-ui/react-divider/) component, as shown below:
 
 {{"demo": "DividerStack.js", "bg": true}}
 
-### Responsive values
+## Responsive values
 
 You can switch the `direction` or `spacing` values based on the active breakpoint.
 
 {{"demo": "ResponsiveStack.js", "bg": true}}
 
-### System props
-
-As a CSS utility component, Stack supports all [MUI System properties](/system/properties/).
-You can use them as props directly on the component.
-For instance, a margin-top:
-
-```jsx
-<Stack mt={2}>
-```
-
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set `useFlexGap` prop to true.
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set the `useFlexGap` prop to true.
 
 It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
 
@@ -104,6 +97,16 @@ function App() {
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
+
+## System props
+
+As a CSS utility component, Stack supports all [MUI System properties](/system/properties/).
+You can use them as props directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Stack mt={2}>
+```
 
 ## Limitations
 

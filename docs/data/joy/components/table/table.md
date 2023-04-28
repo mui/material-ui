@@ -10,13 +10,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 
 <p class="description">Tables display sets of data organized in rows and columns.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Joy UI Table component lets you use plain HTML structure to assemble a table in JSX.
 
 {{"demo": "TableUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -95,7 +95,7 @@ To learn how to add custom sizes to the component, check out [Themed componentsâ
 
 ### Stripe
 
-To create constast between rows, use the `stripe` prop with `odd` or `even` values.
+To create contrast between rows, use the `stripe` prop with `odd` or `even` values.
 
 {{"demo": "TableStripe.js"}}
 
@@ -233,12 +233,9 @@ There are two workarounds:
 ### Text ellipsis
 
 To truncate the text, set `noWrap` to true.
+The header cells always truncate the text to keep the header's height predictable.
 
 {{"demo": "TableTextEllipsis.js"}}
-
-:::info
-The header cells always truncate the text to keep the header's height predictable.
-:::
 
 ## CSS variable playground
 

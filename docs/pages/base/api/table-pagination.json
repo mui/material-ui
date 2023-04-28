@@ -1,0 +1,102 @@
+{
+  "props": {
+    "count": { "type": { "name": "number" }, "required": true },
+    "onPageChange": { "type": { "name": "func" }, "required": true },
+    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "component": { "type": { "name": "elementType" } },
+    "getItemAriaLabel": {
+      "type": { "name": "func" },
+      "default": "function defaultGetAriaLabel(type: ItemAriaLabelType) {\n  return `Go to ${type} page`;\n}"
+    },
+    "labelDisplayedRows": {
+      "type": { "name": "func" },
+      "default": "function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+    },
+    "labelId": { "type": { "name": "string" } },
+    "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
+    "onRowsPerPageChange": { "type": { "name": "func" } },
+    "rowsPerPageOptions": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
+      },
+      "default": "[10, 25, 50, 100]"
+    },
+    "selectId": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: func<br>&#124;&nbsp;object, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: func<br>&#124;&nbsp;object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: elementType, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
+      },
+      "default": "{}"
+    }
+  },
+  "name": "TablePagination",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'td'",
+      "class": ".MuiTablePagination-root"
+    },
+    {
+      "name": "actions",
+      "description": "The component that renders the actions.",
+      "default": "TablePaginationActions",
+      "class": ".MuiTablePagination-actions"
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select.",
+      "default": "'select'",
+      "class": ".MuiTablePagination-select"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The component that renders the select label.",
+      "default": "'p'",
+      "class": ".MuiTablePagination-selectLabel"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component that renders the menu item.",
+      "default": "'option'",
+      "class": ".MuiTablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The component that renders the displayed rows.",
+      "default": "'p'",
+      "class": ".MuiTablePagination-displayedRows"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component that renders the toolbar.",
+      "default": "'div'",
+      "class": ".MuiTablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The component that renders the spacer.",
+      "default": "'div'",
+      "class": ".MuiTablePagination-spacer"
+    }
+  ],
+  "classes": { "classes": ["input", "selectIcon", "selectRoot"], "globalClasses": {} },
+  "spread": true,
+  "muiName": "MuiTablePagination",
+  "forwardsRefTo": "HTMLTableCellElement",
+  "filename": "/packages/mui-base/src/TablePagination/TablePagination.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-table-pagination/\">Table Pagination</a></li></ul>",
+  "cssComponent": false
+}

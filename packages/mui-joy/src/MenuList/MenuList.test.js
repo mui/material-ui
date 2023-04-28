@@ -17,6 +17,11 @@ describe('Joy <MenuList />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<MenuList />, { muiName: 'JoyMenuList', classes });

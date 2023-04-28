@@ -19,7 +19,13 @@ describe('<CircularProgress />', () => {
     testCustomVariant: true,
     slots: {
       root: { expectedClassName: classes.root },
-      svg: { expectedClassName: classes.svg, testWithElement: 'svg' },
+      svg: {
+        expectedClassName: classes.svg,
+        testWithComponent: ({ className }: any) => (
+          <svg className={className} data-testid="custom" />
+        ),
+        testWithElement: null,
+      },
       track: {
         expectedClassName: classes.track,
       },

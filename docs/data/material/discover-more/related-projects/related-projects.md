@@ -42,11 +42,11 @@ Feel free to submit a pull request!
 
 ### One-Time Password
 
-- [mui-otp-input](https://viclafouch.github.io/mui-otp-input): A One-Time Password input designed for use with Material UI.
+- [mui-otp-input](https://viclafouch.github.io/mui-otp-input/): A One-Time Password input designed for use with Material UI.
 
 ### File
 
-- [mui-file-input](https://viclafouch.github.io/mui-file-input): A file input designed for use with Material UI.
+- [mui-file-input](https://viclafouch.github.io/mui-file-input/): A file input designed for use with Material UI.
 
 ### Color picker
 
@@ -56,3 +56,7 @@ Feel free to submit a pull request!
 ### Sparkline
 
 - [mui-plus](https://mui-plus.vercel.app/components/Sparkline): A sparkline is a tiny chart that can be used to indicate the trend of a value.
+
+## Admin frameworks
+
+- [React Admin](https://github.com/marmelab/react-admin): A frontend Framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
