@@ -60,11 +60,14 @@ The Snackbar component is composed of a single root `<div>` slot with no interio
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
-
 ```jsx
 <Snackbar slots={{ root: 'span' }} />
 ```
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
 
 #### Usage with TypeScript
 
