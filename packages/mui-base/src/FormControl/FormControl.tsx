@@ -145,7 +145,7 @@ const FormControl = React.forwardRef(function FormControl<
     return children;
   };
 
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<FormControlRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
