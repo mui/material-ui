@@ -2,6 +2,7 @@ import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { PopperProps } from '@mui/base/Popper';
 import { MenuActions } from '@mui/base/Menu';
+import { UseMenuParameters } from '@mui/base/useMenu';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -48,7 +49,7 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * Triggered when focus leaves the menu and the menu should close.
      */
-    onClose?: (event: React.MouseEvent<Element, Event> | null) => void;
+    onClose?: (event: Parameters<NonNullable<UseMenuParameters['onOpenChange']>>[0]) => void;
     /**
      * Controls whether the menu is displayed.
      * @default false
