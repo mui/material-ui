@@ -2,18 +2,6 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
-interface SliderValueLabelProps {
-  children: React.ReactElement;
-}
-
-function SliderValueLabel({ children }: SliderValueLabelProps) {
-  return <span className="valueLabel">{children}</span>;
-}
-
-function valuetext(value: number) {
-  return `${value}°C`;
-}
-
 export default function DiscreteSlider() {
   return (
     <Box sx={{ width: 300 }}>
@@ -30,6 +18,19 @@ export default function DiscreteSlider() {
     </Box>
   );
 }
+
+interface SliderValueLabelProps {
+  children: React.ReactElement;
+}
+
+function SliderValueLabel({ children }: SliderValueLabelProps) {
+  return <span className="valueLabel">{children}</span>;
+}
+
+function valuetext(value: number) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',

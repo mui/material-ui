@@ -2,6 +2,20 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
+export default function DiscreteSliderValues() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider
+        aria-label="Temperature"
+        defaultValue={37}
+        getAriaValueText={valuetext}
+        step={null}
+        marks={marks}
+      />
+    </Box>
+  );
+}
+
 const marks = [
   {
     value: 0,
@@ -25,19 +39,6 @@ function valuetext(value: number) {
   return `${value}°C`;
 }
 
-export default function DiscreteSliderValues() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider
-        aria-label="Temperature"
-        defaultValue={37}
-        getAriaValueText={valuetext}
-        step={null}
-        marks={marks}
-      />
-    </Box>
-  );
-}
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',

@@ -2,10 +2,6 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
-function valuetext(value: number) {
-  return `${value}°C`;
-}
-
 export default function RangeSlider() {
   const [value, setValue] = React.useState<number[]>([20, 37]);
 
@@ -35,6 +31,11 @@ export default function RangeSlider() {
     </Box>
   );
 }
+
+function valuetext(value: number) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',

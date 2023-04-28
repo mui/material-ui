@@ -2,6 +2,14 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
+export default function LabeledValuesSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+    </Box>
+  );
+}
+
 interface SliderValueLabelProps {
   children: React.ReactElement;
 }
@@ -11,14 +19,6 @@ function SliderValueLabel({ children }: SliderValueLabelProps) {
     <span className="label">
       <div className="value">{children}</div>
     </span>
-  );
-}
-
-export default function LabeledValuesSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
-    </Box>
   );
 }
 

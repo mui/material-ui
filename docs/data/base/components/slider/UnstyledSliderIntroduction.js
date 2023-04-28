@@ -10,6 +10,7 @@ export default function UnstyledSlider() {
     </Box>
   );
 }
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',

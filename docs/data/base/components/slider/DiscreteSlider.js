@@ -3,18 +3,6 @@ import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
-function SliderValueLabel({ children }) {
-  return <span className="valueLabel">{children}</span>;
-}
-
-SliderValueLabel.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 export default function DiscreteSlider() {
   return (
     <Box sx={{ width: 300 }}>
@@ -31,6 +19,19 @@ export default function DiscreteSlider() {
     </Box>
   );
 }
+
+function SliderValueLabel({ children }) {
+  return <span className="valueLabel">{children}</span>;
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
