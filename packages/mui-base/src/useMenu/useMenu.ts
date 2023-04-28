@@ -52,10 +52,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
   const stateChangeHandler: StateChangeCallback<MenuInternalState> = React.useCallback(
     (event, field, fieldValue, reason, state) => {
       if (field === 'open') {
-        onOpenChange?.(
-          fieldValue as boolean,
-          event as React.MouseEvent<Element, Event> | undefined,
-        );
+        onOpenChange?.(event as React.MouseEvent<Element, Event> | null, fieldValue as boolean);
 
         if (fieldValue === true && state.highlightedValue !== null) {
           subitems.get(state.highlightedValue)?.ref.current?.focus();
