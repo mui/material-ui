@@ -105,7 +105,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const handleOpenChange = React.useCallback(
     (event: Parameters<NonNullable<UseMenuParameters['onOpenChange']>>[0], isOpen: boolean) => {
       if (!isOpen) {
-        onClose?.(event as React.MouseEvent<Element, Event>);
+        onClose?.(event as React.MouseEvent<Element, Event> | React.FocusEvent | null);
       }
     },
     [onClose],

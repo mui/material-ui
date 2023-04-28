@@ -14,7 +14,9 @@ export default function PositionedMenu() {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl((prevAnchorEl) => (prevAnchorEl ? null : event.currentTarget));
   };
-  const handleClose = (event: React.MouseEvent<Element, Event> | null) => {
+  const handleClose = (
+    event: React.MouseEvent<Element, Event> | React.FocusEvent | null,
+  ) => {
     if (event && event.relatedTarget !== anchorEl) {
       setAnchorEl(null);
     }

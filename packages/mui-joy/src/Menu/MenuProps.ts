@@ -48,7 +48,7 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     /**
      * Triggered when focus leaves the menu and the menu should close.
      */
-    onClose?: (event: React.MouseEvent<Element, Event> | null) => void;
+    onClose?: (event: React.MouseEvent<Element, Event> | React.FocusEvent | null) => void;
     /**
      * Controls whether the menu is displayed.
      * @default false
