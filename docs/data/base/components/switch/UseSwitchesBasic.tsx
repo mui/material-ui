@@ -3,6 +3,17 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import useSwitch, { UseSwitchParameters } from '@mui/base/useSwitch';
 
+export default function UseSwitchesBasic() {
+  return (
+    <div>
+      <BasicSwitch defaultChecked />
+      <BasicSwitch />
+      <BasicSwitch defaultChecked disabled />
+      <BasicSwitch disabled />
+    </div>
+  );
+}
+
 function BasicSwitch(props: UseSwitchParameters) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
@@ -20,16 +31,6 @@ function BasicSwitch(props: UseSwitchParameters) {
   );
 }
 
-export default function UseSwitchesBasic() {
-  return (
-    <div>
-      <BasicSwitch defaultChecked />
-      <BasicSwitch />
-      <BasicSwitch defaultChecked disabled />
-      <BasicSwitch disabled />
-    </div>
-  );
-}
 const blue = {
   500: '#007FFF',
 };

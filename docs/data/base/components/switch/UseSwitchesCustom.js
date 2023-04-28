@@ -3,6 +3,10 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import useSwitch from '@mui/base/useSwitch';
 
+export default function UseSwitchesCustom() {
+  return <MUISwitch defaultChecked />;
+}
+
 function MUISwitch(props) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
@@ -22,9 +26,6 @@ function MUISwitch(props) {
   );
 }
 
-export default function UseSwitchesCustom() {
-  return <MUISwitch defaultChecked />;
-}
 const blue = {
   700: '#0059B2',
 };
