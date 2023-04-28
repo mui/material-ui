@@ -115,9 +115,11 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     ...other
   } = props;
 
+  const active = activeStep >= steps ? steps - 1 : activeStep;
+
   const ownerState = {
     ...props,
-    activeStep,
+    activeStep: active,
     position,
     variant,
   };
@@ -136,7 +138,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
       {backButton}
       {variant === 'text' && (
         <React.Fragment>
-          {activeStep + 1} / {steps}
+          {active + 1} / {steps}
         </React.Fragment>
       )}
 
@@ -145,9 +147,9 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
           {[...new Array(steps)].map((_, index) => (
             <MobileStepperDot
               key={index}
-              className={clsx(classes.dot, { [classes.dotActive]: index === activeStep })}
+              className={clsx(classes.dot, { [classes.dotActive]: index === active })}
               ownerState={ownerState}
-              dotActive={index === activeStep}
+              dotActive={index === active}
             />
           ))}
         </MobileStepperDots>
@@ -158,7 +160,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
           ownerState={ownerState}
           className={classes.progress}
           variant="determinate"
-          value={Math.ceil((activeStep / (steps - 1)) * 100)}
+          value={Math.ceil((steps === 1 ? 1 : active / (steps - 1)) * 100)}
           {...LinearProgressProps}
         />
       )}
