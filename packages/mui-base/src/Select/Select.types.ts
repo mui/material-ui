@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DefaultComponentProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
 import Popper, { PopperProps } from '../Popper';
@@ -169,10 +169,8 @@ export interface SelectType {
   >(
     props: PolymorphicProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
   ): JSX.Element | null;
-  <OptionValue extends {}, Multiple extends boolean = false>(
-    props: DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
-  ): JSX.Element | null;
   propTypes?: any;
+  displayName?: string | undefined;
 }
 
 export type SelectOwnerState<OptionValue extends {}, Multiple extends boolean> = Simplify<
