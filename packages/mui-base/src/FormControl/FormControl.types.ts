@@ -115,4 +115,4 @@ export type FormControlRootSlotProps = {
   ownerState: FormControlOwnerState;
 };
 
-export type UseFormControlContextReturnValue = FormControlState;
+export interface UseFormControlContextReturnValue extends FormControlState {}
