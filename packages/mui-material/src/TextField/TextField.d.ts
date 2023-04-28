@@ -277,12 +277,12 @@ export type TextFieldProps<Variant extends TextFieldVariants = TextFieldVariants
  * - [TextField API](https://mui.com/material-ui/api/text-field/)
  * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
-export default function TextField<V extends TextFieldVariants>(
+export default function TextField<Variant extends TextFieldVariants>(
   props: {
     /**
      * The variant to use.
      * @default 'outlined'
      */
-    variant?: V;
+    variant?: Variant;
   } & Omit<TextFieldProps, 'variant'>,
 ): JSX.Element;
