@@ -18,7 +18,10 @@ export interface UseMenuParameters {
   /**
    * Callback fired when the menu is opened or closed.
    */
-  onOpenChange?: (event: React.MouseEvent<Element, Event> | null, open: boolean) => void;
+  onOpenChange?: (
+    event: React.MouseEvent<Element, Event> | React.KeyboardEvent<Event> | React.FocusEvent | null,
+    open: boolean,
+  ) => void;
   /**
    * Id of the menu listbox.
    */
