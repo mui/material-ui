@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderClasses';
@@ -64,7 +64,6 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
     'aria-valuetext': ariaValuetext,
     'aria-labelledby': ariaLabelledby,
     className,
-    component,
     disableSwap = false,
     disabled = false,
     getAriaLabel,
@@ -131,7 +130,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? 'span';
+  const Root = slots.root ?? 'span';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -307,7 +306,7 @@ const Slider = React.forwardRef(function Slider<RootComponentType extends React.
       })}
     </Root>
   );
-}) as OverridableComponent<SliderTypeMap>;
+}) as PolymorphicComponent<SliderTypeMap>;
 
 Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -346,19 +345,6 @@ Slider.propTypes /* remove-proptypes */ = {
 
     return null;
   }),
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */
