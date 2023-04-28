@@ -114,13 +114,7 @@ Option renders as an `<li>`:
 
 ### Custom structure
 
-Use the `slots.root` prop to override the root slot with a custom element:
-
-```jsx
-<Select slots={{ root: 'div' }} />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <Select slots={{ root: 'div', listbox: 'ol' }} />
