@@ -1,4 +1,4 @@
-<ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>
+<Button>Button</Button>
 
 <button type="button" {...getRootProps()}>
   useButton

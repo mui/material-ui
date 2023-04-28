@@ -39,19 +39,19 @@ Base UI components help you abstract away low-level UI implementation details su
 
 ### Components and hooks
 
-Base UI provides an Unstyled Button component and a `useButton` hook.
+Base UI provides a Button component and a `useButton` hook.
 Both can be used to build a button, and each has its own benefits and trade-offs—see [Components vs. hooks](/base/getting-started/usage/#components-vs-hooks) for details.
 
 The code snippets below demonstrate the basic implementation of each:
 
-#### Unstyled Button component
+#### Button component
 
 ```tsx
 import * as React from 'react';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 export default function App() {
-  return <ButtonUnstyled>ButtonUnstyled</ButtonUnstyled>;
+  return <Button>Click Me</Button>;
 }
 ```
 
@@ -65,13 +65,13 @@ export default function App() {
   const { getRootProps } = useButton();
   return (
     <button type="button" {...getRootProps()}>
-      useButton
+      Click Me
     </button>
   );
 }
 ```
 
-Base UI comes with no styles or styling solution—here's what the Unstyled Button looks like out of the box:
+Base UI comes with no styles or styling solution—here's what the Button component looks like out of the box:
 
 {{"demo": "BaseButton.js", "defaultCodeOpen": false}}
 
@@ -95,20 +95,20 @@ Pass a `className` prop and use it as a styling hook:
 ```tsx
 /* App.js */
 
-<ButtonUnstyled className="btn">Create Repository</ButtonUnstyled>
+<Button className="btn">Create Repository</Button>
 ```
 
-Base UI components like the Unstyled Button come with a classes object (e.g. `buttonUnstyledClasses`) that provides class hooks for styling a particular state.
+Base UI components like the Button come with a classes object (e.g. `buttonClasses`) that provides class hooks for styling a particular state.
 
 ```css
 /* To style the disabled state: */
 
-.${buttonUnstyledClasses.disabled} { /* ".MuiButton-disabled" */
+.${buttonClasses.disabled} { /* ".MuiButton-disabled" */
   cursor: not-allowed;
 }
 ```
 
-The demo below shows how to create the Primer button using plain CSS with Base UI's Unstyled Button and `useButton` hook:
+The demo below shows how to create the Primer button using plain CSS with Base UI's Button component and `useButton` hook:
 
 {{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
@@ -117,9 +117,7 @@ The demo below shows how to create the Primer button using plain CSS with Base U
 After installing Tailwind CSS, pass its utility classes to `className`, as shown below:
 
 ```tsx
-<ButtonUnstyled className="bg-green-600 rounded-md py-1 px-4...">
-  Create Repository
-</ButtonUnstyled>
+<Button className="bg-green-600 rounded-md py-1 px-4...">Create Repository</Button>
 ```
 
 The demo below shows how to build the Primer button using Tailwind CSS:
@@ -137,7 +135,7 @@ Interpolations or arguments that are functions called by `styled` receive the `t
 import * as React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { styled } from '@mui/system';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 const theme = {
   colors: {
@@ -145,7 +143,7 @@ const theme = {
   },
 };
 
-const GithubButton = styled(ButtonUnstyled)(
+const GithubButton = styled(Button)(
   ({ theme }) => `
     background-color: ${theme.colors.primary /* => 'green' */};
   `,
@@ -163,14 +161,14 @@ You can inspect the `theme` object used on this site in your browser console, or
 
 The demos below show how to create the Primer button using MUI System:
 
-#### Unstyled Button with MUI System
+#### Button Component with MUI System
 
 ```tsx
 import * as React from 'react';
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 import { styled } from '@mui/system';
 
-const GithubButton = styled(ButtonUnstyled)(
+const GithubButton = styled(Button)(
   ({ theme }) => `
     background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
     ${/* ... the rest of the styles */}
@@ -179,9 +177,7 @@ const GithubButton = styled(ButtonUnstyled)(
 
 export default function App() {
   return (
-    <div>
-      <GithubButton>Create Repository</GithubButton>
-    </div>
+    <GithubButton>Create Repository</GithubButton>
   );
 }
 ```
@@ -204,11 +200,9 @@ export default function App() {
   const { getRootProps } = useButton(/* props*/);
 
   return (
-    <div>
-      <GithubButton type="button" {...getRootProps()}>
-        Create Repository
-      </GithubButton>
-    </div>
+    <GithubButton type="button" {...getRootProps()}>
+      Create Repository
+    </GithubButton>
   );
 }
 ```
@@ -218,7 +212,7 @@ export default function App() {
 MUI System supports the [`sx` prop](/system/getting-started/the-sx-prop/), which provides a quick way to apply ad-hoc styles using theme-aware values to any component created with `styled`.
 
 ```tsx
-const GithubButton = styled(ButtonUnstyled)(
+const GithubButton = styled(Button)(
   ({ theme }) => `
     background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#1f883d'};
     margin: 0;
@@ -227,11 +221,9 @@ const GithubButton = styled(ButtonUnstyled)(
 
 export default function App() {
   return (
-    <div>
-      <GithubButton sx={{ m: 2 /* => margin: 16px */ }}>
-        Create Repository
-      </GithubButton>
-    </div>
+    <GithubButton sx={{ m: 2 /* => margin: 16px */ }}>
+      Create Repository
+    </GithubButton>
   );
 }
 ```

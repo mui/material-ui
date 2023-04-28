@@ -1,8 +1,8 @@
 import * as React from 'react';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import Button, { buttonClasses } from '@mui/base/Button';
 import { styled, alpha } from '@mui/system';
 
-const CustomButton = styled(ButtonUnstyled)(
+const CustomButton = styled(Button)(
   ({ theme }) => `
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
         Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
@@ -52,11 +52,11 @@ const CustomButton = styled(ButtonUnstyled)(
       box-shadow: none;
     }
 
-    &:hover:not(.${buttonUnstyledClasses.disabled}) {
+    &:hover:not(.${buttonClasses.disabled}) {
       background-color: ${theme.palette.mode === 'dark' ? '#2ea043' : '#2c974b'};
     }
 
-    &:active:not(.${buttonUnstyledClasses.disabled}) {
+    &:active:not(.${buttonClasses.disabled}) {
       background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#298e46'};
       box-shadow: ${
         theme.palette.mode === 'dark'
@@ -65,7 +65,7 @@ const CustomButton = styled(ButtonUnstyled)(
       }
     }
 
-    &.${buttonUnstyledClasses.disabled} {
+    &.${buttonClasses.disabled} {
       color: ${
         theme.palette.mode === 'dark' ? alpha('#fff', 0.5) : alpha('#fff', 0.5)
       };

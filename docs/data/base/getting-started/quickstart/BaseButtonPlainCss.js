@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import Button, { buttonClasses } from '@mui/base/Button';
 import useButton from '@mui/base/useButton';
 import Stack from '@mui/material/Stack';
 
@@ -61,17 +61,17 @@ const css = `
     transition: none;
   }
 
-  .github-button:hover:not(.${buttonUnstyledClasses.disabled}) {
+  .github-button:hover:not(.${buttonClasses.disabled}) {
     color: var(--btn-text);
     background-color: var(--btn-hover);
   }
 
-  .github-button:active:not(.${buttonUnstyledClasses.disabled}) {
+  .github-button:active:not(.${buttonClasses.disabled}) {
     background-color: var(--btn-active-bg);
     box-shadow: var(--btn-active-box-shadow);
   }
 
-  .github-button.${buttonUnstyledClasses.disabled} {
+  .github-button.${buttonClasses.disabled} {
     cursor: not-allowed;
     box-shadow: none;
     color: var(--btn-disabled);
@@ -85,7 +85,7 @@ export default function App() {
     <React.Fragment>
       <style type="text/css">{css}</style>
       <Stack spacing={2} direction="row" className="demo">
-        <ButtonUnstyled className="github-button">Create Repository</ButtonUnstyled>
+        <Button className="github-button">Create Repository</Button>
 
         <button type="button" {...getRootProps()} className="github-button">
           Create Repository

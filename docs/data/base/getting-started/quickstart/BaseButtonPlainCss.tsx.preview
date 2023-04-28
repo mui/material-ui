@@ -1,7 +1,7 @@
 <React.Fragment>
   <style type="text/css">{css}</style>
   <Stack spacing={2} direction="row" className="demo">
-    <ButtonUnstyled className="github-button">Create Repository</ButtonUnstyled>
+    <Button className="github-button">Create Repository</Button>
 
     <button type="button" {...getRootProps()} className="github-button">
       Create Repository

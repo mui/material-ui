@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import Button, { buttonClasses } from '@mui/base/Button';
 import useButton from '@mui/base/useButton';
 import { styled, alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
@@ -54,11 +54,11 @@ function getStyles({ theme }) {
       box-shadow: none;
     }
 
-    &:hover:not(.${buttonUnstyledClasses.disabled}) {
+    &:hover:not(.${buttonClasses.disabled}) {
       background-color: ${theme.palette.mode === 'dark' ? '#2ea043' : '#2c974b'};
     }
 
-    &:active:not(.${buttonUnstyledClasses.disabled}) {
+    &:active:not(.${buttonClasses.disabled}) {
       background-color: ${theme.palette.mode === 'dark' ? '#238636' : '#298e46'};
       box-shadow: ${
         theme.palette.mode === 'dark'
@@ -67,7 +67,7 @@ function getStyles({ theme }) {
       }
     }
 
-    &.${buttonUnstyledClasses.disabled} {
+    &.${buttonClasses.disabled} {
       color: ${
         theme.palette.mode === 'dark' ? alpha('#fff', 0.5) : alpha('#fff', 0.5)
       };
@@ -84,7 +84,7 @@ function getStyles({ theme }) {
  * More about unstyled components vs hooks here: https://mui.com/base/getting-started/usage/#components-vs-hooks
  */
 
-const GithubButtonComponent = styled(ButtonUnstyled)(getStyles);
+const GithubButtonComponent = styled(Button)(getStyles);
 
 const GithubButtonHook = styled('button')(getStyles);
 
