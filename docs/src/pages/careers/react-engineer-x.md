@@ -1,6 +1,6 @@
-# React Engineer - X (future)
+# React Engineer - X
 
-<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
 ## Details of the Role
 
@@ -30,15 +30,7 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-The data grid team (part of MUI X) needs your help.
-The component is off [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-data-grid&package=react-table&package=ag-grid-community&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
-We need to:
-
-- build an headless version for Base UI.
-- build advanced, in browsers, data analysis features like pivoting and charts integration.
-- build a strong integration with backend APIs, e.g. to handle >100M rows.
-
-We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the community.
+We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
 ## About the role
 
@@ -56,7 +48,7 @@ Depending on the day, you'll:
   The future of MUI is discussed and planned in our public RFCs and issues.
   You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
