@@ -106,6 +106,7 @@ Use the `slots` prop to override the root or any other interior slot:
 ```jsx
 <TablePagination slots={{ root: 'div', toolbar: 'nav' }} />
 ```
+
 :::info
 The `slots` prop is available on all non-utility Base components.
 See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
@@ -117,7 +118,6 @@ The following code snippet applies a CSS class called `my-spacer` to the spacer 
 ```jsx
 <TablePagination slotProps={{ spacer: { className: 'my-spacer' } }} />
 ```
-
 
 ## Customization
 
