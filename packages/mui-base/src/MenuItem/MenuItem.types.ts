@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
-import { SlotComponentProps } from '../utils';
+import { Simplify } from '@mui/types';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface MenuItemRootSlotPropsOverrides {}
 
@@ -59,9 +59,7 @@ export interface MenuItemTypeMap<
 
 export type MenuItemProps<
   RootComponentType extends React.ElementType = MenuItemTypeMap['defaultComponent'],
-> = OverrideProps<MenuItemTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<MenuItemTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface MenuItemState {
   disabled: boolean;
