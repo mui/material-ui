@@ -45,6 +45,9 @@ interface Value {
   value={{ name: '' }}
   onChange={(e, val) => {
     expectType<Value | null, typeof val>(val);
+    if (e) {
+      expectType<Value | null, typeof e.target.value>(e?.target.value);
+    }
   }}
 />;
 <Select sx={{ bgcolor: (theme) => theme.vars.palette.background.body }} />;
