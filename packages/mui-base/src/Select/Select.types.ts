@@ -164,8 +164,11 @@ export type SelectProps<
 export interface SelectType {
   <
     OptionValue extends {},
-    RootComponentType extends React.ElementType,
     Multiple extends boolean = false,
+    RootComponentType extends React.ElementType = SelectTypeMap<
+      OptionValue,
+      Multiple
+    >['defaultComponent'],
   >(
     props: PolymorphicProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
   ): JSX.Element | null;
