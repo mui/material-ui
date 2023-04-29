@@ -27,7 +27,7 @@ const Option = React.forwardRef(function Option<
 >(props: OptionProps<OptionValue, RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const { children, disabled = false, label, slotProps = {}, slots = {}, value, ...other } = props;
 
-  const Root = slots.root || 'li';
+  const Root = slots.root ?? 'li';
 
   const optionRef = React.useRef<HTMLElement>(null);
   const combinedRef = useForkRef(optionRef, forwardedRef);
