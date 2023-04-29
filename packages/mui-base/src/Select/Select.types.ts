@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
-import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
+import {
+  SelectOnChangeEvent,
+  SelectValue,
+  UseSelectButtonSlotProps,
+  UseSelectListboxSlotProps,
+} from '../useSelect';
 import { SelectOption } from '../useOption';
 import Popper, { PopperProps } from '../Popper';
 import { SlotComponentProps, WithOptionalOwnerState } from '../utils';
@@ -64,7 +69,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    e: SelectOnChangeEvent<OptionValue, Multiple>,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**

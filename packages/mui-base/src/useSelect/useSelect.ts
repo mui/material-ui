@@ -177,10 +177,12 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     ) => {
       const newValue = multiple ? newValues : newValues[0] ?? null;
 
-      Object.defineProperty(event, 'target', {
-        writable: true,
-        value: { value: newValue },
-      });
+      if (event) {
+        Object.defineProperty(event, 'target', {
+          writable: true,
+          value: { value: newValue },
+        });
+      }
 
       if (multiple) {
         onChange?.(
