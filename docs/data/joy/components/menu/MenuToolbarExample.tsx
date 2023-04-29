@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Menu from '@mui/joy/Menu';
+import Menu, { MenuActions } from '@mui/joy/Menu';
 import MenuItem, { menuItemClasses } from '@mui/joy/MenuItem';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -23,7 +23,7 @@ const MenuButton = React.forwardRef(
     ref: React.ForwardedRef<HTMLAnchorElement>,
   ) => {
     const buttonRef = React.useRef<HTMLAnchorElement | null>(null);
-    const menuActions = React.useRef(null);
+    const menuActions = React.useRef<MenuActions>(null);
     const combinedRef = React.useMemo(() => {
       return (instance: HTMLAnchorElement | null) => {
         if (instance) {
