@@ -22,10 +22,10 @@ const MenuButton = React.forwardRef(
     { children, menu, open, onOpen, onKeyDown, ...props }: MenuButtonProps,
     ref: React.ForwardedRef<HTMLAnchorElement>,
   ) => {
-    const buttonRef = React.useRef(null);
+    const buttonRef = React.useRef<HTMLAnchorElement | null>(null);
     const menuActions = React.useRef(null);
     const combinedRef = React.useMemo(() => {
-      return (instance) => {
+      return (instance: HTMLAnchorElement | null) => {
         if (instance) {
           ref(instance);
           buttonRef.current = instance;
