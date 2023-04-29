@@ -8,8 +8,20 @@ import ListDivider from '@mui/joy/ListDivider';
 import Typography, { typographyClasses } from '@mui/joy/Typography';
 import { Theme } from '@mui/joy';
 
+type MenuButtonProps = {
+  children: React.ReactNode;
+  open: boolean;
+  onOpen: (event?: React.KeyboardEvent | React.MouseEvent) => void;
+  onKeyDown: (event: React.KeyboardEvent) => void;
+  menu: JSX.Element;
+  onMouseEnter: React.MouseEventHandler;
+};
+
 const MenuButton = React.forwardRef(
-  ({ children, menu, open, onOpen, onKeyDown, ...props }, ref) => {
+  (
+    { children, menu, open, onOpen, onKeyDown, ...props }: MenuButtonProps,
+    ref: React.ForwardedRef<HTMLAnchorElement>,
+  ) => {
     const buttonRef = React.useRef(null);
     const menuActions = React.useRef(null);
     const combinedRef = React.useMemo(() => {
@@ -169,7 +181,7 @@ export default function MenuToolbarExample() {
             }
           }}
           ref={(instance) => {
-            menus.current[0] = instance;
+            menus.current[0] = instance!;
           }}
           menu={
             <Menu
@@ -213,7 +225,7 @@ export default function MenuToolbarExample() {
             }
           }}
           ref={(instance) => {
-            menus.current[1] = instance;
+            menus.current[1] = instance!;
           }}
           menu={
             <Menu
@@ -253,7 +265,7 @@ export default function MenuToolbarExample() {
             }
           }}
           ref={(instance) => {
-            menus.current[2] = instance;
+            menus.current[2] = instance!;
           }}
           menu={
             <Menu
