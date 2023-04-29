@@ -28,7 +28,9 @@ const MenuButton = React.forwardRef(
     const combinedRef = React.useMemo(() => {
       return (instance: HTMLAnchorElement | null) => {
         if (instance) {
-          ref(instance);
+          if (typeof ref === 'function') {
+            ref(instance);
+          }
           buttonRef.current = instance;
         }
       };
