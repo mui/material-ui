@@ -330,7 +330,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+  slotProps: PropTypes.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
