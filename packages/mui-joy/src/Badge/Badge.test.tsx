@@ -3,10 +3,14 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
+import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';
 
-function findBadge(container) {
-  return container.firstChild.querySelector('span');
+function findBadge(container: HTMLElement): HTMLElement | null {
+  const firstChild = container.firstChild as HTMLElement;
+  if (firstChild) {
+    return firstChild.querySelector('span');
+  }
+  return null;
 }
 
 describe('<Badge />', () => {
@@ -121,11 +125,13 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.colorPrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { container } = render(<Badge color={color} {...defaultProps} />);
 
-        expect(findBadge(container)).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(findBadge(container)).to.have.class(
+          classes[`color${capitalize(color)}` as BadgeClassKey],
+        );
       });
     });
   });
@@ -136,11 +142,13 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.sizeMd);
     });
 
-    ['sm', 'md', 'lg'].forEach((size) => {
+    (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
         const { container } = render(<Badge size={size} {...defaultProps} />);
 
-        expect(findBadge(container)).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(findBadge(container)).to.have.class(
+          classes[`size${capitalize(size)}` as BadgeClassKey],
+        );
       });
     });
   });
@@ -151,11 +159,13 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.variantSolid);
     });
 
-    ['outlined', 'soft', 'solid'].forEach((variant) => {
+    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { container } = render(<Badge variant={variant} {...defaultProps} />);
 
-        expect(findBadge(container)).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(findBadge(container)).to.have.class(
+          classes[`variant${capitalize(variant)}` as BadgeClassKey],
+        );
       });
     });
   });
@@ -191,19 +201,21 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.anchorOriginTopRight);
     });
 
-    [
-      { horizontal: 'left', vertical: 'top' },
-      { horizontal: 'left', vertical: 'bottom' },
-      { horizontal: 'right', vertical: 'top' },
-      { horizontal: 'right', vertical: 'bottom' },
-    ].forEach((anchorOrigin) => {
+    (
+      [
+        { horizontal: 'left', vertical: 'top' },
+        { horizontal: 'left', vertical: 'bottom' },
+        { horizontal: 'right', vertical: 'top' },
+        { horizontal: 'right', vertical: 'bottom' },
+      ] as BadgeOrigin[]
+    ).forEach((anchorOrigin) => {
       it(`should render ${anchorOrigin}`, () => {
-        const { container } = render(
-          <Badge badgeContent={1} {...defaultProps} anchorOrigin={anchorOrigin} />,
-        );
+        const { container } = render(<Badge {...defaultProps} anchorOrigin={anchorOrigin} />);
         expect(findBadge(container)).to.have.class(
           classes[
-            `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`
+            `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
+              anchorOrigin.horizontal,
+            )}` as BadgeClassKey
           ],
         );
       });
