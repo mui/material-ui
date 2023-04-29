@@ -82,6 +82,36 @@ const SelectSlotsOverridesUsingHostComponentTest = (
   />
 );
 
+const SelectOnChangeTypeTest = (
+  <React.Fragment>
+    <Select
+      value={1}
+      onChange={(event) => {
+        if (event) {
+          expectType<number | null, typeof event.target.value>(event.target.value);
+        }
+      }}
+    />
+    <Select
+      value={[1, 2]}
+      multiple
+      onChange={(event) => {
+        if (event) {
+          expectType<Array<number>, typeof event.target.value>(event.target.value);
+        }
+      }}
+    />
+    <Select
+      value={'1'}
+      onChange={(event) => {
+        if (event) {
+          expectType<string | null, typeof event.target.value>(event.target.value);
+        }
+      }}
+    />
+  </React.Fragment>
+);
+
 const polymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
     function CustomComponent() {

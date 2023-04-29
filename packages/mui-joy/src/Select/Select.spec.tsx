@@ -6,23 +6,52 @@ import Select, { SelectOwnerState } from '@mui/joy/Select';
 <Select
   value=""
   onChange={(e, val) => {
-    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
+    expectType<
+      | (Omit<React.MouseEvent | React.KeyboardEvent | React.FocusEvent, 'target'> & {
+          target: (React.MouseEvent | React.KeyboardEvent | React.FocusEvent)['target'] & {
+            value: string;
+          };
+        })
+      | null,
+      typeof e
+    >(e);
     expectType<string | null, typeof val>(val);
+    if (e) {
+      expectType<string | null, typeof e.target.value>(e.target.value);
+    }
   }}
 />;
 <Select
   value={2}
   onChange={(e, val) => {
-    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
+    expectType<
+      | (Omit<React.MouseEvent | React.KeyboardEvent | React.FocusEvent, 'target'> & {
+          target: (React.MouseEvent | React.KeyboardEvent | React.FocusEvent)['target'];
+        })
+      | null,
+      typeof e
+    >(e);
     expectType<number | null, typeof val>(val);
+    if (e) {
+      expectType<number | null, typeof e.target.value>(e.target.value);
+    }
   }}
 />;
 // any object
 <Select
   value={{ name: '' }}
   onChange={(e, val) => {
-    expectType<React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, typeof e>(e);
+    expectType<
+      | (Omit<React.MouseEvent | React.KeyboardEvent | React.FocusEvent, 'target'> & {
+          target: (React.MouseEvent | React.KeyboardEvent | React.FocusEvent)['target'];
+        })
+      | null,
+      typeof e
+    >(e);
     expectType<{ name: string } | null, typeof val>(val);
+    if (e) {
+      expectType<{ name: string } | null, typeof e.target.value>(e.target.value);
+    }
   }}
 />;
 
