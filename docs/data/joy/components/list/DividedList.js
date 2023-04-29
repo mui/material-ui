@@ -29,9 +29,9 @@ export default function DividedList() {
               minWidth: 240,
               borderRadius: 'sm',
               boxShadow: 'sm',
-              '--List-decorator-size': '48px',
-              '--List-item-paddingLeft': '1.5rem',
-              '--List-item-paddingRight': '1rem',
+              '--ListItemDecorator-size': '48px',
+              '--ListItem-paddingLeft': '1.5rem',
+              '--ListItem-paddingRight': '1rem',
             }}
           >
             <ListItem>

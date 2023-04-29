@@ -32,7 +32,57 @@
   },
   "name": "Textarea",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiTextarea-root"
+    },
+    {
+      "name": "textarea",
+      "description": "The component that renders the textarea.",
+      "default": "'textarea'",
+      "class": ".MuiTextarea-textarea"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'div'",
+      "class": ".MuiTextarea-endDecorator"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error", "focused": "Mui-focused" }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyTextarea",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",
   "inheritance": null,

@@ -20,6 +20,14 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -37,7 +45,42 @@
   },
   "name": "Tab",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiTab-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "horizontal",
+      "selected",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": {
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible",
+      "selected": "Mui-selected"
+    }
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTab",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Tab/Tab.tsx",
   "inheritance": null,

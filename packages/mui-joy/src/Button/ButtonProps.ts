@@ -10,12 +10,35 @@ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIndicatorCenter';
 
+export interface ButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'button'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator?: React.ElementType;
+  /**
+   * The component that renders the loading indicator center.
+   * @default 'span'
+   */
+  loadingIndicatorCenter?: React.ElementType;
+}
+
 export interface ButtonPropsVariantOverrides {}
 export interface ButtonPropsColorOverrides {}
 export interface ButtonPropsSizeOverrides {}
 
 export type ButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  ButtonSlot,
+  ButtonSlots,
   {
     root: SlotProps<'button', {}, ButtonOwnerState>;
     startDecorator: SlotProps<'span', {}, ButtonOwnerState>;
@@ -79,7 +102,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
        */
       tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;

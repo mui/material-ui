@@ -14,6 +14,7 @@ import {
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -42,44 +43,49 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
   ({ theme, ownerState }) => [
     {
       ...(ownerState.selected && {
-        '--List-decorator-color': 'initial',
+        '--ListItemDecorator-color': 'initial',
       }),
       ...(ownerState.disabled && {
-        '--List-decorator-color':
+        '--ListItemDecorator-color':
           theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       }),
       WebkitTapHighlightColor: 'transparent',
       boxSizing: 'border-box',
       position: 'relative',
       display: 'flex',
-      flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+      flexDirection: 'row',
       alignItems: 'center',
+      alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+      ...(ownerState.orientation === 'vertical' && {
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }),
       textAlign: 'initial',
       textDecoration: 'initial', // reset native anchor tag
       backgroundColor: 'initial', // reset button background
       cursor: 'pointer',
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-      marginInline: 'var(--List-itemButton-marginInline)',
-      marginBlock: 'var(--List-itemButton-marginBlock)',
+      marginInline: 'var(--ListItemButton-marginInline)',
+      marginBlock: 'var(--ListItemButton-marginBlock)',
       ...(ownerState['data-first-child'] === undefined && {
         marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
         marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
       }),
       // account for the border width, so that all of the ListItemButtons content aligned horizontally
-      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth, 0px))',
+      paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
       // account for the border width, so that all of the ListItemButtons content aligned vertically
       paddingInlineStart:
-        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+        'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
       paddingInlineEnd:
-        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-      minBlockSize: 'var(--List-item-minHeight)',
+        'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      minBlockSize: 'var(--ListItem-minHeight)',
       border: 'none',
-      borderRadius: 'var(--List-item-radius)',
+      borderRadius: 'var(--ListItem-radius)',
       flexGrow: ownerState.row ? 0 : 1,
       flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
       flexShrink: 0,
       minInlineSize: 0,
-      fontSize: 'var(--List-item-fontSize)',
+      fontSize: 'var(--ListItem-fontSize)',
       fontFamily: theme.vars.fontFamily.body,
       ...(ownerState.selected && {
         fontWeight: theme.vars.fontWeight.md,
@@ -133,6 +139,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     selected = false,
     color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -144,7 +152,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -170,21 +178,22 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = getRootProps();
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemButtonRoot,
+    externalForwardedProps,
+    ownerState,
+    getSlotProps: getRootProps,
+  });
 
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
-      <ListItemButtonRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...other}
-        {...rootProps}
-        role={role ?? rootProps.role}
-      >
+      <SlotRoot {...rootProps} role={role ?? rootProps.role}>
         {children}
-      </ListItemButtonRoot>
+      </SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
@@ -261,6 +270,20 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   selected: PropTypes.bool,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -273,7 +296,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

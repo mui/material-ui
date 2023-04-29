@@ -22,6 +22,20 @@
       "default": "{\n  h1: 'h1',\n  h2: 'h2',\n  h3: 'h3',\n  h4: 'h4',\n  h5: 'h5',\n  h6: 'h6',\n  body1: 'p',\n  body2: 'p',\n  body3: 'p',\n  inherit: 'p',\n}"
     },
     "noWrap": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
+    },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
@@ -39,7 +53,56 @@
   },
   "name": "Typography",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'a'",
+      "class": ".MuiTypography-root"
+    },
+    {
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
+      "default": "'span'",
+      "class": ".MuiTypography-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiTypography-endDecorator"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "body1",
+      "body2",
+      "body3",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "gutterBottom",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "noWrap",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTypography",
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-joy/src/Typography/Typography.tsx",
   "inheritance": null,

@@ -1,0 +1,15 @@
+<Autocomplete
+  open
+  multiple
+  disableClearable
+  placeholder="Type to search"
+  options={[
+    { label: '🆘 Need help' },
+    { label: '✨ Improvement' },
+    { label: '🚀 New feature' },
+    { label: '🐛 Bug fix' },
+  ]}
+  slots={{
+    listbox: AutocompleteListbox,
+  }}
+/>

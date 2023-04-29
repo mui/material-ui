@@ -16,6 +16,8 @@
     "name": "MuiListItemSecondaryAction"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemSecondaryAction",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
   "inheritance": null,

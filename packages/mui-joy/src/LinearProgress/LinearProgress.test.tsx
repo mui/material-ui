@@ -17,6 +17,11 @@ describe('<LinearProgress />', () => {
     testVariantProps: { determinate: true },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<LinearProgress />, { muiName: 'JoyLinearProgress', classes });

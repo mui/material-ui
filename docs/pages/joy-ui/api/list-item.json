@@ -11,6 +11,20 @@
     "component": { "type": { "name": "elementType" } },
     "endAction": { "type": { "name": "node" } },
     "nested": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endAction?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startAction?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endAction?: elementType, root?: elementType, startAction?: elementType }"
+      },
+      "default": "{}"
+    },
     "startAction": { "type": { "name": "node" } },
     "sticky": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
@@ -29,7 +43,48 @@
   },
   "name": "ListItem",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'li'",
+      "class": ".MuiListItem-root"
+    },
+    {
+      "name": "startAction",
+      "description": "The component that renders the start action.",
+      "default": "'div'",
+      "class": ".MuiListItem-startAction"
+    },
+    {
+      "name": "endAction",
+      "description": "The component that renders the end action.",
+      "default": "'div'",
+      "class": ".MuiListItem-endAction"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "nested",
+      "nesting",
+      "sticky",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyListItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/ListItem/ListItem.tsx",
   "inheritance": null,

@@ -7,7 +7,7 @@ import {
   AutocompleteValue,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { PopperOwnProps } from '@mui/base/Popper';
 import { OverridableStringUnion } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -25,6 +25,69 @@ export type AutocompleteSlot =
   | 'loading'
   | 'noOptions'
   | 'limitTag';
+
+export interface AutocompleteSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the wrapper.
+   * @default 'div'
+   */
+  wrapper?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator?: React.ElementType;
+  /**
+   * The component that renders the clear indicator.
+   * @default 'button'
+   */
+  clearIndicator?: React.ElementType;
+  /**
+   * The component that renders the popup indicator.
+   * @default 'button'
+   */
+  popupIndicator?: React.ElementType;
+  /**
+   * The component that renders the listbox.
+   * @default 'ul'
+   */
+  listbox?: React.ElementType;
+  /**
+   * The component that renders the option.
+   * @default 'li'
+   */
+  option?: React.ElementType;
+  /**
+   * The component that renders the loading.
+   * @default 'li'
+   */
+  loading?: React.ElementType;
+  /**
+   * The component that renders the no-options.
+   * @default 'li'
+   */
+  noOptions?: React.ElementType;
+  /**
+   * The component that renders the limit tag.
+   * @default 'span'
+   */
+  limitTag?: React.ElementType;
+}
 
 export interface AutocompletePropsVariantOverrides {}
 
@@ -60,7 +123,7 @@ export interface AutocompleteRenderGroupParams {
 }
 
 export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  AutocompleteSlot,
+  AutocompleteSlots,
   {
     root: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
     wrapper: SlotProps<'div', {}, AutocompleteOwnerState<any, any, any, any>>;
@@ -91,7 +154,7 @@ export type AutocompleteSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, AutocompletePropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
       AutocompleteOwnerState<any, any, any, any>
     >;
     option: SlotProps<
@@ -279,7 +342,7 @@ type AutocompleteOwnProps<
      */
     sx?: SxProps;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;

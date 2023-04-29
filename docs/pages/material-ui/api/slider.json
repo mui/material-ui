@@ -135,6 +135,8 @@
     "name": "MuiSlider"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Slider/Slider.js",
   "inheritance": null,

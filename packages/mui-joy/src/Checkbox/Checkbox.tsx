@@ -124,8 +124,8 @@ const CheckboxAction = styled('span', {
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
-    borderRadius: `var(--Checkbox-action-radius, ${
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+    borderRadius: `var(--Checkbox-actionRadius, ${
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     textAlign: 'left', // prevent text-align inheritance
     position: 'absolute',
@@ -220,6 +220,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     color: colorProp,
     variant: variantProp,
     size: sizeProp = 'md',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -279,26 +282,27 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: CheckboxRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotCheckbox, checkboxProps] = useSlot('checkbox', {
     className: classes.checkbox,
     elementType: CheckboxCheckbox,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: CheckboxAction,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -317,7 +321,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     },
     className: classes.input,
     elementType: CheckboxInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -328,7 +332,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     },
     className: classes.label,
     elementType: CheckboxLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -385,7 +389,15 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -464,6 +476,28 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    checkbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    checkbox: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -485,7 +519,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

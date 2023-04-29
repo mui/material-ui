@@ -9,12 +9,27 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "size": {
       "type": {
         "name": "union",
         "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ fallback?: func<br>&#124;&nbsp;object, img?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ fallback?: elementType, img?: elementType, root?: elementType }"
+      },
+      "default": "{}"
     },
     "src": { "type": { "name": "string" } },
     "srcSet": { "type": { "name": "string" } },
@@ -34,7 +49,47 @@
   },
   "name": "Avatar",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiAvatar-root"
+    },
+    {
+      "name": "img",
+      "description": "The component that renders the img.",
+      "default": "'img'",
+      "class": ".MuiAvatar-img"
+    },
+    {
+      "name": "fallback",
+      "description": "The component that renders the fallback.",
+      "default": "'svg'",
+      "class": ".MuiAvatar-fallback"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAvatar",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Avatar/Avatar.tsx",
   "inheritance": null,

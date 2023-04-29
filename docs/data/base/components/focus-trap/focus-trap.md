@@ -9,11 +9,13 @@ githubLabel: 'component: FocusTrap'
 
 <p class="description">The Focus Trap component prevents the user's focus from escaping its children components.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 Focus Trap is a utility component that's useful when implementing an overlay such as a [modal dialog](/base/react-modal/), which should block all interactions outside of it while open.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -32,14 +34,14 @@ export default function MyApp() {
 ### Basics
 
 Focus Trap wraps around the UI elements that should hold the user's focus.
-For instance, if the focus needs to stay inside of an [Unstyled Menu](/base/react-menu/), then the component will be structured like this:
+For instance, if the focus needs to stay inside of an [Menu](/base/react-menu/), then the component will be structured like this:
 
 ```jsx
 <FocusTrap>
-  <MenuUnstyled>
-    <MenuItemUnstyled>{/* item one */}</MenuItemUnstyled>
-    <MenuItemUnstyled>{/* item two */}</MenuItemUnstyled>
-  </MenuUnstyled>
+  <Menu>
+    <MenuItem>{/* item one */}</MenuItem>
+    <MenuItem>{/* item two */}</MenuItem>
+  </Menu>
 </FocusTrap>
 ```
 
@@ -86,7 +88,7 @@ The following demo uses the [Portal](/base/react-portal/) component to render a 
 
 ### Using a toggle inside the trap
 
-The most common use case for the Focus Trap component is to maintain focus within an [Unstyled Modal](/base/react-modal/) component that is entirely separate from the element that opens the modal.
+The most common use case for the Focus Trap component is to maintain focus within a [Modal](/base/react-modal/) component that is entirely separate from the element that opens the modal.
 But you can also create a toggle button for the `open` prop of the Focus Trap component that is stored inside of the component itself, as shown in the following demo:
 
 {{"demo": "ContainedToggleTrappedFocus.js"}}

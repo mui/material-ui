@@ -57,14 +57,14 @@ const TextareaRoot = styled('div', {
         '--Textarea-minHeight': '2rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
-        '--Textarea-decorator-childHeight': 'min(1.5rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Textarea-minHeight': '2.5rem',
         '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
-        '--Textarea-decorator-childHeight': 'min(2rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(2rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
@@ -72,18 +72,18 @@ const TextareaRoot = styled('div', {
         '--Textarea-paddingBlock': 'calc(0.75rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '1rem',
         '--Textarea-gap': '0.75rem',
-        '--Textarea-decorator-childHeight': 'min(2.375rem, var(--Textarea-minHeight))',
+        '--Textarea-decoratorChildHeight': 'min(2.375rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
       '--_Textarea-paddingBlock':
-        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
-      '--Textarea-decorator-childRadius':
+        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Textarea-decoratorChildHeight)) / 2, 0px)',
+      '--Textarea-decoratorChildRadius':
         'max(var(--Textarea-radius) - var(--variant-borderWidth, 0px) - var(--_Textarea-paddingBlock), min(var(--_Textarea-paddingBlock) + var(--variant-borderWidth, 0px), var(--Textarea-radius) / 2))',
-      '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
-      '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
-      '--Button-radius': 'var(--Textarea-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Textarea-decorator-childRadius)',
+      '--Button-minHeight': 'var(--Textarea-decoratorChildHeight)',
+      '--IconButton-size': 'var(--Textarea-decoratorChildHeight)',
+      '--Button-radius': 'var(--Textarea-decoratorChildRadius)',
+      '--IconButton-radius': 'var(--Textarea-decoratorChildRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
       minHeight: 'var(--Textarea-minHeight)',
@@ -239,6 +239,9 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     endDecorator,
     minRows,
     maxRows,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
@@ -271,12 +274,13 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: [classes.root, rootStateClasses],
     elementType: TextareaRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -293,7 +297,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
       minRows,
       maxRows,
     },
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -301,14 +305,14 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: TextareaStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: TextareaEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -386,7 +390,7 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

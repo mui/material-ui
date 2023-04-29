@@ -92,9 +92,9 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
-      '--CircularProgress-size': 'var(--Icon-fontSize)',
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
+        '--CircularProgress-size': '20px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--Button-gap': '0.375rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
         fontSize: theme.vars.fontSize.sm,
@@ -103,6 +103,7 @@ export const ButtonRoot = styled('button', {
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--CircularProgress-size': '24px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--Button-gap': '0.5rem',
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
@@ -111,6 +112,7 @@ export const ButtonRoot = styled('button', {
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
+        '--CircularProgress-size': '28px', // must be `px` unit, otherwise the CircularProgress is broken in Safari
         '--Button-gap': '0.75rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
         fontSize: theme.vars.fontSize.md,
@@ -179,6 +181,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     loadingPosition = 'center',
     loadingIndicator: loadingIndicatorProp,
     disabled,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -190,7 +195,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     disabled: disabled || loading,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (
@@ -224,12 +229,13 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: ButtonRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getRootProps,
     ownerState,
   });
@@ -237,14 +243,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const [SlotStartDecorator, startDecoratorProps] = useSlot('startDecorator', {
     className: classes.startDecorator,
     elementType: ButtonStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotEndDecorator, endDecoratorProps] = useSlot('endDecorator', {
     className: classes.endDecorator,
     elementType: ButtonEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -253,7 +259,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     {
       className: classes.loadingIndicatorCenter,
       elementType: ButtonLoadingCenter,
-      externalForwardedProps: other,
+      externalForwardedProps,
       ownerState,
     },
   );
@@ -311,6 +317,11 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -353,6 +364,26 @@ Button.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    loadingIndicatorCenter: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    endDecorator: PropTypes.elementType,
+    loadingIndicatorCenter: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+  }),
+  /**
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,
@@ -369,7 +400,7 @@ Button.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -41,12 +41,12 @@ const switchColorVariables =
     const styles =
       theme.variants[`${ownerState.variant!}${data.state || ''}`]?.[ownerState.color!] || {};
     return {
-      '--Switch-track-background': styles.backgroundColor,
-      '--Switch-track-color': styles.color,
-      '--Switch-track-borderColor':
+      '--Switch-trackBackground': styles.backgroundColor,
+      '--Switch-trackColor': styles.color,
+      '--Switch-trackBorderColor':
         ownerState.variant === 'outlined' ? styles.borderColor : 'currentColor',
-      '--Switch-thumb-background': styles.color,
-      '--Switch-thumb-color': styles.backgroundColor,
+      '--Switch-thumbBackground': styles.color,
+      '--Switch-thumbColor': styles.backgroundColor,
     };
   };
 
@@ -59,33 +59,33 @@ const SwitchRoot = styled('div', {
   return {
     '--variant-borderWidth':
       theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-    '--Switch-track-radius': theme.vars.radius.lg,
-    '--Switch-thumb-shadow':
-      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
+    '--Switch-trackRadius': theme.vars.radius.lg,
+    '--Switch-thumbShadow':
+      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-trackBackground)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
-      '--Switch-track-width': '40px',
-      '--Switch-track-height': '20px',
-      '--Switch-thumb-size': '12px',
+      '--Switch-trackWidth': '40px',
+      '--Switch-trackHeight': '20px',
+      '--Switch-thumbSize': '12px',
       '--Switch-gap': '6px',
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'md' && {
-      '--Switch-track-width': '48px',
-      '--Switch-track-height': '24px',
-      '--Switch-thumb-size': '16px',
+      '--Switch-trackWidth': '48px',
+      '--Switch-trackHeight': '24px',
+      '--Switch-thumbSize': '16px',
       '--Switch-gap': '8px',
       fontSize: theme.vars.fontSize.md,
     }),
     ...(ownerState.size === 'lg' && {
-      '--Switch-track-width': '64px',
-      '--Switch-track-height': '32px',
-      '--Switch-thumb-size': '24px',
+      '--Switch-trackWidth': '64px',
+      '--Switch-trackHeight': '32px',
+      '--Switch-thumbSize': '24px',
       '--Switch-gap': '12px',
     }),
-    '--internal-paddingBlock': `max((var(--Switch-track-height) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumb-size)) / 2, 0px)`,
-    '--Switch-thumb-radius': `max(var(--Switch-track-radius) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, var(--Switch-track-radius) / 2))`,
-    '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-    '--Switch-thumb-offset': `max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)`,
+    '--unstable_paddingBlock': `max((var(--Switch-trackHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Switch-thumbSize)) / 2, 0px)`,
+    '--Switch-thumbRadius': `max(var(--Switch-trackRadius) - var(--unstable_paddingBlock), min(var(--unstable_paddingBlock) / 2, var(--Switch-trackRadius) / 2))`,
+    '--Switch-thumbWidth': 'var(--Switch-thumbSize)',
+    '--Switch-thumbOffset': `max((var(--Switch-trackHeight) - var(--Switch-thumbSize)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
       ...getColorVariables({ state: 'Hover' }),
@@ -107,7 +107,7 @@ const SwitchRoot = styled('div', {
     fontFamily: theme.vars.fontFamily.body,
     position: 'relative',
     padding:
-      'calc((var(--Switch-thumb-size) / 2) - (var(--Switch-track-height) / 2)) calc(-1 * var(--Switch-thumb-offset))',
+      'calc((var(--Switch-thumbSize) / 2) - (var(--Switch-trackHeight) / 2)) calc(-1 * var(--Switch-thumbOffset))',
     backgroundColor: 'initial', // clear background in case `outlined` variant contain background.
     border: 'none',
   };
@@ -118,7 +118,7 @@ const SwitchAction = styled('div', {
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: SwitchOwnerState }>(({ theme }) => ({
-  borderRadius: 'var(--Switch-track-radius)',
+  borderRadius: 'var(--Switch-trackRadius)',
   position: 'absolute',
   top: 0,
   left: 0,
@@ -146,18 +146,18 @@ const SwitchTrack = styled('span', {
   overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => ({
   position: 'relative',
-  color: 'var(--Switch-track-color)',
-  height: 'var(--Switch-track-height)',
-  width: 'var(--Switch-track-width)',
+  color: 'var(--Switch-trackColor)',
+  height: 'var(--Switch-trackHeight)',
+  width: 'var(--Switch-trackWidth)',
   display: 'flex',
   flexShrink: 0,
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
   border: 'var(--variant-borderWidth, 0px) solid',
-  borderColor: 'var(--Switch-track-borderColor)',
-  backgroundColor: 'var(--Switch-track-background)',
-  borderRadius: 'var(--Switch-track-radius)',
+  borderColor: 'var(--Switch-trackBorderColor)',
+  backgroundColor: 'var(--Switch-trackBackground)',
+  borderRadius: 'var(--Switch-trackRadius)',
   fontFamily: theme.vars.fontFamily.body,
   ...(ownerState.size === 'sm' && {
     fontSize: theme.vars.fontSize.xs,
@@ -175,22 +175,22 @@ const SwitchThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchOwnerState }>({
-  '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
+  '--Icon-fontSize': 'calc(var(--Switch-thumbSize) * 0.75)',
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
   top: '50%',
-  left: 'calc(50% - var(--Switch-track-width) / 2 + var(--Switch-thumb-width) / 2 + var(--Switch-thumb-offset))',
+  left: 'calc(50% - var(--Switch-trackWidth) / 2 + var(--Switch-thumbWidth) / 2 + var(--Switch-thumbOffset))',
   transform: 'translate(-50%, -50%)',
-  width: 'var(--Switch-thumb-width)',
-  height: 'var(--Switch-thumb-size)',
-  borderRadius: 'var(--Switch-thumb-radius)',
-  boxShadow: 'var(--Switch-thumb-shadow)',
-  color: 'var(--Switch-thumb-color)',
-  backgroundColor: 'var(--Switch-thumb-background)',
+  width: 'var(--Switch-thumbWidth)',
+  height: 'var(--Switch-thumbSize)',
+  borderRadius: 'var(--Switch-thumbRadius)',
+  boxShadow: 'var(--Switch-thumbShadow)',
+  color: 'var(--Switch-thumbColor)',
+  backgroundColor: 'var(--Switch-thumbBackground)',
   [`&.${switchClasses.checked}`]: {
-    left: 'calc(50% + var(--Switch-track-width) / 2 - var(--Switch-thumb-width) / 2 - var(--Switch-thumb-offset))',
+    left: 'calc(50% + var(--Switch-trackWidth) / 2 - var(--Switch-thumbWidth) / 2 - var(--Switch-thumbOffset))',
   },
 });
 
@@ -243,6 +243,9 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     size: sizeProp = 'md',
     startDecorator,
     endDecorator,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -294,12 +297,13 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: SwitchRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -309,7 +313,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     className: classes.startDecorator,
     elementType: SwitchStartDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -319,28 +323,28 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     className: classes.endDecorator,
     elementType: SwitchEndDecorator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotTrack, trackProps] = useSlot('track', {
     className: classes.track,
     elementType: SwitchTrack,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotThumb, thumbProps] = useSlot('thumb', {
     className: classes.thumb,
     elementType: SwitchThumb,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: SwitchAction,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -351,7 +355,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     className: classes.input,
     elementType: SwitchInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: getInputProps,
     ownerState,
   });
@@ -402,6 +406,11 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -458,6 +467,32 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    endDecorator: PropTypes.elementType,
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    startDecorator: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+  }),
+  /**
    * The element that appears at the end of the switch.
    */
   startDecorator: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -473,7 +508,7 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

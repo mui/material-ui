@@ -3,7 +3,7 @@
   "propDescriptions": {
     "autoComplete": "If <code>true</code>, the portion of the selected suggestion that has not been typed by the user, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state.",
     "autoHighlight": "If <code>true</code>, the first option is automatically highlighted.",
-    "autoSelect": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.",
+    "autoSelect": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.<br>When using <code>freeSolo</code> mode, the typed value will be the input value if the Autocomplete loses focus without highlighting an option.",
     "blurOnSelect": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event.",
     "ChipProps": "Props applied to the <a href=\"/material-ui/api/chip/\"><code>Chip</code></a> element.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
@@ -43,7 +43,7 @@
     "noOptionsText": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
     "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: T | Array&lt;T&gt;, reason: string, details?: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the component.<br><em>reason:</em> One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;.",
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>.",
-    "onHighlightChange": "Callback fired when the highlight option changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, option: T, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>option:</em> The highlighted option.<br><em>reason:</em> Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>.",
+    "onHighlightChange": "Callback fired when the highlight option changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, option: T, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>option:</em> The highlighted option.<br><em>reason:</em> Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>.",
     "onInputChange": "Callback fired when the input value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: string, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the text input.<br><em>reason:</em> Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>.",
     "onOpen": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><em>event:</em> The event source of the callback.",
     "open": "If <code>true</code>, the component is shown.",
@@ -70,6 +70,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
+    },
+    "expanded": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the listbox is displayed"
     },
     "focused": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

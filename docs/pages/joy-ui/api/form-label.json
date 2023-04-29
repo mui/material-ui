@@ -3,6 +3,17 @@
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
     "required": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ asterisk?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ asterisk?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -12,7 +23,23 @@
   },
   "name": "FormLabel",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'label'",
+      "class": ".MuiFormLabel-root"
+    },
+    {
+      "name": "asterisk",
+      "description": "The component that renders the asterisk.",
+      "default": "'span'",
+      "class": ".MuiFormLabel-asterisk"
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-joy/src/FormLabel/FormLabel.tsx",
   "inheritance": null,

@@ -14,6 +14,7 @@ import {
   CardOverflowTypeMap,
 } from './CardOverflowProps';
 import { CardRowContext } from '../Card/CardContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOverflowOwnerState) => {
   const { variant, color } = ownerState;
@@ -111,6 +112,8 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     children,
     color: colorProp = 'neutral',
     variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -125,18 +128,17 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <CardOverflowRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {children}
-    </CardOverflowRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardOverflowRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<CardOverflowTypeMap>;
 
 CardOverflow.propTypes /* remove-proptypes */ = {
@@ -167,6 +169,20 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -175,7 +191,7 @@ CardOverflow.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

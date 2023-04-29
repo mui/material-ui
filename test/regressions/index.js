@@ -148,20 +148,8 @@ const blacklist = [
   'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
-  'docs-styles-advanced', // Redudant
+  'docs-styles-advanced', // Redundant
   'docs-styles-basics/StressTest.png', // Need interaction
-  'docs-system-basics/BreakpointsAsArray.png', // Unit tests are enough
-  'docs-system-basics/BreakpointsAsObject.png', // Unit tests are enough
-  'docs-system-basics/ValueAsFunction.png', // Unit tests are enough
-  'docs-system-borders', // Unit tests are enough
-  'docs-system-display', // Unit tests are enough
-  'docs-system-flexbox', // Unit tests are enough
-  'docs-system-palette', // Unit tests are enough
-  'docs-system-positions', // Unit tests are enough
-  'docs-system-shadows', // Unit tests are enough
-  'docs-system-sizing', // Unit tests are enough
-  'docs-system-spacing', // Unit tests are enough
-  'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
 ];

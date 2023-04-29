@@ -1,156 +1,111 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useListbox, {
-  defaultListboxReducer,
-  ListboxState,
-  ActionTypes,
-  ListboxReducerAction,
-} from '../useListbox';
+import useList from '../useList';
 import {
-  MenuItemMetadata,
-  MenuItemState,
+  MenuInternalState,
   UseMenuListboxSlotProps,
   UseMenuParameters,
+  UseMenuReturnValue,
 } from './useMenu.types';
 import { EventHandlers } from '../utils';
-import useMenuChangeNotifiers from '../MenuUnstyled/useMenuChangeNotifiers';
+import { useCompoundParent } from '../utils/useCompound';
+import { MenuItemMetadata } from '../useMenuItem';
+import { StateChangeCallback } from '../utils/useControllableReducer.types';
+import menuReducer from './menuReducer';
 
-function stateReducer(
-  state: ListboxState<string>,
-  action: ListboxReducerAction<string>,
-): ListboxState<string> {
-  if (
-    action.type === ActionTypes.blur ||
-    action.type === ActionTypes.optionHover ||
-    action.type === ActionTypes.setValue
-  ) {
-    return state;
-  }
-
-  const newState = defaultListboxReducer(state, action);
-
-  if (
-    action.type !== ActionTypes.setHighlight &&
-    newState.highlightedValue === null &&
-    action.props.options.length > 0
-  ) {
-    return {
-      ...newState,
-      highlightedValue: action.props.options[0],
-    };
-  }
-
-  return newState;
-}
 /**
  *
  * Demos:
  *
- * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenu API](https://mui.com/base/api/use-menu/)
+ * - [useMenu API](https://mui.com/base/react-menu/hooks-api/#use-menu)
  */
-export default function useMenu(parameters: UseMenuParameters = {}) {
-  const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
-
-  const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
+export default function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
+  const { defaultOpen, listboxRef: listboxRefProp, open: openProp, onOpenChange } = parameters;
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(listboxRef, listboxRefProp);
 
-  const registerItem = React.useCallback((id: string, metadata: MenuItemMetadata) => {
-    setMenuItems((previousState) => {
-      const newState = { ...previousState };
-      newState[id] = metadata;
-      return newState;
-    });
-  }, []);
+  const { subitems, contextValue: compoundComponentContextValue } = useCompoundParent<
+    string,
+    MenuItemMetadata
+  >();
 
-  const unregisterItem = React.useCallback((id: string) => {
-    setMenuItems((previousState) => {
-      const newState = { ...previousState };
-      delete newState[id];
-      return newState;
-    });
-  }, []);
+  const subitemKeys = React.useMemo(() => Array.from(subitems.keys()), [subitems]);
 
-  const { notifyHighlightChanged, registerHighlightChangeHandler } = useMenuChangeNotifiers();
+  const getItemDomElement = React.useCallback(
+    (itemId: string) => {
+      if (itemId == null) {
+        return null;
+      }
+
+      return subitems.get(itemId)?.ref.current ?? null;
+    },
+    [subitems],
+  );
+
+  const controlledProps = React.useMemo(() => ({ open: openProp }), [openProp]);
+
+  const stateChangeHandler: StateChangeCallback<MenuInternalState> = React.useCallback(
+    (event, field, fieldValue, reason, state) => {
+      if (field === 'open') {
+        onOpenChange?.(fieldValue as boolean);
+
+        if (fieldValue === true && state.highlightedValue !== null) {
+          subitems.get(state.highlightedValue)?.ref.current?.focus();
+        }
+      }
+    },
+    [onOpenChange, subitems],
+  );
 
   const {
-    getOptionState,
-    getOptionProps,
+    dispatch,
     getRootProps,
-    highlightedOption,
-    setHighlightedValue: setListboxHighlight,
-  } = useListbox({
-    options: Object.keys(menuItems),
-    optionStringifier: (id: string) => menuItems[id].label || menuItems[id].ref.current?.innerText,
-    isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
-    listboxRef: handleRef,
-    focusManagement: 'DOM',
-    id: listboxId,
-    stateReducer,
+    contextValue: listContextValue,
+    state: { open, highlightedValue },
+    rootRef: mergedListRef,
+  } = useList({
+    controlledProps,
     disabledItemsFocusable: true,
+    focusManagement: 'DOM',
+    getItemDomElement,
+    getInitialState: () => ({
+      selectedValues: [],
+      highlightedValue: null,
+      open: defaultOpen ?? false,
+    }),
+    isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
+    items: subitemKeys,
+    itemStringifier: (id: string) =>
+      subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
+    rootRef: handleRef,
+    onStateChange: stateChangeHandler,
+    reducerActionContext: { listboxRef },
+    selectionMode: 'none',
+    stateReducer: menuReducer,
   });
 
   React.useEffect(() => {
-    notifyHighlightChanged(highlightedOption);
-  }, [highlightedOption, notifyHighlightChanged]);
-
-  const highlightFirstItem = React.useCallback(() => {
-    if (Object.keys(menuItems).length > 0) {
-      setListboxHighlight(menuItems[Object.keys(menuItems)[0]].id);
+    if (open && highlightedValue === subitemKeys[0]) {
+      subitems.get(subitemKeys[0])?.ref?.current?.focus();
     }
-  }, [menuItems, setListboxHighlight]);
-
-  const highlightLastItem = React.useCallback(() => {
-    if (Object.keys(menuItems).length > 0) {
-      setListboxHighlight(menuItems[Object.keys(menuItems)[Object.keys(menuItems).length - 1]].id);
-    }
-  }, [menuItems, setListboxHighlight]);
-
-  React.useEffect(() => {
-    if (!open) {
-      highlightFirstItem();
-    }
-  }, [open, highlightFirstItem]);
-
-  const createHandleKeyDown = (otherHandlers: EventHandlers) => (e: React.KeyboardEvent) => {
-    otherHandlers.onKeyDown?.(e);
-    if (e.defaultPrevented) {
-      return;
-    }
-
-    if (e.key === 'Escape' && open) {
-      onClose?.();
-    }
-  };
-
-  const createHandleBlur = (otherHandlers: EventHandlers) => (e: React.FocusEvent) => {
-    otherHandlers.onBlur?.(e);
-
-    if (!listboxRef.current?.contains(e.relatedTarget)) {
-      onClose?.();
-    }
-  };
+  }, [open, highlightedValue, subitems, subitemKeys]);
 
   React.useEffect(() => {
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
-    if (listboxRef.current?.contains(document.activeElement) && highlightedOption !== null) {
-      menuItems?.[highlightedOption]?.ref.current?.focus();
+    if (listboxRef.current?.contains(document.activeElement) && highlightedValue !== null) {
+      subitems?.get(highlightedValue)?.ref.current?.focus();
     }
-  }, [highlightedOption, menuItems]);
+  }, [highlightedValue, subitems]);
 
   const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ): UseMenuListboxSlotProps => {
-    const rootProps = getRootProps({
-      ...otherHandlers,
-      onBlur: createHandleBlur(otherHandlers),
-      onKeyDown: createHandleKeyDown(otherHandlers),
-    });
+    const rootProps = getRootProps(otherHandlers);
     return {
       ...otherHandlers,
       ...rootProps,
@@ -158,33 +113,18 @@ export default function useMenu(parameters: UseMenuParameters = {}) {
     };
   };
 
-  const getItemState = React.useCallback(
-    (id: string): MenuItemState => {
-      const { disabled, highlighted } = getOptionState(id);
-      return { disabled, highlighted };
-    },
-    [getOptionState],
-  );
-
-  React.useDebugValue({ menuItems, highlightedOption });
-
-  const contextValue = React.useMemo(
-    () => ({
-      getItemProps: getOptionProps,
-      getItemState,
-      registerHighlightChangeHandler,
-      registerItem,
-      unregisterItem,
-    }),
-    [getOptionProps, getItemState, registerHighlightChangeHandler, registerItem, unregisterItem],
-  );
+  React.useDebugValue({ subitems, highlightedValue });
 
   return {
-    contextValue,
+    contextValue: {
+      ...compoundComponentContextValue,
+      ...listContextValue,
+    },
+    dispatch,
     getListboxProps,
-    highlightedOption,
-    highlightFirstItem,
-    highlightLastItem,
-    menuItems,
+    highlightedValue,
+    listboxRef: mergedListRef,
+    menuItems: subitems,
+    open,
   };
 }

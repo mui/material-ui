@@ -14,7 +14,7 @@ This means we'll be dedicating even more time and effort to these complex compon
 
 - The date pickers are one step closer to a stable release.
 - **No surprise licenses changes**. We are staying true to [our promises](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd). What's MIT stays MIT, and we're going forward with our [plan announced over a year ago](https://v5-0-6.mui.com/components/date-range-picker/) to move the date range picker to the commercial license.
-- Follow the [migration steps](/x/react-date-pickers/migration-lab/)
+- Follow the [migration steps](/x/migration/migration-pickers-lab/)
 
 ## What are date and time pickers?
 
@@ -66,7 +66,7 @@ Visit [the MUI Store](https://mui.com/store/items/mui-x-pro/) to purchase a comm
 
 ## How do I migrate?
 
-Follow the [migration steps](/x/react-date-pickers/migration-lab/) by updating the package name and change from a default export to a named export:
+Follow the [migration steps](/x/migration/migration-pickers-lab/) by updating the package name and change from a default export to a named export:
 
 ```diff
 -import DatePicker from '@mui/lab/DatePicker';
