@@ -3,7 +3,10 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import AspectRatio, { aspectRatioClasses as classes } from '@mui/joy/AspectRatio';
+import AspectRatio, {
+  AspectRatioClassKey,
+  aspectRatioClasses as classes,
+} from '@mui/joy/AspectRatio';
 
 describe('<AspectRatio />', () => {
   const { render } = createRenderer();
@@ -37,7 +40,7 @@ describe('<AspectRatio />', () => {
       expect(getByTestId('root').firstChild).to.have.class(classes.variantSoft);
     });
 
-    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
+    (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <AspectRatio data-testid="root" variant={variant}>
@@ -46,7 +49,7 @@ describe('<AspectRatio />', () => {
         );
 
         expect(getByTestId('root').firstChild).to.have.class(
-          classes[`variant${capitalize(variant)}`],
+          classes[`variant${capitalize(variant)}` as AspectRatioClassKey],
         );
       });
     });
@@ -59,7 +62,7 @@ describe('<AspectRatio />', () => {
       expect(getByTestId('root').firstChild).to.have.class(classes.colorNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <AspectRatio data-testid="root" color={color}>
@@ -67,7 +70,9 @@ describe('<AspectRatio />', () => {
           </AspectRatio>,
         );
 
-        expect(getByTestId('root').firstChild).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root').firstChild).to.have.class(
+          classes[`color${capitalize(color)}` as AspectRatioClassKey],
+        );
       });
     });
   });
