@@ -211,7 +211,3 @@ Unlike the native `<select>`, groups can be nested.
 The following demo shows how to group options with the Option Group component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
-
-```
-
-```
