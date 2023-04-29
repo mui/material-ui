@@ -60,7 +60,10 @@ export type OptionProps<
 > = PolymorphicProps<OptionTypeMap<OptionValue, {}, RootComponentType>, RootComponentType>;
 
 export interface OptionType {
-  <OptionValue, RootComponentType extends React.ElementType>(
+  <
+    OptionValue,
+    RootComponentType extends React.ElementType = OptionTypeMap<OptionValue>['defaultComponent'],
+  >(
     props: PolymorphicProps<OptionTypeMap<OptionValue>, RootComponentType>,
   ): JSX.Element | null;
   propTypes?: any;
