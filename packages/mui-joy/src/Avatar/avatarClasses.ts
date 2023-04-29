@@ -43,6 +43,7 @@ export function getAvatarUtilityClass(slot: string): string {
 
 const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'root',
+  'colorDefault',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
