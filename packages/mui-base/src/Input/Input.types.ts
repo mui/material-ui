@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { FormControlState } from '../FormControl';
 import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface InputRootSlotPropsOverrides {}
 export interface InputInputSlotPropsOverrides {}
@@ -156,9 +156,7 @@ export interface InputTypeMap<
 
 export type InputProps<
   RootComponentType extends React.ElementType = InputTypeMap['defaultComponent'],
-> = OverrideProps<InputTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<InputTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type InputOwnerState = Simplify<
   InputOwnProps & {

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUtilityClass } from './tabsListClasses';
 import {
   TabsListOwnerState,
@@ -38,7 +37,7 @@ const TabsList = React.forwardRef(function TabsList<RootComponentType extends Re
   props: TabsListProps<RootComponentType>,
   forwardedRef: React.ForwardedRef<Element>,
 ) {
-  const { children, component, slotProps = {}, slots = {}, ...other } = props;
+  const { children, slotProps = {}, slots = {}, ...other } = props;
 
   const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
     rootRef: forwardedRef,
@@ -52,7 +51,7 @@ const TabsList = React.forwardRef(function TabsList<RootComponentType extends Re
 
   const classes = useUtilityClasses(ownerState);
 
-  const TabsListRoot: React.ElementType = component ?? slots.root ?? 'div';
+  const TabsListRoot: React.ElementType = slots.root ?? 'div';
   const tabsListRootProps: WithOptionalOwnerState<TabsListRootSlotProps> = useSlotProps({
     elementType: TabsListRoot,
     getSlotProps: getRootProps,
@@ -67,7 +66,7 @@ const TabsList = React.forwardRef(function TabsList<RootComponentType extends Re
       <TabsListRoot {...tabsListRootProps}>{children}</TabsListRoot>
     </TabsListProvider>
   );
-}) as OverridableComponent<TabsListTypeMap>;
+}) as PolymorphicComponent<TabsListTypeMap>;
 
 TabsList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -78,11 +77,6 @@ TabsList.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The props used for each slot inside the TabsList.
    * @default {}

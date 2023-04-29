@@ -53,27 +53,17 @@ The Switch component is composed of a root `<span>` that houses three interior s
 </span>
 ```
 
-### Slot props
+### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<Switch component="div" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
 <Switch slots={{ root: 'div', track: 'div' }} />
 ```
 
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -81,6 +71,20 @@ The following code snippet applies a CSS class called `my-thumb` to the thumb sl
 
 ```jsx
 <Switch slotProps={{ thumb: { className: 'my-thumb' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Switch<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Switch<'input'> slots={{ root: 'input' }} autoFocus={true} />
 ```
 
 ## Hook

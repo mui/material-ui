@@ -15,19 +15,39 @@ function FormControlTest() {
       {/* @ts-expect-error */}
       <FormControl invalidProp={0} />
 
-      <FormControl component="a" href="#" />
+      <FormControl<'a'>
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <FormControl component={CustomComponent} stringProp="test" numberProp={0} />
+      <FormControl<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
+
       {/* @ts-expect-error */}
-      <FormControl component={CustomComponent} />
+      <FormControl<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
 
-      <FormControl
-        component="button"
+      <FormControl<'button'>
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <FormControl<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

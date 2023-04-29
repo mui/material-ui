@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import isHostComponent from '../utils/isHostComponent';
 import { getInputUtilityClass } from './inputClasses';
 import {
@@ -57,7 +57,6 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
     autoComplete,
     autoFocus,
     className,
-    component,
     defaultValue,
     disabled,
     endAdornment,
@@ -133,7 +132,7 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
     type,
   };
 
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<InputRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -182,7 +181,7 @@ const Input = React.forwardRef(function Input<RootComponentType extends React.El
       {endAdornment}
     </Root>
   );
-}) as OverridableComponent<InputTypeMap>;
+}) as PolymorphicComponent<InputTypeMap>;
 
 Input.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -212,22 +211,9 @@ Input.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
    * Class name applied to the root element.
    */
   className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  color: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The default value. Use when the component is not controlled.
    */

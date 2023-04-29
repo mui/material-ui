@@ -58,17 +58,29 @@ The Snackbar component is composed of a single root `<div>` slot with no interio
 <div role="presentation" className="BaseSnackbar-root">snackbar content</div>
 ```
 
-### Slot props
-
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
+### Custom structure
 
 ```jsx
-<Snackbar component="span" />
+<Snackbar slots={{ root: 'span' }} />
+```
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom component's props directly on the component:
+
+```tsx
+<Snackbar<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Snackbar<'button'> slots={{ root: 'button' }} onClick={() => {}} />
 ```
 
 ## Hook
