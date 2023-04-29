@@ -19,6 +19,14 @@ export interface SelectOptionDefinition<Value> {
   label: string;
 }
 
+export type SelectOnChangeEvent<OptionValue, Multiple> =
+  | (Omit<React.MouseEvent | React.FocusEvent | React.KeyboardEvent, 'target'> & {
+      target: (React.MouseEvent | React.FocusEvent | React.KeyboardEvent)['target'] & {
+        value: SelectValue<OptionValue, Multiple>;
+      };
+    })
+  | null;
+
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
   /**
    * If `true`, the select will be open by default.
@@ -57,7 +65,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    e: SelectOnChangeEvent<OptionValue, Multiple>,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**

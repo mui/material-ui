@@ -178,7 +178,13 @@ export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
      * Callback fired when an option is selected.
      */
     onChange?: (
-      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      e:
+        | (Omit<React.MouseEvent | React.FocusEvent | React.KeyboardEvent, 'target'> & {
+            target: (React.MouseEvent | React.FocusEvent | React.KeyboardEvent)['target'] & {
+              value: TValue | null;
+            };
+          })
+        | null,
       value: TValue | null,
     ) => void;
     /**

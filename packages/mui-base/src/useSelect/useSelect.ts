@@ -10,6 +10,7 @@ import {
   SelectAction,
   SelectActionTypes,
   SelectInternalState,
+  SelectOnChangeEvent,
   SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -174,10 +175,23 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         | null,
       newValues: OptionValue[],
     ) => {
+      const newValue = multiple ? newValues : newValues[0] ?? null;
+
+      Object.defineProperty(event, 'target', {
+        writable: true,
+        value: { value: newValue },
+      });
+
       if (multiple) {
-        onChange?.(event, newValues as SelectValue<OptionValue, Multiple>);
+        onChange?.(
+          event as SelectOnChangeEvent<OptionValue, Multiple>,
+          newValue as SelectValue<OptionValue, Multiple>,
+        );
       } else {
-        onChange?.(event, (newValues[0] ?? null) as SelectValue<OptionValue, Multiple>);
+        onChange?.(
+          event as SelectOnChangeEvent<OptionValue, Multiple>,
+          newValue as SelectValue<OptionValue, Multiple>,
+        );
       }
     },
     [multiple, onChange],
