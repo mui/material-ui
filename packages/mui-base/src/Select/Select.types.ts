@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
-import Popper, { PopperProps } from '../Popper';
+import { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
@@ -100,7 +100,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectOwnerState<OptionValue, Multiple>
     >;
     popper?: SlotComponentProps<
-      typeof Popper,
+      'div',
       SelectPopperSlotPropsOverrides,
       SelectOwnerState<OptionValue, Multiple>
     >;

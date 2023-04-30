@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import Popper, { PopperProps } from '../Popper';
+import { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
@@ -42,7 +42,7 @@ export interface MenuOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<typeof Popper, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides, MenuOwnerState>;
     listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
