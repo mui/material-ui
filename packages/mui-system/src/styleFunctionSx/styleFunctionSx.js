@@ -73,18 +73,31 @@ export function unstable_createStyleFunctionSx() {
     return handleBreakpoints(props, val, styleFromPropValue);
   }
 
-  const sortSxOutput = (sxOutput) => {
-    const sortedSxOutput = {};
-    Object.keys(sxOutput)
+  const sortMediaQueries = (mediaQueries) => {
+    const sortedMediaQueries = {};
+    Object.keys(mediaQueries)
       .sort((a, b) =>
         a.localeCompare(b, undefined, {
           numeric: true,
         }),
       )
       .forEach((key) => {
-        sortedSxOutput[key] = sxOutput[key];
+        sortedMediaQueries[key] = mediaQueries[key];
       });
-    return sortedSxOutput;
+    return sortedMediaQueries;
+  };
+
+  const separateMediaQueries = (sxOutput) => {
+    const mediaQueryObj = {};
+    const restObj = {};
+    Object.keys(sxOutput).forEach((key) => {
+      if (key.includes('@media')) {
+        mediaQueryObj[key] = sxOutput[key];
+      } else {
+        restObj[key] = sxOutput[key];
+      }
+    });
+    return { mediaQueryObj, restObj };
   };
 
   function styleFunctionSx(props) {
@@ -125,8 +138,9 @@ export function unstable_createStyleFunctionSx() {
             if (config[styleKey]) {
               css = merge(css, getThemeValue(styleKey, value, theme, config));
             } else {
-              shouldSort = true;
-
+              if (styleKey.includes('@media')) {
+                shouldSort = true;
+              }
               const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
                 [styleKey]: x,
               }));
@@ -149,8 +163,10 @@ export function unstable_createStyleFunctionSx() {
         return sxOutput;
       }
 
-      const sortedSxOutput = sortSxOutput(sxOutput);
-      return sortedSxOutput;
+      shouldSort = false;
+      const { mediaQueryObj, restObj } = separateMediaQueries(sxOutput);
+      const sortedMediaQueries = sortMediaQueries(mediaQueryObj);
+      return { ...sortedMediaQueries, ...restObj };
     }
 
     return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);

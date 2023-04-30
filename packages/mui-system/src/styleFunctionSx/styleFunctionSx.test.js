@@ -260,7 +260,7 @@ describe('styleFunctionSx', () => {
       ]);
     });
 
-    it('should write breakpoints in correct order for custom values', () => {
+    it('should only sort breakpoints in correct order for custom values, not sort for non-breakpoints', () => {
       const result = styleFunctionSx({
         theme: {
           ...theme,
@@ -297,7 +297,7 @@ describe('styleFunctionSx', () => {
         }),
       });
 
-      // Test the order
+      // Test the order of media queries
       expect(Object.keys(result)).to.deep.equal([
         '@media (max-width:599.95px)',
         '@media (max-width:799.95px)',
@@ -305,9 +305,9 @@ describe('styleFunctionSx', () => {
         '@media (min-width:750px)',
         '@media (min-width:960px)',
         '@media (min-width:1000px)',
-        'backgroundColor',
-        'height',
         'width',
+        'height',
+        'backgroundColor',
       ]);
 
       expect(result).to.deep.equal({
