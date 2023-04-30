@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 import Breadcrumbs, {
   BreadcrumbsClasses,
   breadcrumbsClasses as classes,
+  BreadcrumbsClassKey
 } from '@mui/joy/Breadcrumbs';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
@@ -38,7 +39,7 @@ describe('<Breadcrumbs />', () => {
         const { getByRole } = render(<Breadcrumbs size={size} />);
 
         expect(getByRole('navigation')).to.have.class(
-          classes[`size${capitalize(size)}` as keyof BreadcrumbsClasses],
+          classes[`size${capitalize(size)}` as BreadcrumbsClassKey],
         );
       });
     });
