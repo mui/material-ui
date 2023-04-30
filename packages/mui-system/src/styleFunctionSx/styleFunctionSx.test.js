@@ -274,16 +274,16 @@ describe('styleFunctionSx', () => {
           width: '80vw',
           height: '100%',
           backgroundColor: 'red',
-          // custom value
-          [themeParam.breakpoints.up(750)]: {
-            width: '60vw',
-          },
           [themeParam.breakpoints.up('md')]: {
             width: '30vw',
           },
           // custom value
           [themeParam.breakpoints.up(1000)]: {
             width: '90vw',
+          },
+          // custom value
+          [themeParam.breakpoints.up(750)]: {
+            width: '60vw',
           },
           [themeParam.breakpoints.down(800)]: {
             backgroundColor: 'blue',
@@ -296,6 +296,19 @@ describe('styleFunctionSx', () => {
           },
         }),
       });
+
+      // Test the order
+      expect(Object.keys(result)).to.deep.equal([
+        '@media (max-width:599.95px)',
+        '@media (max-width:799.95px)',
+        '@media (min-width:600px) and (max-width:799.95px)',
+        '@media (min-width:750px)',
+        '@media (min-width:960px)',
+        '@media (min-width:1000px)',
+        'backgroundColor',
+        'height',
+        'width',
+      ]);
 
       expect(result).to.deep.equal({
         '@media (max-width:599.95px)': { backgroundColor: 'yellow' },
