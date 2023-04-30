@@ -90,6 +90,8 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     slots = {},
     ...other
   } = props;
+  // TODO: `modal`` must change its type in this file to match the type of methods
+  // provided by `ModalManager`
   const manager = managerProp as any;
   const [exited, setExited] = React.useState(!open);
   const modal = React.useRef<{
