@@ -7,6 +7,11 @@ import { styled, Theme, useThemeProps } from '../styles';
 
 export type PopperProps = Omit<BasePopperProps, 'direction'> & {
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -55,6 +60,7 @@ const Popper = React.forwardRef(function Popper(
 
   const {
     anchorEl,
+    component,
     components,
     componentsProps,
     container,
@@ -74,6 +80,7 @@ const Popper = React.forwardRef(function Popper(
   const RootComponent = slots?.root ?? components?.Root;
   const otherProps = {
     anchorEl,
+    component,
     container,
     disablePortal,
     keepMounted,
@@ -119,6 +126,11 @@ Popper.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
