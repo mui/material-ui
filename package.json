@@ -94,7 +94,7 @@
     "@slack/bolt": "^3.13.0",
     "@testing-library/dom": "^9.2.0",
     "@testing-library/react": "^14.0.0",
-    "@types/chai": "^4.3.4",
+    "@types/chai": "^4.3.5",
     "@types/chai-dom": "^1.11.0",
     "@types/enzyme": "^3.10.13",
     "@types/format-util": "^1.0.2",
