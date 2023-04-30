@@ -118,6 +118,7 @@ const StyledOption = styled(Option)(
   padding: 8px;
   border-radius: 8px;
   cursor: default;
+  transition: border-radius 300ms ease;
 
   &:last-of-type {
     border-bottom: none;
@@ -131,6 +132,18 @@ const StyledOption = styled(Option)(
   &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  }
+
+  @supports selector(:has(*)) {
+    &.${optionClasses.selected} + .${optionClasses.selected} {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &:where(.${optionClasses.selected}):has(+ .${optionClasses.selected}) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   }
 
   &.${optionClasses.highlighted}.${optionClasses.selected} {
