@@ -53,7 +53,11 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     (event, field, fieldValue, reason, state) => {
       if (field === 'open') {
         onOpenChange?.(
-          event as Parameters<NonNullable<UseMenuParameters['onOpenChange']>>[0],
+          event as
+            | React.MouseEvent<Element, Event>
+            | React.KeyboardEvent<Event>
+            | React.FocusEvent
+            | null,
           fieldValue as boolean,
         );
 
