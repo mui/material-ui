@@ -73,6 +73,20 @@ export function unstable_createStyleFunctionSx() {
     return handleBreakpoints(props, val, styleFromPropValue);
   }
 
+  const sortSxOutput = (sxOutput) => {
+    const sortedSxOutput = {};
+    Object.keys(sxOutput)
+      .sort((a, b) =>
+        a.localeCompare(b, undefined, {
+          numeric: true,
+        }),
+      )
+      .forEach((key) => {
+        sortedSxOutput[key] = sxOutput[key];
+      });
+    return sortedSxOutput;
+  };
+
   function styleFunctionSx(props) {
     const { sx, theme = {} } = props || {};
 
@@ -102,6 +116,7 @@ export function unstable_createStyleFunctionSx() {
       const breakpointsKeys = Object.keys(emptyBreakpoints);
 
       let css = emptyBreakpoints;
+      let shouldSort = false;
 
       Object.keys(sxObject).forEach((styleKey) => {
         const value = callIfFn(sxObject[styleKey], theme);
@@ -110,6 +125,8 @@ export function unstable_createStyleFunctionSx() {
             if (config[styleKey]) {
               css = merge(css, getThemeValue(styleKey, value, theme, config));
             } else {
+              shouldSort = true;
+
               const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
                 [styleKey]: x,
               }));
@@ -126,7 +143,14 @@ export function unstable_createStyleFunctionSx() {
         }
       });
 
-      return removeUnusedBreakpoints(breakpointsKeys, css);
+      const sxOutput = removeUnusedBreakpoints(breakpointsKeys, css);
+
+      if (!shouldSort) {
+        return sxOutput;
+      }
+
+      const sortedSxOutput = sortSxOutput(sxOutput);
+      return sortedSxOutput;
     }
 
     return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
