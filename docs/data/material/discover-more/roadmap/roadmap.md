@@ -4,7 +4,7 @@
 
 ## Methodology
 
-MUI is community driven – issues that resonate most with the community get the most attention.
+MUI is community-driven—issues that resonate most with the community get the most attention.
 Please **upvote** (👍) on GitHub the issues you are most interested in.
 Thank you for participating [in the developer survey](/blog/2021-developer-survey-results/).
 

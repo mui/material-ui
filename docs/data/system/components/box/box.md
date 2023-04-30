@@ -38,7 +38,7 @@ For instance, you can change the margin this way.
 However, sometimes you have to target the underlying DOM element.
 As an example, you may want to change the border of the Button.
 The Button component defines its own styles. CSS inheritance doesn't help.
-To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
+To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is an MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>

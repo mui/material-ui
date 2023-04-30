@@ -4,6 +4,32 @@ import Option, { optionClasses } from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
+export default function UnstyledSelectsMultiple() {
+  return (
+    <CustomMultiSelect defaultValue={[10, 20]}>
+      <StyledOption value={10}>Ten</StyledOption>
+      <StyledOption value={20}>Twenty</StyledOption>
+      <StyledOption value={30}>Thirty</StyledOption>
+      <StyledOption value={40}>Forty</StyledOption>
+      <StyledOption value={50}>Fifty</StyledOption>
+    </CustomMultiSelect>
+  );
+}
+
+const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(
+  props: SelectProps<number, true>,
+  ref: React.ForwardedRef<any>,
+) {
+  const slots: SelectProps<number, true>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} multiple ref={ref} slots={slots} />;
+});
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -126,29 +152,3 @@ const StyledOption = styled(Option)(
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(
-  props: SelectProps<number, true>,
-  ref: React.ForwardedRef<any>,
-) {
-  const slots: SelectProps<number, true>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} multiple ref={ref} slots={slots} />;
-});
-
-export default function UnstyledSelectsMultiple() {
-  return (
-    <CustomMultiSelect defaultValue={[10, 20]}>
-      <StyledOption value={10}>Ten</StyledOption>
-      <StyledOption value={20}>Twenty</StyledOption>
-      <StyledOption value={30}>Thirty</StyledOption>
-      <StyledOption value={40}>Forty</StyledOption>
-      <StyledOption value={50}>Fifty</StyledOption>
-    </CustomMultiSelect>
-  );
-}
