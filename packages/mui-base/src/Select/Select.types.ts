@@ -79,7 +79,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<OptionValue>) => string;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
    * Function that customizes the rendering of the selected value.
    */
