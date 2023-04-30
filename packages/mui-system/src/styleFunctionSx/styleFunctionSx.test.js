@@ -21,7 +21,8 @@ describe('styleFunctionSx', () => {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
       up: (key) => {
-        return `@media (min-width:${breakpointsValues[key]}px)`;
+        const value = typeof breakpointsValues[key] === 'number' ? breakpointsValues[key] : key;
+        return `@media (min-width:${value}px)`;
       },
     },
     unit: 'px',
@@ -257,6 +258,56 @@ describe('styleFunctionSx', () => {
         '@media (min-width:600px)',
         'minHeight',
       ]);
+    });
+
+    it('should write breakpoints in correct order for custom values', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          breakpoints: {
+            ...theme.breakpoints,
+            down: createBreakpoints(theme.breakpoints).down,
+            between: createBreakpoints(theme.breakpoints).between,
+          },
+        },
+        sx: (themeParam) => ({
+          width: '80vw',
+          height: '100%',
+          backgroundColor: 'red',
+          // custom value
+          [themeParam.breakpoints.up(750)]: {
+            width: '60vw',
+          },
+          [themeParam.breakpoints.up('md')]: {
+            width: '30vw',
+          },
+          // custom value
+          [themeParam.breakpoints.up(1000)]: {
+            width: '90vw',
+          },
+          [themeParam.breakpoints.down(800)]: {
+            backgroundColor: 'blue',
+          },
+          [themeParam.breakpoints.down(600)]: {
+            backgroundColor: 'yellow',
+          },
+          [themeParam.breakpoints.between(600, 800)]: {
+            backgroundColor: 'pink',
+          },
+        }),
+      });
+
+      expect(result).to.deep.equal({
+        '@media (max-width:599.95px)': { backgroundColor: 'yellow' },
+        '@media (max-width:799.95px)': { backgroundColor: 'blue' },
+        '@media (min-width:600px) and (max-width:799.95px)': { backgroundColor: 'pink' },
+        '@media (min-width:750px)': { width: '60vw' },
+        '@media (min-width:960px)': { width: '30vw' },
+        '@media (min-width:1000px)': { width: '90vw' },
+        backgroundColor: 'red',
+        height: '100%',
+        width: '80vw',
+      });
     });
   });
 
