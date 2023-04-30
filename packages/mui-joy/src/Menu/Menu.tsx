@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import useMenu, { MenuProvider, UseMenuParameters } from '@mui/base/useMenu';
+import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
