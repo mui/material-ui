@@ -3,7 +3,6 @@
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
     "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
-    "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
     "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
