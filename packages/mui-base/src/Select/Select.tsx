@@ -104,7 +104,6 @@ const Select = React.forwardRef(function Select<
   const {
     autoFocus,
     children,
-    component,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
@@ -130,7 +129,7 @@ const Select = React.forwardRef(function Select<
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? slots.root ?? 'button';
+  const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
   const PopperComponent = slots.popper ?? Popper;
 
@@ -265,11 +264,6 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the select will be initially open.
    * @default false

@@ -26,7 +26,7 @@ It can also be transformed into a `<textarea>` as needed.
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Input from '@mui/base/Input';
