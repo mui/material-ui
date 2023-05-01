@@ -370,6 +370,10 @@ function createRender(context) {
   return render;
 }
 
+const BaseUIReexportedComponents = [
+  'ClickAwayListener',
+];
+
 /**
  * @param {string} product
  * @example 'material'
@@ -386,7 +390,7 @@ function resolveComponentApiUrl(product, componentPkg, component) {
   if (product === 'date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
-  if (componentPkg === 'mui-base') {
+  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base/api/${kebabCase(component)}/`;
   }
   return `/${product}/api/${kebabCase(component)}/`;
