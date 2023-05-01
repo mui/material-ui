@@ -4,6 +4,7 @@ import Switch from '@mui/base/Switch';
 import Badge from '@mui/base/Badge';
 import PopperUnstyled from '@mui/base/Popper';
 import { Popper } from '@mui/base';
+import { Popper as PopperBase } from '@mui/base';
 
 <MaterialInput component={CustomRoot} />;
 
@@ -41,3 +42,4 @@ import { Popper } from '@mui/base';
 
 <PopperUnstyled component='button' />;
 <Popper component='button' />;
+<PopperBase component='button' />;
