@@ -76,13 +76,13 @@ This is useful when the Aspect Ratio component wraps dynamic-width content, as s
 
 {{"demo": "MinMaxRatio.js"}}
 
-## Usage inside a flex row
+## Using inside a flex row
 
 When the Aspect Ratio component is a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the content:
 
 {{"demo": "FlexRowRatio.js"}}
 
-## Usage with Next.js Image
+## Using with Next.js Image
 
 The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
 The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
@@ -101,6 +101,14 @@ function App() {
   );
 }
 ```
+
+## Using with an icon
+
+The Aspect Ratio component can be a handy tool for creating a square container for an icon.
+
+The example below show
+
+{{"demo": "IconWrapper.js"}}
 
 ## Common examples
 
