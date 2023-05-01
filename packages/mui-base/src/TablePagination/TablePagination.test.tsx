@@ -62,6 +62,7 @@ describe('<TablePagination />', () => {
           testWithElement: 'th',
         },
       },
+      skip: ['componentProp'],
     }),
   );
 

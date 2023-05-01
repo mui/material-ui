@@ -43,6 +43,7 @@ describe('<Tabs />', () => {
         expectedClassName: classes.root,
       },
     },
+    skip: ['componentProp'],
   }));
 
   it('can be named via `aria-label`', () => {

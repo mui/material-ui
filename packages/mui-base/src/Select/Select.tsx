@@ -62,7 +62,9 @@ function defaultFormValueProvider<OptionValue>(
   return JSON.stringify(selectedOption.value);
 }
 
-function useUtilityClasses(ownerState: SelectOwnerState<any, any>) {
+function useUtilityClasses<OptionValue extends {}, Multiple extends boolean>(
+  ownerState: SelectOwnerState<OptionValue, Multiple>,
+) {
   const { active, disabled, open, focusVisible } = ownerState;
 
   const slots = {
@@ -91,14 +93,17 @@ function useUtilityClasses(ownerState: SelectOwnerState<any, any>) {
  *
  * - [Select API](https://mui.com/base/react-select/components-api/#select)
  */
-const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple extends boolean>(
-  props: SelectProps<OptionValue, Multiple>,
-  forwardedRef: React.ForwardedRef<any>,
+const Select = React.forwardRef(function Select<
+  OptionValue extends {},
+  Multiple extends boolean,
+  RootComponentType extends React.ElementType,
+>(
+  props: SelectProps<OptionValue, Multiple, RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     autoFocus,
     children,
-    component,
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
@@ -124,7 +129,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement>(null);
 
-  const Button = component ?? slots.root ?? 'button';
+  const Button = slots.root ?? 'button';
   const ListboxRoot = slots.listbox ?? 'ul';
   const PopperComponent = slots.popper ?? Popper;
 
@@ -259,11 +264,6 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the select will be initially open.
    * @default false

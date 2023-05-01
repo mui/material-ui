@@ -332,7 +332,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontWeight: 700,
       },
       allVariants: {
-        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 72px)',
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       },
     },
     /**

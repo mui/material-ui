@@ -4,7 +4,6 @@
     "aria-label": "The label of the slider.",
     "aria-labelledby": "The id of the element containing a label for the slider.",
     "aria-valuetext": "A string value that provides a user-friendly name for the current value of the slider.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "disableSwap": "If <code>true</code>, the active thumb doesn&#39;t swap when moving pointer over a thumb while dragging another thumb.",

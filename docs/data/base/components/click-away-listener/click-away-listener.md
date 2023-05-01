@@ -26,7 +26,7 @@ Click-Away Listener also supports the [Portal](/base/react-portal/) component.
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import ClickAwayListener from '@mui/base/ClickAwayListener';

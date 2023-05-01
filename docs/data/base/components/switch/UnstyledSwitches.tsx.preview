@@ -1,4 +1,0 @@
-<Switch component={Root} {...label} defaultChecked />
-<Switch component={Root} {...label} />
-<Switch component={Root} {...label} defaultChecked disabled />
-<Switch component={Root} {...label} disabled />

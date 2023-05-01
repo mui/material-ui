@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 import useMenu from '../useMenu';
@@ -31,14 +31,14 @@ function useUtilityClasses(ownerState: MenuOwnerState) {
  *
  * - [Menu API](https://mui.com/base/react-menu/components-api/#menu)
  */
-const Menu = React.forwardRef(function Menu<
-  BaseComponentType extends React.ElementType = MenuTypeMap['defaultComponent'],
->(props: MenuProps<BaseComponentType>, forwardedRef: React.Ref<any>) {
+const Menu = React.forwardRef(function Menu<RootComponentType extends React.ElementType>(
+  props: MenuProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     actions,
     anchorEl,
     children,
-    component,
     defaultOpen,
     listboxId,
     onOpenChange,
@@ -67,7 +67,7 @@ const Menu = React.forwardRef(function Menu<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? Popper;
+  const Root = slots.root ?? Popper;
   const rootProps: WithOptionalOwnerState<MenuRootSlotProps> = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
@@ -99,7 +99,7 @@ const Menu = React.forwardRef(function Menu<
       </Listbox>
     </Root>
   );
-}) as OverridableComponent<MenuTypeMap>;
+}) as PolymorphicComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -125,11 +125,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * @ignore
    */
