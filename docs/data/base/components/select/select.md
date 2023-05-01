@@ -34,7 +34,7 @@ It also includes Option for creating the options on the list, and Option Group f
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import Select from '@mui/base/Select';

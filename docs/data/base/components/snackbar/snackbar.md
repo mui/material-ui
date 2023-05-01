@@ -24,7 +24,7 @@ The Snackbar component is built to appear on-screen to inform users about an act
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Snackbar from '@mui/base/Snackbar';
