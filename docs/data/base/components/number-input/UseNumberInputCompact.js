@@ -53,7 +53,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(props, r
           />
         </svg>
       </StyledStepperButton>
-      <HiddenInput {...props} {...inputProps} />
+      <HiddenInput {...inputProps} />
     </StyledInputRoot>
   );
 });

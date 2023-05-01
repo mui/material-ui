@@ -47,7 +47,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(props, ref
           />
         </svg>
       </StyledStepperButton>
-      <StyledInputElement {...props} {...inputProps} />
+      <StyledInputElement {...inputProps} />
     </StyledInputRoot>
   );
 });

@@ -18,6 +18,10 @@ import extractEventHandlers from '../utils/extractEventHandlers';
 
 type StepDirection = 'up' | 'down';
 
+const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
+
+const SUPPORTED_KEYS = [...STEP_KEYS, 'Home', 'End'];
+
 // TODO
 // 1 - make a proper parser
 // 2 - accept a parser (func) prop
@@ -239,7 +243,11 @@ export default function useNumberInput(
         return;
       }
 
-      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'].includes(event.key)) {
+      if (SUPPORTED_KEYS.includes(event.key)) {
+        event.preventDefault();
+      }
+
+      if (STEP_KEYS.includes(event.key)) {
         const direction = {
           ArrowUp: 'up',
           ArrowDown: 'down',
@@ -321,6 +329,14 @@ export default function useNumberInput(
     };
   };
 
+  const handleStepperButtonMouseDown = (event: React.PointerEvent) => {
+    event.preventDefault();
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   const isIncrementDisabled = isNumber(value) ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false;
 
   const getIncrementButtonProps = <TOther extends Record<string, any> = {}>(
@@ -332,6 +348,7 @@ export default function useNumberInput(
       tabIndex: -1,
       disabled: isIncrementDisabled,
       'aria-disabled': isIncrementDisabled,
+      onMouseDown: handleStepperButtonMouseDown,
       onClick: handleStep('up'),
     };
   };
@@ -347,6 +364,7 @@ export default function useNumberInput(
       tabIndex: -1,
       disabled: isDecrementDisabled,
       'aria-disabled': isDecrementDisabled,
+      onMouseDown: handleStepperButtonMouseDown,
       onClick: handleStep('down'),
     };
   };
