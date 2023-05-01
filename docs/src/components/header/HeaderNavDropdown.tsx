@@ -224,7 +224,7 @@ export default function HeaderNavDropdown() {
                           >
                             {item.name}
                             {item.chip ? (
-                              <Chip size="small" label={item.chip} color="grey" />
+                              <Chip size="small" label={item.chip} color="primary" variant="outlined" />
                             ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
@@ -270,7 +270,7 @@ export default function HeaderNavDropdown() {
                           >
                             {item.name}
                             {item.chip ? (
-                              <Chip size="small" label={item.chip} color="grey" />
+                              <Chip size="small" label={item.chip} color="primary" variant="outlined" />
                             ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
