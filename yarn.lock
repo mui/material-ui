@@ -1245,10 +1245,10 @@
   dependencies:
     "@chakra-ui/react-use-safe-layout-effect" "2.0.5"
 
-"@chakra-ui/object-utils@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/object-utils/-/object-utils-2.0.8.tgz#307f927f6434f99feb32ba92bdf451a6b59a6199"
-  integrity sha512-2upjT2JgRuiupdrtBWklKBS6tqeGMA77Nh6Q0JaoQuH/8yq+15CGckqn3IUWkWoGI0Fg3bK9LDlbbD+9DLw95Q==
+"@chakra-ui/object-utils@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/object-utils/-/object-utils-2.1.0.tgz#a4ecf9cea92f1de09f5531f53ffdc41e0b19b6c3"
+  integrity sha512-tgIZOgLHaoti5PYGPTwK3t/cqtcycW0owaiOXoZOcpwwX/vlVb+H1jFsQyWiiwQVPt9RkoSLtxzXamx+aHH+bQ==
 
 "@chakra-ui/react-use-safe-layout-effect@2.0.5":
   version "2.0.5"
@@ -1267,25 +1267,25 @@
   resolved "https://registry.yarnpkg.com/@chakra-ui/shared-utils/-/shared-utils-2.0.5.tgz#cb2b49705e113853647f1822142619570feba081"
   integrity sha512-4/Wur0FqDov7Y0nCXl7HbHzCg4aq86h+SXdoUeuCMD3dSj7dpsVnStLYhng1vxvlbUnLpdF4oz5Myt3i/a7N3Q==
 
-"@chakra-ui/styled-system@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.8.0.tgz#c02aa7b4a15bd826c19d055cd226bd44f7470f26"
-  integrity sha512-bmRv/8ACJGGKGx84U1npiUddwdNifJ+/ETklGwooS5APM0ymwUtBYZpFxjYNJrqvVYpg3mVY6HhMyBVptLS7iA==
+"@chakra-ui/styled-system@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.9.0.tgz#b3bace83c78cf9c072c461cc963bf73c0e7ccd3d"
+  integrity sha512-rToN30eOezrTZ5qBHmWqEwsYPenHtc3WU6ODAfMUwNnmCJQiu2erRGv8JwIjmRJnKSOEnNKccI2UXe2EwI6+JA==
   dependencies:
     "@chakra-ui/shared-utils" "2.0.5"
     csstype "^3.0.11"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/system@^2.5.5":
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.5.5.tgz#b8b070d07ca9b0190363100396eea02cca754cec"
-  integrity sha512-52BIp/Zyvefgxn5RTByfkTeG4J+y81LWEjWm8jCaRFsLVm8IFgqIrngtcq4I7gD5n/UKbneHlb4eLHo4uc5yDQ==
+"@chakra-ui/system@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.5.6.tgz#244eef56be3d3d546ef3d1b93e5f9b9a591ef3fd"
+  integrity sha512-sKzonHUbjOnRxZvcysN8pqa3y0OkTb9xWPhNFnvye/Km8vZhw4SfHKbVpRXedMPVp5Q3PHOxqAXOs6Q0kpo6KA==
   dependencies:
     "@chakra-ui/color-mode" "2.1.12"
-    "@chakra-ui/object-utils" "2.0.8"
+    "@chakra-ui/object-utils" "2.1.0"
     "@chakra-ui/react-utils" "2.0.12"
-    "@chakra-ui/styled-system" "2.8.0"
-    "@chakra-ui/theme-utils" "2.0.15"
+    "@chakra-ui/styled-system" "2.9.0"
+    "@chakra-ui/theme-utils" "2.0.16"
     "@chakra-ui/utils" "2.0.15"
     react-fast-compare "3.2.1"
 
@@ -1298,20 +1298,20 @@
     "@chakra-ui/shared-utils" "2.0.5"
     color2k "^2.0.0"
 
-"@chakra-ui/theme-utils@2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.15.tgz#968a5e8c47bb403323fe67049c7b751a6e47f069"
-  integrity sha512-UuxtEgE7gwMTGDXtUpTOI7F5X0iHB9ekEOG5PWPn2wWBL7rlk2JtPI7UP5Um5Yg6vvBfXYGK1ySahxqsgf+87g==
+"@chakra-ui/theme-utils@2.0.16":
+  version "2.0.16"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.16.tgz#9686b6b307ae8928a686df8df79bee16c4e0d25c"
+  integrity sha512-xVrQ8YEhIX51PB27kbEGHoQ3G78erSykqOeIPkoxaEfWBV4Ba83o7RwEZG8/Qa7c7S4qYPmCSGynegBWrsQpHA==
   dependencies:
     "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/styled-system" "2.8.0"
-    "@chakra-ui/theme" "3.0.1"
+    "@chakra-ui/styled-system" "2.9.0"
+    "@chakra-ui/theme" "3.1.0"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/theme@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-3.0.1.tgz#151fc5d1e23d0fd0cd29d28acf8f6017269c13fc"
-  integrity sha512-92kDm/Ux/51uJqhRKevQo/O/rdwucDYcpHg2QuwzdAxISCeYvgtl2TtgOOl5EnqEP0j3IEAvZHZUlv8TTbawaw==
+"@chakra-ui/theme@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-3.1.0.tgz#ebb097c350ca9827b2efcc81df5f4b712729b9a0"
+  integrity sha512-lO2p37lyEGVmGUrr+lakHpnvrJHkkfPnSM+w9MGmR0V0rqIGTIBrirBO07vDccNRS17jcXjA8d9QZEBYzIVyNw==
   dependencies:
     "@chakra-ui/anatomy" "2.1.2"
     "@chakra-ui/shared-utils" "2.0.5"
