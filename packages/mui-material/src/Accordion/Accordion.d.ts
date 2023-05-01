@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { DistributiveOmit, OverridableComponent, OverrideProps } from '@mui/types';
+import { DistributiveOmit } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PaperProps } from '../Paper';
 import { AccordionClasses } from './accordionClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
@@ -76,7 +77,6 @@ export interface AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * - [Accordion API](https://mui.com/material-ui/api/accordion/)
  * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
-
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 
 export type AccordionProps<
