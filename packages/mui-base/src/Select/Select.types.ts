@@ -4,6 +4,7 @@ import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from
 import { SelectOption } from '../useOption';
 import { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import Popper from '../Popper/Popper';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
@@ -100,7 +101,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectOwnerState<OptionValue, Multiple>
     >;
     popper?: SlotComponentProps<
-      'div',
+      typeof Popper,
       SelectPopperSlotPropsOverrides,
       SelectOwnerState<OptionValue, Multiple>
     >;

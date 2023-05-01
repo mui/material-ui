@@ -4,6 +4,7 @@ import { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
+import Popper from '../Popper/Popper';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
@@ -42,7 +43,7 @@ export interface MenuOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root?: SlotComponentProps<typeof Popper, MenuRootSlotPropsOverrides, MenuOwnerState>;
     listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
