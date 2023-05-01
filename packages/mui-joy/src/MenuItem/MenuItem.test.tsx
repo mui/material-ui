@@ -9,12 +9,12 @@ import {
   screen,
   describeJoyColorInversion,
 } from 'test/utils';
-import { MenuProvider } from '@mui/base/useMenu';
+import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 
-const testContext = {
+const testContext: unknown = {
   registerItem: () => ({ id: 0, deregister: () => {} }),
   getItemIndex: () => 0,
   totalSubitemCount: 1,
@@ -29,20 +29,27 @@ const testContext = {
   registerSelectionChangeHandler: () => () => {},
 };
 
-function Wrapper({ children }) {
-  return <MenuProvider value={testContext}>{children}</MenuProvider>;
+function Wrapper({ children }: { children: React.ReactNode }) {
+  return <MenuProvider value={testContext as MenuProviderValue}>{children}</MenuProvider>;
 }
 
 describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
-  const render = (element, options = {}) => baseRender(element, { wrapper: Wrapper, ...options });
+  const render = (element: JSX.Element, options = {}) =>
+    baseRender(element, {
+      wrapper: Wrapper as React.JSXElementConstructor<{ children?: React.ReactNode }>,
+      ...options,
+    });
 
   describeConformance(<MenuItem />, () => ({
     classes,
     inheritComponent: ListItemButton,
-    render: (node) => render(<MenuProvider value={testContext}>{node}</MenuProvider>),
+    render: (node) =>
+      render(<MenuProvider value={testContext as MenuProviderValue}>{node}</MenuProvider>),
     wrapMount: (mount) => (node) => {
-      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
+      const wrapper = mount(
+        <MenuProvider value={testContext as MenuProviderValue}>{node}</MenuProvider>,
+      );
       return wrapper.childAt(0);
     },
     ThemeProvider,
@@ -62,7 +69,7 @@ describe('Joy <MenuItem />', () => {
   describeJoyColorInversion(<MenuItem />, {
     muiName: 'JoyMenuItem',
     classes,
-    wrapper: (node) => <MenuProvider value={testContext}>{node}</MenuProvider>,
+    wrapper: (node) => <MenuProvider value={testContext as MenuProviderValue}>{node}</MenuProvider>,
   });
 
   it('should render with the variant class', () => {
@@ -100,7 +107,14 @@ describe('Joy <MenuItem />', () => {
     /**
      * @type {Array<keyof typeof fireEvent>}
      */
-    const events = ['click', 'mouseDown', 'mouseEnter', 'mouseLeave', 'mouseUp', 'touchEnd'];
+    const events: Array<keyof typeof fireEvent> = [
+      'click',
+      'mouseDown',
+      'mouseEnter',
+      'mouseLeave',
+      'mouseUp',
+      'touchEnd',
+    ];
 
     events.forEach((eventName) => {
       it(`should fire ${eventName}`, () => {
