@@ -135,14 +135,16 @@ const StyledOption = styled(Option)(
   }
 
   @supports selector(:has(*)) {
-    &.${optionClasses.selected} + .${optionClasses.selected} {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
+    &.${optionClasses.selected} {
+      & + .${optionClasses.selected} {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
 
-    &:where(.${optionClasses.selected}):has(+ .${optionClasses.selected}) {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      &:has(+ .${optionClasses.selected}) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
     }
   }
 
