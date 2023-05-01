@@ -3,6 +3,9 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import Typography, { typographyClasses as classes } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
+import { TypographySystem } from '../styles/types';
+
+type TypographyLevel = 'inherit' | keyof TypographySystem;
 
 describe('<Typography />', () => {
   const { render } = createRenderer();
@@ -38,12 +41,10 @@ describe('<Typography />', () => {
     expect(container.firstChild).to.have.class(classes.root);
   });
 
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'].forEach((level) => {
+  (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).forEach((level) => {
     it(`should render ${level} text`, () => {
-      const { container } = render(<Typography level={level}>Hello</Typography>);
-
+      const { container } = render(<Typography level={level as TypographyLevel}>Hello</Typography>);
       expect(classes).to.have.property(level);
-
       expect(container.firstChild).to.have.class(classes[level]);
     });
   });
@@ -101,8 +102,10 @@ describe('<Typography />', () => {
           <Typography>Foo</Typography> - <Typography component="b">Bar</Typography>
         </Typography>,
       );
-      expect(container.firstChild.firstChild.tagName).to.equal('SPAN');
-      expect(container.firstChild.lastChild.tagName).to.equal('B');
+      const firstChild = container.firstChild?.firstChild as Element;
+      const lastChild = container.firstChild?.lastChild as Element;
+      expect(firstChild?.tagName).to.equal('SPAN');
+      expect(lastChild?.tagName).to.equal('B');
     });
 
     it('Typography inside start/end icon should be span', () => {
