@@ -24,7 +24,7 @@ For instance, you may want to show an additional element asking the user to ente
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import FormControl from '@mui/base/FormControl';
