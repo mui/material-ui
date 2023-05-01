@@ -2,6 +2,8 @@ import MaterialInput from '@mui/material/Input';
 import Input from '@mui/base/Input';
 import Switch from '@mui/base/Switch';
 import Badge from '@mui/base/Badge';
+import PopperUnstyled from '@mui/base/Popper';
+import { Popper } from '@mui/base';
 
 <MaterialInput component={CustomRoot} />;
 
@@ -36,3 +38,6 @@ import Badge from '@mui/base/Badge';
 <Input slots={{
   root: 'a'
 }} href='url'></Input>;
+
+<PopperUnstyled component='button' />;
+<Popper component='button' />;

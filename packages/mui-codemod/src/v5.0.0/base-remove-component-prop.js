@@ -10,9 +10,17 @@ export default function transformer(file, api, options) {
   const transformed = root
     .find(j.ImportDeclaration)
     // Process only Base UI components
-    .filter(({ node }) => node.source.value.startsWith('@mui/base'))
+    .filter(
+      ({ node }) =>
+        // we haven't dropped `component` prop from Base UI Popper
+        node.source.value.startsWith('@mui/base') && !node.source.value.endsWith('Popper'),
+    )
     .forEach((path) => {
       path.node.specifiers.forEach((elementNode) => {
+        if (elementNode.imported?.name === 'Popper') {
+          // we haven't dropped `component` prop from Base UI Popper
+          return;
+        }
         root.findJSXElements(elementNode.local.name).forEach((elementPath) => {
           if (elementPath.node.type !== 'JSXElement') {
             return;
