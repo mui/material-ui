@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
-import { PopperProps } from '../Popper';
+import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
 import { ListAction } from '../useList';
-import Popper from '../Popper/Popper';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
