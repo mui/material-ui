@@ -2,9 +2,8 @@ import * as React from 'react';
 import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
-import { PopperProps } from '../Popper';
+import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
-import Popper from '../Popper/Popper';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
