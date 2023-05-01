@@ -100,7 +100,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
       SelectOwnerState<OptionValue, Multiple>
     >;
     popper?: SlotComponentProps<
-      typeof Popper,
+      React.FC<PopperProps>,
       SelectPopperSlotPropsOverrides,
       SelectOwnerState<OptionValue, Multiple>
     >;
