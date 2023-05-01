@@ -8,16 +8,16 @@ import {
   describeConformance,
   describeJoyColorInversion,
 } from 'test/utils';
-import Link, { linkClasses as classes } from '@mui/joy/Link';
+import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
-function focusVisible(element) {
+function focusVisible(element: HTMLAnchorElement | null) {
   act(() => {
-    element.blur();
+    element?.blur();
     document.dispatchEvent(new window.Event('keydown'));
-    element.focus();
+    element?.focus();
   });
 }
 
@@ -61,7 +61,7 @@ describe('<Link />', () => {
       const handlers = events.reduce((result, n) => {
         result[n] = spy();
         return result;
-      }, {});
+      }, {} as { [key: string]: any });
 
       const { container } = render(
         <Link href="/" {...handlers}>
@@ -72,7 +72,7 @@ describe('<Link />', () => {
 
       events.forEach((n) => {
         const event = n.charAt(2).toLowerCase() + n.slice(3);
-        fireEvent[event](anchor);
+        (fireEvent as any)[event](anchor);
         expect(handlers[n].callCount).to.equal(1);
       });
     });
@@ -90,7 +90,7 @@ describe('<Link />', () => {
       expect(anchor).to.have.class(classes.focusVisible);
 
       act(() => {
-        anchor.blur();
+        anchor?.blur();
       });
 
       expect(anchor).not.to.have.class(classes.focusVisible);
@@ -111,7 +111,7 @@ describe('<Link />', () => {
       expect(getByTestId('root')).not.to.have.class(classes.variantSolid);
     });
 
-    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
+    (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" variant={variant}>
@@ -119,7 +119,9 @@ describe('<Link />', () => {
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`variant${capitalize(variant)}` as LinkClassKey],
+        );
       });
     });
   });
@@ -135,7 +137,7 @@ describe('<Link />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" color={color}>
@@ -143,7 +145,9 @@ describe('<Link />', () => {
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`color${capitalize(color)}` as LinkClassKey],
+        );
       });
     });
   });
@@ -159,15 +163,15 @@ describe('<Link />', () => {
       expect(getByTestId('root')).have.class(classes.body1);
     });
 
-    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'].forEach((level) => {
+    (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).forEach((level) => {
       it(`should render ${level}`, () => {
         const { getByTestId } = render(
-          <Link href="/" data-testid="root" level={level}>
+          <Link href="/" data-testid="root" level={level as keyof TypographySystem}>
             Hello World
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[level]);
+        expect(getByTestId('root')).to.have.class(classes[level] as LinkClassKey);
       });
     });
   });
@@ -183,7 +187,7 @@ describe('<Link />', () => {
       expect(getByTestId('root')).have.class(classes.underlineHover);
     });
 
-    ['none', 'always', 'hover'].forEach((underline) => {
+    (['none', 'always', 'hover'] as const).forEach((underline) => {
       it(`should render ${underline}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" underline={underline}>
@@ -191,7 +195,9 @@ describe('<Link />', () => {
           </Link>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`underline${capitalize(underline)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`underline${capitalize(underline)}` as LinkClassKey],
+        );
       });
     });
   });
