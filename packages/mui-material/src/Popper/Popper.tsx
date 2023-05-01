@@ -77,10 +77,9 @@ const Popper = React.forwardRef(function Popper(
     ...other
   } = props;
 
-  const RootComponent = slots?.root ?? components?.Root;
+  const RootComponent = component ?? slots?.root ?? components?.Root;
   const otherProps = {
     anchorEl,
-    component,
     container,
     disablePortal,
     keepMounted,
