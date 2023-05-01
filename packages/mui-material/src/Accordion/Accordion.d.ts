@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { DistributiveOmit } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
-import { PaperProps } from '../Paper';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ExtendPaperTypeMap } from '../Paper/Paper';
 
-export interface AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    DistributiveOmit<StandardProps<PaperProps>, 'onChange' | 'classes'> & {
+export type AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendPaperTypeMap<
+  {
+    props: P & {
       /**
        * The content of the component.
        */
@@ -63,8 +62,10 @@ export interface AccordionTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       TransitionProps?: TransitionProps;
     };
-  defaultComponent: D;
-}
+    defaultComponent: D;
+  },
+  'onChange' | 'classes'
+>;
 
 /**
  *

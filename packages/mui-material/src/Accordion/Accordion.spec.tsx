@@ -30,7 +30,14 @@ const AccordionComponentTest = () => {
     <div>
       <Accordion {...requiredProps} />
       <Accordion {...requiredProps} component="legend" />
-      <Accordion {...requiredProps} component="a" href="test" />
+      <Accordion
+        {...requiredProps}
+        component="a"
+        href="test"
+        onClick={(event) => {
+          expectType<React.MouseEvent<HTMLAnchorElement, MouseEvent>, typeof event>(event);
+        }}
+      />
 
       {/* @ts-expect-error */}
       <Accordion {...requiredProps} component="a" incorrectAttribute="url" />
