@@ -42,7 +42,7 @@ export interface MenuOwnProps {
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<typeof Popper, MenuRootSlotPropsOverrides, MenuOwnerState>;
+    root?: SlotComponentProps<React.FC<PopperProps>, MenuRootSlotPropsOverrides, MenuOwnerState>;
     listbox?: SlotComponentProps<'ul', MenuListboxSlotPropsOverrides, MenuOwnerState>;
   };
   /**
