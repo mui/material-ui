@@ -113,7 +113,7 @@ test.describe('Material docs', () => {
     });
 
     test('should have correct API links when linking Base UI components', async ({ page }) => {
-      await page.goto('/material-ui/react-clickaway-listener/');
+      await page.goto('/material-ui/react-click-away-listener/');
 
       const anchors = page.locator('div > h2#api ~ ul a');
 
