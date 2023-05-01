@@ -121,7 +121,7 @@ test.describe('Material docs', () => {
       const textContent = await firstAnchor.textContent();
 
       await expect(textContent).toEqual('<Button />');
-      await expect(firstAnchor).toHaveAttribute('href', '/base/api/react-clickaway-listener/');
+      await expect(firstAnchor).toHaveAttribute('href', '/base/api/click-away-listener/');
     });
   });
 
