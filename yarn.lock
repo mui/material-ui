@@ -1950,58 +1950,58 @@
     react-test-renderer "^18.0.0"
     semver "^5.7.0"
 
-"@mui/x-data-grid-generator@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-6.2.0.tgz#db9035797f0a1d2e470a875b2e8c570c7e1676dd"
-  integrity sha512-Upz7POtAy0k61heA3G8eOiWw56bYgvgk/0Q48QgP/teMDNMpvRsn3T/i0uO4NGsI3pJ6bY63xVE/taY+XeEBmg==
+"@mui/x-data-grid-generator@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-6.3.0.tgz#b5d7ee481b5f6b421c2d3b235b4a90991dc98bcc"
+  integrity sha512-HH47DJRvhLFwrUgXBPLs7vVjWgEN8Uz64JJEwUrsOQpbtL6wwv+/074nCRHIs0cW8tH/YdW5NLOFN2eR/AJMYA==
   dependencies:
     "@babel/runtime" "^7.21.0"
-    "@mui/base" "^5.0.0-alpha.123"
-    "@mui/x-data-grid-premium" "6.2.0"
+    "@mui/base" "^5.0.0-alpha.127"
+    "@mui/x-data-grid-premium" "6.3.0"
     chance "^1.1.11"
     clsx "^1.2.1"
     lru-cache "^7.18.3"
 
-"@mui/x-data-grid-premium@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-6.2.0.tgz#dc8617395f2e6a1eb930254fc703c1ef77eba483"
-  integrity sha512-nWul0q58bJSM0w+HaQ6DgQP+7TMphByoVBsRD1XNMtaRdQFPSz6GlDdAFJ/jBahAx7TOUMhIMICvB7f4kRfBVg==
+"@mui/x-data-grid-premium@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-6.3.0.tgz#0b6f501bc212d2fbaa128443956392524650bfcf"
+  integrity sha512-z/9mMsUbMmCEsJg3PFC4vaATMYGJOqJBNoYlbD4S70DeL6IQWlRA5UpsXoFLcBGkEdJWIylA0VnjO8NLloZBeA==
   dependencies:
     "@babel/runtime" "^7.21.0"
-    "@mui/utils" "^5.11.13"
-    "@mui/x-data-grid" "6.2.0"
-    "@mui/x-data-grid-pro" "6.2.0"
+    "@mui/utils" "^5.12.0"
+    "@mui/x-data-grid" "6.3.0"
+    "@mui/x-data-grid-pro" "6.3.0"
     "@mui/x-license-pro" "6.0.4"
     "@types/format-util" "^1.0.2"
     clsx "^1.2.1"
     exceljs "^4.3.0"
     prop-types "^15.8.1"
-    reselect "^4.1.7"
+    reselect "^4.1.8"
 
-"@mui/x-data-grid-pro@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-6.2.0.tgz#0e6c39fb8c90df97015fd1e9bb1f89e0514933e9"
-  integrity sha512-BoZgerBw6yB2r/3DXk0NtMslBVvbn/Rg4qsXwb64qv9UAfxS1ORdgMIdWFxuvOr9Q46MvFVFl2VPPAXHAowhZw==
+"@mui/x-data-grid-pro@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-6.3.0.tgz#7966c1e4c84e1bbbed229d6c234ca2607baa73c6"
+  integrity sha512-KHV3LldQ9Ip4dOTD0p86289CO/q6WpC5NqXcXX8L61jM0X4jU7B3UtE3zyovWtgPxjOzOp6baei2AK0h9icTzQ==
   dependencies:
     "@babel/runtime" "^7.21.0"
-    "@mui/utils" "^5.11.13"
-    "@mui/x-data-grid" "6.2.0"
+    "@mui/utils" "^5.12.0"
+    "@mui/x-data-grid" "6.3.0"
     "@mui/x-license-pro" "6.0.4"
     "@types/format-util" "^1.0.2"
     clsx "^1.2.1"
     prop-types "^15.8.1"
-    reselect "^4.1.7"
+    reselect "^4.1.8"
 
-"@mui/x-data-grid@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.2.0.tgz#cc8cae0f76f8216ee3c8e8cb3b08280c2b164e5c"
-  integrity sha512-0SSnzpAtSOsrw/zqm+Nn5HwhwhWsbIYpzHB20is1FuH+hQnrAduHf1Twx9h+86a2n61C8qaDBcRyYZSXR1WBnw==
+"@mui/x-data-grid@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.3.0.tgz#7b26a35b573fcc56cee1ac07de7ad786e29e2be1"
+  integrity sha512-yp0ptjYdZdGrsat9HJ47D4Pnjp+KkdR8/NBmaqs0x9q8aBhtE+WAkmeT3ynWc59R9zjzZ5tNpt2+8WF1acakOQ==
   dependencies:
     "@babel/runtime" "^7.21.0"
-    "@mui/utils" "^5.11.13"
+    "@mui/utils" "^5.12.0"
     clsx "^1.2.1"
     prop-types "^15.8.1"
-    reselect "^4.1.7"
+    reselect "^4.1.8"
 
 "@mui/x-date-pickers-pro@6.2.0":
   version "6.2.0"
@@ -14475,10 +14475,15 @@ requires-port@^1.0.0:
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
 
-reselect@^4.0.0, reselect@^4.1.7:
+reselect@^4.0.0:
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.7.tgz#56480d9ff3d3188970ee2b76527bd94a95567a42"
   integrity sha512-Zu1xbUt3/OPwsXL46hvOOoQrap2azE7ZQbokq61BQfiXvhewsKDwhMeZjTX9sX0nvw1t/U5Audyn1I9P/m9z0A==
+
+reselect@^4.1.8:
+  version "4.1.8"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.8.tgz#3f5dc671ea168dccdeb3e141236f69f02eaec524"
+  integrity sha512-ab9EmR80F/zQTMNeneUr4cv+jSwPJgIlvEmVwLerwrWVbpLlBuls9XHzIeTFy4cegU2NHBp3va0LKOzU5qFEYQ==
 
 resolve-alpn@^1.0.0:
   version "1.2.1"
