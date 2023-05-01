@@ -8,7 +8,7 @@ import {
   unstable_createChainedFunction as createChainedFunction,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { ModalOwnerState, ModalOwnProps, ModalProps, ModalTypeMap } from './Modal.types';
 import composeClasses from '../composeClasses';
 import Portal from '../Portal';
@@ -69,7 +69,6 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
   const {
     children,
     closeAfterTransition = false,
-    component,
     container,
     disableAutoFocus = false,
     disableEnforceFocus = false,
@@ -80,7 +79,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     hideBackdrop = false,
     keepMounted = false,
     // private
-    manager = defaultManager,
+    manager: managerProp = defaultManager,
     onBackdropClick,
     onClose,
     onKeyDown,
@@ -91,7 +90,9 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     slots = {},
     ...other
   } = props;
-
+  // TODO: `modal`` must change its type in this file to match the type of methods
+  // provided by `ModalManager`
+  const manager = managerProp as any;
   const [exited, setExited] = React.useState(!open);
   const modal = React.useRef<{
     modalRef?: typeof modalRef.current;
@@ -255,7 +256,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     childProps.onExited = createChainedFunction(handleExited, children.props.onExited);
   }
 
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -313,7 +314,7 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
       </Root>
     </Portal>
   );
-}) as OverridableComponent<ModalTypeMap>;
+}) as PolymorphicComponent<ModalTypeMap>;
 
 Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -329,11 +330,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   closeAfterTransition: PropTypes.bool,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -409,10 +405,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
   /**
    * If `true`, the component is shown.
    */

@@ -21,7 +21,7 @@ Focus Trap is a utility component that's useful when implementing an overlay suc
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import FocusTrap from '@mui/base/FocusTrap';
