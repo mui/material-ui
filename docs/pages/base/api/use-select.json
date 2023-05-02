@@ -18,8 +18,8 @@
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
     "onChange": {
       "type": {
-        "name": "(e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
-        "description": "(e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void"
+        "name": "(e: SelectOnChangeEvent&lt;OptionValue, Multiple&gt;, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
+        "description": "(e: SelectOnChangeEvent&lt;OptionValue, Multiple&gt;, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void"
       }
     },
     "onHighlightChange": {
