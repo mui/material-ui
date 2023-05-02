@@ -79,6 +79,9 @@ const StyledSlider = styled(Slider)(
       )};
     }
     & .label {
+        font-family: IBM Plex Sans;
+        font-weight: 600;
+        font-size: 14px;
         background: unset;
         background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
         width: 32px;

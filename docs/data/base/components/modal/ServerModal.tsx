@@ -60,6 +60,6 @@ const style = (theme: Theme) => ({
   width: 400,
   borderRadius: '12px',
   padding: '16px 32px 24px 32px',
-  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  boxShadow: 4,
+  backgroundColor: theme.palette.mode === 'dark' ? '#132F4C' : 'white',
+  boxShadow: `0px 2px 8px ${theme.palette.mode === 'dark' ? '#000' : '#BCBCBC'}`,
 });
