@@ -23,7 +23,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const PortalApiReq = require.context(
-    'docs/translations/api-docs/portal',
+    'docs/translations/api-docs-base/portal',
     false,
     /portal.*.json$/,
   );

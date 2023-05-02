@@ -27,7 +27,7 @@ const appList = [
     description:
       'QuintoAndar is a company that uses technology and ' +
       'design to simplify the rental of residential real estate.',
-    image: 'quintoandar.png',
+    image: 'quintoandar.jpg',
     link: 'https://www.quintoandar.com.br/',
     similarWebVisits: 8500,
     dateAdded: '2019-05-08',
@@ -47,7 +47,7 @@ const appList = [
     description:
       'OpenClassrooms is an online platform offering top quality, ' +
       'education-to-employment programs and career coaching services for students worldwide. ',
-    image: 'openclassrooms.jpg',
+    image: 'openclassrooms.png',
     link: 'https://openclassrooms.com/en/',
     similarWebVisits: 6000,
     dateAdded: '2018-01-34',
@@ -318,16 +318,6 @@ const appList = [
     source: 'https://github.com/typekev/typekev-site',
     stars: 10,
     dateAdded: '2018-01-23',
-  },
-  {
-    title: 'DropDesk',
-    description:
-      'DropDesk creates unique workspaces & experiences by converting unused space into vibrant ' +
-      'coworking spaces. Meet, work and gain a sense of community.',
-    image: 'dropdesk.jpg',
-    link: 'https://drop-desk.com/',
-    similarWebVisits: 50,
-    dateAdded: '2019-01-01',
   },
   {
     title: 'npm registry browser',

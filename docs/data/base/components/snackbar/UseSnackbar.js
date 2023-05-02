@@ -3,6 +3,37 @@ import useSnackbar from '@mui/base/useSnackbar';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { css, keyframes, styled } from '@mui/system';
 
+export default function UseSnackbar() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const { getRootProps, onClickAway } = useSnackbar({
+    onClose: handleClose,
+    open,
+    autoHideDuration: 5000,
+  });
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  return (
+    <React.Fragment>
+      <button type="button" onClick={handleOpen}>
+        Open Snackbar
+      </button>
+      {open ? (
+        <ClickAwayListener onClickAway={onClickAway}>
+          <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+        </ClickAwayListener>
+      ) : null}
+    </React.Fragment>
+  );
+}
+
 const blue = {
   50: '#F0F7FF',
   400: '#3399FF',
@@ -49,34 +80,3 @@ const CustomSnackbar = styled('div')(
     transition: transform 0.2s ease-out;
   `,
 );
-
-export default function UseSnackbar() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const { getRootProps, onClickAway } = useSnackbar({
-    onClose: handleClose,
-    open,
-    autoHideDuration: 5000,
-  });
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  return (
-    <React.Fragment>
-      <button type="button" onClick={handleOpen}>
-        Open Snackbar
-      </button>
-      {open ? (
-        <ClickAwayListener onClickAway={onClickAway}>
-          <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
-        </ClickAwayListener>
-      ) : null}
-    </React.Fragment>
-  );
-}

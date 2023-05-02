@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import Switch, { switchClasses } from '@mui/base/Switch';
 
-const Switch = styled(SwitchUnstyled)`
+const StyledSwitch = styled(Switch)`
   font-size: 0;
   position: relative;
   display: inline-block;
@@ -13,7 +13,7 @@ const Switch = styled(SwitchUnstyled)`
   margin: 10px;
   cursor: pointer;
 
-  & .${switchUnstyledClasses.thumb} {
+  & .${switchClasses.thumb} {
     display: block;
     width: 14px;
     height: 14px;
@@ -25,7 +25,7 @@ const Switch = styled(SwitchUnstyled)`
     transition: all 200ms ease;
   }
 
-  & .${switchUnstyledClasses.input} {
+  & .${switchClasses.input} {
     cursor: inherit;
     position: absolute;
     width: 100%;
@@ -37,27 +37,27 @@ const Switch = styled(SwitchUnstyled)`
     margin: 0;
   }
 
-  &.${switchUnstyledClasses.disabled} {
+  &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  &.${switchUnstyledClasses.checked} {
+  &.${switchClasses.checked} {
     background: #007fff;
 
-    & .${switchUnstyledClasses.thumb} {
+    & .${switchClasses.thumb} {
       left: 14px;
       top: 3px;
       background-color: #fff;
     }
   }
 
-  &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
+  &.${switchClasses.focusVisible} .${switchClasses.thumb} {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 `;
 
 export default function StylingSlotsSingleComponent() {
-  return <Switch />;
+  return <StyledSwitch />;
 }

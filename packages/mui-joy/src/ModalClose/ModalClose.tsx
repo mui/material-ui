@@ -84,6 +84,8 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
     variant: variantProp = 'plain',
     size: sizeProp = 'md',
     onClick,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -99,7 +101,7 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
 
   const { focusVisible, getRootProps } = useButton({
     ...props,
-    ref,
+    rootRef: ref,
   });
 
   const ownerState = {
@@ -124,6 +126,8 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
       },
       ...other,
       component,
+      slots,
+      slotProps,
     },
     className: classes.root,
     ownerState,
@@ -170,6 +174,20 @@ ModalClose.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

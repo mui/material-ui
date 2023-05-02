@@ -10,7 +10,7 @@ export interface DividerSlots {
    * The component that renders the root.
    * @default 'hr'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type DividerSlotsAndSlotProps = CreateSlotsAndSlotProps<

@@ -58,7 +58,7 @@ const AspectRatioContent = styled('div', {
     position: 'relative',
     borderRadius: 'inherit',
     height: 0,
-    paddingBottom: 'var(--AspectRatio-paddingBottom)',
+    paddingBottom: 'calc(var(--AspectRatio-paddingBottom) - 2 * var(--variant-borderWidth, 0px))',
     overflow: 'hidden',
     // use data-attribute instead of :first-child to support zero config SSR (emotion)
     // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
@@ -108,6 +108,9 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     objectFit = 'cover',
     color: colorProp = 'neutral',
     variant = 'soft',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -124,19 +127,20 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: AspectRatioRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotContent, contentProps] = useSlot('content', {
     className: classes.content,
     elementType: AspectRatioContent,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -169,6 +173,11 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The maximum calculated height of the element (not the CSS height).
    */
   maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -199,6 +208,22 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * @default '16 / 9'
    */
   ratio: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    content: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

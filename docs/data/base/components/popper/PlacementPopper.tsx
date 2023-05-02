@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PopperUnstyled, { PopperPlacementType } from '@mui/base/PopperUnstyled';
+import Popper, { PopperPlacementType } from '@mui/base/Popper';
 
 function Radio({ value, ...props }: JSX.IntrinsicElements['input']) {
   return (
@@ -110,7 +110,7 @@ export default function PlacementPopper() {
         >
           ANCHOR
         </span>
-        <PopperUnstyled
+        <Popper
           id="placement-popper"
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}
@@ -125,7 +125,7 @@ export default function PlacementPopper() {
           >
             The content of the Popper.
           </div>
-        </PopperUnstyled>
+        </Popper>
       </div>
     </div>
   );
