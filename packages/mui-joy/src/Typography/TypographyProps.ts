@@ -68,7 +68,18 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * Applies the theme typography styles.
        * @default 'body1'
        */
-      level?: keyof TypographySystem | 'inherit';
+      level?:
+        | keyof TypographySystem
+        | 'inherit'
+        | 'h1'
+        | 'h2'
+        | 'h3'
+        | 'h4'
+        | 'h5'
+        | 'h6'
+        | 'body1'
+        | 'body2'
+        | 'body3';
       /**
        * The component maps the variant prop to a range of different HTML element types.
        * For instance, body1 to `<h6>`.
