@@ -22,6 +22,11 @@ describe('Joy <List />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<List />, { muiName: 'JoyList', classes });
@@ -52,7 +57,7 @@ describe('Joy <List />', () => {
     expect(container.firstChild).to.have.class(classes.sizeMd);
   });
 
-  it('should have nesting classes', () => {
+  it('should have `nesting` classes', () => {
     const { getByRole } = render(
       <ListItem nested>
         <List />
@@ -61,9 +66,9 @@ describe('Joy <List />', () => {
     expect(getByRole('list')).to.have.class(classes.nesting);
   });
 
-  it('should have row classes', () => {
-    const { getByRole } = render(<List row />);
-    expect(getByRole('list')).to.have.class(classes.row);
+  it('should have `orientation` classes', () => {
+    const { getByRole } = render(<List orientation="horizontal" />);
+    expect(getByRole('list')).to.have.class(classes.horizontal);
   });
 
   describe('MenuList - integration', () => {

@@ -62,6 +62,97 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `base-remove-component-prop`
+
+Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
+
+This change only affects Base UI components.
+
+```diff
+-  <Input component={CustomRoot} />
++  <Input slots={{ root: CustomRoot }} />
+```
+
+```sh
+npx @mui/codemod v5.0.0/base-remove-component-prop <path>
+```
+
+#### `rename-css-variables`
+
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
+
+```diff
+-  <List sx={{ py: 'var(--List-divider-gap)' }}>
++  <List sx={{ py: 'var(--ListDivider-gap)' }}>
+-  <Switch sx={{ '--Switch-track-width': '40px' }}>
++  <Switch sx={{ '--Switch-trackWidth': '40px' }}>
+```
+
+```sh
+npx @mui/codemod v5.0.0/rename-css-variables <path>
+```
+
+#### `base-hook-imports`
+
+Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
+
+```diff
+-  import { useBadge } from '@mui/base/BadgeUnstyled';
++  import useBadge from '@mui/base/useBadge';
+```
+
+```sh
+npx @mui/codemod v5.0.0/base-hook-imports <path>
+```
+
+#### `joy-rename-classname-prefix`
+
+Renames the classname prefix from `'Joy'` to `'Mui'` for Joy UI components.
+
+```diff
+ <Button
+-  sx={{ '& .JoyButton-root': { '& .JoyButton-button': {} } }}
++  sx={{ '& .MuiButton-root': { '& .MuiButton-button': {} } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-classname-prefix <path>
+```
+
+#### `joy-rename-row-prop`
+
+Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components.
+
+```diff
+ <Card
+-  row
++  orientation={"horizontal"}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-rename-row-prop <path>
+```
+
+#### `joy-avatar-remove-imgProps`
+
+Remove `imgProps` prop by transferring its value into `slotProps.img`
+
+This change only affects Joy UI Avatar component.
+
+```diff
+ <Avatar
+-  imgProps={{ ['data-id']: 'imageId' }}
+-  slotProps={{ root: { ['data-id']: 'rootId' }}}
++  slotProps={{ root: { ['data-id']: 'rootId' }, img: { ['data-id']: 'imageId' } }}
+ />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/joy-avatar-remove-imgProps <path>
+```
+
 #### `joy-text-field-to-input`
 
 Replace `<TextField>` with composition of `Input`
@@ -321,7 +412,7 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 Also, changes `slots`' fields names to camelCase.
 
-This change only affects MUI Base components.
+This change only affects Base UI components.
 
 ```diff
  <BadgeUnstyled

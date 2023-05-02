@@ -68,7 +68,6 @@ export default function transformer(file, api, options) {
                       }
                       propNode.value.properties.forEach((prop) => {
                         const key = prop.key.value;
-                        // const value = prop.value.value;
                         const newAttributeNode = j.jsxAttribute(
                           j.jsxIdentifier(key),
                           j.jsxExpressionContainer(prop.value),

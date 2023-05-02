@@ -53,7 +53,7 @@ const startLine = {
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro />;
 
 export default function XDataGrid() {
-  const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
+  const [demo, setDemo] = React.useState<(typeof DEMOS)[number] | null>(null);
   const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,

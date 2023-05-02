@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Breadcrumbs component
+components: Breadcrumbs
 githubLabel: 'component: breadcrumbs'
 ---
 
@@ -8,14 +9,14 @@ githubLabel: 'component: breadcrumbs'
 
 <p class="description">A breadcrumb trail is a navigational tool that helps users keep track of their location within an app.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The Breadcrumbs component consists of a list of links that show the user the hierarchy of a given page in relation to the app's structure.
 It provides a simple visual aid for better context and ease of navigation between higher- and lower-level pages.
 
 {{"demo": "BreadcrumbsUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -114,7 +115,7 @@ The Breadcrumbs component is composed of a root `<nav>` that wraps around an `<o
       <!-- Link or Typography -->
     </li>
     <li aria-hidden="true" class="MuiBreadcrumbs-separator">/</li>
-    <li class="MuiBreadcrumbs-li css-1rqbcrs-JoyBreadcrumbs-ol">
+    <li class="MuiBreadcrumbs-li css-1rqbcrs-MuiBreadcrumbs-ol">
       <!-- Link or Typography -->
     </li>
   </ol>

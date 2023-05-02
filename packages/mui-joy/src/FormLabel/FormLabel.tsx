@@ -41,16 +41,25 @@ const AsteriskComponent = styled('span', {
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
 })<{ ownerState: FormLabelProps }>({
-  color: 'var(--FormLabel-asterisk-color)',
+  color: 'var(--FormLabel-asteriskColor)',
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormLabel API](https://mui.com/joy-ui/api/form-label/)
+ */
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyFormLabel',
   });
 
-  const { children, component = 'label', ...other } = props;
+  const { children, component = 'label', slots = {}, slotProps = {}, ...other } = props;
   const formControl = React.useContext(FormControlContext);
   const required = inProps.required ?? formControl?.required ?? false;
 
@@ -60,7 +69,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   };
 
   const classes = useUtilityClasses();
-  const externalForwardedProps = { ...other, component };
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     additionalProps: {
@@ -108,6 +117,22 @@ FormLabel.propTypes /* remove-proptypes */ = {
    * The asterisk is added if required=`true`
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    asterisk: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    asterisk: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -1,0 +1,19 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {
+    "defaultValue": "The default value. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the component is disabled.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "error": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "required": "If <code>true</code>, the <code>input</code> element is required.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
+  },
+  "returnValueDescriptions": {
+    "disabled": "If <code>true</code>, the component will be disabled.",
+    "error": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute.",
+    "focused": "If <code>true</code>, the <code>input</code> will be focused.",
+    "formControlContext": "Return value from the <code>useFormControlContext</code> hook.",
+    "getInputProps": "Resolver for the input slot's props.",
+    "getRootProps": "Resolver for the root slot's props.",
+    "required": "If <code>true</code>, the <code>input</code> will indicate that it's required.",
+    "value": "The <code>value</code> of the <code>input</code> element."
+  }
+}

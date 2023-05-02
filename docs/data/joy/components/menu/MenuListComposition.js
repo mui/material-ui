@@ -1,12 +1,12 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { styled } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
 
-const Popup = styled(PopperUnstyled)({
+const Popup = styled(Popper)({
   zIndex: 1000,
 });
 
@@ -24,7 +24,7 @@ export default function MenuListComposition() {
     if (event.key === 'Tab') {
       setAnchorEl(null);
     } else if (event.key === 'Escape') {
-      anchorEl.focus();
+      anchorEl?.focus();
       setAnchorEl(null);
     }
   };

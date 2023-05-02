@@ -71,7 +71,12 @@ function getLinksAndAnchors(fileName) {
     headingHashes,
     toc,
     userLanguage,
-    ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+    options: {
+      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
+      env: {
+        SOURCE_CODE_REPO: '',
+      },
+    },
   });
 
   const data = fse.readFileSync(fileName, { encoding: 'utf8' });
@@ -163,7 +168,7 @@ const getAnchor = (link) => {
   return potentialAnchor.includes('#') ? potentialAnchor : '';
 };
 
-// Export usefull method for doing similar checks in other repositories
+// Export useful method for doing similar checks in other repositories
 module.exports = { parseDocFolder, getAnchor };
 
 /**

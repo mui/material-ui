@@ -9,12 +9,15 @@ import styled from '../styles/styled';
 import FormControlContext from './FormControlContext';
 import formControlClasses, { getFormControlUtilityClass } from './formControlClasses';
 import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
+import switchClasses from '../Switch/switchClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: FormControlOwnerState) => {
-  const { disabled, error, size, color } = ownerState;
+  const { disabled, error, size, color, orientation } = ownerState;
   const slots = {
     root: [
       'root',
+      orientation,
       disabled && 'disabled',
       error && 'error',
       color && `color${capitalize(color)}`,
@@ -30,36 +33,60 @@ export const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
-  '--FormLabel-margin':
-    ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.25rem 0',
+  '--unstable_RadioGroup-margin': '0.5rem 0',
   '--FormLabel-alignSelf': ownerState.orientation === 'horizontal' ? 'align-items' : 'flex-start',
-  '--FormHelperText-margin': '0.375rem 0 0 0',
-  '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
-  '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
+  '--FormLabel-asteriskColor': theme.vars.palette.danger[500],
   ...(ownerState.size === 'sm' && {
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
+    '--FormLabel-margin':
+      ownerState.orientation === 'horizontal' ? '0 0.5rem 0 0' : '0 0 0.25rem 0',
     '--FormHelperText-fontSize': theme.vars.fontSize.xs,
   }),
   ...(ownerState.size === 'md' && {
     '--FormLabel-fontSize': theme.vars.fontSize.sm,
+    '--FormLabel-margin':
+      ownerState.orientation === 'horizontal' ? '0 0.75rem 0 0' : '0 0 0.25rem 0',
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
+    '--FormLabel-margin': ownerState.orientation === 'horizontal' ? '0 1rem 0 0' : '0 0 0.25rem 0',
     '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
+  ...(ownerState.color &&
+    ownerState.color !== 'context' && {
+      '--FormHelperText-color': theme.vars.palette[ownerState.color]?.[500],
+    }),
+  '--FormHelperText-margin': '0.375rem 0 0 0',
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${formControlClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+    ...(ownerState.color !== 'context' && {
+      '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+      '--FormHelperText-color':
+        theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+    }),
   },
   display: 'flex',
   position: 'relative', // for keeping the control action area, e.g. Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+  ...(ownerState.orientation === 'horizontal' && {
+    [`& > label ~ .${switchClasses.root}`]: {
+      '--unstable_Switch-margin': '0 0 0 auto',
+    },
+  }),
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Input](https://mui.com/joy-ui/react-input/)
+ *
+ * API:
+ *
+ * - [FormControl API](https://mui.com/joy-ui/api/form-control/)
+ */
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const props = useThemeProps<typeof inProps & FormControlProps>({
     props: inProps,
@@ -75,6 +102,9 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error = false,
     color,
     size = 'md',
+    orientation = 'vertical',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -90,6 +120,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error,
     required,
     size,
+    orientation,
   };
 
   let registerEffect: undefined | (() => () => void);
@@ -100,7 +131,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       if (registeredInput.current) {
         console.error(
           [
-            'Joy: A FormControl can contain only one Input, Textarea, or Select component',
+            'Joy: A FormControl can contain only one control component (Autocomplete | Input | Textarea | Select | RadioGroup)',
             'You should not mix those components inside a single FormControl instance',
           ].join('\n'),
         );
@@ -114,6 +145,14 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   }
 
   const classes = useUtilityClasses(ownerState);
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: FormControlRoot,
+    externalForwardedProps: { ...other, component, slots, slotProps },
+    ownerState,
+  });
 
   const formControlContextValue = React.useMemo(
     () => ({
@@ -133,13 +172,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   return (
     <FormControlContext.Provider value={formControlContextValue}>
-      <FormControlRoot
-        as={component}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        ref={ref}
-        {...other}
-      />
+      <SlotRoot {...rootProps} />
     </FormControlContext.Provider>
   );
 }) as OverridableComponent<FormControlTypeMap>;
@@ -202,6 +235,20 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

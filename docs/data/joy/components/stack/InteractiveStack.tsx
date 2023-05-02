@@ -8,6 +8,17 @@ import Sheet from '@mui/joy/Sheet';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Stack, { StackProps } from '@mui/joy/Stack';
+import { styled } from '@mui/joy/styles';
+
+const Item = styled(Sheet)(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === 'dark' ? theme.palette.background.level1 : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  borderRadius: 4,
+  color: theme.vars.palette.text.secondary,
+}));
 
 export default function InteractiveStack() {
   const [direction, setDirection] = React.useState<StackProps['direction']>('row');
@@ -34,26 +45,25 @@ export default function InteractiveStack() {
         sx={{ height: 300, pt: 2, pb: 2 }}
       >
         {[0, 1, 2].map((value) => (
-          <Sheet
+          <Item
             key={value}
             sx={{
               p: 2,
               pt: value + 1,
               pb: value + 1,
-              typography: 'body2',
             }}
           >
             {`Item ${value + 1}`}
-          </Sheet>
+          </Item>
         ))}
       </Stack>
-      <Sheet sx={{ p: 2 }}>
+      <Sheet sx={{ p: 2, backgroundColor: 'background.level1' }}>
         <Grid container spacing={3}>
           <Grid xs={12}>
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>direction</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="direction"
                 aria-label="direction"
                 value={direction}
@@ -73,7 +83,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>alignItems</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="alignItems"
                 aria-label="align items"
                 value={alignItems}
@@ -94,7 +104,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>justifyContent</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="justifyContent"
                 aria-label="justifyContent"
                 value={justifyContent}
@@ -116,7 +126,7 @@ export default function InteractiveStack() {
             <FormControl>
               <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
               <RadioGroup
-                row
+                orientation="horizontal"
                 name="spacing"
                 aria-label="spacing"
                 value={spacing.toString()}

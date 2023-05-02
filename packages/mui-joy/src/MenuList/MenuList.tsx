@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
-import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
+import useMenu, { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import GroupListContext from '../List/GroupListContext';
 import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: MenuListOwnerState) => {
   const { variant, color, size } = ownerState;
@@ -35,11 +36,11 @@ const MenuListRoot = styled(StyledList, {
   return {
     '--focus-outline-offset': `calc(${theme.vars.focus.thickness} * -1)`, // to prevent the focus outline from being cut by overflow
     '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
+    '--ListItem-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    '--ListItem-stickyTop': 'calc(var(--List-padding, var(--ListDivider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     overflow: 'auto',
     ...(!variantStyle?.backgroundColor && {
@@ -47,7 +48,16 @@ const MenuListRoot = styled(StyledList, {
     }),
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Menu](https://mui.com/joy-ui/react-menu/)
+ *
+ * API:
+ *
+ * - [MenuList API](https://mui.com/joy-ui/api/menu-list/)
+ */
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -62,20 +72,14 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     color: colorProp = 'neutral',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const {
-    registerItem,
-    unregisterItem,
-    getListboxProps,
-    getItemProps,
-    getItemState,
-    highlightFirstItem,
-    highlightLastItem,
-  } = useMenu({
+  const { contextValue, getListboxProps, dispatch } = useMenu({
     listboxRef: ref,
     listboxId: idProp,
   });
@@ -83,10 +87,9 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   React.useImperativeHandle(
     actions,
     () => ({
-      highlightFirstItem,
-      highlightLastItem,
+      dispatch,
     }),
-    [highlightFirstItem, highlightLastItem],
+    [dispatch],
   );
 
   const ownerState = {
@@ -99,38 +102,35 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const listboxProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps,
     ownerState,
     className: classes.root,
   });
 
-  const contextValue = React.useMemo(
+  const menuContextValue = React.useMemo(
     () =>
       ({
-        registerItem,
-        unregisterItem,
-        getItemState,
-        getItemProps,
+        ...contextValue,
         getListboxProps,
         open: true,
-      } as MenuUnstyledContextType),
-    [getItemProps, getItemState, getListboxProps, registerItem, unregisterItem],
+      } as MenuProviderValue),
+    [contextValue, getListboxProps],
   );
 
   return (
-    <MenuListRoot {...listboxProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider nested>{children}</ListProvider>
-      </MenuUnstyledContext.Provider>
-    </MenuListRoot>
+    <SlotRoot {...rootProps}>
+      <MenuProvider value={menuContextValue}>
+        <GroupListContext.Provider value="menu">
+          <ListProvider nested>{children}</ListProvider>
+        </GroupListContext.Provider>
+      </MenuProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;
 
@@ -147,8 +147,7 @@ MenuList.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.shape({
       current: PropTypes.shape({
-        highlightFirstItem: PropTypes.func.isRequired,
-        highlightLastItem: PropTypes.func.isRequired,
+        dispatch: PropTypes.func.isRequired,
       }),
     }),
   ]),
@@ -175,11 +174,26 @@ MenuList.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -189,8 +203,8 @@ MenuList.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
-   * @default 'plain'
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

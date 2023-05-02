@@ -4,11 +4,10 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+5).
-- Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
-- We're a remote company, we prefer asynchronous communication over meetings.
-- We work independently, the rest of us won't know what you're doing day-to-day unless you tell us.
+- **Location**: Remote (preference for UTC-6 to UTC+5).
+- **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
+- **Level**: [4 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## About the company
 
@@ -19,7 +18,7 @@ Today, countless teams and organizations rely on our open-source libraries to bu
 A couple of years ago, we started to expand our suite of products.
 We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
-We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI.
+We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
@@ -28,9 +27,9 @@ For additional details about the MUI team and culture, you can check our [career
 
 ## Why we're hiring
 
-Accessibility is a strategic opportunty for MUI, across our products:
+Accessibility is a strategic opportunity for MUI, across our products:
 
-1. We are building MUI Base for the developers that are looking for a relatively lower-level API while keeping a strong baseline to build on top of that saves them time. For them, it's about having a better customizability experience (style & behavior). The most exigent users of MUI Base, the ones that are spreading the viral growth of the product in the community, have strong a11y requirements. So we have to meet them for MUI Base to be successful.
+1. We are building Base UI for the developers that are looking for a relatively lower-level API while keeping a strong baseline to build on top of that saves them time. For them, it's about having a better customizability experience (style & behavior). The most exigent users of Base UI, the ones that are spreading the viral growth of the product in the community, have strong a11y requirements. So we have to meet them for Base UI to be successful.
 2. Accessibility is mandated by law. For example, in the US, the Americans with Disabilities Act (ADA) is a US law enacted in 1990 to ensure people with disabilities are not discriminated against. In the EU, the European Accessibility Act (AEE) will soon be enacted. Our paid customers are increasingly asking about compliance with WCAG.
 
 Both our open-source community and our premium products are growing fast (x2 YoY).
@@ -38,7 +37,7 @@ We need talented people to keep that going!
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
+Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
 So, by improving the accessibility of our components, you will help millions of end-users who use [the products built with our UI library](https://trends.builtwith.com/framework/Material-UI).
 You will also be responsible to train the developers using MUI's products to a11y. For example, there might be an opportunity to create an eslint plugin aware of Material UI APIs to catch a11y issues before they go to production.
@@ -88,3 +87,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 ## How to apply?
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/ebc6db2a-fda9-431e-b45a-692377ef74aa/application?utm_source=ZNRrPGBkqO)
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

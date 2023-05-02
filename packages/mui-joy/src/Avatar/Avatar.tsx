@@ -136,7 +136,16 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 
   return loaded;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ *
+ * API:
+ *
+ * - [Avatar API](https://mui.com/joy-ui/api/avatar/)
+ */
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
@@ -150,15 +159,18 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color: colorProp = 'neutral',
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
-    imgProps,
     src,
     srcSet,
     children: childrenProp,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const variant = inProps.variant || groupContext?.variant || variantProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color || groupContext?.color, colorProp);
+  const colorFromContext = inProps.color || groupContext?.color;
+  const color = colorFromContext !== 'context' ? getColor(colorFromContext, colorProp) : colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -172,12 +184,13 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: AvatarRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -186,24 +199,22 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       alt,
       src,
       srcSet,
-      ...imgProps,
     },
     className: classes.img,
     elementType: AvatarImg,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotFallback, fallbackProps] = useSlot('fallback', {
     className: classes.fallback,
     elementType: AvatarFallback,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
-    ...imgProps,
     ...imageProps,
     src,
     srcSet,
@@ -249,10 +260,10 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-   * It can be used to listen for the loading error event.
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
-  imgProps: PropTypes.object,
+  component: PropTypes.elementType,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
@@ -262,6 +273,24 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    fallback: PropTypes.elementType,
+    img: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The `src` attribute for the `img` element.
    */
@@ -280,7 +309,7 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

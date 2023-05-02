@@ -1,0 +1,182 @@
+{
+  "props": {
+    "aria-label": { "type": { "name": "string" } },
+    "aria-valuetext": { "type": { "name": "string" } },
+    "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "defaultValue": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
+    "getAriaLabel": { "type": { "name": "func" } },
+    "getAriaValueText": { "type": { "name": "func" } },
+    "isRtl": { "type": { "name": "bool" }, "default": "false" },
+    "marks": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
+      },
+      "default": "false"
+    },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
+    "name": { "type": { "name": "string" } },
+    "onChange": { "type": { "name": "func" } },
+    "onChangeCommitted": { "type": { "name": "func" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
+      "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
+      },
+      "default": "{}"
+    },
+    "step": { "type": { "name": "number" }, "default": "1" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    },
+    "tabIndex": { "type": { "name": "number" } },
+    "track": {
+      "type": {
+        "name": "enum",
+        "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
+      },
+      "default": "'normal'"
+    },
+    "value": {
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+    },
+    "valueLabelDisplay": {
+      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
+      "default": "'off'"
+    },
+    "valueLabelFormat": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
+      "default": "function Identity(x) {\n  return x;\n}"
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
+      },
+      "default": "'solid'"
+    }
+  },
+  "name": "Slider",
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSlider" },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": ".MuiSlider-root"
+    },
+    {
+      "name": "track",
+      "description": "The component that renders the track.",
+      "default": "'span'",
+      "class": ".MuiSlider-track"
+    },
+    {
+      "name": "rail",
+      "description": "The component that renders the rail.",
+      "default": "'span'",
+      "class": ".MuiSlider-rail"
+    },
+    {
+      "name": "thumb",
+      "description": "The component that renders the thumb.",
+      "default": "'span'",
+      "class": ".MuiSlider-thumb"
+    },
+    {
+      "name": "mark",
+      "description": "The component that renders the mark.",
+      "default": "'span'",
+      "class": ".MuiSlider-mark"
+    },
+    {
+      "name": "markLabel",
+      "description": "The component that renders the mark label.",
+      "default": "'span'",
+      "class": ".MuiSlider-markLabel"
+    },
+    {
+      "name": "valueLabel",
+      "description": "The component that renders the value label.",
+      "default": "'span'",
+      "class": ".MuiSlider-valueLabel"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": null
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "dragging",
+      "focusVisible",
+      "markActive",
+      "marked",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "trackFalse",
+      "trackInverted",
+      "valueLabelOpen",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
+  "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoySlider",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-joy/src/Slider/Slider.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-slider/\">Slider</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Select component
+components: Select, Option
 githubLabel: 'component: select'
 unstyled: /base/react-select/
 ---
@@ -113,7 +114,7 @@ In the demo below, we're using the `ListItemDecorator` to provide space between 
 
 #### Group options
 
-To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/examples/listbox-grouped/), wrap the `Option` with `List` component and provide an associated label using `ListItem`. That way, you'll have a consistent height and will be able to leverage nested CSS variables.
 
 {{"demo": "SelectGroupedOptions.js"}}
 

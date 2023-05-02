@@ -19,6 +19,11 @@ describe('<Sheet />', () => {
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Sheet />, { muiName: 'JoySheet', classes });

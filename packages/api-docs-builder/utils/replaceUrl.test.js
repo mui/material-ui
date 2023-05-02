@@ -19,6 +19,12 @@ describe('replaceUrl', () => {
     expect(replaceMaterialLinks(`/discover-more/related-projects/`)).to.equal(
       `/material-ui/discover-more/related-projects/`,
     );
+    expect(replaceMaterialLinks(`/experimental-api/css-theme-variables/overview/`)).to.equal(
+      `/material-ui/experimental-api/css-theme-variables/overview/`,
+    );
+    expect(replaceMaterialLinks(`/migration/migration-grid-v2/`)).to.equal(
+      `/material-ui/migration/migration-grid-v2/`,
+    );
   });
 
   it('should not change if links have been updated', () => {
@@ -204,13 +210,6 @@ describe('replaceUrl', () => {
     );
   });
 
-  it('should do nothing if the components have updated', () => {
-    expect(replaceComponentLinks(`/material-ui/react-button-group/`)).to.equal(
-      `/material-ui/react-button-group/`,
-    );
-    expect(replaceComponentLinks(`/x/react-data-grid/demo/`)).to.equal(`/x/react-data-grid/demo/`);
-  });
-
   it('replace correct API links', () => {
     expect(replaceAPILinks(`/api/button/`)).to.equal(`/material-ui/api/button/`);
     expect(replaceAPILinks(`/api/no-ssr/`)).to.equal(`/base/api/no-ssr/`);
@@ -227,6 +226,13 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/click-away-listener/`)).to.equal(`/base/api/click-away-listener/`);
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
+  });
+
+  it('should do nothing if the components have updated', () => {
+    expect(replaceComponentLinks(`/material-ui/react-button-group/`)).to.equal(
+      `/material-ui/react-button-group/`,
+    );
+    expect(replaceComponentLinks(`/x/react-data-grid/demo/`)).to.equal(`/x/react-data-grid/demo/`);
   });
 
   it('should do nothing if the APIs have updated', () => {

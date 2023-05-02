@@ -7,6 +7,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardCoverUtilityClass } from './cardCoverClasses';
 import { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -49,14 +50,23 @@ const CardCoverRoot = styled('div', {
     },
   },
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Card](https://mui.com/joy-ui/react-card/)
+ *
+ * API:
+ *
+ * - [CardCover API](https://mui.com/joy-ui/api/card-cover/)
+ */
 const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardCoverProps>({
     props: inProps,
     name: 'JoyCardCover',
   });
 
-  const { className, component = 'div', children, ...other } = props;
+  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -64,21 +74,23 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   };
 
   const classes = useUtilityClasses();
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: CardCoverRoot,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
-    <CardCoverRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <SlotRoot {...rootProps}>
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
           ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
-    </CardCoverRoot>
+    </SlotRoot>
   );
 }) as OverridableComponent<CardCoverTypeMap>;
 
@@ -101,6 +113,20 @@ CardCover.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

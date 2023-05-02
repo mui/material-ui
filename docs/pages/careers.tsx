@@ -188,26 +188,9 @@ const openRolesData = [
     title: 'Design',
     roles: [
       {
-        title: 'Lead Designer',
-        description:
-          "You will be accountable for MUI's design execution and manage a small team of designers.",
-        url: '/careers/lead-designer/',
-      },
-      {
         title: 'Design Engineer',
         description: 'You will focus on design to implement great product experiences.',
         url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate',
-        description:
-          'You will build a thriving and connected developer community around our suite of products.',
-        url: '/careers/developer-advocate/',
       },
     ],
   },
@@ -218,6 +201,17 @@ const openRolesData = [
         title: 'Product Marketing Manager',
         description: 'You will own the marketing efforts at MUI.',
         url: '/careers/product-marketing-manager/',
+      },
+    ],
+  },
+  {
+    title: 'Operations',
+    roles: [
+      {
+        title: 'Head of Operations',
+        description:
+          "You will take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.",
+        url: '/careers/head-of-operations/',
       },
     ],
   },

@@ -16,7 +16,7 @@
       }
     },
     "component": { "type": { "name": "elementType" } },
-    "container": { "type": { "name": "bool" } },
+    "container": { "type": { "name": "bool" }, "default": "false" },
     "direction": {
       "type": {
         "name": "union",
@@ -24,7 +24,7 @@
       },
       "default": "'row'"
     },
-    "item": { "type": { "name": "bool" } },
+    "item": { "type": { "name": "bool" }, "default": "false" },
     "lg": {
       "type": {
         "name": "union",
@@ -86,7 +86,7 @@
       },
       "default": "false"
     },
-    "zeroMinWidth": { "type": { "name": "bool" } }
+    "zeroMinWidth": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "Grid",
   "styles": {
@@ -129,6 +129,8 @@
     "name": "MuiGrid"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiGrid",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Grid/Grid.js",
   "inheritance": null,

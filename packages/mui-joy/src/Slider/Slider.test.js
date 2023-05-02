@@ -32,7 +32,7 @@ describe('<Slider />', () => {
         input: { expectedClassName: classes.input },
         mark: { expectedClassName: classes.mark },
       },
-      skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeDefaultProps'],
+      skip: ['componentsProp', 'classesRoot', 'propsSpread'],
     }),
   );
 

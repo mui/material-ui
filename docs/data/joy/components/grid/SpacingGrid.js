@@ -40,13 +40,13 @@ export default function SpacingGrid() {
           <Grid container>
             <Grid>
               <FormControl>
-                <FormLabel sx={{ mb: 1.5 }}>spacing</FormLabel>
+                <FormLabel>spacing</FormLabel>
                 <RadioGroup
                   name="spacing"
                   aria-label="spacing"
                   value={spacing.toString()}
                   onChange={handleChange}
-                  row
+                  orientation="horizontal"
                   sx={{ flexWrap: 'wrap', gap: 2, '--RadioGroup-gap': '0px' }}
                 >
                   {[0, 0.5, 1, 2, 3, 4, 8, 12].map((value) => (

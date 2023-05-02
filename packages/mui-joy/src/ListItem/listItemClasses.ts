@@ -1,31 +1,31 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListItemClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the component element if `startAction` element is provided. */
+  /** Class name applied to the component element if `startAction` element is provided. */
   startAction: string;
-  /** Styles applied to the component element if `endAction` element is provided. */
+  /** Class name applied to the component element if `endAction` element is provided. */
   endAction: string;
-  /** Styles applied to the root element, if nested={true}. */
+  /** Class name applied to the root element, if nested={true}. */
   nested: string;
-  /** Styles applied to the root element, if it is under a nested list item. */
+  /** Class name applied to the root element, if it is under a nested list item. */
   nesting: string;
-  /** Styles applied to the root element, if sticky={true}. */
+  /** Class name applied to the root element, if sticky={true}. */
   sticky: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** State class applied to the root element if `variant="plain"`. */
   variantPlain: string;
@@ -40,10 +40,10 @@ export interface ListItemClasses {
 export type ListItemClassKey = keyof ListItemClasses;
 
 export function getListItemUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyListItem', slot);
+  return generateUtilityClass('MuiListItem', slot);
 }
 
-const listItemClasses: ListItemClasses = generateUtilityClasses('JoyListItem', [
+const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
   'root',
   'startAction',
   'endAction',

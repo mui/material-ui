@@ -11,6 +11,7 @@ import autocompleteOptionClasses, {
 } from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 import { useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
   const { color, variant } = ownerState;
@@ -29,9 +30,6 @@ const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {
 export const StyledAutocompleteOption = styled(StyledListItemButton as unknown as 'li')<{
   ownerState: AutocompleteOptionOwnerState;
 }>(({ theme, ownerState }) => ({
-  '&:not(:hover)': {
-    transition: 'none', // prevent flicker when using keyboard arrows to move between options
-  },
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
     color: theme.variants.soft?.[ownerState.color === 'context' ? 'context' : 'primary']?.color,
@@ -52,7 +50,16 @@ const AutocompleteOptionRoot = styled(StyledAutocompleteOption, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/joy-ui/react-autocomplete/)
+ *
+ * API:
+ *
+ * - [AutocompleteOption API](https://mui.com/joy-ui/api/autocomplete-option/)
+ */
 const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -65,6 +72,8 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     color: colorProp = 'neutral',
     variant = 'plain',
     className,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -78,19 +87,21 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <AutocompleteOptionRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      role="option"
-      {...other}
-    >
-      {children}
-    </AutocompleteOptionRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AutocompleteOptionRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role: 'option',
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AutocompleteOptionTypeMap>;
 
 AutocompleteOption.propTypes /* remove-proptypes */ = {
@@ -120,6 +131,20 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -128,7 +153,7 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

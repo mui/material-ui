@@ -9,12 +9,17 @@ describe('Joy <FormHelperText />', () => {
 
   describeConformance(<FormHelperText />, () => ({
     classes,
-    inheritComponent: 'p',
+    inheritComponent: 'div',
     render,
     ThemeProvider,
     muiName: 'JoyFormHelperText',
-    refInstanceof: window.HTMLParagraphElement,
+    refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('should have root className', () => {

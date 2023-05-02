@@ -131,6 +131,11 @@ import {
   ModalDialogOwnerState,
   ModalDialogSlot,
 } from '../ModalDialog/ModalDialogProps';
+import {
+  ModalOverflowProps,
+  ModalOverflowOwnerState,
+  ModalOverflowSlot,
+} from '../ModalOverflow/ModalOverflowProps';
 import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
 import {
   RadioGroupProps,
@@ -148,6 +153,7 @@ import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
 import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
 import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
+import { TableProps, TableOwnerState, TableSlot } from '../Table/TableProps';
 import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
 import {
   TypographyProps,
@@ -381,6 +387,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<TabsProps>;
     styleOverrides?: OverridesStyleRules<TabsSlot, TabsOwnerState, Theme>;
   };
+  JoyTable?: {
+    defaultProps?: Partial<TableProps>;
+    styleOverrides?: OverridesStyleRules<TableSlot, TableOwnerState, Theme>;
+  };
   JoyTabList?: {
     defaultProps?: Partial<TabListProps>;
     styleOverrides?: OverridesStyleRules<TabListSlot, TabListOwnerState, Theme>;
@@ -428,5 +438,9 @@ export interface Components<Theme = unknown> {
   JoyModalDialog?: {
     defaultProps?: Partial<ModalDialogProps>;
     styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
+  };
+  JoyModalOverflow?: {
+    defaultProps?: Partial<ModalOverflowProps>;
+    styleOverrides?: OverridesStyleRules<ModalOverflowSlot, ModalOverflowOwnerState, Theme>;
   };
 }

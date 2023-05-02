@@ -1,15 +1,17 @@
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
+import { getPath } from '@mui/system';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
 import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 import { ColorInversionProvider, useColorInversion } from '../styles/ColorInversion';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {
   const { variant, color } = ownerState;
@@ -32,20 +34,27 @@ export const SheetRoot = styled('div', {
 })<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
+  const bgcolor = resolveSxValue({ theme, ownerState }, 'bgcolor');
+  const backgroundColor = resolveSxValue({ theme, ownerState }, 'backgroundColor');
+  const background = resolveSxValue({ theme, ownerState }, 'background');
+  const resolvedBg =
+    (getPath(theme, `palette.${bgcolor}`) as string) ||
+    bgcolor ||
+    (getPath(theme, `palette.${backgroundColor}`) as string) ||
+    backgroundColor ||
+    background ||
+    variantStyle?.backgroundColor ||
+    variantStyle?.background ||
+    theme.vars.palette.background.surface;
   return [
     {
-      '--List-item-stickyBackground':
-        variantStyle?.backgroundColor ||
-        variantStyle?.background ||
-        theme.vars.palette.background.surface, // for sticky List
+      '--ListItem-stickyBackground': resolvedBg, // for sticky List
+      '--Sheet-background': resolvedBg, // for sticky table cell
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
-        '--internal-action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
+        '--unstable_actionRadius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       }),
-      // TODO: discuss the theme transition.
-      // This value is copied from mui-material Sheet.
-      transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
@@ -55,7 +64,16 @@ export const SheetRoot = styled('div', {
       theme.colorInversion[ownerState.variant!]?.[ownerState.color!],
   ];
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Sheet](https://mui.com/joy-ui/react-sheet/)
+ *
+ * API:
+ *
+ * - [Sheet API](https://mui.com/joy-ui/api/sheet/)
+ */
 const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,
@@ -68,6 +86,8 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
     component = 'div',
     variant = 'plain',
     invertedColors = false,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -82,16 +102,17 @@ const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const result = (
-    <SheetRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    />
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: SheetRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const result = <SlotRoot {...rootProps} />;
 
   if (invertedColors) {
     return <ColorInversionProvider variant={variant}>{result}</ColorInversionProvider>;
@@ -131,6 +152,20 @@ Sheet.propTypes /* remove-proptypes */ = {
    */
   invertedColors: PropTypes.bool,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -139,7 +174,7 @@ Sheet.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

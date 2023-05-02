@@ -89,6 +89,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/13808724',
     github: 'cherniavskii',
   },
+  mikailaread: {
+    name: 'Mikaila Read',
+    avatar: 'https://avatars.githubusercontent.com/u/76401606',
+    github: 'mikailaread',
+  },
 };
 
 const classes = {
@@ -146,6 +151,7 @@ const Root = styled('div')(
         lineHeight: 1.7,
       },
       '& img, & video': {
+        borderRadius: 4,
         display: 'block',
         margin: 'auto',
       },
@@ -179,12 +185,16 @@ const Root = styled('div')(
       },
       '& .blog-description': {
         fontSize: theme.typography.pxToRem(13),
-        textAlign: 'left',
-        color: (theme.vars || theme).palette.grey[600],
+        marginTop: 8,
+        textAlign: 'center',
+        color: (theme.vars || theme).palette.grey[700],
         '& a': {
-          color: (theme.vars || theme).palette.primary[600],
+          color: 'inherit',
           textDecoration: 'underline',
         },
+      },
+      '& .MuiCode-root + .blog-description': {
+        marginTop: -20 + 8,
       },
     },
     [`& .${classes.time}`]: {
@@ -214,9 +224,7 @@ const Root = styled('div')(
           },
         },
         '& .blog-description': {
-          '& a': {
-            color: (theme.vars || theme).palette.primary[300],
-          },
+          color: (theme.vars || theme).palette.grey[500],
         },
       },
     }),

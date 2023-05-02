@@ -4,7 +4,7 @@
 
 ## Methodology
 
-MUI is community driven – issues that resonate most with the community get the most attention.
+MUI is community-driven—issues that resonate most with the community get the most attention.
 Please **upvote** (👍) on GitHub the issues you are most interested in.
 Thank you for participating [in the developer survey](/blog/2021-developer-survey-results/).
 
@@ -47,7 +47,7 @@ Here are the components we will work on being supported in the MUI ecosystem:
 - ⏳ Planning to build
 
 | Name                       | Product  | Status |
-| :------------------------- | -------- | ------ |
+| :------------------------- | :------- | :----- |
 | Advanced Layout            | MUI X    | ⏳     |
 | Carousel                   | MUI X    | ⏳     |
 | Charts                     | MUI X    | ⏳     |

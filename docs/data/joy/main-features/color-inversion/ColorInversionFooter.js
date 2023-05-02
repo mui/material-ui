@@ -113,7 +113,12 @@ export default function ColorInversionFooter() {
             </Typography>
           </CardContent>
         </Card>
-        <List size="sm" row wrap sx={{ flexGrow: 0, '--List-item-radius': '8px' }}>
+        <List
+          size="sm"
+          orientation="horizontal"
+          wrap
+          sx={{ flexGrow: 0, '--ListItem-radius': '8px' }}
+        >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader>Sitemap</ListSubheader>
             <List>
@@ -130,7 +135,7 @@ export default function ColorInversionFooter() {
           </ListItem>
           <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
             <ListSubheader>Product</ListSubheader>
-            <List sx={{ '--List-decorator-size': '32px' }}>
+            <List sx={{ '--ListItemDecorator-size': '32px' }}>
               <ListItem>
                 <ListItemButton>
                   <ListItemDecorator>

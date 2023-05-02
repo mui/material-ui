@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { SliderUnstyled } from '@mui/base';
+import { Slider } from '@mui/base';
 
 declare module '@mui/base' {
-  interface SliderUnstyledComponentsPropsOverrides {
+  interface SliderRootSlotPropsOverrides {
     variant?: 'one' | 'two';
   }
 }
 
-<SliderUnstyled slotProps={{ root: { variant: 'one' } }} />;
+<Slider slotProps={{ root: { variant: 'one' } }} />;
 
 // @ts-expect-error unknown color
-<SliderUnstyled slotProps={{ root: { variant: 'three' } }} />;
+<Slider slotProps={{ root: { variant: 'three' } }} />;

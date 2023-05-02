@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Card component
+components: Card, CardContent, CardCover, CardOverflow
 githubLabel: 'component: card'
 ---
 
@@ -76,7 +77,7 @@ You can add any number of Card Covers to create more sophisticated stacked layer
 ### Horizontal alignment
 
 Card contents are arranged in a column by default.
-For horizontal alignment, add the `row` prop to the Card.
+For horizontal alignment, add the `orientation="horizontal"` prop to the Card.
 If present, the [Card Overflow](#expand-to-fill) component will adapt accordingly.
 
 {{"demo": "RowCard.js" }}
@@ -145,14 +146,14 @@ Try resizing it by clicking and dragging the bottom-right corner to see how it b
 The Card component and all of its supplementary components are composed of a single root `<div>`:
 
 ```html
-<div class="JoyCard-root">
-  <div class="JoyCardCover-root">
+<div class="MuiCard-root">
+  <div class="MuiCardCover-root">
     <!-- optional Card Cover layer -->
   </div>
-  <div class="JoyCardContent-root">
+  <div class="MuiCardContent-root">
     <!-- optional Card Content layer -->
   </div>
-  <div class="JoyCardOverflow-root">
+  <div class="MuiCardOverflow-root">
     <!-- optional Card Overflow utility -->
   </div>
 </div>

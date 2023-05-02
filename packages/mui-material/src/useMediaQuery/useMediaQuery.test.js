@@ -7,7 +7,7 @@ import {
   createRenderer,
   screen,
   RenderCounter,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
@@ -72,7 +72,7 @@ describe('useMediaQuery', () => {
     beforeEach(() => {
       matchMediaInstances = [];
       const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
-      // can't stub non-existent properties with sinon
+      // can't stub nonexistent properties with sinon
       // jsdom does not implement window.matchMedia
       if (window.matchMedia === undefined) {
         window.matchMedia = fakeMatchMedia;
@@ -144,7 +144,7 @@ describe('useMediaQuery', () => {
         expect(getRenderCountRef.current()).to.equal(1);
       });
 
-      it('should render twice if the default value does not match the expectation', () => {
+      it('render API: should render once if the default value does not match the expectation', () => {
         const getRenderCountRef = React.createRef();
         function Test() {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -163,7 +163,7 @@ describe('useMediaQuery', () => {
         expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
 
-      it('should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+      it('render API: should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
         const getRenderCountRef = React.createRef();
         function Test() {
           const matches = useMediaQuery('(min-width:2000px)', {
@@ -179,6 +179,47 @@ describe('useMediaQuery', () => {
         }
 
         render(<Test />);
+        expect(screen.getByTestId('matches').textContent).to.equal('false');
+        expect(getRenderCountRef.current()).to.equal(1);
+      });
+
+      it('hydrate API: should render twice if the default value does not match the expectation', () => {
+        const getRenderCountRef = React.createRef();
+        function Test() {
+          const matches = useMediaQuery('(min-width:2000px)', {
+            defaultMatches: true,
+          });
+
+          return (
+            <RenderCounter ref={getRenderCountRef}>
+              <span data-testid="matches">{`${matches}`}</span>
+            </RenderCounter>
+          );
+        }
+
+        const { hydrate } = renderToString(<Test />);
+        hydrate();
+        expect(screen.getByTestId('matches').textContent).to.equal('false');
+        expect(getRenderCountRef.current()).to.equal(2);
+      });
+
+      it('hydrate API: should render once if the default value does not match the expectation but `noSsr` is enabled', () => {
+        const getRenderCountRef = React.createRef();
+        function Test() {
+          const matches = useMediaQuery('(min-width:2000px)', {
+            defaultMatches: true,
+            noSsr: true,
+          });
+
+          return (
+            <RenderCounter ref={getRenderCountRef}>
+              <span data-testid="matches">{`${matches}`}</span>
+            </RenderCounter>
+          );
+        }
+
+        const { hydrate } = renderToString(<Test />);
+        hydrate();
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });
@@ -303,7 +344,7 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'MUI: The `query` argument provided is invalid',
-        !strictModeDoubleLoggingSupressed && 'MUI: The `query` argument provided is invalid',
+        !strictModeDoubleLoggingSuppressed && 'MUI: The `query` argument provided is invalid',
       ]);
     });
   });

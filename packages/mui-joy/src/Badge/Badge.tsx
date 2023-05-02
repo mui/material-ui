@@ -121,8 +121,7 @@ const BadgeBadge = styled('span', {
     minHeight: 'var(--Badge-minHeight)',
     minWidth: 'var(--Badge-minHeight)',
     borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
-    zIndex: 1,
-    transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    zIndex: theme.vars.zIndex.badge,
     backgroundColor: theme.vars.palette.background.surface,
     [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
     [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
@@ -131,13 +130,19 @@ const BadgeBadge = styled('span', {
     [`&.${badgeClasses.invisible}`]: {
       transform: `scale(0) ${translateX} ${translateY}`,
     },
-    ...(ownerState.invisible && {
-      transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    }),
     ...theme.variants[ownerState.variant!]?.[ownerState.color!],
   };
 });
-
+/**
+ *
+ * Demos:
+ *
+ * - [Badge](https://mui.com/joy-ui/react-badge/)
+ *
+ * API:
+ *
+ * - [Badge API](https://mui.com/joy-ui/api/badge/)
+ */
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'JoyBadge' });
   const {
@@ -154,6 +159,9 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeContent: badgeContentProp = '',
     showZero = false,
     variant: variantProp = 'solid',
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -163,7 +171,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     badgeInset: badgeInsetProp,
     color: colorProp,
     variant: variantProp,
-  }) as BadgeProps;
+  });
 
   let invisible = invisibleProp;
 
@@ -187,6 +195,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const ownerState = { ...props, anchorOrigin, badgeInset, variant, invisible, color, size };
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
   let displayValue =
     badgeContentProp && Number(badgeContentProp) > max ? `${max}+` : badgeContentProp;
 
@@ -198,14 +207,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     ref,
     className: classes.root,
     elementType: BadgeRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotBadge, badgeProps] = useSlot('badge', {
     className: classes.badge,
     elementType: BadgeBadge,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -235,6 +244,7 @@ Badge.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The content rendered within the badge.
+   * @default ''
    */
   badgeContent: PropTypes.node,
   /**
@@ -254,6 +264,11 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * If `true`, the badge is invisible.
    * @default false
@@ -278,6 +293,22 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    badge: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -286,7 +317,7 @@ Badge.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
