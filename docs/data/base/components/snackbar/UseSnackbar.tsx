@@ -22,9 +22,9 @@ export default function UseSnackbar() {
 
   return (
     <React.Fragment>
-      <button type="button" onClick={handleOpen}>
+      <TriggerButton type="button" onClick={handleOpen}>
         Open snackbar
-      </button>
+      </TriggerButton>
       {open ? (
         <ClickAwayListener onClickAway={onClickAway}>
           <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
@@ -33,6 +33,12 @@ export default function UseSnackbar() {
     </React.Fragment>
   );
 }
+
+const blue = {
+  200: '#99CCF3',
+  400: '#3399FF',
+  500: '#007FFF',
+};
 
 const grey = {
   50: '#f6f8fa',
@@ -56,6 +62,32 @@ const snackbarInRight = keyframes`
     transform: translateX(0);
   }
 `;
+
+const TriggerButton = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-sizing: border-box;
+  min-height: calc(1.5em + 22px);
+  border-radius: 12px;
+  padding: 6px 12px;
+  line-height: 1.5;
+  background: transparent;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+
+  &:hover {
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+  }
+
+  &:focus-visible {
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+  `,
+);
 
 const CustomSnackbar = styled('div')(
   ({ theme }) => css`
