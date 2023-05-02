@@ -660,6 +660,7 @@ describe('<Select />', () => {
       });
 
       expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0].type).to.equal('click');
       expect(handleChange.args[0][0].target.value).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(2);
     });

@@ -10,7 +10,7 @@ import {
   SelectAction,
   SelectActionTypes,
   SelectInternalState,
-  SelectOnChangeEvent,
+  SelectChangeEvent,
   SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -189,7 +189,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       }
 
       onChange?.(
-        clonedEvent as SelectOnChangeEvent<OptionValue, Multiple>,
+        clonedEvent as SelectChangeEvent<OptionValue, Multiple>,
         newValue as SelectValue<OptionValue, Multiple>,
       );
     },

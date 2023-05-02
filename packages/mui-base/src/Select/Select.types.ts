@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Simplify } from '@mui/types';
 import {
-  SelectOnChangeEvent,
+  SelectChangeEvent,
   SelectValue,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -69,7 +69,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: SelectOnChangeEvent<OptionValue, Multiple>,
+    e: SelectChangeEvent<OptionValue, Multiple>,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**
