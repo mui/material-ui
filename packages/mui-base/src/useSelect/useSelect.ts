@@ -184,17 +184,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         });
       }
 
-      if (multiple) {
-        onChange?.(
-          event as SelectOnChangeEvent<OptionValue, Multiple>,
-          newValue as SelectValue<OptionValue, Multiple>,
-        );
-      } else {
-        onChange?.(
-          event as SelectOnChangeEvent<OptionValue, Multiple>,
-          newValue as SelectValue<OptionValue, Multiple>,
-        );
-      }
+      onChange?.(
+        event as SelectOnChangeEvent<OptionValue, Multiple>,
+        newValue as SelectValue<OptionValue, Multiple>,
+      );
     },
     [multiple, onChange],
   );
