@@ -11,7 +11,7 @@ import Badge from '@mui/base/Badge';
 
 <Input slots={{
   root: CustomRoot
-}}></Input>;
+}} {...others}></Input>;
 
 <Switch
   slots={{

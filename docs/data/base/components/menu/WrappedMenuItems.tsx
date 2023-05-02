@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Menu, { MenuActions } from '@mui/base/Menu';
 import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
-import { buttonClasses } from '@mui/base/Button';
+import Button, { buttonClasses } from '@mui/base/Button';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { ListActionTypes } from '@mui/base/useList';
@@ -194,7 +194,7 @@ const StyledMenuItem = styled(MenuItem)(
   `,
 );
 
-const TriggerButton = styled('button')(
+const TriggerButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuItemOwnerState, MenuItemProps, MenuItemTypeMap } from './MenuItem.types';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import useMenuItem from '../useMenuItem';
@@ -28,13 +28,13 @@ function useUtilityClasses(ownerState: MenuItemOwnerState) {
  *
  * - [MenuItem API](https://mui.com/base/react-menu/components-api/#menu-item)
  */
-const MenuItem = React.forwardRef(function MenuItem<
-  BaseComponentType extends React.ElementType = MenuItemTypeMap['defaultComponent'],
->(props: MenuItemProps<BaseComponentType>, ref: React.Ref<any>) {
+const MenuItem = React.forwardRef(function MenuItem<RootComponentType extends React.ElementType>(
+  props: MenuItemProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     children,
     disabled: disabledProp = false,
-    component,
     label,
     slotProps = {},
     slots = {},
@@ -43,7 +43,7 @@ const MenuItem = React.forwardRef(function MenuItem<
 
   const { getRootProps, disabled, focusVisible, highlighted } = useMenuItem({
     disabled: disabledProp,
-    ref,
+    rootRef: forwardedRef,
     label,
   });
 
@@ -51,7 +51,7 @@ const MenuItem = React.forwardRef(function MenuItem<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? 'li';
+  const Root = slots.root ?? 'li';
   const rootProps = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -62,7 +62,7 @@ const MenuItem = React.forwardRef(function MenuItem<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<MenuItemTypeMap>;
+}) as PolymorphicComponent<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -73,11 +73,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * @ignore
    */

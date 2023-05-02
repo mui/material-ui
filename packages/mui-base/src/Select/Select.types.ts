@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
+import { Simplify } from '@mui/types';
 import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
 import { SelectOption } from '../useOption';
 import Popper, { PopperProps } from '../Popper';
-import { SlotComponentProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicProps, SlotComponentProps, WithOptionalOwnerState } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}
@@ -79,7 +79,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<OptionValue>) => string;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
    * Function that customizes the rendering of the selected value.
    */
@@ -141,45 +141,49 @@ export interface SelectSlots<OptionValue extends {}, Multiple extends boolean> {
 export interface SelectTypeMap<
   OptionValue extends {},
   Multiple extends boolean,
-  P = {},
-  D extends React.ElementType = 'button',
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'button',
 > {
-  props: P & SelectOwnProps<OptionValue, Multiple>;
-  defaultComponent: D;
+  props: SelectOwnProps<OptionValue, Multiple> & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type SelectProps<
   OptionValue extends {},
   Multiple extends boolean,
-  D extends React.ElementType = SelectTypeMap<OptionValue, Multiple>['defaultComponent'],
-> = OverrideProps<SelectTypeMap<OptionValue, Multiple, {}, D>, D> & {
-  component?: D;
-};
+  RootComponentType extends React.ElementType = SelectTypeMap<
+    OptionValue,
+    Multiple
+  >['defaultComponent'],
+> = PolymorphicProps<
+  SelectTypeMap<OptionValue, Multiple, {}, RootComponentType>,
+  RootComponentType
+>;
 
 // OverridableComponent cannot be used below as Select's props are generic.
 export interface SelectType {
-  <OptionValue extends {}, C extends React.ElementType, Multiple extends boolean = false>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: C;
-    } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
-  ): JSX.Element | null;
-  <OptionValue extends {}, Multiple extends boolean = false>(
-    props: DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
+  <
+    OptionValue extends {},
+    Multiple extends boolean = false,
+    RootComponentType extends React.ElementType = SelectTypeMap<
+      OptionValue,
+      Multiple
+    >['defaultComponent'],
+  >(
+    props: PolymorphicProps<SelectTypeMap<OptionValue, Multiple>, RootComponentType>,
   ): JSX.Element | null;
   propTypes?: any;
+  displayName?: string | undefined;
 }
 
-export interface SelectOwnerState<OptionValue extends {}, Multiple extends boolean>
-  extends SelectOwnProps<OptionValue, Multiple> {
-  active: boolean;
-  disabled: boolean;
-  focusVisible: boolean;
-  open: boolean;
-}
+export type SelectOwnerState<OptionValue extends {}, Multiple extends boolean> = Simplify<
+  SelectOwnProps<OptionValue, Multiple> & {
+    active: boolean;
+    disabled: boolean;
+    focusVisible: boolean;
+    open: boolean;
+  }
+>;
 
 export type SelectRootSlotProps<OptionValue extends {}, Multiple extends boolean> = Simplify<
   UseSelectButtonSlotProps & {

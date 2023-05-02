@@ -33,7 +33,7 @@ const MenuItem = React.forwardRef(function MenuItem(
 ) {
   const { children, onClick, ...other } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({ rootRef: ref });
 
   const classes = {
     'focus-visible': focusVisible,
@@ -238,7 +238,7 @@ const styles = `
       border-color: ${grey[300]};
     }
   
-    &:focus {
+    &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${blue[200]};
     }

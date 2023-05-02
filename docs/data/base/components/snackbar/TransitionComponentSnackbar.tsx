@@ -6,6 +6,90 @@ import CloseIcon from '@mui/icons-material/Close';
 import Snackbar from '@mui/base/Snackbar';
 import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
+export default function TransitionComponentSnackbar() {
+  const [open, setOpen] = React.useState(false);
+  const [exited, setExited] = React.useState(true);
+  const nodeRef = React.useRef(null);
+
+  const handleClose = (_: any, reason: SnackbarCloseReason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleOnEnter = () => {
+    setExited(false);
+  };
+
+  const handleOnExited = () => {
+    setExited(true);
+  };
+
+  return (
+    <React.Fragment>
+      <button type="button" onClick={handleClick}>
+        Open snackbar
+      </button>
+      <StyledSnackbar
+        autoHideDuration={5000}
+        open={open}
+        onClose={handleClose}
+        exited={exited}
+      >
+        <Transition
+          timeout={{ enter: 400, exit: 400 }}
+          in={open}
+          appear
+          unmountOnExit
+          onEnter={handleOnEnter}
+          onExited={handleOnExited}
+          nodeRef={nodeRef}
+        >
+          {(status) => (
+            <SnackbarContent
+              style={{
+                transform: positioningStyles[status],
+                transition: 'transform 300ms ease',
+              }}
+              ref={nodeRef}
+            >
+              <CheckRoundedIcon
+                sx={{
+                  flexShrink: 0,
+                  marginRight: '0.75rem',
+                  width: '1.25rem',
+                  height: '1.5rem',
+                }}
+              />
+              <div className="snackbar-message">
+                <div className="snackbar-title">Notifications sent</div>
+                <div className="snackbar-description">
+                  All your notifications were sent to the desired address.
+                </div>
+              </div>
+              <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
+            </SnackbarContent>
+          )}
+        </Transition>
+      </StyledSnackbar>
+    </React.Fragment>
+  );
+}
+
+const blue = {
+  50: '#F0F7FF',
+  100: '#DAECFF',
+  400: '#3399FF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
 const grey = {
   50: '#f6f8fa',
   100: '#eaeef2',
@@ -86,79 +170,3 @@ const positioningStyles = {
   exited: 'translateX(500px)',
   unmounted: 'translateX(500px)',
 };
-
-export default function TransitionComponentSnackbar() {
-  const [open, setOpen] = React.useState(false);
-  const [exited, setExited] = React.useState(true);
-  const nodeRef = React.useRef(null);
-
-  const handleClose = (_: any, reason: SnackbarCloseReason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleOnEnter = () => {
-    setExited(false);
-  };
-
-  const handleOnExited = () => {
-    setExited(true);
-  };
-
-  return (
-    <React.Fragment>
-      <button type="button" onClick={handleClick}>
-        Open snackbar
-      </button>
-      <StyledSnackbar
-        autoHideDuration={5000}
-        open={open}
-        onClose={handleClose}
-        exited={exited}
-      >
-        <Transition
-          timeout={{ enter: 400, exit: 400 }}
-          in={open}
-          appear
-          unmountOnExit
-          onEnter={handleOnEnter}
-          onExited={handleOnExited}
-          nodeRef={nodeRef}
-        >
-          {(status) => (
-            <SnackbarContent
-              style={{
-                transform: positioningStyles[status],
-                transition: 'transform 300ms ease',
-              }}
-              ref={nodeRef}
-            >
-              <CheckRoundedIcon
-                sx={{
-                  flexShrink: 0,
-                  marginRight: '0.75rem',
-                  width: '1.25rem',
-                  height: '1.5rem',
-                }}
-              />
-              <div className="snackbar-message">
-                <div className="snackbar-title">Notifications sent</div>
-                <div className="snackbar-description">
-                  All your notifications were sent to the desired address.
-                </div>
-              </div>
-              <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
-            </SnackbarContent>
-          )}
-        </Transition>
-      </StyledSnackbar>
-    </React.Fragment>
-  );
-}

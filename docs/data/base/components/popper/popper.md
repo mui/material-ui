@@ -23,7 +23,7 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Popper from '@mui/base/Popper';

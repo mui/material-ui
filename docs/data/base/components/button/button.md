@@ -25,7 +25,7 @@ The Button component replaces the native HTML `<button>` element, and offers exp
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Button from '@mui/base/Button';
@@ -54,18 +54,18 @@ The Button component is composed of a root `<button>` slot with no interior slot
 </button>
 ```
 
-### Slot props
+### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
+Use the `slots.root` prop to override the root slot with a custom element:
 
 ```jsx
-<Button component="div" />
+<Button slots={{ root: 'div' }} />
 ```
+
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
 
 If you provide a non-interactive element such as a `<span>`, the Button component will automatically add the necessary accessibility attributes.
 
@@ -74,9 +74,23 @@ Compare the attributes on the `<span>` in this demo with the Button from the pre
 {{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
-If a Button is customized with a non-button element (i.e. `<Button component="span" />`), it will not submit the form it's in when clicked.
-Similarly, `<Button component="span" type="reset">` will not reset its parent form.
+If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
+Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its parent form.
 :::
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Button<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Button<'img'> slots={{ root: 'img' }} src="button.png" />
+```
 
 ## Hook
 

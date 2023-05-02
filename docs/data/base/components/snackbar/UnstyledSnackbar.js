@@ -2,6 +2,40 @@ import * as React from 'react';
 import { styled, keyframes, css } from '@mui/system';
 import Snackbar from '@mui/base/Snackbar';
 
+export default function UnstyledSnackbar() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (_, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  return (
+    <React.Fragment>
+      <button type="button" onClick={handleClick}>
+        Open snackbar
+      </button>
+      <StyledSnackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+        Hello World
+      </StyledSnackbar>
+    </React.Fragment>
+  );
+}
+
+const blue = {
+  50: '#F0F7FF',
+  400: '#3399FF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
 const grey = {
   50: '#f6f8fa',
   100: '#eaeef2',
@@ -50,30 +84,3 @@ const StyledSnackbar = styled(Snackbar)(
     transition: transform 0.2s ease-out;
   `,
 );
-
-export default function UnstyledSnackbar() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = (_, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  return (
-    <React.Fragment>
-      <button type="button" onClick={handleClick}>
-        Open snackbar
-      </button>
-      <StyledSnackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-        Hello World
-      </StyledSnackbar>
-    </React.Fragment>
-  );
-}

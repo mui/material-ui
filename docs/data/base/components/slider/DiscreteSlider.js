@@ -3,6 +3,35 @@ import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function DiscreteSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider
+        aria-label="Temperature"
+        defaultValue={30}
+        getAriaValueText={valuetext}
+        step={10}
+        marks
+        min={10}
+        max={110}
+        slots={{ valueLabel: SliderValueLabel }}
+      />
+    </Box>
+  );
+}
+
+function SliderValueLabel({ children }) {
+  return <span className="valueLabel">{children}</span>;
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -121,32 +150,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-function SliderValueLabel({ children }) {
-  return <span className="valueLabel">{children}</span>;
-}
-
-SliderValueLabel.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-export default function DiscreteSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider
-        aria-label="Temperature"
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        step={10}
-        marks
-        min={10}
-        max={110}
-        slots={{ valueLabel: SliderValueLabel }}
-      />
-    </Box>
-  );
-}

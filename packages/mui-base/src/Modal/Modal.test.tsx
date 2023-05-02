@@ -31,6 +31,7 @@ describe('<Modal />', () => {
         },
       },
       skip: [
+        'componentProp',
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),

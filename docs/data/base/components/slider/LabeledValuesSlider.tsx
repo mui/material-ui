@@ -2,6 +2,26 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function LabeledValuesSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+    </Box>
+  );
+}
+
+interface SliderValueLabelProps {
+  children: React.ReactElement;
+}
+
+function SliderValueLabel({ children }: SliderValueLabelProps) {
+  return (
+    <span className="label">
+      <div className="value">{children}</div>
+    </span>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -114,23 +134,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-interface SliderValueLabelProps {
-  children: React.ReactElement;
-}
-
-function SliderValueLabel({ children }: SliderValueLabelProps) {
-  return (
-    <span className="label">
-      <div className="value">{children}</div>
-    </span>
-  );
-}
-
-export default function LabeledValuesSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
-    </Box>
-  );
-}

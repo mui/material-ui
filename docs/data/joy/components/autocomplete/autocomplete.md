@@ -10,13 +10,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 
 <p class="description">The autocomplete is a text input enhanced by a panel of suggested options when users start typing.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 `Autocomplete` is an enhanced version of text input that shows suggested options as the users type and also let them select an option from the list.
 
 {{"demo": "Playground.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Usage
 

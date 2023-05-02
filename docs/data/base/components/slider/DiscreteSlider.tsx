@@ -2,6 +2,35 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function DiscreteSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider
+        aria-label="Temperature"
+        defaultValue={30}
+        getAriaValueText={valuetext}
+        step={10}
+        marks
+        min={10}
+        max={110}
+        slots={{ valueLabel: SliderValueLabel }}
+      />
+    </Box>
+  );
+}
+
+interface SliderValueLabelProps {
+  children: React.ReactElement;
+}
+
+function SliderValueLabel({ children }: SliderValueLabelProps) {
+  return <span className="valueLabel">{children}</span>;
+}
+
+function valuetext(value: number) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -120,32 +149,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-interface SliderValueLabelProps {
-  children: React.ReactElement;
-}
-
-function SliderValueLabel({ children }: SliderValueLabelProps) {
-  return <span className="valueLabel">{children}</span>;
-}
-
-function valuetext(value: number) {
-  return `${value}°C`;
-}
-
-export default function DiscreteSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider
-        aria-label="Temperature"
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        step={10}
-        marks
-        min={10}
-        max={110}
-        slots={{ valueLabel: SliderValueLabel }}
-      />
-    </Box>
-  );
-}

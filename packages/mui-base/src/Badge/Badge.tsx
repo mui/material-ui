@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import useBadge from '../useBadge';
 import { getBadgeUtilityClass } from './badgeClasses';
@@ -34,10 +34,12 @@ const useUtilityClasses = (ownerState: BadgeOwnerState) => {
  *
  * - [Badge API](https://mui.com/base/react-badge/components-api/#badge)
  */
-const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
+const Badge = React.forwardRef(function Badge<RootComponentType extends React.ElementType>(
+  props: BadgeProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     badgeContent: badgeContentProp,
-    component,
     children,
     invisible: invisibleProp,
     max: maxProp = 99,
@@ -62,19 +64,19 @@ const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component || slots.root || 'span';
+  const Root = slots.root ?? 'span';
   const rootProps: WithOptionalOwnerState<BadgeRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState,
     className: classes.root,
   });
 
-  const BadgeComponent = slots.badge || 'span';
+  const BadgeComponent = slots.badge ?? 'span';
   const badgeProps: WithOptionalOwnerState<BadgeBadgeSlotProps> = useSlotProps({
     elementType: BadgeComponent,
     externalSlotProps: slotProps.badge,
@@ -88,7 +90,7 @@ const Badge = React.forwardRef(function Badge(props: BadgeProps, ref) {
       <BadgeComponent {...badgeProps}>{displayValue}</BadgeComponent>
     </Root>
   );
-}) as OverridableComponent<BadgeTypeMap>;
+}) as PolymorphicComponent<BadgeTypeMap>;
 
 Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -103,11 +105,6 @@ Badge.propTypes /* remove-proptypes */ = {
    * The badge will be added relative to this node.
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true`, the badge is invisible.
    * @default false

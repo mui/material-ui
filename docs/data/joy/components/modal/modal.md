@@ -10,6 +10,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 
 <p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Joy UI provides three modal-related components:
@@ -27,8 +29,6 @@ Joy UI provides three modal-related components:
 - 🔐 Disables page scrolling while open.
 - ⌨️ Manages focus correctly between the modal and its parent app.
 - ♿️ Adds the appropriate ARIA roles automatically.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
 The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect.
