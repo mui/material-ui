@@ -176,16 +176,20 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       newValues: OptionValue[],
     ) => {
       const newValue = multiple ? newValues : newValues[0] ?? null;
-
-      if (event) {
-        Object.defineProperty(event, 'target', {
+      const nativeEvent = event ? event.nativeEvent || event : null;
+      const clonedEvent = nativeEvent
+        ? // @ts-ignore The nativeEvent is function, not object
+          new nativeEvent.constructor(nativeEvent.type, nativeEvent)
+        : null;
+      if (clonedEvent) {
+        Object.defineProperty(clonedEvent, 'target', {
           writable: true,
           value: { value: newValue },
         });
       }
 
       onChange?.(
-        event as SelectOnChangeEvent<OptionValue, Multiple>,
+        clonedEvent as SelectOnChangeEvent<OptionValue, Multiple>,
         newValue as SelectValue<OptionValue, Multiple>,
       );
     },
