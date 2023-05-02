@@ -2,6 +2,7 @@
   <CompactNumberInput
     aria-label="Compact number input"
     placeholder="Type a number…"
+    readOnly
     value={value}
     onValueChange={(event, val) => setValue(val)}
   />

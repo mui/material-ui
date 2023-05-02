@@ -55,6 +55,7 @@ export default function useNumberInput(
     onFocus,
     onValueChange,
     required: requiredProp = false,
+    readOnly: readOnlyProp = false,
     value: valueProp,
     inputRef: inputRefProp,
   } = parameters;
@@ -324,6 +325,8 @@ export default function useNumberInput(
       autoComplete: 'off',
       autoCorrect: 'off',
       required: requiredProp,
+      readOnly: readOnlyProp,
+      tabIndex: readOnlyProp ? -1 : 0,
       'aria-disabled': disabledProp,
       disabled: disabledProp,
     };
@@ -344,8 +347,7 @@ export default function useNumberInput(
   ): UseNumberInputIncrementButtonSlotProps<TOther> => {
     return {
       ...externalProps,
-      // the button should be tab-able if the input is readonly
-      tabIndex: -1,
+      tabIndex: readOnlyProp ? 0 : -1,
       disabled: isIncrementDisabled,
       'aria-disabled': isIncrementDisabled,
       onMouseDown: handleStepperButtonMouseDown,
@@ -360,8 +362,7 @@ export default function useNumberInput(
   ): UseNumberInputDecrementButtonSlotProps<TOther> => {
     return {
       ...externalProps,
-      // the button should be tab-able if the input is readonly
-      tabIndex: -1,
+      tabIndex: readOnlyProp ? 0 : -1,
       disabled: isDecrementDisabled,
       'aria-disabled': isDecrementDisabled,
       onMouseDown: handleStepperButtonMouseDown,

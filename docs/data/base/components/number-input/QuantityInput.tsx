@@ -19,6 +19,7 @@ const CustomNumberInput = React.forwardRef(function CustomNumberInput(
       slotProps={{
         incrementButton: {
           children: <AddIcon />,
+          className: 'increment',
         },
         decrementButton: {
           children: <RemoveIcon />,
@@ -72,7 +73,6 @@ const StyledInputRoot = styled('div')(
     border-color: ${blue[400]};
   }
 
-  // firefox
   &:focus-visible {
     outline: 0;
   }
@@ -140,6 +140,10 @@ const StyledButton = styled('button')(
 
   &:focus-visible {
     outline: 0;
+  }
+
+  &.increment {
+    order: 1;
   }
 `,
 );

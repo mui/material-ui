@@ -9,6 +9,7 @@
     "min": { "type": { "name": "number" } },
     "onChange": { "type": { "name": "func" } },
     "onValueChange": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "slotProps": {
       "type": {

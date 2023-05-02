@@ -8,6 +8,7 @@
     "min": "The minimum value.",
     "onChange": "Callback fired when the <input> value changes, before clamping is applied. Note that\n<code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or\nare otherwise \"invalid\".",
     "onValueChange": "Callback fired after the value is clamped and changes.\nCalled with <code>undefined</code> when the value is unset.",
+    "readOnly": "If <code>true</code>, the <code>input</code> element becomes read-only. The stepper buttons remain active,\nwith the addition that they are now keyboard focusable.",
     "required": "If <code>true</code>, the <code>input</code> element is required.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
     "shiftMultiplier": "Multiplier applied to <code>step</code> if the shift key is held while incrementing\nor decrementing the value. Defaults to </code>10</code>.",
     "step": "The amount that the value changes on each increment or decrement.",

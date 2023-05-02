@@ -62,6 +62,11 @@ export interface UseNumberInputParameters {
    */
   required?: boolean;
   /**
+   * If `true`, the `input` element becomes read-only. The stepper buttons remain active,
+   * with the addition that they are now keyboard focusable.
+   */
+  readOnly?: boolean;
+  /**
    * The current value. Use when the component is controlled.
    */
   value?: unknown;

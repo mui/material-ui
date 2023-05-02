@@ -65,6 +65,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     onValueChange,
     placeholder,
     required,
+    readOnly,
     step,
     value,
     slotProps = {},
@@ -95,6 +96,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     onBlur,
     onValueChange,
     required,
+    readOnly,
     value,
   });
 
@@ -163,8 +165,8 @@ const NumberInput = React.forwardRef(function NumberInput(
   return (
     <Root {...rootProps}>
       <DecrementButton {...decrementButtonProps} />
-      <Input {...inputProps} />
       <IncrementButton {...incrementButtonProps} />
+      <Input {...inputProps} />
     </Root>
   );
 }) as OverridableComponent<NumberInputTypeMap>;
@@ -235,6 +237,11 @@ NumberInput.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   placeholder: PropTypes.string,
+  /**
+   * If `true`, the `input` element becomes read-only. The stepper buttons remain active,
+   * with the addition that they are now keyboard focusable.
+   */
+  readOnly: PropTypes.bool,
   /**
    * If `true`, the `input` element is required.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.

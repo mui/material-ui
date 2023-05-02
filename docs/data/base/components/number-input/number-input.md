@@ -84,8 +84,8 @@ The Base UI Number Input component consists of a root `<div>` that contains one 
 ```html
 <div class="MuiNumberInput-root">
   <button class="MuiNumberInput-decrementButton" />
-  <input class="MuiNumberInput-input" />
   <button class="MuiNumberInput-incrementButton" />
+  <input class="MuiNumberInput-input" />
 </div>
 ```
 

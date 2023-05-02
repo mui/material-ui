@@ -20,29 +20,7 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(
 
   return (
     <StyledInputRoot {...getRootProps()}>
-      <StyledStepperButton
-        className="increment"
-        {...getIncrementButtonProps()}
-        tabIndex={0}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-        >
-          <path d="M0 0h24v24H0z" fill="none" />
-          <path
-            d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
-            fill="currentColor"
-          />
-        </svg>
-      </StyledStepperButton>
-      <StyledStepperButton
-        className="decrement"
-        {...getDecrementButtonProps()}
-        tabIndex={0}
-      >
+      <StyledStepperButton className="decrement" {...getDecrementButtonProps()}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
@@ -52,6 +30,20 @@ const CompactNumberInput = React.forwardRef(function CompactNumberInput(
           <path d="M0 0h24v24H0V0z" fill="none" />
           <path
             d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+            fill="currentColor"
+          />
+        </svg>
+      </StyledStepperButton>
+      <StyledStepperButton className="increment" {...getIncrementButtonProps()}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
             fill="currentColor"
           />
         </svg>
@@ -69,6 +61,7 @@ export default function UseNumberInputCompact() {
       <CompactNumberInput
         aria-label="Compact number input"
         placeholder="Type a number…"
+        readOnly
         value={value}
         onValueChange={(event, val) => setValue(val)}
       />
@@ -104,6 +97,9 @@ const StyledInputRoot = styled('div')(
     display: grid;
     grid-template-columns: 2.5rem;
     grid-template-rows: 2rem 2rem;
+    grid-template-areas:
+      "increment"
+      "decrement";
     row-gap: 1px;
     border-radius: 0.5rem;
     border-style: solid;
@@ -127,7 +123,7 @@ const HiddenInput = styled('input')`
 const StyledStepperButton = styled('button')(
   ({ theme }) => `
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: nowrap;
   justify-content: center;
   align-items: center;
 
@@ -150,11 +146,13 @@ const StyledStepperButton = styled('button')(
   }
 
   &.increment {
+    grid-area: increment;
     border-top-left-radius: 0.35rem;
     border-top-right-radius: 0.35rem;
   }
 
   &.decrement {
+    grid-area: decrement;
     border-bottom-left-radius: 0.35rem;
     border-bottom-right-radius: 0.35rem;
   }
