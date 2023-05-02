@@ -39,12 +39,12 @@ describe('<Slider />', () => {
   describeJoyColorInversion(<Slider />, { muiName: 'JoySlider', classes });
 
   it('should render the rail as the first child of the Slider', () => {
-    const {
-      container: { firstChild: root },
-    } = render(<Slider />);
+    const { container } = render(<Slider />);
 
-    expect(root.childNodes[0]).to.have.property('tagName', 'SPAN');
-    expect(root.childNodes[0]).to.have.class(classes.rail);
+    const sliderComponent = container.firstChild!;
+
+    expect(sliderComponent.childNodes[0]).to.have.property('tagName', 'SPAN');
+    expect(sliderComponent.childNodes[0]).to.have.class(classes.rail);
   });
 
   it('should show formatted label', () => {
