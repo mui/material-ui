@@ -665,7 +665,7 @@ describe('<Select />', () => {
       expect(handleChange.args[0][1]).to.equal(2);
     });
 
-    it('does not call onChange if `value` is modified externally', () => {
+    it('is not called if `value` is modified externally', () => {
       function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
         const [value, setValue] = React.useState([1]);
         const handleChange = (ev: React.SyntheticEvent | null, newValue: number[]) => {
@@ -690,6 +690,134 @@ describe('<Select />', () => {
       const button = getByText('Update value');
       act(() => button.click());
       expect(onChange.notCalled).to.equal(true);
+    });
+
+    it('is not called after initial render when when controlled value is set to null', () => {
+      function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
+        const [value, setValue] = React.useState<string | null>(null);
+        const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
+          setValue(newValue);
+          onChange(newValue);
+        };
+
+        return (
+          <Select value={value} onChange={handleChange}>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        );
+      }
+
+      const onChange = spy();
+      render(<TestComponent onChange={onChange} />);
+
+      expect(onChange.notCalled).to.equal(true);
+    });
+
+    it('is not called after initial render when when the default uncontrolled value is set to null', () => {
+      function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
+        const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
+          onChange(newValue);
+        };
+
+        return (
+          <Select defaultValue={null as string | null} onChange={handleChange}>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        );
+      }
+
+      const onChange = spy();
+      render(<TestComponent onChange={onChange} />);
+
+      expect(onChange.notCalled).to.equal(true);
+    });
+
+    it('is not called after initial render when the controlled value is set to a valid option', () => {
+      function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
+        const [value, setValue] = React.useState<string | null>('1');
+        const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
+          setValue(newValue);
+          onChange(newValue);
+        };
+
+        return (
+          <Select value={value} onChange={handleChange}>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        );
+      }
+
+      const onChange = spy();
+      render(<TestComponent onChange={onChange} />);
+
+      expect(onChange.notCalled).to.equal(true);
+    });
+
+    it('is not called after initial render when when the default uncontrolled value is set to a valid option', () => {
+      function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
+        const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
+          onChange(newValue);
+        };
+
+        return (
+          <Select defaultValue="1" onChange={handleChange}>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        );
+      }
+
+      const onChange = spy();
+      render(<TestComponent onChange={onChange} />);
+
+      expect(onChange.notCalled).to.equal(true);
+    });
+
+    it('is called with after initial render with `null` when the controlled value is set to a nonexistent option', () => {
+      function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
+        const [value, setValue] = React.useState<string | null>('42');
+        const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
+          setValue(newValue);
+          onChange(newValue);
+        };
+
+        return (
+          <Select value={value} onChange={handleChange}>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        );
+      }
+
+      const onChange = spy();
+      render(<TestComponent onChange={onChange} />);
+
+      expect(onChange.called).to.equal(true);
+      expect(onChange.args[0][0]).to.equal(null);
+    });
+
+    it('is called after initial render when when the default uncontrolled value is set to a nonexistent option', () => {
+      function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
+        const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
+          onChange(newValue);
+        };
+
+        return (
+          <Select defaultValue="42" onChange={handleChange}>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        );
+      }
+
+      const onChange = spy();
+      render(<TestComponent onChange={onChange} />);
+
+      expect(onChange.called).to.equal(true);
+      expect(onChange.args[0][0]).to.equal(null);
     });
   });
 

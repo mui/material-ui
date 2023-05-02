@@ -64,14 +64,20 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   if (valueProp === undefined && defaultValueProp === undefined) {
     defaultValue = [];
   } else if (defaultValueProp !== undefined) {
-    defaultValue = multiple
-      ? (defaultValueProp as OptionValue[])
-      : [defaultValueProp as OptionValue];
+    if (multiple) {
+      defaultValue = defaultValueProp as OptionValue[];
+    } else {
+      defaultValue = defaultValueProp == null ? [] : [defaultValueProp as OptionValue];
+    }
   }
 
   const value = React.useMemo(() => {
     if (valueProp !== undefined) {
-      return multiple ? (valueProp as OptionValue[]) : [valueProp as OptionValue];
+      if (multiple) {
+        return valueProp as OptionValue[];
+      }
+
+      return valueProp == null ? [] : [valueProp as OptionValue];
     }
 
     return undefined;
