@@ -664,6 +664,43 @@ describe('<Select />', () => {
       expect(handleChange.args[0][1]).to.equal(2);
     });
 
+    it('should set correct values in event.target object when multiple is true', () => {
+      const handleChange = spy();
+
+      const { getByRole, getByText } = render(
+        <Select multiple onChange={handleChange}>
+          <Option value={1}>One</Option>
+          <Option value={2}>Two</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      const optionTwo = getByText('Two');
+      act(() => {
+        optionTwo.click();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0].target.value).to.deep.equal([2]);
+      expect(handleChange.args[0][1]).to.deep.equal([2]);
+
+      act(() => {
+        select.click();
+      });
+
+      const optionOne = getByText('One');
+      act(() => {
+        optionOne.click();
+      });
+
+      expect(handleChange.args[0][0].target.value).to.deep.equal([2, 1]);
+      expect(handleChange.args[0][1]).to.deep.equal([2, 1]);
+    });
+
     it('does not call onChange if `value` is modified externally', () => {
       function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
         const [value, setValue] = React.useState([1]);
