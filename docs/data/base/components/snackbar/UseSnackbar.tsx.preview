@@ -1,6 +1,6 @@
 <React.Fragment>
   <button type="button" onClick={handleOpen}>
-    Open snackbar
+    Open Snackbar
   </button>
   {open ? (
     <ClickAwayListener onClickAway={onClickAway}>

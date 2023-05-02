@@ -82,14 +82,6 @@ export default function TransitionComponentSnackbar() {
   );
 }
 
-const blue = {
-  50: '#F0F7FF',
-  100: '#DAECFF',
-  400: '#3399FF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
 const grey = {
   50: '#f6f8fa',
   100: '#eaeef2',
