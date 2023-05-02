@@ -65,6 +65,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   - &#8203;<!-- 32 -->[Modal][base] Drop component prop (#37058) @hbjORbj
   - &#8203;<!-- 31 -->[Option][base] Drop component prop (#37052) @hbjORbj
   - &#8203;<!-- 30 -->[OptionGroup][base] Drop component prop (#37055) @hbjORbj
+  - &#8203;<!-- 31 -->[Popper][base] Drop component prop (#37084) @hbjORbj
   - &#8203;<!-- 29 -->[Select][base] Drop component prop (#37035) @hbjORbj
   - &#8203;<!-- 28 -->[Slider][base] Drop component prop (#37056) @hbjORbj
   - &#8203;<!-- 27 -->[Snackbar][base] Drop component prop (#37041) @nicolas-ot
@@ -111,6 +112,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 05 -->[templates] Image not displayed in blog layout of React template. (#36991) @navedqb
 - &#8203;<!-- 02 -->[website] Take the design role offline @oliviertassinari
 - &#8203;<!-- 01 -->[website] Fix URL convention @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Turn off job banner on docs (#36080) @joserodolfofreitas
 
 ### Core
 
