@@ -95,6 +95,10 @@ export interface IconButtonOwnerState extends ApplyColorInversion<IconButtonProp
    * If `true`, the element's focus is visible.
    */
   focusVisible?: boolean;
+  /**
+   * The explicit `size` provided to the instance.
+   */
+  instanceSize?: OverridableStringUnion<'sm' | 'md' | 'lg', IconButtonPropsSizeOverrides>;
 }
 
 export type ExtendIconButton<M extends OverridableTypeMap> = ((

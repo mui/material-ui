@@ -4,6 +4,32 @@ import Option, { optionClasses } from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
+export default function UnstyledSelectControlled() {
+  const [value, setValue] = React.useState<number | null>(10);
+  return (
+    <div>
+      <CustomSelect value={value} onChange={(_, newValue) => setValue(newValue)}>
+        <StyledOption value={10}>Ten</StyledOption>
+        <StyledOption value={20}>Twenty</StyledOption>
+        <StyledOption value={30}>Thirty</StyledOption>
+      </CustomSelect>
+
+      <Paragraph>Selected value: {value}</Paragraph>
+    </div>
+  );
+}
+
+function CustomSelect(props: SelectProps<number, false>) {
+  const slots: SelectProps<number, false>['slots'] = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} slots={slots} />;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -135,29 +161,3 @@ const Paragraph = styled('p')(
   color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
   `,
 );
-
-function CustomSelect(props: SelectProps<number, false>) {
-  const slots: SelectProps<number, false>['slots'] = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} slots={slots} />;
-}
-
-export default function UnstyledSelectsMultiple() {
-  const [value, setValue] = React.useState<number | null>(10);
-  return (
-    <div>
-      <CustomSelect value={value} onChange={(_, newValue) => setValue(newValue)}>
-        <StyledOption value={10}>Ten</StyledOption>
-        <StyledOption value={20}>Twenty</StyledOption>
-        <StyledOption value={30}>Thirty</StyledOption>
-      </CustomSelect>
-
-      <Paragraph>Selected value: {value}</Paragraph>
-    </div>
-  );
-}

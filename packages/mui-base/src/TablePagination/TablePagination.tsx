@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import TablePaginationActions from './TablePaginationActions';
@@ -63,7 +62,6 @@ const TablePagination = React.forwardRef(function TablePagination<
   RootComponentType extends React.ElementType,
 >(props: TablePaginationProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
-    component,
     colSpan: colSpanProp,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
@@ -85,7 +83,8 @@ const TablePagination = React.forwardRef(function TablePagination<
   const classes = useUtilityClasses();
 
   let colSpan;
-  if (!component || component === 'td' || !isHostComponent(component)) {
+  const Root = slots.root ?? 'td';
+  if (Root === 'td' || !isHostComponent(Root)) {
     colSpan = colSpanProp || 1000; // col-span over everything
   }
 
@@ -99,7 +98,6 @@ const TablePagination = React.forwardRef(function TablePagination<
   const selectId = useId(selectIdProp);
   const labelId = useId(labelIdProp);
 
-  const Root = component ?? slots.root ?? 'td';
   const rootProps: WithOptionalOwnerState<TablePaginationRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -237,7 +235,7 @@ const TablePagination = React.forwardRef(function TablePagination<
       </Toolbar>
     </Root>
   );
-}) as OverridableComponent<TablePaginationTypeMap>;
+}) as PolymorphicComponent<TablePaginationTypeMap>;
 
 TablePagination.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -247,16 +245,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.node,
-  /**
-   * @ignore
-   */
   colSpan: PropTypes.number,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The total number of rows.
    *
@@ -357,7 +346,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TablePagination.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

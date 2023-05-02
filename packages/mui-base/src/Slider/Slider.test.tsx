@@ -60,6 +60,7 @@ describe('<Slider />', () => {
         expectedClassName: classes.rail,
       },
     },
+    skip: ['componentProp'],
   }));
 
   it('forwards style props on the Root component', () => {

@@ -5,6 +5,42 @@ import Option, { optionClasses } from '@mui/base/Option';
 import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 
+export default function UnstyledSelectsMultiple() {
+  return (
+    <CustomMultiSelect defaultValue={[10, 20]}>
+      <StyledOption value={10}>Ten</StyledOption>
+      <StyledOption value={20}>Twenty</StyledOption>
+      <StyledOption value={30}>Thirty</StyledOption>
+      <StyledOption value={40}>Forty</StyledOption>
+      <StyledOption value={50}>Fifty</StyledOption>
+    </CustomMultiSelect>
+  );
+}
+
+const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(props, ref) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} multiple ref={ref} slots={slots} />;
+});
+
+CustomMultiSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -93,6 +129,7 @@ const StyledOption = styled(Option)(
   padding: 8px;
   border-radius: 8px;
   cursor: default;
+  transition: border-radius 300ms ease;
 
   &:last-of-type {
     border-bottom: none;
@@ -106,6 +143,20 @@ const StyledOption = styled(Option)(
   &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  }
+
+  @supports selector(:has(*)) {
+    &.${optionClasses.selected} {
+      & + .${optionClasses.selected} {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+
+      &:has(+ .${optionClasses.selected}) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
   }
 
   &.${optionClasses.highlighted}.${optionClasses.selected} {
@@ -127,39 +178,3 @@ const StyledOption = styled(Option)(
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomMultiSelect = React.forwardRef(function CustomMultiSelect(props, ref) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} multiple ref={ref} slots={slots} />;
-});
-
-CustomMultiSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-export default function UnstyledSelectsMultiple() {
-  return (
-    <CustomMultiSelect defaultValue={[10, 20]}>
-      <StyledOption value={10}>Ten</StyledOption>
-      <StyledOption value={20}>Twenty</StyledOption>
-      <StyledOption value={30}>Thirty</StyledOption>
-      <StyledOption value={40}>Forty</StyledOption>
-      <StyledOption value={50}>Fifty</StyledOption>
-    </CustomMultiSelect>
-  );
-}

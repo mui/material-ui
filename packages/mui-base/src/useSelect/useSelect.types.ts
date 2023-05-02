@@ -92,7 +92,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<OptionValue>) => string;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
    * The selected value.
    * Set to `null` to deselect all options.

@@ -6,6 +6,40 @@ import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
+export default function UnstyledSelectIntroduction() {
+  return (
+    <CustomSelect defaultValue={10}>
+      <StyledOption value={10}>Documentation</StyledOption>
+      <StyledOption value={20}>Components</StyledOption>
+      <StyledOption value={30}>Features</StyledOption>
+    </CustomSelect>
+  );
+}
+
+const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} ref={ref} slots={slots} />;
+});
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -49,6 +83,7 @@ Button.propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool.isRequired,
     focusVisible: PropTypes.bool.isRequired,
+    getOptionAsString: PropTypes.func,
     getSerializedValue: PropTypes.func,
     listboxId: PropTypes.string,
     listboxOpen: PropTypes.bool,
@@ -57,7 +92,6 @@ Button.propTypes = {
     onChange: PropTypes.func,
     onListboxOpenChange: PropTypes.func,
     open: PropTypes.bool.isRequired,
-    optionStringifier: PropTypes.func,
     renderValue: PropTypes.func,
     slotProps: PropTypes.shape({
       listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -171,37 +205,3 @@ const StyledOption = styled(Option)(
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} ref={ref} slots={slots} />;
-});
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-export default function UnstyledSelectIntroduction() {
-  return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Documentation</StyledOption>
-      <StyledOption value={20}>Components</StyledOption>
-      <StyledOption value={30}>Features</StyledOption>
-    </CustomSelect>
-  );
-}

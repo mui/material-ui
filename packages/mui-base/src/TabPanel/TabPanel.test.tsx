@@ -44,6 +44,7 @@ describe('<TabPanel />', () => {
     },
     skip: [
       'reactTestRenderer', // Need to be wrapped with TabsContext
+      'componentProp',
     ],
   }));
 });

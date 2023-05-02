@@ -58,7 +58,7 @@ const AspectRatioContent = styled('div', {
     position: 'relative',
     borderRadius: 'inherit',
     height: 0,
-    paddingBottom: 'var(--AspectRatio-paddingBottom)',
+    paddingBottom: 'calc(var(--AspectRatio-paddingBottom) - 2 * var(--variant-borderWidth, 0px))',
     overflow: 'hidden',
     // use data-attribute instead of :first-child to support zero config SSR (emotion)
     // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)

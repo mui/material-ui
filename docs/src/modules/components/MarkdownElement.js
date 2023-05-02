@@ -111,6 +111,8 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
+      // Reserve space for the end of the line action button
+      paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
