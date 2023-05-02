@@ -4,8 +4,6 @@
  * It's a common pattern to use some form of Pick or Omit in hocs which don't have
  * a desired outcome when operating on union types.
  *
- * We use our TextField component since it has a union type as props
- *
  * See https://github.com/Microsoft/TypeScript/issues/28339 for in-depth discussion
  */
 import { Button } from '@mui/material';
