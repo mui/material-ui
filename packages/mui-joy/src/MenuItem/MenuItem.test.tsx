@@ -14,8 +14,8 @@ import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 
-const testContext: unknown = {
-  registerItem: () => ({ id: 0, deregister: () => {} }),
+const testContext: MenuProviderValue = {
+  registerItem: () => ({ id: '0', deregister: () => {} }),
   getItemIndex: () => 0,
   totalSubitemCount: 1,
   dispatch: () => {},
@@ -23,6 +23,7 @@ const testContext: unknown = {
     disabled: false,
     highlighted: false,
     selected: false,
+    focusable: false,
     index: 0,
   }),
   registerHighlightChangeHandler: () => () => {},
@@ -30,7 +31,7 @@ const testContext: unknown = {
 };
 
 function Wrapper({ children }: { children: React.ReactNode }) {
-  return <MenuProvider value={testContext as MenuProviderValue}>{children}</MenuProvider>;
+  return <MenuProvider value={testContext}>{children}</MenuProvider>;
 }
 
 describe('Joy <MenuItem />', () => {
@@ -44,12 +45,9 @@ describe('Joy <MenuItem />', () => {
   describeConformance(<MenuItem />, () => ({
     classes,
     inheritComponent: ListItemButton,
-    render: (node) =>
-      render(<MenuProvider value={testContext as MenuProviderValue}>{node}</MenuProvider>),
+    render: (node) => render(<MenuProvider value={testContext}>{node}</MenuProvider>),
     wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <MenuProvider value={testContext as MenuProviderValue}>{node}</MenuProvider>,
-      );
+      const wrapper = mount(<MenuProvider value={testContext}>{node}</MenuProvider>);
       return wrapper.childAt(0);
     },
     ThemeProvider,
@@ -69,7 +67,7 @@ describe('Joy <MenuItem />', () => {
   describeJoyColorInversion(<MenuItem />, {
     muiName: 'JoyMenuItem',
     classes,
-    wrapper: (node) => <MenuProvider value={testContext as MenuProviderValue}>{node}</MenuProvider>,
+    wrapper: (node) => <MenuProvider value={testContext}>{node}</MenuProvider>,
   });
 
   it('should render with the variant class', () => {
