@@ -369,7 +369,9 @@ export default function HeaderNavBar() {
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
                         name="MUI Toolpad"
-                        chip={<Chip label="Alpha" size="small" color="primary" variant="outlined" />}
+                        chip={
+                          <Chip label="Alpha" size="small" color="primary" variant="outlined" />
+                        }
                         description="Low-code admin builder."
                         onKeyDown={handleKeyDown}
                       />
