@@ -23,7 +23,7 @@ export default function UseSnackbar() {
   return (
     <React.Fragment>
       <button type="button" onClick={handleOpen}>
-        Open Snackbar
+        Open snackbar
       </button>
       {open ? (
         <ClickAwayListener onClickAway={onClickAway}>
