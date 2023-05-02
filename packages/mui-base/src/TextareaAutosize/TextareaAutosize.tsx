@@ -58,13 +58,13 @@ function isEmpty(obj: State) {
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
-  ref: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleRef = useForkRef(ref, inputRef);
+  const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
   const [state, setState] = React.useState<State>({
@@ -280,7 +280,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       />
     </React.Fragment>
   );
-});
+}) as React.ForwardRefExoticComponent<TextareaAutosizeProps & React.RefAttributes<Element>>;
 
 TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

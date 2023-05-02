@@ -38,9 +38,9 @@ const packages = [
   {
     product: 'material-ui',
     paths: [
+      path.join(__dirname, '../../packages/mui-base/src'),
       path.join(__dirname, '../../packages/mui-lab/src'),
       path.join(__dirname, '../../packages/mui-material/src'),
-      path.join(__dirname, '../../packages/mui-base/src'),
     ],
   },
   {

@@ -11,7 +11,9 @@
     "onClick": {
       "type": { "name": "React.MouseEventHandler", "description": "React.MouseEventHandler" }
     },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
     "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
@@ -26,6 +28,13 @@
     },
     "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
     "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "setFocusVisible": {
       "type": {
@@ -38,5 +47,5 @@
   },
   "name": "useTab",
   "filename": "/packages/mui-base/src/useTab/useTab.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

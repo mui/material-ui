@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PopperUnstyledProps } from '@mui/base';
+import { PopperProps } from '@mui/base';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -28,7 +28,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     root: SlotProps<
       'div',
-      { component?: React.ElementType; sx?: SxProps } & Omit<PopperUnstyledProps, 'direction'>,
+      { component?: React.ElementType; sx?: SxProps } & Omit<PopperProps, 'direction'>,
       TooltipOwnerState
     >;
     arrow: SlotProps<'span', {}, TooltipOwnerState>;
@@ -38,7 +38,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     TooltipSlotsAndSlotProps &
-    Pick<PopperUnstyledProps, 'disablePortal' | 'direction' | 'keepMounted' | 'modifiers'> & {
+    Pick<PopperProps, 'disablePortal' | 'direction' | 'keepMounted' | 'modifiers'> & {
       /**
        * If `true`, adds an arrow to the tooltip.
        * @default false

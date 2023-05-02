@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormControlUnstyledState } from '../FormControlUnstyled';
+import { FormControlState } from '../FormControl';
 
 export interface UseInputParameters {
   /**
@@ -42,7 +42,7 @@ export type UseInputRootSlotProps<TOther = {}> = Omit<
 export interface UseInputInputSlotOwnProps {
   'aria-invalid': React.AriaAttributes['aria-invalid'];
   defaultValue: string | number | readonly string[] | undefined;
-  ref: React.Ref<HTMLInputElement>;
+  ref: React.RefCallback<HTMLInputElement> | null;
   value: string | number | readonly string[] | undefined;
   onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -71,9 +71,9 @@ export interface UseInputReturnValue {
    */
   focused: boolean;
   /**
-   * Return value from the `useFormControlUnstyledContext` hook.
+   * Return value from the `useFormControlContext` hook.
    */
-  formControlContext: FormControlUnstyledState | undefined;
+  formControlContext: FormControlState | undefined;
   /**
    * Resolver for the input slot's props.
    * @param externalProps props for the input slot
@@ -90,6 +90,7 @@ export interface UseInputReturnValue {
   getRootProps: <TOther extends Record<string, any> = {}>(
     externalProps?: TOther,
   ) => UseInputRootSlotProps<TOther>;
+  inputRef: React.RefCallback<HTMLInputElement> | null;
   /**
    * If `true`, the `input` will indicate that it's required.
    * @default false

@@ -62,6 +62,21 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `base-remove-component-prop`
+
+Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
+
+This change only affects Base UI components.
+
+```diff
+-  <Input component={CustomRoot} />
++  <Input slots={{ root: CustomRoot }} />
+```
+
+```sh
+npx @mui/codemod v5.0.0/base-remove-component-prop <path>
+```
+
 #### `rename-css-variables`
 
 Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.

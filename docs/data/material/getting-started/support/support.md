@@ -8,8 +8,8 @@ The community is your first stop for questions and advice about the framework. W
 
 ### Stack Overflow
 
-For crowdsourced answers from expert MUI developers in our community.
-Stack Overflow is also visited from time to time by the maintainers of MUI.
+For crowdsourced answers from expert Material UI developers in our community.
+Stack Overflow is also visited from time to time by the maintainers of Material UI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/mui)
 
@@ -43,9 +43,9 @@ Stay up to date with the development of the library by following the blog.
 
 ### Resources 📖
 
-New to MUI? It's easy to learn if you know where to start!
+New to Material UI? It's easy to learn if you know where to start!
 
-[Learn MUI](/material-ui/getting-started/learn/)
+[Learn Material UI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
@@ -108,13 +108,13 @@ Request a demo
 
 ### Custom work 🛠
 
-Tweak MUI to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
+Tweak MUI's component libraries to meet specific requirements. Give us a summary of your needs and we'll help you if we can. We might:
 
 - Give you an estimate of time and price if the work is straightforward
-- Suggest alternatives that might not require MUI
+- Suggest alternatives that might not require MUI components
 - Decline the work due to timing or relevancy
 
-Note that work must be MUI related.
+Note that work must be MUI-related.
 We don't accept general React development work.
 Our contracting price is $200/hour or $1,500/day.
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePaginationUnstyled, {
-  tablePaginationUnstyledClasses as classes,
-} from '@mui/base/TablePaginationUnstyled';
+import TablePagination, {
+  tablePaginationClasses as classes,
+} from '@mui/base/TablePagination';
 
 function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };
@@ -117,7 +117,7 @@ const Root = styled('div')(
   `,
 );
 
-const CustomTablePagination = styled(TablePaginationUnstyled)(
+const CustomTablePagination = styled(TablePagination)(
   ({ theme }) => `
   & .${classes.spacer} {
     display: none;
