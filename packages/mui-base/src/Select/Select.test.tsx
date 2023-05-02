@@ -666,9 +666,8 @@ describe('<Select />', () => {
 
     it('should set correct values in event.target object when multiple is true', () => {
       const handleChange = spy();
-
       const { getByRole, getByText } = render(
-        <Select multiple onChange={handleChange}>
+        <Select multiple defaultValue={[1]} onChange={handleChange}>
           <Option value={1}>One</Option>
           <Option value={2}>Two</Option>
         </Select>,
@@ -680,25 +679,10 @@ describe('<Select />', () => {
       });
 
       const optionTwo = getByText('Two');
-      act(() => {
-        optionTwo.click();
-      });
+      fireEvent.click(optionTwo);
 
-      expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][0].target.value).to.deep.equal([2]);
-      expect(handleChange.args[0][1]).to.deep.equal([2]);
-
-      act(() => {
-        select.click();
-      });
-
-      const optionOne = getByText('One');
-      act(() => {
-        optionOne.click();
-      });
-
-      expect(handleChange.args[0][0].target.value).to.deep.equal([2, 1]);
-      expect(handleChange.args[0][1]).to.deep.equal([2, 1]);
+      expect(handleChange.args[0][0].target.value).to.deep.equal([1, 2]);
+      expect(handleChange.args[0][1]).to.deep.equal([1, 2]);
     });
 
     it('does not call onChange if `value` is modified externally', () => {
