@@ -97,7 +97,7 @@ const SelectOnChangeTypeTest = (
       multiple
       onChange={(event) => {
         if (event) {
-          expectType<Array<number>, typeof event.target.value>(event.target.value);
+          expectType<number[], typeof event.target.value>(event.target.value);
         }
       }}
     />
