@@ -104,9 +104,6 @@ describe('Joy <MenuItem />', () => {
   });
 
   describe('event callbacks', () => {
-    /**
-     * @type {Array<keyof typeof fireEvent>}
-     */
     const events: Array<keyof typeof fireEvent> = [
       'click',
       'mouseDown',
