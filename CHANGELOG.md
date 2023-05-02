@@ -30,10 +30,10 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - The `component` prop was dropped, because it was duplicated with the slots API. This is how the transformation will look like:
 
   ```diff
-  <Button
+   <Button
   -  component="span"
   +  slots={{ root: "span" }}
-  />
+   />
   ```
 
   If using TypeScript, the custom component type should be added as a generic on the `Button` component.
@@ -41,9 +41,9 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   ```diff
   -<Button
   +<Button<typeof CustomComponent>
-    slots={{ root: CustomComponent }}
-    customProp="foo"
-  />
+     slots={{ root: CustomComponent }}
+     customProp="foo"
+   />
   ```
 
   There is codemod that you can run in your project to do the transformation:
