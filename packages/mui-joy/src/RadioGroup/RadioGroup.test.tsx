@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
-import RadioGroup, { radioGroupClasses as classes } from '@mui/joy/RadioGroup';
+import RadioGroup, { radioGroupClasses as classes, RadioGroupProps } from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -42,7 +42,7 @@ describe('<RadioGroup />', () => {
     const handleBlur = spy();
     const { container } = render(<RadioGroup value="" onBlur={handleBlur} />);
 
-    fireEvent.blur(container.firstChild);
+    fireEvent.blur(container.firstChild as ChildNode);
 
     expect(handleBlur.callCount).to.equal(1);
   });
@@ -68,7 +68,7 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    const radio = getByRole('radio');
+    const radio = getByRole('radio') as HTMLInputElement;
 
     fireEvent.click(radio);
 
@@ -83,7 +83,7 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    const radios = getAllByRole('radio');
+    const radios = getAllByRole('radio') as Array<HTMLInputElement>;
 
     expect(radios[0].checked).to.equal(true);
 
@@ -100,7 +100,7 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    const [arbitraryRadio, ...radios] = getAllByRole('radio');
+    const [arbitraryRadio, ...radios] = getAllByRole('radio') as Array<HTMLInputElement>;
     // `name` **property** will always be a string even if the **attribute** is omitted
     expect(arbitraryRadio.name).not.to.equal('');
     // all input[type="radio"] have the same name
@@ -115,7 +115,7 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
 
-    const radios = screen.getAllByRole('radio');
+    const radios = screen.getAllByRole('radio') as Array<HTMLInputElement>;
     expect(radios[0]).to.have.attribute('value', '1');
     expect(radios[0].checked).to.equal(true);
     expect(radios[1].checked).to.equal(false);
@@ -172,7 +172,7 @@ describe('<RadioGroup />', () => {
 
     describe('with non-string values', () => {
       it('passes the value of the selected Radio as a string', () => {
-        function Test(props) {
+        function Test(props: RadioGroupProps & { values: Record<'id', number>[] }) {
           const { values, ...other } = props;
           return (
             <RadioGroup {...other}>
@@ -193,7 +193,7 @@ describe('<RadioGroup />', () => {
           <Test onChange={handleChange} value={values[1]} values={values} />,
         );
 
-        const radios = getAllByRole('radio');
+        const radios = getAllByRole('radio') as Array<HTMLInputElement>;
 
         expect(radios[0].checked).to.equal(false);
         expect(radios[1].checked).to.equal(true);
