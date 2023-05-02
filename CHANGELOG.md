@@ -27,7 +27,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 #### Breaking changes
 
-- The `component` prop was dropped, because it was duplicated with the slots API. This is how the transformation will look like:
+- The `component` prop is no longer supported because it can be replaced with the slots API. This is how the transformation will look like:
 
   ```diff
    <Button
@@ -80,9 +80,9 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   Brought consistency to Base UI components and hooks' parameters and return values:
 
-  1. Whenever a hook needs a ref, it's now called <slot_name>Ref, which matches the get<slot_name>Props` in the return value.
-  2. All hooks that accept external refs now return merged refs, so combining multiple hooks on one element is easier. This was proven necessary in several compound components (like menuItem being both a button and a list item). The type of this value is React.RefCallback as using the more general React.Ref caused variance issues.
-  3. Type of accepted refs was standardized to React.Ref<Element>
+  1. Whenever a hook needs a ref, it's now called `<slot_name>Ref`, which matches the `get<slot_name>Props` in the return value.
+  2. All hooks that accept external refs now return merged refs, making combining multiple hooks on one element easier. This was proven necessary in several compound components (like menuItem being both a button and a list item). The type of this value is `React.RefCallback` as using the more general `React.Ref` caused variance issues.
+  3. Type of accepted refs is standardized to `React.Ref<Element>`
   4. Naming and typing of the forwarded ref in unstyled components were standardized - it's forwardedRef: React.ForwardedRef<Element> (unless a more specific type is needed).
   5. The shape of the definition of unstyled components was standardized - it's React.forwardRef(function Component(props: Props, forwardedRef: React.Ref<Element>) { ... });. Specifically, the generic parameters of forwardRef were removed as they are specified in function arguments.
 
