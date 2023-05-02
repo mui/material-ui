@@ -13,10 +13,10 @@ type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'
   | 'disableListWrap'
   | 'focusManagement'
+  | 'getItemAsString'
   | 'isItemDisabled'
   | 'itemComparer'
   | 'items'
-  | 'itemStringifier'
   | 'orientation'
   | 'pageSize'
   | 'selectionMode';
@@ -177,7 +177,7 @@ export interface UseListParameters<
    * A function that converts an object to its string representation
    * @default (o) => o
    */
-  itemStringifier?: (option: ItemValue) => string | undefined;
+  getItemAsString?: (option: ItemValue) => string | undefined;
   /**
    * Array of list items.
    */
