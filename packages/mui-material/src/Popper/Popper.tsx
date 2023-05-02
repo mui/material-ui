@@ -77,7 +77,7 @@ const Popper = React.forwardRef(function Popper(
     ...other
   } = props;
 
-  const RootComponent = component ?? slots?.root ?? components?.Root;
+  const RootComponent = slots?.root ?? components?.Root;
   const otherProps = {
     anchorEl,
     container,
@@ -93,6 +93,7 @@ const Popper = React.forwardRef(function Popper(
   };
   return (
     <PopperRoot
+      as={component}
       direction={theme?.direction}
       slots={{ root: RootComponent }}
       slotProps={slotProps ?? componentsProps}
