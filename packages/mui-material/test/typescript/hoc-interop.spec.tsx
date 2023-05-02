@@ -10,34 +10,7 @@
  */
 import { Button } from '@mui/material';
 import { createStyles, withStyles } from '@mui/styles';
-import TextField from '@mui/material/TextField';
-import emotionStyled from '@emotion/styled';
 import * as React from 'react';
-import styled from 'styled-components';
-
-const filledProps = {
-  InputProps: { classes: { inputAdornedStart: 'adorned' } },
-};
-
-const outlinedProps = {
-  InputProps: { classes: { inputAdornedStart: 'adorned' } },
-};
-
-// styled
-{
-  const StyledTextField = styled(TextField)``;
-  <StyledTextField variant="filled" {...filledProps} />; // desired to pass
-
-  <StyledTextField {...outlinedProps} />;
-}
-
-// @emotion/styled
-{
-  const StyledTextField = emotionStyled(TextField)``;
-  <StyledTextField variant="filled" {...filledProps} />;
-
-  <StyledTextField {...outlinedProps} />;
-}
 
 // https://github.com/mui/material-ui/issues/14586
 {
