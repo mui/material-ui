@@ -12,7 +12,7 @@ describe('selectReducer', () => {
     focusManagement: 'activeDescendant' as const,
     isItemDisabled: () => false,
     itemComparer: (a: any, b: any) => a === b,
-    itemStringifier: (option: any) => option,
+    getItemAsString: (option: any) => option,
     orientation: 'vertical' as const,
     pageSize: 5,
     selectionMode: 'single' as const,
