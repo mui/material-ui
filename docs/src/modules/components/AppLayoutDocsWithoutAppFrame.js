@@ -73,7 +73,7 @@ const ActionsDiv = styled('div')(({ theme }) => ({
   marginTop: -10,
   marginBottom: -15,
   [theme.breakpoints.up('lg')]: {
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
   },
 }));
 
