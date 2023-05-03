@@ -47,7 +47,7 @@ export default function BaseUITestimonial() {
             </Typography>
             &nbsp;&nbsp;
             <Link href={ROUTES.baseDocs}>
-              View blog post <ArrowForward fontSize="small" />
+              View the blog post <ArrowForward fontSize="small" />
             </Link>
           </Typography>
         </Grid>
