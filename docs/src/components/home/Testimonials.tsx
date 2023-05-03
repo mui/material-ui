@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
+import { alpha } from '@mui/material/styles';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
@@ -19,9 +20,11 @@ function Testimonials() {
       data-mui-color-scheme="dark"
       ref={ref}
       sx={(theme) => ({
-        background: `linear-gradient(85deg, ${(theme.vars || theme).palette.primaryDark[700]} 0%, ${
-          (theme.vars || theme).palette.primaryDark[600]
-        } 100%)`,
+        background: `linear-gradient(180deg, ${
+          (theme.vars || theme).palette.primaryDark[700]
+        } 0%, ${alpha(theme.palette.primaryDark[600], 0.2)} 100%),
+        ${(theme.vars || theme).palette.primaryDark[700]}
+        `,
       })}
     >
       <Container sx={{ py: { xs: 4, md: 8 } }}>

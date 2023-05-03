@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTemplatesBanner';
@@ -47,17 +48,7 @@ function ProductSuite() {
     rootMargin: '200px',
   });
   return (
-    <Box
-      ref={ref}
-      sx={(theme) => ({
-        bgcolor: 'grey.50',
-        py: { xs: 4, sm: 6, md: 8 },
-        overflow: 'hidden',
-        ...theme.applyDarkStyles({
-          bgcolor: 'primaryDark.900',
-        }),
-      })}
-    >
+    <Section bg="gradient" ref={ref}>
       <Container>
         <Grid container spacing={2}>
           <Grid item md={6}>
@@ -98,7 +89,7 @@ function ProductSuite() {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </Section>
   );
 }
 
