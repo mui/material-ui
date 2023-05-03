@@ -11,6 +11,13 @@
       }
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "getOptionAsString": {
+      "type": {
+        "name": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string",
+        "description": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string"
+      },
+      "default": "defaultOptionStringifier"
+    },
     "listboxId": { "type": { "name": "string", "description": "string" } },
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
@@ -24,8 +31,8 @@
     },
     "onHighlightChange": {
       "type": {
-        "name": "(e: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void",
-        "description": "(e: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void"
+        "name": "(event: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void",
+        "description": "(event: React.MouseEvent&lt;Element, MouseEvent&gt; | React.KeyboardEvent&lt;Element&gt; | React.FocusEvent&lt;Element, Element&gt; | null, highlighted: OptionValue | null) =&gt; void"
       }
     },
     "onOpenChange": {
@@ -37,13 +44,6 @@
         "name": "SelectOptionDefinition&lt;OptionValue&gt;[]",
         "description": "SelectOptionDefinition&lt;OptionValue&gt;[]"
       }
-    },
-    "optionStringifier": {
-      "type": {
-        "name": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string",
-        "description": "(option: SelectOption&lt;OptionValue&gt;) =&gt; string"
-      },
-      "default": "defaultOptionStringifier"
     },
     "value": {
       "type": {

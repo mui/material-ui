@@ -72,7 +72,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Callback fired when an option is highlighted.
    */
   onHighlightChange?: (
-    e:
+    event:
       | React.MouseEvent<Element, MouseEvent>
       | React.KeyboardEvent<Element>
       | React.FocusEvent<Element, Element>
@@ -100,7 +100,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<OptionValue>) => string;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
    * The selected value.
    * Set to `null` to deselect all options.

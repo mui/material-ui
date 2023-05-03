@@ -51,7 +51,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onOpenChange,
     open: openProp,
     options: optionsParam,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -148,9 +148,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return '';
       }
 
-      return optionStringifier(option);
+      return getOptionAsString(option);
     },
-    [options, optionStringifier],
+    [options, getOptionAsString],
   );
 
   const controlledState = React.useMemo(
@@ -242,7 +242,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onStateChange: handleStateChange,
     reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
-    itemStringifier: stringifyOption,
+    getItemAsString: stringifyOption,
     selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
   };
