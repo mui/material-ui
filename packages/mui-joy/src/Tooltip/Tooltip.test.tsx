@@ -4,11 +4,14 @@ import { createRenderer, describeConformance, describeJoyColorInversion } from '
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { PopperProps } from '@mui/base';
 
 describe('<Tooltip />', () => {
   const { render } = createRenderer();
 
-  function TestPopper(props: any) {
+  function TestPopper(
+    props: Omit<PopperProps, 'children'> & { 'data-testid': string; children: any },
+  ) {
     const { children, className, 'data-testid': testId } = props;
     return (
       <div className={className} data-testid={testId ?? 'custom'}>
