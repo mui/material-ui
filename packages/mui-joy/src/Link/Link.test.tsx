@@ -61,7 +61,7 @@ describe('<Link />', () => {
       const handlers = events.reduce((result, n) => {
         result[n] = spy();
         return result;
-      }, {} as { [key: string]: any });
+      }, {} as Record<string, SinonSpy>);
 
       const { container } = render(
         <Link href="/" {...handlers}>
