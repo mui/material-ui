@@ -100,10 +100,8 @@ export default function BaseUIComponents() {
               sx={(theme) => ({
                 flexGrow: 1,
                 background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                backgroundSize: '100%, 72px',
                 ...theme.applyDarkStyles({
                   background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                  backgroundSize: '72px, 100%',
                 }),
               })}
             >

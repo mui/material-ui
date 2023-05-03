@@ -12,6 +12,7 @@ import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
+import { alpha } from '@mui/material/styles';
 
 export default function BaseUIEnd() {
   return (
@@ -19,7 +20,11 @@ export default function BaseUIEnd() {
       data-mui-color-scheme="dark"
       sx={{
         color: 'text.secondary',
-        background: 'linear-gradient(180deg, #14191F 46.35%, rgba(0, 58, 117, 0.8) 100%), #14191F',
+        background: (theme) =>
+          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[800]} 50%, 
+          ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
+            (theme.vars || theme).palette.primaryDark[800]
+          }`,
       }}
     >
       <Grid container spacing={{ xs: 6, sm: 10 }} alignItems="center">
@@ -27,16 +32,11 @@ export default function BaseUIEnd() {
           <SectionHeadline
             inverted
             overline="Community"
-            title={
-              <Typography variant="h2">
-                Get and give help by joining
-                <br /> our contributors community
-              </Typography>
-            }
+            title={<Typography variant="h2">Join our global community</Typography>}
             description={
               <React.Fragment>
-                MUI Core components were crafted by many hands, all over the world. Join the
-                community to help us expand it even further!
+                Base UI wouldn&apos;t be possible without our global community of contributors. Join
+                us today to get help when you need it, and lend a hand when you can.
               </React.Fragment>
             }
           />
@@ -118,12 +118,12 @@ export default function BaseUIEnd() {
               </Box>
               <div>
                 <Typography sx={{ color: 'text.primary', mb: 0.75 }} fontWeight="500">
-                  Does it comes with styles?
+                  Does it come with styles?
                 </Typography>
                 <Typography>
-                  Base UI is not packaged with any default theme or built-in style engine. This
-                  makes it a great choice if you need complete control over how your app&apos;s CSS
-                  is implemented.
+                  Base UI <i>is not packaged</i> with any default theme or built-in style engine.
+                  This makes it a great choice if you need complete control over how your app&apos;s
+                  CSS is implemented.
                 </Typography>
               </div>
             </ListItem>
