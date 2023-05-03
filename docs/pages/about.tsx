@@ -444,6 +444,15 @@ const teamMembers: Array<Profile> = [
     locationCountry: 'gb',
     about: '🧗‍♂️ Amateur indoor climber & ex-philosophy geek',
   },
+  {
+    src: '/static/branding/about/romain.png',
+    name: 'Romain Grégoire',
+    title: 'MUI X Engineer',
+    location: 'Montréal, Canada',
+    locationCountry: 'ca',
+    about: 'Open-source tinkerer',
+    github: 'romgrk',
+  },
 ];
 
 const contributors = [
