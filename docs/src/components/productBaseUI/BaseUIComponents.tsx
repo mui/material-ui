@@ -9,13 +9,16 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import TableChartRounded from '@mui/icons-material/TableChartRounded';
-import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
-import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
-import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
-import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+
+// switcher icons
+import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
+import TabUnselectedRoundedIcon from '@mui/icons-material/TabUnselectedRounded';
+import InputRoundedIcon from '@mui/icons-material/InputRounded';
+import MenuOpenRoundedIcon from '@mui/icons-material/MenuOpenRounded';
+import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
+
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import BaseButtonDemo from './components/BaseButtonDemo';
@@ -26,23 +29,26 @@ import BaseSliderDemo from './components/BaseSliderDemo';
 
 const StyledButton = materialStyled(Button)(({ theme }) => ({
   borderRadius: 40,
-  padding: theme.spacing('2px', 1),
+  padding: theme.spacing('1.5px', 1),
   fontSize: theme.typography.pxToRem(12),
   lineHeight: 18 / 12,
   '&.MuiButton-text': {
     color: theme.palette.grey[400],
+    '&:hover': {
+      backgroundColor: theme.palette.primaryDark[600],
+    },
   },
   '&.MuiButton-outlined': {
     color: '#fff',
-    backgroundColor: theme.palette.primary[700],
-    borderColor: theme.palette.primary[500],
+    backgroundColor: theme.palette.primary[900],
+    borderColor: theme.palette.primary[600],
     '&:hover': {
       backgroundColor: theme.palette.primary[700],
     },
   },
 }));
 
-const DEMOS = ['Button', 'Menu', 'Input', 'Tabs', 'Slider'] as const;
+const DEMOS = ['Tabs', 'Button', 'Input', 'Menu', 'Slider'] as const;
 
 const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => string)> = {
   Button: BaseButtonDemo.getCode,
@@ -56,11 +62,11 @@ export default function BaseUIComponents() {
   const [styling, setStyling] = React.useState<undefined | 'system'>('system');
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number]>(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <TableChartRounded fontSize="small" />,
-    [DEMOS[1]]: <DateRangeRounded fontSize="small" />,
-    [DEMOS[2]]: <AccountTreeRounded fontSize="small" />,
-    [DEMOS[3]]: <ShowChartRounded fontSize="small" />,
-    [DEMOS[4]]: <BarChartRounded fontSize="small" />,
+    [DEMOS[0]]: <TabUnselectedRoundedIcon fontSize="small" />,
+    [DEMOS[1]]: <SmartButtonRoundedIcon fontSize="small" />,
+    [DEMOS[2]]: <InputRoundedIcon fontSize="small" />,
+    [DEMOS[3]]: <MenuOpenRoundedIcon fontSize="small" />,
+    [DEMOS[4]]: <LinearScaleRoundedIcon fontSize="small" />,
   };
   return (
     <Section bg="gradient">
@@ -93,23 +99,18 @@ export default function BaseUIComponents() {
               className="mui-default-theme"
               sx={(theme) => ({
                 flexGrow: 1,
-                bgcolor: 'background.paper',
+                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 backgroundSize: '100%, 72px',
-                backgroundImage: `${(theme.vars || theme).palette.gradients.lightGrayRadio}, ${
-                  (theme.vars || theme).palette.patterns.triangle
-                }`,
                 ...theme.applyDarkStyles({
+                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                   backgroundSize: '72px, 100%',
-                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
-                    (theme.vars || theme).palette.patterns.triangle
-                  }`,
                 }),
               })}
             >
+              {demo === 'Tabs' && <BaseTabsDemo styling={styling} />}
               {demo === 'Button' && <BaseButtonDemo styling={styling} />}
               {demo === 'Menu' && <BaseMenuDemo styling={styling} />}
               {demo === 'Input' && <BaseInputDemo styling={styling} />}
-              {demo === 'Tabs' && <BaseTabsDemo styling={styling} />}
               {demo === 'Slider' && <BaseSliderDemo styling={styling} />}
             </Frame.Demo>
             <Frame.Info

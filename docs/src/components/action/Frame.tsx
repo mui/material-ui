@@ -10,11 +10,9 @@ const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(
         (theme) => ({
           position: 'relative',
           border: '1px solid',
-          bgcolor: 'grey.100',
-          borderColor: 'grey.200',
+          borderColor: 'grey.100',
           ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.700',
-            borderColor: 'primaryDark.600',
+            borderColor: 'primaryDark.700',
           }),
         }),
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),

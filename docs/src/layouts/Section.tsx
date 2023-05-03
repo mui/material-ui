@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box, { BoxProps } from '@mui/material/Box';
+import { alpha } from '@mui/material/styles';
 
 interface SelectionProps extends BoxProps {
   bg?: 'white' | 'comfort' | 'dim' | 'gradient';
@@ -41,7 +42,7 @@ export default function Section(props: SelectionProps) {
                 ...theme.applyDarkStyles({
                   background: `linear-gradient(180deg, ${
                     (theme.vars || theme).palette.primaryDark[800]
-                  } 0%, ${(theme.vars || theme).palette.primaryDark[700]} 100%)`,
+                  } 0%, ${alpha(theme.palette.primaryDark[700], 0.5)} 100%)`,
                 }),
               }
             : {
