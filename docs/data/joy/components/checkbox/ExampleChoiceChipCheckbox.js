@@ -23,8 +23,8 @@ export default function ExampleChoiceChipCheckbox() {
           wrap
           sx={{
             '--List-gap': '8px',
-            '--List-item-radius': '20px',
-            '--List-item-minHeight': '32px',
+            '--ListItem-radius': '20px',
+            '--ListItem-minHeight': '32px',
           }}
         >
           {['Elevator', 'Washer/Dryer', 'Fireplace', 'Dogs ok', 'Cats ok'].map(

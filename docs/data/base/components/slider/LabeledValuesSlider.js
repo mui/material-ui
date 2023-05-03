@@ -1,7 +1,27 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha, Box } from '@mui/system';
-import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
+import Slider, { sliderClasses } from '@mui/base/Slider';
+
+export default function LabeledValuesSlider() {
+  return (
+    <Box sx={{ width: 300 }}>
+      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
+    </Box>
+  );
+}
+
+function SliderValueLabel({ children }) {
+  return (
+    <span className="label">
+      <div className="value">{children}</div>
+    </span>
+  );
+}
+
+SliderValueLabel.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 const blue = {
   100: '#DAECFF',
@@ -26,7 +46,7 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledSlider = styled(SliderUnstyled)(
+const StyledSlider = styled(Slider)(
   ({ theme }) => `
   color: ${theme.palette.mode === 'light' ? blue[500] : blue[300]};
   height: 6px;
@@ -40,13 +60,13 @@ const StyledSlider = styled(SliderUnstyled)(
   &:hover {
     opacity: 1;
   }
-  &.${sliderUnstyledClasses.disabled} { 
+  &.${sliderClasses.disabled} { 
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
     opacity: 0.5;
   }
-  & .${sliderUnstyledClasses.rail} {
+  & .${sliderClasses.rail} {
     display: block;
     position: absolute;
     width: 100%;
@@ -55,14 +75,14 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: currentColor;
     opacity: 0.4;
   }
-  & .${sliderUnstyledClasses.track} {
+  & .${sliderClasses.track} {
     display: block;
     position: absolute;
     height: 4px;
     border-radius: 2px;
     background-color: currentColor;
   }
-  & .${sliderUnstyledClasses.thumb} {
+  & .${sliderClasses.thumb} {
     position: absolute;
     width: 16px;
     height: 16px;
@@ -74,7 +94,7 @@ const StyledSlider = styled(SliderUnstyled)(
     border: 3px solid currentColor;
     background-color: #fff;
     :hover,
-    &.${sliderUnstyledClasses.focusVisible} {
+    &.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 0.25rem ${alpha(
         theme.palette.mode === 'light' ? blue[400] : blue[300],
         0.15,
@@ -104,7 +124,7 @@ const StyledSlider = styled(SliderUnstyled)(
         transform: rotate(45deg);
         text-align: center;
     }
-    &.${sliderUnstyledClasses.active} {
+    &.${sliderClasses.active} {
       box-shadow: 0 0 0 0.25rem ${alpha(
         theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
@@ -113,23 +133,3 @@ const StyledSlider = styled(SliderUnstyled)(
   }
 `,
 );
-
-function SliderValueLabel({ children }) {
-  return (
-    <span className="label">
-      <div className="value">{children}</div>
-    </span>
-  );
-}
-
-SliderValueLabel.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-export default function LabeledValuesSlider() {
-  return (
-    <Box sx={{ width: 300 }}>
-      <StyledSlider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />
-    </Box>
-  );
-}

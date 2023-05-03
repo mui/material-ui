@@ -65,12 +65,15 @@
       "inputSizeSmall",
       "inputMultiline",
       "inputAdornedStart",
-      "inputAdornedEnd"
+      "inputAdornedEnd",
+      "inputTypeSearch"
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiOutlinedInput"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiOutlinedInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/OutlinedInput/OutlinedInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },

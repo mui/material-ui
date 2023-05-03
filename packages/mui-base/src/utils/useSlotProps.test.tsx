@@ -183,7 +183,7 @@ describe('useSlotProps', () => {
       test: true,
     };
 
-    // provided by the user by appending additonal props on the unstyled component:
+    // provided by the user by appending additional props on the Base UI component:
     const forwardedProps = {
       'data-test': 'externalForwarded',
       className: 'externalForwarded',
@@ -203,7 +203,7 @@ describe('useSlotProps', () => {
       },
     });
 
-    // set in the unstyled component:
+    // set in the Base UI component:
     const additionalProps = {
       className: 'additional',
       ref: additionalRef,

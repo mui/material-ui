@@ -374,9 +374,9 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
+      label="Base UI"
       tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
@@ -441,21 +441,17 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
-    <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
+    <ColumnHead label="Row selection" nested href="/x/react-data-grid/row-selection/" />
   ),
   'data-grid/row-multiselection': (
     <ColumnHead
       label="Multi-row selection"
       nested
-      href="/x/react-data-grid/selection/#multiple-row-selection"
+      href="/x/react-data-grid/row-selection/#multiple-row-selection"
     />
   ),
   'data-grid/row-rangeselection': (
-    <ColumnHead
-      label="Range selection"
-      nested
-      href="/x/react-data-grid/selection/#range-selection"
-    />
+    <ColumnHead label="Range selection" nested href="/x/react-data-grid/cell-selection/" />
   ),
   'data-grid/filter-quick': (
     <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />
@@ -620,7 +616,7 @@ const no = <IconImage name="no" title="Not included" />;
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -679,7 +675,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -738,7 +734,7 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -1053,7 +1049,7 @@ export default function PricingTable({
       {divider}
       {renderRow('Joy UI')}
       {divider}
-      {renderRow('MUI Base')}
+      {renderRow('Base UI')}
       {divider}
       {renderRow('MUI System')}
       <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>

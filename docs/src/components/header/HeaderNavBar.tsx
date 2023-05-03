@@ -28,15 +28,20 @@ const Navigation = styled('nav')(({ theme }) => [
         display: 'inline-block',
         color: 'inherit',
         textDecoration: 'none',
-        padding: theme.spacing(1),
+        padding: theme.spacing('8px', 1),
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        '&:hover, &:focus': {
-          backgroundColor: (theme.vars || theme).palette.grey[50],
+        '&:hover': {
           color: (theme.vars || theme).palette.grey[700],
+          backgroundColor: (theme.vars || theme).palette.grey[50],
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             backgroundColor: 'initial',
           },
+        },
+        '&:focus-visible': {
+          color: (theme.vars || theme).palette.grey[700],
+          outline: 0,
+          backgroundColor: (theme.vars || theme).palette.grey[100],
         },
       },
       '& > div': {
@@ -47,9 +52,13 @@ const Navigation = styled('nav')(({ theme }) => [
   theme.applyDarkStyles({
     '& li': {
       '& > a, & > div': {
-        '&:hover, &:focus': {
+        '&:hover': {
           backgroundColor: (theme.vars || theme).palette.primaryDark[700],
           color: (theme.vars || theme).palette.primaryDark[200],
+        },
+        '&:focus-visible': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+          color: (theme.vars || theme).palette.primaryDark[100],
         },
       },
     },
@@ -360,7 +369,9 @@ export default function HeaderNavBar() {
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
                         name="MUI Toolpad"
-                        chip={<Chip label="Alpha" size="small" color="grey" />}
+                        chip={
+                          <Chip label="Alpha" size="small" color="primary" variant="outlined" />
+                        }
                         description="Low-code admin builder."
                         onKeyDown={handleKeyDown}
                       />

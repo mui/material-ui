@@ -36,7 +36,7 @@ export default function SelectedMenu() {
         id="selected-demo-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={createHandleClose()}
+        onClose={createHandleClose(-1)}
         aria-labelledby="selected-demo-button"
       >
         <MenuItem

@@ -1,12 +1,13 @@
+import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/base/pagesApi';
 
 const pages = [
   {
     pathname: '/base/getting-started',
-    icon: 'DescriptionIcon',
+    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/base/getting-started/overview', title: 'Overview' },
-      { pathname: '/base/getting-started/installation', title: 'Installation' },
+      { pathname: '/base/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base/getting-started/usage', title: 'Usage' },
       { pathname: '/base/getting-started/customization', title: 'Customization' },
     ],
@@ -14,7 +15,7 @@ const pages = [
   {
     pathname: '/base/react-',
     title: 'Components',
-    icon: 'ToggleOnIcon',
+    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/base/components/inputs',
@@ -73,19 +74,23 @@ const pages = [
     ],
   },
   {
-    title: 'API',
+    title: 'APIs',
     pathname: '/base/api',
-    icon: 'CodeIcon',
+    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
   },
   {
     pathname: '/base/guides',
     title: 'How-to guides',
-    icon: 'VisibilityIcon',
+    icon: standardNavIcons.VisibilityIcon,
     children: [
       {
         pathname: '/base/guides/working-with-tailwind-css',
         title: 'Working with Tailwind CSS',
+      },
+      {
+        pathname: '/base/guides/overriding-component-structure',
+        title: 'Overriding component structure',
       },
     ],
   },

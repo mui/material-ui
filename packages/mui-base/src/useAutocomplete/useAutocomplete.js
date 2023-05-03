@@ -965,15 +965,23 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleOptionMouseOver = (event) => {
+  const handleOptionMouseMove = (event) => {
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    if (highlightedIndexRef.current !== index) {
+      setHighlightedIndex({
+        event,
+        index,
+        reason: 'mouse',
+      });
+    }
+  };
+
+  const handleOptionTouchStart = (event) => {
     setHighlightedIndex({
       event,
       index: Number(event.currentTarget.getAttribute('data-option-index')),
-      reason: 'mouse',
+      reason: 'touch',
     });
-  };
-
-  const handleOptionTouchStart = () => {
     isTouch.current = true;
   };
 
@@ -1089,7 +1097,7 @@ export default function useAutocomplete(props) {
       onFocus: handleFocus,
       onChange: handleInputChange,
       onMouseDown: handleInputMouseDown,
-      // if open then this is handled imperativeley so don't let react override
+      // if open then this is handled imperatively so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
@@ -1139,7 +1147,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
-        onMouseOver: handleOptionMouseOver,
+        onMouseMove: handleOptionMouseMove,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
         'data-option-index': index,

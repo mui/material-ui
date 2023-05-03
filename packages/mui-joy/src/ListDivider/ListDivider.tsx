@@ -10,6 +10,7 @@ import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
 import ComponentListContext from '../List/ComponentListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   const { orientation, inset } = ownerState;
@@ -34,32 +35,32 @@ const ListDividerRoot = styled(DividerRoot as unknown as 'li', {
     '--Divider-inset': 'calc(-1 * var(--List-padding))',
   }),
   ...(ownerState.row && {
-    marginInline: 'var(--List-divider-gap)',
+    marginInline: 'var(--ListDivider-gap)',
     ...(ownerState.inset === 'gutter' && {
-      marginBlock: 'var(--List-item-paddingY)',
+      marginBlock: 'var(--ListItem-paddingY)',
     }),
     ...(ownerState['data-first-child'] === undefined && {
-      // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
-      marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
+      marginInlineStart: 'calc(var(--List-gap) + var(--ListDivider-gap))',
     }),
   }),
   ...(!ownerState.row && {
     // by default, the divider line is stretched from edge-to-edge of the List
-    // spacing between ListItem can be controlled by `--List-divider-gap` on the List
+    // spacing between ListItem can be controlled by `--ListDivider-gap` on the List
     ...(ownerState['data-first-child'] === undefined && {
-      // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
-      marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      // combine --List-gap and --ListDivider-gap to replicate flexbox gap behavior
+      marginBlockStart: 'calc(var(--List-gap) + var(--ListDivider-gap))',
     }),
-    marginBlockEnd: 'var(--List-divider-gap)',
+    marginBlockEnd: 'var(--ListDivider-gap)',
     ...(ownerState.inset === 'gutter' && {
-      marginInlineStart: 'var(--List-item-paddingLeft)',
-      marginInlineEnd: 'var(--List-item-paddingRight)',
+      marginInlineStart: 'var(--ListItem-paddingLeft)',
+      marginInlineEnd: 'var(--ListItem-paddingRight)',
     }),
     ...(ownerState.inset === 'startDecorator' && {
-      marginInlineStart: 'var(--List-item-paddingLeft)',
+      marginInlineStart: 'var(--ListItem-paddingLeft)',
     }),
     ...(ownerState.inset === 'startContent' && {
-      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-size))',
+      marginInlineStart: 'calc(var(--ListItem-paddingLeft) + var(--ListItemDecorator-size))',
     }),
   }),
 }));
@@ -89,6 +90,8 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     children,
     inset = 'context',
     orientation: orientationProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -108,25 +111,27 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <ListDividerRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      {...(role === 'separator' &&
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListDividerRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      role,
+      ...(role === 'separator' &&
         orientation === 'vertical' && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
-        })}
-      {...other}
-    >
-      {children}
-    </ListDividerRoot>
-  );
+        }),
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListDividerTypeMap>;
 
 ListDivider.propTypes /* remove-proptypes */ = {
@@ -166,6 +171,20 @@ ListDivider.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

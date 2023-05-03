@@ -7,7 +7,9 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "endDecorator": { "type": { "name": "node" } },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "role": { "type": { "name": "string" }, "default": "'alert'" },
     "size": {
       "type": {
@@ -15,6 +17,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
     },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
@@ -35,25 +51,46 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiAlert-endDecorator"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiAlert-root"
     },
     {
       "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": ".MuiAlert-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiAlert-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAlert",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Alert/Alert.tsx",
   "inheritance": null,

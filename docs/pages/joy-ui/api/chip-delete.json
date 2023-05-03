@@ -11,6 +11,14 @@
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
     "onDelete": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -27,7 +35,35 @@
   },
   "name": "ChipDelete",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": ".MuiChipDelete-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyChipDelete",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/ChipDelete/ChipDelete.tsx",
   "inheritance": null,

@@ -66,6 +66,9 @@ export interface UseAutocompleteProps<
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * When using `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect?: boolean;
@@ -233,7 +236,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange?: (
     event: React.SyntheticEvent,
@@ -299,7 +302,7 @@ export interface UseAutocompleteParameters<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {}
 
-export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
+export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto' | 'touch';
 
 export type AutocompleteChangeReason =
   | 'createOption'

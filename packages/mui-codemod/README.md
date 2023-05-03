@@ -62,9 +62,39 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+#### `base-remove-component-prop`
+
+Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
+
+This change only affects Base UI components.
+
+```diff
+-  <Input component={CustomRoot} />
++  <Input slots={{ root: CustomRoot }} />
+```
+
+```sh
+npx @mui/codemod v5.0.0/base-remove-component-prop <path>
+```
+
+#### `rename-css-variables`
+
+Updates the names of the CSS variables of the Joy UI components to adapt to the new naming standards of the CSS variables for components.
+
+```diff
+-  <List sx={{ py: 'var(--List-divider-gap)' }}>
++  <List sx={{ py: 'var(--ListDivider-gap)' }}>
+-  <Switch sx={{ '--Switch-track-width': '40px' }}>
++  <Switch sx={{ '--Switch-trackWidth': '40px' }}>
+```
+
+```sh
+npx @mui/codemod v5.0.0/rename-css-variables <path>
+```
+
 #### `base-hook-imports`
 
-Updates the sources of the imports of the MUI Base hooks to adapt to the new directories of the hooks.
+Updates the sources of the imports of the Base UI hooks to adapt to the new directories of the hooks.
 
 ```diff
 -  import { useBadge } from '@mui/base/BadgeUnstyled';
@@ -382,7 +412,7 @@ You can find more details about this breaking change in [the migration guide](ht
 Renames the `components` and `componentsProps` props to `slots` and `slotProps`, respectively.
 Also, changes `slots`' fields names to camelCase.
 
-This change only affects MUI Base components.
+This change only affects Base UI components.
 
 ```diff
  <BadgeUnstyled

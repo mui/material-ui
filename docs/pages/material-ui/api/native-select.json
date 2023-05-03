@@ -35,12 +35,15 @@
       "iconFilled",
       "iconOutlined",
       "iconStandard",
-      "nativeInput"
+      "nativeInput",
+      "error"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" },
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiNativeSelect"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiNativeSelect",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },

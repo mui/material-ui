@@ -42,7 +42,7 @@ A modal [blocks interaction with the rest of the application](https://en.wikiped
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import ModalUnstyled from '@mui/base/ModalUnstyled';
@@ -112,7 +112,7 @@ As with any performance optimization, the `keepMounted` prop won't necessarily s
 
 ### Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 
 In order to display a modal rendered on the server, you need to disable the portal feature with the `disablePortal` prop, as shown in the following demo:
 

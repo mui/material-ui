@@ -69,6 +69,20 @@
       },
       "default": "'md'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, limitTag?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, loading?: func<br>&#124;&nbsp;object, noOptions?: func<br>&#124;&nbsp;object, option?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object, wrapper?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ clearIndicator?: elementType, endDecorator?: elementType, input?: elementType, limitTag?: elementType, listbox?: elementType, loading?: elementType, noOptions?: elementType, option?: elementType, popupIndicator?: elementType, root?: elementType, startDecorator?: elementType, wrapper?: elementType }"
+      },
+      "default": "{}"
+    },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
@@ -90,79 +104,108 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "clearIndicator",
-      "description": "The component used to render the clear indicator.",
-      "default": "'button'",
-      "class": ".MuiAutocomplete-clearIndicator"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-root"
     },
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiAutocomplete-endDecorator"
+      "name": "wrapper",
+      "description": "The component that renders the wrapper.",
+      "default": "'div'",
+      "class": ".MuiAutocomplete-wrapper"
     },
     {
       "name": "input",
-      "description": "The component used to render the input.",
+      "description": "The component that renders the input.",
       "default": "'input'",
       "class": ".MuiAutocomplete-input"
     },
     {
-      "name": "limitTag",
-      "description": "The component used to render the limit tag.",
+      "name": "startDecorator",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
-      "class": ".MuiAutocomplete-limitTag"
+      "class": ".MuiAutocomplete-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiAutocomplete-endDecorator"
+    },
+    {
+      "name": "clearIndicator",
+      "description": "The component that renders the clear indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-clearIndicator"
+    },
+    {
+      "name": "popupIndicator",
+      "description": "The component that renders the popup indicator.",
+      "default": "'button'",
+      "class": ".MuiAutocomplete-popupIndicator"
     },
     {
       "name": "listbox",
-      "description": "The component used to render the listbox.",
+      "description": "The component that renders the listbox.",
       "default": "'ul'",
       "class": ".MuiAutocomplete-listbox"
     },
     {
+      "name": "option",
+      "description": "The component that renders the option.",
+      "default": "'li'",
+      "class": ".MuiAutocomplete-option"
+    },
+    {
       "name": "loading",
-      "description": "The component used to render the loading.",
+      "description": "The component that renders the loading.",
       "default": "'li'",
       "class": ".MuiAutocomplete-loading"
     },
     {
       "name": "noOptions",
-      "description": "The component used to render the no-options.",
+      "description": "The component that renders the no-options.",
       "default": "'li'",
       "class": ".MuiAutocomplete-noOptions"
     },
     {
-      "name": "option",
-      "description": "The component used to render the option.",
-      "default": "'li'",
-      "class": ".MuiAutocomplete-option"
-    },
-    {
-      "name": "popupIndicator",
-      "description": "The component used to render the popup indicator.",
-      "default": "'button'",
-      "class": ".MuiAutocomplete-popupIndicator"
-    },
-    {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'div'",
-      "class": ".MuiAutocomplete-root"
-    },
-    {
-      "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "name": "limitTag",
+      "description": "The component that renders the limit tag.",
       "default": "'span'",
-      "class": ".MuiAutocomplete-startDecorator"
-    },
-    {
-      "name": "wrapper",
-      "description": "The component used to render the wrapper.",
-      "default": "'div'",
-      "class": ".MuiAutocomplete-wrapper"
+      "class": ".MuiAutocomplete-limitTag"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "hasClearIcon",
+      "hasPopupIcon",
+      "multiple",
+      "popupIndicatorOpen",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAutocomplete",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Autocomplete/Autocomplete.tsx",
   "inheritance": null,

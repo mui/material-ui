@@ -7,30 +7,30 @@ export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDeco
 
 export interface ChipSlots {
   /**
-   * The component used to render the root.
+   * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
-   * The component used to render the label.
+   * The component that renders the label.
    * @default 'span'
    */
-  label: React.ElementType;
+  label?: React.ElementType;
   /**
-   * The component used to render the action.
+   * The component that renders the action.
    * @default 'button'
    */
-  action: React.ElementType;
+  action?: React.ElementType;
   /**
-   * The component used to render the start decorator.
+   * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
-   * The component used to render the end decorator.
+   * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface ChipPropsColorOverrides {}

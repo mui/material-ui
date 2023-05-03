@@ -53,6 +53,8 @@
     "name": "MuiDivider"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDivider",
   "forwardsRefTo": "HTMLHRElement",
   "filename": "/packages/mui-material/src/Divider/Divider.js",
   "inheritance": null,

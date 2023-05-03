@@ -19,6 +19,11 @@ describe('Joy <AutocompleteOption />', () => {
     testVariantProps: { color: 'primary' },
     testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describeJoyColorInversion(<AutocompleteOption />, { muiName: 'JoyAutocompleteOption', classes });

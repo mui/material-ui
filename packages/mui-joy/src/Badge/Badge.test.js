@@ -146,7 +146,7 @@ describe('<Badge />', () => {
   });
 
   describe('prop: variant', () => {
-    it('addas a light class by default', () => {
+    it('adds a light class by default', () => {
       const { container } = render(<Badge {...defaultProps} />);
       expect(findBadge(container)).to.have.class(classes.variantSolid);
     });

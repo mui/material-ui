@@ -7,11 +7,14 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
 } from 'test/utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
+import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {
@@ -99,10 +102,10 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
         'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });
@@ -170,6 +173,40 @@ describe('<Tabs />', () => {
 
       expect(getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([0, -1]);
     });
+  });
+
+  it('props: slots and slotProps, should render custom start and end icons', () => {
+    const tabs = (
+      <Tabs
+        value={0}
+        variant="scrollable"
+        scrollButtons
+        textColor="secondary"
+        slots={{
+          StartScrollButtonIcon: ArrowBackIcon,
+          EndScrollButtonIcon: ArrowForwardIcon,
+        }}
+        slotProps={{
+          endScrollButtonIcon: (ownerState) => ({
+            'data-testid': 'test-label-scrollButtonEnd',
+            fontSize: ownerState.textColor === 'secondary' ? 'large' : 'small',
+          }),
+          startScrollButtonIcon: (ownerState) => ({
+            'data-testid': 'test-label-scrollButtonStart',
+            fontSize: ownerState.textColor === 'secondary' ? 'large' : 'small',
+          }),
+        }}
+      >
+        <Tab />
+        <Tab />
+      </Tabs>
+    );
+
+    const { getAllByTestId, getByTestId } = render(tabs);
+    expect(getAllByTestId('test-label-scrollButtonStart')).to.have.lengthOf(1);
+    expect(getAllByTestId('test-label-scrollButtonEnd')).to.have.lengthOf(1);
+    expect(getByTestId('test-label-scrollButtonStart')).to.have.class(svgIconClasses.fontSizeLarge);
+    expect(getByTestId('test-label-scrollButtonEnd')).to.have.class(svgIconClasses.fontSizeLarge);
   });
 
   describe('prop: value', () => {
