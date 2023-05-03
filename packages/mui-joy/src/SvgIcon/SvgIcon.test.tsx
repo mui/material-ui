@@ -150,9 +150,8 @@ describe('<SvgIcon />', () => {
     }
 
     const { container } = render(
-      <SvgIcon fontSize="sm">
-        {path}
-      </SvgIcon>,
+      // @ts-expect-error
+      <SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>,
     );
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
   });
