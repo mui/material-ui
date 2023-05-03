@@ -20,11 +20,9 @@ export interface SelectOptionDefinition<Value> {
 }
 
 export type SelectChangeEvent<OptionValue, Multiple> =
-  | (Omit<React.MouseEvent | React.FocusEvent | React.KeyboardEvent, 'target'> & {
-      target: (React.MouseEvent | React.FocusEvent | React.KeyboardEvent)['target'] & {
-        value: SelectValue<OptionValue, Multiple>;
-      };
-    })
+  | (React.KeyboardEvent & { target: { value: SelectValue<OptionValue, Multiple> } })
+  | (React.MouseEvent & { target: { value: SelectValue<OptionValue, Multiple> } })
+  | (React.FocusEvent & { target: { value: SelectValue<OptionValue, Multiple> } })
   | null;
 
 export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
