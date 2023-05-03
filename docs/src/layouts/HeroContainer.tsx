@@ -63,7 +63,7 @@ export default function HeroContainer({
                 (theme) =>
                   theme.applyDarkStyles({
                     background: 'primaryDark.900',
-                    borderColor: `${(theme.vars || theme).palette.primaryDark[700]}`,
+                    borderColor: 'primaryDark.700',
                     ...(linearGradient && {
                       background: `radial-gradient(farthest-corner circle at 100% 0%, ${alpha(
                         theme.palette.primary[900],

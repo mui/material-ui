@@ -11,6 +11,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import Link from 'docs/src/modules/components/Link';
+import { alpha } from '@mui/material/styles';
 
 const content = [
   {
@@ -29,7 +30,7 @@ const content = [
     icon: <AccessibilityNewRounded color="primary" />,
     title: 'Accessibility',
     description:
-      'We do our best to ensure MUI Base components support the latest accessibility conventions.',
+      'We do our best to ensure Base UI components support the latest accessibility conventions.',
   },
 ];
 
@@ -60,9 +61,10 @@ export default function BaseUISummary() {
                   borderRadius: '12px',
                   border: '1px solid',
                   borderColor: 'grey.100',
-                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
-                    (theme.vars || theme).palette.patterns.triangle
-                  }`,
+                  background: `linear-gradient(to top right, ${alpha(
+                    theme.palette.primary[50],
+                    0.5,
+                  )} 40%, ${alpha(theme.palette.grey[50], 0.2)} 100%)`,
 
                   '&:hover': {
                     borderColor: 'primary.500',
@@ -73,9 +75,12 @@ export default function BaseUISummary() {
                   ...theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
                     borderColor: 'primaryDark.700',
+                    background: `linear-gradient(to top right, ${alpha(
+                      theme.palette.primary[900],
+                      0.1,
+                    )} 40%, ${alpha(theme.palette.primaryDark[800], 0.2)} 100%)`,
 
                     '&:hover': {
-                      borderColor: 'primary.500',
                       boxShadow: '0px 1px 6px #0059B3, inset 0px 2px 30px rgba(0, 0, 0, 0.1)',
                     },
                   }),
