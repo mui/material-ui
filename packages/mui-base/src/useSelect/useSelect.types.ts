@@ -63,7 +63,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: SelectChangeEvent<OptionValue, Multiple>,
+    event: SelectChangeEvent<OptionValue, Multiple>,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**

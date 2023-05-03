@@ -69,7 +69,7 @@ export interface SelectOwnProps<OptionValue extends {}, Multiple extends boolean
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: SelectChangeEvent<OptionValue, Multiple>,
+    event: SelectChangeEvent<OptionValue, Multiple>,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**

@@ -25,8 +25,8 @@
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
     "onChange": {
       "type": {
-        "name": "(e: SelectChangeEvent&lt;OptionValue, Multiple&gt;, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
-        "description": "(e: SelectChangeEvent&lt;OptionValue, Multiple&gt;, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void"
+        "name": "(event: SelectChangeEvent&lt;OptionValue, Multiple&gt;, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void",
+        "description": "(event: SelectChangeEvent&lt;OptionValue, Multiple&gt;, value: SelectValue&lt;OptionValue, Multiple&gt;) =&gt; void"
       }
     },
     "onHighlightChange": {
