@@ -1,6 +1,6 @@
-# React Engineer - X (future)
+# React Engineer - xGrid
 
-<p class="description">You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
+<p class="description">You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
 ## Details of the Role
 
@@ -30,6 +30,11 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
+The data grid team (part of MUI X) needs help.
+We have started with the [data grid](https://mui.com/x/react-data-grid/#commercial-version) component.
+We need to build new features on it and introduce new components.
+The enterprise version is built on the open-source version of the components.
+
 We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
 ## About the role
@@ -48,7 +53,7 @@ Depending on the day, you'll:
   The future of MUI is discussed and planned in our public RFCs and issues.
   You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
