@@ -5,12 +5,8 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';
 
-function findBadge(container: HTMLElement): HTMLElement | null {
-  const firstChild = container.firstChild as HTMLElement;
-  if (firstChild) {
-    return firstChild.querySelector('span');
-  }
-  return null;
+function findBadge(container: HTMLElement) {
+  return (container?.firstChild as HTMLElement)?.querySelector('span') ?? null;
 }
 
 describe('<Badge />', () => {
