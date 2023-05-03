@@ -439,13 +439,13 @@ export function getThemedComponents(): ThemeOptions {
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[400],
                 boxShadow:
-                  '0px 2px 4px rgba(29, 29, 29, 0.1), inset 0px 4px 8px rgba(102, 178, 255, 0.6)',
+                  '0px 2px 4px rgba(29, 29, 29, 0.1), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 textShadow: '0px 1px 1px rgba(0, 58, 117, 0.6)',
                 color: '#FFF',
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[600],
                   boxShadow:
-                    '0px 0px 8px rgba(0, 127, 255, 0.4), inset 0px 4px 8px rgba(102, 178, 255, 0.6)',
+                    '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },
               }),
           }),

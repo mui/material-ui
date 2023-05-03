@@ -2,19 +2,20 @@ import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import { alpha } from '@mui/material/styles';
 
 export default function HeroContainer({
   left,
   right,
   rightRef,
   rightSx,
-  enablePattern,
+  linearGradient,
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
   rightRef?: React.MutableRefObject<HTMLDivElement | null>;
   rightSx?: BoxProps['sx'];
-  enablePattern?: boolean;
+  linearGradient?: boolean;
 }) {
   return (
     <Box sx={{ overflow: 'hidden' }}>
@@ -50,24 +51,24 @@ export default function HeroContainer({
                   transition: 'max-height 0.3s',
                   position: 'relative',
                   overflow: 'hidden',
-                  ...(enablePattern && {
-                    borderLeft: '1px solid',
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                    backgroundImage: `radial-gradient(50% 50% at 50% 50%, transparent 20%, rgba(102, 178, 255, 0.2)
-                    1%, rgba(240, 247, 255, 0.5) 120%), ${
-                      (theme.vars || theme).palette.patterns.triangle
-                    }`,
+                  borderLeft: '1px solid',
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                  ...(linearGradient && {
+                    background: `radial-gradient(farthest-corner circle at 100% 0%, ${
+                      (theme.vars || theme).palette.grey[50]
+                    } 0%, ${(theme.vars || theme).palette.primary[50]} 100%)`,
                   }),
                 }),
                 (theme) =>
                   theme.applyDarkStyles({
-                    bgcolor: 'primaryDark.900',
-                    ...(enablePattern && {
-                      backgroundImage: `radial-gradient(50% 50% at 50% 50%, transparent 20%, rgba(0, 89, 178, 0.2)
-                      1%, rgba(29, 36, 43, 0.8) 120%), ${
-                        (theme.vars || theme).palette.patterns.triangle
-                      }`,
+                    background: 'primaryDark.900',
+                    borderColor: `${(theme.vars || theme).palette.primaryDark[700]}`,
+                    ...(linearGradient && {
+                      background: `radial-gradient(farthest-corner circle at 100% 0%, ${alpha(
+                        theme.palette.primary[900],
+                        0.3,
+                      )} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
                     }),
                   }),
                 ...(Array.isArray(rightSx) ? rightSx : [rightSx]),

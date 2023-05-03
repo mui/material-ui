@@ -120,7 +120,7 @@ function Wrapper({ sx, children, ...props }: BoxProps) {
 export default function BaseUIHero() {
   return (
     <HeroContainer
-      enablePattern
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' }, ml: { xl: '-40px' } }}>
           <Typography
