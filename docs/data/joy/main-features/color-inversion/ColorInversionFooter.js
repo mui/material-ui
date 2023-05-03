@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -28,14 +27,14 @@ export default function ColorInversionFooter() {
       color={color}
       invertedColors
       sx={{
-        ...(color !== 'warning' && {
+        ...(color !== 'neutral' && {
           bgcolor: `${color}.800`,
         }),
         flexGrow: 1,
         p: 2,
         mx: -3,
         my: -3,
-        borderRadius: { xs: 0, sm: 'xs' },
+        borderRadius: { xs: 0, sm: 'sm' },
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -55,7 +54,6 @@ export default function ColorInversionFooter() {
             const nextColor = colors.indexOf(color);
             setColor(colors[nextColor + 1] ?? colors[0]);
           }}
-          sx={{ borderRadius: '50%' }}
         >
           <img alt="" src="/static/branding/pricing/block-green.svg" />
         </IconButton>
@@ -68,13 +66,13 @@ export default function ColorInversionFooter() {
         </IconButton>
         <Input
           variant="soft"
-          placeholder="Your Email"
+          placeholder="Type in your email"
           type="email"
           name="email"
           endDecorator={
-            <Button variant="soft" aria-label="subscribe">
+            <IconButton variant="soft" aria-label="subscribe">
               <SendIcon />
-            </Button>
+            </IconButton>
           }
           sx={{ ml: 'auto', display: { xs: 'none', md: 'flex' } }}
         />
@@ -206,25 +204,6 @@ export default function ColorInversionFooter() {
             </List>
           </ListItem>
         </List>
-      </Box>
-      <Divider sx={{ my: 2 }} />
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 2,
-        }}
-      >
-        <Typography
-          level="body2"
-          startDecorator={<Typography textColor="text.tertiary">by</Typography>}
-        >
-          MUI
-        </Typography>
-
-        <Typography level="body3" sx={{ ml: 'auto' }}>
-          Copyright 2022
-        </Typography>
       </Box>
     </Sheet>
   );
