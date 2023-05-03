@@ -3,21 +3,20 @@ import { unstable_useId } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import InputUnstyled from '@mui/base/Input';
 import { styled } from '@mui/system';
-import Edit from '@mui/icons-material/Edit';
 
 const Field = styled('div')`
   --TextInput-height: 64px;
-  --TextInput-paddingTop: 1.75rem;
-  --TextInput-labelLineHeight: 21px;
-  --TextInput-labelScale: 0.85;
-  width: 256px;
+  --TextInput-paddingTop: 2rem;
+  --TextInput-labelLineHeight: 18px;
+  --TextInput-labelScale: 0.75;
+  width: 320px;
   padding: 0px 0.75rem;
   display: inline-flex;
   position: relative;
   height: var(--TextInput-height);
   background: var(--muidocs-palette-background-paper);
   border: 1px solid;
-  border-color: var(--muidocs-palette-grey-300);
+  border-color: var(--muidocs-palette-primary-100);
   border-radius: var(--muidocs-shape-borderRadius);
   outline-color: transparent;
   &:focus-within {
@@ -40,13 +39,13 @@ const Field = styled('div')`
     text-align: start;
     text-overflow: ellipsis;
     font-weight: 500;
-    color: var(--muidocs-palette-grey-600);
+    color: var(--muidocs-palette-grey-500);
     white-space: nowrap;
     pointer-events: none;
     border: 1px solid transparent;
     transform-origin: 0 0;
     transform: translateY(-50%);
-    transition: transform 0.12s ease-out;
+    transition: transform 0.1s ease-out;
   }
   & svg {
     align-self: center;
@@ -55,18 +54,15 @@ const Field = styled('div')`
   }
 
   :where([data-mui-color-scheme='dark']) & {
-    border-color: var(--muidocs-palette-primaryDark-800);
+    border-color: var(--muidocs-palette-primary-900);
+
     &:focus-within {
-      border-color: var(--muidocs-palette-primaryDark-300);
-      outline-color: var(--muidocs-palette-primaryDark-500);
+      border-color: var(--muidocs-palette-primary-500);
+      outline-color: var(--muidocs-palette-primary-800);
 
       & svg {
         color: var(--muidocs-palette-primaryDark-300);
       }
-    }
-
-    & label {
-      color: var(--muidocs-palette-primaryDark-300);
     }
   }
 `;
@@ -88,6 +84,7 @@ const StyledInput = styled('input')`
     transform: translateY(-100%) scale(var(--TextInput-labelScale));
   }
 `;
+
 const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);
@@ -118,11 +115,11 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' }) {
           root: !styling ? undefined : Field,
           input: !styling ? undefined : FloatingLabelInput,
         }}
-        endAdornment={<Edit />}
       />
     </Box>
   );
 }
+
 BaseInputDemo.getCode = (styling?: 'system') => {
   if (styling === 'system') {
     return `import Input from '@mui/base/Input';

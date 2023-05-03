@@ -29,7 +29,7 @@ const content = [
     icon: <AccessibilityNewRounded color="primary" />,
     title: 'Accessibility',
     description:
-      'We do our best to ensure Base UI components support the latest accessibility conventions.',
+      'We do our best to ensure Base UI components support the latest accessibility conventions and patterns.',
   },
 ];
 

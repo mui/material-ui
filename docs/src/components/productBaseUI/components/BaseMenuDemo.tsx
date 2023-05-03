@@ -17,7 +17,7 @@ const StyledMenuButton = styled('button')`
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 10px 14px 10px 8px;
   line-height: 1.5;
   background: var(--muidocs-palette-background-paper);
   border: 1px solid;
@@ -27,18 +27,30 @@ const StyledMenuButton = styled('button')`
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
   outline-color: transparent;
+
+  &:hover {
+    background: var(--muidocs-palette-grey-50);
+  }
+
   & svg {
     color: var(--muidocs-palette-grey-600);
   }
+
   &.Mui-focusVisible {
     outline: 3px solid;
     outline-color: var(--muidocs-palette-grey-300);
   }
+
   :where([data-mui-color-scheme='dark']) & {
     border-color: var(--muidocs-palette-primaryDark-700);
+
+    &:hover {
+      background: var(--muidocs-palette-primaryDark-800);
+    }
   }
 `;
 const StyledPopper = styled(PopperUnstyled)``;
+
 const StyledListbox = styled('ul')`
   margin: 8px 0;
   padding: 4px;

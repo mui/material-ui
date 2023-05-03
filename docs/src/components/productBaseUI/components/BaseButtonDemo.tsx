@@ -8,7 +8,7 @@ const StyledButton = styled('button')`
   font-weight: bold;
   font-size: 0.875rem;
   background-color: var(--muidocs-palette-primary-500);
-  padding: 12px 24px;
+  padding: 10px 16px;
   border-radius: 12px;
   color: white;
   transition: all 150ms ease;
