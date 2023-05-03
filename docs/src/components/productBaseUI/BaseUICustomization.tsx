@@ -169,7 +169,7 @@ const StyledSwitchThumb = styled('span')`
   position: relative;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
+  transition-duration: 150ms;
 
   &.Mui-focusVisible {
     background-color: var(--muidocs-palette-grey-500);
@@ -258,19 +258,15 @@ export default function BaseUICustomization() {
               sx={(theme) => ({
                 overflow: 'auto',
                 flexGrow: 1,
+                height: '140px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                bgcolor: 'background.paper',
                 backgroundSize: '100%, 72px',
-                backgroundImage: `${(theme.vars || theme).palette.gradients.lightGrayRadio}, ${
-                  (theme.vars || theme).palette.patterns.triangle
-                }`,
+                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 ...theme.applyDarkStyles({
                   backgroundSize: '72px, 100%',
-                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
-                    (theme.vars || theme).palette.patterns.triangle
-                  }`,
+                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 }),
               })}
             >

@@ -146,7 +146,7 @@ export default function BaseUIComponents() {
                   right: 0,
                   zIndex: 10,
                   background: `linear-gradient(to bottom, ${
-                    (theme.vars || theme).palette.primaryDark[800]
+                    (theme.vars || theme).palette.common.black
                   } 30%, transparent)`,
                 })}
               >
