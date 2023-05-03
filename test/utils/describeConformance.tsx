@@ -50,7 +50,7 @@ export interface InputConformanceOptions {
   only?: Array<keyof typeof fullSuite>;
   skip?: Array<keyof typeof fullSuite | 'classesRoot'>;
   testComponentsRootPropWith?: string;
-  testComponentPropWith?: string;
+  testComponentPropWith?: React.ElementType;
   testDeepOverrides?: SlotTestOverride | SlotTestOverride[];
   testRootOverrides?: SlotTestOverride;
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };

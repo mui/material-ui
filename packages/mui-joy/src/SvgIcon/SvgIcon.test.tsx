@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import SvgIcon, { svgIconClasses as classes } from '@mui/joy/SvgIcon';
+import SvgIcon, { svgIconClasses as classes, SvgIconClassKey } from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();
 
-  let path;
+  type PathType = string | number | boolean | JSX.Element | React.ReactFragment | null | undefined;
+  let path: PathType;
 
   before(() => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
@@ -25,7 +26,7 @@ describe('<SvgIcon />', () => {
       render,
       muiName: 'JoySvgIcon',
       refInstanceof: window.SVGSVGElement,
-      testComponentPropWith: (props) => (
+      testComponentPropWith: (props: any) => (
         <svg {...props}>
           <defs>
             <linearGradient id="gradient1">
@@ -39,7 +40,9 @@ describe('<SvgIcon />', () => {
       slots: {
         root: {
           expectedClassName: classes.root,
-          testWithComponent: ({ className }) => <svg className={className} data-testid="custom" />,
+          testWithComponent: ({ className }: any) => (
+            <svg className={className} data-testid="custom" />
+          ),
           testWithElement: null,
         },
       },
@@ -56,11 +59,7 @@ describe('<SvgIcon />', () => {
 
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
-      const { container, queryByText } = render(
-        <SvgIcon title="Go to link" titleAccess="Network">
-          {path}
-        </SvgIcon>,
-      );
+      const { container, queryByText } = render(<SvgIcon titleAccess="Network">{path}</SvgIcon>);
 
       expect(queryByText('Network')).not.to.equal(null);
       expect(container.firstChild).not.to.have.attribute('aria-hidden');
@@ -80,13 +79,17 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class(classes.colorInherit);
     });
 
-    ['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
-      it(`should render ${color}`, () => {
-        const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
+    (['inherit', 'primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach(
+      (color) => {
+        it(`should render ${color}`, () => {
+          const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
 
-        expect(container.firstChild).to.have.class(classes[`color${capitalize(color)}`]);
-      });
-    });
+          expect(container.firstChild).to.have.class(
+            classes[`color${capitalize(color)}` as SvgIconClassKey],
+          );
+        });
+      },
+    );
   });
 
   describe('prop: fontSize', function test() {
@@ -103,19 +106,21 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class(classes.fontSizeXl);
     });
 
-    ['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'].forEach(
+    (['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'] as const).forEach(
       (fontSize) => {
         it(`should render ${fontSize}`, () => {
           const { container } = render(<SvgIcon fontSize={fontSize}>{path}</SvgIcon>);
 
-          expect(container.firstChild).to.have.class(classes[`fontSize${capitalize(fontSize)}`]);
+          expect(container.firstChild).to.have.class(
+            classes[`fontSize${capitalize(fontSize)}` as SvgIconClassKey],
+          );
         });
       },
     );
   });
 
   describe('prop: inheritViewBox', () => {
-    function CustomSvg(props) {
+    function CustomSvg(props: any) {
       return (
         <svg viewBox="-4 -4 24 24" {...props}>
           {path}
@@ -144,7 +149,11 @@ describe('<SvgIcon />', () => {
       this.skip();
     }
 
-    const { container } = render(<SvgIcon ownerState={{ fontSize: 'sm' }}>{path}</SvgIcon>);
+    const { container } = render(
+      <SvgIcon fontSize="sm">
+        {path}
+      </SvgIcon>,
+    );
     expect(container.firstChild).toHaveComputedStyle({ fontSize: '20px' }); // fontSize: xl -> 1.25rem = 20px
   });
 });
