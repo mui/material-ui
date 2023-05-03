@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import SvgIcon, { svgIconClasses as classes, SvgIconClassKey } from '@mui/joy/SvgIcon';
+import SvgIcon, {
+  svgIconClasses as classes,
+  SvgIconClassKey,
+  SvgIconProps,
+} from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
@@ -26,7 +30,7 @@ describe('<SvgIcon />', () => {
       render,
       muiName: 'JoySvgIcon',
       refInstanceof: window.SVGSVGElement,
-      testComponentPropWith: (props: any) => (
+      testComponentPropWith: (props: SvgIconProps) => (
         <svg {...props}>
           <defs>
             <linearGradient id="gradient1">
@@ -40,7 +44,7 @@ describe('<SvgIcon />', () => {
       slots: {
         root: {
           expectedClassName: classes.root,
-          testWithComponent: ({ className }: any) => (
+          testWithComponent: ({ className }: SvgIconProps) => (
             <svg className={className} data-testid="custom" />
           ),
           testWithElement: null,
@@ -120,7 +124,7 @@ describe('<SvgIcon />', () => {
   });
 
   describe('prop: inheritViewBox', () => {
-    function CustomSvg(props: any) {
+    function CustomSvg(props: SvgIconProps) {
       return (
         <svg viewBox="-4 -4 24 24" {...props}>
           {path}
