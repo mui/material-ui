@@ -74,6 +74,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     getRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue },
+    rootRef: mergedListRef,
   } = useList({
     controlledProps,
     disabledItemsFocusable: true,
@@ -86,9 +87,9 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     }),
     isItemDisabled: (id) => subitems?.get(id)?.disabled || false,
     items: subitemKeys,
-    itemStringifier: (id: string) =>
+    getItemAsString: (id: string) =>
       subitems.get(id)?.label || subitems.get(id)?.ref.current?.innerText,
-    listRef: handleRef,
+    rootRef: handleRef,
     onStateChange: stateChangeHandler,
     reducerActionContext: { listboxRef },
     selectionMode: 'none',
@@ -129,6 +130,7 @@ export default function useMenu(parameters: UseMenuParameters = {}): UseMenuRetu
     dispatch,
     getListboxProps,
     highlightedValue,
+    listboxRef: mergedListRef,
     menuItems: subitems,
     open,
   };

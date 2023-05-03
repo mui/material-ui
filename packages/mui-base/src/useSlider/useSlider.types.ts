@@ -73,7 +73,7 @@ export interface UseSliderParameters {
   /**
    * The ref attached to the root of the Slider.
    */
-  ref: React.Ref<any>;
+  rootRef?: React.Ref<Element>;
   /**
    * A transformation function, to change the scale of the slider.
    * @param {any} x
@@ -110,7 +110,7 @@ export interface Mark {
 
 export type UseSliderRootSlotOwnProps = {
   onMouseDown: React.MouseEventHandler;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<Element> | null;
 };
 
 export type UseSliderRootSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderRootSlotOwnProps> &
@@ -228,6 +228,10 @@ export interface UseSliderReturnValue {
    * If `true`, the slider is a range slider when the `value` prop passed is an array.
    */
   range: boolean;
+  /**
+   * Ref to the root slot's DOM node.
+   */
+  rootRef: React.RefCallback<Element> | null;
   /**
    * The track leap for the current value of the slider.
    */

@@ -8,9 +8,9 @@ materialDesign: https://m2.material.io/design/iconography/system-icons.html
 
 # Icons
 
-<p class="description">Guidance and suggestions for using icons with MUI.</p>
+<p class="description">Guidance and suggestions for using icons with Material UI.</p>
 
-MUI provides icons support in three ways:
+Material UI provides icon support in three ways:
 
 1. Standardized [Material Icons](#material-svg-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
@@ -36,7 +36,7 @@ Or **yarn**:
 yarn add @mui/icons-material
 ```
 
-These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
+These components use the Material UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
 If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
@@ -94,7 +94,7 @@ If you need a custom SVG icon (not available in the [Material Icons](/material-u
 This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
-- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other MUI components that use icons.
+- SVG elements should be scaled for a 24x24px viewport so that the resulting icon can be used as is, or included as a child for other Material UI components that use icons.
   This can be customized with the `viewBox` attribute.
   To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.

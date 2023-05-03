@@ -244,7 +244,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false

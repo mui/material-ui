@@ -6,6 +6,7 @@ import {
   UseListRootSlotProps,
   ListState,
   ListActionContext,
+  UseListReturnValue,
 } from './useList.types';
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
@@ -62,7 +63,9 @@ function useList<
   State extends ListState<ItemValue> = ListState<ItemValue>,
   CustomAction extends ControllableReducerAction = never,
   CustomActionContext = {},
->(params: UseListParameters<ItemValue, State, CustomAction, CustomActionContext>) {
+>(
+  params: UseListParameters<ItemValue, State, CustomAction, CustomActionContext>,
+): UseListReturnValue<ItemValue, State, CustomAction> {
   const {
     controlledProps = EMPTY_OBJECT,
     disabledItemsFocusable = false,
@@ -72,11 +75,11 @@ function useList<
     getItemDomElement,
     getItemId,
     isItemDisabled = defaultIsItemDisabled,
-    listRef: externalListRef,
+    rootRef: externalListRef,
     onStateChange = NOOP,
     items,
     itemComparer = defaultItemComparer,
-    itemStringifier = defaultItemStringifier,
+    getItemAsString = defaultItemStringifier,
     onChange,
     onHighlightChange,
     orientation = 'vertical',
@@ -171,7 +174,7 @@ function useList<
       isItemDisabled,
       itemComparer,
       items,
-      itemStringifier,
+      getItemAsString,
       onHighlightChange: handleHighlightChange,
       orientation,
       pageSize,
@@ -185,7 +188,7 @@ function useList<
     isItemDisabled,
     itemComparer,
     items,
-    itemStringifier,
+    getItemAsString,
     handleHighlightChange,
     orientation,
     pageSize,
@@ -390,6 +393,7 @@ function useList<
     contextValue,
     dispatch,
     getRootProps,
+    rootRef: handleRef,
     state,
   };
 }

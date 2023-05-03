@@ -1,8 +1,8 @@
-import { OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { Simplify } from '@mui/types';
 import Popper, { PopperProps } from '../Popper';
-import { SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps, UseMenuParameters } from '../useMenu';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { ListAction } from '../useList';
 
 export interface MenuRootSlotPropsOverrides {}
@@ -66,19 +66,23 @@ export interface MenuSlots {
   listbox?: React.ElementType;
 }
 
-export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
-  props: P & MenuOwnProps;
-  defaultComponent: D;
+export interface MenuTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'ul',
+> {
+  props: MenuOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
-export type MenuProps<D extends React.ElementType = MenuTypeMap['defaultComponent']> =
-  OverrideProps<MenuTypeMap<{}, D>, D> & {
-    component?: D;
-  };
+export type MenuProps<
+  RootComponentType extends React.ElementType = MenuTypeMap['defaultComponent'],
+> = PolymorphicProps<MenuTypeMap<{}, RootComponentType>, RootComponentType>;
 
-export interface MenuOwnerState extends MenuOwnProps {
-  open: boolean;
-}
+export type MenuOwnerState = Simplify<
+  MenuOwnProps & {
+    open: boolean;
+  }
+>;
 
 export type MenuRootSlotProps = {
   anchorEl: PopperProps['anchorEl'];

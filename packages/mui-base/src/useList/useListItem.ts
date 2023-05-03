@@ -20,9 +20,9 @@ import { ListContext } from './ListContext';
 export default function useListItem<ItemValue>(
   parameters: UseListItemParameters<ItemValue>,
 ): UseListItemReturnValue {
-  const { handlePointerOverEvents = false, item, ref: externalRef } = parameters;
+  const { handlePointerOverEvents = false, item, rootRef: externalRef } = parameters;
 
-  const itemRef = React.useRef<HTMLElement>(null);
+  const itemRef = React.useRef<Element>(null);
   const handleRef = useForkRef(itemRef, externalRef);
 
   const listContext = React.useContext(ListContext);
@@ -115,7 +115,7 @@ export default function useListItem<ItemValue>(
   return {
     getRootProps,
     highlighted,
-    ref: handleRef,
+    rootRef: handleRef,
     selected,
   };
 }

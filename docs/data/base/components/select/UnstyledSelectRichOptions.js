@@ -5,6 +5,49 @@ import Option, { optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
 import { Popper } from '@mui/base';
 
+export default function UnstyledSelectRichOptions() {
+  return (
+    <CustomSelect>
+      {countries.map((c) => (
+        <StyledOption key={c.code} value={c.code} label={c.label}>
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+            alt={`Flag of ${c.label}`}
+          />
+          {c.label} ({c.code}) +{c.phone}
+        </StyledOption>
+      ))}
+    </CustomSelect>
+  );
+}
+
+const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} ref={ref} slots={slots} />;
+});
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -132,49 +175,6 @@ const StyledOption = styled(Option)(
 const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <Select {...props} ref={ref} slots={slots} />;
-});
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-export default function UnstyledSelectRichOptions() {
-  return (
-    <CustomSelect>
-      {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code} label={c.label}>
-          <img
-            loading="lazy"
-            width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-            alt={`Flag of ${c.label}`}
-          />
-          {c.label} ({c.code}) +{c.phone}
-        </StyledOption>
-      ))}
-    </CustomSelect>
-  );
-}
 
 const countries = [
   { code: 'AD', label: 'Andorra', phone: '376' },

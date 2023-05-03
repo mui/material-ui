@@ -23,6 +23,7 @@ describe('<Input />', () => {
         testWithElement: 'input',
       },
     },
+    skip: ['componentProp'],
   }));
 
   it('should render textarea without any console errors when multiline=true', () => {
