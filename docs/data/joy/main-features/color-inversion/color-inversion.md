@@ -22,10 +22,9 @@ When color inversion is enabled on the parent component, the children with impli
 
 {{"demo": "ColorInversionOverview.js"}}
 
-:::info
 **Implicit** color refers to components that don't have the `color` prop specified.
 
-Color inversion has **no effect** on those children that have an **explicit** `color` prop.
+Color inversion has no effect on those children that have an **explicit** `color` prop.
 
 ```js
 // implicit color. The styles change when color inversion is enabled.
@@ -34,8 +33,6 @@ Color inversion has **no effect** on those children that have an **explicit** `c
 // explicit color. Color inversion has no effect.
 <Chip variant="soft" color="primary">…</Chip>
 ```
-
-:::
 
 ### Benefits
 
@@ -54,53 +51,31 @@ Color inversion has **no effect** on those children that have an **explicit** `c
 
 ## Usage
 
+To enable color inverstion, use the `invertedColors` prop on one of the two components that support it, either on the [`Sheet`](/joy-ui/react-sheet/) or the [`Card`](/joy-ui/react-card/).
+Make sure they are using either the `solid` or `soft` variants, as it will only work then.
+
 To enable the feature set `invertedColors` to true on the surface components:
 
 ```js
-<Card variant="solid" color="primary" invertedColors>…</Card>
+<Card variant="solid" invertedColors>…</Card>
 
-<Sheet variant="soft" color="info" invertedColors>…</Sheet>
+<Sheet variant="soft" invertedColors>…</Sheet>
 ```
-
-:::info
-
-- [`Sheet`](/joy-ui/react-sheet/) and [`Card`](/joy-ui/react-card/) are the only components that support this feature.
-- The surface component should have `soft` or `solid` variant to enable this feature.
-  :::
 
 ### Portal popup
 
-By default, color inversion has no effect on the popup slot of `Autocomplete`, `Menu`, and `Tooltip`.
-
-To enable color inversion for those slots, set `disablePortal` to true.
-
-{{"demo": "ColorInversionPopup.js"}}
+By default, color inversion has no effect on the popup slot of the `Autocomplete`, `Menu`, and `Tooltip` components.
+To enable it, set `disablePortal` to true on the `slotProps`.
 
 :::info
 The popup slot of the `Select` component has `disablePortal` set to true by default.
 :::
 
-## Common examples
-
-### Header
-
-{{"demo": "ColorInversionHeader.js"}}
-
-### Footer
-
-{{"demo": "ColorInversionFooter.js"}}
-
-### Side navigation
-
-{{"demo": "ColorInversionNavigation.js"}}
-
-### Marketing section
-
-{{"demo": "ColorInversionMarketing.js"}}
+{{"demo": "ColorInversionPopup.js"}}
 
 ## How it works
 
-**Parent component**
+### Parent component
 
 When `invertedColors` is set to true on the surface component, a set of CSS variables are applied to it. The values of those variables comes from `theme.colorInversion[variant][color]` where `variant` and `color` are the component's props. The surface component also creates a React context to tell the children to update their styles.
 
@@ -119,7 +94,7 @@ When `invertedColors` is set to true on the surface component, a set of CSS vari
 }
 ```
 
-**Child component**
+### Child component
 
 All Joy UI components that support global variants check the React context that contains the color inversion flag. If the flag is true and the child has an implicit color, the internal `color` value will switch to `context` and apply the styles from `theme.variants[variant].context`.
 
@@ -136,3 +111,21 @@ The styles will match the `--variant-*` variables that the parent has.
 ```
 
 In summary, the parent creates a React context to tell the children that the feature is enabled, and generates CSS variables that will be used by the children. The children with an implicit color switch their default color value to `context` to get the styles from the theme.
+
+## Common examples
+
+### Header
+
+{{"demo": "ColorInversionHeader.js"}}
+
+### Footer
+
+{{"demo": "ColorInversionFooter.js"}}
+
+### Side navigation
+
+{{"demo": "ColorInversionNavigation.js"}}
+
+### Marketing section
+
+{{"demo": "ColorInversionMarketing.js"}}
