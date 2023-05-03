@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { SinonSpy, spy } from 'sinon';
 import {
   act,
   createRenderer,
@@ -71,7 +71,7 @@ describe('<Link />', () => {
       const anchor = container.querySelector('a');
 
       events.forEach((n) => {
-        const event = n.charAt(2).toLowerCase() + n.slice(3);
+        const event = (n.charAt(2).toLowerCase() + n.slice(3)) as keyof typeof fireEvent;
         (fireEvent as any)[event](anchor);
         expect(handlers[n].callCount).to.equal(1);
       });
