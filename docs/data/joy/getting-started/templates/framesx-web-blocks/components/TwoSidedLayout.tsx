@@ -1,14 +1,9 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
-import Link from '@mui/joy/Link';
-import Typography from '@mui/joy/Typography';
-import ArrowForward from '@mui/icons-material/ArrowForward';
 
-export default function HeroLeft01() {
+export default function TwoSidedLayout({ children }: React.PropsWithChildren<{}>) {
   return (
     <Container
       sx={(theme) => ({
@@ -43,26 +38,7 @@ export default function HeroLeft01() {
           },
         })}
       >
-        <Typography color="primary" fontSize="lg" fontWeight="lg">
-          The power to do more
-        </Typography>
-        <Typography
-          level="h1"
-          fontWeight="xl"
-          fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
-        >
-          A large headlinerer about our product features & services
-        </Typography>
-        <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
-          A descriptive secondary text placeholder. Use it to explain your business
-          offer better.
-        </Typography>
-        <Button size="lg" endDecorator={<ArrowForward />}>
-          Get Started
-        </Button>
-        <Typography>
-          Already a member? <Link fontWeight="lg">Sign in</Link>
-        </Typography>
+        {children}
       </Box>
       <AspectRatio
         ratio={600 / 520}

@@ -10,7 +10,8 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 
 import framesxTheme from './theme';
-import HeroLeft01 from './components/HeroLeft01';
+import HeroLeft01 from './blocks/HeroLeft01';
+import HeroLeft02 from './blocks/HeroLeft02';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -63,7 +64,7 @@ export default function TeamExample() {
         }}
       >
         <HeroLeft01 />
-        <HeroLeft01 />
+        <HeroLeft02 />
       </Box>
     </CssVarsProvider>
   );
