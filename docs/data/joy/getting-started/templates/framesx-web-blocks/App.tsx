@@ -14,6 +14,7 @@ import HeroLeft01 from './blocks/HeroLeft01';
 import HeroLeft02 from './blocks/HeroLeft02';
 import HeroLeft03 from './blocks/HeroLeft03';
 import HeroLeft04 from './blocks/HeroLeft04';
+import HeroLeft05 from './blocks/HeroLeft05';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -65,10 +66,11 @@ export default function TeamExample() {
           },
         }}
       >
-        <HeroLeft04 />
+        <HeroLeft05 />
         <HeroLeft01 />
         <HeroLeft02 />
         <HeroLeft03 />
+        <HeroLeft04 />
       </Box>
     </CssVarsProvider>
   );

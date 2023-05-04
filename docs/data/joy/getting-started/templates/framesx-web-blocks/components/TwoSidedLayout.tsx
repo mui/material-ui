@@ -17,7 +17,7 @@ export default function TwoSidedLayout({ children }: React.PropsWithChildren<{}>
           flexDirection: 'row',
           gap: 6,
         },
-        [theme.breakpoints.up(1200)]: {
+        [theme.breakpoints.up(1199)]: {
           gap: 12,
         },
       })}
