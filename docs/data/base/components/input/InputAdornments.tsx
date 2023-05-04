@@ -6,6 +6,84 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
 
+const CustomInput = React.forwardRef(function CustomInput(
+  props: InputProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const { slots, ...other } = props;
+  return (
+    <Input
+      slots={{
+        root: StyledInputRoot,
+        input: StyledInputElement,
+        ...slots,
+      }}
+      {...other}
+      ref={ref}
+    />
+  );
+});
+
+interface State {
+  amount: string;
+  password: string;
+  weight: string;
+  weightRange: string;
+  showPassword: boolean;
+}
+
+export default function InputAdornments() {
+  const [values, setValues] = React.useState<State>({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
+
+  const handleChange =
+    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
+  return (
+    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
+      <CustomInput
+        id="outlined-start-adornment"
+        startAdornment={<InputAdornment>kg</InputAdornment>}
+      />
+      <CustomInput
+        id="outlined-adornment-password"
+        type={values.showPassword ? 'text' : 'password'}
+        value={values.password}
+        onChange={handleChange('password')}
+        endAdornment={
+          <InputAdornment>
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+            >
+              {values.showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
+        }
+      />
+    </Box>
+  );
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
@@ -91,81 +169,3 @@ const InputAdornment = styled('div')`
   align-items: center;
   justify-content: center;
 `;
-
-const CustomInput = React.forwardRef(function CustomInput(
-  props: InputProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  const { slots, ...other } = props;
-  return (
-    <Input
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInputElement,
-        ...slots,
-      }}
-      {...other}
-      ref={ref}
-    />
-  );
-});
-
-interface State {
-  amount: string;
-  password: string;
-  weight: string;
-  weightRange: string;
-  showPassword: boolean;
-}
-
-export default function InputAdornments() {
-  const [values, setValues] = React.useState<State>({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
-
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
-  return (
-    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }}>
-      <CustomInput
-        id="outlined-start-adornment"
-        startAdornment={<InputAdornment>kg</InputAdornment>}
-      />
-      <CustomInput
-        id="outlined-adornment-password"
-        type={values.showPassword ? 'text' : 'password'}
-        value={values.password}
-        onChange={handleChange('password')}
-        endAdornment={
-          <InputAdornment>
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            >
-              {values.showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        }
-      />
-    </Box>
-  );
-}

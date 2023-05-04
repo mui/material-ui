@@ -1,6 +1,6 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps, Simplify } from '@mui/types';
+import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
 import * as React from 'react';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 import {
   UseSliderHiddenInputProps,
   UseSliderParameters,
@@ -171,9 +171,7 @@ export type ExtendSlider<M extends OverridableTypeMap> = OverridableComponent<
 
 export type SliderProps<
   RootComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
-> = OverrideProps<SliderTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<SliderTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type SliderRootSlotProps = UseSliderRootSlotProps & {
   children: React.ReactNode;

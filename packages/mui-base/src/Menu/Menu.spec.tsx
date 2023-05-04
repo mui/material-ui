@@ -13,19 +13,39 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Menu invalidProp={0} />
 
-      <Menu component="a" href="#" />
+      <Menu<'a'>
+        slots={{
+          root: 'a',
+        }}
+        href="#"
+      />
 
-      <Menu component={CustomComponent} stringProp="test" numberProp={0} />
-      {/* @ts-expect-error */}
-      <Menu component={CustomComponent} />
+      <Menu<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+        stringProp="test"
+        numberProp={0}
+      />
 
-      <Menu
-        component="button"
+      {/* @ts-expect-error required props not specified */}
+      <Menu<typeof CustomComponent>
+        slots={{
+          root: CustomComponent,
+        }}
+      />
+
+      <Menu<'button'>
+        slots={{
+          root: 'button',
+        }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <Menu<'button'>
-        component="button"
+        slots={{
+          root: 'button',
+        }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

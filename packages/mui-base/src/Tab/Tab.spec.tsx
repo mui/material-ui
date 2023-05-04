@@ -20,21 +20,26 @@ const polymorphicComponentTest = () => {
       {/* @ts-expect-error */}
       <Tab value={0} invalidProp={0} />
 
-      <Tab value={0} component="a" href="#" />
+      <Tab value={0} slots={{ root: 'a' }} href="#" />
 
-      <Tab value={0} component={CustomComponent} stringProp="test" numberProp={0} />
+      <Tab<typeof CustomComponent>
+        value={0}
+        slots={{ root: CustomComponent }}
+        stringProp="test"
+        numberProp={0}
+      />
       {/* @ts-expect-error */}
-      <Tab value={0} component={CustomComponent} />
+      <Tab value={0} slots={{ root: { CustomComponent } }} />
 
       <Tab
         value={0}
-        component="button"
+        slots={{ root: 'button' }}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
       <Tab<'button'>
         value={0}
-        component="button"
+        slots={{ root: 'button' }}
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);
         }}

@@ -103,7 +103,7 @@ const pages = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/joy-ui/api',
     icon: standardNavIcons.CodeIcon,
     children: pagesApi,

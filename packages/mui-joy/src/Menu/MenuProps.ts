@@ -41,6 +41,11 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, MenuPropsColorOverrides>;
     /**
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
+    component?: React.ElementType;
+    /**
      * If `true`, the children with an implicit color prop invert their colors to match the component's variant and color.
      * @default false
      */

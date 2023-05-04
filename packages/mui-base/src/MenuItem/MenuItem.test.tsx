@@ -45,6 +45,7 @@ describe('<MenuItem />', () => {
       },
     },
     skip: [
+      'componentProp',
       'reactTestRenderer', // Need to be wrapped in MenuContext
     ],
   }));
