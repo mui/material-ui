@@ -47,6 +47,7 @@ describe('<Select />', () => {
         testWithElement: null,
       },
     },
+    skip: ['componentProp'],
   }));
 
   describe('keyboard navigation', () => {

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
 import { Instance, Options, OptionsGeneric, VirtualElement } from '@popperjs/core';
 import { PortalProps } from '../Portal';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
@@ -124,9 +123,7 @@ export interface PopperTypeMap<
 
 export type PopperProps<
   RootComponentType extends React.ElementType = PopperTypeMap['defaultComponent'],
-> = OverrideProps<PopperTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<PopperTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type PopperTooltipOwnProps = Omit<
   PopperOwnProps,
@@ -145,9 +142,7 @@ export interface PopperTooltipTypeMap<
 
 export type PopperTooltipProps<
   RootComponentType extends React.ElementType = PopperTooltipTypeMap['defaultComponent'],
-> = OverrideProps<PopperTooltipTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<PopperTooltipTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface PopperRootSlotProps {
   className?: string;

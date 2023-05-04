@@ -30,7 +30,7 @@ Tabs are implemented using a collection of related components:
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import Tab from '@mui/base/Tab';
@@ -84,22 +84,36 @@ The Tab components are each composed of a root slot with no interior slots:
 </div>
 ```
 
-### Slot props
+### Custom structure
 
-:::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
+Use the `slots` prop to override the root or any other interior slot:
 
 ```jsx
-<Tab component="span" />
+<Tab slots={{ root: 'span' }} />
 ```
 
 If you provide a non-interactive element such as a `<span>`, the Tab components will automatically add the necessary accessibility attributes.
 
+:::info
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+:::
+
 ## Customization
+
+### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Tab<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Tab<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ### Third-party routing library
 

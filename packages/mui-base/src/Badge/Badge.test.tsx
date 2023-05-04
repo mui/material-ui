@@ -26,6 +26,7 @@ describe('<Badge />', () => {
           expectedClassName: classes.badge,
         },
       },
+      skip: ['componentProp'],
     }),
   );
 });

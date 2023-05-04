@@ -24,7 +24,7 @@ For instance, you may want to show an additional element asking the user to ente
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import FormControl from '@mui/base/FormControl';
@@ -52,6 +52,20 @@ The following demo shows how to create and style a form that uses Form Control t
 Note that it also uses the `useFormControlContext` hook in order to pass props to the custom Input—see the [Hook](#hook) section below for more details.
 
 {{"demo": "BasicFormControl.js"}}
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<FormControl<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<FormControl<'button'> slots={{ root: 'button' }} onClick={() => {}} />
+```
 
 ## Hook
 

@@ -2,6 +2,40 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 
+export default function RangeSlider() {
+  const [value, setValue] = React.useState<number[]>([20, 37]);
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
+
+  return (
+    <Box sx={{ width: 300 }}>
+      {/* controlled: */}
+      <StyledSlider
+        value={value}
+        onChange={handleChange}
+        getAriaLabel={() => 'Temperature range'}
+        getAriaValueText={valuetext}
+        min={0}
+        max={100}
+      />
+      {/* uncontrolled: */}
+      <StyledSlider
+        defaultValue={[20, 37]}
+        getAriaLabel={() => 'Temperature range'}
+        getAriaValueText={valuetext}
+        min={0}
+        max={100}
+      />
+    </Box>
+  );
+}
+
+function valuetext(value: number) {
+  return `${value}°C`;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -110,37 +144,3 @@ const StyledSlider = styled(Slider)(
   }
 `,
 );
-
-function valuetext(value: number) {
-  return `${value}°C`;
-}
-
-export default function RangeSlider() {
-  const [value, setValue] = React.useState<number[]>([20, 37]);
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
-  };
-
-  return (
-    <Box sx={{ width: 300 }}>
-      {/* controlled: */}
-      <StyledSlider
-        value={value}
-        onChange={handleChange}
-        getAriaLabel={() => 'Temperature range'}
-        getAriaValueText={valuetext}
-        min={0}
-        max={100}
-      />
-      {/* uncontrolled: */}
-      <StyledSlider
-        defaultValue={[20, 37]}
-        getAriaLabel={() => 'Temperature range'}
-        getAriaValueText={valuetext}
-        min={0}
-        max={100}
-      />
-    </Box>
-  );
-}
