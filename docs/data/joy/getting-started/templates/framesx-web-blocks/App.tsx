@@ -13,6 +13,7 @@ import framesxTheme from './theme';
 import HeroLeft01 from './blocks/HeroLeft01';
 import HeroLeft02 from './blocks/HeroLeft02';
 import HeroLeft03 from './blocks/HeroLeft03';
+import HeroLeft04 from './blocks/HeroLeft04';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -64,6 +65,7 @@ export default function TeamExample() {
           },
         }}
       >
+        <HeroLeft04 />
         <HeroLeft01 />
         <HeroLeft02 />
         <HeroLeft03 />

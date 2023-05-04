@@ -4,11 +4,17 @@ export default extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        background: {},
+        neutral: {
+          outlinedBg: 'var(--joy-palette-neutral-50)',
+        },
       },
     },
     dark: {
       palette: {
+        neutral: {
+          outlinedBorder: 'var(--joy-palette-neutral-700)',
+          outlinedBg: 'var(--joy-palette-neutral-800)',
+        },
         background: {
           body: 'var(--joy-palette-common-black)',
           surface: 'var(--joy-palette-neutral-900)',
