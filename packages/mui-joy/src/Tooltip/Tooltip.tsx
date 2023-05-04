@@ -84,7 +84,7 @@ const TooltipRoot = styled('div', {
     '&::before': {
       // acts as a invisible connector between the element and the tooltip
       // so that the cursor can move to the tooltip without losing focus.
-      content: '""',
+      content: '"a"',
       display: 'block',
       position: 'absolute',
       width: ownerState.placement?.match(/(top|bottom)/)
@@ -331,6 +331,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const handleEnter = (event: React.MouseEvent<HTMLElement>) => {
+    console.log("enter")
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -356,7 +357,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
+  // TODO -> find out where function is called from
   const handleLeave = (event: React.MouseEvent<HTMLElement>) => {
+    console.log("leave")
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
     leaveTimer.current = setTimeout(() => {
@@ -626,6 +629,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     externalForwardedProps,
     ownerState,
   });
+
+  // console.log(rootProps)
 
   const result = (
     <SlotRoot
