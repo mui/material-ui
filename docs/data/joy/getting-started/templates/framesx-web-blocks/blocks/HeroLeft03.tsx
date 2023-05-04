@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
+import AvatarGroup from '@mui/joy/AvatarGroup';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import ArrowForward from '@mui/icons-material/ArrowForward';
-import Star from '@mui/icons-material/Star';
 import TwoSidedLayout from '../components/TwoSidedLayout';
 
 export default function HeroLeft02() {
@@ -26,7 +26,9 @@ export default function HeroLeft02() {
         <br /> Use it to explain your business offer better.
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
-        <Input size="lg" placeholder="Sign in with email" />
+        <Button size="lg" variant="soft" color="neutral">
+          Learn More
+        </Button>
         <Button size="lg" endDecorator={<ArrowForward />}>
           Get Started
         </Button>
@@ -34,31 +36,22 @@ export default function HeroLeft02() {
       <Box
         sx={{
           display: 'flex',
-          columnGap: 4.5,
-          rowGap: 1.5,
+          gap: 2,
           textAlign: 'left',
           '& > *': {
             flexShrink: 0,
           },
         }}
       >
-        <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
-          <Typography fontSize="xl4" fontWeight="lg">
-            4.9
-          </Typography>
-          <Star fontSize="xl4" sx={{ color: 'warning.300' }} />
-          <Typography textColor="text.secondary">
-            Over <b>5k</b> positive <br /> customer reviews.
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
-          <Typography fontSize="xl4" fontWeight="lg">
-            2M
-          </Typography>
-          <Typography textColor="text.secondary">
-            Global <br /> Transactions.
-          </Typography>
-        </Box>
+        <AvatarGroup size="lg">
+          <Avatar />
+          <Avatar />
+          <Avatar />
+        </AvatarGroup>
+        <Typography textColor="text.secondary">
+          Join a community of over <b>10K</b> <br />
+          designers and developers.
+        </Typography>
       </Box>
     </TwoSidedLayout>
   );

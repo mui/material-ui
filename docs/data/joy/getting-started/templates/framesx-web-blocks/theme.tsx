@@ -4,9 +4,7 @@ export default extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        background: {
-          body: 'var(--joy-palette-neutral-50)',
-        },
+        background: {},
       },
     },
     dark: {
