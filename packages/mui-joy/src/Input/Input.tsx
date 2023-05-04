@@ -138,7 +138,7 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
     minWidth: 0, // remove the native input width
     outline: 0, // remove the native input outline
     padding: 0, // remove the native input padding
-    display: 'grid',
+    display: 'grid', // to make the `type="date"` align center
     flex: 1,
     alignSelf: 'stretch',
     color: 'inherit',
