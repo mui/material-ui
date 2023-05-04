@@ -6,6 +6,7 @@
 *.iml
 .vscode/*
 !.vscode/launch.json
+!.vscode/extensions.json
 *.log
 *.tsbuildinfo
 /.eslintcache
