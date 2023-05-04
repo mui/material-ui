@@ -5,7 +5,7 @@ import Stack from '@mui/joy/Stack';
 export default function InputSlotProps() {
   const inputRef = React.useRef(null);
   return (
-    <Stack>
+    <Stack spacing={1.5} sx={{ minWidth: 300 }}>
       <Input
         type="number"
         defaultValue={2.5}
