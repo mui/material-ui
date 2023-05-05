@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import useSwitch from '../useSwitch';
 import {
@@ -52,7 +52,6 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
 ) {
   const {
     checked: checkedProp,
-    component,
     defaultChecked,
     disabled: disabledProp,
     onBlur,
@@ -89,7 +88,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? slots.root ?? 'span';
+  const Root: React.ElementType = slots.root ?? 'span';
   const rootProps: WithOptionalOwnerState<SwitchRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -133,7 +132,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
       <Input {...inputProps} />
     </Root>
   );
-}) as OverridableComponent<SwitchTypeMap>;
+}) as PolymorphicComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -145,15 +144,6 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   checked: PropTypes.bool,
   /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The default checked state. Use when the component is not controlled.
    */
   defaultChecked: PropTypes.bool,
@@ -161,10 +151,6 @@ Switch.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  id: PropTypes.string,
   /**
    * @ignore
    */

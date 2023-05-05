@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Card, { cardClasses as classes } from '@mui/joy/Card';
+import Card, { cardClasses as classes, CardClassKey } from '@mui/joy/Card';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Card />', () => {
@@ -35,7 +35,7 @@ describe('<Card />', () => {
       expect(getByTestId('root')).to.have.class(classes.variantPlain);
     });
 
-    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
+    (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Card data-testid="root" variant={variant}>
@@ -43,7 +43,9 @@ describe('<Card />', () => {
           </Card>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`variant${capitalize(variant)}` as CardClassKey],
+        );
       });
     });
   });
@@ -55,7 +57,7 @@ describe('<Card />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Card data-testid="root" color={color}>
@@ -63,7 +65,9 @@ describe('<Card />', () => {
           </Card>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`color${capitalize(color)}` as CardClassKey],
+        );
       });
     });
   });

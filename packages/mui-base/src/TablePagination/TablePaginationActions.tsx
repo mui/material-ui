@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import {
   TablePaginationActionsButtonSlotProps,
   TablePaginationActionsProps,
@@ -36,7 +35,6 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions<
   forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
-    component,
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     onPageChange,
@@ -70,7 +68,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions<
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
-  const Root = slots.root ?? component ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<TablePaginationActionsRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -160,6 +158,6 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions<
       )}
     </Root>
   );
-}) as OverridableComponent<TablePaginationActionsTypeMap>;
+}) as PolymorphicComponent<TablePaginationActionsTypeMap>;
 
 export default TablePaginationActions;

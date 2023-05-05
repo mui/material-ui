@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import { ThemeProvider, CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import { ThemeProvider, CssVarsProvider, extendTheme, PalettePrimary } from '@mui/joy/styles';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/joy/className';
 import Box from '@mui/joy/Box';
 
@@ -9,6 +9,8 @@ describe('Joy <Box />', () => {
   const { render } = createRenderer();
 
   describeConformance(<Box />, () => ({
+    muiName: 'JoyBox',
+    classes: { root: ClassNameGenerator.generate('JoyBox') },
     render,
     ThemeProvider,
     inheritComponent: 'div',
@@ -35,7 +37,7 @@ describe('Joy <Box />', () => {
         light: {
           palette: {
             primary: {
-              main: 'rgb(255, 0, 0)',
+              ['main' as keyof PalettePrimary]: 'rgb(255, 0, 0)',
             },
           },
         },

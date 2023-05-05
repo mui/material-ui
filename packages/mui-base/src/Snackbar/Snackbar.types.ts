@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from '../useSnackbar';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface SnackbarRootSlotPropsOverrides {}
 export interface SnackbarClickAwayListenerSlotPropsOverrides {}
@@ -52,9 +51,7 @@ export interface SnackbarTypeMap<
 
 export type SnackbarProps<
   RootComponentType extends React.ElementType = SnackbarTypeMap['defaultComponent'],
-> = OverrideProps<SnackbarTypeMap<{}, RootComponentType>, RootComponentType> & {
-  component?: RootComponentType;
-};
+> = PolymorphicProps<SnackbarTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type SnackbarOwnerState = SnackbarOwnProps;
 

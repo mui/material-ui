@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { OverridableComponent, OverridableTypeMap, OverrideProps, Simplify } from '@mui/types';
+import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
 import { PortalProps } from '../Portal';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface ModalRootSlotPropsOverrides {}
 export interface ModalBackdropSlotPropsOverrides {}
@@ -142,7 +142,7 @@ export type ExtendModal<M extends OverridableTypeMap> = OverridableComponent<Ext
 
 export type ModalProps<
   RootComponentType extends React.ElementType = ModalTypeMap['defaultComponent'],
-> = OverrideProps<ModalTypeMap<{}, RootComponentType>, RootComponentType>;
+> = PolymorphicProps<ModalTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type ModalOwnerState = Simplify<
   ModalOwnProps & {

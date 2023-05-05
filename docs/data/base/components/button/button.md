@@ -25,7 +25,7 @@ The Button component replaces the native HTML `<button>` element, and offers exp
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Button from '@mui/base/Button';
@@ -80,7 +80,7 @@ Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its p
 
 #### Usage with TypeScript
 
-In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom compoenent's props directly on the compnent:
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
 
 ```tsx
 <Button<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />

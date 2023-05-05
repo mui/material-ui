@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { HTMLElementType, refType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { MenuOwnerState, MenuProps, MenuRootSlotProps, MenuTypeMap } from './Menu.types';
 import { getMenuUtilityClass } from './menuClasses';
 import useMenu from '../useMenu';
@@ -39,7 +39,6 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     actions,
     anchorEl,
     children,
-    component,
     defaultOpen,
     listboxId,
     onOpenChange,
@@ -68,7 +67,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? slots.root ?? Popper;
+  const Root = slots.root ?? Popper;
   const rootProps: WithOptionalOwnerState<MenuRootSlotProps> = useSlotProps({
     elementType: Root,
     externalForwardedProps: other,
@@ -100,7 +99,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
       </Listbox>
     </Root>
   );
-}) as OverridableComponent<MenuTypeMap>;
+}) as PolymorphicComponent<MenuTypeMap>;
 
 Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -127,11 +126,6 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * @ignore
    */
   defaultOpen: PropTypes.bool,
@@ -152,7 +146,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Menu.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
