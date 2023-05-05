@@ -26,7 +26,7 @@ It can also be transformed into a `<textarea>` as needed.
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Input from '@mui/base/Input';
@@ -54,27 +54,17 @@ The Input component is composed of a root `<div>` slot that houses one interior 
 </div>
 ```
 
-### Slot props
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Input slots={{ root: 'aside', input: CustomInput }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<Input component="aside" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
-
-```jsx
-<Input slots={{ root: 'aside' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
@@ -82,6 +72,20 @@ The following code snippet applies a CSS class called `my-input` to the input sl
 
 ```jsx
 <Input slotProps={{ input: { className: 'my-input' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Input<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Input<'textarea'> slots={{ root: 'textarea' }} rows={2} />
 ```
 
 ## Hook

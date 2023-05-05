@@ -61,6 +61,7 @@ describe('<Option />', () => {
       },
     },
     skip: [
+      'componentProp',
       'reactTestRenderer', // Need to be wrapped in SelectContext
     ],
   }));

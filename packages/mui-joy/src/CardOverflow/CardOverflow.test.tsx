@@ -3,7 +3,10 @@ import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import CardOverflow, { cardOverflowClasses as classes } from '@mui/joy/CardOverflow';
+import CardOverflow, {
+  CardOverflowClassKey,
+  cardOverflowClasses as classes,
+} from '@mui/joy/CardOverflow';
 
 describe('<CardOverflow />', () => {
   const { render } = createRenderer();
@@ -35,7 +38,7 @@ describe('<CardOverflow />', () => {
       expect(getByTestId('root')).to.have.class(classes.variantPlain);
     });
 
-    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
+    (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <CardOverflow data-testid="root" variant={variant}>
@@ -43,7 +46,9 @@ describe('<CardOverflow />', () => {
           </CardOverflow>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`variant${capitalize(variant)}` as CardOverflowClassKey],
+        );
       });
     });
   });
@@ -55,7 +60,7 @@ describe('<CardOverflow />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <CardOverflow data-testid="root" color={color}>
@@ -63,7 +68,9 @@ describe('<CardOverflow />', () => {
           </CardOverflow>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`color${capitalize(color)}` as CardOverflowClassKey],
+        );
       });
     });
   });
