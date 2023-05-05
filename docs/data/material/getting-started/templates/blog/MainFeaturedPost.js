@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 function MainFeaturedPost(props) {
   const { post } = props;
 
+  console.log('post.image', post.image);
+
   return (
     <Paper
       sx={{
