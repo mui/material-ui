@@ -43,8 +43,9 @@ import Option from '@mui/base/Option';
 export default function MyApp() {
   return (
     <Select>
-      <Option>{/* option one */}</Option>
-      <Option>{/* option two */}</Option>
+      <Option value="#F00">Red</Option>
+      <Option value="#0F0">Green</Option>
+      <Option value="#00F">Blue</Option>
     </Select>
   );
 }
@@ -70,7 +71,7 @@ See the [Object values](#object-values) section to learn how to do it.
 
 #### TypeScript caveat
 
-Select accepts generic props.
+Select's props are generic.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
@@ -93,9 +94,50 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
 ### Multi-select
 
 The Select component lets your users select multiple options from the list.
+In constrast to the single-selection mode, the options popup does not close after an item is selected, allowing users to continue choosing mor e options.
+
 Set the `multiple` prop to turn on the multi-selection mode.
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
+
+Note that in the multiple selection mode, the `value` prop (and `defaultValue`) is an array.
+
+### Controlled select
+
+Select can be used as an uncontrolled or controlled component:
+
+{{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
+
+To set the value of the controlled Select, use the `value` prop.
+In the other case the `defaultValue` can be used to set the initial value of the component.
+In any case, if you wish to deselect all values pass `null` to the respective prop.
+
+:::warning
+This is one of the differences with Material UI's Select API.
+There, an empty string was used to deselect all values.
+In Base UI, use `null` to achieve this.
+:::
+
+### Object values
+
+The Select component can be used with non-string values:
+
+{{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
+
+If you use a Select with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
+You can change this behavior with the help of the `getSerializedValue` prop.
+
+{{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
+
+### Grouping options
+
+Options can be grouped, similarly to how the native `<select>` element works.
+Unlike the native `<select>`, groups can be nested.
+
+The following demo shows how to group options with the Option Group component:
+
+{{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
+
 
 ### Anatomy
 
@@ -172,23 +214,6 @@ The resulting HTML is much smaller compared to the unstyled component version, a
 
 ## Customization
 
-### Controlled select
-
-Select can be used as an uncontrolled or controlled component:
-
-{{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
-
-### Object values
-
-The Select component can be used with non-string values:
-
-{{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
-
-If you use a Select with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
-You can change this behavior with the help of the `getSerializedValue` prop.
-
-{{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
-
 ### Selected value appearance
 
 You can customize the appearance of the selected value display by providing a function to the `renderValue` prop.
@@ -202,12 +227,3 @@ Options don't have to be plain strings.
 You can include custom elements to be rendered inside the listbox.
 
 {{"demo": "UnstyledSelectRichOptions.js", "defaultCodeOpen": false}}
-
-### Grouping options
-
-Options can be grouped, similarly to how the native `<select>` element works.
-Unlike the native `<select>`, groups can be nested.
-
-The following demo shows how to group options with the Option Group component:
-
-{{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
