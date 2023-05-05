@@ -25,33 +25,59 @@ export default function HeroLeft02() {
         A descriptive secondary text placeholder.
         <br /> Use it to explain your business offer better.
       </Typography>
-      <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          my: 2,
+          flexWrap: 'wrap',
+          '& > *': { flex: 'auto' },
+        }}
+      >
         <Input size="lg" placeholder="Sign in with email" />
-        <Button size="lg" endDecorator={<ArrowForward />}>
+        <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}>
           Get Started
         </Button>
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           display: 'flex',
+          textAlign: 'center',
+          alignSelf: 'stretch',
           columnGap: 4.5,
-          rowGap: 1.5,
-          textAlign: 'left',
           '& > *': {
-            flexShrink: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            flex: 1,
           },
-        }}
+          [theme.breakpoints.up(834)]: {
+            textAlign: 'left',
+            '& > *': {
+              flexDirection: 'row',
+              gap: 1.5,
+              justifyContent: 'initial',
+              flexWrap: 'nowrap',
+              flex: 'none',
+            },
+          },
+        })}
       >
-        <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
-          <Typography fontSize="xl4" fontWeight="lg">
+        <Box>
+          <Typography
+            fontSize="xl4"
+            fontWeight="lg"
+            endDecorator={<Star fontSize="xl4" sx={{ color: 'warning.300' }} />}
+          >
             4.9
           </Typography>
-          <Star fontSize="xl4" sx={{ color: 'warning.300' }} />
           <Typography textColor="text.secondary">
             Over <b>5k</b> positive <br /> customer reviews.
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+        <Box>
           <Typography fontSize="xl4" fontWeight="lg">
             2M
           </Typography>
@@ -60,6 +86,18 @@ export default function HeroLeft02() {
           </Typography>
         </Box>
       </Box>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft02
+      </Typography>
     </TwoSidedLayout>
   );
 }

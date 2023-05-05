@@ -47,6 +47,18 @@ export default function HeroLeft06() {
       >
         <b>John Seed</b>, Apple Inc.
       </Typography>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft06
+      </Typography>
     </TwoSidedLayout>
   );
 }

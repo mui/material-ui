@@ -3,13 +3,17 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Container from '@mui/joy/Container';
 
-export default function TwoSidedLayout({ children }: React.PropsWithChildren<{}>) {
+export default function TwoSidedLayout({
+  children,
+  reversed,
+}: React.PropsWithChildren<{ reversed?: boolean }>) {
   return (
     <Container
       sx={(theme) => ({
+        position: 'relative',
         minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: reversed ? 'column-reverse' : 'column',
         alignItems: 'center',
         py: 10,
         gap: 4,

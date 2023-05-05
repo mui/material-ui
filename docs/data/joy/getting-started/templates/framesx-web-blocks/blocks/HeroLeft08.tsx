@@ -33,7 +33,7 @@ export default function HeroLeft08() {
         <Button size="lg" variant="outlined" color="neutral">
           Learn More
         </Button>
-        <Button size="lg" endDecorator={<ArrowForward />}>
+        <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}>
           Get Started
         </Button>
       </Box>
@@ -80,6 +80,18 @@ export default function HeroLeft08() {
           </Typography>
         </Box>
       </Box>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft08
+      </Typography>
     </TwoSidedLayout>
   );
 }

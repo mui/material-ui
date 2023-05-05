@@ -34,8 +34,8 @@ function ColorSchemeToggle() {
     <IconButton
       id="toggle-mode"
       size="lg"
-      variant="outlined"
-      color="primary"
+      variant="soft"
+      color="neutral"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -45,6 +45,7 @@ function ColorSchemeToggle() {
       }}
       sx={{
         position: 'fixed',
+        zIndex: 999,
         top: '1rem',
         right: '1rem',
         borderRadius: '50%',
@@ -71,7 +72,6 @@ export default function TeamExample() {
           },
         }}
       >
-        <HeroLeft10 />
         <HeroLeft01 />
         <HeroLeft02 />
         <HeroLeft03 />
@@ -81,6 +81,7 @@ export default function TeamExample() {
         <HeroLeft07 />
         <HeroLeft08 />
         <HeroLeft09 />
+        <HeroLeft10 />
       </Box>
     </CssVarsProvider>
   );

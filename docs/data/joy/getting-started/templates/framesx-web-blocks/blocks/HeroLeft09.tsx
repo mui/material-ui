@@ -8,7 +8,7 @@ import TwoSidedLayout from '../components/TwoSidedLayout';
 
 export default function HeroLeft09() {
   return (
-    <TwoSidedLayout>
+    <TwoSidedLayout reversed>
       <Typography
         level="h1"
         fontWeight="xl"
@@ -20,11 +20,27 @@ export default function HeroLeft09() {
         A descriptive secondary text placeholder. <br /> Use it to explain your
         business offer better.
       </Typography>
-      <Button size="lg" endDecorator={<ArrowForward />} sx={{ mt: 2, mb: 1 }}>
+      <Button
+        size="lg"
+        endDecorator={<ArrowForward fontSize="xl" />}
+        sx={{ mt: 2, mb: 1 }}
+      >
         Get Started
       </Button>
       <Typography>
         Already a member? <Link fontWeight="lg">Sign in</Link>
+      </Typography>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft09
       </Typography>
     </TwoSidedLayout>
   );

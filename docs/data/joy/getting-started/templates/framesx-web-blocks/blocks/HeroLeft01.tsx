@@ -23,11 +23,23 @@ export default function HeroLeft01() {
         A descriptive secondary text placeholder. <br /> Use it to explain your
         business offer better.
       </Typography>
-      <Button size="lg" endDecorator={<ArrowForward />}>
+      <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}>
         Get Started
       </Button>
       <Typography>
         Already a member? <Link fontWeight="lg">Sign in</Link>
+      </Typography>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft01
       </Typography>
     </TwoSidedLayout>
   );

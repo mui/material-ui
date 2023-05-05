@@ -25,17 +25,27 @@ export default function HeroLeft03() {
         A descriptive secondary text placeholder.
         <br /> Use it to explain your business offer better.
       </Typography>
-      <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
-        <Button size="lg" variant="soft" color="neutral">
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          my: 2,
+          '& > *': { flex: 'auto' },
+        }}
+      >
+        <Button size="lg" variant="outlined" color="neutral">
           Learn More
         </Button>
-        <Button size="lg" endDecorator={<ArrowForward />}>
+        <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}>
           Get Started
         </Button>
       </Box>
       <Box
         sx={{
           display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
           gap: 2,
           textAlign: 'left',
           '& > *': {
@@ -53,6 +63,18 @@ export default function HeroLeft03() {
           designers and developers.
         </Typography>
       </Box>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft03
+      </Typography>
     </TwoSidedLayout>
   );
 }

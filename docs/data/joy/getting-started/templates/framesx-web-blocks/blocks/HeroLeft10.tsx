@@ -10,7 +10,7 @@ import TwoSidedLayout from '../components/TwoSidedLayout';
 
 export default function HeroLeft04() {
   return (
-    <TwoSidedLayout>
+    <TwoSidedLayout reversed>
       <Chip size="lg" variant="outlined" color="neutral">
         The power to do more
       </Chip>
@@ -27,7 +27,13 @@ export default function HeroLeft04() {
       </Typography>
       <Box
         component="form"
-        sx={{ display: 'flex', gap: 2, my: 2, alignSelf: 'stretch' }}
+        sx={{
+          display: 'flex',
+          gap: 2,
+          my: 2,
+          alignSelf: 'stretch',
+          flexBasis: '80%',
+        }}
       >
         <Input
           required
@@ -37,16 +43,21 @@ export default function HeroLeft04() {
           placeholder="Sign in with email"
           sx={{ flex: 'auto' }}
         />
-        <IconButton
-          type="submit"
-          size="lg"
-          variant="solid"
-          color="primary"
-          sx={{ mr: 3 }}
-        >
+        <IconButton type="submit" size="lg" variant="solid" color="primary">
           <ArrowForward />
         </IconButton>
       </Box>
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft10
+      </Typography>
     </TwoSidedLayout>
   );
 }

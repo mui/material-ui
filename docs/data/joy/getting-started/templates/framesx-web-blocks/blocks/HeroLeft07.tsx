@@ -25,7 +25,7 @@ export default function HeroLeft07() {
         variant="outlined"
         color="neutral"
         orientation="horizontal"
-        sx={{ gap: 2, my: 1 }}
+        sx={{ gap: 2, my: 1, textAlign: 'left' }}
       >
         <AutoAwesomeIcon color="info" fontSize="xl3" />
         <Box>
@@ -39,6 +39,18 @@ export default function HeroLeft07() {
         </Box>
       </Card>
       <Button size="lg">Download the App</Button>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft07
+      </Typography>
     </TwoSidedLayout>
   );
 }

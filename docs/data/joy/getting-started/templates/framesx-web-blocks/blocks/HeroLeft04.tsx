@@ -25,8 +25,16 @@ export default function HeroLeft04() {
         A descriptive secondary text placeholder.
         <br /> Use it to explain your business offer better.
       </Typography>
-      <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
-        <Button size="lg" endDecorator={<ArrowForward />}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          my: 2,
+          flexWrap: 'wrap',
+          '& > *': { flex: 'auto' },
+        }}
+      >
+        <Button size="lg" endDecorator={<ArrowForward fontSize="xl" />}>
           Get Started
         </Button>
         <Button
@@ -38,6 +46,18 @@ export default function HeroLeft04() {
           Watch Video
         </Button>
       </Box>
+
+      <Typography
+        level="body3"
+        sx={{
+          position: 'absolute',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}
+      >
+        HeroLeft04
+      </Typography>
     </TwoSidedLayout>
   );
 }
