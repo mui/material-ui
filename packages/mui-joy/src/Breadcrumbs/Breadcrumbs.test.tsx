@@ -30,11 +30,14 @@ describe('<Breadcrumbs />', () => {
 
       expect(getByRole('navigation')).to.have.class(classes.sizeMd);
     });
-    ['sm', 'md', 'lg'].forEach((size) => {
+    const sizes = ['sm', 'md', 'lg'] as const;
+    sizes.forEach((size) => {
       it(`should render ${size}`, () => {
         const { getByRole } = render(<Breadcrumbs size={size} />);
 
-        expect(getByRole('navigation')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByRole('navigation')).to.have.class(
+          classes[`size${capitalize(size)}` as keyof typeof classes],
+        );
       });
     });
   });
