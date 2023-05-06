@@ -80,6 +80,7 @@ const TooltipRoot = styled('div', {
     '&::before': {
       // acts as a invisible connector between the element and the tooltip
       // so that the cursor can move to the tooltip without losing focus.
+      content: '""',
       display: 'block',
       position: 'absolute',
       width: ownerState.placement?.match(/(top|bottom)/)
@@ -621,7 +622,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     externalForwardedProps,
     ownerState,
   });
-
 
   const result = (
     <SlotRoot
