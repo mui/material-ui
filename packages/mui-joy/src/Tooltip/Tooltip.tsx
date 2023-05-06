@@ -63,7 +63,6 @@ const TooltipRoot = styled('div', {
       fontSize: theme.vars.fontSize.md,
     }),
     zIndex: theme.vars.zIndex.tooltip,
-    pointerEvents: 'none',
     borderRadius: theme.vars.radius.xs,
     boxShadow: theme.shadow.sm,
     fontFamily: theme.vars.fontFamily.body,
@@ -74,9 +73,6 @@ const TooltipRoot = styled('div', {
     ...(!ownerState.disableInteractive && {
       pointerEvents: 'auto',
     }),
-    ...(!ownerState.open && {
-      pointerEvents: 'none',
-    }),
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -84,7 +80,6 @@ const TooltipRoot = styled('div', {
     '&::before': {
       // acts as a invisible connector between the element and the tooltip
       // so that the cursor can move to the tooltip without losing focus.
-      content: '"a"',
       display: 'block',
       position: 'absolute',
       width: ownerState.placement?.match(/(top|bottom)/)
@@ -331,7 +326,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   const handleEnter = (event: React.MouseEvent<HTMLElement>) => {
-    console.log("enter")
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -357,9 +351,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   };
 
-  // TODO -> find out where function is called from
   const handleLeave = (event: React.MouseEvent<HTMLElement>) => {
-    console.log("leave")
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
     leaveTimer.current = setTimeout(() => {
@@ -630,7 +622,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     ownerState,
   });
 
-  // console.log(rootProps)
 
   const result = (
     <SlotRoot
