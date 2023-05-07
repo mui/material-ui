@@ -3438,10 +3438,10 @@
   dependencies:
     markdown-to-jsx "*"
 
-"@types/marked@^4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-4.0.8.tgz#b316887ab3499d0a8f4c70b7bd8508f92d477955"
-  integrity sha512-HVNzMT5QlWCOdeuBsgXP8EZzKUf0+AXzN+sLmjvaB3ZlLqO+e4u0uXrdw9ub69wBKFs+c6/pA4r9sy6cCDvImw==
+"@types/marked@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-4.3.0.tgz#5cd14a190b0a4d212781cfee7093f611ec74a111"
+  integrity sha512-zK4gSFMjgslsv5Lyvr3O1yCjgmnE4pr8jbG8qVn4QglMwtpvPCf4YT2Wma7Nk95OxUUJI8Z+kzdXohbM7mVpGw==
 
 "@types/mdast@^3.0.0":
   version "3.0.10"
