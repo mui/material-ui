@@ -28,7 +28,7 @@ import selectReducer from './selectReducer';
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base/react-select/#hooks)
  *
  * API:
  *
@@ -50,7 +50,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onOpenChange,
     open: openProp,
     options: optionsParam,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -124,9 +124,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getButtonRootProps,
     active: buttonActive,
     focusVisible: buttonFocusVisible,
+    rootRef: mergedButtonRef,
   } = useButton({
     disabled,
-    ref: handleButtonRef,
+    rootRef: handleButtonRef,
   });
 
   const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);
@@ -146,9 +147,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return '';
       }
 
-      return optionStringifier(option);
+      return getOptionAsString(option);
     },
-    [options, optionStringifier],
+    [options, getOptionAsString],
   );
 
   const controlledState = React.useMemo(
@@ -222,13 +223,13 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getItemId,
     controlledProps: controlledState,
     isItemDisabled,
-    listRef: handleListboxRef,
+    rootRef: handleListboxRef,
     onChange: handleSelectionChange,
     onHighlightChange: handleHighlightChange,
     onStateChange: handleStateChange,
     reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
-    itemStringifier: stringifyOption,
+    getItemAsString: stringifyOption,
     selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
   };
@@ -238,6 +239,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getListboxRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
+    rootRef: mergedListboxRef,
   } = useList(useListParameters);
 
   React.useEffect(() => {
@@ -387,12 +389,14 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   return {
     buttonActive,
     buttonFocusVisible,
+    buttonRef: mergedButtonRef,
+    contextValue,
     disabled,
     dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
-    contextValue,
+    listboxRef: mergedListboxRef,
     open,
     options: optionValues,
     value: selectValue,

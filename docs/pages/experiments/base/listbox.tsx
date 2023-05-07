@@ -93,7 +93,7 @@ const Item = React.forwardRef(function Item(
   ref: React.Ref<HTMLElement>,
 ) {
   const { value: item, id } = props;
-  const { getRootProps, selected, highlighted } = useListItem({ item, ref });
+  const { getRootProps, selected, highlighted } = useListItem({ item, rootRef: ref });
 
   const itemProps = getRootProps();
 

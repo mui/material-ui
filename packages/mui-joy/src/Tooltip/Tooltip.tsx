@@ -9,7 +9,7 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
   unstable_useId as useId,
 } from '@mui/utils';
-import { PopperUnstyled, unstable_composeClasses as composeClasses } from '@mui/base';
+import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -250,7 +250,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const { getColor } = useColorInversion(variant);
   const color = disablePortal ? getColor(inProps.color, colorProp) : colorProp;
 
-  const [childNode, setChildNode] = React.useState<HTMLElement>();
+  const [childNode, setChildNode] = React.useState<Element>();
   const [arrowRef, setArrowRef] = React.useState<HTMLSpanElement | null>(null);
   const ignoreNonTouchEvents = React.useRef(false);
 
@@ -459,7 +459,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   }, [handleClose, open]);
 
   const handleUseRef = useForkRef(setChildNode, ref);
-  const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
+  const handleFocusRef = useForkRef<Element>(focusVisibleRef, handleUseRef);
   const handleRef = useForkRef(
     (children as unknown as { ref: React.Ref<HTMLElement> }).ref,
     handleFocusRef,
@@ -631,7 +631,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     <SlotRoot
       {...rootProps}
       {...(!props.slots?.root && {
-        as: PopperUnstyled,
+        as: Popper,
         slots: {
           root: component || 'div',
         },

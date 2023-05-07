@@ -70,7 +70,7 @@ The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/
 
 ### Positioned menu
 
-The `Menu` is based on the `PopperUnstyled` component, which exposes a few [placement props](/base/react-popper/#placement).
+The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base/react-popper/#placement).
 For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
 
 {{"demo": "PositionedMenu.js"}}

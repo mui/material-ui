@@ -23,7 +23,7 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = () => {
   const FocusTrapApiReq = require.context(
-    'docs/translations/api-docs/focus-trap',
+    'docs/translations/api-docs-base/focus-trap',
     false,
     /focus-trap.*.json$/,
   );

@@ -4,25 +4,23 @@
 
 ## Bundle size matters
 
-MUI takes the bundle size very seriously. Size snapshots are taken
+Material UI's maintainers take bundle size very seriously. Size snapshots are taken
 on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
-[detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every pull request.
+[detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
 ## When and how to use tree-shaking?
 
-Tree-shaking of MUI's open source projects, e.g. Material UI works out of the box in modern frameworks.
-MUI exposes its full API on the top-level `@mui` imports.
-If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically in **production**:
+Tree-shaking Material UI works out of the box in modern frameworks.
+Material UI exposes its full API on the top-level `@mui` imports.
+If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@mui/material';
 ```
 
-:::warning
-The following instructions are only needed if you need to optimize the load times in **development** (e.g. needed for icons) or if you are using an older bundler
+⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
 that doesn't support tree-shaking.
-:::
 
 ## Development environment
 
@@ -187,10 +185,10 @@ Modify your `package.json` commands:
 ```diff
    "scripts": {
 -    "start": "react-scripts start",
--    "build": "react-scripts build",
--    "test": "react-scripts test",
 +    "start": "react-app-rewired start",
+-    "build": "react-scripts build",
 +    "build": "react-app-rewired build",
+-    "test": "react-scripts test",
 +    "test": "react-app-rewired test",
      "eject": "react-scripts eject"
   }
@@ -212,19 +210,10 @@ It will perform the following diffs:
 ## Available bundles
 
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
-In addition, to the default bundle, you can opt-in:
 
-- **Modern bundle**. The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
-  It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
-  This can be used to make separate bundles targeting different browsers.
-
-- **Legacy bundle**. If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
-  However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
-  You don't need any additional polyfills.
-
-### How to use
-
-You can use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
+Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.
+Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {
@@ -241,7 +230,14 @@ You can use these bundles at the bundler level with e.g [Webpack's `resolve.alia
 }
 ```
 
-:::error
-Developers are **strongly discouraged** to import from these bundles directly in the code because a third-party dependency might import a different bundle.
-So unless you can guarantee that all your dependencies use the same bundle, don't do it.
-:::
+### Modern bundle
+
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
+It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
+This can be used to make separate bundles targeting different browsers.
+
+### Legacy bundle
+
+If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
+However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
+You don't need any additional polyfills.

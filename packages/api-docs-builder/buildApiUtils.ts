@@ -67,7 +67,7 @@ function getSystemComponents() {
 }
 
 function getMuiName(name: string) {
-  return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
+  return `Mui${name.replace('Styled', '')}`;
 }
 
 export function extractPackageFile(filePath: string) {
@@ -168,27 +168,27 @@ export type HookInfo = {
 };
 
 const migratedBaseComponents = [
-  'BadgeUnstyled',
-  'ButtonUnstyled',
+  'Badge',
+  'Button',
   'ClickAwayListener',
   'FocusTrap',
-  'InputUnstyled',
-  'MenuItemUnstyled',
-  'MenuUnstyled',
-  'ModalUnstyled',
+  'Input',
+  'MenuItem',
+  'Menu',
+  'Modal',
   'NoSsr',
-  'OptionGroupUnstyled',
-  'OptionUnstyled',
-  'PopperUnstyled',
+  'OptionGroup',
+  'Option',
+  'Popper',
   'Portal',
-  'SelectUnstyled',
-  'SliderUnstyled',
-  'SwitchUnstyled',
-  'TablePaginationUnstyled',
-  'TabPanelUnstyled',
-  'TabsListUnstyled',
-  'TabsUnstyled',
-  'TabUnstyled',
+  'Select',
+  'Slider',
+  'Switch',
+  'TablePagination',
+  'TabPanel',
+  'TabsList',
+  'Tabs',
+  'Tab',
 ];
 
 export function getMaterialComponentInfo(filename: string): ComponentInfo {
@@ -212,13 +212,18 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
       if (!inheritedComponent) {
         return null;
       }
+      // `inheritedComponent` node is coming from test files.
+      // `inheritedComponent` must include `Unstyled` suffix for parser to recognise that the component inherits Base UI component
+      // e.g., Joy Menu inherits Base UI Popper, and its test file uses the name `PopperUnstyled` so that we can recognise here that
+      // Joy Menu is inheriting a base component. In terms of documentation, we should no longer use the name `PopperUnstyled`, and hence
+      // we remove the suffix here.
       return {
-        name: inheritedComponent,
+        name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
             : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material-ui'}/api/${kebabCase(
-                inheritedComponent,
+                inheritedComponent.replace(/unstyled/i, ''),
               )}/`,
       };
     },
@@ -431,10 +436,15 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
       if (!inheritedComponent) {
         return null;
       }
+      // `inheritedComponent` node is coming from test files.
+      // `inheritedComponent` must include `Unstyled` suffix for parser to recognise that the component inherits Base UI component
+      // e.g., Joy Menu inherits Base UI Popper, and its test file uses the name `PopperUnstyled` so that we can recognise here that
+      // Joy Menu is inheriting a base component. In terms of documentation, we should no longer use the name `PopperUnstyled`, and hence
+      // we remove the suffix here.
       return {
-        name: inheritedComponent,
+        name: inheritedComponent.replace(/unstyled/i, ''),
         apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
-          inheritedComponent,
+          inheritedComponent.replace(/unstyled/i, ''),
         )}/`,
       };
     },
@@ -586,7 +596,7 @@ export function generateBaseUIApiPages() {
           apiTabImportStatements += `import ${component}ApiJsonPageContent from '../../api/${componentNameKebabCase}.json';`;
           staticProps += `
           const ${component}ApiReq = require.context(
-            'docs/translations/api-docs/${componentNameKebabCase}',
+            'docs/translations/api-docs-base/${componentNameKebabCase}',
             false,
             /${componentNameKebabCase}.*.json$/,
           );
