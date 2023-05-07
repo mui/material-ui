@@ -1276,16 +1276,16 @@
     csstype "^3.0.11"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/system@^2.5.6":
-  version "2.5.6"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.5.6.tgz#244eef56be3d3d546ef3d1b93e5f9b9a591ef3fd"
-  integrity sha512-sKzonHUbjOnRxZvcysN8pqa3y0OkTb9xWPhNFnvye/Km8vZhw4SfHKbVpRXedMPVp5Q3PHOxqAXOs6Q0kpo6KA==
+"@chakra-ui/system@^2.5.7":
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.5.7.tgz#f56c480af336d9f48e0ad84e2434d834017c44e2"
+  integrity sha512-yB6en7YdJPxKvKY2jJROVwkBE2CLFmHS4ZDx27VdYs0Fa4kGiyDFhJAfnMtLBNDVsTy1NhUHL9aqR63u56QqFg==
   dependencies:
     "@chakra-ui/color-mode" "2.1.12"
     "@chakra-ui/object-utils" "2.1.0"
     "@chakra-ui/react-utils" "2.0.12"
     "@chakra-ui/styled-system" "2.9.0"
-    "@chakra-ui/theme-utils" "2.0.16"
+    "@chakra-ui/theme-utils" "2.0.17"
     "@chakra-ui/utils" "2.0.15"
     react-fast-compare "3.2.1"
 
@@ -1298,20 +1298,20 @@
     "@chakra-ui/shared-utils" "2.0.5"
     color2k "^2.0.0"
 
-"@chakra-ui/theme-utils@2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.16.tgz#9686b6b307ae8928a686df8df79bee16c4e0d25c"
-  integrity sha512-xVrQ8YEhIX51PB27kbEGHoQ3G78erSykqOeIPkoxaEfWBV4Ba83o7RwEZG8/Qa7c7S4qYPmCSGynegBWrsQpHA==
+"@chakra-ui/theme-utils@2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.17.tgz#3db5780ab812a07945a5eb7565a66478d9f149c0"
+  integrity sha512-aUaVLFIU1Rs8m+5WVOUvqHKapOX8nSgUVGaeRWS4odxBM95dG4j15f4L88LEMw4D4+WWd0CSAS139OnRgj1rCw==
   dependencies:
     "@chakra-ui/shared-utils" "2.0.5"
     "@chakra-ui/styled-system" "2.9.0"
-    "@chakra-ui/theme" "3.1.0"
+    "@chakra-ui/theme" "3.1.1"
     lodash.mergewith "4.6.2"
 
-"@chakra-ui/theme@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-3.1.0.tgz#ebb097c350ca9827b2efcc81df5f4b712729b9a0"
-  integrity sha512-lO2p37lyEGVmGUrr+lakHpnvrJHkkfPnSM+w9MGmR0V0rqIGTIBrirBO07vDccNRS17jcXjA8d9QZEBYzIVyNw==
+"@chakra-ui/theme@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-3.1.1.tgz#4ddb916cab33c132798d0f2d1a5a2c4b87381202"
+  integrity sha512-VHcG0CPLd9tgvWnajpAGqrAYhx4HwgfK0E9VOrdwa/3bN+AgY/0EAAXzfe0Q0W2MBWzSgaYqZcQ5cDRpYbiYPA==
   dependencies:
     "@chakra-ui/anatomy" "2.1.2"
     "@chakra-ui/shared-utils" "2.0.5"
