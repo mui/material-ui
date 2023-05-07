@@ -13,7 +13,7 @@ interface MyAutocompleteProps<
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-  ChipComponent extends React.ElementType = 'div',
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent']
 > extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   myProp?: string;
 }
