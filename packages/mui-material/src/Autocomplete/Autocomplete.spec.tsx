@@ -6,6 +6,7 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { expectType } from '@mui/types';
+import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<
   T,
@@ -22,7 +23,7 @@ function MyAutocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  ChipComponent extends React.ElementType = 'div',
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   return (
     <Autocomplete

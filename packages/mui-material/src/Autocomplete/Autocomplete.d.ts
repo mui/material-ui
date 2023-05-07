@@ -293,5 +293,5 @@ export default function Autocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
-  ChipComponent extends React.ElementType = 'div',
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>): JSX.Element;
