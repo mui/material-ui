@@ -68,16 +68,43 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
 
   const rootSlotProps = slotProps.root ?? componentsProps.root;
 
+  const backdropRef = React.useRef(null);
+  React.useEffect(() => {
+    if (open && backdropRef.current) {
+      backdropRef.current.focus();
+
+      const liveRegion = document.createElement('div');
+      liveRegion.style.position = 'absolute';
+      liveRegion.style.top = '-9999px';
+      liveRegion.style.left = '-9999px';
+      liveRegion.setAttribute('aria-live', 'polite');
+      liveRegion.textContent = 'Backdrop opened';
+      document.body.appendChild(liveRegion);
+
+      setTimeout(() => {
+        document.body.removeChild(liveRegion);
+      }, 1000); // Remove the live region after 1 second
+    }
+  }, [open]);
+
   return (
-    <TransitionComponent in={open} timeout={transitionDuration} {...other}>
+    <TransitionComponent
+      aria-live="polite"
+      text-content="backdrop opened"
+      role="dialog"
+      in={open}
+      timeout={transitionDuration}
+      {...other}
+    >
       <BackdropRoot
-        aria-hidden
+        aria-busy
+        aria-label="backdrop open"
         {...rootSlotProps}
         as={slots.root ?? components.Root ?? component}
         className={clsx(classes.root, className, rootSlotProps?.className)}
         ownerState={{ ...ownerState, ...rootSlotProps?.ownerState }}
         classes={classes}
-        ref={ref}
+        ref={ref || backdropRef}
       >
         {children}
       </BackdropRoot>
