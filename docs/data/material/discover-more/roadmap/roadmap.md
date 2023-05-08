@@ -4,9 +4,22 @@
 
 ## Methodology
 
-MUI is community driven – issues that resonate most with the community get the most attention.
+MUI is community-driven—issues that resonate most with the community get the most attention.
 Please **upvote** (👍) on GitHub the issues you are most interested in.
 Thank you for participating [in the developer survey](/blog/2021-developer-survey-results/).
+
+## Quarterly roadmap
+
+Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
+
+- [MUI Core](https://github.com/orgs/mui/projects/18/views/1).
+  This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
+- [MUI X](https://github.com/mui/mui-x/projects/1).
+  This repository focuses on providing advanced React components.
+  Some of the features are MIT licensed, others are available under a commercial license.
+- [MUI Design kits](https://github.com/mui/mui-design-kits/projects/1)
+  This repository focuses on providing the components for designers on Figma and other design tools.
+  It's a great place to leave feedback, feature requests, and ask questions.
 
 ## Priorities
 
@@ -24,19 +37,6 @@ Here are the top priorities:
 - **Bundle size.** 📦 You can follow our progress [with bundlephobia.com report](https://bundlephobia.com/package/@mui/material). Please pay special attention to the cost of the individual modules under "Exports Analysis".
 - **TypeScript.** 📏 We are continuously improving the definitions. The codebase is mostly written in JavaScript with manually authored `.d.ts` definitions. While we do not plan a migration effort as a standalone effort, new modules are written in TypeScript.
 - **Accessibility.** ♿️ We have relatively [few accessibility issues](https://darekkay.com/blog/accessible-ui-frameworks/), but we are eager to address them all. We would appreciate the help of accessibility experts.
-
-## Quarterly roadmap
-
-Our GitHub project's roadmap is where you can learn about what features we're working on, what stage they're at, and when we expect to bring them to you:
-
-- [MUI Core](https://github.com/mui/material-ui/projects/25).
-  This repository focuses on empowering the creation of great design systems with React, as well as providing two ready to use themes (Material Design so far, another one coming in the near future).
-- [MUI X](https://github.com/mui/mui-x/projects/1).
-  This repository focuses on providing advanced React components.
-  Some of the features are MIT licensed, others are available under a commercial license.
-- [MUI Design kits](https://github.com/mui/mui-design-kits/projects/1)
-  This repository focuses on providing the components for designers on Figma and other design tools.
-  It's a great place to leave feedback, feature requests, and ask questions.
 
 ## New components
 

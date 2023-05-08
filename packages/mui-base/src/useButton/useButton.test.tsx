@@ -12,7 +12,7 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <button {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -28,7 +28,7 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <button {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -45,7 +45,7 @@ describe('useButton', () => {
       it('is set when clicked on an element inside the button', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return (
             <button {...getRootProps()} className={active ? 'active' : ''}>
@@ -64,7 +64,7 @@ describe('useButton', () => {
       it('is unset when mouse button is released above another element', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return (
             <div data-testid="parent">
@@ -87,7 +87,7 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -103,7 +103,7 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         function TestComponent() {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ rootRef: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
         }
@@ -126,7 +126,7 @@ describe('useButton', () => {
       it('calls them when provided in props', () => {
         function TestComponent(props: WithClickHandler) {
           const ref = React.useRef(null);
-          const { getRootProps } = useButton({ ...props, ref });
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
           return <button {...getRootProps()} />;
         }
 
@@ -143,7 +143,7 @@ describe('useButton', () => {
 
         function TestComponent() {
           const ref = React.useRef(null);
-          const { getRootProps } = useButton({ ref });
+          const { getRootProps } = useButton({ rootRef: ref });
           return <button {...getRootProps({ onClick: handleClick })} />;
         }
 
@@ -159,7 +159,7 @@ describe('useButton', () => {
 
         function TestComponent(props: WithClickHandler) {
           const ref = React.useRef(null);
-          const { getRootProps } = useButton({ ...props, ref });
+          const { getRootProps } = useButton({ ...props, rootRef: ref });
           return <button {...getRootProps({ onClick: handleClickInternal })} />;
         }
 

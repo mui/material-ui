@@ -28,7 +28,7 @@ Base UI offers two components to replace the native HTML `<select>` tag: `Select
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import SelectUnstyled from '@mui/base/SelectUnstyled';

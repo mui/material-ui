@@ -20,6 +20,7 @@
     "placeholder": "Text to show when there is no selected value.",
     "renderValue": "Function that customizes the rendering of the selected value.",
     "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "startDecorator": "Leading adornment for the select.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The selected value. Set to <code>null</code> to deselect all options.",
