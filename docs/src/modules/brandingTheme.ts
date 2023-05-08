@@ -37,6 +37,7 @@ declare module '@mui/material/styles/createPalette' {
     gradients: {
       lightGrayRadio: string;
       stylizedRadio: string;
+      linearSubtle: string;
     };
   }
 
@@ -231,7 +232,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       warning,
       patterns: {
-        triangle:
+        isometric:
           mode === 'dark'
             ? 'url(/static/branding/background-pattern-dark.svg)'
             : 'url(/static/branding/background-pattern.svg)',
@@ -243,6 +244,16 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           mode === 'dark'
             ? 'linear-gradient(rgba(0 0 0 / 0.1), rgba(0 0 0 / 0.1)), linear-gradient(254.86deg, rgba(0, 58, 117, 0.18) 0%, rgba(11, 13, 14, 0.3) 49.98%, rgba(0, 76, 153, 0.21) 100.95%)'
             : 'linear-gradient(rgba(255 255 255 / 0.3), rgba(255 255 255 / 0.3)), linear-gradient(254.86deg, rgba(194, 224, 255, 0.12) 0%, rgba(194, 224, 255, 0.12) 0%, rgba(255, 255, 255, 0.3) 49.98%, rgba(240, 247, 255, 0.3) 100.95%)',
+        linearSubtle:
+          mode === 'light'
+            ? `linear-gradient(to top right, ${alpha(blue[50], 0.3)} 40%, ${alpha(
+                grey[50],
+                0.2,
+              )} 100%)`
+            : `linear-gradient(to top right, ${alpha(blue[900], 0.1)} 40%, ${alpha(
+                blueDark[800],
+                0.2,
+              )} 100%)`,
       },
     },
     shape: {
@@ -439,13 +450,13 @@ export function getThemedComponents(): ThemeOptions {
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[400],
                 boxShadow:
-                  '0px 2px 4px rgba(29, 29, 29, 0.1), inset 0px 4px 8px rgba(102, 178, 255, 0.6)',
+                  '0px 2px 4px rgba(29, 29, 29, 0.1), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 textShadow: '0px 1px 1px rgba(0, 58, 117, 0.6)',
                 color: '#FFF',
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[600],
                   boxShadow:
-                    '0px 0px 8px rgba(0, 127, 255, 0.4), inset 0px 4px 8px rgba(102, 178, 255, 0.6)',
+                    '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },
               }),
           }),

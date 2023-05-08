@@ -29,7 +29,7 @@ const content = [
     icon: <AccessibilityNewRounded color="primary" />,
     title: 'Accessibility',
     description:
-      'We do our best to ensure MUI Base components support the latest accessibility conventions.',
+      'We do our best to ensure Base UI components support the latest accessibility conventions and patterns.',
   },
 ];
 
@@ -60,9 +60,7 @@ export default function BaseUISummary() {
                   borderRadius: '12px',
                   border: '1px solid',
                   borderColor: 'grey.100',
-                  backgroundImage: `${(theme.vars || theme).palette.gradients.stylizedRadio}, ${
-                    (theme.vars || theme).palette.patterns.triangle
-                  }`,
+                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
 
                   '&:hover': {
                     borderColor: 'primary.500',
@@ -73,9 +71,9 @@ export default function BaseUISummary() {
                   ...theme.applyDarkStyles({
                     bgcolor: 'primaryDark.900',
                     borderColor: 'primaryDark.700',
+                    background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
 
                     '&:hover': {
-                      borderColor: 'primary.500',
                       boxShadow: '0px 1px 6px #0059B3, inset 0px 2px 30px rgba(0, 0, 0, 0.1)',
                     },
                   }),

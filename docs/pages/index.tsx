@@ -55,8 +55,8 @@ export default function Home() {
         <DesignSystemComponents />
         <Testimonials />
         <Sponsors />
-        <HeroEnd />
         <Divider />
+        <HeroEnd />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>
