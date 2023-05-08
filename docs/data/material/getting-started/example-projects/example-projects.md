@@ -8,7 +8,7 @@ You can find some example projects in the [GitHub repository](https://github.com
 
 <!-- #default-branch-switch -->
 
-{{"demo": "ExampleCollection.js", "hideToolbar": true, "bg": "inline"}}
+{{"component": "docs/src/modules/components/ExampleCollection.js", "hideToolbar": true, "bg": "inline"}}
 
 Create React App is an awesome project for learning React.
 Have a look at [the alternatives available](https://github.com/facebook/create-react-app/blob/HEAD/README.md#popular-alternatives) to see which project best fits your needs.

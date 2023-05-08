@@ -6,6 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import FilterDramaIcon from '@mui/icons-material/FilterDrama';
 
 const examples = [
   {
@@ -13,8 +14,7 @@ const examples = [
     label: 'View JS example',
     tsLabel: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-next',
-    tsLink:
-      'https://github.com/mui/material-ui/tree/master/examples/material-next-ts',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-next-ts',
     src: '/static/images/examples/next.svg',
   },
   {
@@ -22,8 +22,7 @@ const examples = [
     label: 'View JS example',
     tsLabel: 'View TS example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra',
-    tsLink:
-      'https://github.com/mui/material-ui/tree/master/examples/material-cra-ts',
+    tsLink: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-ts',
     src: '/static/images/examples/cra.svg',
   },
   {
@@ -70,6 +69,7 @@ const examples = [
     name: 'CDN',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-via-cdn',
     label: 'View example',
+    src: <FilterDramaIcon />,
   },
   {
     name: 'Express.js (server-rendered)',
@@ -86,28 +86,32 @@ export default function ExampleCollection() {
         <Grid key={example.name} item xs={12} sm={6}>
           <Card
             sx={[
-              (theme) => ({
+              {
                 p: 2,
                 height: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
-                bgcolor: theme.palette.mode === 'dark' ? 'transparent' : '#fff',
+                bgcolor: '#fff',
                 backgroundImage: 'none',
                 borderRadius: 2,
                 border: '1px solid',
-                borderColor: theme.palette.mode === 'dark' ? '#132F4C' : 'grey.200',
+                borderColor: 'grey.200',
                 boxShadow: 'none',
-
                 '&:hover': {
-                  borderColor:
-                    theme.palette.mode === 'dark' ? '#173A5E' : 'grey.300',
-                  boxShadow:
-                    theme.palette.mode === 'dark'
-                      ? '0px 2px 8px rgba(0, 13, 26, 1)'
-                      : '0px 2px 8px rgba(170, 180, 190, 0.2)',
+                  borderColor: 'grey.300',
+                  boxShadow: '0px 2px 8px rgba(170, 180, 190, 0.2)',
                 },
-              }),
+              },
+              (theme) =>
+                theme.applyDarkStyles({
+                  bgcolor: 'transparent',
+                  borderColor: 'primaryDark.700',
+                  '&:hover': {
+                    borderColor: 'primaryDark.600',
+                    boxShadow: '0px 2px 8px rgba(0, 13, 26, 1)',
+                  },
+                }),
             ]}
           >
             <Avatar
@@ -116,15 +120,13 @@ export default function ExampleCollection() {
                 height: '40',
                 loading: 'lazy',
               }}
-              src={example.src}
+              {...(typeof example.src === 'string'
+                ? { src: example.src }
+                : { children: example.src })}
               alt={example.name}
             />
             <div>
-              <Typography
-                variant="body"
-                fontWeight={600}
-                sx={{ fontFamily: 'IBM Plex Sans' }}
-              >
+              <Typography variant="body" fontWeight={600} sx={{ fontFamily: 'IBM Plex Sans' }}>
                 {example.name}
               </Typography>
               <Box
