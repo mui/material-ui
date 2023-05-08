@@ -184,6 +184,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   } = props;
 
   const masonryRef = React.useRef();
+  const animationFrame = React.useRef();
   const [maxColumnHeight, setMaxColumnHeight] = React.useState();
   const isSSR =
     !maxColumnHeight &&
@@ -208,68 +209,72 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const handleResize = (masonryChildren) => {
-    if (!masonryRef.current || !masonryChildren || masonryChildren.length === 0) {
-      return;
-    }
-    const masonry = masonryRef.current;
-    const masonryFirstChild = masonryRef.current.firstChild;
-    const parentWidth = masonry.clientWidth;
-    const firstChildWidth = masonryFirstChild.clientWidth;
-
-    if (parentWidth === 0 || firstChildWidth === 0) {
-      return;
-    }
-
-    const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild);
-    const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
-    const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
-
-    const currentNumberOfColumns = Math.round(
-      parentWidth / (firstChildWidth + firstChildMarginLeft + firstChildMarginRight),
-    );
-
-    const columnHeights = new Array(currentNumberOfColumns).fill(0);
-    let skip = false;
-    masonry.childNodes.forEach((child) => {
-      if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
+    const handler = () => {
+      if (!masonryRef.current || !masonryChildren || masonryChildren.length === 0) {
         return;
       }
-      const childComputedStyle = window.getComputedStyle(child);
-      const childMarginTop = parseToNumber(childComputedStyle.marginTop);
-      const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
-      // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
-      const childHeight = parseToNumber(childComputedStyle.height)
-        ? Math.ceil(parseToNumber(childComputedStyle.height)) + childMarginTop + childMarginBottom
-        : 0;
-      if (childHeight === 0) {
-        skip = true;
+
+      const masonry = masonryRef.current;
+      const masonryFirstChild = masonryRef.current.firstChild;
+      const parentWidth = masonry.clientWidth;
+      const firstChildWidth = masonryFirstChild.clientWidth;
+
+      if (parentWidth === 0 || firstChildWidth === 0) {
         return;
       }
-      // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
-      for (let i = 0; i < child.childNodes.length; i += 1) {
-        const nestedChild = child.childNodes[i];
-        if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
-          skip = true;
-          break;
+
+      const firstChildComputedStyle = window.getComputedStyle(masonryFirstChild);
+      const firstChildMarginLeft = parseToNumber(firstChildComputedStyle.marginLeft);
+      const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
+
+      const currentNumberOfColumns = Math.round(
+        parentWidth / (firstChildWidth + firstChildMarginLeft + firstChildMarginRight),
+      );
+
+      const columnHeights = new Array(currentNumberOfColumns).fill(0);
+      let skip = false;
+      masonry.childNodes.forEach((child) => {
+        if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
+          return;
         }
-      }
-      if (!skip) {
-        // find the current shortest column (where the current item will be placed)
-        const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-        columnHeights[currentMinColumnIndex] += childHeight;
-        const order = currentMinColumnIndex + 1;
-        child.style.order = order;
-      }
-    });
-    if (!skip) {
-      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
-      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
-      // Related issue - https://github.com/facebook/react/issues/24331
-      ReactDOM.flushSync(() => {
-        setMaxColumnHeight(Math.max(...columnHeights));
-        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+        const childComputedStyle = window.getComputedStyle(child);
+        const childMarginTop = parseToNumber(childComputedStyle.marginTop);
+        const childMarginBottom = parseToNumber(childComputedStyle.marginBottom);
+        // if any one of children isn't rendered yet, masonry's height shouldn't be computed yet
+        const childHeight = parseToNumber(childComputedStyle.height)
+          ? Math.ceil(parseToNumber(childComputedStyle.height)) + childMarginTop + childMarginBottom
+          : 0;
+        if (childHeight === 0) {
+          skip = true;
+          return;
+        }
+        // if there is a nested image that isn't rendered yet, masonry's height shouldn't be computed yet
+        for (let i = 0; i < child.childNodes.length; i += 1) {
+          const nestedChild = child.childNodes[i];
+          if (nestedChild.tagName === 'IMG' && nestedChild.clientHeight === 0) {
+            skip = true;
+            break;
+          }
+        }
+        if (!skip) {
+          // find the current shortest column (where the current item will be placed)
+          const currentMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+          columnHeights[currentMinColumnIndex] += childHeight;
+          const order = currentMinColumnIndex + 1;
+          child.style.order = order;
+        }
       });
-    }
+      if (!skip) {
+        // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+        // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+        // Related issue - https://github.com/facebook/react/issues/24331
+        ReactDOM.flushSync(() => {
+          setMaxColumnHeight(Math.max(...columnHeights));
+          setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+        });
+      }
+    };
+    animationFrame.current = window.requestAnimationFrame(handler);
   };
 
   const observer = React.useRef(
@@ -288,7 +293,14 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         resizeObserver.observe(childNode);
       });
     }
-    return () => (resizeObserver ? resizeObserver.disconnect() : {});
+    return () => {
+      if (animationFrame.current) {
+        window.cancelAnimationFrame(animationFrame.current);
+      }
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
