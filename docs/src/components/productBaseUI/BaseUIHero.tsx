@@ -480,7 +480,9 @@ export default function BaseUIHero() {
                 }).openSandbox('/demo')
               }
               sx={(theme) => ({
-                fontSize: '0.625rem',
+                fontFamily: theme.typography.fontFamily,
+                fontSize: '0.75rem',
+                fontWeight: 500,
                 borderRadius: '6px',
                 color: 'text.secondary',
                 bgcolor: 'grey.50',
