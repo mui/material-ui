@@ -185,6 +185,17 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           main: blue[400],
         }),
       },
+      secondary: {
+        ...grey,
+        ...(mode === 'light' && {
+          main: blueDark[100],
+          contrastText: blueDark[600],
+        }),
+        ...(mode === 'dark' && {
+          main: blueDark[700],
+          contrastText: blueDark[600],
+        }),
+      },
       divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
       primaryDark: blueDark,
       mode,
@@ -216,7 +227,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           contrastText: grey[600],
         }),
         ...(mode === 'dark' && {
-          main: blueDark[700],
+          main: grey[700],
           contrastText: grey[600],
         }),
       },
@@ -438,26 +449,87 @@ export function getThemedComponents(): ThemeOptions {
               lineHeight: 21 / 16,
               fontWeight: 700,
             }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'secondary' && {
+                color: (theme.vars || theme).palette.text.secondary,
+                backgroundColor: alpha(theme.palette.primaryDark[50], 0.3),
+                borderColor: (theme.vars || theme).palette.primaryDark[100],
+                boxShadow: `0px 2px 2px ${alpha(
+                  theme.palette.primaryDark[100],
+                  0.2,
+                )}, inset 0px 4px 4px ${alpha(theme.palette.primaryDark[100], 0.2)}`,
+                '&:hover': {
+                  background: (theme.vars || theme).palette.primaryDark[50],
+                },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primaryDark[100],
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                  boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  },
+                }),
+              }),
+            ...(ownerState.variant === 'outlined' &&
+              ownerState.color === 'primary' && {
+                color: (theme.vars || theme).palette.primary[500],
+                backgroundColor: alpha(theme.palette.primary[50], 0.3),
+                borderColor: (theme.vars || theme).palette.primary[200],
+                boxShadow: `0px 2px 2px ${alpha(
+                  theme.palette.primary[100],
+                  0.2,
+                )}, inset 0px 4px 4px ${alpha(theme.palette.primary[100], 0.2)}`,
+                '&:hover': {
+                  background: (theme.vars || theme).palette.primary[50],
+                },
+                ...theme.applyDarkStyles({
+                  color: (theme.vars || theme).palette.primary[200],
+                  borderColor: (theme.vars || theme).palette.primary[900],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.4),
+                  boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.primary[900],
+                  },
+                }),
+              }),
             ...(ownerState.size === 'small' && {
               padding: theme.spacing(0.5, 1),
+              fontFamily: theme.typography.fontFamily,
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              borderRadius: '6px',
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {
+                color: '#FFF',
                 background: `linear-gradient(180deg, ${
                   (theme.vars || theme).palette.primary[500]
                 } 0%, ${(theme.vars || theme).palette.primary[300]} 100%,
                 })`,
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[400],
-                boxShadow:
-                  '0px 2px 4px rgba(29, 29, 29, 0.1), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
-                textShadow: '0px 1px 1px rgba(0, 58, 117, 0.6)',
-                color: '#FFF',
+                boxShadow: `0px 2px 4px ${alpha(
+                  theme.palette.primary[700],
+                  0.2,
+                )}, inset 0px 4px 8px ${alpha(theme.palette.primary[400], 0.4)}`,
+                textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.5)}`,
                 '&:hover': {
                   background: (theme.vars || theme).palette.primary[600],
                   boxShadow:
                     '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },
+                ...theme.applyDarkStyles({
+                  background: `linear-gradient(180deg, ${
+                    (theme.vars || theme).palette.primary[500]
+                  } 0%, ${(theme.vars || theme).palette.primary[300]} 100%,
+                  })`,
+                  boxShadow: `0px 2px 4px ${alpha(
+                    theme.palette.primary[700],
+                    0.2,
+                  )}, inset 0px 4px 8px ${alpha(theme.palette.primary[400], 0.4)}`,
+                  textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.5)}`,
+                }),
               }),
           }),
         },

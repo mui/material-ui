@@ -64,20 +64,8 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
           noLinkStyle
           variant="outlined"
           size="large"
+          color="secondary"
           endIcon={<KeyboardArrowRightRounded />}
-          sx={(theme) => ({
-            color: 'text.primary',
-            bgcolor: 'grey.50',
-            borderColor: 'grey.300',
-            boxShadow:
-              '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
-            ...theme.applyDarkStyles({
-              color: 'gray.100',
-              borderColor: 'primaryDark.400',
-              bgcolor: 'primaryDark.700',
-              boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
-            }),
-          })}
         >
           {learnLabel}
         </Button>

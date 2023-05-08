@@ -461,13 +461,12 @@ export default function BaseUIHero() {
               right: '0.75rem',
               bottom: '0.75rem',
               display: 'flex',
-              justifyContent: 'space-between',
               alignItems: 'center',
+              gap: 2,
             }}
           >
             <Button
-              // @ts-expect-error
-              variant="code"
+              variant="outlined"
               size="small"
               onClick={() =>
                 CodeSandbox.createReactApp({
@@ -479,23 +478,6 @@ export default function BaseUIHero() {
                   raw: RAW,
                 }).openSandbox('/demo')
               }
-              sx={(theme) => ({
-                fontFamily: theme.typography.fontFamily,
-                fontSize: '0.75rem',
-                fontWeight: 500,
-                borderRadius: '6px',
-                color: 'text.secondary',
-                bgcolor: 'grey.50',
-                borderColor: 'grey.300',
-                boxShadow:
-                  '0px 2px 2px rgba(205, 210, 215, 0.2), inset 0px 4px 4px rgba(205, 210, 215, 0.2)',
-                ...theme.applyDarkStyles({
-                  color: 'grey.100',
-                  borderColor: 'primaryDark.400',
-                  bgcolor: 'primaryDark.700',
-                  boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
-                }),
-              })}
             >
               View code
             </Button>
