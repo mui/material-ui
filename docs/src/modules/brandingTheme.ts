@@ -836,11 +836,6 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
                 borderColor: (theme.vars || theme).palette.grey[200],
-                ':is(a, button)': {
-                  '&:hover': {
-                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                  },
-                },
               }),
             },
             theme.applyDarkStyles({
@@ -848,11 +843,6 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[500],
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
-                ':is(a, button)': {
-                  '&:hover': {
-                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
-                  },
-                },
               }),
             }),
           ],

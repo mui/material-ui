@@ -45,7 +45,12 @@ const StyledSwitchRoot = styled('span')(\`
       left: 20px;
     }
   }
-  \`);
+
+  &.Mui-focusVisible {
+    outline: 2px solid var(--muidocs-palette-primary-main);
+    outline-offset: 2px;
+  }
+\`);
 
 const StyledSwitchInput = styled('input')\`
   cursor: inherit;
@@ -71,11 +76,6 @@ const StyledSwitchThumb = styled('span')\`
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
-
-  &.Mui-focusVisible {
-    background-color: var(--muidocs-palette-grey-500);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
-  }
 
   &.Mui-checked {
     left: 20px;
@@ -144,7 +144,12 @@ const StyledSwitchRoot = styled('span')(`
       left: 20px;
     }
   }
-  `);
+
+  &.Mui-focusVisible {
+    outline: 2px solid var(--muidocs-palette-primary-main);
+    outline-offset: 2px;
+  }
+`);
 
 const StyledSwitchInput = styled('input')`
   cursor: inherit;
@@ -170,11 +175,6 @@ const StyledSwitchThumb = styled('span')`
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-
-  &.Mui-focusVisible {
-    background-color: var(--muidocs-palette-grey-500);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
-  }
 
   &.Mui-checked {
     left: 20px;
@@ -216,7 +216,7 @@ export default function BaseUICustomization() {
     <Section>
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box maxWidth={500} sx={{ mb: 4 }}>
             <SectionHeadline
               overline="Customization"
               title={
@@ -228,7 +228,7 @@ export default function BaseUICustomization() {
               description="With Base UI, you have the freedom to decide how much you want to customize a component's structure and style."
             />
           </Box>
-          <Group sx={{ mt: 4 }}>
+          <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<SvgTwinkle />}

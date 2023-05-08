@@ -72,7 +72,7 @@ export default function BaseUIComponents() {
     <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box maxWidth={500} sx={{ mb: 4 }}>
             <SectionHeadline
               overline="Unstyled components"
               title={
@@ -84,7 +84,7 @@ export default function BaseUIComponents() {
               description="Base UI’s skeletal components give you a sturdy foundation to apply custom styles with ease. With no defaults to override, you’re free to start from scratch using vanilla CSS, Tailwind CSS, MUI System, or any other framework you prefer."
             />
           </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          <Group desktopColumns={2} sx={{ m: -2, p: 2 }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
