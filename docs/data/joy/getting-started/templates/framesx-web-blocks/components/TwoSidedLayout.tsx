@@ -57,13 +57,13 @@ export default function TwoSidedLayout({
           alignSelf: 'stretch',
           [theme.breakpoints.up(834)]: {
             alignSelf: 'initial',
+            flexGrow: 1,
             '--AspectRatio-maxHeight': '520px',
             '--AspectRatio-minHeight': '400px',
           },
           borderRadius: 'sm',
           bgcolor: 'background.level2',
           flexBasis: '50%',
-          flexGrow: 1,
         })}
       >
         <img

@@ -29,7 +29,7 @@ export default function HeroLeft04() {
         component="form"
         sx={{
           display: 'flex',
-          gap: 2,
+          gap: 1,
           my: 2,
           alignSelf: 'stretch',
           flexBasis: '80%',
