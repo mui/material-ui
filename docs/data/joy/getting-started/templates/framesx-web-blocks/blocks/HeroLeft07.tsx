@@ -18,8 +18,8 @@ export default function HeroLeft07() {
         A large headlinerer about our product features & services
       </Typography>
       <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
-        A descriptive secondary text placeholder.
-        <br /> Use it to explain your business offer better.
+        A descriptive secondary text placeholder. Use it to explain your business
+        offer better.
       </Typography>
       <Card
         variant="outlined"

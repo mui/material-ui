@@ -28,7 +28,7 @@ function ColorSchemeToggle() {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
+    return null;
   }
   return (
     <IconButton

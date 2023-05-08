@@ -17,8 +17,8 @@ export default function HeroLeft06() {
         A large headlinerer about our product features & services
       </Typography>
       <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
-        A descriptive secondary text placeholder.
-        <br /> Use it to explain your business offer better.
+        A descriptive secondary text placeholder. Use it to explain your business
+        offer better.
       </Typography>
       <Button size="lg">Get Started For Free</Button>
       <Typography
@@ -38,11 +38,11 @@ export default function HeroLeft06() {
         5.0
       </Typography>
       <Typography textColor="text.secondary">
-        The resource and tips in Frames X are worth a fortune. <br />
-        My team loves the design kits.
+        The resource and tips in Frames X are worth a fortune. My team loves the
+        design kits.
       </Typography>
       <Typography
-        startDecorator={<Avatar size="lg" variant="outlined" />}
+        startDecorator={<Avatar component="span" size="lg" variant="outlined" />}
         sx={{ '--Typography-gap': '12px' }}
       >
         <b>John Seed</b>, Apple Inc.

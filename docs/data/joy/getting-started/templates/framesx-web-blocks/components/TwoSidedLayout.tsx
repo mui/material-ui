@@ -2,6 +2,7 @@ import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Container from '@mui/joy/Container';
+import { typographyClasses } from '@mui/joy/Typography';
 
 export default function TwoSidedLayout({
   children,
@@ -39,6 +40,9 @@ export default function TwoSidedLayout({
             minWidth: 420,
             alignItems: 'flex-start',
             textAlign: 'initial',
+          },
+          [`& .${typographyClasses.root}`]: {
+            textWrap: 'balance',
           },
         })}
       >
