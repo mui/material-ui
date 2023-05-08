@@ -8,7 +8,7 @@ import {
   fireEvent,
 } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Chip, { chipClasses as classes } from '@mui/joy/Chip';
+import Chip, { ChipClassKey, chipClasses as classes } from '@mui/joy/Chip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Chip />', () => {
@@ -72,11 +72,13 @@ describe('<Chip />', () => {
       expect(getByTestId('root')).to.have.class(classes.variantSolid);
     });
 
-    ['outlined', 'soft', 'solid'].forEach((variant) => {
+    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" variant={variant} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`variant${capitalize(variant)}` as ChipClassKey],
+        );
       });
     });
   });
@@ -88,11 +90,13 @@ describe('<Chip />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorPrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" color={color} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`color${capitalize(color)}` as ChipClassKey],
+        );
       });
     });
   });
@@ -103,11 +107,13 @@ describe('<Chip />', () => {
 
       expect(getByTestId('root')).to.have.class(classes.sizeMd);
     });
-    ['sm', 'md', 'lg'].forEach((size) => {
+    (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" size={size} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`size${capitalize(size)}` as ChipClassKey],
+        );
       });
     });
   });

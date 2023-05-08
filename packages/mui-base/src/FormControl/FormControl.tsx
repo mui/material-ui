@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';
 import {
@@ -75,12 +75,11 @@ function useUtilityClasses(ownerState: FormControlOwnerState) {
  * - [FormControl API](https://mui.com/base/react-form-control/components-api/#form-control)
  */
 const FormControl = React.forwardRef(function FormControl<
-  D extends React.ElementType = FormControlTypeMap['defaultComponent'],
->(props: FormControlProps<D>, ref: React.ForwardedRef<any>) {
+  RootComponentType extends React.ElementType,
+>(props: FormControlProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
   const {
     defaultValue,
     children,
-    component,
     disabled = false,
     error = false,
     onChange,
@@ -145,13 +144,13 @@ const FormControl = React.forwardRef(function FormControl<
     return children;
   };
 
-  const Root = component ?? slots.root ?? 'div';
+  const Root = slots.root ?? 'div';
   const rootProps: WithOptionalOwnerState<FormControlRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
       children: renderChildren(),
     },
     ownerState,
@@ -163,7 +162,7 @@ const FormControl = React.forwardRef(function FormControl<
       <Root {...rootProps} />
     </FormControlContext.Provider>
   );
-}) as OverridableComponent<FormControlTypeMap>;
+}) as PolymorphicComponent<FormControlTypeMap>;
 
 FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -177,11 +176,6 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * @ignore
    */

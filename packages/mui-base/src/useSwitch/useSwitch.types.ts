@@ -42,7 +42,7 @@ interface UseSwitchInputSlotOwnProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
   readOnly?: boolean;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<HTMLInputElement> | null;
   required?: boolean;
   type: React.HTMLInputTypeAttribute;
 }
@@ -72,6 +72,10 @@ export interface UseSwitchReturnValue {
   getInputProps: (
     externalProps?: React.HTMLAttributes<HTMLInputElement>,
   ) => UseSwitchInputSlotProps;
+  /**
+   * Ref to the input slot's DOM node.
+   */
+  inputRef: React.RefCallback<HTMLInputElement> | null;
   /**
    * If `true`, the component will be read only.
    */

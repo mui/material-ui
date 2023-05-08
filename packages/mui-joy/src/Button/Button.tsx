@@ -195,7 +195,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     disabled: disabled || loading,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (

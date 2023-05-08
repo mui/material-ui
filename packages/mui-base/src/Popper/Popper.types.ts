@@ -1,8 +1,7 @@
-import { OverrideProps } from '@mui/types';
-import { Instance, Options, OptionsGeneric, VirtualElement } from '@popperjs/core';
 import * as React from 'react';
+import { Instance, Options, OptionsGeneric, VirtualElement } from '@popperjs/core';
 import { PortalProps } from '../Portal';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
@@ -114,17 +113,17 @@ export interface PopperSlots {
 
 export type PopperOwnerState = PopperOwnProps;
 
-export interface PopperTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & PopperOwnProps;
-  defaultComponent: D;
+export interface PopperTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: PopperOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type PopperProps<
-  D extends React.ElementType = PopperTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<PopperTypeMap<P, D>, D> & {
-  component?: D;
-};
+  RootComponentType extends React.ElementType = PopperTypeMap['defaultComponent'],
+> = PolymorphicProps<PopperTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export type PopperTooltipOwnProps = Omit<
   PopperOwnProps,
@@ -133,17 +132,17 @@ export type PopperTooltipOwnProps = Omit<
   TransitionProps?: PopperTransitionProps;
 };
 
-export interface PopperTooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & PopperTooltipOwnProps;
-  defaultComponent: D;
+export interface PopperTooltipTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: PopperTooltipOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 export type PopperTooltipProps<
-  D extends React.ElementType = PopperTooltipTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<PopperTooltipTypeMap<P, D>, D> & {
-  component?: D;
-};
+  RootComponentType extends React.ElementType = PopperTooltipTypeMap['defaultComponent'],
+> = PolymorphicProps<PopperTooltipTypeMap<{}, RootComponentType>, RootComponentType>;
 
 export interface PopperRootSlotProps {
   className?: string;

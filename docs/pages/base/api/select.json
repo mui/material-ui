@@ -1,10 +1,10 @@
 {
   "props": {
     "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "component": { "type": { "name": "elementType" } },
     "defaultListboxOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "getOptionAsString": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
     "getSerializedValue": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
@@ -12,7 +12,6 @@
     "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
-    "optionStringifier": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
     "renderValue": { "type": { "name": "func" } },
     "slotProps": {
       "type": {

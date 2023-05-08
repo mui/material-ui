@@ -1,18 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import { getButtonUtilityClass } from './buttonClasses';
-import { ButtonProps, ButtonOwnProps, ButtonTypeMap, ButtonRootSlotProps } from './Button.types';
+import { ButtonProps, ButtonTypeMap, ButtonRootSlotProps, ButtonOwnerState } from './Button.types';
 import useButton from '../useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-
-export interface ButtonOwnerState extends ButtonOwnProps {
-  focusVisible: boolean;
-  active: boolean;
-}
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const { active, disabled, focusVisible } = ownerState;
@@ -34,22 +29,16 @@ const useUtilityClasses = (ownerState: ButtonOwnerState) => {
  *
  * - [Button API](https://mui.com/base/react-button/components-api/#button)
  */
-const Button = React.forwardRef(function Button<
-  BaseComponentType extends React.ElementType = ButtonTypeMap['defaultComponent'],
->(props: ButtonProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
+const Button = React.forwardRef(function Button<RootComponentType extends React.ElementType>(
+  props: ButtonProps<RootComponentType>,
+  forwardedRef: React.ForwardedRef<Element>,
+) {
   const {
     action,
     children,
-    component,
     disabled,
     focusableWhenDisabled = false,
-    onBlur,
-    onClick,
-    onFocus,
     onFocusVisible,
-    onKeyDown,
-    onKeyUp,
-    onMouseLeave,
     slotProps = {},
     slots = {},
     ...other
@@ -83,7 +72,7 @@ const Button = React.forwardRef(function Button<
   const classes = useUtilityClasses(ownerState);
 
   const defaultElement = other.href || other.to ? 'a' : 'button';
-  const Root: React.ElementType = component ?? slots.root ?? defaultElement;
+  const Root: React.ElementType = slots.root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
@@ -97,7 +86,7 @@ const Button = React.forwardRef(function Button<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-}) as OverridableComponent<ButtonTypeMap>;
+}) as PolymorphicComponent<ButtonTypeMap>;
 
 Button.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -120,11 +109,6 @@ Button.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
@@ -141,31 +125,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
   onFocusVisible: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseLeave: PropTypes.func,
   /**
    * The props used for each slot inside the Button.
    * @default {}

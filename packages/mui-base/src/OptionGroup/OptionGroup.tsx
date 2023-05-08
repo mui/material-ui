@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import composeClasses from '../composeClasses';
 import { getOptionGroupUtilityClass } from './optionGroupClasses';
 import {
@@ -35,11 +35,11 @@ function useUtilityClasses(disabled: boolean) {
  * - [OptionGroup API](https://mui.com/base/react-select/components-api/#option-group)
  */
 const OptionGroup = React.forwardRef(function OptionGroup<
-  BaseComponentType extends React.ElementType = OptionGroupTypeMap['defaultComponent'],
->(props: OptionGroupProps<BaseComponentType>, ref: React.ForwardedRef<HTMLLIElement>) {
-  const { component, disabled = false, slotProps = {}, slots = {}, ...other } = props;
+  RootComponentType extends React.ElementType,
+>(props: OptionGroupProps<RootComponentType>, forwardedRef: React.ForwardedRef<Element>) {
+  const { disabled = false, slotProps = {}, slots = {}, ...other } = props;
 
-  const Root = component || slots?.root || 'li';
+  const Root = slots?.root || 'li';
   const Label = slots?.label || 'span';
   const List = slots?.list || 'ul';
 
@@ -50,7 +50,7 @@ const OptionGroup = React.forwardRef(function OptionGroup<
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      ref,
+      ref: forwardedRef,
     },
     ownerState: props,
     className: classes.root,
@@ -76,7 +76,7 @@ const OptionGroup = React.forwardRef(function OptionGroup<
       <List {...listProps}>{props.children}</List>
     </Root>
   );
-}) as OverridableComponent<OptionGroupTypeMap>;
+}) as PolymorphicComponent<OptionGroupTypeMap>;
 
 OptionGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -87,11 +87,6 @@ OptionGroup.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * If `true` all the options in the group will be disabled.
    * @default false

@@ -1,7 +1,7 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { OverridableComponent, OverridableTypeMap, Simplify } from '@mui/types';
 import { PortalProps } from '../Portal';
-import { SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface ModalRootSlotPropsOverrides {}
 export interface ModalBackdropSlotPropsOverrides {}
@@ -122,9 +122,12 @@ export interface ModalSlots {
   backdrop?: React.ElementType;
 }
 
-export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & ModalOwnProps;
-  defaultComponent: D;
+export interface ModalTypeMap<
+  AdditionalProps = {},
+  RootComponentType extends React.ElementType = 'div',
+> {
+  props: ModalOwnProps & AdditionalProps;
+  defaultComponent: RootComponentType;
 }
 
 /**
@@ -138,25 +141,23 @@ export interface ExtendModalTypeMap<M extends OverridableTypeMap> {
 export type ExtendModal<M extends OverridableTypeMap> = OverridableComponent<ExtendModalTypeMap<M>>;
 
 export type ModalProps<
-  D extends React.ElementType = ModalTypeMap['defaultComponent'],
-  P = {
-    component?: React.ElementType;
-    focusVisible?: boolean;
-  },
-> = OverrideProps<ModalTypeMap<P, D>, D>;
+  RootComponentType extends React.ElementType = ModalTypeMap['defaultComponent'],
+> = PolymorphicProps<ModalTypeMap<{}, RootComponentType>, RootComponentType>;
 
-export type ModalOwnerState = ModalProps & {
-  closeAfterTransition: boolean;
-  disableAutoFocus: boolean;
-  disableEnforceFocus: boolean;
-  disableEscapeKeyDown: boolean;
-  disablePortal: boolean;
-  disableRestoreFocus: boolean;
-  disableScrollLock: boolean;
-  exited: boolean;
-  hideBackdrop: boolean;
-  keepMounted: boolean;
-};
+export type ModalOwnerState = Simplify<
+  ModalOwnProps & {
+    closeAfterTransition: boolean;
+    disableAutoFocus: boolean;
+    disableEnforceFocus: boolean;
+    disableEscapeKeyDown: boolean;
+    disablePortal: boolean;
+    disableRestoreFocus: boolean;
+    disableScrollLock: boolean;
+    exited: boolean;
+    hideBackdrop: boolean;
+    keepMounted: boolean;
+  }
+>;
 
 export interface ModalRootSlotProps {
   children: React.ReactNode;

@@ -569,7 +569,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, ref });
+  } = useSlider({ ...ownerState, rootRef: ref });
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;

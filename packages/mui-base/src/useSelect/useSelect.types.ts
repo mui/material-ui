@@ -57,14 +57,14 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**
    * Callback fired when an option is highlighted.
    */
   onHighlightChange?: (
-    e:
+    event:
       | React.MouseEvent<Element, MouseEvent>
       | React.KeyboardEvent<Element>
       | React.FocusEvent<Element, Element>
@@ -92,7 +92,7 @@ export interface UseSelectParameters<OptionValue, Multiple extends boolean = fal
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<OptionValue>) => string;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
@@ -131,6 +131,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * If `true`, the trigger button has a visible focus.
    */
   buttonFocusVisible: boolean;
+  /**
+   * Ref to the button slot DOM node.
+   */
+  buttonRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the select is disabled.
    */
@@ -171,6 +175,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * The value of the highlighted option.
    */
   highlightedOption: Value | null;
+  /**
+   * Ref to the listbox slot DOM node.
+   */
+  listboxRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the listbox is open.
    */
