@@ -94,7 +94,7 @@ export default function ExampleCollection() {
                 gap: 2,
                 bgcolor: '#fff',
                 backgroundImage: 'none',
-                borderRadius: 2,
+                borderRadius: 1,
                 border: '1px solid',
                 borderColor: 'grey.200',
                 boxShadow: 'none',
