@@ -1290,7 +1290,7 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should keep focus on  option not reset to top option when options updated', function test() {
+    it('should scoll selected option into view when multiple elements with role as listbox available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
