@@ -776,7 +776,7 @@ describe('<Select />', () => {
       expect(onChange.notCalled).to.equal(true);
     });
 
-    it('is called with after initial render with `null` when the controlled value is set to a nonexistent option', () => {
+    it('is called after initial render with `null` when the controlled value is set to a nonexistent option', () => {
       function TestComponent({ onChange }: { onChange: (value: string | null) => void }) {
         const [value, setValue] = React.useState<string | null>('42');
         const handleChange = (event: React.SyntheticEvent | null, newValue: string | null) => {
