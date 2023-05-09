@@ -14,6 +14,7 @@ import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import ToggleOn from '@mui/icons-material/ToggleOn';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
+import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
 import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
 import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
 import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
@@ -468,6 +469,7 @@ export default function BaseUIHero() {
             <Button
               variant="outlined"
               size="small"
+              startIcon={<LaunchRoundedIcon />}
               onClick={() =>
                 CodeSandbox.createReactApp({
                   product: 'base',
@@ -479,7 +481,7 @@ export default function BaseUIHero() {
                 }).openSandbox('/demo')
               }
             >
-              View code
+              View on CodeSandbox
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <SwitchUnstyled
@@ -503,7 +505,7 @@ export default function BaseUIHero() {
                 htmlFor="styled-switch"
                 sx={{ color: 'primary.main', fontSize: '0.75rem', fontWeight: 600 }}
               >
-                Styled
+                Toggle styles
               </Typography>
             </Box>
           </Box>
