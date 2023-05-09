@@ -40,6 +40,18 @@ function MyAutocomplete<
   );
 }
 
+<MyAutocomplete<string, false, false, false, 'span'>
+  options={['1', '2', '3']}
+  renderTags={(value, getTagProps, ownerState) => {
+    expectType<AutocompleteOwnerState<string, false, false, false, 'span'>, typeof ownerState>(
+      ownerState,
+    );
+
+    return '';
+  }}
+  renderInput={() => null}
+/>;
+
 // multiple prop can be assigned for components that extend AutocompleteProps
 <MyAutocomplete
   options={['1', '2', '3']}
