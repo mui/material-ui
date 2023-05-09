@@ -3,8 +3,8 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/menu/menu.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import MenuItemUnstyledApiJsonPageContent from '../../api/menu-item-unstyled.json';
-import MenuUnstyledApiJsonPageContent from '../../api/menu-unstyled.json';
+import MenuApiJsonPageContent from '../../api/menu.json';
+import MenuItemApiJsonPageContent from '../../api/menu-item.json';
 import useMenuApiJsonPageContent from '../../api/use-menu.json';
 import useMenuItemApiJsonPageContent from '../../api/use-menu-item.json';
 
@@ -25,19 +25,15 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const MenuItemUnstyledApiReq = require.context(
-    'docs/translations/api-docs/menu-item-unstyled',
-    false,
-    /menu-item-unstyled.*.json$/,
-  );
-  const MenuItemUnstyledApiDescriptions = mapApiPageTranslations(MenuItemUnstyledApiReq);
+  const MenuApiReq = require.context('docs/translations/api-docs-base/menu', false, /menu.*.json$/);
+  const MenuApiDescriptions = mapApiPageTranslations(MenuApiReq);
 
-  const MenuUnstyledApiReq = require.context(
-    'docs/translations/api-docs/menu-unstyled',
+  const MenuItemApiReq = require.context(
+    'docs/translations/api-docs-base/menu-item',
     false,
-    /menu-unstyled.*.json$/,
+    /menu-item.*.json$/,
   );
-  const MenuUnstyledApiDescriptions = mapApiPageTranslations(MenuUnstyledApiReq);
+  const MenuItemApiDescriptions = mapApiPageTranslations(MenuItemApiReq);
 
   const useMenuApiReq = require.context(
     'docs/translations/api-docs/use-menu',
@@ -55,13 +51,10 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: {
-        MenuItemUnstyled: MenuItemUnstyledApiDescriptions,
-        MenuUnstyled: MenuUnstyledApiDescriptions,
-      },
+      componentsApiDescriptions: { Menu: MenuApiDescriptions, MenuItem: MenuItemApiDescriptions },
       componentsApiPageContents: {
-        MenuItemUnstyled: MenuItemUnstyledApiJsonPageContent,
-        MenuUnstyled: MenuUnstyledApiJsonPageContent,
+        Menu: MenuApiJsonPageContent,
+        MenuItem: MenuItemApiJsonPageContent,
       },
       hooksApiDescriptions: {
         useMenu: useMenuApiDescriptions,

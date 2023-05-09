@@ -1,7 +1,43 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import Switch, { switchClasses } from '@mui/base/Switch';
 
+export default function UnstyledSwitches() {
+  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
+
+  return (
+    <div>
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        defaultChecked
+      />
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+      />
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        defaultChecked
+        disabled
+      />
+      <Switch
+        slots={{
+          root: Root,
+        }}
+        {...label}
+        disabled
+      />
+    </div>
+  );
+}
 const blue = {
   500: '#007FFF',
 };
@@ -22,12 +58,12 @@ const Root = styled('span')(
   margin: 10px;
   cursor: pointer;
 
-  &.${switchUnstyledClasses.disabled} {
+  &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  & .${switchUnstyledClasses.track} {
+  & .${switchClasses.track} {
     background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
     border-radius: 16px;
     display: block;
@@ -36,7 +72,7 @@ const Root = styled('span')(
     position: absolute;
   }
 
-  & .${switchUnstyledClasses.thumb} {
+  & .${switchClasses.thumb} {
     display: block;
     width: 16px;
     height: 16px;
@@ -51,24 +87,24 @@ const Root = styled('span')(
     transition-duration: 120ms;
   }
 
-  &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
+  &.${switchClasses.focusVisible} .${switchClasses.thumb} {
     background-color: ${grey[500]};
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  &.${switchUnstyledClasses.checked} {
-    .${switchUnstyledClasses.thumb} {
+  &.${switchClasses.checked} {
+    .${switchClasses.thumb} {
       left: 20px;
       top: 4px;
       background-color: #fff;
     }
 
-    .${switchUnstyledClasses.track} {
+    .${switchClasses.track} {
       background: ${blue[500]};
     }
   }
 
-  & .${switchUnstyledClasses.input} {
+  & .${switchClasses.input} {
     cursor: inherit;
     position: absolute;
     width: 100%;
@@ -81,16 +117,3 @@ const Root = styled('span')(
   }
   `,
 );
-
-export default function UnstyledSwitches() {
-  const label = { slotProps: { input: { 'aria-label': 'Demo switch' } } };
-
-  return (
-    <div>
-      <SwitchUnstyled component={Root} {...label} defaultChecked />
-      <SwitchUnstyled component={Root} {...label} />
-      <SwitchUnstyled component={Root} {...label} defaultChecked disabled />
-      <SwitchUnstyled component={Root} {...label} disabled />
-    </div>
-  );
-}

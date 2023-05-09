@@ -11,7 +11,7 @@ import {
 import composeClasses from '@mui/base/composeClasses';
 import Portal from '@mui/base/Portal';
 import FocusTrap from '@mui/base/FocusTrap';
-import { ModalManager } from '@mui/base/ModalUnstyled';
+import { ModalManager } from '@mui/base/Modal';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
@@ -88,7 +88,7 @@ const ModalBackdrop = styled('div', {
  *
  * - [Modal API](https://mui.com/joy-ui/api/modal/)
  */
-const Modal = React.forwardRef(function ModalUnstyled(inProps, ref) {
+const Modal = React.forwardRef(function ModalU(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyModal',

@@ -122,14 +122,6 @@ describe('<Avatar />', () => {
       expect(imgs.length).to.equal(1);
       expect(avatar).to.have.text('');
     });
-
-    it('should be able to add more props to the image', () => {
-      const onError = spy();
-      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
-      const img = container.querySelector('img');
-      fireEvent.error(img);
-      expect(onError.callCount).to.equal(1);
-    });
   });
 
   describe('font icon avatar', () => {

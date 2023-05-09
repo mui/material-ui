@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
 import useMenuItem from '@mui/base/useMenuItem';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Popper from '@mui/base/Popper';
 import { GlobalStyles } from '@mui/system';
 
 const Menu = React.forwardRef(function Menu(props, ref) {
@@ -31,7 +31,7 @@ Menu.propTypes = {
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
   const { children, onClick, ...other } = props;
 
-  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({ rootRef: ref });
 
   const classes = {
     'focus-visible': focusVisible,
@@ -114,7 +114,7 @@ export default function UseMenu() {
       >
         Commands
       </button>
-      <PopperUnstyled open={isOpen} anchorEl={buttonElement}>
+      <Popper open={isOpen} anchorEl={buttonElement}>
         <Menu
           onOpenChange={(open) => {
             setOpen(open);
@@ -126,7 +126,7 @@ export default function UseMenu() {
           <MenuItem onClick={createHandleMenuClick('Copy')}>Copy</MenuItem>
           <MenuItem onClick={createHandleMenuClick('Paste')}>Paste</MenuItem>
         </Menu>
-      </PopperUnstyled>
+      </Popper>
     </React.Fragment>
   );
 }
@@ -238,7 +238,7 @@ const styles = `
       border-color: ${grey[300]};
     }
   
-    &:focus {
+    &:focus-visible {
       border-color: ${blue[400]};
       outline: 3px solid ${blue[200]};
     }
