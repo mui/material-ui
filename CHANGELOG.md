@@ -1,5 +1,65 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.0
+
+<!-- generated comparing v5.12.3..master -->
+
+_May 10, 2023_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Base UI is now in beta - all planned breaking changes are now complete!
+- 🗺 We have a new [project roadmap](https://github.com/orgs/mui/projects/18/views/1) on GitHub where you can learn about what's coming next.
+- 🐛 Various bug fixes, 📚 documentation and 🧪 testing improvements
+
+### `@mui/material@5.13.0`
+
+- &#8203;<!-- 29 -->[AppBar] Fix component type (#37172) @sai6855
+- &#8203;<!-- 06 -->[Select] Simplify handleChange in SelectInput (#37040) @ulrichstark
+
+### `@mui/joy@5.0.0-alpha.79`
+
+- &#8203;<!-- 31 -->added display as grid (#37146) @wewakekumar
+- &#8203;<!-- 30 -->[Alery][joy] Turn JS test to TS test (#37077) @hbjORbj
+- &#8203;<!-- 28 -->[AspectRatio][joy] js test replaced with ts test (#37087) @PunitSoniME
+- &#8203;<!-- 27 -->[Badge][AvatarGroup][joy] js test replaced with ts test (#37089) @PunitSoniME
+- &#8203;<!-- 22 -->[Box][Card][MenuList][joy] Turn JS test to TS test (#37126) @uuxxx
+- &#8203;<!-- 10 -->[List][Menu][joy] Turn JS test to TS test (#37123) @uuxxx
+- &#8203;<!-- 09 -->[test][Joy] Remove duplicate Avatar test (#37201) @zignis
+- &#8203;<!-- 08 -->[test][joy] js test cases converted to ts (#37117) @PunitSoniME
+- &#8203;<!-- 21 -->[Button][joy] Convert Button test to typescript (#37181) @akash191095
+- &#8203;<!-- 20 -->[CardContent][CardCover][CardOverflow][Chip][ChipDelete][joy] js text case converted to ts (#37116) @PunitSoniME
+- &#8203;<!-- 19 -->[Radio][IconButton][Checkbox][Option][joy] Switch to TypeScript unit test (#37137) @DerTimonius
+
+### `@mui/base@5.0.0-beta.0`
+
+- &#8203;<!-- 26 -->[Select][base] Do not call onChange after initial render (#37141) @michaldudak
+- &#8203;<!-- 25 -->[Select][base] Rename the `optionStringifier` prop (#37118) @michaldudak
+- &#8203;<!-- 24 -->[typescript][base] Fix types of components callbacks parameters (#37169) @michaldudak
+- &#8203;<!-- 07 -->[Select], [TablePagination] Use more descriptive parameter names (#37064) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 17 -->[docs] Move outdated CSS prefixing docs (#36710) @kriskw1999
+- &#8203;<!-- 16 -->[docs] Improve "Example projects" page design (#37007) @danilo-leal
+- &#8203;<!-- 15 -->[docs] Redirect NoSsr, Portal and TextareaAutosize to Base UI API page (#37175) @ZeeshanTamboli
+- &#8203;<!-- 14 -->[docs] Demonstrate `TextField` customization using theme style overrides (#36805) @ZeeshanTamboli
+- &#8203;<!-- 13 -->[docs] Tweak the "Edit this page" button icon (#37142) @danilo-leal
+- &#8203;<!-- 12 -->[docs] Update links to the public roadmap (#36995) @mnajdova
+- &#8203;<!-- 11 -->[docs] Improve Multiselect demo styling (#37120) @michaldudak
+- &#8203;<!-- 05 -->[Stack] Fix import description @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 23 -->[blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
+- &#8203;<!-- 18 -->[core] Add VSCode extensions recommendations (#37166) @michaldudak
+- &#8203;<!-- 04 -->[test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[website] Update the active positions (#37075) @DanailH
+- &#8203;<!-- 02 -->[website] Add Romain to the About page (#37124) @romgrk
+- &#8203;<!-- 01 -->[website] make Toolpad alpha labels consistent (#37125) @gerdadesign
+
+All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
+
 ## 5.12.3
 
 <!-- generated comparing v5.12.2..master -->
