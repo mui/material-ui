@@ -204,26 +204,22 @@ export default function CoreStyling() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                bgcolor: 'background.paper',
                 overflow: 'auto',
               }}
             >
               <Box
                 ref={objectRef}
                 style={{ touchAction: dragging ? 'none' : 'auto' }}
-                sx={(theme) => ({
+                sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  p: 2,
+                  p: 5,
                   pr: 3,
                   minHeight: index === 2 ? 280 : 'initial',
-                  bgcolor: 'grey.100',
-                  ...theme.applyDarkStyles({
-                    bgcolor: 'primaryDark.700',
-                  }),
-                })}
+                  backgroundColor: 'transparent',
+                }}
               >
                 {index === 2 && (
                   <React.Fragment>
@@ -237,7 +233,7 @@ export default function CoreStyling() {
                           right: 0,
                           top: 0,
                           height: '100%',
-                          color: 'grey.600',
+                          color: 'grey.500',
                           '&:hover': {
                             color: 'grey.700',
                           },
@@ -274,8 +270,8 @@ export default function CoreStyling() {
                           typography: 'caption',
                           left: -30,
                           color: 'text.secondary',
-                          borderRadius: '2px',
-                          bgcolor: 'grey.300',
+                          borderRadius: '4px',
+                          bgcolor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
                             bgcolor: 'grey.800',
@@ -291,8 +287,8 @@ export default function CoreStyling() {
                           typography: 'caption',
                           left: 7,
                           color: 'text.secondary',
-                          borderRadius: '2px',
-                          bgcolor: 'grey.300',
+                          borderRadius: '4px',
+                          bgcolor: 'grey.200',
                           px: 0.5,
                           ...theme.applyDarkStyles({
                             bgcolor: 'grey.800',

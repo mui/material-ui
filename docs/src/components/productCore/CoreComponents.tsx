@@ -142,7 +142,7 @@ export default function CoreComponents() {
     [DEMOS[4]]: <InfoRounded fontSize="small" />,
   };
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
@@ -322,7 +322,7 @@ export default function CoreComponents() {
                 pt: 5,
               }}
             >
-              <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>
+              <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2, pt: 3 }}>
                 <HighlightedCode
                   copyButtonHidden
                   component={MarkdownElement}
@@ -331,15 +331,19 @@ export default function CoreComponents() {
                 />
               </Box>
               <Box
-                sx={{
-                  pl: 1.5,
+                sx={(theme) => ({
+                  pb: 3,
                   display: 'flex',
                   alignItems: 'center',
                   position: 'absolute',
-                  top: 15,
-                  left: 10,
+                  top: 12,
+                  left: 16,
+                  right: 0,
                   zIndex: 10,
-                }}
+                  background: `linear-gradient(to bottom, ${
+                    (theme.vars || theme).palette.common.black
+                  } 30%, transparent)`,
+                })}
               >
                 <StyledButton
                   size="small"
@@ -358,7 +362,7 @@ export default function CoreComponents() {
                   }}
                   sx={{ ml: 1 }}
                 >
-                  Custom Theme
+                  Custom theme
                 </StyledButton>
               </Box>
               <StylingInfo appeared={customized} />

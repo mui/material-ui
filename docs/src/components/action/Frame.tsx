@@ -10,8 +10,10 @@ const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(
         (theme) => ({
           position: 'relative',
           border: '1px solid',
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
           borderColor: 'grey.100',
           ...theme.applyDarkStyles({
+            background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
             borderColor: 'primaryDark.700',
           }),
         }),

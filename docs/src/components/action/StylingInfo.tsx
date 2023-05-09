@@ -42,7 +42,7 @@ export default function StylingInfo({
         px: 2,
         pt: 1,
         pb: 2,
-        bgcolor: ({ palette }) => alpha(palette.primaryDark[700], 0.5),
+        background: ({ palette }) => alpha(palette.primaryDark[600], 0.3),
         backdropFilter: 'blur(8px)',
         zIndex: 1,
         borderTop: '1px solid',
@@ -62,9 +62,9 @@ export default function StylingInfo({
           bottom: '100%',
           transform: hidden || !appeared ? 'translateY(-10px)' : 'translateY(50%)',
           opacity: appeared ? 1 : 0,
-          bgcolor: 'primaryDark.500',
+          bgcolor: 'primary.600',
           '&:hover, &.Mui-focused': {
-            bgcolor: 'primaryDark.600',
+            bgcolor: 'primary.700',
           },
         }}
       >

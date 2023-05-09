@@ -95,16 +95,7 @@ export default function BaseUIComponents() {
         </Grid>
         <Grid xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo
-              className="mui-default-theme"
-              sx={(theme) => ({
-                flexGrow: 1,
-                background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                ...theme.applyDarkStyles({
-                  background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
-                }),
-              })}
-            >
+            <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               {demo === 'Tabs' && <BaseTabsDemo styling={styling} />}
               {demo === 'Button' && <BaseButtonDemo styling={styling} />}
               {demo === 'Menu' && <BaseMenuDemo styling={styling} />}
