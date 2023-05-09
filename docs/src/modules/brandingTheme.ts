@@ -196,7 +196,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           contrastText: blueDark[600],
         }),
       },
-      divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
+      divider: mode === 'dark' ? alpha(blueDark[100], 0.08) : grey[100],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {

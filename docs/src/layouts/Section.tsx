@@ -4,7 +4,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 
 interface SelectionProps extends BoxProps {
-  bg?: 'white' | 'comfort' | 'dim' | 'gradient';
+  bg?: 'white' | 'comfort' | 'dim' | 'gradient' | 'transparent';
   /**
    * More spacing
    */
@@ -26,6 +26,10 @@ export default function Section(props: SelectionProps) {
     dim: {
       light: 'primaryDark.700',
       dark: 'primaryDark.700',
+    },
+    transparent: {
+      light: 'transparent',
+      dark: 'transparent',
     },
   };
 
@@ -51,7 +55,7 @@ export default function Section(props: SelectionProps) {
                   bgcolor: map[bg].dark,
                 }),
               }),
-          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 16 },
+          py: cozy ? { xs: 6, sm: 10, md: 12 } : { xs: 4, sm: 12, md: 18 },
           overflow: 'hidden',
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

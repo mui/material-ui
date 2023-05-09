@@ -43,22 +43,23 @@ export default function DiamondSponsors() {
   const spotIsAvailable = maxNumberOfDiamondSponsors > DIAMONDs.length;
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          component="h3"
-          variant="h5"
-          fontWeight="extraBold"
-          sx={(theme) => ({
-            color: 'primary.500',
-            ...theme.applyDarkStyles({
-              color: 'primary.300',
-            }),
-          })}
-        >
-          Diamond
-        </Typography>
-      </Box>
-      <Grid container spacing={{ xs: 2, md: 4 }}>
+      <Typography
+        component="h3"
+        variant="h6"
+        fontWeight="bold"
+        sx={(theme) => ({
+          mt: 4,
+          mb: 2,
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.primary[400]} 50%, ${
+            (theme.vars || theme).palette.primary[700]
+          } 100%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        })}
+      >
+        Diamond
+      </Typography>
+      <Grid container spacing={{ xs: 2, md: 3 }}>
         {DIAMONDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4}>
             <SponsorCard logoSize={64} inView={inView} item={item} />

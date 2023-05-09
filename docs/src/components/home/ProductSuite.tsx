@@ -2,7 +2,6 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -49,46 +48,44 @@ function ProductSuite() {
   });
   return (
     <Section bg="gradient" ref={ref}>
-      <Container>
-        <Grid container spacing={2}>
-          <Grid item md={6}>
-            <Box maxWidth={500}>
-              <SectionHeadline
-                overline="Products"
-                title={
-                  <Typography variant="h2" sx={{ my: 1 }}>
-                    Every component you need is <GradientText>ready for production</GradientText>
-                  </Typography>
-                }
-                description="Build at an accelerated pace without sacrificing flexibility or control."
-              />
-            </Box>
-            <Box sx={{ mt: 4 }} />
-            <ProductsSwitcher
-              inView={inView}
-              productIndex={productIndex}
-              setProductIndex={setProductIndex}
+      <Grid container spacing={2}>
+        <Grid item md={6}>
+          <Box maxWidth={500}>
+            <SectionHeadline
+              overline="Products"
+              title={
+                <Typography variant="h2" sx={{ my: 1 }}>
+                  Every component you need is <GradientText>ready for production</GradientText>
+                </Typography>
+              }
+              description="Build at an accelerated pace without sacrificing flexibility or control."
             />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
-          >
-            {inView && (
-              <React.Fragment>
-                <PrefetchStoreTemplateImages />
-                <PrefetchDesignKitImages />
-                {productIndex === 0 && <CoreShowcase />}
-                {productIndex === 1 && <AdvancedShowcase />}
-                {productIndex === 2 && <StoreTemplatesBanner />}
-                {productIndex === 3 && <DesignKits />}
-              </React.Fragment>
-            )}
-          </Grid>
+          </Box>
+          <Box sx={{ mt: 4 }} />
+          <ProductsSwitcher
+            inView={inView}
+            productIndex={productIndex}
+            setProductIndex={setProductIndex}
+          />
         </Grid>
-      </Container>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+        >
+          {inView && (
+            <React.Fragment>
+              <PrefetchStoreTemplateImages />
+              <PrefetchDesignKitImages />
+              {productIndex === 0 && <CoreShowcase />}
+              {productIndex === 1 && <AdvancedShowcase />}
+              {productIndex === 2 && <StoreTemplatesBanner />}
+              {productIndex === 3 && <DesignKits />}
+            </React.Fragment>
+          )}
+        </Grid>
+      </Grid>
     </Section>
   );
 }

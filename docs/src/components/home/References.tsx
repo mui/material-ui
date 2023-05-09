@@ -2,7 +2,7 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import Section from 'docs/src/layouts/Section';
 import Typography from '@mui/material/Typography';
 import {
   CORE_CUSTOMERS,
@@ -29,28 +29,25 @@ function References({
     threshold: 0,
   });
   return (
-    <Container ref={ref} sx={{ py: { xs: 4, sm: 6, md: 10 } }}>
+    <Section ref={ref}>
       <Box sx={{ minHeight: { xs: 236, sm: 144, md: 52 } }}>
         {inView && <CompaniesGrid data={companies} />}
       </Box>
       <Typography
         textAlign="center"
         variant="body2"
-        sx={(theme) => ({
-          color: 'grey.800',
-          ...theme.applyDarkStyles({
-            color: 'grey.500',
-          }),
-          minHeight: 42, // hard-coded to reduce CLS (layout shift)
+        color="text.secondary"
+        sx={{
           mt: 4,
           mx: 'auto',
           maxWidth: 400,
-        })}
+          minHeight: 42, // hard-coded to reduce CLS (layout shift)
+        }}
       >
         The world&apos;s best product teams trust MUI to deliver an unrivaled experience for both
         developers and users.
       </Typography>
-    </Container>
+    </Section>
   );
 }
 

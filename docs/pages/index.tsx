@@ -50,13 +50,16 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <References companies={CORE_CUSTOMERS} />
+        <Divider />
         <ProductSuite />
         <ValueProposition />
+        <Divider />
         <DesignSystemComponents />
         <Testimonials />
         <Sponsors />
         <Divider />
         <HeroEnd />
+        <Divider />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>

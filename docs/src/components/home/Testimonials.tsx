@@ -22,12 +22,12 @@ function Testimonials() {
       sx={(theme) => ({
         background: `linear-gradient(180deg, ${
           (theme.vars || theme).palette.primaryDark[700]
-        } 0%, ${alpha(theme.palette.primaryDark[600], 0.2)} 100%),
+        } 0%, ${alpha(theme.palette.primaryDark[700], 0.9)} 100%),
         ${(theme.vars || theme).palette.primaryDark[700]}
         `,
       })}
     >
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
+      <Container sx={{ py: { xs: 8, md: 12 } }}>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={6} sx={{ zIndex: 1, minHeight: { xs: 400, sm: 307, lg: 355 } }}>
             {inView && <UserFeedbacks />}

@@ -77,21 +77,22 @@ export default function GoldSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 1 }}>
-        <Typography
-          component="h3"
-          variant="h5"
-          fontWeight="extraBold"
-          sx={(theme) => ({
-            color: 'warning.700',
-            ...theme.applyDarkStyles({
-              color: 'warning.300',
-            }),
-          })}
-        >
-          Gold
-        </Typography>
-      </Box>
+      <Typography
+        component="h3"
+        variant="h6"
+        fontWeight="bold"
+        sx={(theme) => ({
+          mt: 4,
+          mb: 2,
+          background: `linear-gradient(90deg, ${(theme.vars || theme).palette.warning[400]} 50%, ${
+            (theme.vars || theme).palette.warning[700]
+          } 100%)`,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        })}
+      >
+        Gold
+      </Typography>
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
