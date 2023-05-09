@@ -1,6 +1,5 @@
 import { test as base, expect, Page } from '@playwright/test';
 import kebabCase from 'lodash/kebabCase';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
@@ -112,16 +111,23 @@ test.describe('Material docs', () => {
       await expect(firstAnchor).toHaveAttribute('href', '/material-ui/api/button/');
     });
 
-    test('should have correct API links when linking Base UI components', async ({ page }) => {
-      await page.goto('/material-ui/react-click-away-listener/');
+    ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'].forEach((component) => {
+      test(`should have correct API link when linking Base UI component ${component}`, async ({
+        page,
+      }) => {
+        await page.goto(`/material-ui/react-${kebabCase(component || '')}/`);
 
-      const anchors = page.locator('div > h2#api ~ ul a');
+        const anchors = page.locator('div > h2#api ~ ul a');
 
-      const firstAnchor = anchors.first();
-      const textContent = await firstAnchor.textContent();
+        const firstAnchor = anchors.first();
+        const textContent = await firstAnchor.textContent();
 
-      await expect(textContent).toEqual('<ClickAwayListener />');
-      await expect(firstAnchor).toHaveAttribute('href', '/base/api/click-away-listener/');
+        await expect(textContent).toEqual(`<${component} />`);
+        await expect(firstAnchor).toHaveAttribute(
+          'href',
+          `/base/api/${kebabCase(component || '')}/`,
+        );
+      });
     });
   });
 
