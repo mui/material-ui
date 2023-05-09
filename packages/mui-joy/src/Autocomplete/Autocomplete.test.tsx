@@ -18,6 +18,8 @@ import Autocomplete, {
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import Chip, { chipClasses } from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 import { ThemeProvider, styled } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
@@ -1288,6 +1290,40 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
+    it('should keep focus on  option not reset to top option when options updated', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      render(
+        <div>
+          <Autocomplete
+            defaultValue={'six'}
+            options={['one', 'two', 'three', 'four', 'five', 'six']}
+            slotProps={{
+              listbox: {
+                sx: {
+                  height: '40px',
+                },
+              },
+            }}
+            autoFocus
+          />
+          <Select defaultValue="1">
+            <Option value="1">Normal text</Option>
+            <Option value="2">Code text</Option>
+          </Select>
+        </div>,
+      );
+      const [textbox] = screen.getAllByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      const [, listbox] = screen.getAllByRole('listbox');
+      //  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      checkHighlightIs(listbox, 'six');
+      console.log(listbox.scrollTop);
+    });
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
