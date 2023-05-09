@@ -1,6 +1,6 @@
-# React Support Engineer - X (future role)
+# React Community Engineer - X (future role)
 
-<p class="description">You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.</p>
+<p class="description">You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.</p>
 
 ## Details of the Role
 
@@ -30,21 +30,21 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-We need a Support Engineer to solve friction points of users.
+We need a Community Engineer to solve friction points of users.
 We face challenges on multiple fronts:
 
 - As a result of this growth, we (will) have more users questions and feedback coming in than ever before.
 - The commercial version of the library is growing, but our community of developers is still small and has a reduced incentive to contribute compared to the community plan.
 - Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person in the company, for instance to improve the workflows and tooling.
-- The MUI X Premium plan will offer a technical advisor service, we need a Support Engineer to help deliver it.
+- The MUI X Premium plan will offer a technical advisor service, we need a Community Engineer to help deliver it.
 
 ## About the role
 
 ### Why this is interesting
 
 You will be a key member of the Developer Experience's team and will directly impact customer satisfaction and success.
-You will troubleshoot complex issues related to MUI.
-At MUI a Support Engineer is as considered as a Developer, it's a person that enjoys optimizing what already exists more than working on new shiny features.
+You will troubleshoot and depending on your bandwidth also fix complex issues related to MUI.
+At MUI a Community Engineer is considered a Developer, it's a person that enjoys optimizing what already exists but is also eager to help our users with features that are requested by the community.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
@@ -55,16 +55,16 @@ You will own the following responsibilities:
 - **Build product knowledge**. You will continually research and learn the current and future best practices of using MUI.
 - **Resolve users' issues**. You will solve these issues at two levels:
   - On the surface, you will answer developers on GitHub, Zendesk, Twitter, email, Slack.
-  - At the root, you will create/update the documentation, fix bugs in collaboration with the relevant developer, and more.
+  - At the root, you will create/update the documentation, fix bugs in collaboration with the relevant developer, implement community driven features and more.
 - **Provide feedback**. You will work alongside product managers to define and shape the product goals, roadmap, priorities, and strategy based on your frontline knowledge of customer needs.
 - **Operations**.
   - You will establish key support metrics and identify how best to measure them.
-  - You will establish workflow to reduce 'time to response' and 'time to fix' that can scale to multiple team members.
+  - You will establish a workflow to reduce 'time to response' and 'time to fix' that can scale to multiple team members.
   - You will identify where internal tooling might be developed or obtained to improve support efficiency.
 
 For the right candidate:
 
-- Working with the Leadership to construct and execute a hiring plan to grow the support team.
+- Working with the Leadership to construct and execute a hiring plan to grow the community team.
 
 Depending on the day, you'll:
 
@@ -99,7 +99,7 @@ We're looking for someone with strong front-end skills. More important than spec
   Perhaps you've created your company's design system, written a Babel plugin, or written complex React components.
   It would be great if you could address this in your cover letter!
 
-### What it would be nice if you had, but isn't required
+### What would be nice if you had, but isn't required
 
 - **You've contributed to a design system before**.
   You have worked on enterprise components in the past, maybe for internal use in your company.
