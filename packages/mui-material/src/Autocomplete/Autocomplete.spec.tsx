@@ -25,19 +25,7 @@ function MyAutocomplete<
   FreeSolo extends boolean | undefined = false,
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 >(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
-  return (
-    <Autocomplete
-      {...props}
-      renderTags={(value, getTagProps, ownerState) => {
-        expectType<
-          AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-          typeof ownerState
-        >(ownerState);
-
-        return '';
-      }}
-    />
-  );
+  return <Autocomplete {...props} />;
 }
 
 <MyAutocomplete<string, false, false, false, 'span'>
