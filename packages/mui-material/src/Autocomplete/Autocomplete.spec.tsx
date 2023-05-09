@@ -28,6 +28,7 @@ function MyAutocomplete<
   return <Autocomplete {...props} />;
 }
 
+// Test for ChipComponent generic type
 <MyAutocomplete<string, false, false, false, 'span'>
   options={['1', '2', '3']}
   renderTags={(value, getTagProps, ownerState) => {
