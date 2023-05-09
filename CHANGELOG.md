@@ -19,7 +19,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### `@mui/joy@5.0.0-alpha.79`
 
-- &#8203;<!-- 31 -->added display as grid (#37146) @wewakekumar
+- &#8203;<!-- 31 -->[Input][joy] Improve alignment on date fields (#37146) @wewakekumar
 - &#8203;<!-- 30 -->[Alery][joy] Turn JS test to TS test (#37077) @hbjORbj
 - &#8203;<!-- 28 -->[AspectRatio][joy] js test replaced with ts test (#37087) @PunitSoniME
 - &#8203;<!-- 27 -->[Badge][AvatarGroup][joy] js test replaced with ts test (#37089) @PunitSoniME
@@ -56,7 +56,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 04 -->[test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
 - &#8203;<!-- 03 -->[website] Update the active positions (#37075) @DanailH
 - &#8203;<!-- 02 -->[website] Add Romain to the About page (#37124) @romgrk
-- &#8203;<!-- 01 -->[website] make Toolpad alpha labels consistent (#37125) @gerdadesign
+- &#8203;<!-- 01 -->[website] Make Toolpad alpha labels consistent (#37125) @gerdadesign
 
 All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
 
