@@ -439,8 +439,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     if (inputRef.current && event.currentTarget === event.target) {
       inputRef.current.focus();
     }
-
-    if (onClick) {
+    if (onClick && !fcs.disabled) {
       onClick(event);
     }
   };

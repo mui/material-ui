@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-sel
 
 A select is a UI element that gives users a list of options to choose from.
 
-MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`. It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
+Base UI offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`. It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
 
 ### Features
 
@@ -28,7 +28,7 @@ MUI Base offers two components to replace the native HTML `<select>` tag: `Selec
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import SelectUnstyled from '@mui/base/SelectUnstyled';

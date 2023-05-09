@@ -15,7 +15,6 @@
       }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
     "resumeHideDuration": { "type": { "name": "number", "description": "number" } }
   },
   "returnValue": {
@@ -36,5 +35,5 @@
   },
   "name": "useSnackbar",
   "filename": "/packages/mui-base/src/useSnackbar/useSnackbar.ts",
-  "demos": "<ul><li><a href=\"/base/react-snackbar/#hook\">Unstyled Snackbar</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-snackbar/#hook\">Snackbar</a></li></ul>"
 }

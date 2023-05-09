@@ -333,7 +333,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      * }
      *
      * -------------------------------------------------------------------------------------------------
-     * 💡 This util should be used in an array if the styles contain psuedo classes or nested selectors:
+     * 💡 This util should be used in an array if the styles contain pseudo classes or nested selectors:
      *
      * ❌ There is a chance that the upper selectors could be overridden
      * {
@@ -609,16 +609,19 @@ export function getThemedComponents(): ThemeOptions {
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                backgroundColor: 'transparent',
+                backgroundColor: alpha(theme.palette.grey[50], 0.5),
                 color: (theme.vars || theme).palette.grey[900],
                 borderColor: (theme.vars || theme).palette.grey[200],
                 '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.grey[100],
                   color: (theme.vars || theme).palette.grey[900],
                 },
                 ...theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.grey[700], 0.3),
                   color: (theme.vars || theme).palette.grey[300],
                   borderColor: alpha(theme.palette.grey[100], 0.1),
                   '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.grey[700],
                     color: (theme.vars || theme).palette.grey[300],
                   },
                 }),
@@ -738,6 +741,30 @@ export function getThemedComponents(): ThemeOptions {
         defaultProps: {
           disableTouchRipple: true,
         },
+        styleOverrides: {
+          root: ({ theme }) => [
+            {
+              padding: theme.spacing(1),
+              marginBottom: theme.spacing(1),
+              marginRight: theme.spacing(1),
+              fontWeight: 600,
+              minHeight: 32,
+              minWidth: 0,
+              borderRadius: 12,
+              '&:hover': {
+                background: (theme.vars || theme).palette.grey[50],
+              },
+            },
+            theme.applyDarkStyles({
+              '&:hover': {
+                background: (theme.vars || theme).palette.primaryDark[700],
+              },
+              '&.Mui-selected': {
+                color: (theme.vars || theme).palette.primary[300],
+              },
+            }),
+          ],
+        },
       },
       MuiPaper: {
         styleOverrides: {
@@ -830,7 +857,7 @@ export function getThemedComponents(): ThemeOptions {
       MuiTooltip: {
         styleOverrides: {
           tooltip: {
-            padding: '5px 9px',
+            padding: '6px 12px',
           },
         },
       },

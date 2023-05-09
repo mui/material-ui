@@ -33,24 +33,24 @@
     "valueLabelFormat": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"
   },
   "classDescriptions": {
-    "root": { "description": "Class name applied to the root element." },
+    "root": { "description": "Styles applied to the root element." },
     "colorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "colorSecondary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "marked": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>marks</code> is provided with at least one label"
     },
     "vertical": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
@@ -64,28 +64,19 @@
       "nodeName": "the root",
       "conditions": "a thumb is being dragged"
     },
-    "rail": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the rail element"
-    },
-    "track": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the track element"
-    },
+    "rail": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the rail element" },
+    "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track element" },
     "trackFalse": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>track={false}</code>"
     },
     "trackInverted": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>track=\"inverted\"</code>"
     },
-    "thumb": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the thumb element"
-    },
+    "thumb": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the thumb element" },
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
@@ -96,59 +87,56 @@
       "nodeName": "the thumb element",
       "conditions": "keyboard focused"
     },
-    "mark": {
-      "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the mark element"
-    },
+    "mark": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the mark element" },
     "markActive": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the mark element",
       "conditions": "active (depending on the value)"
     },
     "markLabel": {
-      "description": "Class name applied to {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the mark label element"
     },
     "markLabelActive": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the mark label element",
       "conditions": "active (depending on the value)"
     },
     "sizeSmall": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "thumbColorPrimary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"primary\"</code>"
     },
     "thumbColorSecondary": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
     "thumbSizeSmall": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "valueLabel": {
-      "description": "Class name applied to {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the thumb label element"
     },
     "valueLabelOpen": {
-      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb label element",
       "conditions": "it's open"
     },
     "valueLabelCircle": {
-      "description": "Class name applied to {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the thumb label's circle element"
     },
     "valueLabelLabel": {
-      "description": "Class name applied to {{nodeName}}.",
+      "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the thumb label's label element"
     }
   }

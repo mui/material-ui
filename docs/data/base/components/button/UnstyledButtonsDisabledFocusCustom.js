@@ -1,7 +1,20 @@
 import * as React from 'react';
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import Button, { buttonClasses } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
+
+export default function UnstyledButtonsDisabledFocusCustom() {
+  return (
+    <Stack spacing={2}>
+      <CustomButton slots={{ root: 'span' }} disabled>
+        focusableWhenDisabled = false
+      </CustomButton>
+      <CustomButton slots={{ root: 'span' }} disabled focusableWhenDisabled>
+        focusableWhenDisabled = true
+      </CustomButton>
+    </Stack>
+  );
+}
 
 const blue = {
   500: '#007FFF',
@@ -9,7 +22,7 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButton = styled(ButtonUnstyled)`
+const CustomButton = styled(Button)`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
@@ -21,34 +34,21 @@ const CustomButton = styled(ButtonUnstyled)`
   cursor: pointer;
   border: none;
 
-  &:hover:not(.${buttonUnstyledClasses.disabled}) {
+  &:hover:not(.${buttonClasses.disabled}) {
     background-color: ${blue[600]};
   }
 
-  &.${buttonUnstyledClasses.active} {
+  &.${buttonClasses.active} {
     background-color: ${blue[700]};
   }
 
-  &.${buttonUnstyledClasses.focusVisible} {
+  &.${buttonClasses.focusVisible} {
     box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
 
-  &.${buttonUnstyledClasses.disabled} {
+  &.${buttonClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
   }
 `;
-
-export default function UnstyledButtonsDisabledFocusCustom() {
-  return (
-    <Stack spacing={2}>
-      <CustomButton component="span" disabled>
-        focusableWhenDisabled = false
-      </CustomButton>
-      <CustomButton component="span" disabled focusableWhenDisabled>
-        focusableWhenDisabled = true
-      </CustomButton>
-    </Stack>
-  );
-}

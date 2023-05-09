@@ -156,7 +156,7 @@ function NewStartScreen() {
   );
 }
 
-function DocSearcHit(props) {
+function DocSearchHit(props) {
   const { children, hit } = props;
 
   function displayTag(pathname) {
@@ -173,7 +173,7 @@ function DocSearcHit(props) {
       text = 'Joy UI';
     }
     if (pathname.startsWith('/base/')) {
-      text = 'MUI Base';
+      text = 'Base UI';
     }
     return <Chip label={text} size="small" variant="outlined" sx={{ mr: 1 }} />;
   }
@@ -196,7 +196,7 @@ function DocSearcHit(props) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-DocSearcHit.propTypes = {
+DocSearchHit.propTypes = {
   children: PropTypes.node,
   hit: PropTypes.object.isRequired,
 };
@@ -340,7 +340,7 @@ export default function AppSearch() {
                 };
               });
             }}
-            hitComponent={DocSearcHit}
+            hitComponent={DocSearchHit}
             initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
             onClose={onClose}
             navigator={keyboardNavigator}

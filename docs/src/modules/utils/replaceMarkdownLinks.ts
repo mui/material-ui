@@ -33,7 +33,7 @@ export const replaceComponentLinks = (markdown: string) => {
 export const replaceAPILinks = (markdown: string) => {
   return markdown
     .replace(/\(\/api\/data-grid([^)]*)\)/gm, '(/x/api/data-grid$1)')
-    .replace(/\(\/api\/([^"/]+-unstyled)([^)]*)\)/gm, '(/base/api/$1$2)')
+    .replace(/\(\/api\/([^"/]+)(-unstyled)([^)]*)\)/gm, '(/base/api/$1$3)')
     .replace(
       /\(\/api\/(focus-trap|click-away-listener|no-ssr|portal|textarea-autosize)([^)]*)\)/gm,
       '(/base/api/$1$2)',
@@ -44,11 +44,3 @@ export const replaceAPILinks = (markdown: string) => {
     )
     .replace(/\(\/api\/([^)]*)\)/gm, '(/material-ui/api/$1)');
 };
-
-const replaceStylesLinks = (markdown: string) => {
-  return markdown.replace(/\(\/styles\/([^)]*)\)/gm, '(/system/styles/$1)');
-};
-
-export default function replaceMarkdownLinks(markdown: string) {
-  return replaceStylesLinks(replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(markdown))));
-}

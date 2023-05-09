@@ -18,17 +18,17 @@ export interface LinkSlots {
    * The component that renders the root.
    * @default 'a'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface LinkPropsVariantOverrides {}
@@ -46,7 +46,6 @@ export type LinkSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
-    LinkSlotsAndSlotProps &
     Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
@@ -72,7 +71,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       level?: keyof TypographySystem | 'inherit';
       /**
-       * If `true`, the ::after psuedo element is added to cover the area of interaction.
+       * If `true`, the ::after pseudo element is added to cover the area of interaction.
        * The parent of the overlay Link should have `relative` CSS position.
        * @default false
        */
@@ -99,7 +98,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, LinkPropsVariantOverrides>;
-    };
+    } & LinkSlotsAndSlotProps;
   defaultComponent: D;
 }
 

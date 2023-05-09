@@ -139,7 +139,7 @@ const AutocompleteRoot = styled('div', {
       paddingRight: 52 + 4 + 9,
     },
     [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
+      padding: '7.5px 4px 7.5px 5px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
@@ -152,7 +152,7 @@ const AutocompleteRoot = styled('div', {
     paddingBottom: 6,
     paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
+      padding: '2.5px 4px 2.5px 8px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
@@ -472,6 +472,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
@@ -575,6 +577,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
+            onClick: (event) => {
+              if (event.target === event.currentTarget) {
+                handleInputMouseDown(event);
+              }
+            },
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
