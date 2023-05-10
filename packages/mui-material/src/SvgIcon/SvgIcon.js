@@ -38,7 +38,7 @@ const SvgIconRoot = styled('svg', {
   width: '1em',
   height: '1em',
   display: 'inline-block',
-  fill: 'currentColor',
+  fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
   transition: theme.transitions?.create?.('fill', {
     duration: theme.transitions?.duration?.shorter,
@@ -74,6 +74,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     ...other
   } = props;
 
+  const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
+
   const ownerState = {
     ...props,
     color,
@@ -82,6 +84,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
+    hasSvgAsChild,
   };
 
   const more = {};
@@ -103,9 +106,10 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       ref={ref}
       {...more}
       {...other}
+      {...(hasSvgAsChild && children.props)}
       ownerState={ownerState}
     >
-      {children}
+      {hasSvgAsChild ? children.props.children : children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </SvgIconRoot>
   );
