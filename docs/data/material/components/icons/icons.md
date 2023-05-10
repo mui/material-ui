@@ -99,15 +99,7 @@ This component extends the native `<svg>` element:
   To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - By default, the component inherits the current color. Optionally, you can apply one of the theme colors using the `color` prop.
 
-```jsx
-function HomeIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-    </SvgIcon>
-  );
-}
-```
+{{"demo": "SvgIconChildren.js"}}
 
 ### Color
 
