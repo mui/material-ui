@@ -139,7 +139,6 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
     outline: 0, // remove the native input outline
     padding: 0, // remove the native input padding
     flex: 1,
-    alignSelf: 'stretch',
     color: 'inherit',
     backgroundColor: 'transparent',
     fontFamily: 'inherit',

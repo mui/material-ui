@@ -1,17 +1,20 @@
 import * as React from 'react';
 import Autocomplete, {
+  AutocompleteOwnerState,
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { expectType } from '@mui/types';
+import { ChipTypeMap } from '@mui/material/Chip';
 
 interface MyAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
-> extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+> extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   myProp?: string;
 }
 
@@ -20,9 +23,23 @@ function MyAutocomplete<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
->(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) {
   return <Autocomplete {...props} />;
 }
+
+// Test for ChipComponent generic type
+<MyAutocomplete<string, false, false, false, 'span'>
+  options={['1', '2', '3']}
+  renderTags={(value, getTagProps, ownerState) => {
+    expectType<AutocompleteOwnerState<string, false, false, false, 'span'>, typeof ownerState>(
+      ownerState,
+    );
+
+    return '';
+  }}
+  renderInput={() => null}
+/>;
 
 // multiple prop can be assigned for components that extend AutocompleteProps
 <MyAutocomplete
