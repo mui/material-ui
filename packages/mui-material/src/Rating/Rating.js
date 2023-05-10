@@ -176,12 +176,12 @@ const RatingDecimal = styled('span', {
 }));
 
 function IconContainer(props) {
-  const { value, isActive, ...other } = props;
+  const { value, isFilled, ...other } = props;
   return <span {...other} />;
 }
 
 IconContainer.propTypes = {
-  isActive: PropTypes.bool.isRequired,
+  isFilled: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };
 
@@ -220,7 +220,7 @@ function RatingItem(props) {
     <RatingIcon
       as={IconContainerComponent}
       value={itemValue}
-      isActive={isFilled}
+      isFilled={isFilled}
       className={clsx(classes.icon, {
         [classes.iconEmpty]: !isFilled,
         [classes.iconFilled]: isFilled,

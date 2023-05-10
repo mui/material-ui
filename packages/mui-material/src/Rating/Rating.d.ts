@@ -6,7 +6,7 @@ import { RatingClasses } from './ratingClasses';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
-  isActive: boolean;
+  isFilled: boolean;
 }
 
 export interface RatingPropsSizeOverrides {}
@@ -62,7 +62,7 @@ export interface RatingProps
   /**
    * The component containing the icon.
    * @default function IconContainer(props) {
-   *   const { value, isActive, ...other } = props;
+   *   const { value, isFilled, ...other } = props;
    *   return <span {...other} />;
    * }
    */

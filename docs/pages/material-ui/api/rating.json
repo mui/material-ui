@@ -13,7 +13,7 @@
     "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
     "IconContainerComponent": {
       "type": { "name": "elementType" },
-      "default": "function IconContainer(props) {\n  const { value, isActive, ...other } = props;\n  return <span {...other} />;\n}"
+      "default": "function IconContainer(props) {\n  const { value, isFilled, ...other } = props;\n  return <span {...other} />;\n}"
     },
     "max": { "type": { "name": "number" }, "default": "5" },
     "name": { "type": { "name": "string" } },

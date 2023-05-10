@@ -42,7 +42,7 @@ const customIcons: {
 };
 
 function IconContainer(props: IconContainerProps) {
-  const { value, isActive, ...other } = props;
+  const { value, isFilled, ...other } = props;
   return <span {...other}>{customIcons[value].icon}</span>;
 }
 

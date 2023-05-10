@@ -38,12 +38,12 @@ const customIcons = {
 };
 
 function IconContainer(props) {
-  const { value, isActive, ...other } = props;
+  const { value, isFilled, ...other } = props;
   return <span {...other}>{customIcons[value].icon}</span>;
 }
 
 IconContainer.propTypes = {
-  isActive: PropTypes.bool.isRequired,
+  isFilled: PropTypes.bool.isRequired,
   value: PropTypes.number.isRequired,
 };
 
