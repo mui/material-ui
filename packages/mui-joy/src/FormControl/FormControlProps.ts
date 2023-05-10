@@ -10,7 +10,7 @@ export interface FormControlSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type FormControlSlotsAndSlotProps = CreateSlotsAndSlotProps<

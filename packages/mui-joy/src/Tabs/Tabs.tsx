@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabs from '@mui/base/useTabs';
-import { TabsContext } from '@mui/base/TabsUnstyled';
+import useTabs, { TabsProvider } from '@mui/base/useTabs';
 import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -78,12 +77,14 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     variant = 'plain',
     color: colorProp = 'neutral',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
   const defaultValue = defaultValueProp || (valueProp === undefined ? 0 : undefined);
-  const { tabsContextValue } = useTabs({ ...props, orientation, defaultValue });
+  const { contextValue } = useTabs({ ...props, orientation, defaultValue });
 
   const ownerState = {
     ...props,
@@ -95,11 +96,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     elementType: TabsRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     additionalProps: {
       ref,
       as: component,
@@ -111,9 +113,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
     <SlotRoot {...rootProps}>
-      <TabsContext.Provider value={tabsContextValue}>
+      <TabsProvider value={contextValue}>
         <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
-      </TabsContext.Provider>
+      </TabsProvider>
     </SlotRoot>
   );
 }) as OverridableComponent<TabsTypeMap>;
@@ -143,7 +145,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The direction of the text.
    * @default 'ltr'
@@ -172,6 +174,20 @@ Tabs.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -181,9 +197,9 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * If you don't want any selected `Tab`, you can set this prop to `null`.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'

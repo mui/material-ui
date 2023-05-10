@@ -9,6 +9,8 @@ githubLabel: 'component: CircularProgress'
 
 <p class="description">The Circular Progress component showcases the duration of a process or an indefinite wait period.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 A circular progress indicator, often referred to as a spinner, is a visual representation of the progress of an operation or task.
@@ -17,8 +19,6 @@ The Circular Progress component defaults to indeterminate, signifying an undefin
 Use [determinate](#determinate) mode to indicate how long a given operation will take.
 
 {{"demo": "CircularProgressUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 :::info
 The component's animations rely primarily on CSS to ensure that it functions even before JavaScript loads.

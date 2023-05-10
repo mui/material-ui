@@ -10,17 +10,17 @@ export interface ListItemSlots {
    * The component that renders the root.
    * @default 'li'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the start action.
    * @default 'div'
    */
-  startAction: React.ElementType;
+  startAction?: React.ElementType;
   /**
    * The component that renders the end action.
    * @default 'div'
    */
-  endAction: React.ElementType;
+  endAction?: React.ElementType;
 }
 
 export interface ListItemPropsVariantOverrides {}

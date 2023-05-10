@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useTabContext } from '@mui/base/TabsUnstyled';
 import useTabPanel from '@mui/base/useTabPanel';
+import { useTabsContext } from '@mui/base/Tabs';
 import { styled, useThemeProps } from '../styles';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
@@ -61,10 +61,18 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     name: 'JoyTabPanel',
   });
 
-  const { orientation } = useTabContext() || { orientation: 'horizontal' };
+  const { orientation } = useTabsContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
 
-  const { children, value = 0, component, size: sizeProp, ...other } = props;
+  const {
+    children,
+    value = 0,
+    component,
+    size: sizeProp,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const { hidden, getRootProps } = useTabPanel({ ...props, value });
 
@@ -78,12 +86,13 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     elementType: TabPanelRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
+    externalForwardedProps,
     additionalProps: {
       role: 'tabpanel',
       ref,
@@ -117,6 +126,20 @@ TabPanel.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

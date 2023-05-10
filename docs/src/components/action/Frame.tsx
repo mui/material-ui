@@ -49,12 +49,12 @@ function Frame(props: BoxProps) {
         display: 'flex',
         flexDirection: 'column',
         '& > div:first-of-type': {
-          borderTopLeftRadius: '10px',
-          borderTopRightRadius: '10px',
+          borderTopLeftRadius: '12px',
+          borderTopRightRadius: '12px',
         },
         '& > div:last-of-type': {
-          borderBottomLeftRadius: '10px',
-          borderBottomRightRadius: '10px',
+          borderBottomLeftRadius: '12px',
+          borderBottomRightRadius: '12px',
         },
         ...props.sx,
       }}
