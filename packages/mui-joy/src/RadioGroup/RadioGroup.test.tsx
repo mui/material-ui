@@ -172,7 +172,7 @@ describe('<RadioGroup />', () => {
 
     describe('with non-string values', () => {
       it('passes the value of the selected Radio as a string', () => {
-        function Test(props: RadioGroupProps & { values: Record<'id', number>[] }) {
+        function Test(props: RadioGroupProps & { values: Array<RadioGroupProps['value']> }) {
           const { values, ...other } = props;
           return (
             <RadioGroup {...other}>
