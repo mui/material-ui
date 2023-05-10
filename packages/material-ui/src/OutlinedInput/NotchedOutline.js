@@ -96,7 +96,6 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
           })}
         >
           {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
-          {/* eslint-disable-next-line react/no-danger */}
           {label ? <span>{label}</span> : <span>&#8203;</span>}
         </legend>
       </fieldset>
@@ -126,7 +125,6 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         }}
       >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
-        {/* eslint-disable-next-line react/no-danger */}
         <span>&#8203;</span>
       </legend>
     </fieldset>
