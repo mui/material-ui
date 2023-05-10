@@ -459,7 +459,7 @@ const teamMembers: Array<Profile> = [
     title: 'Developer Advocate',
     location: 'Daly City, CA, USA',
     locationCountry: 'us',
-    about: 'I enjoy collecitng sports card and practice jiu-jitsu',
+    about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
     github: 'richbustos',
   },
 ];
