@@ -12,8 +12,7 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();
 
-  type PathType = string | number | boolean | JSX.Element | React.ReactFragment | null | undefined;
-  let path: PathType;
+  let path: any;
 
   before(() => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
