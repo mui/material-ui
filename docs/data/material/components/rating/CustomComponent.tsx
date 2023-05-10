@@ -55,7 +55,7 @@ function IconContainer(props: IconContainerProps) {
   );
 }
 
-export default function RadioGroupRating() {
+export default function CustomComponent() {
   return (
     <StyledRating
       defaultValue={2}

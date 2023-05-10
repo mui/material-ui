@@ -56,7 +56,7 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function RadioGroupRating() {
+export default function CustomComponent() {
   return (
     <StyledRating
       defaultValue={2}
