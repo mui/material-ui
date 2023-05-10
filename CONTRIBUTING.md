@@ -185,8 +185,8 @@ and `yarn deduplicate` should fix most of the issues.
 #### ci/circleci: test_static
 
 Checks code format, and lints the repository. The log of the failed build should explain
-how to fix the issues. It runs also commands that generates and changes some files
-(like `yarn docs:api`), if the pipe fails you might need to run them locally and commit the changes.
+how to fix the issues. It also runs commands that generates or changes some files
+(like `yarn docs:api` for API documentation). If the CI job fails you might need to run them locally and commit the changes.
 
 #### ci/circleci: test_unit-1
 
