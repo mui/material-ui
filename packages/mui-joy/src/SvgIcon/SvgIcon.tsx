@@ -38,7 +38,7 @@ const SvgIconRoot = styled('svg', {
   width: '1em',
   height: '1em',
   display: 'inline-block',
-  fill: 'currentColor',
+  fill: ownerState.hasSvgAsChild ? undefined : 'currentColor',
   flexShrink: 0,
   ...(ownerState.fontSize &&
     ownerState.fontSize !== 'inherit' && {
@@ -85,6 +85,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     ...other
   } = props;
 
+  const hasSvgAsChild = React.isValidElement(children) && children.type === 'svg';
+
   const ownerState = {
     ...props,
     color,
@@ -93,6 +95,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
+    hasSvgAsChild,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -110,12 +113,13 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       ...(titleAccess && { role: 'img' }),
       ...(!titleAccess && { 'aria-hidden': true }),
       ...(!inheritViewBox && { viewBox }),
+      ...(hasSvgAsChild && (children.props as Omit<React.SVGProps<SVGSVGElement>, 'ref'>)),
     },
   });
 
   return (
     <SlotRoot {...rootProps}>
-      {children}
+      {hasSvgAsChild ? (children.props as React.SVGProps<SVGSVGElement>).children : children}
       {titleAccess ? <title>{titleAccess}</title> : null}
     </SlotRoot>
   );

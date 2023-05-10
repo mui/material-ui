@@ -54,6 +54,21 @@ describe('<SvgIcon />', () => {
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
   });
 
+  it('renders children of provided svg and merge the props', () => {
+    const { container } = render(
+      <SvgIcon>
+        <svg viewBox="0 0 48 48" strokeWidth="1.5">
+          {path}
+        </svg>
+      </SvgIcon>,
+    );
+
+    expect(container.firstChild).to.have.tagName('svg');
+    expect(container.firstChild.firstChild).to.have.tagName('path');
+    expect(container.firstChild).to.have.attribute('viewBox', '0 0 48 48');
+    expect(container.firstChild).to.have.attribute('stroke-width', '1.5');
+  });
+
   describe('prop: titleAccess', () => {
     it('should be able to make an icon accessible', () => {
       const { container, queryByText } = render(
