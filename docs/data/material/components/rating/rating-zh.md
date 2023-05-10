@@ -40,6 +40,12 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 {{"demo": "CustomizedRating.js"}}
 
+## Custom components
+
+Each rating component can be customized with the `IconContainerComponent` prop.
+
+{{"demo": "CustomComponent.js"}}
+
 ## Radio group
 
 评分是通过一个单选框组实现的，设置 `highlightSelectedOnly` 以恢复默认状态。

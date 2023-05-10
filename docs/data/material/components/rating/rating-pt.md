@@ -40,6 +40,12 @@ Aqui estão alguns exemplos de customização do componente. You can learn more 
 
 {{"demo": "CustomizedRating.js"}}
 
+## Custom components
+
+Each rating component can be customized with the `IconContainerComponent` prop.
+
+{{"demo": "CustomComponent.js"}}
+
 ## Radio group
 
 The rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior.
