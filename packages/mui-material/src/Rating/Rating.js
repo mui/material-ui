@@ -674,7 +674,7 @@ Rating.propTypes /* remove-proptypes */ = {
   /**
    * The component containing the icon.
    * @default function IconContainer(props) {
-   *   const { value, isActive, ...other } = props;
+   *   const { value, isFilled, ...other } = props;
    *   return <span {...other} />;
    * }
    */
