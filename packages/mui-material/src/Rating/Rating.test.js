@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import { act, describeConformance, createRenderer, fireEvent, screen } from 'test/utils';
-import Rating, { ratingClasses as classes } from '@mui/material/Rating';
+import Rating, { IconContainerProps, ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 describe('<Rating />', () => {
@@ -165,6 +165,46 @@ describe('<Rating />', () => {
     expect(arbitraryRadio.name).not.to.equal('');
     // all input[type="radio"] have the same name
     expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
+  });
+
+  it('should use `isFilled` prop', () => {
+    const customIcons = {
+      1: {
+        img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+        alt: 'Breakfast',
+      },
+      2: {
+        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+        alt: 'Burger',
+      },
+    };
+
+    function IconContainer(props) {
+      const { value, isFilled, ...other } = props;
+      return (
+        <span {...other}>
+          <img
+            src={customIcons[value].img}
+            style={{ objectFit: 'cover', filter: isFilled ? 'none' : 'grayscale(1)' }}
+            width={40}
+            height={40}
+            alt={customIcons[value].alt}
+          />
+        </span>
+      );
+    }
+
+    const { container } = render(
+      <Rating defaultValue={1} IconContainerComponent={IconContainer} />,
+    );
+
+    expect(container.querySelector(`img[alt="${customIcons[0].alt}"]`)).toHaveComputedStyle({
+      filter: 'none',
+    });
+
+    expect(container.querySelector(`img[alt="${customIcons[1].alt}"]`)).toHaveComputedStyle({
+      filter: 'grayscale(1)',
+    });
   });
 
   describe('prop: readOnly', () => {
