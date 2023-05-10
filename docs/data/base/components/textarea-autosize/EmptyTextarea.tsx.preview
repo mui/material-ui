@@ -1,5 +1,1 @@
-<TextareaAutosize
-  aria-label="empty textarea"
-  placeholder="Empty"
-  style={{ width: 200 }}
-/>
+<StyledTextarea aria-label="empty textarea" placeholder="Empty" />
