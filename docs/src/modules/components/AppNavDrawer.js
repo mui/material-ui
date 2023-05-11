@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { styled, alpha } from '@mui/material/styles';
@@ -296,7 +295,6 @@ const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigato
 export default function AppNavDrawer(props) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePageParents, pages, productIdentifier } = React.useContext(PageContext);
-  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
@@ -425,7 +423,7 @@ export default function AppNavDrawer(props) {
         {navItems}
       </React.Fragment>
     );
-  }, [router.asPath, onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl]);
 
   return (
     <nav className={className} aria-label={t('mainNavigation')}>
