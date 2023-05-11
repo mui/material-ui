@@ -12,7 +12,7 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
   - [Trying changes on the playground](#trying-changes-on-the-playground)
   - [How to increase the chance of being accepted?](#how-to-increase-the-chance-of-being-accepted)
   - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
-  - [Updating the component api documentation](#updating-the-component-api-documentation)
+  - [Updating the component API documentation](#updating-the-component-api-documentation)
   - [Coding style](#coding-style)
 - [How to add a new demo in the documentation](#how-to-add-a-new-demo-in-the-documentation)
 - [How can I use a change that wasn't released yet?](#how-can-i-use-a-change-that-wasnt-released-yet)
