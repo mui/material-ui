@@ -20,6 +20,16 @@ The autocomplete component is an enhanced text input that shows a list of sugges
 
 {{"demo": "AutocompleteIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
+:::warning
+Material UI and Joy UI have Autocomplete components that are built using the useAutocomplete hook, with many features that are not demo-ed here yet.
+
+To learn more about implementing a custom Autocomplete, you can explore the useAutocomplete API [docs](/base/react-autocomplete/hooks-api/), or reference the Material UI and Joy UI implementations:
+
+- [Material UI Autocomplete](/material-ui/react-autocomplete/)
+- [Joy UI Autocomplete](/joy-ui/react-autocomplete/)
+
+:::
+
 ## Usage
 
 After [installation](/base/getting-started/quickstart/#installation), you can start building with this hook as follows:
