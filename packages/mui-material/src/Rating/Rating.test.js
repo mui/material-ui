@@ -168,43 +168,16 @@ describe('<Rating />', () => {
   });
 
   it('should use `isFilled` prop', () => {
-    const customIcons = {
-      1: {
-        img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-        alt: 'Breakfast',
-      },
-      2: {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        alt: 'Burger',
-      },
-    };
-
     function IconContainer(props) {
-      const { value, isFilled, ...other } = props;
-      return (
-        <span {...other}>
-          <img
-            src={customIcons[value].img}
-            style={{ objectFit: 'cover', filter: isFilled ? 'none' : 'grayscale(1)' }}
-            width={40}
-            height={40}
-            alt={customIcons[value].alt}
-          />
-        </span>
-      );
+      const { isFilled } = props;
+
+      return <div data-testid={isFilled ? 'isFilled' : 'notFilled'}> </div>;
     }
 
-    const { container } = render(
-      <Rating defaultValue={1} IconContainerComponent={IconContainer} />,
-    );
+    render(<Rating defaultValue={1} IconContainerComponent={IconContainer} max={2} />);
 
-    expect(container.querySelector(`img[alt="${customIcons[0].alt}"]`)).toHaveComputedStyle({
-      filter: 'none',
-    });
-
-    expect(container.querySelector(`img[alt="${customIcons[1].alt}"]`)).toHaveComputedStyle({
-      filter: 'grayscale(1)',
-    });
+    expect(screen.getByTestId('isFilled')).not.to.equal(null);
+    expect(screen.getByTestId('notFilled')).not.to.equal(null);
   });
 
   describe('prop: readOnly', () => {
