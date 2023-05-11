@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Alert, { alertClasses as classes } from '@mui/joy/Alert';
+import Alert, { AlertClassKey, alertClasses as classes } from '@mui/joy/Alert';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Alert />', () => {
@@ -35,11 +35,13 @@ describe('<Alert />', () => {
       expect(getByRole('alert')).to.have.class(classes.variantSoft);
     });
 
-    ['outlined', 'soft', 'solid'].forEach((variant) => {
+    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<Alert variant={variant} />);
 
-        expect(getByRole('alert')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByRole('alert')).to.have.class(
+          classes[`variant${capitalize(variant)}` as AlertClassKey],
+        );
       });
     });
   });
@@ -51,11 +53,13 @@ describe('<Alert />', () => {
       expect(getByRole('alert')).to.have.class(classes.colorPrimary);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Alert color={color} />);
 
-        expect(getByRole('alert')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByRole('alert')).to.have.class(
+          classes[`color${capitalize(color)}` as AlertClassKey],
+        );
       });
     });
   });
@@ -67,11 +71,13 @@ describe('<Alert />', () => {
       expect(getByRole('alert')).to.have.class(classes.sizeMd);
     });
 
-    ['sm', 'md', 'lg'].forEach((size) => {
+    (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
         const { getByRole } = render(<Alert size={size} />);
 
-        expect(getByRole('alert')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByRole('alert')).to.have.class(
+          classes[`size${capitalize(size)}` as AlertClassKey],
+        );
       });
     });
   });

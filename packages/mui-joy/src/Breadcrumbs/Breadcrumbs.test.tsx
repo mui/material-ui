@@ -2,7 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/joy/Breadcrumbs';
+import Breadcrumbs, {
+  BreadcrumbsClassKey,
+  breadcrumbsClasses as classes,
+} from '@mui/joy/Breadcrumbs';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Breadcrumbs />', () => {
@@ -30,11 +33,13 @@ describe('<Breadcrumbs />', () => {
 
       expect(getByRole('navigation')).to.have.class(classes.sizeMd);
     });
-    ['sm', 'md', 'lg'].forEach((size) => {
+    (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
         const { getByRole } = render(<Breadcrumbs size={size} />);
 
-        expect(getByRole('navigation')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByRole('navigation')).to.have.class(
+          classes[`size${capitalize(size)}` as BreadcrumbsClassKey],
+        );
       });
     });
   });

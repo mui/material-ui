@@ -67,12 +67,12 @@ describe('<Switch />', () => {
   });
 
   it('should render the track as the first child of the Switch', () => {
-    const {
-      container: { firstChild: root },
-    } = render(<Switch />);
+    const { container } = render(<Switch />);
 
-    expect(root.childNodes[0]).to.have.property('tagName', 'SPAN');
-    expect(root.childNodes[0]).to.have.class(classes.track);
+    const switchComponent = container.firstChild!;
+
+    expect(switchComponent.childNodes[0]).to.have.property('tagName', 'SPAN');
+    expect(switchComponent.childNodes[0]).to.have.class(classes.track);
   });
 
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {

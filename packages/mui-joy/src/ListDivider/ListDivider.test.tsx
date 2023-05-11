@@ -84,7 +84,7 @@ describe('Joy <ListDivider />', () => {
         </List>,
       );
       expect(screen.queryByRole('separator')).to.equal(null);
-      expect(container.firstChild.firstChild).to.have.tagName('div');
+      expect(container.firstChild?.firstChild).to.have.tagName('div');
     });
   });
 });
