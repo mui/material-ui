@@ -1,3 +1,5 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';

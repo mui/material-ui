@@ -1,3 +1,5 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import { useTheme as md2UseTheme } from '@mui/material/styles';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';

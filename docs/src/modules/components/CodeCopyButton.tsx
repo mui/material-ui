@@ -1,3 +1,5 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import useClipboardCopy from 'docs/src/modules/utils/useClipboardCopy';
 
