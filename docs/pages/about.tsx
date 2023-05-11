@@ -453,6 +453,15 @@ const teamMembers: Array<Profile> = [
     about: 'Open-source tinkerer',
     github: 'romgrk',
   },
+  {
+    src: '/static/branding/about/rich.png',
+    name: 'Rich Bustos',
+    title: 'Developer Advocate',
+    location: 'Daly City, CA, USA',
+    locationCountry: 'us',
+    about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
+    github: 'richbustos',
+  },
 ];
 
 const contributors = [
