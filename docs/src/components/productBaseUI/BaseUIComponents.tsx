@@ -29,19 +29,16 @@ import BaseSliderDemo from './components/BaseSliderDemo';
 
 const StyledButton = materialStyled(Button)(({ theme }) => ({
   borderRadius: 40,
-  padding: theme.spacing('1.5px', 1),
+  padding: theme.spacing('2px', 1),
   fontSize: theme.typography.pxToRem(12),
   lineHeight: 18 / 12,
   '&.MuiButton-text': {
     color: theme.palette.grey[400],
-    '&:hover': {
-      backgroundColor: theme.palette.primaryDark[600],
-    },
   },
   '&.MuiButton-outlined': {
     color: '#fff',
-    backgroundColor: theme.palette.primary[900],
-    borderColor: theme.palette.primary[600],
+    backgroundColor: theme.palette.primary[700],
+    borderColor: theme.palette.primary[500],
     '&:hover': {
       backgroundColor: theme.palette.primary[700],
     },
