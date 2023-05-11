@@ -16,7 +16,6 @@ import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
 import InputRoundedIcon from '@mui/icons-material/InputRounded';
 import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
 import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
-import LinearScaleRoundedIcon from '@mui/icons-material/LinearScaleRounded';
 import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
 
@@ -154,10 +153,6 @@ function Demo({ label }: { label: string }) {
             <OptionUnstyled value="4">
               <ToggleOn /> Switch
             </OptionUnstyled>
-            <OptionUnstyled value="5">
-              <LinearScaleRoundedIcon />
-              Slider
-            </OptionUnstyled>
           </ul>
         </li>
         <li role="none">
@@ -167,7 +162,6 @@ function Demo({ label }: { label: string }) {
             <OptionUnstyled value="7">Form control</OptionUnstyled>
             <OptionUnstyled value="8">Modal</OptionUnstyled>
             <OptionUnstyled value="9">No SSR</OptionUnstyled>
-            <OptionUnstyled value="10">Textarea autosize</OptionUnstyled>
           </ul>
         </li>
       </SelectUnstyled>
