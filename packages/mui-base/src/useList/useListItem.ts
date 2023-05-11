@@ -70,7 +70,7 @@ export default function useListItem<ItemValue>(
         return;
       }
 
-      if (!(event.target instanceof HTMLAnchorElement)) {
+      if (event.target.tagName.toLowerCase() !== 'a') {
         event.preventDefault();
       }
 
