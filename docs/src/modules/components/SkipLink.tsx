@@ -6,7 +6,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 const StyledLink = styled(MuiLink)(({ theme }) => ({
   position: 'fixed',
   padding: theme.spacing(1),
-  background: theme.palette.background.paper,
+  background: (theme.vars || theme).palette.background.paper,
   transition: theme.transitions.create('top', {
     easing: theme.transitions.easing.easeIn,
     duration: theme.transitions.duration.leavingScreen,

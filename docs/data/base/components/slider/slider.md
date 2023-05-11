@@ -1,37 +1,40 @@
 ---
 product: base
-title: Unstyled React Slider component and hook
-components: SliderUnstyled
+title: React Slider component and hook
+components: Slider
+hooks: useSlider
 githubLabel: 'component: slider'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
 ---
 
-# Unstyled Slider
+# Slider
 
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 </p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
-The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
+The Slider component lets users make selections from a range of values along a horizontal or vertical bar.
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledSliderIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import Slider from '@mui/base/Slider';
 
 export default function MyApp() {
-  return <SliderUnstyled />;
+  return <Slider />;
 }
 ```
 
@@ -44,7 +47,7 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 ### Anatomy
 
-The `SliderUnstyled` component is composed of a root `<span>` that houses several interior `<span>` elements:
+The Slider component is composed of a root `<span>` that houses several interior `<span>` elements:
 
 - rail: the full length of the slider
 - track: the section of the slider that's active
@@ -95,43 +98,47 @@ The `SliderUnstyled` component is composed of a root `<span>` that houses severa
 Both the `mark` and `markLabel` slots have corresponding `*Active` classes that are applied conditionally.
 :::
 
-### Slot props
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Slider slots={{ root: 'div', thumb: 'div' }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<SliderUnstyled component="div" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
-
-```jsx
-<SliderUnstyled slots={{ root: 'div', thumb: 'div' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-rail` to the rail slot:
 
 ```jsx
-<SliderUnstyled slotProps={{ rail: { className: 'my-rail' } }} />
+<Slider slotProps={{ rail: { className: 'my-rail' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Slider<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Slider<'input'> slots={{ root: 'input' }} autoFocus={true} />
 ```
 
 ## Hook
 
 ```js
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider from '@mui/base/useSlider';
 ```
 
-The `useSlider` hook lets you apply the functionality of `SliderUnstyled` to a fully custom component.
+The `useSlider` hook lets you apply the functionality of a slider to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -174,9 +181,21 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 {{"demo": "RangeSlider.js"}}
 
+### Value label
+
+A label for the value can be rendered around the thumb by using the optional `slots` prop with the `valueLabel` slot. These are the typical use cases for showing the value label:
+
+- always
+- only when hovering over the thumb (using CSS)
+- while interacting with the thumb (hovering or dragging)
+
+The following demo shows how to render the value label when the mouse is hovering over the thumb:
+
+{{"demo": "LabeledValuesSlider.js"}}
+
 ## Accessibility
 
-See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/) for complete details on accessibility best practices.
+See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/) for complete details on accessibility best practices.
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:

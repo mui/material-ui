@@ -1,56 +1,56 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface LinearProgressClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `determinate` is true. */
+  /** Class name applied to the root element if `determinate` is true. */
   determinate: string;
-  /** Styles applied to the `progress` element. */
-  progress: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `size="sm"`. */
+  /** Class name applied to the root element when color inversion is triggered. */
+  colorContext: string;
+  /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;
-  /** Styles applied to the root element if `size="md"`. */
+  /** Class name applied to the root element if `size="md"`. */
   sizeMd: string;
-  /** Styles applied to the root element if `size="lg"`. */
+  /** Class name applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="plain"`. */
+  /** Class name applied to the root element if `variant="plain"`. */
   variantPlain: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
+  /** Class name applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
+  /** Class name applied to the root element if `variant="soft"`. */
   variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
+  /** Class name applied to the root element if `variant="solid"`. */
   variantSolid: string;
 }
 
 export type LinearProgressClassKey = keyof LinearProgressClasses;
 
 export function getLinearProgressUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyLinearProgress', slot);
+  return generateUtilityClass('MuiLinearProgress', slot);
 }
 
-const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('JoyLinearProgress', [
+const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('MuiLinearProgress', [
   'root',
   'determinate',
-  'progress',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
   'colorInfo',
   'colorSuccess',
   'colorWarning',
+  'colorContext',
   'sizeSm',
   'sizeMd',
   'sizeLg',

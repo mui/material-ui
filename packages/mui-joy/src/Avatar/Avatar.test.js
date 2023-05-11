@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, fireEvent } from 'test/utils';
+import {
+  createRenderer,
+  describeConformance,
+  describeJoyColorInversion,
+  fireEvent,
+} from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { avatarClasses as classes } from '@mui/joy/Avatar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -21,8 +26,14 @@ describe('<Avatar />', () => {
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
+    slots: {
+      root: { expectedClassName: classes.root },
+      fallback: { expectedClassName: classes.fallback },
+    },
     skip: ['classesRoot', 'componentsProp'],
   }));
+
+  describeJoyColorInversion(<Avatar />, { muiName: 'JoyAvatar', classes });
 
   describe('prop: variant', () => {
     it('soft by default', () => {
@@ -96,9 +107,7 @@ describe('<Avatar />', () => {
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(
-        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
-      );
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -112,16 +121,6 @@ describe('<Avatar />', () => {
       const imgs = container.querySelectorAll('img');
       expect(imgs.length).to.equal(1);
       expect(avatar).to.have.text('');
-    });
-
-    it('should be able to add more props to the image', () => {
-      const onError = spy();
-      const { container } = render(
-        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
-      );
-      const img = container.querySelector('img');
-      fireEvent.error(img);
-      expect(onError.callCount).to.equal(1);
     });
   });
 

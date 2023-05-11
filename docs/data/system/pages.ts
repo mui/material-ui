@@ -1,9 +1,10 @@
-import pagesApi from './pagesApi';
+import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import pagesApi from 'docs/data/system/pagesApi';
 
 const pages = [
   {
     pathname: '/system/getting-started',
-    icon: 'DescriptionIcon',
+    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/system/getting-started/overview' },
       { pathname: '/system/getting-started/installation' },
@@ -14,22 +15,7 @@ const pages = [
   },
   {
     pathname: '/style-utilities',
-    scopePathnames: [
-      '/system/properties',
-      '/system/borders',
-      '/system/display',
-      '/system/flexbox',
-      '/system/grid',
-      '/system/palette',
-      '/system/positions',
-      '/system/shadows',
-      '/system/sizing',
-      '/system/spacing',
-      '/system/screen-readers',
-      '/system/typography',
-      '/system/styled',
-    ],
-    icon: 'BuildIcon',
+    icon: standardNavIcons.BuildIcon,
     children: [
       { pathname: '/system/properties' },
       { pathname: '/system/borders' },
@@ -49,7 +35,7 @@ const pages = [
   {
     pathname: '/system/react-',
     title: 'Components',
-    icon: 'ToggleOnIcon',
+    icon: standardNavIcons.ToggleOnIcon,
     children: [
       { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
@@ -58,20 +44,31 @@ const pages = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/system/api',
-    icon: 'CodeIcon',
+    icon: standardNavIcons.CodeIcon,
     children: pagesApi,
+  },
+  {
+    pathname: '/system/experimental-api',
+    title: 'Experimental APIs',
+    icon: standardNavIcons.ExperimentIcon,
+    children: [
+      {
+        pathname: '/system/experimental-api/configure-the-sx-prop',
+        title: 'Configure the sx prop',
+      },
+    ],
   },
   {
     pathname: '/system/styles',
     title: 'Styles',
     legacy: true,
-    icon: 'StyleIcon',
+    icon: standardNavIcons.StyleIcon,
     children: [
       { pathname: '/system/styles/basics' },
       { pathname: '/system/styles/advanced' },
-      { pathname: '/system/styles/api', title: 'API' },
+      { pathname: '/system/styles/api', title: 'APIs' },
     ],
   },
 ];

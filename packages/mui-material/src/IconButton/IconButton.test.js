@@ -2,7 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { createRenderer, describeConformance } from 'test/utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
 
@@ -90,6 +92,16 @@ describe('<IconButton />', () => {
     });
   });
 
+  describe('prop: color', () => {
+    ['primary', 'secondary', 'error', 'info', 'success', 'warning'].forEach((color) => {
+      it(`should render the ${color} class`, () => {
+        const { getByRole } = render(<IconButton color={color}>Hello World</IconButton>);
+        const button = getByRole('button');
+        expect(button).to.have.class(classes[`color${capitalize(color)}`]);
+      });
+    });
+  });
+
   it('should raise a warning about onClick in children because of Firefox', () => {
     expect(() => {
       PropTypes.checkPropTypes(
@@ -99,5 +111,23 @@ describe('<IconButton />', () => {
         'MockedName',
       );
     }).toErrorDev(['MUI: You are providing an onClick event listener']);
+  });
+
+  it('should not throw error for a custom color', () => {
+    expect(() => (
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiIconButton: {
+              defaultProps: {
+                color: 'custom',
+              },
+            },
+          },
+        })}
+      >
+        <IconButton />
+      </ThemeProvider>
+    )).not.to.throw();
   });
 });

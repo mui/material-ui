@@ -14,6 +14,7 @@ describe('<PaginationItem />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
+    testLegacyComponentsProp: true,
     slots: {
       first: {},
       last: {},
@@ -26,6 +27,7 @@ describe('<PaginationItem />', () => {
       // uses non-standard camel-case fields in `components`
       'slotsProp',
       'slotPropsProp',
+      'slotPropsCallback', // not supported yet
     ],
   }));
 

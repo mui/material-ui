@@ -15,7 +15,7 @@ tags: ['Company']
 It has taken us two years to do it, but Material UI v1 has finally arrived!
 We are so excited about this release, as it's setting a new course for the project. Thank you to _everyone_, especially to [the team](/about/), and to everyone who's contributed code, issue triage, and support. **Thank you.**
 
-✨✨✨ See the [**1.0.0 Release Note**](https://github.com/mui/material-ui/releases/tag/v1.0.0) on GitHub. ✨✨✨
+✨✨✨ See the **[1.0.0 Release Note](https://github.com/mui/material-ui/releases/tag/v1.0.0)** on GitHub. ✨✨✨
 
 <iframe src="https://codesandbox.io/embed/4j7m47vlm4" width="100%" height="300px" frameborder=0></iframe>
 
@@ -31,7 +31,7 @@ Material UI v1 is our second stab at the execution of [the vision](/material-ui/
 We want Material UI to become whatever is generally useful for application development, all in the spirit of the Material Design guidelines. Material UI is not only an implementation of the Material Design guidelines, but a general use UI library of components that are needed by many. We are even allowing developers to build non Material themes on top of Material UI components. We will soon open source examples of this.
 
 - **CSS-in-JS**. We have seen [a great potential for **inline-styles** in the past](https://github.com/mui/material-ui/issues/30). It was an opportunity to solve four problems at once: removing the LESS toolchain dependency, allowing dynamic styles, allowing style code splitting and make overrides simpler.
-  Unfortunately, the [**execution didn't deliver**](https://github.com/mui/material-ui/issues/4066). We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
+  Unfortunately, the **[execution didn't deliver](https://github.com/mui/material-ui/issues/4066)**. We were lacking key features only available in CSS: media queries, pseudo selectors, pseudo elements, browser prefixes. Debugging was much harder. Overriding styles was very challenging – developers always had to look the implementation, and couldn't use CSS without relying on !important.
   Two years ago, we decided to move away [from inline-styles toward **CSS-in-JS**](https://github.com/oliviertassinari/a-journey-toward-better-style). We are very happy with the outcome. We would like to thank [@kof](https://github.com/kof) for the awesome work he has done with [JSS](https://github.com/cssinjs/jss), the internal solution we use. It's allowing us to be [interoperable](/material-ui/guides/interoperability/) with all the other styling solutions.
 
 - **Theme**. You can't have a good customizability story without a good theming story. We have been redesigning the theme. It's a [JavaScript object](/material-ui/customization/default-theme/) that contains all the variables and utility functions you might need to style your components: a palette, a typography, breakpoints helpers, transition helpers, etc.
@@ -74,7 +74,7 @@ Many people discover web development through Material UI but it's also used in p
 
 <p class="blog-description">An example of size-limit</p>
 
-- **Development warnings**. Because the API surface of UI components is so large, it's easy to leave the beaten path. We have condensed a large number of the issues raised into a number of informative development mode warnings to help you stay on the right track. Aside from [propTypes](https://reactjs.org/docs/typechecking-with-proptypes.html), we have added more than [20 warnings](https://github.com/mui/material-ui/search?p=1&q=warning&type=&utf8=%E2%9C%93), and the list will grow as we discover more edge cases.
+- **Development warnings**. Because the API surface of UI components is so large, it's easy to leave the beaten path. We have condensed a large number of the issues raised into a number of informative development mode warnings to help you stay on the right track. Aside from [propTypes](https://legacy.reactjs.org/docs/typechecking-with-proptypes.html), we have added more than [20 warnings](https://github.com/mui/material-ui/search?p=1&q=warning&type=&utf8=%E2%9C%93), and the list will grow as we discover more edge cases.
 
 ## What's new in v1?
 

@@ -1,0 +1,124 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "className": "Class name applied to the root element.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "endDecorator": "Trailing adornment for this input.",
+    "error": "If <code>true</code>, the <code>input</code> will indicate an error. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "fullWidth": "If <code>true</code>, the button will take up the full width of its container.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "startDecorator": "Leading adornment for this input.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "formControl": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is a descendant of <code>FormControl</code>"
+    },
+    "focused": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "the component is focused"
+    },
+    "disabled": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>disabled={true}</code>"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    },
+    "fullWidth": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>fullWidth={true}</code>"
+    },
+    "startDecorator": { "description": "Class name applied to the startDecorator element" },
+    "endDecorator": { "description": "Class name applied to the endDecorator element" }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "input": "The component that renders the input.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator."
+  }
+}

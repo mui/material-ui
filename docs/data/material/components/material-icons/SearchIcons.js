@@ -138,9 +138,17 @@ const Icons = React.memo(function Icons(props) {
         eventAction: 'click',
         eventLabel: icon.name,
       });
+      window.gtag('event', 'material-icons', {
+        eventAction: 'click',
+        eventLabel: icon.name,
+      });
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'material-icons-theme',
+        eventAction: 'click',
+        eventLabel: icon.theme,
+      });
+      window.gtag('event', 'material-icons-theme', {
         eventAction: 'click',
         eventLabel: icon.theme,
       });
@@ -391,9 +399,10 @@ DialogDetails.propTypes = {
   selectedIcon: PropTypes.object,
 };
 
-const Form = styled('form')(({ theme }) => ({
-  margin: theme.spacing(2, 0),
-}));
+const Form = styled('form')({
+  position: 'sticky',
+  top: 80,
+});
 
 const Paper = styled(MuiPaper)(({ theme }) => ({
   position: 'sticky',
@@ -403,6 +412,9 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   alignItems: 'center',
   marginBottom: theme.spacing(2),
   width: '100%',
+  borderRadius: '12px',
+  border: '1px solid',
+  borderColor: theme.palette.divider,
 }));
 
 function formatNumber(value) {
@@ -499,6 +511,10 @@ export default function SearchIcons() {
                 eventAction: 'no-results',
                 eventLabel: value,
               });
+              window.gtag('event', 'material-icons', {
+                eventAction: 'no-results',
+                eventLabel: value,
+              });
             }
           });
         }
@@ -526,9 +542,12 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
+    <Grid container sx={{ minHeight: 500, my: 2 }}>
       <Grid item xs={12} sm={3}>
         <Form>
+          <Typography fontWeight={500} sx={{ mb: 1 }}>
+            Filter the style
+          </Typography>
           <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(
               (currentTheme) => {
@@ -537,6 +556,7 @@ export default function SearchIcons() {
                     key={currentTheme}
                     control={
                       <Radio
+                        size="small"
                         checked={theme === currentTheme}
                         onChange={() => setTheme(currentTheme)}
                         value={currentTheme}

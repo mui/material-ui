@@ -32,6 +32,7 @@ export type AutocompleteOwnerState<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
   disablePortal: boolean;
+  expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
   hasClearIcon: boolean;
@@ -52,6 +53,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
+  index: number;
   selected: boolean;
 }
 
@@ -159,7 +161,9 @@ export interface AutocompleteProps<
   /**
    * Props applied to the Listbox element.
    */
-  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']>;
+  ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
+    sx?: SxProps<Theme>;
+  };
   /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
@@ -286,7 +290,8 @@ export interface AutocompleteProps<
  */
 export default function Autocomplete<
   T,
-  Multiple extends boolean | undefined = undefined,
-  DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined,
->(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>): JSX.Element;
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+>(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>): JSX.Element;

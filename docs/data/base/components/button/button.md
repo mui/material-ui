@@ -1,40 +1,43 @@
 ---
 product: base
-title: Unstyled React Button component and hook
-components: ButtonUnstyled
+title: React Button component and hook
+components: Button
+hooks: useButton
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
-# Unstyled Button
+# Button
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
-`ButtonUnstyled` replaces the native HTML `<button>` element.
+The Button component replaces the native HTML `<button>` element, and offers expanded options for styling and accessibility.
 
-{{"demo": "UnstyledButtonIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+import Button from '@mui/base/Button';
 
 export default function MyApp() {
-  return <ButtonUnstyled>{/* button text */}</ButtonUnstyled>;
+  return <Button>{/* button text */}</Button>;
 }
 ```
 
 ### Basics
 
-`ButtonUnstyled` behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+The Button behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
@@ -43,7 +46,7 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 
 ### Anatomy
 
-The `ButtonUnstyled` component is composed of a root `<button>` slot with no interior slots:
+The Button component is composed of a root `<button>` slot with no interior slots:
 
 ```html
 <button class="BaseButton-root">
@@ -51,54 +54,51 @@ The `ButtonUnstyled` component is composed of a root `<button>` slot with no int
 </button>
 ```
 
-### Slot props
+### Custom structure
+
+Use the `slots.root` prop to override the root slot with a custom element:
+
+```jsx
+<Button slots={{ root: 'div' }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
-Use the `component` prop to override the root slot with a custom element:
+If you provide a non-interactive element such as a `<span>`, the Button component will automatically add the necessary accessibility attributes.
 
-```jsx
-<ButtonUnstyled component="div" />
-```
-
-If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
-
-Use the `slots` prop to override any interior slots in addition to the root:
-
-```jsx
-<ButtonUnstyled slots={{ root: 'div' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
-
-Use the `slotProps` prop to pass custom props to internal slots.
-The following code snippet applies a CSS class called `my-button` to the root slot:
-
-```jsx
-<ButtonUnstyled slotProps={{ root: { className: 'my-button' } }} />
-```
-
-Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` from the previous demo:
+Compare the attributes on the `<span>` in this demo with the Button from the previous demo—try inspecting them both with your browser's dev tools:
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
 :::warning
-If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
-Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+If a Button is customized with a non-button element (for instance, `<Button slots={{ root: "span" }} />`), it will not submit the form it's in when clicked.
+Similarly, `<Button slots={{ root: "span" }} type="reset">` will not reset its parent form.
 :::
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Button<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Button<'img'> slots={{ root: 'img' }} src="button.png" />
+```
 
 ## Hook
 
 ```js
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 ```
 
-The `useButton` hook lets you apply the functionality of `ButtonUnstyled` to a fully custom component.
+The `useButton` hook lets you apply the functionality of a button to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -110,11 +110,16 @@ With hooks, you can take full control over how your component is rendered, and d
 You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
-The `useButton` hook requires the `ref` of the element it's used on.
-
-The following demo shows how to build the same buttons as those found in the [Basic usage section](#basic-usage), but with the `useButton` hook:
+The following demo shows how to build the same buttons as those found in the [Basics](#basics) section above, but with the `useButton` hook:
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+If you use a ref to store a reference to the button, pass it to the `useButton`'s `ref` parameter, as shown in the demo above.
+It will get merged with a ref used internally in the hook.
+
+:::warning
+Do not add the `ref` parameter to the button element manually, as the correct ref is already a part of the object returned by the `getRootProps` function.
+:::
 
 ## Customization
 
@@ -125,14 +130,14 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 ### Custom elements
 
-`ButtonUnstyled` accepts a wide range of custom elements beyond HTML elements.
+The Button accepts a wide range of custom elements beyond HTML elements.
 You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
 ### Focus on disabled buttons
 
-Similarly to the native HTML `<button>` element, the `ButtonUnstyled` component can't receive focus when it's disabled.
+Similarly to the native HTML `<button>` element, the Button component can't receive focus when it's disabled.
 This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
 
 The `focusableWhenDisabled` prop lets you change this behavior.
@@ -141,7 +146,7 @@ Instead, `aria-disabled` is used, which makes the button focusable.
 
 This should be used whenever the disabled button needs to be read by screen readers.
 
-MUI Base uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
+Base UI uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-7-focusability-of-disabled-controls)).
 
 The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second button accepts the focus:
 

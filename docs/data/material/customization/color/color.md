@@ -8,11 +8,11 @@ The Material Design [color system](https://m2.material.io/design/color/) can be 
 
 ### Official color tool
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/resources/color/).
+The Material Design team has also built an awesome palette configuration tool: [material.io/resources/color/](https://m2.material.io/inline-tools/color/).
 This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://m2.material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
-  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
+<a href="https://m2.material.io/inline-tools/color/" target="_blank" rel="noopener nofollow">
+  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" width=1148" height="610" />
 </a>
 <br />
 <br />
@@ -65,13 +65,13 @@ const theme = createTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/material-ui/customization/palette/) section.
+Only the `main` shades need to be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createTheme()`, as described in the [Theme customization](/material-ui/customization/palette/) section.
 
 If you are using the default primary and / or secondary shades then by providing the color object, `createTheme()` will use the appropriate shades from the material color for main, light and dark.
 
 ### Tools by the community
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 2014 Material Design color palettes
@@ -80,7 +80,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### Important Terms
 
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. MUI provides all colors from the Material Design guidelines.
+- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material UI provides all colors from the Material Design guidelines.
   [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500".
   "red 50" is the lightest shade of red (_pink!_), while "red 900" is the darkest.
@@ -109,3 +109,11 @@ const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb
 const accent = purple.A200; // #e040fb (alternative method)
 ```
+
+### Accessibility
+
+[WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
+that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
+Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.1 AA compliance,
+you can increase your minimum contrast ratio as described in the
+[Theme customization](/material-ui/customization/palette/#accessibility) section.

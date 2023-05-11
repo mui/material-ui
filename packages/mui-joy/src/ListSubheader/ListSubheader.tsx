@@ -5,9 +5,11 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
   const { variant, color, sticky } = ownerState;
@@ -31,28 +33,38 @@ const ListSubheaderRoot = styled('div', {
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
-  marginInline: 'var(--List-item-marginInline)',
-  paddingBlock: 'var(--List-item-paddingY)',
-  paddingInlineStart: 'var(--List-item-paddingLeft)',
-  paddingInlineEnd: 'var(--List-item-paddingRight)',
-  minBlockSize: 'var(--List-item-minHeight)',
-  fontSize: 'calc(var(--List-item-fontSize) * 0.75)',
+  marginInline: 'var(--ListItem-marginInline)',
+  paddingBlock: 'var(--ListItem-paddingY)',
+  paddingInlineStart: 'var(--ListItem-paddingLeft)',
+  paddingInlineEnd: 'var(--ListItem-paddingRight)',
+  minBlockSize: 'var(--ListItem-minHeight)',
+  fontSize: 'calc(var(--ListItem-fontSize) * 0.75)',
   fontWeight: theme.vars.fontWeight.lg,
   fontFamily: theme.vars.fontFamily.body,
   letterSpacing: theme.vars.letterSpacing.md,
   textTransform: 'uppercase',
   ...(ownerState.sticky && {
     position: 'sticky',
-    top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
+    top: 'var(--ListItem-stickyTop, 0px)', // integration with Menu and Select.
     zIndex: 1,
-    background: 'var(--List-item-stickyBackground)',
+    background: 'var(--ListItem-stickyBackground)',
   }),
-  color: ownerState.color
-    ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
-    : theme.vars.palette.text.tertiary,
+  color:
+    ownerState.color && ownerState.color !== 'context'
+      ? `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`
+      : theme.vars.palette.text.tertiary,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListSubheader API](https://mui.com/joy-ui/api/list-subheader/)
+ */
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -66,9 +78,13 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     id: idOverride,
     sticky = false,
     variant,
-    color,
+    color: colorProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
   const id = useId(idOverride);
   const setSubheaderId = React.useContext(ListSubheaderDispatch);
 
@@ -87,19 +103,21 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  return (
-    <ListSubheaderRoot
-      ref={ref}
-      id={id}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListSubheaderRoot>
-  );
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListSubheaderRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      as: component,
+      id,
+    },
+  });
+
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListSubheaderTypeMap>;
 
 ListSubheader.propTypes /* remove-proptypes */ = {
@@ -132,6 +150,20 @@ ListSubheader.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  /**
    * If `true`, the component has sticky position (with top = 0).
    * @default false
    */
@@ -145,7 +177,7 @@ ListSubheader.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

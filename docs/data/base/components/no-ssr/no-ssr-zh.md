@@ -26,7 +26,7 @@ This component can be useful in a variety of situations:
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import NoSsr from '@mui/base/NoSsr';
@@ -53,5 +53,5 @@ The following demo shows how to use the `defer` prop to prioritize rendering the
 {{"demo": "FrameDeferring.js"}}
 
 :::warning
-When using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
+When using `NoSsr` in this way, React applies [two commits](https://react.dev/learn/render-and-commit) instead of one.
 :::

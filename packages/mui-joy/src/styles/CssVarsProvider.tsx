@@ -1,18 +1,17 @@
 import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import extendTheme from './extendTheme';
+import defaultTheme from './defaultTheme';
+import { CssVarsThemeOptions } from './extendTheme';
 import { createSoftInversion, createSolidInversion } from './variantUtils';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
-
-const shouldSkipGeneratingVar = (keys: string[]) =>
-  !!keys[0].match(/^(typography|variants|breakpoints|colorInversion|colorInversionConfig)$/) ||
-  (keys[0] === 'palette' && !!keys[1]?.match(/^(mode)$/)) ||
-  (keys[0] === 'focus' && keys[1] !== 'thickness');
+import THEME_ID from './identifier';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme
+  DefaultColorScheme | ExtendedColorScheme,
+  typeof THEME_ID
 >({
-  theme: extendTheme(),
+  themeId: THEME_ID,
+  theme: defaultTheme,
   attribute: 'data-joy-color-scheme',
   modeStorageKey: 'joy-mode',
   colorSchemeStorageKey: 'joy-color-scheme',
@@ -21,18 +20,19 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     dark: 'dark',
   },
   resolveTheme: (mergedTheme: Theme) => {
-    // `colorInversion` need to be generated after the theme's palette has been calculated.
+    const colorInversionInput = mergedTheme.colorInversion as CssVarsThemeOptions['colorInversion'];
     mergedTheme.colorInversion = deepmerge(
       {
         soft: createSoftInversion(mergedTheme),
         solid: createSolidInversion(mergedTheme),
       },
-      mergedTheme.colorInversion,
+      typeof colorInversionInput === 'function'
+        ? colorInversionInput(mergedTheme)
+        : colorInversionInput,
       { clone: false },
     );
     return mergedTheme;
   },
-  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };

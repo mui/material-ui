@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Link component
+components: Link
 githubLabel: 'component: link'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
@@ -9,14 +10,14 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 <p class="description">The <code>Link</code> component allows you to customize anchor tags with theme colors and typography styles.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 The `Link` component represents the HTML `<a>` element.
 It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component, as well as the system props.
 
-{{"demo": "LinkUsage.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "LinkUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 

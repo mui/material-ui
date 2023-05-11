@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
+import { useColorInversion } from '../styles/ColorInversion';
 import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
@@ -13,6 +14,7 @@ import {
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -41,55 +43,62 @@ export const StyledListItemButton = styled('div')<{ ownerState: ListItemButtonOw
   ({ theme, ownerState }) => [
     {
       ...(ownerState.selected && {
-        '--List-decorator-color': 'initial',
+        '--ListItemDecorator-color': 'initial',
       }),
       ...(ownerState.disabled && {
-        '--List-decorator-color':
-          theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+        '--ListItemDecorator-color':
+          theme.variants?.[`${ownerState.variant!}Disabled`]?.[ownerState.color!]?.color,
       }),
       WebkitTapHighlightColor: 'transparent',
       boxSizing: 'border-box',
       position: 'relative',
       display: 'flex',
-      flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+      flexDirection: 'row',
       alignItems: 'center',
+      alignSelf: 'stretch', // always stretch itself to fill the parent (List|ListItem)
+      ...(ownerState.orientation === 'vertical' && {
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }),
       textAlign: 'initial',
       textDecoration: 'initial', // reset native anchor tag
       backgroundColor: 'initial', // reset button background
+      cursor: 'pointer',
       // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-      marginInline: 'var(--List-itemButton-marginInline)',
-      marginBlock: 'var(--List-itemButton-marginBlock)',
+      marginInline: 'var(--ListItemButton-marginInline)',
+      marginBlock: 'var(--ListItemButton-marginBlock)',
       ...(ownerState['data-first-child'] === undefined && {
         marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
         marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
       }),
       // account for the border width, so that all of the ListItemButtons content aligned horizontally
-      paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+      paddingBlock: 'calc(var(--ListItem-paddingY) - var(--variant-borderWidth, 0px))',
       // account for the border width, so that all of the ListItemButtons content aligned vertically
       paddingInlineStart:
-        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+        'calc(var(--ListItem-paddingLeft) + var(--ListItem-startActionWidth, var(--unstable_startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
       paddingInlineEnd:
-        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
-      minBlockSize: 'var(--List-item-minHeight)',
+        'calc(var(--ListItem-paddingRight) + var(--ListItem-endActionWidth, var(--unstable_endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      minBlockSize: 'var(--ListItem-minHeight)',
       border: 'none',
-      borderRadius: 'var(--List-item-radius)',
+      borderRadius: 'var(--ListItem-radius)',
       flexGrow: ownerState.row ? 0 : 1,
       flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
       flexShrink: 0,
       minInlineSize: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      fontSize: 'var(--List-item-fontSize)',
+      fontSize: 'var(--ListItem-fontSize)',
       fontFamily: theme.vars.fontFamily.body,
       ...(ownerState.selected && {
         fontWeight: theme.vars.fontWeight.md,
       }),
       [theme.focus.selector]: theme.focus.default,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+      ...(!ownerState.selected && {
+        '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+      }),
+    },
     {
       [`&.${listItemButtonClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
@@ -102,7 +111,16 @@ const ListItemButtonRoot = styled(StyledListItemButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({});
-
+/**
+ *
+ * Demos:
+ *
+ * - [Lists](https://mui.com/joy-ui/react-list/)
+ *
+ * API:
+ *
+ * - [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
+ */
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -119,17 +137,22 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     orientation = 'horizontal',
     role,
     selected = false,
-    color = selected ? 'primary' : 'neutral',
+    color: colorProp = selected ? 'primary' : 'neutral',
     variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
+
+  const { getColor } = useColorInversion(variant);
+  const color = getColor(inProps.color, colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -155,21 +178,22 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const rootProps = getRootProps();
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemButtonRoot,
+    externalForwardedProps,
+    ownerState,
+    getSlotProps: getRootProps,
+  });
 
   return (
     <ListItemButtonOrientationContext.Provider value={orientation}>
-      <ListItemButtonRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...other}
-        {...rootProps}
-        role={role ?? rootProps.role}
-      >
+      <SlotRoot {...rootProps} role={role ?? rootProps.role}>
         {children}
-      </ListItemButtonRoot>
+      </SlotRoot>
     </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
@@ -201,16 +225,12 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * @default selected ? 'primary' : 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -245,10 +265,24 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
-   * Use to apply selected styling.
+   * If `true`, the component is selected.
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -262,7 +296,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   tabIndex: PropTypes.number,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

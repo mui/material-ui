@@ -1,0 +1,139 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "endDecorator": "Element placed after the children.",
+    "gutterBottom": "If <code>true</code>, the text will have a bottom margin.",
+    "level": "Applies the theme typography styles.",
+    "levelMapping": "The component maps the variant prop to a range of different HTML element types. For instance, body1 to <code>&lt;h6&gt;</code>. If you wish to change that mapping, you can provide your own. Alternatively, you can use the <code>component</code> prop.",
+    "noWrap": "If <code>true</code>, the text will not wrap, but instead will truncate with a text overflow ellipsis.<br>Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "startDecorator": "Element placed before the children.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "textColor": "The system color.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "h1": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h1\"</code>"
+    },
+    "h2": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h2\"</code>"
+    },
+    "h3": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h3\"</code>"
+    },
+    "h4": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h4\"</code>"
+    },
+    "h5": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h5\"</code>"
+    },
+    "h6": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"h6\"</code>"
+    },
+    "body1": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body1\"</code>"
+    },
+    "body2": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body2\"</code>"
+    },
+    "body3": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>level=\"body3\"</code>"
+    },
+    "noWrap": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>nowrap={true}</code>"
+    },
+    "gutterBottom": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>gutterBottom={true}</code>"
+    },
+    "startDecorator": { "description": "Class name applied to the startDecorator element" },
+    "endDecorator": { "description": "Class name applied to the endDecorator element" },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "variantPlain": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"plain\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "startDecorator": "The component that renders the start decorator.",
+    "endDecorator": "The component that renders the end decorator."
+  }
+}

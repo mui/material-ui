@@ -1,5 +1,5 @@
 import { isPlainObject } from '@mui/utils';
-import { propToStyleFunction } from '../getThemeValue';
+import defaultSxConfig from './defaultSxConfig';
 
 const splitProps = (props) => {
   const result = {
@@ -7,8 +7,10 @@ const splitProps = (props) => {
     otherProps: {},
   };
 
+  const config = props?.theme?.unstable_sxConfig ?? defaultSxConfig;
+
   Object.keys(props).forEach((prop) => {
-    if (propToStyleFunction[prop]) {
+    if (config[prop]) {
       result.systemProps[prop] = props[prop];
     } else {
       result.otherProps[prop] = props[prop];

@@ -1,0 +1,65 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": "The content of the component.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "defaultValue": "The default value. Use when the component is not controlled.",
+    "direction": "The direction of the text.",
+    "onChange": "Callback invoked when new value is being set.",
+    "orientation": "The component orientation (layout flow direction).",
+    "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "value": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>null</code>.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {
+    "root": { "description": "Classname applied to the root element." },
+    "horizontal": {
+      "description": "Classname applied to the root element if `orientation=\"horizontal\"`."
+    },
+    "vertical": {
+      "description": "Classname applied to the root element if `orientation=\"vertical\"`."
+    },
+    "colorPrimary": {
+      "description": "Classname applied to the root element if `color=\"primary\"`."
+    },
+    "colorNeutral": {
+      "description": "Classname applied to the root element if `color=\"neutral\"`."
+    },
+    "colorDanger": {
+      "description": "Classname applied to the root element if `color=\"danger\"`."
+    },
+    "colorInfo": { "description": "Classname applied to the root element if `color=\"info\"`." },
+    "colorSuccess": {
+      "description": "Classname applied to the root element if `color=\"success\"`."
+    },
+    "colorWarning": {
+      "description": "Classname applied to the root element if `color=\"warning\"`."
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "variantPlain": {
+      "description": "Classname applied to the root element if `variant=\"plain\"`."
+    },
+    "variantOutlined": {
+      "description": "Classname applied to the root element if `variant=\"outlined\"`."
+    },
+    "variantSoft": {
+      "description": "Classname applied to the root element if `variant=\"soft\"`."
+    },
+    "variantSolid": {
+      "description": "Classname applied to the root element if `variant=\"solid\"`."
+    },
+    "sizeSm": { "description": "Classname applied to the root element if `size=\"sm\"`." },
+    "sizeMd": { "description": "Classname applied to the root element if `size=\"md\"`." },
+    "sizeLg": { "description": "Classname applied to the root element if `size=\"lg\"`." }
+  },
+  "slotDescriptions": { "root": "The component that renders the root." }
+}

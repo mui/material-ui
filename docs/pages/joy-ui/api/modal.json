@@ -1,0 +1,58 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "component": { "type": { "name": "elementType" } },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "onClose": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "Modal",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiModal-root"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "default": "'div'",
+      "class": ".MuiModal-backdrop"
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "JoyModal",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/Modal/Modal.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",
+  "cssComponent": false
+}

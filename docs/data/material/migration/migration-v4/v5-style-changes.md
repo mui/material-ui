@@ -177,7 +177,7 @@ export default function GlobalCssPriority() {
   return (
     {/* Inject Emotion before JSS */}
     <StyledEngineProvider injectFirst>
-      {/* Your component tree. Now you can override MUI's styles. */}
+      {/* Your component tree. Now you can override Material UI's styles. */}
     </StyledEngineProvider>
   );
 }
@@ -208,10 +208,10 @@ To correct the injection order, add the `prepend` option to `createCache`, as sh
  }
 ```
 
-:::info
+:::warning
 If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
 
-To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/-/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 :::
 
 ## Theme structure
@@ -316,7 +316,7 @@ The default `theme.palette.success` colors were changed to pass the AA accessibi
 
 ### Change default theme.palette.warning colors
 
-The default `theme.palette.warning` colors were changed to pass the AA accesibility standard contrast ratio in both light and dark modes.
+The default `theme.palette.warning` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
   warning = {

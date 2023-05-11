@@ -10,7 +10,7 @@ githubLabel: 'component: Grid'
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-The `Grid` component works well for a layout with known columns. The columns can be configured in multple breakpoints which you have to specify the column span of each child.
+The `Grid` component works well for a layout with known columns. The columns can be configured in multiple breakpoints which you have to specify the column span of each child.
 
 ## How it works
 
@@ -26,7 +26,7 @@ The grid system is implemented with the `Grid` component:
 - It **does not** offer auto-placement children feature. It will try to fit the children one by one and if there is not enough space, the rest of the children will start on the next line and so on. If you need the auto-placement feature, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+The Grid component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the Data Grid component](/x/react-data-grid/).
 :::
 
 ## Fluid grids

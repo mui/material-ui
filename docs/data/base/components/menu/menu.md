@@ -1,107 +1,114 @@
 ---
 product: base
-title: Unstyled React Menu components and hooks
-components: MenuUnstyled, MenuItemUnstyled
+title: React Menu components and hooks
+components: Menu, MenuItem
+hooks: useMenu, useMenuItem
 githubLabel: 'component: menu'
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 ---
 
-# Unstyled Menu
+# Menu
 
-<p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
+<p class="description">The Menu components provide your users with a list of options on temporary surfaces.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
-The `MenuUnstyled` component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
+The Menu component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
 It renders an unordered list (`<ul>`) by default.
 
-Use `MenuItemUnstyled` to add items to the menu.
+Use the Menu Item to add items to the menu.
 These are rendered as `<li>` elements.
 
-{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledMenuIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Components
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
-import MenuUnstyled from '@mui/base/MenuUnstyled';
-import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
+import Menu from '@mui/base/Menu';
+import MenuItem from '@mui/base/MenuItem';
 
 export default function MyApp() {
   return (
-    <MenuUnstyled>
-      <MenuItemUnstyled>{/* item one */}</MenuItemUnstyled>
-      <MenuItemUnstyled>{/* item two */}</MenuItemUnstyled>
-    </MenuUnstyled>
+    <Menu>
+      <MenuItem>{/* item one */}</MenuItem>
+      <MenuItem>{/* item two */}</MenuItem>
+    </Menu>
   );
 }
 ```
 
 ### Basics
 
-`MenuUnstyled` serves as a replacement for the native HTML `<ul>`, and `MenuItemUnstyled` corresponds to the `<li>` tag.
+The Menu serves as a replacement for the native HTML `<ul>`, and the Menu Item corresponds to the `<li>` tag.
 
-The following demo shows how to create and style a menu component.
-Click **Dashboard** to view the menu—notice that it uses the built-in [`PopperUnstyled`](/base/react-popper/) component to visually break out of its parent container:
+The following demo shows how to create and style a Menu component.
+Click **Dashboard** to view the menu—notice that it uses the built-in [Popper](/base/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 
 ### Anatomy
 
-The `MenuUnstyled` component is composed of a root slot that renders a `PopperUnstyled` `<div>` by default.
+The Menu component is composed of a root slot that renders a Popper `<div>` by default.
 It contains one interior listbox `<ul>` slot.
-`MenuItemUnstyled` has a single root `<li>` slot.
+The Menu Item has a single root `<li>` slot.
 
 ```html
-<div class="MuiMenuUnstyled-root">
-  <ul class="MuiMenuUnstyled-listbox">
-    <li class="MuiMenuItemUnstyled-root">List item</li>
+<div class="MuiMenu-root">
+  <ul class="MuiMenu-listbox">
+    <li class="MuiMenuItem-root">List item</li>
   </ul>
 </div>
 ```
 
-### Slot props
+### Custom structure
+
+Use the `slots` prop to override the root or any other interior slot:
+
+```jsx
+<Menu slots={{ root: 'nav', listbox: 'ol' }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<MenuItemUnstyled component="span" />
-```
-
-Use the `slots` prop to override any interior slots in addition to the root:
-
-```jsx
-<MenuUnstyled slots={{ root: 'nav', listbox: 'ol' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
 Use the `slotProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
 ```jsx
-<MenuUnstyled slotProps={{ listbox: { className: 'my-listbox' } }} />
+<Menu slotProps={{ listbox: { className: 'my-listbox' } }} />
+```
+
+#### Usage with TypeScript
+
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic parameter of the unstyled component. This way, you can safely provide the custom root's props directly on the component:
+
+```tsx
+<Menu<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
+```
+
+The same applies for props specific to custom primitive elements:
+
+```tsx
+<Menu<'button'> slots={{ root: 'button' }} onClick={() => {}} />
 ```
 
 ### CSS classes
 
-`MenuUnstyled` can set the following class:
+Menu can set the following class:
 
 - `Mui-expanded` - set when the menu is open; this class is set on both Root and Popper slots
 
-`MenuItemUnstyled` can set the following classes:
+Menu Item can set the following classes:
 
 - `Mui-disabled` - set when the MenuItem has the `disabled` prop
 - `Mui-focusVisible` - set when the MenuItem is highlighted via keyboard navigation.
@@ -110,11 +117,11 @@ The following code snippet applies a CSS class called `my-listbox` to the listbo
 ## Hooks
 
 ```jsx
-import { useMenu } from '@mui/base/MenuUnstyled';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import useMenu from '@mui/base/useMenu';
+import useMenuItem from '@mui/base/useMenuItem';
 ```
 
-The `useMenu` and `useMenuItem` hooks let you apply the functionality of the menu components to fully custom components.
+The `useMenu` and `useMenuItem` hooks let you apply the functionality of the Menu components to fully custom components.
 They return props to be placed on the custom components, along with fields representing the components' internal states.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
@@ -130,16 +137,16 @@ The following demo shows how to build a menu using hooks:
 
 {{"demo": "UseMenu.js"}}
 
-Unstyled components and their corresponding hooks work interchangeably with one another—for example, you can create a `MenuUnstyled` component that contains menu items built with the `useMenuItem` hook.
+Components and their corresponding hooks work interchangeably with one another—for example, you can create a Menu component that contains menu items built with the `useMenuItem` hook.
 
 ## Customization
 
 ### Wrapping MenuItems
 
-`MenuItemUnstyled` components don't have to be direct children of a `MenuUnstyled` component.
+Menu Item components don't have to be direct children of a Menu component.
 You can wrap them in any component needed to achieve the desired appearance.
 
-In addition to `MenuItemUnstyled` components, the `MenuUnstyled` component can also contain non-interactive children, such as helper text.
+In addition to Menu Item components, the Menu component can also contain non-interactive children, such as helper text.
 
 The following demo shows an example of a menu with items grouped under non-interactive headers, along with helper text that displays the **Current zoom level**:
 

@@ -1,19 +1,20 @@
 ---
 product: joy-ui
 title: React Tooltip component
+components: Tooltip
 githubLabel: 'component: tooltip'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
 # Tooltip
 
-<p class="description">A toolip .</p>
+<p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
-{{"demo": "TooltipUsage.js", "hideToolbar": true}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "TooltipUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -61,7 +62,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Common examples
 
-### Github tooltip
+### GitHub tooltip
 
 The `title` prop can receive a custom React element.
 

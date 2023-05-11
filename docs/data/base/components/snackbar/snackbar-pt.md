@@ -21,7 +21,7 @@ The `SnackbarUnstyled` component is built to appear on-screen to inform users ab
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
@@ -127,7 +127,7 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 You can animate the open and close states of the snackbar with a render prop child and a transition component, as long as the component meets these conditions:
 
-- Is a direct child descendent of the snackbar
+- Is a direct child descendant of the snackbar
 - Has an `in` prop—this corresponds to the open state
 - Passes the `exited` prop to `SnackbarUnstyled`
 - Calls the `onEnter` callback prop when the enter transition starts—sets `exited` to false

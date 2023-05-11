@@ -8,12 +8,12 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
-import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import Portal from '@mui/base/Portal';
 import FocusTrap from '@mui/base/FocusTrap';
-import { ModalManager } from '@mui/base/ModalUnstyled';
+import { ModalManager } from '@mui/base/Modal';
 import { styled, useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
 import { ModalOwnerState, ModalTypeMap } from './ModalProps';
 import CloseModalContext from './CloseModalContext';
@@ -31,6 +31,7 @@ const useUtilityClasses = (ownerState: ModalOwnerState) => {
 
   const slots = {
     root: ['root', !open && 'hidden'],
+    backdrop: ['backdrop'],
   };
 
   return composeClasses(slots, getModalUtilityClass, {});
@@ -48,9 +49,9 @@ const ModalRoot = styled('div', {
   name: 'JoyModal',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
+})<{ ownerState: ModalOwnerState }>(({ ownerState, theme }) => ({
   position: 'fixed',
-  zIndex: 9999,
+  zIndex: theme.vars.zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
@@ -77,8 +78,17 @@ const ModalBackdrop = styled('div', {
     backdropFilter: 'blur(8px)',
   }),
 }));
-
-const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Modal](https://mui.com/joy-ui/react-modal/)
+ *
+ * API:
+ *
+ * - [Modal API](https://mui.com/joy-ui/api/modal/)
+ */
+const Modal = React.forwardRef(function ModalU(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyModal',
@@ -86,8 +96,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
 
   const {
     children,
-    component = 'div',
-    componentsProps = {},
     container,
     disableAutoFocus = false,
     disableEnforceFocus = false,
@@ -100,6 +108,9 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
     onClose,
     onKeyDown,
     open,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -191,6 +202,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) {
@@ -227,28 +239,24 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
     }
   };
 
-  const rootProps = useSlotProps({
-    elementType: ModalRoot,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-      ref: handleRef,
-      role: 'presentation',
-      onKeyDown: handleKeyDown,
-    },
+  const [SlotRoot, rootProps] = useSlot('root', {
+    additionalProps: { role: 'presentation', onKeyDown: handleKeyDown },
+    ref: handleRef,
     className: classes.root,
+    elementType: ModalRoot,
+    externalForwardedProps,
     ownerState,
   });
 
-  const backdropProps = useSlotProps({
-    elementType: ModalBackdrop,
-    externalSlotProps: componentsProps.backdrop,
+  const [SlotBackdrop, backdropProps] = useSlot('backdrop', {
     additionalProps: {
       'aria-hidden': true,
       onClick: handleBackdropClick,
       open,
     },
+    className: classes.backdrop,
+    elementType: ModalBackdrop,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -258,7 +266,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
 
   return (
     <CloseModalContext.Provider value={onClose}>
-      {/* @ts-expect-error TODO: include ref to MUI Base Portal props */}
       <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
         {/*
          * Marking an element with the role presentation indicates to assistive technology
@@ -266,8 +273,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
          * is not meant for humans to interact with directly.
          * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
          */}
-        <ModalRoot {...rootProps}>
-          {!hideBackdrop ? <ModalBackdrop {...backdropProps} /> : null}
+        <SlotRoot {...rootProps}>
+          {!hideBackdrop ? <SlotBackdrop {...backdropProps} /> : null}
           <FocusTrap
             disableEnforceFocus={disableEnforceFocus}
             disableAutoFocus={disableAutoFocus}
@@ -282,52 +289,26 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
                 }),
               })}
           </FocusTrap>
-        </ModalRoot>
+        </SlotRoot>
       </Portal>
     </CloseModalContext.Provider>
   );
 }) as OverridableComponent<ModalTypeMap>;
 
-ModalUnstyled.propTypes /* remove-proptypes */ = {
+Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * When set to true the Modal waits until a nested Transition is completed before closing.
-   * @default false
-   */
-  closeAfterTransition: PropTypes.bool,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Modal.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Backdrop: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Modal.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -391,16 +372,11 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   keepMounted: PropTypes.bool,
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
-  /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"closeClick"`.
    */
   onClose: PropTypes.func,
   /**
@@ -411,6 +387,30 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
-};
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+} as any;
 
-export default ModalUnstyled;
+export default Modal;

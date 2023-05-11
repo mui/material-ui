@@ -1,107 +1,105 @@
 ---
 product: base
-title: Unstyled React Snackbar component and hook
-components: SnackbarUnstyled
+title: React Snackbar component and hook
+components: Snackbar
+hooks: useSnackbar
 githubLabel: 'component: snackbar'
 ---
 
-# Unstyled snackbar
+# Snackbar
 
-<p class="description">The SnackbarUnstyled component informs users that an action has been or will be performed by the app.</p>
+<p class="description">The Snackbar component informs users that an action has been or will be performed by the app.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
 A snackbar provides users with a brief, temporary message about app processes without interrupting their activity or experience.
 
-The `SnackbarUnstyled` component is built to appear on-screen to inform users about an action that the app is taking.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+The Snackbar component is built to appear on-screen to inform users about an action that the app is taking.
 
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
-import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
+import Snackbar from '@mui/base/Snackbar';
 
 export default function MyApp() {
-  return <SnackbarUnstyled>{/* snackbar text */}</SnackbarUnstyled>;
+  return <Snackbar>{/* snackbar text */}</Snackbar>;
 }
 ```
 
 ### Basics
 
-`SnackbarUnstyled` doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without requiring the user to take action.
+Snackbar doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without requiring the user to take action.
 
 Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
 
 :::info
-You may want to implement `SnackbarUnstyled` with [`ClickAwayListener`](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
+You may want to implement Snackbar with [Click-Away Listener](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
 But this behavior is optional for a snackbar.
 :::
 
-The following demo illustrates the basic usage of `SnackbarUnstyled`.
+The following demo illustrates the basic usage of Snackbar.
 Click **Open snackbar** to see how it behaves:
 
 {{"demo": "UnstyledSnackbar.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
-The `SnackbarUnstyled` component is composed of a single root `<div>` slot with no interior slots:
+The Snackbar component is composed of a single root `<div>` slot with no interior slots:
 
 ```html
 <div role="presentation" className="BaseSnackbar-root">snackbar content</div>
 ```
 
-### Slot props
+### Custom structure
+
+```jsx
+<Snackbar slots={{ root: 'span' }} />
+```
 
 :::info
-The following props are available on all non-utility Base components.
-See [Usage](/base/getting-started/usage/) for full details.
+The `slots` prop is available on all non-utility Base components.
+See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
 :::
 
-Use the `component` prop to override the root slot with a custom element:
+#### Usage with TypeScript
 
-```jsx
-<SnackbarUnstyled component="span" />
+In TypeScript, you can specify the custom component type used in the `slots.root` as a generic to the unstyled component. This way, you can safely provide the custom component's props directly on the component:
+
+```tsx
+<Snackbar<typeof CustomComponent> slots={{ root: CustomComponent }} customProp />
 ```
 
-Use the `slots` prop to override any interior slots in addition to the root:
+The same applies for props specific to custom primitive elements:
 
-```jsx
-<SnackbarUnstyled slots={{ root: 'span' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `slots` props, then `component` will take precedence.
-:::
-
-Use the `slotProps` prop to pass custom props to internal slots.
-The following code snippet applies a CSS class called `my-snackbar` to the root slot:
-
-```jsx
-<SnackbarUnstyled slotProps={{ root: { className: 'my-snackbar' } }} />
+```tsx
+<Snackbar<'button'> slots={{ root: 'button' }} onClick={() => {}} />
 ```
 
 ## Hook
 
 ```js
-import { useSnackbar } from '@mui/base/SnackbarUnstyled';
+import useSnackbar from '@mui/base/useSnackbar';
 ```
 
-The `useSnackbar` hook lets you apply the functionality of `SnackbarUnstyled` to a fully custom component.
+The `useSnackbar` hook lets you apply the functionality of a snackbar to a fully custom component.
 
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-If you use a [`ClickAwayListener`](/base/react-click-away-listener/) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the `ClickAwayListener`.
+If you use a [Click-Away Listener](/base/react-click-away-listener/) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the Click-Away Listener.
 
 Pass the `open` state to the hook and use it to show and hide the snackbar.
 
-The demo below shows how to build a fully custom component with the `useSnackbar` hook that also incorporates the `ClickAwayListener` component:
+The demo below shows how to build a fully custom component with the `useSnackbar` hook that also incorporates the Click-Away Listener component:
 
 {{"demo": "UseSnackbar.js", "defaultCodeOpen": false}}
 
@@ -123,9 +121,9 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 You can animate the open and close states of the snackbar with a render prop child and a transition component, as long as the component meets these conditions:
 
-- Is a direct child descendent of the snackbar
+- Is a direct child descendant of the snackbar
 - Has an `in` prop—this corresponds to the open state
-- Passes the `exited` prop to `SnackbarUnstyled`
+- Passes the `exited` prop to Snackbar
 - Calls the `onEnter` callback prop when the enter transition starts—sets `exited` to false
 - Calls the `onExited` callback prop when the exit transition is completed—sets `exited` to true
 

@@ -1,0 +1,135 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "checked": "If <code>true</code>, the component is checked.",
+    "checkedIcon": "The icon to display when the component is checked.",
+    "className": "Class name applied to the root element.",
+    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
+    "defaultChecked": "The default checked state. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the component is disabled.",
+    "disableIcon": "If <code>true</code>, the checked icon is removed and the selected variant is applied on the <code>action</code> element instead.",
+    "indeterminate": "If <code>true</code>, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, we set a <code>data-indeterminate</code> attribute on the <code>input</code>.",
+    "indeterminateIcon": "The icon to display when the component is indeterminate.",
+    "label": "The label element next to the checkbox.",
+    "name": "The <code>name</code> attribute of the input.",
+    "onChange": "Callback fired when the state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string). You can pull out the new checked state by accessing <code>event.target.checked</code> (boolean).",
+    "overlay": "If <code>true</code>, the root element&#39;s position is set to initial which allows the action area to fill the nearest positioned parent. This prop is useful for composing Checkbox with ListItem component.",
+    "readOnly": "If <code>true</code>, the component is read only.",
+    "required": "If <code>true</code>, the <code>input</code> element is required.",
+    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "uncheckedIcon": "The icon when <code>checked</code> is false.",
+    "value": "The value of the component. The DOM API casts this to a string. The browser uses &quot;on&quot; as the default value.",
+    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+  },
+  "classDescriptions": {
+    "root": { "description": "Class name applied to the root element." },
+    "checkbox": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the checkbox element"
+    },
+    "action": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the action element"
+    },
+    "input": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the input element"
+    },
+    "label": {
+      "description": "Class name applied to {{nodeName}}.",
+      "nodeName": "the label element"
+    },
+    "checked": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the input component's `checked` class"
+    },
+    "disabled": {
+      "description": "State class applied to {{nodeName}}.",
+      "nodeName": "the input component's disabled class"
+    },
+    "focusVisible": {
+      "description": "Class name applied to the root element if the switch has visible focus"
+    },
+    "indeterminate": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>indeterminate={true}</code>"
+    },
+    "colorPrimary": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"primary\"</code>"
+    },
+    "colorDanger": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"danger\"</code>"
+    },
+    "colorInfo": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorNeutral": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"neutral\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>color=\"warning\"</code>"
+    },
+    "colorContext": {
+      "description": "Class name applied to {{nodeName}} when {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "color inversion is triggered"
+    },
+    "sizeSm": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"sm\"</code>"
+    },
+    "sizeMd": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"md\"</code>"
+    },
+    "sizeLg": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>size=\"lg\"</code>"
+    },
+    "variantOutlined": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code>"
+    },
+    "variantSoft": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"soft\"</code>"
+    },
+    "variantSolid": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"solid\"</code>"
+    }
+  },
+  "slotDescriptions": {
+    "root": "The component that renders the root.",
+    "checkbox": "The component that renders the checkbox.",
+    "action": "The component that renders the action.",
+    "input": "The component that renders the input.",
+    "label": "The component that renders the label."
+  }
+}

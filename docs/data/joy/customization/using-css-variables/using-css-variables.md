@@ -4,37 +4,43 @@
 
 ## Theme object
 
-The `CssVarsProvider` reads the theme input (or the default theme) and create the CSS variables according to the theme structure.
+The `CssVarsProvider` reads the theme input (or the default theme) and creates the CSS variables according to the theme structure.
 It also creates an object that refers to the generated CSS variables under `theme.vars` so that you can use them from the JavaScript theme object.
 
 The `theme.vars` is available in all styling APIs that Joy UI offers:
 
-- `styled` function
-  ```js
-  const Div = styled('div')(({ theme }) => ({
-    // The result is 'var(--joy-palette-primary-500)'
-    color: theme.vars.palette.primary[500],
-  }));
-  ```
-- `sx` prop
-  ```jsx
-  // The result is 'var(--joy-shadow-sm)'
-  <Chip sx={(theme) => ({ boxShadow: theme.vars.shadow.sm })} />
-  ```
-- style overrides (themed components)
-  ```jsx
-  extendTheme({
-    components: {
-      JoyButton: {
-        root: ({ theme }) => ({
-          // The result is 'var(--joy-fontFamily-display)'
-          fontFamily: theme.vars.fontFamily.display,
-        }),
-      },
+1. The `styled` function
+
+```js
+const Div = styled('div')(({ theme }) => ({
+  // The result is 'var(--joy-palette-primary-500)'
+  color: theme.vars.palette.primary[500],
+}));
+```
+
+2. The `sx` prop
+
+```jsx
+// The result is 'var(--joy-shadow-sm)'
+<Chip sx={(theme) => ({ boxShadow: theme.vars.shadow.sm })} />
+```
+
+3. Style overrides (themed components)
+
+```jsx
+extendTheme({
+  components: {
+    JoyButton: {
+      root: ({ theme }) => ({
+        // The result is 'var(--joy-fontFamily-display)'
+        fontFamily: theme.vars.fontFamily.display,
+      }),
     },
-  });
-  ```
-- `useTheme` hook
+  },
+});
+```
+
+4. The `useTheme` hook.
 
 ### Alpha channel colors
 
@@ -57,11 +63,11 @@ const Div = styled('div')(({ theme }) => ({
 ```
 
 :::warning
-⚠️ The format of the channel tokens is using empty space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
+The format of the channel tokens uses a space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
-`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct format
-`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, 🚫 will not work
+`rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct
+`rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, 🚫 incorrect
 ```
 
 :::
@@ -73,12 +79,12 @@ For example, you can create the `inset` shadow from the theme like this:
 
 ```js
 const Div = styled('div')(({ theme }) => ({
-  // Note that it is using `theme.shadow` not `theme.vars.shadow`
+  // Note that it's using `theme.shadow`, not `theme.vars.shadow`
   boxShadow: theme.shadow.sm.replace(/,/g, ', inset'),
 }));
 ```
 
-:::info
+:::warning
 You can't use `theme.vars` to create an inset shadow because the value refers to the CSS variable, not the actual shadow.
 
 - `theme.vars.shadow.sm` returns `'var(--joy-shadow-sm)'`

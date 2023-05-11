@@ -7,21 +7,25 @@ githubLabel: 'component: TextareaAutosize'
 
 # Textarea Autosize
 
-<p class="description">The TextareaAutosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
+<p class="description">The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
 
 ## Introduction
 
-`TextareaAutosize` is a utility component that replaces the native `<textarea>` HTML element.
+Textarea Autosize is a utility component that replaces the native `<textarea>` HTML.
 
-The height of the `TextareaAutosize` component automatically adjusts as a response to keyboard inputs and window resizing events.
+The height of the Textarea Autosize component automatically adjusts as a response to keyboard inputs and window resizing events.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledTextareaIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import TextareaAutosize from '@mui/base/TextareaAutosize';
@@ -33,9 +37,9 @@ export default function MyApp() {
 
 ### Basics
 
-`TextareaAutosize` behaves similarly to the native HTML`<textarea>`.
+Textarea Autosize behaves similarly to the native HTML`<textarea>`.
 
-By default, an empty `TextareaAutosize` component renders as a single row, as shown in the following demo:
+By default, an empty Textarea Autosize component renders as a single row, as shown in the following demo:
 
 {{"demo": "EmptyTextarea.js"}}
 

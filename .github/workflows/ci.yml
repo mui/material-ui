@@ -8,6 +8,7 @@ on:
       - 'renovate/**'
   pull_request:
     paths-ignore:
+      # should sync with ci-check.yml as a workaround to bypass github checks
       - 'docs/**'
       - 'examples/**'
 
@@ -24,12 +25,12 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # tag=v3
+      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
       - name: Use Node.js 14.x
-        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # tag=v3
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: 14
           cache: 'yarn' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies

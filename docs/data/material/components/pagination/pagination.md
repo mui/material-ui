@@ -41,7 +41,7 @@ It's possible to customize the control icons.
 
 ## Pagination ranges
 
-You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+You can specify how many digits to display either side of current page with the `siblingCount` prop, and adjacent to the start and end page number with the `boundaryCount` prop.
 
 {{"demo": "PaginationRanges.js"}}
 
@@ -75,8 +75,8 @@ For the pagination of a large set of tabular data, you should use the `TablePagi
 
 {{"demo": "TablePagination.js"}}
 
-:::info
-⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+:::warning
+Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
 :::
 
 You can learn more about this use case in the [table section](/material-ui/react-table/#custom-pagination-options) of the documentation.

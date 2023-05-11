@@ -47,7 +47,7 @@ const MenuPaper = styled(Paper, {
   overridesResolver: (props, styles) => styles.paper,
 })({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
-  // height. This ensures a tapable area outside of the simple menu with which to dismiss
+  // height. This ensures a tappable area outside of the simple menu with which to dismiss
   // the menu.
   maxHeight: 'calc(100% - 96px)',
   // Add iOS momentum scrolling for iOS < 13.0
@@ -158,7 +158,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   return (
     <MenuRoot
-      classes={PopoverClasses}
       onClose={onClose}
       anchorOrigin={{
         vertical: 'bottom',
@@ -166,7 +165,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
-        component: MenuPaper,
+        as: MenuPaper,
         ...PaperProps,
         classes: {
           ...PaperProps.classes,
@@ -180,6 +179,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       ownerState={ownerState}
       {...other}
+      classes={PopoverClasses}
     >
       <MenuMenuList
         onKeyDown={handleListKeyDown}

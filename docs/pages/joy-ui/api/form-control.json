@@ -1,0 +1,76 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "error": { "type": { "name": "bool" }, "default": "false" },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'vertical'"
+    },
+    "required": { "type": { "name": "bool" }, "default": "false" },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
+      },
+      "default": "'md'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "FormControl",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiFormControl-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "horizontal",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "vertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyFormControl",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/FormControl/FormControl.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-input/\">Input</a></li></ul>",
+  "cssComponent": false
+}

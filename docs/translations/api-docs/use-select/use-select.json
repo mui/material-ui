@@ -1,0 +1,35 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {
+    "buttonRef": "The ref of the trigger button element.",
+    "defaultOpen": "If <code>true</code>, the select will be open by default.",
+    "defaultValue": "The default selected value. Use when the component is not controlled.",
+    "disabled": "If <code>true</code>, the select is disabled.",
+    "getOptionAsString": "A function used to convert the option label to a string.\nThis is useful when labels are elements and need to be converted to plain text\nto enable keyboard navigation with character keys.",
+    "listboxId": "The <code>id</code> attribute of the listbox element.",
+    "listboxRef": "The ref of the listbox element.",
+    "multiple": "If <code>true</code>, the end user can select multiple values.\nThis affects the type of the <code>value</code>, <code>defaultValue</code>, and <code>onChange</code> props.",
+    "onChange": "Callback fired when an option is selected.",
+    "onHighlightChange": "Callback fired when an option is highlighted.",
+    "onOpenChange": "Callback fired when the listbox is opened or closed.",
+    "open": "Controls the open state of the select's listbox.\nThis is the controlled equivalent of the <code>defaultOpen</code> prop.",
+    "options": "An alternative way to specify the options.\nIf this parameter is set, options defined as JSX children are ignored.",
+    "value": "The selected value.\nSet to <code>null</code> to deselect all options."
+  },
+  "returnValueDescriptions": {
+    "buttonActive": "If <code>true</code>, the trigger button is active (pressed).",
+    "buttonFocusVisible": "If <code>true</code>, the trigger button has a visible focus.",
+    "buttonRef": "Ref to the button slot DOM node.",
+    "contextValue": "A value to be passed to the <code>SelectProvider</code> component.",
+    "disabled": "If <code>true</code>, the select is disabled.",
+    "dispatch": "Action dispatcher for the select component.\nAllows to programmatically control the select.",
+    "getButtonProps": "Resolver for the button slot's props.",
+    "getListboxProps": "Resolver for the listbox slot's props.",
+    "getOptionMetadata": "A function that returns the metadata of an option with a given value.",
+    "highlightedOption": "The value of the highlighted option.",
+    "listboxRef": "Ref to the listbox slot DOM node.",
+    "open": "If <code>true</code>, the listbox is open.",
+    "options": "Values of all the registered options.",
+    "value": "The value of the selected option(s)."
+  }
+}

@@ -4,10 +4,10 @@
 /coverage
 /docs/export
 /docs/pages/playground/
-/examples/create-react-app*/src/serviceWorker.js
-/examples/gatsby/public/
-/examples/preact/config
-/examples/preact/scripts
+/examples/material-cra*/src/serviceWorker.js
+/examples/material-gatsby/public/
+/examples/material-preact/config
+/examples/material-preact/scripts
 /packages/mui-codemod/lib
 /packages/mui-codemod/src/*/*.test/*
 /packages/mui-icons-material/fixtures
@@ -28,3 +28,10 @@
 .next
 build
 node_modules
+.nyc_output
+
+# These come from crowdin.
+# If we would commit changes crowdin would immediately try to revert.
+# If we want to format these files we'd need to do it in crowdin
+docs/**/*-pt.md
+docs/**/*-zh.md

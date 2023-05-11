@@ -7,8 +7,14 @@
     "value": { "type": { "name": "any" } }
   },
   "name": "RadioGroup",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": {
+    "classes": ["root", "row", "error"],
+    "globalClasses": { "error": "Mui-error" },
+    "name": "MuiRadioGroup"
+  },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiRadioGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/RadioGroup/RadioGroup.js",
   "inheritance": { "component": "FormGroup", "pathname": "/material-ui/api/form-group/" },

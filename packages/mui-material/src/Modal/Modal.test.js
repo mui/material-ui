@@ -32,6 +32,7 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
+      testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
         backdrop: {},
@@ -42,6 +43,7 @@ describe('<Modal />', () => {
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
+        'slotPropsCallback', // not supported yet
       ],
     }),
   );
@@ -69,6 +71,19 @@ describe('<Modal />', () => {
       );
 
       expect(container).to.have.text('Hello World');
+    });
+  });
+
+  describe('prop: classes', () => {
+    it('adds custom classes to the component', () => {
+      const { getByTestId } = render(
+        <Modal data-testid="Portal" open classes={{ root: 'custom-root', hidden: 'custom-hidden' }}>
+          <div />
+        </Modal>,
+      );
+      expect(getByTestId('Portal')).to.have.class(classes.root);
+      expect(getByTestId('Portal')).to.have.class('custom-root');
+      expect(getByTestId('Portal')).not.to.have.class('custom-hidden');
     });
   });
 

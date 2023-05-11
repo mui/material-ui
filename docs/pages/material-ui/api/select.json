@@ -1,11 +1,11 @@
 {
   "props": {
-    "autoWidth": { "type": { "name": "bool" } },
+    "autoWidth": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "default": "{}" },
-    "defaultOpen": { "type": { "name": "bool" } },
+    "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
     "defaultValue": { "type": { "name": "any" } },
-    "displayEmpty": { "type": { "name": "bool" } },
+    "displayEmpty": { "type": { "name": "bool" }, "default": "false" },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
     "id": { "type": { "name": "string" } },
     "input": { "type": { "name": "element" } },
@@ -13,8 +13,8 @@
     "label": { "type": { "name": "node" } },
     "labelId": { "type": { "name": "string" } },
     "MenuProps": { "type": { "name": "object" } },
-    "multiple": { "type": { "name": "bool" } },
-    "native": { "type": { "name": "bool" } },
+    "multiple": { "type": { "name": "bool" }, "default": "false" },
+    "native": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },
@@ -50,12 +50,15 @@
       "iconFilled",
       "iconOutlined",
       "iconStandard",
-      "nativeInput"
+      "nativeInput",
+      "error"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" },
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiSelect"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Select/Select.js",
   "inheritance": { "component": "OutlinedInput", "pathname": "/material-ui/api/outlined-input/" },

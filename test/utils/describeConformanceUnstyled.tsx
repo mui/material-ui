@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { ClassNameConfigurator } from '@mui/base/utils';
 import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
+import createDescribe from './createDescribe';
 import {
   ConformanceOptions,
+  SlotTestingOptions,
   describeRef,
   randomStringValue,
   testClassName,
   testComponentProp,
   testReactTestRenderer,
 } from './describeConformance';
-
-export interface SlotTestingOptions {
-  testWithComponent?: React.ComponentType;
-  testWithElement?: keyof JSX.IntrinsicElements | null;
-  expectedClassName: string;
-  isOptional?: boolean;
-}
 
 export interface UnstyledConformanceOptions
   extends Omit<Partial<ConformanceOptions>, 'render' | 'skip' | 'classes'> {
@@ -24,7 +20,6 @@ export interface UnstyledConformanceOptions
     options?: RenderOptions | undefined,
   ) => MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
-  slots: Record<string, SlotTestingOptions>;
   testComponentPropWith?: string;
 }
 
@@ -107,7 +102,7 @@ function testPropForwarding(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
-  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
+  const { render, slots, skip, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -158,7 +153,7 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
     }
 
     if (slotOptions.isOptional) {
-      it(`alows omitting the optional ${slotName} slot by providing null`, () => {
+      it(`allows omitting the optional ${slotName} slot by providing null`, () => {
         const components = {
           [slotName]: null,
         };
@@ -170,6 +165,10 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
   });
 
   it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', () => {
+    if (skip && skip.indexOf('componentProp') >= 0) {
+      return;
+    }
+
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
         // @ts-ignore
@@ -324,6 +323,28 @@ function testOwnerStatePropagation(
   });
 }
 
+function testDisablingClassGeneration(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  it(`does not generate any class names if placed within a ClassNameConfigurator`, () => {
+    render(<ClassNameConfigurator disableDefaultClasses>{element}</ClassNameConfigurator>);
+
+    const elementsWithClasses = document.querySelectorAll(`[class]`);
+
+    elementsWithClasses.forEach((el: Element) => {
+      // There can be empty class attributes as clsx returns an empty string given falsy arguments.
+      expect(el.className.trim()).to.equal('');
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   slotsProp: testSlotsProp,
@@ -334,9 +355,10 @@ const fullSuite = {
   reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
   ownerStatePropagation: testOwnerStatePropagation,
+  disableClassGeneration: testDisablingClassGeneration,
 };
 
-export default function describeConformanceUnstyled(
+function describeConformanceUnstyled(
   minimalElement: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
@@ -347,12 +369,12 @@ export default function describeConformanceUnstyled(
       only.indexOf(testKey) !== -1 && skip.indexOf(testKey as keyof typeof fullSuite) === -1,
   ) as (keyof typeof fullSuite)[];
 
-  describe('MUI unstyled component API', () => {
-    after(runAfterHook);
+  after(runAfterHook);
 
-    filteredTests.forEach((testKey) => {
-      const test = fullSuite[testKey];
-      test(minimalElement, getOptions as any);
-    });
+  filteredTests.forEach((testKey) => {
+    const test = fullSuite[testKey];
+    test(minimalElement, getOptions as any);
   });
 }
+
+export default createDescribe('MUI unstyled component API', describeConformanceUnstyled);

@@ -9,7 +9,11 @@
  * List of demos or folders to ignore when transpiling
  * Example: "app-bar/BottomAppBar.tsx"
  */
-const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
+const ignoreList = [
+  '/pages.ts',
+  'docs/data/joy/getting-started/templates',
+  'docs/data/base/components/select/UnstyledSelectIntroduction.tsx',
+];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -17,7 +21,7 @@ const babel = require('@babel/core');
 const prettier = require('prettier');
 const typescriptToProptypes = require('typescript-to-proptypes');
 const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('./helpers');
+const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui-internal/docs-utilities');
 
 const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
@@ -27,6 +31,7 @@ const babelConfig = {
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
+  shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
 const workspaceRoot = path.join(__dirname, '../../');

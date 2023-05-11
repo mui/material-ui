@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Divider component
+components: Divider
 githubLabel: 'component: divider'
 ---
 
@@ -8,20 +9,20 @@ githubLabel: 'component: divider'
 
 <p class="description">A divider is a thin line that groups content in lists and layouts.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Dividers separate content into clear groups.
 
-{{"demo": "DividerUsage.js", "hideToolbar": "true"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "DividerUsage.js", "hideToolbar": "true", "bg": "gradient"}}
 
 ## Component
 
 After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
-import Avatar from '@mui/joy/Divider';
+import Divider from '@mui/joy/Divider';
 
 export default function MyApp() {
   return <Divider />;
@@ -32,25 +33,24 @@ export default function MyApp() {
 
 Use the `Divider` to wrap elements that will be added to it.
 
-:::info
-♿️ **a11y tip**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` on it to make sure screen readers can announce its content:
+{{"demo": "DividerText.js"}}
+
+:::warning
+When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` on it to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">
   {/* any elements nested inside the role="presentation" preserve their semantics. */}
-  <Typography variant="h2">My Heading</Typography>
 </Divider>
 ```
 
 :::
 
-{{"demo": "DividerText.js"}}
-
 ### Vertical divider
 
 Use the `orientation` prop to render a vertical divider.
 
-{{"demo": "VerticalDividers.js", "bg": true}}
+{{"demo": "VerticalDividers.js"}}
 
 #### Vertical with text
 
@@ -70,7 +70,7 @@ To control the position of the content, override the CSS variable `--Divider-chi
 
 ## Automatic adjustment
 
-When the `Divider` is a direct child of either a [Card](/joy-ui/react-card/) or [ModalDialog](/joy-ui/react-modal/#dialog), it will automatically adapt to their spacing and orientation.
+When the `Divider` is a direct child of either a [Card](/joy-ui/react-card/) or [ModalDialog](/joy-ui/react-modal/#modal-dialog), it will automatically adapt to their spacing and orientation.
 
 ### Card
 

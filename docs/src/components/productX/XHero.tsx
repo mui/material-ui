@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useDemoData } from '@mui/x-data-grid-generator';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -19,19 +15,64 @@ import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
 import { alpha } from '@mui/material/styles';
 
+import {
+  DataGridPremium,
+  useGridApiRef,
+  useKeepGroupedColumnsHidden,
+} from '@mui/x-data-grid-premium';
+import { useDemoData } from '@mui/x-data-grid-generator';
+
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
+const visibleFields = [
+  'commodity',
+  'unitPrice',
+  'feeRate',
+  'quantity',
+  'filledQuantity',
+  'isFilled',
+  'traderName',
+  'status',
+  'totalPrice',
+];
+
 export default function XHero() {
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10000,
-    maxColumns: 40,
     editable: true,
+    visibleFields,
   });
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const apiRef = useGridApiRef();
+
+  const sortedColumns = React.useMemo(() => {
+    return [...data.columns].sort((a, b) => {
+      return visibleFields.indexOf(a.field) - visibleFields.indexOf(b.field);
+    });
+  }, [data.columns]);
+
+  const initialState = useKeepGroupedColumnsHidden({
+    apiRef,
+    initialState: {
+      ...data.initialState,
+      rowGrouping: {
+        model: ['commodity'],
+      },
+      aggregation: {
+        model: {
+          quantity: 'sum',
+          unitPrice: 'avg',
+          feeRate: 'min',
+          totalPrice: 'max',
+        },
+      },
+    },
+  });
+
+  let rowGroupingCounter = 0;
   return (
     <HeroContainer
       left={
@@ -39,15 +80,18 @@ export default function XHero() {
           <Typography
             fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
+            sx={(theme) => ({
+              color: 'primary.600',
               display: 'flex',
               alignItems: 'center',
               justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+              '& > *': { mr: 1 },
+              ...theme.applyDarkStyles({
+                color: 'primary.400',
+              }),
+            })}
           >
-            <IconImage name="product-advanced" /> MUI X
+            <IconImage width={28} height={28} name="product-advanced" /> MUI X
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Performant
@@ -73,106 +117,128 @@ export default function XHero() {
       right={
         <React.Fragment>
           <Paper
-            sx={{
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
-              border: (theme) =>
-                `1px solid ${
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[200]
-                }`,
-              boxShadow: (theme) =>
-                `0px 4px 20px ${
-                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(170, 180, 190, 0.3)'
-                }`,
+            sx={(theme) => ({
+              backgroundColor: '#fff',
+              border: '1px solid',
+              borderColor: 'grey.200',
+              boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
               mb: { md: 2, lg: 3, xl: 4 },
-            }}
+              ...theme.applyDarkStyles({
+                backgroundColor: 'primaryDark.800',
+                borderColor: 'primaryDark.600',
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+              }),
+            })}
           >
             <Box
-              sx={{
+              sx={(theme) => ({
                 textAlign: 'center',
                 py: 1.5,
                 position: 'relative',
                 borderRadius: 0,
-                borderBottom: (theme) =>
-                  `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
-              }}
+                borderBottom: '1px solid',
+                borderColor: 'grey.200',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.600',
+                }),
+              })}
             >
-              <Typography fontWeight={500}>Trades, October 2020</Typography>
+              <Typography fontWeight={500}>Trades, March 2023</Typography>
             </Box>
             <Box
-              sx={{
-                height: { md: 300, xl: 370 },
-                '& .MuiDataGrid-root': {
-                  borderRadius: 1,
-                  border: 0,
-                  color: 'text.secondary',
-                  '& .MuiCheckbox-root': {
-                    p: 0.5,
-                    '& > svg': {
-                      fontSize: '1.25rem',
-                    },
-                  },
-                  '& .MuiDataGrid-columnHeaders': {
-                    borderBottom: (theme) =>
-                      `1px solid ${
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.grey[200]
-                      }`,
-                  },
-                  '& .MuiDataGrid-columnHeaderTitleContainer': {
-                    padding: 0,
-                    color: 'text.primary',
-                  },
-                  '& .MuiDataGrid-columnHeaderTitle': {
-                    flexGrow: 1,
-                    fontSize: '0.875rem',
-                  },
-                  '& button, & button > svg': {
-                    fontSize: 16,
-                  },
-                  '& .MuiDataGrid-cell': {
-                    fontSize: '0.875rem',
+              sx={[
+                {
+                  height: { md: 300, xl: 370 },
+                  '& .MuiDataGrid-root': {
+                    borderRadius: 1,
+                    border: 0,
                     color: 'text.secondary',
-                    borderBottom: (theme) =>
-                      `1px solid ${
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.primaryDark[600], 0.5)
-                          : theme.palette.grey[200]
-                      }`,
-                  },
-                  '& .MuiDataGrid-viewport': {
+                    '& .MuiCheckbox-root': {
+                      p: 0.5,
+                      '& > svg': {
+                        fontSize: '1.25rem',
+                      },
+                    },
+                    '& .MuiDataGrid-columnHeaders': {
+                      borderBottom: '1px solid',
+                      borderColor: 'grey.200',
+                    },
+                    [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
+                      {
+                        outline: 'none',
+                      },
+                    '& .MuiDataGrid-columnHeaderTitleContainer': {
+                      padding: 0,
+                      color: 'text.primary',
+                    },
+                    '& .MuiDataGrid-columnHeaderTitle': {
+                      flexGrow: 1,
+                      fontSize: '0.875rem',
+                    },
+                    '& button, & button > svg': {
+                      fontSize: 16,
+                    },
                     '& .MuiDataGrid-cell': {
                       fontSize: '0.875rem',
                       color: 'text.secondary',
+                      borderBottom: '1px solid',
+                      borderColor: 'grey.200',
                     },
-                    '& .MuiInputBase-input': {
-                      fontSize: '0.875rem',
-                      px: 0.5,
+                    '& .MuiDataGrid-viewport': {
+                      '& .MuiDataGrid-cell': {
+                        fontSize: '0.875rem',
+                        color: 'text.secondary',
+                      },
+                      '& .MuiInputBase-input': {
+                        fontSize: '0.875rem',
+                        px: 0.5,
+                      },
                     },
-                  },
-                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                    '& .MuiChip-root': {
-                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
+                    '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                      '& .MuiChip-root': {
+                        color: red[500],
+                      },
                     },
                   },
                 },
-              }}
+                (theme) =>
+                  theme.applyDarkStyles({
+                    '& .MuiDataGrid-root': {
+                      '& .MuiDataGrid-columnHeaders': {
+                        borderColor: 'primaryDark.600',
+                      },
+                      '& .MuiDataGrid-cell': {
+                        borderColor: alpha(theme.palette.primaryDark[600], 0.5),
+                      },
+                      '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                        '& .MuiChip-root': {
+                          color: red[300],
+                        },
+                      },
+                    },
+                  }),
+              ]}
             >
-              <DataGridPro
+              <DataGridPremium
                 {...data}
-                disableSelectionOnClick
-                checkboxSelection
+                columns={sortedColumns}
+                apiRef={apiRef}
+                initialState={initialState}
+                disableRowSelectionOnClick
+                groupingColDef={{
+                  headerClassName: 'grouping-column-header',
+                }}
+                sx={{
+                  '& .grouping-column-header': {
+                    pl: 6,
+                  },
+                }}
                 hideFooter
                 loading={loading}
-                density="compact"
-                experimentalFeatures={{ newEditingApi: true }}
+                isGroupExpandedByDefault={() => {
+                  rowGroupingCounter += 1;
+                  return rowGroupingCounter === 3;
+                }}
               />
             </Box>
           </Paper>
@@ -185,25 +251,20 @@ export default function XHero() {
             }}
           >
             <Paper
-              sx={{
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
-                border: (theme) =>
-                  `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
-                boxShadow: (theme) =>
-                  `0px 4px 20px ${
-                    theme.palette.mode === 'dark'
-                      ? 'rgba(0, 0, 0, 0.3)'
-                      : 'rgba(170, 180, 190, 0.3)'
-                  }`,
+              sx={(theme) => ({
+                backgroundColor: '#fff',
+                border: '1px solid',
+                borderColor: 'grey.200',
+                boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                ...theme.applyDarkStyles({
+                  backgroundColor: 'primaryDark.800',
+                  borderColor: 'primaryDark.600',
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+                }),
                 minWidth: 300,
                 mr: { md: 2, lg: 3, xl: 4 },
                 flexGrow: 1,
-              }}
+              })}
             >
               <Box sx={{ p: 2 }}>
                 <Typography fontWeight={500}>Cool Project</Typography>
@@ -212,64 +273,54 @@ export default function XHero() {
               <FolderTreeView />
             </Paper>
             <Paper
-              sx={{
-                border: (theme) =>
-                  `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
-                boxShadow: (theme) =>
-                  `0px 4px 20px ${
-                    theme.palette.mode === 'dark'
-                      ? 'rgba(0, 0, 0, 0.3)'
-                      : 'rgba(170, 180, 190, 0.3)'
-                  }`,
-                '& > div': {
-                  borderRadius: 1,
-                  overflow: 'auto',
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+              sx={[
+                {
+                  border: '1px solid',
+                  borderColor: 'grey.200',
+                  boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                  '& > div': {
+                    borderRadius: 1,
+                    overflow: 'auto',
+                    backgroundColor: 'initial',
+                  },
+                  '& .MuiTypography-subtitle1': {
+                    fontSize: '0.875rem',
+                  },
+                  '& .MuiTypography-caption': {
+                    width: { xs: 28, xl: 32 },
+                    height: 32,
+                  },
+                  '& .MuiPickersSlideTransition-root': {
+                    minWidth: { xs: 268, xl: 300 },
+                    minHeight: { xs: 238, xl: 288 },
+                  },
+                  '& [role="row"]': {
+                    margin: { xs: '4px 0', xl: '6px 0' },
+                  },
+                  '& .MuiDateRangePickerDay-root': {
+                    lineHeight: 0,
+                    margin: 0,
+                  },
+                  '& .MuiPickersDay-root': {
+                    width: { xs: 28, xl: 32 },
+                    height: { xs: 28, xl: 32 },
+                    fontWeight: 400,
+                  },
                 },
-                '& .MuiTypography-subtitle1': {
-                  fontSize: '0.875rem',
-                },
-                '& .MuiTypography-caption': {
-                  width: { xs: 28, xl: 32 },
-                  height: 32,
-                },
-                '& .PrivatePickersSlideTransition-root': {
-                  minWidth: { xs: 268, xl: 300 },
-                  minHeight: { xs: 238, xl: 288 },
-                },
-                '& [role="row"]': {
-                  margin: { xs: '4px 0', xl: '6px 0' },
-                },
-                '& .MuiDateRangePickerDay-root': {
-                  lineHeight: 0,
-                  margin: 0,
-                },
-                '& .MuiPickersDay-root': {
-                  width: { xs: 28, xl: 32 },
-                  height: { xs: 28, xl: 32 },
-                  fontWeight: 400,
-                },
-              }}
+                (theme) =>
+                  theme.applyDarkStyles({
+                    borderColor: 'primaryDark.600',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.3)',
+                    '& > div': {
+                      backgroundColor: 'primaryDark.800',
+                    },
+                  }),
+              ]}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(startProps, endProps) => (
-                    <React.Fragment>
-                      <TextField {...startProps} />
-                      <Box sx={{ mx: 2 }}> to </Box>
-                      <TextField {...endProps} />
-                    </React.Fragment>
-                  )}
+                  value={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>

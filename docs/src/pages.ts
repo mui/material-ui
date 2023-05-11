@@ -1,10 +1,11 @@
-import pagesApi from './pagesApi';
-import type { MuiPage, OrderedMuiPage } from './MuiPage';
+import pagesApi from 'docs/src/pagesApi';
+import type { MuiPage, OrderedMuiPage } from 'docs/src/MuiPage';
+import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [
   {
     pathname: '/getting-started',
-    icon: 'DescriptionIcon',
+    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/getting-started/installation' },
       { pathname: '/getting-started/usage' },
@@ -19,10 +20,10 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/components',
-    icon: 'ToggleOnIcon',
+    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
-        pathname: '/components',
+        pathname: '/components/inputs',
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/autocomplete' },
@@ -41,7 +42,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/data-display',
         subheader: '/components/data-display',
         children: [
           { pathname: '/components/avatars', title: 'Avatar' },
@@ -57,7 +58,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/feedback',
         subheader: '/components/feedback',
         children: [
           { pathname: '/components/alert' },
@@ -69,7 +70,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/surfaces',
         subheader: '/components/surfaces',
         children: [
           { pathname: '/components/accordion' },
@@ -79,7 +80,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/navigation',
         subheader: '/components/navigation',
         children: [
           { pathname: '/components/bottom-navigation' },
@@ -94,7 +95,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/layout',
         subheader: '/components/layout',
         children: [
           { pathname: '/components/box' },
@@ -106,7 +107,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/utils',
         subheader: '/components/utils',
         children: [
           { pathname: '/components/click-away-listener' },
@@ -122,7 +123,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/data-grid-root',
         subheader: '/components/data-grid',
         children: [
           {
@@ -151,7 +152,7 @@ const pages: readonly MuiPage[] = [
         ],
       },
       {
-        pathname: '/components',
+        pathname: '/components/lab',
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
@@ -163,13 +164,13 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/api-docs',
-    icon: 'CodeIcon',
+    icon: standardNavIcons.CodeIcon,
     children: [
       ...pagesApi,
       {
-        pathname: '/api-docs/data-grid',
+        pathname: '/api-docs/data-grid-root',
         title: 'Data Grid',
         children: [
           { pathname: '/api-docs/data-grid', title: 'API Reference' },
@@ -207,7 +208,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/system',
-    icon: 'BuildIcon',
+    icon: standardNavIcons.BuildIcon,
     children: [
       { pathname: '/system/basics' },
       { pathname: '/system/properties' },
@@ -229,8 +230,8 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: '/customization',
-    icon: 'CreateIcon',
+    pathname: '/customization-root',
+    icon: standardNavIcons.CreateIcon,
     children: [
       {
         pathname: '/customization',
@@ -256,8 +257,8 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/guides',
-    title: 'How To Guides',
-    icon: 'VisibilityIcon',
+    title: 'How-to guides',
+    icon: standardNavIcons.VisibilityIcon,
     children: [
       { pathname: '/guides/api', title: 'API design approach' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
@@ -277,32 +278,22 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
-      { pathname: '/guides/flow' },
-    ],
-  },
-  {
-    pathname: '/experimental-api',
-    title: 'Experimental APIs',
-    icon: 'ExperimentIcon',
-    children: [
-      { pathname: '/experimental-api/classname-generator', title: 'ClassName generator' },
-      { pathname: '/experimental-api/css-variables', title: 'CSS variables' },
     ],
   },
   {
     pathname: '/styles',
     title: 'Styles',
-    icon: 'StyleIcon',
+    icon: standardNavIcons.StyleIcon,
     legacy: true,
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
-      { pathname: '/styles/api', title: 'API' },
+      { pathname: '/styles/api', title: 'APIs' },
     ],
   },
   {
     pathname: '/discover-more',
-    icon: 'AddIcon',
+    icon: standardNavIcons.AddIcon,
     children: [
       { pathname: '/discover-more/showcase' },
       { pathname: '/discover-more/related-projects' },
@@ -317,7 +308,7 @@ const pages: readonly MuiPage[] = [
   {
     pathname: 'https://mui.com/store/',
     title: 'Templates',
-    icon: 'ReaderIcon',
+    icon: standardNavIcons.ReaderIcon,
     linkProps: {
       'data-ga-event-category': 'store',
       'data-ga-event-action': 'click',
@@ -326,7 +317,7 @@ const pages: readonly MuiPage[] = [
   },
   { pathname: '/versions', inSideNav: false },
   { pathname: '/', inSideNav: false, disableDrawer: true },
-  { pathname: '/blog', title: 'Blog', icon: 'BookIcon' },
+  { pathname: '/blog', title: 'Blog', icon: standardNavIcons.BookIcon },
 ];
 
 export type { MuiPage, OrderedMuiPage };

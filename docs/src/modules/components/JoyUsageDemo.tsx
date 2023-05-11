@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
@@ -6,7 +7,7 @@ import Chip from '@mui/joy/Chip';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
-import { inputClasses } from '@mui/joy/Input';
+import Input, { inputClasses } from '@mui/joy/Input';
 import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
 import Option, { optionClasses } from '@mui/joy/Option';
 import Radio, { radioClasses } from '@mui/joy/Radio';
@@ -14,11 +15,9 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Select from '@mui/joy/Select';
 import Sheet from '@mui/joy/Sheet';
 import Switch from '@mui/joy/Switch';
-import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import * as React from 'react';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -70,7 +69,8 @@ function createCode(
             typeof prop[1] === 'number' ? `{${prop[1]}}` : `"${prop[1]}"`
           }`;
         }
-      } else {
+      }
+      if (prop[0] === 'children') {
         children = prop[1] as string;
       }
     });
@@ -187,26 +187,23 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   return (
     <Box
       sx={{
-        mt: 2,
         flexGrow: 1,
         maxWidth: '100%',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'sm',
+          borderRadius: 'md',
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0, p: 3 }}>
         <Box
           sx={{
             flexGrow: 1,
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 1,
           }}
         >
           {renderDemo(demoProps)}
@@ -227,17 +224,18 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         </BrandingProvider>
       </Box>
       <Sheet
-        variant="outlined"
         sx={{
           flexShrink: 0,
           gap: 2,
-          p: 2,
-          borderRadius: 'sm',
+          p: 3,
+          background: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          backdropFilter: 'blur(8px)',
+          minWidth: '280px',
         }}
       >
         <Box
           sx={{
-            mb: 1,
+            mb: 2,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -293,7 +291,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       }))
                     }
                     endDecorator={resolvedValue ? 'True' : 'False'}
-                    componentsProps={{
+                    slotProps={{
                       endDecorator: {
                         sx: {
                           minWidth: 30,
@@ -304,10 +302,10 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       fontSize: 'xs',
                       color: 'text.secondary',
                       textTransform: 'capitalize',
-                      '--Switch-track-background': (theme) =>
+                      '--Switch-trackBackground': (theme) =>
                         `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
                       '&:hover': {
-                        '--Switch-track-background': (theme) =>
+                        '--Switch-trackBackground': (theme) =>
                           `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
                       },
                     }}
@@ -321,7 +319,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={resolvedValue}
                     onChange={(event) => {
@@ -374,7 +372,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} size="sm">
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     value={finalValue}
                     onChange={(event) => {
@@ -424,7 +422,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                 <FormControl key={propName} sx={{ mb: 1 }} size="sm">
                   <FormLabel>Color</FormLabel>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>
@@ -506,10 +504,10 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Select
                     placeholder="Select a variant..."
-                    componentsProps={{
+                    slotProps={{
                       listbox: {
                         sx: {
-                          '--List-decorator-size': '24px',
+                          '--ListItemDecorator-size': '24px',
                         },
                       },
                     }}
@@ -546,57 +544,55 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'input') {
               return (
-                <TextField
-                  key={propName}
-                  label={propName}
-                  size="sm"
-                  value={
-                    typeof props[propName] === 'string'
-                      ? props[propName] || ''
-                      : String(defaultValue) || ''
-                  }
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: event.target.value,
-                    }))
-                  }
-                  sx={{
-                    textTransform: 'capitalize',
-                    [`& .${inputClasses.root}`]: {
-                      bgcolor: 'background.body',
-                    },
-                  }}
-                />
+                <FormControl key={propName}>
+                  <FormLabel>{propName}</FormLabel>
+                  <Input
+                    size="sm"
+                    value={props[propName] ?? ''}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.value,
+                      }))
+                    }
+                    sx={{
+                      textTransform: 'capitalize',
+                      [`& .${inputClasses.root}`]: {
+                        bgcolor: 'background.body',
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'number') {
               return (
-                <TextField
-                  key={propName}
-                  label={propName}
-                  size="sm"
-                  type="number"
-                  value={
-                    typeof props[propName] === 'number'
-                      ? (props[propName] as number)
-                      : (defaultValue as string)
-                  }
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: Number.isNaN(event.target.valueAsNumber)
-                        ? undefined
-                        : event.target.valueAsNumber,
-                    }))
-                  }
-                  sx={{
-                    textTransform: 'capitalize',
-                    [`& .${inputClasses.root}`]: {
-                      bgcolor: 'background.body',
-                    },
-                  }}
-                />
+                <FormControl key={propName}>
+                  <FormLabel>{propName}</FormLabel>
+                  <Input
+                    size="sm"
+                    type="number"
+                    value={
+                      typeof props[propName] === 'number'
+                        ? (props[propName] as number)
+                        : (defaultValue as string)
+                    }
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: Number.isNaN(event.target.valueAsNumber)
+                          ? undefined
+                          : event.target.valueAsNumber,
+                      }))
+                    }
+                    sx={{
+                      textTransform: 'capitalize',
+                      [`& .${inputClasses.root}`]: {
+                        bgcolor: 'background.body',
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'placement') {
@@ -662,7 +658,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         <Sheet
                           key={placement}
                           variant="soft"
-                          color="neutral"
+                          color="primary"
                           sx={{
                             position: 'relative',
                             height: '14px',
@@ -681,7 +677,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                             value={placement}
                             overlay
                             disableIcon
-                            componentsProps={{
+                            slotProps={{
                               action: ({ checked }) => ({
                                 sx: (theme) => ({
                                   ...(checked && {
