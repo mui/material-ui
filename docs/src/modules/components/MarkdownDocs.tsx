@@ -13,14 +13,19 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import Ad from 'docs/src/modules/components/Ad';
 import AdGuest from 'docs/src/modules/components/AdGuest';
+import { Docs, Demos, DemoComponents, SrcComponents } from '@mui/markdown';
 
-function noComponent(moduleID) {
+function noComponent(moduleID: string) {
   return function NoComponent() {
     throw new Error(`No demo component provided for '${moduleID}'`);
   };
 }
 
-function JoyModeObserver({ mode }) {
+interface JoyModeObserverParams {
+  mode: 'dark' | 'light' | 'system';
+}
+
+function JoyModeObserver({ mode }: JoyModeObserverParams) {
   const { setMode } = useColorScheme();
   React.useEffect(() => {
     setMode(mode);
@@ -32,7 +37,17 @@ JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
 
-export default function MarkdownDocs(props) {
+export interface MarkdownDocsProps {
+  docs: Docs;
+  srcComponents: SrcComponents;
+  demoComponents: DemoComponents;
+  demos: Demos;
+  disableAd?: boolean;
+  disableCssVarsProvider?: boolean;
+  disableToc?: boolean;
+}
+
+export default function MarkdownDocs(props: MarkdownDocsProps) {
   const theme = useTheme();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -145,7 +160,7 @@ export default function MarkdownDocs(props) {
                 scope: demos.scope,
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
-                tsx: demoComponents[demo.moduleTS] ?? null,
+                tsx: (demo.moduleTS && demoComponents[demo.moduleTS]) ?? null,
                 gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
               }}
               disableAd={disableAd}
@@ -170,5 +185,5 @@ MarkdownDocs.propTypes = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
+  (MarkdownDocs as any).propTypes = exactProp(MarkdownDocs.propTypes);
 }

@@ -7,6 +7,11 @@ import {
   brandingLightTheme as lightTheme,
 } from 'docs/src/modules/brandingTheme';
 
+export interface MarkdownElementProps {
+  className?: string;
+  renderedMarkdown?: string;
+}
+
 const Root = styled('div')(
   ({ theme }) => ({
     ...lightTheme.typography.body1,
@@ -587,18 +592,20 @@ const Root = styled('div')(
   }),
 );
 
-const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
-  const { className, renderedMarkdown, ...other } = props;
-  const more = {};
+const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementProps>(
+  function MarkdownElement(props, ref) {
+    const { className, renderedMarkdown, ...other } = props;
+    const more: { dangerouslySetInnerHTML?: { __html: string } } = {};
 
-  if (typeof renderedMarkdown === 'string') {
-    // workaround for https://github.com/facebook/react/issues/17170
-    // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
-    more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
-  }
+    if (typeof renderedMarkdown === 'string') {
+      // workaround for https://github.com/facebook/react/issues/17170
+      // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
+      more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
+    }
 
-  return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
-});
+    return <Root className={clsx('markdown-body', className)} {...more} {...other} ref={ref} />;
+  },
+);
 
 MarkdownElement.propTypes = {
   className: PropTypes.string,
