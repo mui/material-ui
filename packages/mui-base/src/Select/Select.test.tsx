@@ -51,7 +51,7 @@ describe('<Select />', () => {
   }));
 
   describe('keyboard navigation', () => {
-    ['Enter', 'ArrowDown', 'ArrowUp'].forEach((key) => {
+    ['Enter', 'ArrowDown', 'ArrowUp', ' '].forEach((key) => {
       it(`opens the dropdown when the "${key}" key is down on the button`, () => {
         // can't use the default native `button` as it doesn't treat enter or space press as a click
         const { getByRole } = render(<Select slots={{ root: 'div' }} />);
@@ -59,26 +59,12 @@ describe('<Select />', () => {
         act(() => {
           select.focus();
         });
+
         fireEvent.keyDown(select, { key });
 
         expect(select).to.have.attribute('aria-expanded', 'true');
         expect(getByRole('listbox')).not.to.equal(null);
-        expect(document.activeElement).to.equal(getByRole('listbox'));
       });
-    });
-
-    it(`opens the dropdown when the " " key is let go on the button`, () => {
-      // can't use the default native `button` as it doesn't treat enter or space press as a click
-      const { getByRole } = render(<Select slots={{ root: 'div' }} />);
-      const select = getByRole('combobox');
-      act(() => {
-        select.focus();
-      });
-      fireEvent.keyUp(select, { key: ' ' });
-
-      expect(select).to.have.attribute('aria-expanded', 'true');
-      expect(getByRole('listbox')).not.to.equal(null);
-      expect(document.activeElement).to.equal(getByRole('listbox'));
     });
 
     ['Enter', ' ', 'Escape'].forEach((key) => {
@@ -90,11 +76,12 @@ describe('<Select />', () => {
         );
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
         const listbox = getByRole('listbox');
-        fireEvent.keyDown(listbox, { key });
+        fireEvent.keyDown(select, { key });
 
         expect(select).to.have.attribute('aria-expanded', 'false');
         expect(listbox).not.toBeVisible();
@@ -110,11 +97,11 @@ describe('<Select />', () => {
         );
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-        userEvent.keyPress(listbox, { key });
+        userEvent.keyPress(select, { key });
 
         expect(select).to.have.attribute('aria-expanded', 'true');
         expect(queryByRole('listbox')).not.to.equal(null);
@@ -133,13 +120,12 @@ describe('<Select />', () => {
 
           const select = getByRole('combobox');
           act(() => {
+            select.focus();
             select.click();
           });
 
-          const listbox = getByRole('listbox');
-
-          userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
-          fireEvent.keyDown(listbox, { key });
+          userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
+          fireEvent.keyDown(select, { key });
 
           expect(select).to.have.text('2');
         }),
@@ -161,16 +147,15 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-
-        userEvent.keyPress(listbox, { key: 'd' });
+        userEvent.keyPress(select, { key: 'd' });
         expect(getByText('Dragon Fruit')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'r' });
+        userEvent.keyPress(select, { key: 'r' });
         expect(getByText('Dragon Fruit')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'z' });
+        userEvent.keyPress(select, { key: 'z' });
         expect(getByText('Dragon Fruit')).to.have.class(optionClasses.highlighted);
       });
 
@@ -188,16 +173,15 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-
-        userEvent.keyPress(listbox, { key: 'c' });
+        userEvent.keyPress(select, { key: 'c' });
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'c' });
+        userEvent.keyPress(select, { key: 'c' });
         expect(getByText('Calamondin')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'c' });
+        userEvent.keyPress(select, { key: 'c' });
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
       });
 
@@ -229,16 +213,15 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-
-        userEvent.keyPress(listbox, { key: 'd' });
+        userEvent.keyPress(select, { key: 'd' });
         expect(getByTestId('5')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'r' });
+        userEvent.keyPress(select, { key: 'r' });
         expect(getByTestId('5')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'z' });
+        userEvent.keyPress(select, { key: 'z' });
         expect(getByTestId('5')).to.have.class(optionClasses.highlighted);
       });
 
@@ -259,16 +242,15 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-
-        userEvent.keyPress(listbox, { key: 'c' });
+        userEvent.keyPress(select, { key: 'c' });
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'c' });
+        userEvent.keyPress(select, { key: 'c' });
         expect(getByText('Calamondin')).to.have.class(optionClasses.highlighted);
-        userEvent.keyPress(listbox, { key: 'c' });
+        userEvent.keyPress(select, { key: 'c' });
         expect(getByText('Cherry')).to.have.class(optionClasses.highlighted);
       });
 
@@ -285,17 +267,16 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-
-        userEvent.keyPress(listbox, { key: 'b' });
+        userEvent.keyPress(select, { key: 'b' });
         expect(getByText('Ba')).to.have.class(optionClasses.highlighted);
 
-        userEvent.keyPress(listbox, { key: 'Control' });
-        userEvent.keyPress(listbox, { key: 'Alt' });
-        userEvent.keyPress(listbox, { key: 'ą' });
+        userEvent.keyPress(select, { key: 'Control' });
+        userEvent.keyPress(select, { key: 'Alt' });
+        userEvent.keyPress(select, { key: 'ą' });
         expect(getByText('Bą')).to.have.class(optionClasses.highlighted);
       });
 
@@ -311,24 +292,23 @@ describe('<Select />', () => {
 
         const select = getByRole('combobox');
         act(() => {
+          select.focus();
           select.click();
         });
 
-        const listbox = getByRole('listbox');
-
-        userEvent.keyPress(listbox, { key: 'Control' });
-        userEvent.keyPress(listbox, { key: 'Alt' });
-        userEvent.keyPress(listbox, { key: 'ą' });
+        userEvent.keyPress(select, { key: 'Control' });
+        userEvent.keyPress(select, { key: 'Alt' });
+        userEvent.keyPress(select, { key: 'ą' });
         expect(getByText('ąa')).to.have.class(optionClasses.highlighted);
 
-        userEvent.keyPress(listbox, { key: 'Alt' });
-        userEvent.keyPress(listbox, { key: 'Control' });
-        userEvent.keyPress(listbox, { key: 'ą' });
+        userEvent.keyPress(select, { key: 'Alt' });
+        userEvent.keyPress(select, { key: 'Control' });
+        userEvent.keyPress(select, { key: 'ą' });
         expect(getByText('ąb')).to.have.class(optionClasses.highlighted);
 
-        userEvent.keyPress(listbox, { key: 'Control' });
-        userEvent.keyPress(listbox, { key: 'AltGraph' });
-        userEvent.keyPress(listbox, { key: 'ą' });
+        userEvent.keyPress(select, { key: 'Control' });
+        userEvent.keyPress(select, { key: 'AltGraph' });
+        userEvent.keyPress(select, { key: 'ą' });
         expect(getByText('ąc')).to.have.class(optionClasses.highlighted);
       });
     });
@@ -344,12 +324,12 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
+        select.focus();
         select.click();
       });
 
-      const listbox = getByRole('listbox');
-      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights '2'
-      fireEvent.keyDown(listbox, { key: 'Escape' });
+      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights '2'
+      fireEvent.keyDown(select, { key: 'Escape' });
 
       expect(select).to.have.attribute('aria-expanded', 'false');
       expect(select).to.have.text('1');
@@ -755,16 +735,6 @@ describe('<Select />', () => {
       expect(screen.queryByRole('combobox')).not.to.equal(null);
     });
 
-    it('should have the aria-haspopup listbox', () => {
-      render(
-        <Select>
-          <Option value={1}>One</Option>
-        </Select>,
-      );
-
-      expect(screen.getByRole('combobox')).to.have.attribute('aria-haspopup', 'listbox');
-    });
-
     it('should have the aria-expanded attribute', () => {
       render(
         <Select>
@@ -819,18 +789,52 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
       act(() => {
+        select.focus();
         select.click();
       });
 
-      const listbox = screen.getByRole('listbox');
-      fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(select, { key: 'ArrowDown' });
 
       const options = screen.getAllByRole('option');
-      expect(listbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
+      expect(select).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
     });
   });
 
   describe('open/close behavior', () => {
+    it('opens the listbox when the select is clicked', () => {
+      const { getByRole } = render(
+        <Select>
+          <Option value={1}>One</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      expect(select).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('closes the listbox when the select is clicked again', () => {
+      const { getByRole } = render(
+        <Select>
+          <Option value={1}>One</Option>
+        </Select>,
+      );
+
+      const select = getByRole('combobox');
+      act(() => {
+        select.click();
+      });
+
+      act(() => {
+        select.click();
+      });
+
+      expect(select).to.have.attribute('aria-expanded', 'false');
+    });
+
     it('closes the listbox without selecting an option when focus is lost', () => {
       const { getByRole, getByTestId } = render(
         <div>
@@ -847,11 +851,12 @@ describe('<Select />', () => {
       const select = getByRole('combobox');
 
       act(() => {
+        select.focus();
         select.click();
       });
 
       const listbox = getByRole('listbox');
-      userEvent.keyPress(listbox, { key: 'ArrowDown' }); // highlights '2'
+      userEvent.keyPress(select, { key: 'ArrowDown' }); // highlights '2'
 
       const focusTarget = getByTestId('focus-target');
       act(() => {
@@ -886,19 +891,24 @@ describe('<Select />', () => {
       expect(select).to.have.text('1');
     });
 
-    it('focuses the listbox after it is opened', () => {
+    it('keeps the trigger focused when the listbox is opened and interacted with', () => {
       const { getByRole } = render(
         <Select>
           <Option value={1}>1</Option>
+          <Option value={2}>2</Option>
         </Select>,
       );
 
       const select = getByRole('combobox');
       act(() => {
+        select.focus();
         select.click();
       });
 
-      expect(document.activeElement).to.equal(getByRole('listbox'));
+      expect(document.activeElement).to.equal(select);
+      fireEvent.keyDown(select, { key: 'ArrowDown' });
+
+      expect(document.activeElement).to.equal(select);
     });
 
     it('scrolls to initially highlighted option after opening', function test() {
@@ -1026,18 +1036,18 @@ describe('<Select />', () => {
 
     const select = getByRole('combobox');
     act(() => {
+      select.focus();
       select.click(); // opens and highlights '1'
     });
 
     // React renders twice in strict mode, so we expect twice the number of spy calls
     expect(renderOption1Spy.callCount).to.equal(2);
 
-    const listbox = getByRole('listbox');
-    fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights '2'
+    fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights '2'
     expect(renderOption1Spy.callCount).to.equal(4); // '1' rerenders as it loses highlight
     expect(renderOption2Spy.callCount).to.equal(2); // '2' rerenders as it receives highlight
 
-    fireEvent.keyDown(listbox, { key: 'Enter' }); // selects '2'
+    fireEvent.keyDown(select, { key: 'Enter' }); // selects '2'
     expect(renderOption1Spy.callCount).to.equal(4);
     expect(renderOption2Spy.callCount).to.equal(4);
 
