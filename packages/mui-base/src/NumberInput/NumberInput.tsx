@@ -48,7 +48,7 @@ const useUtilityClasses = (ownerState: NumberInputOwnerState) => {
  */
 const NumberInput = React.forwardRef(function NumberInput(
   props: NumberInputProps,
-  forwardedRef: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const {
     className,

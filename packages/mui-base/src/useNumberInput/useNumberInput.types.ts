@@ -84,7 +84,7 @@ export type UseNumberInputRootSlotProps<TOther = {}> = Omit<
 
 export interface UseNumberInputInputSlotOwnProps {
   defaultValue: number | undefined;
-  ref: React.Ref<HTMLInputElement>;
+  ref: React.RefCallback<HTMLInputElement> | null;
   value: number | undefined;
   'aria-disabled': React.AriaAttributes['aria-disabled'];
   'aria-valuemax': React.AriaAttributes['aria-valuemax'];

@@ -31,7 +31,7 @@ See [this article](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-desi
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import NumberInput from '@mui/base/NumberInput';
