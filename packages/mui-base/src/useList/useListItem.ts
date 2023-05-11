@@ -70,7 +70,9 @@ export default function useListItem<ItemValue>(
         return;
       }
 
-      event.preventDefault();
+      if (!(event.target instanceof HTMLAnchorElement)) {
+        event.preventDefault();
+      }
 
       dispatch({
         type: ListActionTypes.itemClick,
