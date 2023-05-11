@@ -62,7 +62,7 @@ export default function Highlighter({
           ...(!selected && {
             '&:hover, &:focus': {
               bgcolor: 'grey.50',
-              borderColor: 'grey.300',
+              borderColor: 'grey.100',
               '@media (hover: none)': {
                 bgcolor: 'transparent',
               },
@@ -84,7 +84,7 @@ export default function Highlighter({
             ...(!selected && {
               '&:hover, &:focus': {
                 bgcolor: 'primaryDark.800',
-                borderColor: 'primaryDark.600',
+                borderColor: 'primaryDark.700',
                 '@media (hover: none)': {
                   bgcolor: 'transparent',
                 },
