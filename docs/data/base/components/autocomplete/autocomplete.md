@@ -117,6 +117,7 @@ These two states are isolated, and should be controlled independently.
 ### Using a portal
 
 React Portals can be used to render the listbox outside of the DOM hierarchy, making it easier to allow it to "float" above adjacent elements.
+
 Base UI provides a `<Popper />` component built around React's `createPortal()` for exactly this purpose, and additionally helps you manage keyboard focus as it moves in and out of the portal.
 
 To render the listbox in Base UI's Popper, the `ref`s must be merged as follows:
@@ -126,7 +127,7 @@ import useAutocomplete from '@mui/base/useAutocomplete';
 import Popper from '@mui/base/Popper';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
-export default function App() {
+export default function App(props) {
   const {
     getRootProps,
     getInputProps,
@@ -136,11 +137,7 @@ export default function App() {
     anchorEl,
     setAnchorEl,
     groupedOptions,
-  } = useAutocomplete({
-    ...props,
-    componentName: 'BaseAutocompleteIntroduction',
-    unstable_classNamePrefix: 'Base',
-  });
+  } = useAutocomplete(props);
 
   const rootRef = useForkRef(ref, setAnchorEl);
 
@@ -164,5 +161,9 @@ export default function App() {
   );
 }
 ```
+
+Here's a complete demo that renders the listbox inside a Popper:
+
+{{"demo": "UseAutocompletePopper.js", "hideToolbar": true}}
 
 {{"demo": ""}}
