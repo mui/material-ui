@@ -1,5 +1,3 @@
-/// <reference types="./modules.d.ts" />
-
 export interface Doc {
   description: string;
   location: string;
