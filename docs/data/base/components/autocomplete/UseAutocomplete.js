@@ -26,13 +26,13 @@ export default function UseAutocomplete() {
         <Label {...getInputLabelProps()}>Label</Label>
         <Input {...getInputProps()} />
       </div>
-      {groupedOptions.length > 0 ? (
+      {groupedOptions.length > 0 && (
         <Listbox {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
             <li {...getOptionProps({ option, index })}>{option.label}</li>
           ))}
         </Listbox>
-      ) : null}
+      )}
     </div>
   );
 }

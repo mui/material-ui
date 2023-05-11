@@ -2,8 +2,10 @@ import * as React from 'react';
 import useAutocomplete from '@mui/base/useAutocomplete';
 import { styled } from '@mui/system';
 
+const options = ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera'];
+
 export default function ControlledStates() {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
 
   const {
@@ -14,8 +16,8 @@ export default function ControlledStates() {
     getOptionProps,
     groupedOptions,
   } = useAutocomplete({
-    id: 'use-autocomplete-demo',
-    options: ['Firefox', 'Google Chrome', 'Microsoft Edge', 'Safari', 'Opera', ''],
+    id: 'controlled-state-demo',
+    options,
     value,
     onChange: (event, newValue) => setValue(newValue),
     inputValue,
@@ -24,8 +26,12 @@ export default function ControlledStates() {
 
   return (
     <Layout>
-      <Pre>value: {value ?? ' '}</Pre>
-      <Pre>inputValue: {inputValue ?? ' '}</Pre>
+      <Pre>
+        value: <code>{value ?? ' '}</code>
+      </Pre>
+      <Pre>
+        inputValue: <code>{inputValue ?? ' '}</code>
+      </Pre>
       <Autocomplete>
         <div {...getRootProps()}>
           <Label {...getInputLabelProps()}>Label</Label>
@@ -88,6 +94,12 @@ const Layout = styled('div')`
   flex-flow: column nowrap;
 `;
 
-const Pre = styled('pre')`
-  margin: 0.5rem 0;
-`;
+const Pre = styled('pre')(({ theme }) => ({
+  margin: '0.5rem 0',
+  '& code': {
+    backgroundColor: theme.palette.mode === 'light' ? '#ebebef' : '#25252d',
+    color: theme.palette.mode === 'light' ? '#000' : '#fff',
+    padding: '0.125rem 0.25rem',
+    borderRadius: 3,
+  },
+}));

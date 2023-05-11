@@ -8,187 +8,6 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const blue = {
-  100: '#DAECFF',
-  200: '#99CCF3',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  900: '#003A75',
-};
-
-const grey = {
-  50: '#f6f8fa',
-  100: '#eaeef2',
-  200: '#d0d7de',
-  300: '#afb8c1',
-  400: '#8c959f',
-  500: '#6e7781',
-  600: '#57606a',
-  700: '#424a53',
-  800: '#32383f',
-  900: '#24292f',
-};
-
-const StyledAutocompleteRoot = styled('div')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-weight: 400;
-  border-radius: 12px;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  display: flex;
-  gap: 5px;
-  padding-right: 5px;
-  overflow: hidden;
-  width: 320px;
-  
-  &.focused {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-
-  &:hover {
-    border-color: ${blue[400]};
-  }
-
-  &:focus-visible {
-    outline: 0;
-  }
-`,
-);
-
-const StyledInput = styled('input')(
-  ({ theme }) => `
-  font-size: 0.875rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 1.5;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: inherit;
-  border: none;
-  border-radius: inherit;
-  padding: 12px 12px;
-  outline: 0;
-  flex: 1 0 auto;
-`,
-);
-
-// ComponentPageTabs has z-index: 1000
-const StyledPopper = styled('div')`
-  position: relative;
-  z-index: 1001;
-  width: 320px;
-`;
-
-const StyledListbox = styled('ul')(
-  ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  padding: 6px;
-  margin: 12px 0;
-  min-width: 320px;
-  border-radius: 12px;
-  overflow: auto;
-  outline: 0px;
-  max-height: 300px;
-  z-index: 1;
-  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
-  `,
-);
-
-const StyledOption = styled('li')(
-  ({ theme }) => `
-  list-style: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: default;
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  &[aria-selected=true] {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-
-  &.Base-focused,
-  &.Base-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  }
-
-  &.Base-focusVisible {
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-
-  &[aria-selected=true].Base-focused,
-  &[aria-selected=true].Base-focusVisible {
-    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
-    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-  }
-  `,
-);
-
-const StyledPopupIndicator = styled(Button)(
-  ({ theme }) => `
-    margin-top: 5px;
-    margin-bottom: 5px;
-    outline: 0;
-    box-shadow: none;
-    border: 0;
-    border-radius: 7px;
-    background-color: transparent;
-    
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
-      cursor: pointer;
-    }
-
-    & > svg {
-      transform: translateY(1px);
-    }
-
-    &.popupOpen > svg {
-      transform: translateY(1px) rotate(180deg);
-    }
-  `,
-);
-
-const StyledClearIndicator = styled(Button)(
-  ({ theme }) => `
-    margin-top: 5px;
-    margin-bottom: 5px;
-    outline: 0;
-    box-shadow: none;
-    border: 0;
-    border-radius: 7px;
-    background-color: transparent;
-    
-    &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
-      cursor: pointer;
-    }
-
-    & > svg {
-      transform: translateY(1px);
-    }
-  `,
-);
-
-const StyledNoOptions = styled('li')`
-  list-style: none;
-  padding: 8px;
-  cursor: default;
-`;
-
 const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, ref) {
   const {
     disableClearable = false,
@@ -295,6 +114,191 @@ CustomAutocomplete.propTypes = {
 export default function AutocompleteIntroduction() {
   return <CustomAutocomplete options={top100Films} />;
 }
+
+const blue = {
+  100: '#DAECFF',
+  200: '#99CCF3',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
+const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
+};
+
+const StyledAutocompleteRoot = styled('div')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 400;
+  border-radius: 12px;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  display: flex;
+  gap: 5px;
+  padding-right: 5px;
+  overflow: hidden;
+  width: 320px;
+  
+  &.focused {
+    border-color: ${blue[400]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  &:hover {
+    border-color: ${blue[400]};
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
+`,
+);
+
+const StyledInput = styled('input')(
+  ({ theme }) => `
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  padding: 12px 12px;
+  outline: 0;
+  flex: 1 0 auto;
+`,
+);
+
+// ComponentPageTabs has z-index: 1000
+const StyledPopper = styled('div')`
+  position: relative;
+  z-index: 1001;
+  width: 320px;
+`;
+
+const StyledListbox = styled('ul')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 12px 0;
+  min-width: 320px;
+  border-radius: 12px;
+  overflow: auto;
+  outline: 0px;
+  max-height: 300px;
+  z-index: 1;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  `,
+);
+
+const StyledOption = styled('li')(
+  ({ theme }) => `
+  list-style: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[aria-selected=true] {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
+
+  &.Base-focused,
+  &.Base-focusVisible {
+    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  }
+
+  &.Base-focusVisible {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  &[aria-selected=true].Base-focused,
+  &[aria-selected=true].Base-focusVisible {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
+  `,
+);
+
+const StyledPopupIndicator = styled(Button)(
+  ({ theme }) => `
+    margin-top: 5px;
+    margin-bottom: 5px;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    border-radius: 7px;
+    background-color: transparent;
+    
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
+      cursor: pointer;
+    }
+
+    & > svg {
+      transform: translateY(1px);
+    }
+
+    &.popupOpen > svg {
+      transform: translateY(1px) rotate(180deg);
+    }
+  `,
+);
+
+const StyledClearIndicator = styled(Button)(
+  ({ theme }) => `
+    margin-top: 5px;
+    margin-bottom: 5px;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+    border-radius: 7px;
+    background-color: transparent;
+    
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? grey[700] : blue[100]};
+      cursor: pointer;
+    }
+
+    & > svg {
+      transform: translateY(1px);
+    }
+  `,
+);
+
+const StyledNoOptions = styled('li')`
+  list-style: none;
+  padding: 8px;
+  cursor: default;
+`;
 
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },

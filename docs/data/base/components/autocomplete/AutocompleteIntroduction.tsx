@@ -7,6 +7,97 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 
+const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
+  props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
+  const {
+    disableClearable = false,
+    disabled = false,
+    readOnly = false,
+    ...other
+  } = props;
+
+  const {
+    getRootProps,
+    getInputProps,
+    getPopupIndicatorProps,
+    getClearProps,
+    getListboxProps,
+    getOptionProps,
+    dirty,
+    id,
+    popupOpen,
+    focused,
+    anchorEl,
+    setAnchorEl,
+    groupedOptions,
+  } = useAutocomplete({
+    ...props,
+    componentName: 'BaseAutocompleteIntroduction',
+    unstable_classNamePrefix: 'Base',
+  });
+
+  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
+
+  const rootRef = useForkRef(ref, setAnchorEl);
+
+  return (
+    <React.Fragment>
+      <StyledAutocompleteRoot
+        {...getRootProps(other)}
+        ref={rootRef}
+        className={focused ? 'focused' : undefined}
+      >
+        <StyledInput
+          id={id}
+          ref={setAnchorEl}
+          disabled={disabled}
+          readOnly={readOnly}
+          {...getInputProps()}
+        />
+        {hasClearIcon && (
+          <StyledClearIndicator {...getClearProps()}>
+            <ClearIcon />
+          </StyledClearIndicator>
+        )}
+        <StyledPopupIndicator
+          {...getPopupIndicatorProps()}
+          className={popupOpen ? 'popupOpen' : undefined}
+        >
+          <ArrowDropDownIcon />
+        </StyledPopupIndicator>
+      </StyledAutocompleteRoot>
+      {anchorEl ? (
+        <Popper
+          open={popupOpen}
+          anchorEl={anchorEl}
+          slots={{
+            root: StyledPopper,
+          }}
+          modifiers={[{ name: 'flip', enabled: false }]}
+        >
+          <StyledListbox {...getListboxProps()}>
+            {groupedOptions.map((option: any, index) => {
+              const optionProps = getOptionProps({ option, index });
+
+              return <StyledOption {...optionProps}>{option.label}</StyledOption>;
+            })}
+
+            {groupedOptions?.length === 0 && (
+              <StyledNoOptions>No results</StyledNoOptions>
+            )}
+          </StyledListbox>
+        </Popper>
+      ) : null}
+    </React.Fragment>
+  );
+});
+
+export default function AutocompleteIntroduction() {
+  return <CustomAutocomplete options={top100Films} />;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -113,6 +204,10 @@ const StyledOption = styled('li')(
     border-bottom: none;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &[aria-selected=true] {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
@@ -187,97 +282,6 @@ const StyledNoOptions = styled('li')`
   padding: 8px;
   cursor: default;
 `;
-
-const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
-  props: UseAutocompleteProps<(typeof top100Films)[number], false, false, false>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
-  const {
-    disableClearable = false,
-    disabled = false,
-    readOnly = false,
-    ...other
-  } = props;
-
-  const {
-    getRootProps,
-    getInputProps,
-    getPopupIndicatorProps,
-    getClearProps,
-    getListboxProps,
-    getOptionProps,
-    dirty,
-    id,
-    popupOpen,
-    focused,
-    anchorEl,
-    setAnchorEl,
-    groupedOptions,
-  } = useAutocomplete({
-    ...props,
-    componentName: 'BaseAutocompleteIntroduction',
-    unstable_classNamePrefix: 'Base',
-  });
-
-  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
-
-  const rootRef = useForkRef(ref, setAnchorEl);
-
-  return (
-    <React.Fragment>
-      <StyledAutocompleteRoot
-        {...getRootProps(other)}
-        ref={rootRef}
-        className={focused ? 'focused' : undefined}
-      >
-        <StyledInput
-          id={id}
-          ref={setAnchorEl}
-          disabled={disabled}
-          readOnly={readOnly}
-          {...getInputProps()}
-        />
-        {hasClearIcon && (
-          <StyledClearIndicator {...getClearProps()}>
-            <ClearIcon />
-          </StyledClearIndicator>
-        )}
-        <StyledPopupIndicator
-          {...getPopupIndicatorProps()}
-          className={popupOpen ? 'popupOpen' : undefined}
-        >
-          <ArrowDropDownIcon />
-        </StyledPopupIndicator>
-      </StyledAutocompleteRoot>
-      {anchorEl ? (
-        <Popper
-          open={popupOpen}
-          anchorEl={anchorEl}
-          slots={{
-            root: StyledPopper,
-          }}
-          modifiers={[{ name: 'flip', enabled: false }]}
-        >
-          <StyledListbox {...getListboxProps()}>
-            {groupedOptions.map((option: any, index) => {
-              const optionProps = getOptionProps({ option, index });
-
-              return <StyledOption {...optionProps}>{option.label}</StyledOption>;
-            })}
-
-            {groupedOptions?.length === 0 && (
-              <StyledNoOptions>No results</StyledNoOptions>
-            )}
-          </StyledListbox>
-        </Popper>
-      ) : null}
-    </React.Fragment>
-  );
-});
-
-export default function AutocompleteIntroduction() {
-  return <CustomAutocomplete options={top100Films} />;
-}
 
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },
