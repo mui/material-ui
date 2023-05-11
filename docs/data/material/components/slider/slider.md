@@ -150,7 +150,7 @@ However, you need to make sure that:
 ### IE 11
 
 The slider's value label is not centered in IE 11.
-The alignement is not handled to make customizations easier with the lastest browsers.
+The alignment is not handled to make customizations easier with the latest browsers.
 You can solve the issue with:
 
 ```css

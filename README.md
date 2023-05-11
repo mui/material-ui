@@ -11,7 +11,7 @@
 
 - [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
 
-- [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Base UI_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
 - [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
@@ -63,9 +63,9 @@ yarn add @mui/material @emotion/react @emotion/styled
 **Note:** `@next` only points to pre-releases.
 Use `@latest` for the latest stable release.
 
-### MUI Base
+### Base UI
 
-MUI Base is available as an [npm package](https://www.npmjs.com/package/@mui/base).
+Base UI is available as an [npm package](https://www.npmjs.com/package/@mui/base).
 
 **npm:**
 
@@ -79,7 +79,7 @@ npm install @mui/base
 yarn add @mui/base
 ```
 
-**Note**: MUI Base is still in alpha.
+**Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System
@@ -180,7 +180,7 @@ Our documentation features [a collection of example projects using Material UI](
 
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
-- [MUI Base](https://mui.com/base/getting-started/overview/)
+- [Base UI](https://mui.com/base/getting-started/overview/)
 - [MUI System](https://mui.com/system/getting-started/overview/)
 
 ## Premium themes

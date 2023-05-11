@@ -15,6 +15,6 @@ Marija is off to a running start, having made important changes happen during he
 
 She is now actively working on the unstyled components and [the update of the style engine](https://github.com/mui/material-ui/issues/22342). These are two items we've been eager to push forward since the release of v1 but that required someone to be dedicated to tackling them.
 
-The community team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/mui/material-ui/projects/25).
+The community team will continue developing the foundations on which to build great design systems. Here's a quick view of [the community roadmap](https://github.com/orgs/mui/projects/18/views/1).
 
 We couldn't be more excited to have Marija on the team! You can follow her on [Twitter](https://twitter.com/marijanajdova).

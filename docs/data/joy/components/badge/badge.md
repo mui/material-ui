@@ -10,14 +10,14 @@ unstyled: /base/react-badge/
 
 <p class="description">The Badge component generates a small label that is attached to its child element.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 A badge is a small descriptor for UI elements.
 It typically sits on or near an element and indicates the status of that element by displaying a number, icon, or other short set of characters.
 
 {{"demo": "BadgeUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 

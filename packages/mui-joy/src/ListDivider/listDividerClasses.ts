@@ -1,17 +1,17 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListDividerClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `inset="gutter"`. */
+  /** Class name applied to the root element if `inset="gutter"`. */
   insetGutter: string;
-  /** Styles applied to the root element if `inset="startDecorator"`. */
+  /** Class name applied to the root element if `inset="startDecorator"`. */
   insetStartDecorator: string;
-  /** Styles applied to the root element if `inset="startContent"`. */
+  /** Class name applied to the root element if `inset="startContent"`. */
   insetStartContent: string;
-  /** Styles applied to the root element if `orientation="horizontal"`. */
+  /** Class name applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
-  /** Styles applied to the root element if `orientation="vertical"`. */
+  /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
 }
 

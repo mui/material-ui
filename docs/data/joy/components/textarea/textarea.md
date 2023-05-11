@@ -10,13 +10,13 @@ unstyled: /base/react-textarea-autosize/
 
 <p class="description">Textarea component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
-Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](/base/react-textarea-autosize/) component.
+Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

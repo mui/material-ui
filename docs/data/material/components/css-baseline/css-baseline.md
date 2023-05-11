@@ -30,7 +30,7 @@ export default function MyApp() {
 
 ## Scoping on children
 
-However, you might be progressively migrating a website to MUI, using a global reset might not be an option.
+However, you might be progressively migrating a website to Material UI, using a global reset might not be an option.
 It's possible to apply the baseline only to the children by using the `ScopedCssBaseline` component.
 
 ```jsx

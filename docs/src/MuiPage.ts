@@ -1,8 +1,11 @@
+import * as React from 'react';
+
 export interface MuiPage {
   pathname: string;
+  query?: object;
   children?: MuiPage[];
   disableDrawer?: boolean;
-  icon?: string;
+  icon?: string | React.ComponentType;
   /**
    * Indicates if the pages are regarding some legacy API.
    */
