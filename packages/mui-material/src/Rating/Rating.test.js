@@ -167,7 +167,7 @@ describe('<Rating />', () => {
     expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
   });
 
-  it('should use `isFilled` prop', () => {
+  it('should get `isFilled` prop on Component supplied to IconContainerComponent', () => {
     function IconContainer(props) {
       const { isFilled } = props;
 
