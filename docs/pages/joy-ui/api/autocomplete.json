@@ -23,7 +23,7 @@
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" }, "default": "false" },
-    "filterOptions": { "type": { "name": "func" } },
+    "filterOptions": { "type": { "name": "func" }, "default": "createFilterOptions()" },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
       "default": "'auto'"
