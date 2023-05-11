@@ -58,6 +58,7 @@ function IconContainer(props: IconContainerProps) {
 export default function CustomComponent() {
   return (
     <StyledRating
+      name="custom-component"
       defaultValue={2}
       IconContainerComponent={IconContainer}
       getLabelText={(value: number) => customIcons[value].alt}

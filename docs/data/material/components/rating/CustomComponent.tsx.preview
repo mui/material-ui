@@ -1,4 +1,5 @@
 <StyledRating
+  name="custom-component"
   defaultValue={2}
   IconContainerComponent={IconContainer}
   getLabelText={(value: number) => customIcons[value].alt}
