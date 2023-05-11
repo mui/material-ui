@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -24,10 +25,15 @@ export default function Core() {
       <main id="main-content">
         <BaseUIHero />
         <BaseUISummary />
+        <Divider />
         <BaseUIComponents />
+        <Divider />
         <BaseUICustomization />
+        <Divider />
         <BaseUITestimonial />
+        <Divider />
         <BaseUIEnd />
+        <Divider />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>
