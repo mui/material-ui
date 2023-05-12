@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "types": ["react", "mocha", "node"]
+  },
+  "include": ["src/**/*", "../../test/utils/initMatchers.ts"]
+}
