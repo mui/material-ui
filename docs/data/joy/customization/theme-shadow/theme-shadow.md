@@ -1,11 +1,10 @@
 # Theme shadow
 
-<p class="description">Learn about the theme's default shadow and how to customize it.</p>
+<p class="description">Learn about the default theme's shadow scale and how to customize it.</p>
 
 ## Default tokens
 
 Joy UI uses a T-shirt scale (sm, md, lg, etc.) for defining shadows used by components such as [Card](/joy-ui/react-card/), [Menu](/joy-ui/react-menu/), and more.
-
 These tokens are grouped inside the `theme.shadow` node:
 
 {{"demo": "ShadowThemeViewer.js", "bg": "inline"}}
@@ -124,7 +123,7 @@ The `shadowChannel` value must be rgb channels, e.g. `187 187 187`.
 
 To customize a shadow color or shadow ring on a specific instance, use the raw value from the `theme.shadow.*`.
 
-:::warning
+:::error
 **Don't** use shadows from `theme.vars` or the shorthand syntax `{ shadow: '{key}' }` because the value points to the global CSS variable which does not work with the custom `shadowChannel` and `shadowRing` on the instance.
 :::
 

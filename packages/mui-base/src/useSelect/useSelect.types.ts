@@ -19,9 +19,9 @@ export interface SelectOptionDefinition<Value> {
   label: string;
 }
 
-export type UseSelectParameters<OptionValue, Multiple extends boolean = false> = {
+export interface UseSelectParameters<OptionValue, Multiple extends boolean = false> {
   /**
-   * If `true`, the select will be initially open.
+   * If `true`, the select will be open by default.
    * @default false
    */
   defaultOpen?: boolean;
@@ -39,7 +39,7 @@ export type UseSelectParameters<OptionValue, Multiple extends boolean = false> =
    */
   buttonRef?: React.Ref<Element>;
   /**
-   * `id` attribute of the listbox element.
+   * The `id` attribute of the listbox element.
    */
   listboxId?: string;
   /**
@@ -47,7 +47,7 @@ export type UseSelectParameters<OptionValue, Multiple extends boolean = false> =
    */
   listboxRef?: React.Ref<Element>;
   /**
-   * If `true`, selecting multiple values is allowed.
+   * If `true`, the end user can select multiple values.
    * This affects the type of the `value`, `defaultValue`, and `onChange` props.
    *
    * @default false
@@ -57,14 +57,14 @@ export type UseSelectParameters<OptionValue, Multiple extends boolean = false> =
    * Callback fired when an option is selected.
    */
   onChange?: (
-    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
     value: SelectValue<OptionValue, Multiple>,
   ) => void;
   /**
    * Callback fired when an option is highlighted.
    */
   onHighlightChange?: (
-    e:
+    event:
       | React.MouseEvent<Element, MouseEvent>
       | React.KeyboardEvent<Element>
       | React.FocusEvent<Element, Element>
@@ -77,7 +77,7 @@ export type UseSelectParameters<OptionValue, Multiple extends boolean = false> =
   onOpenChange?: (open: boolean) => void;
   /**
    * Controls the open state of the select's listbox.
-   * This is the controlled equivaled of the `defaultOpen` prop.
+   * This is the controlled equivalent of the `defaultOpen` prop.
    */
   open?: boolean;
   /**
@@ -87,18 +87,18 @@ export type UseSelectParameters<OptionValue, Multiple extends boolean = false> =
   options?: SelectOptionDefinition<OptionValue>[];
   /**
    * A function used to convert the option label to a string.
-   * It's useful when labels are elements and need to be converted to plain text
-   * to enable navigation using character keys on a keyboard.
+   * This is useful when labels are elements and need to be converted to plain text
+   * to enable keyboard navigation with character keys.
    *
    * @default defaultOptionStringifier
    */
-  optionStringifier?: (option: SelectOption<OptionValue>) => string;
+  getOptionAsString?: (option: SelectOption<OptionValue>) => string;
   /**
    * The selected value.
    * Set to `null` to deselect all options.
    */
   value?: SelectValue<OptionValue, Multiple>;
-};
+}
 
 interface UseSelectButtonSlotEventHandlers {
   onClick: React.MouseEventHandler;
@@ -131,6 +131,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * If `true`, the trigger button has a visible focus.
    */
   buttonFocusVisible: boolean;
+  /**
+   * Ref to the button slot DOM node.
+   */
+  buttonRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the select is disabled.
    */
@@ -171,6 +175,10 @@ export interface UseSelectReturnValue<Value, Multiple> {
    * The value of the highlighted option.
    */
   highlightedOption: Value | null;
+  /**
+   * Ref to the listbox slot DOM node.
+   */
+  listboxRef: React.RefCallback<Element> | null;
   /**
    * If `true`, the listbox is open.
    */

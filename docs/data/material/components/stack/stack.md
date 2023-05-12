@@ -7,30 +7,47 @@ githubLabel: 'component: Stack'
 
 # Stack
 
-<p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
+<p class="description">Stack is a container component for arranging elements vertically or horizontally.</p>
+
+## Introduction
+
+The Stack component manages the layout of its immediate children along the vertical or horizontal axis, with optional spacing and dividers between each child.
+
+:::info
+Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ hortizontal arrangement.
+:::
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Usage
+## Basics
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+```jsx
+import Stack from '@mui/material/Stack';
+```
+
+The Stack component acts as a generic container, wrapping around the elements to be arranged.
+
+Use the `spacing` prop to control the space between children.
+The spacing value can be any number, including decimals, or a string.
+(The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.)
 
 {{"demo": "BasicStack.js", "bg": true}}
 
-To control space between children, use the `spacing` prop.
-The spacing value can be any number, including decimals and any string.
-The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
+### Stack vs. Grid
+
+`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 ## Direction
 
-By default, `Stack` arranges items vertically in a `column`.
-However, the `direction` prop can be used to position items horizontally in a `row` as well.
+By default, Stack arranges items vertically in a column.
+Use the `direction` prop to position items horizontally in a row:
 
 {{"demo": "DirectionStack.js", "bg": true}}
 
 ## Dividers
 
-Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/material-ui/react-divider/) component.
+Use the `divider` prop to insert an element between each child.
+This works particularly well with the [Divider](/material-ui/react-divider/) component, as shown below:
 
 {{"demo": "DividerStack.js", "bg": true}}
 
@@ -40,24 +57,9 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 {{"demo": "ResponsiveStack.js", "bg": true}}
 
-## Interactive
-
-Below is an interactive demo that lets you explore the visual results of the different settings:
-
-{{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
-
-## System props
-
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
-For instance, a margin-top:
-
-```jsx
-<Stack mt={2}>
-```
-
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set `useFlexGap` prop to true.
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set the `useFlexGap` prop to true.
 
 It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
 
@@ -88,6 +90,21 @@ function App() {
     </ThemeProvider>
   );
 }
+```
+
+## Interactive demo
+
+Below is an interactive demo that lets you explore the visual results of the different settings:
+
+{{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
+
+## System props
+
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Stack mt={2}>
 ```
 
 ## Limitations
@@ -129,3 +146,13 @@ In order for the item to stay within the container you need to set `min-width: 0
 ```
 
 {{"demo": "ZeroWidthStack.js", "bg": true}}
+
+## Anatomy
+
+The Stack component is composed of a single root `<div>` element:
+
+```html
+<div class="MuiStack-root">
+  <!-- Stack contents -->
+</div>
+```

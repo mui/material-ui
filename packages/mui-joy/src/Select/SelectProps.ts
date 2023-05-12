@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { PopperOwnProps } from '@mui/base/Popper';
 import { SelectOption } from '@mui/base/useOption';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -20,32 +20,32 @@ export interface SelectSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the button.
    * @default 'button'
    */
-  button: React.ElementType;
+  button?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
   /**
    * The component that renders the indicator.
    * @default 'span'
    */
-  indicator: React.ElementType;
+  indicator?: React.ElementType;
   /**
    * The component that renders the listbox.
    * @default 'ul'
    */
-  listbox: React.ElementType;
+  listbox?: React.ElementType;
 }
 
 export interface SelectPropsVariantOverrides {}
@@ -66,7 +66,7 @@ export type SelectSlotsAndSlotProps = CreateSlotsAndSlotProps<
         color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
         variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
         size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
-      } & Omit<PopperUnstyledOwnProps, 'slots' | 'slotProps' | 'open'>,
+      } & Omit<PopperOwnProps, 'slots' | 'slotProps' | 'open'>,
       SelectOwnerState<any>
     >;
   }
@@ -178,7 +178,7 @@ export type SelectOwnProps<TValue extends {}> = SelectStaticProps &
      * Callback fired when an option is selected.
      */
     onChange?: (
-      e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+      event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
       value: TValue | null,
     ) => void;
     /**

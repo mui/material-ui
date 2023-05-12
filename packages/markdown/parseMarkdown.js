@@ -370,13 +370,15 @@ function createRender(context) {
   return render;
 }
 
+const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
+
 /**
  * @param {string} product
  * @example 'material'
  * @param {string} componentPkg
  * @example 'mui-base'
  * @param {string} component
- * @example 'ButtonUnstyled'
+ * @example 'Button'
  * @returns {string}
  */
 function resolveComponentApiUrl(product, componentPkg, component) {
@@ -386,7 +388,7 @@ function resolveComponentApiUrl(product, componentPkg, component) {
   if (product === 'date-pickers') {
     return `/x/api/date-pickers/${kebabCase(component)}/`;
   }
-  if (componentPkg === 'mui-base') {
+  if (componentPkg === 'mui-base' || BaseUIReexportedComponents.indexOf(component) >= 0) {
     return `/base/api/${kebabCase(component)}/`;
   }
   return `/${product}/api/${kebabCase(component)}/`;

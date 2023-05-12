@@ -36,6 +36,9 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      ...(ownerState.instanceSize && {
+        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+      }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
         '--CircularProgress-size': '20px',
@@ -114,6 +117,8 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color: colorProp = 'primary',
     variant = 'soft',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -124,7 +129,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -145,16 +150,18 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     variant,
     size,
     focusVisible,
+    instanceSize: inProps.size,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: IconButtonRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -216,6 +223,20 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

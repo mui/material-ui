@@ -3,7 +3,10 @@
   "propDescriptions": {
     "children": "The content of the component.",
     "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
+    "orientation": "The content direction flow.",
     "selected": "If <code>true</code>, the component is selected.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },
   "classDescriptions": {

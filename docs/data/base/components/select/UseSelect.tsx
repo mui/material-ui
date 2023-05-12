@@ -8,6 +8,10 @@ import useOption from '@mui/base/useOption';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
+export default function UseSelect() {
+  return <CustomSelect placeholder="Select a color…" options={options} />;
+}
+
 const blue = {
   100: '#DAECFF',
   200: '#99CCF3',
@@ -243,7 +247,3 @@ const options = [
     value: '#2196F3',
   },
 ];
-
-export default function UseSelect() {
-  return <CustomSelect placeholder="Select a color…" options={options} />;
-}

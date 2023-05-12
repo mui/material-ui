@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
-import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Modal from '@mui/base/Modal';
 
 export default function KeepMountedModal() {
   const [open, setOpen] = React.useState(false);
@@ -13,24 +13,24 @@ export default function KeepMountedModal() {
       <button type="button" onClick={handleOpen}>
         Open modal
       </button>
-      <Modal
+      <StyledModal
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
         open={open}
         onClose={handleClose}
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
         keepMounted
       >
         <Box sx={style}>
           <h2 id="keep-mounted-modal-title">Text in a modal</h2>
           <p id="keep-mounted-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }
 
-const BackdropUnstyled = React.forwardRef<
+const Backdrop = React.forwardRef<
   HTMLDivElement,
   { open?: boolean; className: string }
 >((props, ref) => {
@@ -44,7 +44,7 @@ const BackdropUnstyled = React.forwardRef<
   );
 });
 
-const Modal = styled(ModalUnstyled)(`
+const StyledModal = styled(Modal)(`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -59,7 +59,7 @@ const Modal = styled(ModalUnstyled)(`
   }
 `);
 
-const Backdrop = styled(BackdropUnstyled)`
+const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
   right: 0;

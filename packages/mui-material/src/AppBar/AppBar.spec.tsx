@@ -14,11 +14,6 @@ function AppBarTest() {
       <AppBar elevation={4} />
 
       <AppBar
-        onClick={(event) => {
-          expectType<React.MouseEvent<HTMLElement, MouseEvent>, typeof event>(event);
-        }}
-      />
-      <AppBar
         component="a"
         href="test"
         onClick={(event) => {
