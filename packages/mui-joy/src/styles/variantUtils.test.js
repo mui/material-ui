@@ -271,21 +271,21 @@ describe('variant utils', () => {
           },
           divider: disabledColor,
         },
-        createGetCssVar(''),
+        'custom',
       );
       expect(result.plain.primary).to.deep.equal({
         '--variant-borderWidth': '0px',
-        color: `var(--palette-primary-plainColor, ${color})`,
+        color: `var(--custom-palette-primary-plainColor, var(--joy-palette-primary-600))`,
       });
       expect(result.plainHover.primary).to.deep.equal({
-        backgroundColor: `var(--palette-primary-plainHoverBg, ${hoverBg})`,
+        backgroundColor: `var(--custom-palette-primary-plainHoverBg, var(--joy-palette-neutral-100))`,
       });
       expect(result.plainActive.primary).to.deep.equal({
         // don't add default value if it could not find from the color palette.
-        backgroundColor: `var(--palette-primary-plainActiveBg)`,
+        backgroundColor: `var(--custom-palette-primary-plainActiveBg, var(--joy-palette-unknown-100))`,
       });
       expect(result.plainDisabled.primary).to.deep.equal({
-        color: `var(--palette-primary-plainDisabledColor, ${disabledColor})`,
+        color: `var(--custom-palette-primary-plainDisabledColor, var(--joy-palette-divider))`,
         cursor: 'default',
         pointerEvents: 'none',
       });
@@ -304,22 +304,24 @@ describe('variant utils', () => {
             plainDisabledColor: `var(--joy-palette-primary-200)`,
           },
         },
-        createGetCssVar(''),
+        'custom',
       );
       expect(result.plain.primary).to.deep.equal({
         '--variant-borderWidth': '0px',
-        color: 'var(--palette-primary-plainColor, #600)',
+        color: 'var(--custom-palette-primary-plainColor, var(--joy-palette-primary-600))',
       });
       expect(result.plainActive.primary).to.deep.equal({
-        backgroundColor: 'var(--palette-primary-plainActiveBg, #200)',
+        backgroundColor:
+          'var(--custom-palette-primary-plainActiveBg, var(--joy-palette-primary-200))',
       });
       expect(result.plainDisabled.primary).to.deep.equal({
-        color: 'var(--palette-primary-plainDisabledColor, #200)',
+        color: 'var(--custom-palette-primary-plainDisabledColor, var(--joy-palette-primary-200))',
         cursor: 'default',
         pointerEvents: 'none',
       });
       expect(result.plainHover.primary).to.deep.equal({
-        backgroundColor: 'var(--palette-primary-plainHoverBg, #100)',
+        backgroundColor:
+          'var(--custom-palette-primary-plainHoverBg, var(--joy-palette-primary-100))',
       });
     });
 

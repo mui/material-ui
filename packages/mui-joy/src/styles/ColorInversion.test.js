@@ -29,7 +29,6 @@ describe('ColorInversion', () => {
 
   it('createSolidInversion automatically create solid override if the variable is in the correct format', () => {
     const result = createSolidInversion({
-      cssVarPrefix: 'foo',
       palette: {
         primary: {
           plainColor: '',
@@ -45,13 +44,13 @@ describe('ColorInversion', () => {
     // partially check the result
     sinon.assert.match(result, {
       primary: {
-        '--variant-plainColor': 'var(--foo-palette-primary-50)',
+        '--variant-plainColor': 'var(--joy-palette-primary-50)',
       },
       secondary: {
-        '--variant-softBg': 'rgba(var(--foo-palette-secondary-lightChannel) / 0.24)',
+        '--variant-softBg': 'rgba(var(--joy-palette-secondary-lightChannel) / 0.24)',
       },
       alternate: {
-        '--variant-solidBg': 'var(--foo-palette-common-white)',
+        '--variant-solidBg': '#fff',
       },
     });
   });
