@@ -122,7 +122,13 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
   };
 
   const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
+    let resolvedContainer = getContainer(container) ||
+      (disablePortal ? mountNodeRef.current ?? modalRef.current : getDoc().body);
+    // We cannot have the container to be the modal itself
+    // (because it's not it's own container), get the parent instead
+    if (resolvedContainer?.parentElement === modalRef.current) {
+      resolvedContainer = resolvedContainer.parentElement ?? getDoc().body;
+    }
 
     manager.add(getModal(), resolvedContainer);
 
@@ -152,7 +158,11 @@ const Modal = React.forwardRef(function Modal<RootComponentType extends React.El
     manager.remove(getModal(), ariaHiddenProp);
   }, [manager, ariaHiddenProp]);
 
-  React.useEffect(() => {
+  // We need useLayoutEffect to make sure
+  // aria-hidden tags have time to get cleaned up properly
+  // in handleClose->manager.remove->ariaHiddenElements
+  // in the case someone unmounts the Modal higher up the tree
+  React.useLayoutEffect(() => {
     return () => {
       handleClose();
     };
