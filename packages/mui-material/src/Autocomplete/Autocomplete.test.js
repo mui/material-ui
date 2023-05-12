@@ -19,6 +19,8 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
@@ -1937,6 +1939,40 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'true');
       fireEvent.mouseDown(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should not focus when tooltip clicked', () => {
+      const { getByRole, getByText } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => {
+            return (
+              <TextField
+                {...params}
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: (
+                    <InputAdornment position="end">
+                      <Tooltip title="tooltip" open>
+                        <div>ICON</div>
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            );
+          }}
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+      const tooltip = getByText('tooltip');
+
+      act(() => {
+        fireEvent.click(tooltip);
+      });
+
+      expect(textbox).not.toHaveFocus();
     });
   });
 
