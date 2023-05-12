@@ -256,7 +256,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       />
       <AppHeader />
       <main id="main-content">
-        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
+        <Section bg="gradient">
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog
           </Typography>
@@ -322,9 +322,11 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
             ))}
           </Box>
         </Section>
+        <Divider />
         <Container
           ref={postListRef}
           sx={{
+            py: { xs: 4, sm: 8, md: 12 },
             mt: -6,
             display: 'grid',
             gridTemplateColumns: { md: '1fr 380px' },
@@ -333,8 +335,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         >
           <Typography
             component="h2"
-            color="text.primary"
-            variant="h5"
+            variant="h6"
             fontWeight="700"
             sx={{ mb: { xs: 1, sm: 2 }, mt: 8 }} // margin-top makes the title appear when scroll into view
           >
@@ -448,6 +449,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
           </Box>
         </Container>
       </main>
+      <Divider />
       <HeroEnd />
       <Divider />
       <AppFooter />

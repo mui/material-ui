@@ -132,7 +132,7 @@ export default function TemplateDemo() {
   const templates = TEMPLATES[demo];
 
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>

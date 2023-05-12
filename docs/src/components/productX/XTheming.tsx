@@ -94,7 +94,7 @@ export default function XTheming() {
     return columns;
   }
   return (
-    <Section bg="comfort">
+    <Section bg="gradient">
       <Grid container spacing={2}>
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>

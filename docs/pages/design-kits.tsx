@@ -26,8 +26,11 @@ export default function DesignKits() {
       <main id="main-content">
         <DesignKitHero />
         <References companies={DESIGNKITS_CUSTOMERS} />
+        <Divider />
         <DesignKitValues />
+        <Divider />
         <DesignKitDemo />
+        <Divider />
         <DesignKitFAQ />
         <Testimonials />
         <HeroEnd />

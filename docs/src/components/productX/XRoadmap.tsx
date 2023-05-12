@@ -16,6 +16,7 @@ import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
+import { alpha } from '@mui/material/styles';
 
 export default function XRoadmap() {
   function renderList(content: React.ReactElement, nested?: boolean) {
@@ -73,7 +74,17 @@ export default function XRoadmap() {
     />
   );
   return (
-    <Section data-mui-color-scheme="dark" bg="dim">
+    <Section
+      data-mui-color-scheme="dark"
+      sx={{
+        color: 'text.secondary',
+        background: (theme) =>
+          `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[800]} 50%, 
+        ${alpha(theme.palette.primary[800], 0.2)} 100%), ${
+            (theme.vars || theme).palette.primaryDark[800]
+          }`,
+      }}
+    >
       <Box>
         <Grid container spacing={2} alignItems="center" justifyContent="space-between">
           <Grid item xs={12} md={5}>

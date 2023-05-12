@@ -39,7 +39,7 @@ export default function TemplateDemo() {
     [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
-    <Section bg="comfort">
+    <Section bg="gradient" cozy>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>

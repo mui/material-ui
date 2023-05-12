@@ -25,7 +25,9 @@ export default function Templates() {
       <main id="main-content">
         <TemplateHero />
         <References companies={TEMPLATES_CUSTOMERS} />
+        <Divider />
         <ValueProposition />
+        <Divider />
         <TemplateDemo />
         <Testimonials />
         <HeroEnd />

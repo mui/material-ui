@@ -315,7 +315,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0.2,
       },
       h5: {
-        fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
         fontSize: defaultTheme.typography.pxToRem(24),
         lineHeight: 36 / 24,
         letterSpacing: 0.1,
@@ -907,13 +906,13 @@ export function getThemedComponents(): ThemeOptions {
               },
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
-                borderColor: (theme.vars || theme).palette.grey[200],
+                borderColor: (theme.vars || theme).palette.grey[100],
               }),
             },
             theme.applyDarkStyles({
               backgroundColor: (theme.vars || theme).palette.primaryDark[900],
               ...(ownerState.variant === 'outlined' && {
-                borderColor: (theme.vars || theme).palette.primaryDark[500],
+                borderColor: (theme.vars || theme).palette.primaryDark[600],
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
               }),
             }),

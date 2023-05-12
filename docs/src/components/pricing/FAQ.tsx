@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
@@ -11,6 +10,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import Section from 'docs/src/layouts/Section';
 
 const faqData = [
   {
@@ -260,7 +260,7 @@ export default function FAQ() {
     );
   }
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+    <Section>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
@@ -310,6 +310,6 @@ export default function FAQ() {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </Section>
   );
 }

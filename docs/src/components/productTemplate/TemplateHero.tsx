@@ -15,6 +15,7 @@ import {
 export default function TemplateHero() {
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography

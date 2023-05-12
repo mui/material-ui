@@ -137,7 +137,7 @@ export default function DesignKitFAQ() {
     );
   }
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+    <Container sx={{ py: { xs: 6, sm: 10, md: 20 } }}>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>

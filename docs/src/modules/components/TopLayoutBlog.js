@@ -205,9 +205,9 @@ const Root = styled('div')(
   }),
   ({ theme }) =>
     theme.applyDarkStyles({
-      background: `linear-gradient(180deg, ${
-        (theme.vars || theme).palette.primaryDark[900]
-      } 0%, #001E3C 100%)`,
+      background: `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 20%, ${
+        (theme.vars || theme).palette.primaryDark[800]
+      } 80%)`,
       [`& .${classes.container}`]: {
         '& strong': {
           color: (theme.vars || theme).palette.grey[100],
@@ -363,6 +363,7 @@ function TopLayoutBlog(props) {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
         </AppContainer>
+        <Divider />
         <HeroEnd />
         <Divider />
         <AppFooter />

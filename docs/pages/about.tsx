@@ -21,6 +21,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ROUTES from 'docs/src/route';
+import Section from 'docs/src/layouts/Section';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
@@ -101,7 +102,7 @@ function Person(props: Profile & { sx?: PaperProps['sx'] }) {
                 borderRadius: 1,
                 backgroundColor: 'primary.100',
                 ...theme.applyDarkStyles({
-                  backgroundColor: 'primary.700',
+                  backgroundColor: 'primary.900',
                 }),
               })}
             />
@@ -193,11 +194,55 @@ function Widget({
   icon: React.ReactElement;
 }) {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
-      <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-        <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
-          {icon}
-        </Box>
+    <Paper
+      variant="outlined"
+      sx={(theme) => ({
+        p: 4,
+        height: '100%',
+        position: 'relative',
+        borderRadius: '12px',
+        border: '1px solid',
+        borderColor: 'grey.100',
+        background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+
+        ...theme.applyDarkStyles({
+          bgcolor: 'primaryDark.900',
+          borderColor: 'primaryDark.700',
+          background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+        }),
+      })}
+    >
+      <Box
+        sx={(theme) => ({
+          width: 40,
+          height: 40,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: 'primary.200',
+          bgcolor: 'primary.50',
+          boxShadow:
+            '0px 1px 6px 0px rgba(194, 224, 255, 1), 0px 2px 30px 0px rgba(234, 237, 241, 0.3) inset',
+          ...theme.applyDarkStyles({
+            borderColor: 'primary.400',
+            bgcolor: 'primary.900',
+            boxShadow:
+              '0px 1px 6px 0px rgba(0, 89, 178, 1), 0px 2px 30px 0px rgba(0, 0, 0, 0.25) inset',
+          }),
+        })}
+      >
+        {icon}
+      </Box>
+      <Typography
+        fontWeight="bold"
+        component="h3"
+        color="text.primary"
+        variant="body2"
+        mt={2}
+        mb={0.5}
+      >
         {title}
       </Typography>
       {children}
@@ -628,48 +673,40 @@ function AboutContent() {
         </Box>
         <References companies={CORE_CUSTOMERS} />
       </Container>
-      <Box
-        sx={(theme) => ({
-          bgcolor: 'grey.50',
-          ...theme.applyDarkStyles({
-            bgcolor: 'primaryDark.900',
-          }),
-        })}
-      >
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Grid container alignItems="center" spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h2" sx={{ my: 1 }}>
-                Our ultimate goal
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
-                We aim high trying to design the most effective and efficient tool for building UIs,
-                for developers and designers. MUI started back in 2014, to unify React and Material
-                Design. Since then, we&apos;ve become a community of over 2M developers from every
-                corner of the world.
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2 }}>
-                We plan on doing all that cultivating our values:
-              </Typography>
-              {[
-                'Customer obsessed. We put our customers front & center.',
-                'Transparency. Most of our work is public.',
-                'Freedom. We work from anywhere in the world.',
-                'Autonomy. We want to create a safe, high-trust team.',
-                "Excellence. We're aiming high, and we know it.",
-              ].map((text) => (
-                <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
-                    {text}
-                  </Typography>
-                </Box>
-              ))}
-            </Grid>
-            <MuiStatistics />
+      <Divider />
+      <Section bg="gradient" cozy>
+        <Grid container alignItems="center" spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h2" sx={{ my: 1 }}>
+              Our <GradientText>ultimate</GradientText> goal
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
+              We aim high trying to design the most effective and efficient tool for building UIs,
+              for developers and designers. MUI started back in 2014, to unify React and Material
+              Design. Since then, we&apos;ve become a community of over 2M developers from every
+              corner of the world.
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 2 }}>
+              We plan on doing all that cultivating our values:
+            </Typography>
+            {[
+              'Customer obsessed. We put our customers front & center.',
+              'Transparency. Most of our work is public.',
+              'Freedom. We work from anywhere in the world.',
+              'Autonomy. We want to create a safe, high-trust team.',
+              "Excellence. We're aiming high, and we know it.",
+            ].map((text) => (
+              <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
+                <IconImage name="yes" />
+                <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
+                  {text}
+                </Typography>
+              </Box>
+            ))}
           </Grid>
-        </Container>
-      </Box>
+          <MuiStatistics />
+        </Grid>
+      </Section>
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -704,7 +741,7 @@ function AboutContent() {
         >
           Company
         </Typography>
-        <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
+        <Typography color="text.secondary" sx={{ maxWidth: { md: 450 } }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Box sx={{ pt: 2 }}>
@@ -717,7 +754,7 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+      <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography
             component="h3"
@@ -764,11 +801,12 @@ function AboutContent() {
           </Box>
         </Container>
       </Box>
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
+      <Divider />
+      <Container sx={{ py: { xs: 4, md: 12 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
           How can you support us?
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
             <Widget
               icon={<ForumRoundedIcon fontSize="small" color="primary" />}
@@ -788,6 +826,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 Leave your feedback{' '}
               </Button>
@@ -807,6 +846,7 @@ function AboutContent() {
                   typography: 'body2',
                   color: 'text.secondary',
                   pl: 2,
+                  mb: 2,
                 }}
               >
                 <li>
@@ -843,6 +883,7 @@ function AboutContent() {
                 size="small"
                 href="https://github.com/mui/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See the repository
               </Button>
@@ -869,6 +910,7 @@ function AboutContent() {
                 size="small"
                 href="https://opencollective.com/mui"
                 endIcon={<KeyboardArrowRightRounded />}
+                sx={{ ml: -1 }}
               >
                 See Open Collective{' '}
               </Button>
@@ -876,6 +918,7 @@ function AboutContent() {
           </Grid>
         </Grid>
       </Container>
+      <Divider />
       <HeroEnd />
       <Divider />
     </React.Fragment>

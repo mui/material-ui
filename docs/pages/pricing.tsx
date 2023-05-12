@@ -35,6 +35,7 @@ export default function Pricing() {
         <WhatToExpect />
         <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
         <FAQ />
+        <Divider />
         <HeroEnd />
         <Divider />
       </main>

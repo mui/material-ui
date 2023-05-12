@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Divider from '@mui/material/Divider';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -25,9 +26,13 @@ export default function X() {
       <main id="main-content">
         <XHero />
         <References companies={ADVANCED_CUSTOMERS} />
+        <Divider />
         <XComponents />
+        <Divider />
         <XDataGrid />
+        <Divider />
         <XTheming />
+        <Divider />
         <XPlans />
         <XRoadmap />
       </main>

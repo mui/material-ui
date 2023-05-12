@@ -55,7 +55,7 @@ export default function HeroContainer({
                   borderBottom: '1px solid',
                   borderColor: 'divider',
                   ...(linearGradient && {
-                    background: `radial-gradient(farthest-corner circle at 100% 0%, ${
+                    background: `radial-gradient(farthest-corner circle at 0% 0%, ${
                       (theme.vars || theme).palette.grey[50]
                     } 0%, ${(theme.vars || theme).palette.primary[50]} 100%)`,
                   }),
@@ -65,7 +65,7 @@ export default function HeroContainer({
                     background: 'primaryDark.900',
                     borderColor: 'primaryDark.700',
                     ...(linearGradient && {
-                      background: `radial-gradient(farthest-corner circle at 100% 0%, ${alpha(
+                      background: `radial-gradient(farthest-corner circle at 0% 0%, ${alpha(
                         theme.palette.primary[900],
                         0.3,
                       )} 0%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,

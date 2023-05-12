@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -9,10 +8,11 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import Link from 'docs/src/modules/components/Link';
+import Section from 'docs/src/layouts/Section';
 
 export default function WhatToExpect() {
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+    <Section>
       <Typography
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}
@@ -123,6 +123,6 @@ export default function WhatToExpect() {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </Section>
   );
 }
