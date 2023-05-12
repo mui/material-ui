@@ -538,7 +538,7 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arizona')).toHaveFocus();
     });
 
-    it('should not move focus if focus starts on descendant and the key doesnt match', () => {
+    it("should not move focus if focus starts on descendant and the key doesn't match", () => {
       const { getByText } = render(
         <MenuList>
           <MenuItem>Arizona</MenuItem>

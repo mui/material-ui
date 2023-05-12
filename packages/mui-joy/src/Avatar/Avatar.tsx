@@ -162,11 +162,15 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     src,
     srcSet,
     children: childrenProp,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const variant = inProps.variant || groupContext?.variant || variantProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color || groupContext?.color, colorProp);
+  const colorFromContext = inProps.color || groupContext?.color;
+  const color = colorFromContext !== 'context' ? getColor(colorFromContext, colorProp) : colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -180,12 +184,13 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: AvatarRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -197,14 +202,14 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     },
     className: classes.img,
     elementType: AvatarImg,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotFallback, fallbackProps] = useSlot('fallback', {
     className: classes.fallback,
     elementType: AvatarFallback,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -255,6 +260,11 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
@@ -263,6 +273,24 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    fallback: PropTypes.elementType,
+    img: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The `src` attribute for the `img` element.
    */

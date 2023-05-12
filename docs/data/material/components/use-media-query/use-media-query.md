@@ -26,9 +26,9 @@ The media query string can be any valid CSS media query, e.g. [`'(prefers-color-
 
 ⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
-## Using MUI's breakpoint helpers
+## Using Material UI's breakpoint helpers
 
-You can use MUI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
+You can use Material UI's [breakpoint helpers](/material-ui/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@mui/material/styles';
@@ -214,7 +214,7 @@ You can reproduce the same behavior with a `useWidth` hook:
   You can set this option to `true` if you use the returned value **only** client-side.
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_, it's used when rendering server-side.
 
-Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
+Note: You can change the default options using the [`default props`](/material-ui/customization/theme-components/#theme-default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Returns
 

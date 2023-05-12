@@ -33,6 +33,8 @@
     "name": "MuiContainer"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiContainer",
   "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-system/src/Container/Container.tsx",
   "inheritance": null,

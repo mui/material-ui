@@ -12,13 +12,6 @@ import ROUTES from 'docs/src/route';
 
 const GOLDs = [
   {
-    src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
-    srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
-    name: 'Spotify',
-    description: 'Digital music service that gives you access to millions of songs.',
-    href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: '/static/sponsors/tidelift.svg',
     srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
@@ -32,6 +25,13 @@ const GOLDs = [
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/spotify/f37ea28/logo/40.png',
+    srcSet: 'https://images.opencollective.com/spotify/f37ea28/logo/80.png 2x',
+    name: 'Spotify',
+    description: 'Music service to access to millions of songs.',
+    href: 'https://open.spotify.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors//megafamous.png',

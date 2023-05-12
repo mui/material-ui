@@ -1,0 +1,15 @@
+{
+  "hookDescription": "",
+  "parametersDescriptions": {},
+  "returnValueDescriptions": {
+    "disabled": "If <code>true</code>, the label, input and helper text should be displayed in a disabled state.",
+    "error": "If <code>true</code>, the label is displayed in an error state.",
+    "filled": "If <code>true</code>, the form element has some value.",
+    "focused": "If <code>true</code>, the form element is focused and not disabled.",
+    "onBlur": "Callback fired when the form element has lost focus.",
+    "onChange": "Callback fired when the form element's value is modified.",
+    "onFocus": "Callback fired when the form element receives focus.",
+    "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
+    "value": "The value of the form element."
+  }
+}

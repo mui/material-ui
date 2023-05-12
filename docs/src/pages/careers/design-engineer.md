@@ -39,7 +39,7 @@ Our products empower React developers to build awesome applications faster – w
 
 But while we are [the leading](https://tsh.io/state-of-frontend/#over-the-past-year-which-of-the-following-design-systems-was-your-favorite-go-to-solution) UI design system in the frontend space, the adoption of MUI is only at 25%. More importantly, the challenges of developers and designers to solve when creating UIs go way beyond the ones of design systems.
 We envision a future where MUI becomes the default toolkit for web developers to create UIs.
-It's why we started MUI Base, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
+It's why we started Base UI, Joy UI, and MUI Toolpad. Design is key to achieving this goal.
 
 ## About the role
 
@@ -74,3 +74,6 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 ## How to apply?
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/c45a0b2d-aa37-4dec-8bcd-e70040f3af49/application?utm_source=ZNRrPGBkqO)
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

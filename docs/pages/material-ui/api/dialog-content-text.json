@@ -12,6 +12,8 @@
   "name": "DialogContentText",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContentText" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiDialogContentText",
   "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-material/src/DialogContentText/DialogContentText.js",
   "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },

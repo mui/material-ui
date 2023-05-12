@@ -6,11 +6,11 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
  *
  * Demos:
  *
- * - [Unstyled badge](https://mui.com/base/react-badge/#hook)
+ * - [Badge](https://mui.com/base/react-badge/#hook)
  *
  * API:
  *
- * - [useBadge API](https://mui.com/base/api/use-badge/)
+ * - [useBadge API](https://mui.com/base/react-badge/hooks-api/#use-badge)
  */
 export default function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
   const {

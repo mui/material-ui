@@ -1,5 +1,4 @@
 import * as React from 'react';
-import LZString from 'lz-string';
 import startCase from 'lodash/startCase';
 import NextLink from 'next/link';
 import AspectRatio from '@mui/joy/AspectRatio';
@@ -13,28 +12,7 @@ import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import extractTemplates from 'docs/src/modules/utils/extractTemplates';
-
-const cache = {};
-const req = require.context('./?raw', true, /^\.\/[^/]+\/.*\.(js|tsx|ts)$/);
-req.keys().forEach((key) => {
-  cache[key] = req(key);
-});
-
-function compress(object) {
-  return LZString.compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, '-') // Convert '+' to '-'
-    .replace(/\//g, '_') // Convert '/' to '_'
-    .replace(/=+$/, ''); // Remove ending '='
-}
-
-function addHiddenInput(form, name, value) {
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = name;
-  input.value = value;
-  form.appendChild(input);
-}
+import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 
 /**
  * To display a template on the site:
@@ -73,14 +51,40 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  'profile-dashboard': {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
+  'framesx-web-blocks': {
+    name: 'MUI',
+    link: 'https://twitter.com/MUI_hq',
+  },
+};
+const DESIGNS = {
+  'order-dashboard': {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  },
+  'profile-dashboard': {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  },
+  'framesx-web-blocks': {
+    name: 'Frames X',
+    link: 'https://framesxfigma.buninux.com/',
+  },
 };
 
 export default function TemplateCollection() {
-  const newTemplates = ['order-dashboard', 'sign-in-side']; // Stay at the top of the page with `new` badge
-  const templates = extractTemplates(cache);
+  const newTemplates = [
+    'framesx-web-blocks',
+    'profile-dashboard',
+    'order-dashboard',
+  ]; // Stay at the top of the page with `new` badge
+  const { names: templateNames, map: templateMap } = sourceJoyTemplates();
   const names = [
     ...newTemplates,
-    ...Object.keys(templates).filter((name) => !newTemplates.includes(name)),
+    ...templateNames.filter((name) => !newTemplates.includes(name)),
   ];
   return (
     <List
@@ -93,19 +97,30 @@ export default function TemplateCollection() {
       }}
     >
       {names.map((name) => {
-        const item = templates[name];
+        const item = templateMap.get(name);
         const author = AUTHORS[name];
+        const design = DESIGNS[name];
         return (
           <Card
             component="li"
             variant="outlined"
             key={name}
-            sx={{
+            sx={(theme) => ({
               bgcolor: 'initial',
               boxShadow: 'none',
               p: 0,
               overflow: 'auto',
-            }}
+              transition: 'border-color 0.3s, transform 0.2s, box-shadow 0.4s',
+              '&:hover': {
+                '--joy-shadowChannel': 'var(--joy-palette-primary-lightChannel)',
+                boxShadow: theme.shadow.md,
+                borderColor: 'primary.500',
+                transform: 'translateY(-2px)',
+                [theme.getColorSchemeSelector('dark')]: {
+                  '--joy-shadowChannel': 'var(--joy-palette-primary-darkChannel)',
+                },
+              },
+            })}
           >
             <AspectRatio
               ratio="2"
@@ -144,7 +159,7 @@ export default function TemplateCollection() {
             <Box
               sx={{
                 p: 2,
-                gap: 1,
+                gap: 0.5,
                 display: 'flex',
                 alignItems: 'start',
                 flexWrap: 'wrap',
@@ -161,7 +176,7 @@ export default function TemplateCollection() {
                 <Typography
                   component="h3"
                   fontSize="lg"
-                  fontWeight="lg"
+                  fontWeight="xl"
                   endDecorator={
                     newTemplates.includes(name) ? (
                       <Chip
@@ -175,6 +190,9 @@ export default function TemplateCollection() {
                           textTransform: 'uppercase',
                           fontWeight: 'xl',
                           letterSpacing: 'md',
+                          fontSize: '0.625rem',
+                          '--Chip-paddingInline': '0.2rem',
+                          '--Chip-minHeight': '1.3rem',
                         }}
                       >
                         New
@@ -186,18 +204,6 @@ export default function TemplateCollection() {
                 >
                   {startCase(name)}
                 </Typography>
-                {author && (
-                  <Typography level="body2" fontWeight="md">
-                    Designed by{' '}
-                    <Link
-                      href={author.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <b>{author.name}</b>
-                    </Link>
-                  </Typography>
-                )}
               </Box>
               <Box
                 sx={{
@@ -231,38 +237,55 @@ export default function TemplateCollection() {
                   data-ga-event-category="joy-template"
                   data-ga-event-label={name}
                   data-ga-event-action="codesandbox"
-                  onClick={() => {
-                    const { files } = codeSandbox.createJoyTemplate({
-                      ...item,
-                      title: `${startCase(name)} Template - Joy UI`,
-                      githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                        process.env.LIB_VERSION
-                      }/docs/data/joy/templates/${name}/App.${
-                        item.codeVariant === 'TS' ? 'tsx' : 'js'
-                      }`,
-                    });
-                    const parameters = compress({ files });
-
-                    // ref: https://codesandbox.io/docs/api/#define-api
-                    const form = document.createElement('form');
-                    form.method = 'POST';
-                    form.target = '_blank';
-                    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
-                    addHiddenInput(form, 'parameters', parameters);
-                    addHiddenInput(
-                      form,
-                      'query',
-                      item.codeVariant === 'TS' ? 'file=/App.tsx' : 'file=/App.js',
-                    );
-                    document.body.appendChild(form);
-                    form.submit();
-                    document.body.removeChild(form);
-                  }}
+                  onClick={() =>
+                    codeSandbox
+                      .createJoyTemplate({
+                        ...item,
+                        title: `${startCase(name)} Template - Joy UI`,
+                        githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                          process.env.LIB_VERSION
+                        }/docs/data/joy/templates/${name}/App.${
+                          item.codeVariant === 'TS' ? 'tsx' : 'js'
+                        }`,
+                      })
+                      .openSandbox()
+                  }
                 >
                   <SvgIcon viewBox="0 0 1080 1080">
                     <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                   </SvgIcon>
                 </IconButton>
+              </Box>
+              <Box sx={{ width: '100%', display: 'flex', alignItems: 'baseline' }}>
+                {author && (
+                  <Typography level="body2" fontWeight="md">
+                    Built by{' '}
+                    <Link
+                      href={author.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <b>{author.name}</b>
+                    </Link>
+                  </Typography>
+                )}
+                {design && (
+                  <React.Fragment>
+                    <Typography level="caption" fontWeight="md" sx={{ mx: 0.5 }}>
+                      •
+                    </Typography>
+                    <Typography level="body2" fontWeight="md">
+                      Designed by{' '}
+                      <Link
+                        href={design.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <b>{design.name}</b>
+                      </Link>
+                    </Typography>
+                  </React.Fragment>
+                )}
               </Box>
             </Box>
           </Card>

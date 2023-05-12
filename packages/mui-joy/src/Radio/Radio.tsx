@@ -222,7 +222,7 @@ const RadioIcon = styled('span', {
  *
  * Demos:
  *
- * - [Radio Group](https://mui.com/joy-ui/react-radio/)
+ * - [Radio](https://mui.com/joy-ui/react-radio-button/)
  *
  * API:
  *
@@ -255,6 +255,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -318,33 +321,34 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: RadioRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotRadio, radioProps] = useSlot('radio', {
     className: classes.radio,
     elementType: RadioRadio,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIcon, iconProps] = useSlot('icon', {
     className: classes.icon,
     elementType: RadioIcon,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: RadioAction,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -360,7 +364,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.input,
     elementType: RadioInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     ownerState,
   });
@@ -371,7 +375,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.label,
     elementType: RadioLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -424,6 +428,11 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -491,6 +500,30 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    radio: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    radio: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

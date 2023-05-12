@@ -16,14 +16,14 @@ It has gained a large following, not only due to its fidelity to Material Design
 Today, countless teams and organizations rely on our open-source projects to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
+We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
@@ -97,7 +97,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
-You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
+You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
@@ -117,3 +117,6 @@ If that goes well, you'll be invited to up to four additional conversations, tho
 All these conversations will be 1:1 and over video chat. Please ask as many questions as you wish throughout the whole process, it's a two-way discussion. If you happen to need additional conversations as well, feel free to ask; we'll be happy to schedule them. Lastly, please note that we're unable to offer individual feedback during the initial screening process, as we're a small team and don't have the bandwidth to do so.
 
 We look forward to hearing from you! ☺️
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

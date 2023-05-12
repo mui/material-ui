@@ -7,7 +7,7 @@ Looking for the v3 docs? You can [find the latest version here](https://mui.com/
 :::info
 This document is a work in progress.
 Have you upgraded your site and run into something that's not covered here?
-[Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md).
+[Add your changes on GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/data/material/migration/migration-v3/migration-v3.md).
 :::
 
 ## Introduction
@@ -48,7 +48,7 @@ yarn add @material-ui/core
 ### Update React version
 
 The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`.
-This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+This allows us to rely on [Hooks](https://legacy.reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
 ### Update Material UI Styles version
 

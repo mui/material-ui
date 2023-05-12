@@ -8,6 +8,7 @@
       }
     },
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"
@@ -59,6 +60,8 @@
   "name": "Popper",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiPopper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Popper/Popper.tsx",
   "inheritance": null,

@@ -17,7 +17,7 @@ A [typographic scale](https://m2.material.io/design/typography/#type-scale) has 
 
 ## General
 
-The _Roboto_ font will **not** be automatically loaded by MUI.
+The _Roboto_ font will **not** be automatically loaded by Material UI.
 You are responsible for loading any fonts used in your application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
 [the theme customization section](/material-ui/customization/typography/).
@@ -57,7 +57,7 @@ import '@fontsource/roboto/700.css';
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
 
 Fontsource can be configured to load specific subsets, weights and styles.
-MUI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+Material UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
 
 ## Component
 

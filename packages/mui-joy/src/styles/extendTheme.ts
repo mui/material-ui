@@ -346,7 +346,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       background: {
         body: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
         surface: `var(--joy-palette-common-black, ${defaultColors.common.black})`,
-        popup: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
+        popup: `var(--joy-palette-neutral-800, ${defaultColors.neutral[900]})`,
         level1: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
         level2: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
         level3: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,

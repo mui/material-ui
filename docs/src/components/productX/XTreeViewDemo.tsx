@@ -15,8 +15,7 @@ import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
 import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
-import Chip from '@mui/material/Chip';
-import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
+import Button from '@mui/material/Button';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },
@@ -144,51 +143,65 @@ const CustomContent = React.forwardRef(function CustomContent(
   );
 });
 
-const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => ({
-  paddingTop: 5,
-  '& .MuiTreeItem-content .MuiTreeItem-label': {
-    paddingLeft: theme.spacing(0.75),
-  },
-  '& .MuiTreeItem-root': {
-    position: 'relative',
-    '&:last-of-type': {
-      '&:before': {
-        height: 30 / 2,
+const StyledTreeItem = styled(MuiTreeItem)(({ theme }) => [
+  {
+    paddingTop: 5,
+    '& .MuiTreeItem-content .MuiTreeItem-label': {
+      paddingLeft: theme.spacing(0.75),
+    },
+    '& .MuiTreeItem-root': {
+      position: 'relative',
+      '&:last-of-type': {
+        '&:before': {
+          height: 30 / 2,
+        },
       },
-    },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      left: -18,
-      height: '100%',
-      width: 2,
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
-    },
-  },
-  '& .MuiTreeItem-content': {
-    padding: theme.spacing('2px', 0.5),
-  },
-  '& .MuiTreeItem-group': {
-    marginLeft: 0,
-    paddingLeft: theme.spacing(3),
-    '& .MuiTreeItem-content': {
       '&:before': {
         content: '""',
-        position: 'absolute',
         display: 'block',
-        width: 24,
-        height: 2,
-        backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
-        top: '50%',
-        left: 6,
-        transform: 'translate(-100%, -50%)',
+        position: 'absolute',
+        left: -18,
+        height: '100%',
+        width: 2,
+        backgroundColor: (theme.vars || theme).palette.grey[200],
+      },
+    },
+    '& .MuiTreeItem-content': {
+      padding: theme.spacing('2px', 0.5),
+    },
+    '& .MuiTreeItem-group': {
+      marginLeft: 0,
+      paddingLeft: theme.spacing(3),
+      '& .MuiTreeItem-content': {
+        '&:before': {
+          content: '""',
+          position: 'absolute',
+          display: 'block',
+          width: 24,
+          height: 2,
+          backgroundColor: (theme.vars || theme).palette.grey[200],
+          top: '50%',
+          left: 6,
+          transform: 'translate(-100%, -50%)',
+        },
       },
     },
   },
-}));
+  theme.applyDarkStyles({
+    '& .MuiTreeItem-root': {
+      '&:before': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+      },
+    },
+    '& .MuiTreeItem-group': {
+      '& .MuiTreeItem-content': {
+        '&:before': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[500],
+        },
+      },
+    },
+  }),
+]);
 
 function TreeItem(
   props: TreeItemProps & {
@@ -204,11 +217,14 @@ export default function XDateRangeDemo() {
       <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
         <Paper
           variant="outlined"
-          sx={{
+          sx={(theme) => ({
             maxWidth: '100%',
             mx: 'auto',
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
-          }}
+            bgcolor: '#fff',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primaryDark.900',
+            }),
+          })}
         >
           <TreeView
             aria-label="file system navigator"
@@ -275,25 +291,21 @@ export default function XDateRangeDemo() {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            mb: 0.5,
+            justifyContent: 'space-between',
           }}
         >
-          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1, mt: 0.2 }}>
-            Coming soon!
+          <Typography variant="body2" fontWeight="bold" sx={{ mr: 1 }}>
+            🧪&nbsp;&nbsp;&nbsp;Experiment with the lab version now!
           </Typography>
-          <Chip
-            label="Available in the lab"
-            size="small"
+          <Button
+            variant="outlined"
             href="/material-ui/react-tree-view"
             component="a"
-            sx={{ fontWeight: 500, cursor: 'pointer' }}
-          />
+            sx={{ color: 'primary.300', flexShrink: 0 }}
+          >
+            View more demos
+          </Button>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Subscribe to our newsletter to get first-hand info about the development and release of
-          new components.
-        </Typography>
-        <EmailSubscribe />
       </Frame.Info>
     </Frame>
   );

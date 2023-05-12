@@ -441,4 +441,21 @@ describe('styleFunctionSx', () => {
       letterSpacing: 'inherit',
     });
   });
+
+  it('resolves theme typography properties', () => {
+    const result = styleFunctionSx({
+      theme: { typography: createTypography({}, {}) },
+      sx: {
+        fontFamily: 'default',
+        fontWeight: 'fontWeightMedium',
+        fontSize: 'fontSize',
+      },
+    });
+
+    expect(result).deep.equal({
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+      fontWeight: 500,
+      fontSize: 14,
+    });
+  });
 });

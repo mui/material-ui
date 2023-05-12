@@ -1,95 +1,62 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { EventHandlers } from '../utils/types';
-import { MenuUnstyledContext } from '../MenuUnstyled';
 import useButton from '../useButton';
 import {
+  MenuItemMetadata,
   UseMenuItemParameters,
   UseMenuItemReturnValue,
   UseMenuItemRootSlotProps,
 } from './useMenuItem.types';
-import useForcedRerendering from '../utils/useForcedRerendering';
+import { useListItem } from '../useList';
+import { useCompoundItem } from '../utils/useCompoundItem';
 
 /**
  *
  * Demos:
  *
- * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenuItem API](https://mui.com/base/api/use-menu-item/)
+ * - [useMenuItem API](https://mui.com/base/react-menu/hooks-api/#use-menu-item)
  */
-export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemReturnValue {
-  const { disabled = false, ref, label } = props;
+export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
+  const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
 
-  const id = useId();
-  const menuContext = React.useContext(MenuUnstyledContext);
-
+  const id = useId(idParam);
   const itemRef = React.useRef<HTMLElement>(null);
-  const handleRef = useForkRef(itemRef, ref);
 
-  if (menuContext === null) {
-    throw new Error('MenuItemUnstyled must be used within a MenuUnstyled');
-  }
+  const itemMetadata: MenuItemMetadata = React.useMemo(
+    () => ({ disabled, id: id ?? '', label, ref: itemRef }),
+    [disabled, id, label],
+  );
 
-  const { registerItem, unregisterItem, open, registerHighlightChangeHandler } = menuContext;
+  const {
+    getRootProps: getListRootProps,
+    highlighted,
+    rootRef: listItemRefHandler,
+  } = useListItem({
+    item: id,
+  });
 
-  React.useEffect(() => {
-    if (id === undefined) {
-      return undefined;
-    }
+  const { index, totalItemCount } = useCompoundItem(id, itemMetadata);
 
-    registerItem(id, { disabled, id, ref: itemRef, label });
-
-    return () => unregisterItem(id);
-  }, [id, registerItem, unregisterItem, disabled, ref, label]);
-
-  const { getRootProps: getButtonProps, focusVisible } = useButton({
+  const {
+    getRootProps: getButtonProps,
+    focusVisible,
+    rootRef: buttonRefHandler,
+  } = useButton({
     disabled,
     focusableWhenDisabled: true,
-    ref: handleRef,
   });
 
-  // Ensure the menu item is focused when highlighted
-  const [focusRequested, requestFocus] = React.useState(false);
+  const handleRef = useForkRef(listItemRefHandler, buttonRefHandler, externalRef, itemRef);
 
-  const focusIfRequested = React.useCallback(() => {
-    if (focusRequested && itemRef.current != null) {
-      itemRef.current.focus();
-      requestFocus(false);
-    }
-  }, [focusRequested]);
+  React.useDebugValue({ id, highlighted, disabled, label });
 
-  React.useEffect(() => {
-    focusIfRequested();
-  });
-
-  React.useDebugValue({ id, disabled, label });
-
-  const itemState = menuContext.getItemState(id ?? '');
-
-  const { highlighted } = itemState ?? { highlighted: false };
-
-  const rerender = useForcedRerendering();
-
-  React.useEffect(() => {
-    function updateHighlightedState(highlightedItemId: string | null) {
-      if (highlightedItemId === id && !highlighted) {
-        rerender();
-      } else if (highlightedItemId !== id && highlighted) {
-        rerender();
-      }
-    }
-
-    return registerHighlightChangeHandler(updateHighlightedState);
-  });
-
-  React.useEffect(() => {
-    // TODO: this should be handled by the MenuButton
-    requestFocus(highlighted && open);
-  }, [highlighted, open]);
-
+  // If `id` is undefined (during SSR in React < 18), we fall back to rendering a simplified menu item
+  // which does not have access to infortmation about its position or highlighted state.
   if (id === undefined) {
     return {
       getRootProps: <TOther extends EventHandlers = {}>(
@@ -102,25 +69,41 @@ export default function useMenuItem(props: UseMenuItemParameters): UseMenuItemRe
       disabled: false,
       focusVisible,
       highlighted: false,
+      index: -1,
+      totalItemCount: 0,
+      rootRef: handleRef,
     };
   }
 
-  return {
-    getRootProps: <TOther extends EventHandlers = {}>(
-      otherHandlers: TOther = {} as TOther,
-    ): UseMenuItemRootSlotProps<TOther> => {
-      const optionProps = menuContext.getItemProps(id, otherHandlers);
+  const getRootProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseMenuItemRootSlotProps<TOther> => {
+    const resolvedButtonProps = {
+      ...otherHandlers,
+      ...getButtonProps(otherHandlers),
+    };
 
-      return {
-        ...otherHandlers,
-        ...getButtonProps(otherHandlers),
-        tabIndex: optionProps.tabIndex,
-        id: optionProps.id,
-        role: 'menuitem',
-      };
-    },
-    disabled: itemState?.disabled ?? false,
+    const resolvedMenuItemProps = {
+      ...resolvedButtonProps,
+      ...getListRootProps(resolvedButtonProps),
+    };
+
+    return {
+      ...otherHandlers,
+      ...resolvedButtonProps,
+      ...resolvedMenuItemProps,
+      role: 'menuitem',
+      ref: handleRef,
+    };
+  };
+
+  return {
+    getRootProps,
+    disabled,
     focusVisible,
     highlighted,
+    index,
+    totalItemCount,
+    rootRef: handleRef,
   };
 }

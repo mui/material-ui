@@ -17,6 +17,8 @@
     "name": "MuiSpeedDialIcon"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSpeedDialIcon",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/SpeedDialIcon/SpeedDialIcon.js",
   "inheritance": null,

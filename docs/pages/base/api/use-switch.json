@@ -8,8 +8,8 @@
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "onFocus": {
@@ -31,8 +31,15 @@
     },
     "getInputProps": {
       "type": {
-        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps",
-        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt) =&gt UseSwitchInputSlotProps"
+        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps",
+        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLInputElement&gt;) =&gt; UseSwitchInputSlotProps"
+      },
+      "required": true
+    },
+    "inputRef": {
+      "type": {
+        "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
+        "description": "React.RefCallback&lt;HTMLInputElement&gt; | null"
       },
       "required": true
     },
@@ -40,5 +47,5 @@
   },
   "name": "useSwitch",
   "filename": "/packages/mui-base/src/useSwitch/useSwitch.ts",
-  "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Unstyled Switch</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-switch/#hook\">Switch</a></li></ul>"
 }

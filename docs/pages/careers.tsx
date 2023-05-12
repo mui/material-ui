@@ -159,18 +159,6 @@ const openRolesData = [
         url: '/careers/react-engineer-core/',
       },
       {
-        title: 'React Tech Lead - xGrid',
-        description:
-          'You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.',
-        url: '/careers/react-tech-lead-x-grid/',
-      },
-      {
-        title: 'React Engineer - xGrid',
-        description:
-          'You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-grid/',
-      },
-      {
         title: 'Product Engineer - Store',
         description:
           'You will lead the technical, product, and operational development of the store.',
@@ -188,26 +176,9 @@ const openRolesData = [
     title: 'Design',
     roles: [
       {
-        title: 'Lead Designer',
-        description:
-          "You will be accountable for MUI's design execution and a small team of designers.",
-        url: '/careers/lead-designer/',
-      },
-      {
         title: 'Design Engineer',
         description: 'You will focus on design to implement great product experiences.',
         url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate',
-        description:
-          'You will build a thriving and connected developer community around our suite of products.',
-        url: '/careers/developer-advocate/',
       },
     ],
   },
@@ -218,6 +189,17 @@ const openRolesData = [
         title: 'Product Marketing Manager',
         description: 'You will own the marketing efforts at MUI.',
         url: '/careers/product-marketing-manager/',
+      },
+    ],
+  },
+  {
+    title: 'Operations',
+    roles: [
+      {
+        title: 'Head of Operations',
+        description:
+          "You will take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.",
+        url: '/careers/head-of-operations/',
       },
     ],
   },
@@ -234,10 +216,16 @@ const nextRolesData = [
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Support Engineer - X',
+        title: 'React Community Engineer - X',
         description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-support-engineer/',
+          "You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/careers/react-community-engineer/',
+      },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
       },
     ],
   },

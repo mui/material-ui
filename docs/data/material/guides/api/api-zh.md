@@ -127,7 +127,7 @@ The `ref` is forwarded to the root element. This means that, without changing th
 
 ## 术语表
 
-- **host component**：`react-dom` 的 DOM 节点类型，例如，一个 `“div”`。 另请参阅 [React 实施说明](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements)。
+- **host component**：`react-dom` 的 DOM 节点类型，例如，一个 `“div”`。 另请参阅 [React 实施说明](https://legacy.reactjs.org/docs/implementation-notes.html#mounting-host-elements)。
 - **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。
 - **outermost**：从上到下读取组件树时的第一个组件，例如，广度优先（breadth-first）搜索。
 - **root component**：渲染一个宿主组件的最外层的那个组件。

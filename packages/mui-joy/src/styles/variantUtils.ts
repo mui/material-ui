@@ -35,7 +35,7 @@ const assignCss = (target: Record<string, string>, variantVar: string, value: st
  * @example 'plain'
  *
  * @param palette object that contains palette tokens
- * @example { primary: { plainColor: '', plainHoverColor: '', ...tokens }, ...other palete }
+ * @example { primary: { plainColor: '', plainHoverColor: '', ...tokens }, ...other palette }
  *
  * @param getCssVar a function that receive variant token and return a CSS variable
  *
@@ -176,8 +176,8 @@ export const createSoftInversion = (
       string | number | Record<string, any>,
     ];
     if (isVariantPalette(colorPalette)) {
-      const lightColors = theme.colorSchemes.light?.palette?.[color] || {};
-      const darkColors = theme.colorSchemes.dark?.palette?.[color] || {};
+      const lightColors = theme.colorSchemes?.light?.palette?.[color] || {};
+      const darkColors = theme.colorSchemes?.dark?.palette?.[color] || {};
       result[color] = {
         '--Badge-ringColor': `var(--joy-palette-${color}-softBg${
           darkColors.softBg ? `, ${darkColors.softBg}` : ''
@@ -330,12 +330,12 @@ export const createSoftInversion = (
           '--joy-palette-divider': `rgba(var(--joy-palette-${color}-mainChannel${
             lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
           }) / 0.32)`,
-          '--variant-plainColor': `rgba(var(--joy-palette-${color}-mainChannel${
-            lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
+          '--variant-plainColor': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
+          }) / 0.8)`,
+          '--variant-plainHoverColor': `rgba(var(--joy-palette-${color}-darkChannel${
+            lightColors.darkChannel ? `, ${lightColors.darkChannel}` : ''
           }) / 1)`,
-          '--variant-plainHoverColor': `var(--joy-palette-${color}-600${
-            lightColors[600] ? `, ${lightColors[600]}` : ''
-          })`,
           '--variant-plainHoverBg': `rgba(var(--joy-palette-${color}-mainChannel${
             lightColors.mainChannel ? `, ${lightColors.mainChannel}` : ''
           }) / 0.12)`,
@@ -428,7 +428,7 @@ export const createSolidInversion = (
       string | number | Record<string, any>,
     ];
     if (isVariantPalette(colorPalette)) {
-      const lightColors = theme.colorSchemes.light?.palette?.[color] || {};
+      const lightColors = theme.colorSchemes?.light?.palette?.[color] || {};
       if (color === 'warning') {
         result.warning = {
           '--Badge-ringColor': `var(--joy-palette-${color}-solidBg${
