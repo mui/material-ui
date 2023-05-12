@@ -911,6 +911,21 @@ describe('<Select />', () => {
       expect(document.activeElement).to.equal(select);
     });
 
+    it('does not steal focus from other elements on page when it is open on mount', () => {
+      const { getByRole } = render(
+        <div>
+          <input autoFocus />
+          <Select defaultListboxOpen>
+            <Option value={1}>1</Option>
+            <Option value={2}>2</Option>
+          </Select>
+        </div>,
+      );
+
+      const input = getByRole('textbox');
+      expect(document.activeElement).to.equal(input);
+    });
+
     it('scrolls to initially highlighted option after opening', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -951,6 +966,23 @@ describe('<Select />', () => {
 
       const listbox = getByRole('listbox');
       expect(listbox.scrollTop).to.equal(100);
+    });
+  });
+
+  describe('prop: autoFocus', () => {
+    it('should focus the select after mounting', () => {
+      const { getByRole } = render(
+        <div>
+          <input />
+          <Select autoFocus>
+            <Option value={1}>1</Option>
+            <Option value={2}>2</Option>
+          </Select>
+        </div>,
+      );
+
+      const select = getByRole('combobox');
+      expect(document.activeElement).to.equal(select);
     });
   });
 
