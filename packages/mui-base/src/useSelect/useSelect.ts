@@ -26,6 +26,10 @@ import selectReducer from './selectReducer';
 import combineHooksSlotProps from '../utils/combineHooksSlotProps';
 import MuiCancellableEvent from '../utils/muiCancellableEvent';
 
+function preventDefault(event: React.SyntheticEvent) {
+  event.preventDefault();
+}
+
 /**
  *
  * Demos:
@@ -260,6 +264,11 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     }
   }, [highlightedOption, options]);
 
+  const getOptionMetadata = React.useCallback(
+    (optionValue: OptionValue) => options.get(optionValue),
+    [options],
+  );
+
   const getSelectTriggerProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ) => {
@@ -281,11 +290,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     return combinedProps(otherHandlers);
   };
 
-  const getOptionMetadata = React.useCallback(
-    (optionValue: OptionValue) => options.get(optionValue),
-    [options],
-  );
-
   const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ): UseSelectListboxSlotProps<TOther> => {
@@ -295,10 +299,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
       role: 'listbox' as const,
       'aria-multiselectable': multiple ? 'true' : undefined,
       ref: handleListboxRef,
-      onMouseDown: (event: React.MouseEvent) => {
-        // to prevent the button from losing focus when interacting with the listbox
-        event.preventDefault();
-      },
+      onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
     };
   };
 
@@ -336,7 +337,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
-    listboxRef: handleListboxRef,
+    listboxRef: mergedListRootRef,
     open,
     options: optionValues,
     value: selectValue,
