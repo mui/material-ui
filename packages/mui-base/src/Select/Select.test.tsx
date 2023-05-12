@@ -378,19 +378,19 @@ describe('<Select />', () => {
 
       const listbox = getByRole('listbox');
 
-      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights 2
+      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights 2
       expect(listbox.scrollTop).to.equal(0);
 
-      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights 3
+      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights 3
       expect(listbox.scrollTop).to.equal(50);
 
-      fireEvent.keyDown(listbox, { key: 'ArrowDown' }); // highlights 4
+      fireEvent.keyDown(select, { key: 'ArrowDown' }); // highlights 4
       expect(listbox.scrollTop).to.equal(100);
 
-      fireEvent.keyDown(listbox, { key: 'ArrowUp' }); // highlights 3
+      fireEvent.keyDown(select, { key: 'ArrowUp' }); // highlights 3
       expect(listbox.scrollTop).to.equal(100);
 
-      fireEvent.keyDown(listbox, { key: 'ArrowUp' }); // highlights 2
+      fireEvent.keyDown(select, { key: 'ArrowUp' }); // highlights 2
       expect(listbox.scrollTop).to.equal(50);
     });
   });
