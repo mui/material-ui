@@ -70,10 +70,6 @@ export default function useListItem<ItemValue>(
         return;
       }
 
-      if ((event.target as HTMLElement).tagName.toLowerCase() !== 'a') {
-        event.preventDefault();
-      }
-
       dispatch({
         type: ListActionTypes.itemClick,
         item,
