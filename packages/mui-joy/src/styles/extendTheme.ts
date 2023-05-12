@@ -11,7 +11,7 @@ import {
   SxConfig,
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
-import colors, { blue, green, grey, purple, red, yellow } from '../colors/colors';
+import { blue, green, grey, purple, red, yellow } from '../colors/colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
@@ -88,7 +88,6 @@ export const createGetCssVar = (cssVarPrefix = 'joy') =>
   systemCreateGetCssVar<ThemeCssVar>(cssVarPrefix);
 
 export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
-  console.time('step 1');
   const {
     cssVarPrefix = 'joy',
     breakpoints,
@@ -101,7 +100,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
 
-  console.time('step 1.2');
   const lightColorSystem = {
     palette: {
       mode: 'light',
@@ -511,7 +509,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
   };
-  console.timeEnd('step 1.2');
 
   const fontFamilyFallback =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
@@ -565,7 +562,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ...scalesInput.letterSpacing,
   };
 
-  console.time('step 1.3');
   const defaultShadowRing =
     scalesInput.colorSchemes?.light?.shadowRing || lightColorSystem.shadowRing;
   const defaultShadowChannel =
@@ -706,7 +702,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
     },
   };
-  console.timeEnd('step 1.3');
 
   if (cssVarPrefix !== 'joy') {
     defaultScales = JSON.parse(
@@ -770,9 +765,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
-  console.timeEnd('step 1');
-
-  console.time('step 2');
   /**
    Color channels generation
   */
@@ -809,9 +801,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   ).forEach(([supportedColorScheme, colorSystem]) => {
     attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
-  console.timeEnd('step 2');
 
-  console.time('step 3');
   // ===============================================================
   // Create `theme.vars` that contain `var(--*)` as values
   // ===============================================================
@@ -825,7 +815,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
-  console.timeEnd('step 3');
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.unstable_sxConfig = {
