@@ -11,7 +11,7 @@ import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import createDescribe from './createDescribe';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
-import { MuiRenderResult } from './createRenderer';
+import { MuiRenderResult } from '@mui/test-utils';
 
 export interface SlotTestingOptions {
   /**

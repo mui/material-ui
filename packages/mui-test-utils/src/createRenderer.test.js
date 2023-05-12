@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createRenderer } from './createRenderer';
+import { createRenderer } from '@mui/test-utils';
 
 describe('createRenderer', () => {
   const { render } = createRenderer();

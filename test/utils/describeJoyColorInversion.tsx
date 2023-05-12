@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { ThemeProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
-import { createRenderer, MuiRenderResult } from './createRenderer';
+import { createRenderer, MuiRenderResult } from '@mui/test-utils';
 
 /**
  * Test suite for checking the color inversion conformance for a component.

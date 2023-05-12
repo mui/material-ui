@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
-import { createRenderer, act } from './createRenderer';
+import { createRenderer, act } from '@mui/test-utils';
 
 describe('mochaHooks', () => {
   // one block per hook.

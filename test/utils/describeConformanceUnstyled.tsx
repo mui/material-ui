@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { ClassNameConfigurator } from '@mui/base/utils';
-import { MuiRenderResult, RenderOptions, screen } from './createRenderer';
+import { MuiRenderResult, RenderOptions, screen } from '@mui/test-utils';
 import createDescribe from './createDescribe';
 import {
   ConformanceOptions,

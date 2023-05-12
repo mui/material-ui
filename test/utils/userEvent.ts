@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { click, mouseDown, mouseUp, keyDown, keyUp } from './fireDiscreteEvent';
-import { act, fireEvent } from './createRenderer';
+import { act, fireEvent } from '@mui/test-utils';
 
 export function touch(target: Element): void {
   fireEvent.touchStart(target);

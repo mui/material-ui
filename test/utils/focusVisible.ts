@@ -1,4 +1,4 @@
-import { act, fireEvent } from './createRenderer';
+import { act, fireEvent } from '@mui/test-utils';
 
 export default function focusVisible(element: HTMLElement) {
   act(() => {
