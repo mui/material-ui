@@ -11,7 +11,7 @@ import {
   SxConfig,
 } from '@mui/system';
 import defaultSxConfig from './sxConfig';
-import colors from '../colors';
+import colors, { blue, green, grey, purple, red, yellow } from '../colors/colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
@@ -88,6 +88,7 @@ export const createGetCssVar = (cssVarPrefix = 'joy') =>
   systemCreateGetCssVar<ThemeCssVar>(cssVarPrefix);
 
 export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
+  console.time('step 1');
   const {
     cssVarPrefix = 'joy',
     breakpoints,
@@ -100,173 +101,207 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
 
-  const defaultColors = {
-    primary: colors.blue,
-    neutral: colors.grey,
-    danger: colors.red,
-    info: colors.purple,
-    success: colors.green,
-    warning: colors.yellow,
-    common: {
-      white: '#FFF',
-      black: '#09090D',
-    },
-  };
-
-  const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
-    plainColor: `var(--joy-palette-${color}-600, ${defaultColors[color][600]})`,
-    plainHoverBg: `var(--joy-palette-${color}-100, ${defaultColors[color][100]})`,
-    plainActiveBg: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-    plainDisabledColor: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-
-    outlinedColor: `var(--joy-palette-${color}-500, ${defaultColors[color][500]})`,
-    outlinedBorder: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-    outlinedHoverBg: `var(--joy-palette-${color}-100, ${defaultColors[color][100]})`,
-    outlinedHoverBorder: `var(--joy-palette-${color}-300, ${defaultColors[color][300]})`,
-    outlinedActiveBg: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-    outlinedDisabledColor: `var(--joy-palette-${color}-100, ${defaultColors[color][100]})`,
-    outlinedDisabledBorder: `var(--joy-palette-${color}-100, ${defaultColors[color][100]})`,
-
-    softColor: `var(--joy-palette-${color}-600, ${defaultColors[color][600]})`,
-    softBg: `var(--joy-palette-${color}-100, ${defaultColors[color][100]})`,
-    softHoverBg: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-    softActiveBg: `var(--joy-palette-${color}-300, ${defaultColors[color][300]})`,
-    softDisabledColor: `var(--joy-palette-${color}-300, ${defaultColors[color][300]})`,
-    softDisabledBg: `var(--joy-palette-${color}-50, ${defaultColors[color][50]})`,
-
-    solidColor: '#fff',
-    solidBg: `var(--palette-${color}-500, ${defaultColors[color][500]})`,
-    solidHoverBg: `var(--palette-${color}-600, ${defaultColors[color][600]})`,
-    solidActiveBg: `var(--palette-${color}-700, ${defaultColors[color][700]})`,
-    solidDisabledColor: `#fff`,
-    solidDisabledBg: `var(--palette-${color}-200, ${defaultColors[color][200]})`,
-  });
-
-  const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
-    plainColor: `var(--joy-palette-${color}-300, ${defaultColors[color][300]})`,
-    plainHoverBg: `var(--joy-palette-${color}-800, ${defaultColors[color][300]})`,
-    plainActiveBg: `var(--joy-palette-${color}-700, ${defaultColors[color][700]})`,
-    plainDisabledColor: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-
-    outlinedColor: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-    outlinedBorder: `var(--joy-palette-${color}-700, ${defaultColors[color][700]})`,
-    outlinedHoverBg: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-    outlinedHoverBorder: `var(--joy-palette-${color}-600, ${defaultColors[color][600]})`,
-    outlinedActiveBg: `var(--joy-palette-${color}-900, ${defaultColors[color][900]})`,
-    outlinedDisabledColor: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-    outlinedDisabledBorder: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-
-    softColor: `var(--joy-palette-${color}-200, ${defaultColors[color][200]})`,
-    softBg: `var(--joy-palette-${color}-900, ${defaultColors[color][900]})`,
-    softHoverBg: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-    softActiveBg: `var(--joy-palette-${color}-700, ${defaultColors[color][700]})`,
-    softDisabledColor: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-    softDisabledBg: `var(--joy-palette-${color}-900, ${defaultColors[color][900]})`,
-
-    solidColor: `#fff`,
-    solidBg: `var(--joy-palette-${color}-600, ${defaultColors[color][600]})`,
-    solidHoverBg: `var(--joy-palette-${color}-700, ${defaultColors[color][700]})`,
-    solidActiveBg: `var(--joy-palette-${color}-800, ${defaultColors[color][800]})`,
-    solidDisabledColor: `var(--joy-palette-${color}-700, ${defaultColors[color][700]})`,
-    solidDisabledBg: `var(--joy-palette-${color}-900, ${defaultColors[color][900]})`,
-  });
-
+  console.time('step 1.2');
   const lightColorSystem = {
     palette: {
       mode: 'light',
       primary: {
-        ...defaultColors.primary,
-        ...createLightModeVariantVariables('primary'),
+        ...blue,
+        plainColor: `var(--joy-palette-primary-600, ${blue[600]})`,
+        plainHoverBg: `var(--joy-palette-primary-100, ${blue[100]})`,
+        plainActiveBg: `var(--joy-palette-primary-200, ${blue[200]})`,
+        plainDisabledColor: `var(--joy-palette-primary-200, ${blue[200]})`,
+
+        outlinedColor: `var(--joy-palette-primary-500, ${blue[500]})`,
+        outlinedBorder: `var(--joy-palette-primary-200, ${blue[200]})`,
+        outlinedHoverBg: `var(--joy-palette-primary-100, ${blue[100]})`,
+        outlinedHoverBorder: `var(--joy-palette-primary-300, ${blue[300]})`,
+        outlinedActiveBg: `var(--joy-palette-primary-200, ${blue[200]})`,
+        outlinedDisabledColor: `var(--joy-palette-primary-100, ${blue[100]})`,
+        outlinedDisabledBorder: `var(--joy-palette-primary-100, ${blue[100]})`,
+
+        softColor: `var(--joy-palette-primary-600, ${blue[600]})`,
+        softBg: `var(--joy-palette-primary-100, ${blue[100]})`,
+        softHoverBg: `var(--joy-palette-primary-200, ${blue[200]})`,
+        softActiveBg: `var(--joy-palette-primary-300, ${blue[300]})`,
+        softDisabledColor: `var(--joy-palette-primary-300, ${blue[300]})`,
+        softDisabledBg: `var(--joy-palette-primary-50, ${blue[50]})`,
+
+        solidColor: '#fff',
+        solidBg: `var(--palette-primary-500, ${blue[500]})`,
+        solidHoverBg: `var(--palette-primary-600, ${blue[600]})`,
+        solidActiveBg: `var(--palette-primary-700, ${blue[700]})`,
+        solidDisabledColor: `#fff`,
+        solidDisabledBg: `var(--palette-primary-200, ${blue[200]})`,
       },
       neutral: {
-        ...defaultColors.neutral,
-        plainColor: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        plainHoverColor: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
-        plainHoverBg: `var(--joy-palette-neutral-100, ${defaultColors.neutral[100]})`,
-        plainActiveBg: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        plainDisabledColor: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
+        ...grey,
+        plainColor: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        plainHoverColor: `var(--joy-palette-neutral-900, ${grey[900]})`,
+        plainHoverBg: `var(--joy-palette-neutral-100, ${grey[100]})`,
+        plainActiveBg: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        plainDisabledColor: `var(--joy-palette-neutral-300, ${grey[300]})`,
 
-        outlinedColor: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        outlinedBorder: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        outlinedHoverColor: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
-        outlinedHoverBg: `var(--joy-palette-neutral-100, ${defaultColors.neutral[100]})`,
-        outlinedHoverBorder: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
-        outlinedActiveBg: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        outlinedDisabledColor: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
-        outlinedDisabledBorder: `var(--joy-palette-neutral-100, ${defaultColors.neutral[100]})`,
+        outlinedColor: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        outlinedBorder: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        outlinedHoverColor: `var(--joy-palette-neutral-900, ${grey[900]})`,
+        outlinedHoverBg: `var(--joy-palette-neutral-100, ${grey[100]})`,
+        outlinedHoverBorder: `var(--joy-palette-neutral-300, ${grey[300]})`,
+        outlinedActiveBg: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        outlinedDisabledColor: `var(--joy-palette-neutral-300, ${grey[300]})`,
+        outlinedDisabledBorder: `var(--joy-palette-neutral-100, ${grey[100]})`,
 
-        softColor: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        softBg: `var(--joy-palette-neutral-100, ${defaultColors.neutral[100]})`,
-        softHoverColor: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
-        softHoverBg: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        softActiveBg: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
-        softDisabledColor: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
-        softDisabledBg: `var(--joy-palette-neutral-50, ${defaultColors.neutral[50]})`,
-        solidColor: `var(--joy-palette-common-white, ${defaultColors.common.white})`,
-        solidBg: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,
-        solidHoverBg: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        solidActiveBg: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        solidDisabledColor: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
-        solidDisabledBg: `var(--joy-palette-neutral-50, ${defaultColors.neutral[50]})`,
+        softColor: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        softBg: `var(--joy-palette-neutral-100, ${grey[100]})`,
+        softHoverColor: `var(--joy-palette-neutral-900, ${grey[900]})`,
+        softHoverBg: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        softActiveBg: `var(--joy-palette-neutral-300, ${grey[300]})`,
+        softDisabledColor: `var(--joy-palette-neutral-300, ${grey[300]})`,
+        softDisabledBg: `var(--joy-palette-neutral-50, ${grey[50]})`,
+        solidColor: `var(--joy-palette-common-white, #fff)`,
+        solidBg: `var(--joy-palette-neutral-600, ${grey[600]})`,
+        solidHoverBg: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        solidActiveBg: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        solidDisabledColor: `var(--joy-palette-neutral-300, ${grey[300]})`,
+        solidDisabledBg: `var(--joy-palette-neutral-50, ${grey[50]})`,
       },
       danger: {
-        ...defaultColors.danger,
-        ...createLightModeVariantVariables('danger'),
+        ...red,
+        plainColor: `var(--joy-palette-danger-600, ${red[600]})`,
+        plainHoverBg: `var(--joy-palette-danger-100, ${red[100]})`,
+        plainActiveBg: `var(--joy-palette-danger-200, ${red[200]})`,
+        plainDisabledColor: `var(--joy-palette-danger-200, ${red[200]})`,
+
+        outlinedColor: `var(--joy-palette-danger-500, ${red[500]})`,
+        outlinedBorder: `var(--joy-palette-danger-200, ${red[200]})`,
+        outlinedHoverBg: `var(--joy-palette-danger-100, ${red[100]})`,
+        outlinedHoverBorder: `var(--joy-palette-danger-300, ${red[300]})`,
+        outlinedActiveBg: `var(--joy-palette-danger-200, ${red[200]})`,
+        outlinedDisabledColor: `var(--joy-palette-danger-100, ${red[100]})`,
+        outlinedDisabledBorder: `var(--joy-palette-danger-100, ${red[100]})`,
+
+        softColor: `var(--joy-palette-danger-600, ${red[600]})`,
+        softBg: `var(--joy-palette-danger-100, ${red[100]})`,
+        softHoverBg: `var(--joy-palette-danger-200, ${red[200]})`,
+        softActiveBg: `var(--joy-palette-danger-300, ${red[300]})`,
+        softDisabledColor: `var(--joy-palette-danger-300, ${red[300]})`,
+        softDisabledBg: `var(--joy-palette-danger-50, ${red[50]})`,
+
+        solidColor: '#fff',
+        solidBg: `var(--palette-danger-500, ${red[500]})`,
+        solidHoverBg: `var(--palette-danger-600, ${red[600]})`,
+        solidActiveBg: `var(--palette-danger-700, ${red[700]})`,
+        solidDisabledColor: `#fff`,
+        solidDisabledBg: `var(--palette-danger-200, ${red[200]})`,
       },
       info: {
-        ...defaultColors.info,
-        ...createLightModeVariantVariables('info'),
+        ...purple,
+        plainColor: `var(--joy-palette-info-600, ${purple[600]})`,
+        plainHoverBg: `var(--joy-palette-info-100, ${purple[100]})`,
+        plainActiveBg: `var(--joy-palette-info-200, ${purple[200]})`,
+        plainDisabledColor: `var(--joy-palette-info-200, ${purple[200]})`,
+
+        outlinedColor: `var(--joy-palette-info-500, ${purple[500]})`,
+        outlinedBorder: `var(--joy-palette-info-200, ${purple[200]})`,
+        outlinedHoverBg: `var(--joy-palette-info-100, ${purple[100]})`,
+        outlinedHoverBorder: `var(--joy-palette-info-300, ${purple[300]})`,
+        outlinedActiveBg: `var(--joy-palette-info-200, ${purple[200]})`,
+        outlinedDisabledColor: `var(--joy-palette-info-100, ${purple[100]})`,
+        outlinedDisabledBorder: `var(--joy-palette-info-100, ${purple[100]})`,
+
+        softColor: `var(--joy-palette-info-600, ${purple[600]})`,
+        softBg: `var(--joy-palette-info-100, ${purple[100]})`,
+        softHoverBg: `var(--joy-palette-info-200, ${purple[200]})`,
+        softActiveBg: `var(--joy-palette-info-300, ${purple[300]})`,
+        softDisabledColor: `var(--joy-palette-info-300, ${purple[300]})`,
+        softDisabledBg: `var(--joy-palette-info-50, ${purple[50]})`,
+
+        solidColor: '#fff',
+        solidBg: `var(--palette-info-500, ${purple[500]})`,
+        solidHoverBg: `var(--palette-info-600, ${purple[600]})`,
+        solidActiveBg: `var(--palette-info-700, ${purple[700]})`,
+        solidDisabledColor: `#fff`,
+        solidDisabledBg: `var(--palette-info-200, ${purple[200]})`,
       },
       success: {
-        ...defaultColors.success,
-        ...createLightModeVariantVariables('success'),
+        ...green,
+        plainColor: `var(--joy-palette-success-600, ${green[600]})`,
+        plainHoverBg: `var(--joy-palette-success-100, ${green[100]})`,
+        plainActiveBg: `var(--joy-palette-success-200, ${green[200]})`,
+        plainDisabledColor: `var(--joy-palette-success-200, ${green[200]})`,
+
+        outlinedColor: `var(--joy-palette-success-500, ${green[500]})`,
+        outlinedBorder: `var(--joy-palette-success-200, ${green[200]})`,
+        outlinedHoverBg: `var(--joy-palette-success-100, ${green[100]})`,
+        outlinedHoverBorder: `var(--joy-palette-success-300, ${green[300]})`,
+        outlinedActiveBg: `var(--joy-palette-success-200, ${green[200]})`,
+        outlinedDisabledColor: `var(--joy-palette-success-100, ${green[100]})`,
+        outlinedDisabledBorder: `var(--joy-palette-success-100, ${green[100]})`,
+
+        softColor: `var(--joy-palette-success-600, ${green[600]})`,
+        softBg: `var(--joy-palette-success-100, ${green[100]})`,
+        softHoverBg: `var(--joy-palette-success-200, ${green[200]})`,
+        softActiveBg: `var(--joy-palette-success-300, ${green[300]})`,
+        softDisabledColor: `var(--joy-palette-success-300, ${green[300]})`,
+        softDisabledBg: `var(--joy-palette-success-50, ${green[50]})`,
+
+        solidColor: '#fff',
+        solidBg: `var(--palette-success-500, ${green[500]})`,
+        solidHoverBg: `var(--palette-success-600, ${green[600]})`,
+        solidActiveBg: `var(--palette-success-700, ${green[700]})`,
+        solidDisabledColor: `#fff`,
+        solidDisabledBg: `var(--palette-success-200, ${green[200]})`,
       },
       warning: {
-        ...defaultColors.warning,
-        ...createLightModeVariantVariables('warning'),
-        solidColor: `var(--joy-palette-warning-800, ${defaultColors.warning[800]})`,
-        solidBg: `var(--joy-palette-warning-200, ${defaultColors.warning[200]})`,
-        solidHoverBg: `var(--joy-palette-warning-300, ${defaultColors.warning[300]})`,
-        solidActiveBg: `var(--joy-palette-warning-400, ${defaultColors.warning[400]})`,
-        solidDisabledColor: `var(--joy-palette-warning-200, ${defaultColors.warning[200]})`,
-        solidDisabledBg: `var(--joy-palette-warning-50, ${defaultColors.warning[50]})`,
+        ...yellow,
+        plainColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        plainHoverBg: `var(--joy-palette-warning-50, ${yellow[50]})`,
+        plainActiveBg: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        plainDisabledColor: `var(--joy-palette-warning-200, ${yellow[200]})`,
 
-        softColor: `var(--joy-palette-warning-800, ${defaultColors.warning[800]})`,
-        softBg: `var(--joy-palette-warning-50, ${defaultColors.warning[50]})`,
-        softHoverBg: `var(--joy-palette-warning-100, ${defaultColors.warning[100]})`,
-        softActiveBg: `var(--joy-palette-warning-200, ${defaultColors.warning[200]})`,
-        softDisabledColor: `var(--joy-palette-warning-200, ${defaultColors.warning[200]})`,
-        softDisabledBg: `var(--joy-palette-warning-50, ${defaultColors.warning[50]})`,
+        outlinedColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        outlinedBorder: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        outlinedHoverBg: `var(--joy-palette-warning-50, ${yellow[50]})`,
+        outlinedHoverBorder: `var(--joy-palette-warning-300, ${yellow[300]})`,
+        outlinedActiveBg: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        outlinedDisabledColor: `var(--joy-palette-warning-100, ${yellow[100]})`,
+        outlinedDisabledBorder: `var(--joy-palette-warning-100, ${yellow[100]})`,
 
-        outlinedColor: `var(--joy-palette-warning-800, ${defaultColors.warning[800]})`,
-        outlinedHoverBg: `var(--joy-palette-warning-50, ${defaultColors.warning[50]})`,
+        softColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        softBg: `var(--joy-palette-warning-50, ${yellow[50]})`,
+        softHoverBg: `var(--joy-palette-warning-100, ${yellow[100]})`,
+        softActiveBg: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        softDisabledColor: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        softDisabledBg: `var(--joy-palette-warning-50, ${yellow[50]})`,
 
-        plainColor: `var(--joy-palette-warning-800, ${defaultColors.warning[800]})`,
-        plainHoverBg: `var(--joy-palette-warning-50, ${defaultColors.warning[50]})`,
+        solidColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        solidBg: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        solidHoverBg: `var(--joy-palette-warning-300, ${yellow[300]})`,
+        solidActiveBg: `var(--joy-palette-warning-400, ${yellow[400]})`,
+        solidDisabledColor: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        solidDisabledBg: `var(--joy-palette-warning-50, ${yellow[50]})`,
       },
       common: {
         white: '#FFF',
         black: '#09090D',
       },
       text: {
-        primary: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        secondary: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,
-        tertiary: `var(--joy-palette-neutral-500, ${defaultColors.neutral[500]})`,
+        primary: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        secondary: `var(--joy-palette-neutral-600, ${grey[600]})`,
+        tertiary: `var(--joy-palette-neutral-500, ${grey[500]})`,
       },
       background: {
-        body: `var(--joy-palette-common-white, ${defaultColors.common.white})`,
-        surface: `var(--joy-palette-common-white, ${defaultColors.common.white})`,
-        popup: `var(--joy-palette-common-white, ${defaultColors.common.white})`,
-        level1: `var(--joy-palette-neutral-50, ${defaultColors.neutral[50]})`,
-        level2: `var(--joy-palette-neutral-100, ${defaultColors.neutral[100]})`,
-        level3: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        tooltip: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
+        body: `var(--joy-palette-common-white, #fff)`,
+        surface: `var(--joy-palette-common-white, #fff)`,
+        popup: `var(--joy-palette-common-white, #fff)`,
+        level1: `var(--joy-palette-neutral-50, ${grey[50]})`,
+        level2: `var(--joy-palette-neutral-100, ${grey[100]})`,
+        level3: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        tooltip: `var(--joy-palette-neutral-800, ${grey[800]})`,
         backdrop: 'rgba(255 255 255 / 0.5)',
       },
-      divider: `rgba(var(--joy-palette-neutral-mainChannel, ${colorChannel(
-        defaultColors.neutral[500],
-      )}) / 0.28)`, // should be the same index as in `attachColorChannels`
-      focusVisible: `var(--joy-palette-primary-500, ${defaultColors.neutral[500]})`,
+      divider: `rgba(var(--joy-palette-neutral-mainChannel, 115 115 140) / 0.28)`, // should be the same index as in `attachColorChannels`
+      focusVisible: `var(--joy-palette-primary-500, ${grey[500]})`,
     },
     shadowRing: '0 0 #000',
     shadowChannel: '187 187 187',
@@ -275,94 +310,208 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     palette: {
       mode: 'dark',
       primary: {
-        ...defaultColors.primary,
-        ...createDarkModeVariantVariables('primary'),
+        ...blue,
+        plainColor: `var(--joy-palette-primary-300, ${blue[300]})`,
+        plainHoverBg: `var(--joy-palette-primary-800, ${blue[300]})`,
+        plainActiveBg: `var(--joy-palette-primary-700, ${blue[700]})`,
+        plainDisabledColor: `var(--joy-palette-primary-800, ${blue[800]})`,
+
+        outlinedColor: `var(--joy-palette-primary-200, ${blue[200]})`,
+        outlinedBorder: `var(--joy-palette-primary-700, ${blue[700]})`,
+        outlinedHoverBg: `var(--joy-palette-primary-800, ${blue[800]})`,
+        outlinedHoverBorder: `var(--joy-palette-primary-600, ${blue[600]})`,
+        outlinedActiveBg: `var(--joy-palette-primary-900, ${blue[900]})`,
+        outlinedDisabledColor: `var(--joy-palette-primary-800, ${blue[800]})`,
+        outlinedDisabledBorder: `var(--joy-palette-primary-800, ${blue[800]})`,
+
+        softColor: `var(--joy-palette-primary-200, ${blue[200]})`,
+        softBg: `var(--joy-palette-primary-900, ${blue[900]})`,
+        softHoverBg: `var(--joy-palette-primary-800, ${blue[800]})`,
+        softActiveBg: `var(--joy-palette-primary-700, ${blue[700]})`,
+        softDisabledColor: `var(--joy-palette-primary-800, ${blue[800]})`,
+        softDisabledBg: `var(--joy-palette-primary-900, ${blue[900]})`,
+
+        solidColor: `#fff`,
+        solidBg: `var(--joy-palette-primary-600, ${blue[600]})`,
+        solidHoverBg: `var(--joy-palette-primary-700, ${blue[700]})`,
+        solidActiveBg: `var(--joy-palette-primary-800, ${blue[800]})`,
+        solidDisabledColor: `var(--joy-palette-primary-700, ${blue[700]})`,
+        solidDisabledBg: `var(--joy-palette-primary-900, ${blue[900]})`,
       },
       neutral: {
-        ...defaultColors.neutral,
-        plainColor: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        plainHoverColor: `var(--joy-palette-neutral-50, ${defaultColors.neutral[50]})`,
-        plainHoverBg: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        plainActiveBg: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        plainDisabledColor: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
+        ...grey,
+        plainColor: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        plainHoverColor: `var(--joy-palette-neutral-50, ${grey[50]})`,
+        plainHoverBg: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        plainActiveBg: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        plainDisabledColor: `var(--joy-palette-neutral-700, ${grey[700]})`,
 
-        outlinedColor: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        outlinedBorder: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        outlinedHoverColor: `var(--joy-palette-neutral-50, ${defaultColors.neutral[50]})`,
-        outlinedHoverBg: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        outlinedHoverBorder: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        outlinedActiveBg: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        outlinedDisabledColor: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        outlinedDisabledBorder: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
+        outlinedColor: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        outlinedBorder: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        outlinedHoverColor: `var(--joy-palette-neutral-50, ${grey[50]})`,
+        outlinedHoverBg: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        outlinedHoverBorder: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        outlinedActiveBg: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        outlinedDisabledColor: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        outlinedDisabledBorder: `var(--joy-palette-neutral-800, ${grey[800]})`,
 
-        softColor: `var(--joy-palette-neutral-200, ${defaultColors.neutral[200]})`,
-        softBg: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        softHoverColor: `var(--joy-palette-neutral-50, ${defaultColors.neutral[50]})`,
-        softHoverBg: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        softActiveBg: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,
-        softDisabledColor: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        softDisabledBg: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
+        softColor: `var(--joy-palette-neutral-200, ${grey[200]})`,
+        softBg: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        softHoverColor: `var(--joy-palette-neutral-50, ${grey[50]})`,
+        softHoverBg: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        softActiveBg: `var(--joy-palette-neutral-600, ${grey[600]})`,
+        softDisabledColor: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        softDisabledBg: `var(--joy-palette-neutral-900, ${grey[900]})`,
 
-        solidColor: `var(--joy-palette-common-white, ${defaultColors.common.white})`,
-        solidBg: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,
-        solidHoverBg: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        solidActiveBg: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        solidDisabledColor: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        solidDisabledBg: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
+        solidColor: `var(--joy-palette-common-white, #fff)`,
+        solidBg: `var(--joy-palette-neutral-600, ${grey[600]})`,
+        solidHoverBg: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        solidActiveBg: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        solidDisabledColor: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        solidDisabledBg: `var(--joy-palette-neutral-900, ${grey[900]})`,
       },
       danger: {
-        ...defaultColors.danger,
-        ...createDarkModeVariantVariables('danger'),
+        ...red,
+        plainColor: `var(--joy-palette-danger-300, ${red[300]})`,
+        plainHoverBg: `var(--joy-palette-danger-800, ${red[300]})`,
+        plainActiveBg: `var(--joy-palette-danger-700, ${red[700]})`,
+        plainDisabledColor: `var(--joy-palette-danger-800, ${red[800]})`,
+
+        outlinedColor: `var(--joy-palette-danger-200, ${red[200]})`,
+        outlinedBorder: `var(--joy-palette-danger-700, ${red[700]})`,
+        outlinedHoverBg: `var(--joy-palette-danger-800, ${red[800]})`,
+        outlinedHoverBorder: `var(--joy-palette-danger-600, ${red[600]})`,
+        outlinedActiveBg: `var(--joy-palette-danger-900, ${red[900]})`,
+        outlinedDisabledColor: `var(--joy-palette-danger-800, ${red[800]})`,
+        outlinedDisabledBorder: `var(--joy-palette-danger-800, ${red[800]})`,
+
+        softColor: `var(--joy-palette-danger-200, ${red[200]})`,
+        softBg: `var(--joy-palette-danger-900, ${red[900]})`,
+        softHoverBg: `var(--joy-palette-danger-800, ${red[800]})`,
+        softActiveBg: `var(--joy-palette-danger-700, ${red[700]})`,
+        softDisabledColor: `var(--joy-palette-danger-800, ${red[800]})`,
+        softDisabledBg: `var(--joy-palette-danger-900, ${red[900]})`,
+
+        solidColor: `#fff`,
+        solidBg: `var(--joy-palette-danger-600, ${red[600]})`,
+        solidHoverBg: `var(--joy-palette-danger-700, ${red[700]})`,
+        solidActiveBg: `var(--joy-palette-danger-800, ${red[800]})`,
+        solidDisabledColor: `var(--joy-palette-danger-700, ${red[700]})`,
+        solidDisabledBg: `var(--joy-palette-danger-900, ${red[900]})`,
       },
       info: {
-        ...defaultColors.info,
-        ...createDarkModeVariantVariables('info'),
+        ...purple,
+        plainColor: `var(--joy-palette-info-300, ${purple[300]})`,
+        plainHoverBg: `var(--joy-palette-info-800, ${purple[300]})`,
+        plainActiveBg: `var(--joy-palette-info-700, ${purple[700]})`,
+        plainDisabledColor: `var(--joy-palette-info-800, ${purple[800]})`,
+
+        outlinedColor: `var(--joy-palette-info-200, ${purple[200]})`,
+        outlinedBorder: `var(--joy-palette-info-700, ${purple[700]})`,
+        outlinedHoverBg: `var(--joy-palette-info-800, ${purple[800]})`,
+        outlinedHoverBorder: `var(--joy-palette-info-600, ${purple[600]})`,
+        outlinedActiveBg: `var(--joy-palette-info-900, ${purple[900]})`,
+        outlinedDisabledColor: `var(--joy-palette-info-800, ${purple[800]})`,
+        outlinedDisabledBorder: `var(--joy-palette-info-800, ${purple[800]})`,
+
+        softColor: `var(--joy-palette-info-200, ${purple[200]})`,
+        softBg: `var(--joy-palette-info-900, ${purple[900]})`,
+        softHoverBg: `var(--joy-palette-info-800, ${purple[800]})`,
+        softActiveBg: `var(--joy-palette-info-700, ${purple[700]})`,
+        softDisabledColor: `var(--joy-palette-info-800, ${purple[800]})`,
+        softDisabledBg: `var(--joy-palette-info-900, ${purple[900]})`,
+
+        solidColor: `#fff`,
+        solidBg: `var(--joy-palette-info-600, ${purple[600]})`,
+        solidHoverBg: `var(--joy-palette-info-700, ${purple[700]})`,
+        solidActiveBg: `var(--joy-palette-info-800, ${purple[800]})`,
+        solidDisabledColor: `var(--joy-palette-info-700, ${purple[700]})`,
+        solidDisabledBg: `var(--joy-palette-info-900, ${purple[900]})`,
       },
       success: {
-        ...defaultColors.success,
-        ...createDarkModeVariantVariables('success'),
+        ...green,
+        plainColor: `var(--joy-palette-success-300, ${green[300]})`,
+        plainHoverBg: `var(--joy-palette-success-800, ${green[300]})`,
+        plainActiveBg: `var(--joy-palette-success-700, ${green[700]})`,
+        plainDisabledColor: `var(--joy-palette-success-800, ${green[800]})`,
+
+        outlinedColor: `var(--joy-palette-success-200, ${green[200]})`,
+        outlinedBorder: `var(--joy-palette-success-700, ${green[700]})`,
+        outlinedHoverBg: `var(--joy-palette-success-800, ${green[800]})`,
+        outlinedHoverBorder: `var(--joy-palette-success-600, ${green[600]})`,
+        outlinedActiveBg: `var(--joy-palette-success-900, ${green[900]})`,
+        outlinedDisabledColor: `var(--joy-palette-success-800, ${green[800]})`,
+        outlinedDisabledBorder: `var(--joy-palette-success-800, ${green[800]})`,
+
+        softColor: `var(--joy-palette-success-200, ${green[200]})`,
+        softBg: `var(--joy-palette-success-900, ${green[900]})`,
+        softHoverBg: `var(--joy-palette-success-800, ${green[800]})`,
+        softActiveBg: `var(--joy-palette-success-700, ${green[700]})`,
+        softDisabledColor: `var(--joy-palette-success-800, ${green[800]})`,
+        softDisabledBg: `var(--joy-palette-success-900, ${green[900]})`,
+
         solidColor: '#fff',
-        solidBg: `var(--joy-palette-success-600, ${defaultColors.success[600]})`,
-        solidHoverBg: `var(--joy-palette-success-700, ${defaultColors.success[700]})`,
-        solidActiveBg: `var(--joy-palette-success-800, ${defaultColors.success[800]})`,
+        solidBg: `var(--joy-palette-success-600, ${green[600]})`,
+        solidHoverBg: `var(--joy-palette-success-700, ${green[700]})`,
+        solidActiveBg: `var(--joy-palette-success-800, ${green[800]})`,
+        solidDisabledColor: `var(--joy-palette-success-700, ${green[700]})`,
+        solidDisabledBg: `var(--joy-palette-success-900, ${green[900]})`,
       },
       warning: {
-        ...defaultColors.warning,
-        ...createDarkModeVariantVariables('warning'),
-        solidColor: `var(--joy-palette-common-black, ${defaultColors.common.black})`,
-        solidBg: `var(--joy-palette-warning-300, ${defaultColors.warning[300]})`,
-        solidHoverBg: `var(--joy-palette-warning-400, ${defaultColors.warning[400]})`,
-        solidActiveBg: `var(--joy-palette-warning-500, ${defaultColors.warning[500]})`,
+        ...yellow,
+        plainColor: `var(--joy-palette-warning-300, ${yellow[300]})`,
+        plainHoverBg: `var(--joy-palette-warning-800, ${yellow[300]})`,
+        plainActiveBg: `var(--joy-palette-warning-700, ${yellow[700]})`,
+        plainDisabledColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+
+        outlinedColor: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        outlinedBorder: `var(--joy-palette-warning-700, ${yellow[700]})`,
+        outlinedHoverBg: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        outlinedHoverBorder: `var(--joy-palette-warning-600, ${yellow[600]})`,
+        outlinedActiveBg: `var(--joy-palette-warning-900, ${yellow[900]})`,
+        outlinedDisabledColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        outlinedDisabledBorder: `var(--joy-palette-warning-800, ${yellow[800]})`,
+
+        softColor: `var(--joy-palette-warning-200, ${yellow[200]})`,
+        softBg: `var(--joy-palette-warning-900, ${yellow[900]})`,
+        softHoverBg: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        softActiveBg: `var(--joy-palette-warning-700, ${yellow[700]})`,
+        softDisabledColor: `var(--joy-palette-warning-800, ${yellow[800]})`,
+        softDisabledBg: `var(--joy-palette-warning-900, ${yellow[900]})`,
+
+        solidColor: `var(--joy-palette-common-black, #09090D)`,
+        solidBg: `var(--joy-palette-warning-300, ${yellow[300]})`,
+        solidHoverBg: `var(--joy-palette-warning-400, ${yellow[400]})`,
+        solidActiveBg: `var(--joy-palette-warning-500, ${yellow[500]})`,
+        solidDisabledColor: `var(--joy-palette-warning-700, ${yellow[700]})`,
+        solidDisabledBg: `var(--joy-palette-warning-900, ${yellow[900]})`,
       },
       common: {
         white: '#FFF',
         black: '#09090D',
       },
       text: {
-        primary: `var(--joy-palette-neutral-100, ${defaultColors.neutral[100]})`,
-        secondary: `var(--joy-palette-neutral-300, ${defaultColors.neutral[300]})`,
-        tertiary: `var(--joy-palette-neutral-400, ${defaultColors.neutral[400]})`,
+        primary: `var(--joy-palette-neutral-100, ${grey[100]})`,
+        secondary: `var(--joy-palette-neutral-300, ${grey[300]})`,
+        tertiary: `var(--joy-palette-neutral-400, ${grey[400]})`,
       },
       background: {
-        body: `var(--joy-palette-neutral-900, ${defaultColors.neutral[900]})`,
-        surface: `var(--joy-palette-common-black, ${defaultColors.common.black})`,
-        popup: `var(--joy-palette-neutral-800, ${defaultColors.neutral[900]})`,
-        level1: `var(--joy-palette-neutral-800, ${defaultColors.neutral[800]})`,
-        level2: `var(--joy-palette-neutral-700, ${defaultColors.neutral[700]})`,
-        level3: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,
-        tooltip: `var(--joy-palette-neutral-600, ${defaultColors.neutral[600]})`,
-        backdrop: `rgba(var(--joy-palette-neutral-darkChannel, ${colorChannel(
-          defaultColors.neutral[800],
-        )}) / 0.5)`, // should be the same index as in `attachColorChannels`
+        body: `var(--joy-palette-neutral-900, ${grey[900]})`,
+        surface: `var(--joy-palette-common-black, #09090D)`,
+        popup: `var(--joy-palette-neutral-800, ${grey[900]})`,
+        level1: `var(--joy-palette-neutral-800, ${grey[800]})`,
+        level2: `var(--joy-palette-neutral-700, ${grey[700]})`,
+        level3: `var(--joy-palette-neutral-600, ${grey[600]})`,
+        tooltip: `var(--joy-palette-neutral-600, ${grey[600]})`,
+        backdrop: `rgba(var(--joy-palette-neutral-darkChannel, 37 37 45) / 0.5)`, // should be the same index as in `attachColorChannels`
       },
-      divider: `rgba(var(--joy-palette-neutral-mainChannel, ${colorChannel(
-        defaultColors.neutral[500],
-      )}) / 0.24)`, // should be the same index as in `attachColorChannels`
+      divider: `rgba(var(--joy-palette-neutral-mainChannel, 115 115 140) / 0.24)`, // should be the same index as in `attachColorChannels`
       focusVisible: `var(--joy-palette-primary-500)`,
     },
     shadowRing: '0 0 #000',
     shadowChannel: '0 0 0',
   };
+  console.timeEnd('step 1.2');
 
   const fontFamilyFallback =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
@@ -416,10 +565,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     ...scalesInput.letterSpacing,
   };
 
+  console.time('step 1.3');
   const defaultShadowRing =
-    scalesInput.colorSchemes?.light?.shadowRing ?? lightColorSystem.shadowRing;
+    scalesInput.colorSchemes?.light?.shadowRing || lightColorSystem.shadowRing;
   const defaultShadowChannel =
-    scalesInput.colorSchemes?.light?.shadowChannel ?? lightColorSystem.shadowChannel;
+    scalesInput.colorSchemes?.light?.shadowChannel || lightColorSystem.shadowChannel;
   let defaultScales = {
     colorSchemes: {
       light: lightColorSystem,
@@ -433,11 +583,11 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
         outlineOffset: `var(--focus-outline-offset, var(--joy-focus-thickness, ${
-          scalesInput.focus?.thickness ?? '2px'
+          scalesInput.focus?.thickness || '2px'
         }))`,
         outline: `var(--focus-thickness, ${
-          scalesInput.focus?.thickness ?? '2px'
-        }) solid var(--joy-palette-focusVisible, ${defaultColors.primary[500]})`,
+          scalesInput.focus?.thickness || '2px'
+        }) solid var(--joy-palette-focusVisible, ${blue[500]})`,
       },
     },
     lineHeight,
@@ -556,6 +706,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       },
     },
   };
+  console.timeEnd('step 1.3');
 
   if (cssVarPrefix !== 'joy') {
     defaultScales = JSON.parse(
@@ -570,7 +721,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const theme = {
     colorSchemes,
     ...mergedScales,
-    breakpoints: createBreakpoints(breakpoints ?? {}),
+    breakpoints: createBreakpoints(breakpoints || {}),
     components: deepmerge(
       {
         // TODO: find a way to abstract SvgIcon out of @mui/material
@@ -619,6 +770,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     },
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
+  console.timeEnd('step 1');
+
+  console.time('step 2');
   /**
    Color channels generation
   */
@@ -655,7 +809,9 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   ).forEach(([supportedColorScheme, colorSystem]) => {
     attachColorChannels(supportedColorScheme, colorSystem.palette);
   });
+  console.timeEnd('step 2');
 
+  console.time('step 3');
   // ===============================================================
   // Create `theme.vars` that contain `var(--*)` as values
   // ===============================================================
@@ -669,6 +825,7 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     { colorSchemes, ...mergedScales },
     parserConfig,
   );
+  console.timeEnd('step 3');
   theme.vars = themeVars;
   theme.generateCssVars = generateCssVars;
   theme.unstable_sxConfig = {
@@ -715,5 +872,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     typeof colorInversionInput === 'function'
       ? colorInversionInput
       : deepmerge(defaultColorInversion, colorInversionInput || {}, { clone: false });
+
   return theme;
 }
