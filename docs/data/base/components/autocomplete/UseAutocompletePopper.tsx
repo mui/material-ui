@@ -10,7 +10,6 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
 ) {
   const {
     getRootProps,
-    getInputLabelProps,
     getInputProps,
     getListboxProps,
     getOptionProps,
@@ -23,11 +22,10 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
   const rootRef = useForkRef(ref, setAnchorEl);
 
   return (
-    <div>
-      <StyledAutocomplete {...getRootProps()} ref={rootRef}>
-        <Label {...getInputLabelProps()}>Label</Label>
-        <Input {...getInputProps()} />
-      </StyledAutocomplete>
+    <React.Fragment>
+      <StyledAutocompleteRoot {...getRootProps()} ref={rootRef}>
+        <StyledInput {...getInputProps()} />
+      </StyledAutocompleteRoot>
       {anchorEl && (
         <Popper
           open={popupOpen}
@@ -35,17 +33,22 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
           slots={{
             root: StyledPopper,
           }}
+          // modifiers={[{ name: 'flip', enabled: false }]}
         >
-          {groupedOptions.length > 0 && (
-            <Listbox {...getListboxProps()}>
+          {groupedOptions?.length > 0 ? (
+            <StyledListbox {...getListboxProps()}>
               {(groupedOptions as typeof top100Films).map((option, index) => (
-                <li {...getOptionProps({ option, index })}>{option.label}</li>
+                <StyledOption {...getOptionProps({ option, index })}>
+                  {option.label}
+                </StyledOption>
               ))}
-            </Listbox>
+            </StyledListbox>
+          ) : (
+            <StyledNoOptions>No results</StyledNoOptions>
           )}
         </Popper>
       )}
-    </div>
+    </React.Fragment>
   );
 });
 
@@ -68,53 +71,145 @@ export default function UseAutocomplete() {
   );
 }
 
+const blue = {
+  100: '#DAECFF',
+  200: '#99CCF3',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
+const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
+};
+
+const StyledAutocompleteRoot = styled('div')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 400;
+  border-radius: 12px;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  display: flex;
+  gap: 5px;
+  padding-right: 5px;
+  overflow: hidden;
+  width: 320px;
+  margin: 2rem 0 1.5rem;
+
+  &.focused {
+    border-color: ${blue[400]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  &:hover {
+    border-color: ${blue[400]};
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
+`,
+);
+
+const StyledInput = styled('input')(
+  ({ theme }) => `
+  font-size: 0.875rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  padding: 12px 12px;
+  outline: 0;
+  flex: 1 0 auto;
+`,
+);
+
 // ComponentPageTabs has z-index: 1000
 const StyledPopper = styled('div')`
   position: relative;
   z-index: 1001;
-  width: 200px;
+  width: 320px;
 `;
 
-const StyledAutocomplete = styled('div')`
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+const StyledListbox = styled('ul')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 12px 0;
+  min-width: 320px;
+  border-radius: 12px;
+  overflow: auto;
+  outline: 0px;
+  max-height: 300px;
+  z-index: 1;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  `,
+);
+
+const StyledOption = styled('li')(
+  ({ theme }) => `
+  list-style: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[aria-selected=true] {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
+
+  &.Mui-focused,
+  &.Mui-focusVisible {
+    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+  }
+
+  &.Mui-focusVisible {
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  &[aria-selected=true].Mui-focused,
+  &[aria-selected=true].Mui-focusVisible {
+    background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
+    color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
+  }
+  `,
+);
+
+const StyledNoOptions = styled('li')`
+  list-style: none;
+  padding: 8px;
+  cursor: default;
 `;
-
-const Label = styled('label')`
-  display: block;
-  font-family: sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 4px;
-`;
-
-const Input = styled('input')(({ theme }) => ({
-  width: 200,
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
-  color: theme.palette.mode === 'light' ? '#000' : '#fff',
-}));
-
-const Listbox = styled('ul')(({ theme }) => ({
-  width: 200,
-  margin: 0,
-  padding: 0,
-  zIndex: 1,
-  position: 'absolute',
-  listStyle: 'none',
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
-  overflow: 'auto',
-  maxHeight: 200,
-  border: '1px solid rgba(0,0,0,.25)',
-  '& li.Mui-focused': {
-    backgroundColor: '#4a8df6',
-    color: '#fff',
-    cursor: 'pointer',
-  },
-  '& li:active': {
-    backgroundColor: '#2977f5',
-    color: '#fff',
-  },
-}));
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [

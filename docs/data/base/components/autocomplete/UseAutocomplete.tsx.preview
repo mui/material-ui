@@ -1,11 +1,13 @@
-<div {...getRootProps()}>
-  <Label {...getInputLabelProps()}>Label</Label>
-  <Input {...getInputProps()} />
-</div>
+<Label {...getInputLabelProps()}>Label</Label>
+<StyledAutocompleteRoot {...getRootProps()}>
+  <StyledInput {...getInputProps()} />
+</StyledAutocompleteRoot>
 {groupedOptions.length > 0 && (
-  <Listbox {...getListboxProps()}>
+  <StyledListbox {...getListboxProps()}>
     {(groupedOptions as typeof top100Films).map((option, index) => (
-      <li {...getOptionProps({ option, index })}>{option.label}</li>
+      <StyledOption {...getOptionProps({ option, index })}>
+        {option.label}
+      </StyledOption>
     ))}
-  </Listbox>
+  </StyledListbox>
 )}

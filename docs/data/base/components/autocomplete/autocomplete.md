@@ -128,7 +128,7 @@ These two states are isolated, and should be controlled independently.
 
 React Portals can be used to render the listbox outside of the DOM hierarchy, making it easier to allow it to "float" above adjacent elements.
 
-Base UI provides a `<Popper />` component built around React's `createPortal()` for exactly this purpose, and additionally helps you manage keyboard focus as it moves in and out of the portal.
+Base UI provides a [`<Popper />`](/base/react-popper/) component built around React's `createPortal()` for exactly this purpose, and additionally helps you manage keyboard focus as it moves in and out of the portal.
 
 To render the listbox in Base UI's Popper, the `ref`s must be merged as follows:
 

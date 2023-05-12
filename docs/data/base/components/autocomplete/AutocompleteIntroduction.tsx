@@ -35,7 +35,6 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
   } = useAutocomplete({
     ...props,
     componentName: 'BaseAutocompleteIntroduction',
-    unstable_classNamePrefix: 'Base',
   });
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
@@ -213,18 +212,18 @@ const StyledOption = styled('li')(
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.Base-focused,
-  &.Base-focusVisible {
+  &.Mui-focused,
+  &.Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.Base-focusVisible {
+  &.Mui-focusVisible {
     box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &[aria-selected=true].Base-focused,
-  &[aria-selected=true].Base-focusVisible {
+  &[aria-selected=true].Mui-focused,
+  &[aria-selected=true].Mui-focusVisible {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
