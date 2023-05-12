@@ -249,7 +249,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange?: (
     event: React.SyntheticEvent,
@@ -321,7 +321,13 @@ export type AutocompleteCloseReason =
   | 'selectOption'
   | 'removeOption'
   | 'blur';
-export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
+export type AutocompleteInputChangeReason =
+  | 'input'
+  | 'reset'
+  | 'clear'
+  | 'blur'
+  | 'selectOption'
+  | 'removeOption';
 
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;

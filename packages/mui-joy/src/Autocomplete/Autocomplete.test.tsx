@@ -1844,24 +1844,31 @@ describe('Joy <Autocomplete />', () => {
 
     it('provides a reason on select reset', () => {
       const handleInputChange = spy();
-      const options = [{ name: 'foo' }];
-      render(
-        <Autocomplete
-          onInputChange={handleInputChange}
-          openOnFocus
-          options={options}
-          getOptionLabel={(option) => option.name}
-          autoFocus
-        />,
-      );
-      const textbox = screen.getByRole('combobox');
+      const options = [{ name: 'foo' }, { name: 'bar' }];
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+      function MyComponent() {
+        const [value, setValue] = React.useState(options[0]);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              onInputChange={handleInputChange}
+              openOnFocus
+              options={options}
+              getOptionLabel={(option) => option.name}
+              value={value}
+            />
+            <button onClick={() => setValue(options[1])}>Reset</button>
+          </React.Fragment>
+        );
+      }
+      render(<MyComponent />);
+      const resetBtn = screen.getByText('Reset');
 
-      expect(handleInputChange.callCount).to.equal(1);
-      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
-      expect(handleInputChange.args[0][2]).to.equal('reset');
+      fireEvent.click(resetBtn);
+
+      expect(handleInputChange.callCount).to.equal(4);
+      expect(handleInputChange.args[3][1]).to.equal(options[1].name);
+      expect(handleInputChange.args[3][2]).to.equal('reset');
     });
   });
 
