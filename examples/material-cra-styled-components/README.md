@@ -30,7 +30,7 @@ The following link leverages this demo: https://mui.com/guides/interoperability/
 
 ## The idea behind the example
 
-This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
+This example demonstrates how you can setup Material UI with [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
 
 ## What's next?
 
