@@ -18,7 +18,6 @@ For multi-part examples, a table in the README at the linked source code locatio
 the purpose of each file.
 
 {{"component": "docs/src/modules/components/MaterialFreeTemplatesCollection.js"}}
-<br/>
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,

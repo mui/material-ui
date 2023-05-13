@@ -83,14 +83,17 @@ function Templates() {
   const t = useTranslate();
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
       {layouts(t).map((layout) => (
         <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={layout.title}>
           <Card
             sx={(theme) => ({
+              height: '100%',
               display: 'flex',
               flexDirection: 'column',
-              p: 2,
+              px: 2,
+              pt: 2,
+              pb: 1,
               gap: 1.5,
               borderRadius: 1,
               backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
