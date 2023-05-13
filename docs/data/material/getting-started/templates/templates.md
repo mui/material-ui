@@ -17,7 +17,7 @@ for reuse in other pages.
 For multi-part examples, a table in the README at the linked source code location describes
 the purpose of each file.
 
-{{"demo": "Templates.js", "hideToolbar": true, "bg": true}}
+{{"component": "docs/src/modules/components/MaterialFreeTemplatesCollection.js"}}
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,
