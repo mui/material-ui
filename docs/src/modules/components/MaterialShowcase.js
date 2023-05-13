@@ -497,7 +497,8 @@ export default function Showcase() {
         sx={{ mb: 3, display: 'flex', alignItems: 'center' }}
       >
         <Typography variant="body2" color="text.secondary" fontWeight={600} sx={{ mr: 1 }}>
-          Sort by:
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {'Sort by:'}
         </Typography>
         <ToggleButton value="similarWebVisits">{t('traffic')}</ToggleButton>
         <ToggleButton value="dateAdded">{t('newest')}</ToggleButton>
@@ -517,11 +518,11 @@ export default function Showcase() {
                   p: 2,
                   gap: 2,
                   borderRadius: 1,
-                  backgroundColor: `${alpha(theme.palette.grey[100], 0.2)}`,
+                  backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
                   borderColor: 'grey.100',
                   ...theme.applyDarkStyles({
                     backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
-                    borderColor: `${alpha(theme.palette.primaryDark[600], 0.5)}`,
+                    borderColor: `${alpha(theme.palette.grey[800], 0.4)}`,
                   }),
                 })}
                 variant="outlined"
