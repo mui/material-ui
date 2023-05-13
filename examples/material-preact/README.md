@@ -20,7 +20,7 @@ npm run start
 
 ## The idea behind the example
 
-The project uses Material UI with [Preact](https://github.com/developit/preact), which is a fast 3kB alternative to React with the same modern API.
+The project uses Material UI with [Preact](https://github.com/developit/preact),Which is lightweight 3kb alternative of React with the same modern API.
 
 This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
@@ -35,4 +35,4 @@ If you prefer, you can [use styled-components instead](https://mui.com/material-
 <!-- #default-branch-switch -->
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
