@@ -70,8 +70,8 @@ const TooltipRoot = styled('div', {
     lineHeight: theme.vars.lineHeight.sm,
     wordWrap: 'break-word',
     position: 'relative',
-    ...(!ownerState.disableInteractive && {
-      pointerEvents: 'auto',
+    ...(ownerState.disableInteractive && {
+      pointerEvents: 'none',
     }),
     ...variantStyle,
     ...(!variantStyle.backgroundColor && {
