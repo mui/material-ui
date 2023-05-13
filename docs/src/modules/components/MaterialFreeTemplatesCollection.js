@@ -85,7 +85,7 @@ function Templates() {
   return (
     <Grid container spacing={2}>
       {layouts(t).map((layout) => (
-        <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }} key={layout.title}>
+        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={layout.title}>
           <Card
             sx={(theme) => ({
               display: 'flex',
