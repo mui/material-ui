@@ -21,7 +21,7 @@ import { Variants, ColorInversion, ColorInversionConfig } from './types/variants
 import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createSoftInversion, createSolidInversion, createVariant } from './variantUtils';
+import { createSoftInversion, createSolidInversion, createVariants } from './variantUtils';
 import { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
@@ -768,26 +768,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       ? '&'
       : `&[data-joy-color-scheme="${colorScheme}"], [data-joy-color-scheme="${colorScheme}"] &`;
 
-  const createVariantInput = { getCssVar, palette: theme.colorSchemes.light.palette };
   theme.variants = deepmerge(
-    {
-      plain: createVariant('plain', createVariantInput),
-      plainHover: createVariant('plainHover', createVariantInput),
-      plainActive: createVariant('plainActive', createVariantInput),
-      plainDisabled: createVariant('plainDisabled', createVariantInput),
-      outlined: createVariant('outlined', createVariantInput),
-      outlinedHover: createVariant('outlinedHover', createVariantInput),
-      outlinedActive: createVariant('outlinedActive', createVariantInput),
-      outlinedDisabled: createVariant('outlinedDisabled', createVariantInput),
-      soft: createVariant('soft', createVariantInput),
-      softHover: createVariant('softHover', createVariantInput),
-      softActive: createVariant('softActive', createVariantInput),
-      softDisabled: createVariant('softDisabled', createVariantInput),
-      solid: createVariant('solid', createVariantInput),
-      solidHover: createVariant('solidHover', createVariantInput),
-      solidActive: createVariant('solidActive', createVariantInput),
-      solidDisabled: createVariant('solidDisabled', createVariantInput),
-    },
+    createVariants(theme.colorSchemes.light.palette, getCssVar),
     variantsInput,
   );
 
