@@ -22,7 +22,7 @@ npm run start
 
 This is the reference implementation of the [Server Rendering tutorial](https://mui.com/material-ui/guides/server-rendering/).
 
-The example project includes `@mui/material` and its peer dependencies are including [Emotion library](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
+The example project includes `@mui/material` and its peer dependencies are including [Emotion library](https://emotion.sh/docs/introduction) which is default style engine in Material UI v5.
 If you prefer, you can [use styled-components instead](https://mui.com/material-ui/guides/interoperability/#styled-components).
 
 ## What's next?
