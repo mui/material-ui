@@ -10,9 +10,9 @@ import ROUTES from 'docs/src/route';
 
 export default function StylingInfo({
   appeared,
-  content,
+  stylingContent,
   ...props
-}: { appeared: boolean; content?: React.ReactElement } & BoxProps) {
+}: { appeared: boolean; stylingContent?: React.ReactElement } & BoxProps) {
   const [hidden, setHidden] = React.useState(false);
   const defaultContent = (
     <React.Fragment>
@@ -74,7 +74,7 @@ export default function StylingInfo({
           <KeyboardArrowDownRounded fontSize="small" />
         )}
       </IconButton>
-      {content || defaultContent}
+      {stylingContent || defaultContent}
     </Box>
   );
 }

@@ -114,7 +114,7 @@ const Select = React.forwardRef(function Select<
     name,
     onChange,
     onListboxOpenChange,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     renderValue: renderValueProp,
     slotProps = {},
     slots = {},
@@ -165,7 +165,7 @@ const Select = React.forwardRef(function Select<
     open: listboxOpenProp,
     onChange,
     onOpenChange: onListboxOpenChange,
-    optionStringifier,
+    getOptionAsString,
     value: valueProp,
   });
 
@@ -279,6 +279,14 @@ Select.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  getOptionAsString: PropTypes.func,
+  /**
    * A function to convert the currently selected value to a string.
    * Used to set a value of a hidden input associated with the select,
    * so that the selected value can be posted with a form.
@@ -315,14 +323,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
-   * A function used to convert the option label to a string.
-   * It's useful when labels are elements and need to be converted to plain text
-   * to enable navigation using character keys on a keyboard.
-   *
-   * @default defaultOptionStringifier
-   */
-  optionStringifier: PropTypes.func,
-  /**
    * Function that customizes the rendering of the selected value.
    */
   renderValue: PropTypes.func,
@@ -330,7 +330,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

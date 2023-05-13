@@ -177,13 +177,21 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+### TypeScript
+
+You have to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to add new variables to the `Palette` and `PaletteOptions`.
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
 declare module '@mui/material/styles' {
   interface Theme {
+    status: {
+      danger: React.CSSProperties['color'];
+    };
+  }
+
+  interface ThemeOptions {
     status: {
       danger: React.CSSProperties['color'];
     };
@@ -203,12 +211,6 @@ declare module '@mui/material/styles' {
 
   interface SimplePaletteColorOptions {
     darker?: string;
-  }
-
-  interface ThemeOptions {
-    status: {
-      danger: React.CSSProperties['color'];
-    };
   }
 }
 ```

@@ -79,7 +79,7 @@ npm install @mui/base
 yarn add @mui/base
 ```
 
-**Note**: Base UI is still in alpha.
+**Note**: Base UI is still in beta.
 We are adding new components regularly and you're welcome to contribute!
 
 ### MUI System

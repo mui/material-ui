@@ -31,7 +31,7 @@ See the [Slot props section](#slot-props) for details.
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import TablePagination from '@mui/base/TablePagination';

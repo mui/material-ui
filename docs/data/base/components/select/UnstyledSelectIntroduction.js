@@ -83,6 +83,7 @@ Button.propTypes = {
     defaultValue: PropTypes.any,
     disabled: PropTypes.bool.isRequired,
     focusVisible: PropTypes.bool.isRequired,
+    getOptionAsString: PropTypes.func,
     getSerializedValue: PropTypes.func,
     listboxId: PropTypes.string,
     listboxOpen: PropTypes.bool,
@@ -91,7 +92,6 @@ Button.propTypes = {
     onChange: PropTypes.func,
     onListboxOpenChange: PropTypes.func,
     open: PropTypes.bool.isRequired,
-    optionStringifier: PropTypes.func,
     renderValue: PropTypes.func,
     slotProps: PropTypes.shape({
       listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
