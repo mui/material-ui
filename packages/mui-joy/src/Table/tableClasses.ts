@@ -58,10 +58,10 @@ export interface TableClasses {
 export type TableClassKey = keyof TableClasses;
 
 export function getTableUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyTable', slot);
+  return generateUtilityClass('MuiTable', slot);
 }
 
-const tableClasses: TableClasses = generateUtilityClasses('JoyTable', [
+const tableClasses: TableClasses = generateUtilityClasses('MuiTable', [
   'root',
   'colorPrimary',
   'colorNeutral',
