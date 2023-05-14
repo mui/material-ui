@@ -71,6 +71,12 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     stickyHeader?: boolean;
     /**
+     * Set the header sticky.
+     *
+     * @default false
+     */
+    stickyFooter?: boolean;
+    /**
      * The odd or even row of the table body will have subtle background color.
      */
     stripe?: 'odd' | 'even' | (string & Record<never, never>);
