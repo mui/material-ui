@@ -50,7 +50,7 @@ function ValueProposition() {
           </Typography>
         }
       />
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
           <Grid key={title} item xs={12} sm={6}>
             <Paper

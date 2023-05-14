@@ -31,7 +31,9 @@ export default function Core() {
         <CoreTheming />
         <Divider />
         <CoreStyling />
+        <Divider />
         <CoreHeroEnd />
+        <Divider />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>

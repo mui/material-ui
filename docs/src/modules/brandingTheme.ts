@@ -288,7 +288,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
-        fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 3.375rem)',
+        fontSize: 'clamp(2.5rem, 1.125rem + 3.5715vw, 3.375em)',
         fontWeight: 800,
         lineHeight: 78 / 70,
         ...(mode === 'light' && {
@@ -310,7 +310,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       h4: {
         fontFamily: ['"PlusJakartaSans-Bold"', ...systemFont].join(','),
-        fontSize: defaultTheme.typography.pxToRem(28),
+        fontSize: defaultTheme.typography.pxToRem(30),
         lineHeight: 42 / 28,
         letterSpacing: 0.2,
       },

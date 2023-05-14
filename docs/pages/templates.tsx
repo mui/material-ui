@@ -29,7 +29,9 @@ export default function Templates() {
         <ValueProposition />
         <Divider />
         <TemplateDemo />
+        <Divider />
         <Testimonials />
+        <Divider />
         <HeroEnd />
       </main>
       <Divider />

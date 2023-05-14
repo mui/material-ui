@@ -40,7 +40,7 @@ function DesignKitValues() {
         Be more efficient <GradientText>designing and developing</GradientText> with the same
         library
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         {content.map(({ icon, title, description }) => (
           <Grid key={title} item xs={12} sm={6} md={4}>
             <Paper

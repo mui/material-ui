@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -35,7 +36,7 @@ export default function XRoadmap() {
               display: 'block',
               position: 'absolute',
               width: 2,
-              bgcolor: 'primaryDark.400',
+              bgcolor: 'primaryDark.500',
               top: 24,
               bottom: 10,
               left: 10,
@@ -59,7 +60,7 @@ export default function XRoadmap() {
           display: 'block',
           height: 2,
           width: 15,
-          bgcolor: 'primaryDark.400',
+          bgcolor: 'primaryDark.500',
         },
         '&:after': {
           content: '""',
@@ -75,6 +76,7 @@ export default function XRoadmap() {
   );
   return (
     <Section
+      cozy
       data-mui-color-scheme="dark"
       sx={{
         color: 'text.secondary',
@@ -118,7 +120,7 @@ export default function XRoadmap() {
               typography: 'body2',
               '& .MuiPaper-root': {
                 p: 2,
-                bgcolor: 'primaryDark.600',
+                minWidth: { lg: 180 },
               },
               '& svg': {
                 color: 'primary.300',
@@ -126,9 +128,13 @@ export default function XRoadmap() {
             }}
           >
             <Grid item xs={12} sm={4} lg="auto">
-              <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
-                <Box sx={{ fontWeight: 'bold' }}>Released</Box>
-                <Box sx={{ color: 'text.secondary' }}>More updates coming.</Box>
+              <Paper variant="outlined">
+                <Typography fontWeight={600} variant="body2" color="text.primary">
+                  Released
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  More updates coming.
+                </Typography>
                 {renderList(
                   <React.Fragment>
                     <TableChartRounded fontSize="small" />
@@ -140,9 +146,13 @@ export default function XRoadmap() {
               </Paper>
             </Grid>
             <Grid item xs={12} sm={4} lg="auto">
-              <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
-                <Box sx={{ fontWeight: 'bold' }}>Work in progress</Box>
-                <Box sx={{ color: 'text.secondary' }}>Getting there.</Box>
+              <Paper variant="outlined">
+                <Typography fontWeight={600} variant="body2" color="text.primary">
+                  Work in progress
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  Getting there.
+                </Typography>
                 {renderList(
                   <React.Fragment>
                     <Box
@@ -167,9 +177,13 @@ export default function XRoadmap() {
               </Paper>
             </Grid>
             <Grid item xs={12} sm={4} lg="auto">
-              <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
-                <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                <Box sx={{ color: 'text.secondary' }}>Starting sometime soon…</Box>
+              <Paper variant="outlined">
+                <Typography fontWeight={600} variant="body2" color="text.primary">
+                  On the list
+                </Typography>
+                <Typography color="text.secondary" variant="body2">
+                  Starting sometime soon…
+                </Typography>
                 {renderList(
                   <React.Fragment>
                     <ShowChartRounded fontSize="small" />

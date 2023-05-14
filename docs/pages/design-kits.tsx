@@ -32,7 +32,9 @@ export default function DesignKits() {
         <DesignKitDemo />
         <Divider />
         <DesignKitFAQ />
+        <Divider />
         <Testimonials />
+        <Divider />
         <HeroEnd />
       </main>
       <Divider />

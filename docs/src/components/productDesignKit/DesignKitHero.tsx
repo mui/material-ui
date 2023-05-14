@@ -37,7 +37,8 @@ export default function TemplateHero() {
             <IconImage width={28} height={28} name="product-designkits" /> Design kits
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            MUI in your favorite
+            Material UI
+            <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>

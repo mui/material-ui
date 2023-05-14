@@ -34,7 +34,9 @@ export default function X() {
         <XTheming />
         <Divider />
         <XPlans />
+        <Divider />
         <XRoadmap />
+        <Divider />
       </main>
       <AppFooter />
     </BrandingCssVarsProvider>

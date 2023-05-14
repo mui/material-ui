@@ -52,10 +52,13 @@ export default function Home() {
         <References companies={CORE_CUSTOMERS} />
         <Divider />
         <ProductSuite />
+        <Divider />
         <ValueProposition />
         <Divider />
         <DesignSystemComponents />
+        <Divider />
         <Testimonials />
+        <Divider />
         <Sponsors />
         <Divider />
         <HeroEnd />

@@ -7,6 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import GradientText from 'docs/src/components/typography/GradientText';
 import Link from 'docs/src/modules/components/Link';
 import CompareIcon from '@mui/icons-material/Compare';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
@@ -32,7 +33,11 @@ export default function BaseUIEnd() {
           <SectionHeadline
             inverted
             overline="Community"
-            title={<Typography variant="h2">Join our global community</Typography>}
+            title={
+              <Typography variant="h2">
+                Join our <GradientText>global community</GradientText>
+              </Typography>
+            }
             description={
               <React.Fragment>
                 Base UI wouldn&apos;t be possible without our global community of contributors. Join
