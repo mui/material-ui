@@ -76,26 +76,9 @@ export const createVariants = (
               result[variantName] = result[variantName] || {};
               result[variantName][color] = result[variantName][color] || {};
               const css: CSSObject = result[variantName][color];
-              let defaultValue;
-              const cssVarMatches = (value as string).match(/^var\(--(.*)\)$/);
-              if ((color as string) !== 'context') {
-                if (cssVarMatches) {
-                  const tokens = cssVarMatches[1].split('-');
-                  const paletteIndex = tokens.indexOf('palette');
-                  const colorToken = tokens[paletteIndex + 1];
-                  const rangeToken = tokens[paletteIndex + 2];
-                  // @ts-ignore internal logic
-                  defaultValue = colorPalette?.[colorToken]?.[rangeToken];
-                } else {
-                  defaultValue = value;
-                }
-              }
-              let cssValue = getCssVar(`palette-${color}-${variantVar}`);
-              if (defaultValue) {
-                cssValue = getCssVar(`palette-${color}-${variantVar}`, defaultValue);
-              }
+              let cssValue = getCssVar(`palette-${color}-${variantVar}`, value);
               if ((color as string) === 'context') {
-                cssValue = value.toString();
+                cssValue = value as string;
               }
 
               if (variantVar.includes('Disabled')) {
