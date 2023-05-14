@@ -246,8 +246,8 @@ export const createSoftInversion = (
           [prefixVar('--palette-divider')]: `rgba(${getCssVar(
             `palette-${color}-mainChannel`,
           )} / 0.32)`,
-          '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 1)`,
-          '--variant-plainHoverColor': getCssVar(`palette-${color}-600`),
+          '--variant-plainColor': `rgba(${getCssVar(`palette-${color}-darkChannel`)} / 0.8)`,
+          '--variant-plainHoverColor': `rgba(${getCssVar(`palette-${color}-darkChannel`)} / 1)`,
           '--variant-plainHoverBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.12)`,
           '--variant-plainActiveBg': `rgba(${getCssVar(`palette-${color}-mainChannel`)} / 0.24)`,
           '--variant-plainDisabledColor': `rgba(${getCssVar(
