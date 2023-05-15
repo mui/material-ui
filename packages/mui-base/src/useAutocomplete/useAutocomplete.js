@@ -571,7 +571,7 @@ export default function useAutocomplete(props) {
 
   const handleListboxRef = useEventCallback((node) => {
     setRef(listboxRef, node);
-    // console.log(node);
+
     if (!node) {
       return;
     }
