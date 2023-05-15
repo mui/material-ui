@@ -26,12 +26,13 @@ export default function BaseUITestimonial() {
               overflow: 'auto',
             }}
           >
-            <Typography variant="h4" mb={2.5} sx={{ color: '#fff' }}>
+            <Typography variant="h4" component="h2" mb={2.5} sx={{ color: '#fff' }}>
               Nhost&apos;s dashboard
             </Typography>
             <Box
               component="img"
               src="/static/branding/base-ui/nhost.jpg"
+              alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
               sx={{
                 width: '100%',
                 borderTopLeftRadius: '12px',
@@ -45,7 +46,7 @@ export default function BaseUITestimonial() {
               /
             </Typography>
             &nbsp;&nbsp;
-            <Link href="https://nhost.io/blog/new-database-ui">
+            <Link href="https://nhost.io/blog/new-database-ui" target="_blank">
               View the blog post <ArrowForward fontSize="small" />
             </Link>
           </Typography>
