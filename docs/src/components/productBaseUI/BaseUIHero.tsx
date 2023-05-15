@@ -108,10 +108,7 @@ function CustomSelect() {
     getListboxProps,
     getOptionMetadata,
     value,
-  } = useSelect<string>({
-    buttonRef,
-    defaultOpen: true,
-  });
+  } = useSelect<string>({ buttonRef });
 
   const selectedOption = getOptionMetadata(value!);
 
