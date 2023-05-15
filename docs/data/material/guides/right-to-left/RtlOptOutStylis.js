@@ -30,7 +30,7 @@ const ltrCache = createCache({
   key: 'mui',
 });
 
-export default function RtlOptOut() {
+export default function RtlOptOutStylis() {
   const [rtl, setRtl] = React.useState(false);
 
   const handleChange = () => {

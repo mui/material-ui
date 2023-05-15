@@ -22,7 +22,7 @@ function union(a: readonly number[], b: readonly number[]) {
   return [...a, ...not(b, a)];
 }
 
-export default function TransferList() {
+export default function SelectAllTransferList() {
   const [checked, setChecked] = React.useState<readonly number[]>([]);
   const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
   const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
