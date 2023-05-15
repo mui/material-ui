@@ -92,7 +92,7 @@
     "@playwright/test": "1.33.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@slack/bolt": "^3.13.1",
-    "@testing-library/dom": "^9.2.0",
+    "@testing-library/dom": "^9.3.0",
     "@testing-library/react": "^14.0.0",
     "@types/chai": "^4.3.5",
     "@types/chai-dom": "^1.11.0",
