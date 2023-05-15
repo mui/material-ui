@@ -829,6 +829,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
+   * @default createFilterOptions()
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}
@@ -988,7 +989,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
    */
   onInputChange: PropTypes.func,
   /**

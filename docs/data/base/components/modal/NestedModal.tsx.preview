@@ -1,4 +1,4 @@
-<Button onClick={handleOpen}>Open modal</Button>
+<TriggerButton onClick={handleOpen}>Open modal</TriggerButton>
 <Modal
   open={open}
   onClose={handleClose}

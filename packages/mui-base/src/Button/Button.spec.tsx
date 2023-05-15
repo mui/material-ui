@@ -35,6 +35,16 @@ const polymorphicComponentTest = () => {
 
       <Button slots={{ root: 'a' }} href="#" />
 
+      <Button
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onClick={(e) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+        }}
+        type="submit"
+      />
+
       <Button<typeof CustomComponent>
         slots={{ root: CustomComponent }}
         stringProp="test"

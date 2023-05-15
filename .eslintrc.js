@@ -104,6 +104,7 @@ module.exports = {
 
     // Not sure why it doesn't work
     'import/named': 'off',
+    'import/no-cycle': 'off',
     // Missing yarn workspace support
     'import/no-extraneous-dependencies': 'off',
     // The code is already coupled to webpack. Prefer explicit coupling.
@@ -413,6 +414,7 @@ module.exports = {
             ],
           },
         ],
+        'import/no-cycle': ['error', { ignoreExternal: true }],
       },
     },
     {

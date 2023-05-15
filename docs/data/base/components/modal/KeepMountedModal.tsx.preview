@@ -1,6 +1,6 @@
-<button type="button" onClick={handleOpen}>
+<TriggerButton type="button" onClick={handleOpen}>
   Open modal
-</button>
+</TriggerButton>
 <StyledModal
   aria-labelledby="keep-mounted-modal-title"
   aria-describedby="keep-mounted-modal-description"
