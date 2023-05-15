@@ -164,7 +164,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.7.1",
     "mocha": "^10.2.0",
-    "node-fetch": "^2.6.9",
+    "node-fetch": "^2.6.11",
     "nx": "^15.9.4",
     "nyc": "^15.1.0",
     "piscina": "^3.2.0",
