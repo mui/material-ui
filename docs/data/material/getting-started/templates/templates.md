@@ -5,7 +5,7 @@ title: 9+ Free React Templates
 
 # React Templates
 
-<p class="description">A selection of free Material UI templates to help you get started building your app. The collection contains react dashboard, react admin, and more.</p>
+<p class="description">Browse our collection of free React templates to help you get started building your app with Material UI, including a React dashboard, React admin panel, and more.</p>
 
 <!-- #default-branch-switch -->
 
