@@ -348,14 +348,16 @@ export default function useAutocomplete(props) {
       prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
-    const listboxNodes = listboxRef.current.parentElement.querySelectorAll('[role="listbox"]');
-    let listboxNode = null;
-    // eslint-disable-next-line no-restricted-syntax
-    for (const node of listboxNodes) {
-      if (node.id === `${id}-listbox`) {
-        listboxNode = node;
-      }
-    }
+    // const listboxNodes = listboxRef.current.parentElement.querySelectorAll('[role="listbox"]');
+    // let listboxNode = null;
+    // // eslint-disable-next-line no-restricted-syntax
+    // for (const node of listboxNodes) {
+    //   if (node.id === `${id}-listbox`) {
+    //     listboxNode = node;
+    //   }
+    // }
+
+    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
 
     // "No results"
     if (!listboxNode) {
