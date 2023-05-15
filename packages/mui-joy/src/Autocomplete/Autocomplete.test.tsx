@@ -1297,7 +1297,6 @@ describe('Joy <Autocomplete />', () => {
       render(
         <div>
           <Autocomplete
-            data-testid="autocomplete"
             defaultValue={'six'}
             options={['one', 'two', 'three', 'four', 'five', 'six']}
             slotProps={{
@@ -1306,6 +1305,9 @@ describe('Joy <Autocomplete />', () => {
                 sx: {
                   height: '40px',
                 },
+              },
+              input: {
+                'data-testid': 'autocomplete-input',
               },
             }}
             autoFocus
@@ -1316,8 +1318,11 @@ describe('Joy <Autocomplete />', () => {
           </Select>
         </div>,
       );
-      const autocomplete = screen.getByTestId('autocomplete');
+      const autocomplete = screen.getByTestId('autocomplete-input');
 
+      act(() => {
+        autocomplete.focus();
+      });
       fireEvent.keyDown(autocomplete, { key: 'ArrowDown' });
 
       const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
