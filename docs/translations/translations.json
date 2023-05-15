@@ -74,7 +74,7 @@
   "copySource": "Copy the source",
   "copySourceLinkJS": "Copy link to JavaScript source",
   "copySourceLinkTS": "Copy link to TypeScript source",
-  "dashboardDescr": "Contains a taskbar and a mini variant drawer. The chart is courtesy of Recharts, but it is simple to substitute an alternative.",
+  "dashboardDescr": "Contains a taskbar and a mini variant drawer. The chart is courtesy of Recharts, but it's simple to substitute an alternative.",
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
