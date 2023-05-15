@@ -42,7 +42,7 @@ export default function StylingInfo({
         px: 2,
         pt: 1,
         pb: 2,
-        background: ({ palette }) => alpha(palette.primaryDark[600], 0.3),
+        background: ({ palette }) => alpha(palette.primaryDark[900], 0.95),
         backdropFilter: 'blur(8px)',
         zIndex: 1,
         borderTop: '1px solid',
