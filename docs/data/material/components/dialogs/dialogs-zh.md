@@ -26,7 +26,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 - 选中一个选项则会立刻触发提交选项，并关闭菜单的操作
 - 在对话框外点击，或按下“返回”，将会取消操作并关闭对话框。
 
-{{"demo": "SimpleDialog.js"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## 警告框
 

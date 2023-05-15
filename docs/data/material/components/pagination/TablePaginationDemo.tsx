@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 
-export default function TablePagination() {
+export default function TablePaginationDemo() {
   const [page, setPage] = React.useState(2);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

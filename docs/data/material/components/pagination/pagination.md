@@ -73,7 +73,7 @@ It's preferred in contexts where SEO is important, for instance, a blog.
 
 For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 
-{{"demo": "TablePagination.js"}}
+{{"demo": "TablePaginationDemo.js"}}
 
 :::warning
 Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop starts at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.

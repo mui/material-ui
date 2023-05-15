@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
@@ -16,14 +15,20 @@ import { blue } from '@mui/material/colors';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-function SimpleDialog(props) {
+export interface SimpleDialogProps {
+  open: boolean;
+  selectedValue: string;
+  onClose: (value: string) => void;
+}
+
+function SimpleDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
-  const handleListItemClick = (value) => {
+  const handleListItemClick = (value: string) => {
     onClose(value);
   };
 
@@ -43,7 +48,6 @@ function SimpleDialog(props) {
             </ListItemButton>
           </ListItem>
         ))}
-
         <ListItem disableGutters>
           <ListItemButton
             autoFocus
@@ -62,13 +66,7 @@ function SimpleDialog(props) {
   );
 }
 
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
-
-export default function SimpleDialog() {
+export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
@@ -76,7 +74,7 @@ export default function SimpleDialog() {
     setOpen(true);
   };
 
-  const handleClose = (value) => {
+  const handleClose = (value: string) => {
     setOpen(false);
     setSelectedValue(value);
   };
