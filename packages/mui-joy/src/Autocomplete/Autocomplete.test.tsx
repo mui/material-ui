@@ -1290,7 +1290,7 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
-    it('should scoll selected option into view when multiple elements with role as listbox available', function test() {
+    it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
