@@ -1313,24 +1313,22 @@ describe('Joy <Autocomplete />', () => {
             autoFocus
           />
           <Select defaultValue="1">
-            <Option value="1">Normal text</Option>
-            <Option value="2">Code text</Option>
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
           </Select>
         </div>,
       );
-      const autocomplete = screen.getByTestId('autocomplete-input');
+      const autocompleteInput = screen.getByTestId('autocomplete-input');
 
       act(() => {
-        autocomplete.focus();
+        autocompleteInput.focus();
       });
-      fireEvent.keyDown(autocomplete, { key: 'ArrowDown' });
+      fireEvent.keyDown(autocompleteInput, { key: 'ArrowDown' });
 
       const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
 
       checkHighlightIs(autocompleteListbox, 'six');
-      console.log(autocompleteListbox.scrollTop);
-      console.log('/n');
-      console.log(autocompleteListbox);
+      expect(autocompleteListbox.scrollTop).to.greaterThan(0);
     });
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
