@@ -54,7 +54,8 @@
       "type": {
         "name": "(options: T[], state: FilterOptionsState&lt;T&gt;) =&gt; T[]",
         "description": "(options: T[], state: FilterOptionsState&lt;T&gt;) =&gt; T[]"
-      }
+      },
+      "default": "createFilterOptions()"
     },
     "filterSelectedOptions": {
       "type": { "name": "boolean", "description": "boolean" },

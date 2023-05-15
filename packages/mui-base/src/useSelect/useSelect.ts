@@ -50,7 +50,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onOpenChange,
     open: openProp,
     options: optionsParam,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -64,14 +64,20 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   if (valueProp === undefined && defaultValueProp === undefined) {
     defaultValue = [];
   } else if (defaultValueProp !== undefined) {
-    defaultValue = multiple
-      ? (defaultValueProp as OptionValue[])
-      : [defaultValueProp as OptionValue];
+    if (multiple) {
+      defaultValue = defaultValueProp as OptionValue[];
+    } else {
+      defaultValue = defaultValueProp == null ? [] : [defaultValueProp as OptionValue];
+    }
   }
 
   const value = React.useMemo(() => {
     if (valueProp !== undefined) {
-      return multiple ? (valueProp as OptionValue[]) : [valueProp as OptionValue];
+      if (multiple) {
+        return valueProp as OptionValue[];
+      }
+
+      return valueProp == null ? [] : [valueProp as OptionValue];
     }
 
     return undefined;
@@ -147,9 +153,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return '';
       }
 
-      return optionStringifier(option);
+      return getOptionAsString(option);
     },
-    [options, optionStringifier],
+    [options, getOptionAsString],
   );
 
   const controlledState = React.useMemo(
@@ -198,10 +204,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   );
 
   const handleStateChange = React.useCallback(
-    (e: React.SyntheticEvent | null, field: string, fieldValue: any) => {
+    (event: React.SyntheticEvent | null, field: string, fieldValue: any) => {
       if (field === 'open') {
         onOpenChange?.(fieldValue as boolean);
-        if (fieldValue === false && e?.type !== 'blur') {
+        if (fieldValue === false && event?.type !== 'blur') {
           buttonRef.current?.focus();
         }
       }
@@ -229,7 +235,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onStateChange: handleStateChange,
     reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
-    itemStringifier: stringifyOption,
+    getItemAsString: stringifyOption,
     selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
   };

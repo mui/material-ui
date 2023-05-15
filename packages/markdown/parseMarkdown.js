@@ -370,7 +370,7 @@ function createRender(context) {
   return render;
 }
 
-const BaseUIReexportedComponents = ['ClickAwayListener'];
+const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
 
 /**
  * @param {string} product
