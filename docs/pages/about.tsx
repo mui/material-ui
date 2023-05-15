@@ -462,6 +462,16 @@ const teamMembers: Array<Profile> = [
     about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
     github: 'richbustos',
   },
+  {
+    src: '/static/branding/about/victor.png',
+    name: 'Victor Zanivan',
+    title: 'Senior Designer',
+    location: 'São Paulo, Brazil',
+    locationCountry: 'br',
+    about: 'Very geek 🎮 and love to watch/play football ⚽️',
+    github: 'zanivan',
+    twitter: 'Zanivan_',
+  },
 ];
 
 const contributors = [
