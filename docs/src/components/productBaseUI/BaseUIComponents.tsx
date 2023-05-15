@@ -47,7 +47,10 @@ const StyledButton = materialStyled(Button)(({ theme }) => ({
 
 const DEMOS = ['Tabs', 'Button', 'Input', 'Menu', 'Slider'] as const;
 
-const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => string)> = {
+const CODES: Record<
+  (typeof DEMOS)[number],
+  string | ((styling: 'system' | 'tailwindcss' | 'css') => string)
+> = {
   Button: BaseButtonDemo.getCode,
   Menu: BaseMenuDemo.getCode,
   Input: BaseInputDemo.getCode,
@@ -56,7 +59,7 @@ const CODES: Record<(typeof DEMOS)[number], string | ((styling?: 'system') => st
 };
 
 export default function BaseUIComponents() {
-  const [styling, setStyling] = React.useState<undefined | 'system'>('system');
+  const [styling, setStyling] = React.useState<'system' | 'tailwindcss' | 'css'>('system');
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number]>(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <TabUnselectedRoundedIcon fontSize="small" />,
@@ -147,13 +150,23 @@ export default function BaseUIComponents() {
                 </StyledButton>
                 <StyledButton
                   size="small"
-                  variant={!styling ? 'outlined' : 'text'}
+                  variant={styling === 'tailwindcss' ? 'outlined' : 'text'}
                   onClick={() => {
-                    setStyling(undefined);
+                    setStyling('tailwindcss');
                   }}
                   sx={{ ml: 1 }}
                 >
-                  Unstyled
+                  Tailwind CSS
+                </StyledButton>
+                <StyledButton
+                  size="small"
+                  variant={styling === 'css' ? 'outlined' : 'text'}
+                  onClick={() => {
+                    setStyling('css');
+                  }}
+                  sx={{ ml: 1 }}
+                >
+                  Plain CSS
                 </StyledButton>
               </Box>
             </Frame.Info>
