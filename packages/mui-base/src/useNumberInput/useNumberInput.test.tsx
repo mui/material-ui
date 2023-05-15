@@ -20,6 +20,25 @@ describe('useNumberInput', () => {
   };
 
   describe('getInputProps', () => {
+    it('should return correct ARIA attributes', () => {
+      const props: UseNumberInputParameters = {
+        value: 50,
+        min: 10,
+        max: 100,
+        disabled: true,
+      };
+
+      const { getInputProps } = invokeUseNumberInput(props);
+      const inputProps = getInputProps();
+
+      expect(inputProps.role).to.equal('spinbutton');
+      expect(inputProps['aria-valuenow']).to.equal(50);
+      expect(inputProps['aria-valuemin']).to.equal(10);
+      expect(inputProps['aria-valuemax']).to.equal(100);
+      expect(inputProps['aria-disabled']).to.equal(true);
+      expect(inputProps.tabIndex).to.equal(0);
+    });
+
     it('should include the incoming uncontrolled props in the output', () => {
       const props: UseNumberInputParameters = {
         defaultValue: 100,
@@ -39,8 +58,6 @@ describe('useNumberInput', () => {
       function NumberInput() {
         const { getInputProps } = useNumberInput({ onChange: handleChange });
 
-        // TODO: how to make <input> accept my custom onChange ?!
-        // @ts-ignore
         return <input {...getInputProps()} />;
       }
       render(<NumberInput />);

@@ -86,11 +86,13 @@ export interface UseNumberInputInputSlotOwnProps {
   defaultValue: number | undefined;
   ref: React.RefCallback<HTMLInputElement> | null;
   value: number | undefined;
+  role?: React.AriaRole;
   'aria-disabled': React.AriaAttributes['aria-disabled'];
   'aria-valuemax': React.AriaAttributes['aria-valuemax'];
   'aria-valuemin': React.AriaAttributes['aria-valuemin'];
   'aria-valuenow': React.AriaAttributes['aria-valuenow'];
   'aria-valuetext': React.AriaAttributes['aria-valuetext'];
+  tabIndex?: number;
   onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
