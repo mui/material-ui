@@ -149,7 +149,7 @@
     "format-util": "^1.0.5",
     "fs-extra": "^10.1.0",
     "globby": "^13.1.4",
-    "google-auth-library": "^8.7.0",
+    "google-auth-library": "^8.8.0",
     "html-webpack-plugin": "^5.5.1",
     "jsdom": "^21.1.2",
     "karma": "^6.4.2",
