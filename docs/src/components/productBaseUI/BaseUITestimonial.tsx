@@ -46,7 +46,7 @@ export default function BaseUITestimonial() {
               /
             </Typography>
             &nbsp;&nbsp;
-            <Link href={ROUTES.baseDocs}>
+            <Link href="https://nhost.io/blog/new-database-ui">
               View the blog post <ArrowForward fontSize="small" />
             </Link>
           </Typography>
