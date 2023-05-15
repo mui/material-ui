@@ -10,7 +10,8 @@
     "size": "The size of the component. It accepts theme values between &#39;sm&#39; and &#39;lg&#39;. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
     "slotProps": "The props used for each slot inside.",
     "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "stickyHeader": "Set the header sticky.<br>⚠️ It doesn&#39;t work with IE11.",
+    "stickyFooter": "If <code>true</code>, the footer always appear at the bottom of the overflow table.<br>⚠️ It doesn&#39;t work with IE11.",
+    "stickyHeader": "If <code>true</code>, the header always appear at the top of the overflow table.<br>⚠️ It doesn&#39;t work with IE11.",
     "stripe": "The odd or even row of the table body will have subtle background color.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
@@ -91,6 +92,11 @@
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>stickyHeader</code> is true"
+    },
+    "stickyFooter": {
+      "description": "Class name applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>stickyFooter</code> is true"
     },
     "noWrap": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
