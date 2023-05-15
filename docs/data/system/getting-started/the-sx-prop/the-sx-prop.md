@@ -295,6 +295,21 @@ export default function App() {
 }
 ```
 
+### Customizing System Props
+
+System props which are defined on the `<Box />` component and are inherited by most MUI components,
+can have their props explicitly narrowed if needed. For example, the default `fontWeight` is typed
+as `string` but if you would for example like to restrict this usage to [MUI's stepped weights](https://mui.com/system/typography/#font-weight)
+`light`, `medium`, `regular` and `bold` you could type it as:
+
+```ts
+declare module '@mui/system/Box' {
+  interface CustomSystemProps {
+    fontWeight: 'light' | 'medium' | 'regular' | 'bold';
+  }
+}
+```
+
 ## Performance
 
 To learn more about the performance tradeoffs of the `sx` prop, check out [Usage–Performance tradeoffs](/system/getting-started/usage/#performance-tradeoffs).
