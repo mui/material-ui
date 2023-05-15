@@ -160,12 +160,12 @@ function Header(props) {
       <TabPanel value={value} index={1}>
         <img
           src="/static/images/buttons/google-signin-dark.png"
-          style={{ width: '200px', display: 'block', marginBottom: '10px' }}
+          style={{ width: '190px', display: 'block', marginBottom: '10px' }}
           alt="Google Signin button"
         />
         <img
           src="/static/images/buttons/linkedin-signin-dark.png"
-          style={{ width: '200px', display: 'block' }}
+          style={{ width: '190px', display: 'block' }}
           alt="Linkedin Signin button"
         />
       </TabPanel>
