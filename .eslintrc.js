@@ -299,7 +299,8 @@ module.exports = {
       },
     },
     {
-      files: ['docs/data/**/!(templates)/**/*.tsx'],
+      files: ['docs/data/**/*.tsx'],
+      excludedFiles: ['docs/data/joy/getting-started/templates/**/*.tsx'],
       rules: {
         'filenames/match-exported': ['error'],
       },
