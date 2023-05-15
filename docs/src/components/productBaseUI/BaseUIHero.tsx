@@ -128,7 +128,7 @@ function Demo({ label }: { label: string }) {
         renderValue={(option) => (
           <React.Fragment>
             <Box sx={{ color: option ? undefined : 'grey.600' }}>
-              {option?.label ?? 'choose an option'}
+              {option?.label ?? 'Choose an option'}
             </Box>
             <ArrowDropDownRounded />
           </React.Fragment>
