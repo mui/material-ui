@@ -1295,7 +1295,7 @@ describe('Joy <Autocomplete />', () => {
         this.skip();
       }
       render(
-        <div>
+        <React.Fragment>
           <Autocomplete
             defaultValue={'six'}
             options={['one', 'two', 'three', 'four', 'five', 'six']}
@@ -1316,7 +1316,7 @@ describe('Joy <Autocomplete />', () => {
             <Option value="1">1</Option>
             <Option value="2">2</Option>
           </Select>
-        </div>,
+        </React.Fragment>,
       );
       const autocompleteInput = screen.getByTestId('autocomplete-input');
 
