@@ -1297,10 +1297,12 @@ describe('Joy <Autocomplete />', () => {
       render(
         <div>
           <Autocomplete
+            data-testid="autocomplete"
             defaultValue={'six'}
             options={['one', 'two', 'three', 'four', 'five', 'six']}
             slotProps={{
               listbox: {
+                'data-testid': 'autocomplete-listbox',
                 sx: {
                   height: '40px',
                 },
@@ -1314,15 +1316,16 @@ describe('Joy <Autocomplete />', () => {
           </Select>
         </div>,
       );
-      const [textbox] = screen.getAllByRole('combobox');
+      const autocomplete = screen.getByTestId('autocomplete');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(autocomplete, { key: 'ArrowDown' });
 
-      const [, listbox] = screen.getAllByRole('listbox');
-      //  fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
 
-      checkHighlightIs(listbox, 'six');
-      console.log(listbox.scrollTop);
+      checkHighlightIs(autocompleteListbox, 'six');
+      console.log(autocompleteListbox.scrollTop);
+      console.log('/n');
+      console.log(autocompleteListbox);
     });
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
