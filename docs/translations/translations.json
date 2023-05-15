@@ -152,7 +152,7 @@
   "showSource": "Show the source",
   "showTSSource": "Show TypeScript source",
   "signInDescr": "A simple sign-in page using text fields, buttons, checkboxes, links, and more.",
-  "signInSideDescr": "A simple sign-in page with a two column layout using text fields, buttons, and more.",
+  "signInSideDescr": "A simple sign-in page with a two-column layout using text fields, buttons, and more.",
   "signInSideTitle": "Sign-in side",
   "signInTitle": "Sign-in",
   "signUpDescr": "A simple sign-up page using text fields, buttons, checkboxes, links, and more.",
