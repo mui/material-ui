@@ -6,7 +6,6 @@ import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
