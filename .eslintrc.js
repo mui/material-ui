@@ -290,13 +290,18 @@ module.exports = {
         'docs/data/**/*.tsx',
       ],
       rules: {
-        'filenames/match-exported': ['error'],
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
         '@typescript-eslint/no-use-before-define': 'off',
         'react/prop-types': 'off',
         'no-alert': 'off',
         'no-console': 'off',
+      },
+    },
+    {
+      files: ['docs/data/**/!(templates)/**/*.tsx'],
+      rules: {
+        'filenames/match-exported': ['error'],
       },
     },
     {
