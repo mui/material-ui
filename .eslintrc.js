@@ -34,6 +34,7 @@ module.exports = {
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint/eslint-plugin',
+    'filenames',
   ],
   settings: {
     'import/resolver': {
@@ -289,6 +290,7 @@ module.exports = {
         'docs/data/**/*.tsx',
       ],
       rules: {
+        'filenames/match-exported': ['error'],
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
         '@typescript-eslint/no-use-before-define': 'off',
