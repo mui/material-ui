@@ -125,7 +125,7 @@ function CustomSelect() {
         {...getButtonProps()}
       >
         <Box sx={{ color: selectedOption ? undefined : 'grey.600' }}>
-          {selectedOption?.label ?? 'choose an option'}
+          {selectedOption?.label ?? 'Choose an option'}
         </Box>
         <ArrowDropDownRounded sx={{ mr: -1 }} />
       </button>
