@@ -79,7 +79,7 @@ const css = `
   }
 `;
 
-export default function App() {
+export default function BaseButtonPlainCss() {
   const { getRootProps } = useButton({});
   return (
     <React.Fragment>
