@@ -19,9 +19,8 @@ the purpose of each file.
 
 {{"component": "docs/src/modules/components/MaterialFreeTemplatesCollection.js"}}
 
-If while using these examples you make changes or enhancements that could improve the
-developer experience, or you would like to contribute an additional example,
-please consider creating a [pull request on GitHub](https://github.com/mui/material-ui/pulls).
+See any room for improvement?
+Please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
 
 ## Premium templates
 
