@@ -71,5 +71,114 @@ describe('useNumberInput', () => {
 
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('should call onValueChange when the input is blurred', () => {
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({ onValueChange: handleValueChange });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton');
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement!, { target: { value: 3 } });
+        input.blur();
+      });
+
+      expect(handleValueChange.callCount).to.equal(1);
+    });
+
+    it('should not call onValueChange when the input has focus', () => {
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({ onValueChange: handleValueChange });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton');
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement!, { target: { value: 4 } });
+      });
+
+      expect(handleValueChange.callCount).to.equal(0);
+    });
+
+    it('should call onValueChange with a value within max', () => {
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({
+          onValueChange: handleValueChange,
+          max: 5,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton');
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement!, { target: { value: 9 } });
+        input.blur();
+      });
+
+      expect(handleValueChange.args[0][1]).to.equal(5);
+    });
+
+    it('should call onValueChange with a value within min', () => {
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({
+          onValueChange: handleValueChange,
+          min: 5,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton');
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement!, { target: { value: -9 } });
+        input.blur();
+      });
+
+      expect(handleValueChange.args[0][1]).to.equal(5);
+    });
+
+    it('should call onValueChange with a value based on a custom step', () => {
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({
+          onValueChange: handleValueChange,
+          min: 0,
+          step: 5,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton');
+
+      act(() => {
+        input.focus();
+        fireEvent.change(document.activeElement!, { target: { value: 4 } });
+        input.blur();
+      });
+
+      expect(handleValueChange.args[0][1]).to.equal(5);
+    });
   });
 });
