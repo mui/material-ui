@@ -44,7 +44,7 @@ const Table = styled('table')(({ theme }) => ({
 const extractFromVar = (value, field) =>
   (value || '').replace(`var(--joy-${field}-`, '').replace(')', '');
 
-export default function FontSizeThemeViewer() {
+export default function TypographyThemeViewer() {
   const levels = Object.keys(defaultTheme.typography);
 
   const renderSwatch = (colorScheme, token) =>

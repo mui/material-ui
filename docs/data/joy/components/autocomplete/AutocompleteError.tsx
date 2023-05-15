@@ -4,7 +4,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Autocomplete from '@mui/joy/Autocomplete';
 
-export default function InputAppearance() {
+export default function AutocompleteError() {
   return (
     <FormControl error>
       <FormLabel>Invalid</FormLabel>

@@ -7,7 +7,7 @@ import Checkbox from '@mui/joy/Checkbox';
 import Add from '@mui/icons-material/Add';
 import Remove from '@mui/icons-material/Remove';
 
-export default function ColorBadge() {
+export default function NumberBadge() {
   const [count, setCount] = React.useState(0);
   const [showZero, setShowZero] = React.useState(false);
   return (

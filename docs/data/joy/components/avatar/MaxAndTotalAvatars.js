@@ -15,7 +15,7 @@ function clampAvatars(avatars, options = { max: 5 }) {
   return { avatars: avatars.slice(0, maxAvatars).reverse(), surplus };
 }
 
-export default function GroupedAvatars() {
+export default function MaxAndTotalAvatars() {
   const dataFromTheServer = {
     people: [
       {

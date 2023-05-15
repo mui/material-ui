@@ -26,7 +26,7 @@ const data = [
   },
 ];
 
-export default function FlexRowRatio() {
+export default function ListStackRatio() {
   return (
     <Sheet
       variant="outlined"

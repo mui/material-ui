@@ -12,7 +12,7 @@ import Check from '@mui/icons-material/Check';
 import Close from '@mui/icons-material/Close';
 import Warning from '@mui/icons-material/Warning';
 
-export default function AlertBasic() {
+export default function AlertInvertedColors() {
   return (
     <Stack spacing={2} sx={{ maxWidth: 400 }}>
       <Alert

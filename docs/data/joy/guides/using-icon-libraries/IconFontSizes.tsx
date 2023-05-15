@@ -3,7 +3,7 @@ import { useTheme } from '@mui/joy/styles';
 import Stack from '@mui/joy/Stack';
 import Person from '@mui/icons-material/Person';
 
-export default function JoyMaterialIcon() {
+export default function IconFontSizes() {
   const theme = useTheme();
   return (
     <Stack
