@@ -6,7 +6,7 @@
 
 Os utilitários permitem que você controle a profundidade ou distância relativa entre duas superfícies ao longo do eixo z. By default, there are 25 elevation levels.
 
-{{"demo": "Demo.js", "defaultCodeOpen": false, "bg": true}}
+{{"demo": "ShadowsDemo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ boxShadow: 0 }}>…
