@@ -66,6 +66,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     placeholder,
     required,
     readOnly,
+    shiftMultiplier,
     step,
     value,
     slotProps = {},
@@ -88,6 +89,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     min,
     max,
     step,
+    shiftMultiplier,
     defaultValue,
     disabled,
     error,
@@ -247,6 +249,11 @@ NumberInput.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   required: PropTypes.bool,
+  /**
+   * Multiplier applied to `step` if the shift key is held while incrementing
+   * or decrementing the value. Defaults to `10`.
+   */
+  shiftMultiplier: PropTypes.number,
   /**
    * The props used for each slot inside the NumberInput.
    * @default {}

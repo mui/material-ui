@@ -12,6 +12,7 @@
     "onValueChange": "Callback fired after the value is clamped and changes. Called with <code>undefined</code> when the value is unset.",
     "readOnly": "If <code>true</code>, the <code>input</code> element becomes read-only. The stepper buttons remain active, with the addition that they are now keyboard focusable.",
     "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "shiftMultiplier": "Multiplier applied to <code>step</code> if the shift key is held while incrementing or decrementing the value. Defaults to <code>10</code>.",
     "slotProps": "The props used for each slot inside the NumberInput.",
     "slots": "The components used for each slot inside the InputBase. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details.",
     "step": "The amount that the value changes on each increment or decrement.",

@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import NumberInput, { numberInputClasses, NumberInputOwnerState } from '@mui/base/NumberInput';
+import {
+  act,
+  createMount,
+  createRenderer,
+  describeConformanceUnstyled,
+  fireEvent,
+} from 'test/utils';
 
 describe('<NumberInput />', () => {
   const mount = createMount();
@@ -74,5 +81,138 @@ describe('<NumberInput />', () => {
       expect(renderedComponents[i]).to.have.attribute('data-decrementdisabled', 'false');
       expect(renderedComponents[i]).to.have.attribute('data-incrementdisabled', 'false');
     }
+  });
+
+  describe('keyboard interaction', () => {
+    it('ArrowUp and ArrowDown changes the value', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={10} onValueChange={handleValueChange} />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      expect(handleValueChange.args[1][1]).to.equal(12);
+      expect(input.value).to.equal('12');
+
+      fireEvent.keyDown(input, { key: 'Down' });
+      expect(handleValueChange.args[2][1]).to.equal(11);
+      expect(handleValueChange.callCount).to.equal(3);
+    });
+
+    it('ArrowUp and ArrowDown changes the value based on a custom step', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={10} step={5} onValueChange={handleValueChange} />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      expect(handleValueChange.args[1][1]).to.equal(20);
+      expect(input.value).to.equal('20');
+
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      expect(handleValueChange.args[2][1]).to.equal(15);
+      expect(handleValueChange.callCount).to.equal(3);
+      expect(input.value).to.equal('15');
+    });
+
+    it('ArrowUp and ArrowDown changes the value based on shiftMultiplier if the Shift key is held', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={20} shiftMultiplier={5} onValueChange={handleValueChange} />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'ArrowUp', shiftKey: true });
+      expect(handleValueChange.args[0][1]).to.equal(25);
+      expect(input.value).to.equal('25');
+
+      fireEvent.keyDown(input, { key: 'ArrowDown', shiftKey: true });
+      fireEvent.keyDown(input, { key: 'ArrowDown', shiftKey: true });
+      expect(handleValueChange.args[2][1]).to.equal(15);
+      expect(handleValueChange.callCount).to.equal(3);
+      expect(input.value).to.equal('15');
+    });
+
+    it('PageUp and PageDown changes the value based on shiftMultiplier', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={20} shiftMultiplier={5} onValueChange={handleValueChange} />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'PageUp' });
+      expect(handleValueChange.args[0][1]).to.equal(25);
+      expect(input.value).to.equal('25');
+
+      fireEvent.keyDown(input, { key: 'PageDown' });
+      fireEvent.keyDown(input, { key: 'PageDown' });
+      expect(handleValueChange.args[2][1]).to.equal(15);
+      expect(handleValueChange.callCount).to.equal(3);
+      expect(input.value).to.equal('15');
+    });
+
+    it('sets value to max when Home is pressed', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={10} max={50} onValueChange={handleValueChange} />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'Home', shiftKey: true });
+      expect(handleValueChange.args[0][1]).to.equal(50);
+      expect(input.value).to.equal('50');
+    });
+
+    it('sets value to min when End is pressed', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(
+        <NumberInput defaultValue={10} min={1} onValueChange={handleValueChange} />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'End', shiftKey: true });
+      expect(handleValueChange.args[0][1]).to.equal(1);
+      expect(input.value).to.equal('1');
+    });
   });
 });

@@ -11,6 +11,7 @@
     "onValueChange": { "type": { "name": "func" } },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
+    "shiftMultiplier": { "type": { "name": "number" } },
     "slotProps": {
       "type": {
         "name": "shape",

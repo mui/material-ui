@@ -87,7 +87,7 @@ export default function useNumberInput(
   // the "final" value
   const [value, setValue] = React.useState(valueProp ?? defaultValueProp);
   // the (potentially) dirty or invalid input value
-  const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(undefined);
+  const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(String(value));
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
@@ -215,10 +215,9 @@ export default function useNumberInput(
 
       if (isNumber(value)) {
         const multiplier =
-          event.shiftKey ||
-          (event.nativeEvent instanceof KeyboardEvent &&
-            ((event as React.KeyboardEvent).key === 'PageUp' ||
-              (event as React.KeyboardEvent).key === 'PageDown'))
+          event.shiftKey /* event.nativeEvent instanceof KeyboardEvent && */ ||
+          (event as React.KeyboardEvent).key === 'PageUp' ||
+          (event as React.KeyboardEvent).key === 'PageDown'
             ? shiftMultiplier
             : 1;
         newValue = {
@@ -315,7 +314,7 @@ export default function useNumberInput(
       // TODO: check to see if SR support is still weird
       role: 'spinbutton',
       'aria-invalid': errorProp || undefined,
-      defaultValue: defaultValueProp as number | undefined,
+      defaultValue: undefined,
       ref: handleInputRef,
       value: displayValue as number | undefined,
       'aria-valuenow': displayValue as number | undefined,

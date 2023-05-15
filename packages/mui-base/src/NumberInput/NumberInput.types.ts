@@ -79,7 +79,7 @@ export type NumberInputRootSlotProps = Simplify<
     ownerState: NumberInputOwnerState;
     className?: string;
     children?: React.ReactNode;
-    ref?: React.Ref<HTMLDivElement>;
+    ref?: React.Ref<Element>;
   }
 >;
 

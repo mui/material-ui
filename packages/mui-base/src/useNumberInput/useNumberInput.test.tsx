@@ -39,7 +39,7 @@ describe('useNumberInput', () => {
       expect(inputProps.tabIndex).to.equal(0);
     });
 
-    it('should include the incoming uncontrolled props in the output', () => {
+    it('should accept defaultValue in uncontrolled mode', () => {
       const props: UseNumberInputParameters = {
         defaultValue: 100,
         disabled: true,
@@ -49,7 +49,7 @@ describe('useNumberInput', () => {
       const { getInputProps } = invokeUseNumberInput(props);
       const inputProps = getInputProps();
 
-      expect(inputProps.defaultValue).to.equal(100);
+      expect(inputProps.value).to.equal(100);
       expect(inputProps.required).to.equal(true);
     });
 
