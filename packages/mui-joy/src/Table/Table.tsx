@@ -423,6 +423,12 @@ Table.propTypes /* remove-proptypes */ = {
   /**
    * Set the header sticky.
    *
+   * @default false
+   */
+  stickyFooter: PropTypes.bool,
+  /**
+   * Set the header sticky.
+   *
    * ⚠️ It doesn't work with IE11.
    * @default false
    */
