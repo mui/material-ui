@@ -12,7 +12,7 @@ const Item = styled('div')(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function AutoGrid() {
+export default function OverflowGrid() {
   return (
     <Box
       sx={(theme) => ({
