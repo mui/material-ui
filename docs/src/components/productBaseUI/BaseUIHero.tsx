@@ -1,5 +1,6 @@
 import * as React from 'react';
-import SelectUnstyled from '@mui/base/Select';
+import clsx from 'clsx';
+import useSelect, { SelectProvider } from '@mui/base/useSelect';
 import OptionUnstyled from '@mui/base/Option';
 import SwitchUnstyled from '@mui/base/Switch';
 import { styled } from '@mui/system';
@@ -18,13 +19,6 @@ import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
 import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
 import CodeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import GetStartedButtons2 from '../home/GetStartedButtons2';
-
-const Div = React.forwardRef<
-  HTMLDivElement,
-  { anchorEl?: any; ownerState?: any; open?: any; placement?: any }
->(function Div({ anchorEl, ownerState, open, placement, ...props }, ref) {
-  return <div ref={ref} {...props} />;
-});
 
 const StyledSwitchRoot = styled('span')(`
   font-size: 0;
@@ -102,6 +96,79 @@ const StyledSwitchThumb = styled('span')`
   }
 `;
 
+function CustomSelect() {
+  const buttonRef = React.useRef<HTMLElement | null>(null);
+
+  const {
+    buttonActive,
+    buttonFocusVisible,
+    contextValue,
+    disabled,
+    getButtonProps,
+    getListboxProps,
+    getOptionMetadata,
+    value,
+  } = useSelect<string>({
+    buttonRef,
+    defaultOpen: true,
+  });
+
+  const selectedOption = getOptionMetadata(value!);
+
+  return (
+    <React.Fragment>
+      <button
+        type="button"
+        className={clsx(
+          'MuiSelect-root',
+          buttonFocusVisible && 'Mui-focusVisible',
+          buttonActive && 'Mui-active',
+          disabled && 'Mui-disabled',
+        )}
+        {...getButtonProps()}
+      >
+        <Box sx={{ color: selectedOption ? undefined : 'grey.600' }}>
+          {selectedOption?.label ?? 'choose an option'}
+        </Box>
+        <ArrowDropDownRounded sx={{ mr: -1 }} />
+      </button>
+      <SelectProvider value={contextValue}>
+        <ul className="MuiSelect-listbox" {...getListboxProps()}>
+          <li role="none">
+            <ul role="group" aria-label="input components">
+              <li role="presentation">Input components</li>
+              <OptionUnstyled value="1">
+                <SmartButtonRoundedIcon />
+                Button
+              </OptionUnstyled>
+              <OptionUnstyled value="2">
+                <InputRoundedIcon />
+                Input
+              </OptionUnstyled>
+              <OptionUnstyled value="3">
+                <PlaylistAddCheckRoundedIcon />
+                Select
+              </OptionUnstyled>
+              <OptionUnstyled value="4">
+                <ToggleOn /> Switch
+              </OptionUnstyled>
+            </ul>
+          </li>
+          <li role="none">
+            <ul role="group" aria-label="Utils">
+              <li role="presentation">Utils</li>
+              <OptionUnstyled value="6">Click-away listener</OptionUnstyled>
+              <OptionUnstyled value="7">Form control</OptionUnstyled>
+              <OptionUnstyled value="8">Modal</OptionUnstyled>
+              <OptionUnstyled value="9">No SSR</OptionUnstyled>
+            </ul>
+          </li>
+        </ul>
+      </SelectProvider>
+    </React.Fragment>
+  );
+}
+
 function Demo({ label }: { label: string }) {
   return (
     <Box
@@ -121,50 +188,7 @@ function Demo({ label }: { label: string }) {
       <Typography sx={{ mb: 0.75, fontSize: 12, color: 'text.tertiary', fontWeight: 'bold' }}>
         {label}
       </Typography>
-      <SelectUnstyled
-        listboxOpen
-        defaultValue="3"
-        autoFocus={false}
-        renderValue={(option) => (
-          <React.Fragment>
-            <Box sx={{ color: option ? undefined : 'grey.600' }}>
-              {option?.label ?? 'choose an option'}
-            </Box>
-            <ArrowDropDownRounded />
-          </React.Fragment>
-        )}
-        slots={{ popper: Div }}
-      >
-        <li role="none">
-          <ul role="group" aria-label="input components">
-            <li role="presentation">Input components</li>
-            <OptionUnstyled value="1">
-              <SmartButtonRoundedIcon />
-              Button
-            </OptionUnstyled>
-            <OptionUnstyled value="2">
-              <InputRoundedIcon />
-              Input
-            </OptionUnstyled>
-            <OptionUnstyled value="3">
-              <PlaylistAddCheckRoundedIcon />
-              Select
-            </OptionUnstyled>
-            <OptionUnstyled value="4">
-              <ToggleOn /> Switch
-            </OptionUnstyled>
-          </ul>
-        </li>
-        <li role="none">
-          <ul role="group" aria-label="Utils">
-            <li role="presentation">Utils</li>
-            <OptionUnstyled value="6">Click-away listener</OptionUnstyled>
-            <OptionUnstyled value="7">Form control</OptionUnstyled>
-            <OptionUnstyled value="8">Modal</OptionUnstyled>
-            <OptionUnstyled value="9">No SSR</OptionUnstyled>
-          </ul>
-        </li>
-      </SelectUnstyled>
+      <CustomSelect />
     </Box>
   );
 }
@@ -216,6 +240,11 @@ const Wrapper = styled('div')({
   '--Select-width': '320px',
   '--Select-radius': '12px',
   '--Select-spacing': '12px',
+  boxSizing: 'border-box',
+  '& *:focus-visible': {
+    outline: '2px solid',
+    outlineColor: 'var(--muidocs-palette-grey-200)',
+  },
   '& .MuiSelect-root': {
     width: '100%',
     maxWidth: '100%',
@@ -241,14 +270,10 @@ const Wrapper = styled('div')({
       fontWeight: 500,
     },
   },
-  '& .MuiSelect-popper': {
-    width: '100%',
-    margin: 'var(--Select-spacing) 0',
-  },
   '& .MuiSelect-listbox': {
     display: 'flex',
     flexDirection: 'column',
-    margin: 0,
+    margin: 'var(--Select-spacing) 0',
     border: '1px solid',
     borderColor: 'var(--muidocs-palette-grey-200)',
     borderRadius: 'var(--Select-radius)',
@@ -286,6 +311,7 @@ const Wrapper = styled('div')({
         paddingBottom: '0.5rem',
       },
       '&[role="option"]': {
+        boxSizing: 'border-box',
         border: '1px solid transparent',
         padding: 'calc(var(--Select-spacing) * 0.75)',
         fontSize: '0.875rem',
@@ -293,7 +319,7 @@ const Wrapper = styled('div')({
         color: 'var(--muidocs-palette-text-secondary)',
         alignItems: 'center',
         cursor: 'pointer',
-        borderRadius: 'var(--Select-radius)',
+        borderRadius: 'calc(var(--Select-radius) - var(--Select-spacing) / 2)',
         '&:hover, &.MuiOption-highlighted': {
           backgroundColor: 'var(--muidocs-palette-grey-50)',
           color: 'var(--muidocs-palette-text-primary)',
@@ -508,6 +534,10 @@ export default function BaseUIHero() {
               { inset: 0, position: 'absolute', backgroundColor: 'inherit', py: 2 },
               customized
                 ? {
+                    '& *:focus-visible': {
+                      outline: '2px solid',
+                      outlineColor: 'var(--muidocs-palette-grey-200)',
+                    },
                     '& .MuiSelect-root': {
                       width: '100%',
                       maxWidth: '100%',
@@ -533,14 +563,10 @@ export default function BaseUIHero() {
                         fontWeight: 500,
                       },
                     },
-                    '& .MuiSelect-popper': {
-                      width: '100%',
-                      margin: 'var(--Select-spacing) 0',
-                    },
                     '& .MuiSelect-listbox': {
                       display: 'flex',
                       flexDirection: 'column',
-                      margin: 0,
+                      margin: 'var(--Select-spacing) 0',
                       border: '1px solid',
                       borderColor: 'var(--muidocs-palette-grey-200)',
                       borderRadius: 'var(--Select-radius)',
@@ -578,6 +604,7 @@ export default function BaseUIHero() {
                           paddingBottom: '0.5rem',
                         },
                         '&[role="option"]': {
+                          boxSizing: 'border-box',
                           border: '1px solid transparent',
                           padding: 'calc(var(--Select-spacing) * 0.75)',
                           fontSize: '0.875rem',
@@ -585,7 +612,7 @@ export default function BaseUIHero() {
                           color: 'var(--muidocs-palette-text-secondary)',
                           alignItems: 'center',
                           cursor: 'pointer',
-                          borderRadius: 'var(--Select-radius)',
+                          borderRadius: 'calc(var(--Select-radius) - var(--Select-spacing) / 2)',
                           '&:hover, &.MuiOption-highlighted': {
                             backgroundColor: 'var(--muidocs-palette-grey-50)',
                             color: 'var(--muidocs-palette-text-primary)',
@@ -608,6 +635,10 @@ export default function BaseUIHero() {
               customized
                 ? (theme) =>
                     theme.applyDarkStyles({
+                      '& *:focus-visible': {
+                        outline: '2px solid',
+                        outlineColor: (theme.vars || theme).palette.primaryDark[700],
+                      },
                       '& .MuiSelect-root': {
                         color: '#fff',
                         borderColor: 'primaryDark.700',
