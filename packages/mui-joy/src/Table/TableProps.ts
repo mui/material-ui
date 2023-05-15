@@ -64,15 +64,16 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TablePropsSizeOverrides>;
     /**
-     * Set the header sticky.
+     * If `true`, the header always appear at the top of the overflow table.
      *
      * ⚠️ It doesn't work with IE11.
      * @default false
      */
     stickyHeader?: boolean;
     /**
-     * Set the header sticky.
+     * If `true`, the footer always appear at the bottom of the overflow table.
      *
+     * ⚠️ It doesn't work with IE11.
      * @default false
      */
     stickyFooter?: boolean;
