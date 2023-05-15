@@ -6,7 +6,6 @@ import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
-
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
 export default function BaseUITestimonial() {
@@ -33,11 +32,9 @@ export default function BaseUITestimonial() {
               component="img"
               src="/static/branding/base-ui/nhost.jpg"
               alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
-              sx={{
-                width: '100%',
-                borderTopLeftRadius: '12px',
-                display: 'block',
-              }}
+              loading="lazy"
+              width="510"
+              sx={{ width: '100%', borderTopLeftRadius: '12px', display: 'block' }}
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>

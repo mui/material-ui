@@ -62,7 +62,7 @@ export default function XPlans() {
             >
               <Image
                 src={`/static/branding/mui-x/Mocktable-light.png`}
-                alt=""
+                alt="Illustration of MUI's pricing page."
                 loading="lazy"
                 width="300"
                 sx={(theme) => ({
