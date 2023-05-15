@@ -9,6 +9,8 @@ title: 9+ Free React Templates
 
 <!-- #default-branch-switch -->
 
+Our curated collection of Material UI templates includes dashboards, sign-in and sign-up pages, a blog, a checkout flow, and more.
+
 The templates can be combined with one of the [example projects](https://github.com/mui/material-ui/tree/master/examples) to form a complete starter.
 
 Sections of each layout are clearly defined either by comments or use of separate files,
