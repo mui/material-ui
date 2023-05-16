@@ -5,11 +5,11 @@
  * otherwise will pass back existing functions or null.
  */
 export default function createChainedFunction<Args extends any[], This>(
-  ...funcs: Array<(this: This, ...args: Args) => any>
+  ...funcs: Array<(this: This, ...args: Args) => any | null | undefined>
 ): (this: This, ...args: Args) => void {
   return funcs.reduce(
     (acc, func) => {
-      if (func == null) {
+      if (func === null || func === undefined) {
         return acc;
       }
 
