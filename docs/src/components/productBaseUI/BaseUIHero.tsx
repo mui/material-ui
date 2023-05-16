@@ -471,61 +471,6 @@ export default function BaseUIHero() {
             },
           }}
         >
-          <Box
-            sx={{
-              zIndex: 1,
-              position: 'absolute',
-              left: '0.75rem',
-              right: '0.75rem',
-              bottom: '0.75rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-            }}
-          >
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={<LaunchRoundedIcon />}
-              onClick={() =>
-                CodeSandbox.createReactApp({
-                  product: 'base',
-                  codeVariant: 'TS',
-                  title: 'Base UI - Select demo',
-                  githubLocation: '',
-                  language: 'en',
-                  raw: RAW,
-                }).openSandbox('/demo')
-              }
-            >
-              View on CodeSandbox
-            </Button>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <SwitchUnstyled
-                slots={{
-                  root: StyledSwitchRoot,
-                  input: StyledSwitchInput,
-                  thumb: StyledSwitchThumb,
-                }}
-                slotProps={{
-                  input: {
-                    id: 'styled-switch',
-                  },
-                }}
-                checked={customized}
-                onChange={(event) => {
-                  setCustomized(event.target.checked);
-                }}
-              />
-              <Typography
-                component="label"
-                htmlFor="styled-switch"
-                sx={{ color: 'primary.main', fontSize: '0.75rem', fontWeight: 600 }}
-              >
-                Toggle styles
-              </Typography>
-            </Box>
-          </Box>
           <Wrapper
             sx={[
               { inset: 0, position: 'absolute', backgroundColor: 'inherit', py: 2 },
@@ -665,6 +610,61 @@ export default function BaseUIHero() {
           >
             <Demo label="Select a component" />
           </Wrapper>
+          <Box
+            sx={{
+              zIndex: 1,
+              position: 'absolute',
+              left: '0.75rem',
+              right: '0.75rem',
+              bottom: '0.75rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+            }}
+          >
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<LaunchRoundedIcon />}
+              onClick={() =>
+                CodeSandbox.createReactApp({
+                  product: 'base',
+                  codeVariant: 'TS',
+                  title: 'Base UI - Select demo',
+                  githubLocation: '',
+                  language: 'en',
+                  raw: RAW,
+                }).openSandbox('/demo')
+              }
+            >
+              View on CodeSandbox
+            </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <SwitchUnstyled
+                slots={{
+                  root: StyledSwitchRoot,
+                  input: StyledSwitchInput,
+                  thumb: StyledSwitchThumb,
+                }}
+                slotProps={{
+                  input: {
+                    id: 'styled-switch',
+                  },
+                }}
+                checked={customized}
+                onChange={(event) => {
+                  setCustomized(event.target.checked);
+                }}
+              />
+              <Typography
+                component="label"
+                htmlFor="styled-switch"
+                sx={{ color: 'primary.main', fontSize: '0.75rem', fontWeight: 600 }}
+              >
+                Toggle styles
+              </Typography>
+            </Box>
+          </Box>
         </Box>
       }
     />
