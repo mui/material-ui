@@ -6,7 +6,7 @@
 
 _May 16, 2023_
 
-A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 25 contributors who made this release possible. Here are some highlights ✨:
 
 - 🌏 Added Central Myanmar (my-MY), Malay (ms-MS), Nepali (ne-NP), Tagalog (tl-TL) locales (#37017) @cccEric
 - 🐛 bug fixes and 📚 documentation improvements.
@@ -56,11 +56,12 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 - [core] Remove `toEqualDateTime` chai matcher (#37073) @flaviendelangle
 - [core] Check dependency cycles inside packages directory only (#37223) @michaldudak
+- [core] Remove outdated babel proposal plugins (#36795) @kkocdko
 - [website] Add Diego to About Us page (#37284) @DiegoAndai
 - [website] Add Victor teamMember card to 'About' (#37283) @zanivan
 - [website] Add Rich to the 'About' page (#37221) @richbustos
 
-All contributors of this release in alphabetical order: @Bastian, @binh1298, @cccEric, @cherniavskii, @DerTimonius, @DiegoAndai, @flaviendelangle, @hbjORbj, @jguddas, @kriskw1999, @mauwaz, @michaldudak, @mnajdova, @nickiaconis, @nicolas-ot, @oliviertassinari, @PunitSoniME, @richbustos, @safeamiiir, @sai6855, @siriwatknp, @uuxxx, @zanivan, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @Bastian, @binh1298, @cccEric, @cherniavskii, @DerTimonius, @DiegoAndai, @flaviendelangle, @hbjORbj, @jguddas, @kkocdko, @kriskw1999, @mauwaz, @michaldudak, @mnajdova, @nickiaconis, @nicolas-ot, @oliviertassinari, @PunitSoniME, @richbustos, @safeamiiir, @sai6855, @siriwatknp, @uuxxx, @zanivan, @ZeeshanTamboli
 
 ## 5.13.0
 
