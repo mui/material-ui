@@ -498,6 +498,35 @@ const teamMembers: Array<Profile> = [
     about: 'Open-source tinkerer',
     github: 'romgrk',
   },
+  {
+    src: '/static/branding/about/rich.png',
+    name: 'Rich Bustos',
+    title: 'Developer Advocate',
+    location: 'Daly City, CA, USA',
+    locationCountry: 'us',
+    about: 'I enjoy collecting sports cards and practicing jiu-jitsu',
+    github: 'richbustos',
+  },
+  {
+    src: '/static/branding/about/victor.png',
+    name: 'Victor Zanivan',
+    title: 'Senior Designer',
+    location: 'São Paulo, Brazil',
+    locationCountry: 'br',
+    about: 'Very geek 🎮 and love to watch/play football ⚽️',
+    github: 'zanivan',
+    twitter: 'Zanivan_',
+  },
+  {
+    name: 'Diego Andai',
+    src: '/static/branding/about/diego.png',
+    title: 'MUI Core Engineer',
+    location: 'Santiago, Chile',
+    locationCountry: 'cl',
+    about: 'I love tennis 🎾 and cats 🐈',
+    twitter: 'DiegoAndaiC',
+    github: 'DiegoAndai',
+  },
 ];
 
 const contributors = [
