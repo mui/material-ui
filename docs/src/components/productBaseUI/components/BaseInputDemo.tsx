@@ -16,9 +16,13 @@ const Field = styled('div')`
   height: var(--TextInput-height);
   background: var(--muidocs-palette-background-paper);
   border: 1px solid;
-  border-color: var(--muidocs-palette-primary-100);
+  border-color: var(--muidocs-palette-grey-300);
   border-radius: var(--muidocs-shape-borderRadius);
   outline-color: transparent;
+  box-shadow: 0 2px 4px 0 rgba(0 0 0 / 0.15);
+  &:hover {
+    border-color: var(--muidocs-palette-grey-500);
+  }
   &:focus-within {
     border-color: var(--muidocs-palette-primary-400);
     outline: 3px solid;
@@ -54,7 +58,16 @@ const Field = styled('div')`
   }
 
   :where([data-mui-color-scheme='dark']) & {
-    border-color: var(--muidocs-palette-primary-900);
+    border-color: var(--muidocs-palette-primaryDark-600);
+    box-shadow: 0 2px 4px 0 rgba(0 0 0 / 0.8);
+
+    &:hover {
+      border-color: var(--muidocs-palette-primaryDark-400);
+    }
+
+    & label {
+      color: var(--muidocs-palette-grey-600);
+    }
 
     &:focus-within {
       border-color: var(--muidocs-palette-primary-500);
@@ -68,7 +81,7 @@ const Field = styled('div')`
 `;
 const StyledInput = styled('input')`
   border: none;
-  padding: var(--TextInput-paddingTop) 0 0.25rem;
+  padding: var(--TextInput-paddingTop) 0 1rem;
   height: 100%;
   font-size: 1rem;
   background: unset;
@@ -91,7 +104,7 @@ const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicEleme
     return (
       <React.Fragment>
         <StyledInput ref={ref} {...props} id={id} />
-        <label htmlFor={id}>Floating label</label>
+        <label htmlFor={id}>Text input with floating label</label>
       </React.Fragment>
     );
   },
@@ -110,7 +123,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' }) {
       }}
     >
       <InputUnstyled
-        placeholder="Placeholder"
+        placeholder="Type something here"
         slots={{
           root: !styling ? undefined : Field,
           input: !styling ? undefined : FloatingLabelInput,

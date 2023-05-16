@@ -6,8 +6,6 @@ import Section from 'docs/src/layouts/Section';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
-
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
 export default function BaseUITestimonial() {
@@ -27,17 +25,16 @@ export default function BaseUITestimonial() {
               overflow: 'auto',
             }}
           >
-            <Typography variant="h4" mb={2.5} sx={{ color: '#fff' }}>
+            <Typography variant="h4" component="h2" mb={2.5} sx={{ color: '#fff' }}>
               Nhost&apos;s dashboard
             </Typography>
             <Box
               component="img"
               src="/static/branding/base-ui/nhost.jpg"
-              sx={{
-                width: '100%',
-                borderTopLeftRadius: '12px',
-                display: 'block',
-              }}
+              alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
+              loading="lazy"
+              width="510"
+              sx={{ width: '100%', borderTopLeftRadius: '12px', display: 'block' }}
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
@@ -46,7 +43,7 @@ export default function BaseUITestimonial() {
               /
             </Typography>
             &nbsp;&nbsp;
-            <Link href={ROUTES.baseDocs}>
+            <Link href="https://nhost.io/blog/new-database-ui" target="_blank">
               View the blog post <ArrowForward fontSize="small" />
             </Link>
           </Typography>
