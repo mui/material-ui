@@ -2,6 +2,7 @@ import { promises as fs, existsSync } from 'fs';
 import path from 'path';
 import zlib from 'zlib';
 import { promisify } from 'util';
+import * as url from 'url';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
@@ -10,6 +11,7 @@ import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 
 const gzip = promisify(zlib.gzip);
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
 /**
  * @param {{snapshotPath: string}} options
@@ -77,7 +79,7 @@ function sizeSnapshot(options) {
 function resolveNestedImport(packageFolder, importee) {
   const folder = importee.split('/')[2];
   const resolvedFilename = path.resolve(
-    __dirname,
+    currentDirectory,
     `../../../packages/${packageFolder}/src/${folder}/index`,
   );
 
@@ -124,7 +126,7 @@ const babelOptions = {
   // We are using @babel/plugin-transform-runtime
   runtimeHelpers: true,
   extensions: ['.js', '.ts', '.tsx'],
-  configFile: path.resolve(__dirname, '../../../babel.config.js'),
+  configFile: path.resolve(currentDirectory, '../../../babel.config.js'),
 };
 const commonjsOptions = {
   ignoreGlobal: true,
