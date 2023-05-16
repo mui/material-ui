@@ -162,14 +162,15 @@ describe('useSlotProps', () => {
     const externalClickHandler = spy();
     const externalForwardedClickHandler = spy();
 
-    const createInternalClickHandler = (otherHandlers: EventHandlers) => (e: React.MouseEvent) => {
-      expect(otherHandlers).to.deep.equal({
-        onClick: externalClickHandler,
-      });
+    const createInternalClickHandler =
+      (otherHandlers: EventHandlers) => (event: React.MouseEvent) => {
+        expect(otherHandlers).to.deep.equal({
+          onClick: externalClickHandler,
+        });
 
-      otherHandlers.onClick(e);
-      internalClickHandler(e);
-    };
+        otherHandlers.onClick(event);
+        internalClickHandler(event);
+      };
 
     // usually provided by the hook:
     const getSlotProps = (otherHandlers: EventHandlers) => ({
@@ -183,7 +184,7 @@ describe('useSlotProps', () => {
       test: true,
     };
 
-    // provided by the user by appending additonal props on the unstyled component:
+    // provided by the user by appending additional props on the Base UI component:
     const forwardedProps = {
       'data-test': 'externalForwarded',
       className: 'externalForwarded',
@@ -203,7 +204,7 @@ describe('useSlotProps', () => {
       },
     });
 
-    // set in the unstyled component:
+    // set in the Base UI component:
     const additionalProps = {
       className: 'additional',
       ref: additionalRef,

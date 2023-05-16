@@ -10,6 +10,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "defaultValue": {
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
@@ -41,6 +42,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
+      },
+      "default": "{}"
     },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": {
@@ -77,32 +92,7 @@
     }
   },
   "name": "Slider",
-  "styles": {
-    "classes": [
-      "root",
-      "marked",
-      "vertical",
-      "disabled",
-      "dragging",
-      "rail",
-      "track",
-      "trackFalse",
-      "trackInverted",
-      "thumb",
-      "active",
-      "focusVisible",
-      "mark",
-      "markActive",
-      "markLabel",
-      "markLabelActive"
-    ],
-    "globalClasses": {
-      "disabled": "Mui-disabled",
-      "active": "Mui-active",
-      "focusVisible": "Mui-focusVisible"
-    },
-    "name": "MuiSlider"
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": "MuiSlider" },
   "slots": [
     {
       "name": "root",
@@ -153,7 +143,37 @@
       "class": ".MuiSlider-input"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "dragging",
+      "focusVisible",
+      "markActive",
+      "marked",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "trackFalse",
+      "trackInverted",
+      "valueLabelOpen",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid",
+      "vertical"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoySlider",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Slider/Slider.tsx",
   "inheritance": null,

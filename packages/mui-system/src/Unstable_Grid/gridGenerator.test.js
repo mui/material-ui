@@ -102,7 +102,7 @@ describe('grid generator', () => {
       });
     });
 
-    it('filters out breakpoints keys based on responsize keys', () => {
+    it('filters out breakpoints keys based on responsive keys', () => {
       const styles = { sm: 6, md: 3, xl: 2, xs: 1 };
       const filteredKeys = filterBreakpointKeys(breakpoints.keys, Object.keys(styles));
       expect(filteredKeys).to.deep.equal(['xs', 'sm', 'md', 'xl']);
@@ -239,7 +239,7 @@ describe('grid generator', () => {
 
   describe('generateGridStyles', () => {
     it('root container', () => {
-      const result = generateGridStyles({ ownerState: { container: true, level: 0 } });
+      const result = generateGridStyles({ ownerState: { container: true, unstable_level: 0 } });
       expect(result).to.deep.equal({
         minWidth: 0,
         boxSizing: 'border-box',
@@ -250,27 +250,27 @@ describe('grid generator', () => {
     });
 
     it('nested container level 1', () => {
-      const result = generateGridStyles({ ownerState: { container: true, level: 1 } });
+      const result = generateGridStyles({ ownerState: { container: true, unstable_level: 1 } });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacing1) / -2) calc(var(--Grid-columnSpacing1) / -2)`,
+        margin: `calc(var(--Grid-rowSpacingLevel1) / -2) calc(var(--Grid-columnSpacingLevel1) / -2)`,
         padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
       });
     });
 
     it('nested container level 2', () => {
-      const result = generateGridStyles({ ownerState: { container: true, level: 2 } });
+      const result = generateGridStyles({ ownerState: { container: true, unstable_level: 2 } });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacing2) / -2) calc(var(--Grid-columnSpacing2) / -2)`,
-        padding: `calc(var(--Grid-rowSpacing1) / 2) calc(var(--Grid-columnSpacing1) / 2)`,
+        margin: `calc(var(--Grid-rowSpacingLevel2) / -2) calc(var(--Grid-columnSpacingLevel2) / -2)`,
+        padding: `calc(var(--Grid-rowSpacingLevel1) / 2) calc(var(--Grid-columnSpacingLevel1) / 2)`,
       });
     });
 
     it('root container with disableEqualOverflow', () => {
       const result = generateGridStyles({
-        ownerState: { container: true, level: 1, disableEqualOverflow: true },
+        ownerState: { container: true, unstable_level: 1, disableEqualOverflow: true },
       });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacing1) * -1) 0px 0px calc(var(--Grid-columnSpacing1) * -1)`,
+        margin: `calc(var(--Grid-rowSpacingLevel1) * -1) 0px 0px calc(var(--Grid-columnSpacingLevel1) * -1)`,
         padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
       });
     });
@@ -279,19 +279,19 @@ describe('grid generator', () => {
       const result = generateGridStyles({
         ownerState: {
           container: true,
-          level: 1,
+          unstable_level: 1,
           disableEqualOverflow: false,
           parentDisableEqualOverflow: true,
         },
       });
       sinon.assert.match(result, {
-        margin: `calc(var(--Grid-rowSpacing1) / -2) calc(var(--Grid-columnSpacing1) / -2)`,
+        margin: `calc(var(--Grid-rowSpacingLevel1) / -2) calc(var(--Grid-columnSpacingLevel1) / -2)`,
         padding: `var(--Grid-rowSpacing) 0px 0px var(--Grid-columnSpacing)`,
       });
     });
 
     it('item', () => {
-      const result = generateGridStyles({ ownerState: { container: false, level: 1 } });
+      const result = generateGridStyles({ ownerState: { container: false, unstable_level: 1 } });
       expect(result).to.deep.equal({
         minWidth: 0,
         boxSizing: 'border-box',
@@ -310,10 +310,10 @@ describe('grid generator', () => {
 
     it('item level 2', () => {
       const result = generateGridStyles({
-        ownerState: { container: false, disableEqualOverflow: true, level: 2 },
+        ownerState: { container: false, disableEqualOverflow: true, unstable_level: 2 },
       });
       sinon.assert.match(result, {
-        padding: `var(--Grid-rowSpacing1) 0px 0px var(--Grid-columnSpacing1)`,
+        padding: `var(--Grid-rowSpacingLevel1) 0px 0px var(--Grid-columnSpacingLevel1)`,
       });
     });
   });
@@ -473,9 +473,9 @@ describe('grid generator', () => {
     it('nested item level 1 should have default spacing set to parent', () => {
       const result = generateGridRowSpacingStyles({
         theme: { breakpoints },
-        ownerState: { container: true, level: 1 },
+        ownerState: { container: true, unstable_level: 1 },
       });
-      expect(result['--Grid-rowSpacing1']).to.equal('var(--Grid-rowSpacing)');
+      expect(result['--Grid-rowSpacingLevel1']).to.equal('var(--Grid-rowSpacing)');
     });
   });
 
@@ -537,9 +537,9 @@ describe('grid generator', () => {
     it('nested item level 1 should have default spacing set to parent', () => {
       const result = generateGridColumnSpacingStyles({
         theme: { breakpoints },
-        ownerState: { container: true, level: 1 },
+        ownerState: { container: true, unstable_level: 1 },
       });
-      expect(result['--Grid-columnSpacing1']).to.equal('var(--Grid-columnSpacing)');
+      expect(result['--Grid-columnSpacingLevel1']).to.equal('var(--Grid-columnSpacing)');
     });
   });
 

@@ -10,12 +10,13 @@ import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { renderInline as renderMarkdownInline } from '@mui/markdown';
 import { LANGUAGES } from 'docs/config';
-import { toGitHubPath, writePrettifiedFile, computeApiDescription } from './ComponentApiBuilder';
+import { toGitHubPath, computeApiDescription } from './ComponentApiBuilder';
 import {
   getSymbolDescription,
   getSymbolJSDocTags,
   HookInfo,
   stringifySymbol,
+  writePrettifiedFile,
 } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import muiDefaultParamsHandler from '../utils/defaultParamsHandler';
@@ -79,7 +80,7 @@ export interface ReactApi extends ReactDocgenApi {
  * /**
  * * Demos:
  * *
- * * - [Unstyled Button](https://mui.com/base/react-button/)
+ * * - [Button](https://mui.com/base/react-button/)
  * *
  * * API:
  * *
@@ -225,7 +226,7 @@ const attachTable = (
       const typeDescription = (propDescriptor.typeStr ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt')
+        .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;');
       return {
@@ -291,7 +292,7 @@ const attachTranslations = (reactApi: ReactApi) => {
   reactApi.translations = translations;
 };
 
-const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
+const generateApiJson = (outputDirectory: string, reactApi: ReactApi) => {
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -329,34 +330,6 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
   writePrettifiedFile(
     path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.json`),
     JSON.stringify(pageContent),
-  );
-
-  writePrettifiedFile(
-    path.resolve(outputDirectory, `${kebabCase(reactApi.name)}.js`),
-    `import * as React from 'react';
-import HookApiPage from 'docs/src/modules/components/HookApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './${kebabCase(reactApi.name)}.json';
-
-export default function Page(props) {
-  const { descriptions, pageContent } = props;
-  return <HookApiPage descriptions={descriptions} pageContent={pageContent} />;
-}
-
-Page.getInitialProps = () => {
-  const req = require.context(
-    'docs/translations/api-docs/${kebabCase(reactApi.name)}',
-    false,
-    /${kebabCase(reactApi.name)}.*.json$/,
-  );
-  const descriptions = mapApiPageTranslations(req);
-
-  return {
-    descriptions,
-    pageContent: jsonPageContent,
-  };
-};
-`.replace(/\r?\n/g, reactApi.EOL),
   );
 };
 
@@ -397,19 +370,16 @@ const generateApiTranslations = (outputDirectory: string, reactApi: ReactApi) =>
   });
 };
 
-const extractInfoFromInterface = (
-  interfaceName: string,
-  project: TypeScriptProject,
-): ParsedProperty[] => {
+const extractInfoFromType = (typeName: string, project: TypeScriptProject): ParsedProperty[] => {
   // Generate the params
   let result: ParsedProperty[] = [];
 
   try {
-    const exportedSymbol = project.exports[interfaceName];
+    const exportedSymbol = project.exports[typeName];
     const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
     // @ts-ignore
     const typeDeclaration = type?.symbol?.declarations?.[0];
-    if (!typeDeclaration || !ts.isInterfaceDeclaration(typeDeclaration)) {
+    if (!typeDeclaration) {
       return [];
     }
 
@@ -426,7 +396,7 @@ const extractInfoFromInterface = (
       .filter((property) => !property.tags.ignore)
       .sort((a, b) => a.name.localeCompare(b.name));
   } catch (e) {
-    console.error(`No declaration for ${interfaceName}`);
+    console.error(`No declaration for ${typeName}`);
   }
 
   return result;
@@ -460,8 +430,8 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
     { filename },
   );
 
-  const parameters = extractInfoFromInterface(`${upperFirst(name)}Parameters`, project);
-  const returnValue = extractInfoFromInterface(`${upperFirst(name)}ReturnValue`, project);
+  const parameters = extractInfoFromType(`${upperFirst(name)}Parameters`, project);
+  const returnValue = extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
 
   // Ignore what we might have generated in `annotateHookDefinition`
   const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
@@ -496,7 +466,7 @@ export default async function generateHookApi(hooksInfo: HookInfo, project: Type
   if (!skipApiGeneration) {
     // Generate pages, json and translations
     generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-    generateApiPage(apiPagesDirectory, reactApi);
+    generateApiJson(apiPagesDirectory, reactApi);
 
     // Add comment about demo & api links to the component hook file
     await annotateHookDefinition(reactApi);

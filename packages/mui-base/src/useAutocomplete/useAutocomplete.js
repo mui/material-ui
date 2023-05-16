@@ -164,7 +164,7 @@ export default function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const resetInputValue = React.useCallback(
-    (event, newValue) => {
+    (event, newValue, reason) => {
       // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
       // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
       const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
@@ -188,7 +188,7 @@ export default function useAutocomplete(props) {
       setInputValueState(newInputValue);
 
       if (onInputChange) {
-        onInputChange(event, newInputValue, 'reset');
+        onInputChange(event, newInputValue, reason);
       }
     },
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
@@ -247,7 +247,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    resetInputValue(null, value);
+    resetInputValue(null, value, 'reset');
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
@@ -348,7 +348,10 @@ export default function useAutocomplete(props) {
       prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    let listboxNode = listboxRef.current;
+    if (listboxRef.current.getAttribute('role') !== 'listbox') {
+      listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    }
 
     // "No results"
     if (!listboxNode) {
@@ -682,7 +685,7 @@ export default function useAutocomplete(props) {
       }
     }
 
-    resetInputValue(event, newValue);
+    resetInputValue(event, newValue, reason);
 
     handleValue(event, newValue, reason, { option });
     if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
@@ -938,7 +941,7 @@ export default function useAutocomplete(props) {
     } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'blur', 'freeSolo');
     } else if (clearOnBlur) {
-      resetInputValue(event, value);
+      resetInputValue(event, value, 'blur');
     }
 
     handleClose(event, 'blur');
@@ -965,12 +968,15 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleOptionMouseOver = (event) => {
-    setHighlightedIndex({
-      event,
-      index: Number(event.currentTarget.getAttribute('data-option-index')),
-      reason: 'mouse',
-    });
+  const handleOptionMouseMove = (event) => {
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    if (highlightedIndexRef.current !== index) {
+      setHighlightedIndex({
+        event,
+        index,
+        reason: 'mouse',
+      });
+    }
   };
 
   const handleOptionTouchStart = (event) => {
@@ -1007,13 +1013,21 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = (event) => {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = () => {
+  const handleClick = (event) => {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
     inputRef.current.focus();
 
     if (
@@ -1094,7 +1108,7 @@ export default function useAutocomplete(props) {
       onFocus: handleFocus,
       onChange: handleInputChange,
       onMouseDown: handleInputMouseDown,
-      // if open then this is handled imperativeley so don't let react override
+      // if open then this is handled imperatively so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
@@ -1144,7 +1158,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
-        onMouseOver: handleOptionMouseOver,
+        onMouseMove: handleOptionMouseMove,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
         'data-option-index': index,

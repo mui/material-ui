@@ -13,6 +13,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
@@ -31,6 +32,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: func<br>&#124;&nbsp;object, loadingIndicatorCenter?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: elementType, loadingIndicatorCenter?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
     },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
@@ -75,7 +90,32 @@
       "class": ".MuiButton-loadingIndicatorCenter"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "fullWidth",
+      "loading",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focusVisible": "Mui-focusVisible", "disabled": "Mui-disabled" }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Button/Button.tsx",
   "inheritance": null,

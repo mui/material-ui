@@ -3,7 +3,7 @@
     "actions": {
       "type": {
         "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { highlightFirstItem: func, highlightLastItem: func } }"
+        "description": "func<br>&#124;&nbsp;{ current?: { dispatch: func } }"
       }
     },
     "color": {
@@ -21,6 +21,14 @@
       },
       "default": "'md'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -37,7 +45,36 @@
   },
   "name": "MenuList",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiMenuList-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyMenuList",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/MenuList/MenuList.tsx",
   "inheritance": null,

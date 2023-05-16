@@ -91,7 +91,16 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     name: 'JoyBreadcrumbs',
   });
 
-  const { children, className, size = 'md', separator = '/', ...other } = props;
+  const {
+    children,
+    className,
+    size = 'md',
+    separator = '/',
+    component,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -100,26 +109,27 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: BreadcrumbsRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotOl, olProps] = useSlot('ol', {
     className: classes.ol,
     elementType: BreadcrumbsOl,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotLi, liProps] = useSlot('li', {
     className: classes.li,
     elementType: BreadcrumbsLi,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -129,7 +139,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     },
     className: classes.separator,
     elementType: BreadcrumbsSeparator,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -178,6 +188,11 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * Custom separator node.
    * @default '/'
    */
@@ -191,6 +206,26 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    li: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    ol: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    li: PropTypes.elementType,
+    ol: PropTypes.elementType,
+    root: PropTypes.elementType,
+    separator: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

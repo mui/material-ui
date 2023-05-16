@@ -1,5 +1,5 @@
-<FormControlUnstyled defaultValue="" required>
+<FormControl defaultValue="" required>
   <Label>Name</Label>
-  <Input />
+  <StyledInput />
   <HelperText />
-</FormControlUnstyled>
+</FormControl>

@@ -8,16 +8,19 @@ import {
   screen,
   act,
   fireEvent,
-  strictModeDoubleLoggingSupressed,
+  strictModeDoubleLoggingSuppressed,
   describeJoyColorInversion,
 } from 'test/utils';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/joy/Autocomplete';
+import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import Chip, { chipClasses } from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
-import { ThemeProvider } from '@mui/joy/styles';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+import { ThemeProvider, styled } from '@mui/joy/styles';
 
 function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -37,7 +40,9 @@ function checkHighlightIs(listbox: HTMLElement, expected: string | null) {
 describe('Joy <Autocomplete />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Autocomplete options={[]} />, () => ({
+  const StyledInput = styled('input')({});
+
+  describeConformance(<Autocomplete options={['one', 'two']} defaultValue="one" open />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -46,7 +51,31 @@ describe('Joy <Autocomplete />', () => {
     muiName: 'JoyAutocomplete',
     testDeepOverrides: { slotName: 'popupIndicator', slotClassName: classes.popupIndicator },
     testVariantProps: { size: 'lg' },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: [
+      'componentsProp',
+      'classesRoot',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      input: {
+        testWithComponent: React.forwardRef<HTMLInputElement>((props, ref) => (
+          <StyledInput ref={ref} {...props} data-testid="custom" />
+        )),
+        testWithElement: null,
+        expectedClassName: classes.input,
+      },
+      listbox: {
+        testWithComponent: React.forwardRef<HTMLUListElement>((props, ref) => (
+          <AutocompleteListbox ref={ref} {...props} data-testid="custom" />
+        )),
+        testWithElement: null,
+        expectedClassName: classes.listbox,
+      },
+    },
   }));
 
   describeJoyColorInversion(<Autocomplete options={[]} open />, {
@@ -554,6 +583,7 @@ describe('Joy <Autocomplete />', () => {
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
     function Test(props: any) {
+      const { key, ...others } = props;
       return (
         <div
           onKeyDown={(event) => {
@@ -562,7 +592,7 @@ describe('Joy <Autocomplete />', () => {
             }
           }}
         >
-          <Autocomplete autoFocus options={['one', 'two']} {...props} />
+          <Autocomplete autoFocus options={['one', 'two']} key={key} {...others} />
         </div>
       );
     }
@@ -657,7 +687,7 @@ describe('Joy <Autocomplete />', () => {
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
       expect(textbox).to.have.attribute('aria-autocomplete', 'list');
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
 
@@ -681,7 +711,7 @@ describe('Joy <Autocomplete />', () => {
 
       const listbox = getByRole('listbox');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id')!);
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
 
@@ -703,7 +733,7 @@ describe('Joy <Autocomplete />', () => {
         <Autocomplete open options={['one', 'two']} autoFocus />,
       );
       const textbox = getByRole('combobox');
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -711,7 +741,7 @@ describe('Joy <Autocomplete />', () => {
       const options = getAllByRole('option');
       expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id')!);
       setProps({ open: false });
-      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
       );
     });
@@ -759,6 +789,15 @@ describe('Joy <Autocomplete />', () => {
         expect(handleOpen.callCount).to.equal(2);
         expect(textbox).not.to.have.attribute('aria-activedescendant');
       });
+    });
+
+    it('should open popup when clicked on the root element', () => {
+      const handleOpen = spy();
+      render(<Autocomplete onOpen={handleOpen} options={['one']} />);
+
+      const root = document.querySelector(`.${classes.root}`)!;
+      fireEvent.click(root);
+      expect(handleOpen.callCount).to.equal(1);
     });
 
     it('does not clear the textbox on Escape', () => {
@@ -976,7 +1015,7 @@ describe('Joy <Autocomplete />', () => {
     });
 
     describe('prop: includeInputInList', () => {
-      it('considers the textbox the predessor of the first option when pressing Up', () => {
+      it('considers the textbox the predecessor of the first option when pressing Up', () => {
         render(
           <Autocomplete includeInputInList open options={['one', 'two', 'three']} autoFocus />,
         );
@@ -1132,9 +1171,9 @@ describe('Joy <Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'Enter' });
       }).toErrorDev([
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        !strictModeDoubleLoggingSupressed &&
+        !strictModeDoubleLoggingSuppressed &&
           'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1183,13 +1222,13 @@ describe('Joy <Autocomplete />', () => {
         render(<Autocomplete value={value} options={options} />);
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
-        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSuppressed && 'None of the options match with `"not a good value"`',
         // React 18 Strict Effects run mount effects twice which lead to a cascading update
         React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
         React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSupressed &&
+          !strictModeDoubleLoggingSuppressed &&
           'None of the options match with `"not a good value"`',
       ]);
     });
@@ -1216,7 +1255,7 @@ describe('Joy <Autocomplete />', () => {
         );
       }).toWarnDev([
         'returns duplicated headers',
-        !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
+        !strictModeDoubleLoggingSuppressed && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
@@ -1251,6 +1290,46 @@ describe('Joy <Autocomplete />', () => {
   });
 
   describe('prop: options', () => {
+    it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      render(
+        <React.Fragment>
+          <Autocomplete
+            defaultValue={'six'}
+            options={['one', 'two', 'three', 'four', 'five', 'six']}
+            slotProps={{
+              listbox: {
+                'data-testid': 'autocomplete-listbox',
+                sx: {
+                  height: '40px',
+                },
+              },
+              input: {
+                'data-testid': 'autocomplete-input',
+              },
+            }}
+            autoFocus
+          />
+          <Select defaultValue="1">
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+          </Select>
+        </React.Fragment>,
+      );
+      const autocompleteInput = screen.getByTestId('autocomplete-input');
+
+      act(() => {
+        autocompleteInput.focus();
+      });
+      fireEvent.keyDown(autocompleteInput, { key: 'ArrowDown' });
+
+      const autocompleteListbox = screen.getByTestId('autocomplete-listbox');
+
+      checkHighlightIs(autocompleteListbox, 'six');
+      expect(autocompleteListbox.scrollTop).to.greaterThan(0);
+    });
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const { setProps } = render(<Autocomplete open options={['one', 'two']} autoFocus />);
       const textbox = screen.getByRole('combobox');
@@ -1807,24 +1886,31 @@ describe('Joy <Autocomplete />', () => {
 
     it('provides a reason on select reset', () => {
       const handleInputChange = spy();
-      const options = [{ name: 'foo' }];
-      render(
-        <Autocomplete
-          onInputChange={handleInputChange}
-          openOnFocus
-          options={options}
-          getOptionLabel={(option) => option.name}
-          autoFocus
-        />,
-      );
-      const textbox = screen.getByRole('combobox');
+      const options = [{ name: 'foo' }, { name: 'bar' }];
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+      function MyComponent() {
+        const [value, setValue] = React.useState(options[0]);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              onInputChange={handleInputChange}
+              openOnFocus
+              options={options}
+              getOptionLabel={(option) => option.name}
+              value={value}
+            />
+            <button onClick={() => setValue(options[1])}>Reset</button>
+          </React.Fragment>
+        );
+      }
+      render(<MyComponent />);
+      const resetBtn = screen.getByText('Reset');
 
-      expect(handleInputChange.callCount).to.equal(1);
-      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
-      expect(handleInputChange.args[0][2]).to.equal('reset');
+      fireEvent.click(resetBtn);
+
+      expect(handleInputChange.callCount).to.equal(4);
+      expect(handleInputChange.args[3][1]).to.equal(options[1].name);
+      expect(handleInputChange.args[3][2]).to.equal('reset');
     });
   });
 
@@ -2049,7 +2135,7 @@ describe('Joy <Autocomplete />', () => {
         <Autocomplete onHighlightChange={handleHighlightChange} options={options} open autoFocus />,
       );
       const firstOption = getAllByRole('option')[0];
-      fireEvent.mouseOver(firstOption);
+      fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
         React.version.startsWith('18') ? 4 : 3,

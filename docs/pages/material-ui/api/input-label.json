@@ -61,6 +61,8 @@
     "name": "MuiInputLabel"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInputLabel",
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/material-ui/api/form-label/" },

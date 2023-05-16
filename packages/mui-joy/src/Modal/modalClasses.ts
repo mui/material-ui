@@ -1,9 +1,9 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ModalClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the backdrop element. */
+  /** Class name applied to the backdrop element. */
   backdrop: string;
 }
 

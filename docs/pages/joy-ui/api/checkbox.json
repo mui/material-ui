@@ -5,11 +5,12 @@
     "className": { "type": { "name": "string" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
+        "name": "union",
+        "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "disableIcon": { "type": { "name": "bool" }, "default": "false" },
@@ -24,6 +25,20 @@
     "size": {
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, checkbox?: func<br>&#124;&nbsp;object, input?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, checkbox?: elementType, input?: elementType, label?: elementType, root?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -80,7 +95,35 @@
       "class": ".MuiCheckbox-label"
     }
   ],
+  "classes": {
+    "classes": [
+      "checked",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "indeterminate",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {
+      "checked": "Mui-checked",
+      "disabled": "Mui-disabled",
+      "focusVisible": "Mui-focusVisible"
+    }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyCheckbox",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Checkbox/Checkbox.tsx",
   "inheritance": null,

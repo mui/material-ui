@@ -17,7 +17,7 @@ export interface RadioClasses {
   checked: string;
   /** State class applied to the root, action slots if `disabled`. */
   disabled: string;
-  /** Class applied to the root element if the switch has visible focus */
+  /** Class name applied to the root element if the switch has visible focus */
   focusVisible: string;
   /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
@@ -31,7 +31,7 @@ export interface RadioClasses {
   colorSuccess: string;
   /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element when color inversion is triggered. */
+  /** Class name applied to the root element when color inversion is triggered. */
   colorContext: string;
   /** Class name applied to the root element if `size="sm"`. */
   sizeSm: string;

@@ -9,13 +9,13 @@ unstyled: /base/react-input/
 
 <p class="description">The Input component facilitates the entry of text data from the user.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
-The Input component enhances the functionality of the native HTML `<input>` tag by providing expanded customization options and accessibilty features.
+The Input component enhances the functionality of the native HTML `<input>` tag by providing expanded customization options and accessibility features.
 
 {{"demo": "InputUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 
@@ -87,7 +87,7 @@ With inputs, decorators are typically located at the top and/or bottom of the in
 ### Inner HTML input
 
 If you need to pass props to the inner HTML `<input>`, use `slotProps={{ input: { ...props } }}`.
-These props may include HTML attributes such as `min`, `max`, and `autocomplete`.
+These props may include HTML attributes such as `ref`, `min`, `max`, and `autocomplete`.
 
 {{"demo": "InputSlotProps.js"}}
 
@@ -99,7 +99,7 @@ These props may include HTML attributes such as `min`, `max`, and `autocomplete`
 
 ## CSS variable playground
 
-Play around with the CSS variables available to the Avatar component to see how the design changes.
+Play around with the CSS variables available to the Input component to see how the design changes.
 You can use these to customize the component with both the `sx` prop and the theme.
 
 {{"demo": "InputVariables.js", "hideToolbar": true}}

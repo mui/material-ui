@@ -64,6 +64,8 @@
   "name": "TextField",
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTextField",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/TextField/TextField.js",
   "inheritance": { "component": "FormControl", "pathname": "/material-ui/api/form-control/" },

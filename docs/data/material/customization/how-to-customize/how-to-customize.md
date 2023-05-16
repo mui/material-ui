@@ -25,7 +25,7 @@ It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
 
-#### Overriding nested component styles
+### Overriding nested component styles
 
 To customize a specific part of a component, you can use the class name provided by Material UI inside the `sx` prop. As an example, let's say you want to change the `Slider` component's thumb from a circle to a square.
 
@@ -36,7 +36,7 @@ The styles injected into the DOM by Material UI rely on class names that all [fo
 
 In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you only really need to target the `.MuiSlider-thumb`, where `Slider` is the component and `thumb` is the slot. Use this class name to write a CSS selector within the `sx` prop (`& .MuiSlider-thumb`), and add your overrides.
 
-<img src="/static/images/customization/dev-tools.png" alt="dev-tools" width="796" style="margin-bottom: 16px;" />
+<img src="/static/images/customization/dev-tools.png" alt="dev-tools" style="margin-bottom: 16px;" width="2400" height="800" />
 
 {{"demo": "DevTools.js"}}
 
@@ -113,6 +113,7 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | expanded      | `.Mui-expanded`     |
 | focus visible | `.Mui-focusVisible` |
 | focused       | `.Mui-focused`      |
+| readOnly      | `.Mui-readOnly`     |
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
