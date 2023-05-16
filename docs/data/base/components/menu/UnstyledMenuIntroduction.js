@@ -69,7 +69,7 @@ export default function UnstyledMenuIntroduction() {
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
       >
-        My account
+        Open my account
       </TriggerButton>
       <Menu
         actions={menuActions}
@@ -168,10 +168,11 @@ const TriggerButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
+  font-weight: 600;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 8px 14px;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { EventHandlers } from '../utils/types';
+import { MuiCancellableEventHandler } from '../utils/muiCancellableEvent';
 
 export interface UseButtonRootSlotOwnProps {
   'aria-disabled'?: React.AriaAttributes['aria-disabled'];
@@ -9,8 +10,8 @@ export interface UseButtonRootSlotOwnProps {
   role?: React.AriaRole;
   onBlur: React.FocusEventHandler;
   onFocus: React.FocusEventHandler;
-  onKeyDown: React.KeyboardEventHandler;
-  onKeyUp: React.KeyboardEventHandler;
+  onKeyDown: MuiCancellableEventHandler<React.KeyboardEvent>;
+  onKeyUp: MuiCancellableEventHandler<React.KeyboardEvent>;
   onMouseDown: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
   ref: React.RefCallback<Element> | null;
