@@ -19,7 +19,7 @@ const blue = {
 };
 
 const CustomButton = styled(Button)`
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
   background-color: ${blue[500]};

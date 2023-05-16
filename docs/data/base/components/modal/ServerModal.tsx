@@ -49,7 +49,7 @@ const StyledModal = styled(Modal)`
   justify-content: center;
   padding: 8px;
   background: inherit;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 `;
 
 const style = (theme: Theme) => ({

@@ -65,7 +65,7 @@ const Label = styled(({ children, className }) => {
     </p>
   );
 })`
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   margin-bottom: 4px;
 
@@ -93,7 +93,7 @@ const HelperText = styled((props) => {
 
   return showRequiredError ? <p {...props}>This field is required.</p> : null;
 })`
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
 `;
 

@@ -104,7 +104,7 @@ const StyledSnackbar = styled(Snackbar)(
       : `0 2px 8px ${grey[200]}`};
     padding: 0.75rem;
     color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-    font-family: "IBM Plex Sans", sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 600;
     animation: ${snackbarInRight} 200ms;
     transition: transform 0.2s ease-out;
