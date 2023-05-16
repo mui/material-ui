@@ -10,8 +10,9 @@ import { SlotComponentProps } from '../utils';
 
 export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}
-export interface NumberInputIncrementButtonSlotPropsOverrides {}
-export interface NumberInputDecrementButtonSlotPropsOverrides {}
+export interface NumberInputStepperButtonSlotPropsOverrides {
+  'data-testid'?: string;
+}
 
 export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   /**
@@ -31,12 +32,12 @@ export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
     input?: SlotComponentProps<'input', NumberInputInputSlotPropsOverrides, NumberInputOwnerState>;
     incrementButton?: SlotComponentProps<
       'button',
-      NumberInputIncrementButtonSlotPropsOverrides,
+      NumberInputStepperButtonSlotPropsOverrides,
       NumberInputOwnerState
     >;
     decrementButton?: SlotComponentProps<
       'button',
-      NumberInputDecrementButtonSlotPropsOverrides,
+      NumberInputStepperButtonSlotPropsOverrides,
       NumberInputOwnerState
     >;
   };

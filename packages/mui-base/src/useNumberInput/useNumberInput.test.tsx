@@ -181,4 +181,37 @@ describe('useNumberInput', () => {
       expect(handleValueChange.args[0][1]).to.equal(5);
     });
   });
+
+  describe('prop: readOnly', () => {
+    it('stepper buttons should not be in the tab order when readOnly is false', () => {
+      const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+        invokeUseNumberInput({
+          defaultValue: 10,
+        });
+
+      const inputProps = getInputProps();
+      const incrementButtonProps = getIncrementButtonProps();
+      const decrementButtonProps = getDecrementButtonProps();
+
+      expect(inputProps.tabIndex).to.equal(0);
+      expect(incrementButtonProps.tabIndex).to.equal(-1);
+      expect(decrementButtonProps.tabIndex).to.equal(-1);
+    });
+
+    it('stepper buttons should be in the tab order when readOnly is true', () => {
+      const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+        invokeUseNumberInput({
+          defaultValue: 10,
+          readOnly: true,
+        });
+
+      const inputProps = getInputProps();
+      const incrementButtonProps = getIncrementButtonProps();
+      const decrementButtonProps = getDecrementButtonProps();
+
+      expect(inputProps.tabIndex).to.equal(-1);
+      expect(incrementButtonProps.tabIndex).to.equal(0);
+      expect(decrementButtonProps.tabIndex).to.equal(0);
+    });
+  });
 });

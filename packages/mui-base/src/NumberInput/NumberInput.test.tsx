@@ -83,6 +83,83 @@ describe('<NumberInput />', () => {
     }
   });
 
+  describe('step buttons', () => {
+    it('clicking the increment and decrement buttons changes the value', () => {
+      const handleValueChange = spy();
+
+      const { getByRole, getByTestId } = render(
+        <NumberInput
+          defaultValue={10}
+          onValueChange={handleValueChange}
+          slotProps={{
+            incrementButton: {
+              'data-testid': 'increment-btn',
+            },
+            decrementButton: {
+              'data-testid': 'decrement-btn',
+            },
+          }}
+        />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+      const incrementButton = getByTestId('increment-btn');
+      const decrementButton = getByTestId('decrement-btn');
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.click(incrementButton);
+      expect(handleValueChange.args[0][1]).to.equal(11);
+      expect(input.value).to.equal('11');
+
+      fireEvent.click(decrementButton);
+      fireEvent.click(decrementButton);
+      expect(handleValueChange.callCount).to.equal(3);
+      expect(handleValueChange.args[2][1]).to.equal(9);
+      expect(input.value).to.equal('9');
+    });
+
+    it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', () => {
+      const handleValueChange = spy();
+
+      const { getByRole, getByTestId } = render(
+        <NumberInput
+          defaultValue={20}
+          shiftMultiplier={5}
+          onValueChange={handleValueChange}
+          slotProps={{
+            incrementButton: {
+              'data-testid': 'increment-btn',
+            },
+            decrementButton: {
+              'data-testid': 'decrement-btn',
+            },
+          }}
+        />,
+      );
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+      const incrementButton = getByTestId('increment-btn');
+      const decrementButton = getByTestId('decrement-btn');
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.click(incrementButton, { shiftKey: true });
+      fireEvent.click(incrementButton, { shiftKey: true });
+      expect(handleValueChange.args[1][1]).to.equal(30);
+      expect(input.value).to.equal('30');
+
+      fireEvent.click(decrementButton, { shiftKey: true });
+      expect(handleValueChange.args[2][1]).to.equal(25);
+      expect(handleValueChange.callCount).to.equal(3);
+      expect(input.value).to.equal('25');
+    });
+  });
+
   describe('keyboard interaction', () => {
     it('ArrowUp and ArrowDown changes the value', () => {
       const handleValueChange = spy();

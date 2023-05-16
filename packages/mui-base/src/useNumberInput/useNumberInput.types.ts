@@ -109,6 +109,7 @@ export type UseNumberInputInputSlotProps<TOther = {}> = Omit<
 export interface UseNumberInputIncrementButtonSlotOwnProps {
   'aria-disabled': React.AriaAttributes['aria-disabled'];
   disabled: boolean;
+  tabIndex?: number;
 }
 
 export type UseNumberInputIncrementButtonSlotProps<TOther = {}> = Omit<
@@ -120,6 +121,7 @@ export type UseNumberInputIncrementButtonSlotProps<TOther = {}> = Omit<
 export interface UseNumberInputDecrementButtonSlotOwnProps {
   'aria-disabled': React.AriaAttributes['aria-disabled'];
   disabled: boolean;
+  tabIndex?: number;
 }
 
 export type UseNumberInputDecrementButtonSlotProps<TOther = {}> = Omit<

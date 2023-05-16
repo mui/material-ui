@@ -215,7 +215,7 @@ export default function useNumberInput(
 
       if (isNumber(value)) {
         const multiplier =
-          event.shiftKey /* event.nativeEvent instanceof KeyboardEvent && */ ||
+          event.shiftKey ||
           (event as React.KeyboardEvent).key === 'PageUp' ||
           (event as React.KeyboardEvent).key === 'PageDown'
             ? shiftMultiplier
