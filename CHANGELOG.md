@@ -14,13 +14,13 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 ### `@mui/material@5.13.1`
 
 - [Autocomplete] Allow tooltip text selection (#36503) @safeamiiir
-- [Autocomplete] add reason prop for resetInputValue of useAutocomplete (#37013) @binh1298
-- [Dialog] fixed broken dialog when using maxWidth="xs" and custom breakpoint unit (#37237) @jguddas
+- [Autocomplete] Add reason prop for resetInputValue of useAutocomplete (#37013) @binh1298
+- [Dialog] Fixed broken dialog when using maxWidth="xs" and custom breakpoint unit (#37237) @jguddas
 - [l10n] Add Central Myanmar (my-MY), Malay (ms-MS), Nepali (ne-NP), Tagalog (tl-TL) locales (#37017) @cccEric
 
 ### `@mui/utils@5.13.1`
 
-- [Utils] fix downstream bundlers remove React 17 useId compatibility (#37183) @nickiaconis
+- [utils] Fix downstream bundlers remove React 17 useId compatibility (#37183) @nickiaconis
 
 ### `@mui/base@5.0.0-beta.1`
 
@@ -28,15 +28,15 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ### `@mui/joy@5.0.0-alpha.80`
 
-- [AutocompleteOption][Avatar][joy] js test replaced with ts test (#37088) @PunitSoniME
+- [Autocomplete] Fixed scroll into view (#37217) @sai6855
+- [AutocompleteOption][Avatar] js test replaced with ts test (#37088) @PunitSoniME
 - [Breadcrumbs] Replace js-tests with ts-tests (#37107) @mauwaz
-- [Joy] Autocomplete scroll (#37217) @sai6855
-- [Joy] Miscellaneous fixes (#37274) @siriwatknp
-- [RadioGroup][joy] Turn JS test to TS test (#37138) @uuxxx
-- [SvgIcon][joy] Turn JS test to TS test (#37151) @nicolas-ot
-- [Tooltip][Joy] Turn JS test to TS test (#37149) @nicolas-ot
-- [Typography][joy] Convert Typography test to TypeScript (#37165) @DerTimonius
+- [RadioGroup] Turn JS test to TS test (#37138) @uuxxx
+- [SvgIcon] Turn JS test to TS test (#37151) @nicolas-ot
+- [Tooltip] Turn JS test to TS test (#37149) @nicolas-ot
+- [Typography] Convert Typography test to TypeScript (#37165) @DerTimonius
 - [Sheet][Slider][Stack][Switch] Replace js-tests with ts-tests (#37139) @mauwaz
+- Miscellaneous fixes (#37274) @siriwatknp
 
 ### Docs
 
@@ -50,7 +50,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Add Joy Frames X web blocks template (#37203) @siriwatknp
 - [docs] Change Base UI `alpha` to `beta` in README (#37228) @ZeeshanTamboli
 - [docs] Improve Base UI overview page (#37227) @mnajdova
-- [docs][joy] Update Joy + Material guide (#36911) @cherniavskii
+- [docs] Update Joy + Material guide (#36911) @cherniavskii
 
 ### Core
 
