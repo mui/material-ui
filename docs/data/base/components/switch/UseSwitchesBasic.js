@@ -91,7 +91,7 @@ const BasicSwitchThumb = styled('span')`
 
   &.Switch-focusVisible {
     background-color: ${grey[500]};
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
   }
 
   &.Switch-checked {

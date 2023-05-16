@@ -43,16 +43,13 @@ export default function ServerModal() {
 const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px;
   background: inherit;
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 `;
 
 const style = (theme) => ({

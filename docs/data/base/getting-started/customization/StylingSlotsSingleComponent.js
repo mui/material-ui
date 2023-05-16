@@ -53,8 +53,8 @@ const StyledSwitch = styled(Switch)`
   }
 
   &.${switchClasses.focusVisible} .${switchClasses.thumb} {
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255 255 255 / 1);
+    box-shadow: 0 0 1px 8px rgb(0 0 0 / 0.25);
   }
 `;
 

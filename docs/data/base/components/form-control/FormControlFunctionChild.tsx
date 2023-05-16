@@ -53,7 +53,7 @@ const OkMark = styled('span')`
   margin-left: 8px;
   margin-top: 10px;
   position: absolute;
-  color: rgba(125, 200, 0, 1);
+  color: rgb(125 200 0 / 1);
 `;
 
 const blue = {

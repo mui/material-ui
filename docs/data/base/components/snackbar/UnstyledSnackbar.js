@@ -99,11 +99,11 @@ const StyledSnackbar = styled(Snackbar)(
     border-radius: 8px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     box-shadow: ${theme.palette.mode === 'dark'
-      ? `0 2px 8px rgba(0,0,0,0.5)`
+      ? `0 2px 8px rgb(0 0 0 / 0.5)`
       : `0 2px 8px ${grey[200]}`};
     padding: 0.75rem;
     color: ${theme.palette.mode === 'dark' ? grey[50] : grey[900]};
-    font-family: IBM Plex Sans, sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
     font-weight: 600;
     animation: ${snackbarInRight} 200ms;
     transition: transform 0.2s ease-out;

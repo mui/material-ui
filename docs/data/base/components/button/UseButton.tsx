@@ -44,7 +44,7 @@ const blue = {
 };
 
 const CustomButtonRoot = styled('button')`
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
   background-color: ${blue[500]};
@@ -64,7 +64,7 @@ const CustomButtonRoot = styled('button')`
   }
 
   &.focusVisible {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    box-shadow: 0 4px 20px 0 rgb(61 71 82 / 0.1), 0 0 0 5px rgb(0 127 255 / 0.5);
     outline: none;
   }
 
