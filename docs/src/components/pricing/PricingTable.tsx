@@ -750,7 +750,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': pending,
+  'data-grid/row-rangeselection': yes,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
