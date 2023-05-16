@@ -105,7 +105,7 @@
     "@types/node": "^18.11.9",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.2.5",
-    "@types/react-is": "^17.0.3",
+    "@types/react-is": "^18.2.0",
     "@types/react-test-renderer": "^18.0.0",
     "@types/sinon": "^10.0.14",
     "@types/stylis": "^4.0.2",
@@ -225,9 +225,7 @@
     "**/@definitelytyped/typescript-versions": "^0.0.159",
     "**/@definitelytyped/utils": "^0.0.159",
     "**/@types/react": "^18.2.5",
-    "**/@types/react-is": "^17.0.3",
-    "**/cross-fetch": "^3.1.5",
-    "**/react-is": "^18.2.0"
+    "**/cross-fetch": "^3.1.5"
   },
   "nyc": {
     "include": [
