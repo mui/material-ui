@@ -1,10 +1,25 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
-import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import Tabs from '@mui/base/Tabs';
+import TabsList from '@mui/base/TabsList';
+import TabPanel from '@mui/base/TabPanel';
+import { buttonClasses } from '@mui/base/Button';
+import Tab, { tabClasses } from '@mui/base/Tab';
+
+export default function UnstyledTabsVertical() {
+  return (
+    <StyledTabs defaultValue={0} orientation="vertical">
+      <StyledTabsList>
+        <StyledTab>One</StyledTab>
+        <StyledTab>Two</StyledTab>
+        <StyledTab>Three</StyledTab>
+      </StyledTabsList>
+      <StyledTabPanel value={0}>First page</StyledTabPanel>
+      <StyledTabPanel value={1}>Second page</StyledTabPanel>
+      <StyledTabPanel value={2}>Third page</StyledTabPanel>
+    </StyledTabs>
+  );
+}
 
 const blue = {
   50: '#F0F7FF',
@@ -32,7 +47,7 @@ const grey = {
   900: '#24292f',
 };
 
-const Tab = styled(TabUnstyled)`
+const StyledTab = styled(Tab)`
   font-family: IBM Plex Sans, sans-serif;
   color: white;
   cursor: pointer;
@@ -56,30 +71,35 @@ const Tab = styled(TabUnstyled)`
     outline: 3px solid ${blue[200]};
   }
 
-  &.${tabUnstyledClasses.selected} {
+  &.${buttonClasses.focusVisible} {
     background-color: #fff;
     color: ${blue[600]};
   }
 
-  &.${buttonUnstyledClasses.disabled} {
+  &.${tabClasses.disabled} {
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  &.${tabClasses.selected} {
+    background-color: #fff;
+    color: ${blue[600]};
+  }
 `;
 
-const TabPanel = styled(TabPanelUnstyled)`
+const StyledTabPanel = styled(TabPanel)`
   width: 100%;
   padding: 1rem;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
 `;
 
-const Tabs = styled(TabsUnstyled)`
+const StyledTabs = styled(Tabs)`
   display: flex;
   width: 250px;
 `;
 
-const TabsList = styled(TabsListUnstyled)(
+const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
   min-width: 100px;
   background-color: ${blue[500]};
@@ -93,18 +113,3 @@ const TabsList = styled(TabsListUnstyled)(
   box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
-
-export default function UnstyledTabsVertical() {
-  return (
-    <Tabs defaultValue={0} orientation="vertical">
-      <TabsList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-        <Tab>Three</Tab>
-      </TabsList>
-      <TabPanel value={0}>First page</TabPanel>
-      <TabPanel value={1}>Second page</TabPanel>
-      <TabPanel value={2}>Third page</TabPanel>
-    </Tabs>
-  );
-}
