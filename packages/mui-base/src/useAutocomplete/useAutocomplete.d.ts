@@ -204,7 +204,7 @@ export interface UseAutocompleteProps<
    * @param {T} value The value to test against.
    * @returns {boolean}
    */
-  isOptionEqualToValue?: (option: T, value: T) => boolean;
+  isOptionEqualToValue?: (option: T, value: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => boolean;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
