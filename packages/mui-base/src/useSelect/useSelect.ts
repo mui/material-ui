@@ -23,12 +23,18 @@ import { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../utils/useCompound';
 import { SelectOption } from '../useOption/useOption.types';
 import selectReducer from './selectReducer';
+import combineHooksSlotProps from '../utils/combineHooksSlotProps';
+import MuiCancellableEvent from '../utils/muiCancellableEvent';
+
+function preventDefault(event: React.SyntheticEvent) {
+  event.preventDefault();
+}
 
 /**
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base/react-select/#hooks)
  *
  * API:
  *
@@ -50,7 +56,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     onOpenChange,
     open: openProp,
     options: optionsParam,
-    optionStringifier = defaultOptionStringifier,
+    getOptionAsString = defaultOptionStringifier,
     value: valueProp,
   } = props;
 
@@ -64,14 +70,20 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   if (valueProp === undefined && defaultValueProp === undefined) {
     defaultValue = [];
   } else if (defaultValueProp !== undefined) {
-    defaultValue = multiple
-      ? (defaultValueProp as OptionValue[])
-      : [defaultValueProp as OptionValue];
+    if (multiple) {
+      defaultValue = defaultValueProp as OptionValue[];
+    } else {
+      defaultValue = defaultValueProp == null ? [] : [defaultValueProp as OptionValue];
+    }
   }
 
   const value = React.useMemo(() => {
     if (valueProp !== undefined) {
-      return multiple ? (valueProp as OptionValue[]) : [valueProp as OptionValue];
+      if (multiple) {
+        return valueProp as OptionValue[];
+      }
+
+      return valueProp == null ? [] : [valueProp as OptionValue];
     }
 
     return undefined;
@@ -101,32 +113,16 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     return subitems;
   }, [optionsParam, subitems, listboxId]);
 
-  // prevents closing the listbox on keyUp right after opening it
-  const ignoreEnterKeyUp = React.useRef(false);
-
-  // prevents reopening the listbox when button is clicked
-  // (listbox closes on lost focus, then immediately reopens on click)
-  const ignoreClick = React.useRef(false);
-
-  // Ensure the listbox is focused after opening
-  const [listboxFocusRequested, requestListboxFocus] = React.useState(false);
-
-  const focusListboxIfRequested = React.useCallback(() => {
-    if (listboxFocusRequested && listboxRef.current != null) {
-      listboxRef.current.focus();
-      requestListboxFocus(false);
-    }
-  }, [listboxFocusRequested]);
-
-  const handleListboxRef = useForkRef(listboxRefProp, listboxRef, focusListboxIfRequested);
+  const handleListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   const {
     getRootProps: getButtonRootProps,
     active: buttonActive,
     focusVisible: buttonFocusVisible,
+    rootRef: mergedButtonRef,
   } = useButton({
     disabled,
-    ref: handleButtonRef,
+    rootRef: handleButtonRef,
   });
 
   const optionValues = React.useMemo(() => Array.from(options.keys()), [options]);
@@ -146,9 +142,9 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return '';
       }
 
-      return optionStringifier(option);
+      return getOptionAsString(option);
     },
-    [options, optionStringifier],
+    [options, getOptionAsString],
   );
 
   const controlledState = React.useMemo(
@@ -197,10 +193,10 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   );
 
   const handleStateChange = React.useCallback(
-    (e: React.SyntheticEvent | null, field: string, fieldValue: any) => {
+    (event: React.SyntheticEvent | null, field: string, fieldValue: any) => {
       if (field === 'open') {
         onOpenChange?.(fieldValue as boolean);
-        if (fieldValue === false && e?.type !== 'blur') {
+        if (fieldValue === false && event?.type !== 'blur') {
           buttonRef.current?.focus();
         }
       }
@@ -222,13 +218,13 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getItemId,
     controlledProps: controlledState,
     isItemDisabled,
-    listRef: handleListboxRef,
+    rootRef: mergedButtonRef,
     onChange: handleSelectionChange,
     onHighlightChange: handleHighlightChange,
     onStateChange: handleStateChange,
     reducerActionContext: React.useMemo(() => ({ multiple }), [multiple]),
     items: optionValues,
-    itemStringifier: stringifyOption,
+    getItemAsString: stringifyOption,
     selectionMode: multiple ? 'multiple' : 'single',
     stateReducer: selectReducer,
   };
@@ -238,29 +234,14 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     getRootProps: getListboxRootProps,
     contextValue: listContextValue,
     state: { open, highlightedValue: highlightedOption, selectedValues: selectedOptions },
+    rootRef: mergedListRootRef,
   } = useList(useListParameters);
 
-  React.useEffect(() => {
-    focusListboxIfRequested();
-  }, [focusListboxIfRequested]);
-
-  React.useEffect(() => {
-    requestListboxFocus(open);
-  }, [open]);
-
-  const createHandleMouseDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLElement>) => {
-      otherHandlers?.onMouseDown?.(event);
-      if (!event.defaultPrevented && open) {
-        ignoreClick.current = true;
-      }
-    };
-
   const createHandleButtonClick =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
+    (otherHandlers?: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent & MuiCancellableEvent) => {
       otherHandlers?.onClick?.(event);
-      if (!event.defaultPrevented && !ignoreClick.current) {
+      if (!event.defaultMuiPrevented) {
         const action: ButtonClickAction = {
           type: SelectActionTypes.buttonClick,
           event,
@@ -268,41 +249,6 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
 
         dispatch(action);
       }
-
-      ignoreClick.current = false;
-    };
-
-  const createHandleButtonKeyDown =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyDown?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      if (event.key === 'Enter') {
-        ignoreEnterKeyUp.current = true;
-      }
-
-      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-        event.preventDefault();
-        dispatch({ type: SelectActionTypes.buttonArrowKeyDown, key: event.key, event });
-      }
-    };
-
-  const createHandleListboxKeyUp =
-    (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
-      otherHandlers?.onKeyUp?.(event);
-      if (event.defaultPrevented) {
-        return;
-      }
-
-      const closingKeys = multiple ? ['Escape'] : ['Escape', 'Enter', ' '];
-
-      if (open && !ignoreEnterKeyUp.current && closingKeys.includes(event.key)) {
-        buttonRef?.current?.focus();
-      }
-
-      ignoreEnterKeyUp.current = false;
     };
 
   useEnhancedEffect(() => {
@@ -324,39 +270,42 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     }
   }, [highlightedOption, options]);
 
-  const getButtonProps = <TOther extends EventHandlers>(
-    otherHandlers: TOther = {} as TOther,
-  ): UseSelectButtonSlotProps<TOther> => {
-    return {
-      ...getButtonRootProps({
-        ...otherHandlers,
-        onClick: createHandleButtonClick(otherHandlers),
-        onMouseDown: createHandleMouseDown(otherHandlers),
-        onKeyDown: createHandleButtonKeyDown(otherHandlers),
-      }),
-      role: 'combobox' as const,
-      'aria-expanded': open,
-      'aria-haspopup': 'listbox' as const,
-      'aria-controls': listboxId,
-    };
-  };
-
   const getOptionMetadata = React.useCallback(
     (optionValue: OptionValue) => options.get(optionValue),
     [options],
   );
 
+  const getSelectTriggerProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ) => {
+    return {
+      ...otherHandlers,
+      onClick: createHandleButtonClick(otherHandlers),
+      ref: mergedListRootRef,
+      role: 'combobox' as const,
+      'aria-expanded': open,
+      'aria-controls': listboxId,
+    };
+  };
+
+  const getButtonProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSelectButtonSlotProps<TOther> => {
+    const listboxAndButtonProps = combineHooksSlotProps(getButtonRootProps, getListboxRootProps);
+    const combinedProps = combineHooksSlotProps(listboxAndButtonProps, getSelectTriggerProps);
+    return combinedProps(otherHandlers);
+  };
+
   const getListboxProps = <TOther extends EventHandlers>(
     otherHandlers: TOther = {} as TOther,
   ): UseSelectListboxSlotProps<TOther> => {
     return {
-      ...getListboxRootProps({
-        ...otherHandlers,
-        onKeyUp: createHandleListboxKeyUp(otherHandlers),
-      }),
+      ...otherHandlers,
       id: listboxId,
       role: 'listbox' as const,
       'aria-multiselectable': multiple ? 'true' : undefined,
+      ref: handleListboxRef,
+      onMouseDown: preventDefault, // to prevent the button from losing focus when interacting with the listbox
     };
   };
 
@@ -387,12 +336,14 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
   return {
     buttonActive,
     buttonFocusVisible,
+    buttonRef: mergedButtonRef,
+    contextValue,
     disabled,
     dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
-    contextValue,
+    listboxRef: mergedListRootRef,
     open,
     options: optionValues,
     value: selectValue,

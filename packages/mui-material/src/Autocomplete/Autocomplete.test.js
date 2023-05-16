@@ -19,6 +19,8 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
@@ -726,6 +728,7 @@ describe('<Autocomplete />', () => {
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
     function Test(props) {
+      const { key, ...others } = props;
       return (
         <div
           onKeyDown={(event) => {
@@ -737,7 +740,8 @@ describe('<Autocomplete />', () => {
           <Autocomplete
             options={['one', 'two']}
             renderInput={(props2) => <TextField {...props2} autoFocus />}
-            {...props}
+            key={key}
+            {...others}
           />
         </div>
       );
@@ -1936,6 +1940,40 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseDown(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+
+    it('should not focus when tooltip clicked', () => {
+      const { getByRole, getByText } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => {
+            return (
+              <TextField
+                {...params}
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: (
+                    <InputAdornment position="end">
+                      <Tooltip title="tooltip" open>
+                        <div>ICON</div>
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            );
+          }}
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+      const tooltip = getByText('tooltip');
+
+      act(() => {
+        fireEvent.click(tooltip);
+      });
+
+      expect(textbox).not.toHaveFocus();
+    });
   });
 
   describe('controlled', () => {
@@ -2266,24 +2304,32 @@ describe('<Autocomplete />', () => {
 
     it('provides a reason on select reset', () => {
       const handleInputChange = spy();
-      const options = [{ name: 'foo' }];
-      render(
-        <Autocomplete
-          onInputChange={handleInputChange}
-          openOnFocus
-          options={options}
-          getOptionLabel={(option) => option.name}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-      const textbox = screen.getByRole('combobox');
+      const options = [{ name: 'foo' }, { name: 'bar' }];
 
-      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      fireEvent.keyDown(textbox, { key: 'Enter' });
+      function MyComponent() {
+        const [value, setValue] = React.useState(options[0]);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              onInputChange={handleInputChange}
+              openOnFocus
+              options={options}
+              getOptionLabel={(option) => option.name}
+              renderInput={(params) => <TextField {...params} autoFocus />}
+              value={value}
+            />
+            <button onClick={() => setValue(options[1])}>Reset</button>
+          </React.Fragment>
+        );
+      }
+      render(<MyComponent />);
+      const resetBtn = screen.getByText('Reset');
 
-      expect(handleInputChange.callCount).to.equal(1);
-      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
-      expect(handleInputChange.args[0][2]).to.equal('reset');
+      fireEvent.click(resetBtn);
+
+      expect(handleInputChange.callCount).to.equal(3);
+      expect(handleInputChange.args[2][1]).to.equal(options[1].name);
+      expect(handleInputChange.args[2][2]).to.equal('reset');
     });
   });
 

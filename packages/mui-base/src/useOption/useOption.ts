@@ -9,18 +9,18 @@ import { useCompoundItem } from '../utils/useCompoundItem';
  *
  * Demos:
  *
- * - [Unstyled Select](https://mui.com/base/react-select/#hooks)
+ * - [Select](https://mui.com/base/react-select/#hooks)
  *
  * API:
  *
  * - [useOption API](https://mui.com/base/react-select/hooks-api/#use-option)
  */
 export default function useOption<Value>(params: UseOptionParameters<Value>): UseOptionReturnValue {
-  const { value, label, disabled, optionRef: optionRefParam, id: idParam } = params;
+  const { value, label, disabled, rootRef: optionRefParam, id: idParam } = params;
 
   const {
     getRootProps: getListItemProps,
-    ref: listItemRefHandler,
+    rootRef: listItemRefHandler,
     highlighted,
     selected,
   } = useListItem({
@@ -29,7 +29,7 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
 
   const id = useId(idParam);
 
-  const optionRef = React.useRef<HTMLElement>(null);
+  const optionRef = React.useRef<Element>(null);
 
   const selectOption: SelectOption<Value> = React.useMemo(
     () => ({
@@ -58,6 +58,6 @@ export default function useOption<Value>(params: UseOptionParameters<Value>): Us
     highlighted,
     index,
     selected,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }

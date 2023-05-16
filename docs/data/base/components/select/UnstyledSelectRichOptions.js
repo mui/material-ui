@@ -1,9 +1,52 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
+import Select, { selectClasses } from '@mui/base/Select';
+import Option, { optionClasses } from '@mui/base/Option';
 import { styled } from '@mui/system';
-import { PopperUnstyled } from '@mui/base';
+import { Popper } from '@mui/base';
+
+export default function UnstyledSelectRichOptions() {
+  return (
+    <CustomSelect>
+      {countries.map((c) => (
+        <StyledOption key={c.code} value={c.code} label={c.label}>
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+            alt={`Flag of ${c.label}`}
+          />
+          {c.label} ({c.code}) +{c.phone}
+        </StyledOption>
+      ))}
+    </CustomSelect>
+  );
+}
+
+const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+  const slots = {
+    root: StyledButton,
+    listbox: StyledListbox,
+    popper: StyledPopper,
+    ...props.slots,
+  };
+
+  return <Select {...props} ref={ref} slots={slots} />;
+});
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    listbox: PropTypes.elementType,
+    popper: PropTypes.func,
+    root: PropTypes.elementType,
+  }),
+};
 
 const blue = {
   100: '#DAECFF',
@@ -51,12 +94,12 @@ const StyledButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
+  &.${selectClasses.focusVisible} {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
-  &.${selectUnstyledClasses.expanded} {
+  &.${selectClasses.expanded} {
     &::after {
       content: '▴';
     }
@@ -88,7 +131,7 @@ const StyledListbox = styled('ul')(
   `,
 );
 
-const StyledOption = styled(OptionUnstyled)(
+const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -99,26 +142,26 @@ const StyledOption = styled(OptionUnstyled)(
     border-bottom: none;
   }
 
-  &.${optionUnstyledClasses.selected} {
+  &.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted} {
+  &.${optionClasses.highlighted} {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
     background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
     color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
   }
 
-  &.${optionUnstyledClasses.disabled} {
+  &.${optionClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
+  &:hover:not(.${optionClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
@@ -129,52 +172,9 @@ const StyledOption = styled(OptionUnstyled)(
   `,
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
-
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
-  const slots = {
-    root: StyledButton,
-    listbox: StyledListbox,
-    popper: StyledPopper,
-    ...props.slots,
-  };
-
-  return <SelectUnstyled {...props} ref={ref} slots={slots} />;
-});
-
-CustomSelect.propTypes = {
-  /**
-   * The components used for each slot inside the Select.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    listbox: PropTypes.elementType,
-    popper: PropTypes.func,
-    root: PropTypes.elementType,
-  }),
-};
-
-export default function UnstyledSelectRichOptions() {
-  return (
-    <CustomSelect>
-      {countries.map((c) => (
-        <StyledOption key={c.code} value={c.code} label={c.label}>
-          <img
-            loading="lazy"
-            width="20"
-            src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-            srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
-            alt={`Flag of ${c.label}`}
-          />
-          {c.label} ({c.code}) +{c.phone}
-        </StyledOption>
-      ))}
-    </CustomSelect>
-  );
-}
 
 const countries = [
   { code: 'AD', label: 'Andorra', phone: '376' },
