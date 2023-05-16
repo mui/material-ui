@@ -2486,6 +2486,231 @@ export const mkMK: Localization = {
   },
 };
 
+// Myanmar - မြန်မာ
+export const myMY: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'လမ်းကြောင်းပြပါ။',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'ပထမစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'last') {
+            return 'နောက်ဆုံးစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'next') {
+            return 'နောက်စာမျက်နှာသို့သွားပါ။';
+          }
+          // if (type === 'previous') {
+          return 'ယခင်စာမျက်နှာသို့သွားပါ။';
+        },
+        labelRowsPerPage: 'စာမျက်နှာအလိုက် အတန်းများ:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} ၏ ${count !== -1 ? count : `ထက်ပိုပြီး ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} ကြယ်ပွင့်${lastDigit === 1 ? '၎' : ''}`;
+        },
+        emptyLabelText: 'ဗလာ',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'ရှင်းလင်းသော',
+        closeText: 'ပိတ်လိုက်',
+        loadingText: 'ဖွင့်နေသည်…',
+        noOptionsText: 'ရွေးချယ်ခွင့်မရှိပါ။',
+        openText: 'ဖွင့်သည်။',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'ပိတ်လိုက်',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Pagination အညွှန်း',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'သွားပါ။ '}စာမျက်နှာ ${page}`;
+          }
+          if (type === 'first') {
+            return 'ပထမစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'last') {
+            return 'နောက်ဆုံးစာမျက်နှာသို့သွားပါ။';
+          }
+          if (type === 'next') {
+            return 'နောက်စာမျက်နှာသို့သွားပါ။';
+          }
+          // if (type === 'previous') {
+          return 'ယခင်စာမျက်နှာသို့သွားပါ။';
+        },
+      },
+    },
+  },
+};
+
+// Malay-Melayu
+export const msMS: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Tunjukkan laluan',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Pergi ke halaman pertama';
+          }
+          if (type === 'last') {
+            return 'Pergi ke halaman terakhir';
+          }
+          if (type === 'next') {
+            return 'Pergi ke halaman seterusnya';
+          }
+          // if (type === 'previous') {
+          return 'Pergi ke halaman sebelumnya';
+        },
+        labelRowsPerPage: 'Baris setiap halaman:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} daripada ${count !== -1 ? count : `lebih daripada ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} Bintang${lastDigit === 1 ? 's' : ''}`;
+        },
+        emptyLabelText: 'kosong',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Jelas',
+        closeText: 'tutup',
+        loadingText: 'Memuatkan…',
+        noOptionsText: 'Tiada pilihan',
+        openText: 'Buka',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'tutup',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Navigasi penomboran',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Pergi ke '}muka surat ${page}`;
+          }
+          if (type === 'first') {
+            return 'Pergi ke halaman pertama';
+          }
+          if (type === 'last') {
+            return 'Pergi ke halaman terakhir';
+          }
+          if (type === 'next') {
+            return 'Pergi ke halaman seterusnya';
+          }
+          // if (type === 'previous') {
+          return 'Pergi ke halaman sebelumnya';
+        },
+      },
+    },
+  },
+};
+
+// Nepali-नेपाली
+export const neNP: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'बाटो देखाउनुहोस्',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'पहिलो पृष्ठमा जानुहोस्';
+          }
+          if (type === 'last') {
+            return 'अन्तिम पृष्ठमा जानुहोस्';
+          }
+          if (type === 'next') {
+            return 'अर्को पृष्ठमा जानुहोस्';
+          }
+          // if (type === 'previous') {
+          return 'अघिल्लो पृष्ठमा जानुहोस्';
+        },
+        labelRowsPerPage: 'प्रति पृष्ठ पङ्क्तिहरू:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} को ${count !== -1 ? count : `धेरै ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => {
+          const lastDigit = value % 10;
+          return `${value} तारा${lastDigit === 1 ? 'स' : ''}`;
+        },
+        emptyLabelText: 'खाली',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'खाली गर्नुहोस्',
+        closeText: 'बन्द गर्नुहोस्',
+        loadingText: 'लोड हुँदै...',
+        noOptionsText: 'कुनै विकल्प छैन',
+        openText: 'खोल्नुहोस्',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'बन्द गर्नुहोस्',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'पृष्ठांकन नेभिगेसन',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'जाऊ त्यहाँ '}पृष्ठ ${page}`;
+          }
+          if (type === 'first') {
+            return 'पहिलो पृष्ठमा जानुहोस्';
+          }
+          if (type === 'last') {
+            return 'अन्तिम पृष्ठमा जानुहोस्';
+          }
+          if (type === 'next') {
+            return 'अर्को पृष्ठमा जानुहोस्';
+          }
+          // if (type === 'previous') {
+          return 'अघिल्लो पृष्ठमा जानुहोस्';
+        },
+      },
+    },
+  },
+};
+
 export const nbNO: Localization = {
   components: {
     MuiBreadcrumbs: {
@@ -3444,6 +3669,78 @@ export const trTR: Localization = {
           }
           // if (type === 'previous') {
           return 'Önceki sayfaya git';
+        },
+      },
+    },
+  },
+};
+
+// Tagalog-Tagalog
+export const tlTL: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
+        expandText: 'Ipakita ang landas',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'Pumunta sa unang pahina';
+          }
+          if (type === 'last') {
+            return 'Pumunta sa huling pahina';
+          }
+          if (type === 'next') {
+            return 'Pumunta sa susunod na pahina';
+          }
+          // if (type === 'previous') {
+          return 'Pumunta sa nakaraang pahina';
+        },
+        labelRowsPerPage: 'Mga hilera bawat pahina:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} ng ${count !== -1 ? count : `higit sa ${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} Bituin${value !== 1 ? 's' : ''}`,
+        emptyLabelText: 'Walang laman',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'Maaliwalas',
+        closeText: 'Isara',
+        loadingText: 'Naglo-load…',
+        noOptionsText: 'Walang mga pagpipilian',
+        openText: 'Bukas',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'Isara',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'Sayfa navigasyonu',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'Pumunta sa'}pahina ${page}`;
+          }
+          if (type === 'first') {
+            return 'Pumunta sa unang pahina';
+          }
+          if (type === 'last') {
+            return 'Pumunta sa huling pahina';
+          }
+          if (type === 'next') {
+            return 'Pumunta sa susunod na pahina';
+          }
+          // if (type === 'previous') {
+          return 'Pumunta sa nakaraang pahina';
         },
       },
     },
