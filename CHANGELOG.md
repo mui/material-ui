@@ -16,7 +16,6 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [Autocomplete] Allow tooltip text selection (#36503) @safeamiiir
 - [Autocomplete] add reason prop for resetInputValue of useAutocomplete (#37013) @binh1298
 - [Dialog] fixed broken dialog when using maxWidth="xs" and custom breakpoint unit (#37237) @jguddas
-- [core] Remove `toEqualDateTime` chai matcher (#37073) @flaviendelangle
 - [l10n] Add Central Myanmar (my-MY), Malay (ms-MS), Nepali (ne-NP), Tagalog (tl-TL) locales (#37017) @cccEric
 
 ### `@mui/utils@5.13.1`
@@ -55,6 +54,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ### Core
 
+- [core] Remove `toEqualDateTime` chai matcher (#37073) @flaviendelangle
 - [core] Check dependency cycles inside packages directory only (#37223) @michaldudak
 - [website] Add Diego to About Us page (#37284) @DiegoAndai
 - [website] Add Victor teamMember card to 'About' (#37283) @zanivan
