@@ -74,6 +74,11 @@ export const FormControlLabelRoot = styled('label', {
   },
 }));
 
+const LabelContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+});
+
 const AsteriskComponent = styled('span', {
   name: 'MuiFormControlLabel',
   slot: 'Asterisk',
@@ -163,12 +168,14 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
+      <LabelContainer>
       {label}
       {required && (
         <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>
       )}
+      </LabelContainer>
     </FormControlLabelRoot>
   );
 });
