@@ -1,7 +1,7 @@
 {
   "buildCommand": "build:codesandbox",
   "installCommand": "install:codesandbox",
-  "node": "16",
+  "node": "18",
   "packages": [
     "packages/mui-material",
     "packages/mui-codemod",
