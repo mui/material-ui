@@ -42,11 +42,8 @@ const StyledButton = materialStyled(Button)(({ theme }) => ({
   },
   '&.MuiButton-outlined': {
     color: '#fff',
-    backgroundColor: theme.palette.primary[800],
-    borderColor: theme.palette.primary[700],
-    '&:hover': {
-      backgroundColor: theme.palette.primary[700],
-    },
+    backgroundColor: 'var(--palette-primary-dark)',
+    borderColor: 'var(--palette-primary)',
   },
 }));
 
@@ -99,7 +96,27 @@ export default function BaseUIComponents() {
           </Group>
         </Grid>
         <Grid xs={12} md={6}>
-          <Frame sx={{ height: '100%' }}>
+          <Frame
+            sx={{
+              height: '100%',
+              '--palette-primary': 'var(--muidocs-palette-primary-main)',
+              '--palette-primary-dark': 'var(--muidocs-palette-primary-800)',
+              '--focus-ring': 'var(--muidocs-palette-primary-200)',
+              '--shadow': 'var(--muidocs-shadows-2)',
+              ...(styling === 'tailwindcss' && {
+                '--palette-primary': '#4f46e5',
+                '--palette-primary-dark': '#3730a3',
+                '--focus-ring': '#a5b4fc',
+                '--shadow': 'var(--muidocs-shadows-2)',
+              }),
+              ...(styling === 'css' && {
+                '--palette-primary': '#9333ea',
+                '--palette-primary-dark': '#581c87',
+                '--focus-ring': '#d8b4fe',
+                '--shadow': 'var(--muidocs-shadows-2)',
+              }),
+            }}
+          >
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               {demo === 'Tabs' && <BaseTabsDemo styling={styling} />}
               {demo === 'Button' && <BaseButtonDemo styling={styling} />}
