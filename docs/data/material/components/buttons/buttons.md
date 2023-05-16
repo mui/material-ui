@@ -85,10 +85,6 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ButtonSizes.js"}}
 
-## Upload button
-
-{{"demo": "UploadButtons.js"}}
-
 ## Buttons with icons and label
 
 Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
