@@ -348,7 +348,10 @@ export default function useAutocomplete(props) {
       prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    let listboxNode = listboxRef.current;
+    if (listboxRef.current.getAttribute('role') !== 'listbox') {
+      listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    }
 
     // "No results"
     if (!listboxNode) {
