@@ -86,7 +86,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     readOnly,
   };
 
-  console.log(ownerState);
+  // console.log(ownerState);
 
   const classes = useUtilityClasses(ownerState);
 
@@ -98,11 +98,15 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
+      // ...getInputProps(),
       ref: forwardedRef,
     },
+    getSlotProps: getInputProps,
     ownerState,
     className: classes.root,
   });
+
+  console.log('rootProps', rootProps);
 
   const Thumb: React.ElementType = slots.thumb ?? 'span';
   const thumbProps: WithOptionalOwnerState<SwitchThumbSlotProps> = useSlotProps({
@@ -113,11 +117,12 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   const Input: React.ElementType = slots.input ?? 'input';
+  // console.log('getInputProps', getInputProps);
   const inputProps: WithOptionalOwnerState<SwitchInputSlotProps> = useSlotProps({
     elementType: Input,
-    getSlotProps: getInputProps,
     externalSlotProps: slotProps.input,
     ownerState,
+    // getSlotProps: getInputProps,
     className: classes.input,
   });
 
@@ -129,10 +134,10 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     className: classes.track,
   });
 
-  // console.log(rootProps);
+  console.log('inputProps', inputProps);
 
   return (
-    <Root {...rootProps}>
+    <Root {...rootProps} tabIndex="0" sx={{ outline: 'none' }}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
       <Input {...inputProps} hidden />
