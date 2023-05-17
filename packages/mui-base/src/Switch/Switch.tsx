@@ -86,13 +86,10 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     readOnly,
   };
 
-  // console.log(ownerState);
-
   const classes = useUtilityClasses(ownerState);
 
   const Root: React.ElementType = slots.root ?? 'span';
 
-  // console.log(classes.root);
   const rootProps: WithOptionalOwnerState<SwitchRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -105,8 +102,6 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     className: classes.root,
   });
 
-  console.log('rootProps', rootProps);
-
   const Thumb: React.ElementType = slots.thumb ?? 'span';
   const thumbProps: WithOptionalOwnerState<SwitchThumbSlotProps> = useSlotProps({
     elementType: Thumb,
@@ -116,12 +111,10 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   const Input: React.ElementType = slots.input ?? 'input';
-  // console.log('getInputProps', getInputProps);
   const inputProps: WithOptionalOwnerState<SwitchInputSlotProps> = useSlotProps({
     elementType: Input,
     externalSlotProps: slotProps.input,
     ownerState,
-    // getSlotProps: getInputProps,
     className: classes.input,
   });
 
@@ -132,8 +125,6 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     ownerState,
     className: classes.track,
   });
-
-  console.log('inputProps', inputProps);
 
   return (
     <Root {...rootProps} tabIndex="0" sx={{ outline: 'none' }}>

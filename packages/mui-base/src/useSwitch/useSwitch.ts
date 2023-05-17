@@ -102,19 +102,18 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
 
   const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
-  const handleOnClick =
+  const createHandleClick =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.BaseSyntheticEvent) => {
       if (disabled) {
         return;
       }
-      // console.log('handleOnClick', otherProps);
       setCheckedState((checkedState) => !checkedState);
       setFocusVisible(false);
       otherProps.onClick?.(event);
     };
 
-  const handleOnKeyDown =
+  const createHandleKeyDown =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) => (event: React.KeyboardEvent) => {
       if (event.code === 'Space' && inputRef.current) {
         setCheckedState(!checked);
@@ -134,8 +133,8 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     onChange: createHandleInputChange(otherProps),
     onFocus: createHandleFocus(otherProps),
     onBlur: createHandleBlur(otherProps),
-    onClick: handleOnClick(otherProps),
-    onKeyDown: handleOnKeyDown(otherProps),
+    onClick: createHandleClick(otherProps),
+    onKeyDown: createHandleKeyDown(otherProps),
   });
 
   return {

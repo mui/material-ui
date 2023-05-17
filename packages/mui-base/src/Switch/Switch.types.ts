@@ -74,11 +74,13 @@ export type SwitchOwnerState = Simplify<
   }
 >;
 
-export type SwitchRootSlotProps = {
-  ownerState: SwitchOwnerState;
-  className?: string;
-  children?: React.ReactNode;
-};
+export type SwitchRootSlotProps = Simplify<
+  UseSwitchInputSlotProps & {
+    ownerState: SwitchOwnerState;
+    className?: string;
+    children?: React.ReactNode;
+  }
+>;
 
 export type SwitchThumbSlotProps = {
   ownerState: SwitchOwnerState;
@@ -92,10 +94,8 @@ export type SwitchTrackSlotProps = {
   children?: React.ReactNode;
 };
 
-export type SwitchInputSlotProps = Simplify<
-  UseSwitchInputSlotProps & {
-    ownerState: SwitchOwnerState;
-    className?: string;
-    children?: React.ReactNode;
-  }
->;
+export type SwitchInputSlotProps = {
+  ownerState: SwitchOwnerState;
+  className?: string;
+  children?: React.ReactNode;
+};
