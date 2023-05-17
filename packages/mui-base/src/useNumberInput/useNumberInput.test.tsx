@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as React from 'react';
 import userEvent from '@testing-library/user-event';
-import { createRenderer, screen, act } from 'test/utils';
+import { createRenderer, screen } from 'test/utils';
 import useNumberInput, { UseNumberInputParameters } from './index';
 
 describe('useNumberInput', () => {
@@ -68,9 +68,7 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton') as HTMLInputElement;
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('-12');
 
@@ -91,37 +89,12 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton') as HTMLInputElement;
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('-5a');
 
       expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('-5');
-    });
-
-    it('DEBUG: test inputting characters one by one then backspacing them one by one in a plain <input>', async () => {
-      const handleChange = spy();
-
-      const user = userEvent.setup();
-
-      render(<input type="text" onChange={handleChange} data-testid="test-input" />);
-
-      const input = screen.getByTestId('test-input') as HTMLInputElement;
-
-      act(() => {
-        input.focus();
-      });
-
-      await user.keyboard('abc');
-
-      expect(handleChange.callCount).to.equal(3); // works
-      expect(input.value).to.equal('abc'); // works
-
-      await user.keyboard('[Backspace]');
-      expect(handleChange.callCount).to.equal(4); // works
-      expect(input.value).to.equal('ab'); // works
     });
   });
 
@@ -138,17 +111,14 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton');
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('34');
 
       expect(handleValueChange.callCount).to.equal(0);
 
-      act(() => {
-        input.blur();
-      });
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
 
       expect(handleValueChange.callCount).to.equal(1);
     });
@@ -168,15 +138,12 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton');
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('9');
 
-      act(() => {
-        input.blur();
-      });
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
 
       expect(handleValueChange.args[0][1]).to.equal(5);
     });
@@ -196,15 +163,12 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton');
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('-9');
 
-      act(() => {
-        input.blur();
-      });
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
 
       expect(handleValueChange.args[0][1]).to.equal(5);
     });
@@ -225,15 +189,12 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton');
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('4');
 
-      act(() => {
-        input.blur();
-      });
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
 
       expect(handleValueChange.args[0][1]).to.equal(5);
     });
@@ -252,9 +213,7 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton') as HTMLInputElement;
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('9');
 
@@ -264,9 +223,8 @@ describe('useNumberInput', () => {
 
       expect(input.value).to.equal('');
 
-      act(() => {
-        input.blur();
-      });
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
 
       expect(handleValueChange.callCount).to.equal(1);
       expect(handleValueChange.args[0][1]).to.equal(undefined);
@@ -286,9 +244,7 @@ describe('useNumberInput', () => {
 
       const input = screen.getByRole('spinbutton') as HTMLInputElement;
 
-      act(() => {
-        input.focus();
-      });
+      await user.click(input);
 
       await user.keyboard('-5');
 
