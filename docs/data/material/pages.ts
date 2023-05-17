@@ -245,7 +245,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
-      { pathname: '/material-ui/discover-more/languages' },
     ],
   },
   {
