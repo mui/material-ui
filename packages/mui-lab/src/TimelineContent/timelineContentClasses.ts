@@ -10,6 +10,8 @@ export interface TimelineContentClasses {
   positionLeft: string;
   /** Styles applied to the root element if `position="alternate"`. */
   positionAlternate: string;
+  /** Styles applied to the root element if `position="alternate-revert"`. */
+  positionAlternateRevert: string;
 }
 
 export type TimelineContentClassKey = keyof TimelineContentClasses;
@@ -20,7 +22,7 @@ export function getTimelineContentUtilityClass(slot: string): string {
 
 const timelineContentClasses: TimelineContentClasses = generateUtilityClasses(
   'MuiTimelineContent',
-  ['root', 'positionLeft', 'positionRight', 'positionAlternate'],
+  ['root', 'positionLeft', 'positionRight', 'positionAlternate','positionAlternateRevert'],
 );
 
 export default timelineContentClasses;

@@ -10,6 +10,8 @@ export interface TimelineOppositeContentClasses {
   positionLeft: string;
   /** Styles applied to the root element if `position="alternate"`. */
   positionAlternate: string;
+  /** Styles applied to the root element if `position="alternate-revert"`. */
+  positionAlternateRevert: string;
 }
 
 export type TimelineOppositeContentClassKey = keyof TimelineOppositeContentClasses;
@@ -20,7 +22,7 @@ export function getTimelineOppositeContentUtilityClass(slot: string): string {
 
 const timelineOppositeContentClasses: TimelineOppositeContentClasses = generateUtilityClasses(
   'MuiTimelineOppositeContent',
-  ['root', 'positionLeft', 'positionRight', 'positionAlternate'],
+  ['root', 'positionLeft', 'positionRight', 'positionAlternate','positionAlternateRevert'],
 );
 
 export default timelineOppositeContentClasses;

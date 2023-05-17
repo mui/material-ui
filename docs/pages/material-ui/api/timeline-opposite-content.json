@@ -11,7 +11,7 @@
   },
   "name": "TimelineOppositeContent",
   "styles": {
-    "classes": ["root", "positionRight", "positionLeft", "positionAlternate"],
+    "classes": ["root", "positionRight", "positionLeft", "positionAlternate","positionAlternateRevert"],
     "globalClasses": {},
     "name": "MuiTimelineOppositeContent"
   },
