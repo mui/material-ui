@@ -32,7 +32,7 @@
     "build:modern": "node ../../scripts/build.mjs modern",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.mjs",
+    "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.js",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:types": "node ../../scripts/buildTypes.mjs",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
