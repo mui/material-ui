@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as React from 'react';
+import userEvent from '@testing-library/user-event';
 import { createRenderer, screen, act, fireEvent } from 'test/utils';
 import useNumberInput, { UseNumberInputParameters } from './index';
 
@@ -52,7 +53,9 @@ describe('useNumberInput', () => {
       expect(inputProps.value).to.equal(100);
       expect(inputProps.required).to.equal(true);
     });
+  });
 
+  describe('prop: onChange', () => {
     it('should call onChange if a change event is fired', () => {
       const handleChange = spy();
       function NumberInput() {
@@ -72,6 +75,31 @@ describe('useNumberInput', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
+    it('DEBUG: test inputting characters one by one then backspacing them one by one in a plain <input>', async () => {
+      const handleChange = spy();
+
+      const user = userEvent.setup();
+
+      render(<input type="text" onChange={handleChange} data-testid="test-input" />);
+
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      await user.keyboard('abc');
+
+      expect(handleChange.callCount).to.equal(3); // works
+      expect(input.value).to.equal('abc'); // works
+
+      await user.keyboard('[Backspace]');
+      expect(handleChange.callCount).to.equal(4); // works
+      expect(input.value).to.equal('ab'); // works
+    });
+  });
+
+  describe('prop: onValueChange', () => {
     it('should call onValueChange when the input is blurred', () => {
       const handleValueChange = spy();
       function NumberInput() {

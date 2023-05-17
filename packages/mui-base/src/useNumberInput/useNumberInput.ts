@@ -87,7 +87,9 @@ export default function useNumberInput(
   // the "final" value
   const [value, setValue] = React.useState(valueProp ?? defaultValueProp);
   // the (potentially) dirty or invalid input value
-  const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(String(value));
+  const [dirtyValue, setDirtyValue] = React.useState<string | undefined>(
+    value ? String(value) : undefined,
+  );
 
   React.useEffect(() => {
     if (!formControlContext && disabledProp && focused) {
