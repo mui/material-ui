@@ -40,7 +40,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
   const createHandleInputChange =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('onchange');
+      // console.log('onchange');
       // Workaround for https://github.com/facebook/react/issues/9023
       if (event.nativeEvent.defaultPrevented) {
         return;
@@ -102,18 +102,25 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
 
   const handleInputRef = useForkRef(focusVisibleRef, inputRef);
 
-  const handleOnClick = (event: React.BaseSyntheticEvent) => {
-    console.log('handleOnClick');
-    setCheckedState((checkedState) => !checkedState);
-    setFocusVisible(false);
-    onChange?.(event);
-  };
+  const handleOnClick =
+    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
+    (event: React.BaseSyntheticEvent) => {
+      if (disabled) {
+        return;
+      }
+      // console.log('handleOnClick', otherProps);
+      setCheckedState((checkedState) => !checkedState);
+      setFocusVisible(false);
+      otherProps.onClick?.(event);
+    };
 
-  const handleOnKeyPress = (e: React.KeyboardEvent) => {
-    if (e.code === 'Space' && inputRef.current) {
-      setCheckedState(!checked);
-    }
-  };
+  const handleOnKeyDown =
+    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) => (event: React.KeyboardEvent) => {
+      if (event.code === 'Space' && inputRef.current) {
+        setCheckedState(!checked);
+        otherProps.onKeyDown?.(event);
+      }
+    };
 
   const getInputProps: UseSwitchReturnValue['getInputProps'] = (otherProps = {}) => ({
     checked: checkedProp,
@@ -127,8 +134,8 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     onChange: createHandleInputChange(otherProps),
     onFocus: createHandleFocus(otherProps),
     onBlur: createHandleBlur(otherProps),
-    onClick: handleOnClick,
-    onKeyPress: handleOnKeyPress,
+    onClick: handleOnClick(otherProps),
+    onKeyDown: handleOnKeyDown(otherProps),
   });
 
   return {

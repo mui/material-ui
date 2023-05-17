@@ -98,7 +98,6 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
-      // ...getInputProps(),
       ref: forwardedRef,
     },
     getSlotProps: getInputProps,
