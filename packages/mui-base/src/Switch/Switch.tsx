@@ -86,9 +86,13 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     readOnly,
   };
 
+  console.log(ownerState);
+
   const classes = useUtilityClasses(ownerState);
 
   const Root: React.ElementType = slots.root ?? 'span';
+
+  // console.log(classes.root);
   const rootProps: WithOptionalOwnerState<SwitchRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps.root,
@@ -125,11 +129,13 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     className: classes.track,
   });
 
+  // console.log(rootProps);
+
   return (
     <Root {...rootProps}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
-      <Input {...inputProps} />
+      <Input {...inputProps} hidden />
     </Root>
   );
 }) as PolymorphicComponent<SwitchTypeMap>;
