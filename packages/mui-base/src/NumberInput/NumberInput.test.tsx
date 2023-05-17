@@ -345,4 +345,52 @@ describe('<NumberInput />', () => {
       expect(input.value).to.equal('9');
     });
   });
+
+  describe('prop: readOnly', () => {
+    it('stepper buttons should not be in the tab order when readOnly is false', async () => {
+      const user = userEvent.setup();
+
+      const { getByRole } = render(<NumberInput />);
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+      expect(document.activeElement).to.equal(document.body);
+
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(input);
+
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
+    });
+
+    it('tab order should be increment button, decrement button when readOnly is true', async () => {
+      const user = userEvent.setup();
+
+      const { getByTestId } = render(
+        <NumberInput
+          readOnly
+          slotProps={{
+            incrementButton: {
+              'data-testid': 'increment-btn',
+            },
+            decrementButton: {
+              'data-testid': 'decrement-btn',
+            },
+          }}
+        />,
+      );
+
+      const incrementButton = getByTestId('increment-btn');
+      const decrementButton = getByTestId('decrement-btn');
+      expect(document.activeElement).to.equal(document.body);
+
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(decrementButton);
+
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(incrementButton);
+
+      await user.keyboard('[Tab]');
+      expect(document.activeElement).to.equal(document.body);
+    });
+  });
 });
