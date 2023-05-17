@@ -14,7 +14,6 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### `@mui/material@5.13.1`
 
 - [Autocomplete] Allow tooltip text selection (#36503) @safeamiiir
-- [Autocomplete] Add reason prop for resetInputValue of useAutocomplete (#37013) @binh1298
 - [Dialog] Fixed broken dialog when using maxWidth="xs" and custom breakpoint unit (#37237) @jguddas
 - [l10n] Add Central Myanmar (my-MY), Malay (ms-MS), Nepali (ne-NP), Tagalog (tl-TL) locales (#37017) @cccEric
 
