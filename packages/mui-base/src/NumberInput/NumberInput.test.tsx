@@ -269,7 +269,7 @@ describe('<NumberInput />', () => {
         input.focus();
       });
 
-      fireEvent.keyDown(input, { key: 'Home', shiftKey: true });
+      fireEvent.keyDown(input, { key: 'Home' });
       expect(handleValueChange.args[0][1]).to.equal(50);
       expect(input.value).to.equal('50');
     });
@@ -287,9 +287,41 @@ describe('<NumberInput />', () => {
         input.focus();
       });
 
-      fireEvent.keyDown(input, { key: 'End', shiftKey: true });
+      fireEvent.keyDown(input, { key: 'End' });
       expect(handleValueChange.args[0][1]).to.equal(1);
       expect(input.value).to.equal('1');
+    });
+
+    it('sets value to min when the input has no value and ArrowUp is pressed', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(<NumberInput min={5} onValueChange={handleValueChange} />);
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      expect(handleValueChange.args[0][1]).to.equal(5);
+      expect(input.value).to.equal('5');
+    });
+
+    it('sets value to max when the input has no value and ArrowDown is pressed', () => {
+      const handleValueChange = spy();
+
+      const { getByRole } = render(<NumberInput max={9} onValueChange={handleValueChange} />);
+
+      const input = getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      expect(handleValueChange.args[0][1]).to.equal(9);
+      expect(input.value).to.equal('9');
     });
   });
 });
