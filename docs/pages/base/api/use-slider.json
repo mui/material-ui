@@ -48,10 +48,12 @@
   "returnValue": {
     "active": {
       "type": { "name": "number", "description": "number" },
+      "default": "-1",
       "required": true
     },
     "axis": {
       "type": { "name": "Axis", "description": "Axis" },
+      "default": "horizontal",
       "required": true
     },
     "axisProps": {
@@ -63,6 +65,7 @@
     },
     "dragging": {
       "type": { "name": "boolean", "description": "boolean" },
+      "default": "false",
       "required": true
     },
     "focusedThumbIndex": {
@@ -93,6 +96,7 @@
     "marks": { "type": { "name": "Mark[]", "description": "Mark[]" }, "required": true },
     "open": {
       "type": { "name": "number", "description": "number" },
+      "default": "-1",
       "required": true
     },
     "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
