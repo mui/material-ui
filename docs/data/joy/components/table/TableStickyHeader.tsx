@@ -24,6 +24,9 @@ const rows = [
   createData('9', 305, 3.7, 67, 4.3),
   createData('10', 356, 16.0, 49, 3.9),
 ];
+function sum(column: 'calories' | 'fat' | 'carbs' | 'protein') {
+  return rows.reduce((acc, row) => acc + row[column], 0);
+}
 
 export default function TableStickyHeader() {
   return (
@@ -31,10 +34,11 @@ export default function TableStickyHeader() {
       <Typography level="body2" textAlign="center" sx={{ mb: 2 }}>
         The table body is scrollable.
       </Typography>
-      <Sheet sx={{ height: 200, overflow: 'auto' }}>
+      <Sheet sx={{ height: 300, overflow: 'auto' }}>
         <Table
           aria-label="table with sticky header"
           stickyHeader
+          stickyFooter
           stripe="odd"
           hoverRow
         >
@@ -58,6 +62,20 @@ export default function TableStickyHeader() {
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Totals</th>
+              <td>{sum('calories').toFixed(2)}</td>
+              <td>{sum('fat').toFixed(2)}</td>
+              <td>{sum('carbs').toFixed(2)}</td>
+              <td>{sum('protein').toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td colSpan={5} style={{ textAlign: 'center' }}>
+                {sum('calories') + sum('fat') + sum('carbs') + sum('protein')} Kcal
+              </td>
+            </tr>
+          </tfoot>
         </Table>
       </Sheet>
     </div>

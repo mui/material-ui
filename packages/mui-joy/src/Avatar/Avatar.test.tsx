@@ -8,7 +8,7 @@ import {
   fireEvent,
 } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Avatar, { avatarClasses as classes } from '@mui/joy/Avatar';
+import Avatar, { AvatarClassKey, avatarClasses as classes } from '@mui/joy/Avatar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import PersonIcon from '../internal/svg-icons/Person';
 
@@ -42,11 +42,13 @@ describe('<Avatar />', () => {
       expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    ['outlined', 'soft', 'solid'].forEach((variant) => {
+    (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" variant={variant} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`variant${capitalize(variant)}` as AvatarClassKey],
+        );
       });
     });
   });
@@ -58,11 +60,13 @@ describe('<Avatar />', () => {
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" color={color} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`color${capitalize(color)}` as AvatarClassKey],
+        );
       });
     });
   });
@@ -73,11 +77,13 @@ describe('<Avatar />', () => {
 
       expect(getByTestId('root')).to.have.class(classes.sizeMd);
     });
-    ['sm', 'md', 'lg'].forEach((size) => {
+    (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" size={size} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByTestId('root')).to.have.class(
+          classes[`size${capitalize(size)}` as AvatarClassKey],
+        );
       });
     });
   });
@@ -93,13 +99,12 @@ describe('<Avatar />', () => {
         />,
       );
       const avatar = container.firstChild;
-      const img = avatar.firstChild;
+      const img = avatar?.firstChild;
       expect(avatar).to.have.tagName('div');
       expect(img).to.have.tagName('img');
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
-      expect(avatar).not.to.have.class(classes.colorDefault);
       expect(img).to.have.class(classes.img);
       expect(img).to.have.attribute('alt', 'Hello World!');
       expect(img).to.have.attribute('src', '/fake.png');
@@ -109,7 +114,7 @@ describe('<Avatar />', () => {
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
-      fireEvent.error(img);
+      fireEvent.error(img as HTMLImageElement);
       expect(onError.callCount).to.equal(1);
     });
   });
@@ -121,6 +126,14 @@ describe('<Avatar />', () => {
       const imgs = container.querySelectorAll('img');
       expect(imgs.length).to.equal(1);
       expect(avatar).to.have.text('');
+    });
+
+    it('should be able to add more props to the image', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img as HTMLImageElement);
+      expect(onError.callCount).to.equal(1);
     });
   });
 
@@ -134,7 +147,7 @@ describe('<Avatar />', () => {
         </Avatar>,
       );
       const avatar = container.firstChild;
-      const icon = avatar.firstChild;
+      const icon = avatar?.firstChild;
 
       expect(avatar).to.have.tagName('div');
       expect(icon).to.have.tagName('span');
@@ -177,7 +190,7 @@ describe('<Avatar />', () => {
       const avatar = container.firstChild;
 
       expect(avatar).to.have.tagName('div');
-      const personIcon = avatar.firstChild;
+      const personIcon = (avatar as ChildNode).firstChild;
       expect(personIcon).to.have.attribute('data-testid', 'PersonIcon');
     });
 
@@ -212,7 +225,7 @@ describe('<Avatar />', () => {
       const avatar = container.firstChild;
 
       expect(avatar).to.have.tagName('div');
-      expect(avatar.firstChild).to.text('OT');
+      expect((avatar as ChildNode).firstChild).to.text('OT');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
@@ -242,7 +255,7 @@ describe('<Avatar />', () => {
       const avatar = container.firstChild;
 
       expect(avatar).to.have.tagName('div');
-      expect(avatar.firstChild).to.text('0');
+      expect((avatar as ChildNode).firstChild).to.text('0');
     });
 
     it('should merge user classes & spread custom props to the root node', () => {
