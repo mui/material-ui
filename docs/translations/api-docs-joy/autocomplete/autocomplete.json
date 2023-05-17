@@ -148,7 +148,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>."
+        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
       }
     },
     "onOpen": {
