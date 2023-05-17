@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import * as React from 'react';
 import userEvent from '@testing-library/user-event';
-import { createRenderer, screen, act, fireEvent } from 'test/utils';
+import { createRenderer, screen, act } from 'test/utils';
 import useNumberInput, { UseNumberInputParameters } from './index';
 
 describe('useNumberInput', () => {
@@ -56,7 +56,8 @@ describe('useNumberInput', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should call onChange if a change event is fired', () => {
+    it('should call onChange accordingly when inputting valid characters', async () => {
+      const user = userEvent.setup();
       const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({ onChange: handleChange });
@@ -65,14 +66,39 @@ describe('useNumberInput', () => {
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton');
+      const input = screen.getByRole('spinbutton') as HTMLInputElement;
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: 2 } });
       });
 
-      expect(handleChange.callCount).to.equal(1);
+      await user.keyboard('-12');
+
+      expect(handleChange.callCount).to.equal(3);
+      expect(handleChange.args[2][0].target.value).to.equal('-12');
+      expect(input.value).to.equal('-12');
+    });
+
+    it('should not change the input value when inputting invalid characters', async () => {
+      const user = userEvent.setup();
+      const handleChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({ onChange: handleChange });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      await user.keyboard('-5a');
+
+      expect(handleChange.callCount).to.equal(3);
+      expect(input.value).to.equal('-5');
     });
 
     it('DEBUG: test inputting characters one by one then backspacing them one by one in a plain <input>', async () => {
@@ -100,7 +126,8 @@ describe('useNumberInput', () => {
   });
 
   describe('prop: onValueChange', () => {
-    it('should call onValueChange when the input is blurred', () => {
+    it('should call onValueChange when the input is blurred', async () => {
+      const user = userEvent.setup();
       const handleValueChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({ onValueChange: handleValueChange });
@@ -113,33 +140,21 @@ describe('useNumberInput', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: 3 } });
+      });
+
+      await user.keyboard('34');
+
+      expect(handleValueChange.callCount).to.equal(0);
+
+      act(() => {
         input.blur();
       });
 
       expect(handleValueChange.callCount).to.equal(1);
     });
 
-    it('should not call onValueChange when the input has focus', () => {
-      const handleValueChange = spy();
-      function NumberInput() {
-        const { getInputProps } = useNumberInput({ onValueChange: handleValueChange });
-
-        return <input {...getInputProps()} />;
-      }
-      render(<NumberInput />);
-
-      const input = screen.getByRole('spinbutton');
-
-      act(() => {
-        input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: 4 } });
-      });
-
-      expect(handleValueChange.callCount).to.equal(0);
-    });
-
-    it('should call onValueChange with a value within max', () => {
+    it('should call onValueChange with a value within max', async () => {
+      const user = userEvent.setup();
       const handleValueChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
@@ -155,14 +170,19 @@ describe('useNumberInput', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: 9 } });
+      });
+
+      await user.keyboard('9');
+
+      act(() => {
         input.blur();
       });
 
       expect(handleValueChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onValueChange with a value within min', () => {
+    it('should call onValueChange with a value within min', async () => {
+      const user = userEvent.setup();
       const handleValueChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
@@ -178,14 +198,19 @@ describe('useNumberInput', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: -9 } });
+      });
+
+      await user.keyboard('-9');
+
+      act(() => {
         input.blur();
       });
 
       expect(handleValueChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onValueChange with a value based on a custom step', () => {
+    it('should call onValueChange with a value based on a custom step', async () => {
+      const user = userEvent.setup();
       const handleValueChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
@@ -202,11 +227,83 @@ describe('useNumberInput', () => {
 
       act(() => {
         input.focus();
-        fireEvent.change(document.activeElement!, { target: { value: 4 } });
+      });
+
+      await user.keyboard('4');
+
+      act(() => {
         input.blur();
       });
 
       expect(handleValueChange.args[0][1]).to.equal(5);
+    });
+
+    it('should call onValueChange with undefined when the value is cleared', async () => {
+      const user = userEvent.setup();
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({
+          onValueChange: handleValueChange,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      await user.keyboard('9');
+
+      expect(input.value).to.equal('9');
+
+      await user.keyboard('[Backspace]');
+
+      expect(input.value).to.equal('');
+
+      act(() => {
+        input.blur();
+      });
+
+      expect(handleValueChange.callCount).to.equal(1);
+      expect(handleValueChange.args[0][1]).to.equal(undefined);
+    });
+
+    it('should call onValueChange with undefined when input value is -', async () => {
+      const user = userEvent.setup();
+      const handleValueChange = spy();
+      function NumberInput() {
+        const { getInputProps } = useNumberInput({
+          onValueChange: handleValueChange,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<NumberInput />);
+
+      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+
+      act(() => {
+        input.focus();
+      });
+
+      await user.keyboard('-5');
+
+      expect(input.value).to.equal('-5');
+
+      await user.keyboard('[Backspace]');
+
+      expect(input.value).to.equal('-');
+
+      act(() => {
+        input.blur();
+      });
+
+      expect(handleValueChange.callCount).to.equal(1);
+      expect(handleValueChange.args[0][1]).to.equal(undefined);
     });
   });
 
