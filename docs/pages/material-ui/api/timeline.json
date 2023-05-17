@@ -19,7 +19,7 @@
   },
   "name": "Timeline",
   "styles": {
-    "classes": ["root", "positionLeft", "positionRight", "positionAlternate"],
+    "classes": ["root", "positionLeft", "positionRight", "positionAlternate","positionAlternateRevert"],
     "globalClasses": {},
     "name": "MuiTimeline"
   },

@@ -50,6 +50,17 @@ const TimelineItemRoot = styled('li', {
       },
     },
   }),
+  ...(ownerState.position === 'alternate-revert' && {
+    '&:nth-of-type(odd)': {
+      flexDirection: 'row-reverse',
+      [`& .${timelineContentClasses.root}`]: {
+        textAlign: 'right',
+      },
+      [`& .${timelineOppositeContentClasses.root}`]: {
+        textAlign: 'left',
+      },
+    },
+  }),
   ...(!ownerState.hasOppositeContent && {
     '&:before': {
       content: '""',

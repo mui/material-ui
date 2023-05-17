@@ -25,6 +25,11 @@
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>position=\"alternate\"</code>"
+    },
+    "positionAlternateRevert": {
+      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "nodeName": "o elemento raiz",
+      "conditions": "<code>position=\"alternate-revert\"</code>"
     }
   }
 }

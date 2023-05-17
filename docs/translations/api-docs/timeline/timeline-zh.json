@@ -25,6 +25,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>position=\"alternate\"</code>"
+    },
+    "positionAlternateRevert": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate-revert\"</code>"
     }
   }
 }

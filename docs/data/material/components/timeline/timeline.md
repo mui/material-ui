@@ -34,6 +34,14 @@ The timeline can display the events on alternating sides.
 
 {{"demo": "AlternateTimeline.js"}}
 
+
+## Reverted Alternating timeline
+
+The timeline can display the events on alternating sides.
+
+{{"demo": "AlternateRevertTimeline.js"}}
+
+
 ## Color
 
 The `TimelineDot` can appear in different colors from theme palette.
