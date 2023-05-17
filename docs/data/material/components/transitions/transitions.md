@@ -80,7 +80,7 @@ const MyComponent = React.forwardRef(function (props, ref) {
       Fade
     </div>
   );
-})
+});
 
 export default function Main() {
   return (
