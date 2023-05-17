@@ -44,7 +44,8 @@ defaults: &defaults
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:16.20
+    - image: cimg/node:18.16
+  resource_class: 'medium+'
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
@@ -247,7 +248,7 @@ jobs:
             git diff --exit-code
   test_types:
     <<: *defaults
-    resource_class: 'medium+'
+
     steps:
       - checkout
       - install_js
@@ -297,7 +298,6 @@ jobs:
             - packages/mui-utils/build
   test_types_next:
     <<: *defaults
-    resource_class: 'medium+'
     steps:
       - checkout
       - run:
@@ -346,7 +346,6 @@ jobs:
             exit 0
   test_browser:
     <<: *defaults
-    resource_class: 'medium+'
     docker:
       - image: mcr.microsoft.com/playwright:v1.33.0-focal
         environment:
