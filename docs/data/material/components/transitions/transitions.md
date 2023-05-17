@@ -82,7 +82,7 @@ const MyComponent = React.forwardRef(function (props, ref) {
   );
 })
 
-export default Main() {
+export default function Main() {
   return (
     <Fade>
       {/* MyComponent must be the only child */}
