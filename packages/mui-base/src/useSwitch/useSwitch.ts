@@ -117,6 +117,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.code === 'Space' && inputRef.current) {
+        event.preventDefault();
         setCheckedState(!checked);
         otherProps.onKeyDown?.(event);
       }
