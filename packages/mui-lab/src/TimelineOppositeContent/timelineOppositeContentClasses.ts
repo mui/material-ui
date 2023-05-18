@@ -22,7 +22,7 @@ export function getTimelineOppositeContentUtilityClass(slot: string): string {
 
 const timelineOppositeContentClasses: TimelineOppositeContentClasses = generateUtilityClasses(
   'MuiTimelineOppositeContent',
-  ['root', 'positionLeft', 'positionRight', 'positionAlternate','positionAlternateRevert'],
+  ['root', 'positionLeft', 'positionRight', 'positionAlternate', 'positionAlternateRevert'],
 );
 
 export default timelineOppositeContentClasses;

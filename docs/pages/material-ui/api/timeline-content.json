@@ -11,7 +11,13 @@
   },
   "name": "TimelineContent",
   "styles": {
-    "classes": ["root", "positionRight", "positionLeft", "positionAlternate","positionAlternateRevert"],
+    "classes": [
+      "root",
+      "positionRight",
+      "positionLeft",
+      "positionAlternate",
+      "positionAlternateRevert"
+    ],
     "globalClasses": {},
     "name": "MuiTimelineContent"
   },

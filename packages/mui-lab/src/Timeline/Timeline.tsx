@@ -130,7 +130,7 @@ Timeline.propTypes /* remove-proptypes */ = {
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position: PropTypes.oneOf(['alternate', 'left', 'right','alternate-revert']),
+  position: PropTypes.oneOf(['alternate', 'left', 'right', 'alternate-revert']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
