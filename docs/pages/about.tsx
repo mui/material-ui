@@ -472,6 +472,16 @@ const teamMembers: Array<Profile> = [
     github: 'zanivan',
     twitter: 'Zanivan_',
   },
+  {
+    name: 'Diego Andai',
+    src: '/static/branding/about/diego.png',
+    title: 'MUI Core Engineer',
+    location: 'Santiago, Chile',
+    locationCountry: 'cl',
+    about: 'I love tennis 🎾 and cats 🐈',
+    twitter: 'DiegoAndaiC',
+    github: 'DiegoAndai',
+  },
 ];
 
 const contributors = [
