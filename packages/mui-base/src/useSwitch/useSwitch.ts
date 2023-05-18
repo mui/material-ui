@@ -127,6 +127,17 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
         event.preventDefault();
         setCheckedState(!checked);
         otherProps.onKeyDown?.(event);
+
+        const nativeEvent = event.nativeEvent || event;
+        // @ts-ignore
+        const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+        Object.defineProperty(clonedEvent, 'target', {
+          writable: true,
+          value: { type: 'checkbox', checked: !checked },
+        });
+        onChange?.(clonedEvent);
+        otherProps.onChange?.(clonedEvent);
       }
     };
 
