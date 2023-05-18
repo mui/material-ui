@@ -459,7 +459,7 @@ export default function Demo(props) {
     ? demoData.jsxPreview
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
       // need it in the live edit view.
-      demoData.raw;
+      demoData.raw.replace(/\n$/, '');
   const [editorCode, setEditorCode] = React.useState({
     value: initialEditorCode,
     isPreview,
