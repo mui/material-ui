@@ -1,5 +1,187 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.0
+
+<!-- generated comparing v5.12.3..master -->
+
+_May 10, 2023_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Base UI is now in beta - all planned breaking changes are now complete!
+- 🗺 We have a new [project roadmap](https://github.com/orgs/mui/projects/18/views/1) on GitHub where you can learn about what's coming next.
+- 🐛 Various bug fixes, 📚 documentation and 🧪 testing improvements
+
+### `@mui/material@5.13.0`
+
+- [Autocomplete] Support `ChipComponent` type (#37112) @sai6855
+- [AppBar] Fix component type (#37172) @sai6855
+- [Select] Simplify handleChange in SelectInput (#37040) @ulrichstark
+
+### `@mui/joy@5.0.0-alpha.79`
+
+- [Input][joy] Improve alignment on date fields (#37146) @wewakekumar
+- [Alery][joy] Turn JS test to TS test (#37077) @hbjORbj
+- [AspectRatio][joy] js test replaced with ts test (#37087) @PunitSoniME
+- [Badge][AvatarGroup][joy] js test replaced with ts test (#37089) @PunitSoniME
+- [Box][Card][MenuList][joy] Turn JS test to TS test (#37126) @uuxxx
+- [List][Menu][joy] Turn JS test to TS test (#37123) @uuxxx
+- [test][Joy] Remove duplicate Avatar test (#37201) @zignis
+- [test][joy] js test cases converted to ts (#37117) @PunitSoniME
+- [Button][joy] Convert Button test to typescript (#37181) @akash191095
+- [CardContent][CardCover][CardOverflow][Chip][ChipDelete][joy] js text case converted to ts (#37116) @PunitSoniME
+- [Radio][IconButton][Checkbox][Option][joy] Switch to TypeScript unit test (#37137) @DerTimonius
+
+### `@mui/base@5.0.0-beta.0`
+
+- [Select][base] Do not call onChange after initial render (#37141) @michaldudak
+- [Select][base] Rename the `optionStringifier` prop (#37118) @michaldudak
+- [typescript][base] Fix types of components callbacks parameters (#37169) @michaldudak
+- [Select], [TablePagination] Use more descriptive parameter names (#37064) @michaldudak
+
+### Docs
+
+- [docs] Stray design tweaks to Base UI demos (#37003) @danilo-leal
+- [docs] Move outdated CSS prefixing docs (#36710) @kriskw1999
+- [docs] Improve "Example projects" page design (#37007) @danilo-leal
+- [docs] Redirect NoSsr, Portal and TextareaAutosize to Base UI API page (#37175) @ZeeshanTamboli
+- [docs] Demonstrate `TextField` customization using theme style overrides (#36805) @ZeeshanTamboli
+- [docs] Tweak the "Edit this page" button icon (#37142) @danilo-leal
+- [docs] Update links to the public roadmap (#36995) @mnajdova
+- [docs] Improve Multiselect demo styling (#37120) @michaldudak
+- [Stack] Fix import description @oliviertassinari
+
+### Core
+
+- [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
+- [core] Add VSCode extensions recommendations (#37166) @michaldudak
+- [test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
+- [website] Update the active positions (#37075) @DanailH
+- [website] Add Romain to the About page (#37124) @romgrk
+- [website] Make Toolpad alpha labels consistent (#37125) @gerdadesign
+
+All contributors of this release in alphabetical order: @akash191095, @DanailH, @danilo-leal, @DerTimonius, @gerdadesign, @hbjORbj, @kriskw1999, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @romgrk, @sai6855, @ulrichstark, @uuxxx, @wewakekumar, @ZeeshanTamboli, @zignis
+
+## 5.12.3
+
+<!-- generated comparing v5.12.2..master -->
+
+_May 2, 2023_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- all planned breaking changes for Base UI are done. The first beta release should come next week 🎉
+- 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.12.3`
+
+- &#8203;<!-- 43 -->[Accordion] Add missing `component` type (#37111) @sai6855
+- &#8203;<!-- 23 -->[ButtonGroup] Should not retain divider color when it is disabled and variant is `text` (#36967) @DavidBoyer11
+- &#8203;<!-- 21 -->[Divider] Fix styles on dividers with text (#35072) @maxdestors
+- &#8203;<!-- 04 -->[TextField] Improve IntelliSense support for props (#36737) @sai6855
+- &#8203;<!-- 03 -->[TextField] Fix running click event on disabled (#36892) @sai6855
+
+### `@mui/joy@5.0.0-alpha.78`
+
+- &#8203;<!-- 09 -->[Joy] Miscellaneous fixes and docs improvement (#37026) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.128`
+
+#### Breaking changes
+
+- The `component` prop is no longer supported because it can be replaced with the slots API. This is how the transformation will look like:
+
+  ```diff
+   <Button
+  -  component="span"
+  +  slots={{ root: "span" }}
+   />
+  ```
+
+  If using TypeScript, the custom component type should be added as a generic on the `Button` component.
+
+  ```diff
+  -<Button
+  +<Button<typeof CustomComponent>
+     slots={{ root: CustomComponent }}
+     customProp="foo"
+   />
+  ```
+
+  There is codemod that you can run in your project to do the transformation:
+
+  ```sh
+  npx @mui/codemod v5.0.0/base-remove-component-prop <path>
+  ```
+
+  The full documentation about the codemod can be found [here](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-remove-component-prop).
+
+  This is the list of PR related to this change:
+
+  - &#8203;<!-- 40 -->[Button][base] Drop `component` prop (#36677) @mnajdova
+  - &#8203;<!-- 42 -->[Badge][base] Drop `component` prop (#37028) @hbjORbj
+  - &#8203;<!-- 37 -->[FormControl][base] Drop component prop (#37031) @hbjORbj
+  - &#8203;<!-- 35 -->[Input][base] Drop component prop (#37057) @hbjORbj
+  - &#8203;<!-- 34 -->[Menu][base] Drop component prop (#37033) @hbjORbj
+  - &#8203;<!-- 33 -->[MenuItem][base] Drop component prop (#37032) @hbjORbj
+  - &#8203;<!-- 32 -->[Modal][base] Drop component prop (#37058) @hbjORbj
+  - &#8203;<!-- 31 -->[Option][base] Drop component prop (#37052) @hbjORbj
+  - &#8203;<!-- 30 -->[OptionGroup][base] Drop component prop (#37055) @hbjORbj
+  - &#8203;<!-- 31 -->[Popper][base] Drop component prop (#37084) @hbjORbj
+  - &#8203;<!-- 29 -->[Select][base] Drop component prop (#37035) @hbjORbj
+  - &#8203;<!-- 28 -->[Slider][base] Drop component prop (#37056) @hbjORbj
+  - &#8203;<!-- 27 -->[Snackbar][base] Drop component prop (#37041) @nicolas-ot
+  - &#8203;<!-- 26 -->[Switch][base] Drop component prop (#37053) @hbjORbj
+  - &#8203;<!-- 25 -->[Tab][base] Drop component prop (#36768) @sai6855
+  - &#8203;<!-- 24 -->[Tabs][base] Drop component prop (#36770) @sai6855
+  - &#8203;<!-- 08 -->[TablePagination][base] Drop component prop (#37059) @sai6855
+  - &#8203;<!-- 07 -->[TabPanel][base] Drop component prop (#37054) @sai6855
+  - &#8203;<!-- 06 -->[TabsList][base] Drop component prop (#37042) @sai6855
+
+- &#8203;<!-- 41 -->[base] Improve API consistency (#36970) @michaldudak
+
+  Brought consistency to Base UI components and hooks' parameters and return values:
+
+  1. Whenever a hook needs a ref, it's now called `<slot_name>Ref`, which matches the `get<slot_name>Props` in the return value.
+  2. All hooks that accept external refs now return merged refs, making combining multiple hooks on one element easier. This was proven necessary in several compound components (like menuItem being both a button and a list item). The type of this value is `React.RefCallback` as using the more general `React.Ref` caused variance issues.
+  3. Type of accepted refs is standardized to `React.Ref<Element>`
+  4. Naming and typing of the forwarded ref in unstyled components were standardized - it's forwardedRef: React.ForwardedRef<Element> (unless a more specific type is needed).
+  5. The shape of the definition of unstyled components was standardized - it's React.forwardRef(function Component(props: Props, forwardedRef: React.Ref<Element>) { ... });. Specifically, the generic parameters of forwardRef were removed as they are specified in function arguments.
+
+#### Changes
+
+- &#8203;<!-- 36 -->[FormControl][base] Do not use optional fields in useFormControlContext's return value (#37037) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 39 -->[base][docs] Add Base UI Quickstart Guide (#36717) @mj12albert
+- &#8203;<!-- 20 -->[docs] Fix Material UI's API linking to Base UI (#37121) @mnajdova
+- &#8203;<!-- 19 -->[docs] Fix pagination in the DataGrid demo (#37114) @cherniavskii
+- &#8203;<!-- 18 -->[docs] Add notification to the release of the new Time Picker UI (#37065) @joserodolfofreitas
+- &#8203;<!-- 17 -->[docs] Specify "Material UI" (not "MUI") where appropriate throughout the docs (#37066) @samuelsycamore
+- &#8203;<!-- 16 -->[docs] Use focus-visible instead of focus for Menu demos (#36847) @michaldudak
+- &#8203;<!-- 15 -->[docs] Fix small regressions API pages (#36972) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Handle a few docs-feedback (#36977) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Fix anchor link in customization (#37004) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Add a note about minimal required version for theme merging to the guides (#36973) @jakub-stastny
+- &#8203;<!-- 11 -->[docs] smooth scrolling added for `back to top` (#37011) @PunitSoniME
+- &#8203;<!-- 10 -->[docs] Remove `useFormControl` return values from demos page (#37036) @ZeeshanTamboli
+- &#8203;<!-- 47 --> [docs][base] Move styles to the bottom of demos code for `SwitchUnstyled` (#36720) @varunmulay22
+- &#8203;<!-- 46 --> [docs][base] Move styles to the bottom of demos code for `InputUnstyled` (#36724) @varunmulay22
+- &#8203;<!-- 45 --> [docs][base] Move styles to the bottom of demos code for `SliderUnstyled` (#36721) @varunmulay22
+- &#8203;<!-- 44 --> [docs][base] Move styles to the bottom of demos code for `Snackbar` (#36719) @varunmulay22
+- &#8203;<!-- 38 -->[docs][base] Move styles to the bottom of demos code for `SelectUnstyled` (#36718) @varunmulay22
+- &#8203;<!-- 05 -->[templates] Image not displayed in blog layout of React template. (#36991) @navedqb
+- &#8203;<!-- 02 -->[website] Take the design role offline @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix URL convention @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Turn off job banner on docs (#36080) @joserodolfofreitas
+
+### Core
+
+- &#8203;<!-- 22 -->[core] Allow type alias as well in hooks API docs generation (#37034) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @cherniavskii, @DavidBoyer11, @hbjORbj, @jakub-stastny, @joserodolfofreitas, @maxdestors, @michaldudak, @mj12albert, @mnajdova, @navedqb, @nicolas-ot, @oliviertassinari, @PunitSoniME, @sai6855, @samuelsycamore, @siriwatknp, @varunmulay22, @ZeeshanTamboli
+
 ## 5.12.2
 
 <!-- generated comparing v5.12.1..master -->

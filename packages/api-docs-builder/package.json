@@ -16,7 +16,7 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.22.0",
     "typescript-to-proptypes": "^5.0.0",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
