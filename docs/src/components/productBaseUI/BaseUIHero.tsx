@@ -448,7 +448,7 @@ export default function BaseUIHero() {
           </Typography>
           <GetStartedButtons2
             getStartedUrl={ROUTES.baseDocs}
-            learnUrl=""
+            learnUrl={ROUTES.baseQuickstart}
             learnLabel="Learn Base UI"
             installation="npm install @mui/base"
           />

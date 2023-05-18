@@ -205,9 +205,11 @@ const Root = styled('div')(
   }),
   ({ theme }) =>
     theme.applyDarkStyles({
-      background: `linear-gradient(180deg, ${(theme.vars || theme).palette.primaryDark[900]} 20%, ${
+      background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.5)} 0%, ${
         (theme.vars || theme).palette.primaryDark[800]
-      } 80%)`,
+      } 100%)`,
+      backgroundSize: '100% 300px',
+      backgroundRepeat: 'no-repeat',
       [`& .${classes.container}`]: {
         '& strong': {
           color: (theme.vars || theme).palette.grey[100],
