@@ -88,14 +88,14 @@ const StyledTab = styled(Tab)`
 
 const StyledTabPanel = styled(TabPanel)`
   width: 100%;
-  padding: 16px;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
 `;
 
 const StyledTabs = styled(Tabs)`
   display: flex;
-  width: 250px;
+  gap: 16px;
+  width: 200px;
 `;
 
 const StyledTabsList = styled(TabsList)(
