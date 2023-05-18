@@ -1,6 +1,6 @@
 import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters, UseSwitchRootSlotProps } from '../useSwitch';
+import { UseSwitchParameters, UseSwitchRootSlotProps } from '../useSwitch';
 
 export interface SwitchRootSlotPropsOverrides {}
 export interface SwitchThumbSlotPropsOverrides {}
