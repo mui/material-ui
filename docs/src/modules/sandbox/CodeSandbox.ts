@@ -100,14 +100,18 @@ const createJoyTemplate = (demo: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: 'TS' | 'JS';
-  codeStyling: 'Tailwind' | 'MUI System';
+  codeStyling?: 'Tailwind' | 'MUI System';
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
 
   const files: Record<string, object> = {
     'public/index.html': {
-      content: CRA.getHtml({ title: demo.title, language: 'en', codeStyling: demo.codeStyling }),
+      content: CRA.getHtml({
+        title: demo.title,
+        language: 'en',
+        codeStyling: demo.codeStyling ?? 'MUI System',
+      }),
     },
     [`index.${ext}`]: {
       content: `import * as React from 'react';

@@ -11,7 +11,7 @@ const createReactApp = (demo: {
   codeVariant: 'TS' | 'JS';
   githubLocation: string;
   product?: 'joy-ui' | 'base';
-  codeStyling: 'Tailwind' | 'MUI System';
+  codeStyling?: 'Tailwind' | 'MUI System';
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;

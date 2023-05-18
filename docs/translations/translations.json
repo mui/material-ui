@@ -78,6 +78,8 @@
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
+  "demoStylingSelectSystem": "MUI System",
+  "demoStylingSelectTailwind": "Tailwind",
   "diamondSponsors": "Diamond Sponsors",
   "editorHint": "Press <kbd>Enter</kbd> to start editing",
   "editPage": "Edit this page",

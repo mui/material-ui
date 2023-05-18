@@ -33,14 +33,13 @@ export function CodeStylingProvider(props) {
       return undefined;
     }
 
-    const navigatedCodeStyling =
-      typeof window !== 'undefined'
-        ? window.location.hash.indexOf('.tailwind.') >= 0
-          ? CODE_STYLING.TAILWIND
-          : CODE_STYLING.SYSTEM
-        : undefined;
+    if (typeof window !== 'undefined') {
+      return window.location.hash.indexOf('.tailwind.') >= 0
+        ? CODE_STYLING.TAILWIND
+        : CODE_STYLING.SYSTEM;
+    }
 
-    return navigatedCodeStyling;
+    return undefined;
   }, []);
 
   const persistedCodeStyling = React.useMemo(() => {

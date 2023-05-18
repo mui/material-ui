@@ -5,7 +5,7 @@ export const getHtml = ({
 }: {
   title: string;
   language: string;
-  codeStyling: 'Tailwind' | 'MUI System';
+  codeStyling?: 'Tailwind' | 'MUI System';
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">

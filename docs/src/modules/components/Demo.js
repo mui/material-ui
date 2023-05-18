@@ -8,7 +8,7 @@ import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import Select, { selectClasses } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -116,7 +116,10 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
 
     return {
       scope: demo.scope,
-      jsxPreview: codeStyling === CODE_STYLING.TAILWIND ? demo.tailwindJsxPreview : demo.jsxPreview,
+      jsxPreview:
+        codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview
+          ? demo.tailwindJsxPreview
+          : demo.jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       product,
@@ -493,7 +496,7 @@ export default function Demo(props) {
   };
 
   return (
-    <>
+    <React.Fragment>
       {showSelect && (
         <Box sx={{ height: 50 }}>
           <Select
@@ -502,8 +505,8 @@ export default function Demo(props) {
             value={styleSolution}
             onChange={handleStylingSolutionChange}
           >
-            <MenuItem value="MUI System">MUI System</MenuItem>
-            <MenuItem value="Tailwind">Tailwind</MenuItem>
+            <MenuItem value="MUI System">{t('demoStylingSelectSystem')}</MenuItem>
+            <MenuItem value="Tailwind">{t('demoStylingSelectTailwind')}</MenuItem>
           </Select>
         </Box>
       )}
@@ -604,7 +607,7 @@ export default function Demo(props) {
           {adVisibility ? <AdCarbonInline /> : null}
         </Wrapper>
       </Root>
-    </>
+    </React.Fragment>
   );
 }
 
