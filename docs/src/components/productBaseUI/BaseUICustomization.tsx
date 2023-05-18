@@ -32,7 +32,7 @@ const StyledSwitchRoot = styled('span')(\`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: var(--muidocs-palette-grey-400);
+  background: #A0AAB4;
 
   &.Mui-disabled {
     opacity: 0.4;
@@ -40,14 +40,14 @@ const StyledSwitchRoot = styled('span')(\`
   }
 
   &.Mui-checked {
-    background: var(--muidocs-palette-primary-main);
+    background: #007FFF;
     & .MuiSwitch-thumb {
       left: 20px;
     }
   }
 
   &.Mui-focusVisible {
-    outline: 2px solid var(--muidocs-palette-primary-main);
+    outline: 2px solid #007FFF;
     outline-offset: 2px;
   }
 \`);
@@ -71,7 +71,7 @@ const StyledSwitchThumb = styled('span')\`
   top: 4px;
   left: 4px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: #FFF;
   position: relative;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -131,7 +131,7 @@ const StyledSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: #B2BAC2;
+  background: #A0AAB4;
 
   &.Mui-disabled {
     opacity: 0.4;
@@ -139,14 +139,14 @@ const StyledSwitchRoot = styled('span')(`
   }
 
   &.Mui-checked {
-    background: #3B4A59;
+    background: #007FFF;
     & .MuiSwitch-thumb {
       left: 20px;
     }
   }
 
   &.Mui-focusVisible {
-    outline: 2px solid #3B4A59;
+    outline: 2px solid #007FFF;
     outline-offset: 2px;
   }
 `);
