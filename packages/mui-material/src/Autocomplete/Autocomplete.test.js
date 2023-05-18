@@ -2502,7 +2502,7 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  it('should not override intenal listbox ref when external listbox ref is provided', () => {
+  it('should not override internal listbox ref when external listbox ref is provided', () => {
     const handleHighlightChange = spy();
     const options = ['one', 'two', 'three'];
     const ref = React.createRef(null);
