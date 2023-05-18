@@ -31,7 +31,9 @@ export default function Pricing() {
           <PricingTable /> {/* Desktop */}
         </Container>
         <EarlyBird />
+        <Divider />
         <Testimonials />
+        <Divider />
         <WhatToExpect />
         <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
         <FAQ />

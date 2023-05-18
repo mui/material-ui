@@ -18,6 +18,7 @@ import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import IconImage from 'docs/src/components/icon/IconImage';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import Section from 'docs/src/layouts/Section';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
@@ -324,6 +325,7 @@ function CareersContent() {
         </Box>
       </Container>
       {/* Our ultimate goal */}
+      <Divider />
       <Box
         sx={(theme) => ({
           bgcolor: 'grey.50',
@@ -332,11 +334,11 @@ function CareersContent() {
           }),
         })}
       >
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Section bg="gradient" cozy>
           <Grid container alignItems="center" spacing={4}>
             <Grid item xs={12} md={6}>
               <Typography variant="h2" sx={{ my: 1 }}>
-                Our ultimate goal
+                Our <GradientText>ultimate</GradientText> goal
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
                 We aim high trying to design the most effective and efficient tool for building UIs,
@@ -364,104 +366,104 @@ function CareersContent() {
             </Grid>
             <MuiStatistics />
           </Grid>
-        </Container>
+        </Section>
       </Box>
+      <Divider />
       {/* Perks & benefits */}
-      <div>
-        <Container sx={{ py: 4 }}>
-          <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
-            <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
-              <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
-                {'Perks & benefits'}
-              </Typography>
-              <Typography color="text.secondary" sx={{ mb: 2 }}>
-                To help you go above and beyond with us, we provide:
-              </Typography>
-              {[
-                ['Remote work:', 'Our entire company is distributed.'],
-                [
-                  'Retreats:',
-                  'We meet up every eight months for a week of working and having fun together!',
-                ],
-                [
-                  'Equipment:',
-                  'MUI will provide the hardware of your choice (initial grant of $2,500 USD).',
-                ],
-                ['Time off:', 'We provide five weeks of paid time off.'],
-              ].map((textArray) => (
-                <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
-                  <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
-                    <span style={{ fontWeight: 700 }}>{`${textArray[0]}  `}</span>
-                    {textArray[1]}
-                  </Typography>
-                </Box>
-              ))}
+      <Section bg="transparent" cozy>
+        <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
+          <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
+            <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
+              {'Perks & benefits'}
+            </Typography>
+            <Typography color="text.secondary" sx={{ mb: 2 }}>
+              To help you go above and beyond with us, we provide:
+            </Typography>
+            {[
+              ['Remote work:', 'Our entire company is distributed.'],
+              [
+                'Retreats:',
+                'We meet up every eight months for a week of working and having fun together!',
+              ],
+              [
+                'Equipment:',
+                'MUI will provide the hardware of your choice (initial grant of $2,500 USD).',
+              ],
+              ['Time off:', 'We provide five weeks of paid time off.'],
+            ].map((textArray) => (
+              <Box key={textArray[0]} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
+                <IconImage name="yes" />
+                <Typography variant="body2" color="text.primary" sx={{ ml: 1 }}>
+                  <span style={{ fontWeight: 700 }}>{`${textArray[0]}  `}</span>
+                  {textArray[1]}
+                </Typography>
+              </Box>
+            ))}
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} container spacing={2}>
+            <Grid item xs={12} sm={12} md={6}>
+              <Paper
+                component={Link}
+                href={ROUTES.handbook}
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2 }}
+              >
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  Handbook
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  See how we run the company and the way we work.
+                </Typography>
+                <Typography
+                  sx={(theme) => ({
+                    color: 'primary.600',
+                    ...theme.applyDarkStyles({
+                      color: 'primary.400',
+                    }),
+                  })}
+                  variant="body2"
+                  fontWeight="bold"
+                >
+                  Learn more{' '}
+                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                </Typography>
+              </Paper>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} container spacing={2}>
-              <Grid item xs={12} sm={12} md={6}>
-                <Paper
-                  component={Link}
-                  href={ROUTES.handbook}
-                  noLinkStyle
-                  variant="outlined"
-                  sx={{ p: 2 }}
+            <Grid item xs={12} sm={12} md={6}>
+              <Paper
+                component={Link}
+                href={ROUTES.blog}
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2 }}
+              >
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  Blog
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  Check behind the scenes and news from the company.
+                </Typography>
+                <Typography
+                  sx={(theme) => ({
+                    color: 'primary.600',
+                    ...theme.applyDarkStyles({
+                      color: 'primary.400',
+                    }),
+                  })}
+                  variant="body2"
+                  fontWeight="bold"
                 >
-                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                    Handbook
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                    See how we run the company and the way we work.
-                  </Typography>
-                  <Typography
-                    sx={(theme) => ({
-                      color: 'primary.600',
-                      ...theme.applyDarkStyles({
-                        color: 'primary.400',
-                      }),
-                    })}
-                    variant="body2"
-                    fontWeight="bold"
-                  >
-                    Learn more{' '}
-                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={12} md={6}>
-                <Paper
-                  component={Link}
-                  href={ROUTES.blog}
-                  noLinkStyle
-                  variant="outlined"
-                  sx={{ p: 2 }}
-                >
-                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                    Blog
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                    Check behind the scenes and news from the company.
-                  </Typography>
-                  <Typography
-                    sx={(theme) => ({
-                      color: 'primary.600',
-                      ...theme.applyDarkStyles({
-                        color: 'primary.400',
-                      }),
-                    })}
-                    variant="body2"
-                    fontWeight="bold"
-                  >
-                    Learn more{' '}
-                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                  </Typography>
-                </Paper>
-              </Grid>
+                  Learn more{' '}
+                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                </Typography>
+              </Paper>
             </Grid>
           </Grid>
-        </Container>
-      </div>
+        </Grid>
+      </Section>
       {/* Open roles */}
+      <Divider />
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <div>
           <Typography variant="h2" sx={{ my: 1 }} id="open-roles">
@@ -522,8 +524,9 @@ function CareersContent() {
         </Stack>
       </Container>
       {/* Next roles */}
+      <Divider />
       {nextRolesData.length > 0 ? (
-        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.700' }}>
+        <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
           <Container sx={{ py: { xs: 4, md: 8 } }}>
             <Box
               sx={{
@@ -578,8 +581,9 @@ function CareersContent() {
           </Container>
         </Box>
       ) : null}
+      <Divider />
       {/* Frequently asked questions */}
-      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+      <Section bg="transparent">
         <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
           Frequently asked questions
         </Typography>
@@ -617,7 +621,7 @@ function CareersContent() {
             </Paper>
           </Grid>
         </Grid>
-      </Container>
+      </Section>
     </React.Fragment>
   );
 }

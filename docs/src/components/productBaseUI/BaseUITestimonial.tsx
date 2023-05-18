@@ -23,18 +23,21 @@ export default function BaseUITestimonial() {
               background: 'linear-gradient(260deg, #3399FF 0%, #0059B3 95%)',
               backgroundClip: 'padding-box',
               overflow: 'auto',
+              '& img': {
+                width: '100%',
+                borderTopLeftRadius: '12px',
+                display: 'block',
+              },
             }}
           >
             <Typography variant="h4" component="h2" mb={2.5} sx={{ color: '#fff' }}>
               Nhost&apos;s dashboard
             </Typography>
-            <Box
-              component="img"
+            <img
               src="/static/branding/base-ui/nhost.jpg"
               alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
               loading="lazy"
-              width="510"
-              sx={{ width: '100%', borderTopLeftRadius: '12px', display: 'block' }}
+              width="570px"
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>

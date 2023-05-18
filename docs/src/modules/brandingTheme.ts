@@ -504,31 +504,25 @@ export function getThemedComponents(): ThemeOptions {
                 color: '#FFF',
                 background: `linear-gradient(180deg, ${
                   (theme.vars || theme).palette.primary[500]
-                } 0%, ${(theme.vars || theme).palette.primary[300]} 100%,
-                })`,
+                } 0%, ${(theme.vars || theme).palette.primary[300]} 100%)`,
                 border: '1px solid',
                 borderColor: (theme.vars || theme).palette.primary[400],
                 boxShadow: `0px 2px 4px ${alpha(
                   theme.palette.primary[700],
                   0.2,
                 )}, inset 0px 4px 8px ${alpha(theme.palette.primary[400], 0.4)}`,
-                textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.5)}`,
+                textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.3)}`,
+                transition: theme.transitions.create('background', {
+                  easing: theme.transitions.easing.sharp,
+                  duration: theme.transitions.duration.enteringScreen,
+                }),
                 '&:hover': {
-                  background: (theme.vars || theme).palette.primary[600],
+                  background: `linear-gradient(180deg, ${
+                    (theme.vars || theme).palette.primary[500]
+                  } 0%, ${(theme.vars || theme).palette.primary[400]} 100%)`,
                   boxShadow:
                     '0px 0px 8px rgba(0, 127, 255, 0.2), inset 0px 4px 8px rgba(102, 178, 255, 0.4)',
                 },
-                ...theme.applyDarkStyles({
-                  background: `linear-gradient(180deg, ${
-                    (theme.vars || theme).palette.primary[500]
-                  } 0%, ${(theme.vars || theme).palette.primary[300]} 100%,
-                  })`,
-                  boxShadow: `0px 2px 4px ${alpha(
-                    theme.palette.primary[700],
-                    0.2,
-                  )}, inset 0px 4px 8px ${alpha(theme.palette.primary[400], 0.4)}`,
-                  textShadow: `0px 1px 1px ${alpha(theme.palette.grey[900], 0.5)}`,
-                }),
               }),
           }),
         },
