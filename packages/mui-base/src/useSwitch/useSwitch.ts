@@ -40,7 +40,6 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
   const createHandleInputChange =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      // console.log('onchange');
       // Workaround for https://github.com/facebook/react/issues/9023
       if (event.nativeEvent.defaultPrevented) {
         return;
@@ -105,12 +104,20 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
   const createHandleClick =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
     (event: React.MouseEvent<HTMLInputElement>) => {
-      if (disabled) {
-        return;
-      }
       setCheckedState((checkedState) => !checkedState);
       setFocusVisible(false);
       otherProps.onClick?.(event);
+
+      const nativeEvent = event.nativeEvent || event;
+      // @ts-ignore
+      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+      Object.defineProperty(clonedEvent, 'target', {
+        writable: true,
+        value: { type: 'checkbox', checked: !checked },
+      });
+      onChange?.(clonedEvent);
+      otherProps.onChange?.(clonedEvent);
     };
 
   const createHandleKeyDown =
