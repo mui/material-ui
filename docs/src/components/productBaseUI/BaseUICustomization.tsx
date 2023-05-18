@@ -131,7 +131,7 @@ const StyledSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
   border-radius: 16px;
-  background: var(--muidocs-palette-grey-400);
+  background: #B2BAC2;
 
   &.Mui-disabled {
     opacity: 0.4;
@@ -139,14 +139,14 @@ const StyledSwitchRoot = styled('span')(`
   }
 
   &.Mui-checked {
-    background: var(--muidocs-palette-primary-main);
+    background: #3B4A59;
     & .MuiSwitch-thumb {
       left: 20px;
     }
   }
 
   &.Mui-focusVisible {
-    outline: 2px solid var(--muidocs-palette-primary-main);
+    outline: 2px solid #3B4A59;
     outline-offset: 2px;
   }
 `);
