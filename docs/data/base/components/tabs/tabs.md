@@ -69,7 +69,7 @@ The next demo shows how to apply custom styles to a set of tabs:
 
 ### Vertical
 
-To adapt keyboard navigation (e.g. arrow keys) to use a vertical orientation, set orientation="vertical" on the `Tabs` component.
+To adapt keyboard navigation (e.g. arrow keys) to use a vertical orientation, set `orientation="vertical"` on the `Tabs` component.
 
 {{"demo": "UnstyledTabsVertical.js"}}
 
