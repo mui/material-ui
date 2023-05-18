@@ -736,6 +736,7 @@ function AboutContent() {
           <MuiStatistics />
         </Grid>
       </Section>
+      <Divider />
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
@@ -783,6 +784,7 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
+      <Divider />
       <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'primaryDark.900' }}>
         <Container sx={{ py: { xs: 4, sm: 8 } }}>
           <Typography
