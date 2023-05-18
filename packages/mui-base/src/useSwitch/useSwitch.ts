@@ -104,7 +104,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
 
   const createHandleClick =
     (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
-    (event: React.BaseSyntheticEvent) => {
+    (event: React.MouseEvent<HTMLInputElement>) => {
       if (disabled) {
         return;
       }
@@ -114,7 +114,8 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     };
 
   const createHandleKeyDown =
-    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) => (event: React.KeyboardEvent) => {
+    (otherProps: React.InputHTMLAttributes<HTMLInputElement>) =>
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.code === 'Space' && inputRef.current) {
         setCheckedState(!checked);
         otherProps.onKeyDown?.(event);

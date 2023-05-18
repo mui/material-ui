@@ -95,6 +95,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     externalSlotProps: slotProps.root,
     externalForwardedProps: other,
     additionalProps: {
+      tabIndex: disabled ? null : 0,
       ref: forwardedRef,
     },
     getSlotProps: getInputProps,
@@ -127,7 +128,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   });
 
   return (
-    <Root {...rootProps} tabIndex="0" sx={{ outline: 'none' }}>
+    <Root {...rootProps} sx={{ outline: 'none' }}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
       <Input {...inputProps} hidden />
