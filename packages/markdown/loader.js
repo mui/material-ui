@@ -267,21 +267,6 @@ module.exports = async function demoLoader() {
         demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
         demos[demoName].rawTS = rawTS;
         demoModuleIDs.add(demos[demoName].moduleTS);
-
-        // const tailwindModule = moduleID.replace(/\.js$/, '.tailwind.js');
-        // const tailwindModuleTS = moduleID.replace(/\.js$/, '.tailwind.tsx');
-        // const tailwindModuleTSFilepath = path.join(
-        //   path.dirname(this.resourcePath),
-        //   tailwindModuleTS.replace(/\//g, path.sep),
-        // );
-        // this.addDependency(tailwindModuleTSFilepath);
-        // const tailwindRawTS = await fs.readFile(tailwindModuleTSFilepath, { encoding: 'utf8' });
-
-        // // In development devs can choose whether they want to work on the TS or JS version.
-        // // But this leads to building both demo version i.e. more build time.
-        // demos[demoName].tailwindModuleTS = this.mode === 'production' ? moduleID : tailwindModule;
-        // demos[demoName].rawTailwindTS = tailwindRawTS;
-        // demoModuleIDs.add(demos[demoName].tailwindModuleTS);
       } catch (error) {
         // TS version of the demo doesn't exist. This is fine.
       }
