@@ -23,6 +23,7 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -473,6 +474,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const { onMouseDown: handleInputMouseDown } = getInputProps();
+  const { ref: customlistboxRef } = ListboxProps || {};
+  const { ref: listboxRef } = getListboxProps();
+
+  const combinedListboxRef = useForkRef(listboxRef, customlistboxRef);
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
@@ -668,6 +673,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 ownerState={ownerState}
                 {...getListboxProps()}
                 {...ListboxProps}
+                ref={combinedListboxRef}
               >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {

@@ -2977,6 +2977,20 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should be able to attach listbox ref passed through ListboxProps', function test() {
+    const ref = React.createRef(null);
+    render(
+      <Autocomplete
+        ListboxProps={{ ref }}
+        options={['1', '2']}
+        open
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(ref.current).not.to.equal(null);
+  });
+
   // https://github.com/mui/material-ui/issues/36212
   it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {

@@ -139,3 +139,15 @@ function AutocompleteComponentsProps() {
     />
   );
 }
+
+// Tests custom listbox ref
+function CustomListboxRef() {
+  const ref = React.useRef(null);
+  return (
+    <Autocomplete
+      renderInput={(params) => <TextField {...params} />}
+      options={['one', 'two', 'three']}
+      ListboxProps={{ ref }}
+    />
+  );
+}
