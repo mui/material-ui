@@ -50,6 +50,8 @@ interface UseSwitchInputSlotOwnProps {
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
   UseSwitchInputSlotOwnProps;
 
+export type UseSwitchRootSlotProps<TOther = {}> = Omit<UseSwitchInputSlotProps<TOther>, 'onChange'>;
+
 export interface UseSwitchReturnValue {
   /**
    * If `true`, the component will be checked.
@@ -72,6 +74,14 @@ export interface UseSwitchReturnValue {
   getInputProps: (
     externalProps?: React.HTMLAttributes<HTMLInputElement>,
   ) => UseSwitchInputSlotProps;
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getSwitchRootProps: (
+    externalProps?: React.HTMLAttributes<HTMLSpanElement>,
+  ) => UseSwitchRootSlotProps;
   /**
    * Ref to the input slot's DOM node.
    */

@@ -76,7 +76,8 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     readOnly: readOnlyProp,
   };
 
-  const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
+  const { getSwitchRootProps, checked, disabled, focusVisible, readOnly } =
+    useSwitch(useSwitchProps);
 
   const ownerState: SwitchOwnerState = {
     ...props,
@@ -98,7 +99,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
       tabIndex: disabled ? null : 0,
       ref: forwardedRef,
     },
-    getSlotProps: getInputProps,
+    getSlotProps: getSwitchRootProps,
     ownerState,
     className: classes.root,
   });

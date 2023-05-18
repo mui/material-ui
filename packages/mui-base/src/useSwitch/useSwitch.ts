@@ -77,7 +77,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
       }
 
       handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
+      if (isFocusVisibleRef.current) {
         setFocusVisible(true);
         onFocusVisible?.(event);
       }
@@ -91,7 +91,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     (event: React.FocusEvent<HTMLInputElement>) => {
       handleBlurVisible(event);
 
-      if (isFocusVisibleRef.current === false) {
+      if (!isFocusVisibleRef.current) {
         setFocusVisible(false);
       }
 
@@ -142,6 +142,19 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     onChange: createHandleInputChange(otherProps),
     onFocus: createHandleFocus(otherProps),
     onBlur: createHandleBlur(otherProps),
+  });
+
+  const getSwitchRootProps: UseSwitchReturnValue['getSwitchRootProps'] = (otherProps = {}) => ({
+    checked: checkedProp,
+    defaultChecked,
+    disabled,
+    readOnly,
+    ref: handleInputRef,
+    required,
+    type: 'checkbox',
+    ...otherProps,
+    onFocus: createHandleFocus(otherProps),
+    onBlur: createHandleBlur(otherProps),
     onClick: createHandleClick(otherProps),
     onKeyDown: createHandleKeyDown(otherProps),
   });
@@ -151,6 +164,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     disabled: Boolean(disabled),
     focusVisible,
     getInputProps,
+    getSwitchRootProps,
     inputRef: handleInputRef,
     readOnly: Boolean(readOnly),
   };

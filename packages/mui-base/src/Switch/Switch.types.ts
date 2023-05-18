@@ -1,6 +1,6 @@
 import { Simplify } from '@mui/types';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseSwitchInputSlotProps, UseSwitchParameters } from '../useSwitch';
+import { UseSwitchInputSlotProps, UseSwitchParameters, UseSwitchRootSlotProps } from '../useSwitch';
 
 export interface SwitchRootSlotPropsOverrides {}
 export interface SwitchThumbSlotPropsOverrides {}
@@ -75,7 +75,7 @@ export type SwitchOwnerState = Simplify<
 >;
 
 export type SwitchRootSlotProps = Simplify<
-  UseSwitchInputSlotProps & {
+  UseSwitchRootSlotProps & {
     ownerState: SwitchOwnerState;
     className?: string;
     children?: React.ReactNode;
