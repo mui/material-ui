@@ -44,6 +44,12 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
+#### Using links with button
+
+The Button can also be used as a link.
+
+{{"demo": "UnstyledLinkButton.js", "defaultCodeOpen": true}}
+
 ### Anatomy
 
 The Button component is composed of a root `<button>` slot with no interior slots:
