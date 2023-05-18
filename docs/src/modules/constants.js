@@ -3,6 +3,11 @@ const CODE_VARIANTS = {
   TS: 'TS',
 };
 
+const CODE_STYLING = {
+  SYSTEM: 'MUI System',
+  TAILWIND: 'Tailwind',
+};
+
 // Valid languages to use in production
 const LANGUAGES_LABEL = [
   {
@@ -14,4 +19,5 @@ const LANGUAGES_LABEL = [
 module.exports = {
   CODE_VARIANTS,
   LANGUAGES_LABEL,
+  CODE_STYLING,
 };

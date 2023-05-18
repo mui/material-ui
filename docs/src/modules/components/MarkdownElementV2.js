@@ -87,6 +87,10 @@ export default function MarkdownElementV2({
   splitLocationBySlash.pop();
   const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
 
+  console.log('demoComponents');
+  console.log(demoComponents);
+  console.log('demo.moduleTailwind');
+  console.log(demo.moduleTailwind);
   return (
     <Demo
       {...wrapperProps}
@@ -96,8 +100,13 @@ export default function MarkdownElementV2({
         js: demoComponents[demo.module] ?? noComponent(demo.module),
         scope: demos.scope,
         jsxPreview: demo.jsxPreview,
+        tailwindJsxPreview: demo.tailwindJsxPreview,
         rawTS: demo.rawTS,
         tsx: demoComponents[demo.moduleTS] ?? null,
+        rawTailwind: demo.rawTailwind,
+        rawTailwindTS: demo.rawTailwindTS,
+        jsTailwind: demoComponents[demo.moduleTailwind] ?? null,
+        tsxTailwind: demoComponents[demo.moduleTSTailwind] ?? null,
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}

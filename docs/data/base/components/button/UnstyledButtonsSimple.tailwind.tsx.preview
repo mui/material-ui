@@ -1,0 +1,9 @@
+<Button className="bg-sky-500 text-white rounded-lg font-semibold p-3 border-none disabled:opacity-50">
+  Button
+</Button>
+<Button
+  className="bg-sky-500 text-white rounded-lg font-semibold p-3 border-none disabled:opacity-50"
+  disabled
+>
+  Disabled
+</Button>

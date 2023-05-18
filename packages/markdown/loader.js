@@ -173,6 +173,63 @@ module.exports = async function demoLoader() {
         importedModuleIDs.add(importModuleID),
       );
 
+      // Add Tailwind demo data
+      const tailwindModuleID = `./${demoName
+        .replace(`pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`, '')
+        .replace('.js', '.tailwind.js')}`;
+
+      try {
+        // Add JS demo data
+        const tailwindModuleFilepath = path.join(
+          path.dirname(this.resourcePath),
+          tailwindModuleID.replace(/\//g, path.sep),
+        );
+
+        demos[demoName].moduleTailwind = tailwindModuleID;
+        demos[demoName].rawTailwind = await fs.readFile(tailwindModuleFilepath, {
+          encoding: 'utf8',
+        });
+
+        this.addDependency(tailwindModuleFilepath);
+
+        demoModuleIDs.add(tailwindModuleID);
+
+        extractImports(demos[demoName].rawTailwind).forEach((importModuleID) =>
+          importedModuleIDs.add(importModuleID),
+        );
+
+        demoModuleIDs.add(demos[demoName].moduleTailwind);
+      } catch (error) {
+        // tailwind js demo doesn't exists
+      }
+
+      try {
+        // Add TS demo data
+        const tailwindTSModuleID = tailwindModuleID.replace('.js', '.tsx');
+
+        const tailwindTSModuleFilepath = path.join(
+          path.dirname(this.resourcePath),
+          tailwindTSModuleID.replace(/\//g, path.sep),
+        );
+
+        demos[demoName].moduleTSTailwind = tailwindTSModuleID;
+        demos[demoName].rawTailwindTS = await fs.readFile(tailwindTSModuleFilepath, {
+          encoding: 'utf8',
+        });
+
+        this.addDependency(tailwindTSModuleFilepath);
+
+        demoModuleIDs.add(tailwindTSModuleID);
+
+        extractImports(demos[demoName].rawTailwindTS).forEach((importModuleID) =>
+          importedModuleIDs.add(importModuleID),
+        );
+
+        demoModuleIDs.add(demos[demoName].moduleTSTailwind);
+      } catch (error) {
+        // tailwind TS demo doesn't exists
+      }
+
       try {
         const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
 
@@ -180,6 +237,18 @@ module.exports = async function demoLoader() {
         this.addDependency(previewFilepath);
 
         demos[demoName].jsxPreview = jsxPreview;
+      } catch (error) {
+        // No preview exists. This is fine.
+      }
+
+      // Tailwind preview
+      try {
+        const previewFilepath = moduleFilepath.replace(/\.js$/, '.tailwind.tsx.preview');
+
+        const jsxPreview = await fs.readFile(previewFilepath, { encoding: 'utf8' });
+        this.addDependency(previewFilepath);
+
+        demos[demoName].tailwindJsxPreview = jsxPreview;
       } catch (error) {
         // No preview exists. This is fine.
       }
@@ -198,6 +267,21 @@ module.exports = async function demoLoader() {
         demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
         demos[demoName].rawTS = rawTS;
         demoModuleIDs.add(demos[demoName].moduleTS);
+
+        // const tailwindModule = moduleID.replace(/\.js$/, '.tailwind.js');
+        // const tailwindModuleTS = moduleID.replace(/\.js$/, '.tailwind.tsx');
+        // const tailwindModuleTSFilepath = path.join(
+        //   path.dirname(this.resourcePath),
+        //   tailwindModuleTS.replace(/\//g, path.sep),
+        // );
+        // this.addDependency(tailwindModuleTSFilepath);
+        // const tailwindRawTS = await fs.readFile(tailwindModuleTSFilepath, { encoding: 'utf8' });
+
+        // // In development devs can choose whether they want to work on the TS or JS version.
+        // // But this leads to building both demo version i.e. more build time.
+        // demos[demoName].tailwindModuleTS = this.mode === 'production' ? moduleID : tailwindModule;
+        // demos[demoName].rawTailwindTS = tailwindRawTS;
+        // demoModuleIDs.add(demos[demoName].tailwindModuleTS);
       } catch (error) {
         // TS version of the demo doesn't exist. This is fine.
       }

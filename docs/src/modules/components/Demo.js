@@ -8,6 +8,9 @@ import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
+import Select, { selectClasses } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
@@ -16,7 +19,8 @@ import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useCodeStyling, useSetCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
+import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
@@ -52,7 +56,7 @@ function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
 
-function useDemoData(codeVariant, demo, githubLocation) {
+function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -70,29 +74,56 @@ function useDemoData(codeVariant, demo, githubLocation) {
       name = 'MUI X';
     }
 
+    let codeOptions = {};
+
+    if (codeStyling === CODE_STYLING.SYSTEM) {
+      if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.TS,
+          githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+          raw: demo.rawTS,
+          Component: demo.tsx,
+          sourceLanguage: 'tsx',
+        };
+      } else {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.JS,
+          githubLocation,
+          raw: demo.raw,
+          Component: demo.js,
+          sourceLanguage: 'jsx',
+        };
+      }
+    } else if (codeStyling === CODE_STYLING.TAILWIND) {
+      if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.TS,
+          githubLocation: githubLocation.replace(/\.js$/, '.tailwind.tsx'),
+          raw: demo.rawTailwindTS,
+          Component: demo.tsxTailwind,
+          sourceLanguage: 'tsx',
+        };
+      } else {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.JS,
+          githubLocation,
+          raw: demo.rawTailwind ?? demo.raw,
+          Component: demo.jsTailwind ?? demo.js,
+          sourceLanguage: 'jsx',
+        };
+      }
+    }
+
     return {
       scope: demo.scope,
-      jsxPreview: demo.jsxPreview,
-      ...(codeVariant === CODE_VARIANTS.TS && demo.rawTS
-        ? {
-            codeVariant: CODE_VARIANTS.TS,
-            githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-            raw: demo.rawTS,
-            Component: demo.tsx,
-            sourceLanguage: 'tsx',
-          }
-        : {
-            codeVariant: CODE_VARIANTS.JS,
-            githubLocation,
-            raw: demo.raw,
-            Component: demo.js,
-            sourceLanguage: 'jsx',
-          }),
+      jsxPreview: codeStyling === CODE_STYLING.TAILWIND ? demo.tailwindJsxPreview : demo.jsxPreview,
+      ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       product,
       language: userLanguage,
+      codeStyling,
     };
-  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
+  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage, codeStyling]);
 }
 
 function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
@@ -355,7 +386,12 @@ export default function Demo(props) {
 
   const t = useTranslate();
   const codeVariant = useCodeVariant();
-  const demoData = useDemoData(codeVariant, demo, githubLocation);
+  const styleSolution = useCodeStyling();
+  const setCodeStyling = useSetCodeStyling();
+
+  const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
+
+  const showSelect = demo.rawTailwind || demo.rawTailwindTS;
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {
@@ -412,12 +448,12 @@ export default function Demo(props) {
   const Wrapper = demoData.product === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
+
   const initialEditorCode = isPreview
     ? demoData.jsxPreview
     : // Prettier remove all the leading lines except for the last one, remove it as we don't
       // need it in the live edit view.
-      demoData.raw.replace(/\n$/, '');
-
+      demoData.raw;
   const [editorCode, setEditorCode] = React.useState({
     value: initialEditorCode,
     isPreview,
@@ -452,104 +488,123 @@ export default function Demo(props) {
     liveDemoActive,
   });
 
+  const handleStylingSolutionChange = (e) => {
+    setCodeStyling(e.target.value);
+  };
+
   return (
-    <Root>
-      <AnchorLink id={demoName} />
-      <DemoRoot
-        hiddenToolbar={demoOptions.hideToolbar}
-        bg={demoOptions.bg}
-        id={demoId}
-        onMouseEnter={handleDemoHover}
-        onMouseLeave={handleDemoHover}
-      >
-        <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </Wrapper>
-        <DemoSandbox
-          key={demoKey}
-          style={demoSandboxedStyle}
-          iframe={demoOptions.iframe}
-          name={demoName}
-          onResetDemoClick={resetDemo}
+    <>
+      {showSelect && (
+        <Box sx={{ height: 50 }}>
+          <Select
+            sx={{ float: 'right' }}
+            size="small"
+            value={styleSolution}
+            onChange={handleStylingSolutionChange}
+          >
+            <MenuItem value="MUI System">MUI System</MenuItem>
+            <MenuItem value="Tailwind">Tailwind</MenuItem>
+          </Select>
+        </Box>
+      )}
+      <Root>
+        <AnchorLink id={demoName} />
+        <DemoRoot
+          hiddenToolbar={demoOptions.hideToolbar}
+          bg={demoOptions.bg}
+          id={demoId}
+          onMouseEnter={handleDemoHover}
+          onMouseLeave={handleDemoHover}
         >
-          {demoElement}
-        </DemoSandbox>
-      </DemoRoot>
-      <AnchorLink id={`${demoName}.js`} />
-      <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
-        {demoOptions.hideToolbar ? null : (
-          <NoSsr defer fallback={<DemoToolbarFallback />}>
-            <React.Suspense fallback={<DemoToolbarFallback />}>
-              <DemoToolbar
-                codeOpen={codeOpen}
-                codeVariant={codeVariant}
-                demo={demo}
-                demoData={demoData}
-                demoHovered={demoHovered}
-                demoId={demoId}
-                demoName={demoName}
-                demoOptions={demoOptions}
-                demoSourceId={demoSourceId}
-                initialFocusRef={initialFocusRef}
-                onCodeOpenChange={() => {
-                  setCodeOpen((open) => !open);
-                  setShowAd(true);
-                }}
-                onResetDemoClick={resetDemo}
-                openDemoSource={openDemoSource}
-                showPreview={showPreview}
-              />
-            </React.Suspense>
-          </NoSsr>
-        )}
-        <Collapse in={openDemoSource} unmountOnExit>
-          {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-          {demoOptions.disableLiveEdit ? (
-            <DemoCodeViewer
-              code={editorCode.value}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
+          <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
+            <InitialFocus
+              aria-label={t('initialFocusLabel')}
+              action={initialFocusRef}
+              tabIndex={-1}
             />
-          ) : (
-            <DemoEditor
-              // Mount a new text editor when the preview mode change to reset the undo/redo history.
-              key={editorCode.isPreview}
-              value={editorCode.value}
-              onChange={(value) => {
-                setEditorCode({
-                  ...editorCode,
-                  value,
-                });
-              }}
-              onFocus={() => {
-                setLiveDemoActive(true);
-              }}
-              id={demoSourceId}
-              language={demoData.sourceLanguage}
-              copyButtonProps={{
-                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                'data-ga-event-label': demo.gaLabel,
-                'data-ga-event-action': 'copy-click',
-              }}
-            >
-              <DemoEditorError>{debouncedError}</DemoEditorError>
-            </DemoEditor>
+          </Wrapper>
+          <DemoSandbox
+            key={demoKey}
+            style={demoSandboxedStyle}
+            iframe={demoOptions.iframe}
+            name={demoName}
+            onResetDemoClick={resetDemo}
+          >
+            {demoElement}
+          </DemoSandbox>
+        </DemoRoot>
+        <AnchorLink id={`${demoName}.js`} />
+        <AnchorLink id={`${demoName}.tsx`} />
+        <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
+          {demoOptions.hideToolbar ? null : (
+            <NoSsr defer fallback={<DemoToolbarFallback />}>
+              <React.Suspense fallback={<DemoToolbarFallback />}>
+                <DemoToolbar
+                  codeOpen={codeOpen}
+                  codeVariant={codeVariant}
+                  demo={demo}
+                  demoData={demoData}
+                  demoHovered={demoHovered}
+                  demoId={demoId}
+                  demoName={demoName}
+                  demoOptions={demoOptions}
+                  demoSourceId={demoSourceId}
+                  initialFocusRef={initialFocusRef}
+                  onCodeOpenChange={() => {
+                    setCodeOpen((open) => !open);
+                    setShowAd(true);
+                  }}
+                  onResetDemoClick={resetDemo}
+                  openDemoSource={openDemoSource}
+                  showPreview={showPreview}
+                />
+              </React.Suspense>
+            </NoSsr>
           )}
-        </Collapse>
-        {adVisibility ? <AdCarbonInline /> : null}
-      </Wrapper>
-    </Root>
+          <Collapse in={openDemoSource} unmountOnExit>
+            {/* A limitation from https://github.com/nihgwu/react-runner,
+            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+            {demoOptions.disableLiveEdit ? (
+              <DemoCodeViewer
+                code={editorCode.value}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              />
+            ) : (
+              <DemoEditor
+                // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                key={editorCode.isPreview}
+                value={editorCode.value}
+                onChange={(value) => {
+                  setEditorCode({
+                    ...editorCode,
+                    value,
+                  });
+                }}
+                onFocus={() => {
+                  setLiveDemoActive(true);
+                }}
+                id={demoSourceId}
+                language={demoData.sourceLanguage}
+                copyButtonProps={{
+                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                  'data-ga-event-label': demo.gaLabel,
+                  'data-ga-event-action': 'copy-click',
+                }}
+              >
+                <DemoEditorError>{debouncedError}</DemoEditorError>
+              </DemoEditor>
+            )}
+          </Collapse>
+          {adVisibility ? <AdCarbonInline /> : null}
+        </Wrapper>
+      </Root>
+    </>
   );
 }
 
