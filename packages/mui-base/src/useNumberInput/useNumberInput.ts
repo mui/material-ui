@@ -22,12 +22,9 @@ const STEP_KEYS = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown'];
 
 const SUPPORTED_KEYS = [...STEP_KEYS, 'Home', 'End'];
 
-// TODO
-// 1 - make a proper parser
-// 2 - accept a parser (func) prop
-const parseInput = (v: string): string => {
+function parseInput(v: string): string {
   return v ? String(v.trim()) : String(v);
-};
+}
 
 /**
  *
@@ -128,9 +125,6 @@ export default function useNumberInput(
       event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
       val: number | undefined,
     ) => {
-      // 1. clamp the number
-      // 2. setDirtyValue(clamped_value)
-      // 3. call onValueChange(event, newValue)
       let newValue;
 
       if (val === undefined) {
@@ -142,9 +136,6 @@ export default function useNumberInput(
       }
 
       setValue(newValue);
-      // TODO: integration with formControlContext
-      //       OR: (event, newValue) similar to SelectUnstyled
-      // formControlContext?.onValueChange?.(newValue);
 
       if (isNumber(newValue)) {
         onValueChange?.(event, newValue);
@@ -313,7 +304,6 @@ export default function useNumberInput(
     return {
       ...mergedEventHandlers,
       type: 'text',
-      // TODO: check to see if SR support is still weird
       role: 'spinbutton',
       'aria-invalid': errorProp || undefined,
       defaultValue: undefined,
@@ -384,7 +374,6 @@ export default function useNumberInput(
     value: focused ? dirtyValue : value,
     isIncrementDisabled,
     isDecrementDisabled,
-    // private and could be thrown out later
     inputValue: dirtyValue,
   };
 }

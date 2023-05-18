@@ -138,7 +138,6 @@ const NumberInput = React.forwardRef(function NumberInput(
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsForwardedToInputSlot }),
     externalSlotProps: slotProps.input,
-    // additionalProps: {},
     ownerState,
     className: classes.input,
   });
@@ -159,7 +158,6 @@ const NumberInput = React.forwardRef(function NumberInput(
       elementType: DecrementButton,
       getSlotProps: getDecrementButtonProps,
       externalSlotProps: slotProps.decrementButton,
-      // additionalProps: {},
       ownerState,
       className: classes.decrementButton,
     });
