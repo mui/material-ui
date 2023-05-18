@@ -180,7 +180,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' }) {
           root: !styling ? undefined : StyledPopper,
           listbox: !styling ? undefined : StyledListbox,
         }}
-        slotProps={{ root: { placement: 'top' }, listbox: { id: 'simple-menu' } }}
+        slotProps={{ root: { placement: 'bottom' }, listbox: { id: 'simple-menu' } }}
       >
         <MenuItemUnstyled
           slots={{ root: !styling ? undefined : StyledMenuItem }}
