@@ -59,7 +59,7 @@ If you want to start with a more complete and real-world example, you could take
   - Fully routed using react-router
   - Lazy loads components to boost performance
   - Components for statistics, text with emoji support, image upload and much more...
-  
+
 - [refine](https://github.com/refinedev/refine):
 
   - ![stars](https://img.shields.io/github/stars/refinedev/refine.svg?style=social&label=Star)
@@ -68,8 +68,8 @@ If you want to start with a more complete and real-world example, you could take
   - Supports Material UI to generate a complete CRUD app that follows the Material Design guidelines and best practices.
   - Connectors for 15+ backend services, including REST API, GraphQL, NestJS, Airtable, Strapi, Supabase, Appwrite, Firebase, and Hasura.
   - Out-of-the-box support for live/real-time applications, audit logs, authentication, access control flows and i18n.
-  - Advanced routing with any router library. 
-  
+  - Advanced routing with any router library.
+
 ### Paid
 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
