@@ -87,10 +87,6 @@ export default function MarkdownElementV2({
   splitLocationBySlash.pop();
   const fileNameWithLocation = `${splitLocationBySlash.join('/')}/${name}`;
 
-  console.log('demoComponents');
-  console.log(demoComponents);
-  console.log('demo.moduleTailwind');
-  console.log(demo.moduleTailwind);
   return (
     <Demo
       {...wrapperProps}
