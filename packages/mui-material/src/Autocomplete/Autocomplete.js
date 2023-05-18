@@ -474,7 +474,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const { onMouseDown: handleInputMouseDown } = getInputProps();
-  const { ref: customlistboxRef } = ListboxProps || {};
+  const { ref: customlistboxRef } = ListboxProps ?? {};
   const { ref: listboxRef } = getListboxProps();
 
   const combinedListboxRef = useForkRef(listboxRef, customlistboxRef);
