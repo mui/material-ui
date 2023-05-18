@@ -56,7 +56,6 @@ const StyledTab = styled(Tab)`
   background-color: transparent;
   width: 100%;
   padding: 12px;
-  margin: 6px 6px;
   border: none;
   border-radius: 7px;
   display: flex;
@@ -89,23 +88,25 @@ const StyledTab = styled(Tab)`
 
 const StyledTabPanel = styled(TabPanel)`
   width: 100%;
-  padding: 1rem;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
 `;
 
 const StyledTabs = styled(Tabs)`
   display: flex;
-  width: 250px;
+  gap: 16px;
+  width: 200px;
 `;
 
 const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
-  min-width: 100px;
+  min-width: 80px;
   background-color: ${blue[500]};
   border-radius: 12px;
   margin-bottom: 16px;
   display: flex;
+  padding: 6px;
+  gap: 12px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
