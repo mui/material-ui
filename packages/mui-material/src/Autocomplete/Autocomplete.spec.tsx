@@ -140,7 +140,6 @@ function AutocompleteComponentsProps() {
   );
 }
 
-// Tests custom listbox ref
 function CustomListboxRef() {
   const ref = React.useRef(null);
   return (

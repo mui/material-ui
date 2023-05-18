@@ -474,10 +474,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const { onMouseDown: handleInputMouseDown } = getInputProps();
-  const { ref: customlistboxRef } = ListboxProps ?? {};
-  const { ref: listboxRef } = getListboxProps();
+  const { ref: externalListboxRef } = ListboxProps ?? {};
+  const { ref: listboxRef, ...otherListboxProps } = getListboxProps();
 
-  const combinedListboxRef = useForkRef(listboxRef, customlistboxRef);
+  const combinedListboxRef = useForkRef(listboxRef, externalListboxRef);
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
@@ -671,7 +671,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 as={ListboxComponent}
                 className={classes.listbox}
                 ownerState={ownerState}
-                {...getListboxProps()}
+                {...otherListboxProps}
                 {...ListboxProps}
                 ref={combinedListboxRef}
               >
