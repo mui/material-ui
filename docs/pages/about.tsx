@@ -527,6 +527,15 @@ const teamMembers: Array<Profile> = [
     twitter: 'DiegoAndaiC',
     github: 'DiegoAndai',
   },
+  {
+    name: 'Brijesh Bittu',
+    src: '/static/branding/about/brijesh.png',
+    title: 'MUI Core Engineer',
+    location: 'Bengaluru, India',
+    locationCountry: 'in',
+    about: '🏊🏼 Swimming and 🚗 driving newbie. Loves cooking.',
+    github: 'brijeshb42',
+  },
 ];
 
 const contributors = [

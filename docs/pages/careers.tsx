@@ -147,18 +147,6 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Tech Lead - Core',
-        description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Engineer - Core',
-        description:
-          'You will strengthen the core components team by collaborating with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
-      },
-      {
         title: 'Product Engineer - Store',
         description:
           'You will lead the technical, product, and operational development of the store.',
@@ -169,16 +157,6 @@ const openRolesData = [
         description:
           'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Design',
-    roles: [
-      {
-        title: 'Design Engineer',
-        description: 'You will focus on design to implement great product experiences.',
-        url: '/careers/design-engineer/',
       },
     ],
   },
@@ -226,6 +204,28 @@ const nextRolesData = [
         description:
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Tech Lead - Core',
+        description:
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+        url: '/careers/react-tech-lead-core/',
+      },
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team by collaborating with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
+      },
+    ],
+  },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer',
+        description: 'You will focus on design to implement great product experiences.',
+        url: '/careers/design-engineer/',
       },
     ],
   },
