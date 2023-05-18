@@ -373,7 +373,10 @@ export default function Demo(props) {
     }
   }
 
-  if (!demoOptions.demo.endsWith('.js') && demoOptions.hideToolbar !== true) {
+  if (
+    (demoOptions.demo.endsWith('.ts') || demoOptions.demo.endsWith('.tsx')) &&
+    demoOptions.hideToolbar !== true
+  ) {
     throw new Error(
       [
         `The following demos use TS directly: ${demoOptions.demo}.`,
