@@ -69,9 +69,7 @@ If you want to start with a more complete and real-world example, you could take
   - Connectors for 15+ backend services, including REST API, GraphQL, NestJS, Airtable, Strapi, Supabase, Appwrite, Firebase, and Hasura.
   - Out-of-the-box support for live/real-time applications, audit logs, authentication, access control flows and i18n.
   - Advanced routing with any router library. 
-
   
-
 ### Paid
 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
