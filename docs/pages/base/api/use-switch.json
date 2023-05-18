@@ -36,6 +36,13 @@
       },
       "required": true
     },
+    "getSwitchRootProps": {
+      "type": {
+        "name": "(externalProps?: React.HTMLAttributes&lt;HTMLSpanElement&gt;) =&gt; UseSwitchRootSlotProps",
+        "description": "(externalProps?: React.HTMLAttributes&lt;HTMLSpanElement&gt;) =&gt; UseSwitchRootSlotProps"
+      },
+      "required": true
+    },
     "inputRef": {
       "type": {
         "name": "React.RefCallback&lt;HTMLInputElement&gt; | null",
