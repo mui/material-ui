@@ -20,13 +20,11 @@ export const getHtml = ({
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    ${
+    />${
       codeStyling === 'Tailwind'
         ? `
     <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    `
+    <script src="https://cdn.tailwindcss.com"></script>`
         : ''
     }
   </head>

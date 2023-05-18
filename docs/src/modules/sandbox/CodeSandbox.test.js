@@ -122,4 +122,46 @@ describe('CodeSandbox', () => {
       'react-scripts': 'latest',
     });
   });
+
+  it('generate the correct Tailwind JavaScript result', () => {
+    const result = CodeSandbox.createReactApp({
+      title: 'BasicButtons Material Demo',
+      githubLocation:
+        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
+      codeVariant: 'JS',
+      language: 'en',
+      raw: testCase,
+      codeStyling: 'Tailwind',
+    });
+    expect(result.files).to.deep.equal({
+      'package.json': {
+        content: {
+          description:
+            'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
+          dependencies: {
+            react: 'latest',
+            '@mui/material': 'latest',
+            'react-dom': 'latest',
+            '@emotion/react': 'latest',
+            '@emotion/styled': 'latest',
+          },
+          devDependencies: {
+            'react-scripts': 'latest',
+          },
+        },
+      },
+      'public/index.html': {
+        content:
+          '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <title>BasicButtons Material Demo</title>\n    <!-- Fonts to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"\n    />\n    <!-- Icons to support Material Design -->\n    <link\n      rel="stylesheet"\n      href="https://fonts.googleapis.com/icon?family=Material+Icons"\n    />\n    <!-- Check the Tailwind CSS\'s installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->\n    <script src="https://cdn.tailwindcss.com"></script>\n  </head>\n  <body>\n    <div id="root"></div>\n  </body>\n</html>',
+      },
+      'demo.js': {
+        content:
+          'import * as React from \'react\';\nimport Stack from \'@mui/material/Stack\';\nimport Button from \'@mui/material/Button\';\n\nexport default function BasicButtons() {\n  return (\n    <Stack spacing={2} direction="row">\n      <Button variant="text">Text</Button>\n      <Button variant="contained">Contained</Button>\n      <Button variant="outlined">Outlined</Button>\n    </Stack>\n  );\n}\n',
+      },
+      'index.js': {
+        content:
+          "import * as React from 'react';\nimport * as ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
+      },
+    });
+  });
 });
