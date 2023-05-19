@@ -625,7 +625,7 @@ export default function BaseUIHero() {
             <Button
               variant="outlined"
               size="small"
-              startIcon={<LaunchRoundedIcon />}
+              endIcon={<LaunchRoundedIcon />}
               onClick={() =>
                 CodeSandbox.createReactApp({
                   product: 'base',

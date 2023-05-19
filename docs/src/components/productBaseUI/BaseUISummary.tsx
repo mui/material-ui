@@ -18,18 +18,21 @@ const content = [
     title: 'Completely unstyled',
     description:
       'Bring any style solution you want to add design to these components. Open room for your creativity.',
+    link: '/base/getting-started/overview/#base-ui-vs-material-ui',
   },
   {
     icon: <PhishingRoundedIcon color="primary" />,
     title: 'Low-level hooks',
     description:
       'Complete control over the rendered HTML structure and fine grain flexibility for component design.',
+    link: '/base/getting-started/usage/#components-vs-hooks',
   },
   {
     icon: <AccessibilityNewRounded color="primary" />,
     title: 'Accessibility',
     description:
       'We do our best to ensure Base UI components support the latest accessibility conventions and patterns.',
+    link: '/base/getting-started/quickstart/#components-and-hooks',
   },
 ];
 
@@ -49,7 +52,7 @@ export default function BaseUISummary() {
       />
       <Box sx={{ mt: 8 }}>
         <Grid container spacing={3}>
-          {content.map(({ icon, title, description }) => (
+          {content.map(({ icon, title, description, link }) => (
             <Grid key={title} item xs={12} md={4}>
               <Paper
                 variant="outlined"
@@ -116,7 +119,7 @@ export default function BaseUISummary() {
                   {description}
                 </Typography>
                 <Link
-                  href="/"
+                  href={link}
                   sx={{
                     fontSize: '0.875rem',
                     '&:after': { content: '""', position: 'absolute', inset: 0 },
