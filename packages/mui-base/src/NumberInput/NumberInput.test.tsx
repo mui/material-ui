@@ -24,6 +24,14 @@ describe('<NumberInput />', () => {
         expectedClassName: numberInputClasses.input,
         testWithElement: 'input',
       },
+      incrementButton: {
+        expectedClassName: numberInputClasses.incrementButton,
+        testWithElement: 'button',
+      },
+      decrementButton: {
+        expectedClassName: numberInputClasses.decrementButton,
+        testWithElement: 'button',
+      },
     },
   }));
 
