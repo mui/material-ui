@@ -1,8 +1,9 @@
 'use client';
 
-import {Typography, Link as MuiLink} from '@mui/material';
+import * as React from 'react';
+import { Typography, Link as MuiLink } from '@mui/material';
 
-export const Copyright = () => {
+export default function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
@@ -12,4 +13,4 @@ export const Copyright = () => {
       {new Date().getFullYear()}.
     </Typography>
   );
-};
+}

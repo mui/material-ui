@@ -1,11 +1,12 @@
+import * as React from 'react';
 import ThemeRegistry from '@/components/Theme/ThemeRegistry/ThemeRegistry';
 
 export const metadata = {
   title: 'Next App with MUI5',
-  description: 'next app with mui5'
+  description: 'next app with mui5',
 };
 
-const RootLayout = ({children}: {children: React.ReactNode}) => {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
@@ -13,6 +14,4 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

@@ -1,7 +1,7 @@
-import {Home} from '@/layouts/Home/Home';
+import * as React from 'react';
 
-const RootPage = () => {
+import Home from '@/layouts/Home/Home';
+
+export default function RootPage() {
   return <Home />;
-};
-
-export default RootPage;
+}

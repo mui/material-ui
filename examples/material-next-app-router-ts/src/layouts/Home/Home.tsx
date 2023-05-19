@@ -1,10 +1,11 @@
 'use client';
 
-import {Container, Box, Typography} from '@mui/material';
-import {Copyright} from '@/components/CopyRight/Copyright';
-import {ProTip} from '@/components/ProTip/ProTip';
+import * as React from 'react';
+import { Container, Box, Typography } from '@mui/material';
+import Copyright from '@/components/CopyRight/Copyright';
+import ProTip from '@/components/ProTip/ProTip';
 
-export const Home = () => {
+export default function Home() {
   return (
     <Container maxWidth="lg">
       <Box
@@ -13,7 +14,7 @@ export const Home = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         <Typography variant="h4" component="h1" gutterBottom>
@@ -24,4 +25,4 @@ export const Home = () => {
       </Box>
     </Container>
   );
-};
+}
