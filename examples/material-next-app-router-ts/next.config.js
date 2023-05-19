@@ -4,13 +4,13 @@ const nextConfig = {
   swcMinify: true,
   modularizeImports: {
     '@mui/icons-material': {
-      transform: '@mui/icons-material/{{member}}'
-    }
+      transform: '@mui/icons-material/{{member}}',
+    },
   },
   experimental: {
     appDir: true,
-    typedRoutes: true
-  }
+    typedRoutes: true,
+  },
 };
 
 module.exports = nextConfig;
