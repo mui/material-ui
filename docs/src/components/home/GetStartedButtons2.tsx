@@ -82,27 +82,7 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
             <ContentCopyRounded fontSize="small" />
           )
         }
-        sx={(theme) => ({
-          width: 'max-content',
-          bgcolor: 'transparent',
-          border: 'none',
-          p: 0,
-          mt: 2,
-          cursor: 'copy',
-          '&:hover': {
-            bgcolor: 'transparent',
-          },
-          '& .MuiButton-endIcon': {
-            mr: 0,
-            mt: 0.5,
-            right: -1,
-            color: 'primary.main',
-            position: 'relative',
-          },
-          ...theme.applyDarkStyles({
-            bgcolor: 'transparent',
-          }),
-        })}
+        sx={{ mt: 2 }}
       >
         <strong>$</strong>&nbsp;{installation}
       </Button>

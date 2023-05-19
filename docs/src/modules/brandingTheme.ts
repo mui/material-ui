@@ -532,10 +532,11 @@ export function getThemedComponents(): ThemeOptions {
             props: { variant: 'code' },
             style: ({ theme }) => [
               {
-                border: '1px solid',
+                cursor: 'copy',
+                padding: 0,
+                width: 'max-content',
+                backgroundColor: 'transparent',
                 color: (theme.vars || theme).palette.grey[600],
-                borderColor: (theme.vars || theme).palette.grey[300],
-                backgroundColor: (theme.vars || theme).palette.grey[50],
                 fontFamily: theme.typography.fontFamilyCode,
                 fontWeight: 400,
                 fontSize: defaultTheme.typography.pxToRem(12),
@@ -548,18 +549,17 @@ export function getThemedComponents(): ThemeOptions {
                 '& .MuiButton-endIcon': {
                   display: 'inline-block',
                   position: 'absolute',
-                  right: 0,
-                  marginRight: 10,
-                  color: (theme.vars || theme).palette.grey[700],
+                  color: (theme.vars || theme).palette.primary.main,
+                  right: -22,
+                  top: -1,
                   opacity: 0,
                   transitionProperty: 'opacity',
                   transitionDuration: '100ms',
                   transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                 },
                 '&:hover, &.Mui-focusVisible': {
-                  borderColor: (theme.vars || theme).palette.primary.main,
-                  backgroundColor: (theme.vars || theme).palette.grey[50],
-                  color: (theme.vars || theme).palette.grey[900],
+                  backgroundColor: 'transparent',
+                  color: (theme.vars || theme).palette.primary.main,
                   '& .MuiButton-endIcon': {
                     color: (theme.vars || theme).palette.primary.main,
                     opacity: 1,
@@ -567,18 +567,74 @@ export function getThemedComponents(): ThemeOptions {
                 },
               },
               theme.applyDarkStyles({
-                borderColor: (theme.vars || theme).palette.primaryDark[400],
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                '& .MuiButton-endIcon': {
+                  color: (theme.vars || theme).palette.primary[300],
+                },
                 '&:hover, &.Mui-focusVisible': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
-                  color: (theme.vars || theme).palette.grey[300],
+                  color: (theme.vars || theme).palette.primary[300],
                   '& .MuiButton-endIcon': {
-                    color: (theme.vars || theme).palette.primary[300],
                     opacity: 1,
                   },
                 },
+              }),
+            ],
+          },
+          {
+            // @ts-ignore internal repo module augmentation issue
+            props: { variant: 'codeOutlined' },
+            style: ({ theme }) => [
+              {
+                display: 'inline-block',
+                justifyContent: 'start',
+                overflowX: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+                position: 'relative',
+                border: '1px solid',
+                color: (theme.vars || theme).palette.grey[900],
+                backgroundColor: alpha(theme.palette.primary[50], 0.3),
+                borderColor: (theme.vars || theme).palette.grey[200],
+                boxShadow: `0px 2px 2px ${alpha(
+                  theme.palette.primary[100],
+                  0.2,
+                )}, inset 0px 4px 4px ${alpha(theme.palette.primary[100], 0.2)}`,
+                fontFamily: theme.typography.fontFamilyCode,
+                fontWeight: 400,
+                fontSize: defaultTheme.typography.pxToRem(12),
+                lineHeight: 21 / 14,
+                letterSpacing: 0,
+                WebkitFontSmoothing: 'subpixel-antialiased',
+                '& .MuiButton-endIcon': {
+                  display: 'inline-block',
+                  position: 'absolute',
+                  top: 12,
+                  right: 0,
+                  marginRight: 10,
+                  color: (theme.vars || theme).palette.grey[600],
+                },
+                '&:hover, &.Mui-focusVisible': {
+                  borderColor: (theme.vars || theme).palette.primary.main,
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
+                  color: (theme.vars || theme).palette.primary[600],
+                  '& .MuiButton-endIcon': {
+                    color: (theme.vars || theme).palette.primary.main,
+                  },
+                },
+              },
+              theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.grey[500],
+                borderColor: (theme.vars || theme).palette.primaryDark[600],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                boxShadow: '0px 2px 2px #0B0D0E, inset 0px 4px 4px rgba(20, 25, 31, 0.3)',
                 '& .MuiButton-endIcon': {
                   color: (theme.vars || theme).palette.grey[400],
+                },
+                '&:hover, &.Mui-focusVisible': {
+                  backgroundColor: (theme.vars || theme).palette.primary[900],
+                  color: (theme.vars || theme).palette.primary[100],
+                  '& .MuiButton-endIcon': {
+                    color: (theme.vars || theme).palette.primary[300],
+                  },
                 },
               }),
             ],
