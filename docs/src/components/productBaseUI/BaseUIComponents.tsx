@@ -97,25 +97,39 @@ export default function BaseUIComponents() {
         </Grid>
         <Grid xs={12} md={6}>
           <Frame
-            sx={{
-              height: '100%',
-              '--palette-primary': 'var(--muidocs-palette-primary-main)',
-              '--palette-primary-dark': 'var(--muidocs-palette-primary-800)',
-              '--focus-ring': 'var(--muidocs-palette-primary-200)',
-              '--shadow': 'var(--muidocs-shadows-2)',
-              ...(styling === 'tailwindcss' && {
-                '--palette-primary': '#4f46e5',
-                '--palette-primary-dark': '#3730a3',
-                '--focus-ring': '#a5b4fc',
+            sx={[
+              {
+                height: '100%',
+                '--palette-primary': 'var(--muidocs-palette-primary-main)',
+                '--palette-primary-dark': 'var(--muidocs-palette-primary-800)',
+                '--focus-ring': 'var(--muidocs-palette-primary-200)',
                 '--shadow': 'var(--muidocs-shadows-2)',
-              }),
-              ...(styling === 'css' && {
-                '--palette-primary': '#9333ea',
-                '--palette-primary-dark': '#581c87',
-                '--focus-ring': '#d8b4fe',
-                '--shadow': 'var(--muidocs-shadows-2)',
-              }),
-            }}
+                ...(styling === 'tailwindcss' && {
+                  '--palette-primary': '#4f46e5',
+                  '--palette-primary-dark': '#3730a3',
+                  '--focus-ring': '#a5b4fc',
+                  '--shadow': 'var(--muidocs-shadows-2)',
+                }),
+                ...(styling === 'css' && {
+                  '--palette-primary': '#9333ea',
+                  '--palette-primary-dark': '#581c87',
+                  '--focus-ring': '#d8b4fe',
+                  '--shadow': 'var(--muidocs-shadows-2)',
+                }),
+              },
+              (theme) =>
+                theme.applyDarkStyles({
+                  '--focus-ring': 'var(--muidocs-palette-primary-900)',
+                  ...(styling === 'tailwindcss' && {
+                    '--palette-primary': '#818cf8',
+                    '--focus-ring': '#312e81',
+                  }),
+                  ...(styling === 'css' && {
+                    '--palette-primary': '#c084fc',
+                    '--focus-ring': '#581c87',
+                  }),
+                }),
+            ]}
           >
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
               {demo === 'Tabs' && <BaseTabsDemo styling={styling} />}
@@ -126,13 +140,21 @@ export default function BaseUIComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
-                height: 256,
+                height: 360,
                 position: 'relative',
                 overflow: 'hidden',
                 pt: 5,
               }}
             >
-              <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2, pt: 3 }}>
+              <Box
+                sx={{
+                  height: 'calc(100% + 40px)',
+                  overflow: 'auto',
+                  m: -2,
+                  p: 2,
+                  pt: 3,
+                }}
+              >
                 <HighlightedCode
                   copyButtonHidden
                   component={MarkdownElement}
