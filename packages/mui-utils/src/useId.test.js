@@ -96,7 +96,7 @@ describe('useId', () => {
   });
 
   describe('useGlobalId', () => {
-    it('should generate an initial ID and increment on each render', () => {
+    it('should generate an ID on first render and increment on each render', () => {
       const ids = [];
       function TestComponent() {
         const id = useGlobalId();
