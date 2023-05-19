@@ -44,23 +44,25 @@ const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(
   );
 });
 
-function Frame(props: BoxProps) {
+function Frame({ sx, ...props }: BoxProps) {
   return (
     <Box
       {...props}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        '& > div:first-of-type': {
-          borderTopLeftRadius: '12px',
-          borderTopRightRadius: '12px',
+      sx={[
+        {
+          display: 'flex',
+          flexDirection: 'column',
+          '& > div:first-of-type': {
+            borderTopLeftRadius: '12px',
+            borderTopRightRadius: '12px',
+          },
+          '& > div:last-of-type': {
+            borderBottomLeftRadius: '12px',
+            borderBottomRightRadius: '12px',
+          },
         },
-        '& > div:last-of-type': {
-          borderBottomLeftRadius: '12px',
-          borderBottomRightRadius: '12px',
-        },
-        ...props.sx,
-      }}
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   );
 }

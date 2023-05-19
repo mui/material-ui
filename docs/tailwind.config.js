@@ -9,6 +9,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: ['class', '[data-mui-color-scheme="dark"]'],
   theme: {
     extend: {},
   },

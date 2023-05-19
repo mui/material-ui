@@ -1,13 +1,14 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { unstable_useId } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import InputUnstyled from '@mui/base/Input';
-import { styled } from '@mui/system';
+import { styled, GlobalStyles } from '@mui/system';
 
-const Field = styled('div')`
+const fieldStyles = `
   --TextInput-height: 64px;
   --TextInput-paddingTop: 2rem;
-  --TextInput-labelLineHeight: 18px;
+  --TextInput-labelLineHeight: 20px;
   --TextInput-labelScale: 0.75;
   width: 320px;
   padding: 0px 0.75rem;
@@ -24,12 +25,11 @@ const Field = styled('div')`
     border-color: var(--muidocs-palette-grey-500);
   }
   &:focus-within {
-    border-color: var(--muidocs-palette-primary-400);
+    border-color: var(--palette-primary);
     outline: 3px solid;
-    outline-color: var(--muidocs-palette-primary-100);
-    & svg {
-      opacity: 1;
-      color: var(--muidocs-palette-grey-600);
+    outline-color: var(--focus-ring);
+    & label {
+      color: var(--palette-primary) !important;
     }
   }
   & label {
@@ -38,50 +38,37 @@ const Field = styled('div')`
     display: flex;
     align-items: center;
     top: 50%;
-    left: calc(0.75rem - 1px);
+    left: 0.75rem;
     overflow: hidden;
     text-align: start;
     text-overflow: ellipsis;
     font-weight: 500;
-    color: var(--muidocs-palette-grey-500);
+    color: var(--muidocs-palette-grey-600);
     white-space: nowrap;
     pointer-events: none;
-    border: 1px solid transparent;
     transform-origin: 0 0;
     transform: translateY(-50%);
     transition: transform 0.1s ease-out;
   }
-  & svg {
-    align-self: center;
-    color: var(--muidocs-palette-grey-500);
-    opacity: 0;
-  }
 
   :where([data-mui-color-scheme='dark']) & {
-    border-color: var(--muidocs-palette-primaryDark-600);
+    border-color: transparent;
     box-shadow: 0 2px 4px 0 rgba(0 0 0 / 0.8);
 
     &:hover {
-      border-color: var(--muidocs-palette-primaryDark-400);
-    }
-
-    & label {
-      color: var(--muidocs-palette-grey-600);
+      border-color: var(--muidocs-palette-grey-800);
     }
 
     &:focus-within {
-      border-color: var(--muidocs-palette-primary-500);
-      outline-color: var(--muidocs-palette-primary-800);
-
-      & svg {
-        color: var(--muidocs-palette-primaryDark-300);
-      }
+      border-color: var(--palette-primary);
+      outline-color: var(--focus-ring);
     }
-  }
-`;
-const StyledInput = styled('input')`
+  }`;
+const Field = styled('div')(fieldStyles);
+
+const inputStyles = `
   border: none;
-  padding: var(--TextInput-paddingTop) 0 1rem;
+  padding: var(--TextInput-paddingTop) 0 0.75rem;
   height: 100%;
   font-size: 1rem;
   background: unset;
@@ -95,22 +82,66 @@ const StyledInput = styled('input')`
   &:not(:placeholder-shown) ~ label,
   &:focus ~ label {
     transform: translateY(-100%) scale(var(--TextInput-labelScale));
-  }
-`;
+    font-weight: 600;
+  }`;
+const StyledInput = styled('input')(inputStyles);
+
+const CSS = `.MuiInput-root{${fieldStyles}}
+
+.MuiInput-input{${inputStyles}}`;
+
+const StyledFloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
+  function StyledFloatingLabelInput(props, ref) {
+    const id = unstable_useId(props.id);
+    return (
+      <React.Fragment>
+        <StyledInput ref={ref} {...props} id={id} />
+        <label htmlFor={id}>Floating label</label>
+      </React.Fragment>
+    );
+  },
+);
 
 const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   function FloatingLabelInput(props, ref) {
     const id = unstable_useId(props.id);
     return (
       <React.Fragment>
-        <StyledInput ref={ref} {...props} id={id} />
-        <label htmlFor={id}>Text input with floating label</label>
+        <input ref={ref} {...props} id={id} />
+        <label htmlFor={id}>Floating label</label>
       </React.Fragment>
     );
   },
 );
 
-export default function BaseInputDemo({ styling }: { styling?: 'system' }) {
+const TailwindFloatingLabelInput = React.forwardRef<
+  HTMLInputElement,
+  JSX.IntrinsicElements['input']
+  // @ts-ignore
+>(function TailwindFloatingLabelInput({ ownerState, ...props }, ref) {
+  const id = unstable_useId(props.id);
+  return (
+    <React.Fragment>
+      <input
+        ref={ref}
+        {...props}
+        className={clsx(
+          'peer h-full flex-1 border-none bg-transparent px-0 pb-[0.75rem] pt-[--TextInput-paddingTop] font-sans text-base placeholder-transparent focus:outline-none focus:ring-0',
+          props.className,
+        )}
+        id={id}
+      />
+      <label
+        className="pointer-events-none absolute left-[0.75rem] top-[50%] flex origin-[0_0] translate-y-[-100%] scale-[--TextInput-labelScale] transform items-center overflow-hidden whitespace-nowrap text-start font-[500] leading-[--TextInput-labelLineHeight] text-[--muidocs-palette-grey-600] transition-transform duration-100 ease-out peer-placeholder-shown:translate-y-[-50%] peer-placeholder-shown:scale-100 peer-placeholder-shown:transform peer-focus:translate-y-[-100%] peer-focus:scale-[--TextInput-labelScale] peer-focus:transform peer-focus:text-[--palette-primary] "
+        htmlFor={id}
+      >
+        Floating label
+      </label>
+    </React.Fragment>
+  );
+});
+
+export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailwindcss' | 'css' }) {
   return (
     <Box
       sx={{
@@ -122,13 +153,28 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' }) {
         py: 2,
       }}
     >
-      <InputUnstyled
-        placeholder="Type something here"
-        slots={{
-          root: !styling ? undefined : Field,
-          input: !styling ? undefined : FloatingLabelInput,
-        }}
-      />
+      {styling === 'system' && (
+        <InputUnstyled
+          placeholder="Type something here"
+          slots={{
+            root: Field,
+            input: StyledFloatingLabelInput,
+          }}
+        />
+      )}
+      {styling === 'css' && (
+        <React.Fragment>
+          <GlobalStyles styles={CSS} />
+          <InputUnstyled placeholder="Type something here" slots={{ input: FloatingLabelInput }} />
+        </React.Fragment>
+      )}
+      {styling === 'tailwindcss' && (
+        <InputUnstyled
+          placeholder="Type something here"
+          className=" relative inline-flex h-[--TextInput-height] w-[320px] rounded-[--muidocs-shape-borderRadius] border border-solid border-[--muidocs-palette-grey-300] bg-[--muidocs-palette-background-paper] p-[0px_0.75rem] shadow-[0_2px_4px_0_rgba(0_0_0/0.15)] outline-transparent [--TextInput-height:64px] [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] [--TextInput-paddingTop:2rem] focus-within:!border-[--palette-primary] focus-within:[outline:3px_solid_var(--focus-ring)] hover:border-[--muidocs-palette-grey-500] dark:border-transparent dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] dark:focus-within:!border-[--palette-primary] dark:focus-within:[outline:3px_solid_var(--focus-ring)] dark:hover:border-[--muidocs-palette-grey-800]"
+          slots={{ input: TailwindFloatingLabelInput }}
+        />
+      )}
     </Box>
   );
 }
@@ -137,8 +183,8 @@ BaseInputDemo.getCode = (styling?: 'system') => {
   if (styling === 'system') {
     return `import Input from '@mui/base/Input';
     
-const Field = styled('div')\`/* CSS… */\`;
-const StyledInput = styled('input')\`/* CSS… */\`;
+const Field = styled('div')\`${fieldStyles}\`;
+const StyledInput = styled('input')\`${inputStyles}/\`;
 
 const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
   function FloatingLabelInput(props, ref) {
@@ -161,8 +207,94 @@ const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicEleme
 />
 `;
   }
-  return `import Input from '@mui/base/Input';
+  if (styling === 'css') {
+    return `import Input from '@mui/base/Input';
+import './styles.css';
 
-<Input placeholder="Placeholder"/>
+const FloatingLabelInput = React.forwardRef<HTMLInputElement, JSX.IntrinsicElements['input']>(
+  function FloatingLabelInput(props, ref) {
+    const id = unstable_useId(props.id);
+    return (
+      <React.Fragment>
+        <input ref={ref} {...props} id={id} />
+        <label htmlFor={id}>Floating label</label>
+      </React.Fragment>
+    );
+  },
+);
+
+<Input
+  placeholder="Placeholder"
+  slots={{ input: FloatingLabelInput }}
+/>
+
+/* styles.css */
+${CSS}
 `;
+  }
+  if (styling === 'tailwindcss') {
+    return `import Input from '@mui/base/Input';
+
+const FloatingLabelInput = React.forwardRef(
+  function FloatingLabelInput({ ownerState, id, ...props }, ref) {
+  const id = id || 'floating-label';
+  return (
+    <React.Fragment>
+      <input
+        id={id}
+        ref={ref}
+        {...props}
+        className={clsx(
+          'peer h-full flex-1 border-none bg-transparent 
+          px-0 pb-[0.75rem] pt-[--TextInput-paddingTop] 
+          font-sans text-base placeholder-transparent 
+          focus:outline-none focus:ring-0',
+          props.className,
+        )}
+        id={id}
+      />
+      <label
+        className="pointer-events-none absolute left-[0.75rem] 
+        top-[50%] flex origin-[0_0] translate-y-[-100%] 
+        scale-[--TextInput-labelScale] transform items-center 
+        overflow-hidden whitespace-nowrap text-start font-[500] 
+        leading-[--TextInput-labelLineHeight] 
+        text-[--muidocs-palette-grey-600] transition-transform 
+        duration-100 ease-out 
+        peer-placeholder-shown:translate-y-[-50%] 
+        peer-placeholder-shown:scale-100 
+        peer-placeholder-shown:transform 
+        peer-focus:translate-y-[-100%] 
+        peer-focus:scale-[--TextInput-labelScale] 
+        peer-focus:transform peer-focus:text-[--palette-primary]"
+        htmlFor={id}
+      >
+        Floating label
+      </label>
+    </React.Fragment>
+  );
+});
+
+<InputUnstyled
+  placeholder="Type something here"
+  className=" relative inline-flex h-[--TextInput-height] w-[320px] 
+  rounded-[--muidocs-shape-borderRadius] border border-solid 
+  border-[--muidocs-palette-grey-300] 
+  bg-[--muidocs-palette-background-paper] 
+  p-[0px_0.75rem] shadow-[0_2px_4px_0_rgba(0_0_0/0.15)] 
+  outline-transparent [--TextInput-height:64px] 
+  [--TextInput-labelLineHeight:20px] [--TextInput-labelScale:0.75] 
+  [--TextInput-paddingTop:2rem] 
+  focus-within:!border-[--palette-primary] 
+  focus-within:[outline:3px_solid_var(--focus-ring)] 
+  hover:border-[--muidocs-palette-grey-500] dark:border-transparent 
+  dark:shadow-[0_2px_4px_0_rgba(0_0_0/0.8)] 
+  dark:focus-within:!border-[--palette-primary] 
+  dark:focus-within:[outline:3px_solid_var(--focus-ring)] 
+  dark:hover:border-[--muidocs-palette-grey-800]"
+  slots={{ input: FloatingLabelInput }}
+/>
+`;
+  }
+  return '';
 };
