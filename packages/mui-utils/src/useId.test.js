@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
-import useId from './useId';
+import useId, { useGlobalId } from './useId';
 
 describe('useId', () => {
   const { render, renderToString } = createRenderer();
@@ -93,5 +93,19 @@ describe('useId', () => {
     renderToString(<TestComponent />);
 
     expect(screen.getByTestId('target').id).not.to.equal('');
+  });
+
+  describe('useGlobalId', () => {
+    it('should generate an initial ID and increment on each render', () => {
+      const ids = [];
+      function TestComponent() {
+        const id = useGlobalId();
+        ids.push(id);
+        return id;
+      }
+
+      render(<TestComponent />);
+      expect(ids).to.deep.equal(['mui-1', 'mui-2']);
+    });
   });
 });

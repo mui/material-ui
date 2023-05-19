@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 let globalId = 0;
-function useGlobalId(idOverride?: string): string | undefined {
+export function useGlobalId(idOverride?: string): string | undefined {
   const [defaultId, setDefaultId] = React.useState(
     idOverride == null
       ? () => {
