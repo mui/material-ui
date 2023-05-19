@@ -125,6 +125,7 @@
     "@types/marked": "^4.3.0",
     "@types/recharts": "^2.0.0",
     "cross-fetch": "^3.1.5",
-    "gm": "^1.25.0"
+    "gm": "^1.25.0",
+    "tailwindcss": "^3.3.2"
   }
 }

@@ -85,70 +85,64 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
         </TabsUnstyled>
       )}
       {styling === 'css' && (
-        <React.Fragment>
+        <TabsUnstyled selectionFollowsFocus defaultValue={0}>
           <GlobalStyles
             styles={`.MuiTabsList-root{${tabListStyles}};.MuiTabPanel-root{${tabPanelStyles}};.MuiTab-root{${tabStyles}}`}
           />
-          <TabsUnstyled selectionFollowsFocus defaultValue={0}>
-            <TabsListUnstyled>
-              <TabUnstyled>One</TabUnstyled>
-              <TabUnstyled>Two</TabUnstyled>
-              <TabUnstyled>Three</TabUnstyled>
-            </TabsListUnstyled>
-            <TabPanelUnstyled value={0}>First page</TabPanelUnstyled>
-            <TabPanelUnstyled value={1}>Second page</TabPanelUnstyled>
-            <TabPanelUnstyled value={2}>Third page</TabPanelUnstyled>
-          </TabsUnstyled>
-        </React.Fragment>
+          <TabsListUnstyled>
+            <TabUnstyled>One</TabUnstyled>
+            <TabUnstyled>Two</TabUnstyled>
+            <TabUnstyled>Three</TabUnstyled>
+          </TabsListUnstyled>
+          <TabPanelUnstyled value={0}>First page</TabPanelUnstyled>
+          <TabPanelUnstyled value={1}>Second page</TabPanelUnstyled>
+          <TabPanelUnstyled value={2}>Third page</TabPanelUnstyled>
+        </TabsUnstyled>
       )}
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
-        <React.Fragment>
-          {/* eslint-disable-next-line no-octal-escape */}
-          <GlobalStyles styles=".m-\[6px\]{margin:6px}.mb-\[16px\]{margin-bottom:16px}.block{display:block}.flex{display:flex}.hidden{display:none}.w-full{width:100%}.min-w-\[300px\]{min-width:300px}.cursor-pointer{cursor:pointer}.content-between{align-content:space-between}.items-center{align-items:center}.justify-center{justify-content:center}.rounded-\[12px\]{border-radius:12px}.rounded-\[7px\]{border-radius:7px}.border-none{border-style:none}.\!bg-white{--tw-bg-opacity:1!important;background-color:rgb(255 255 255/var(--tw-bg-opacity))!important}.bg-\[--palette-primary\]{background-color:var(--palette-primary)}.bg-transparent{background-color:transparent}.p-\[12px\]{padding:12px}.text-\[0\.875rem\]{font-size:.875rem}.font-bold{font-weight:700}.\!text-\[--palette-primary\]{color:var(--palette-primary)!important}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.\[box-shadow\:var\(--shadow\)\]{box-shadow:var(--shadow)}.\[font-family\:IBM_Plex_sans\]{font-family:IBM Plex sans}.focus\:text-white:focus{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.focus\:\[outline\:3px_solid_var\(--focus-ring\)\]:focus{outline:3px solid var(--focus-ring)}" />
-          <TabsUnstyled selectionFollowsFocus defaultValue={0}>
-            <TabsListUnstyled className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
-              <TabUnstyled
-                className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
-                slotProps={{
-                  root: ({ selected }) => ({
-                    className: clsx(selected && '!bg-white !text-[--palette-primary]'),
-                  }),
-                }}
-              >
-                One
-              </TabUnstyled>
-              <TabUnstyled
-                className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
-                slotProps={{
-                  root: ({ selected }) => ({
-                    className: clsx(selected && '!bg-white !text-[--palette-primary]'),
-                  }),
-                }}
-              >
-                Two
-              </TabUnstyled>
-              <TabUnstyled
-                className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
-                slotProps={{
-                  root: ({ selected }) => ({
-                    className: clsx(selected && '!bg-white !text-[--palette-primary]'),
-                  }),
-                }}
-              >
-                Three
-              </TabUnstyled>
-            </TabsListUnstyled>
-            <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={0}>
-              First page
-            </TabPanelUnstyled>
-            <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={1}>
-              Second page
-            </TabPanelUnstyled>
-            <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={2}>
-              Third page
-            </TabPanelUnstyled>
-          </TabsUnstyled>
-        </React.Fragment>
+        <TabsUnstyled selectionFollowsFocus defaultValue={0}>
+          <TabsListUnstyled className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
+            <TabUnstyled
+              className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
+              slotProps={{
+                root: ({ selected }) => ({
+                  className: clsx(selected && '!bg-white !text-[--palette-primary]'),
+                }),
+              }}
+            >
+              One
+            </TabUnstyled>
+            <TabUnstyled
+              className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
+              slotProps={{
+                root: ({ selected }) => ({
+                  className: clsx(selected && '!bg-white !text-[--palette-primary]'),
+                }),
+              }}
+            >
+              Two
+            </TabUnstyled>
+            <TabUnstyled
+              className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
+              slotProps={{
+                root: ({ selected }) => ({
+                  className: clsx(selected && '!bg-white !text-[--palette-primary]'),
+                }),
+              }}
+            >
+              Three
+            </TabUnstyled>
+          </TabsListUnstyled>
+          <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={0}>
+            First page
+          </TabPanelUnstyled>
+          <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={1}>
+            Second page
+          </TabPanelUnstyled>
+          <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={2}>
+            Third page
+          </TabPanelUnstyled>
+        </TabsUnstyled>
       )}
     </Box>
   );
