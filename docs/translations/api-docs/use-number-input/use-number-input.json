@@ -4,6 +4,8 @@
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the component is disabled.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
     "error": "If <code>true</code>, the <code>input</code> will indicate an error by setting the <code>aria-invalid</code> attribute.\nThe prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
+    "inputId": "The <code>id</code> attribute of the input element.",
+    "inputRef": "The ref of the input element.",
     "max": "The maximum value.",
     "min": "The minimum value.",
     "onChange": "Callback fired when the <input> value changes, before clamping is applied. Note that\n<code>event.target.value</code> may contain values that fall outside of <code>min</code> and <code>max</code> or\nare otherwise \"invalid\".",

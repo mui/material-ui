@@ -1,9 +1,6 @@
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
-import {
-  // unstable_useControlled as useControlled, // TODO: do I need this?
-  unstable_useForkRef as useForkRef,
-} from '@mui/utils';
+import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { FormControlState, useFormControlContext } from '../FormControl';
 import {
   UseNumberInputParameters,
@@ -55,6 +52,7 @@ export default function useNumberInput(
     readOnly: readOnlyProp = false,
     value: valueProp,
     inputRef: inputRefProp,
+    inputId: inputIdProp,
   } = parameters;
 
   // TODO: make it work with FormControl
@@ -78,6 +76,8 @@ export default function useNumberInput(
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
+
+  const inputId = useId(inputIdProp);
 
   const [focused, setFocused] = React.useState(false);
 
@@ -304,7 +304,7 @@ export default function useNumberInput(
     return {
       ...mergedEventHandlers,
       type: 'text',
-      role: 'spinbutton',
+      id: inputId,
       'aria-invalid': errorProp || undefined,
       defaultValue: undefined,
       ref: handleInputRef,
@@ -315,6 +315,7 @@ export default function useNumberInput(
       'aria-valuemax': max,
       autoComplete: 'off',
       autoCorrect: 'off',
+      spellCheck: 'false',
       required: requiredProp,
       readOnly: readOnlyProp,
       tabIndex: readOnlyProp ? -1 : 0,
@@ -331,14 +332,20 @@ export default function useNumberInput(
     }
   };
 
-  const isIncrementDisabled = isNumber(value) ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false;
+  const stepperButtonCommonProps = {
+    'aria-controls': inputId,
+    tabIndex: readOnlyProp ? 0 : -1,
+  };
+
+  const isIncrementDisabled =
+    disabledProp || (isNumber(value) ? value >= (max ?? Number.MAX_SAFE_INTEGER) : false);
 
   const getIncrementButtonProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputIncrementButtonSlotProps<TOther> => {
     return {
       ...externalProps,
-      tabIndex: readOnlyProp ? 0 : -1,
+      ...stepperButtonCommonProps,
       disabled: isIncrementDisabled,
       'aria-disabled': isIncrementDisabled,
       onMouseDown: handleStepperButtonMouseDown,
@@ -346,14 +353,15 @@ export default function useNumberInput(
     };
   };
 
-  const isDecrementDisabled = isNumber(value) ? value <= (min ?? Number.MIN_SAFE_INTEGER) : false;
+  const isDecrementDisabled =
+    disabledProp || (isNumber(value) ? value <= (min ?? Number.MIN_SAFE_INTEGER) : false);
 
   const getDecrementButtonProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputDecrementButtonSlotProps<TOther> => {
     return {
       ...externalProps,
-      tabIndex: readOnlyProp ? 0 : -1,
+      ...stepperButtonCommonProps,
       disabled: isDecrementDisabled,
       'aria-disabled': isDecrementDisabled,
       onMouseDown: handleStepperButtonMouseDown,

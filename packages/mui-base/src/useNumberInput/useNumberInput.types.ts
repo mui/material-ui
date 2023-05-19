@@ -55,6 +55,13 @@ export interface UseNumberInputParameters {
     event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
     value: number | undefined,
   ) => void;
+  /**
+   * The `id` attribute of the input element.
+   */
+  inputId?: string;
+  /**
+   * The ref of the input element.
+   */
   inputRef?: React.Ref<HTMLInputElement>;
   /**
    * If `true`, the `input` element is required.
@@ -84,6 +91,7 @@ export type UseNumberInputRootSlotProps<TOther = {}> = Omit<
 
 export interface UseNumberInputInputSlotOwnProps {
   defaultValue: number | undefined;
+  id: string | undefined;
   ref: React.RefCallback<HTMLInputElement> | null;
   value: number | undefined;
   role?: React.AriaRole;
@@ -107,6 +115,7 @@ export type UseNumberInputInputSlotProps<TOther = {}> = Omit<
   UseNumberInputInputSlotOwnProps;
 
 export interface UseNumberInputIncrementButtonSlotOwnProps {
+  'aria-controls': React.AriaAttributes['aria-controls'];
   'aria-disabled': React.AriaAttributes['aria-disabled'];
   disabled: boolean;
   tabIndex?: number;
@@ -119,6 +128,7 @@ export type UseNumberInputIncrementButtonSlotProps<TOther = {}> = Omit<
   UseNumberInputIncrementButtonSlotOwnProps;
 
 export interface UseNumberInputDecrementButtonSlotOwnProps {
+  'aria-controls': React.AriaAttributes['aria-controls'];
   'aria-disabled': React.AriaAttributes['aria-disabled'];
   disabled: boolean;
   tabIndex?: number;

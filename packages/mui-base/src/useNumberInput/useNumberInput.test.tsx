@@ -20,39 +20,50 @@ describe('useNumberInput', () => {
     return ref.current!;
   };
 
-  describe('getInputProps', () => {
-    it('should return correct ARIA attributes', () => {
-      const props: UseNumberInputParameters = {
-        value: 50,
-        min: 10,
-        max: 100,
-        disabled: true,
-      };
+  it('should return correct ARIA attributes', () => {
+    const INPUT_ID = 'TestInput';
 
-      const { getInputProps } = invokeUseNumberInput(props);
-      const inputProps = getInputProps();
+    const props: UseNumberInputParameters = {
+      inputId: INPUT_ID,
+      value: 50,
+      min: 10,
+      max: 100,
+      disabled: true,
+    };
 
-      expect(inputProps.role).to.equal('spinbutton');
-      expect(inputProps['aria-valuenow']).to.equal(50);
-      expect(inputProps['aria-valuemin']).to.equal(10);
-      expect(inputProps['aria-valuemax']).to.equal(100);
-      expect(inputProps['aria-disabled']).to.equal(true);
-      expect(inputProps.tabIndex).to.equal(0);
-    });
+    const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+      invokeUseNumberInput(props);
+    const inputProps = getInputProps();
+    const incrementButtonProps = getIncrementButtonProps();
+    const decrementButtonProps = getDecrementButtonProps();
 
-    it('should accept defaultValue in uncontrolled mode', () => {
-      const props: UseNumberInputParameters = {
-        defaultValue: 100,
-        disabled: true,
-        required: true,
-      };
+    expect(inputProps['aria-valuenow']).to.equal(50);
+    expect(inputProps['aria-valuemin']).to.equal(10);
+    expect(inputProps['aria-valuemax']).to.equal(100);
+    expect(inputProps['aria-disabled']).to.equal(true);
+    expect(inputProps.tabIndex).to.equal(0);
 
-      const { getInputProps } = invokeUseNumberInput(props);
-      const inputProps = getInputProps();
+    expect(decrementButtonProps.tabIndex).to.equal(-1);
+    expect(decrementButtonProps['aria-controls']).to.equal(INPUT_ID);
+    expect(decrementButtonProps['aria-disabled']).to.equal(true);
 
-      expect(inputProps.value).to.equal(100);
-      expect(inputProps.required).to.equal(true);
-    });
+    expect(incrementButtonProps.tabIndex).to.equal(-1);
+    expect(incrementButtonProps['aria-controls']).to.equal(INPUT_ID);
+    expect(incrementButtonProps['aria-disabled']).to.equal(true);
+  });
+
+  it('should accept defaultValue in uncontrolled mode', () => {
+    const props: UseNumberInputParameters = {
+      defaultValue: 100,
+      disabled: true,
+      required: true,
+    };
+
+    const { getInputProps } = invokeUseNumberInput(props);
+    const inputProps = getInputProps();
+
+    expect(inputProps.value).to.equal(100);
+    expect(inputProps.required).to.equal(true);
   });
 
   describe('prop: onChange', () => {
@@ -62,11 +73,11 @@ describe('useNumberInput', () => {
       function NumberInput() {
         const { getInputProps } = useNumberInput({ onChange: handleChange });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -83,11 +94,11 @@ describe('useNumberInput', () => {
       function NumberInput() {
         const { getInputProps } = useNumberInput({ onChange: handleChange });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -105,11 +116,11 @@ describe('useNumberInput', () => {
       function NumberInput() {
         const { getInputProps } = useNumberInput({ onValueChange: handleValueChange });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton');
+      const input = screen.getByTestId('test-input');
 
       await user.click(input);
 
@@ -132,11 +143,11 @@ describe('useNumberInput', () => {
           max: 5,
         });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton');
+      const input = screen.getByTestId('test-input');
 
       await user.click(input);
 
@@ -157,11 +168,11 @@ describe('useNumberInput', () => {
           min: 5,
         });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton');
+      const input = screen.getByTestId('test-input');
 
       await user.click(input);
 
@@ -183,11 +194,11 @@ describe('useNumberInput', () => {
           step: 5,
         });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton');
+      const input = screen.getByTestId('test-input');
 
       await user.click(input);
 
@@ -207,11 +218,11 @@ describe('useNumberInput', () => {
           onValueChange: handleValueChange,
         });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -238,11 +249,11 @@ describe('useNumberInput', () => {
           onValueChange: handleValueChange,
         });
 
-        return <input {...getInputProps()} />;
+        return <input data-testid="test-input" {...getInputProps()} />;
       }
       render(<NumberInput />);
 
-      const input = screen.getByRole('spinbutton') as HTMLInputElement;
+      const input = screen.getByTestId('test-input') as HTMLInputElement;
 
       await user.click(input);
 

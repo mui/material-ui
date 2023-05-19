@@ -3,6 +3,7 @@
     "defaultValue": { "type": { "name": "unknown", "description": "unknown" } },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
     "error": { "type": { "name": "boolean", "description": "boolean" } },
+    "inputId": { "type": { "name": "string", "description": "string" } },
     "inputRef": {
       "type": {
         "name": "React.Ref&lt;HTMLInputElement&gt;",

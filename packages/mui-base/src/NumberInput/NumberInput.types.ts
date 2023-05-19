@@ -10,9 +10,7 @@ import { SlotComponentProps } from '../utils';
 
 export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}
-export interface NumberInputStepperButtonSlotPropsOverrides {
-  'data-testid'?: string;
-}
+export interface NumberInputStepperButtonSlotPropsOverrides {}
 
 export type NumberInputOwnProps = Omit<UseNumberInputParameters, 'error'> & {
   /**

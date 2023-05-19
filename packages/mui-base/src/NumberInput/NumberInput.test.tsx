@@ -29,9 +29,11 @@ describe('<NumberInput />', () => {
 
   it('should be able to attach input ref passed through props', () => {
     const inputRef = React.createRef<HTMLInputElement>();
-    const { getByRole } = render(<NumberInput slotProps={{ input: { ref: inputRef } }} />);
+    const { getByTestId } = render(
+      <NumberInput slotProps={{ input: { 'data-testid': 'input', ref: inputRef } as any }} />,
+    );
 
-    expect(inputRef.current).to.deep.equal(getByRole('spinbutton'));
+    expect(inputRef.current).to.deep.equal(getByTestId('input'));
   });
 
   it('passes ownerState to all the slots', () => {
@@ -73,8 +75,8 @@ describe('<NumberInput />', () => {
       expect(renderedComponents[i]).to.have.attribute('data-disabled', 'true');
       expect(renderedComponents[i]).to.have.attribute('data-focused', 'false');
       expect(renderedComponents[i]).to.have.attribute('data-readonly', 'true');
-      expect(renderedComponents[i]).to.have.attribute('data-decrementdisabled', 'false');
-      expect(renderedComponents[i]).to.have.attribute('data-incrementdisabled', 'false');
+      expect(renderedComponents[i]).to.have.attribute('data-decrementdisabled', 'true');
+      expect(renderedComponents[i]).to.have.attribute('data-incrementdisabled', 'true');
     }
   });
 
@@ -83,22 +85,27 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole, getByTestId } = render(
+      const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
           onValueChange={handleValueChange}
-          slotProps={{
-            incrementButton: {
-              'data-testid': 'increment-btn',
-            },
-            decrementButton: {
-              'data-testid': 'decrement-btn',
-            },
-          }}
+          slotProps={
+            {
+              input: {
+                'data-testid': 'input',
+              },
+              incrementButton: {
+                'data-testid': 'increment-btn',
+              },
+              decrementButton: {
+                'data-testid': 'decrement-btn',
+              },
+            } as any
+          }
         />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
@@ -117,23 +124,28 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole, getByTestId } = render(
+      const { getByTestId } = render(
         <NumberInput
           defaultValue={20}
           shiftMultiplier={5}
           onValueChange={handleValueChange}
-          slotProps={{
-            incrementButton: {
-              'data-testid': 'increment-btn',
-            },
-            decrementButton: {
-              'data-testid': 'decrement-btn',
-            },
-          }}
+          slotProps={
+            {
+              input: {
+                'data-testid': 'input',
+              },
+              incrementButton: {
+                'data-testid': 'increment-btn',
+              },
+              decrementButton: {
+                'data-testid': 'decrement-btn',
+              },
+            } as any
+          }
         />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
@@ -152,21 +164,26 @@ describe('<NumberInput />', () => {
     it('clicking on the stepper buttons will focus the input', async () => {
       const user = userEvent.setup();
 
-      const { getByRole, getByTestId } = render(
+      const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
-          slotProps={{
-            incrementButton: {
-              'data-testid': 'increment-btn',
-            },
-            decrementButton: {
-              'data-testid': 'decrement-btn',
-            },
-          }}
+          slotProps={
+            {
+              input: {
+                'data-testid': 'input',
+              },
+              incrementButton: {
+                'data-testid': 'increment-btn',
+              },
+              decrementButton: {
+                'data-testid': 'decrement-btn',
+              },
+            } as any
+          }
         />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
       const incrementButton = getByTestId('increment-btn');
       const decrementButton = getByTestId('decrement-btn');
 
@@ -193,11 +210,15 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(
-        <NumberInput defaultValue={10} onValueChange={handleValueChange} />,
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={10}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -217,11 +238,16 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(
-        <NumberInput defaultValue={10} step={5} onValueChange={handleValueChange} />,
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={10}
+          step={5}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -240,11 +266,16 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(
-        <NumberInput defaultValue={20} shiftMultiplier={5} onValueChange={handleValueChange} />,
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={20}
+          shiftMultiplier={5}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -263,11 +294,16 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(
-        <NumberInput defaultValue={20} shiftMultiplier={5} onValueChange={handleValueChange} />,
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={20}
+          shiftMultiplier={5}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -285,11 +321,16 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(
-        <NumberInput defaultValue={10} max={50} onValueChange={handleValueChange} />,
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={10}
+          max={50}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -302,11 +343,16 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(
-        <NumberInput defaultValue={10} min={1} onValueChange={handleValueChange} />,
+      const { getByTestId } = render(
+        <NumberInput
+          defaultValue={10}
+          min={1}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
       );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -319,9 +365,15 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(<NumberInput min={5} onValueChange={handleValueChange} />);
+      const { getByTestId } = render(
+        <NumberInput
+          min={5}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
+      );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -334,9 +386,15 @@ describe('<NumberInput />', () => {
       const user = userEvent.setup();
       const handleValueChange = spy();
 
-      const { getByRole } = render(<NumberInput max={9} onValueChange={handleValueChange} />);
+      const { getByTestId } = render(
+        <NumberInput
+          max={9}
+          onValueChange={handleValueChange}
+          slotProps={{ input: { 'data-testid': 'input' } } as any}
+        />,
+      );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
 
       await user.click(input);
 
@@ -350,9 +408,11 @@ describe('<NumberInput />', () => {
     it('stepper buttons should not be in the tab order when readOnly is false', async () => {
       const user = userEvent.setup();
 
-      const { getByRole } = render(<NumberInput />);
+      const { getByTestId } = render(
+        <NumberInput slotProps={{ input: { 'data-testid': 'input' } } as any} />,
+      );
 
-      const input = getByRole('spinbutton') as HTMLInputElement;
+      const input = getByTestId('input') as HTMLInputElement;
       expect(document.activeElement).to.equal(document.body);
 
       await user.keyboard('[Tab]');
@@ -368,14 +428,19 @@ describe('<NumberInput />', () => {
       const { getByTestId } = render(
         <NumberInput
           readOnly
-          slotProps={{
-            incrementButton: {
-              'data-testid': 'increment-btn',
-            },
-            decrementButton: {
-              'data-testid': 'decrement-btn',
-            },
-          }}
+          slotProps={
+            {
+              input: {
+                'data-testid': 'input',
+              },
+              incrementButton: {
+                'data-testid': 'increment-btn',
+              },
+              decrementButton: {
+                'data-testid': 'decrement-btn',
+              },
+            } as any
+          }
         />,
       );
 

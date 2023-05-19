@@ -100,6 +100,7 @@ const NumberInput = React.forwardRef(function NumberInput(
     required,
     readOnly,
     value,
+    inputId: id,
   });
 
   const ownerState: NumberInputOwnerState = {
@@ -115,7 +116,6 @@ const NumberInput = React.forwardRef(function NumberInput(
   const classes = useUtilityClasses(ownerState);
 
   const propsForwardedToInputSlot = {
-    id,
     placeholder,
   };
 
