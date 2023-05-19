@@ -43,7 +43,7 @@ export default function BaseButtonDemo({
         alignItems: 'center',
         gap: 2,
         height: '100%',
-        py: 2,
+        py: 5,
       }}
     >
       {styling === 'system' && (

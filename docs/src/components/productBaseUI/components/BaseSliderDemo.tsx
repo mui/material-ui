@@ -73,7 +73,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
         alignItems: 'center',
         gap: 2,
         height: '100%',
-        py: 2,
+        py: 5,
         px: 5,
         maxWidth: 300,
         mx: 'auto',

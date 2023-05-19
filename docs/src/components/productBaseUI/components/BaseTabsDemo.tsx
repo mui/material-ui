@@ -69,7 +69,7 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
         alignItems: 'center',
         gap: 2,
         height: '100%',
-        py: 2,
+        py: 5,
       }}
     >
       {styling === 'system' && (

@@ -165,6 +165,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
         alignItems: 'center',
         gap: 2,
         height: '100%',
+        py: 5,
       }}
     >
       {styling === 'css' && <GlobalStyles styles={CSS} />}
