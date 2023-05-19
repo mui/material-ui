@@ -54,6 +54,13 @@ const tabStyles = `
 `;
 const StyledTab = styled('button')(tabStyles);
 
+const CSS = `
+.MuiTabsList-root{${tabListStyles}};
+
+.MuiTabPanel-root{${tabPanelStyles}};
+
+.MuiTab-root{${tabStyles}}`;
+
 export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwindcss' | 'css' }) {
   return (
     <Box
@@ -86,9 +93,7 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       )}
       {styling === 'css' && (
         <TabsUnstyled selectionFollowsFocus defaultValue={0}>
-          <GlobalStyles
-            styles={`.MuiTabsList-root{${tabListStyles}};.MuiTabPanel-root{${tabPanelStyles}};.MuiTab-root{${tabStyles}}`}
-          />
+          <GlobalStyles styles={CSS} />
           <TabsListUnstyled>
             <TabUnstyled>One</TabUnstyled>
             <TabUnstyled>Two</TabUnstyled>
@@ -102,44 +107,23 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
       {styling === 'tailwindcss' && ( // https://play.tailwindcss.com/8jGjUI7EWe
         <TabsUnstyled selectionFollowsFocus defaultValue={0}>
           <TabsListUnstyled className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
-            <TabUnstyled
-              className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
-              slotProps={{
-                root: ({ selected }) => ({
-                  className: clsx(selected && '!bg-white !text-[--palette-primary]'),
-                }),
-              }}
-            >
+            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
               One
             </TabUnstyled>
-            <TabUnstyled
-              className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
-              slotProps={{
-                root: ({ selected }) => ({
-                  className: clsx(selected && '!bg-white !text-[--palette-primary]'),
-                }),
-              }}
-            >
+            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
               Two
             </TabUnstyled>
-            <TabUnstyled
-              className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)]"
-              slotProps={{
-                root: ({ selected }) => ({
-                  className: clsx(selected && '!bg-white !text-[--palette-primary]'),
-                }),
-              }}
-            >
+            <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
               Three
             </TabUnstyled>
           </TabsListUnstyled>
-          <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={0}>
+          <TabPanelUnstyled className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={0}>
             First page
           </TabPanelUnstyled>
-          <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={1}>
+          <TabPanelUnstyled className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={1}>
             Second page
           </TabPanelUnstyled>
-          <TabPanelUnstyled className="[font-family:IBM_Plex_sans] text-[0.875rem]" value={2}>
+          <TabPanelUnstyled className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={2}>
             Third page
           </TabPanelUnstyled>
         </TabsUnstyled>
@@ -155,9 +139,9 @@ import TabPanelUnstyled from '@mui/base/TabPanel';
 import TabUnstyled from '@mui/base/Tab';
 import { styled } from '@mui/system';
 
-const StyledTabsList = styled('div')\`/* CSS… */\`;
-const StyledTabPanel = styled('div')\`/* CSS… */\`;
-const StyledTab = styled('button')\`/* CSS… */\`;
+const StyledTabsList = styled('div')\`${tabListStyles}\`;
+const StyledTabPanel = styled('div')\`${tabPanelStyles}\`;
+const StyledTab = styled('button')\`/${tabStyles}\`;
 
 <TabsUnstyled selectionFollowsFocus defaultValue={0}>
   <TabsListUnstyled slots={{ root: StyledTabsList }}>
@@ -245,6 +229,9 @@ import './styles.css';
     Third page
   </TabPanelUnstyled>
 </TabsUnstyled>
+
+/* styles.css */
+${CSS}
     `;
   }
   return '';
