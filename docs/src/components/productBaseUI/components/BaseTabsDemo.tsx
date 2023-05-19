@@ -167,24 +167,57 @@ import TabPanelUnstyled from '@mui/base/TabPanel';
 import TabUnstyled from '@mui/base/Tab';
 
 <TabsUnstyled selectionFollowsFocus defaultValue={0}>
-  <TabsListUnstyled className="mb-[16px] flex min-w-[300px] content-between items-center justify-center rounded-[12px] bg-[--palette-primary] [box-shadow:var(--shadow)]">
-    <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+  <TabsListUnstyled
+    className="mb-[16px] flex min-w-[300px] content-between 
+              items-center justify-center rounded-[12px] 
+              bg-[--palette-primary] [box-shadow:var(--shadow)]">
+    <TabUnstyled 
+      className="m-[6px] flex w-full cursor-pointer 
+                justify-center rounded-[7px] border-none 
+                bg-transparent p-[12px] text-[0.875rem] 
+                font-bold text-white [font-family:IBM_Plex_sans] 
+                focus:text-white 
+                focus:[outline:3px_solid_var(--focus-ring)] 
+                ui-selected:bg-white 
+                ui-selected:text-[--palette-primary]">
       One
     </TabUnstyled>
-    <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+    <TabUnstyled 
+      className="m-[6px] flex w-full cursor-pointer 
+                justify-center rounded-[7px] border-none 
+                bg-transparent p-[12px] text-[0.875rem] 
+                font-bold text-white [font-family:IBM_Plex_sans] 
+                focus:text-white 
+                focus:[outline:3px_solid_var(--focus-ring)] 
+                ui-selected:bg-white 
+                ui-selected:text-[--palette-primary]">
       Two
     </TabUnstyled>
-    <TabUnstyled className="m-[6px] flex w-full cursor-pointer justify-center rounded-[7px] border-none bg-transparent p-[12px] text-[0.875rem] font-bold text-white [font-family:IBM_Plex_sans] focus:text-white focus:[outline:3px_solid_var(--focus-ring)] ui-selected:bg-white ui-selected:text-[--palette-primary]">
+    <TabUnstyled 
+      className="m-[6px] flex w-full cursor-pointer 
+                justify-center rounded-[7px] border-none 
+                bg-transparent p-[12px] text-[0.875rem] 
+                font-bold text-white [font-family:IBM_Plex_sans] 
+                focus:text-white 
+                focus:[outline:3px_solid_var(--focus-ring)] 
+                ui-selected:bg-white 
+                ui-selected:text-[--palette-primary]">
       Three
     </TabUnstyled>
   </TabsListUnstyled>
-  <TabPanelUnstyled className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={0}>
+  <TabPanelUnstyled 
+    className="text-[0.875rem] [font-family:IBM_Plex_sans]" 
+    value={0}>
     First page
   </TabPanelUnstyled>
-  <TabPanelUnstyled className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={1}>
+  <TabPanelUnstyled 
+    className="text-[0.875rem] [font-family:IBM_Plex_sans]" 
+    value={1}>
     Second page
   </TabPanelUnstyled>
-  <TabPanelUnstyled className="text-[0.875rem] [font-family:IBM_Plex_sans]" value={2}>
+  <TabPanelUnstyled 
+    className="text-[0.875rem] [font-family:IBM_Plex_sans]" 
+    value={2}>
     Third page
   </TabPanelUnstyled>
 </TabsUnstyled>`;
