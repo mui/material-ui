@@ -2,7 +2,14 @@ import * as React from 'react';
 
 let globalId = 0;
 function useGlobalId(idOverride?: string): string | undefined {
-  const [defaultId, setDefaultId] = React.useState(idOverride);
+  const [defaultId, setDefaultId] = React.useState(
+    idOverride == null
+      ? () => {
+          globalId += 1;
+          return `mui-${globalId}`;
+        }
+      : idOverride,
+  );
   const id = idOverride || defaultId;
   React.useEffect(() => {
     if (defaultId == null) {
