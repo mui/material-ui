@@ -6,7 +6,7 @@
     "position": {
       "type": {
         "name": "enum",
-        "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+        "description": "'alternate-revert'<br>&#124;&nbsp;'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "default": "'right'"
     },
