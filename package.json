@@ -88,7 +88,7 @@
     "@emotion/styled": "^11.11.0",
     "@googleapis/sheets": "^4.0.2",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@octokit/rest": "^19.0.7",
+    "@octokit/rest": "^19.0.11",
     "@playwright/test": "1.33.0",
     "@rollup/plugin-replace": "^5.0.2",
     "@slack/bolt": "^3.13.1",
