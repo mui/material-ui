@@ -107,7 +107,7 @@
     "@types/react": "^18.2.6",
     "@types/react-is": "^18.2.0",
     "@types/react-test-renderer": "^18.0.0",
-    "@types/sinon": "^10.0.14",
+    "@types/sinon": "^10.0.15",
     "@types/stylis": "^4.0.2",
     "@types/webpack": "^5.28.0",
     "@types/yargs": "^17.0.24",
