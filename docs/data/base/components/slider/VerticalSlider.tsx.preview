@@ -1,0 +1,6 @@
+<StyledSlider
+  aria-label="Temperature"
+  orientation="vertical"
+  getAriaValueText={valuetext}
+  defaultValue={30}
+/>

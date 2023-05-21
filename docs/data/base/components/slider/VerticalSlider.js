@@ -1,20 +1,42 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Slider from '@mui/material/Slider';
-import SliderUnstyled from '@mui/base/Slider';
-import { styled, alpha } from '@mui/system';
+import Slider, { sliderClasses } from '@mui/base/Slider';
+import { styled, alpha, Box } from '@mui/system';
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-const StyledSlider = styled(SliderUnstyled)(
+export default function VerticalSlider() {
+  return (
+    <Box sx={{ height: 300 }}>
+      <StyledSlider
+        aria-label="Temperature"
+        orientation="vertical"
+        getAriaValueText={valuetext}
+        defaultValue={30}
+      />
+    </Box>
+  );
+}
+
+const blue = {
+  100: '#DAECFF',
+  200: '#99CCF3',
+  400: '#3399FF',
+  300: '#66B2FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
+const StyledSlider = styled(Slider)(
   ({ theme }) => `
-  color: ${theme.palette.mode === 'light' ? '#1976d2' : '#90caf9'};
-  height: 100%;
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
+  height: 95%;
   width: 4px;
   display: inline-block;
   position: relative;
+  margin-top: 0.75rem;
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
@@ -23,7 +45,7 @@ const StyledSlider = styled(SliderUnstyled)(
     opacity: 1;
   }
 
-  & .MuiSlider-rail {
+  & .${sliderClasses.rail} {
     display: block;
     position: absolute;
     height: 100%;
@@ -33,7 +55,7 @@ const StyledSlider = styled(SliderUnstyled)(
     opacity: 0.38;
   }
 
-  & .MuiSlider-track {
+  & .${sliderClasses.track} {
     display: block;
     position: absolute;
     width: inherit;
@@ -41,7 +63,7 @@ const StyledSlider = styled(SliderUnstyled)(
     background-color: currentColor;
   }
 
-  & .MuiSlider-thumb {
+  & .${sliderClasses.thumb} {
     position: absolute;
     width: 14px;
     height: 14px;
@@ -57,32 +79,19 @@ const StyledSlider = styled(SliderUnstyled)(
     transform: translate(-50%, 50%);
 
     :hover,
-    &.Mui-focusVisible {
+    &.${sliderClasses.focusVisible} {
       box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
+        theme.palette.mode === 'light' ? blue[400] : blue[300],
         0.15,
       )};
     }
 
-    &.Mui-active {
+    &.${sliderClasses.active} {
       box-shadow: 0 0 0 0.25rem ${alpha(
-        theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
         0.3,
       )};
     }
   }
 `,
 );
-export default function VerticalSlider() {
-  return (
-    <Stack sx={{ height: 300 }} spacing={1} direction="row">
-      <Slider
-        aria-label="Temperature"
-        orientation="vertical"
-        getAriaValueText={valuetext}
-        defaultValue={30}
-      />
-      <StyledSlider orientation="vertical" defaultValue={30} />
-    </Stack>
-  );
-}
