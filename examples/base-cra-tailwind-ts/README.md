@@ -1,4 +1,4 @@
-# MUI Base - Create React App example with Tailwind CSS in TypeScript
+# Base UI - Create React App example with Tailwind CSS in TypeScript
 
 ## How to use
 
@@ -29,4 +29,4 @@ or:
 ## The idea behind the example
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-It shows how you can use MUI Base together with [Tailwind CSS](https://tailwindcss.com/) to build your application.
+It shows how you can use Base UI together with [Tailwind CSS](https://tailwindcss.com/) to build your application.

@@ -374,9 +374,9 @@ function RowHead({ children, startIcon, ...props }: BoxProps & { startIcon?: Rea
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
+      label="Base UI"
       tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
@@ -488,8 +488,15 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/file-print': (
     <ColumnHead label="Print" nested href="/x/react-data-grid/export/#print-export" />
   ),
-  'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href="/x/react-data-grid/export/#clipboard" />
+  'data-grid/file-clipboard-copy': (
+    <ColumnHead label="Clipboard copy" nested href="/x/react-data-grid/clipboard/#clipboard-copy" />
+  ),
+  'data-grid/file-clipboard-paste': (
+    <ColumnHead
+      label="Clipboard paste"
+      nested
+      href="/x/react-data-grid/clipboard/#clipboard-paste"
+    />
   ),
   'data-grid/file-excel': (
     <ColumnHead label="Excel export" nested href="/x/react-data-grid/export/#excel-export" />
@@ -616,7 +623,7 @@ const no = <IconImage name="no" title="Not included" />;
 
 const communityData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -644,7 +651,8 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/edit-cell': yes,
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
-  'data-grid/file-clipboard': no,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': no,
   'data-grid/file-excel': no,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
@@ -675,7 +683,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -703,7 +711,8 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/edit-cell': yes,
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
-  'data-grid/file-clipboard': pending,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': no,
   'data-grid/file-excel': no,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
@@ -734,7 +743,7 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // MUI Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -750,7 +759,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
-  'data-grid/row-rangeselection': pending,
+  'data-grid/row-rangeselection': yes,
   'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
@@ -762,7 +771,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/edit-cell': yes,
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
-  'data-grid/file-clipboard': pending,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': yes,
   'data-grid/file-excel': yes,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
@@ -1049,7 +1059,7 @@ export default function PricingTable({
       {divider}
       {renderRow('Joy UI')}
       {divider}
-      {renderRow('MUI Base')}
+      {renderRow('Base UI')}
       {divider}
       {renderRow('MUI System')}
       <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
@@ -1182,7 +1192,8 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-excel')}
         {nestedDivider}
-        {renderRow('data-grid/file-clipboard')}
+        {renderRow('data-grid/file-clipboard-copy')}
+        {renderRow('data-grid/file-clipboard-paste')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}

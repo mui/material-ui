@@ -6,7 +6,7 @@ import Table, { tableClasses as classes } from '@mui/joy/Table';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
 describe('<Table />', () => {
-  const { render } = createRenderer({ emotionCompat: true });
+  const { render } = createRenderer();
 
   describeConformance(<Table />, () => ({
     classes,
@@ -28,9 +28,14 @@ describe('<Table />', () => {
       'reactTestRenderer',
       'refForwarding',
     ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
-  describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes, emotionCompat: true });
+  describeJoyColorInversion(<Table />, { muiName: 'JoyTable', classes });
 
   describe('prop: variant', () => {
     it('plain by default', () => {
@@ -120,5 +125,11 @@ describe('<Table />', () => {
     const { getByRole } = render(<Table stickyHeader />);
 
     expect(getByRole('table')).to.have.class(classes.stickyHeader);
+  });
+
+  it('adds `stickyFooter` class', () => {
+    const { getByRole } = render(<Table stickyFooter />);
+
+    expect(getByRole('table')).to.have.class(classes.stickyFooter);
   });
 });

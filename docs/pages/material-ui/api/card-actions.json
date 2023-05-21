@@ -13,6 +13,8 @@
   "name": "CardActions",
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiCardActions" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardActions",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/CardActions/CardActions.js",
   "inheritance": null,

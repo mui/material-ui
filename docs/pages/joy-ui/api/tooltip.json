@@ -9,6 +9,7 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "describeChild": { "type": { "name": "bool" }, "default": "false" },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
@@ -47,6 +48,17 @@
       "type": { "name": "enum", "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'" },
       "default": "'md'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ arrow?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ arrow?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -78,7 +90,34 @@
       "class": ".MuiTooltip-arrow"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "placementBottom",
+      "placementLeft",
+      "placementRight",
+      "placementTop",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "tooltipArrow",
+      "touch",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyTooltip",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Tooltip/Tooltip.tsx",
   "inheritance": null,

@@ -349,7 +349,10 @@ export default function useAutocomplete(props) {
       prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
     }
 
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    let listboxNode = listboxRef.current;
+    if (listboxRef.current.getAttribute('role') !== 'listbox') {
+      listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    }
 
     // "No results"
     if (!listboxNode) {
@@ -966,12 +969,15 @@ export default function useAutocomplete(props) {
     }
   };
 
-  const handleOptionMouseOver = (event) => {
-    setHighlightedIndex({
-      event,
-      index: Number(event.currentTarget.getAttribute('data-option-index')),
-      reason: 'mouse',
-    });
+  const handleOptionMouseMove = (event) => {
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    if (highlightedIndexRef.current !== index) {
+      setHighlightedIndex({
+        event,
+        index,
+        reason: 'mouse',
+      });
+    }
   };
 
   const handleOptionTouchStart = (event) => {
@@ -1008,13 +1014,21 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = (event) => {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
   };
 
   // Focus the input when interacting with the combobox
-  const handleClick = () => {
+  const handleClick = (event) => {
+    // Prevent focusing the input if click is anywhere outside the Autocomplete
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
     inputRef.current.focus();
 
     if (
@@ -1095,7 +1109,7 @@ export default function useAutocomplete(props) {
       onFocus: handleFocus,
       onChange: handleInputChange,
       onMouseDown: handleInputMouseDown,
-      // if open then this is handled imperativeley so don't let react override
+      // if open then this is handled imperatively so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
@@ -1171,7 +1185,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
-        onMouseOver: handleOptionMouseOver,
+        onMouseMove: handleOptionMouseMove,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
         'data-option-index': index,

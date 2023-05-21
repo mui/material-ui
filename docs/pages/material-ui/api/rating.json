@@ -65,6 +65,8 @@
     "name": "MuiRating"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiRating",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Rating/Rating.js",
   "inheritance": null,

@@ -35,7 +35,6 @@ export default function ListVariables() {
             width: 300,
             ...theme.variants.outlined.neutral,
             bgcolor: 'background.body',
-            borderRadius: 'sm',
           })}
         >
           <ListItem>

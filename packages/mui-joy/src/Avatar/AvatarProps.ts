@@ -10,17 +10,17 @@ export interface AvatarSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the img.
    * @default 'img'
    */
-  img: React.ElementType;
+  img?: React.ElementType;
   /**
    * The component that renders the fallback.
    * @default 'svg'
    */
-  fallback: React.ElementType;
+  fallback?: React.ElementType;
 }
 
 export interface AvatarPropsColorOverrides {}

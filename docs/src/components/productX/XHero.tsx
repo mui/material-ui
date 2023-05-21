@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useDemoData } from '@mui/x-data-grid-generator';
 import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -19,19 +15,64 @@ import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
 import { alpha } from '@mui/material/styles';
 
+import {
+  DataGridPremium,
+  useGridApiRef,
+  useKeepGroupedColumnsHidden,
+} from '@mui/x-data-grid-premium';
+import { useDemoData } from '@mui/x-data-grid-generator';
+
 const startDate = new Date();
 startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
+const visibleFields = [
+  'commodity',
+  'unitPrice',
+  'feeRate',
+  'quantity',
+  'filledQuantity',
+  'isFilled',
+  'traderName',
+  'status',
+  'totalPrice',
+];
+
 export default function XHero() {
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10000,
-    maxColumns: 40,
     editable: true,
+    visibleFields,
   });
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const apiRef = useGridApiRef();
+
+  const sortedColumns = React.useMemo(() => {
+    return [...data.columns].sort((a, b) => {
+      return visibleFields.indexOf(a.field) - visibleFields.indexOf(b.field);
+    });
+  }, [data.columns]);
+
+  const initialState = useKeepGroupedColumnsHidden({
+    apiRef,
+    initialState: {
+      ...data.initialState,
+      rowGrouping: {
+        model: ['commodity'],
+      },
+      aggregation: {
+        model: {
+          quantity: 'sum',
+          unitPrice: 'avg',
+          feeRate: 'min',
+          totalPrice: 'max',
+        },
+      },
+    },
+  });
+
+  let rowGroupingCounter = 0;
   return (
     <HeroContainer
       left={
@@ -102,7 +143,7 @@ export default function XHero() {
                 }),
               })}
             >
-              <Typography fontWeight={500}>Trades, October 2020</Typography>
+              <Typography fontWeight={500}>Trades, March 2023</Typography>
             </Box>
             <Box
               sx={[
@@ -122,6 +163,10 @@ export default function XHero() {
                       borderBottom: '1px solid',
                       borderColor: 'grey.200',
                     },
+                    [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
+                      {
+                        outline: 'none',
+                      },
                     '& .MuiDataGrid-columnHeaderTitleContainer': {
                       padding: 0,
                       color: 'text.primary',
@@ -174,13 +219,26 @@ export default function XHero() {
                   }),
               ]}
             >
-              <DataGridPro
+              <DataGridPremium
                 {...data}
+                columns={sortedColumns}
+                apiRef={apiRef}
+                initialState={initialState}
                 disableRowSelectionOnClick
-                checkboxSelection
+                groupingColDef={{
+                  headerClassName: 'grouping-column-header',
+                }}
+                sx={{
+                  '& .grouping-column-header': {
+                    pl: 6,
+                  },
+                }}
                 hideFooter
                 loading={loading}
-                density="compact"
+                isGroupExpandedByDefault={() => {
+                  rowGroupingCounter += 1;
+                  return rowGroupingCounter === 3;
+                }}
               />
             </Box>
           </Paper>
@@ -262,17 +320,7 @@ export default function XHero() {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(startProps, endProps) => (
-                    <React.Fragment>
-                      <TextField {...startProps} />
-                      <Box sx={{ mx: 2 }}> to </Box>
-                      <TextField {...endProps} />
-                    </React.Fragment>
-                  )}
+                  value={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>

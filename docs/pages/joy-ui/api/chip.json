@@ -8,6 +8,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "onClick": { "type": { "name": "func" } },
@@ -17,6 +18,20 @@
         "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, endDecorator?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, endDecorator?: elementType, label?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
     },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
@@ -67,7 +82,33 @@
       "class": ".MuiChip-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "labelLg",
+      "labelMd",
+      "labelSm",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyChip",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Chip/Chip.tsx",
   "inheritance": null,

@@ -58,7 +58,33 @@
       "class": ".MuiInput-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "error",
+      "focused",
+      "formControl",
+      "fullWidth",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" }
+  },
   "spread": false,
+  "themeDefaultProps": true,
+  "muiName": "JoyInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Input/Input.tsx",
   "inheritance": null,

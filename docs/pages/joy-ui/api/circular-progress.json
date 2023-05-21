@@ -7,6 +7,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "determinate": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
@@ -14,6 +15,20 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ progress?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, svg?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ progress?: elementType, root?: elementType, svg?: elementType, track?: elementType }"
+      },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -59,7 +74,29 @@
       "class": ".MuiCircularProgress-progress"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "determinate",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCircularProgress",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/CircularProgress/CircularProgress.tsx",
   "inheritance": null,

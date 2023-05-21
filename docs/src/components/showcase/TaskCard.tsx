@@ -60,7 +60,7 @@ export default function TaskCard() {
         </Box>
         <Box sx={{ display: 'flex' }}>
           <Avatar
-            imgProps={{ 'aria-labelledby': 'demo-task-card-assigne-name' }}
+            imgProps={{ 'aria-labelledby': 'demo-task-card-assignee-name' }}
             src="/static/images/avatar/1-sm.jpeg"
             variant="rounded"
             sx={{ border: '1px solid #fff' }}
@@ -69,7 +69,7 @@ export default function TaskCard() {
             <Typography variant="body2" color="primary.200" fontWeight={500}>
               Assigned to
             </Typography>
-            <Typography id="demo-task-card-assigne-name" fontWeight={500}>
+            <Typography id="demo-task-card-assignee-name" fontWeight={500}>
               Michael Scott
             </Typography>
           </Box>

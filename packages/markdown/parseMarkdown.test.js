@@ -8,6 +8,13 @@ import {
 } from './parseMarkdown';
 
 describe('parseMarkdown', () => {
+  const defaultParams = {
+    pageFilename: '/test',
+    options: {
+      env: {},
+    },
+  };
+
   describe('getTitle', () => {
     it('remove backticks', () => {
       expect(
@@ -171,7 +178,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: '/test',
+        ...defaultParams,
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -205,7 +212,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: '/test',
+        ...defaultParams,
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -429,7 +436,7 @@ authors:
 
       expect(() => {
         prepareMarkdown({
-          pageFilename: '/test',
+          ...defaultParams,
           translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
         });
       }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);

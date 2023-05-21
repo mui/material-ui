@@ -42,7 +42,7 @@ const synonyms = {
   AddPhotoAlternate:
     '+ image landscape mountains new photography picture plus symbol',
   AddReaction:
-    '+ emoji emotions expressions face feelings glad happiness happy insert like mood new person pleased plus smile smiling social survey symbol',
+    '+ emoji emotions expressions face feelings glad happiness happy icons insert like mood new person pleased plus smile smiling social survey symbol',
   AddRoad:
     '+ destination direction highway maps new plus stop street symbol traffic',
   AddShoppingCart:
@@ -60,6 +60,7 @@ const synonyms = {
     'alter center circles control dot edit filter fix image mix move setting slider sort switch target tune',
   AdminPanelSettings:
     'account avatar certified face human people person privacy private profile protection security shield user verified',
+  AdsClick: 'browser clicks cursor internet target traffic web',
   AdUnits:
     'Android banner cell device hardware iOS mobile notifications phone tablet top',
   Agriculture:
@@ -89,13 +90,13 @@ const synonyms = {
     'apple arrow cast connect control desktop device display monitor screen signal television tv',
   AirportShuttle:
     'automobile bus cars commercial delivery direction maps mini public transportation travel truck van vehicle',
-  Alarm: 'alart bell clock countdown date notification schedule time',
+  Alarm: 'alart alert bell clock countdown date notification schedule time',
   AlarmAdd:
-    '+ alart bell clock countdown date new notification plus schedule symbol time',
+    '+ alart alert bell clock countdown date new notification plus schedule symbol time',
   AlarmOff:
-    'alart bell clock disabled duration enabled notification slash stop timer watch',
+    'alart alert bell clock disabled duration enabled notification slash stop timer watch',
   AlarmOn:
-    'alart bell checkmark clock disabled duration enabled notification off ready slash start timer watch',
+    'alart alert bell checkmark clock disabled duration enabled notification off ready slash start timer watch',
   Album:
     'artist audio bvb cd computer data disk file music play record sound storage track vinyl',
   AlignHorizontalCenter: 'alignment format layout lines paragraph rules style text',
@@ -138,11 +139,11 @@ const synonyms = {
   Architecture: 'art compass design drawing engineering geometric tool',
   Archive: 'inbox mail store',
   ArrowBack:
-    'application components direction disable_ios interface left navigation previous screen ui ux website',
+    'DISABLE_IOS application components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowBackIos:
-    'application chevron components direction disable_ios interface left navigation previous screen ui ux website',
+    'DISABLE_IOS application chevron components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowBackIosNew:
-    'application chevron components direction disable_ios interface left navigation previous screen ui ux website',
+    'DISABLE_IOS application chevron components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowCircleDown: 'direction navigation',
   ArrowCircleLeft: 'direction navigation',
   ArrowCircleRight: 'direction navigation',
@@ -223,6 +224,7 @@ const synonyms = {
   AvTimer: 'clock countdown duration minutes seconds stopwatch',
   BabyChangingStation:
     'babies bathroom body children father human infant kids mother newborn people person toddler wc young',
+  BackHand: 'fingers gesture raised',
   Backpack: 'bookbag knapsack storage travel',
   Backspace: 'arrow cancel clear correct delete erase remove',
   Backup: 'arrow cloud data drive files folders point storage submit upload',
@@ -432,7 +434,7 @@ const synonyms = {
   ChatBubble: 'comment communicate feedback message speech talk text',
   ChatBubbleOutline: 'comment communicate feedback message speech talk text',
   Check:
-    'checkmark complete confirm correct disable_ios done enter okay purchased select success tick yes',
+    'DISABLE_IOS checkmark complete confirm correct disable_ios done enter okay purchased select success tick yes',
   CheckBox:
     'approved button checkmark component control form ok selected selection square success tick toggle ui yes',
   CheckBoxOutlineBlank:
@@ -441,8 +443,12 @@ const synonyms = {
     'approve checkmark complete done download finished ok select success tick upload validate verified yes',
   CheckCircleOutline:
     'approve checkmark complete done finished ok select success tick validate verified yes',
+  Checklist:
+    'alignment approve complete doc done editing editor format mark notes ok select spreadsheet text tick type validate verified writing yes',
+  ChecklistRtl:
+    'alignment approve complete doc done editing editor format mark notes ok select spreadsheet text tick type validate verified writing yes',
   Checkroom: 'check closet clothes coat hanger',
-  ChevronLeft: 'arrows back direction disable_ios triangle',
+  ChevronLeft: 'DISABLE_IOS arrows back direction disable_ios triangle',
   ChevronRight: 'arrows direction forward triangle',
   ChildCare: 'babies baby children face infant kids newborn toddler young',
   ChildFriendly:
@@ -539,7 +545,7 @@ const synonyms = {
   ControlCamera: 'adjust arrows center direction left move right',
   ControlPoint: '+ add circle plus',
   ControlPointDuplicate: '+ add circle multiple new plus symbol',
-  Cookie: 'biscuit cookies dessert wafer',
+  Cookie: 'biscuit cookies data dessert wafer',
   CoPresent: 'arrow co-present presentation screen share slides togather website',
   CopyAll: 'content cut document file multiple page paper past',
   Copyright: 'alphabet character circle emblem font legal letter owner symbol text',
@@ -582,7 +588,8 @@ const synonyms = {
     'adjustments area editing frame images photos picture rectangle settings size square',
   CropRotate:
     'adjustments area arrows editing frame images photos settings size turn',
-  CropSquare: 'adjustments area editing frame images photos rectangle settings size',
+  CropSquare:
+    'adjustments application area components design editing expand frame images interface open photos rectangle screen settings shapes size ui ux website window',
   Css: 'alphabet brackets character code developer engineering font html letter platform symbol text type',
   CurrencyBitcoin:
     'bill blockchain card cash commerce cost credit digital dollars finance franc money online payment price shopping symbol',
@@ -718,7 +725,7 @@ const synonyms = {
     'apartment architecture building business company enabled estate home internet maps office offline on place real residence residential slash website',
   DomainVerification:
     'application approve check complete design desktop done interface internet layout mark ok screen select tick ui ux validate verified website window www yes',
-  Done: 'approve checkmark complete disable_ios finished ok select success tick validate verified yes',
+  Done: 'DISABLE_IOS approve checkmark complete disable_ios finished ok select success tick validate verified yes',
   DoneAll:
     'approve checkmark complete finished layers multiple ok select stack success tick validate verified yes',
   DoneOutline:
@@ -730,7 +737,7 @@ const synonyms = {
   DoNotDisturbOn:
     'cancel close denied deny disabled enabled off remove silence slash stop',
   DoNotDisturbOnTotalSilence: 'busy mute on quiet total',
-  DoNotStep: 'boot disabled enabled feet foot off on shoe slash sneaker',
+  DoNotStep: 'boot disabled enabled feet foot off on shoe slash sneaker steps',
   DoNotTouch: 'disabled enabled fingers gesture hand off on slash',
   DonutLarge:
     'analytics chart circle complete data diagram infographic inprogress, measure metrics pie statistics tracking',
@@ -752,11 +759,13 @@ const synonyms = {
     'application components design interface layout lines menu move screen ui ux website window',
   DragIndicator:
     'application circles components design dots drop interface layout mobile monitor move phone screen shape shift tablet ui ux website window',
+  Draw: 'compose create design draft editing input pencil write writing',
   DriveEta:
     'automobile cars destination direction estimate maps public transportation travel trip vehicle',
   DriveFileMove:
     'arrows data direction document folders right sheet side slide storage',
-  DriveFileRenameOutline: 'compose create draft editing input pencil write writing',
+  DriveFileRenameOutline:
+    'compose create draft editing input marker pencil write writing',
   DriveFolderUpload: 'arrow data document file sheet slide storage',
   Dry: 'air bathroom dryer fingers gesture hand wc',
   DryCleaning: 'hanger hotel laundry places service towel',
@@ -774,8 +783,11 @@ const synonyms = {
   Edit: 'compose create editing input new pencil write writing',
   EditAttributes:
     'approve attribution check complete done mark ok select tick validate verified yes',
+  EditCalendar:
+    'compose create date day draft editing event month pencil schedule write writing',
   EditLocation: 'destination direction gps maps pencil pin place stop write',
   EditLocationAlt: 'pencil pin',
+  EditNote: 'compose create draft editing input lines pencil text write writing',
   EditNotifications:
     'active alarm alert bell chime compose create draft editing input new notify pencil reminder ring sound write writing',
   EditOff:
@@ -817,7 +829,7 @@ const synonyms = {
   EmergencyShare: 'alert attention caution danger important notification warning',
   EMobiledata: 'alphabet font letter text type',
   EmojiEmotions:
-    '+ add emoticon expressions face feelings glad happiness happy insert like mood new person pleased plus smiley smiling social survey symbol',
+    '+ add emoticon expressions face feelings glad happiness happy icons insert like mood new person pleased plus smiley smiling social survey symbol',
   EmojiEvents:
     'achievement award chalice champion cup first prize reward sport trophy winner',
   EmojiFoodBeverage: 'coffee cup dring drink mug plate set tea',
@@ -1002,7 +1014,7 @@ const synonyms = {
   FlipCameraAndroid:
     'center editing front image mobile orientation rear reverse rotate turn',
   FlipCameraIos:
-    'android disable_ios editing front image mobile orientation rear reverse rotate turn',
+    'DISABLE_IOS android disable_ios editing front image mobile orientation rear reverse rotate turn',
   FlipToBack: 'arrangement format front layout move order sort',
   FlipToFront: 'arrangement back format layout move order sort',
   Flood: 'crisis disaster natural rain storm weather',
@@ -1600,7 +1612,7 @@ const synonyms = {
   MoneyOffCsred:
     'bill card cart cash coin commerce credit currency disabled dollars enabled online payment shopping slash symbol',
   Monitor: 'Android chrome device display hardware iOS mac screen web window',
-  MonitorHeart: 'baseline device ecc fitness health medical track',
+  MonitorHeart: 'baseline device ecc ecg fitness health medical track',
   MonitorWeight: 'body device diet health scale smart',
   MonochromePhotos: 'black camera image photography picture white',
   Mood: 'emoji emoticon emotions expressions face feelings glad happiness happy like person pleased smiley smiling social survey',
@@ -1610,10 +1622,10 @@ const synonyms = {
     'automobile bike cars direction maps motorized public scooter transportation vehicle vespa',
   More: '3 archive badge bookmark dots etc favorite indent label remember save stamp sticker tab tag three',
   MoreHoriz:
-    '3 application components disable_ios dots etc horizontal interface pending screen status three ui ux website',
+    '3 DISABLE_IOS application components disable_ios dots etc horizontal interface pending screen status three ui ux website',
   MoreTime: '+ add clock date new plus schedule symbol',
   MoreVert:
-    '3 android application components disable_ios dots etc interface screen three ui ux vertical website',
+    '3 DISABLE_IOS android application components disable_ios dots etc interface screen three ui ux vertical website',
   Mosque: 'islamic masjid muslim religion spiritual worship',
   MotionPhotosAuto:
     'A alphabet animation automatic character circle font gif letter live symbol text type video',
@@ -1755,7 +1767,7 @@ const synonyms = {
   OpenInBrowser: 'arrow box new up website window',
   OpenInFull: 'action arrows expand grow move',
   OpenInNew:
-    'application arrow box components interface link screen ui ux website window',
+    'application arrow box components interface link right screen ui up ux website window',
   OpenInNewOff: 'arrow box disabled enabled export on slash window',
   OpenWith: 'arrows directional expand move',
   OtherHouses:
@@ -2023,6 +2035,8 @@ const synonyms = {
   RecordVoiceOver:
     'account face human people person profile recording sound speaking speech transcript user',
   Rectangle: 'four parallelograms polygons quadrilaterals recangle shape sides',
+  Recycling:
+    'bio eco green loop recyclable recycle rotate sustainability sustainable trash',
   Reddit: 'brand logo social',
   Redeem:
     'bill cart cash certificate coin commerce credit currency dollars giftcard money online payment present shopping',
@@ -2257,7 +2271,7 @@ const synonyms = {
   SevereCold: 'crisis diaster snowflake weather',
   ShapeLine: 'circle draw editing square',
   Share:
-    'android connect contect disable_ios link multimedia multiple network options send shared sharing social',
+    'DISABLE_IOS android connect contect disable_ios link multimedia multiple network options send shared sharing social',
   ShareLocation: 'destination direction gps maps pin place stop tracking',
   Shield: 'certified privacy private protection secure security verified',
   ShieldMoon:
@@ -2387,6 +2401,7 @@ const synonyms = {
   SouthWest: 'arrow directional down left maps navigation',
   Spa: 'aromatherapy flower healthcare leaf massage meditation nature petals places relax wellbeing wellness',
   SpaceBar: 'keyboard line',
+  SpaceDashboard: 'cards format grid layout rectangle shapes squares website',
   SpatialAudio: 'music note sound',
   SpatialAudioOff: '[offline] disabled enabled music note on slash sound',
   SpatialTracking: '[offline] audio disabled enabled music note on slash sound',
@@ -2639,12 +2654,12 @@ const synonyms = {
     'agreed approved confirm correct favorite feedback good hand happy like okay positive satisfaction social success vote yes',
   ThumbUpOffAlt:
     '[offline] agreed approved confirm correct disabled enabled favorite feedback fingers gesture good hands happy like okay positive ranking rate rating satisfaction slash social vote yes',
-  Thunderstorm: 'cloud lightning rain weather',
+  Thunderstorm: 'cloud lightning rainfall rainstorm weather',
   Timelapse: 'duration motion photo timer video',
   Timeline:
     'analytics chart data graph history line movement points tracking trending zigzag zigzap',
   Timer:
-    'alarm alart bell clock disabled duration enabled notification off slash stopwatch wait',
+    'alarm alart alert bell clock disabled duration enabled notification off slash stopwatch wait',
   Timer10: 'digits duration numbers seconds',
   Timer10Select:
     'alphabet camera character digit font letter number seconds symbol text type',
@@ -2652,7 +2667,7 @@ const synonyms = {
   Timer3Select:
     'alphabet camera character digit font letter number seconds symbol text type',
   TimerOff:
-    'alarm alart bell clock disabled duration enabled notification slash stopwatch',
+    'alarm alart alert bell clock disabled duration enabled notification slash stopwatch',
   TimesOneMobiledata:
     'alphabet cellular character digit font letter network number phone signal speed symbol text type wifi',
   TimeToLeave:
@@ -2861,9 +2876,11 @@ const synonyms = {
   Water: 'aqua beach lake ocean river waves weather',
   WaterDamage:
     'architecture building droplet estate house leak plumbing real residence residential shelter',
+  WaterDrop: 'drink droplet eco liquid nature ocean rain social',
   WaterfallChart:
     'analytics bar data diagram infographic measure metrics statistics tracking',
   Waves: 'beach lake ocean pool river sea swim water',
+  WavingHand: 'fingers gesture goodbye greetings hello palm wave',
   WbAuto:
     'A W alphabet automatic balance character editing font image letter photography symbol text type white wp',
   WbCloudy: 'balance editing white wp',

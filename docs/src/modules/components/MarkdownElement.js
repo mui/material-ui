@@ -69,6 +69,9 @@ const Root = styled('div')(
     '& .description': {
       ...lightTheme.typography.subtitle1,
       fontWeight: 400,
+      margin: '0 0 28px',
+    },
+    '& .component-tabs': {
       margin: '0 0 40px',
     },
     '& h2': {
@@ -108,6 +111,7 @@ const Root = styled('div')(
     },
     '& h1, & h2, & h3, & h4': {
       position: 'relative',
+      // Reserve space for the end of the line action button
       paddingRight: 26 * 2 + 10,
       '& code': {
         fontSize: 'inherit',
@@ -340,7 +344,7 @@ const Root = styled('div')(
     },
     '& hr': {
       height: 1,
-      margin: theme.spacing(6, 0),
+      margin: theme.spacing(5, 0),
       border: 0,
       flexShrink: 0,
       backgroundColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
@@ -451,8 +455,8 @@ const Root = styled('div')(
       },
     },
   }),
-  {
-    ':where(.mode-dark) &': {
+  ({ theme }) => ({
+    [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       color: 'rgb(255, 255, 255)',
       '& :not(pre) > code': {
         // inline code block
@@ -580,7 +584,7 @@ const Root = styled('div')(
         boxShadow: `inset 0 -1px 0 var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
       },
     },
-  },
+  }),
 );
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
