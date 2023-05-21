@@ -567,12 +567,14 @@ If you have customized the color of the border, you will need to update the CSS 
  }
 ```
 
-### Update the margin spacing from vertical alignment on middle position
+### Support "middle" variant with "vertical" orientation
 
-In the v4, the `orientation` prop with "vertical" and the `variant` prop with "middle" added a margin-left and margin-right of `16px`.
-However, in the v5, this margin was decreased to `8px`.
+In the v4, the `orientation` prop with "vertical" and the `variant` prop with "middle" was adding a margin-left and margin-right of `16px` in the component.
+In the v5, to avoid fixed spacing on the component, this margin was removed.
 
-If you want to revert it, you can do in the theme:
+:::info
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+:::
 
 ```diff
  const theme = createTheme({
