@@ -2,19 +2,10 @@ import * as React from 'react';
 import Slider, { sliderClasses } from '@mui/base/Slider';
 import { styled, alpha, Box } from '@mui/system';
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 export default function VerticalSlider() {
   return (
     <Box sx={{ height: 300 }}>
-      <StyledSlider
-        aria-label="Temperature"
-        orientation="vertical"
-        getAriaValueText={valuetext}
-        defaultValue={30}
-      />
+      <StyledSlider orientation="vertical" defaultValue={30} />
     </Box>
   );
 }
