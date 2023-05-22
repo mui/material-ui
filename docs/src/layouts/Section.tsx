@@ -11,7 +11,7 @@ interface SelectionProps extends BoxProps {
   cozy?: boolean;
 }
 
-export default function Section(props: SelectionProps) {
+const Section = React.forwardRef<HTMLDivElement, SelectionProps>(function Section(props, ref) {
   const { bg = 'white', children, sx, cozy = false, ...other } = props;
 
   const map = {
@@ -35,6 +35,7 @@ export default function Section(props: SelectionProps) {
 
   return (
     <Box
+      ref={ref}
       {...other}
       sx={[
         (theme) => ({
@@ -64,4 +65,6 @@ export default function Section(props: SelectionProps) {
       <Container>{children}</Container>
     </Box>
   );
-}
+});
+
+export default Section;
