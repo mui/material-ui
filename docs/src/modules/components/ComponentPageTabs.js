@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab, { tabClasses } from '@mui/material/Tab';
@@ -9,7 +10,7 @@ import Link from 'docs/src/modules/components/Link';
 
 export const HEIGHT = 50;
 
-const tabSxProp = (theme) => ({
+const StyledTab = styled(Tab)(({ theme }) => ({
   padding: theme.spacing(1),
   marginBottom: theme.spacing(1),
   marginRight: theme.spacing(1),
@@ -28,7 +29,7 @@ const tabSxProp = (theme) => ({
       color: (theme.vars || theme).palette.primary[300],
     },
   }),
-});
+}));
 
 export default function ComponentPageTabs(props) {
   const {
@@ -81,33 +82,30 @@ export default function ComponentPageTabs(props) {
           },
         }}
       >
-        <Tab
+        <StyledTab
           component={Link}
           shallow
           scroll
           href={demosHref}
           label={t('api-docs.demos')}
           value=""
-          sx={tabSxProp}
         />
-        <Tab
+        <StyledTab
           component={Link}
           shallow
           scroll
           href={componentsHref}
           label={t('api-docs.componentsApi')}
           value="components-api"
-          sx={tabSxProp}
         />
         {headers.hooks && headers.hooks.length > 0 && (
-          <Tab
+          <StyledTab
             component={Link}
             shallow
             scroll
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
-            sx={tabSxProp}
           />
         )}
       </Tabs>
