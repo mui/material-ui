@@ -9,6 +9,27 @@ import Link from 'docs/src/modules/components/Link';
 
 export const HEIGHT = 50;
 
+const tabSxProp = (theme) => ({
+  padding: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  marginRight: theme.spacing(1),
+  fontWeight: 600,
+  minHeight: 32,
+  minWidth: 0,
+  borderRadius: '12px',
+  '&:hover': {
+    background: (theme.vars || theme).palette.grey[50],
+  },
+  ...theme.applyDarkStyles({
+    '&:hover': {
+      background: (theme.vars || theme).palette.primaryDark[700],
+    },
+    '&.Mui-selected': {
+      color: (theme.vars || theme).palette.primary[300],
+    },
+  }),
+});
+
 export default function ComponentPageTabs(props) {
   const {
     activeTab,
@@ -67,6 +88,7 @@ export default function ComponentPageTabs(props) {
           href={demosHref}
           label={t('api-docs.demos')}
           value=""
+          sx={tabSxProp}
         />
         <Tab
           component={Link}
@@ -75,6 +97,7 @@ export default function ComponentPageTabs(props) {
           href={componentsHref}
           label={t('api-docs.componentsApi')}
           value="components-api"
+          sx={tabSxProp}
         />
         {headers.hooks && headers.hooks.length > 0 && (
           <Tab
@@ -84,6 +107,7 @@ export default function ComponentPageTabs(props) {
             href={hooksHref}
             label={t('api-docs.hooksApi')}
             value="hooks-api"
+            sx={tabSxProp}
           />
         )}
       </Tabs>

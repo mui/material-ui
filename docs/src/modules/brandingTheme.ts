@@ -741,30 +741,6 @@ export function getThemedComponents(): ThemeOptions {
         defaultProps: {
           disableTouchRipple: true,
         },
-        styleOverrides: {
-          root: ({ theme }) => [
-            {
-              padding: theme.spacing(1),
-              marginBottom: theme.spacing(1),
-              marginRight: theme.spacing(1),
-              fontWeight: 600,
-              minHeight: 32,
-              minWidth: 0,
-              borderRadius: 12,
-              '&:hover': {
-                background: (theme.vars || theme).palette.grey[50],
-              },
-            },
-            theme.applyDarkStyles({
-              '&:hover': {
-                background: (theme.vars || theme).palette.primaryDark[700],
-              },
-              '&.Mui-selected': {
-                color: (theme.vars || theme).palette.primary[300],
-              },
-            }),
-          ],
-        },
       },
       MuiPaper: {
         styleOverrides: {
