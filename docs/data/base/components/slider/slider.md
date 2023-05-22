@@ -156,7 +156,7 @@ You may not need to use hooks unless you find that you're limited by the customi
 
 Slider components can be arranged vertically as well as horizontally.
 
-When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal slider).
+When vertical, you must set `orientation="vertical"` on the `<Slider />` component so the user can navigate with the up and down arrow keys (rather than the default left-to-right behavior for horizontal sliders).
 
 {{"demo": "VerticalSlider.js"}}
 
