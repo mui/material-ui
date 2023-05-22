@@ -5,30 +5,30 @@ import Stack from '@mui/material/Stack';
 import Link from 'next/link';
 
 export default function UnstyledLinkButton() {
-    return (
-        <Stack spacing={2} direction="row">
-            <CustomButton href={'https://mui.com/'}>Standard link</CustomButton>
-            <Link href={'https://mui.com/'}>
-                <CustomButton>Next link</CustomButton>
-            </Link>
-        </Stack>
-    );
+  return (
+    <Stack spacing={2} direction="row">
+      <CustomButton href={'https://mui.com/'}>Standard link</CustomButton>
+      <Link href={'https://mui.com/'}>
+        <CustomButton>Next link</CustomButton>
+      </Link>
+    </Stack>
+  );
 }
 
 const blue = {
-    500: '#007FFF',
-    600: '#0072E5',
-    700: '#0059B2',
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
 };
 
 const grey = {
-    100: '#eaeef2',
-    300: '#afb8c1',
-    900: '#24292f',
+  100: '#eaeef2',
+  300: '#afb8c1',
+  900: '#24292f',
 };
 
 const CustomButton = styled(Button)(
-    ({ theme }) => `
+  ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
