@@ -17,8 +17,8 @@ function useGlobalId(idOverride?: string): string | undefined {
   return id;
 }
 
-// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseId: undefined | (() => string) = (React as any)['useId' + ''];
+// downstream bundlers may remove unnecessary concatenation, but won't remove toString call -- Workaround for https://github.com/webpack/webpack/issues/14814
+const maybeReactUseId: undefined | (() => string) = (React as any)['useId'.toString()];
 /**
  *
  * @example <div id={useId()} />

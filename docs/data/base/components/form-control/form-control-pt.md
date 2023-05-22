@@ -7,7 +7,7 @@ githubLabel: 'component: FormControl'
 
 # Unstyled form control
 
-<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.</p>
+<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
 
 ## Introduction
 
@@ -21,7 +21,7 @@ For instance, you may want to show an additional element asking the user to ente
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';

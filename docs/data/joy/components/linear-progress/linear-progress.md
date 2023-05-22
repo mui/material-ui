@@ -1,12 +1,15 @@
 ---
 product: joy-ui
 title: React Linear Progress component
+components: LinearProgress
 githubLabel: 'component: LinearProgress'
 ---
 
 # Linear Progress
 
 <p class="description">Linear Progress indicators, commonly known as loaders, express an unspecified wait time or display the length of a process.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Introduction
 
@@ -18,8 +21,6 @@ To actually have it represent how long an operation will take, use the [determin
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
 {{"demo": "LinearProgressUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

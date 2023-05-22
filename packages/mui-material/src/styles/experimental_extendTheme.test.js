@@ -423,8 +423,35 @@ describe('experimental_extendTheme', () => {
           },
         }),
       ).toWarnDev(
-        'MUI: The value of `palette.divider` should be one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
+        "MUI: Can't create `palette.dividerChannel` because `palette.divider` is not one of these formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color()." +
+          '\n' +
+          'To suppress this warning, you need to explicitly provide the `palette.dividerChannel` as a string (in rgb format, e.g. "12 12 12") or undefined if you want to remove the channel token.',
       );
+    });
+
+    it('should not warn if channel token is provided', () => {
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                dividerChannel: '12 12 12',
+              },
+            },
+          },
+        }),
+      ).not.toWarnDev();
+      expect(() =>
+        extendTheme({
+          colorSchemes: {
+            light: {
+              palette: {
+                dividerChannel: undefined,
+              },
+            },
+          },
+        }),
+      ).not.toWarnDev();
     });
 
     it('independent token: should skip warning', () => {
@@ -457,6 +484,23 @@ describe('experimental_extendTheme', () => {
           },
         }),
       ).not.to.throw();
+    });
+  });
+
+  it('should have the vars object', () => {
+    const theme = extendTheme();
+    const keys = [
+      // MD2 specific tokens
+      'palette',
+      'shadows',
+      'zIndex',
+      'opacity',
+      'overlays',
+      'shape',
+    ];
+
+    Object.keys(keys).forEach((key) => {
+      expect(theme[key]).to.deep.equal(theme.vars[key]);
     });
   });
 });

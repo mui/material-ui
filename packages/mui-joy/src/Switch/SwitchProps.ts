@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -13,12 +13,50 @@ export type SwitchSlot =
   | 'startDecorator'
   | 'endDecorator';
 
+export interface SwitchSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the thumb.
+   * @default 'span'
+   */
+  thumb?: React.ElementType;
+  /**
+   * The component that renders the action.
+   * @default 'div'
+   */
+  action?: React.ElementType;
+  /**
+   * The component that renders the input.
+   * @default 'input'
+   */
+  input?: React.ElementType;
+  /**
+   * The component that renders the track.
+   * @default 'span'
+   */
+  track?: React.ElementType;
+  /**
+   * The component that renders the start decorator.
+   * @default 'span'
+   */
+  startDecorator?: React.ElementType;
+  /**
+   * The component that renders the end decorator.
+   * @default 'span'
+   */
+  endDecorator?: React.ElementType;
+}
+
 export interface SwitchPropsVariantOverrides {}
 export interface SwitchPropsColorOverrides {}
 export interface SwitchPropsSizeOverrides {}
 
 export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  SwitchSlot,
+  SwitchSlots,
   {
     root: SlotProps<'div', {}, SwitchOwnerState>;
     thumb: SlotProps<'span', {}, SwitchOwnerState>;
@@ -32,7 +70,6 @@ export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
 
 export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SwitchSlotsAndSlotProps &
     UseSwitchParameters & {
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
@@ -57,11 +94,11 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       sx?: SxProps;
       /**
-       * The variant to use.
+       * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
        * @default 'solid'
        */
       variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
-    };
+    } & SwitchSlotsAndSlotProps;
   defaultComponent: D;
 }
 

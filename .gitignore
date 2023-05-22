@@ -6,6 +6,7 @@
 *.iml
 .vscode/*
 !.vscode/launch.json
+!.vscode/extensions.json
 *.log
 *.tsbuildinfo
 /.eslintcache
@@ -15,6 +16,7 @@
 /docs/.env.local
 /docs/export
 /docs/pages/playground/
+/docs/public/feed/
 /examples/**/.cache
 /packages/mui-codemod/lib
 /packages/mui-envinfo/*.tgz
@@ -32,3 +34,4 @@ build
 node_modules
 package-lock.json
 size-snapshot.json
+docs/public/static/blog/feed/*

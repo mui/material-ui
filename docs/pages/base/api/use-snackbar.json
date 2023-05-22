@@ -1,0 +1,39 @@
+{
+  "parameters": {
+    "autoHideDuration": {
+      "type": { "name": "number | null", "description": "number | null" },
+      "default": "null"
+    },
+    "disableWindowBlurListener": {
+      "type": { "name": "boolean", "description": "boolean" },
+      "default": "false"
+    },
+    "onClose": {
+      "type": {
+        "name": "(event: React.SyntheticEvent&lt;any&gt; | Event | null, reason: SnackbarCloseReason) =&gt; void",
+        "description": "(event: React.SyntheticEvent&lt;any&gt; | Event | null, reason: SnackbarCloseReason) =&gt; void"
+      }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } },
+    "resumeHideDuration": { "type": { "name": "number", "description": "number" } }
+  },
+  "returnValue": {
+    "getRootProps": {
+      "type": {
+        "name": "&lt;TOther extends Record&lt;string, ((event: any) =&gt; void) | undefined&gt; = {}&gt;(externalProps?: TOther) =&gt; UseSnackbarRootSlotProps&lt;TOther&gt;",
+        "description": "&lt;TOther extends Record&lt;string, ((event: any) =&gt; void) | undefined&gt; = {}&gt;(externalProps?: TOther) =&gt; UseSnackbarRootSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
+    "onClickAway": {
+      "type": {
+        "name": "(event: React.SyntheticEvent&lt;any&gt; | Event) =&gt; void",
+        "description": "(event: React.SyntheticEvent&lt;any&gt; | Event) =&gt; void"
+      },
+      "required": true
+    }
+  },
+  "name": "useSnackbar",
+  "filename": "/packages/mui-base/src/useSnackbar/useSnackbar.ts",
+  "demos": "<ul><li><a href=\"/base/react-snackbar/#hook\">Snackbar</a></li></ul>"
+}

@@ -104,6 +104,7 @@ module.exports = {
 
     // Not sure why it doesn't work
     'import/named': 'off',
+    'import/no-cycle': 'off',
     // Missing yarn workspace support
     'import/no-extraneous-dependencies': 'off',
     // The code is already coupled to webpack. Prefer explicit coupling.
@@ -167,8 +168,27 @@ module.exports = {
       ...baseStyleRules['no-restricted-syntax'],
       {
         message:
-          "Do not import default from React. Use a namespace import (import * as React from 'react';) instead.",
-        selector: 'ImportDeclaration[source.value="react"] ImportDefaultSpecifier',
+          "Do not import default or named exports from React. Use a namespace import (import * as React from 'react';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react"] ImportDefaultSpecifier, ImportDeclaration[source.value="react"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOM. Use a namespace import (import * as ReactDOM from 'react-dom/client';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom/client"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/client"] ImportSpecifier',
+      },
+      {
+        message:
+          "Do not import default or named exports from ReactDOMServer. Use a namespace import (import * as ReactDOM from 'react-dom/server';) instead.",
+        selector:
+          'ImportDeclaration[source.value="react-dom/server"] ImportDefaultSpecifier, ImportDeclaration[source.value="react-dom/server"] ImportSpecifier',
       },
     ],
 
@@ -394,6 +414,7 @@ module.exports = {
             ],
           },
         ],
+        'import/no-cycle': ['error', { ignoreExternal: true }],
       },
     },
     {
@@ -420,7 +441,7 @@ module.exports = {
       },
     },
     {
-      files: ['scripts/**/*.mjs'],
+      files: ['scripts/**/*.mjs', 'packages/**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
       },

@@ -1,7 +1,23 @@
 import * as React from 'react';
-import InputUnstyled from '@mui/base/InputUnstyled';
+import Input from '@mui/base/Input';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
+
+const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+  return (
+    <Input
+      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+export default function InputMultilineAutosize() {
+  return (
+    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
+  );
+}
 
 const blue = {
   100: '#DAECFF',
@@ -44,7 +60,12 @@ const StyledInputElement = styled('input')(
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
@@ -69,23 +90,12 @@ const StyledTextareaElement = styled(TextareaAutosize)(
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
-
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  return (
-    <InputUnstyled
-      slots={{ input: StyledInputElement, textarea: StyledTextareaElement }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-export default function UnstyledInputBasic() {
-  return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
-  );
-}

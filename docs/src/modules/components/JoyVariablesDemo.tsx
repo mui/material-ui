@@ -4,11 +4,11 @@ import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import IconButton from '@mui/joy/IconButton';
+import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Input, { inputClasses } from '@mui/joy/Input';
@@ -72,6 +72,7 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
             display: 'flex',
             flexWrap: 'wrap',
             gap: 2,
+            '& > *': { flex: 1 },
           }}
         >
           {data.map((item) => renderField(item))}
@@ -141,7 +142,7 @@ export default function JoyVariablesDemo(props: {
           boxShadow: 'sm',
         }}
       >
-        <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
+        <List component="div" sx={{ '--List-padding': '1rem', '--ListDivider-gap': '0px' }}>
           <Box
             sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
           >
@@ -179,21 +180,7 @@ export default function JoyVariablesDemo(props: {
                       variant="outlined"
                       value={Number(`${resolvedValue}`?.replace('px', '')) || ''}
                       slotProps={{
-                        input: {
-                          onKeyDown: (event) => {
-                            if (
-                              (event.ctrlKey || event.metaKey) &&
-                              event.key.toLowerCase() === 'z'
-                            ) {
-                              setSx((prevSx) => {
-                                const newSx = { ...prevSx };
-                                delete newSx[item.var];
-                                return newSx;
-                              });
-                            }
-                          },
-                          ...resolvedInputAttributes,
-                        },
+                        input: { ...resolvedInputAttributes },
                       }}
                       endDecorator={
                         <React.Fragment>
@@ -222,6 +209,15 @@ export default function JoyVariablesDemo(props: {
                         </React.Fragment>
                       }
                       type="number"
+                      onKeyDown={(event) => {
+                        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+                          setSx((prevSx) => {
+                            const newSx = { ...prevSx };
+                            delete newSx[item.var];
+                            return newSx;
+                          });
+                        }
+                      }}
                       onChange={(event) => {
                         const { value } = event.target;
                         setSx((prevSx) => {
@@ -234,7 +230,7 @@ export default function JoyVariablesDemo(props: {
                           return {
                             ...prevSx,
                             [item.var]:
-                              typeof resolvedValue === 'string' ? `${value}px` : Number(value),
+                              typeof resolvedValue === 'number' ? Number(value) : `${value}px`,
                           };
                         });
                       }}

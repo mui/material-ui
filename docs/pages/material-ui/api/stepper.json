@@ -1,12 +1,12 @@
 {
   "props": {
     "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
-    "alternativeLabel": { "type": { "name": "bool" } },
+    "alternativeLabel": { "type": { "name": "bool" }, "default": "false" },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
-    "nonLinear": { "type": { "name": "bool" } },
+    "nonLinear": { "type": { "name": "bool" }, "default": "false" },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
@@ -25,6 +25,8 @@
     "name": "MuiStepper"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepper",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Stepper/Stepper.js",
   "inheritance": null,

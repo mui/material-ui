@@ -4,7 +4,7 @@ title: React Menu component
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
-waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
 unstyled: /base/react-menu/
 ---
 
@@ -110,8 +110,11 @@ Here is an example of a context menu. (Right click to open.)
 
 For more advanced use cases you might be able to take advantage of:
 
-### PopupState helper
+### material-ui-popup-state
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)
+
+The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}

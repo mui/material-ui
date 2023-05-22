@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Slider component
+components: Slider
 githubLabel: 'component: slider'
 unstyled: /base/react-slider/
 ---
@@ -9,17 +10,13 @@ unstyled: /base/react-slider/
 
 <p class="description">Slider generates a background element that can be used for various purposes.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
 {{"demo": "SliderUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more variants or sizes to the component, check out [Themed components](/joy-ui/customization/themed-components/).
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

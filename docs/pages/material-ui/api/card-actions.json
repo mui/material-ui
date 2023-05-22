@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "disableSpacing": { "type": { "name": "bool" } },
+    "disableSpacing": { "type": { "name": "bool" }, "default": "false" },
     "sx": {
       "type": {
         "name": "union",
@@ -13,6 +13,8 @@
   "name": "CardActions",
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiCardActions" },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardActions",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/CardActions/CardActions.js",
   "inheritance": null,

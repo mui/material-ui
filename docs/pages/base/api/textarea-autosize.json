@@ -9,8 +9,9 @@
   "name": "TextareaAutosize",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
+  "muiName": "MuiTextareaAutosize",
   "forwardsRefTo": "HTMLTextAreaElement",
-  "filename": "/packages/mui-base/src/TextareaAutosize/TextareaAutosize.js",
+  "filename": "/packages/mui-base/src/TextareaAutosize/TextareaAutosize.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base/react-textarea-autosize/\">Textarea Autosize</a></li>\n<li><a href=\"/material-ui/react-textarea-autosize/\">Textarea Autosize</a></li></ul>",
   "cssComponent": false

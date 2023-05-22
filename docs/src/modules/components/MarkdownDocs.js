@@ -39,6 +39,11 @@ export default function MarkdownDocs(props) {
   const {
     disableAd = false,
     disableToc = false,
+    /**
+     * Some Joy pages, e.g. Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * This config will skip the CssVarsProvider at the root of the page.
+     */
+    disableCssVarsProvider = false,
     demos = {},
     docs,
     demoComponents,
@@ -51,7 +56,7 @@ export default function MarkdownDocs(props) {
   const localizedDoc = docs[userLanguage] || docs.en;
   const { description, location, rendered, title, toc } = localizedDoc;
 
-  const isJoy = canonicalAs.startsWith('/joy-ui/');
+  const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
   const Wrapper = isJoy ? BrandingProvider : React.Fragment;
 
@@ -141,6 +146,7 @@ export default function MarkdownDocs(props) {
                 jsxPreview: demo.jsxPreview,
                 rawTS: demo.rawTS,
                 tsx: demoComponents[demo.moduleTS] ?? null,
+                gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
               }}
               disableAd={disableAd}
               demoOptions={renderedMarkdownOrDemo}
@@ -157,6 +163,7 @@ MarkdownDocs.propTypes = {
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
+  disableCssVarsProvider: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
   srcComponents: PropTypes.object,

@@ -129,9 +129,9 @@ function defaultIsEnabled(): boolean {
  *
  * API:
  *
- * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
+ * - [FocusTrap API](https://mui.com/base/react-focus-trap/components-api/#focus-trap)
  */
-function FocusTrap(props: FocusTrapProps) {
+function FocusTrap(props: FocusTrapProps): JSX.Element {
   const {
     children,
     disableAutoFocus = false,
@@ -290,7 +290,7 @@ function FocusTrap(props: FocusTrapProps) {
       }
 
       // Make sure the next tab starts from the right place.
-      // doc.activeElement referes to the origin.
+      // doc.activeElement refers to the origin.
       if (doc.activeElement === rootRef.current && nativeEvent.shiftKey) {
         // We need to ignore the next contain as
         // it will try to move the focus back to the rootRef element.

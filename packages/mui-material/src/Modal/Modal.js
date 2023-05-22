@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import clsx from 'clsx';
+import ModalUnstyled, { modalClasses as modalUnstyledClasses } from '@mui/base/Modal';
 import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
@@ -8,10 +9,6 @@ import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
 export const modalClasses = modalUnstyledClasses;
-
-const extendUtilityClasses = (ownerState) => {
-  return ownerState.classes;
-};
 
 const ModalRoot = styled('div', {
   name: 'MuiModal',
@@ -62,8 +59,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
+    classes,
+    className,
     closeAfterTransition = false,
     children,
+    container,
     component,
     components = {},
     componentsProps = {},
@@ -75,6 +75,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    onBackdropClick,
+    onClose,
+    open,
     slotProps,
     slots,
     // eslint-disable-next-line react/prop-types
@@ -85,6 +88,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const [exited, setExited] = React.useState(true);
 
   const commonProps = {
+    container,
     closeAfterTransition,
     disableAutoFocus,
     disableEnforceFocus,
@@ -94,6 +98,9 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock,
     hideBackdrop,
     keepMounted,
+    onBackdropClick,
+    onClose,
+    open,
   };
 
   const ownerState = {
@@ -101,8 +108,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ...commonProps,
     exited,
   };
-
-  const classes = extendUtilityClasses(ownerState);
 
   const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
   const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
@@ -120,17 +125,23 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         root: () => ({
           ...resolveComponentProps(rootSlotProps, ownerState),
           ...(!isHostComponent(RootSlot) && { as: component, theme }),
+          className: clsx(
+            className,
+            rootSlotProps?.className,
+            classes?.root,
+            !ownerState.open && ownerState.exited && classes?.hidden,
+          ),
         }),
         backdrop: () => ({
           ...BackdropProps,
           ...resolveComponentProps(backdropSlotProps, ownerState),
+          className: clsx(backdropSlotProps?.className, classes?.backdrop),
         }),
       }}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
       ref={ref}
       {...other}
-      classes={classes}
       {...commonProps}
     >
       {children}
@@ -171,6 +182,10 @@ Modal.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false

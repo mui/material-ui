@@ -1,0 +1,36 @@
+{
+  "parameters": {
+    "disabled": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "label": {
+      "type": { "name": "string | React.ReactNode", "description": "string | React.ReactNode" },
+      "required": true
+    },
+    "value": { "type": { "name": "Value", "description": "Value" }, "required": true },
+    "id": { "type": { "name": "string", "description": "string" } },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    }
+  },
+  "returnValue": {
+    "getRootProps": {
+      "type": {
+        "name": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;",
+        "description": "&lt;Other extends EventHandlers&gt;(otherHandlers?: Other) =&gt; UseOptionRootSlotProps&lt;Other&gt;"
+      },
+      "required": true
+    },
+    "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "index": { "type": { "name": "number", "description": "number" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "selected": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+  },
+  "name": "useOption",
+  "filename": "/packages/mui-base/src/useOption/useOption.ts",
+  "demos": "<ul><li><a href=\"/base/react-select/#hooks\">Select</a></li></ul>"
+}

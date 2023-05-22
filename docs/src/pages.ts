@@ -1,10 +1,11 @@
-import pagesApi from './pagesApi';
-import type { MuiPage, OrderedMuiPage } from './MuiPage';
+import pagesApi from 'docs/src/pagesApi';
+import type { MuiPage, OrderedMuiPage } from 'docs/src/MuiPage';
+import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 
 const pages: readonly MuiPage[] = [
   {
     pathname: '/getting-started',
-    icon: 'DescriptionIcon',
+    icon: standardNavIcons.DescriptionIcon,
     children: [
       { pathname: '/getting-started/installation' },
       { pathname: '/getting-started/usage' },
@@ -19,7 +20,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/components',
-    icon: 'ToggleOnIcon',
+    icon: standardNavIcons.ToggleOnIcon,
     children: [
       {
         pathname: '/components/inputs',
@@ -163,9 +164,9 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    title: 'Component API',
+    title: 'APIs',
     pathname: '/api-docs',
-    icon: 'CodeIcon',
+    icon: standardNavIcons.CodeIcon,
     children: [
       ...pagesApi,
       {
@@ -207,7 +208,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/system',
-    icon: 'BuildIcon',
+    icon: standardNavIcons.BuildIcon,
     children: [
       { pathname: '/system/basics' },
       { pathname: '/system/properties' },
@@ -230,7 +231,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/customization-root',
-    icon: 'CreateIcon',
+    icon: standardNavIcons.CreateIcon,
     children: [
       {
         pathname: '/customization',
@@ -257,7 +258,7 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/guides',
     title: 'How-to guides',
-    icon: 'VisibilityIcon',
+    icon: standardNavIcons.VisibilityIcon,
     children: [
       { pathname: '/guides/api', title: 'API design approach' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
@@ -282,17 +283,17 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/styles',
     title: 'Styles',
-    icon: 'StyleIcon',
+    icon: standardNavIcons.StyleIcon,
     legacy: true,
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
-      { pathname: '/styles/api', title: 'API' },
+      { pathname: '/styles/api', title: 'APIs' },
     ],
   },
   {
     pathname: '/discover-more',
-    icon: 'AddIcon',
+    icon: standardNavIcons.AddIcon,
     children: [
       { pathname: '/discover-more/showcase' },
       { pathname: '/discover-more/related-projects' },
@@ -300,14 +301,13 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
       { pathname: '/discover-more/changelog' },
-      { pathname: '/discover-more/languages' },
       { pathname: '/about', title: 'About us' },
     ],
   },
   {
     pathname: 'https://mui.com/store/',
     title: 'Templates',
-    icon: 'ReaderIcon',
+    icon: standardNavIcons.ReaderIcon,
     linkProps: {
       'data-ga-event-category': 'store',
       'data-ga-event-action': 'click',
@@ -316,7 +316,7 @@ const pages: readonly MuiPage[] = [
   },
   { pathname: '/versions', inSideNav: false },
   { pathname: '/', inSideNav: false, disableDrawer: true },
-  { pathname: '/blog', title: 'Blog', icon: 'BookIcon' },
+  { pathname: '/blog', title: 'Blog', icon: standardNavIcons.BookIcon },
 ];
 
 export type { MuiPage, OrderedMuiPage };

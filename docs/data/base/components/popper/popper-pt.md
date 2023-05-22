@@ -20,7 +20,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import PopperUnstyled from '@mui/base/PopperUnstyled';
@@ -56,7 +56,7 @@ The popper's default placement is `bottom`. You can change it using the `placeme
 
 You can animate the open and close states of the popper with a render prop child and a transition component, as long as the component meets these conditions:
 
-- Is a direct child descendent of the popper
+- Is a direct child descendant of the popper
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
 

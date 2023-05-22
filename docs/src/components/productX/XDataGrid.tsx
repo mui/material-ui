@@ -53,7 +53,7 @@ const startLine = {
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro />;
 
 export default function XDataGrid() {
-  const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
+  const [demo, setDemo] = React.useState<(typeof DEMOS)[number] | null>(null);
   const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
@@ -228,7 +228,7 @@ export default function XDataGrid() {
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo
                 appeared={demo === DEMOS[3] || demo === DEMOS[4]}
-                content={
+                stylingContent={
                   <React.Fragment>
                     <Typography fontWeight="bold" color="#fff" variant="body2">
                       {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}

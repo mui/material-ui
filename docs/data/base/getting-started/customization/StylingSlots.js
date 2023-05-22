@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import Switch, { switchClasses } from '@mui/base/Switch';
 
 const Root = styled('span')`
   font-size: 0;
@@ -13,12 +13,12 @@ const Root = styled('span')`
   margin: 10px;
   cursor: pointer;
 
-  &.${switchUnstyledClasses.disabled} {
+  &.${switchClasses.disabled} {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  &.${switchUnstyledClasses.checked} {
+  &.${switchClasses.checked} {
     background: #007fff;
   }
 `;
@@ -34,12 +34,12 @@ const Thumb = styled('span')`
   position: relative;
   transition: all 200ms ease;
 
-  &.${switchUnstyledClasses.focusVisible} {
+  .${switchClasses.focusVisible} & {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
   }
 
-  &.${switchUnstyledClasses.checked} {
+  .${switchClasses.checked} > & {
     left: 14px;
     top: 3px;
     background-color: #fff;
@@ -59,5 +59,5 @@ const Input = styled('input')`
 `;
 
 export default function StylingSlots() {
-  return <SwitchUnstyled slots={{ root: Root, thumb: Thumb, input: Input }} />;
+  return <Switch slots={{ root: Root, thumb: Thumb, input: Input }} />;
 }

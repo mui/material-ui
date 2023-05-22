@@ -1,6 +1,7 @@
 ---
 product: joy-ui
 title: React Aspect Ratio component
+components: AspectRatio
 ---
 
 # Aspect Ratio
@@ -13,7 +14,7 @@ Aspect Ratio is a wrapper component for quickly resizing content to conform to y
 Media content like images can be stretched, resized, and cropped based on the CSS `object-fit` property.
 
 :::info
-A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it until browser compatibility increases to at least 94%.
+A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) does exist, but MUI does not plan to implement it in Joy UI until browser compatibility increases to at least 94%.
 As of Q4 2022, compatibility is at 90%.
 Source: [Can I use…](https://caniuse.com/?search=aspect-ratio)
 :::
@@ -75,13 +76,13 @@ This is useful when the Aspect Ratio component wraps dynamic-width content, as s
 
 {{"demo": "MinMaxRatio.js"}}
 
-## Usage inside a flex row
+## Using inside a flex row
 
 When the Aspect Ratio component is a child of a flexbox `row` container, use `flex-basis` to set the ideal width of the content:
 
 {{"demo": "FlexRowRatio.js"}}
 
-## Usage with Next.js Image
+## Using with Next.js Image
 
 The Aspect Ratio component can be used with a [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component as a child.
 The Image should always include the `layout="fill"` property—otherwise it requires `height` and `width` values, which would defeat the purpose of the Aspect Ratio component.
@@ -100,6 +101,14 @@ function App() {
   );
 }
 ```
+
+## Using with an icon
+
+The Aspect Ratio component can be a handy tool for creating a square container for an icon.
+
+The example below show
+
+{{"demo": "IconWrapper.js"}}
 
 ## Common examples
 
@@ -122,8 +131,8 @@ This is a simple illustration of how to use Aspect Ratio with list components:
 The Aspect Ratio component is composed of a root `<div>` with a content `<div>` nested inside; the child component is given a `data-first-child` attribute for styling purposes:
 
 ```html
-<div class="JoyAspectRatio-root">
-  <div class="JoyAspectRatio-content">
+<div class="MuiAspectRatio-root">
+  <div class="MuiAspectRatio-content">
     <some-element data-first-child>
       <!-- Aspect Ratio contents -->
     </some-element>

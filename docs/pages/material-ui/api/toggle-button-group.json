@@ -9,9 +9,9 @@
       },
       "default": "'standard'"
     },
-    "disabled": { "type": { "name": "bool" } },
-    "exclusive": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "exclusive": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -39,6 +39,8 @@
     "name": "MuiToggleButtonGroup"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiToggleButtonGroup",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "inheritance": null,

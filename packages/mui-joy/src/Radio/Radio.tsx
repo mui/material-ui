@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
-import { TypographyContext } from '../Typography/Typography';
+import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioOwnerState) => {
@@ -61,16 +61,19 @@ const RadioRoot = styled('span', {
       ...(ownerState.size === 'sm' && {
         '--Radio-size': '1rem',
         '--Radio-gap': '0.375rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.375rem' },
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Radio-size': '1.25rem',
         '--Radio-gap': '0.5rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 1.75rem' },
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Radio-size': '1.5rem',
         '--Radio-gap': '0.625rem',
+        '& ~ *': { '--FormHelperText-margin': '0.375rem 0 0 2.125rem' },
         fontSize: theme.vars.fontSize.lg,
       }),
       position: ownerState.overlay ? 'initial' : 'relative',
@@ -91,8 +94,10 @@ const RadioRoot = styled('span', {
       }),
       ...(ownerState['data-parent'] === 'RadioGroup' &&
         ownerState['data-first-child'] === undefined && {
-          marginInlineStart: ownerState.row ? 'var(--RadioGroup-gap)' : undefined,
-          marginBlockStart: ownerState.row ? undefined : 'var(--RadioGroup-gap)',
+          marginInlineStart:
+            ownerState.orientation === 'horizontal' ? 'var(--RadioGroup-gap)' : undefined,
+          marginBlockStart:
+            ownerState.orientation === 'horizontal' ? undefined : 'var(--RadioGroup-gap)',
         }),
     },
   ];
@@ -115,9 +120,6 @@ const RadioRadio = styled('span', {
       justifyContent: 'center',
       alignItems: 'center',
       flexShrink: 0,
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-      transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.disableIcon && {
         display: 'contents',
       }),
@@ -146,18 +148,16 @@ const RadioAction = styled('span', {
 })<{ ownerState: RadioOwnerState }>(({ theme, ownerState }) => [
   {
     position: 'absolute',
-    borderRadius: `var(--Radio-action-radius, ${
+    textAlign: 'left', // prevent text-align inheritance
+    borderRadius: `var(--Radio-actionRadius, ${
       // Automatic radius adjustment when composing with ListItem or Sheet
-      ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
+      ownerState.overlay ? 'var(--unstable_actionRadius, inherit)' : 'inherit'
     })`,
     top: 'calc(-1 * var(--variant-borderWidth, 0px))', // clickable on the border and focus outline does not move when checked/unchecked
     left: 'calc(-1 * var(--variant-borderWidth, 0px))',
     bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
     right: 'calc(-1 * var(--variant-borderWidth, 0px))',
     zIndex: 1, // The action element usually cover the area of nearest positioned parent
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     [theme.focus.selector]: theme.focus.default,
   },
   ...(ownerState.disableIcon
@@ -216,11 +216,18 @@ const RadioIcon = styled('span', {
   borderRadius: 'inherit',
   color: 'inherit',
   backgroundColor: 'currentColor',
-  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-  transition: 'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   transform: ownerState.checked ? 'scale(1)' : 'scale(0)',
 }));
-
+/**
+ *
+ * Demos:
+ *
+ * - [Radio](https://mui.com/joy-ui/react-radio-button/)
+ *
+ * API:
+ *
+ * - [Radio API](https://mui.com/joy-ui/api/radio/)
+ */
 const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -248,6 +255,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -307,37 +317,38 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
-    row: radioGroup?.row,
+    orientation: radioGroup?.orientation,
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
     elementType: RadioRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotRadio, radioProps] = useSlot('radio', {
     className: classes.radio,
     elementType: RadioRadio,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotIcon, iconProps] = useSlot('icon', {
     className: classes.icon,
     elementType: RadioIcon,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
   const [SlotAction, actionProps] = useSlot('action', {
     className: classes.action,
     elementType: RadioAction,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -353,7 +364,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.input,
     elementType: RadioInput,
-    externalForwardedProps: other,
+    externalForwardedProps,
     getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     ownerState,
   });
@@ -364,7 +375,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     },
     className: classes.label,
     elementType: RadioLabel,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
   });
 
@@ -381,7 +392,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       {label && (
         <SlotLabel {...labelProps}>
           {/* Automatically adjust the Typography to render `span` */}
-          <TypographyContext.Provider value>{label}</TypographyContext.Provider>
+          <TypographyNestedContext.Provider value>{label}</TypographyNestedContext.Provider>
         </SlotLabel>
       )}
     </SlotRoot>
@@ -417,6 +428,11 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['danger', 'info', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -465,7 +481,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the root element's position is set to initial which allows the action area to fill the nearest positioned parent.
    * This prop is useful for composing Radio with ListItem component.
-   * @default false;
+   * @default false
    */
   overlay: PropTypes.bool,
   /**
@@ -485,6 +501,30 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    radio: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    action: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    input: PropTypes.elementType,
+    label: PropTypes.elementType,
+    radio: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -501,7 +541,7 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   value: PropTypes.any,
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -1,7 +1,26 @@
 import * as React from 'react';
-import { useInput } from '@mui/base';
+import useInput from '@mui/base/useInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
+
+const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+  const { getRootProps, getInputProps } = useInput(props);
+
+  const inputProps = getInputProps();
+
+  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
+  inputProps.ref = useForkRef(inputProps.ref, ref);
+
+  return (
+    <div {...getRootProps()}>
+      <StyledInputElement {...props} {...inputProps} />
+    </div>
+  );
+});
+
+export default function UseInput() {
+  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
+}
 
 const blue = {
   100: '#DAECFF',
@@ -44,26 +63,12 @@ const StyledInputElement = styled('input')(
 
   &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
   }
 `,
 );
-
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { getRootProps, getInputProps } = useInput(props);
-
-  const inputProps = getInputProps();
-
-  // Make sure that both the forwarded ref and the ref returned from the getInputProps are applied on the input element
-  inputProps.ref = useForkRef(inputProps.ref, ref);
-
-  return (
-    <div {...getRootProps()}>
-      <StyledInputElement {...props} {...inputProps} />
-    </div>
-  );
-});
-
-export default function UseInput() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
-}

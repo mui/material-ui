@@ -1,0 +1,55 @@
+{
+  "parameters": {
+    "defaultOpen": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "listboxId": { "type": { "name": "string", "description": "string" } },
+    "listboxRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
+    "onOpenChange": {
+      "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" } }
+  },
+  "returnValue": {
+    "contextValue": {
+      "type": { "name": "MenuProviderValue", "description": "MenuProviderValue" },
+      "required": true
+    },
+    "dispatch": {
+      "type": {
+        "name": "(action: ListAction&lt;string&gt;) =&gt; void",
+        "description": "(action: ListAction&lt;string&gt;) =&gt; void"
+      },
+      "required": true
+    },
+    "getListboxProps": {
+      "type": {
+        "name": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps",
+        "description": "&lt;TOther extends EventHandlers&gt;(otherHandlers?: TOther) =&gt; UseMenuListboxSlotProps"
+      },
+      "required": true
+    },
+    "highlightedValue": {
+      "type": { "name": "string | null", "description": "string | null" },
+      "required": true
+    },
+    "listboxRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
+      "required": true
+    },
+    "menuItems": {
+      "type": {
+        "name": "Map&lt;string, MenuItemMetadata&gt;",
+        "description": "Map&lt;string, MenuItemMetadata&gt;"
+      },
+      "required": true
+    },
+    "open": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
+  },
+  "name": "useMenu",
+  "filename": "/packages/mui-base/src/useMenu/useMenu.ts",
+  "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Menu</a></li></ul>"
+}

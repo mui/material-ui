@@ -6,12 +6,26 @@ import {
   OverrideProps,
 } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
-import { ListItemButtonClasses } from './listItemButtonClasses';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ListItemButtonSlot = 'root';
 
-export interface ListItemButtonPropsVariantOverrides {}
+export interface ListItemButtonSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+}
 
+export type ListItemButtonSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ListItemButtonSlots,
+  {
+    root: SlotProps<'div', {}, ListItemButtonOwnerState>;
+  }
+>;
+
+export interface ListItemButtonPropsVariantOverrides {}
 export interface ListItemButtonPropsColorOverrides {}
 
 export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -30,17 +44,13 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
     autoFocus?: boolean;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
+     * @default selected ? 'primary' : 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListItemButtonPropsColorOverrides>;
     /**
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemButtonClasses>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -66,7 +76,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     selected?: boolean;
     /**
-     * The variant to use.
+     * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListItemButtonPropsVariantOverrides>;
@@ -78,7 +88,7 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      * @default 0
      */
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
-  };
+  } & ListItemButtonSlotsAndSlotProps;
   defaultComponent: D;
 }
 

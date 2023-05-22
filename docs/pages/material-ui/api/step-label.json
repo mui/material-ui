@@ -6,7 +6,7 @@
       "type": { "name": "shape", "description": "{ label?: object }" },
       "default": "{}"
     },
-    "error": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" } },
     "optional": { "type": { "name": "node" } },
     "slotProps": {
@@ -46,6 +46,8 @@
     "name": "MuiStepLabel"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepLabel",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/StepLabel/StepLabel.js",
   "inheritance": null,

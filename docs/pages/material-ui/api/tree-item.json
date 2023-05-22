@@ -9,7 +9,7 @@
       "default": "TreeItemContent"
     },
     "ContentProps": { "type": { "name": "object" } },
-    "disabled": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
     "endIcon": { "type": { "name": "node" } },
     "expandIcon": { "type": { "name": "node" } },
     "icon": { "type": { "name": "node" } },
@@ -46,6 +46,8 @@
     "name": "MuiTreeItem"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTreeItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-lab/src/TreeItem/TreeItem.js",
   "inheritance": null,

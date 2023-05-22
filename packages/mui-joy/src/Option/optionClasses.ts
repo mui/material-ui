@@ -1,21 +1,21 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface OptionClasses {
-  /** Styles applied to the root element. */
+  /** Class name applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `color="primary"`. */
+  /** Class name applied to the root element if `color="primary"`. */
   colorPrimary: string;
-  /** Styles applied to the root element if `color="neutral"`. */
+  /** Class name applied to the root element if `color="neutral"`. */
   colorNeutral: string;
-  /** Styles applied to the root element if `color="danger"`. */
+  /** Class name applied to the root element if `color="danger"`. */
   colorDanger: string;
-  /** Styles applied to the root element if `color="info"`. */
+  /** Class name applied to the root element if `color="info"`. */
   colorInfo: string;
-  /** Styles applied to the root element if `color="success"`. */
+  /** Class name applied to the root element if `color="success"`. */
   colorSuccess: string;
-  /** Styles applied to the root element if `color="warning"`. */
+  /** Class name applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `color="context"`. */
+  /** Class name applied to the root element if `color="context"`. */
   colorContext: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
@@ -36,10 +36,10 @@ export interface OptionClasses {
 export type OptionClassKey = keyof OptionClasses;
 
 export function getOptionUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyOption', slot);
+  return generateUtilityClass('MuiOption', slot);
 }
 
-const optionClasses: OptionClasses = generateUtilityClasses('JoyOption', [
+const optionClasses: OptionClasses = generateUtilityClasses('MuiOption', [
   'root',
   'colorPrimary',
   'colorNeutral',

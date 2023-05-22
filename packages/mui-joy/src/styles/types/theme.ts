@@ -10,8 +10,8 @@ import {
 import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
 import { ColorSystem } from './colorSystem';
 import { Focus } from './focus';
-import { Shadow } from './shadow';
-import { Radius } from './radius';
+import { DefaultShadow, Shadow } from './shadow';
+import { DefaultRadius, Radius } from './radius';
 import {
   FontFamily,
   FontSize,
@@ -19,8 +19,15 @@ import {
   LineHeight,
   LetterSpacing,
   TypographySystem,
+  DefaultFontFamily,
+  DefaultFontSize,
+  DefaultFontWeight,
+  DefaultLineHeight,
+  DefaultLetterSpacing,
 } from './typography';
 import { Variants, ColorInversion, ColorInversionConfig } from './variants';
+import { DefaultZIndex, ZIndex } from './zIndex';
+import { MergeDefault } from './utils';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
@@ -58,7 +65,21 @@ export interface ThemeScales {
   fontWeight: FontWeight;
   lineHeight: LineHeight;
   letterSpacing: LetterSpacing;
+  zIndex: ZIndex;
 }
+export type ThemeScalesOptions = MergeDefault<
+  ThemeScales,
+  {
+    radius: DefaultRadius;
+    shadow: DefaultShadow;
+    fontFamily: DefaultFontFamily;
+    fontSize: DefaultFontSize;
+    fontWeight: DefaultFontWeight;
+    lineHeight: DefaultLineHeight;
+    letterSpacing: DefaultLetterSpacing;
+    zIndex: DefaultZIndex;
+  }
+>;
 
 interface ColorSystemVars extends Omit<ColorSystem, 'palette'> {
   palette: Omit<ColorSystem['palette'], 'mode'>;
@@ -89,6 +110,18 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
+  generateCssVars: (colorScheme?: DefaultColorScheme | ExtendedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: ThemeVars;
+  };
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps) => CSSObject;
 }

@@ -68,9 +68,11 @@ Highlight part of the text to see the popper:
 
 For more advanced use cases you might be able to take advantage of:
 
-### PopupState helper
+### material-ui-popup-state
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper
-state for you in most cases.
+![stars](https://img.shields.io/github/stars/jcoreio/material-ui-popup-state?style=social&label=Star)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-popup-state.svg)
+
+The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 
 {{"demo": "PopperPopupState.js"}}

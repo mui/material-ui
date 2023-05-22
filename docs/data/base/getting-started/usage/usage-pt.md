@@ -1,10 +1,10 @@
 # Usage
 
-<p class="description">Learn the basics of working with MUI Base components.</p>
+<p class="description">Learn the basics of working with Base UI components.</p>
 
 ## Getting started
 
-The following code snippet demonstrates a simple app that uses the MUI Base [`ButtonUnstyled`](/base/react-button/) component:
+The following code snippet demonstrates a simple app that uses the Base UI [`ButtonUnstyled`](/base/react-button/) component:
 
 ```jsx
 import * as React from 'react';
@@ -87,13 +87,13 @@ If both `componentsProps.root` and additional props have the same keys but diffe
 
 ## Components vs. hooks
 
-MUI Base includes two kinds of building blocks: **components** and **hooks**.
+Base UI includes two kinds of building blocks: **components** and **hooks**.
 
 :::info
 💡 Hooks encapsulate _logic_; components provide _structure_.
 :::
 
-Many Base components are implemented with the help of hooks. (Visit the [React documentation on hooks](https://reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
+Many Base components are implemented with the help of hooks. (Visit the [React documentation on hooks](https://legacy.reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
 
 You can use components or hooks—or a combination thereof—when building custom components. Each option has its own trade-offs:
 

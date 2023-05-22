@@ -7,7 +7,7 @@ import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps, alpha } from '@mui/system';
@@ -116,7 +116,7 @@ export const ButtonRoot = styled('button', {
     text: tokens.sys.color[ownerState.color ?? 'primary'],
   };
 
-  const disabeldContainerColor = {
+  const disabledContainerColor = {
     elevated: theme.vars
       ? `rgba(${theme.vars.sys.color.onSurfaceChannel} / 0.12)`
       : alpha(theme.sys.color.onSurface, 0.12),
@@ -282,7 +282,7 @@ export const ButtonRoot = styled('button', {
     '--md-comp-button-pressed-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-focused-icon-color': labelTextColor[ownerState.variant ?? 'text'], // same as default
     '--md-comp-button-disabled-icon-color': disabledLabelTextColor,
-    // Noramlized styles for buttons
+    // Normalized styles for buttons
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -322,7 +322,7 @@ export const ButtonRoot = styled('button', {
     backgroundColor: containerColor[ownerState.variant ?? 'text'],
     color: labelTextColor[ownerState.variant ?? 'text'],
     boxShadow: containerElevation[ownerState.variant ?? 'text'],
-    // Outlined varaiant
+    // Outlined variant
     ...(ownerState.variant === 'outlined' && {
       border: `1px solid ${tokens.sys.color.outline}`,
       padding: '9px 23px',
@@ -363,12 +363,12 @@ export const ButtonRoot = styled('button', {
       boxShadow: focusedContainerElevation[ownerState.variant ?? 'text'],
     },
     [`&.${buttonClasses.disabled}`]: {
-      // Allows deverloper to specify the disabled icon color var
+      // Allows developer to specify the disabled icon color var
       '--md-comp-button-icon-color': 'var(--md-comp-button-disabled-icon-color)',
       pointerEvents: 'none', // Disable link interactions
       cursor: 'default',
       color: disabledLabelTextColor,
-      backgroundColor: disabeldContainerColor[ownerState.variant ?? 'text'],
+      backgroundColor: disabledContainerColor[ownerState.variant ?? 'text'],
       boxShadow: tokens.sys.elevation[0],
       ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${
@@ -472,7 +472,7 @@ const Button = React.forwardRef(function Button<
     // @ts-ignore
     to: props.to,
     type,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
