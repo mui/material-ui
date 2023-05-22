@@ -8,9 +8,9 @@ import {
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
 import useSlider, { valueToPercent } from '@mui/base/useSlider';
-import { alpha, lighten, darken } from '@mui/system';
+import { alpha, lighten, darken, shouldForwardProp } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import SliderValueLabel from './SliderValueLabel';
@@ -374,7 +374,7 @@ export { StyledSliderValueLabel as SliderValueLabel };
 const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
-  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markActive',
   overridesResolver: (props, styles) => {
     const { markActive } = props;
 
@@ -416,7 +416,7 @@ export { SliderMark };
 const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
-  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
 })(({ theme, ownerState, markLabelActive }) => ({
   ...theme.typography.body2,
