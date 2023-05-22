@@ -102,7 +102,7 @@ function testPropForwarding(
 }
 
 function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledConformanceOptions) {
-  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
+  const { render, slots, skip, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -165,6 +165,10 @@ function testSlotsProp(element: React.ReactElement, getOptions: () => UnstyledCo
   });
 
   it('uses the component provided in the `component` prop when both `component` and `slots.root` are provided', () => {
+    if (skip && skip.indexOf('componentProp') >= 0) {
+      return;
+    }
+
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
         // @ts-ignore

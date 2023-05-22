@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TabsContext, { TabsContextValue } from '../TabsUnstyled/TabsContext';
+import TabsContext, { TabsContextValue } from '../Tabs/TabsContext';
 import { CompoundComponentContext, CompoundComponentContextValue } from '../utils/useCompound';
 
 export type TabPanelMetadata = {

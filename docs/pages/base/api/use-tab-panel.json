@@ -17,11 +17,7 @@
       },
       "required": true
     },
-    "hidden": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "hidden": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "ref": {
       "type": {
         "name": "React.Ref&lt;HTMLElement&gt;",
@@ -32,5 +28,5 @@
   },
   "name": "useTabPanel",
   "filename": "/packages/mui-base/src/useTabPanel/useTabPanel.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

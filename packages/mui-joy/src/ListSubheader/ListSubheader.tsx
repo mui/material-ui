@@ -79,6 +79,8 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     sticky = false,
     variant,
     color: colorProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -101,12 +103,13 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: ListSubheaderRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       as: component,
@@ -146,6 +149,20 @@ ListSubheader.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   id: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * If `true`, the component has sticky position (with top = 0).
    * @default false

@@ -111,6 +111,8 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     inset,
     orientation = 'horizontal',
     role = component !== 'hr' ? 'separator' : undefined,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -123,12 +125,13 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: DividerRoot,
-    externalForwardedProps: other,
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       as: component,
@@ -179,6 +182,20 @@ Divider.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

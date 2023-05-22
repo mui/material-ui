@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
+import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { SlotsTable, ClassesTable } from 'docs/src/modules/components/ApiPage';
@@ -113,6 +114,24 @@ export default function ComponentsApiContent(props) {
   const { descriptions, pageContents } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
+  const router = useRouter();
+
+  // There are legacy links where the the components had the Unstyled suffix
+  // This effects makes sure that the anchors will be correct wtih the renames
+  React.useEffect(() => {
+    const anchor = router.asPath.indexOf('#') >= 0 ? router.asPath.split('#')[1] : null;
+    if (router.isReady && anchor && anchor.indexOf('-unstyled') >= 0) {
+      router.replace(
+        {
+          hash: `${anchor.replace('-unstyled', '')}`,
+        },
+        null,
+        {
+          shallow: true,
+        },
+      );
+    }
+  }, [router]);
 
   const components = Object.keys(pageContents);
   const numberOfComponents = components.length;
@@ -145,9 +164,9 @@ export default function ComponentsApiContent(props) {
       : '/material-ui/customization/theme-components/#theme-style-overrides';
     let slotGuideLink = '';
     if (isJoyComponent) {
-      slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+      slotGuideLink = '/joy-ui/guides/overriding-component-structure';
     } else if (isBaseComponent) {
-      slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+      slotGuideLink = '/base/guides/overriding-component-structure';
     }
 
     const source = filename

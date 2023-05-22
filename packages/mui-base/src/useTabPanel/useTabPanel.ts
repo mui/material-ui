@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { useTabsContext } from '../TabsUnstyled';
+import { useTabsContext } from '../Tabs';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
 
@@ -12,7 +12,7 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *

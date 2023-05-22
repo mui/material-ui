@@ -6,6 +6,7 @@ import {
   UseListRootSlotProps,
   ListState,
   ListActionContext,
+  UseListReturnValue,
 } from './useList.types';
 import { ListActionTypes, ListAction } from './listActions.types';
 import { ListContextValue } from './ListContext';
@@ -21,6 +22,7 @@ import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 import useLatest from '../utils/useLatest';
 import useTextNavigation from '../utils/useTextNavigation';
+import MuiCancellableEvent from '../utils/muiCancellableEvent';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
@@ -62,7 +64,9 @@ function useList<
   State extends ListState<ItemValue> = ListState<ItemValue>,
   CustomAction extends ControllableReducerAction = never,
   CustomActionContext = {},
->(params: UseListParameters<ItemValue, State, CustomAction, CustomActionContext>) {
+>(
+  params: UseListParameters<ItemValue, State, CustomAction, CustomActionContext>,
+): UseListReturnValue<ItemValue, State, CustomAction> {
   const {
     controlledProps = EMPTY_OBJECT,
     disabledItemsFocusable = false,
@@ -72,11 +76,11 @@ function useList<
     getItemDomElement,
     getItemId,
     isItemDisabled = defaultIsItemDisabled,
-    listRef: externalListRef,
+    rootRef: externalListRef,
     onStateChange = NOOP,
     items,
     itemComparer = defaultItemComparer,
-    itemStringifier = defaultItemStringifier,
+    getItemAsString = defaultItemStringifier,
     onChange,
     onHighlightChange,
     orientation = 'vertical',
@@ -171,7 +175,7 @@ function useList<
       isItemDisabled,
       itemComparer,
       items,
-      itemStringifier,
+      getItemAsString,
       onHighlightChange: handleHighlightChange,
       orientation,
       pageSize,
@@ -185,7 +189,7 @@ function useList<
     isItemDisabled,
     itemComparer,
     items,
-    itemStringifier,
+    getItemAsString,
     handleHighlightChange,
     orientation,
     pageSize,
@@ -270,10 +274,10 @@ function useList<
 
   const createHandleKeyDown =
     (other: Record<string, React.EventHandler<any>>) =>
-    (event: React.KeyboardEvent<HTMLElement>) => {
+    (event: React.KeyboardEvent<HTMLElement> & MuiCancellableEvent) => {
       other.onKeyDown?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented) {
         return;
       }
 
@@ -307,10 +311,11 @@ function useList<
     };
 
   const createHandleBlur =
-    (other: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent<HTMLElement>) => {
+    (other: Record<string, React.EventHandler<any>>) =>
+    (event: React.FocusEvent<HTMLElement> & MuiCancellableEvent) => {
       other.onBlur?.(event);
 
-      if (event.defaultPrevented) {
+      if (event.defaultMuiPrevented) {
         return;
       }
 
@@ -390,6 +395,7 @@ function useList<
     contextValue,
     dispatch,
     getRootProps,
+    rootRef: handleRef,
     state,
   };
 }

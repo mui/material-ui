@@ -10,7 +10,7 @@ export interface TableSlots {
    * The component that renders the root.
    * @default 'table'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type TableSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -64,12 +64,19 @@ export interface TableTypeMap<P = {}, D extends React.ElementType = 'table'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', TablePropsSizeOverrides>;
     /**
-     * Set the header sticky.
+     * If `true`, the header always appear at the top of the overflow table.
      *
      * ⚠️ It doesn't work with IE11.
      * @default false
      */
     stickyHeader?: boolean;
+    /**
+     * If `true`, the footer always appear at the bottom of the overflow table.
+     *
+     * ⚠️ It doesn't work with IE11.
+     * @default false
+     */
+    stickyFooter?: boolean;
     /**
      * The odd or even row of the table body will have subtle background color.
      */

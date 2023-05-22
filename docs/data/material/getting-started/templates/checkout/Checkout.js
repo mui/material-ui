@@ -44,7 +44,8 @@ function getStepContent(step) {
   }
 }
 
-const theme = createTheme();
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -58,7 +59,7 @@ export default function Checkout() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <AppBar
         position="absolute"

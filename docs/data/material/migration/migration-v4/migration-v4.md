@@ -80,7 +80,7 @@ If you are using a React version below 17.0.0, update your packages to at least 
 With npm:
 
 ```sh
-npm update @material-ui/core@^4.11.2 react@^17.0.0
+npm install @material-ui/core@^4.11.2 react@^17.0.0
 ```
 
 With yarn:
