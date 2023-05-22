@@ -266,7 +266,7 @@ module.exports = {
       },
     },
     {
-      files: ['docs/src/modules/components/**/*{.ts,.tsx,.js,.jsx}'],
+      files: ['docs/src/modules/components/**/*{.ts,.tsx,.js}'],
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
