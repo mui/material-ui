@@ -35,8 +35,13 @@ export default function ThemeTabs() {
               },
             },
             [`& .${tabClasses.root}`]: {
+              minHeight: 48,
+              margin: 0,
               color: 'primary.100',
               fontSize: '1rem',
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
               '&.Mui-selected': {
                 color: '#fff',
               },
