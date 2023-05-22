@@ -4,14 +4,14 @@
 
 <!-- generated comparing v5.13.1..master -->
 
-_May 23, 2023_
+_May 22, 2023_
 
 A big thanks to the 12 contributors who made this release possible.
 📚 This release focuses primarily on documentation improvements.
 
 ### `@mui/material@5.13.2
 
-- &#8203;<!-- 04 -->[Slider] Tooltip positioning fixed for vertical slider (#37049) @PunitSoniME
+- [Slider] Tooltip positioning fixed for vertical slider (#37049) @PunitSoniME
 
 ### Docs
 
