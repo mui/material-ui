@@ -16,7 +16,7 @@ import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
-function Identity(x) {
+function Identity<Type>(x: Type): Type {
   return x;
 }
 
