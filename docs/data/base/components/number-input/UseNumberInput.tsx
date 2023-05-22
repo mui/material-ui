@@ -63,23 +63,23 @@ export default function UseNumberInput() {
 
 const blue = {
   100: '#DAECFF',
-  200: '#80BFFF',
+  200: '#b6daff',
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
 };
 
 const grey = {
-  50: '#F3F6F9',
-  100: '#E7EBF0',
-  200: '#E0E3E7',
-  300: '#CDD2D7',
-  400: '#B2BAC2',
-  500: '#A0AAB4',
-  600: '#6F7E8C',
-  700: '#3E5060',
-  800: '#2D3843',
-  900: '#1A2027',
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
 };
 
 const StyledInputRoot: React.ElementType = styled('div')(
