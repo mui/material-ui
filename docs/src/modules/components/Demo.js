@@ -508,8 +508,8 @@ export default function Demo(props) {
             value={styleSolution}
             onChange={handleStylingSolutionChange}
           >
-            <MenuItem value="MUI System">{t('demoStylingSelectSystem')}</MenuItem>
-            <MenuItem value="Tailwind">{t('demoStylingSelectTailwind')}</MenuItem>
+            <MenuItem value={CODE_STYLING.SYSTEM}>{t('demoStylingSelectSystem')}</MenuItem>
+            <MenuItem value={CODE_STYLING.TAILWIND}>{t('demoStylingSelectTailwind')}</MenuItem>
           </Select>
         </Box>
       )}

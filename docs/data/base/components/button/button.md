@@ -42,7 +42,7 @@ The Button behaves similar to the native HTML `<button>`, so it wraps around the
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
 
-{{"demo": "UnstyledButtonsSimple", "defaultCodeOpen": true}}
+{{"demo": "UnstyledButtonsSimple"}}
 
 ### Anatomy
 
