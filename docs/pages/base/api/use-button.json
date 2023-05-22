@@ -28,16 +28,8 @@
     }
   },
   "returnValue": {
-    "active": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focusVisible": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;",
