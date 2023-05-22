@@ -133,6 +133,10 @@ MenuItem.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * The content direction flow.
    * @default 'horizontal'
    */
