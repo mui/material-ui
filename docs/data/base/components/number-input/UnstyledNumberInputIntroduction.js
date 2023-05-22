@@ -39,6 +39,7 @@ const blue = {
   400: '#3399FF',
   500: '#007FFF',
   600: '#0072E5',
+  900: '#003A75',
 };
 
 const grey = {
@@ -59,10 +60,10 @@ const StyledInputRoot = styled('div')(
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 400;
   border-radius: 12px;
-  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[500]};
+  color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+  box-shadow: 0px 2px 24px ${theme.palette.mode === 'dark' ? blue[900] : blue[100]};
   display: grid;
   grid-template-columns: 1fr 24px;
   grid-template-rows: 1fr 1fr;
@@ -71,7 +72,7 @@ const StyledInputRoot = styled('div')(
 
   &.${numberInputClasses.focused} {
     border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
   }
 
   &:hover {
