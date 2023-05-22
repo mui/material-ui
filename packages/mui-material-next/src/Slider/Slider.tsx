@@ -15,6 +15,7 @@ import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
+import { SliderTypeMap, SliderProps } from './Slider.types';
 
 function Identity<Type>(x: Type): Type {
   return x;
@@ -493,8 +494,13 @@ const useUtilityClasses = (ownerState) => {
 
 const Forward = ({ children }) => children;
 
-const Slider = React.forwardRef(function Slider(inputProps, ref) {
-  const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
+const Slider = React.forwardRef(function Slider<
+  BaseComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
+>(inProps: SliderProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiSlider',
+  });
 
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
