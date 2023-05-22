@@ -184,14 +184,14 @@ describe('Joy <MenuItem />', () => {
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
   });
 
-  it('should accept external id', () => {
+  it('should add external id to DOM and override internal id', () => {
     render(<MenuItem id="test-id" />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('id', 'test-id');
   });
 
-  it('should have id when external id is not passed', () => {
+  it('should add internal id to DOM when external id is not provided', () => {
     render(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
