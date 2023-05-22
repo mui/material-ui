@@ -3,15 +3,16 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+import { CodeVariant, Product, CodeStyling } from './types';
 
 const createReactApp = (demo: {
   title: string;
   language: string;
   raw: string;
-  codeVariant: 'TS' | 'JS';
+  codeVariant: CodeVariant;
   githubLocation: string;
-  product?: 'joy-ui' | 'base';
-  codeStyling?: 'Tailwind' | 'MUI System';
+  product?: Product;
+  codeStyling?: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;

@@ -4,6 +4,7 @@ import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from './Dependencies';
 import * as CRA from './CreateReactApp';
 import getFileExtension from './FileExtension';
+import { CodeVariant, Product, CodeStyling } from './types';
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -36,10 +37,10 @@ const createReactApp = (demo: {
   title: string;
   language: string;
   raw: string;
-  codeVariant: 'TS' | 'JS';
+  codeVariant: CodeVariant;
   githubLocation: string;
-  product?: 'joy-ui' | 'base';
-  codeStyling: 'Tailwind' | 'MUI System';
+  product?: Product;
+  codeStyling: CodeStyling;
 }) => {
   const ext = getFileExtension(demo.codeVariant);
   const { title, githubLocation: description } = demo;
