@@ -225,7 +225,7 @@
     "**/@definitelytyped/typescript-versions": "^0.0.161",
     "**/@definitelytyped/utils": "^0.0.161",
     "**/@types/react": "^18.2.6",
-    "**/cross-fetch": "^3.1.5"
+    "**/cross-fetch": "^3.1.6"
   },
   "nyc": {
     "include": [
