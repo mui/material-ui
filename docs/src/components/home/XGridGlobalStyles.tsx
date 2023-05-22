@@ -22,6 +22,7 @@ export default function XGridGlobalStyles({
               // toolbar
               // style GridToolbar
               '& .MuiDataGrid-toolbarContainer': {
+                flexShrink: 0,
                 padding: theme.spacing(1, 1, 0.5, 1),
                 overflow: 'auto',
                 '& > button': {
