@@ -70,8 +70,6 @@ export default function useListItem<ItemValue>(
         return;
       }
 
-      event.preventDefault();
-
       dispatch({
         type: ListActionTypes.itemClick,
         item,
