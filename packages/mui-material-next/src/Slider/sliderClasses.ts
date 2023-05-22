@@ -1,5 +1,7 @@
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
-import generateUtilityClass from '../generateUtilityClass';
+import {
+  unstable_generateUtilityClasses as generateUtilityClasses,
+  unstable_generateUtilityClass as generateUtilityClass,
+} from '@mui/utils';
 
 export interface SliderClasses {
   /** Styles applied to the root element. */
