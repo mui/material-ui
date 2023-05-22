@@ -1,12 +1,10 @@
 import * as React from 'react';
-import copy from 'clipboard-copy';
 import Box, { BoxProps } from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
-import CheckRounded from '@mui/icons-material/CheckRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
+import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
 interface GetStartedButtons2Props extends BoxProps {
   getStartedUrl?: string;
@@ -16,20 +14,7 @@ interface GetStartedButtons2Props extends BoxProps {
 }
 
 export default function GetStartedButtons2(props: GetStartedButtons2Props) {
-  const [copied, setCopied] = React.useState(false);
-  const {
-    installation = 'npm install @mui/material @emotion/react @emotion/styled',
-    getStartedUrl = ROUTES.documentation,
-    learnUrl,
-    learnLabel,
-    ...other
-  } = props;
-  const handleCopy = () => {
-    setCopied(true);
-    copy(installation).then(() => {
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
+  const { getStartedUrl = ROUTES.documentation, learnUrl, learnLabel, ...other } = props;
   return (
     <React.Fragment>
       <Box
@@ -70,22 +55,7 @@ export default function GetStartedButtons2(props: GetStartedButtons2Props) {
           {learnLabel}
         </Button>
       </Box>
-      <Button
-        // @ts-ignore
-        variant="code"
-        size="small"
-        onClick={handleCopy}
-        endIcon={
-          copied ? (
-            <CheckRounded color="primary" fontSize="small" />
-          ) : (
-            <ContentCopyRounded fontSize="small" />
-          )
-        }
-        sx={{ mt: 2 }}
-      >
-        <strong>$</strong>&nbsp;{installation}
-      </Button>
+      <NpmCopyButton installation="npm install @mui/base" sx={{ mt: 2 }} />
     </React.Fragment>
   );
 }
