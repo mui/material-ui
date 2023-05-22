@@ -1,15 +1,16 @@
 'use client';
 
 import * as React from 'react';
-import { Typography, Link as MuiLink } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 
 export default function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <MuiLink color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://mui.com/">
         Your Website
-      </MuiLink>
+      </Link>
       {new Date().getFullYear()}.
     </Typography>
   );

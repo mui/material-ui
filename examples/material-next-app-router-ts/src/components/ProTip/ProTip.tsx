@@ -1,7 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { SvgIconProps, SvgIcon, Typography, Link as MuiLink } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
@@ -15,9 +17,8 @@ export default function ProTip() {
   return (
     <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-      Pro tip: See more{' '}
-      <MuiLink href="https://mui.com/getting-started/templates/">templates</MuiLink> in the MUI
-      documentation.
+      Pro tip: See more <Link href="https://mui.com/getting-started/templates/">templates</Link> in
+      the MUI documentation.
     </Typography>
   );
 }

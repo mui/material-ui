@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
+import { NextAppDirEmotionCacheProvider } from '@/components/Theme/ThemeRegistry/EmotionCache';
 
 import theme from './theme';
 

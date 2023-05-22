@@ -7,9 +7,6 @@ const nextConfig = {
       transform: '@mui/icons-material/{{member}}',
     },
   },
-  experimental: {
-    typedRoutes: true,
-  },
 };
 
 module.exports = nextConfig;

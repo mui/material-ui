@@ -1,7 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { Container, Box, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import Copyright from '@/components/CopyRight/Copyright';
 import ProTip from '@/components/ProTip/ProTip';
 
