@@ -61,6 +61,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     selected = false,
     color: colorProp = selected ? 'primary' : 'neutral',
     orientation = 'horizontal',
+    id,
     variant = 'plain',
     slots = {},
     slotProps = {},
@@ -72,6 +73,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
     rootRef: ref,
+    id,
   });
 
   const ownerState = {
@@ -96,6 +98,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     externalForwardedProps,
     className: classes.root,
     ownerState,
+    additionalProps: {
+      id,
+    },
   });
 
   return (

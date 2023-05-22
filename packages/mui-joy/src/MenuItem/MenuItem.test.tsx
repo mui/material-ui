@@ -184,6 +184,13 @@ describe('Joy <MenuItem />', () => {
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
   });
 
+  it('should accept external id', () => {
+    render(<MenuItem id='test-id' />);
+    const menuitem = screen.getByRole('menuitem');
+
+    expect(menuitem).to.have.attribute('id', 'test-id');
+  });
+
   it('can be selected', () => {
     render(<MenuItem selected />);
     const menuitem = screen.getByRole('menuitem');
