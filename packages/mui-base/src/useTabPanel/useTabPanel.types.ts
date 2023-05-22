@@ -6,7 +6,7 @@ export interface UseTabPanelParameters {
   /**
    * The ref of the TabPanel.
    */
-  ref?: React.Ref<HTMLElement>;
+  rootRef?: React.Ref<HTMLElement>;
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */
@@ -30,5 +30,5 @@ export interface UseTabPanelReturnValue {
    * @returns props that should be spread on the root slot
    */
   getRootProps: () => UseTabPanelRootSlotProps;
-  ref: React.Ref<HTMLElement>;
+  rootRef: React.Ref<HTMLElement>;
 }

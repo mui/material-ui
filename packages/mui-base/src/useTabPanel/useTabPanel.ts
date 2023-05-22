@@ -19,7 +19,7 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
  * - [useTabPanel API](https://mui.com/base/react-tabs/hooks-api/#use-tab-panel)
  */
 function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
-  const { value: valueParam, id: idParam, ref: externalRef } = parameters;
+  const { value: valueParam, id: idParam, rootRef: externalRef } = parameters;
 
   const context = useTabsContext();
   if (context === null) {
@@ -51,7 +51,7 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   return {
     hidden,
     getRootProps,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }
 
