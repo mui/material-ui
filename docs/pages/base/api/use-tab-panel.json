@@ -1,7 +1,7 @@
 {
   "parameters": {
     "id": { "type": { "name": "string", "description": "string" } },
-    "ref": {
+    "rootRef": {
       "type": {
         "name": "React.Ref&lt;HTMLElement&gt;",
         "description": "React.Ref&lt;HTMLElement&gt;"
@@ -18,7 +18,7 @@
       "required": true
     },
     "hidden": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
-    "ref": {
+    "rootRef": {
       "type": {
         "name": "React.Ref&lt;HTMLElement&gt;",
         "description": "React.Ref&lt;HTMLElement&gt;"
