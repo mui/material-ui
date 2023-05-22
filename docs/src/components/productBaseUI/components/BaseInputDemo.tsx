@@ -148,8 +148,8 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        minHeight: 144,
         gap: 2,
-        height: '100%',
         py: 5,
       }}
     >

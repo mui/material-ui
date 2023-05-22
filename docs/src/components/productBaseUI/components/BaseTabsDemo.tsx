@@ -67,9 +67,9 @@ export default function BaseTabsDemo({ styling }: { styling: 'system' | 'tailwin
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        minHeight: 144,
         gap: 2,
-        height: '100%',
-        py: 5,
+        py: 3,
       }}
     >
       {styling === 'system' && (
