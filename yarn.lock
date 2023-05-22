@@ -1339,26 +1339,26 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@definitelytyped/header-parser@^0.0.159", "@definitelytyped/header-parser@latest":
-  version "0.0.159"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.159.tgz#92b845a6cb1f4d8c7412620c777b6af61bcc5d4d"
-  integrity sha512-y+zr9ahjiFz7BLW1HeMWrx7xNxfBTDU0loJqzRh9WPHVdSrMsk+JQBSlubed/EZ1hgFZ6m93FRzBRCGIj8kBYg==
+"@definitelytyped/header-parser@^0.0.161", "@definitelytyped/header-parser@latest":
+  version "0.0.161"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.161.tgz#eca8e728b9adaa36db28180cdf3ce798f616bc68"
+  integrity sha512-Ml2+yICSLzyuvrIS5gm7vEyf3EHJ3h3ro+0fDSTtmcm13sMLCA1qMKszjhR6/YvXqNCUkLvHNuHNyrwop8ClrA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.159"
+    "@definitelytyped/typescript-versions" "^0.0.161"
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@^0.0.159", "@definitelytyped/typescript-versions@latest":
-  version "0.0.159"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.159.tgz#fa8ac5808364506b94746fa0003bc4d7b11cc15b"
-  integrity sha512-9TWRPpOo3CWYUyS3QCu8goJbAhS3qAE/LWFc+Qy6Wb8vsUAwMTioCtPPsYyqrPDbatXvPFrOr182hE1OFvEFSA==
+"@definitelytyped/typescript-versions@^0.0.161", "@definitelytyped/typescript-versions@latest":
+  version "0.0.161"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.161.tgz#d1db9b73df700ed7a13b4c0cbadb489b86695f47"
+  integrity sha512-VQNH9D37XvPKwk98a8G1ajyYP9j3fjvTuhSKYq6NCV0BVa/lp1+PJAX6ywZQ+NyIS7bOfrvGuRQDhd1EjTnyBw==
 
-"@definitelytyped/utils@^0.0.159", "@definitelytyped/utils@latest":
-  version "0.0.159"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.159.tgz#e18d114462dba703a9f75316e2b668048ad103a5"
-  integrity sha512-zm+Gsw39sD2EANlJmmNXgtpIzXO3QmBq5nZx6Y95RD/s2AypDaBw0eauO1wWji6I45tJOAgPZEvfmjjaxfoyhA==
+"@definitelytyped/utils@^0.0.161", "@definitelytyped/utils@latest":
+  version "0.0.161"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.161.tgz#4bc9ef3793f08f2ea8f3196a74bfab4c5e1d30fe"
+  integrity sha512-4bdGTQjyR2tuUBHfUVwHWV+5i75BlD2tqbLuaXz6ARL/JuQ+KfTIG1xNMiqKbQLuqB2TzdpQT4fvfj3CiRF3Bg==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.159"
+    "@definitelytyped/typescript-versions" "^0.0.161"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
