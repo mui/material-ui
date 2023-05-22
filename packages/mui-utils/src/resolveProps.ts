@@ -1,11 +1,4 @@
-/**
- * Check if a variable is an object.
- * @param {unknown} value
- * @returns {boolean}
- */
-const isObject = (value: unknown): value is Record<string, unknown> => {
-  return typeof value === 'object' && !Array.isArray(value);
-};
+import { isPlainObject } from './deepmerge';
 
 /**
  * Add keys, values of `defaultProps` that does not exist in `props`
@@ -54,12 +47,11 @@ export default function resolveProps<
       }
     } else if (output[propName] === undefined) {
       output[propName] = defaultProps[propName];
-    } else if (
-      shallowMergePropNames.includes(String(propName)) &&
-      isObject(defaultValue) &&
-      isObject(currentValue)
-    ) {
-      output[propName] = { ...defaultValue, ...currentValue };
+    } else if (shallowMergePropNames.includes(String(propName))) {
+      output[propName] = {
+        ...(isPlainObject(defaultValue) && defaultValue),
+        ...(isPlainObject(currentValue) && currentValue),
+      } as T[keyof T];
     }
   });
 
