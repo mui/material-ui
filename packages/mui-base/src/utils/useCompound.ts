@@ -127,12 +127,17 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
     [subitems],
   );
 
-  return {
-    contextValue: {
+  const contextValue = React.useMemo(
+    () => ({
       getItemIndex,
       registerItem,
       totalSubitemCount: subitems.size,
-    },
+    }),
+    [getItemIndex, registerItem, subitems.size],
+  );
+
+  return {
+    contextValue,
     subitems,
   };
 }
