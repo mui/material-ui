@@ -94,6 +94,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
       ...resolvedMenuItemProps,
       role: 'menuitem',
       ref: handleRef,
+      id,
     };
   };
 

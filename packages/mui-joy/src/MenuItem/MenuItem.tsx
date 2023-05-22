@@ -98,9 +98,6 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     externalForwardedProps,
     className: classes.root,
     ownerState,
-    additionalProps: {
-      id,
-    },
   });
 
   return (

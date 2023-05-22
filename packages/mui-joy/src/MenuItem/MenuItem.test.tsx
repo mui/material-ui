@@ -185,10 +185,17 @@ describe('Joy <MenuItem />', () => {
   });
 
   it('should accept external id', () => {
-    render(<MenuItem id='test-id' />);
+    render(<MenuItem id="test-id" />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('id', 'test-id');
+  });
+
+  it('should have id when external id is not passed', () => {
+    render(<MenuItem />);
+    const menuitem = screen.getByRole('menuitem');
+
+    expect(menuitem).to.have.attribute('id');
   });
 
   it('can be selected', () => {
