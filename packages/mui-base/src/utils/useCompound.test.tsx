@@ -185,7 +185,7 @@ describe('compound components', () => {
       }
 
       function Child() {
-        const { id } = useCompoundItem<string, null>(undefined, null, idGenerator);
+        const { id } = useCompoundItem<string, null>(idGenerator, null);
 
         return <li>{id}</li>;
       }
