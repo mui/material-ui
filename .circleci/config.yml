@@ -248,7 +248,6 @@ jobs:
   test_types:
     <<: *defaults
     resource_class: 'medium+'
-
     steps:
       - checkout
       - install_js
@@ -673,7 +672,7 @@ jobs:
             DANGER_COMMAND: prepareBundleSizeReport
       - run:
           name: build @mui packages
-          command: yarn lerna run --ignore @mui/icons-material --concurrency 4 --scope "@mui/*" build
+          command: yarn lerna run --ignore @mui/icons-material --concurrency 5 --scope "@mui/*" build
       - run:
           name: create @mui/material canary distributable
           command: |
