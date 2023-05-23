@@ -163,7 +163,7 @@ describe('<FormControlLabel />', () => {
         />,
       );
 
-      expect(getByTestId('FormControlLabel').children[1]).to.have.attribute('name', 'test');
+      expect(getByTestId('FormControlLabel').children[1].children[0]).to.have.attribute('name', 'test');
     });
 
     it('should auto disable when passed a Typography component', () => {
@@ -175,7 +175,7 @@ describe('<FormControlLabel />', () => {
         />,
       );
 
-      expect(getByTestId('FormControlLabel').children[1]).to.have.attribute('name', 'test');
+      expect(getByTestId('FormControlLabel').children[1].children[0]).to.have.attribute('name', 'test');
     });
   });
 
