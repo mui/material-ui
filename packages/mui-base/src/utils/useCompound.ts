@@ -86,11 +86,7 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
   const registerItem = React.useCallback(
     function registerItem(id: Key | KeyGenerator<Key>, item: Subitem) {
       let providedOrGeneratedId: Key;
-      if (id === undefined) {
-        throw new Error(
-          "The compound component's child doesn't have a key. You need to provide a missingKeyGenerator to generate it.",
-        );
-      }
+
       if (typeof id === 'function') {
         providedOrGeneratedId = (id as KeyGenerator<Key>)(subitemKeys.current);
       } else {
