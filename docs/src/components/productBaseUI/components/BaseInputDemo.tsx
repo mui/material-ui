@@ -179,7 +179,7 @@ export default function BaseInputDemo({ styling }: { styling?: 'system' | 'tailw
   );
 }
 
-BaseInputDemo.getCode = (styling?: 'system') => {
+BaseInputDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
     return `import Input from '@mui/base/Input';
     

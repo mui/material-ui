@@ -35,7 +35,6 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
       >
         {overline}
       </Typography>
-      {/* eslint-disable-next-line no-nested-ternary */}
       {typeof title === 'string' ? (
         <Typography
           variant="h2"

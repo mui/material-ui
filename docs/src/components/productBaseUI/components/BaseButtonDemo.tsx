@@ -77,7 +77,7 @@ export default function BaseButtonDemo({
     </Box>
   );
 }
-BaseButtonDemo.getCode = (styling?: 'system') => {
+BaseButtonDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
     return `import Button from '@mui/base/Button';
 import { styled } from '@mui/system';

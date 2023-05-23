@@ -284,7 +284,7 @@ export default function BaseMenuDemo({ styling }: { styling?: 'system' | 'tailwi
   );
 }
 
-BaseMenuDemo.getCode = (styling?: 'system') => {
+BaseMenuDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
     return `import Button from '@mui/base/Button';
 import Menu from '@mui/base/Menu';

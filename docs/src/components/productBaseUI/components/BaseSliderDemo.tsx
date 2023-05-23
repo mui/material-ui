@@ -139,7 +139,7 @@ export default function BaseTabsDemo({ styling }: { styling?: 'system' | 'tailwi
     </Box>
   );
 }
-BaseTabsDemo.getCode = (styling?: 'system') => {
+BaseTabsDemo.getCode = (styling?: 'system' | 'tailwindcss' | 'css') => {
   if (styling === 'system') {
     return `import Slider from '@mui/base/Slider';
 import { styled } from '@mui/system';
