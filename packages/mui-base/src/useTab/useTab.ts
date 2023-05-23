@@ -36,7 +36,7 @@ function useTab(parameters: UseTabParameters): UseTabReturnValue {
     id: value,
     index,
     totalItemCount: totalTabsCount,
-  } = useCompoundItem<string | number, TabMetadata>(valueParam, tabMetadata, tabValueGenerator);
+  } = useCompoundItem<string | number, TabMetadata>(valueParam ?? tabValueGenerator, tabMetadata);
 
   const {
     getRootProps: getTabProps,

@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import { CompoundComponentContext, CompoundComponentContextValue } from './useCompound';
+import {
+  CompoundComponentContext,
+  CompoundComponentContextValue,
+  MissingKeyGenerator,
+} from './useCompound';
 
 export interface UseCompoundItemReturnValue<Key> {
   /**
@@ -32,18 +36,16 @@ export interface UseCompoundItemReturnValue<Key> {
  * @ignore - internal hook.
  */
 export function useCompoundItem<Key, Subitem>(
-  id: Key | undefined,
+  id: Key | MissingKeyGenerator<Key> | undefined,
   itemMetadata: Subitem,
-  missingKeyGenerator: (existingKeys: Set<Key>) => Key,
 ): UseCompoundItemReturnValue<Key>;
 export function useCompoundItem<Key, Subitem>(
   id: Key,
   itemMetadata: Subitem,
 ): UseCompoundItemReturnValue<Key>;
 export function useCompoundItem<Key, Subitem>(
-  id: Key | undefined,
+  id: Key | MissingKeyGenerator<Key> | undefined,
   itemMetadata: Subitem,
-  missingKeyGenerator?: (existingKeys: Set<Key>) => Key,
 ): UseCompoundItemReturnValue<Key> {
   const context = React.useContext(CompoundComponentContext) as CompoundComponentContextValue<
     Key,
@@ -55,13 +57,13 @@ export function useCompoundItem<Key, Subitem>(
   }
 
   const { registerItem } = context;
-  const [registeredId, setRegisteredId] = React.useState(id);
+  const [registeredId, setRegisteredId] = React.useState(typeof id === 'function' ? undefined : id);
 
   useEnhancedEffect(() => {
-    const { id: returnedId, deregister } = registerItem(id, itemMetadata, missingKeyGenerator);
+    const { id: returnedId, deregister } = registerItem(id, itemMetadata);
     setRegisteredId(returnedId);
     return deregister;
-  }, [registerItem, itemMetadata, missingKeyGenerator, id]);
+  }, [registerItem, itemMetadata, id]);
 
   return {
     id: registeredId,

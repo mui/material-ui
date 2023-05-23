@@ -30,9 +30,8 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   const id = useId(idParam);
 
   const { id: value } = useCompoundItem<string | number, string | undefined>(
-    valueParam,
+    valueParam ?? tabPanelValueGenerator,
     id,
-    tabPanelValueGenerator,
   );
 
   const hidden = value !== selectedTabValue;
