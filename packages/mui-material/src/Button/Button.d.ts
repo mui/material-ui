@@ -51,6 +51,10 @@ export type ButtonTypeMap<
      */
     disableFocusRipple?: boolean;
     /**
+     * To be used with the `href` attribute. Set the `download` attribute of the `a` element.
+     */
+    download?: string;
+    /**
      * Element placed after the children.
      */
     endIcon?: React.ReactNode;
