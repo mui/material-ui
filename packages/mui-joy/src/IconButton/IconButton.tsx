@@ -8,6 +8,7 @@ import { useColorInversion } from '../styles/ColorInversion';
 import useSlot from '../utils/useSlot';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
@@ -115,14 +116,17 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     action,
     component = 'button',
     color: colorProp = 'primary',
-    variant = 'soft',
-    size = 'md',
+    variant: variantProp = 'soft',
+    size: sizeProp = 'md',
     slots = {},
     slotProps = {},
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
+  const variant = buttonGroup.variant || variantProp;
+  const size = buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);

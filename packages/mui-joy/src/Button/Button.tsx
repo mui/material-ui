@@ -9,6 +9,7 @@ import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 
 const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const {
@@ -172,8 +173,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     children,
     action,
     color: colorProp = 'primary',
-    variant = 'solid',
-    size = 'md',
+    variant: variantProp = 'solid',
+    size: sizeProp = 'md',
     fullWidth = false,
     startDecorator,
     endDecorator,
@@ -186,8 +187,12 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+  const buttonGroup = React.useContext(ButtonGroupContext);
+
+  const variant = buttonGroup.variant || variantProp;
+  const size = buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
-  const color = getColor(inProps.color, colorProp);
+  const color = getColor(inProps.color, buttonGroup.color || colorProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
