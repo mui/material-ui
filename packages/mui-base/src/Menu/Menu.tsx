@@ -11,6 +11,7 @@ import useSlotProps from '../utils/useSlotProps';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { WithOptionalOwnerState } from '../utils';
 import MenuProvider from '../useMenu/MenuProvider';
+import { ListActionTypes } from '../useList';
 
 function useUtilityClasses(ownerState: MenuOwnerState) {
   const { open } = ownerState;
@@ -41,6 +42,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
     children,
     defaultOpen,
     listboxId,
+    onItemsChange,
     onOpenChange,
     open: openProp,
     slotProps = {},
@@ -51,6 +53,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   const { contextValue, getListboxProps, dispatch, open } = useMenu({
     defaultOpen,
     open: openProp,
+    onItemsChange,
     onOpenChange,
     listboxId,
   });
@@ -58,7 +61,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   React.useImperativeHandle(
     actions,
     () => ({
-      dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
   );

@@ -158,6 +158,12 @@ export interface UseListParameters<
     reason: string,
   ) => void;
   /**
+   * Callback fired when the items change.
+   *
+   * @param items The new items collection
+   */
+  onItemsChange?: (items: ItemValue[]) => void;
+  /**
    * Callback fired when the any of the state items change.
    * Note that in case of `selectedValues` and `highlightedValue` the strongly typed
    * `onChange` and `onHighlightChange` callbacks are also fired.

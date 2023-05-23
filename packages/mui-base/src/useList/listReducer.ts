@@ -413,6 +413,16 @@ function handleItemsChange<ItemValue, State extends ListState<ItemValue>>(
   };
 }
 
+function handleResetHighlight<ItemValue, State extends ListState<ItemValue>>(
+  state: State,
+  context: ListActionContext<ItemValue>,
+) {
+  return {
+    ...state,
+    highlightedValue: moveHighlight(null, 'reset', context),
+  };
+}
+
 export default function listReducer<ItemValue, State extends ListState<ItemValue>>(
   state: State,
   action: ListReducerAction<ItemValue> & { context: ListActionContext<ItemValue> },
@@ -430,6 +440,8 @@ export default function listReducer<ItemValue, State extends ListState<ItemValue
       return handleTextNavigation(state, action.searchString, context);
     case ListActionTypes.itemsChange:
       return handleItemsChange(action.items, action.previousItems, state, context);
+    case ListActionTypes.resetHighlight:
+      return handleResetHighlight(state, context);
     default:
       return state;
   }

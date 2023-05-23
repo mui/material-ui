@@ -358,4 +358,26 @@ describe('<Menu />', () => {
       });
     });
   });
+
+  describe('prop: onItemsChange', () => {
+    it('should be called when the menu items change', () => {
+      const handleItemsChange = spy();
+
+      const { setProps } = render(
+        <Menu {...defaultProps} onItemsChange={handleItemsChange}>
+          <MenuItem key="1">1</MenuItem>
+          <MenuItem key="2">2</MenuItem>
+        </Menu>,
+      );
+
+      // The first call is the initial render.
+      expect(handleItemsChange.callCount).to.equal(1);
+
+      setProps({
+        children: [<MenuItem key="1">1</MenuItem>, <MenuItem key="3">3</MenuItem>],
+      });
+
+      expect(handleItemsChange.callCount).to.equal(2);
+    });
+  });
 });

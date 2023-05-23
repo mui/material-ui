@@ -3,19 +3,18 @@ import { Simplify } from '@mui/types';
 import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
-import { ListAction } from '../useList';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
 
 export interface MenuActions {
-  dispatch: (action: ListAction<string>) => void;
+  resetHighlight: () => void;
 }
 
 export interface MenuOwnProps {
   /**
    * A ref with imperative actions.
-   * It allows to select the first or last menu item.
+   * It allows to reset the highlight of the menu.
    */
   actions?: React.Ref<MenuActions>;
   /**
@@ -28,6 +27,11 @@ export interface MenuOwnProps {
   className?: string;
   defaultOpen?: boolean;
   listboxId?: string;
+  /**
+   * Function called when the items displayed in the menu change.
+   * @param items New items
+   */
+  onItemsChange?: (items: string[]) => void;
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */

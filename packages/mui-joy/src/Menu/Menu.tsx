@@ -4,6 +4,7 @@ import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mu
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import useMenu, { MenuProvider } from '@mui/base/useMenu';
+import { ListActionTypes } from '@mui/base/useList';
 import Popper from '@mui/base/Popper';
 import { useSlotProps } from '@mui/base/utils';
 import { StyledList } from '../List/List';
@@ -91,6 +92,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
     invertedColors = false,
     id,
     onClose,
+    onItemsChange,
     open = false,
     modifiers: modifiersProp,
     variant = 'outlined',
@@ -114,13 +116,14 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   const { contextValue, getListboxProps, dispatch } = useMenu({
     open,
     onOpenChange: handleOpenChange,
+    onItemsChange,
     listboxId: id,
   });
 
   React.useImperativeHandle(
     actions,
     () => ({
-      dispatch,
+      resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
   );

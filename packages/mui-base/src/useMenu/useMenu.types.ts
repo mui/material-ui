@@ -16,6 +16,10 @@ export interface UseMenuParameters {
    */
   open?: boolean;
   /**
+   * Callback fired when the menu items change.
+   */
+  onItemsChange?: (items: string[]) => void;
+  /**
    * Callback fired when the menu is opened or closed.
    */
   onOpenChange?: (open: boolean) => void;

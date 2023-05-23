@@ -38,6 +38,11 @@ export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, MenuListPropsColorOverrides>;
     /**
+     * Function called when the items displayed in the menu change.
+     * @param items New items
+     */
+    onItemsChange?: (items: string[]) => void;
+    /**
      * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
      * @default 'md'
      */
