@@ -62,6 +62,25 @@ You can add standard form attributes such as `required` and `disabled` to the In
 
 {{"demo": "InputFormProps.js"}}
 
+### Focused ring
+
+Provide these CSS variables to `sx` prop to control the focused ring appearance:
+
+- `--Input-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any, )`) of the Input.
+- `--Input-focusedThickness`: the **size** of the focused ring.
+- `--Input-focusedHighlight`: the **color** of the focused ring.
+
+{{"demo": "FocusedRingInput.js"}}
+
+:::success
+To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
+
+```js
+<Input sx={{ '&:focus-within(::before)': { boxShadow: '...your custom value' } }} />
+```
+
+:::
+
 ### Validation
 
 Use the `error` prop to toggle the error state:
@@ -74,8 +93,6 @@ Using the `color` prop with `danger` as the value gives you the same result:
 ```js
 <Input color="danger" />
 ```
-
-:::
 
 ### Decorators
 

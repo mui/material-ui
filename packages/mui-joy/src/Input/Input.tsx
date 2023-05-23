@@ -123,7 +123,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         [`&.${inputClasses.disabled}`]:
           theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         '&:focus-within::before': {
-          boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
+          boxShadow: `var(--Input-focusedInset, inset) 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
       },
     ];

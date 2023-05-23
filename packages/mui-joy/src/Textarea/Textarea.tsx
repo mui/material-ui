@@ -128,7 +128,7 @@ const TextareaRoot = styled('div', {
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       '&:focus-within::before': {
-        boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
+        boxShadow: `var(--Textarea-focusedInset, inset) 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
       },
     },
   ];

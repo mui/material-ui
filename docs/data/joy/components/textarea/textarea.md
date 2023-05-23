@@ -54,6 +54,27 @@ Standard form attributes are supported e.g. `required`, `disabled`, etc.
 
 {{"demo": "TextareaFormProps.js"}}
 
+### Focused ring
+
+Provide these CSS variables to `sx` prop to control the focused ring appearance:
+
+- `--Textarea-focusedInset`: the focused ring's **position**, either inside(`inset`) or outside(`var(--any, )`) of the Textarea.
+- `--Textarea-focusedThickness`: the **size** of the focused ring.
+- `--Textarea-focusedHighlight`: the **color** of the focused ring.
+
+{{"demo": "FocusedRingTextarea.js"}}
+
+:::success
+To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
+
+```js
+<Textarea
+  sx={{ '&:focus-within(::before)': { boxShadow: '...your custom value' } }}
+/>
+```
+
+:::
+
 ### Validation
 
 To toggle the error state, use the `error` prop.
