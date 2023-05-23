@@ -491,6 +491,15 @@ const teamMembers: Array<Profile> = [
     about: '🏊🏼 Swimming and 🚗 driving newbie. Loves cooking.',
     github: 'brijeshb42',
   },
+  {
+    name: 'David Cnoops',
+    src: '/static/branding/about/david.png',
+    title: 'Design Engineer',
+    location: 'Leuven, Belgium',
+    locationCountry: 'be',
+    about: 'Volleyball, Cycling, Parenting, Movies',
+    github: 'DavidCnoops',
+  },
 ];
 
 const contributors = [
