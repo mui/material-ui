@@ -110,6 +110,14 @@ These props may include HTML attributes such as `ref`, `min`, `max`, and `autoco
 
 ## Common examples
 
+### Floating label
+
+{{"demo": "FloatingLabelInput.js"}}
+
+### Underline input
+
+{{"demo": "UnderlineInput.js"}}
+
 ### Newsletter Subscription
 
 {{"demo": "InputSubscription.js"}}
