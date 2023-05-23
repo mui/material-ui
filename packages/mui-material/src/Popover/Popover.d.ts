@@ -19,7 +19,8 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
-export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
+export interface PopoverProps
+  extends StandardProps<Omit<ModalProps, 'slots' | 'slotProps'>, 'children'> {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -92,6 +93,23 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    */
   PaperProps?: Partial<PaperProps>;
   /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots?: {
+    paper?: React.ElementType;
+  };
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps?: {
+    paper?: PaperProps;
+  };
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -139,6 +157,8 @@ export function getOffsetLeft(
   rect: DOMRect,
   horizontal: number | 'center' | 'right' | 'left',
 ): number;
+
+export declare const PopoverPaper: React.FC<PaperProps>;
 
 /**
  *

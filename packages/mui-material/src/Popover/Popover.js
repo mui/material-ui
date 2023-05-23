@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
 import {
   chainPropTypes,
   integerPropType,
@@ -17,7 +17,7 @@ import ownerWindow from '../utils/ownerWindow';
 import useForkRef from '../utils/useForkRef';
 import Grow from '../Grow';
 import Modal from '../Modal';
-import Paper from '../Paper';
+import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
 
 export function getOffsetTop(rect, vertical) {
@@ -75,7 +75,7 @@ const PopoverRoot = styled(Modal, {
   overridesResolver: (props, styles) => styles.root,
 })({});
 
-const PopoverPaper = styled(Paper, {
+export const PopoverPaper = styled(PaperBase, {
   name: 'MuiPopover',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
@@ -111,6 +111,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     marginThreshold = 16,
     open,
     PaperProps = {},
+    slots,
+    slotProps,
     transformOrigin = {
       vertical: 'top',
       horizontal: 'left',
@@ -359,6 +361,24 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
+  const Paper = slots?.paper ?? PopoverPaper;
+
+  const paperSlotProps = slotProps?.paper ?? PaperProps;
+
+  const paperProps = useSlotProps({
+    elementType: Paper,
+    externalSlotProps: {
+      ...paperSlotProps,
+      style: isPositioned ? paperSlotProps.style : { ...paperSlotProps.style, opacity: 0 },
+    },
+    additionalProps: {
+      elevation,
+      ref: handlePaperRef,
+    },
+    ownerState,
+    className: clsx(paperSlotProps?.className, classes.paper, PaperProps.className),
+  });
+
   return (
     <PopoverRoot
       BackdropProps={{ invisible: true }}
@@ -377,16 +397,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
         timeout={transitionDuration}
         {...TransitionProps}
       >
-        <PopoverPaper
-          elevation={elevation}
-          {...PaperProps}
-          ref={handlePaperRef}
-          className={clsx(classes.paper, PaperProps.className)}
-          {...(isPositioned ? undefined : { style: { ...PaperProps.style, opacity: 0 } })}
-          ownerState={ownerState}
-        >
-          {children}
-        </PopoverPaper>
+        <Paper {...paperProps}>{children}</Paper>
       </TransitionComponent>
     </PopoverRoot>
   );
@@ -523,6 +534,23 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
+  }),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    paper: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    paper: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

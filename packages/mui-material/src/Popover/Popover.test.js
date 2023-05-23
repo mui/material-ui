@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
-import Popover, { popoverClasses as classes } from '@mui/material/Popover';
+import Popover, { popoverClasses as classes, PopoverPaper } from '@mui/material/Popover';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
+import styled from '../styles/styled';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {
@@ -32,6 +33,14 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
       {...props}
     />
   );
+});
+
+const ReplacementPaper = styled(Paper, {
+  name: 'ReplacementPaper',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
+  backgroundColor: 'red',
 });
 
 describe('<Popover />', () => {
@@ -285,8 +294,8 @@ describe('<Popover />', () => {
   });
 
   describe('paper', () => {
-    it('should have Paper as a child of Transition', () => {
-      render(
+    it('should have PopoverPaper as a child of Transition', () => {
+      const wrapper = mount(
         <Popover
           anchorEl={document.createElement('div')}
           open
@@ -296,6 +305,7 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
+      expect(wrapper.find(PopoverPaper)).to.have.lengthOf(1);
       expect(screen.getByTestId('paper')).not.to.equal(null);
     });
 
@@ -320,27 +330,46 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      expect(wrapper.find(Paper).props().elevation).to.equal(8);
+      expect(wrapper.find(PopoverPaper).props().elevation).to.equal(8);
 
       wrapper.setProps({ elevation: 16 });
-      expect(wrapper.find(Paper).props().elevation).to.equal(16);
+      expect(wrapper.find(PopoverPaper).props().elevation).to.equal(16);
     });
   });
 
-  describe('PaperProps.ref', () => {
-    it('should position popover correctly', () => {
-      const handleEntering = spy();
-      render(
-        <Popover
-          anchorEl={document.createElement('div')}
-          open
-          PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
-          TransitionProps={{ onEntering: handleEntering }}
-        >
-          <div />
-        </Popover>,
-      );
-      expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+  describe('prop: PaperProps', () => {
+    describe('ref', () => {
+      it('should position popover correctly', () => {
+        const handleEntering = spy();
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{ 'data-testid': 'Popover', ref: () => null }}
+            TransitionProps={{ onEntering: handleEntering }}
+          >
+            <div />
+          </Popover>,
+        );
+        expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+      });
+    });
+
+    describe('className', () => {
+      it('should add the className to the paper', () => {
+        const className = 'MyPaperClassName';
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            PaperProps={{ 'data-testid': 'paper', className }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(screen.getByTestId('paper')).to.have.class(className);
+      });
     });
   });
 
@@ -901,5 +930,39 @@ describe('<Popover />', () => {
         </ThemeProvider>,
       ),
     ).not.to.throw();
+  });
+
+  describe('slots', () => {
+    describe('paper', () => {
+      it('should be replaced when paper slot is used', () => {
+        const wrapper = mount(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            slots={{ paper: ReplacementPaper }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(wrapper.find(ReplacementPaper)).to.have.lengthOf(1);
+        expect(wrapper.find(PopoverPaper)).to.have.lengthOf(0);
+      });
+
+      it('should pass paper slotProps to paper component', () => {
+        const customElevation = 14;
+        const wrapper = mount(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            slotProps={{ paper: { elevation: customElevation } }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(customElevation);
+      });
+    });
   });
 });
