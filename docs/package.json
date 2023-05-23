@@ -103,7 +103,7 @@
     "react-intersection-observer": "^9.4.3",
     "react-is": "^18.2.0",
     "react-number-format": "^5.2.2",
-    "react-router-dom": "^6.9.0",
+    "react-router-dom": "^6.11.2",
     "react-runner": "^1.0.3",
     "react-simple-code-editor": "^0.13.1",
     "react-swipeable-views": "^0.14.0",
