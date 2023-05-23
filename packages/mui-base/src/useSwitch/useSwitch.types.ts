@@ -34,6 +34,17 @@ export interface UseSwitchParameters {
   required?: boolean;
 }
 
+interface UseSwitchRootSlotOwnProps {
+  ariaReadOnly?: boolean;
+  ariaDisabled?: boolean;
+  ariaRequired?: boolean;
+  onBlur: React.FocusEventHandler;
+  onFocus: React.FocusEventHandler;
+  onClick: React.MouseEventHandler;
+  onKeyDown: React.KeyboardEventHandler;
+  ref: React.RefCallback<HTMLSpanElement> | null;
+}
+
 interface UseSwitchInputSlotOwnProps {
   checked?: boolean;
   defaultChecked?: boolean;
@@ -50,7 +61,8 @@ interface UseSwitchInputSlotOwnProps {
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
   UseSwitchInputSlotOwnProps;
 
-export type UseSwitchRootSlotProps<TOther = {}> = Omit<UseSwitchInputSlotProps<TOther>, 'onChange'>;
+export type UseSwitchRootSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchRootSlotOwnProps> &
+  UseSwitchRootSlotOwnProps;
 
 export interface UseSwitchReturnValue {
   /**

@@ -156,13 +156,11 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
   });
 
   const getRootProps: UseSwitchReturnValue['getRootProps'] = (otherProps = {}) => ({
-    checked: checkedProp,
-    defaultChecked,
-    disabled,
-    readOnly,
     ref: handleInputRef,
-    required,
-    type: 'checkbox',
+    ariaReadOnly: readOnly,
+    ariaDisabled: disabled,
+    ariaRequired: required,
+    ariaType: 'checkbox',
     ...otherProps,
     onFocus: createHandleFocus(otherProps),
     onBlur: createHandleBlur(otherProps),
