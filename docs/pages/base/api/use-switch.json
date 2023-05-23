@@ -36,7 +36,7 @@
       },
       "required": true
     },
-    "getSwitchRootProps": {
+    "getRootProps": {
       "type": {
         "name": "(externalProps?: React.HTMLAttributes&lt;HTMLSpanElement&gt;) =&gt; UseSwitchRootSlotProps",
         "description": "(externalProps?: React.HTMLAttributes&lt;HTMLSpanElement&gt;) =&gt; UseSwitchRootSlotProps"

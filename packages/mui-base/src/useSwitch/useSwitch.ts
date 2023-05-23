@@ -155,7 +155,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     onBlur: createHandleBlur(otherProps),
   });
 
-  const getSwitchRootProps: UseSwitchReturnValue['getSwitchRootProps'] = (otherProps = {}) => ({
+  const getRootProps: UseSwitchReturnValue['getRootProps'] = (otherProps = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
@@ -175,7 +175,7 @@ export default function useSwitch(props: UseSwitchParameters): UseSwitchReturnVa
     disabled: Boolean(disabled),
     focusVisible,
     getInputProps,
-    getSwitchRootProps,
+    getRootProps,
     inputRef: handleInputRef,
     readOnly: Boolean(readOnly),
   };

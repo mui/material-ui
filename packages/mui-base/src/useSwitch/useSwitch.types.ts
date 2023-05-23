@@ -79,9 +79,7 @@ export interface UseSwitchReturnValue {
    * @param externalProps props for the root slot
    * @returns props that should be spread on the root slot
    */
-  getSwitchRootProps: (
-    externalProps?: React.HTMLAttributes<HTMLSpanElement>,
-  ) => UseSwitchRootSlotProps;
+  getRootProps: (externalProps?: React.HTMLAttributes<HTMLSpanElement>) => UseSwitchRootSlotProps;
   /**
    * Ref to the input slot's DOM node.
    */
