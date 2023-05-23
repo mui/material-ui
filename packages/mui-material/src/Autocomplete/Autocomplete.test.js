@@ -2525,6 +2525,7 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
     }
   });
+  
   describe('prop: onHighlightChange', () => {
     it('should trigger event when default value is passed', () => {
       const handleHighlightChange = spy();
