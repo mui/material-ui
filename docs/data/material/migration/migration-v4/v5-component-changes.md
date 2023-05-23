@@ -569,7 +569,7 @@ If you have customized the color of the border, you will need to update the CSS 
 
 ### Support "middle" variant with "vertical" orientation
 
-In the v4, the `orientation` prop with "vertical" and the `variant` prop with "middle" was adding a margin-left and margin-right of `16px` in the component.
+In v4, using `orientation="vertical"` and `variant="middle"` was adding a left and right margins of `16px` in the component.
 In the v5, to avoid fixed spacing on the component, this margin was removed.
 
 :::info
