@@ -7,6 +7,8 @@
     "disabled": "If <code>true</code>, the component is disabled.",
     "onChange": "Callback invoked when new value is being set.",
     "orientation": "The content direction flow.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "You can provide your own value. Otherwise, it falls back to the child position index.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."

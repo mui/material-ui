@@ -9,12 +9,7 @@
       "default": "'neutral'"
     },
     "component": { "type": { "name": "elementType" } },
-    "defaultValue": {
-      "type": {
-        "name": "union",
-        "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "defaultValue": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
       "default": "'ltr'"
@@ -32,18 +27,21 @@
       },
       "default": "'md'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "value": {
-      "type": {
-        "name": "union",
-        "description": "false<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "variant": {
       "type": {
         "name": "union",

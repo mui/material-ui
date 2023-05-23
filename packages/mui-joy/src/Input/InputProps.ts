@@ -10,22 +10,22 @@ export interface InputSlots {
    * The component that renders the root.
    * @default 'div'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
   /**
    * The component that renders the input.
    * @default 'input'
    */
-  input: React.ElementType;
+  input?: React.ElementType;
   /**
    * The component that renders the start decorator.
    * @default 'span'
    */
-  startDecorator: React.ElementType;
+  startDecorator?: React.ElementType;
   /**
    * The component that renders the end decorator.
    * @default 'span'
    */
-  endDecorator: React.ElementType;
+  endDecorator?: React.ElementType;
 }
 
 export interface InputPropsVariantOverrides {}

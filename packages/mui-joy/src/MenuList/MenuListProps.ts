@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
+import { MenuActions as BaseMenuActions } from '@mui/base/Menu';
 import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
@@ -11,7 +11,7 @@ export interface MenuListSlots {
    * The component that renders the root.
    * @default 'ul'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type MenuListSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -25,15 +25,13 @@ export interface MenuListPropsSizeOverrides {}
 export interface MenuListPropsColorOverrides {}
 export interface MenuListPropsVariantOverrides {}
 
-export interface MenuActions extends MenuUnstyledActions {}
-
 export interface MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**
      * A ref with imperative actions.
      * It allows to select the first or last menu item.
      */
-    actions?: React.Ref<MenuUnstyledActions>;
+    actions?: React.Ref<BaseMenuActions>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'

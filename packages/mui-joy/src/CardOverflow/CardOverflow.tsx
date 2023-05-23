@@ -112,6 +112,8 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     children,
     color: colorProp = 'neutral',
     variant = 'plain',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -126,12 +128,13 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: CardOverflowRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -165,6 +168,20 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

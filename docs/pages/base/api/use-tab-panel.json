@@ -1,9 +1,7 @@
 {
   "parameters": {
-    "value": {
-      "type": { "name": "number | string", "description": "number | string" },
-      "required": true
-    }
+    "id": { "type": { "name": "string", "description": "string" } },
+    "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
     "getRootProps": {
@@ -13,13 +11,9 @@
       },
       "required": true
     },
-    "hidden": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    }
+    "hidden": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useTabPanel",
   "filename": "/packages/mui-base/src/useTabPanel/useTabPanel.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

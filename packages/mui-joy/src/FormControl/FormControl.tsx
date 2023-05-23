@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import FormControlContext from './FormControlContext';
 import formControlClasses, { getFormControlUtilityClass } from './formControlClasses';
 import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
+import switchClasses from '../Switch/switchClasses';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: FormControlOwnerState) => {
@@ -32,29 +33,31 @@ export const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
+  '--unstable_RadioGroup-margin': '0.5rem 0',
   '--FormLabel-alignSelf': ownerState.orientation === 'horizontal' ? 'align-items' : 'flex-start',
-  '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asteriskColor': theme.vars.palette.danger[500],
-  ...(ownerState.color !== 'context' && {
-    '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
-  }),
   ...(ownerState.size === 'sm' && {
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
-    '--FormHelperText-fontSize': theme.vars.fontSize.xs,
     '--FormLabel-margin':
       ownerState.orientation === 'horizontal' ? '0 0.5rem 0 0' : '0 0 0.25rem 0',
+    '--FormHelperText-fontSize': theme.vars.fontSize.xs,
   }),
   ...(ownerState.size === 'md' && {
     '--FormLabel-fontSize': theme.vars.fontSize.sm,
-    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
     '--FormLabel-margin':
       ownerState.orientation === 'horizontal' ? '0 0.75rem 0 0' : '0 0 0.25rem 0',
+    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'lg' && {
     '--FormLabel-fontSize': theme.vars.fontSize.md,
-    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
     '--FormLabel-margin': ownerState.orientation === 'horizontal' ? '0 1rem 0 0' : '0 0 0.25rem 0',
+    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
   }),
+  ...(ownerState.color &&
+    ownerState.color !== 'context' && {
+      '--FormHelperText-color': theme.vars.palette[ownerState.color]?.[500],
+    }),
+  '--FormHelperText-margin': '0.375rem 0 0 0',
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
@@ -68,6 +71,11 @@ export const FormControlRoot = styled('div', {
   display: 'flex',
   position: 'relative', // for keeping the control action area, e.g. Switch
   flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+  ...(ownerState.orientation === 'horizontal' && {
+    [`& > label ~ .${switchClasses.root}`]: {
+      '--unstable_Switch-margin': '0 0 0 auto',
+    },
+  }),
 }));
 /**
  *
@@ -95,6 +103,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     color,
     size = 'md',
     orientation = 'vertical',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -121,7 +131,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       if (registeredInput.current) {
         console.error(
           [
-            'Joy: A FormControl can contain only one Input, Textarea, or Select component',
+            'Joy: A FormControl can contain only one control component (Autocomplete | Input | Textarea | Select | RadioGroup)',
             'You should not mix those components inside a single FormControl instance',
           ].join('\n'),
         );
@@ -140,7 +150,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: FormControlRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps: { ...other, component, slots, slotProps },
     ownerState,
   });
 
@@ -225,6 +235,20 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

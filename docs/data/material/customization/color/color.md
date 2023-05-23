@@ -71,7 +71,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### Tools by the community
 
-- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 2014 Material Design color palettes
@@ -80,7 +80,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 
 ### Important Terms
 
-- **Palette**: A palette is a collection of colors, i.e. hues and their shades. MUI provides all colors from the Material Design guidelines.
+- **Palette**: A palette is a collection of colors, i.e. hues and their shades. Material UI provides all colors from the Material Design guidelines.
   [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
 - **Hue & Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500".
   "red 50" is the lightest shade of red (_pink!_), while "red 900" is the darkest.

@@ -1,8 +1,12 @@
 export interface UseTabPanelParameters {
   /**
+   * The id of the TabPanel.
+   */
+  id?: string;
+  /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */
-  value: number | string;
+  value?: number | string;
 }
 
 export interface UseTabPanelRootSlotProps {
@@ -14,7 +18,6 @@ export interface UseTabPanelRootSlotProps {
 export interface UseTabPanelReturnValue {
   /**
    * If `true`, it indicates that the tab panel will be hidden.
-   * @default false
    */
   hidden: boolean;
   /**

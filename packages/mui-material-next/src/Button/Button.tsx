@@ -472,7 +472,7 @@ const Button = React.forwardRef(function Button<
     // @ts-ignore
     to: props.to,
     type,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(

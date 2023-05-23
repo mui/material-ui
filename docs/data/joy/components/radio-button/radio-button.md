@@ -1,6 +1,6 @@
 ---
 product: joy-ui
-title: React Radio Group component
+title: React Radio Button component
 components: Radio, RadioGroup
 githubLabel: 'component: radio'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
@@ -10,12 +10,16 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Radio buttons let users make a mutually exclusive choice (e.g., this or that).
 Only one selection is allowed from the available set of options.
 
 Radio buttons should have the most commonly used option selected by default.
+
+{{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 When should you use radio buttons rather than checkboxes, switches, or selects?
@@ -25,14 +29,6 @@ When should you use radio buttons rather than checkboxes, switches, or selects?
 - Consider using a select if it's not important for the user to be able to see all options.
 - If available options can be collapsed, consider using a Select component to conserve space.
   :::
-
-{{"demo": "RadioUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basics
 

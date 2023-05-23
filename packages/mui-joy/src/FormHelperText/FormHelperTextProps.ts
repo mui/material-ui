@@ -10,7 +10,7 @@ export interface FormHelperTextSlots {
    * The component that renders the root.
    * @default 'p'
    */
-  root: React.ElementType;
+  root?: React.ElementType;
 }
 
 export type FormHelperTextSlotsAndSlotProps = CreateSlotsAndSlotProps<

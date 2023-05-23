@@ -10,6 +10,8 @@
     "focusVisibleClassName": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/HEAD/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.",
     "orientation": "The content direction flow.",
     "selected": "If <code>true</code>, the component is selected.",
+    "slotProps": "The props used for each slot inside.",
+    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
   },

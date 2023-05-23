@@ -139,7 +139,7 @@ const AutocompleteRoot = styled('div', {
       paddingRight: 52 + 4 + 9,
     },
     [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
+      padding: '7.5px 4px 7.5px 5px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
@@ -152,7 +152,7 @@ const AutocompleteRoot = styled('div', {
     paddingBottom: 6,
     paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
+      padding: '2.5px 4px 2.5px 8px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
@@ -829,6 +829,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
+   * @default createFilterOptions()
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}

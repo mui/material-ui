@@ -43,7 +43,8 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
     name: 'JoyCardContent',
   });
 
-  const { className, component = 'div', children, ...other } = props;
+  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const ownerState = {
     ...props,
@@ -56,7 +57,7 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
     ref,
     className: clsx(classes.root, className),
     elementType: CardContentRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -82,6 +83,20 @@ CardContent.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

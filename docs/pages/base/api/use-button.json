@@ -9,7 +9,9 @@
     "onFocusVisible": {
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
     },
-    "ref": { "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" } },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
     "tabIndex": {
       "type": {
         "name": "NonNullable&lt;React.HTMLAttributes&lt;any&gt;[&#39;tabIndex&#39;]&gt;",
@@ -26,25 +28,19 @@
     }
   },
   "returnValue": {
-    "active": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "disabled": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focusVisible": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "active": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusVisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "getRootProps": {
       "type": {
         "name": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;",
         "description": "&lt;TOther extends EventHandlers = {}&gt;(otherHandlers?: TOther) =&gt; UseButtonRootSlotProps&lt;TOther&gt;"
+      },
+      "required": true
+    },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
       },
       "required": true
     },
@@ -58,5 +54,5 @@
   },
   "name": "useButton",
   "filename": "/packages/mui-base/src/useButton/useButton.ts",
-  "demos": "<ul><li><a href=\"/base/react-button/#hook\">Unstyled Button</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-button/#hook\">Button</a></li></ul>"
 }

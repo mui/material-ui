@@ -107,6 +107,8 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     color: colorProp = 'neutral',
     variant = 'outlined',
     size = 'md',
+    slots = {},
+    slotProps = {},
     ...otherProps
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -125,12 +127,13 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
   const other = excludePopperProps(otherProps);
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: AutocompleteListboxRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
     additionalProps: {
       role: 'listbox',
@@ -171,6 +174,20 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

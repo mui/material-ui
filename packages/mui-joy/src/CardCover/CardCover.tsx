@@ -66,7 +66,7 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
     name: 'JoyCardCover',
   });
 
-  const { className, component = 'div', children, ...other } = props;
+  const { className, component = 'div', children, slots = {}, slotProps = {}, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -74,12 +74,12 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   };
 
   const classes = useUtilityClasses();
-
+  const externalForwardedProps = { ...other, component, slots, slotProps };
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
     elementType: CardCoverRoot,
-    externalForwardedProps: { ...other, component },
+    externalForwardedProps,
     ownerState,
   });
 
@@ -113,6 +113,20 @@ CardCover.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
