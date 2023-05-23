@@ -120,17 +120,15 @@ const TextareaRoot = styled('div', {
       // variant styles
       ...variantStyle,
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-      [`&:hover:not(.${textareaClasses.focused})`]: {
+      '&:hover:not(:focus-within)': {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-      [`&.${textareaClasses.focused}`]: {
-        '&:before': {
-          boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
-        },
+      '&:focus-within::before': {
+        boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
       },
     },
   ];
