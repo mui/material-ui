@@ -3,7 +3,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import {
   CompoundComponentContext,
   CompoundComponentContextValue,
-  MissingKeyGenerator,
+  KeyGenerator,
 } from './useCompound';
 
 export interface UseCompoundItemReturnValue<Key> {
@@ -36,7 +36,7 @@ export interface UseCompoundItemReturnValue<Key> {
  * @ignore - internal hook.
  */
 export function useCompoundItem<Key, Subitem>(
-  id: Key | MissingKeyGenerator<Key> | undefined,
+  id: Key | KeyGenerator<Key>,
   itemMetadata: Subitem,
 ): UseCompoundItemReturnValue<Key>;
 export function useCompoundItem<Key, Subitem>(
@@ -44,7 +44,7 @@ export function useCompoundItem<Key, Subitem>(
   itemMetadata: Subitem,
 ): UseCompoundItemReturnValue<Key>;
 export function useCompoundItem<Key, Subitem>(
-  id: Key | MissingKeyGenerator<Key> | undefined,
+  id: Key | KeyGenerator<Key>,
   itemMetadata: Subitem,
 ): UseCompoundItemReturnValue<Key> {
   const context = React.useContext(CompoundComponentContext) as CompoundComponentContextValue<

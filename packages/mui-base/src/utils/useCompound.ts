@@ -12,7 +12,7 @@ interface RegisterItemReturnValue<Key> {
   deregister: () => void;
 }
 
-export type MissingKeyGenerator<Key> = (existingKeys: Set<Key>) => Key;
+export type KeyGenerator<Key> = (existingKeys: Set<Key>) => Key;
 
 export type CompoundComponentContextValue<Key, Subitem> = {
   /**
@@ -25,10 +25,7 @@ export type CompoundComponentContextValue<Key, Subitem> = {
    *   Return `existingKeys.size` if you want to use the index of the new item as the id..
    * @param itemMetadata Arbitrary metadata to pass to the parent component.
    */
-  registerItem: (
-    id: Key | MissingKeyGenerator<Key> | undefined,
-    item: Subitem,
-  ) => RegisterItemReturnValue<Key>;
+  registerItem: (id: Key | KeyGenerator<Key>, item: Subitem) => RegisterItemReturnValue<Key>;
   /**
    * Returns the 0-based index of the item in the parent component's list of registered items.
    *
@@ -87,7 +84,7 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
   }, []);
 
   const registerItem = React.useCallback(
-    function registerItem(id: Key | MissingKeyGenerator<Key> | undefined, item: Subitem) {
+    function registerItem(id: Key | KeyGenerator<Key>, item: Subitem) {
       let providedOrGeneratedId: Key;
       if (id === undefined) {
         throw new Error(
@@ -95,7 +92,7 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
         );
       }
       if (typeof id === 'function') {
-        providedOrGeneratedId = (id as MissingKeyGenerator<Key>)(subitemKeys.current);
+        providedOrGeneratedId = (id as KeyGenerator<Key>)(subitemKeys.current);
       } else {
         providedOrGeneratedId = id;
       }
