@@ -11,11 +11,7 @@
       },
       "required": true
     },
-    "hidden": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    }
+    "hidden": { "type": { "name": "boolean", "description": "boolean" }, "required": true }
   },
   "name": "useTabPanel",
   "filename": "/packages/mui-base/src/useTabPanel/useTabPanel.ts",

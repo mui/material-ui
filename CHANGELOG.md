@@ -1,5 +1,46 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.2
+
+<!-- generated comparing v5.13.1..master -->
+
+_May 22, 2023_
+
+A big thanks to the 12 contributors who made this release possible.
+📚 This release focuses primarily on documentation improvements.
+
+### `@mui/material@5.13.2
+
+- [Slider] Tooltip positioning fixed for vertical slider (#37049) @PunitSoniME
+
+### Docs
+
+- [docs][base] Remove default annotations from useTabsList return type (#37324) @TinaSay
+- [docs][base] Remove default annotations from useTabPanel return type (#37323) @TinaSay
+- [docs][base] Remove default annotations from useSwitch return type (#37322) @TinaSay
+- [docs][base] Remove default annotations from useInput return type (#37321) @TinaSay
+- [docs][base] Remove default annotations from useAutocomplete return type (#37320) @TinaSay
+- [docs][base] Remove default annotations from useBadge's return type (#37313) @TinaSay
+- [docs][base] Remove default annotations from useButton's return type (#37312) @TinaSay
+- [docs][base] Remove default annotations from useSlider's return type (#37309) @TinaSay
+- [docs] Remove Material UI's "Languages" page (#37314) @danilo-leal
+- [docs] Prefer to link GitHub repository @oliviertassinari
+- [docs] Move product versions to page context (#35078) @m4theushw
+- [docs] Fix v5 migration npm install instruction (#37293) @oliviertassinari
+- [docs][Tab] Add vertical tabs demo (#37292) @sai6855
+- [docs][Transitions] Fix typo in code sample (#37300) @alexfauquette
+- [examples] Remove `@babel/plugin-proposal-class-properties` from Material-Express-SSR example (#37305) @ZeeshanTamboli
+- [Website] Add Brijesh to About page (#37318) @brijeshb42
+- [website] Update pricing table (#37290) @cherniavskii
+- [website] Update core open roles (#37224) @mnajdova
+
+### Core
+
+- Revert "[core] Remove outdated babel proposal plugins (#36795)" (#37331) @michaldudak
+- [core] Move esmExternals to the shared next config (#37332) @michaldudak
+
+All contributors of this release in alphabetical order: @alexfauquette, @brijeshb42, @cherniavskii, @danilo-leal, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @sai6855, @TinaSay, @ZeeshanTamboli
+
 ## 5.13.1
 
 <!-- generated comparing v5.13.0..master -->
