@@ -1,0 +1,5 @@
+<Textarea
+  slots={{ textarea: InnerTextarea }}
+  slotProps={{ textarea: { placeholder: 'A placeholder' } }}
+  sx={{ borderRadius: '6px' }}
+/>

@@ -3,7 +3,7 @@ import { styled } from '@mui/joy/styles';
 import Input from '@mui/joy/Input';
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined';
 
-const StyledInput = styled('input')(({ theme }) => ({
+const StyledInput = styled('input')({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -25,14 +25,14 @@ const StyledInput = styled('input')(({ theme }) => ({
   '&:focus::placeholder': {
     opacity: 1,
   },
-  '&:focus + label, &:not(:placeholder-shown) + label': {
+  '&:focus ~ label, &:not(:placeholder-shown) ~ label': {
     top: '0.5rem',
     fontSize: '0.75rem',
   },
-  '&:focus + label': {
+  '&:focus ~ label': {
     color: 'var(--Input-focusedHighlight)',
   },
-}));
+});
 
 const StyledLabel = styled('label')(({ theme }) => ({
   position: 'absolute',
@@ -47,7 +47,7 @@ const InnerInput = React.forwardRef(function InnerInput(props, ref) {
   const id = React.useId();
   return (
     <React.Fragment>
-      <StyledInput ref={ref} id={id} {...props} />
+      <StyledInput {...props} ref={ref} id={id} />
       <StyledLabel htmlFor={id}>Label</StyledLabel>
     </React.Fragment>
   );

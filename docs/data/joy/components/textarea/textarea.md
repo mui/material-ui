@@ -123,6 +123,22 @@ Alternatively, you can do it manually by targeting the textarea slot:
 
 ## Common examples
 
+### Focus outline
+
+This example shows how to replace the default focus ring appearance with CSS outline.
+
+{{"demo": "FocusOutlineTextarea.js"}}
+
+### Floating label
+
+To create a floating label textarea, a custom component (combination of `<textarea>` and `<label>`) is required to replace the default textarea slot.
+
+{{"demo": "FloatingLabelTextarea.js"}}
+
+### Underline input
+
+{{"demo": "UnderlineTextarea.js"}}
+
 ### Comment box
 
 {{"demo": "ExampleTextareaComment.js"}}
