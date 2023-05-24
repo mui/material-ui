@@ -46,8 +46,6 @@ function PrefetchImages() {
   function makeImg(component: 'sparkline' | 'chart', mode: string, num: number) {
     return {
       loading: 'lazy' as const,
-      width: 100,
-      height: 100,
       src: `/static/branding/mui-x/${component}-${mode}${num}.png`,
     };
   }
