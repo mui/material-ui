@@ -617,7 +617,6 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
-  styleSolution: PropTypes.string,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoHovered: PropTypes.bool.isRequired,
@@ -630,4 +629,5 @@ DemoToolbar.propTypes = {
   onResetDemoClick: PropTypes.func.isRequired,
   openDemoSource: PropTypes.bool.isRequired,
   showPreview: PropTypes.bool.isRequired,
+  styleSolution: PropTypes.string,
 };
