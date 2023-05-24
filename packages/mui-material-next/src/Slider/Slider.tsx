@@ -385,7 +385,7 @@ const SliderMark = styled('span', {
 
     return [styles.mark, markActive && styles.markActive];
   },
-})<{ ownerState: SliderOwnerState }>(({ theme, ownerState, markActive }) => ({
+})<{ ownerState: SliderOwnerState; markActive: boolean }>(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -423,29 +423,31 @@ const SliderMarkLabel = styled('span', {
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})<{ ownerState: SliderOwnerState }>(({ theme, ownerState, markLabelActive }) => ({
-  ...theme.typography.body2,
-  color: (theme.vars || theme).palette.text.secondary,
-  position: 'absolute',
-  whiteSpace: 'nowrap',
-  ...(ownerState.orientation === 'horizontal' && {
-    top: 30,
-    transform: 'translateX(-50%)',
-    '@media (pointer: coarse)': {
-      top: 40,
-    },
+})<{ ownerState: SliderOwnerState; markLabelActive: boolean }>(
+  ({ theme, ownerState, markLabelActive }) => ({
+    ...theme.typography.body2,
+    color: (theme.vars || theme).palette.text.secondary,
+    position: 'absolute',
+    whiteSpace: 'nowrap',
+    ...(ownerState.orientation === 'horizontal' && {
+      top: 30,
+      transform: 'translateX(-50%)',
+      '@media (pointer: coarse)': {
+        top: 40,
+      },
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      left: 36,
+      transform: 'translateY(50%)',
+      '@media (pointer: coarse)': {
+        left: 44,
+      },
+    }),
+    ...(markLabelActive && {
+      color: (theme.vars || theme).palette.text.primary,
+    }),
   }),
-  ...(ownerState.orientation === 'vertical' && {
-    left: 36,
-    transform: 'translateY(50%)',
-    '@media (pointer: coarse)': {
-      left: 44,
-    },
-  }),
-  ...(markLabelActive && {
-    color: (theme.vars || theme).palette.text.primary,
-  }),
-}));
+);
 
 SliderMarkLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
