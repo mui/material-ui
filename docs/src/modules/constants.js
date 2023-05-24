@@ -6,6 +6,7 @@ const CODE_VARIANTS = {
 const CODE_STYLING = {
   SYSTEM: 'MUI System',
   TAILWIND: 'Tailwind',
+  CSS: 'CSS',
 };
 
 // Valid languages to use in production

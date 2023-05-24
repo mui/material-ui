@@ -97,12 +97,17 @@ export default function MarkdownElementV2({
         scope: demos.scope,
         jsxPreview: demo.jsxPreview,
         tailwindJsxPreview: demo.tailwindJsxPreview,
+        cssJsxPreview: demo.cssJsxPreview,
         rawTS: demo.rawTS,
         tsx: demoComponents[demo.moduleTS] ?? null,
         rawTailwind: demo.rawTailwind,
         rawTailwindTS: demo.rawTailwindTS,
         jsTailwind: demoComponents[demo.moduleTailwind] ?? null,
         tsxTailwind: demoComponents[demo.moduleTSTailwind] ?? null,
+        rawCSS: demo.rawCSS,
+        rawCSSTS: demo.rawCSSTS,
+        jsCSS: demoComponents[demo.moduleCSS] ?? null,
+        tsxCSS: demoComponents[demo.moduleTSCSS] ?? null,
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}

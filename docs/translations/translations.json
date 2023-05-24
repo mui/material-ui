@@ -80,6 +80,7 @@
   "demoToolbarLabel": "demo source",
   "demoStylingSelectSystem": "MUI System",
   "demoStylingSelectTailwind": "Tailwind CSS",
+  "demoStylingSelectCSS": "Plain CSS",
   "diamondSponsors": "Diamond Sponsors",
   "editorHint": "Press <kbd>Enter</kbd> to start editing",
   "editPage": "Edit this page",

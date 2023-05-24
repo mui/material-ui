@@ -98,7 +98,7 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
       if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
         codeOptions = {
           codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\.js$/, '.tailwind.tsx'),
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
           raw: demo.rawTailwindTS,
           Component: demo.tsxTailwind,
           sourceLanguage: 'tsx',
@@ -106,20 +106,42 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
       } else {
         codeOptions = {
           codeVariant: CODE_VARIANTS.JS,
-          githubLocation,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
           raw: demo.rawTailwind ?? demo.raw,
           Component: demo.jsTailwind ?? demo.js,
           sourceLanguage: 'jsx',
         };
       }
+    } else if (codeStyling === CODE_STYLING.CSS) {
+      if (codeVariant === CODE_VARIANTS.TS && demo.rawCSSTS) {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.TS,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
+          raw: demo.rawCSSTS,
+          Component: demo.tsxCSS,
+          sourceLanguage: 'tsx',
+        };
+      } else {
+        codeOptions = {
+          codeVariant: CODE_VARIANTS.JS,
+          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
+          raw: demo.rawCSS ?? demo.raw,
+          Component: demo.jsCSS ?? demo.js,
+          sourceLanguage: 'jsx',
+        };
+      }
+    }
+
+    let jsxPreview = demo.jsxPreview;
+    if (codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview) {
+      jsxPreview = demo.tailwindJsxPreview;
+    } else if (codeStyling === CODE_STYLING.CSS && demo.cssJsxPreview) {
+      jsxPreview = demo.cssJsxPreview;
     }
 
     return {
       scope: demo.scope,
-      jsxPreview:
-        codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview
-          ? demo.tailwindJsxPreview
-          : demo.jsxPreview,
+      jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       product,
@@ -397,7 +419,7 @@ export default function Demo(props) {
 
   const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
 
-  const showSelect = demo.rawTailwind || demo.rawTailwindTS;
+  const showSelect = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {
@@ -510,6 +532,7 @@ export default function Demo(props) {
           >
             <MenuItem value={CODE_STYLING.SYSTEM}>{t('demoStylingSelectSystem')}</MenuItem>
             <MenuItem value={CODE_STYLING.TAILWIND}>{t('demoStylingSelectTailwind')}</MenuItem>
+            <MenuItem value={CODE_STYLING.CSS}>{t('demoStylingSelectCSS')}</MenuItem>
           </Select>
         </Box>
       )}

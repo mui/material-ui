@@ -234,6 +234,60 @@ module.exports = async function demoLoader() {
           // tailwind TS demo doesn't exists
         }
 
+        // Add plain CSS demo data
+        const cssModuleID = moduleID.replace('/system/index.js', '/css/index.js');
+        try {
+          // Add JS demo data
+          const cssModuleFilepath = path.join(
+            path.dirname(this.resourcePath),
+            cssModuleID.replace(/\//g, path.sep),
+          );
+
+          demos[demoName].moduleCSS = cssModuleID;
+          demos[demoName].rawCSS = await fs.readFile(cssModuleFilepath, {
+            encoding: 'utf8',
+          });
+
+          this.addDependency(cssModuleFilepath);
+
+          demoModuleIDs.add(cssModuleID);
+
+          extractImports(demos[demoName].rawCSS).forEach((importModuleID) =>
+            importedModuleIDs.add(importModuleID),
+          );
+
+          demoModuleIDs.add(demos[demoName].moduleCSS);
+        } catch (error) {
+          // plain css js demo doesn't exists
+        }
+
+        try {
+          // Add TS demo data
+          const cssTSModuleID = cssModuleID.replace('.js', '.tsx');
+
+          const cssTSModuleFilepath = path.join(
+            path.dirname(this.resourcePath),
+            cssTSModuleID.replace(/\//g, path.sep),
+          );
+
+          demos[demoName].moduleTSCSS = cssTSModuleID;
+          demos[demoName].rawCSSTS = await fs.readFile(cssTSModuleFilepath, {
+            encoding: 'utf8',
+          });
+
+          this.addDependency(cssTSModuleFilepath);
+
+          demoModuleIDs.add(cssTSModuleID);
+
+          extractImports(demos[demoName].rawCSSTS).forEach((importModuleID) =>
+            importedModuleIDs.add(importModuleID),
+          );
+
+          demoModuleIDs.add(demos[demoName].moduleTSCSS);
+        } catch (error) {
+          // plain css demo doesn't exists
+        }
+
         // Tailwind preview
         try {
           const tailwindPreviewFilepath = moduleFilepath.replace(
@@ -247,6 +301,23 @@ module.exports = async function demoLoader() {
           this.addDependency(tailwindPreviewFilepath);
 
           demos[demoName].tailwindJsxPreview = tailwindJsxPreview;
+        } catch (error) {
+          // No preview exists. This is fine.
+        }
+
+        // CSS preview
+        try {
+          const cssPreviewFilepath = moduleFilepath.replace(
+            `${path.sep}system${path.sep}index.js`,
+            `${path.sep}css${path.sep}index.tsx.preview`,
+          );
+
+          const cssJsxPreview = await fs.readFile(cssPreviewFilepath, {
+            encoding: 'utf8',
+          });
+          this.addDependency(cssPreviewFilepath);
+
+          demos[demoName].cssJsxPreview = cssJsxPreview;
         } catch (error) {
           // No preview exists. This is fine.
         }
