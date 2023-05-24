@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTabsContext } from '../TabsUnstyled';
+import { useTabsContext } from '../Tabs';
 import {
   TabsListActionTypes,
   UseTabsListParameters,
@@ -17,14 +17,14 @@ import tabsListReducer from './tabsListReducer';
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *
  * - [useTabsList API](https://mui.com/base/react-tabs/hooks-api/#use-tabs-list)
  */
 function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue {
-  const { ref: externalRef } = parameters;
+  const { rootRef: externalRef } = parameters;
 
   const {
     direction = 'ltr',
@@ -103,6 +103,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     dispatch,
     getRootProps: getListboxRootProps,
     state: { highlightedValue, selectedValues },
+    rootRef: mergedRootRef,
   } = useList<
     string | number,
     ListState<string | number>,
@@ -115,7 +116,7 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
     getItemDomElement: getTabElement,
     isItemDisabled,
     items: subitemKeys,
-    listRef: externalRef,
+    rootRef: externalRef,
     onChange: handleChange,
     orientation: listOrientation,
     reducerActionContext: React.useMemo(
@@ -152,16 +153,14 @@ function useTabsList(parameters: UseTabsListParameters): UseTabsListReturnValue 
   };
 
   return {
+    contextValue: { ...compoundComponentContextValue, ...listContextValue },
     dispatch,
+    getRootProps,
+    highlightedValue,
     isRtl,
     orientation,
+    rootRef: mergedRootRef,
     selectedValue: selectedValues[0] ?? null,
-    highlightedValue,
-    getRootProps,
-    contextValue: {
-      ...compoundComponentContextValue,
-      ...listContextValue,
-    },
   };
 }
 

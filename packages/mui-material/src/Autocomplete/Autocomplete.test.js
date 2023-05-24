@@ -19,6 +19,8 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/system/Box';
 
 function checkHighlightIs(listbox, expected) {
@@ -726,6 +728,7 @@ describe('<Autocomplete />', () => {
   it('should trigger a form expectedly', () => {
     const handleSubmit = spy();
     function Test(props) {
+      const { key, ...others } = props;
       return (
         <div
           onKeyDown={(event) => {
@@ -737,7 +740,8 @@ describe('<Autocomplete />', () => {
           <Autocomplete
             options={['one', 'two']}
             renderInput={(props2) => <TextField {...props2} autoFocus />}
-            {...props}
+            key={key}
+            {...others}
           />
         </div>
       );
@@ -1936,6 +1940,40 @@ describe('<Autocomplete />', () => {
       fireEvent.mouseDown(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
+
+    it('should not focus when tooltip clicked', () => {
+      const { getByRole, getByText } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => {
+            return (
+              <TextField
+                {...params}
+                InputProps={{
+                  ...params.InputProps,
+                  startAdornment: (
+                    <InputAdornment position="end">
+                      <Tooltip title="tooltip" open>
+                        <div>ICON</div>
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            );
+          }}
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+      const tooltip = getByText('tooltip');
+
+      act(() => {
+        fireEvent.click(tooltip);
+      });
+
+      expect(textbox).not.toHaveFocus();
+    });
   });
 
   describe('controlled', () => {
@@ -2462,6 +2500,30 @@ describe('<Autocomplete />', () => {
 
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.fullWidth);
     });
+  });
+
+  it('should not override internal listbox ref when external listbox ref is provided', () => {
+    const handleHighlightChange = spy();
+    const options = ['one', 'two', 'three'];
+    const ref = React.createRef(null);
+    render(
+      <Autocomplete
+        defaultValue={options[0]}
+        onHighlightChange={handleHighlightChange}
+        options={options}
+        ListboxProps={{ ref }}
+        open
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+    expect(handleHighlightChange.callCount).to.equal(
+      // FIXME: highlighted index implementation should be implemented using React not the DOM.
+      React.version.startsWith('18') ? 2 : 1,
+    );
+    expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
+    if (React.version.startsWith('18')) {
+      expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
+    }
   });
 
   describe('prop: onHighlightChange', () => {

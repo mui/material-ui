@@ -567,6 +567,32 @@ If you have customized the color of the border, you will need to update the CSS 
  }
 ```
 
+### Support "middle" variant with "vertical" orientation
+
+In v4, using `orientation="vertical"` and `variant="middle"` was adding a left and right margins of `16px` in the component.
+In the v5, to avoid fixed spacing on the component, this margin was removed.
+
+:::info
+If you want to use the previous margin values, this change can be made in your theme with the following code. See the example on [CodeSandbox demo](https://codesandbox.io/s/v5-migration-vertical-alignment-middle-divider-45vepj?file=/src/index.tsx).
+:::
+
+```diff
+ const theme = createTheme({
+  components: {
+   MuiDivider: {
++     styleOverrides: {
++       root: ({ ownerState, theme }) => ({
++         ...(ownerState.orientation === 'vertical' && ownerState.variant === 'middle' && {
++           marginLeft: theme.spacing(2),
++           marginRight: theme.spacing(2),
++         }),
++       })
++     }
+    },
+  },
+ });
+```
+
 ## ExpansionPanel
 
 ### ✅ Rename components

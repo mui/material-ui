@@ -41,7 +41,6 @@ module.exports = [
   { pathname: '/api-docs/filled-input' },
   { pathname: '/api-docs/form-control' },
   { pathname: '/api-docs/form-control-label' },
-  { pathname: '/api-docs/form-control-unstyled' },
   { pathname: '/api-docs/form-group' },
   { pathname: '/api-docs/form-helper-text' },
   { pathname: '/api-docs/form-label' },
