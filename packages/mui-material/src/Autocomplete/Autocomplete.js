@@ -552,12 +552,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
 
-    return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
-      index,
-      inputValue,
-    },
-    ownerState);
+    return renderOption(
+      { ...optionProps, className: classes.option },
+      option,
+      {
+        selected: optionProps['aria-selected'],
+        index,
+        inputValue,
+      },
+      ownerState,
+    );
   };
 
   const clearIndicatorSlotProps = slotProps.clearIndicator ?? componentsProps.clearIndicator;

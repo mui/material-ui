@@ -244,6 +244,7 @@ export interface AutocompleteProps<
     props: React.HTMLAttributes<HTMLLIElement>,
     option: T,
     state: AutocompleteRenderOptionState,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
    * Render the selected value.
