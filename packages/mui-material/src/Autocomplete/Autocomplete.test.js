@@ -3010,14 +3010,14 @@ describe('<Autocomplete />', () => {
           getOptionLabel={() => `getOptionLabel`}
           renderInput={(params) => <TextField {...params} autoFocus />}
           renderOption={function f(...[option, , , ownerState]) {
-            return <li>{ownerState.getOptionLabel(option)}</li>;
+            return <li key={option.label}>{ownerState.getOptionLabel(option)}</li>;
           }}
         />,
       );
 
       const listbox = getByRole('listbox');
-      const htmlOptions = listbox.querySelector('li');
-      expect(htmlOptions.innerHTML).to.equal('getOptionLabel');
+      const htmlOption = listbox.querySelector('li');
+      expect(htmlOption.innerHTML).to.equal('getOptionLabel');
     });
   });
 
