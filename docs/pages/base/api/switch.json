@@ -3,6 +3,7 @@
     "checked": { "type": { "name": "bool" } },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
+    "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },

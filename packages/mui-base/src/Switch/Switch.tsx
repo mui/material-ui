@@ -54,6 +54,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
+    name,
     onBlur,
     onChange,
     onFocus,
@@ -84,6 +85,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     disabled,
     focusVisible,
     readOnly,
+    name,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -115,6 +117,9 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
   const inputProps: WithOptionalOwnerState<SwitchInputSlotProps> = useSlotProps({
     elementType: Input,
     externalSlotProps: slotProps.input,
+    additionalProps: {
+      name,
+    },
     ownerState,
     className: classes.input,
   });
@@ -131,7 +136,7 @@ const Switch = React.forwardRef(function Switch<RootComponentType extends React.
     <Root {...rootProps} sx={{ outline: 'none' }}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
-      <Input {...inputProps} hidden />
+      <Input {...inputProps} hidden type="hidden" />
     </Root>
   );
 }) as PolymorphicComponent<SwitchTypeMap>;
@@ -153,6 +158,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
   /**
    * @ignore
    */

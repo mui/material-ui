@@ -19,6 +19,10 @@ export interface SwitchOwnProps extends UseSwitchParameters {
    */
   slots?: SwitchSlots;
   /**
+   * Name attribute of the `input` element.
+   */
+  name?: string;
+  /**
    * The props used for each slot inside the Switch.
    * @default {}
    */
