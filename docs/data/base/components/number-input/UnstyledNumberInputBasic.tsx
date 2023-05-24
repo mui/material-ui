@@ -2,7 +2,7 @@ import * as React from 'react';
 import NumberInput, {
   NumberInputProps,
   numberInputClasses,
-} from '@mui/base/NumberInput';
+} from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 
 const CustomNumberInput = React.forwardRef(function CustomNumberInput(

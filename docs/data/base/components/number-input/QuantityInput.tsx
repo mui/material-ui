@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NumberInput, { NumberInputProps } from '@mui/base/NumberInput';
+import NumberInput, { NumberInputProps } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';

@@ -2,7 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
-import NumberInput, { numberInputClasses, NumberInputOwnerState } from '@mui/base/NumberInput';
+import NumberInput, {
+  numberInputClasses,
+  NumberInputOwnerState,
+} from '@mui/base/Unstable_NumberInput';
 import { act, createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
 
 describe('<NumberInput />', () => {
