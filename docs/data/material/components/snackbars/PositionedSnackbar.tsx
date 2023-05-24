@@ -35,18 +35,18 @@ export default function PositionedSnackbar() {
       <Button
         onClick={handleClick({
           vertical: 'top',
-          horizontal: 'right',
+          horizontal: 'left',
         })}
       >
-        Top-Right
+        Top-Left
       </Button>
       <Button
         onClick={handleClick({
           vertical: 'bottom',
-          horizontal: 'right',
+          horizontal: 'left',
         })}
       >
-        Bottom-Right
+        Bottom-Left
       </Button>
       <Button
         onClick={handleClick({
@@ -59,18 +59,18 @@ export default function PositionedSnackbar() {
       <Button
         onClick={handleClick({
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
         })}
       >
-        Bottom-Left
+        Bottom-Right
       </Button>
       <Button
         onClick={handleClick({
           vertical: 'top',
-          horizontal: 'left',
+          horizontal: 'right',
         })}
       >
-        Top-Left
+        Top-Right
       </Button>
     </React.Fragment>
   );
