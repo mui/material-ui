@@ -498,7 +498,7 @@ const useUtilityClasses = (ownerState: SliderOwnerState) => {
   return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
-const Forward = ({ children }) => children;
+const Forward = ({ children }: { children: React.ReactElement<any> }) => children;
 
 const Slider = React.forwardRef(function Slider<
   BaseComponentType extends React.ElementType = SliderTypeMap['defaultComponent'],
