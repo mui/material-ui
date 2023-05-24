@@ -42,7 +42,7 @@ const visibleFields = [
 export default function XHero() {
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
-    rowLength: 10000,
+    rowLength: 5000,
     editable: true,
     visibleFields,
   });
