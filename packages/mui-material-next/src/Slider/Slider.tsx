@@ -371,7 +371,7 @@ StyledSliderValueLabel.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.node,
+  children: PropTypes.element,
 };
 
 export { StyledSliderValueLabel as SliderValueLabel };
