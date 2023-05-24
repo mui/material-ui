@@ -11,8 +11,8 @@ export default function UnderlineInput() {
           '&::before': {
             border: '1.5px solid var(--Input-focusedHighlight)',
             transform: 'scaleX(0)',
-            left: '2px',
-            right: '2px',
+            left: '2.5px',
+            right: '2.5px',
             bottom: 0,
             top: 'unset',
             transition: 'transform .15s cubic-bezier(0.1,0.9,0.2,1)',
@@ -27,9 +27,9 @@ export default function UnderlineInput() {
       />
       <Input
         placeholder="Type in here…"
-        variant="plain"
+        variant="soft"
         sx={{
-          borderBottom: '1px solid',
+          borderBottom: '2px solid',
           borderColor: 'neutral.outlinedBorder',
           borderRadius: 0,
           '&:hover': {
@@ -40,7 +40,7 @@ export default function UnderlineInput() {
             transform: 'scaleX(0)',
             left: 0,
             right: 0,
-            bottom: '-1px',
+            bottom: '-2px',
             top: 'unset',
             transition: 'transform .15s cubic-bezier(0.1,0.9,0.2,1)',
             borderRadius: 0,

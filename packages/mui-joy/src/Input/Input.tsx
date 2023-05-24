@@ -116,7 +116,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         // variant styles
         ...variantStyle,
         backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
-        '&:hover:not(:focus-within)': {
+        '&:hover': {
           ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
           backgroundColor: null, // it is not common to change background on hover for Input
         },

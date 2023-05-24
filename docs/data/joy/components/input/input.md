@@ -110,7 +110,15 @@ These props may include HTML attributes such as `ref`, `min`, `max`, and `autoco
 
 ## Common examples
 
+### Focus outline
+
+This example shows how to replace the default focus ring appearance with CSS outline.
+
+{{"demo": "FocusOutlineInput.js"}}
+
 ### Floating label
+
+To create a floating label input, a custom component (combination of `<input>` and `<label>`) is required to replace the default input slot.
 
 {{"demo": "FloatingLabelInput.js"}}
 
@@ -121,6 +129,10 @@ These props may include HTML attributes such as `ref`, `min`, `max`, and `autoco
 ### Newsletter Subscription
 
 {{"demo": "InputSubscription.js"}}
+
+### Password meter
+
+{{"demo": "PasswordMeterInput.js"}}
 
 ## CSS variable playground
 
