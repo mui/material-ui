@@ -281,12 +281,12 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const createHandleCodeSourceLink = (anchor, codeVariant, stylingSolution) => async () => {
+  const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
     try {
       await copy(
         `${window.location.href.split('#')[0]}#${
           stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
-        }${anchor}${codeVariant === CODE_VARIANTS.TS ? '.tsx' : '.js'}`,
+        }${anchor}${codeVariantParam === CODE_VARIANTS.TS ? '.tsx' : '.js'}`,
       );
       setSnackbarMessage(t('copiedSourceLink'));
       setSnackbarOpen(true);
@@ -617,6 +617,7 @@ export default function DemoToolbar(props) {
 DemoToolbar.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
+  styleSolution: PropTypes.string,
   demo: PropTypes.object.isRequired,
   demoData: PropTypes.object.isRequired,
   demoHovered: PropTypes.bool.isRequired,
