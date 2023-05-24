@@ -15,7 +15,7 @@ import useTheme from '../styles/useTheme';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import SliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-import { SliderTypeMap, SliderProps } from './Slider.types';
+import { SliderOwnerState, SliderTypeMap, SliderProps } from './Slider.types';
 
 function Identity<Type>(x: Type): Type {
   return x;
@@ -29,7 +29,7 @@ const SliderRoot = styled('span', {
 
     return [
       styles.root,
-      styles[`color${capitalize(ownerState.color)}`],
+      styles[`color${capitalize(ownerState.color || 'primary')}`],
       ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
       ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
@@ -37,14 +37,14 @@ const SliderRoot = styled('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
   borderRadius: 12,
   boxSizing: 'content-box',
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: (theme.vars || theme).palette[ownerState.color].main,
+  color: (theme.vars || theme).palette[ownerState.color || 'primary'].main,
   WebkitTapHighlightColor: 'transparent',
   ...(ownerState.orientation === 'horizontal' && {
     height: 4,
@@ -110,7 +110,7 @@ const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
-})(({ ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ ownerState }) => ({
   display: 'block',
   position: 'absolute',
   borderRadius: 'inherit',
@@ -150,11 +150,11 @@ const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme, ownerState }) => {
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
   const color = // Same logic as the LinearProgress track color
     theme.palette.mode === 'light'
-      ? lighten(theme.palette[ownerState.color].main, 0.62)
-      : darken(theme.palette[ownerState.color].main, 0.5);
+      ? lighten(theme.palette[ownerState.color || 'primary'].main, 0.62)
+      : darken(theme.palette[ownerState.color || 'primary'].main, 0.5);
   return {
     display: 'block',
     position: 'absolute',
@@ -181,8 +181,12 @@ const SliderTrack = styled('span', {
       display: 'none',
     }),
     ...(ownerState.track === 'inverted' && {
-      backgroundColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
-      borderColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
+      backgroundColor: theme.vars
+        ? theme.vars.palette.Slider[`${ownerState.color || 'primary'}Track`]
+        : color,
+      borderColor: theme.vars
+        ? theme.vars.palette.Slider[`${ownerState.color || 'primary'}Track`]
+        : color,
     }),
   };
 });
@@ -207,11 +211,11 @@ const SliderThumb = styled('span', {
     const { ownerState } = props;
     return [
       styles.thumb,
-      styles[`thumbColor${capitalize(ownerState.color)}`],
+      styles[`thumbColor${capitalize(ownerState.color || 'primary')}`],
       ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
     ];
   },
-})(({ theme, ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
   position: 'absolute',
   width: 20,
   height: 20,
@@ -262,8 +266,8 @@ const SliderThumb = styled('span', {
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
     boxShadow: `0px 0px 0px 8px ${
       theme.vars
-        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
-        : alpha(theme.palette[ownerState.color].main, 0.16)
+        ? `rgba(${theme.vars.palette[ownerState.color || 'primary'].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color || 'primary'].main, 0.16)
     }`,
     '@media (hover: none)': {
       boxShadow: 'none',
@@ -272,8 +276,8 @@ const SliderThumb = styled('span', {
   [`&.${sliderClasses.active}`]: {
     boxShadow: `0px 0px 0px 14px ${
       theme.vars
-        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
-        : alpha(theme.palette[ownerState.color].main, 0.16)
+        ? `rgba(${theme.vars.palette[ownerState.color || 'primary'].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color || 'primary'].main, 0.16)
     }`,
   },
   [`&.${sliderClasses.disabled}`]: {
@@ -300,7 +304,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})(({ theme, ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: `${
       ownerState.orientation === 'vertical' ? 'translateY(-50%)' : 'translateY(-100%)'
@@ -381,7 +385,7 @@ const SliderMark = styled('span', {
 
     return [styles.mark, markActive && styles.markActive];
   },
-})(({ theme, ownerState, markActive }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -419,7 +423,7 @@ const SliderMarkLabel = styled('span', {
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})(({ theme, ownerState, markLabelActive }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState, markLabelActive }) => ({
   ...theme.typography.body2,
   color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
@@ -456,7 +460,7 @@ SliderMarkLabel.propTypes /* remove-proptypes */ = {
 
 export { SliderMarkLabel };
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: SliderOwnerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
 
   const slots = {
@@ -540,7 +544,7 @@ const Slider = React.forwardRef(function Slider<
     ...other
   } = props;
 
-  const ownerState = {
+  const propsWithDefaultValues = {
     ...props,
     isRtl,
     max,
@@ -557,7 +561,7 @@ const Slider = React.forwardRef(function Slider<
     track,
     valueLabelDisplay,
     valueLabelFormat,
-  };
+  } as Partial<SliderOwnerState>;
 
   const {
     axisProps,
@@ -574,11 +578,14 @@ const Slider = React.forwardRef(function Slider<
     values,
     trackOffset,
     trackLeap,
-  } = useSlider({ ...ownerState, rootRef: ref });
+  } = useSlider({ ...propsWithDefaultValues, rootRef: ref });
 
-  ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
-  ownerState.dragging = dragging;
-  ownerState.focusedThumbIndex = focusedThumbIndex;
+  const ownerState: SliderOwnerState = {
+    ...propsWithDefaultValues,
+    marked: marks.length > 0 && marks.some((mark) => mark.label),
+    dragging,
+    focusedThumbIndex,
+  };
 
   const classes = useUtilityClasses(ownerState);
 
@@ -611,10 +618,7 @@ const Slider = React.forwardRef(function Slider<
         as: component,
       }),
     },
-    ownerState: {
-      ...ownerState,
-      ...rootSlotProps?.ownerState,
-    },
+    ownerState,
     className: [classes.root, className],
   });
 
@@ -634,10 +638,7 @@ const Slider = React.forwardRef(function Slider<
         ...axisProps[axis].leap(trackLeap),
       },
     },
-    ownerState: {
-      ...ownerState,
-      ...trackSlotProps?.ownerState,
-    },
+    ownerState,
     className: classes.track,
   });
 
@@ -645,20 +646,14 @@ const Slider = React.forwardRef(function Slider<
     elementType: ThumbSlot,
     getSlotProps: getThumbProps,
     externalSlotProps: thumbSlotProps,
-    ownerState: {
-      ...ownerState,
-      ...thumbSlotProps?.ownerState,
-    },
+    ownerState,
     className: classes.thumb,
   });
 
   const valueLabelProps = useSlotProps({
     elementType: ValueLabelSlot,
     externalSlotProps: valueLabelSlotProps,
-    ownerState: {
-      ...ownerState,
-      ...valueLabelSlotProps?.ownerState,
-    },
+    ownerState,
     className: classes.valueLabel,
   });
 
