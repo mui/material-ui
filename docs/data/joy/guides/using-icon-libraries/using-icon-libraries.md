@@ -191,9 +191,9 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 ### Iconify
 
 - [Browse icons](https://icon-sets.iconify.design/)
-- [Installation—React](https://docs.iconify.design/icon-components/react/)
-- [Installation—Web component](https://docs.iconify.design/iconify-icon/)
-- [Figma plugin](https://docs.iconify.design/design/figma/)
+- [Installation—React](https://iconify.design/docs/icon-components/react/)
+- [Installation—Web component](https://iconify.design/docs/iconify-icon/)
+- [Figma plugin](https://iconify.design/docs/design/figma/)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-iconify-r8fjrm?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
      style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"

@@ -2,13 +2,16 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Tooltip, { tooltipClasses as classes } from '@mui/joy/Tooltip';
+import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { PopperProps } from '@mui/base';
 
 describe('<Tooltip />', () => {
   const { render } = createRenderer();
 
-  function TestPopper(props) {
+  function TestPopper(
+    props: Omit<PopperProps, 'children'> & { 'data-testid': string; children: any },
+  ) {
     const { children, className, 'data-testid': testId } = props;
     return (
       <div className={className} data-testid={testId ?? 'custom'}>
@@ -35,7 +38,7 @@ describe('<Tooltip />', () => {
       slots: {
         root: {
           expectedClassName: classes.root,
-          testWithComponent: TestPopper,
+          testWithComponent: TestPopper as React.ComponentType,
           testWithElement: null,
         },
         arrow: { expectedClassName: classes.arrow },
@@ -56,7 +59,7 @@ describe('<Tooltip />', () => {
       title="Hello world"
       open
       disablePortal
-      slotProps={{ root: { 'data-testid': 'test-element' } }}
+      slotProps={{ root: { 'data-testid': 'test-element' } as any }}
     >
       <button>Hello World</button>
     </Tooltip>,
@@ -73,14 +76,16 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).to.have.class(classes.variantSolid);
     });
 
-    ['outlined', 'soft', 'plain', 'solid'].forEach((variant) => {
+    (['outlined', 'soft', 'plain', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" variant={variant} open>
             <button>button</button>
           </Tooltip>,
         );
-        expect(getByRole('tooltip')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByRole('tooltip')).to.have.class(
+          classes[`variant${capitalize(variant)}` as TooltipClassKey],
+        );
       });
     });
   });
@@ -96,7 +101,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).to.have.class(classes.colorNeutral);
     });
 
-    ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
+    (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" color={color} open>
@@ -104,7 +109,9 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
 
-        expect(getByRole('tooltip')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByRole('tooltip')).to.have.class(
+          classes[`color${capitalize(color)}` as TooltipClassKey],
+        );
       });
     });
   });
@@ -120,7 +127,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).to.have.class(classes.sizeMd);
     });
 
-    ['sm', 'md', 'lg'].forEach((size) => {
+    (['sm', 'md', 'lg'] as const).forEach((size) => {
       it(`should render ${size}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" size={size} open>
@@ -128,7 +135,9 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
 
-        expect(getByRole('tooltip')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByRole('tooltip')).to.have.class(
+          classes[`size${capitalize(size)}` as TooltipClassKey],
+        );
       });
     });
   });
