@@ -233,6 +233,8 @@ export default function XHero() {
                     pl: 6,
                   },
                 }}
+                rowHeight={36}
+                columnHeaderHeight={48}
                 hideFooter
                 loading={loading}
                 isGroupExpandedByDefault={() => {
