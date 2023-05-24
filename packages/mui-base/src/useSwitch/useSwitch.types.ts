@@ -35,9 +35,9 @@ export interface UseSwitchParameters {
 }
 
 interface UseSwitchRootSlotOwnProps {
-  ariaReadOnly?: boolean;
-  ariaDisabled?: boolean;
-  ariaRequired?: boolean;
+  'aria-readOnly'?: React.AriaAttributes['aria-readonly'];
+  'aria-disabled'?: React.AriaAttributes['aria-disabled'];
+  'aria-required'?: React.AriaAttributes['aria-required'];
   onBlur: React.FocusEventHandler;
   onFocus: React.FocusEventHandler;
   onClick: React.MouseEventHandler;
