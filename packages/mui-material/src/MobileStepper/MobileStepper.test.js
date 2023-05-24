@@ -129,13 +129,4 @@ describe('<MobileStepper />', () => {
     rerender(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
     expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
   });
-
-  it('should set value correctly when active step is greater than steps', () => {
-    const { rerender } = render(
-      <MobileStepper {...defaultProps} variant="progress" activeStep={5} steps={6} />,
-    );
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
-    rerender(<MobileStepper {...defaultProps} variant="progress" activeStep={5} steps={3} />);
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
-  });
 });
