@@ -237,7 +237,8 @@ export interface AutocompleteProps<
    *
    * @param {object} props The props to apply on the li element.
    * @param {T} option The option to render.
-   * @param {object} state The state of the component.
+   * @param {object} state The state of each option.
+   * @param {object} ownerState The state of the component and all the props it is given to.
    * @returns {ReactNode}
    */
   renderOption?: (
