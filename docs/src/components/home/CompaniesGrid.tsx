@@ -39,6 +39,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'southwest',
     width: 130,
+    height: 54,
     style: {
       marginTop: -10,
     },
@@ -46,6 +47,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'boeing',
     width: 160,
+    height: 86,
     style: {
       marginTop: -23,
     },
@@ -53,6 +55,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'apple',
     width: 29,
+    height: 52,
     style: {
       marginTop: -21,
     },
@@ -60,6 +63,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'siemens',
     width: 119,
+    height: 59,
     style: {
       marginTop: -13,
     },
@@ -67,6 +71,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'volvo',
     width: 128,
+    height: 52,
     style: {
       marginTop: -11,
     },
@@ -74,6 +79,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'deloitte',
     width: 97,
+    height: 52,
     style: {
       marginTop: -12,
     },
