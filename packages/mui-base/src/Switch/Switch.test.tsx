@@ -74,5 +74,17 @@ describe('<Switch />', () => {
         expect(renderedComponents[i]).to.have.attribute('data-focusvisible', 'false');
       }
     });
+
+    it('passes props that are specified for InputSlot', () => {
+      const inputProps = {
+        slotProps: { input: { 'aria-label': 'Demo switch', name: 'test', type: 'checkbox' } },
+      };
+
+      const { container } = render(<Switch {...inputProps} />);
+
+      expect(container.querySelector('input')).to.have.attribute('aria-label', 'Demo switch');
+      expect(container.querySelector('input')).to.have.attribute('name', 'test');
+      expect(container.querySelector('input')).to.have.attribute('type', 'checkbox');
+    });
   });
 });
