@@ -23,6 +23,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
+import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
 
@@ -224,6 +225,7 @@ export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
+    styleSolution,
     demo,
     demoData,
     demoId,
@@ -279,9 +281,13 @@ export default function DemoToolbar(props) {
     }
   };
 
-  const createHandleCodeSourceLink = (anchor) => async () => {
+  const createHandleCodeSourceLink = (anchor, codeVariant, stylingSolution) => async () => {
     try {
-      await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+      await copy(
+        `${window.location.href.split('#')[0]}#${
+          stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
+        }${anchor}${codeVariant === CODE_VARIANTS.TS ? '.tsx' : '.js'}`,
+      );
       setSnackbarMessage(t('copiedSourceLink'));
       setSnackbarOpen(true);
     } finally {
@@ -584,7 +590,7 @@ export default function DemoToolbar(props) {
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="copy-js-source-link"
-          onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+          onClick={createHandleCodeSourceLink(demoName, CODE_VARIANTS.JS, styleSolution)}
         >
           {t('copySourceLinkJS')}
         </MenuItem>
@@ -592,7 +598,7 @@ export default function DemoToolbar(props) {
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="copy-ts-source-link"
-          onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+          onClick={createHandleCodeSourceLink(demoName, CODE_VARIANTS.TS, styleSolution)}
         >
           {t('copySourceLinkTS')}
         </MenuItem>

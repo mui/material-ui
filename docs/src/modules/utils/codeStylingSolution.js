@@ -34,13 +34,15 @@ export function CodeStylingProvider(props) {
     }
 
     if (typeof window !== 'undefined') {
-      if (window.location.hash.indexOf('tailwind') >= 0) {
+      if (window.location.hash.indexOf('tailwind-') >= 0) {
         return CODE_STYLING.TAILWIND;
       }
-      if (window.location.hash.indexOf('css') >= 0) {
+      if (window.location.hash.indexOf('css-') >= 0) {
         return CODE_STYLING.CSS;
       }
-      return CODE_STYLING.SYSTEM;
+      if (window.location.hash.indexOf('system-') >= 0) {
+        return CODE_STYLING.SYSTEM;
+      }
     }
 
     return undefined;

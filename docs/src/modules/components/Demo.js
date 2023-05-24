@@ -22,6 +22,7 @@ import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useCodeStyling, useSetCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import { blue, blueDark, grey } from 'docs/src/modules/brandingTheme';
 
@@ -53,7 +54,10 @@ export function DemoToolbarFallback() {
 }
 
 function getDemoName(location) {
-  return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
+  return location.endsWith('.js') || location.endsWith('.tsx')
+    ? location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
+    : // the demos with multiple styling solution point to directory
+      location.split('/').pop();
 }
 
 function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
@@ -419,7 +423,7 @@ export default function Demo(props) {
 
   const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
 
-  const showSelect = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
+  const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
   const [demoHovered, setDemoHovered] = React.useState(false);
   const handleDemoHover = (event) => {
@@ -522,7 +526,7 @@ export default function Demo(props) {
 
   return (
     <React.Fragment>
-      {showSelect && (
+      {hasNonSystemDemos && (
         <Box sx={{ height: 50 }}>
           <Select
             sx={{ float: 'right' }}
@@ -562,6 +566,12 @@ export default function Demo(props) {
             {demoElement}
           </DemoSandbox>
         </DemoRoot>
+        {Object.keys(stylingSolutionMapping).map((key) => (
+          <React.Fragment>
+            <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
+            <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+          </React.Fragment>
+        ))}
         <AnchorLink id={`${demoName}.js`} />
         <AnchorLink id={`${demoName}.tsx`} />
         <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
@@ -571,6 +581,7 @@ export default function Demo(props) {
                 <DemoToolbar
                   codeOpen={codeOpen}
                   codeVariant={codeVariant}
+                  styleSolution={hasNonSystemDemos ? styleSolution : null}
                   demo={demo}
                   demoData={demoData}
                   demoHovered={demoHovered}
