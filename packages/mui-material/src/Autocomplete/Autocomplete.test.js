@@ -3010,7 +3010,7 @@ describe('<Autocomplete />', () => {
           getOptionLabel={() => `getOptionLabel`}
           renderInput={(params) => <TextField {...params} autoFocus />}
           renderOption={function f(...[option, , , ownerState]) {
-            return <li key={option.label}>{ownerState.getOptionLabel(option)}</li>;
+            return <li key="key">{ownerState.getOptionLabel(option)}</li>;
           }}
         />,
       );
