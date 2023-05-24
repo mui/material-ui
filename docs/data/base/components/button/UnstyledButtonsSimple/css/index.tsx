@@ -23,7 +23,7 @@ function Styles() {
       .CustomButton {
         font-family: IBM Plex Sans,sans-serif;
         font-size: 0.875rem;
-        background-color: #1bb4d3;
+        background-color: #117286;
         color: #fff;
         border-radius: 0.75rem;
         font-weight: bold;
@@ -31,7 +31,7 @@ function Styles() {
         border: none;
       }
       .CustomButton:hover {
-        background-color: #0da5c0;
+        background-color: #0E5C6D;
       }
       .CustomButton:disabled {
         opacity: 0.5;
