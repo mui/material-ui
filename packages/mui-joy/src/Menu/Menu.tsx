@@ -123,6 +123,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTM
   React.useImperativeHandle(
     actions,
     () => ({
+      dispatch,
       resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
@@ -298,6 +299,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * Controls whether the menu is displayed.
    * @default false

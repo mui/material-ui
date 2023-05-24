@@ -3,18 +3,25 @@ import { Simplify } from '@mui/types';
 import Popper, { PopperProps } from '../Popper';
 import { PolymorphicProps, SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from '../useMenu';
+import { ListAction } from '../useList';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}
 
 export interface MenuActions {
+  /**
+   * Dispatches an action that can cause a change to the menu's internal state.
+   */
+  dispatch: (action: ListAction<string>) => void;
+  /**
+   * Resets the highlighted item.
+   */
   resetHighlight: () => void;
 }
 
 export interface MenuOwnProps {
   /**
-   * A ref with imperative actions.
-   * It allows to reset the highlight of the menu.
+   * A ref with imperative actions that can be performed on the menu.
    */
   actions?: React.Ref<MenuActions>;
   /**
@@ -29,7 +36,6 @@ export interface MenuOwnProps {
   listboxId?: string;
   /**
    * Function called when the items displayed in the menu change.
-   * @param items New items
    */
   onItemsChange?: (items: string[]) => void;
   /**

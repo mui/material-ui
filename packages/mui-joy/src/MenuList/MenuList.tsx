@@ -90,6 +90,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   React.useImperativeHandle(
     actions,
     () => ({
+      dispatch,
       resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
@@ -168,6 +169,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   id: PropTypes.string,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
    * @default 'md'

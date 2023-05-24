@@ -61,6 +61,7 @@ const Menu = React.forwardRef(function Menu<RootComponentType extends React.Elem
   React.useImperativeHandle(
     actions,
     () => ({
+      dispatch,
       resetHighlight: () => dispatch({ type: ListActionTypes.resetHighlight, event: null }),
     }),
     [dispatch],
@@ -110,8 +111,7 @@ Menu.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * A ref with imperative actions.
-   * It allows to select the first or last menu item.
+   * A ref with imperative actions that can be performed on the menu.
    */
   actions: refType,
   /**
@@ -136,6 +136,10 @@ Menu.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   listboxId: PropTypes.string,
+  /**
+   * Function called when the items displayed in the menu change.
+   */
+  onItemsChange: PropTypes.func,
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */

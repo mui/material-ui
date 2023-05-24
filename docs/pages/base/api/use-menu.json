@@ -5,6 +5,12 @@
     "listboxRef": {
       "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
     },
+    "onItemsChange": {
+      "type": {
+        "name": "(items: string[]) =&gt; void",
+        "description": "(items: string[]) =&gt; void"
+      }
+    },
     "onOpenChange": {
       "type": { "name": "(open: boolean) =&gt; void", "description": "(open: boolean) =&gt; void" }
     },
