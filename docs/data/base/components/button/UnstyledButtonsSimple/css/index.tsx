@@ -16,7 +16,7 @@ export default function UnstyledButtonsSimple() {
   );
 }
 
-const Styles = () => {
+function Styles() {
   return (
     <style>
       {`
@@ -39,4 +39,4 @@ const Styles = () => {
       `}
     </style>
   );
-};
+}
