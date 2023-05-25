@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
+import MDSelect, { selectClasses } from '@mui/material/Select';
+import Box from '@mui/material/Box';
 import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
@@ -15,11 +18,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
+import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
+import { useSetCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
@@ -112,6 +117,41 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
     },
   }),
 ]);
+
+const Select = styled(MDSelect)(({ theme }) => ({
+  height: 24,
+  borderRadius: 999,
+  border: 'none',
+  paddingLeft: 0,
+  fontSize: '0.85rem',
+  fontWeight: theme.typography.fontWeightMedium,
+  [`& .MuiOutlinedInput-notchedOutline`]: {
+    border: 'none',
+  },
+  color: theme.palette.primary.main,
+  '& svg': {
+    fill: theme.palette.primary.main,
+  },
+  [`:hover`]: {
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+      : alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+    '@media (hover: none)': {
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    },
+  },
+  ...theme.applyDarkStyles({
+    color: theme.palette.primaryDark[700],
+    '& svg': {
+      fill: theme.palette.primaryDark[700],
+    },
+  }),
+}));
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
@@ -286,6 +326,7 @@ export default function DemoToolbar(props) {
   } = props;
 
   const setCodeVariant = useSetCodeVariant();
+  const setCodeStyling = useSetCodeStyling();
   const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
@@ -364,6 +405,7 @@ export default function DemoToolbar(props) {
   }
 
   const controlRefs = [
+    React.useRef(null),
     React.useRef(null),
     React.useRef(null),
     React.useRef(null),
@@ -452,40 +494,68 @@ export default function DemoToolbar(props) {
     /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
+  const handleStylingSolutionChange = (e) => {
+    setCodeStyling(e.target.value);
+  };
+
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
-        <Fade in={codeOpen}>
-          <ToggleButtonGroup
-            sx={{ margin: '8px 0' }}
-            exclusive
-            value={renderedCodeVariant()}
-            onChange={handleCodeLanguageClick}
+        {styleSolution && (
+          <Select
+            size="small"
+            value={styleSolution}
+            onChange={handleStylingSolutionChange}
+            inputProps={{
+              IconComponent: ExpandMoreIcon,
+            }}
+            {...getControlProps(0)}
           >
-            <ToggleButton
-              value={CODE_VARIANTS.JS}
-              aria-label={t('showJSSource')}
-              data-ga-event-category="demo"
-              data-ga-event-action="source-js"
-              data-ga-event-label={demo.gaLabel}
-              {...getControlProps(0)}
+            <MenuItem value={CODE_STYLING.SYSTEM}>{t('demoStylingSelectSystem')}</MenuItem>
+            <MenuItem value={CODE_STYLING.TAILWIND}>{t('demoStylingSelectTailwind')}</MenuItem>
+            <MenuItem value={CODE_STYLING.CSS}>{t('demoStylingSelectCSS')}</MenuItem>
+          </Select>
+        )}
+        <Fade in={codeOpen}>
+          <Box sx={{ display: 'flex', height: 40 }}>
+            {styleSolution && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                sx={{ ml: 2, mr: 1, height: '24px' }}
+              />
+            )}
+            <ToggleButtonGroup
+              sx={{ margin: '8px 0' }}
+              exclusive
+              value={renderedCodeVariant()}
+              onChange={handleCodeLanguageClick}
             >
-              {t('JS')}
-            </ToggleButton>
-            <ToggleButton
-              value={CODE_VARIANTS.TS}
-              disabled={!hasTSVariant}
-              aria-label={t('showTSSource')}
-              data-ga-event-category="demo"
-              data-ga-event-action="source-ts"
-              data-ga-event-label={demo.gaLabel}
-              {...getControlProps(1)}
-            >
-              {t('TS')}
-            </ToggleButton>
-          </ToggleButtonGroup>
+              <ToggleButton
+                value={CODE_VARIANTS.JS}
+                aria-label={t('showJSSource')}
+                data-ga-event-category="demo"
+                data-ga-event-action="source-js"
+                data-ga-event-label={demo.gaLabel}
+                {...getControlProps(1)}
+              >
+                {t('JS')}
+              </ToggleButton>
+              <ToggleButton
+                value={CODE_VARIANTS.TS}
+                disabled={!hasTSVariant}
+                aria-label={t('showTSSource')}
+                data-ga-event-category="demo"
+                data-ga-event-action="source-ts"
+                data-ga-event-label={demo.gaLabel}
+                {...getControlProps(2)}
+              >
+                {t('TS')}
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
         </Fade>
-        <div>
+        <Box sx={{ ml: 'auto' }}>
           <ToggleCodeTooltip
             showSourceHint={showSourceHint}
             PopperProps={{ disablePortal: true }}
@@ -500,7 +570,7 @@ export default function DemoToolbar(props) {
               data-ga-event-action="expand"
               onClick={handleCodeOpenClick}
               color="default"
-              {...getControlProps(2)}
+              {...getControlProps(3)}
             >
               <CodeRoundedIcon />
             </IconButton>
@@ -514,7 +584,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
                   onClick={() => codeSandbox.createReactApp(demoData).openSandbox('/demo')}
-                  {...getControlProps(3)}
+                  {...getControlProps(4)}
                 >
                   <SvgIcon viewBox="0 0 1024 1024">
                     <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
@@ -528,7 +598,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
                   onClick={() => stackBlitz.createReactApp(demoData).openSandbox('demo')}
-                  {...getControlProps(4)}
+                  {...getControlProps(5)}
                 >
                   <SvgIcon viewBox="0 0 19 28">
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
@@ -544,7 +614,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
               onClick={handleCopyClick}
-              {...getControlProps(5)}
+              {...getControlProps(6)}
             >
               <ContentCopyRoundedIcon />
             </IconButton>
@@ -556,7 +626,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(6)}
+              {...getControlProps(7)}
             >
               <ResetFocusIcon />
             </IconButton>
@@ -569,7 +639,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(7)}
+              {...getControlProps(8)}
             >
               <RefreshRoundedIcon />
             </IconButton>
@@ -580,11 +650,11 @@ export default function DemoToolbar(props) {
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(8)}
+            {...getControlProps(9)}
           >
             <MoreVertIcon />
           </IconButton>
-        </div>
+        </Box>
       </Root>
       <Menu
         id="demo-menu-more"

@@ -8,9 +8,6 @@ import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
@@ -520,26 +517,8 @@ export default function Demo(props) {
     liveDemoActive,
   });
 
-  const handleStylingSolutionChange = (e) => {
-    setCodeStyling(e.target.value);
-  };
-
   return (
     <React.Fragment>
-      {hasNonSystemDemos && (
-        <Box sx={{ height: 50 }}>
-          <Select
-            sx={{ float: 'right' }}
-            size="small"
-            value={styleSolution}
-            onChange={handleStylingSolutionChange}
-          >
-            <MenuItem value={CODE_STYLING.SYSTEM}>{t('demoStylingSelectSystem')}</MenuItem>
-            <MenuItem value={CODE_STYLING.TAILWIND}>{t('demoStylingSelectTailwind')}</MenuItem>
-            <MenuItem value={CODE_STYLING.CSS}>{t('demoStylingSelectCSS')}</MenuItem>
-          </Select>
-        </Box>
-      )}
       <Root>
         <AnchorLink id={demoName} />
         <DemoRoot
