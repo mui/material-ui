@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, match } from 'sinon';
 import { act, createMount, createRenderer, describeConformance, screen } from 'test/utils';
 import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
@@ -395,6 +395,33 @@ describe('<Popover />', () => {
 
         expect(element.style.top === '16px' && element.style.left === '16px').to.equal(true);
         expect(element.style.transformOrigin).to.match(/-16px -16px( 0px)?/);
+      });
+    });
+
+    describe('paper styles', () => {
+      it('should have opacity 1 only after onEntering has been called', () => {
+        const onEnteringSpy = spy();
+        const paperRenderSpy = spy(PopoverPaper, 'render');
+
+        const wrapper = mount(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open={false}
+            TransitionProps={{
+              onEntering: onEnteringSpy,
+            }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        wrapper.setProps({ open: true });
+
+        expect(
+          paperRenderSpy
+            .withArgs(match({ style: { opacity: 1 } }))
+            .firstCall.calledAfter(onEnteringSpy.lastCall),
+        ).to.equal(true);
       });
     });
   });
