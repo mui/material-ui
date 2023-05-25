@@ -1,7 +1,6 @@
 import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import Avatar from '@mui/joy/Avatar';
-import Divider from '@mui/joy/Divider';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -13,7 +12,6 @@ export default function FirstSidebar() {
   return (
     <Sheet
       className="FirstSidebar"
-      variant="soft"
       color="primary"
       invertedColors
       sx={{
@@ -56,12 +54,7 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton
-            selected
-            variant="solid"
-            color="primary"
-            onClick={() => openSidebar()}
-          >
+          <ListItemButton onClick={() => openSidebar()}>
             <i data-feather="bar-chart-2" />
           </ListItemButton>
         </ListItem>
@@ -76,7 +69,12 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
         <ListItem>
-          <ListItemButton onClick={() => openSidebar()}>
+          <ListItemButton
+            selected
+            variant="soft"
+            color="neutral"
+            onClick={() => openSidebar()}
+          >
             <i data-feather="flag" />
           </ListItemButton>
         </ListItem>
@@ -105,7 +103,6 @@ export default function FirstSidebar() {
           </ListItemButton>
         </ListItem>
       </List>
-      <Divider />
       <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
     </Sheet>
   );

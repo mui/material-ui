@@ -4,7 +4,7 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Breadcrumbs from '@mui/joy/Breadcrumbs';
+import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import useScript from './useScript';
@@ -14,7 +14,8 @@ import OrderTable from './components/OrderTable';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
-import { Divider } from '@mui/joy';
+import CountrySelector from './components/CountrySelector';
+import { AspectRatio, Card, CardContent, CardOverflow, Stack } from '@mui/joy';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -102,8 +103,8 @@ export default function JoyOrderDashboardTemplate() {
                 Shared
               </Button>
               <Button
-                variant="outlined"
-                color="neutral"
+                variant="solid"
+                color="primary"
                 startDecorator={<i data-feather="star" />}
               >
                 Save search
@@ -114,7 +115,58 @@ export default function JoyOrderDashboardTemplate() {
             </Box>
           </Box>
           <Divider />
-          <div>alkdjfalkjf</div>
+          <div>
+            <Stack spacing={2} direction="row">
+              <div>
+                <CountrySelector />
+              </div>
+              <div>Jan 6 - Jan 13</div>
+              <div>Any price</div>
+              <div>More filters</div>
+            </Stack>
+            <Stack spacing={2} direction="row">
+              <div>Search icon</div>
+              <div>Search</div>
+              <div>Clear</div>
+              <div>Search</div>
+            </Stack>
+          </div>
+          <Stack spacing={2} direction="row">
+            <div>Sort by date</div>
+            <div>Sort by price</div>
+          </Stack>
+          <Card variant="outlined" orientation="horizontal">
+            <CardOverflow>
+              <AspectRatio
+                ratio="4/3"
+                sx={{
+                  width: 200,
+                  // bgcolor: 'background.level2',
+                  borderRadius: 'md',
+                }}
+              >
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=400"
+                />
+              </AspectRatio>
+            </CardOverflow>
+            <CardContent sx={{ px: 2 }}>
+              <div>Entire apartment rental in Collingwood</div>
+              <div>A Stylish Apt, 5 min walk to Queen Victoria Market</div>
+              <div>4.9</div>
+              <div>202 reviews</div>
+              <div>Rare find</div>
+              <Stack spacing={1} direction="row">
+                <div>Collingwood VIC</div>
+                <div>1 bed</div>
+                <div>Wi-Fi</div>
+                <div>$540</div>
+                <div>total</div>
+              </Stack>
+            </CardContent>
+          </Card>
+
           {/* <OrderTable /> */}
         </Box>
       </Box>
