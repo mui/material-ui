@@ -73,7 +73,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
     if (multiple) {
       defaultValue = defaultValueProp as OptionValue[];
     } else {
-      defaultValue = defaultValueProp == null ? [] : [defaultValueProp as OptionValue];
+      defaultValue = [defaultValueProp as OptionValue];
     }
   }
 
