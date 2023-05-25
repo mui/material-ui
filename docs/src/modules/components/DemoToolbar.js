@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import { useTheme, styled } from '@mui/material/styles';
+import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
@@ -123,10 +123,17 @@ const ToggleButton = styled(MDToggleButton)(({ theme }) => [
       opacity: 0.5,
     },
     [`&.${toggleButtonClasses.selected}:hover`]: {
-      backgroundColor: theme.palette.primary[100],
-      ...theme.applyDarkStyles({
-        backgroundColor: theme.palette.primaryDark[600],
-      }),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
+      '@media (hover: none)': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
     },
   }),
   theme.applyDarkStyles({
