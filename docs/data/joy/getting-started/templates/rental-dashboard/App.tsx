@@ -14,6 +14,7 @@ import OrderTable from './components/OrderTable';
 import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
+import { Divider } from '@mui/joy';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -47,7 +48,7 @@ export default function JoyOrderDashboardTemplate() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <FirstSidebar />
-        <SecondSidebar />
+        {/* <SecondSidebar /> */}
         <Box
           component="main"
           className="MainContent"
@@ -74,44 +75,6 @@ export default function JoyOrderDashboardTemplate() {
             gap: 1,
           })}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Breadcrumbs
-              size="sm"
-              aria-label="breadcrumbs"
-              separator={<i data-feather="chevron-right" />}
-              sx={{
-                '--Breadcrumbs-gap': '1rem',
-                '--Icon-fontSize': '16px',
-                fontWeight: 'lg',
-                color: 'neutral.400',
-                px: 0,
-              }}
-            >
-              <Link
-                underline="none"
-                color="neutral"
-                fontSize="inherit"
-                href="#some-link"
-                aria-label="Home"
-              >
-                <i data-feather="home" />
-              </Link>
-              <Link
-                underline="hover"
-                color="neutral"
-                fontSize="inherit"
-                href="#some-link"
-              >
-                Dashboard
-              </Link>
-              <Typography fontSize="inherit" variant="soft" color="primary">
-                Orders
-              </Typography>
-            </Breadcrumbs>
-            <ColorSchemeToggle
-              sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
-            />
-          </Box>
           <Box
             sx={{
               display: 'flex',
@@ -125,28 +88,34 @@ export default function JoyOrderDashboardTemplate() {
               },
             }}
           >
-            <Typography level="h1" fontSize="xl4">
-              Orders
-            </Typography>
+            <div>
+              <Typography level="h1" fontSize="xl4">
+                232 stays in Melbourne
+              </Typography>
+              <Typography level="h2" fontSize="xl2">
+                Book your next stay at one of our properties.
+              </Typography>
+            </div>
             <Box sx={{ flex: 999 }} />
             <Box sx={{ display: 'flex', gap: 1, '& > *': { flexGrow: 1 } }}>
-              <Button
-                variant="outlined"
-                color="neutral"
-                startDecorator={<i data-feather="download-cloud" />}
-              >
-                Download PDF
+              <Button variant="outlined" color="neutral">
+                Shared
               </Button>
               <Button
                 variant="outlined"
                 color="neutral"
-                startDecorator={<i data-feather="table" />}
+                startDecorator={<i data-feather="star" />}
               >
-                Download CSV
+                Save search
               </Button>
+              <ColorSchemeToggle
+                sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
+              />
             </Box>
           </Box>
-          <OrderTable />
+          <Divider />
+          <div>alkdjfalkjf</div>
+          {/* <OrderTable /> */}
         </Box>
       </Box>
     </CssVarsProvider>
