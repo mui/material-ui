@@ -349,14 +349,12 @@ function useList<
   const getItemState = React.useCallback(
     (item: ItemValue): ListItemState => {
       const index = items.findIndex((i) => itemComparer(i, item));
-      const selected = (latestSelectedValues.current ?? []).some(
-        (value) => value != null && itemComparer(item, value),
+      const selected = (latestSelectedValues.current ?? []).some((value) =>
+        itemComparer(item, value),
       );
 
       const disabled = isItemDisabled(item, index);
-      const highlighted =
-        latestHighlightedValue.current != null &&
-        itemComparer(item, latestHighlightedValue.current);
+      const highlighted = itemComparer(item, latestHighlightedValue.current as ItemValue);
       const focusable = focusManagement === 'DOM';
 
       return {
