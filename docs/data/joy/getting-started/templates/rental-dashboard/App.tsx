@@ -7,14 +7,6 @@ import Button from '@mui/joy/Button';
 import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import useScript from './useScript';
-import FirstSidebar from './components/FirstSidebar';
-import SecondSidebar from './components/SecondSidebar';
-import OrderTable from './components/OrderTable';
-import Header from './components/Header';
-import ColorSchemeToggle from './components/ColorSchemeToggle';
-import customTheme from './theme';
-import CountrySelector from './components/CountrySelector';
 import {
   AspectRatio,
   Card,
@@ -23,10 +15,18 @@ import {
   Chip,
   FormControl,
   FormLabel,
+  Grid,
   IconButton,
   Input,
   Stack,
 } from '@mui/joy';
+import useScript from './useScript';
+import FirstSidebar from './components/FirstSidebar';
+import Header from './components/Header';
+import ColorSchemeToggle from './components/ColorSchemeToggle';
+import customTheme from './theme';
+import CountrySelector from './components/CountrySelector';
+import RentalCard from './components/RentalCard';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -61,6 +61,14 @@ export default function JoyOrderDashboardTemplate() {
         <Header />
         <FirstSidebar />
         {/* <SecondSidebar /> */}
+        <Grid container spacing={2}>
+          <Grid xs={12} md={6}>
+            main
+          </Grid>
+          <Grid xs={12} md={6}>
+            map
+          </Grid>
+        </Grid>
         <Box
           component="main"
           className="MainContent"
@@ -104,7 +112,7 @@ export default function JoyOrderDashboardTemplate() {
               <Typography level="h1" fontSize="xl4">
                 232 stays in Melbourne
               </Typography>
-              <Typography level="h2" fontSize="xl2">
+              <Typography level="body1" color="neutral">
                 Book your next stay at one of our properties.
               </Typography>
             </div>
@@ -146,16 +154,18 @@ export default function JoyOrderDashboardTemplate() {
               </Button>
             </Stack>
             <Stack spacing={2} direction="row">
-              <div>Search icon</div>
-              <div>Search</div>
+              <FormControl sx={{ flex: 1 }}>
+                {/* todo: remove label but make sure its still accessible */}
+                <FormLabel>Search</FormLabel>
+                <Input
+                  placeholder="Search"
+                  startDecorator={<i data-feather="search" />}
+                />
+              </FormControl>
               <Button variant="outlined" color="neutral">
                 Clear
               </Button>
-              <Button
-                variant="solid"
-                color="primary"
-                startDecorator={<i data-feather="star" />}
-              >
+              <Button variant="solid" color="primary">
                 Search
               </Button>
             </Stack>
@@ -164,72 +174,7 @@ export default function JoyOrderDashboardTemplate() {
             <div>Sort by date</div>
             <div>Sort by price</div>
           </Stack>
-          <Card variant="outlined" orientation="horizontal">
-            <CardOverflow>
-              <AspectRatio
-                ratio="4/3"
-                sx={{
-                  width: 200,
-                  // bgcolor: 'background.level2',
-                  borderRadius: 'md',
-                }}
-              >
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=400"
-                />
-              </AspectRatio>
-              <Chip
-                variant="soft"
-                startDecorator={<i data-feather="award" />}
-                size="sm"
-                sx={{ position: 'absolute', bottom: 8, left: 8 }}
-              >
-                Rare find
-              </Chip>
-            </CardOverflow>
-            <CardContent sx={{ px: 2 }}>
-              <Stack
-                spacing={1}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="flex-start"
-              >
-                <div>
-                  <Typography color="primary" fontWeight="xl">
-                    Entire apartment rental in Collingwood
-                  </Typography>
-                  <Typography fontWeight="lg" fontSize="xl">
-                    A Stylish Apt, 5 min walk to Queen Victoria Market
-                  </Typography>
-                </div>
-                <IconButton variant="soft">
-                  <i data-feather="star" />
-                </IconButton>
-              </Stack>
-              <Stack spacing={1} direction="row">
-                <Typography>4.9</Typography>
-                <Typography>202 reviews</Typography>
-              </Stack>
-
-              <Stack spacing={1} direction="row" justifyContent="space-between">
-                <Typography startDecorator={<i data-feather="map-pin" />}>
-                  Collingwood VIC
-                </Typography>
-                <Typography startDecorator={<i data-feather="box" />}>
-                  1 bed
-                </Typography>
-                <Typography startDecorator={<i data-feather="wifi" />}>
-                  Wi-Fi
-                </Typography>
-                <Typography>
-                  $540 <Typography>total</Typography>
-                </Typography>
-              </Stack>
-            </CardContent>
-          </Card>
-
-          {/* <OrderTable /> */}
+          <RentalCard />
         </Box>
       </Box>
     </CssVarsProvider>
