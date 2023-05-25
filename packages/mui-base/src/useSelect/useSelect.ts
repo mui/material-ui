@@ -83,7 +83,7 @@ function useSelect<OptionValue, Multiple extends boolean = false>(
         return valueProp as OptionValue[];
       }
 
-      return valueProp == null ? [] : [valueProp as OptionValue];
+      return [valueProp as OptionValue];
     }
 
     return undefined;
