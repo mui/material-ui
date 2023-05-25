@@ -959,7 +959,7 @@ describe('<Popover />', () => {
     ).not.to.throw();
   });
 
-  describe('slots', () => {
+  describe('prop: slots', () => {
     describe('paper', () => {
       it('should be replaced when paper slot is used', () => {
         const wrapper = mount(
@@ -975,20 +975,82 @@ describe('<Popover />', () => {
         expect(wrapper.find(ReplacementPaper)).to.have.lengthOf(1);
         expect(wrapper.find(PopoverPaper)).to.have.lengthOf(0);
       });
+    });
+  });
 
-      it('should pass paper slotProps to paper component', () => {
-        const customElevation = 14;
+  describe('prop: slotProps', () => {
+    describe('paper', () => {
+      it('should apply paper slot props to paper component', () => {
+        const elevation = 14;
+        const square = true;
+        const sx = { backgroundColor: 'red' };
+        const wrapper = mount(
+          <Popover anchorEl={document.createElement('div')} open>
+            <div />
+          </Popover>,
+        );
+
+        // defaults
+        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(8);
+        expect(wrapper.find(PopoverPaper).props().square).to.equal(undefined);
+        expect(wrapper.find(PopoverPaper).props().sx).to.equal(undefined);
+
+        wrapper.setProps({ slotProps: { paper: { elevation, square, sx } } });
+
+        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(elevation);
+        expect(wrapper.find(PopoverPaper).props().square).to.equal(square);
+        expect(wrapper.find(PopoverPaper).props().sx).to.contain(sx);
+      });
+
+      it('should override PaperProps', () => {
+        const slotPropsElevation = 12;
+        const paperPropsElevation = 14;
+
         const wrapper = mount(
           <Popover
             anchorEl={document.createElement('div')}
             open
-            slotProps={{ paper: { elevation: customElevation } }}
+            PaperProps={{ elevation: paperPropsElevation }}
+            slotProps={{ paper: { elevation: slotPropsElevation } }}
           >
             <div />
           </Popover>,
         );
 
-        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(customElevation);
+        expect(slotPropsElevation).not.to.equal(paperPropsElevation);
+        expect(wrapper.find(PopoverPaper).props().elevation).to.equal(slotPropsElevation);
+      });
+
+      it('should position popover correctly when ref is provided', () => {
+        const handleEntering = spy();
+        const paperRef = { current: null };
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            slotProps={{ paper: { ref: paperRef } }}
+            TransitionProps={{ onEntering: handleEntering }}
+          >
+            <div />
+          </Popover>,
+        );
+        expect(paperRef.current).not.to.equal(null);
+        expect(handleEntering.args[0][0]).toHaveInlineStyle({ top: '16px', left: '16px' });
+      });
+
+      it('should add the className to the paper', () => {
+        const className = 'MyPaperClassName';
+        render(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            slotProps={{ paper: { 'data-testid': 'paper', className } }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(screen.getByTestId('paper')).to.have.class(className);
       });
     });
   });

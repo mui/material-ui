@@ -89,6 +89,10 @@ export interface PopoverProps
   open: boolean;
   /**
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   *
+   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.paper` instead.
+   *
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;

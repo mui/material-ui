@@ -110,7 +110,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     elevation = 8,
     marginThreshold = 16,
     open,
-    PaperProps = {},
+    PaperProps: PaperPropsProp = {},
     slots,
     slotProps,
     transformOrigin = {
@@ -122,8 +122,11 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     TransitionProps: { onEntering, ...TransitionProps } = {},
     ...other
   } = props;
+
+  const providedPaperProps = slotProps?.paper ?? PaperPropsProp;
+
   const paperRef = React.useRef();
-  const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
+  const handlePaperRef = useForkRef(paperRef, providedPaperProps.ref);
 
   const ownerState = {
     ...props,
@@ -131,7 +134,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     anchorReference,
     elevation,
     marginThreshold,
-    PaperProps,
+    providedPaperProps,
     transformOrigin,
     TransitionComponent,
     transitionDuration: transitionDurationProp,
@@ -363,20 +366,18 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   const Paper = slots?.paper ?? PopoverPaper;
 
-  const paperSlotProps = slotProps?.paper ?? PaperProps;
-
   const paperProps = useSlotProps({
     elementType: Paper,
     externalSlotProps: {
-      ...paperSlotProps,
-      style: isPositioned ? paperSlotProps.style : { ...paperSlotProps.style, opacity: 0 },
+      ...providedPaperProps,
+      style: isPositioned ? providedPaperProps.style : { ...providedPaperProps.style, opacity: 0 },
     },
     additionalProps: {
       elevation,
       ref: handlePaperRef,
     },
     ownerState,
-    className: clsx(paperSlotProps?.className, classes.paper, PaperProps.className),
+    className: clsx(classes.paper, providedPaperProps?.className),
   });
 
   return (
@@ -530,6 +531,10 @@ Popover.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool.isRequired,
   /**
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
+   *
+   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.paper` instead.
+   *
    * @default {}
    */
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
