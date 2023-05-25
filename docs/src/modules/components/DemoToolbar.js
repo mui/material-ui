@@ -5,9 +5,8 @@ import { useTheme, styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@mui/docs';
+import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
+import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SvgIcon from '@mui/material/SvgIcon';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
@@ -95,6 +94,45 @@ export function DemoToolbarFallback() {
 }
 
 const alwaysTrue = () => true;
+
+const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
+  theme.unstable_sx({
+    [`& .${toggleButtonGroupClasses.grouped}`]: {
+      '&:not(:first-of-type)': {
+        marginLeft: 0.75,
+        borderLeft: '1px solid',
+        borderLeftColor: 'divider',
+        borderTopLeftRadius: 999,
+        borderBottomLeftRadius: 999,
+      },
+      '&:not(:last-of-type)': {
+        borderTopRightRadius: 999,
+        borderBottomRightRadius: 999,
+      },
+    },
+  }),
+]);
+
+const ToggleButton = styled(MDToggleButton)(({ theme }) => [
+  theme.unstable_sx({
+    padding: '1px 8px',
+    fontSize: '0.75rem',
+    borderRadius: 99,
+    borderColor: 'grey.200',
+    '&.Mui-disabled': {
+      opacity: 0.5,
+    },
+    [`&.${toggleButtonClasses.selected}:hover`]: {
+      backgroundColor: theme.palette.primary[100],
+      ...theme.applyDarkStyles({
+        backgroundColor: theme.palette.primaryDark[600],
+      }),
+    },
+  }),
+  theme.applyDarkStyles({
+    borderColor: theme.palette.primaryDark[700],
+  }),
+]);
 
 /**
  * @param {React.Ref<HTMLElement>[]} controlRefs
@@ -418,14 +456,6 @@ export default function DemoToolbar(props) {
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={(theme) => ({
-                padding: '5px 10px',
-                borderRadius: 0.5,
-                borderColor: 'grey.200',
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.700',
-                }),
-              })}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -433,20 +463,9 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               {...getControlProps(0)}
             >
-              <JavaScriptIcon sx={{ fontSize: 20 }} />
+              {t('JS')}
             </ToggleButton>
             <ToggleButton
-              sx={(theme) => ({
-                padding: '5px 10px',
-                borderRadius: 0.5,
-                borderColor: 'grey.200',
-                '&.Mui-disabled': {
-                  opacity: 0.5,
-                },
-                ...theme.applyDarkStyles({
-                  borderColor: 'primaryDark.700',
-                }),
-              })}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -455,7 +474,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               {...getControlProps(1)}
             >
-              <TypeScriptIcon sx={{ fontSize: 20 }} />
+              {t('TS')}
             </ToggleButton>
           </ToggleButtonGroup>
         </Fade>
