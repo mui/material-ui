@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
-import { PaperProps } from '../Paper';
-import { ModalProps } from '../Modal';
+import Paper, { PaperProps } from '../Paper';
+import { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
@@ -102,6 +103,7 @@ export interface PopoverProps
    * @default {}
    */
   slots?: {
+    root?: React.ElementType;
     paper?: React.ElementType;
   };
   /**
@@ -111,7 +113,8 @@ export interface PopoverProps
    * @default {}
    */
   slotProps?: {
-    paper?: PaperProps;
+    root?: SlotComponentProps<'div', {}, ModalOwnerState>;
+    paper?: SlotComponentProps<typeof Paper, {}, {}>;
   };
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -162,7 +165,11 @@ export function getOffsetLeft(
   horizontal: number | 'center' | 'right' | 'left',
 ): number;
 
-export declare const PopoverPaper: React.FC<PaperProps>;
+type PopoverRootProps = NonNullable<PopoverProps['slotProps']>['root'];
+type PopoverPaperProps = NonNullable<PopoverProps['slotProps']>['paper'];
+
+export declare const PopoverRoot: React.FC<PopoverRootProps>;
+export declare const PopoverPaper: React.FC<PopoverPaperProps>;
 
 /**
  *

@@ -69,7 +69,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-const PopoverRoot = styled(Modal, {
+export const PopoverRoot = styled(Modal, {
   name: 'MuiPopover',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -364,6 +364,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
+  const Root = slots?.root ?? PopoverRoot;
   const Paper = slots?.paper ?? PopoverPaper;
 
   const paperProps = useSlotProps({
@@ -380,16 +381,22 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className: clsx(classes.paper, providedPaperProps?.className),
   });
 
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: slotProps?.root || {},
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      slotProps: { backdrop: { invisible: true } },
+      container,
+      open,
+    },
+    ownerState,
+    className: clsx(classes.root, className),
+  });
+
   return (
-    <PopoverRoot
-      BackdropProps={{ invisible: true }}
-      className={clsx(classes.root, className)}
-      container={container}
-      open={open}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <Root {...rootProps}>
       <TransitionComponent
         appear
         in={open}
@@ -400,7 +407,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       >
         <Paper {...paperProps}>{children}</Paper>
       </TransitionComponent>
-    </PopoverRoot>
+    </Root>
   );
 });
 
@@ -547,7 +554,8 @@ Popover.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    paper: PropTypes.object,
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
@@ -556,6 +564,7 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     paper: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

@@ -6,7 +6,11 @@ import PropTypes from 'prop-types';
 import Grow from '@mui/material/Grow';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
-import Popover, { popoverClasses as classes, PopoverPaper } from '@mui/material/Popover';
+import Popover, {
+  popoverClasses as classes,
+  PopoverPaper,
+  PopoverRoot,
+} from '@mui/material/Popover';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
@@ -960,6 +964,22 @@ describe('<Popover />', () => {
   });
 
   describe('prop: slots', () => {
+    describe('root', () => {
+      it('should be replaced when root slot is used', () => {
+        function RootComponent() {
+          return <div />;
+        }
+
+        const wrapper = mount(
+          <Popover anchorEl={document.createElement('div')} open slots={{ root: RootComponent }}>
+            <div />
+          </Popover>,
+        );
+
+        expect(wrapper.find(RootComponent)).to.have.lengthOf(1);
+      });
+    });
+
     describe('paper', () => {
       it('should be replaced when paper slot is used', () => {
         const wrapper = mount(
@@ -979,6 +999,27 @@ describe('<Popover />', () => {
   });
 
   describe('prop: slotProps', () => {
+    describe('root', () => {
+      it('should apply root slot props to root component', () => {
+        const className = 'MyRootClass';
+        const container = document.createElement('div');
+        const wrapper = mount(
+          <Popover
+            anchorEl={document.createElement('div')}
+            open
+            slotProps={{ root: { container, className } }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(wrapper.find(PopoverRoot)).to.have.lengthOf(1);
+        const rootProps = wrapper.find(PopoverRoot).props();
+        expect(rootProps.container).to.equal(container);
+        expect(rootProps.className).to.contain(className);
+      });
+    });
+
     describe('paper', () => {
       it('should apply paper slot props to paper component', () => {
         const elevation = 14;
@@ -990,7 +1031,6 @@ describe('<Popover />', () => {
           </Popover>,
         );
 
-        // defaults
         expect(wrapper.find(PopoverPaper).props().elevation).to.equal(8);
         expect(wrapper.find(PopoverPaper).props().square).to.equal(undefined);
         expect(wrapper.find(PopoverPaper).props().sx).to.equal(undefined);
