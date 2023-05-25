@@ -15,7 +15,18 @@ import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
 import CountrySelector from './components/CountrySelector';
-import { AspectRatio, Card, CardContent, CardOverflow, Stack } from '@mui/joy';
+import {
+  AspectRatio,
+  Card,
+  CardContent,
+  CardOverflow,
+  Chip,
+  FormControl,
+  FormLabel,
+  IconButton,
+  Input,
+  Stack,
+} from '@mui/joy';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -121,14 +132,32 @@ export default function JoyOrderDashboardTemplate() {
                 <CountrySelector />
               </div>
               <div>Jan 6 - Jan 13</div>
-              <div>Any price</div>
-              <div>More filters</div>
+
+              <FormControl>
+                <FormLabel>Price</FormLabel>
+                <Input startDecorator="$" type="number" placeholder="Any price" />
+              </FormControl>
+              <Button
+                variant="outlined"
+                color="neutral"
+                startDecorator={<i data-feather="filter" />}
+              >
+                More filters
+              </Button>
             </Stack>
             <Stack spacing={2} direction="row">
               <div>Search icon</div>
               <div>Search</div>
-              <div>Clear</div>
-              <div>Search</div>
+              <Button variant="outlined" color="neutral">
+                Clear
+              </Button>
+              <Button
+                variant="solid"
+                color="primary"
+                startDecorator={<i data-feather="star" />}
+              >
+                Search
+              </Button>
             </Stack>
           </div>
           <Stack spacing={2} direction="row">
@@ -150,19 +179,52 @@ export default function JoyOrderDashboardTemplate() {
                   src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=400"
                 />
               </AspectRatio>
+              <Chip
+                variant="soft"
+                startDecorator={<i data-feather="award" />}
+                size="sm"
+                sx={{ position: 'absolute', bottom: 8, left: 8 }}
+              >
+                Rare find
+              </Chip>
             </CardOverflow>
             <CardContent sx={{ px: 2 }}>
-              <div>Entire apartment rental in Collingwood</div>
-              <div>A Stylish Apt, 5 min walk to Queen Victoria Market</div>
-              <div>4.9</div>
-              <div>202 reviews</div>
-              <div>Rare find</div>
+              <Stack
+                spacing={1}
+                direction="row"
+                justifyContent="space-between"
+                alignItems="flex-start"
+              >
+                <div>
+                  <Typography color="primary" fontWeight="xl">
+                    Entire apartment rental in Collingwood
+                  </Typography>
+                  <Typography fontWeight="lg" fontSize="xl">
+                    A Stylish Apt, 5 min walk to Queen Victoria Market
+                  </Typography>
+                </div>
+                <IconButton variant="soft">
+                  <i data-feather="star" />
+                </IconButton>
+              </Stack>
               <Stack spacing={1} direction="row">
-                <div>Collingwood VIC</div>
-                <div>1 bed</div>
-                <div>Wi-Fi</div>
-                <div>$540</div>
-                <div>total</div>
+                <Typography>4.9</Typography>
+                <Typography>202 reviews</Typography>
+              </Stack>
+
+              <Stack spacing={1} direction="row" justifyContent="space-between">
+                <Typography startDecorator={<i data-feather="map-pin" />}>
+                  Collingwood VIC
+                </Typography>
+                <Typography startDecorator={<i data-feather="box" />}>
+                  1 bed
+                </Typography>
+                <Typography startDecorator={<i data-feather="wifi" />}>
+                  Wi-Fi
+                </Typography>
+                <Typography>
+                  $540 <Typography>total</Typography>
+                </Typography>
               </Stack>
             </CardContent>
           </Card>
