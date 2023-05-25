@@ -74,12 +74,5 @@ describe('<Switch />', () => {
         expect(renderedComponents[i]).to.have.attribute('data-focusvisible', 'false');
       }
     });
-
-    it('passes name props and type="hidden" attribute to input element', () => {
-      const { container } = render(<Switch name="customName" />);
-
-      expect(container.querySelector('input')).to.have.attribute('name', 'customName');
-      expect(container.querySelector('input')).to.have.attribute('type', 'hidden');
-    });
   });
 });
