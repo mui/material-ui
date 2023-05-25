@@ -182,7 +182,12 @@ export default function JoyOrderDashboardTemplate() {
           </Grid>
           <Grid xs={12} md={3}>
             <Divider orientation="vertical" />
-            <Box sx={{ backgroundColor: 'red', height: 500 }}>map</Box>
+            <Box sx={{ backgroundColor: 'red', height: 500 }}>
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=1000"
+              />
+            </Box>
           </Grid>
         </Grid>
       </Box>
