@@ -29,9 +29,9 @@ export default function UnderlineInput() {
         placeholder="Type in here…"
         variant="soft"
         sx={{
+          '--Input-radius': '0px',
           borderBottom: '2px solid',
           borderColor: 'neutral.outlinedBorder',
-          borderRadius: 0,
           '&:hover': {
             borderColor: 'neutral.outlinedHoverBorder',
           },
