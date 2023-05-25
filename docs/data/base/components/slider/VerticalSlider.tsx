@@ -56,12 +56,12 @@ const StyledSlider = styled(Slider)(
 
   & .${sliderClasses.thumb} {
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    border: 2px solid currentColor;
+    border: 3px solid currentColor;
     background-color: #fff;
     left: 50%;
     -webkit-transform: translate(-50%, 50%);
