@@ -51,6 +51,10 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  'rental-dashboard': {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/MUI_hq',
+  },
   'profile-dashboard': {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
