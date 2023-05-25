@@ -2,9 +2,9 @@
   placeholder="Type in here…"
   endDecorator={<CheckCircleOutlined sx={{ color: 'text.tertiary' }} />}
   slots={{ input: InnerInput }}
-  slotProps={{ input: { placeholder: 'A placeholder' } }}
+  slotProps={{ input: { placeholder: 'A placeholder', type: 'password' } }}
   sx={{
     '--Input-minHeight': '56px',
-    borderRadius: '6px',
+    '--Input-radius': '6px',
   }}
 />

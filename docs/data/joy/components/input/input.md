@@ -81,6 +81,23 @@ To get full control of the focused ring, customize the `box-shadow` of the `::be
 
 :::
 
+#### Debugging the focus ring
+
+To display the Input's focus ring by simulating user's focus, inspect the Input element and toggle the [pseudostate panel](https://developer.chrome.com/docs/devtools/css/#pseudostates).
+
+- If you inspect the Input's root element, with `.MuiInput-root` class, you have to toggle on the `:focus-within` state.
+- If you inspect the `<input>` element, you have to toggle on the `:focus` state.
+
+### Triggering the focus ring
+
+To trigger the focus ring programmatically, set the CSS variable `--Input-focused: 1`.
+
+{{"demo": "TriggerFocusInput.js"}}
+
+:::info
+💡 The focus ring still appear on focus even though you set `--Input-focused: 0`.
+:::
+
 ### Validation
 
 Use the `error` prop to toggle the error state:
@@ -93,6 +110,8 @@ Using the `color` prop with `danger` as the value gives you the same result:
 ```js
 <Input color="danger" />
 ```
+
+:::
 
 ### Decorators
 
@@ -112,7 +131,7 @@ These props may include HTML attributes such as `ref`, `min`, `max`, and `autoco
 
 ### Focus outline
 
-This example shows how to replace the default focus ring appearance with CSS outline.
+This example shows how to replace the default focus ring (using `::before`) with CSS `outline`.
 
 {{"demo": "FocusOutlineInput.js"}}
 

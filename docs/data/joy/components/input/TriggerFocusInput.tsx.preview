@@ -1,0 +1,4 @@
+<Input
+  placeholder="Looks like I'm focused but no"
+  sx={{ '--Input-focused': 1, width: 256 }}
+/>

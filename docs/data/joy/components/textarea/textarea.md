@@ -75,6 +75,23 @@ To get full control of the focused ring, customize the `box-shadow` of the `::be
 
 :::
 
+#### Debugging the focus ring
+
+To display the Textarea's focus ring by simulating user's focus, inspect the Textarea element and toggle the [pseudostate panel](https://developer.chrome.com/docs/devtools/css/#pseudostates).
+
+- If you inspect the Textarea's root element, with `.MuiTextarea-root` class, you have to toggle on the `:focus-within` state.
+- If you inspect the `<input>` element, you have to toggle on the `:focus` state.
+
+### Triggering the focus ring
+
+To trigger the focus ring programmatically, set the CSS variable `--Textarea-focused: 1`.
+
+{{"demo": "TriggerFocusTextarea.js"}}
+
+:::info
+💡 The focus ring still appear on focus even though you set `--Textarea-focused: 0`.
+:::
+
 ### Validation
 
 To toggle the error state, use the `error` prop.

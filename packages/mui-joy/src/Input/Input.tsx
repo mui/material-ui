@@ -39,6 +39,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         '--Input-gap': '0.5rem',
         '--Input-placeholderColor': 'inherit',
         '--Input-placeholderOpacity': 0.5,
+        '--Input-focused': '0',
         '--Input-focusedThickness': theme.vars.focus.thickness,
         ...(ownerState.color === 'context'
           ? {
@@ -89,7 +90,6 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         cursor: 'text',
         position: 'relative',
         display: 'flex',
-        alignItems: 'center',
         paddingInline: `var(--Input-paddingInline)`,
         borderRadius: 'var(--Input-radius)',
         fontFamily: theme.vars.fontFamily.body,
@@ -110,6 +110,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
           zIndex: 1,
           borderRadius: 'inherit',
           margin: 'calc(var(--variant-borderWidth, 0px) * -1)', // for outlined variant
+          boxShadow: `var(--Input-focusedInset, inset) 0 0 0 calc(var(--Input-focused) * var(--Input-focusedThickness)) var(--Input-focusedHighlight)`,
         },
       },
       {
@@ -122,9 +123,7 @@ export const StyledInputRoot = styled('div')<{ ownerState: InputOwnerState }>(
         },
         [`&.${inputClasses.disabled}`]:
           theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-        '&:focus-within::before': {
-          boxShadow: `var(--Input-focusedInset, inset) 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
-        },
+        '&:focus-within::before': { '--Input-focused': '1' },
       },
     ];
   },
@@ -182,7 +181,7 @@ export const StyledInputHtml = styled('input')<{ ownerState: InputOwnerState }>(
   }),
 );
 
-export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwnerState }>(
+export const StyledInputStartDecorator = styled('div')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
     '--Button-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
     '--IconButton-margin': '0 0 0 calc(var(--Input-decoratorChildOffset) * -1)',
@@ -203,7 +202,7 @@ export const StyledInputStartDecorator = styled('span')<{ ownerState: InputOwner
   }),
 );
 
-export const StyledInputEndDecorator = styled('span')<{ ownerState: InputOwnerState }>(
+export const StyledInputEndDecorator = styled('div')<{ ownerState: InputOwnerState }>(
   ({ theme, ownerState }) => ({
     '--Button-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',
     '--IconButton-margin': '0 calc(var(--Input-decoratorChildOffset) * -1) 0 0',

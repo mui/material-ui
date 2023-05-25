@@ -25,12 +25,23 @@ const StyledInput = styled('input')({
   '&:focus::placeholder': {
     opacity: 1,
   },
-  '&:focus ~ label, &:not(:placeholder-shown) ~ label': {
+  '&:focus ~ label, &:not(:placeholder-shown) ~ label, &:-webkit-autofill ~ label': {
     top: '0.5rem',
     fontSize: '0.75rem',
   },
   '&:focus ~ label': {
     color: 'var(--Input-focusedHighlight)',
+  },
+  '&:-webkit-autofill': {
+    alignSelf: 'stretch', // to fill the height of the root slot
+  },
+  '&:-webkit-autofill:not(* + &)': {
+    marginInlineStart: 'calc(-1 * var(--Input-paddingInline))',
+    paddingInlineStart: 'var(--Input-paddingInline)',
+    borderTopLeftRadius:
+      'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
+    borderBottomLeftRadius:
+      'calc(var(--Input-radius) - var(--variant-borderWidth, 0px))',
   },
 });
 
@@ -59,10 +70,10 @@ export default function FloatingLabelInput() {
       placeholder="Type in here…"
       endDecorator={<CheckCircleOutlined sx={{ color: 'text.tertiary' }} />}
       slots={{ input: InnerInput }}
-      slotProps={{ input: { placeholder: 'A placeholder' } }}
+      slotProps={{ input: { placeholder: 'A placeholder', type: 'password' } }}
       sx={{
         '--Input-minHeight': '56px',
-        borderRadius: '6px',
+        '--Input-radius': '6px',
       }}
     />
   );
