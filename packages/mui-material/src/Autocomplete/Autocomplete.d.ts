@@ -163,6 +163,7 @@ export interface AutocompleteProps<
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
+    ref?: React.Ref<Element>;
   };
   /**
    * If `true`, the component is in a loading state.

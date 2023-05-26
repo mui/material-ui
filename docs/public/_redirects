@@ -479,6 +479,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /joy-ui/customization/theme-tokens/ /joy-ui/customization/theme-colors/ 301
 /joy-ui/guides/apply-dark-mode/ /joy-ui/customization/dark-mode/ 301
 
+/material-ui/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
+
 # Proxies
 
 ## MUI Store

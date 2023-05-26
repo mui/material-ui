@@ -48,7 +48,7 @@ export const CompoundComponentContext = React.createContext<CompoundComponentCon
 
 CompoundComponentContext.displayName = 'CompoundComponentContext';
 
-export interface UseCompoundParentReturnValue<Key, Subitem> {
+export interface UseCompoundParentReturnValue<Key, Subitem extends { ref: React.RefObject<Node> }> {
   /**
    * The value for the CompoundComponentContext provider.
    */
@@ -59,6 +59,32 @@ export interface UseCompoundParentReturnValue<Key, Subitem> {
    * The order of the items is the same as the order in which they were registered.
    */
   subitems: Map<Key, Subitem>;
+}
+
+/**
+ * Sorts the subitems by their position in the DOM.
+ */
+function sortSubitems<Key, Subitem extends { ref: React.RefObject<Node> }>(
+  subitems: Map<Key, Subitem>,
+) {
+  const subitemsArray = Array.from(subitems.keys()).map((key) => {
+    const subitem = subitems.get(key)!;
+    return { key, subitem };
+  });
+
+  subitemsArray.sort((a, b) => {
+    const aNode = a.subitem.ref.current;
+    const bNode = b.subitem.ref.current;
+
+    if (aNode === null || bNode === null || aNode === bNode) {
+      return 0;
+    }
+
+    // eslint-disable-next-line no-bitwise
+    return aNode.compareDocumentPosition(bNode) & Node.DOCUMENT_POSITION_PRECEDING ? 1 : -1;
+  });
+
+  return new Map(subitemsArray.map((item) => [item.key, item.subitem]));
 }
 
 /**
@@ -73,7 +99,10 @@ export interface UseCompoundParentReturnValue<Key, Subitem> {
  *
  * @ignore - internal hook.
  */
-export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<Key, Subitem> {
+export function useCompoundParent<
+  Key,
+  Subitem extends { ref: React.RefObject<Node> },
+>(): UseCompoundParentReturnValue<Key, Subitem> {
   const [subitems, setSubitems] = React.useState(new Map<Key, Subitem>());
   const subitemKeys = React.useRef(new Set<Key>());
 
@@ -120,11 +149,13 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
     [deregisterItem],
   );
 
+  const sortedSubitems = React.useMemo(() => sortSubitems(subitems), [subitems]);
+
   const getItemIndex = React.useCallback(
     function getItemIndex(id: Key) {
-      return Array.from(subitems.keys()).indexOf(id);
+      return Array.from(sortedSubitems.keys()).indexOf(id);
     },
-    [subitems],
+    [sortedSubitems],
   );
 
   return {
@@ -133,6 +164,6 @@ export function useCompoundParent<Key, Subitem>(): UseCompoundParentReturnValue<
       registerItem,
       totalSubitemCount: subitems.size,
     },
-    subitems,
+    subitems: sortedSubitems,
   };
 }

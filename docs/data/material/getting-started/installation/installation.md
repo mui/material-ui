@@ -43,7 +43,14 @@ Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more inf
 
 <!-- #react-peer-version -->
 
-[`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies too:
+
+```json
+"peerDependencies": {
+  "react": "^17.0.0 || ^18.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0"
+},
+```
 
 ## Roboto font
 

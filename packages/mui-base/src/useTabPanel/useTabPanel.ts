@@ -1,4 +1,5 @@
-import { unstable_useId as useId } from '@mui/utils';
+import * as React from 'react';
+import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
 import { useCompoundItem } from '../utils/useCompoundItem';
 import { UseTabPanelParameters, UseTabPanelReturnValue } from './useTabPanel.types';
@@ -18,7 +19,7 @@ function tabPanelValueGenerator(otherTabPanelValues: Set<string | number>) {
  * - [useTabPanel API](https://mui.com/base/react-tabs/hooks-api/#use-tab-panel)
  */
 function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue {
-  const { value: valueParam, id: idParam } = parameters;
+  const { value: valueParam, id: idParam, rootRef: externalRef } = parameters;
 
   const context = useTabsContext();
   if (context === null) {
@@ -28,12 +29,11 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   const { value: selectedTabValue, getTabId } = context;
 
   const id = useId(idParam);
+  const ref = React.useRef<HTMLElement>(null);
+  const handleRef = useForkRef(ref, externalRef);
+  const metadata = React.useMemo(() => ({ id, ref }), [id]);
 
-  const { id: value } = useCompoundItem<string | number, string | undefined>(
-    valueParam,
-    id,
-    tabPanelValueGenerator,
-  );
+  const { id: value } = useCompoundItem(valueParam, metadata, tabPanelValueGenerator);
 
   const hidden = value !== selectedTabValue;
 
@@ -44,12 +44,14 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
       'aria-labelledby': correspondingTabId ?? undefined,
       hidden,
       id: id ?? undefined,
+      ref: handleRef,
     };
   };
 
   return {
     hidden,
     getRootProps,
+    rootRef: handleRef,
   };
 }
 
