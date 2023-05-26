@@ -5,6 +5,7 @@ interface IButtonGroupContext {
   color?: ButtonGroupOwnerState['color'];
   variant?: ButtonGroupOwnerState['variant'];
   size?: ButtonGroupOwnerState['size'];
+  disabled?: boolean;
 }
 
 /**

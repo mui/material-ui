@@ -116,6 +116,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     action,
     component = 'button',
     color: colorProp = 'primary',
+    disabled: disabledProp,
     variant: variantProp = 'soft',
     size: sizeProp = 'md',
     slots = {},
@@ -127,6 +128,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
@@ -151,6 +153,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...props,
     component,
     color,
+    disabled,
     variant,
     size,
     focusVisible,

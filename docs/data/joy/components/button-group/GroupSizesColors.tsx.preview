@@ -1,9 +1,15 @@
-<ButtonGroup size="small" aria-label="small button group">
-  {buttons}
+<ButtonGroup size="sm" aria-label="outlined button group">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
 </ButtonGroup>
-<ButtonGroup color="secondary" aria-label="medium secondary button group">
-  {buttons}
+<ButtonGroup aria-label="plain button group">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
 </ButtonGroup>
-<ButtonGroup size="large" aria-label="large button group">
-  {buttons}
+<ButtonGroup size="lg" aria-label="soft button group">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
 </ButtonGroup>

@@ -37,15 +37,24 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonGroupPropsColorOverrides>;
     /**
+     * If `true`, the border radius of the buttons are not removed.
+     */
+    detached?: boolean;
+    /**
+     * If `true`, all the buttons will be disabled.
+     * @default false
+     */
+    disabled?: boolean;
+    /**
      * The component orientation.
      * @default 'vertical'
      */
     orientation?: 'horizontal' | 'vertical';
     /**
-     * If `true`, force the border between child elements.
+     * If `true`, each button stretch the width equally.
      * @default false
      */
-    separated?: boolean;
+    stretch?: boolean | React.CSSProperties['flex'];
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.

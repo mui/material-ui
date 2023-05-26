@@ -6,7 +6,17 @@ import Settings from '@mui/icons-material/Settings';
 
 export default function BasicButtonGroup() {
   return (
-    <ButtonGroup aria-label="outlined primary button group">
+    <ButtonGroup
+      stretch
+      aria-label="outlined primary button group"
+      sx={{
+        p: 2,
+        width: 400,
+        maxWidth: '100%',
+        overflow: 'auto',
+        resize: 'horizontal',
+      }}
+    >
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>

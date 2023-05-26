@@ -38,7 +38,7 @@ const ButtonGroupRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  const hasBorder = !!variantStyle?.border;
+  const shouldHaveBorder = !variantStyle?.border;
   const firstChildRadius =
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) 0 0'
@@ -51,6 +51,12 @@ const ButtonGroupRoot = styled('div', {
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-separatorSize) 0 0 0'
       : '0 0 0 var(--ButtonGroup-separatorSize)';
+  let buttonFlex: string | number = 'initial';
+  if (typeof ownerState.stretch === 'boolean') {
+    buttonFlex = ownerState.stretch ? 1 : 'initial';
+  } else {
+    buttonFlex = ownerState.stretch || 'initial';
+  }
   return {
     '--ButtonGroup-separatorSize': '-1px',
     '--ButtonGroup-separatorColor':
@@ -65,11 +71,11 @@ const ButtonGroupRoot = styled('div', {
     [`& > [data-first-child]`]: {
       '--Button-radius': firstChildRadius,
       '--IconButton-radius': firstChildRadius,
-      ...(!hasBorder &&
+      ...(shouldHaveBorder &&
         ownerState.orientation === 'horizontal' && {
           borderRight: '1px solid var(--ButtonGroup-separatorColor)',
         }),
-      ...(!hasBorder &&
+      ...(shouldHaveBorder &&
         ownerState.orientation === 'vertical' && {
           borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
         }),
@@ -77,12 +83,12 @@ const ButtonGroupRoot = styled('div', {
     // middle Buttons or IconButtons
     [`& > :not([data-first-child]):not([data-last-child])`]: {
       borderRadius: 0,
-      ...(!hasBorder &&
+      ...(shouldHaveBorder &&
         ownerState.orientation === 'horizontal' && {
           borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
           borderRight: '1px solid var(--ButtonGroup-separatorColor)',
         }),
-      ...(!hasBorder &&
+      ...(shouldHaveBorder &&
         ownerState.orientation === 'vertical' && {
           borderTop: '1px solid var(--ButtonGroup-separatorColor)',
           borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
@@ -92,11 +98,11 @@ const ButtonGroupRoot = styled('div', {
     [`& > [data-last-child]`]: {
       '--Button-radius': lastChildRadius,
       '--IconButton-radius': lastChildRadius,
-      ...(!hasBorder &&
+      ...(shouldHaveBorder &&
         ownerState.orientation === 'horizontal' && {
           borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
         }),
-      ...(!hasBorder &&
+      ...(shouldHaveBorder &&
         ownerState.orientation === 'vertical' && {
           borderTop: '1px solid var(--ButtonGroup-separatorColor)',
         }),
@@ -109,6 +115,12 @@ const ButtonGroupRoot = styled('div', {
       [`&:hover, ${theme.focus.selector}`]: {
         zIndex: 1,
       },
+      '&:disabled': {
+        zIndex: -1,
+      },
+    },
+    [`& > *:not(.${iconButtonClasses.root})`]: {
+      flex: buttonFlex,
     },
   };
 });
@@ -132,12 +144,13 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const {
     className,
     component = 'div',
+    disabled = false,
     size = 'md',
     color = 'neutral',
     variant = 'outlined',
     children,
     orientation = 'horizontal',
-    separated = false,
+    stretch = false,
     slots = {},
     slotProps = {},
     ...other
@@ -150,7 +163,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     orientation,
     size,
     variant,
-    separated,
+    stretch,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -165,8 +178,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   });
 
   const buttonGroupContext = React.useMemo(
-    () => ({ variant, color, size }),
-    [variant, color, size],
+    () => ({ variant, color, size, disabled }),
+    [variant, color, size, disabled],
   );
 
   return (

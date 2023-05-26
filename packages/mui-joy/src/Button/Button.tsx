@@ -181,7 +181,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     loading = false,
     loadingPosition = 'center',
     loadingIndicator: loadingIndicatorProp,
-    disabled,
+    disabled: disabledProp,
     component,
     slots = {},
     slotProps = {},
@@ -193,13 +193,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
+  const disabled = inProps.disabled ?? (buttonGroup.disabled || disabledProp || loading);
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    disabled: disabled || loading,
+    disabled,
     rootRef: handleRef,
   });
 
@@ -230,7 +231,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisible,
     loading,
     loadingPosition,
-    disabled: disabled || loading,
+    disabled,
   };
 
   const classes = useUtilityClasses(ownerState);

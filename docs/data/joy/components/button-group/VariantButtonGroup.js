@@ -1,30 +1,31 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
+import Button from '@mui/joy/Button';
+import ButtonGroup from '@mui/joy/ButtonGroup';
+import Stack from '@mui/joy/Stack';
 
 export default function VariantButtonGroup() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        '& > *': {
-          m: 1,
-        },
-      }}
-    >
-      <ButtonGroup variant="outlined" aria-label="outlined button group">
+    <Stack spacing={2}>
+      <ButtonGroup aria-label="outlined button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup variant="text" aria-label="text button group">
+      <ButtonGroup variant="plain" aria-label="plain button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-    </Box>
+      <ButtonGroup variant="soft" aria-label="soft button group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+      <ButtonGroup variant="solid" aria-label="solid button group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </Stack>
   );
 }

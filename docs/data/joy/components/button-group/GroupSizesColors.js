@@ -1,35 +1,26 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/joy/Button';
+import ButtonGroup from '@mui/joy/ButtonGroup';
+import Stack from '@mui/joy/Stack';
 
-const buttons = [
-  <Button key="one">One</Button>,
-  <Button key="two">Two</Button>,
-  <Button key="three">Three</Button>,
-];
-
-export default function GroupSizesColors() {
+export default function VariantButtonGroup() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        '& > *': {
-          m: 1,
-        },
-      }}
-    >
-      <ButtonGroup size="small" aria-label="small button group">
-        {buttons}
+    <Stack spacing={2} alignItems="center">
+      <ButtonGroup size="sm" aria-label="outlined button group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup color="secondary" aria-label="medium secondary button group">
-        {buttons}
+      <ButtonGroup aria-label="plain button group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup size="large" aria-label="large button group">
-        {buttons}
+      <ButtonGroup size="lg" aria-label="soft button group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
       </ButtonGroup>
-    </Box>
+    </Stack>
   );
 }

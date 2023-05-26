@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
+import Button from '@mui/joy/Button';
+import ButtonGroup from '@mui/joy/ButtonGroup';
+import Stack from '@mui/joy/Stack';
 
 const buttons = [
   <Button key="one">One</Button>,
@@ -11,14 +11,7 @@ const buttons = [
 
 export default function GroupOrientation() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        '& > *': {
-          m: 1,
-        },
-      }}
-    >
+    <Stack spacing={2} direction="row">
       <ButtonGroup
         orientation="vertical"
         aria-label="vertical outlined button group"
@@ -27,18 +20,25 @@ export default function GroupOrientation() {
       </ButtonGroup>
       <ButtonGroup
         orientation="vertical"
-        aria-label="vertical contained button group"
-        variant="contained"
+        aria-label="vertical plain button group"
+        variant="plain"
       >
         {buttons}
       </ButtonGroup>
       <ButtonGroup
         orientation="vertical"
-        aria-label="vertical contained button group"
-        variant="text"
+        aria-label="vertical soft button group"
+        variant="soft"
       >
         {buttons}
       </ButtonGroup>
-    </Box>
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="vertical solid button group"
+        variant="solid"
+      >
+        {buttons}
+      </ButtonGroup>
+    </Stack>
   );
 }
