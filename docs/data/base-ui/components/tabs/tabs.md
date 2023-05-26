@@ -30,7 +30,7 @@ Tabs are implemented using a collection of related components:
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import Tab from '@mui/base/Tab';
@@ -96,7 +96,7 @@ If you provide a non-interactive element such as a `<span>`, the Tab components 
 
 :::info
 The `slots` prop is available on all non-utility Base components.
-See [Overriding component structure](/base/guides/overriding-component-structure/) for full details.
+See [Overriding component structure](/base-ui/guides/overriding-component-structure/) for full details.
 :::
 
 ## Customization

@@ -43,7 +43,7 @@ Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
 You can, of course, still use [MUI System](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
-Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for an example of using this library.
+Check out the [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for an example of using this library.
 
 In contrast to Material UI, Base UI's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
@@ -84,7 +84,7 @@ function MySwitch(props: UseSwitchParameters) {
 ## What's included
 
 The initial version of the library contains 17 components.
-Check out the [Base UI documentation](/base/getting-started/overview/) for details.
+Check out the [Base UI documentation](/base-ui/getting-started/overview/) for details.
 
 You can track our progress in adding new components—and comment to influence our priorities—in [this dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
 
@@ -108,7 +108,7 @@ or yarn:
 yarn add @mui/base
 ```
 
-Check out [the docs](/base/getting-started/overview/), play with the components, and be sure to let us know what you think!
+Check out [the docs](/base-ui/getting-started/overview/), play with the components, and be sure to let us know what you think!
 
 If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
 Be sure to include "[base]" in the issue title to help us keep things organized.

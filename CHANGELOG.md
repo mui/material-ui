@@ -765,7 +765,7 @@ _Mar 14, 2023_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- @michaldudak added an option for [disabling the generation](https://mui.com/base/getting-started/customization/#disabling-default-css-classes) of the default classes in Base UI (#35963)
+- @michaldudak added an option for [disabling the generation](https://mui.com/base-ui/getting-started/customization/#disabling-default-css-classes) of the default classes in Base UI (#35963)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.13`
@@ -950,7 +950,7 @@ _Feb 27, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 📚 added API documentation for the slots in Base UI and Joy UI by @hbjORbj, for e.g. [SliderUnstyled API](https://mui.com/base/api/slider-unstyled/#slots)
+- 📚 added API documentation for the slots in Base UI and Joy UI by @hbjORbj, for e.g. [SliderUnstyled API](https://mui.com/base-ui/api/slider-unstyled/#slots)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.11`
@@ -1319,7 +1319,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   + <SliderUnstyled slots={{ valueLabel: SliderValueLabel }} />
   ```
 
-  The following demo shows how to show a value label when it is hovered over with the thumb: https://mui.com/base/react-slider/#value-label
+  The following demo shows how to show a value label when it is hovered over with the thumb: https://mui.com/base-ui/react-slider/#value-label
 
   - The following classes are removed from `sliderUnstyledClasses` since they are not needed for the value label:
 
@@ -2312,7 +2312,7 @@ _Oct 3, 2022_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 [SnackbarUnstyled](https://mui.com/base/react-snackbar/) component & headless hook are added to Base UI (#33227) @ZeeshanTamboli
+- 🚀 [SnackbarUnstyled](https://mui.com/base-ui/react-snackbar/) component & headless hook are added to Base UI (#33227) @ZeeshanTamboli
 - 📚 [CSS variables documentation](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) for Material UI has been added by @siriwatknp (#33958)
 - And more 🐛 bug fixes and 📚 documentation improvements.
 

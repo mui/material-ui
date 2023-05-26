@@ -42,7 +42,7 @@ A modal [blocks interaction with the rest of the application](https://en.wikiped
 
 ### Usage
 
-After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
+After [installation](/base-ui/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import ModalUnstyled from '@mui/base/ModalUnstyled';
@@ -80,9 +80,9 @@ You can animate the open and close states of a modal using a transition componen
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
 - Calls the `onExited` callback prop when the exit transition is completed
-:::info
-The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
-:::
+  :::info
+  The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
+  :::
 
 `ModalUnstyled` has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
 
@@ -142,6 +142,6 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   ```
 
 - Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/dialog/) to help you set the initial focus on the most relevant element based on the content of the modal.
-:::warning
-A modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
-:::
+  :::warning
+  A modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
+  :::
