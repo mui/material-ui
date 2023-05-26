@@ -5,21 +5,8 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Divider from '@mui/joy/Divider';
-import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import {
-  AspectRatio,
-  Card,
-  CardContent,
-  CardOverflow,
-  Chip,
-  FormControl,
-  FormLabel,
-  Grid,
-  IconButton,
-  Input,
-  Stack,
-} from '@mui/joy';
+import { FormControl, Grid, Input, Stack } from '@mui/joy';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import Header from './components/Header';
@@ -28,11 +15,12 @@ import customTheme from './theme';
 import CountrySelector from './components/CountrySelector';
 import RentalCard from './components/RentalCard';
 import ToggleGroup from './components/ToggleGroup';
+import Main from './components/Main';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-export default function JoyOrderDashboardTemplate() {
+export default function RentalDashboard() {
   const status = useScript(`https://unpkg.com/feather-icons`);
 
   useEnhancedEffect(() => {
@@ -64,45 +52,8 @@ export default function JoyOrderDashboardTemplate() {
         {/* <SecondSidebar /> */}
         <Grid container spacing={1.5} sx={{ flexGrow: 1 }}>
           <Grid xs={12} md={8}>
-            <Box
-              component="main"
-              className="MainContent"
-              sx={(theme) => ({
-                px: {
-                  xs: 2,
-                  md: 6,
-                },
-                pt: {
-                  xs: `calc(${theme.spacing(2)} + var(--Header-height))`,
-                  sm: `calc(${theme.spacing(2)} + var(--Header-height))`,
-                  md: 3,
-                },
-                pb: {
-                  xs: 2,
-                  sm: 2,
-                  md: 3,
-                },
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0,
-                height: '100dvh',
-                gap: 1,
-              })}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  my: 1,
-                  gap: 1,
-                  flexWrap: 'wrap',
-                  '& > *': {
-                    minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
-                    flexGrow: 1,
-                  },
-                }}
-              >
+            <Main>
+              <React.Fragment>
                 <div>
                   <Typography level="h1" fontSize="xl4">
                     232 stays in Melbourne
@@ -127,79 +78,79 @@ export default function JoyOrderDashboardTemplate() {
                     sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
                   />
                 </Box>
-              </Box>
-              <Divider />
-              <div>
-                <Stack
-                  spacing={1.5}
-                  direction={{ xs: 'column', md: 'row' }}
-                  useFlexGap // todo: investigate this more - doesn't work now
-                >
-                  <div>
-                    <CountrySelector />
-                  </div>
-
-                  <FormControl>
-                    <Input
-                      type="date"
-                      placeholder="Jan 6 - Jan 13"
-                      aria-label="Date"
-                    />
-                  </FormControl>
-
-                  <FormControl>
-                    <Input
-                      startDecorator="$"
-                      type="number"
-                      placeholder="Any price"
-                      aria-label="Price"
-                    />
-                  </FormControl>
-                  <Button
-                    variant="outlined"
-                    color="neutral"
-                    startDecorator={<i data-feather="filter" />}
+                <Divider />
+                <div>
+                  <Stack
+                    spacing={1.5}
+                    direction={{ xs: 'column', md: 'row' }}
+                    useFlexGap // todo: investigate this more - doesn't work now
                   >
-                    More filters
-                  </Button>
+                    <div>
+                      <CountrySelector />
+                    </div>
+
+                    <FormControl>
+                      <Input
+                        type="date"
+                        placeholder="Jan 6 - Jan 13"
+                        aria-label="Date"
+                      />
+                    </FormControl>
+
+                    <FormControl>
+                      <Input
+                        startDecorator="$"
+                        type="number"
+                        placeholder="Any price"
+                        aria-label="Price"
+                      />
+                    </FormControl>
+                    <Button
+                      variant="outlined"
+                      color="neutral"
+                      startDecorator={<i data-feather="filter" />}
+                    >
+                      More filters
+                    </Button>
+                  </Stack>
+                  <Stack spacing={1.5} direction="row">
+                    <FormControl sx={{ flex: 1 }}>
+                      <Input
+                        placeholder="Search"
+                        startDecorator={<i data-feather="search" />}
+                        aria-label="Search"
+                      />
+                    </FormControl>
+                    <Button variant="outlined" color="neutral">
+                      Clear
+                    </Button>
+                    <Button variant="solid" color="primary">
+                      Search
+                    </Button>
+                  </Stack>
+                </div>
+                <Stack spacing={1.5} direction="row" justifyContent="space-between">
+                  <ToggleGroup
+                    options={[
+                      { label: 'Sort by date', value: 'date' },
+                      { label: 'Sort by price', value: 'price' },
+                    ]}
+                  />
+                  <ToggleGroup
+                    options={[
+                      { label: <i data-feather="list" />, value: 'list' },
+                      { label: <i data-feather="map-pin" />, value: 'map' },
+                    ]}
+                  />
                 </Stack>
-                <Stack spacing={1.5} direction="row">
-                  <FormControl sx={{ flex: 1 }}>
-                    <Input
-                      placeholder="Search"
-                      startDecorator={<i data-feather="search" />}
-                      aria-label="Search"
-                    />
-                  </FormControl>
-                  <Button variant="outlined" color="neutral">
-                    Clear
-                  </Button>
-                  <Button variant="solid" color="primary">
-                    Search
-                  </Button>
-                </Stack>
-              </div>
-              <Stack spacing={1.5} direction="row" justifyContent="space-between">
-                <ToggleGroup
-                  options={[
-                    { label: 'Sort by date', value: 'date' },
-                    { label: 'Sort by price', value: 'price' },
-                  ]}
-                />
-                <ToggleGroup
-                  options={[
-                    { label: <i data-feather="list" />, value: 'list' },
-                    { label: <i data-feather="map-pin" />, value: 'map' },
-                  ]}
-                />
-              </Stack>
-              <RentalCard />
-              <RentalCard />
-              <RentalCard />
-              <RentalCard />
-              <Divider />
-              Pagination
-            </Box>
+                <RentalCard />
+                <RentalCard />
+                <RentalCard />
+                <RentalCard />
+                <Divider />
+                Pagination
+              </React.Fragment>
+            </Main>
           </Grid>
           <Grid xs={12} md={3}>
             <Divider orientation="vertical" />
