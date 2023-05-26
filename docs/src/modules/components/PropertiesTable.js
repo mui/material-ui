@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiPage/ApiItem';
 
@@ -42,6 +43,19 @@ export default function PropertiesTable(props) {
                   {t('api-docs.default')}: <code>{propDefault}</code>
                 </p>
               )}
+              {propData.deprecated && (
+                <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
+                  <strong>{t('api-docs.deprecated')}</strong>
+                  {propData.deprecationInfo && ' - '}
+                  {propData.deprecationInfo && (
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: propData.deprecationInfo,
+                      }}
+                    />
+                  )}
+                </Alert>
+              )}
             </ApiItem>
           );
           // <tr key={propName}>
@@ -74,19 +88,7 @@ export default function PropertiesTable(props) {
           //     </td>
           //   )}
           //   <td align="left">
-          //     {propData.deprecated && (
-          //       <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-          //         <strong>{t('api-docs.deprecated')}</strong>
-          //         {propData.deprecationInfo && ' - '}
-          //         {propData.deprecationInfo && (
-          //           <span
-          //             dangerouslySetInnerHTML={{
-          //               __html: propData.deprecationInfo,
-          //             }}
-          //           />
-          //         )}
-          //       </Alert>
-          //     )}
+
           //     <div
           //       dangerouslySetInnerHTML={{
           //         __html: propertiesDescriptions[propName] || '',
