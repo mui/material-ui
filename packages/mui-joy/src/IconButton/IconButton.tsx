@@ -135,6 +135,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
+    disabled,
     rootRef: handleRef,
   });
 

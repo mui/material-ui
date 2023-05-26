@@ -1,21 +1,26 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, describeJoyColorInversion } from 'test/utils';
+import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Card, { cardClasses as classes, CardClassKey } from '@mui/joy/Card';
+import ButtonGroup, {
+  buttonGroupClasses as classes,
+  ButtonGroupClassKey,
+} from '@mui/joy/ButtonGroup';
+import Button, { buttonClasses, ButtonClassKey } from '@mui/joy/Button';
+import IconButton, { iconButtonClasses, IconButtonClassKey } from '@mui/joy/IconButton';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 
-describe('<Card />', () => {
+describe('<ButtonGroup />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Card />, () => ({
+  describeConformance(<ButtonGroup />, () => ({
     classes,
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'JoyCard',
+    muiName: 'JoyButtonGroup',
     refInstanceof: window.HTMLDivElement,
-    testComponentPropWith: 'li',
+    testComponentPropWith: 'fieldset',
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
@@ -26,71 +31,151 @@ describe('<Card />', () => {
     },
   }));
 
-  describeJoyColorInversion(<Card />, { muiName: 'JoyCard', classes });
-
   describe('prop: variant', () => {
     it('plain by default', () => {
-      const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
+      const { getByTestId } = render(
+        <ButtonGroup data-testid="root">
+          <Button />
+          <IconButton />
+        </ButtonGroup>,
+      );
 
-      expect(getByTestId('root')).to.have.class(classes.variantPlain);
+      expect(getByTestId('root')).to.have.class(classes.variantOutlined);
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
       it(`should render ${variant}`, () => {
-        const { getByTestId } = render(
-          <Card data-testid="root" variant={variant}>
-            Hello World
-          </Card>,
+        const { getByTestId, container } = render(
+          <ButtonGroup data-testid="root" variant={variant}>
+            <Button />
+            <IconButton />
+          </ButtonGroup>,
         );
 
         expect(getByTestId('root')).to.have.class(
-          classes[`variant${capitalize(variant)}` as CardClassKey],
+          classes[`variant${capitalize(variant)}` as ButtonGroupClassKey],
+        );
+
+        expect(container.firstChild?.firstChild).to.have.class(
+          buttonClasses[`variant${capitalize(variant)}` as ButtonClassKey],
+        );
+        expect(container.firstChild?.lastChild).to.have.class(
+          iconButtonClasses[`variant${capitalize(variant)}` as IconButtonClassKey],
         );
       });
+    });
+
+    it('should override button group value', () => {
+      const { getAllByRole } = render(
+        <ButtonGroup variant="soft">
+          <Button variant="solid" />
+          <IconButton variant="plain" />
+        </ButtonGroup>,
+      );
+      expect(getAllByRole('button')[0]).to.have.class(buttonClasses.variantSolid);
+      expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.variantPlain);
     });
   });
 
   describe('prop: color', () => {
     it('adds a neutral class by default', () => {
-      const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
+      const { getByTestId } = render(
+        <ButtonGroup data-testid="root">
+          <Button />
+          <IconButton />
+        </ButtonGroup>,
+      );
 
       expect(getByTestId('root')).to.have.class(classes.colorNeutral);
     });
 
     (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
       it(`should render ${color}`, () => {
-        const { getByTestId } = render(
-          <Card data-testid="root" color={color}>
-            Hello World
-          </Card>,
+        const { getByTestId, container } = render(
+          <ButtonGroup data-testid="root" color={color}>
+            <Button />
+            <IconButton />
+          </ButtonGroup>,
         );
 
         expect(getByTestId('root')).to.have.class(
-          classes[`color${capitalize(color)}` as CardClassKey],
+          classes[`color${capitalize(color)}` as ButtonGroupClassKey],
+        );
+
+        expect(container.firstChild?.firstChild).to.have.class(
+          buttonClasses[`color${capitalize(color)}` as ButtonClassKey],
+        );
+        expect(container.firstChild?.lastChild).to.have.class(
+          iconButtonClasses[`color${capitalize(color)}` as IconButtonClassKey],
         );
       });
+    });
+
+    it('should override button group value', () => {
+      const { getAllByRole } = render(
+        <ButtonGroup color="primary">
+          <Button color="danger" />
+          <IconButton color="success" />
+        </ButtonGroup>,
+      );
+      expect(getAllByRole('button')[0]).to.have.class(buttonClasses.colorDanger);
+      expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.colorSuccess);
     });
   });
 
   it('can change size', () => {
-    const { container, rerender } = render(<Card />);
+    const { container, getAllByRole, rerender } = render(
+      <ButtonGroup>
+        <Button />
+        <IconButton />
+      </ButtonGroup>,
+    );
 
     expect(container.firstChild).to.have.class(classes.sizeMd);
+    expect(getAllByRole('button')[0]).to.have.class(buttonClasses.sizeMd);
+    expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeMd);
 
-    rerender(<Card size="lg" />);
+    rerender(
+      <ButtonGroup size="lg">
+        <Button />
+        <IconButton />
+      </ButtonGroup>,
+    );
 
     expect(container.firstChild).to.have.class(classes.sizeLg);
+    expect(getAllByRole('button')[0]).to.have.class(buttonClasses.sizeLg);
+    expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeLg);
+
+    rerender(
+      <ButtonGroup size="lg">
+        <Button size="sm" />
+        <IconButton size="sm" />
+      </ButtonGroup>,
+    );
+    expect(getAllByRole('button')[0]).to.have.class(buttonClasses.sizeSm);
+    expect(getAllByRole('button')[1]).to.have.class(iconButtonClasses.sizeSm);
   });
 
   it('add data-attribute to the first and last child', () => {
     const { container } = render(
-      <Card>
-        <div>First</div>
-        <div>Second</div>
-        <div>Third</div>
-      </Card>,
+      <ButtonGroup>
+        <Button>First</Button>
+        <Button>Second</Button>
+        <Button>Third</Button>
+      </ButtonGroup>,
     );
     expect(container.querySelector('[data-first-child]')).to.have.text('First');
     expect(container.querySelector('[data-last-child]')).to.have.text('Third');
+  });
+
+  it('pass disabled to buttons', () => {
+    const { getAllByRole } = render(
+      <ButtonGroup disabled>
+        <Button />
+        <IconButton />
+      </ButtonGroup>,
+    );
+    expect(getAllByRole('button')[0]).to.have.property('disabled', true);
+    expect(getAllByRole('button')[1]).to.have.property('disabled', true);
   });
 });
