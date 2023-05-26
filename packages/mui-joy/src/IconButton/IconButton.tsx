@@ -123,8 +123,8 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...other
   } = props;
   const buttonGroup = React.useContext(ButtonGroupContext);
-  const variant = buttonGroup.variant || variantProp;
-  const size = buttonGroup.size || sizeProp;
+  const variant = inProps.variant || buttonGroup.variant || variantProp;
+  const size = inProps.size || buttonGroup.size || sizeProp;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, buttonGroup.color || colorProp);
 

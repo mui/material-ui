@@ -36,49 +36,82 @@ const ButtonGroupRoot = styled('div', {
   name: 'JoyButtonGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => ({
-  '--ButtonGroup-separatorColor':
-    ownerState.variant === 'solid'
-      ? `rgb(255 255 255 / 32%)`
-      : theme.vars.palette[ownerState.color!]?.outlinedBorder,
-  '--Divider-inset': '0.5rem',
-  display: 'flex',
-  flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-  // first Button or IconButton
-  [`& > .${buttonClasses.root}[data-first-child], & > .${iconButtonClasses.root}[data-first-child], & > [data-first-child] .${buttonClasses.root}, & > [data-first-child] .${iconButtonClasses.root}`]:
-    {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-      ...(ownerState.separated && {
-        borderRight: 0,
-      }),
+})<{ ownerState: ButtonGroupOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  const hasBorder = !!variantStyle?.border;
+  const firstChildRadius =
+    ownerState.orientation === 'vertical'
+      ? 'var(--ButtonGroup-radius) var(--ButtonGroup-radius) 0 0'
+      : 'var(--ButtonGroup-radius) 0 0 var(--ButtonGroup-radius)';
+  const lastChildRadius =
+    ownerState.orientation === 'vertical'
+      ? '0 0 var(--ButtonGroup-radius) var(--ButtonGroup-radius)'
+      : '0 var(--ButtonGroup-radius) var(--ButtonGroup-radius) 0';
+  const margin =
+    ownerState.orientation === 'vertical'
+      ? 'var(--ButtonGroup-separatorSize) 0 0 0'
+      : '0 0 0 var(--ButtonGroup-separatorSize)';
+  return {
+    '--ButtonGroup-separatorSize': '-1px',
+    '--ButtonGroup-separatorColor':
+      ownerState.variant === 'solid'
+        ? `rgb(255 255 255 / 32%)`
+        : theme.vars.palette[ownerState.color!]?.outlinedBorder,
+    '--ButtonGroup-radius': theme.vars.radius.sm,
+    '--Divider-inset': '0.5rem',
+    display: 'flex',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+    // first Button or IconButton
+    [`& > [data-first-child]`]: {
+      '--Button-radius': firstChildRadius,
+      '--IconButton-radius': firstChildRadius,
+      ...(!hasBorder &&
+        ownerState.orientation === 'horizontal' && {
+          borderRight: '1px solid var(--ButtonGroup-separatorColor)',
+        }),
+      ...(!hasBorder &&
+        ownerState.orientation === 'vertical' && {
+          borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
+        }),
     },
-  // middle Buttons or IconButtons
-  [`& > .${buttonClasses.root}:not([data-first-child]):not([data-last-child]), & > .${iconButtonClasses.root}:not([data-first-child]):not([data-last-child]), & > :not([data-first-child]):not([data-last-child]) .${buttonClasses.root}, & > :not([data-first-child]):not([data-last-child]) .${iconButtonClasses.root}`]:
-    {
+    // middle Buttons or IconButtons
+    [`& > :not([data-first-child]):not([data-last-child])`]: {
       borderRadius: 0,
-      marginLeft: 'calc(-1 * var(--variant-borderWidth))',
-      ...(ownerState.separated && {
-        borderRight: 0,
-        borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
-      }),
+      ...(!hasBorder &&
+        ownerState.orientation === 'horizontal' && {
+          borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
+          borderRight: '1px solid var(--ButtonGroup-separatorColor)',
+        }),
+      ...(!hasBorder &&
+        ownerState.orientation === 'vertical' && {
+          borderTop: '1px solid var(--ButtonGroup-separatorColor)',
+          borderBottom: '1px solid var(--ButtonGroup-separatorColor)',
+        }),
     },
-  // last Button or IconButton
-  [`& > .${buttonClasses.root}[data-last-child], & > .${iconButtonClasses.root}[data-last-child], & > [data-last-child] .${buttonClasses.root}, & > [data-last-child] .${iconButtonClasses.root}`]:
-    {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      marginLeft: 'calc(-1 * var(--variant-borderWidth))',
-      ...(ownerState.separated && {
-        borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
-      }),
+    // last Button or IconButton
+    [`& > [data-last-child]`]: {
+      '--Button-radius': lastChildRadius,
+      '--IconButton-radius': lastChildRadius,
+      ...(!hasBorder &&
+        ownerState.orientation === 'horizontal' && {
+          borderLeft: '1px solid var(--ButtonGroup-separatorColor)',
+        }),
+      ...(!hasBorder &&
+        ownerState.orientation === 'vertical' && {
+          borderTop: '1px solid var(--ButtonGroup-separatorColor)',
+        }),
     },
-  [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
-    [`&:hover, ${theme.focus.selector}`]: {
-      zIndex: 1,
+    [`& > :not([data-first-child])`]: {
+      '--Button-margin': margin,
+      '--IconButton-margin': margin,
     },
-  },
-}));
+    [`& .${buttonClasses.root}, & .${iconButtonClasses.root}`]: {
+      [`&:hover, ${theme.focus.selector}`]: {
+        zIndex: 1,
+      },
+    },
+  };
+});
 
 /**
  *

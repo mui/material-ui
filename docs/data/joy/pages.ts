@@ -34,6 +34,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/react-autocomplete' },
           { pathname: '/joy-ui/react-button' },
+          { pathname: '/joy-ui/react-button-group', title: 'Button Group' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-input' },
           { pathname: '/joy-ui/react-radio-button', title: 'Radio Button' },

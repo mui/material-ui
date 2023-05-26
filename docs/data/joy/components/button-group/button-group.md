@@ -18,32 +18,32 @@ They need to be immediate children.
 
 {{"demo": "BasicButtonGroup.js"}}
 
-## Button variants
+## Variants
 
 All the standard button variants are supported.
 
-<!-- {{"demo": "VariantButtonGroup.js"}} -->
+{{"demo": "VariantButtonGroup.js"}}
 
-## Sizes and colors
+## Colors
+
+{{"demo": "ButtonGroupColors.js"}}
+
+## Sizes
 
 The `size` and `color` props can be used to control the appearance of the button group.
 
-<!-- {{"demo": "GroupSizesColors.js"}} -->
+{{"demo": "GroupSizesColors.js"}}
 
 ## Vertical group
 
 The button group can be displayed vertically using the `orientation` prop.
 
-<!-- {{"demo": "GroupOrientation.js"}} -->
+{{"demo": "GroupOrientation.js"}}
+
+## Spacing
 
 ## Split button
 
 `ButtonGroup` can also be used to create a split button. The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.
 
-<!-- {{"demo": "SplitButton.js"}} -->
-
-## Disabled elevation
-
-You can remove the elevation with the `disableElevation` prop.
-
-<!-- {{"demo": "DisableElevation.js"}} -->
+{{"demo": "SplitButton.js"}}
