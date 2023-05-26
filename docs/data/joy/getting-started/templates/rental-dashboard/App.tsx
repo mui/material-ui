@@ -11,11 +11,11 @@ import Header from './components/Header';
 import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
 import RentalCard from './components/RentalCard';
-import ToggleGroup from './components/ToggleGroup';
 import Main from './components/Main';
 import HeaderSection from './components/HeaderSection';
 import Search from './components/Search';
 import Filters from './components/Filters';
+import Toggles from './components/Toggles';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -49,30 +49,14 @@ export default function RentalDashboard() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <FirstSidebar />
-        {/* <SecondSidebar /> */}
         <Grid container spacing={1.5} sx={{ flexGrow: 1 }}>
           <Grid xs={12} md={8}>
             <Main>
               <React.Fragment>
                 <HeaderSection />
-                <div>
-                  <Filters />
-                  <Search />
-                </div>
-                <Stack spacing={1.5} direction="row" justifyContent="space-between">
-                  <ToggleGroup
-                    options={[
-                      { label: 'Sort by date', value: 'date' },
-                      { label: 'Sort by price', value: 'price' },
-                    ]}
-                  />
-                  <ToggleGroup
-                    options={[
-                      { label: <i data-feather="list" />, value: 'list' },
-                      { label: <i data-feather="map-pin" />, value: 'map' },
-                    ]}
-                  />
-                </Stack>
+                <Filters />
+                <Search />
+                <Toggles />
                 <RentalCard />
                 <RentalCard />
                 <RentalCard />

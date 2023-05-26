@@ -13,10 +13,18 @@ import {
   IconButton,
   Stack,
 } from '@mui/joy';
+import Star from '@mui/icons-material/Star';
 
 export default function RentalCard() {
   return (
-    <Card variant="outlined" orientation="horizontal">
+    <Card
+      variant="outlined"
+      orientation="horizontal"
+      sx={{
+        transition: '250ms all',
+        '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
+      }}
+    >
       <CardOverflow>
         <AspectRatio
           ratio="4/3"
@@ -52,7 +60,14 @@ export default function RentalCard() {
               Entire apartment rental in Collingwood
             </Typography>
             <Typography fontWeight="md" fontSize="lg">
-              A Stylish Apt, 5 min walk to Queen Victoria Market
+              <Link
+                overlay
+                underline="none"
+                href="#interactive-card"
+                sx={{ color: 'text.primary' }}
+              >
+                A Stylish Apt, 5 min walk to Queen Victoria Market
+              </Link>
             </Typography>
           </div>
           {/* todo: use toggle when its ready */}
@@ -61,7 +76,22 @@ export default function RentalCard() {
           </IconButton>
         </Stack>
         <Stack spacing={1} direction="row">
-          <Typography>4.9</Typography>
+          <Typography
+            // fontSize="xl"
+            fontWeight="md"
+            startDecorator={
+              <React.Fragment>
+                <Star sx={{ color: 'warning.300' }} />
+                <Star sx={{ color: 'warning.300' }} />
+                <Star sx={{ color: 'warning.300' }} />
+                <Star sx={{ color: 'warning.300' }} />
+                <Star sx={{ color: 'warning.300' }} />
+              </React.Fragment>
+            }
+          >
+            4.9
+          </Typography>
+
           <Typography>202 reviews</Typography>
         </Stack>
 
