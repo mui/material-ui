@@ -60,6 +60,16 @@ If you want to start with a more complete and real-world example, you could take
   - Lazy loads components to boost performance
   - Components for statistics, text with emoji support, image upload and much more...
 
+- [refine](https://github.com/refinedev/refine):
+
+  - ![stars](https://img.shields.io/github/stars/refinedev/refine.svg?style=social&label=Star)
+  - An open source, headless React-based framework for the rapid development of web applications that supports Vite, Next.js and Remix.
+  - Designed for building data-intensive applications like admin panels, dashboards, and internal tools, but thanks to built-in SSR support, can also power customer-facing applications like storefronts.
+  - Supports Material UI to generate a complete CRUD app that follows the Material Design guidelines and best practices.
+  - Connectors for 15+ backend services, including REST API, GraphQL, NestJS, Airtable, Strapi, Supabase, Appwrite, Firebase, and Hasura.
+  - Out-of-the-box support for live/real-time applications, audit logs, authentication, access control flows and i18n.
+  - Advanced routing with any router library.
+
 ### Paid
 
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):

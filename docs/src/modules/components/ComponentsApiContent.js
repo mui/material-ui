@@ -164,9 +164,9 @@ export default function ComponentsApiContent(props) {
       : '/material-ui/customization/theme-components/#theme-style-overrides';
     let slotGuideLink = '';
     if (isJoyComponent) {
-      slotGuideLink = '/joy-ui/guides/overriding-component-structure';
+      slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
     } else if (isBaseComponent) {
-      slotGuideLink = '/base/guides/overriding-component-structure';
+      slotGuideLink = '/base/guides/overriding-component-structure/';
     }
 
     const source = filename

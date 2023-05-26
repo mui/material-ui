@@ -19,7 +19,7 @@ Joy UI is currently in active development, and breaking changes are to be expect
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
-Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%3A%20joy-ui) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+Look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/package%3A%20joy-ui) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
 :::
 
 ## Advantages of Joy UI

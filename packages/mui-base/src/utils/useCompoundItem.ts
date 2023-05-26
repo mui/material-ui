@@ -31,7 +31,7 @@ export interface UseCompoundItemReturnValue<Key> {
  *
  * @ignore - internal hook.
  */
-export function useCompoundItem<Key, Subitem>(
+export function useCompoundItem<Key, Subitem extends { ref: React.RefObject<Node> }>(
   id: Key | undefined,
   itemMetadata: Subitem,
   missingKeyGenerator: (existingKeys: Set<Key>) => Key,
