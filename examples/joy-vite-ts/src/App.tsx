@@ -23,11 +23,15 @@ export default function App() {
   return (
     <Container maxWidth="md">
       <Card variant="outlined">
-        <Typography level="h2">
-          Joy UI Vite.js example in TypeScript
-        </Typography>
-        <Button sx={{ mt: 6, mb: 3 }} variant="soft" component="a" href="https://mui.com/material-ui/getting-started/templates/" endDecorator={<KeyboardArrowRight />}>
-            See more examples
+        <Typography level="h2">Joy UI Vite.js example in TypeScript</Typography>
+        <Button
+          sx={{ mt: 6, mb: 3 }}
+          variant="soft"
+          component="a"
+          href="https://mui.com/material-ui/getting-started/templates/"
+          endDecorator={<KeyboardArrowRight />}
+        >
+          See more examples
         </Button>
         <Copyright />
       </Card>
