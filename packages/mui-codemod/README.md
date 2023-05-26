@@ -62,6 +62,19 @@ npx @mui/codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"
 
 ### v5.0.0
 
+### `base-remove-unstyled-suffix`
+
+The `Unstyled` suffix has been removed from all Base UI component names, including names of types and other related identifiers.
+
+```diff
+-  <Input component='a' href='url' />;
++  <Input slots={{ root: 'a' }} href='url' />;
+```
+
+```sh
+npx @mui/codemod v5.0.0/base-remove-unstyled-suffix <path>
+```
+
 #### `base-remove-component-prop`
 
 Remove `component` prop from all Base UI components by transferring its value into `slots.root`.
