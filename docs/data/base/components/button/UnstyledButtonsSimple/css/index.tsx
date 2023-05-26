@@ -33,6 +33,9 @@ function Styles() {
       .CustomButton:hover {
         background-color: #0E5C6D;
       }
+      .CustomButton:active {
+        background-color: #0c5262;
+      }
       .CustomButton:disabled {
         opacity: 0.5;
       }
