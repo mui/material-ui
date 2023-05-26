@@ -145,9 +145,9 @@ const Button = styled(MDButton)(({ theme }) => ({
     },
   },
   ...theme.applyDarkStyles({
-    color: theme.palette.primaryDark[700],
+    color: theme.palette.primaryDark[200],
     '& svg': {
-      fill: theme.palette.primaryDark[700],
+      fill: theme.palette.primaryDark[200],
     },
   }),
 }));
