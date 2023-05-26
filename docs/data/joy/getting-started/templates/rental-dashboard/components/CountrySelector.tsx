@@ -13,8 +13,9 @@ export default function ContrySelector({ sx, ...props }: FormControlProps) {
       {...props}
       sx={[{ display: { sm: 'contents' } }, ...(Array.isArray(sx) ? sx : [sx])]}
     >
-      <FormLabel>Country</FormLabel>
+      {/* <FormLabel>Country</FormLabel> */}
       <Autocomplete
+        aria-label="Country"
         autoHighlight
         isOptionEqualToValue={(option, value) => option.code === value.code}
         defaultValue={{ code: 'US', label: 'United States', phone: '1' }}

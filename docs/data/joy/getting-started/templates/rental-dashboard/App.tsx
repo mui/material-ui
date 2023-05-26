@@ -27,6 +27,7 @@ import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
 import CountrySelector from './components/CountrySelector';
 import RentalCard from './components/RentalCard';
+import ToggleGroup from './components/ToggleGroup';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -61,7 +62,7 @@ export default function JoyOrderDashboardTemplate() {
         <Header />
         <FirstSidebar />
         {/* <SecondSidebar /> */}
-        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+        <Grid container spacing={1.5} sx={{ flexGrow: 1 }}>
           <Grid xs={12} md={8}>
             <Box
               component="main"
@@ -129,18 +130,29 @@ export default function JoyOrderDashboardTemplate() {
               </Box>
               <Divider />
               <div>
-                <Stack spacing={2} direction="row">
+                <Stack
+                  spacing={1.5}
+                  direction={{ xs: 'column', md: 'row' }}
+                  useFlexGap // todo: investigate this more - doesn't work now
+                >
                   <div>
                     <CountrySelector />
                   </div>
-                  <div>Jan 6 - Jan 13</div>
 
                   <FormControl>
-                    <FormLabel>Price</FormLabel>
+                    <Input
+                      type="date"
+                      placeholder="Jan 6 - Jan 13"
+                      aria-label="Date"
+                    />
+                  </FormControl>
+
+                  <FormControl>
                     <Input
                       startDecorator="$"
                       type="number"
                       placeholder="Any price"
+                      aria-label="Price"
                     />
                   </FormControl>
                   <Button
@@ -151,13 +163,12 @@ export default function JoyOrderDashboardTemplate() {
                     More filters
                   </Button>
                 </Stack>
-                <Stack spacing={2} direction="row">
+                <Stack spacing={1.5} direction="row">
                   <FormControl sx={{ flex: 1 }}>
-                    {/* todo: remove label but make sure its still accessible */}
-                    <FormLabel>Search</FormLabel>
                     <Input
                       placeholder="Search"
                       startDecorator={<i data-feather="search" />}
+                      aria-label="Search"
                     />
                   </FormControl>
                   <Button variant="outlined" color="neutral">
@@ -168,9 +179,19 @@ export default function JoyOrderDashboardTemplate() {
                   </Button>
                 </Stack>
               </div>
-              <Stack spacing={2} direction="row">
-                <div>Sort by date</div>
-                <div>Sort by price</div>
+              <Stack spacing={1.5} direction="row" justifyContent="space-between">
+                <ToggleGroup
+                  options={[
+                    { label: 'Sort by date', value: 'date' },
+                    { label: 'Sort by price', value: 'price' },
+                  ]}
+                />
+                <ToggleGroup
+                  options={[
+                    { label: <i data-feather="list" />, value: 'list' },
+                    { label: <i data-feather="map-pin" />, value: 'map' },
+                  ]}
+                />
               </Stack>
               <RentalCard />
               <RentalCard />

@@ -48,10 +48,10 @@ export default function RentalCard() {
           alignItems="flex-start"
         >
           <div>
-            <Typography color="primary" fontWeight="xl">
+            <Typography color="primary" fontSize="sm" fontWeight="lg">
               Entire apartment rental in Collingwood
             </Typography>
-            <Typography fontWeight="lg" fontSize="xl">
+            <Typography fontWeight="md" fontSize="lg">
               A Stylish Apt, 5 min walk to Queen Victoria Market
             </Typography>
           </div>
