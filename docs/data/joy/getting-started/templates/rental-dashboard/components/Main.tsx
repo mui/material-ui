@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Typography from '@mui/joy/Typography';
 
 type MainProps = {
   children: React.ReactNode;
