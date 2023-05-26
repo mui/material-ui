@@ -29,6 +29,7 @@ function Styles() {
         border-radius: 0.75rem;
         font-weight: bold;
         padding: 0.75rem 1.5rem;
+        cursor: pointer;
         border: none;
       }
       .CustomButton:hover {
@@ -37,10 +38,10 @@ function Styles() {
       .CustomButton:hover {
         background-color: #0E5C6D;
       }
-      &.${buttonClasses.active} {
+      .${buttonClasses.active} {
         background-color: #0c5262;
       }
-      &.${buttonClasses.disabled} {
+      .${buttonClasses.disabled} {
         opacity: 0.5;
         cursor: not-allowed;
       }
