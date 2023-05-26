@@ -5,7 +5,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import generalPages from 'docs/src/pages';
-import basePages from 'docs/data/base/pages';
+import basePages from 'docs/data/base-ui/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
@@ -190,7 +190,7 @@ function AppWrapper(props) {
       };
     }
 
-    if (product === 'base') {
+    if (product === 'base-ui') {
       return {
         metadata: 'MUI Core',
         name: 'Base UI',
@@ -226,7 +226,7 @@ function AppWrapper(props) {
 
   const pageContextValue = React.useMemo(() => {
     let pages = generalPages;
-    if (product === 'base') {
+    if (product === 'base-ui') {
       pages = basePages;
     } else if (product === 'material-ui') {
       pages = materialPages;

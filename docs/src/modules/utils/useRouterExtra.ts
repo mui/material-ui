@@ -19,7 +19,7 @@ export default function useRouterExtra() {
     asPathWithoutLang,
     product: product as
       | 'core'
-      | 'base'
+      | 'base-ui'
       | 'material-ui'
       | 'joy-ui'
       | 'system'

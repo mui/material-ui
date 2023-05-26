@@ -4,7 +4,7 @@ import fse from 'fs-extra';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import basePages from 'docs/data/base/pages';
+import basePages from 'docs/data/base-ui/pages';
 import joyPages from 'docs/data/joy/pages';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-'];
