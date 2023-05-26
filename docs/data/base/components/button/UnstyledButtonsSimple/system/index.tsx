@@ -22,6 +22,7 @@ const CustomButton = styled(Button)`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   background-color: ${blue[500]};
   padding: 12px 24px;
   border-radius: 12px;

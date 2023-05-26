@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/base/Button';
+import Button, { buttonClasses } from '@mui/base/Button';
 import Stack from '@mui/material/Stack';
 
 export default function UnstyledButtonsSimple() {
@@ -23,6 +23,7 @@ function Styles() {
       .CustomButton {
         font-family: IBM Plex Sans,sans-serif;
         font-size: 0.875rem;
+        line-height: 1.25rem;
         background-color: #117286;
         color: #fff;
         border-radius: 0.75rem;
@@ -33,11 +34,15 @@ function Styles() {
       .CustomButton:hover {
         background-color: #0E5C6D;
       }
-      .CustomButton:active {
+      .CustomButton:hover {
+        background-color: #0E5C6D;
+      }
+      &.${buttonClasses.active} {
         background-color: #0c5262;
       }
-      .CustomButton:disabled {
+      &.${buttonClasses.disabled} {
         opacity: 0.5;
+        cursor: not-allowed;
       }
       `}
     </style>
