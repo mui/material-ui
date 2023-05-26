@@ -4,7 +4,8 @@
 
 ## Getting started
 
-`Experimental_CssVarsProvider` is a provider that generates CSS theme variables and attaches a reference to the theme object (a React context).
+The CSS variables API relies on a new experimental provider for the theme called `Experimental_CssVarsProvider` to inject styles into Material UI components.
+In addition to providing the theme in the inner React context, this new provider also generates CSS variables out of all tokens in the theme that are not functions, and makes them available in the context as well.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -84,6 +85,9 @@ function App() {
 ```
 
 ## Using theme variables
+
+All of these variables are accessible in an object in the theme called `vars`.
+The structure of this object is nearly identical to the theme structure, the only difference is that the values represent CSS variables.
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
@@ -169,3 +173,28 @@ const StyledComponent = styled('button')(({ theme }) => ({
   color: theme.vars.palette.primary.main,
 }));
 ```
+
+## API
+
+### `<CssVarsProvider>` props
+
+- `defaultMode?: 'light' | 'dark' | 'system'` - Application's default mode (`light` by default)
+- `disableTransitionOnChange : boolean` - Disable CSS transitions when switching between modes
+- `enableColorScheme: boolean` - Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+- `prefix: string` - CSS variable prefix
+- `theme: ThemeInput` - the theme provided to React's context
+- `modeStorageKey?: string` - localStorage key used to store application `mode`
+- `attribute?: string` - DOM attribute for applying color scheme
+
+### `useColorScheme: () => ColorSchemeContextValue`
+
+- `mode: string` - The user's selected mode
+- `setMode: mode => {…}` - Function for setting the `mode`. The `mode` is saved to internal state and local storage; if `mode` is null, it will be reset to the default mode
+
+### `getInitColorSchemeScript: (options) => React.ReactElement`
+
+**options**
+
+- `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
+- `modeStorageKey?: string`: - localStorage key used to store application `mode`
+- `attribute?: string` - DOM attribute for applying color scheme
