@@ -50,8 +50,7 @@ export function DemoToolbarFallback() {
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
-function getDemoName(githubLocation, hash) {
-  const location = hash ? hash : githubLocation;
+function getDemoName(location) {
   return location.endsWith('.js') || location.endsWith('.tsx')
     ? location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
     : // the demos with multiple styling solution point to directory
@@ -451,8 +450,8 @@ export default function Demo(props) {
   }
 
   React.useEffect(() => {
-    const navigatedDemoName = getDemoName(demoData.githubLocation, window.location.hash);
-    if (demoName === navigatedDemoName) {
+    const navigatedDemoName = getDemoName(window.location.hash);
+    if (navigatedDemoName && demoName === navigatedDemoName) {
       setCodeOpen(true);
     }
   }, [demoName]);
@@ -518,112 +517,110 @@ export default function Demo(props) {
   });
 
   return (
-    <React.Fragment>
-      <Root>
-        <AnchorLink id={demoName} />
-        <DemoRoot
-          hiddenToolbar={demoOptions.hideToolbar}
-          bg={demoOptions.bg}
-          id={demoId}
-          onMouseEnter={handleDemoHover}
-          onMouseLeave={handleDemoHover}
-        >
-          <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
-            <InitialFocus
-              aria-label={t('initialFocusLabel')}
-              action={initialFocusRef}
-              tabIndex={-1}
-            />
-          </Wrapper>
-          <DemoSandbox
-            key={demoKey}
-            style={demoSandboxedStyle}
-            iframe={demoOptions.iframe}
-            name={demoName}
-            onResetDemoClick={resetDemo}
-          >
-            {demoElement}
-          </DemoSandbox>
-        </DemoRoot>
-        {Object.keys(stylingSolutionMapping).map((key) => (
-          <React.Fragment key={key}>
-            <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
-            <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
-          </React.Fragment>
-        ))}
-        <AnchorLink id={`${demoName}.js`} />
-        <AnchorLink id={`${demoName}.tsx`} />
-        <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
-          {demoOptions.hideToolbar ? null : (
-            <NoSsr defer fallback={<DemoToolbarFallback />}>
-              <React.Suspense fallback={<DemoToolbarFallback />}>
-                <DemoToolbar
-                  codeOpen={codeOpen}
-                  codeVariant={codeVariant}
-                  hasNonSystemDemos={hasNonSystemDemos}
-                  demo={demo}
-                  demoData={demoData}
-                  demoHovered={demoHovered}
-                  demoId={demoId}
-                  demoName={demoName}
-                  demoOptions={demoOptions}
-                  demoSourceId={demoSourceId}
-                  initialFocusRef={initialFocusRef}
-                  onCodeOpenChange={() => {
-                    setCodeOpen((open) => !open);
-                    setShowAd(true);
-                  }}
-                  onResetDemoClick={resetDemo}
-                  openDemoSource={openDemoSource}
-                  showPreview={showPreview}
-                />
-              </React.Suspense>
-            </NoSsr>
-          )}
-          <Collapse in={openDemoSource} unmountOnExit>
-            {/* A limitation from https://github.com/nihgwu/react-runner,
-            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
-            {demoOptions.disableLiveEdit ? (
-              <DemoCodeViewer
-                code={editorCode.value}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              />
-            ) : (
-              <DemoEditor
-                // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                key={editorCode.isPreview}
-                value={editorCode.value}
-                onChange={(value) => {
-                  setEditorCode({
-                    ...editorCode,
-                    value,
-                  });
-                }}
-                onFocus={() => {
-                  setLiveDemoActive(true);
-                }}
-                id={demoSourceId}
-                language={demoData.sourceLanguage}
-                copyButtonProps={{
-                  'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                  'data-ga-event-label': demo.gaLabel,
-                  'data-ga-event-action': 'copy-click',
-                }}
-              >
-                <DemoEditorError>{debouncedError}</DemoEditorError>
-              </DemoEditor>
-            )}
-          </Collapse>
-          {adVisibility ? <AdCarbonInline /> : null}
+    <Root>
+      <AnchorLink id={demoName} />
+      <DemoRoot
+        hiddenToolbar={demoOptions.hideToolbar}
+        bg={demoOptions.bg}
+        id={demoId}
+        onMouseEnter={handleDemoHover}
+        onMouseLeave={handleDemoHover}
+      >
+        <Wrapper {...(demoData.product === 'joy-ui' && { mode })}>
+          <InitialFocus
+            aria-label={t('initialFocusLabel')}
+            action={initialFocusRef}
+            tabIndex={-1}
+          />
         </Wrapper>
-      </Root>
-    </React.Fragment>
+        <DemoSandbox
+          key={demoKey}
+          style={demoSandboxedStyle}
+          iframe={demoOptions.iframe}
+          name={demoName}
+          onResetDemoClick={resetDemo}
+        >
+          {demoElement}
+        </DemoSandbox>
+      </DemoRoot>
+      {Object.keys(stylingSolutionMapping).map((key) => (
+        <React.Fragment key={key}>
+          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
+          <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
+        </React.Fragment>
+      ))}
+      <AnchorLink id={`${demoName}.js`} />
+      <AnchorLink id={`${demoName}.tsx`} />
+      <Wrapper {...(demoData.product === 'joy-ui' ? { mode } : {})}>
+        {demoOptions.hideToolbar ? null : (
+          <NoSsr defer fallback={<DemoToolbarFallback />}>
+            <React.Suspense fallback={<DemoToolbarFallback />}>
+              <DemoToolbar
+                codeOpen={codeOpen}
+                codeVariant={codeVariant}
+                hasNonSystemDemos={hasNonSystemDemos}
+                demo={demo}
+                demoData={demoData}
+                demoHovered={demoHovered}
+                demoId={demoId}
+                demoName={demoName}
+                demoOptions={demoOptions}
+                demoSourceId={demoSourceId}
+                initialFocusRef={initialFocusRef}
+                onCodeOpenChange={() => {
+                  setCodeOpen((open) => !open);
+                  setShowAd(true);
+                }}
+                onResetDemoClick={resetDemo}
+                openDemoSource={openDemoSource}
+                showPreview={showPreview}
+              />
+            </React.Suspense>
+          </NoSsr>
+        )}
+        <Collapse in={openDemoSource} unmountOnExit>
+          {/* A limitation from https://github.com/nihgwu/react-runner,
+            we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
+          {demoOptions.disableLiveEdit ? (
+            <DemoCodeViewer
+              code={editorCode.value}
+              id={demoSourceId}
+              language={demoData.sourceLanguage}
+              copyButtonProps={{
+                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                'data-ga-event-label': demo.gaLabel,
+                'data-ga-event-action': 'copy-click',
+              }}
+            />
+          ) : (
+            <DemoEditor
+              // Mount a new text editor when the preview mode change to reset the undo/redo history.
+              key={editorCode.isPreview}
+              value={editorCode.value}
+              onChange={(value) => {
+                setEditorCode({
+                  ...editorCode,
+                  value,
+                });
+              }}
+              onFocus={() => {
+                setLiveDemoActive(true);
+              }}
+              id={demoSourceId}
+              language={demoData.sourceLanguage}
+              copyButtonProps={{
+                'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                'data-ga-event-label': demo.gaLabel,
+                'data-ga-event-action': 'copy-click',
+              }}
+            >
+              <DemoEditorError>{debouncedError}</DemoEditorError>
+            </DemoEditor>
+          )}
+        </Collapse>
+        {adVisibility ? <AdCarbonInline /> : null}
+      </Wrapper>
+    </Root>
   );
 }
 

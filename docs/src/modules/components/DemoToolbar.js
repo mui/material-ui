@@ -500,6 +500,10 @@ export default function DemoToolbar(props) {
     /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
+  const handleStylingButtonClose = () => {
+    setStylingAnchorEl(null);
+  };
+
   const handleStylingSolutionChange = (eventStylingSolution) => {
     if (eventStylingSolution !== null && eventStylingSolution !== styleSolution) {
       setCodeStyling(eventStylingSolution);
@@ -517,9 +521,6 @@ export default function DemoToolbar(props) {
   const open = Boolean(stylingAnchorEl);
   const handleStylingButtonClick = (event) => {
     setStylingAnchorEl(event.currentTarget);
-  };
-  const handleStylingButtonClose = () => {
-    setStylingAnchorEl(null);
   };
 
   return (
@@ -780,10 +781,10 @@ DemoToolbar.propTypes = {
   demoName: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,
   demoSourceId: PropTypes.string,
+  hasNonSystemDemos: PropTypes.string,
   initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
   onCodeOpenChange: PropTypes.func.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
   openDemoSource: PropTypes.bool.isRequired,
   showPreview: PropTypes.bool.isRequired,
-  styleSolution: PropTypes.string,
 };
