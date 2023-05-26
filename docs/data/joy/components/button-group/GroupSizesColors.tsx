@@ -3,7 +3,7 @@ import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Stack from '@mui/joy/Stack';
 
-export default function VariantButtonGroup() {
+export default function GroupSizesColors() {
   return (
     <Stack spacing={2} alignItems="center">
       <ButtonGroup size="sm" aria-label="outlined button group">

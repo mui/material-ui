@@ -7,7 +7,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
-export default function BasicButtonGroup() {
+export default function MinWidthButtonGroup() {
   return (
     <Card
       variant="outlined"
