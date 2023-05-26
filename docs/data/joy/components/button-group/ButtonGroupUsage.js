@@ -43,7 +43,7 @@ export default function ButtonUsage() {
       renderDemo={(props) => (
         <ButtonGroup {...props}>
           <Button>Vote</Button>
-          <Button>Comment</Button>
+          <Button disabled>Comment</Button>
           <IconButton>
             <FavoriteBorder />
           </IconButton>

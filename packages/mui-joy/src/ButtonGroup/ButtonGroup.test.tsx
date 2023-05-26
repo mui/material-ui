@@ -32,6 +32,12 @@ describe('<ButtonGroup />', () => {
   }));
 
   describe('prop: variant', () => {
+    it('has role group', () => {
+      const { getByRole } = render(<ButtonGroup />);
+
+      expect(getByRole('group')).toBeVisible();
+    });
+
     it('plain by default', () => {
       const { getByTestId } = render(
         <ButtonGroup data-testid="root">
