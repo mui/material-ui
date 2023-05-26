@@ -16,7 +16,7 @@ import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useCodeStyling, useSetCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
+import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
@@ -50,7 +50,8 @@ export function DemoToolbarFallback() {
   return <DemoToolbarFallbackRoot aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
-function getDemoName(location) {
+function getDemoName(githubLocation, hash) {
+  const location = hash ? hash : githubLocation;
   return location.endsWith('.js') || location.endsWith('.tsx')
     ? location.replace(/(.+?)(\w+)\.\w+$$/, '$2')
     : // the demos with multiple styling solution point to directory
@@ -416,7 +417,6 @@ export default function Demo(props) {
   const t = useTranslate();
   const codeVariant = useCodeVariant();
   const styleSolution = useCodeStyling();
-  const setCodeStyling = useSetCodeStyling();
 
   const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
 
@@ -451,7 +451,7 @@ export default function Demo(props) {
   }
 
   React.useEffect(() => {
-    const navigatedDemoName = getDemoName(window.location.hash);
+    const navigatedDemoName = getDemoName(demoData.githubLocation, window.location.hash);
     if (demoName === navigatedDemoName) {
       setCodeOpen(true);
     }
@@ -546,7 +546,7 @@ export default function Demo(props) {
           </DemoSandbox>
         </DemoRoot>
         {Object.keys(stylingSolutionMapping).map((key) => (
-          <React.Fragment>
+          <React.Fragment key={key}>
             <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
             <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.tsx`} />
           </React.Fragment>
@@ -560,7 +560,7 @@ export default function Demo(props) {
                 <DemoToolbar
                   codeOpen={codeOpen}
                   codeVariant={codeVariant}
-                  styleSolution={hasNonSystemDemos ? styleSolution : null}
+                  hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
                   demoHovered={demoHovered}

@@ -4,9 +4,10 @@ import copy from 'clipboard-copy';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CheckIcon from '@mui/icons-material/Check';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
-import MDSelect, { selectClasses } from '@mui/material/Select';
+import MDButton from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import MDToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
@@ -15,7 +16,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import Snackbar from '@mui/material/Snackbar';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import MDMenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
@@ -24,7 +25,7 @@ import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useSetCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
+import { useSetCodeStyling, useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
@@ -118,16 +119,14 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
   }),
 ]);
 
-const Select = styled(MDSelect)(({ theme }) => ({
+const Button = styled(MDButton)(({ theme }) => ({
   height: 24,
   borderRadius: 999,
   border: 'none',
-  paddingLeft: 0,
+  paddingLeft: theme.spacing(1),
+  paddingRight: theme.spacing(1),
   fontSize: '0.85rem',
   fontWeight: theme.typography.fontWeightMedium,
-  [`& .MuiOutlinedInput-notchedOutline`]: {
-    border: 'none',
-  },
   color: theme.palette.primary.main,
   '& svg': {
     fill: theme.palette.primary.main,
@@ -151,6 +150,12 @@ const Select = styled(MDSelect)(({ theme }) => ({
       fill: theme.palette.primaryDark[700],
     },
   }),
+}));
+
+const MenuItem = styled(MDMenuItem)(({ theme }) => ({
+  [`& .${menuItemClasses.selected}`]: {
+    backgroundColor: theme.palette.primary[50],
+  },
 }));
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
@@ -310,7 +315,7 @@ export default function DemoToolbar(props) {
   const {
     codeOpen,
     codeVariant,
-    styleSolution,
+    hasNonSystemDemos,
     demo,
     demoData,
     demoId,
@@ -326,6 +331,7 @@ export default function DemoToolbar(props) {
   } = props;
 
   const setCodeVariant = useSetCodeVariant();
+  const styleSolution = useCodeStyling();
   const setCodeStyling = useSetCodeStyling();
   const t = useTranslate();
 
@@ -416,13 +422,13 @@ export default function DemoToolbar(props) {
     React.useRef(null),
     React.useRef(null),
   ];
-  // if the code is not open we hide the first two language controls
+  // if the code is not open we hide the language controls
   const isFocusableControl = React.useCallback(
-    (index) => (codeOpen ? true : index >= 2),
+    (index) => (codeOpen ? true : index !== 1 && index !== 2),
     [codeOpen],
   );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
-    defaultActiveIndex: 2,
+    defaultActiveIndex: 0,
     isFocusableControl,
   });
 
@@ -494,31 +500,47 @@ export default function DemoToolbar(props) {
     /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
-  const handleStylingSolutionChange = (e) => {
-    setCodeStyling(e.target.value);
+  const handleStylingSolutionChange = (eventStylingSolution) => {
+    if (eventStylingSolution !== null && eventStylingSolution !== styleSolution) {
+      setCodeStyling(eventStylingSolution);
+    }
+    handleStylingButtonClose();
+  };
+
+  const codeStylingLabels = {
+    [CODE_STYLING.SYSTEM]: t('demoStylingSelectSystem'),
+    [CODE_STYLING.TAILWIND]: t('demoStylingSelectTailwind'),
+    [CODE_STYLING.CSS]: t('demoStylingSelectCSS'),
+  };
+
+  const [stylingAnchorEl, setStylingAnchorEl] = React.useState(null);
+  const open = Boolean(stylingAnchorEl);
+  const handleStylingButtonClick = (event) => {
+    setStylingAnchorEl(event.currentTarget);
+  };
+  const handleStylingButtonClose = () => {
+    setStylingAnchorEl(null);
   };
 
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
-        {styleSolution && (
-          <Select
-            size="small"
-            value={styleSolution}
-            onChange={handleStylingSolutionChange}
-            inputProps={{
-              IconComponent: ExpandMoreIcon,
-            }}
+        {hasNonSystemDemos && (
+          <Button
+            id="styling-solution"
+            aria-controls={open ? 'demo-styling-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleStylingButtonClick}
             {...getControlProps(0)}
           >
-            <MenuItem value={CODE_STYLING.SYSTEM}>{t('demoStylingSelectSystem')}</MenuItem>
-            <MenuItem value={CODE_STYLING.TAILWIND}>{t('demoStylingSelectTailwind')}</MenuItem>
-            <MenuItem value={CODE_STYLING.CSS}>{t('demoStylingSelectCSS')}</MenuItem>
-          </Select>
+            {codeStylingLabels[styleSolution]}
+            <ExpandMoreIcon />
+          </Button>
         )}
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex', height: 40 }}>
-            {styleSolution && (
+            {hasNonSystemDemos && (
               <Divider
                 orientation="vertical"
                 variant="middle"
@@ -656,6 +678,44 @@ export default function DemoToolbar(props) {
           </IconButton>
         </Box>
       </Root>
+      <Menu
+        id="demo-styling-menu"
+        anchorEl={stylingAnchorEl}
+        open={open}
+        onClose={handleStylingButtonClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem
+          value={CODE_STYLING.SYSTEM}
+          selected={styleSolution === CODE_STYLING.SYSTEM}
+          onClick={() => handleStylingSolutionChange(CODE_STYLING.SYSTEM)}
+        >
+          {codeStylingLabels[CODE_STYLING.SYSTEM]}
+          {styleSolution === CODE_STYLING.SYSTEM && (
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
+          )}
+        </MenuItem>
+        <MenuItem
+          value={CODE_STYLING.TAILWIND}
+          selected={styleSolution === CODE_STYLING.TAILWIND}
+          onClick={() => handleStylingSolutionChange(CODE_STYLING.TAILWIND)}
+        >
+          {codeStylingLabels[CODE_STYLING.TAILWIND]}
+          {styleSolution === CODE_STYLING.TAILWIND && (
+            <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />
+          )}
+        </MenuItem>
+        <MenuItem
+          value={CODE_STYLING.CSS}
+          selected={styleSolution === CODE_STYLING.CSS}
+          onClick={() => handleStylingSolutionChange(CODE_STYLING.CSS)}
+        >
+          {codeStylingLabels[CODE_STYLING.CSS]}
+          {styleSolution === CODE_STYLING.CSS && <CheckIcon sx={{ fontSize: '0.85rem', ml: 2 }} />}
+        </MenuItem>
+      </Menu>
       <Menu
         id="demo-menu-more"
         anchorEl={anchorEl}
