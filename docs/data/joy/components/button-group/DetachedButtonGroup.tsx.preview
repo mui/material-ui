@@ -1,0 +1,8 @@
+<ButtonGroup detached aria-label="detached button group" sx={{ gap: 1 }}>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+  <IconButton>
+    <Settings />
+  </IconButton>
+</ButtonGroup>

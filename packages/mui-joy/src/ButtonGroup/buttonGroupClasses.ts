@@ -35,6 +35,8 @@ export interface ButtonGroupClasses {
   horizontal: string;
   /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** Class name applied to the root element if `detached={true}`. */
+  detached: string;
 }
 
 export type ButtonGroupClassKey = keyof ButtonGroupClasses;
@@ -61,6 +63,7 @@ const buttonGroupClasses: ButtonGroupClasses = generateUtilityClasses('MuiButton
   'sizeLg',
   'horizontal',
   'vertical',
+  'detached',
 ]);
 
 export default buttonGroupClasses;

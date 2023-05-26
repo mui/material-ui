@@ -57,6 +57,12 @@ Use the `disabled` prop to disable all the buttons. Note that if you explicitly 
 
 {{"demo": "DisabledButtonGroup.js"}}
 
+## Detached
+
+Use `detached` prop to separate buttons from each other. It will remove the border radius override.
+
+{{"demo": "DetachedButtonGroup.js"}}
+
 ## Vertical group
 
 The button group can be displayed vertically using the `orientation="horizontal"` prop. Note that this prop has no effect on `IconButton` component.
@@ -100,3 +106,9 @@ ButtonGroup supports arbitrary children that wrap the buttons by preserving the 
 Use CSS variable `--ButtonGroup-radius` to control the radius of the start and end buttons.
 
 {{"demo": "RadiusButtonGroup.js"}}
+
+### Custom separator
+
+This example uses the `Divider` component to create a custom separators between buttons. The CSS variable `--ButtonGroup-separatorColor` is set to arbitrary value to remove the default separator.
+
+{{"demo": "CustomSeparatorButtonGroup.js"}}
