@@ -24,7 +24,7 @@ The project uses Material UI with [Preact](https://github.com/developit/preact),
 
 This example uses CRA with `react-app-rewired` for adding webpack aliases for preact.
 
-It includes `@mui/material` and its peer dependencies are including [Emotion library](https://emotion.sh/docs/introduction) which is default style engine in Material UI v5.
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
 
 <!-- #default-branch-switch -->
 
