@@ -33,21 +33,7 @@ export default function Main({ children }: MainProps) {
         gap: 1,
       })}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          my: 1,
-          gap: 1,
-          flexWrap: 'wrap',
-          '& > *': {
-            minWidth: 'clamp(0px, (500px - 100%) * 999, 100%)',
-            flexGrow: 1,
-          },
-        }}
-      >
-        {children}
-      </Box>
+      {children}
     </Box>
   );
 }

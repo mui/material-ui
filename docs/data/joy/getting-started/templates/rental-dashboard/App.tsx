@@ -49,9 +49,9 @@ export default function RentalDashboard() {
       <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
         <Header />
         <FirstSidebar />
-        <Grid container spacing={1.5} sx={{ flexGrow: 1 }}>
-          <Grid xs={12} md={8}>
-            <Main>
+        <Main>
+          <Grid container spacing={1.5} sx={{ flexGrow: 1 }}>
+            <Grid xs={12} md={8}>
               <React.Fragment>
                 <HeaderSection />
                 <Filters />
@@ -64,18 +64,18 @@ export default function RentalDashboard() {
                 <Divider />
                 Pagination
               </React.Fragment>
-            </Main>
+            </Grid>
+            <Grid xs={12} md={3}>
+              <Divider orientation="vertical" />
+              <Box sx={{ backgroundColor: 'red', height: 500 }}>
+                {/* <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700"
+                /> */}
+              </Box>
+            </Grid>
           </Grid>
-          <Grid xs={12} md={3}>
-            <Divider orientation="vertical" />
-            <Box sx={{ backgroundColor: 'red', height: 500 }}>
-              <img
-                alt=""
-                src="https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=1000"
-              />
-            </Box>
-          </Grid>
-        </Grid>
+        </Main>
       </Box>
     </CssVarsProvider>
   );
