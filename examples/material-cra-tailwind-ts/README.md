@@ -33,7 +33,7 @@ or:
 <!-- #default-branch-switch -->
 
 This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Create React App](https://github.com/facebookincubator/create-react-app) together with Material UI.
-It includes `@mui/material` and its peer dependencies are including [Emotion library](https://emotion.sh/docs/introduction) which is default style engine in Material UI v5.
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
 
 ## What's next?
 
