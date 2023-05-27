@@ -50,8 +50,26 @@ export default function RentalDashboard() {
         <Header />
         <FirstSidebar />
         <Main>
-          <Grid container spacing={1.5} sx={{ flexGrow: 1 }}>
-            <Grid xs={12} md={8}>
+          <Grid
+            container
+            spacing={1.5}
+            sx={{
+              width: '100%',
+              height: '100dvh',
+              // backgroundColor: 'orange',
+              margin: 0,
+            }}
+            // flexDirection={{ xs: 'column-reverse', md: 'row' }}
+          >
+            <Grid
+              xs={12}
+              md={8}
+              sx={{
+                // backgroundColor: 'blue',
+                overflowY: 'scroll',
+                height: '100%',
+              }}
+            >
               <React.Fragment>
                 <HeaderSection />
                 <Filters />
@@ -61,13 +79,16 @@ export default function RentalDashboard() {
                 <RentalCard />
                 <RentalCard />
                 <RentalCard />
+                <RentalCard />
+                <RentalCard />
+                <RentalCard />
                 <Divider />
                 Pagination
               </React.Fragment>
             </Grid>
-            <Grid xs={12} md={3}>
+            <Grid xs={12} md={4}>
               <Divider orientation="vertical" />
-              <Box sx={{ backgroundColor: 'red', height: 500 }}>
+              <Box sx={{ backgroundColor: 'red', height: '100%', width: '100%' }}>
                 {/* <img
                   alt=""
                   src="https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700"
