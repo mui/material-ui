@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, Button, Divider, Typography } from '@mui/joy';
-import ColorSchemeToggle from './ColorSchemeToggle';
 
 export default function HeaderSection() {
   return (
@@ -25,9 +24,6 @@ export default function HeaderSection() {
         >
           Save search
         </Button>
-        <ColorSchemeToggle
-          sx={{ ml: 'auto', display: { xs: 'none', md: 'inline-flex' } }}
-        />
       </Box>
       <Divider />
     </div>

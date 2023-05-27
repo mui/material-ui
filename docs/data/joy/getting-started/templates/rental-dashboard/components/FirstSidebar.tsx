@@ -7,6 +7,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
 import { openSidebar } from '../utils';
+import ColorSchemeToggle from './ColorSchemeToggle';
 
 export default function FirstSidebar() {
   return (
@@ -92,6 +93,7 @@ export default function FirstSidebar() {
           '--List-gap': '8px',
         }}
       >
+        <ColorSchemeToggle sx={{ display: { xs: 'none', md: 'inline-flex' } }} />
         <ListItem>
           <ListItemButton>
             <i data-feather="life-buoy" />
