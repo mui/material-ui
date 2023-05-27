@@ -7,7 +7,7 @@
     "divider": "Add an element between each child.",
     "spacing": "Defines the space between immediate children.",
     "sx": "The system prop, which allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "useFlexGap": "If <code>true</code>, the CSS flexbox <code>gap</code> is used instead of applying <code>margin</code> to children.<br>While CSS <code>gap</code> removes the <a href=\"https://mui.com/joy-ui/react-stack/#limitations\">known limitations</a>, it is not fully supported in some browsers. We recommend checking <a href=\"https://caniuse.com/?search=flex%20gap\">https://caniuse.com/?search=flex%20gap</a> before using this flag.<br>To enable this flag globally, follow the <a href=\"https://mui.com/material-ui/customization/theme-components/#default-props\">theme&#39;s default props</a> configuration."
+    "useFlexGap": "If <code>true</code>, the CSS flexbox <code>gap</code> is used instead of applying <code>margin</code> to children.<br>While CSS <code>gap</code> removes the <a href=\"https://mui.com/joy-ui/react-stack/#limitations\">known limitations</a>, it is not fully supported in some browsers. We recommend checking <a href=\"https://caniuse.com/?search=flex%20gap\">https://caniuse.com/?search=flex%20gap</a> before using this flag.<br>To enable this flag globally, follow the theme&#39;s default props configuration."
   },
   "classDescriptions": {}
 }

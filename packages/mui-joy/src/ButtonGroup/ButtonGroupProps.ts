@@ -38,6 +38,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     color?: OverridableStringUnion<ColorPaletteProp, ButtonGroupPropsColorOverrides>;
     /**
      * If `true`, the border radius of the buttons are not removed.
+     * @default false
      */
     detached?: boolean;
     /**
@@ -47,14 +48,14 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     disabled?: boolean;
     /**
      * The component orientation.
-     * @default 'vertical'
+     * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
     /**
      * If `true`, each button stretch the width equally.
      * @default false
      */
-    stretch?: boolean | React.CSSProperties['flex'];
+    stretch?: boolean | number | string;
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
@@ -67,7 +68,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     sx?: SxProps;
     /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-     * @default 'plain'
+     * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonGroupPropsVariantOverrides>;
   } & ButtonGroupSlotsAndSlotProps;

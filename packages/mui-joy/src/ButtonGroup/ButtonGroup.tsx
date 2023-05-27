@@ -132,11 +132,11 @@ const ButtonGroupRoot = styled('div', {
  *
  * Demos:
  *
- * - [ButtonGroup](https://mui.com/joy-ui/react-card/)
+ * - [Button Group](https://mui.com/joy-ui/react-button-group/)
  *
  * API:
  *
- * - [ButtonGroup API](https://mui.com/joy-ui/api/card/)
+ * - [ButtonGroup API](https://mui.com/joy-ui/api/button-group/)
  */
 const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & ButtonGroupProps>({
@@ -250,6 +250,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * If `true`, the border radius of the buttons are not removed.
+   * @default false
    */
   detached: PropTypes.bool,
   /**
@@ -259,7 +260,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * The component orientation.
-   * @default 'vertical'
+   * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
@@ -289,62 +290,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * If `true`, each button stretch the width equally.
    * @default false
    */
-  stretch: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({
-      '__@iterator@94': PropTypes.func.isRequired,
-      anchor: PropTypes.func.isRequired,
-      at: PropTypes.func.isRequired,
-      big: PropTypes.func.isRequired,
-      blink: PropTypes.func.isRequired,
-      bold: PropTypes.func.isRequired,
-      charAt: PropTypes.func.isRequired,
-      charCodeAt: PropTypes.func.isRequired,
-      codePointAt: PropTypes.func.isRequired,
-      concat: PropTypes.func.isRequired,
-      endsWith: PropTypes.func.isRequired,
-      fixed: PropTypes.func.isRequired,
-      fontcolor: PropTypes.func.isRequired,
-      fontsize: PropTypes.func.isRequired,
-      includes: PropTypes.func.isRequired,
-      indexOf: PropTypes.func.isRequired,
-      italics: PropTypes.func.isRequired,
-      lastIndexOf: PropTypes.func.isRequired,
-      length: PropTypes.number.isRequired,
-      link: PropTypes.func.isRequired,
-      localeCompare: PropTypes.func.isRequired,
-      match: PropTypes.func.isRequired,
-      matchAll: PropTypes.func.isRequired,
-      normalize: PropTypes.func.isRequired,
-      padEnd: PropTypes.func.isRequired,
-      padStart: PropTypes.func.isRequired,
-      repeat: PropTypes.func.isRequired,
-      replace: PropTypes.func.isRequired,
-      search: PropTypes.func.isRequired,
-      slice: PropTypes.func.isRequired,
-      small: PropTypes.func.isRequired,
-      split: PropTypes.func.isRequired,
-      startsWith: PropTypes.func.isRequired,
-      strike: PropTypes.func.isRequired,
-      sub: PropTypes.func.isRequired,
-      substr: PropTypes.func.isRequired,
-      substring: PropTypes.func.isRequired,
-      sup: PropTypes.func.isRequired,
-      toLocaleLowerCase: PropTypes.func.isRequired,
-      toLocaleUpperCase: PropTypes.func.isRequired,
-      toLowerCase: PropTypes.func.isRequired,
-      toString: PropTypes.func.isRequired,
-      toUpperCase: PropTypes.func.isRequired,
-      trim: PropTypes.func.isRequired,
-      trimEnd: PropTypes.func.isRequired,
-      trimLeft: PropTypes.func.isRequired,
-      trimRight: PropTypes.func.isRequired,
-      trimStart: PropTypes.func.isRequired,
-      valueOf: PropTypes.func.isRequired,
-    }),
-    PropTypes.string,
-    PropTypes.bool,
-  ]),
+  stretch: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -355,7 +301,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
