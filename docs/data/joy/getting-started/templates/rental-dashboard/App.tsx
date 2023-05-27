@@ -8,7 +8,6 @@ import { FormControl, Grid, Input, Stack } from '@mui/joy';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import Header from './components/Header';
-import ColorSchemeToggle from './components/ColorSchemeToggle';
 import customTheme from './theme';
 import RentalCard from './components/RentalCard';
 import Main from './components/Main';
@@ -52,7 +51,6 @@ export default function RentalDashboard() {
         <Main>
           <Grid
             container
-            spacing={1.5}
             sx={{
               width: '100%',
               height: '100dvh',
@@ -68,6 +66,9 @@ export default function RentalDashboard() {
                 // backgroundColor: 'blue',
                 overflowY: 'scroll',
                 height: '100%',
+                px: { xs: 2, md: 4 },
+                pt: 4,
+                pb: 5,
               }}
             >
               <React.Fragment>
@@ -87,13 +88,19 @@ export default function RentalDashboard() {
               </React.Fragment>
             </Grid>
             <Grid xs={12} md={4}>
-              <Divider orientation="vertical" />
-              <Box sx={{ backgroundColor: 'red', height: '100%', width: '100%' }}>
-                {/* <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700"
-                /> */}
-              </Box>
+              <Stack direction="row">
+                <Divider orientation="vertical" sx={{ height: '100dvh' }} />
+                <Box
+                  sx={{
+                    width: '100%',
+                    backgroundColor: 'orange',
+                    m: 1.5,
+                    backgroundSize: 'cover',
+                    backgroundImage:
+                      'url("https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700")',
+                  }}
+                />
+              </Stack>
             </Grid>
           </Grid>
         </Main>
