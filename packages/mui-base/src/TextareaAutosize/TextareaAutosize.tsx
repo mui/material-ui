@@ -54,17 +54,17 @@ function isEmpty(obj: State) {
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/base/react-textarea-autosize/components-api/#textarea-autosize)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
-  ref: React.ForwardedRef<Element>,
+  forwardedRef: React.ForwardedRef<Element>,
 ) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const handleRef = useForkRef(ref, inputRef);
+  const handleRef = useForkRef(forwardedRef, inputRef);
   const shadowRef = React.useRef<HTMLTextAreaElement>(null);
   const renders = React.useRef(0);
   const [state, setState] = React.useState<State>({
@@ -167,7 +167,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     });
   }, [getUpdatedState]);
 
-  const syncHeightWithFlushSycn = () => {
+  const syncHeightWithFlushSync = () => {
     const newState = getUpdatedState();
 
     if (isEmpty(newState)) {
@@ -193,7 +193,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       // access a dom node that is no longer there (as the fallback component is being shown instead).
       // See https://github.com/mui/material-ui/issues/32640
       if (inputRef.current) {
-        syncHeightWithFlushSycn();
+        syncHeightWithFlushSync();
       }
     });
     let resizeObserver: ResizeObserver;
@@ -268,7 +268,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       />
     </React.Fragment>
   );
-});
+}) as React.ForwardRefExoticComponent<TextareaAutosizeProps & React.RefAttributes<Element>>;
 
 TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------

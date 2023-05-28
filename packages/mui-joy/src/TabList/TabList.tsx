@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import useTabsList from '@mui/base/useTabsList';
-import { useSlotProps } from '@mui/base/utils';
+import useTabsList, { TabsListProvider } from '@mui/base/useTabsList';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { useColorInversion } from '../styles/ColorInversion';
@@ -13,6 +12,7 @@ import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabListOwnerState) => {
   const { orientation, size, variant, color } = ownerState;
@@ -39,7 +39,7 @@ const TabListRoot = styled(StyledList, {
   '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
-  '--List-divider-gap': '0px',
+  '--ListDivider-gap': '0px',
   ...scopedVariables,
 }));
 /**
@@ -66,12 +66,16 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant = 'soft',
     color: colorProp = 'neutral',
     size: sizeProp,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
   const color = getColor(inProps.color, colorProp);
 
-  const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
+  const { isRtl, orientation, getRootProps, contextValue } = useTabsList({
+    rootRef: ref,
+  });
 
   const size = sizeProp ?? tabsSize;
 
@@ -86,28 +90,26 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
 
-  const tabsListRootProps = useSlotProps({
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
     elementType: TabListRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    additionalProps: {
-      as: component,
-    },
+    externalForwardedProps,
     ownerState,
     className: classes.root,
   });
 
-  const processedChildren = processChildren();
-
   return (
     // @ts-ignore conflicted ref types
-    <TabListRoot {...tabsListRootProps}>
-      <ListProvider row={orientation === 'horizontal'} nested>
-        {processedChildren}
-      </ListProvider>
-    </TabListRoot>
+    <SlotRoot {...rootProps}>
+      <TabsListProvider value={contextValue}>
+        <ListProvider row={orientation === 'horizontal'} nested>
+          {children}
+        </ListProvider>
+      </TabsListProvider>
+    </SlotRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 
@@ -141,6 +143,20 @@ TabList.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

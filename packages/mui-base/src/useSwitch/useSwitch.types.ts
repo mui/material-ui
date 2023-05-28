@@ -42,10 +42,41 @@ interface UseSwitchInputSlotOwnProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
   readOnly?: boolean;
-  ref: React.Ref<any>;
+  ref: React.RefCallback<HTMLInputElement> | null;
   required?: boolean;
   type: React.HTMLInputTypeAttribute;
 }
 
 export type UseSwitchInputSlotProps<TOther = {}> = Omit<TOther, keyof UseSwitchInputSlotOwnProps> &
   UseSwitchInputSlotOwnProps;
+
+export interface UseSwitchReturnValue {
+  /**
+   * If `true`, the component will be checked.
+   */
+  checked: boolean;
+  /**
+   * If `true`, the component will be disabled.
+   */
+  disabled: boolean;
+  /**
+   * If `true`, it indicates that the component is being focused using keyboard.
+   */
+  focusVisible: boolean;
+  /**
+   * Resolver for the input slot's props.
+   * @param externalProps props for the input slot
+   * @returns props that should be spread on the input slot
+   */
+  getInputProps: (
+    externalProps?: React.HTMLAttributes<HTMLInputElement>,
+  ) => UseSwitchInputSlotProps;
+  /**
+   * Ref to the input slot's DOM node.
+   */
+  inputRef: React.RefCallback<HTMLInputElement> | null;
+  /**
+   * If `true`, the component will be read only.
+   */
+  readOnly: boolean;
+}

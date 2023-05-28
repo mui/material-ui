@@ -66,6 +66,9 @@ export interface UseAutocompleteProps<
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * When using `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect?: boolean;
@@ -129,6 +132,7 @@ export interface UseAutocompleteProps<
   /**
    * A function that determines the filtered options to be rendered on search.
    *
+   * @default createFilterOptions()
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}
@@ -241,7 +245,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange?: (
     event: React.SyntheticEvent,
@@ -307,7 +311,7 @@ export interface UseAutocompleteParameters<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {}
 
-export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
+export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto' | 'touch';
 
 export type AutocompleteChangeReason =
   | 'createOption'
@@ -416,22 +420,18 @@ export interface UseAutocompleteReturnValue<
   value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * If `true`, the component input has some values.
-   * @default false
    */
   dirty: boolean;
   /**
    * If `true`, the listbox is being displayed.
-   * @default false
    */
   expanded: boolean;
   /**
    * If `true`, the popup is open on the component.
-   * @default false
    */
   popupOpen: boolean;
   /**
    * If `true`, the component is focused.
-   * @default false
    */
   focused: boolean;
   /**
@@ -445,7 +445,6 @@ export interface UseAutocompleteReturnValue<
   setAnchorEl: () => void;
   /**
    * Index of the focused tag for the component.
-   * @default -1
    */
   focusedTag: number;
   /**

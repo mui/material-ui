@@ -1,6 +1,6 @@
 # React Engineer - X (future)
 
-<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.</p>
 
 ## Details of the Role
 
@@ -16,29 +16,21 @@ We have gained a large following, thanks to our focus on Material Design fidelit
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
 A couple of years ago, we started to expand our suite of products.
-We released [MUI X](/x/), a collection of advanced components; [MUI Design kits](/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](/templates/), a set of pre-built UI kits.
+We released [MUI X](https://mui.com/x/), a collection of advanced components; [MUI Design kits](https://mui.com/design-kits/), the MUI components available for Figma, Sketch, etc.; and also host [Templates](https://mui.com/templates/), a set of pre-built UI kits.
 We've seen rapid growth with all of them (2-3x per year) and we have more to come.
 We are building [a low-code platform](https://mui.com/toolpad/) for developers to significantly increase the speed and lower the barrier for creating simple CRUD/dashboard UIs with MUI's libraries.
 
 We are a fully distributed team, spread across multiple time zones.
 We work mainly asynchronously, relying mostly on written collaboration.
 Every contributor has the freedom to define how they work — the rest of us won't know what you're doing day-to-day unless you tell us.
-For additional details about the MUI team and culture, you can check our [careers](/careers/) and [about](/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
+For additional details about the MUI team and culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
 ## Why we're hiring
 
 Both our open-source community and our premium products are growing fast (x2 YoY).
 We need talented people to keep that going!
 
-The data grid team (part of MUI X) needs your help.
-The component is off [a great start](https://npm-stat.com/charts.html?package=%40mui%2Fx-data-grid&package=react-table&package=ag-grid-community&from=2021-06-01), however we have only started to scratch the surface for the potential of this component. There is x10 more to build.
-We need to:
-
-- build an headless version for MUI Base.
-- build advanced, in browsers, data analysis features like pivoting and charts integration.
-- build a strong integration with backend APIs, e.g. to handle >100M rows.
-
-We also need help to continue to make the components easier to use, make it more customizable, [improve performance](https://www.causal.app/blog/react-perf), make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the community.
+We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, increase the contributions by engaging and collaborating with the community, guide developers to answers, and just generally be a positive presence in the open-source community.
 
 ## About the role
 
@@ -56,7 +48,7 @@ Depending on the day, you'll:
   The future of MUI is discussed and planned in our public RFCs and issues.
   You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the data grid and date pickers have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
@@ -123,8 +115,11 @@ We're looking for someone with strong front-end skills. More important than spec
 
 Competitive compensation depending on the profile and location.
 We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
-You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
+You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
 [Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/77584e4c-9379-45f3-a294-6e50bf250383/application?utm_source=ZNRrPGBkqO)
+
+Don't tick every bullet? Apply anyway! Research shows that certain folx are less likely to apply for a role than others [unless they meet 100%](https://hbr.org/2014/08/why-women-dont-apply-for-jobs-unless-theyre-100-qualified) of the outlined qualifications.
+If this role excites you, we want to hear from you. We'd love for you to share the unique skills, passion, and experience you could bring to MUI.

@@ -29,7 +29,6 @@ export interface UseSnackbarParameters {
    * If `true`, the component is shown.
    */
   open?: boolean;
-  ref?: React.Ref<any>;
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.
@@ -46,6 +45,21 @@ export interface UseSnackbarRootSlotOwnProps {
   onFocus: React.FocusEventHandler;
   onMouseEnter: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  ref?: React.Ref<any>;
+  ref?: React.RefCallback<Element>;
   role: React.AriaRole;
+}
+
+export interface UseSnackbarReturnValue {
+  /**
+   * Resolver for the root slot's props.
+   * @param externalProps props for the root slot
+   * @returns props that should be spread on the root slot
+   */
+  getRootProps: <TOther extends Record<string, ((event: any) => void) | undefined> = {}>(
+    externalProps?: TOther,
+  ) => UseSnackbarRootSlotProps<TOther>;
+  /**
+   * Callback fired when a "click away" event is detected.
+   */
+  onClickAway: (event: React.SyntheticEvent<any> | Event) => void;
 }

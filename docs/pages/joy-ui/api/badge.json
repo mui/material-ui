@@ -20,6 +20,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "99" },
     "showZero": { "type": { "name": "bool" }, "default": "false" },
@@ -29,6 +30,17 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -48,19 +60,47 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "badge",
-      "description": "The component used to render the badge.",
-      "default": "'div'",
-      "class": ".MuiBadge-badge"
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": ".MuiBadge-root"
     },
     {
-      "name": "root",
-      "description": "The component used to render the root.",
-      "default": "'div'",
-      "class": ".MuiBadge-root"
+      "name": "badge",
+      "description": "The component that renders the badge.",
+      "default": "'span'",
+      "class": ".MuiBadge-badge"
     }
   ],
+  "classes": {
+    "classes": [
+      "anchorOriginBottomLeft",
+      "anchorOriginBottomRight",
+      "anchorOriginTopLeft",
+      "anchorOriginTopRight",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "invisible",
+      "locationInside",
+      "locationOutside",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyBadge",
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Badge/Badge.tsx",
   "inheritance": null,

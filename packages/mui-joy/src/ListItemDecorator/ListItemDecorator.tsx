@@ -7,6 +7,7 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -23,14 +24,15 @@ const ListItemDecoratorRoot = styled('span', {
 })<{ ownerState: ListItemDecoratorOwnerState }>(({ ownerState }) => ({
   boxSizing: 'border-box',
   display: 'inline-flex',
-  alignItems: 'center',
-  color: `var(--List-decorator-color)`,
+  color: `var(--ListItemDecorator-color)`,
   ...(ownerState.parentOrientation === 'horizontal'
     ? {
-        minInlineSize: 'var(--List-decorator-size)',
+        minInlineSize: 'var(--ListItemDecorator-size)',
+        alignItems: 'center',
       }
     : {
-        minBlockSize: 'var(--List-decorator-size)',
+        minBlockSize: 'var(--ListItemDecorator-size)',
+        justifyContent: 'center',
       }),
 }));
 /**
@@ -49,7 +51,7 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
     name: 'JoyListItemDecorator',
   });
 
-  const { component, className, children, ...other } = props;
+  const { component, className, children, slots = {}, slotProps = {}, ...other } = props;
   const parentOrientation = React.useContext(ListItemButtonOrientationContext);
 
   const ownerState = {
@@ -58,18 +60,16 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
   };
 
   const classes = useUtilityClasses();
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: ListItemDecoratorRoot,
+    externalForwardedProps,
+    ownerState,
+  });
 
-  return (
-    <ListItemDecoratorRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </ListItemDecoratorRoot>
-  );
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<ListItemDecoratorTypeMap>;
 
 ListItemDecorator.propTypes /* remove-proptypes */ = {
@@ -90,6 +90,20 @@ ListItemDecorator.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -94,6 +94,8 @@
     "name": "MuiButton"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButton",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Button/Button.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

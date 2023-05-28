@@ -23,6 +23,7 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import useForkRef from '../utils/useForkRef';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -139,7 +140,7 @@ const AutocompleteRoot = styled('div', {
       paddingRight: 52 + 4 + 9,
     },
     [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 6px',
+      padding: '7.5px 4px 7.5px 5px',
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
@@ -152,7 +153,7 @@ const AutocompleteRoot = styled('div', {
     paddingBottom: 6,
     paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
+      padding: '2.5px 4px 2.5px 8px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
@@ -473,6 +474,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  const { onMouseDown: handleInputMouseDown } = getInputProps();
+  const { ref: externalListboxRef } = ListboxProps ?? {};
+  const { ref: listboxRef, ...otherListboxProps } = getListboxProps();
+
+  const combinedListboxRef = useForkRef(listboxRef, externalListboxRef);
+
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
@@ -576,6 +583,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
+            onClick: (event) => {
+              if (event.target === event.currentTarget) {
+                handleInputMouseDown(event);
+              }
+            },
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
@@ -660,8 +672,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 as={ListboxComponent}
                 className={classes.listbox}
                 ownerState={ownerState}
-                {...getListboxProps()}
+                {...otherListboxProps}
                 {...ListboxProps}
+                ref={combinedListboxRef}
               >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
@@ -705,6 +718,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses
    * a different option or changes the character string in the input.
+   *
+   * When using `freeSolo` mode, the typed value will be the input value
+   * if the Autocomplete loses focus without highlighting an option.
    * @default false
    */
   autoSelect: PropTypes.bool,
@@ -820,6 +836,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * A function that determines the filtered options to be rendered on search.
    *
+   * @default createFilterOptions()
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
    * @returns {T[]}
@@ -979,7 +996,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**

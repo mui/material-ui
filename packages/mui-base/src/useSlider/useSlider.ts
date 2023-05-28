@@ -1,21 +1,22 @@
 import * as React from 'react';
 import {
-  unstable_useIsFocusVisible as useIsFocusVisible,
-  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerDocument as ownerDocument,
+  unstable_useControlled as useControlled,
+  unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
+  unstable_useIsFocusVisible as useIsFocusVisible,
   visuallyHidden,
 } from '@mui/utils';
 import {
   Mark,
   UseSliderHiddenInputProps,
   UseSliderParameters,
+  UseSliderReturnValue,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
 } from './useSlider.types';
-import { EventHandlers } from '../utils';
+import { areArraysEqual, EventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -139,6 +140,19 @@ function focusThumb({
   }
 }
 
+function areValuesEqual(
+  newValue: number | Array<number>,
+  oldValue: number | Array<number>,
+): boolean {
+  if (typeof newValue === 'number' && typeof oldValue === 'number') {
+    return newValue === oldValue;
+  }
+  if (typeof newValue === 'object' && typeof oldValue === 'object') {
+    return areArraysEqual(newValue, oldValue);
+  }
+  return false;
+}
+
 const axisProps = {
   horizontal: {
     offset: (percent: number) => ({ left: `${percent}%` }),
@@ -181,13 +195,13 @@ function doesSupportTouchActionNone() {
  *
  * Demos:
  *
- * - [Unstyled Slider](https://mui.com/base/react-slider/#hook)
+ * - [Slider](https://mui.com/base/react-slider/#hook)
  *
  * API:
  *
- * - [useSlider API](https://mui.com/base/api/use-slider/)
+ * - [useSlider API](https://mui.com/base/react-slider/hooks-api/#use-slider)
  */
-export default function useSlider(parameters: UseSliderParameters) {
+export default function useSlider(parameters: UseSliderParameters): UseSliderReturnValue {
   const {
     'aria-labelledby': ariaLabelledby,
     defaultValue,
@@ -201,7 +215,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
-    ref,
+    rootRef: ref,
     scale = Identity,
     step = 1,
     tabIndex,
@@ -355,7 +369,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       setValueState(newValue);
       setFocusedThumbIndex(index);
 
-      if (handleChange) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(event, newValue, index);
       }
 
@@ -465,7 +479,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       setDragging(true);
     }
 
-    if (handleChange && newValue !== valueDerived) {
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
   });
@@ -516,7 +530,7 @@ export default function useSlider(parameters: UseSliderParameters) {
 
       setValueState(newValue);
 
-      if (handleChange) {
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
         handleChange(nativeEvent, newValue, activeIndex);
       }
     }
@@ -583,7 +597,7 @@ export default function useSlider(parameters: UseSliderParameters) {
 
         setValueState(newValue);
 
-        if (handleChange) {
+        if (handleChange && !areValuesEqual(newValue, valueDerived)) {
           handleChange(event, newValue, activeIndex);
         }
       }
@@ -694,6 +708,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     marks: marks as Mark[],
     open,
     range,
+    rootRef: handleRef,
     trackLeap,
     trackOffset,
     values,

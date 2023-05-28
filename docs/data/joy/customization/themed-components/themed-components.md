@@ -15,7 +15,7 @@ To customize a specific component in the theme, specify the component identifier
 - Use `styleOverrides` to apply styles to each component slots.
   - Every Joy UI component contains the `root` slot.
 
-Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
+Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/-/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -40,7 +40,7 @@ function App() {
 }
 ```
 
-## Default props
+## Theme default props
 
 The values specified in the theme as `defaultProps` affect all instances of the component:
 
@@ -61,7 +61,7 @@ extendTheme({
 <IconButton>...</IconButton>;
 ```
 
-## Style overrides
+## Theme style overrides
 
 ### Change styles based on props
 
@@ -144,10 +144,6 @@ Once these values are defined as above, you can make use of them directly on ins
 <Button color="tertiary">Tertiary color</Button>
 ```
 
-:::info
-To learn how to extend size properties, check out the [Extend sizes](#extend-sizes) section in this document.
-:::
-
 #### TypeScript
 
 Module augmentation is required to pass the values to the `color` prop of the component.
@@ -211,10 +207,8 @@ Once these values are defined as above, you can make use of them directly on ins
 <Button size="xl">Extra large</Button>
 ```
 
-:::info
 The properties used for extending sizes should only relate to the density or the dimensions of the component.
 To learn how to extend variant properties, check out the [Extend variants](#extend-variants) section in this document.
-:::
 
 #### TypeScript
 

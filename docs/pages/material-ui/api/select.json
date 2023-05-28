@@ -50,12 +50,15 @@
       "iconFilled",
       "iconOutlined",
       "iconStandard",
-      "nativeInput"
+      "nativeInput",
+      "error"
     ],
-    "globalClasses": { "disabled": "Mui-disabled" },
+    "globalClasses": { "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiSelect"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSelect",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Select/Select.js",
   "inheritance": { "component": "OutlinedInput", "pathname": "/material-ui/api/outlined-input/" },

@@ -15,7 +15,10 @@ function isTypeJSXElementLike(type: ts.Type, project: TypeScriptProject): boolea
   }
   if (type.symbol) {
     const name = project.checker.getFullyQualifiedName(type.symbol);
-    return name === 'global.JSX.Element' || name === 'React.ReactElement';
+    return (
+      // Remove once global JSX namespace is no longer used by React
+      name === 'global.JSX.Element' || name === 'React.JSX.Element' || name === 'React.ReactElement'
+    );
   }
 
   return false;

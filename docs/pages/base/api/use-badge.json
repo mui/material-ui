@@ -1,12 +1,23 @@
 {
   "parameters": {
     "badgeContent": { "type": { "name": "React.ReactNode", "description": "React.ReactNode" } },
-    "invisible": { "type": { "name": "boolean", "description": "boolean" } },
-    "max": { "type": { "name": "number", "description": "number" } },
-    "showZero": { "type": { "name": "boolean", "description": "boolean" } }
+    "invisible": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
+    "max": { "type": { "name": "number", "description": "number" }, "default": "99" },
+    "showZero": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" }
   },
-  "returnValue": {},
+  "returnValue": {
+    "badgeContent": {
+      "type": { "name": "React.ReactNode", "description": "React.ReactNode" },
+      "required": true
+    },
+    "displayValue": {
+      "type": { "name": "React.ReactNode", "description": "React.ReactNode" },
+      "required": true
+    },
+    "invisible": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "max": { "type": { "name": "number", "description": "number" }, "required": true }
+  },
   "name": "useBadge",
   "filename": "/packages/mui-base/src/useBadge/useBadge.ts",
-  "demos": "<ul><li><a href=\"/base/react-badge/#hook\">Unstyled badge</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-badge/#hook\">Badge</a></li></ul>"
 }

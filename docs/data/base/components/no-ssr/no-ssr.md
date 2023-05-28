@@ -8,6 +8,10 @@ components: NoSsr
 
 <p class="description">The No-SSR component defers the rendering of children components from the server to the client.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+{{"component": "modules/components/ComponentPageTabs.js"}}
+
 ## Introduction
 
 No-SSR is a utility component that prevents its children from being rendered on the server.
@@ -20,13 +24,11 @@ This component can be useful in a variety of situations:
 - To turn on service degradation when the server load is too heavy
 - To improve the Time to Interactive (TTI) by only rendering what's important (using the `defer` prop)
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Component
 
 ### Usage
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/quickstart/#installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import NoSsr from '@mui/base/NoSsr';
@@ -53,5 +55,5 @@ The following demo shows how to use the `defer` prop to prioritize rendering the
 {{"demo": "FrameDeferring.js"}}
 
 :::warning
-When using No-SSR in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
+When using No-SSR in this way, React applies [two commits](https://react.dev/learn/render-and-commit) instead of one.
 :::

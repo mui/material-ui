@@ -45,7 +45,7 @@ const sortFunctions = {
 };
 
 export default function Showcase() {
-  const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
+  const [sortFunctionName, setSortFunctionName] = React.useState('similarWebVisits');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useTranslate();
 
@@ -54,7 +54,7 @@ export default function Showcase() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, mx: [2, 0] }}>
       <FormControl sx={{ mb: 4, minWidth: 120 }}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select
@@ -95,15 +95,17 @@ export default function Showcase() {
               }}
               component="a"
               href={app.link}
-              rel="noopener"
+              rel="noopener nofollow"
               target="_blank"
             >
               <CardMedia
                 component="img"
                 loading="lazy"
+                width="600"
+                height="450"
                 src={`/static/images/showcase/${app.image}`}
                 sx={{
-                  minHeight: 200,
+                  height: 'auto',
                   color: (theme) =>
                     theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
                   bgcolor: 'currentColor',

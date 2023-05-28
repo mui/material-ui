@@ -8,6 +8,7 @@
       },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "endDecorator": { "type": { "name": "node" } },
     "level": {
@@ -18,6 +19,20 @@
       "default": "'body1'"
     },
     "overlay": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, startDecorator?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endDecorator?: elementType, root?: elementType, startDecorator?: elementType }"
+      },
+      "default": "{}"
+    },
     "startDecorator": { "type": { "name": "node" } },
     "sx": {
       "type": {
@@ -45,25 +60,57 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "endDecorator",
-      "description": "The component used to render the end decorator.",
-      "default": "'span'",
-      "class": ".MuiLink-endDecorator"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'a'",
       "class": ".MuiLink-root"
     },
     {
       "name": "startDecorator",
-      "description": "The component used to render the start decorator.",
+      "description": "The component that renders the start decorator.",
       "default": "'span'",
       "class": ".MuiLink-startDecorator"
+    },
+    {
+      "name": "endDecorator",
+      "description": "The component that renders the end decorator.",
+      "default": "'span'",
+      "class": ".MuiLink-endDecorator"
     }
   ],
+  "classes": {
+    "classes": [
+      "body1",
+      "body2",
+      "body3",
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "disabled",
+      "focusVisible",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "underlineAlways",
+      "underlineHover",
+      "underlineNone",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" }
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyLink",
   "forwardsRefTo": "HTMLAnchorElement",
   "filename": "/packages/mui-joy/src/Link/Link.tsx",
   "inheritance": null,

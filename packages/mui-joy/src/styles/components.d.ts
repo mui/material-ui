@@ -131,6 +131,11 @@ import {
   ModalDialogOwnerState,
   ModalDialogSlot,
 } from '../ModalDialog/ModalDialogProps';
+import {
+  ModalOverflowProps,
+  ModalOverflowOwnerState,
+  ModalOverflowSlot,
+} from '../ModalOverflow/ModalOverflowProps';
 import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
 import {
   RadioGroupProps,
@@ -433,5 +438,9 @@ export interface Components<Theme = unknown> {
   JoyModalDialog?: {
     defaultProps?: Partial<ModalDialogProps>;
     styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
+  };
+  JoyModalOverflow?: {
+    defaultProps?: Partial<ModalOverflowProps>;
+    styleOverrides?: OverridesStyleRules<ModalOverflowSlot, ModalOverflowOwnerState, Theme>;
   };
 }

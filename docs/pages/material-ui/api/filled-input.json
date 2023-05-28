@@ -75,12 +75,15 @@
       "inputHiddenLabel",
       "inputMultiline",
       "inputAdornedStart",
-      "inputAdornedEnd"
+      "inputAdornedEnd",
+      "inputTypeSearch"
     ],
     "globalClasses": { "focused": "Mui-focused", "disabled": "Mui-disabled", "error": "Mui-error" },
     "name": "MuiFilledInput"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFilledInput",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/FilledInput/FilledInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },

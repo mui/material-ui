@@ -11,6 +11,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },
     "modifiers": {
       "type": {
@@ -26,6 +27,14 @@
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
       "default": "'md'"
+    },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -43,10 +52,41 @@
   },
   "name": "Menu",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'ul'",
+      "class": ".MuiMenu-root"
+    }
+  ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "expanded",
+      "listbox",
+      "sizeLg",
+      "sizeMd",
+      "sizeSm",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": { "expanded": "Mui-expanded" }
+  },
   "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "JoyMenu",
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/Menu/Menu.tsx",
-  "inheritance": { "component": "PopperUnstyled", "pathname": "/base/api/popper-unstyled/" },
+  "inheritance": { "component": "Popper", "pathname": "/base/api/popper/" },
   "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

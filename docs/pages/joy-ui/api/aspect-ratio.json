@@ -8,6 +8,7 @@
       },
       "default": "'neutral'"
     },
+    "component": { "type": { "name": "elementType" } },
     "maxHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minHeight": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "objectFit": {
@@ -20,6 +21,17 @@
     "ratio": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "'16 / 9'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ content?: elementType, root?: elementType }" },
+      "default": "{}"
     },
     "sx": {
       "type": {
@@ -39,19 +51,37 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "slots": [
     {
-      "name": "content",
-      "description": "The component used to render the content.",
-      "default": "'div'",
-      "class": ".MuiAspectRatio-content"
-    },
-    {
       "name": "root",
-      "description": "The component used to render the root.",
+      "description": "The component that renders the root.",
       "default": "'div'",
       "class": ".MuiAspectRatio-root"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content.",
+      "default": "'div'",
+      "class": ".MuiAspectRatio-content"
     }
   ],
+  "classes": {
+    "classes": [
+      "colorContext",
+      "colorDanger",
+      "colorInfo",
+      "colorNeutral",
+      "colorPrimary",
+      "colorSuccess",
+      "colorWarning",
+      "variantOutlined",
+      "variantPlain",
+      "variantSoft",
+      "variantSolid"
+    ],
+    "globalClasses": {}
+  },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyAspectRatio",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/AspectRatio/AspectRatio.tsx",
   "inheritance": null,

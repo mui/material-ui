@@ -19,14 +19,14 @@ Joy UI is currently in active development, and breaking changes are to be expect
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
-Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%3A%20joy) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+Look for the [`package: joy-ui`](https://github.com/mui/material-ui/labels/package%3A%20joy-ui) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
 :::
 
 ## Advantages of Joy UI
 
 - **Ship faster:** Joy UI gives you pre-built components with a sleek and carefully designed look and feel, so you don't need design skills to ship beautiful UIs rapidly.
 - **Extensive customization options:** you can customize each and every tiny piece of Joy UI's components to match your own unique design.
-- **Accessibility in mind:** Joy UI components are built on top of [MUI Base's unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for many accessibility features out of the box.
+- **Accessibility in mind:** Joy UI components are built on top of [Base UI's unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for many accessibility features out of the box.
   We do our best to make all components screen reader-friendly, and also offer suggestions for optimizing accessibility throughout our documentation.
 
 ## Joy UI vs. Material UI

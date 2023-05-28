@@ -1,47 +1,28 @@
 import * as React from 'react';
-import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
+import { unstable_useControlled as useControlled } from '@mui/utils';
+import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
+import { useCompoundParent } from '../utils/useCompound';
+import { TabPanelMetadata } from './TabsProvider';
 
-export interface UseTabsParameters {
-  /**
-   * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
-   */
-  value?: string | number | false;
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue?: string | number | false;
-  /**
-   * The component orientation (layout flow direction).
-   * @default 'horizontal'
-   */
-  orientation?: 'horizontal' | 'vertical';
-  /**
-   * The direction of the text.
-   * @default 'ltr'
-   */
-  direction?: 'ltr' | 'rtl';
-  /**
-   * Callback invoked when new value is being set.
-   */
-  onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
-  /**
-   * If `true` the selected tab changes on focus. Otherwise it only
-   * changes on activation.
-   */
-  selectionFollowsFocus?: boolean;
+export interface TabMetadata {
+  disabled: boolean;
+  id: string | undefined;
+  ref: React.RefObject<HTMLElement>;
 }
+
+type IdLookupFunction = (id: string | number) => string | undefined;
+
 /**
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *
- * - [useTabs API](https://mui.com/base/api/use-tabs/)
+ * - [useTabs API](https://mui.com/base/react-tabs/hooks-api/#use-tabs)
  */
-function useTabs(parameters: UseTabsParameters) {
+function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
   const {
     value: valueProp,
     defaultValue,
@@ -58,24 +39,48 @@ function useTabs(parameters: UseTabsParameters) {
     state: 'value',
   });
 
-  const idPrefix = useId();
-
   const onSelected = React.useCallback(
-    (e: React.SyntheticEvent, newValue: string | number | false) => {
+    (event: React.SyntheticEvent | null, newValue: string | number | null) => {
       setValue(newValue);
-      if (onChange) {
-        onChange(e, newValue);
-      }
+      onChange?.(event, newValue);
     },
     [onChange, setValue],
   );
 
-  const tabsContextValue = React.useMemo(() => {
-    return { idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus };
-  }, [idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus]);
+  const { subitems: tabPanels, contextValue: compoundComponentContextValue } = useCompoundParent<
+    string | number,
+    TabPanelMetadata
+  >();
+
+  const tabIdLookup = React.useRef<IdLookupFunction>(() => undefined);
+
+  const getTabPanelId = React.useCallback(
+    (tabValue: string | number) => {
+      return tabPanels.get(tabValue)?.id;
+    },
+    [tabPanels],
+  );
+
+  const getTabId = React.useCallback((tabPanelId: string | number) => {
+    return tabIdLookup.current(tabPanelId);
+  }, []);
+
+  const registerTabIdLookup = React.useCallback((lookupFunction: IdLookupFunction) => {
+    tabIdLookup.current = lookupFunction;
+  }, []);
 
   return {
-    tabsContextValue,
+    contextValue: {
+      direction,
+      getTabId,
+      getTabPanelId,
+      onSelected,
+      orientation,
+      registerTabIdLookup,
+      selectionFollowsFocus,
+      value,
+      ...compoundComponentContextValue,
+    },
   };
 }
 

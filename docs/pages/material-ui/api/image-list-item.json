@@ -19,6 +19,8 @@
     "name": "MuiImageListItem"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItem",
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/ImageListItem/ImageListItem.js",
   "inheritance": null,

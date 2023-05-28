@@ -8,5 +8,7 @@
     "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only\nchanges on activation.",
     "value": "The value of the currently selected <code>Tab</code>.\nIf you don't want any selected <code>Tab</code>, you can set this prop to <code>false</code>."
   },
-  "returnValueDescriptions": {}
+  "returnValueDescriptions": {
+    "contextValue": "Returns the values to be passed to the tabs provider."
+  }
 }

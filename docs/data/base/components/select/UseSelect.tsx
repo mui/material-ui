@@ -1,13 +1,16 @@
 import * as React from 'react';
-import {
-  useSelect,
-  SelectOption,
-  useOption,
-  SelectUnstyledContext,
-} from '@mui/base';
+import clsx from 'clsx';
+import useSelect, {
+  SelectOptionDefinition,
+  SelectProvider,
+} from '@mui/base/useSelect';
+import useOption from '@mui/base/useOption';
 import { styled } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import clsx from 'clsx';
+
+export default function UseSelect() {
+  return <CustomSelect placeholder="Select a color…" options={options} />;
+}
 
 const blue = {
   100: '#DAECFF',
@@ -144,7 +147,7 @@ const Option = styled('li')(
 );
 
 interface Props {
-  options: SelectOption<string>[];
+  options: SelectOptionDefinition<string>[];
   placeholder?: string;
 }
 
@@ -155,7 +158,10 @@ interface OptionProps {
   disabled?: boolean;
 }
 
-function renderSelectedValue(value: string | null, options: SelectOption<string>[]) {
+function renderSelectedValue(
+  value: string | null,
+  options: SelectOptionDefinition<string>[],
+) {
   const selectedOption = options.find((option) => option.value === value);
 
   return selectedOption ? `${selectedOption.label} (${value})` : null;
@@ -166,6 +172,7 @@ function CustomOption(props: OptionProps) {
   const { getRootProps, highlighted } = useOption({
     value,
     disabled,
+    label: children,
   });
 
   return (
@@ -183,11 +190,13 @@ function CustomSelect({ options, placeholder }: Props) {
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const [listboxVisible, setListboxVisible] = React.useState(false);
 
-  const { getButtonProps, getListboxProps, contextValue, value } = useSelect({
+  const { getButtonProps, getListboxProps, contextValue, value } = useSelect<
+    string,
+    false
+  >({
     listboxRef,
     onOpenChange: setListboxVisible,
     open: listboxVisible,
-    options,
   });
 
   React.useEffect(() => {
@@ -210,7 +219,7 @@ function CustomSelect({ options, placeholder }: Props) {
         aria-hidden={!listboxVisible}
         className={listboxVisible ? '' : 'hidden'}
       >
-        <SelectUnstyledContext.Provider value={contextValue}>
+        <SelectProvider value={contextValue}>
           {options.map((option) => {
             return (
               <CustomOption key={option.value} value={option.value}>
@@ -218,7 +227,7 @@ function CustomSelect({ options, placeholder }: Props) {
               </CustomOption>
             );
           })}
-        </SelectUnstyledContext.Provider>
+        </SelectProvider>
       </Listbox>
     </Root>
   );
@@ -238,7 +247,3 @@ const options = [
     value: '#2196F3',
   },
 ];
-
-export default function UseSelect() {
-  return <CustomSelect placeholder="Select a color…" options={options} />;
-}

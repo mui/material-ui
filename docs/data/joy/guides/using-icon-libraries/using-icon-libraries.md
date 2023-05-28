@@ -78,6 +78,10 @@ If you use TypeScript, you will need to update the TSConfig.
 
 :::
 
+:::error
+`<CssVarsProvider />` is _required_ when working with Material UI's icons inside an app using Joy UI, so that the components can correctly adjust the icons based on the usage.
+:::
+
 ### Usage
 
 By default, Joy UI components are able to control an icon's color, font size, and margins when its size or variant changes.
@@ -130,7 +134,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 - [Installation](https://react-icons.github.io/react-icons/)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-react-icons-n6jljq?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
-     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
      title="joy-ui-react-icons"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -142,7 +146,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 - [Installation](https://ionic.io/ionicons/usage)
 
 <iframe src="https://codesandbox.io/embed/inspiring-visvesvaraya-etcc3x?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
-     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
      title="inspiring-visvesvaraya-etcc3x"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -154,7 +158,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 - [Installation](https://github.com/tailwindlabs/heroicons#react)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-heroicons-wv2ev1?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
-     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
      title="joy-ui-heroicons"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -166,7 +170,7 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 - [Installation](https://icons.getbootstrap.com/#install)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-bootstrap-icons-x8g0cm?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
-     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
      title="joy-ui-bootstrap"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -178,8 +182,34 @@ Here is a collection of well-known icon libraries that you can use with Joy UI.
 - [Installation](https://fontawesome.com/docs/web/use-with/react/)
 
 <iframe src="https://codesandbox.io/embed/joy-ui-fontawesome-kjbnqj?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
-     style="width:100%; height:250px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
      title="joy-ui-fontawesome"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+### Iconify
+
+- [Browse icons](https://icon-sets.iconify.design/)
+- [Installation—React](https://iconify.design/docs/icon-components/react/)
+- [Installation—Web component](https://iconify.design/docs/iconify-icon/)
+- [Figma plugin](https://iconify.design/docs/design/figma/)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-iconify-r8fjrm?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
+     title="joy-ui-iconify"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+### Lucide
+
+- [Browse icons](https://icon-sets.iconify.design/)
+- [Installation—React](https://lucide.dev/docs/lucide-react)
+
+<iframe src="https://codesandbox.io/embed/joy-ui-lucide-sy7hio?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark"
+     style="width:100%; height:250px; border:0; border-radius: 12px; overflow:hidden;"
+     title="joy-ui-lucide"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>

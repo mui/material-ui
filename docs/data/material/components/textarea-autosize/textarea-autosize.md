@@ -12,8 +12,8 @@ githubLabel: 'component: TextareaAutosize'
 ## This document has moved
 
 :::warning
-Please refer to the [Textarea Autosize](/base/react-textarea-autosize/) component page in the MUI Base docs for demos and details on usage.
+Please refer to the [Textarea Autosize](/base/react-textarea-autosize/) component page in the Base UI docs for demos and details on usage.
 
-Textarea Autosize is a part of the standalone [MUI Base](/base/getting-started/overview/) component library.
+Textarea Autosize is a part of the standalone [Base UI](/base/getting-started/overview/) component library.
 It is currently re-exported from `@mui/material` for your convenience, but it will be removed from this package in a future major version, after `@mui/base` gets a stable release.
 :::

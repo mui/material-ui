@@ -36,7 +36,7 @@
     "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
     "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
     "disablePortal": { "type": { "name": "bool" }, "default": "false" },
-    "filterOptions": { "type": { "name": "func" } },
+    "filterOptions": { "type": { "name": "func" }, "default": "createFilterOptions()" },
     "filterSelectedOptions": { "type": { "name": "bool" }, "default": "false" },
     "forcePopupIcon": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;bool" },
@@ -135,6 +135,8 @@
     "name": "MuiAutocomplete"
   },
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAutocomplete",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,

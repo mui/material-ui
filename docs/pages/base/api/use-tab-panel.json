@@ -1,25 +1,32 @@
 {
   "parameters": {
-    "value": {
-      "type": { "name": "number | string", "description": "number | string" },
-      "required": true
-    }
+    "id": { "type": { "name": "string", "description": "string" } },
+    "rootRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLElement&gt;",
+        "description": "React.Ref&lt;HTMLElement&gt;"
+      }
+    },
+    "value": { "type": { "name": "number | string", "description": "number | string" } }
   },
   "returnValue": {
     "getRootProps": {
       "type": {
-        "name": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}",
-        "description": "() =&gt {\n  &#39;aria-labelledby&#39;: string | undefined\n  hidden: boolean\n  id: string | undefined\n}"
+        "name": "() =&gt; UseTabPanelRootSlotProps",
+        "description": "() =&gt; UseTabPanelRootSlotProps"
       },
       "required": true
     },
-    "hidden": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
+    "hidden": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.Ref&lt;HTMLElement&gt;",
+        "description": "React.Ref&lt;HTMLElement&gt;"
+      },
       "required": true
     }
   },
   "name": "useTabPanel",
   "filename": "/packages/mui-base/src/useTabPanel/useTabPanel.ts",
-  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Unstyled Tabs</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-tabs/#hooks\">Tabs</a></li></ul>"
 }

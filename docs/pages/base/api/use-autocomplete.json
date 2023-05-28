@@ -1,7 +1,7 @@
 {
   "parameters": {
     "options": {
-      "type": { "name": "ReadonlyArray&lt;T&gt", "description": "ReadonlyArray&lt;T&gt" },
+      "type": { "name": "ReadonlyArray&lt;T&gt;", "description": "ReadonlyArray&lt;T&gt;" },
       "required": true
     },
     "autoComplete": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
@@ -28,8 +28,8 @@
     "componentName": { "type": { "name": "string", "description": "string" } },
     "defaultValue": {
       "type": {
-        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt",
-        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt"
+        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;",
+        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;"
       },
       "default": "props.multiple ? [] : null"
     },
@@ -52,9 +52,10 @@
     },
     "filterOptions": {
       "type": {
-        "name": "(options: T[], state: FilterOptionsState&lt;T&gt) =&gt T[]",
-        "description": "(options: T[], state: FilterOptionsState&lt;T&gt) =&gt T[]"
-      }
+        "name": "(options: T[], state: FilterOptionsState&lt;T&gt;) =&gt; T[]",
+        "description": "(options: T[], state: FilterOptionsState&lt;T&gt;) =&gt; T[]"
+      },
+      "default": "createFilterOptions()"
     },
     "filterSelectedOptions": {
       "type": { "name": "boolean", "description": "boolean" },
@@ -62,7 +63,7 @@
     },
     "freeSolo": { "type": { "name": "FreeSolo", "description": "FreeSolo" }, "default": "false" },
     "getOptionDisabled": {
-      "type": { "name": "(option: T) =&gt boolean", "description": "(option: T) =&gt boolean" }
+      "type": { "name": "(option: T) =&gt; boolean", "description": "(option: T) =&gt; boolean" }
     },
     "getOptionKey": {
       "type": {
@@ -73,13 +74,13 @@
     },
     "getOptionLabel": {
       "type": {
-        "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt) =&gt string",
-        "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt) =&gt string"
+        "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string",
+        "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt;) =&gt; string"
       },
       "default": "(option) => option.label ?? option"
     },
     "groupBy": {
-      "type": { "name": "(option: T) =&gt string", "description": "(option: T) =&gt string" }
+      "type": { "name": "(option: T) =&gt; string", "description": "(option: T) =&gt; string" }
     },
     "handleHomeEndKeys": {
       "type": { "name": "boolean", "description": "boolean" },
@@ -93,39 +94,39 @@
     "inputValue": { "type": { "name": "string", "description": "string" } },
     "isOptionEqualToValue": {
       "type": {
-        "name": "(option: T, value: T) =&gt boolean",
-        "description": "(option: T, value: T) =&gt boolean"
+        "name": "(option: T, value: T) =&gt; boolean",
+        "description": "(option: T, value: T) =&gt; boolean"
       }
     },
     "multiple": { "type": { "name": "Multiple", "description": "Multiple" }, "default": "false" },
     "onChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt) =&gt void",
-        "description": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt) =&gt void"
+        "name": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt;) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails&lt;T&gt;) =&gt; void"
       }
     },
     "onClose": {
       "type": {
-        "name": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) =&gt void",
-        "description": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) =&gt void"
+        "name": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) =&gt; void",
+        "description": "(event: React.SyntheticEvent, reason: AutocompleteCloseReason) =&gt; void"
       }
     },
     "onHighlightChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt void",
-        "description": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt void"
+        "name": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt; void",
+        "description": "(event: React.SyntheticEvent, option: T | null, reason: AutocompleteHighlightChangeReason) =&gt; void"
       }
     },
     "onInputChange": {
       "type": {
-        "name": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) =&gt void",
-        "description": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) =&gt void"
+        "name": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) =&gt; void",
+        "description": "(event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) =&gt; void"
       }
     },
     "onOpen": {
       "type": {
-        "name": "(event: React.SyntheticEvent) =&gt void",
-        "description": "(event: React.SyntheticEvent) =&gt void"
+        "name": "(event: React.SyntheticEvent) =&gt; void",
+        "description": "(event: React.SyntheticEvent) =&gt; void"
       }
     },
     "open": { "type": { "name": "boolean", "description": "boolean" } },
@@ -141,14 +142,14 @@
     },
     "unstable_isActiveElementInListbox": {
       "type": {
-        "name": "(listbox: React.RefObject&lt;HTMLElement&gt) =&gt boolean",
-        "description": "(listbox: React.RefObject&lt;HTMLElement&gt) =&gt boolean"
+        "name": "(listbox: React.RefObject&lt;HTMLElement&gt;) =&gt; boolean",
+        "description": "(listbox: React.RefObject&lt;HTMLElement&gt;) =&gt; boolean"
       }
     },
     "value": {
       "type": {
-        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt",
-        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt"
+        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;",
+        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;"
       }
     }
   },
@@ -157,72 +158,56 @@
       "type": { "name": "null | HTMLElement", "description": "null | HTMLElement" },
       "required": true
     },
-    "dirty": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "expanded": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focused": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focusedTag": {
-      "type": { "name": "number", "description": "number" },
-      "default": "-1",
-      "required": true
-    },
+    "dirty": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "expanded": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusedTag": { "type": { "name": "number", "description": "number" }, "required": true },
     "getClearProps": {
       "type": {
-        "name": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt",
-        "description": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt"
+        "name": "() =&gt; React.HTMLAttributes&lt;HTMLButtonElement&gt;",
+        "description": "() =&gt; React.HTMLAttributes&lt;HTMLButtonElement&gt;"
       },
       "required": true
     },
     "getInputLabelProps": {
       "type": {
-        "name": "() =&gt Omit&lt;React.HTMLAttributes&lt;HTMLLabelElement&gt, &#39;color&#39;&gt",
-        "description": "() =&gt Omit&lt;React.HTMLAttributes&lt;HTMLLabelElement&gt, &#39;color&#39;&gt"
+        "name": "() =&gt; Omit&lt;React.HTMLAttributes&lt;HTMLLabelElement&gt;, &#39;color&#39;&gt;",
+        "description": "() =&gt; Omit&lt;React.HTMLAttributes&lt;HTMLLabelElement&gt;, &#39;color&#39;&gt;"
       },
       "required": true
     },
     "getInputProps": {
       "type": {
-        "name": "() =&gt React.InputHTMLAttributes&lt;HTMLInputElement&gt",
-        "description": "() =&gt React.InputHTMLAttributes&lt;HTMLInputElement&gt"
+        "name": "() =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;",
+        "description": "() =&gt; React.InputHTMLAttributes&lt;HTMLInputElement&gt;"
       },
       "required": true
     },
     "getListboxProps": {
       "type": {
-        "name": "() =&gt React.HTMLAttributes&lt;HTMLUListElement&gt",
-        "description": "() =&gt React.HTMLAttributes&lt;HTMLUListElement&gt"
+        "name": "() =&gt; React.HTMLAttributes&lt;HTMLUListElement&gt;",
+        "description": "() =&gt; React.HTMLAttributes&lt;HTMLUListElement&gt;"
       },
       "required": true
     },
     "getOptionProps": {
       "type": {
-        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt) =&gt React.HTMLAttributes&lt;HTMLLIElement&gt",
-        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt) =&gt React.HTMLAttributes&lt;HTMLLIElement&gt"
+        "name": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;",
+        "description": "(renderedOption: UseAutocompleteRenderedOption&lt;T&gt;) =&gt; React.HTMLAttributes&lt;HTMLLIElement&gt;"
       },
       "required": true
     },
     "getPopupIndicatorProps": {
       "type": {
-        "name": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt",
-        "description": "() =&gt React.HTMLAttributes&lt;HTMLButtonElement&gt"
+        "name": "() =&gt; React.HTMLAttributes&lt;HTMLButtonElement&gt;",
+        "description": "() =&gt; React.HTMLAttributes&lt;HTMLButtonElement&gt;"
       },
       "required": true
     },
     "getRootProps": {
       "type": {
-        "name": "(externalProps?: any) =&gt React.HTMLAttributes&lt;HTMLDivElement&gt",
-        "description": "(externalProps?: any) =&gt React.HTMLAttributes&lt;HTMLDivElement&gt"
+        "name": "(externalProps?: any) =&gt; React.HTMLAttributes&lt;HTMLDivElement&gt;",
+        "description": "(externalProps?: any) =&gt; React.HTMLAttributes&lt;HTMLDivElement&gt;"
       },
       "required": true
     },
@@ -232,26 +217,22 @@
     },
     "groupedOptions": {
       "type": {
-        "name": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt&gt",
-        "description": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt&gt"
+        "name": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt;&gt;",
+        "description": "T[] | Array&lt;AutocompleteGroupedOption&lt;T&gt;&gt;"
       },
       "required": true
     },
     "id": { "type": { "name": "string", "description": "string" }, "required": true },
     "inputValue": { "type": { "name": "string", "description": "string" }, "required": true },
-    "popupOpen": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "popupOpen": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "setAnchorEl": {
-      "type": { "name": "() =&gt void", "description": "() =&gt void" },
+      "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
       "required": true
     },
     "value": {
       "type": {
-        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt",
-        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt"
+        "name": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;",
+        "description": "AutocompleteValue&lt;T, Multiple, DisableClearable, FreeSolo&gt;"
       },
       "required": true
     }

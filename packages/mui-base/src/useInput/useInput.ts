@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { FormControlUnstyledState, useFormControlUnstyledContext } from '../FormControlUnstyled';
+import { FormControlState, useFormControlContext } from '../FormControl';
 import extractEventHandlers from '../utils/extractEventHandlers';
 import {
   UseInputInputSlotProps,
@@ -13,11 +13,11 @@ import {
  *
  * Demos:
  *
- * - [Unstyled Input](https://mui.com/base/react-input/#hook)
+ * - [Input](https://mui.com/base/react-input/#hook)
  *
  * API:
  *
- * - [useInput API](https://mui.com/base/api/use-input/)
+ * - [useInput API](https://mui.com/base/react-input/hooks-api/#use-input)
  */
 export default function useInput(parameters: UseInputParameters): UseInputReturnValue {
   const {
@@ -32,7 +32,7 @@ export default function useInput(parameters: UseInputParameters): UseInputReturn
     inputRef: inputRefProp,
   } = parameters;
 
-  const formControlContext: FormControlUnstyledState | undefined = useFormControlUnstyledContext();
+  const formControlContext: FormControlState | undefined = useFormControlContext();
 
   let defaultValue: unknown;
   let disabled: boolean;
@@ -55,8 +55,8 @@ export default function useInput(parameters: UseInputParameters): UseInputReturn
       if (definedLocalProps.length > 0) {
         console.warn(
           [
-            'MUI: You have set props on an input that is inside a FormControlUnstyled.',
-            'Set these props on a FormControlUnstyled instead. Otherwise they will be ignored.',
+            'MUI: You have set props on an input that is inside a FormControl.',
+            'Set these props on a FormControl instead. Otherwise they will be ignored.',
             `Ignored props: ${definedLocalProps.join(', ')}`,
           ].join('\n'),
         );
@@ -214,6 +214,7 @@ export default function useInput(parameters: UseInputParameters): UseInputReturn
     formControlContext,
     getInputProps,
     getRootProps,
+    inputRef: handleInputRef,
     required,
     value,
   };
