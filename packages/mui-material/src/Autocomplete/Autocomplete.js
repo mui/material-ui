@@ -408,6 +408,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     fullWidth = false,
     getLimitTagsText = (more) => `+${more}`,
     getOptionDisabled,
+    getOptionKey,
     getOptionLabel = (option) => option.label ?? option,
     isOptionEqualToValue,
     groupBy,
@@ -665,7 +666,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({
-                      key: option.key,
+                      key: option?.key,
                       group: option.group,
                       children: option.options.map((option2, index2) =>
                         renderListOption(option2, option.index + index2),
@@ -859,6 +860,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,
+  /**
+   * Used to determine the key for a given option.
+   *
+   * @param {T} option The option to get the key for.
+   * @returns {string}
+   * @default (option) => option?.key
+   */
+  getOptionKey: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).

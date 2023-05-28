@@ -98,7 +98,7 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
-    getOptionKey = (option) => option.key,
+    getOptionKey = (option) => option?.key,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,

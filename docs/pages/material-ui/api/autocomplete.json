@@ -46,13 +46,10 @@
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "getLimitTagsText": { "type": { "name": "func" }, "default": "(more) => `+${more}`" },
     "getOptionDisabled": { "type": { "name": "func" } },
+    "getOptionKey": { "type": { "name": "func" }, "default": "(option) => option?.key" },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option"
-    },
-    "getOptionKey": {
-      "type": { "name": "func" },
-      "default": "(option) => option.key"
     },
     "groupBy": { "type": { "name": "func" } },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },

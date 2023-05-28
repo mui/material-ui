@@ -2440,6 +2440,62 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: getOptionKey', () => {
+    it('should specify option key', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          open
+          options={[
+            { name: 'one', id: '1' },
+            { name: 'two', id: '2' },
+            { name: 'three', id: '3' },
+            { name: 'three', id: '4' },
+          ]}
+          getOptionLabel={(option) => option.name}
+          getOptionKey={(option) => option.id}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.change(document.activeElement, { target: { value: 'th' } });
+      const options = getAllByRole('option');
+      expect(options.length).to.equal(2);
+    });
+    it('should use key property by default', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          open
+          options={[
+            { name: 'one', key: '1' },
+            { name: 'two', key: '2' },
+            { name: 'three', key: '3' },
+            { name: 'three', key: '4' },
+          ]}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.change(document.activeElement, { target: { value: 'th' } });
+      const options = getAllByRole('option');
+      expect(options.length).to.equal(2);
+    });
+    it('should throw warning if option does not have key', () => {
+      expect(() =>
+        render(
+          <Autocomplete
+            open
+            options={[{ name: 'one' }, { name: 'two' }, { name: 'three' }, { name: 'three' }]}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />,
+        ),
+      ).toErrorDev(
+        'Warning: Encountered two children with the same key, `three`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.',
+      );
+    });
+  });
+
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
       const { container } = render(
