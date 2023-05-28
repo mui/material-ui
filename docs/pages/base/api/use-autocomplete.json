@@ -71,6 +71,13 @@
       },
       "default": "(option) => option.label ?? option"
     },
+    "getOptionKey": {
+      "type": {
+        "name": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt) =&gt string",
+        "description": "(option: T | AutocompleteFreeSoloValueMapping&lt;FreeSolo&gt) =&gt string"
+      },
+      "default": "(option) => option.key"
+    },
     "groupBy": {
       "type": { "name": "(option: T) =&gt string", "description": "(option: T) =&gt string" }
     },

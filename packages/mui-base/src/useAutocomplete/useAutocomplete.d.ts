@@ -163,6 +163,14 @@ export interface UseAutocompleteProps<
    */
   getOptionLabel?: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   /**
+   * Used to determine the key for a given option.
+   *
+   * @param {T} option The option to get the key for.
+   * @returns {string}
+   * @default (option) => option.key
+   */
+  getOptionKey?: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
+  /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *

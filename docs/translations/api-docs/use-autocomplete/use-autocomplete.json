@@ -18,6 +18,7 @@
     "filterSelectedOptions": "If <code>true</code>, hide the selected options from the list box.",
     "freeSolo": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",
     "getOptionDisabled": "Used to determine the disabled state for a given option.",
+    "getOptionKey": "Used to determine the key for a given option.",
     "getOptionLabel": "Used to determine the string value for a given option.\nIt's used to fill the input (and the list box options if <code>renderOption</code> is not provided).\n\nIf used in free solo mode, it must accept both the type of the options and a string.",
     "groupBy": "If provided, the options will be grouped under the returned string.\nThe groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.",
     "handleHomeEndKeys": "If <code>true</code>, the component handles the \"Home\" and \"End\" keys when the popup is open.\nIt should move focus to the first option and last option, respectively.",

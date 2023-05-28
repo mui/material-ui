@@ -98,6 +98,7 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
+    getOptionKey = (option) => option.key,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
@@ -1135,7 +1136,7 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: `${getOptionLabel(option)}-${index}`,
+        key: `${getOptionKey(option) || getOptionLabel(option)}`,
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
