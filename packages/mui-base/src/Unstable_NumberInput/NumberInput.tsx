@@ -60,9 +60,9 @@ const NumberInput = React.forwardRef(function NumberInput(
     max,
     min,
     onBlur,
-    onChange,
+    onInputChange,
     onFocus,
-    onValueChange,
+    onChange,
     placeholder,
     required,
     readOnly,
@@ -94,9 +94,9 @@ const NumberInput = React.forwardRef(function NumberInput(
     disabled,
     error,
     onFocus,
-    onChange,
+    onInputChange,
     onBlur,
-    onValueChange,
+    onChange,
     required,
     readOnly,
     value,
@@ -223,7 +223,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    * `event.target.value` may contain values that fall outside of `min` and `max` or
    * are otherwise "invalid".
    */
-  onChange: PropTypes.func,
+  onInputChange: PropTypes.func,
   /**
    * @ignore
    */
@@ -232,7 +232,7 @@ NumberInput.propTypes /* remove-proptypes */ = {
    * Callback fired after the value is clamped and changes.
    * Called with `undefined` when the value is unset.
    */
-  onValueChange: PropTypes.func,
+  onChange: PropTypes.func,
   /**
    * @ignore
    */

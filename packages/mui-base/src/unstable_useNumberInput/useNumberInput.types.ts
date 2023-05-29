@@ -41,17 +41,23 @@ export interface UseNumberInputParameters {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler;
   /**
-   * Callback fired when the <input> value changes, before clamping is applied. Note that
-   * `event.target.value` may contain values that fall outside of `min` and `max` or
+   * Callback fired when the <input> value changes after each keypress, before clamping is applied.
+   * Note that `event.target.value` may contain values that fall outside of `min` and `max` or
    * are otherwise "invalid".
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    */
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onInputChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
   /**
-   * Callback fired after the value is clamped and changes.
+   * Callback fired after the value is clamped and changes - when the <input> is blurred or when
+   * the stepper buttons are triggered.
    * Called with `undefined` when the value is unset.
+   *
+   * @param {React.FocusEvent<HTMLInputElement>|React.PointerEvent|React.KeyboardEvent} event The event source of the callback
+   * @param {number|undefined} value The new value of the component
    */
-  onValueChange?: (
+  onChange?: (
     event: React.FocusEvent<HTMLInputElement> | React.PointerEvent | React.KeyboardEvent,
     value: number | undefined,
   ) => void;
@@ -85,7 +91,7 @@ export interface UseNumberInputRootSlotOwnProps {
 
 export type UseNumberInputRootSlotProps<TOther = {}> = Omit<
   TOther,
-  keyof UseNumberInputRootSlotOwnProps | 'onBlur' | 'onChange' | 'onFocus'
+  keyof UseNumberInputRootSlotOwnProps | 'onBlur' | 'onInputChange' | 'onFocus'
 > &
   UseNumberInputRootSlotOwnProps;
 

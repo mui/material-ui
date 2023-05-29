@@ -66,12 +66,12 @@ describe('useNumberInput', () => {
     expect(inputProps.required).to.equal(true);
   });
 
-  describe('prop: onChange', () => {
-    it('should call onChange accordingly when inputting valid characters', async () => {
+  describe('prop: onInputChange', () => {
+    it('should call onInputChange accordingly when inputting valid characters', async () => {
       const user = userEvent.setup();
-      const handleChange = spy();
+      const handleInputChange = spy();
       function NumberInput() {
-        const { getInputProps } = useNumberInput({ onChange: handleChange });
+        const { getInputProps } = useNumberInput({ onInputChange: handleInputChange });
 
         return <input data-testid="test-input" {...getInputProps()} />;
       }
@@ -83,16 +83,16 @@ describe('useNumberInput', () => {
 
       await user.keyboard('-12');
 
-      expect(handleChange.callCount).to.equal(3);
-      expect(handleChange.args[2][0].target.value).to.equal('-12');
+      expect(handleInputChange.callCount).to.equal(3);
+      expect(handleInputChange.args[2][0].target.value).to.equal('-12');
       expect(input.value).to.equal('-12');
     });
 
     it('should not change the input value when inputting invalid characters', async () => {
       const user = userEvent.setup();
-      const handleChange = spy();
+      const handleInputChange = spy();
       function NumberInput() {
-        const { getInputProps } = useNumberInput({ onChange: handleChange });
+        const { getInputProps } = useNumberInput({ onInputChange: handleInputChange });
 
         return <input data-testid="test-input" {...getInputProps()} />;
       }
@@ -104,17 +104,17 @@ describe('useNumberInput', () => {
 
       await user.keyboard('-5a');
 
-      expect(handleChange.callCount).to.equal(3);
+      expect(handleInputChange.callCount).to.equal(3);
       expect(input.value).to.equal('-5');
     });
   });
 
-  describe('prop: onValueChange', () => {
-    it('should call onValueChange when the input is blurred', async () => {
+  describe('prop: onChange', () => {
+    it('should call onChange when the input is blurred', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
       function NumberInput() {
-        const { getInputProps } = useNumberInput({ onValueChange: handleValueChange });
+        const { getInputProps } = useNumberInput({ onChange: handleChange });
 
         return <input data-testid="test-input" {...getInputProps()} />;
       }
@@ -126,20 +126,20 @@ describe('useNumberInput', () => {
 
       await user.keyboard('34');
 
-      expect(handleValueChange.callCount).to.equal(0);
+      expect(handleChange.callCount).to.equal(0);
 
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
 
-      expect(handleValueChange.callCount).to.equal(1);
+      expect(handleChange.callCount).to.equal(1);
     });
 
-    it('should call onValueChange with a value within max', async () => {
+    it('should call onChange with a value within max', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
-          onValueChange: handleValueChange,
+          onChange: handleChange,
           max: 5,
         });
 
@@ -156,15 +156,15 @@ describe('useNumberInput', () => {
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
 
-      expect(handleValueChange.args[0][1]).to.equal(5);
+      expect(handleChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onValueChange with a value within min', async () => {
+    it('should call onChange with a value within min', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
-          onValueChange: handleValueChange,
+          onChange: handleChange,
           min: 5,
         });
 
@@ -181,15 +181,15 @@ describe('useNumberInput', () => {
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
 
-      expect(handleValueChange.args[0][1]).to.equal(5);
+      expect(handleChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onValueChange with a value based on a custom step', async () => {
+    it('should call onChange with a value based on a custom step', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
-          onValueChange: handleValueChange,
+          onChange: handleChange,
           min: 0,
           step: 5,
         });
@@ -207,15 +207,15 @@ describe('useNumberInput', () => {
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
 
-      expect(handleValueChange.args[0][1]).to.equal(5);
+      expect(handleChange.args[0][1]).to.equal(5);
     });
 
-    it('should call onValueChange with undefined when the value is cleared', async () => {
+    it('should call onChange with undefined when the value is cleared', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
-          onValueChange: handleValueChange,
+          onChange: handleChange,
         });
 
         return <input data-testid="test-input" {...getInputProps()} />;
@@ -237,16 +237,16 @@ describe('useNumberInput', () => {
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
 
-      expect(handleValueChange.callCount).to.equal(1);
-      expect(handleValueChange.args[0][1]).to.equal(undefined);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(undefined);
     });
 
-    it('should call onValueChange with undefined when input value is -', async () => {
+    it('should call onChange with undefined when input value is -', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
       function NumberInput() {
         const { getInputProps } = useNumberInput({
-          onValueChange: handleValueChange,
+          onChange: handleChange,
         });
 
         return <input data-testid="test-input" {...getInputProps()} />;
@@ -268,8 +268,8 @@ describe('useNumberInput', () => {
       await user.keyboard('[Tab]');
       expect(document.activeElement).to.equal(document.body);
 
-      expect(handleValueChange.callCount).to.equal(1);
-      expect(handleValueChange.args[0][1]).to.equal(undefined);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(undefined);
     });
   });
 });

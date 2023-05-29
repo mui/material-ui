@@ -45,9 +45,9 @@ export default function useNumberInput(
     disabled: disabledProp = false,
     error: errorProp = false,
     onBlur,
-    onChange,
+    onInputChange,
     onFocus,
-    onValueChange,
+    onChange,
     required: requiredProp = false,
     readOnly: readOnlyProp = false,
     value: valueProp,
@@ -138,9 +138,9 @@ export default function useNumberInput(
       setValue(newValue);
 
       if (isNumber(newValue)) {
-        onValueChange?.(event, newValue);
+        onChange?.(event, newValue);
       } else {
-        onValueChange?.(event, undefined);
+        onChange?.(event, undefined);
       }
     };
 
@@ -157,7 +157,7 @@ export default function useNumberInput(
 
       formControlContext?.onChange?.(event);
 
-      otherHandlers.onChange?.(event);
+      otherHandlers.onInputChange?.(event);
 
       const val = parseInput(event.currentTarget.value);
 
@@ -265,9 +265,9 @@ export default function useNumberInput(
   ): UseNumberInputRootSlotProps<TOther> => {
     const propsEventHandlers = extractEventHandlers(parameters, [
       'onBlur',
-      'onChange',
+      'onInputChange',
       'onFocus',
-      'onValueChange',
+      'onChange',
     ]);
 
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
@@ -282,19 +282,17 @@ export default function useNumberInput(
   const getInputProps = <TOther extends Record<string, any> = {}>(
     externalProps: TOther = {} as TOther,
   ): UseNumberInputInputSlotProps<TOther> => {
-    const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
+    const externalEventHandlers = {
       onBlur,
-      onChange,
       onFocus,
+      ...extractEventHandlers(externalProps, ['onInputChange']),
     };
-
-    const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     const mergedEventHandlers = {
       ...externalProps,
       ...externalEventHandlers,
       onFocus: handleFocus(externalEventHandlers),
-      onChange: handleInputChange(externalEventHandlers),
+      onChange: handleInputChange({ ...externalEventHandlers, onInputChange }),
       onBlur: handleBlur(externalEventHandlers),
       onKeyDown: handleKeyDown(externalEventHandlers),
     };

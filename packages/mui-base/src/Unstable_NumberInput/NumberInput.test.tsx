@@ -94,12 +94,12 @@ describe('<NumberInput />', () => {
   describe('step buttons', () => {
     it('clicking the increment and decrement buttons changes the value', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={
             {
               input: {
@@ -121,25 +121,25 @@ describe('<NumberInput />', () => {
       const decrementButton = getByTestId('decrement-btn');
 
       await user.click(incrementButton);
-      expect(handleValueChange.args[0][1]).to.equal(11);
+      expect(handleChange.args[0][1]).to.equal(11);
       expect(input.value).to.equal('11');
 
       await user.click(decrementButton);
       await user.click(decrementButton);
-      expect(handleValueChange.callCount).to.equal(3);
-      expect(handleValueChange.args[2][1]).to.equal(9);
+      expect(handleChange.callCount).to.equal(3);
+      expect(handleChange.args[2][1]).to.equal(9);
       expect(input.value).to.equal('9');
     });
 
     it('clicking the increment and decrement buttons changes the value based on shiftMultiplier if the Shift key is held', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={20}
           shiftMultiplier={5}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={
             {
               input: {
@@ -163,12 +163,12 @@ describe('<NumberInput />', () => {
       await user.keyboard('{Shift>}');
       await user.click(incrementButton);
       await user.click(incrementButton);
-      expect(handleValueChange.args[1][1]).to.equal(30);
+      expect(handleChange.args[1][1]).to.equal(30);
       expect(input.value).to.equal('30');
 
       await user.click(decrementButton);
-      expect(handleValueChange.args[2][1]).to.equal(25);
-      expect(handleValueChange.callCount).to.equal(3);
+      expect(handleChange.args[2][1]).to.equal(25);
+      expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('25');
     });
 
@@ -219,12 +219,12 @@ describe('<NumberInput />', () => {
   describe('keyboard interaction', () => {
     it('ArrowUp and ArrowDown changes the value', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -235,25 +235,25 @@ describe('<NumberInput />', () => {
 
       await user.keyboard('[ArrowUp]');
       await user.keyboard('[ArrowUp]');
-      expect(handleValueChange.callCount).to.equal(2);
-      expect(handleValueChange.args[1][1]).to.equal(12);
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[1][1]).to.equal(12);
       expect(input.value).to.equal('12');
 
       await user.keyboard('[ArrowDown]');
-      expect(handleValueChange.callCount).to.equal(3);
-      expect(handleValueChange.args[2][1]).to.equal(11);
+      expect(handleChange.callCount).to.equal(3);
+      expect(handleChange.args[2][1]).to.equal(11);
       expect(input.value).to.equal('11');
     });
 
     it('ArrowUp and ArrowDown changes the value based on a custom step', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
           step={5}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -264,24 +264,24 @@ describe('<NumberInput />', () => {
 
       await user.keyboard('[ArrowUp]');
       await user.keyboard('[ArrowUp]');
-      expect(handleValueChange.args[1][1]).to.equal(20);
+      expect(handleChange.args[1][1]).to.equal(20);
       expect(input.value).to.equal('20');
 
       await user.keyboard('[ArrowDown]');
-      expect(handleValueChange.args[2][1]).to.equal(15);
-      expect(handleValueChange.callCount).to.equal(3);
+      expect(handleChange.args[2][1]).to.equal(15);
+      expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('15');
     });
 
     it('ArrowUp and ArrowDown changes the value based on shiftMultiplier if the Shift key is held', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={20}
           shiftMultiplier={5}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -291,25 +291,25 @@ describe('<NumberInput />', () => {
       await user.click(input);
 
       await user.keyboard('{Shift>}[ArrowUp]/');
-      expect(handleValueChange.callCount).to.equal(1);
-      expect(handleValueChange.args[0][1]).to.equal(25);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(25);
       expect(input.value).to.equal('25');
 
       await user.keyboard('{Shift>}[ArrowDown][ArrowDown]{/Shift}');
-      expect(handleValueChange.args[2][1]).to.equal(15);
-      expect(handleValueChange.callCount).to.equal(3);
+      expect(handleChange.args[2][1]).to.equal(15);
+      expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('15');
     });
 
     it('PageUp and PageDown changes the value based on shiftMultiplier', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={20}
           shiftMultiplier={5}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -319,24 +319,24 @@ describe('<NumberInput />', () => {
       await user.click(input);
 
       await user.keyboard('[PageUp]');
-      expect(handleValueChange.args[0][1]).to.equal(25);
+      expect(handleChange.args[0][1]).to.equal(25);
       expect(input.value).to.equal('25');
 
       await user.keyboard('[PageDown][PageDown]');
-      expect(handleValueChange.args[2][1]).to.equal(15);
-      expect(handleValueChange.callCount).to.equal(3);
+      expect(handleChange.args[2][1]).to.equal(15);
+      expect(handleChange.callCount).to.equal(3);
       expect(input.value).to.equal('15');
     });
 
     it('sets value to max when Home is pressed', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
           max={50}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -346,19 +346,19 @@ describe('<NumberInput />', () => {
       await user.click(input);
 
       await user.keyboard('[Home]');
-      expect(handleValueChange.args[0][1]).to.equal(50);
+      expect(handleChange.args[0][1]).to.equal(50);
       expect(input.value).to.equal('50');
     });
 
     it('sets value to min when End is pressed', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           defaultValue={10}
           min={1}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -368,18 +368,18 @@ describe('<NumberInput />', () => {
       await user.click(input);
 
       await user.keyboard('[End]');
-      expect(handleValueChange.args[0][1]).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal(1);
       expect(input.value).to.equal('1');
     });
 
     it('sets value to min when the input has no value and ArrowUp is pressed', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           min={5}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -389,18 +389,18 @@ describe('<NumberInput />', () => {
       await user.click(input);
 
       await user.keyboard('[ArrowUp]');
-      expect(handleValueChange.args[0][1]).to.equal(5);
+      expect(handleChange.args[0][1]).to.equal(5);
       expect(input.value).to.equal('5');
     });
 
     it('sets value to max when the input has no value and ArrowDown is pressed', async () => {
       const user = userEvent.setup();
-      const handleValueChange = spy();
+      const handleChange = spy();
 
       const { getByTestId } = render(
         <NumberInput
           max={9}
-          onValueChange={handleValueChange}
+          onChange={handleChange}
           slotProps={{ input: { 'data-testid': 'input' } } as any}
         />,
       );
@@ -410,7 +410,7 @@ describe('<NumberInput />', () => {
       await user.click(input);
 
       await user.keyboard('[ArrowDown]');
-      expect(handleValueChange.args[0][1]).to.equal(9);
+      expect(handleChange.args[0][1]).to.equal(9);
       expect(input.value).to.equal('9');
     });
   });

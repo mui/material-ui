@@ -6,7 +6,8 @@ import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 
 const CompactNumberInput = React.forwardRef(function CompactNumberInput(
-  props: UseNumberInputParameters & React.InputHTMLAttributes<HTMLInputElement>,
+  props: Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> &
+    UseNumberInputParameters,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
   const {
@@ -65,7 +66,7 @@ export default function UseNumberInputCompact() {
         placeholder="Type a number…"
         readOnly
         value={value}
-        onValueChange={(event, val) => setValue(val)}
+        onChange={(event, val) => setValue(val)}
       />
 
       <pre>Current value: {value ?? ' '}</pre>

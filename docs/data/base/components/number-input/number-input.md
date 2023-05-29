@@ -43,7 +43,7 @@ export default function MyApp() {
 
 ### Basics
 
-The following demo shows how to create a number input component, apply some styling, and write the latest value to a state variable using the `onValueChange` prop:
+The following demo shows how to create a number input component, apply some styling, and write the latest value to a state variable using the `onChange` prop:
 
 {{"demo": "UnstyledNumberInputBasic.js"}}
 
@@ -147,6 +147,6 @@ Here's an example of a custom component built using the `useNumberInput` hook wi
 {{"demo": "UseNumberInput.js", "defaultCodeOpen": false}}
 
 Here's an example of a "compact" number input component using the hook that only consists of the stepper buttons.
-In this demo, `onValueChange` is used to write the latest value of the component to a state variable.
+In this demo, `onChange` is used to write the latest value of the component to a state variable.
 
 {{"demo": "UseNumberInputCompact.js", "defaultCodeOpen": false}}

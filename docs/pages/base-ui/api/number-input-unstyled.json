@@ -8,7 +8,7 @@
     "max": { "type": { "name": "number" } },
     "min": { "type": { "name": "number" } },
     "onChange": { "type": { "name": "func" } },
-    "onValueChange": { "type": { "name": "func" } },
+    "onInputChange": { "type": { "name": "func" } },
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "shiftMultiplier": { "type": { "name": "number" } },

@@ -34,7 +34,7 @@ export default function NumberInputBasic() {
       aria-label="Demo number input"
       placeholder="Type a number…"
       value={value}
-      onValueChange={(event, val) => setValue(val)}
+      onChange={(event, val) => setValue(val)}
     />
   );
 }

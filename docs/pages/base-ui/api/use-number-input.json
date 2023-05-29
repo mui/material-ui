@@ -20,8 +20,8 @@
     },
     "onChange": {
       "type": {
-        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
-        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
+        "name": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | undefined) =&gt; void",
+        "description": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | undefined) =&gt; void"
       }
     },
     "onClick": {
@@ -30,10 +30,10 @@
     "onFocus": {
       "type": { "name": "React.FocusEventHandler", "description": "React.FocusEventHandler" }
     },
-    "onValueChange": {
+    "onInputChange": {
       "type": {
-        "name": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | undefined) =&gt; void",
-        "description": "(event: React.FocusEvent&lt;HTMLInputElement&gt; | React.PointerEvent | React.KeyboardEvent, value: number | undefined) =&gt; void"
+        "name": "React.ChangeEventHandler&lt;HTMLInputElement&gt;",
+        "description": "React.ChangeEventHandler&lt;HTMLInputElement&gt;"
       }
     },
     "readOnly": { "type": { "name": "boolean", "description": "boolean" } },

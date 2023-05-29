@@ -60,7 +60,7 @@ export default function UseNumberInputCompact() {
         placeholder="Type a number…"
         readOnly
         value={value}
-        onValueChange={(event, val) => setValue(val)}
+        onChange={(event, val) => setValue(val)}
       />
       <pre>Current value: {value ?? ' '}</pre>
     </Layout>
