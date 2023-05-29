@@ -98,19 +98,11 @@ export default function ExampleCollection() {
                 border: '1px solid',
                 borderColor: 'grey.200',
                 boxShadow: 'none',
-                '&:hover': {
-                  borderColor: 'grey.300',
-                  boxShadow: '0px 2px 8px rgba(170, 180, 190, 0.2)',
-                },
               },
               (theme) =>
                 theme.applyDarkStyles({
                   bgcolor: 'transparent',
                   borderColor: 'primaryDark.700',
-                  '&:hover': {
-                    borderColor: 'primaryDark.600',
-                    boxShadow: '0px 2px 8px rgba(0, 13, 26, 1)',
-                  },
                 }),
             ]}
           >
