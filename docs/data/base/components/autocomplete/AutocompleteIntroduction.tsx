@@ -77,13 +77,13 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
           modifiers={[{ name: 'flip', enabled: false }]}
         >
           <StyledListbox {...getListboxProps()}>
-            {groupedOptions.map((option: any, index) => {
+            {(groupedOptions as typeof top100Films).map((option, index) => {
               const optionProps = getOptionProps({ option, index });
 
               return <StyledOption {...optionProps}>{option.label}</StyledOption>;
             })}
 
-            {groupedOptions?.length === 0 && (
+            {groupedOptions.length === 0 && (
               <StyledNoOptions>No results</StyledNoOptions>
             )}
           </StyledListbox>

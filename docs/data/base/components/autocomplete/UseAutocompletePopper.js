@@ -30,9 +30,8 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
           slots={{
             root: StyledPopper,
           }}
-          // modifiers={[{ name: 'flip', enabled: false }]}
         >
-          {groupedOptions?.length > 0 ? (
+          {groupedOptions.length > 0 ? (
             <StyledListbox {...getListboxProps()}>
               {groupedOptions.map((option, index) => (
                 <StyledOption {...getOptionProps({ option, index })}>

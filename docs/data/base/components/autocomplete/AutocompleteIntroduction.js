@@ -82,7 +82,7 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(props, r
               return <StyledOption {...optionProps}>{option.label}</StyledOption>;
             })}
 
-            {groupedOptions?.length === 0 && (
+            {groupedOptions.length === 0 && (
               <StyledNoOptions>No results</StyledNoOptions>
             )}
           </StyledListbox>

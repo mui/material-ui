@@ -33,9 +33,8 @@ const CustomAutocomplete = React.forwardRef(function CustomAutocomplete(
           slots={{
             root: StyledPopper,
           }}
-          // modifiers={[{ name: 'flip', enabled: false }]}
         >
-          {groupedOptions?.length > 0 ? (
+          {groupedOptions.length > 0 ? (
             <StyledListbox {...getListboxProps()}>
               {(groupedOptions as typeof top100Films).map((option, index) => (
                 <StyledOption {...getOptionProps({ option, index })}>
