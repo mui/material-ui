@@ -25,7 +25,7 @@ function fixPathname(pathname: string): string {
       'joy-ui',
     );
   } else {
-    fixedPathname = `${pathname.replace('/components/', '/react-')}/`;
+    fixedPathname = `${pathname.replace('/base/', '/base-ui/').replace('/components/', '/react-')}/`;
   }
 
   return fixedPathname;
@@ -222,7 +222,7 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material-ui'}/api/${kebabCase(
+            : `/${inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'material-ui'}/api/${kebabCase(
                 inheritedComponent.replace(/unstyled/i, ''),
               )}/`,
       };
@@ -350,7 +350,7 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
+    apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     isSystemComponent: getSystemComponents().includes(name),
     readFile: () => {
@@ -366,7 +366,7 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/base/api/${kebabCase(inheritedComponent)}/`,
+            : `/base-ui/api/${kebabCase(inheritedComponent)}/`,
       };
     },
     getDemos: () => demos,
@@ -404,7 +404,7 @@ export function getBaseHookInfo(filename: string): HookInfo {
   const result = {
     filename,
     name,
-    apiPathname: apiPath ?? `/base/api/${kebabCase(name)}/`,
+    apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
     readFile: () => {
       srcInfo = parseFile(filename);
@@ -443,7 +443,7 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
       // we remove the suffix here.
       return {
         name: inheritedComponent.replace(/unstyled/i, ''),
-        apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'joy-ui'}/api/${kebabCase(
+        apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'joy-ui'}/api/${kebabCase(
           inheritedComponent.replace(/unstyled/i, ''),
         )}/`,
       };

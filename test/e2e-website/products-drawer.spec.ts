@@ -22,5 +22,7 @@ test('able to navigate between products', async ({ page }) => {
 
   await expect(page.locator('#mui-product-menu a[href^="/x/introduction/"]')).toBeVisible();
 
-  await expect(page.locator('#mui-product-menu a[href^="/base-ui/getting-started/"]')).toBeVisible();
+  await expect(
+    page.locator('#mui-product-menu a[href^="/base-ui/getting-started/"]'),
+  ).toBeVisible();
 });

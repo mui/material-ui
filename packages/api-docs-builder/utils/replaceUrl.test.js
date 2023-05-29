@@ -219,11 +219,19 @@ describe('replaceUrl', () => {
     expect(replaceAPILinks(`/api/loading-button/`)).to.equal(`/material-ui/api/loading-button/`);
     expect(replaceAPILinks(`/api/tab-list/`)).to.equal(`/material-ui/api/tab-list/`);
     expect(replaceAPILinks(`/api/tab-panel/`)).to.equal(`/material-ui/api/tab-panel/`);
-    expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(`/base-ui/api/tab-panel-unstyled/`);
-    expect(replaceAPILinks(`/api/tabs-list-unstyled/`)).to.equal(`/base-ui/api/tabs-list-unstyled/`);
+    expect(replaceAPILinks(`/api/tab-panel-unstyled/`)).to.equal(
+      `/base-ui/api/tab-panel-unstyled/`,
+    );
+    expect(replaceAPILinks(`/api/tabs-list-unstyled/`)).to.equal(
+      `/base-ui/api/tabs-list-unstyled/`,
+    );
     expect(replaceAPILinks(`/api/tabs-unstyled/`)).to.equal(`/base-ui/api/tabs-unstyled/`);
-    expect(replaceAPILinks(`/api/unstable-trap-focus/`)).to.equal(`/base-ui/api/unstable-trap-focus/`);
-    expect(replaceAPILinks(`/api/click-away-listener/`)).to.equal(`/base-ui/api/click-away-listener/`);
+    expect(replaceAPILinks(`/api/unstable-trap-focus/`)).to.equal(
+      `/base-ui/api/unstable-trap-focus/`,
+    );
+    expect(replaceAPILinks(`/api/click-away-listener/`)).to.equal(
+      `/base-ui/api/click-away-listener/`,
+    );
     expect(replaceAPILinks(`/api/data-grid/data-grid/`)).to.equal(`/x/api/data-grid/data-grid/`);
     expect(replaceAPILinks(`/system/basic/`)).to.equal(`/system/basic/`);
   });
@@ -237,7 +245,9 @@ describe('replaceUrl', () => {
 
   it('should do nothing if the APIs have updated', () => {
     expect(replaceAPILinks(`/material-ui/api/button/`)).to.equal(`/material-ui/api/button/`);
-    expect(replaceAPILinks(`/base-ui/api/button-unstyled/`)).to.equal(`/base-ui/api/button-unstyled/`);
+    expect(replaceAPILinks(`/base-ui/api/button-unstyled/`)).to.equal(
+      `/base-ui/api/button-unstyled/`,
+    );
     expect(replaceAPILinks(`/material-ui/api/loading-button/`)).to.equal(
       `/material-ui/api/loading-button/`,
     );
