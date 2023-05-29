@@ -3003,21 +3003,20 @@ describe('<Autocomplete />', () => {
 
   describe('prop: renderOption', () => {
     it('should pass getOptionLabel through ownerState in renderOption callback', () => {
-      const { getByRole } = render(
+      render(
         <Autocomplete
           open
-          options={[{ label: 'one' }]}
-          getOptionLabel={() => `getOptionLabel`}
+          options={[{ name: 'Max' }]}
+          getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
-          renderOption={function f(...[option, , , ownerState]) {
-            return <li key="key">{ownerState.getOptionLabel(option)}</li>;
-          }}
+          renderOption={(props, option, optionState, ownerState) => (
+            <li data-id="option">{ownerState.getOptionLabel(option)}</li>
+          )}
         />,
       );
 
-      const listbox = getByRole('listbox');
-      const htmlOption = listbox.querySelector('li');
-      expect(htmlOption.innerHTML).to.equal('getOptionLabel');
+      const renderedOption = screen.getByTestId('option');
+      expect(renderedOption).to.equal('Max');
     });
   });
 
