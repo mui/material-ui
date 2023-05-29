@@ -24,7 +24,7 @@ When color inversion is enabled on the parent component, the children with impli
 
 **Implicit** color refers to components that don't have the `color` prop specified.
 
-Color inversion has no effect on those children that have an **explicit** `color` prop.
+Color inversion has no effect on children that have an **explicit** `color` prop.
 
 ```js
 // implicit color. The styles change when color inversion is enabled.
@@ -51,10 +51,8 @@ Color inversion has no effect on those children that have an **explicit** `color
 
 ## Usage
 
-To enable color inverstion, use the `invertedColors` prop on one of the two components that support it, either on the [`Sheet`](/joy-ui/react-sheet/) or the [`Card`](/joy-ui/react-card/).
-Make sure they are using either the `solid` or `soft` variants, as it will only work then.
-
-To enable the feature set `invertedColors` to true on the surface components:
+To enable color inversion, use the `invertedColors` prop on one of the two components that support it, either on the [Sheet](/joy-ui/react-sheet/) or the [Card](/joy-ui/react-card/).
+Note that this prop only works when these components have the `solid` or `soft` global variants applied.
 
 ```js
 <Card variant="solid" invertedColors>…</Card>
@@ -64,11 +62,11 @@ To enable the feature set `invertedColors` to true on the surface components:
 
 ### Portal popup
 
-By default, color inversion has no effect on the popup slot of the `Autocomplete`, `Menu`, and `Tooltip` components.
+By default, color inversion has no effect on the popup slot of the Autocomplete, Menu, and Tooltip components.
 To enable it, set `disablePortal` to true on the `slotProps`.
 
 :::info
-The popup slot of the `Select` component has `disablePortal` set to true by default.
+The popup slot of the Select component has `disablePortal` set to true by default.
 :::
 
 {{"demo": "ColorInversionPopup.js"}}
@@ -77,7 +75,9 @@ The popup slot of the `Select` component has `disablePortal` set to true by defa
 
 ### Parent component
 
-When `invertedColors` is set to true on the surface component, a set of CSS variables are applied to it. The values of those variables comes from `theme.colorInversion[variant][color]` where `variant` and `color` are the component's props. The surface component also creates a React context to tell the children to update their styles.
+When `invertedColors` is set to true on the surface component, a set of CSS variables is applied to it.
+The values of those variables comes from `theme.colorInversion[variant][color]`, where `variant` and `color` are the component's props.
+The surface component also creates a React context to tell the children to update their styles.
 
 ```jsx
 <Sheet invertedColors variant="solid" color="neutral">
