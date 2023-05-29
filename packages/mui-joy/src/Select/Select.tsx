@@ -470,13 +470,9 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     externalForwardedProps,
     getSlotProps: (handlers) => ({
       onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (
-          !listboxOpen &&
-          !buttonRef.current?.contains(event.target as Node) &&
-          !event.isPropagationStopped()
-        ) {
-          // show the popup if user click outside of the button element.
-          // the close action is already handled by blur event.
+        if (!buttonRef.current?.contains(event.target as Node) && !event.isPropagationStopped()) {
+          // SelectActionTypes.buttonClick action will toggle the listbox
+          // see selectReducer for the implementation
           dispatch({ type: SelectActionTypes.buttonClick, event });
         }
         handlers.onMouseDown?.(event);

@@ -618,6 +618,12 @@ describe('Joy <Select />', () => {
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+
+    // click again should close
+    act(() => {
+      getByTestId('test-element').click();
+    });
+    expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
   });
 
   it('should not show dropdown if stop propagation is handled', () => {
