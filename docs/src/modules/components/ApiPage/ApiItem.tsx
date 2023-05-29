@@ -12,10 +12,10 @@ const Root = styled('div')(
   ({ theme }) => ({
     '& .MuiApi-item-header': {
       ...theme.typography.caption,
+      fontFamily: theme.typography.fontFamilyCode,
       display: 'flex',
       position: 'relative',
-      marginBottom: '12px',
-      fontFamily: theme.typography.fontFamilyCode,
+      marginBottom: 12,
       marginLeft: -32,
       '& .MuiApi-item-link-visual': {
         display: 'none',
@@ -63,7 +63,7 @@ const Root = styled('div')(
           display: 'inline-block',
         },
         '.MuiApi-item-title': {
-          marginLeft: '8px',
+          marginLeft: 8,
         },
         '.MuiApi-item-link-visual:hover': {
           cursor: 'pointer',
