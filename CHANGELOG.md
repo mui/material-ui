@@ -24,6 +24,7 @@ This release focuses primarily on 🐛 bug fixes and 📚 documentation improvem
 
 ### `@mui/joy@5.0.0-alpha.82`
 
+- &#8203;<!-- 22 -->[Select][joy] Fix popup does not close (#37435) @siriwatknp
 - &#8203;<!-- 21 -->[Badge][Joy] Fix `slots` element type in API docs (#37329) @zignis
 - &#8203;<!-- 04 -->[Select] [joy] Handle long text content (#37289) @akash191095
 - &#8203;<!-- 07 -->[Tooltip][Joy] Interactive doesn't work (#37159) @nicolas-ot
