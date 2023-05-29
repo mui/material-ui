@@ -3010,15 +3010,15 @@ describe('<Autocomplete />', () => {
           getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
           renderOption={(props, option, optionState, ownerState) => (
-            <li key={option.name} data-testid="option">
+            <li key={option.name} data-testid="optionLi">
               {ownerState.getOptionLabel(option)}
             </li>
           )}
         />,
       );
 
-      const renderedOption = screen.getByTestId('option');
-      expect(renderedOption).to.equal('Max');
+      const renderedOption = screen.getByTestId('optionLi');
+      expect(renderedOption).to.have.text('Max');
     });
   });
 
