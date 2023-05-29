@@ -9,8 +9,6 @@ _May 29, 2023_
 A big thanks to the 15 contributors who made this release possible.
 This release focuses primarily on 🐛 bug fixes and 📚 documentation improvements.
 
-TODO INSERT HIGHLIGHTS
-
 ### `@mui/material@5.13.3
 
 - &#8203;<!-- 22 -->[Autocomplete] Accept external Listbox ref (#37325) @sai6855
