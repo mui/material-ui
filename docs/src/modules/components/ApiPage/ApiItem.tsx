@@ -26,7 +26,7 @@ const Root = styled('div')(
         width: '24px',
         height: '24px',
         lineHeight: '24px',
-        textAlignment: 'center',
+        textAlign: 'center',
         '& svg': {
           borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.primary[500]})`,
           fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
@@ -35,11 +35,10 @@ const Root = styled('div')(
         },
       },
       span: {
-        color: '#2D3843',
-        borderBottom: 'solid 1px',
-        fontWeight: 400,
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
         padding: '2px 6px',
+        fontWeight: theme.typography.fontWeightRegular,
+        borderBottom: 'solid 1px',
+        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       },
       '& .MuiApi-item-title': {
         marginLeft: 32,
@@ -117,12 +116,12 @@ const Root = styled('div')(
           borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
         },
         '& .MuiApi-item-title': {
-          color: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+          color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
         },
         '& .MuiApi-item-link-visual': {
-          borderColor: '#2F3A46',
-          backgroundColor: '#00baff',
+          borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
           '& svg': {
             fill: `var(--muidocs-palette-primary-200, ${lightTheme.palette.primary[200]})`,
           },
@@ -137,25 +136,25 @@ const Root = styled('div')(
           },
         },
         '& .MuiApi-item-description': {
-          color: '#B2BAC2',
+          color: `var(--muidocs-palette-grey-500, ${darkTheme.palette.grey[500]})`,
         },
         '& .MuiApi-item-note': {
-          color: `var(--muidocs-palette-green-400, #3EE07F)`,
+          color: `var(--muidocs-palette-success-500, ${darkTheme.palette.success[400]})`,
         },
       },
       '& .MuiAlert-standardWarning': {
-        borderColor: '#5A3600',
-        backgroundColor: '#F4C0001A',
-        color: '#FFDC48',
+        borderColor: alpha(darkTheme.palette.warning[600], 0.2),
+        backgroundColor: alpha(darkTheme.palette.warning[800], 0.2),
+        color: `var(--muidocs-palette-warning-300, ${darkTheme.palette.warning[300]})`,
         '.MuiAlert-icon svg': {
-          fill: '#FFDC48',
+          fill: `var(--muidocs-palette-warning-400, ${darkTheme.palette.warning[400]})`,
         },
       },
       '& .default-props': {
-        color: '#A0AAB4',
+        color: `var(--muidocs-palette-grey-300, ${darkTheme.palette.grey[300]})`,
         code: {
-          borderColor: '#1F262E',
-          backgroundColor: '#141A1F',
+          borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
+          backgroundColor: alpha(darkTheme.palette.grey[900], 0.5),
         },
       },
     },
