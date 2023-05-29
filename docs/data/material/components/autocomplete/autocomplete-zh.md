@@ -116,6 +116,17 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 
 {{"demo": "DisabledOptions.js"}}
 
+## Globally Customized Options
+
+You can customize the options globally using [Themed components](/material-ui/customization/theme-components/).
+
+To add ripple effects to all the options of the Autocomplete component,
+you can define the `renderOption` property as a `defaultProps` for `Autocomplete` component in the Theme.
+`renderOption` will then receive `ownerState` as the fourth parameter, which are props augmented with internal state of the component.
+With that, your `Autocomplete` components can each have different options with the same styling.
+
+{{"demo": "GloballyCustomizedOptions.js"}}
+
 ## `useAutocomplete`
 
 For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component is built on this hook.
