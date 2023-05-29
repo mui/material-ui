@@ -14,10 +14,10 @@ const Root = styled('div')(
       ...theme.typography.caption,
       display: 'flex',
       position: 'relative',
-      textDecoration: 'none',
       marginBottom: '12px',
       lineHeight: '18px',
       fontFamily: theme.typography.fontFamilyCode,
+      marginLeft: -32,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         border: 'solid 1px',
@@ -27,8 +27,6 @@ const Root = styled('div')(
         height: '24px',
         textAlign: 'center',
         lineHeight: '24px',
-        position: 'absolute',
-        left: '-32px',
         '& svg': {
           borderColor: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
           fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
@@ -52,6 +50,8 @@ const Root = styled('div')(
         color: `var(--muidocs-palette-primary-700, ${lightTheme.palette.primary[700]})`,
         fontWeight: theme.typography.fontWeightSemiBold,
         backgroundColor: grey[200],
+
+        marginLeft: 32,
       },
       '& .MuiApi-item-description': {
         flexGrow: 1,
@@ -64,16 +64,11 @@ const Root = styled('div')(
         '.MuiApi-item-link-visual': {
           display: 'inline-block',
         },
-      },
-      '&:hover': {
-        cursor: 'pointer',
-        span: {
-          borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
-        },
         '.MuiApi-item-title': {
-          backgroundColor: alpha(lightBlue[100], 0.5),
+          marginLeft: '8px',
         },
-        '& .MuiApi-item-link-visual': {
+        '.MuiApi-item-link-visual:hover': {
+          cursor: 'pointer',
           backgroundColor: alpha(lightBlue[100], 0.5),
           borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
           '& svg': {
@@ -81,6 +76,22 @@ const Root = styled('div')(
           },
         },
       },
+      // '&:hover': {
+      //   cursor: 'pointer',
+      //   span: {
+      //     borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+      //   },
+      //   '.MuiApi-item-title': {
+      //     backgroundColor: alpha(lightBlue[100], 0.5),
+      //   },
+      //   '& .MuiApi-item-link-visual': {
+      //     backgroundColor: alpha(lightBlue[100], 0.5),
+      //     borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+      //     '& svg': {
+      //       fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+      //     },
+      //   },
+      // },
     },
     '& .MuiAlert-standardWarning': {
       border: 'solid #FFF3C1 1px',
@@ -126,25 +137,29 @@ const Root = styled('div')(
             fill: `var(--muidocs-palette-primary-200, ${lightTheme.palette.primary[200]})`,
           },
         },
-        '&:hover': {
-          span: {
-            borderColor: `#3399FF`,
-          },
-          '.MuiApi-item-title': {
-            color: '#99CCF3',
-            backgroundColor: `#0059B24D`,
-          },
-          '& .MuiApi-item-link-visual': {
+        // '&:hover': {
+        //   span: {
+        //     borderColor: `#3399FF`,
+        //   },
+        //   '.MuiApi-item-title': {
+        //     color: '#99CCF3',
+        //     backgroundColor: `#0059B24D`,
+        //   },
+        //   '& .MuiApi-item-link-visual': {
+        //     borderColor: `#3399FF`,
+        //     backgroundColor: `#0059B24D`,
+        //     '& svg': {
+        //       fill: '#99CCF3',
+        //     },
+        //   },
+        // },
+        '&:hover, &:target': {
+          '.MuiApi-item-link-visual:hover': {
             borderColor: `#3399FF`,
             backgroundColor: `#0059B24D`,
             '& svg': {
               fill: '#99CCF3',
             },
-          },
-        },
-        '&:hover, &:target': {
-          '& .MuiApi-item-link-visual': {
-            display: 'inline-block',
           },
         },
         '& .MuiApi-item-description': {
@@ -185,12 +200,13 @@ function ApiItem(props: ApiItemProps) {
   const { title, description, note, children, id } = props;
   return (
     <Root>
-      <a id={id} href={`#${id}`} className="MuiApi-item-header">
-        <div className="MuiApi-item-link-visual">
+      <div id={id} className="MuiApi-item-header">
+        <a className="MuiApi-item-link-visual" href={`#${id}`}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
-        </div>
+        </a>
+
         <span className="MuiApi-item-title">{title}</span>
         <span
           className="MuiApi-item-description"
@@ -199,7 +215,7 @@ function ApiItem(props: ApiItemProps) {
           }}
         />
         {note && <span className="MuiApi-item-note">{note}</span>}
-      </a>
+      </div>
       {children}
     </Root>
   );
