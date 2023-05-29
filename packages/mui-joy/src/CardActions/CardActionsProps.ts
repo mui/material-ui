@@ -33,6 +33,11 @@ export interface CardActionsTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     orientation?: 'horizontal' | 'vertical';
     /**
+     * The CSS `flex` for the Button and its wrapper.
+     * @default 'initial'
+     */
+    buttonFlex?: string | number;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;

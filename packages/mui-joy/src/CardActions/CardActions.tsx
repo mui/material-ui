@@ -8,6 +8,9 @@ import styled from '../styles/styled';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
 import { CardActionsProps, CardActionsTypeMap } from './CardActionsProps';
 import useSlot from '../utils/useSlot';
+import buttonClasses from '../Button/buttonClasses';
+import iconButtonClasses from '../IconButton/iconButtonClasses';
+import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -21,10 +24,23 @@ const CardActionsRoot = styled('div', {
   name: 'JoyCardActions',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardActionsProps }>(({ ownerState }) => ({
-  display: 'flex',
-  flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
-}));
+})<{ ownerState: CardActionsProps }>(({ ownerState }) => {
+  return {
+    display: 'flex',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
+    gap: 'calc(0.625 * var(--Card-padding))',
+    // padding: '--unstable'
+    [`.${cardOverflowClasses.root} > &`]: {
+      padding: 'calc(0.75 * var(--Card-padding)) 0',
+    },
+    [`& > :not(.${iconButtonClasses.root})`]: {
+      flex: ownerState.buttonFlex,
+    },
+    [`& > :not(button) > .${buttonClasses.root}`]: {
+      width: '100%', // for button to fill its wrapper.
+    },
+  };
+});
 /**
  *
  * Demos:
@@ -46,6 +62,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     component = 'div',
     children,
     orientation = 'horizontal',
+    buttonFlex = 'initial',
     slots = {},
     slotProps = {},
     ...other
@@ -56,6 +73,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     ...props,
     component,
     orientation,
+    buttonFlex,
   };
 
   const classes = useUtilityClasses();

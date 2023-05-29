@@ -45,6 +45,7 @@ const CardOverflowRoot = styled('div', {
     ownerState.row
       ? {
           '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
+          alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
           marginTop: 'var(--CardOverflow-offset)',
           marginBottom: 'var(--CardOverflow-offset)',
           padding: 'var(--Card-padding) 0px',
@@ -66,6 +67,7 @@ const CardOverflowRoot = styled('div', {
         }
       : {
           '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
+          alignSelf: 'stretch', // prevent shrinking if parent's align-items is not initial
           marginLeft: 'var(--CardOverflow-offset)',
           marginRight: 'var(--CardOverflow-offset)',
           padding: '0px var(--Card-padding)',

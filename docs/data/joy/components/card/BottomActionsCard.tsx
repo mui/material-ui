@@ -4,7 +4,6 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
-import CardOverflow from '@mui/joy/CardOverflow';
 import CardActions from '@mui/joy/CardActions';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -46,27 +45,17 @@ export default function BottomActionsCard() {
           participate, chat with others and get better at interviewing.
         </Typography>
       </Box>
-      <CardOverflow variant="soft">
-        <CardActions>
-          <IconButton
-            variant="outlined"
-            color="neutral"
-            sx={{ bgcolor: 'background.surface' }}
-          >
-            <FavoriteBorder />
-          </IconButton>
-          <Button
-            variant="outlined"
-            color="neutral"
-            sx={{ bgcolor: 'background.surface' }}
-          >
-            View
-          </Button>
-          <Button variant="solid" color="primary">
-            Join
-          </Button>
-        </CardActions>
-      </CardOverflow>
+      <CardActions buttonFlex="0 1 120px">
+        <IconButton variant="outlined" color="neutral" sx={{ mr: 'auto' }}>
+          <FavoriteBorder />
+        </IconButton>
+        <Button variant="outlined" color="neutral">
+          View
+        </Button>
+        <Button variant="solid" color="primary">
+          Join
+        </Button>
+      </CardActions>
     </Card>
   );
 }
