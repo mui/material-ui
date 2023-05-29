@@ -4,6 +4,7 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import CardActions from '@mui/joy/CardActions';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -15,7 +16,6 @@ export default function BottomActionsCard() {
       variant="outlined"
       sx={{
         width: 320,
-        gap: 2,
         // to make the card resizable
         overflow: 'auto',
         resize: 'horizontal',
@@ -36,7 +36,7 @@ export default function BottomActionsCard() {
           <Avatar>+4K</Avatar>
         </AvatarGroup>
       </Box>
-      <Box>
+      <CardContent>
         <Typography level="h5" fontWeight="lg">
           NYC Coders
         </Typography>
@@ -44,7 +44,7 @@ export default function BottomActionsCard() {
           We are a community of developers prepping for coding interviews,
           participate, chat with others and get better at interviewing.
         </Typography>
-      </Box>
+      </CardContent>
       <CardActions buttonFlex="0 1 120px">
         <IconButton variant="outlined" color="neutral" sx={{ mr: 'auto' }}>
           <FavoriteBorder />

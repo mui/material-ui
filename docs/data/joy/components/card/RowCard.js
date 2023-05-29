@@ -23,7 +23,7 @@ export default function RowCard() {
           />
         </AspectRatio>
       </CardOverflow>
-      <CardContent sx={{ px: 2 }}>
+      <CardContent>
         <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
           Yosemite Park
         </Typography>
