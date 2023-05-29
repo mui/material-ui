@@ -137,6 +137,10 @@ This is because the variables are also used to calculate a proper radius for the
 
 {{"demo": "BioCard.js" }}
 
+### Product card
+
+{{"demo": "ProductCard.js" }}
+
 ### Instagram post
 
 {{"demo": "InstagramPost.js" }}

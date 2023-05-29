@@ -9,7 +9,7 @@ import CardActions from '@mui/joy/CardActions';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 
-export default function BasicCard() {
+export default function BioCard() {
   return (
     <Card
       size="lg"
