@@ -439,6 +439,7 @@
     "/joy-ui/react-": "Components",
     "/joy-ui/react-autocomplete": "Autocomplete",
     "/joy-ui/react-button": "Button",
+    "/joy-ui/react-button-group": "Button Group",
     "/joy-ui/react-checkbox": "Checkbox",
     "/joy-ui/react-input": "Input",
     "/joy-ui/react-radio-button": "Radio Button",
