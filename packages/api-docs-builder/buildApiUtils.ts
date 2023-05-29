@@ -25,7 +25,9 @@ function fixPathname(pathname: string): string {
       'joy-ui',
     );
   } else {
-    fixedPathname = `${pathname.replace('/base/', '/base-ui/').replace('/components/', '/react-')}/`;
+    fixedPathname = `${pathname
+      .replace('/base/', '/base-ui/')
+      .replace('/components/', '/react-')}/`;
   }
 
   return fixedPathname;
@@ -222,9 +224,9 @@ export function getMaterialComponentInfo(filename: string): ComponentInfo {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/${inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'material-ui'}/api/${kebabCase(
-                inheritedComponent.replace(/unstyled/i, ''),
-              )}/`,
+            : `/${
+                inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'material-ui'
+              }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,
       };
     },
     getDemos: () => {
@@ -443,9 +445,9 @@ export function getJoyComponentInfo(filename: string): ComponentInfo {
       // we remove the suffix here.
       return {
         name: inheritedComponent.replace(/unstyled/i, ''),
-        apiPathname: `/${inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'joy-ui'}/api/${kebabCase(
-          inheritedComponent.replace(/unstyled/i, ''),
-        )}/`,
+        apiPathname: `/${
+          inheritedComponent.match(/unstyled/i) ? 'base-ui' : 'joy-ui'
+        }/api/${kebabCase(inheritedComponent.replace(/unstyled/i, ''))}/`,
       };
     },
     getDemos: () => {
