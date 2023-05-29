@@ -14,10 +14,9 @@ const Root = styled('div')(
       ...theme.typography.caption,
       display: 'flex',
       position: 'relative',
-      textDecoration: 'none',
       marginBottom: '12px',
       fontFamily: theme.typography.fontFamilyCode,
-
+      marginLeft: -32,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         border: '1px solid',
@@ -27,9 +26,7 @@ const Root = styled('div')(
         width: '24px',
         height: '24px',
         lineHeight: '24px',
-        textAlign: 'center',
-        position: 'absolute',
-        left: '-32px',
+        textAlignment: 'center',
         '& svg': {
           borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.primary[500]})`,
           fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
@@ -45,6 +42,7 @@ const Root = styled('div')(
         padding: '2px 6px',
       },
       '& .MuiApi-item-title': {
+        marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
         borderTopLeftRadius: '6px',
@@ -65,14 +63,16 @@ const Root = styled('div')(
         '.MuiApi-item-link-visual': {
           display: 'inline-block',
         },
-      },
-      '&:hover': {
-        cursor: 'pointer',
-        span: {
-          borderColor: `var(--muidocs-palette-blue-500, ${lightTheme.palette.primary[500]})`,
-        },
         '.MuiApi-item-title': {
+          marginLeft: '8px',
+        },
+        '.MuiApi-item-link-visual:hover': {
+          cursor: 'pointer',
           backgroundColor: alpha(lightBlue[100], 0.5),
+          borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+          '& svg': {
+            fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+          },
         },
       },
     },
@@ -127,25 +127,13 @@ const Root = styled('div')(
             fill: `var(--muidocs-palette-primary-200, ${lightTheme.palette.primary[200]})`,
           },
         },
-        '&:hover': {
-          span: {
-            borderColor: `#3399FF`,
-          },
-          '.MuiApi-item-title': {
-            color: '#99CCF3',
-            backgroundColor: `#0059B24D`,
-          },
-          '& .MuiApi-item-link-visual': {
+        '&:hover, &:target': {
+          '.MuiApi-item-link-visual:hover': {
             borderColor: `#3399FF`,
             backgroundColor: `#0059B24D`,
             '& svg': {
               fill: '#99CCF3',
             },
-          },
-        },
-        '&:hover, &:target': {
-          '& .MuiApi-item-link-visual': {
-            display: 'inline-block',
           },
         },
         '& .MuiApi-item-description': {
@@ -186,12 +174,13 @@ function ApiItem(props: ApiItemProps) {
   const { title, description, note, children, id } = props;
   return (
     <Root>
-      <a id={id} href={`#${id}`} className="MuiApi-item-header">
-        <div className="MuiApi-item-link-visual">
+      <div id={id} className="MuiApi-item-header">
+        <a className="MuiApi-item-link-visual" href={`#${id}`}>
           <svg>
             <use xlinkHref="#anchor-link-icon" />
           </svg>
-        </div>
+        </a>
+
         <span className="MuiApi-item-title">{title}</span>
         <span
           className="MuiApi-item-description"
@@ -200,7 +189,7 @@ function ApiItem(props: ApiItemProps) {
           }}
         />
         {note && <span className="MuiApi-item-note">{note}</span>}
-      </a>
+      </div>
       {children}
     </Root>
   );
