@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme as useSystemTheme } from '@mui/system';
+import { useTheme } from './ThemeProvider';
 import defaultTheme from './defaultTheme';
 import { ColorPaletteProp, VariantProp } from './types';
 
@@ -35,7 +35,7 @@ interface ColorInversionProviderProps {
 }
 
 export function ColorInversionProvider({ children, variant }: ColorInversionProviderProps) {
-  const theme = useSystemTheme(defaultTheme);
+  const theme = useTheme();
   return (
     <ColorInversion.Provider
       value={

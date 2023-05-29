@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import Popper, { PopperProps } from '@mui/base/Popper';
 import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
@@ -35,7 +35,7 @@ function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> |
   return JSON.stringify(selectedOption.value);
 }
 
-const defaultModifiers: PopperUnstyledProps['modifiers'] = [
+const defaultModifiers: PopperProps['modifiers'] = [
   {
     name: 'offset',
     options: {
@@ -205,7 +205,7 @@ const SelectButton = styled('button', {
   fontFamily: 'inherit',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
-  overflow: 'auto',
+  overflow: 'hidden', // prevent the scrollbar for long text
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
@@ -571,10 +571,10 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
           listboxProps.className,
           listboxProps.ownerState?.color === 'context' && selectClasses.colorContext,
         )}
-        // @ts-ignore internal logic (too complex to typed PopperUnstyledOwnProps to SlotListbox but this should be removed when we have `usePopper`)
+        // @ts-ignore internal logic (too complex to typed PopperOwnProps to SlotListbox but this should be removed when we have `usePopper`)
         modifiers={modifiers}
         {...(!props.slots?.listbox && {
-          as: PopperUnstyled,
+          as: Popper,
           slots: { root: listboxProps.as || 'ul' },
         })}
       >

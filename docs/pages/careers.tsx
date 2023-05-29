@@ -147,30 +147,6 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Tech Lead - Core',
-        description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Engineer - Core',
-        description:
-          'You will strengthen the core components team by collaborating with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
-      },
-      {
-        title: 'React Tech Lead - xGrid',
-        description:
-          'You will lead the development of the MUI X Data Grid, positioning the component as the next industry standard.',
-        url: '/careers/react-tech-lead-x-grid/',
-      },
-      {
-        title: 'React Engineer - xGrid',
-        description:
-          'You will strengthen the Data Grid team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-grid/',
-      },
-      {
         title: 'Product Engineer - Store',
         description:
           'You will lead the technical, product, and operational development of the store.',
@@ -181,32 +157,6 @@ const openRolesData = [
         description:
           'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Design',
-    roles: [
-      {
-        title: 'Senior Designer',
-        description: "You will be responsible for pushing MUI's component design bar higher.",
-        url: '/careers/senior-designer/',
-      },
-      {
-        title: 'Design Engineer',
-        description: 'You will focus on design to implement great product experiences.',
-        url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate',
-        description:
-          'You will build a thriving and connected developer community around our suite of products.',
-        url: '/careers/developer-advocate/',
       },
     ],
   },
@@ -244,10 +194,38 @@ const nextRolesData = [
         url: '/careers/fullstack-engineer/',
       },
       {
-        title: 'React Support Engineer - X',
+        title: 'React Community Engineer - X',
         description:
-          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/careers/react-support-engineer/',
+          "You will provide guidance, remove blockers, and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/careers/react-community-engineer/',
+      },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+        url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Tech Lead - Core',
+        description:
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+        url: '/careers/react-tech-lead-core/',
+      },
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team by collaborating with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
+      },
+    ],
+  },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer',
+        description: 'You will focus on design to implement great product experiences.',
+        url: '/careers/design-engineer/',
       },
     ],
   },

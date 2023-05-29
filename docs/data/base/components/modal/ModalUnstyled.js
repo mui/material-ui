@@ -2,35 +2,35 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
-import ModalUnstyled from '@mui/base/ModalUnstyled';
+import Modal from '@mui/base/Modal';
 
-export default function ModalUnstyledDemo() {
+export default function ModalDemo() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <TriggerButton type="button" onClick={handleOpen}>
         Open modal
-      </button>
-      <Modal
+      </TriggerButton>
+      <StyledModal
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
         open={open}
         onClose={handleClose}
-        slots={{ backdrop: Backdrop }}
+        slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
           <h2 id="unstyled-modal-title">Text in a modal</h2>
           <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
-      </Modal>
+      </StyledModal>
     </div>
   );
 }
 
-const BackdropUnstyled = React.forwardRef((props, ref) => {
+const Backdrop = React.forwardRef((props, ref) => {
   const { open, className, ...other } = props;
   return (
     <div
@@ -41,12 +41,31 @@ const BackdropUnstyled = React.forwardRef((props, ref) => {
   );
 });
 
-BackdropUnstyled.propTypes = {
+Backdrop.propTypes = {
   className: PropTypes.string.isRequired,
   open: PropTypes.bool,
 };
 
-const Modal = styled(ModalUnstyled)`
+const blue = {
+  200: '#99CCF3',
+  400: '#3399FF',
+  500: '#007FFF',
+};
+
+const grey = {
+  50: '#f6f8fa',
+  100: '#eaeef2',
+  200: '#d0d7de',
+  300: '#afb8c1',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
+  700: '#424a53',
+  800: '#32383f',
+  900: '#24292f',
+};
+
+const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
   right: 0;
@@ -58,7 +77,7 @@ const Modal = styled(ModalUnstyled)`
   justify-content: center;
 `;
 
-const Backdrop = styled(BackdropUnstyled)`
+const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
   position: fixed;
   right: 0;
@@ -71,7 +90,34 @@ const Backdrop = styled(BackdropUnstyled)`
 
 const style = (theme) => ({
   width: 400,
-  bgcolor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
-  border: '2px solid currentColor',
+  borderRadius: '12px',
   padding: '16px 32px 24px 32px',
+  backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  boxShadow: `0px 2px 24px ${theme.palette.mode === 'dark' ? '#000' : '#383838'}`,
 });
+
+const TriggerButton = styled('button')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-sizing: border-box;
+  min-height: calc(1.5em + 22px);
+  border-radius: 12px;
+  padding: 6px 12px;
+  line-height: 1.5;
+  background: transparent;
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+
+  &:hover {
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+  }
+
+  &:focus-visible {
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  }
+  `,
+);

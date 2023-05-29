@@ -139,7 +139,11 @@ export const ButtonRoot = styled('button', {
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
     {
       [`&.${buttonClasses.disabled}`]:
@@ -195,7 +199,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     disabled: disabled || loading,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   const loadingIndicator = loadingIndicatorProp ?? (

@@ -10,6 +10,8 @@ unstyled: /base/react-switch/
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 Switches are very commonly used for adjusting settings on mobile.
@@ -17,12 +19,6 @@ The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
 {{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
-
-:::info
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

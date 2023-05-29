@@ -2,7 +2,7 @@
 
 <p class="description">This section covers more advanced usage of @mui/styles.</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for Material UI.
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
 > If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
@@ -12,7 +12,7 @@
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the MUI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom MUI theme.
+> This example creates a theme object for custom-built components. If you intend to use some of Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the [theming section](/material-ui/customization/theming/) to learn how to build your custom Material UI theme.
 
 ```jsx
 import { ThemeProvider } from '@mui/styles';
@@ -175,7 +175,7 @@ function Parent() {
 JSS uses plugins to extend its core, allowing you to cherry-pick the features you need,
 and only pay the performance overhead for what you are using.
 
-Not all the plugins are available in MUI by default. The following (which is a subset of
+Not all the plugins are available in Material UI by default. The following (which is a subset of
 [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
@@ -243,7 +243,7 @@ import { StylesProvider } from '@mui/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
-      Styled components can override MUI's styles. */}
+      Styled components can override Material UI's styles. */}
 </StylesProvider>;
 ```
 
@@ -393,6 +393,17 @@ function render() {
 
 You can [follow the server side guide](/material-ui/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/system/styles/api/#serverstylesheets).
 
+### CSS prefixing
+
+Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/279) an additional postprocessing step
+that adds vendor-specific prefixes.
+These prefixes are automatically added to the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+
+The CSS served on this documentation is processed with [`autoprefixer`](https://www.npmjs.com/package/autoprefixer).
+You can use [the documentation implementation](https://github.com/mui/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) as inspiration.
+Be aware that it has an implication with the performance of the page.
+It's a must-do for static pages, but it needs to be put in balance with not doing anything when rendering dynamic pages.
+
 ### Gatsby
 
 There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@mui/styles`.
@@ -453,7 +464,7 @@ const className = `${productionPrefix}${identifier}`;
 However, when the following conditions are met, the class names are **deterministic**:
 
 - Only one theme provider is used (**No theme nesting**)
-- The style sheet has a name that starts with `Mui` (all MUI components).
+- The style sheet has a name that starts with `Mui` (all Material UI components).
 - The `disableGlobal` option of the [class name generator](/system/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
 
 ## Global CSS

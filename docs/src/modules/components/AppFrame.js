@@ -154,6 +154,8 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   };
 });
 
+export const HEIGHT = 64;
+
 export default function AppFrame(props) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
@@ -175,7 +177,7 @@ export default function AppFrame(props) {
         <GlobalStyles
           styles={{
             ':root': {
-              '--MuiDocs-header-height': '64px',
+              '--MuiDocs-header-height': `${HEIGHT}px`,
             },
           }}
         />

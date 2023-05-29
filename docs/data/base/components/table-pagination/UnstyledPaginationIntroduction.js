@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import TablePaginationUnstyled, {
-  tablePaginationUnstyledClasses as classes,
-} from '@mui/base/TablePaginationUnstyled';
+import TablePagination, {
+  tablePaginationClasses as classes,
+} from '@mui/base/TablePagination';
 
 function createData(name, calories, fat) {
   return { name, calories, fat };
@@ -92,7 +92,7 @@ const Root = styled('div')(
     font-size: 0.875rem;
     width: 100%;
     background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    box-shadow: 0px 4px 30px ${
+    box-shadow: 0px 2px 16px ${
       theme.palette.mode === 'dark' ? grey[900] : grey[200]
     };
     border-radius: 12px;
@@ -112,7 +112,7 @@ const Root = styled('div')(
   `,
 );
 
-const CustomTablePagination = styled(TablePaginationUnstyled)(
+const CustomTablePagination = styled(TablePagination)(
   ({ theme }) => `
   & .${classes.spacer} {
     display: none;
@@ -136,7 +136,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   }
 
   & .${classes.select}{
-    padding: 2px;
+    padding: 2px 6px;
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
@@ -169,12 +169,12 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   & .${classes.actions} > button {
     margin: 0 8px;
     border: transparent;
-    border-radius: 2px;
+    border-radius: 4px;
     background-color: transparent;
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
     &:hover {
-      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+      background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     }
 
     &:focus {

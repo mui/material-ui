@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { PaperClasses } from './paperClasses';
 
 export interface PaperPropsVariantOverrides {}
@@ -53,6 +53,11 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
  * - [Paper API](https://mui.com/material-ui/api/paper/)
  */
 declare const Paper: OverridableComponent<PaperTypeMap>;
+
+export interface ExtendPaperTypeMap<M extends OverridableTypeMap, Keys extends string = ''> {
+  props: M['props'] & Omit<PaperTypeMap['props'], Keys>;
+  defaultComponent: M['defaultComponent'];
+}
 
 export type PaperProps<
   D extends React.ElementType = PaperTypeMap['defaultComponent'],

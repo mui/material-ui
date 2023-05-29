@@ -36,6 +36,9 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
   ({ theme, ownerState }) => [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      ...(ownerState.instanceSize && {
+        '--IconButton-size': { sm: '2rem', md: '2.5rem', lg: '3rem' }[ownerState.instanceSize],
+      }),
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
         '--CircularProgress-size': '20px',
@@ -77,7 +80,11 @@ export const StyledIconButton = styled('button')<{ ownerState: IconButtonOwnerSt
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    {
+      '&:hover': {
+        '@media (hover: hover)': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      },
+    },
     { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
     {
       [`&.${iconButtonClasses.disabled}`]:
@@ -126,7 +133,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    ref: handleRef,
+    rootRef: handleRef,
   });
 
   React.useImperativeHandle(
@@ -147,6 +154,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     variant,
     size,
     focusVisible,
+    instanceSize: inProps.size,
   };
 
   const classes = useUtilityClasses(ownerState);

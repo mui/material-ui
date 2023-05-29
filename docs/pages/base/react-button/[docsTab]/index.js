@@ -3,7 +3,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/base/components/button/button.md?@mui/markdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import ButtonUnstyledApiJsonPageContent from '../../api/button-unstyled.json';
+import ButtonApiJsonPageContent from '../../api/button.json';
 import useButtonApiJsonPageContent from '../../api/use-button.json';
 
 export default function Page(props) {
@@ -23,12 +23,12 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = () => {
-  const ButtonUnstyledApiReq = require.context(
-    'docs/translations/api-docs/button-unstyled',
+  const ButtonApiReq = require.context(
+    'docs/translations/api-docs-base/button',
     false,
-    /button-unstyled.*.json$/,
+    /button.*.json$/,
   );
-  const ButtonUnstyledApiDescriptions = mapApiPageTranslations(ButtonUnstyledApiReq);
+  const ButtonApiDescriptions = mapApiPageTranslations(ButtonApiReq);
 
   const useButtonApiReq = require.context(
     'docs/translations/api-docs/use-button',
@@ -39,8 +39,8 @@ export const getStaticProps = () => {
 
   return {
     props: {
-      componentsApiDescriptions: { ButtonUnstyled: ButtonUnstyledApiDescriptions },
-      componentsApiPageContents: { ButtonUnstyled: ButtonUnstyledApiJsonPageContent },
+      componentsApiDescriptions: { Button: ButtonApiDescriptions },
+      componentsApiPageContents: { Button: ButtonApiJsonPageContent },
       hooksApiDescriptions: { useButton: useButtonApiDescriptions },
       hooksApiPageContents: { useButton: useButtonApiJsonPageContent },
     },

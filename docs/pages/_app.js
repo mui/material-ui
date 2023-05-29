@@ -20,6 +20,10 @@ import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
 import { LicenseInfo } from '@mui/x-data-grid-pro';
+import materialPkgJson from 'packages/mui-material/package.json';
+import joyPkgJson from 'packages/mui-joy/package.json';
+import systemPkgJson from 'packages/mui-system/package.json';
+import basePkgJson from 'packages/mui-base/package.json';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -142,6 +146,61 @@ function AppWrapper(props) {
     }
   }, []);
 
+  const productIdentifier = React.useMemo(() => {
+    const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
+
+    if (product === 'material-ui') {
+      return {
+        name: 'Material UI',
+        metadata: 'MUI Core',
+        versions: [
+          { text: `v${materialPkgJson.version}`, current: true },
+          {
+            text: 'v4',
+            href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+          },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (product === 'joy-ui') {
+      return {
+        name: 'Joy UI',
+        metadata: 'MUI Core',
+        versions: [{ text: `v${joyPkgJson.version}`, current: true }],
+      };
+    }
+
+    if (product === 'system') {
+      return {
+        name: 'MUI System',
+        metadata: 'MUI Core',
+        versions: [
+          { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+          {
+            text: 'View all versions',
+            href: `https://mui.com${languagePrefix}/versions/`,
+          },
+        ],
+      };
+    }
+
+    if (product === 'base') {
+      return {
+        name: 'MUI Base',
+        metadata: 'MUI Core',
+        versions: [{ text: `v${basePkgJson.version}`, current: true }],
+      };
+    }
+
+    return null; // The identifier for X and Toolpad is handled by their own site
+  }, [pageProps.userLanguage, product]);
+
   const pageContextValue = React.useMemo(() => {
     let pages = generalPages;
     if (product === 'base') {
@@ -156,8 +215,8 @@ function AppWrapper(props) {
 
     const { activePage, activePageParents } = findActivePage(pages, router.pathname);
 
-    return { activePage, activePageParents, pages };
-  }, [product, router.pathname]);
+    return { activePage, activePageParents, pages, productIdentifier };
+  }, [product, productIdentifier, router.pathname]);
 
   let fonts = [];
   if (asPathWithoutLang.match(/onepirate/)) {

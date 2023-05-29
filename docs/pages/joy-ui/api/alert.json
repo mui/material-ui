@@ -9,6 +9,7 @@
     },
     "component": { "type": { "name": "elementType" } },
     "endDecorator": { "type": { "name": "node" } },
+    "invertedColors": { "type": { "name": "bool" }, "default": "false" },
     "role": { "type": { "name": "string" }, "default": "'alert'" },
     "size": {
       "type": {
