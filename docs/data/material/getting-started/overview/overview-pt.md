@@ -1,7 +1,5 @@
 ---
-
 title: Overview
-
 ---
 
 # Material UI - Overview

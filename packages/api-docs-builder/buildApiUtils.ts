@@ -353,7 +353,7 @@ export function getBaseComponentInfo(filename: string): ComponentInfo {
     name,
     muiName: getMuiName(name),
     apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
     isSystemComponent: getSystemComponents().includes(name),
     readFile: () => {
       srcInfo = parseFile(filename);
@@ -407,7 +407,7 @@ export function getBaseHookInfo(filename: string): HookInfo {
     filename,
     name,
     apiPathname: apiPath ?? `/base-ui/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/base-ui/api`),
     readFile: () => {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -687,7 +687,7 @@ export const getStaticPaths = () => {
 ${staticProps}
       `;
 
-      const componentPageDirectory = `docs/pages/${productName}/react-${componentName}/`;
+      const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
       if (!fs.existsSync(componentPageDirectory)) {
         fs.mkdirSync(componentPageDirectory, { recursive: true });
       }

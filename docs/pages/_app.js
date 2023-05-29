@@ -5,7 +5,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import generalPages from 'docs/src/pages';
-import basePages from 'docs/data/base-ui/pages';
+import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
@@ -190,6 +190,7 @@ function AppWrapper(props) {
       };
     }
 
+    // TODO check if this should be base or base-ui
     if (product === 'base-ui') {
       return {
         metadata: 'MUI Core',
