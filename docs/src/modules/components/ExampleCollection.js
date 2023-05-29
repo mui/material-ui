@@ -32,7 +32,7 @@ const examples = [
     src: '/static/images/examples/remix.svg',
   },
   {
-    name: 'Tailwind CSS',
+    name: 'Tailwind CSS + CRA + TypeScript',
     label: 'View example',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-cra-tailwind-ts',
     src: '/static/images/examples/tailwindcss.svg',
