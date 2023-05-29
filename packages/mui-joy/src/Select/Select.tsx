@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import Popper, { PopperProps } from '@mui/base/Popper';
-import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
+import useSelect, { SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
@@ -205,10 +205,21 @@ const SelectButton = styled('button', {
   fontFamily: 'inherit',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
-  overflow: 'auto',
+  overflow: 'hidden', // prevent the scrollbar for long text
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
+  '&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    // TODO: use https://caniuse.com/?search=inset when ~94%
+    top: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    left: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    right: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    borderRadius: 'var(--Select-radius)',
+  },
 }));
 
 const SelectListbox = styled(StyledList, {
@@ -422,7 +433,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     buttonFocusVisible,
     contextValue,
     disabled,
-    dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
@@ -468,20 +478,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     className: classes.root,
     elementType: SelectRoot,
     externalForwardedProps,
-    getSlotProps: (handlers) => ({
-      onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (
-          !listboxOpen &&
-          !buttonRef.current?.contains(event.target as Node) &&
-          !event.isPropagationStopped()
-        ) {
-          // show the popup if user click outside of the button element.
-          // the close action is already handled by blur event.
-          dispatch({ type: SelectActionTypes.buttonClick, event });
-        }
-        handlers.onMouseDown?.(event);
-      },
-    }),
     ownerState,
   });
 

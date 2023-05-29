@@ -828,4 +828,15 @@ describe('<Modal />', () => {
       expect(within(getByTestId('parent')).getByTestId('child')).not.to.equal(null);
     });
   });
+
+  describe('prop: BackdropProps', () => {
+    it('should handle custom className', () => {
+      const { getByTestId } = render(
+        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+          <div />
+        </Modal>,
+      );
+      expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
+    });
+  });
 });

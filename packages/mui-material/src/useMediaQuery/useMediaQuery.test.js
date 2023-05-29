@@ -304,7 +304,7 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    it('should use the ssr match media ponyfill', () => {
+    it('should use the SSR match media implementation', () => {
       function MyComponent() {
         const matches = useMediaQuery('(min-width:2000px)');
 
