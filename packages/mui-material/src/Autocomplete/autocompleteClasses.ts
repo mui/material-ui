@@ -52,6 +52,8 @@ export interface AutocompleteClasses {
   groupLabel: string;
   /** Styles applied to the group's ul elements. */
   groupUl: string;
+  /** Styles applied to the root element if keyboard focused. */ 
+  focusVisible: string;
 }
 
 export type AutocompleteClassKey = keyof AutocompleteClasses;
