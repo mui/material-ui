@@ -254,7 +254,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/olivier.png',
     name: 'Olivier Tassinari',
-    title: 'Co-founder',
+    title: 'Co-founder, CEO',
     location: 'Paris, France',
     locationCountry: 'fr',
     about: 'Exercise addict and lifelong learner',
@@ -264,7 +264,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matt Brookes',
     src: '/static/branding/about/matt.png',
-    title: 'Co-founder',
+    title: 'Co-founder, Head of Sales',
     location: 'London, UK',
     locationCountry: 'gb',
     about: "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️",
@@ -274,7 +274,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.png',
-    title: 'MUI Core Engineer',
+    title: 'Engineering Manager - Core',
     location: 'Skopje, North Macedonia',
     locationCountry: 'mk',
     about: 'I do karate 🥋 and read 📚. A lot!',
@@ -284,7 +284,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.png',
-    title: 'MUI X Engineer',
+    title: 'Engineering Manager - X',
     location: 'Sofia, Bulgaria',
     locationCountry: 'bg',
     about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
@@ -294,7 +294,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.png',
-    title: 'MUI X Engineer',
+    title: 'React Community Engineer - X',
     location: 'Esteio, Brazil',
     locationCountry: 'br',
     about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
@@ -303,7 +303,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.png',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Silesia, Poland',
     locationCountry: 'pl',
     about: 'Motorcyclist, gamer, and coder (UI and more!)',
@@ -313,7 +313,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.png',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Bangkok, Thailand',
     locationCountry: 'th',
     about: 'UI Lover and ⛷ skiing newbie.',
@@ -333,7 +333,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Flavien Delangle',
     src: '/static/branding/about/flavien.png',
-    title: 'MUI X Engineer',
+    title: 'Tech Lead - X',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
     locationCountry: 'fr',
@@ -342,7 +342,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Benny Joo',
     src: '/static/branding/about/benny.png',
-    title: 'MUI Core Engineer',
+    title: 'Junior Software Engineer - Core',
     location: 'London, UK',
     locationCountry: 'gb',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
@@ -351,7 +351,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Nancy, France',
     locationCountry: 'fr',
     about: 'Love hacking and cycling 🚴‍♂️',
@@ -361,7 +361,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'MUI Toolpad Engineer',
+    title: 'Software Engineer - Toolpad',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -371,7 +371,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'MUI Toolpad Engineer',
+    title: 'Tech Lead - Toolpad',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
     about: 'Always curious, I enjoy cinema and hiking',
@@ -380,7 +380,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
-    title: 'MUI Toolpad PM',
+    title: 'Product Manager - Toolpad',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Into sports and hiking!',
@@ -390,7 +390,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jose.png',
     name: 'José Freitas',
-    title: 'MUI X PM',
+    title: 'Technical Product Manager - X',
     location: 'Augsburg, Germany',
     locationCountry: 'de',
     about: 'Art, fiction, and bar philosophy',
@@ -400,7 +400,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/andrii.png',
     name: 'Andrii Cherniavskyi',
-    title: 'MUI X Engineer',
+    title: 'Tech Lead - X',
     location: 'Wrocław, Poland',
     locationCountry: 'pl',
     about: 'Love playing music - electric and bass guitar 🎸',
@@ -420,7 +420,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/pedro.png',
     name: 'Pedro Ferreira',
-    title: 'MUI Toolpad Engineer',
+    title: 'Software Engineer - Toolpad',
     location: 'Porto, Portugal',
     locationCountry: 'pt',
     about: 'Passionate about videogames and football',
@@ -429,7 +429,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/gerda.png',
     name: 'Gerda Mostonaite',
-    title: 'Senior Designer',
+    title: 'Senior Designer - X',
     location: 'New York, USA',
     locationCountry: 'us',
     about: '🎨 Art & design, traveling, and asking questions',
@@ -455,7 +455,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/lukas.png',
     name: 'Lukas Tyla',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Vilnius, Lithuania',
     locationCountry: 'lt',
     about: 'Learning and experimenting 📚',
@@ -464,7 +464,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bilal.png',
     name: 'Bilal Shafi',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Islamabad, Pakistan',
     locationCountry: 'pk',
     about: 'DIY 🛠️, Learning 📚 and 🏓',
@@ -474,7 +474,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/albert.png',
     name: 'Albert Yu',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Hong Kong',
     locationCountry: 'hk',
     about: 'Minimalist, dog lover 🏔🐕',
@@ -492,7 +492,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/romain.png',
     name: 'Romain Grégoire',
-    title: 'MUI X Engineer',
+    title: 'Software Engineer - X',
     location: 'Montréal, Canada',
     locationCountry: 'ca',
     about: 'Open-source tinkerer',
@@ -510,7 +510,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/victor.png',
     name: 'Victor Zanivan',
-    title: 'Senior Designer',
+    title: 'Senior Designer - Core',
     location: 'São Paulo, Brazil',
     locationCountry: 'br',
     about: 'Very geek 🎮 and love to watch/play football ⚽️',
@@ -520,7 +520,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Diego Andai',
     src: '/static/branding/about/diego.png',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Santiago, Chile',
     locationCountry: 'cl',
     about: 'I love tennis 🎾 and cats 🐈',
@@ -530,11 +530,20 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Brijesh Bittu',
     src: '/static/branding/about/brijesh.png',
-    title: 'MUI Core Engineer',
+    title: 'Software Engineer - Core',
     location: 'Bengaluru, India',
     locationCountry: 'in',
     about: '🏊🏼 Swimming and 🚗 driving newbie. Loves cooking.',
     github: 'brijeshb42',
+  },
+  {
+    name: 'David Cnoops',
+    src: '/static/branding/about/david.png',
+    title: 'Design Engineer - Core',
+    location: 'Leuven, Belgium',
+    locationCountry: 'be',
+    about: 'Volleyball, Cycling, Parenting, Movies',
+    github: 'DavidCnoops',
   },
 ];
 

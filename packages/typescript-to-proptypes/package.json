@@ -21,9 +21,9 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.0",
+    "@types/babel__core": "^7.20.1",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.194",
+    "@types/lodash": "^4.14.195",
     "@types/node": "^16.18.32",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.2.6",

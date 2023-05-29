@@ -920,30 +920,6 @@ export function getThemedComponents(): ThemeOptions {
         defaultProps: {
           disableTouchRipple: true,
         },
-        styleOverrides: {
-          root: ({ theme }) => [
-            {
-              padding: theme.spacing(1),
-              marginBottom: theme.spacing(1),
-              marginRight: theme.spacing(1),
-              fontWeight: 600,
-              minHeight: 32,
-              minWidth: 0,
-              borderRadius: 12,
-              '&:hover': {
-                background: (theme.vars || theme).palette.grey[50],
-              },
-            },
-            theme.applyDarkStyles({
-              '&:hover': {
-                background: (theme.vars || theme).palette.primaryDark[700],
-              },
-              '&.Mui-selected': {
-                color: (theme.vars || theme).palette.primary[300],
-              },
-            }),
-          ],
-        },
       },
       MuiPaper: {
         styleOverrides: {
@@ -956,7 +932,12 @@ export function getThemedComponents(): ThemeOptions {
               },
               ...(ownerState.variant === 'outlined' && {
                 display: 'block',
-                borderColor: (theme.vars || theme).palette.grey[100],
+                borderColor: (theme.vars || theme).palette.grey[200],
+                ':is(a&), :is(button&)': {
+                  '&:hover': {
+                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                  },
+                },
               }),
             },
             theme.applyDarkStyles({
@@ -964,6 +945,11 @@ export function getThemedComponents(): ThemeOptions {
               ...(ownerState.variant === 'outlined' && {
                 borderColor: (theme.vars || theme).palette.primaryDark[600],
                 backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                ':is(a&), :is(button&)': {
+                  '&:hover': {
+                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                  },
+                },
               }),
             }),
           ],

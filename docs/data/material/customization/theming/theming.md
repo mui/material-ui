@@ -45,7 +45,7 @@ const theme = createTheme({
 ```
 
 :::warning
-⚠️ `vars` is a private field for [CSS theme variables](material-ui/experimental-api/css-theme-variables/overview/). It will throw an error if you try to pass a value to it:
+`vars` is a private field for [CSS theme variables](/material-ui/experimental-api/css-theme-variables/overview/). It will throw an error if you try to pass a value to it:
 
 ```jsx
 createTheme({
