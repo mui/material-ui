@@ -21,12 +21,45 @@ const CardContentRoot = styled('div', {
   name: 'JoyCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardContentProps }>({
+})<{
+  ownerState: CardContentProps & {
+    'data-parent'?: 'HCard' | 'VCard';
+    'data-first-child'?: string;
+    'data-last-child'?: string;
+  };
+}>(({ ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
   zIndex: 1,
-});
+  padding: 'var(--Card-padding)',
+  ...(ownerState['data-parent'] === 'VCard' && {
+    marginInline: 'calc(-1 * var(--Card-padding))',
+    ...(ownerState['data-first-child'] !== undefined && {
+      marginBlockStart: 'calc(-1 * var(--Card-padding))',
+      borderTopLeftRadius: 'var(--CardOverflow-radius)',
+      borderTopRightRadius: 'var(--CardOverflow-radius)',
+    }),
+    ...(ownerState['data-last-child'] !== undefined && {
+      marginBlockEnd: 'calc(-1 * var(--Card-padding))',
+      borderBottomLeftRadius: 'var(--CardOverflow-radius)',
+      borderBottomRightRadius: 'var(--CardOverflow-radius)',
+    }),
+  }),
+  ...(ownerState['data-parent'] === 'HCard' && {
+    marginBlock: 'calc(-1 * var(--Card-padding))',
+    ...(ownerState['data-first-child'] !== undefined && {
+      marginInlineStart: 'calc(-1 * var(--Card-padding))',
+      borderTopLeftRadius: 'var(--CardOverflow-radius)',
+      borderBottomLeftRadius: 'var(--CardOverflow-radius)',
+    }),
+    ...(ownerState['data-last-child'] !== undefined && {
+      marginInlineEnd: 'calc(-1 * var(--Card-padding))',
+      borderTopRightRadius: 'var(--CardOverflow-radius)',
+      borderBottomRightRadius: 'var(--CardOverflow-radius)',
+    }),
+  }),
+}));
 /**
  *
  * Demos:
@@ -106,5 +139,8 @@ CardContent.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
 } as any;
+
+// @ts-ignore internal logic
+CardContent.muiName = 'CardContent';
 
 export default CardContent;

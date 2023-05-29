@@ -153,6 +153,14 @@ const Card = React.forwardRef(function Card(inProps, ref) {
             extraProps.orientation =
               'orientation' in child.props ? child.props.orientation : dividerOrientation;
           }
+          if (isMuiElement(child, ['CardOverflow', 'CardContent'])) {
+            if (orientation === 'horizontal') {
+              extraProps['data-parent'] = 'HCard';
+            }
+            if (orientation === 'vertical') {
+              extraProps['data-parent'] = 'VCard';
+            }
+          }
           if (index === 0) {
             extraProps['data-first-child'] = '';
           }
