@@ -17,7 +17,7 @@ This release focuses primarily on 🐛 bug fixes and 📚 documentation improvem
 ### `@mui/base@5.0.0-beta.3`
 
 - &#8203;<!-- 20 -->[base] Maintain nodes document order in compound components (#36857) @michaldudak
-- &#8203;<!-- 19 -->[base][joy] prevent persisting hover state styles onclick on mobile (#36704) @gitstart
+- &#8203;<!-- 19 -->[base][joy] Prevent persisting hover state styles onclick on mobile (#36704) @gitstart
 - &#8203;<!-- 18 -->[Menu][base] MenuItem as a link does not work (#37242) @nicolas-ot
 - &#8203;<!-- 17 -->[MenuItem][Base] Pass idGenerator function (#37364) @sai6855
 - &#8203;<!-- 16 -->[Slider][Base] Add Vertical slider demo (#37357) @sai6855
@@ -25,7 +25,7 @@ This release focuses primarily on 🐛 bug fixes and 📚 documentation improvem
 ### `@mui/joy@5.0.0-alpha.82`
 
 - &#8203;<!-- 21 -->[Badge][Joy] Fix `slots` element type in API docs (#37329) @zignis
-- &#8203;<!-- 04 -->[Select] [joy] handle long text content (#37289) @akash191095
+- &#8203;<!-- 04 -->[Select] [joy] Handle long text content (#37289) @akash191095
 - &#8203;<!-- 07 -->[Tooltip][Joy] Interactive doesn't work (#37159) @nicolas-ot
 
 ### `@mui/codemod@5.13.3
