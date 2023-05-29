@@ -33,7 +33,7 @@ function useTabPanel(parameters: UseTabPanelParameters): UseTabPanelReturnValue 
   const handleRef = useForkRef(ref, externalRef);
   const metadata = React.useMemo(() => ({ id, ref }), [id]);
 
-  const { id: value } = useCompoundItem(valueParam, metadata, tabPanelValueGenerator);
+  const { id: value } = useCompoundItem(valueParam ?? tabPanelValueGenerator, metadata);
 
   const hidden = value !== selectedTabValue;
 
