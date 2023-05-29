@@ -3,7 +3,7 @@ import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/base';
 import { InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
-import { ModalOwnerState, ModalProps } from '../Modal';
+import Modal, { ModalOwnerState, ModalProps } from '../Modal';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
@@ -113,7 +113,7 @@ export interface PopoverProps
    * @default {}
    */
   slotProps?: {
-    root?: SlotComponentProps<'div', {}, ModalOwnerState>;
+    root?: SlotComponentProps<typeof Modal, {}, ModalOwnerState>;
     paper?: SlotComponentProps<typeof Paper, {}, {}>;
   };
   /**
