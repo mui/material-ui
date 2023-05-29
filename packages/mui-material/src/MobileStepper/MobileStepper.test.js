@@ -114,19 +114,21 @@ describe('<MobileStepper />', () => {
 
   it('should set value correctly when steps is set to 1', () => {
     const { getByRole } = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
     fireEvent.click(getByRole('button', { name: 'next' }));
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
     fireEvent.click(getByRole('button', { name: 'back' }));
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
   });
 
-  it('should set value correctly when steps is updated with 1 & 2', () => {
+  it('should set value correctly when steps is updated between 1 & 2', () => {
     const { rerender } = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
     rerender(<MobileStepper {...defaultProps} variant="progress" steps={2} />);
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('0');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('0');
     rerender(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
-    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
   });
 });

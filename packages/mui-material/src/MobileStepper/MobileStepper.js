@@ -122,6 +122,13 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     variant,
   };
 
+  let value;
+  if (steps === 1) {
+    value = 100;
+  } else {
+    value = Math.ceil((activeStep / (steps - 1)) * 100);
+  }
+
   const classes = useUtilityClasses(ownerState);
 
   return (
@@ -158,7 +165,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
           ownerState={ownerState}
           className={classes.progress}
           variant="determinate"
-          value={Math.ceil((steps === 1 ? 1 : activeStep / (steps - 1)) * 100)}
+          value={value}
           {...LinearProgressProps}
         />
       )}
