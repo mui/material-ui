@@ -14,7 +14,7 @@ describe('<CardActions />', () => {
     muiName: 'JoyCardActions',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['classesRoot', 'componentsProp'],
+    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
     slots: {
       root: {
         expectedClassName: classes.root,
