@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import Popper, { PopperProps } from '@mui/base/Popper';
-import useSelect, { SelectActionTypes, SelectProvider } from '@mui/base/useSelect';
+import useSelect, { SelectProvider } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
 import composeClasses from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
@@ -209,6 +209,17 @@ const SelectButton = styled('button', {
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
+  '&::before': {
+    content: '""',
+    display: 'block',
+    position: 'absolute',
+    // TODO: use https://caniuse.com/?search=inset when ~94%
+    top: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    left: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    right: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    bottom: 'calc(-1 * var(--variant-borderWidth, 0px))',
+    borderRadius: 'var(--Select-radius)',
+  },
 }));
 
 const SelectListbox = styled(StyledList, {
@@ -422,7 +433,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     buttonFocusVisible,
     contextValue,
     disabled,
-    dispatch,
     getButtonProps,
     getListboxProps,
     getOptionMetadata,
@@ -468,16 +478,6 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
     className: classes.root,
     elementType: SelectRoot,
     externalForwardedProps,
-    getSlotProps: (handlers) => ({
-      onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!buttonRef.current?.contains(event.target as Node) && !event.isPropagationStopped()) {
-          // SelectActionTypes.buttonClick action will toggle the listbox
-          // see selectReducer for the implementation
-          dispatch({ type: SelectActionTypes.buttonClick, event });
-        }
-        handlers.onMouseDown?.(event);
-      },
-    }),
     ownerState,
   });
 
