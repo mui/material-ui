@@ -20,16 +20,16 @@ const Root = styled('div')(
       '& .MuiApi-item-link-visual': {
         display: 'none',
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-primary-500, ${lightTheme.palette.primary[500]})`,
+        borderColor: `var(--muidocs-palette-primary-200, ${lightTheme.palette.primary[200]})`,
         borderRadius: '6px',
-        backgroundColor: alpha(lightBlue[100], 0.5),
+        backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         width: '24px',
         height: '24px',
         lineHeight: '24px',
         textAlign: 'center',
         '& svg': {
           borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.primary[500]})`,
-          fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+          fill: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
           height: '11px',
           width: '11px',
         },
@@ -68,9 +68,9 @@ const Root = styled('div')(
         '.MuiApi-item-link-visual:hover': {
           cursor: 'pointer',
           backgroundColor: alpha(lightBlue[100], 0.5),
-          borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+          borderColor: `var(--muidocs-palette-primary-500, ${lightTheme.palette.primary[500]})`,
           '& svg': {
-            fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+            fill: `var(--muidocs-palette-primary-500, ${lightTheme.palette.primary[500]})`,
           },
         },
       },
@@ -78,7 +78,7 @@ const Root = styled('div')(
     '& .MuiAlert-standardWarning': {
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid',
-      borderColor: `var(--muidocs-palette-grey-100, ${lightTheme.palette.grey[100]})`,
+      borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
       marginBottom: '16px',
@@ -107,7 +107,7 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       },
     },
-    marginBottom: 32,
+    marginBottom: 40,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -123,15 +123,15 @@ const Root = styled('div')(
           borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
           backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
           '& svg': {
-            fill: `var(--muidocs-palette-primary-200, ${lightTheme.palette.primary[200]})`,
+            fill: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
           },
         },
         '&:hover, &:target': {
           '.MuiApi-item-link-visual:hover': {
-            borderColor: `#3399FF`,
-            backgroundColor: `#0059B24D`,
+            borderColor: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
+            backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
             '& svg': {
-              fill: '#99CCF3',
+              fill: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
             },
           },
         },
