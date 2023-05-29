@@ -20,7 +20,7 @@ import { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
-  return <span>{selectedOption?.label}</span> ?? '';
+  return selectedOption?.label ?? '';
 }
 
 function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
@@ -198,12 +198,6 @@ const SelectButton = styled('button', {
   fontSize: 'inherit',
   color: 'inherit',
   alignSelf: 'stretch',
-  // handle long text
-  overflow: 'hidden',
-  '& > *': {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
   // make children horizontally aligned
   display: 'flex',
   alignItems: 'center',
@@ -211,6 +205,7 @@ const SelectButton = styled('button', {
   fontFamily: 'inherit',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
+  overflow: 'hidden', // prevent the scrollbar for long text
   ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
