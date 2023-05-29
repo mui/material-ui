@@ -1,0 +1,6 @@
+<ThemeProvider theme={theme}>
+  <Stack spacing={5} sx={{ width: 300 }}>
+    <MovieSelect />
+    <CountrySelect />
+  </Stack>
+</ThemeProvider>
