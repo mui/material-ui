@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { green, grey, lightBlue } from '@mui/material/colors';
+import { green, lightBlue } from '@mui/material/colors';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,

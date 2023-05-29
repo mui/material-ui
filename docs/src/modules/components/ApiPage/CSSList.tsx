@@ -1,8 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
-import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiItem';
 
 export type CSSListProps = {
