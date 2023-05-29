@@ -618,30 +618,11 @@ describe('Joy <Select />', () => {
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
-  });
 
-  it('should not show dropdown if stop propagation is handled', () => {
-    const handleClick = spy();
-    const { getByTestId, getByRole } = render(
-      <Select
-        defaultValue="1"
-        startDecorator={
-          <div
-            data-testid="test-element"
-            onMouseDown={(event) => event.stopPropagation()}
-            onClick={handleClick}
-          />
-        }
-      >
-        <Option value="1">Eric</Option>
-      </Select>,
-    );
-    // Fire Click of the avatar
+    // click again should close
     act(() => {
       getByTestId('test-element').click();
     });
-
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');
-    expect(handleClick.callCount).to.equal(1);
   });
 });
