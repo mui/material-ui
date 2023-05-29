@@ -11,7 +11,7 @@
     "fullWidth": "If <code>true</code>, the dialog stretches to <code>maxWidth</code>.<br>Notice that the dialog width grow is limited by the default margin.",
     "maxWidth": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>.",
     "onBackdropClick": "Callback fired when the backdrop is clicked.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.",
+    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.</li></ul>",
     "open": "If <code>true</code>, the component is shown.",
     "PaperComponent": "The component used to render the body of the dialog.",
     "PaperProps": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",

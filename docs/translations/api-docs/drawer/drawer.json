@@ -7,7 +7,7 @@
     "elevation": "The elevation of the drawer.",
     "hideBackdrop": "If <code>true</code>, the backdrop is not rendered.",
     "ModalProps": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
+    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><ul><li>event: The event source of the callback.</li></ul>",
     "open": "If <code>true</code>, the component is shown.",
     "PaperProps": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
     "SlideProps": "Props applied to the <a href=\"/material-ui/api/slide/\"><code>Slide</code></a> element.",

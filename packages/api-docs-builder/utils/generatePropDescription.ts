@@ -137,10 +137,17 @@ export default function generatePropDescription(
     const returnTypeName = resolveType(returnType);
 
     signature += `) => ${returnTypeName}\`<br>`;
-    signature += parsedArgs
-      .filter((tag) => tag.description)
-      .map((tag) => `*${tag.name}:* ${tag.description}`)
-      .join('<br>');
+
+    const argsWithDescription = parsedArgs.filter((tag) => tag.description);
+
+    if (argsWithDescription.length > 0) {
+      signature += '<ul>';
+      signature += parsedArgs
+        .filter((tag) => tag.description)
+        .map((tag) => `<li>${tag.name}: ${tag.description}</li>`)
+        .join('');
+      signature += '</ul>';
+    }
     if (parsedReturns.description) {
       signature += `<br> *returns* (${returnTypeName}): ${parsedReturns.description}`;
     }

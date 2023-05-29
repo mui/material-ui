@@ -12,7 +12,7 @@
     "disableScrollLock": "Disable the scroll lock behavior.",
     "hideBackdrop": "If <code>true</code>, the backdrop is not rendered.",
     "keepMounted": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal.",
-    "onClose": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>, <code>&quot;closeClick&quot;</code>.",
+    "onClose": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>, <code>&quot;closeClick&quot;</code>.</li></ul>",
     "open": "If <code>true</code>, the component is shown.",
     "slotProps": "The props used for each slot inside.",
     "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
