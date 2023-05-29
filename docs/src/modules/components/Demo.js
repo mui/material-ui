@@ -210,7 +210,6 @@ const DemoRootMaterial = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -226,15 +225,16 @@ const DemoRootMaterial = styled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
+    borderRadius: '12px 12px 0 0',
     backgroundColor: (theme.vars || theme).palette.background.paper,
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     backgroundColor: (theme.vars || theme).palette.grey[100],
+    borderRadius: '12px 12px 0 0',
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
     ...theme.applyDarkStyles({
       backgroundColor: (theme.vars || theme).palette.grey[900],
     }),
@@ -244,6 +244,7 @@ const DemoRootMaterial = styled('div', {
     padding: theme.spacing(20, 8),
     border: `1px solid`,
     borderColor: alpha(theme.palette.primary[100], 0.5),
+    borderRadius: '12px 12px 0 0',
     overflow: 'hidden',
     backgroundColor: alpha(theme.palette.primary[50], 0.5),
     backgroundClip: 'padding-box',
@@ -292,7 +293,6 @@ const DemoRootJoy = joyStyled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
     ...(bg === 'outlined' && {
       borderLeftWidth: 1,
       borderRightWidth: 1,
@@ -305,6 +305,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
+    borderRadius: '12px 12px 0 0',
     border: `1px solid`,
     borderColor: grey[100],
     borderLeftWidth: 0,
@@ -322,6 +323,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
+    borderRadius: '12px 12px 0 0',
     backgroundColor: theme.vars.palette.background.level2,
   }),
   /* Mostly meant for introduction demos. */

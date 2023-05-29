@@ -35,10 +35,18 @@ import stackBlitz from '../sandbox/StackBlitz';
 const Root = styled('div')(({ theme }) => [
   {
     display: 'none',
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+    marginTop: -1,
+    marginBottom: 16,
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
       top: 0,
-      height: theme.spacing(8),
+      paddingTop: theme.spacing(0.5),
+      paddingBottom: theme.spacing(0.5),
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(0.5),
+      backgroundColor: alpha(theme.palette.grey[50], 0.2),
+      borderRadius: '0 0 12px 12px',
       ...(theme.direction === 'rtl' && {
         left: theme.spacing(1),
       }),
@@ -49,11 +57,14 @@ const Root = styled('div')(({ theme }) => [
     justifyContent: 'space-between',
     alignItems: 'center',
     '& .MuiSvgIcon-root': {
-      fontSize: 17,
+      fontSize: 16,
       color: (theme.vars || theme).palette.grey[800],
     },
   },
   theme.applyDarkStyles({
+    [theme.breakpoints.up('sm')]: {
+      backgroundColor: alpha(theme.palette.primaryDark[800], 0.2),
+    },
     '& .MuiSvgIcon-root': {
       color: (theme.vars || theme).palette.grey[400],
     },
@@ -105,7 +116,7 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
   theme.unstable_sx({
     [`& .${toggleButtonGroupClasses.grouped}`]: {
       '&:not(:first-of-type)': {
-        marginLeft: 0.75,
+        marginLeft: 0.8,
         borderLeft: '1px solid',
         borderLeftColor: 'divider',
         borderTopLeftRadius: 999,
@@ -124,7 +135,7 @@ const Button = styled(MDButton)(({ theme }) => ({
   borderRadius: 999,
   border: 'none',
   paddingLeft: theme.spacing(1),
-  paddingRight: theme.spacing(1),
+  paddingRight: theme.spacing(0.5),
   fontSize: '0.85rem',
   fontWeight: theme.typography.fontWeightMedium,
   color: theme.palette.primary.main,
@@ -160,8 +171,8 @@ const MenuItem = styled(MDMenuItem)(({ theme }) => ({
 
 const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   theme.unstable_sx({
-    padding: '1px 8px',
-    fontSize: '0.75rem',
+    padding: theme.spacing(0, 1),
+    fontSize: '0.85rem',
     borderRadius: 99,
     borderColor: 'grey.200',
     '&.Mui-disabled': {
@@ -543,11 +554,7 @@ export default function DemoToolbar(props) {
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex', height: 40 }}>
             {hasNonSystemDemos && (
-              <Divider
-                orientation="vertical"
-                variant="middle"
-                sx={{ ml: 2, mr: 1, height: '24px' }}
-              />
+              <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: '24px' }} />
             )}
             <ToggleButtonGroup
               sx={{ margin: '8px 0' }}
