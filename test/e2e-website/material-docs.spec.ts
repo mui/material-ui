@@ -125,7 +125,7 @@ test.describe('Material docs', () => {
         await expect(textContent).toEqual(`<${component} />`);
         await expect(firstAnchor).toHaveAttribute(
           'href',
-          `/base/api/${kebabCase(component || '')}/`,
+          `/base-ui/api/${kebabCase(component || '')}/`,
         );
       });
     });
