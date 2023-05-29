@@ -27,11 +27,10 @@ const CardActionsRoot = styled('div', {
 })<{ ownerState: CardActionsProps }>(({ ownerState }) => {
   return {
     display: 'flex',
-    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
     gap: 'calc(0.625 * var(--Card-padding))',
-    // padding: '--unstable'
+    padding: 'var(--unstable_CardActions-padding)',
     [`.${cardOverflowClasses.root} > &`]: {
-      padding: 'calc(0.75 * var(--Card-padding)) 0',
+      '--unstable_CardActions-padding': 'calc(0.75 * var(--Card-padding))',
     },
     [`& > :not(.${iconButtonClasses.root})`]: {
       flex: ownerState.buttonFlex,
@@ -61,7 +60,6 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     className,
     component = 'div',
     children,
-    orientation = 'horizontal',
     buttonFlex = 'initial',
     slots = {},
     slotProps = {},
@@ -72,7 +70,6 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
   const ownerState = {
     ...props,
     component,
-    orientation,
     buttonFlex,
   };
 

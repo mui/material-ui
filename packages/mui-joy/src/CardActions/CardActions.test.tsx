@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import CardActions, { cardContentClasses as classes } from '@mui/joy/CardActions';
+import CardActions, { cardActionsClasses as classes } from '@mui/joy/CardActions';
 
 describe('<CardActions />', () => {
   const { render } = createRenderer();
@@ -14,7 +14,7 @@ describe('<CardActions />', () => {
     muiName: 'JoyCardActions',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
+    skip: ['classesRoot', 'componentsProp'],
     slots: {
       root: {
         expectedClassName: classes.root,
