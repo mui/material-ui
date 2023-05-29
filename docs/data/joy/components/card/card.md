@@ -17,6 +17,7 @@ The Joy UI Card component includes several complementary utility components to h
 - [Card Overflow](#overflow): a supplemental wrapper that expands a Card's contents to fill all edges.
 - [Card Cover](#card-layers): an optional container for displaying background images and gradient layers behind the Card Content.
 - [Card Content](#card-layers): an optional wrapper that brings content to the front (commonly but not always used with the Card Cover).
+- [Card Actions](#actions): an optional wrapper that groups a set of buttons.
 
 ## Basics
 
@@ -88,6 +89,12 @@ Cards often include actions that users can take, like proceeding to a new page o
 There may be individual (discrete) actions _within_ a given card, or _the entire card itself_ may trigger an action when clicked or tapped.
 
 The following sections explain how to approach each of these scenarios.
+
+#### Bottom actions
+
+Cards often include buttons at the bottom section. Use `CardActions` component as a wrapper of those buttons to create proper spacing around them.
+
+{{"demo": "BottomActionsCard.js" }}
 
 #### Discrete actions
 
