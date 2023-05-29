@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack, Button, FormControl, Input } from '@mui/joy';
+import { Stack, Button, FormControl, Input, Box } from '@mui/joy';
 
 export default function Search() {
   return (
@@ -11,12 +11,16 @@ export default function Search() {
           aria-label="Search"
         />
       </FormControl>
-      <Button variant="outlined" color="neutral">
-        Clear
-      </Button>
-      <Button variant="solid" color="primary">
-        Search
-      </Button>
+      <Box display={{ xs: 'none', sm: 'block' }}>
+        <Button variant="outlined" color="neutral">
+          Clear
+        </Button>
+      </Box>
+      <Box display={{ xs: 'none', sm: 'block' }}>
+        <Button variant="solid" color="primary">
+          Search
+        </Button>
+      </Box>
     </Stack>
   );
 }

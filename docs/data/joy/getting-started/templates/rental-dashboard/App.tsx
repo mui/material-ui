@@ -4,7 +4,7 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
-import { FormControl, Grid, Input, Stack } from '@mui/joy';
+import { Grid, Stack } from '@mui/joy';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import Header from './components/Header';
@@ -73,6 +73,16 @@ export default function RentalDashboard() {
             >
               <React.Fragment>
                 <HeaderSection />
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: 360,
+                    backgroundColor: 'orange',
+                    backgroundSize: 'cover',
+                    backgroundImage:
+                      'url("https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700")',
+                  }}
+                />
                 <Filters />
                 <Search />
                 <Toggles />
@@ -87,7 +97,7 @@ export default function RentalDashboard() {
                 Pagination
               </React.Fragment>
             </Grid>
-            <Grid xs={12} md={4}>
+            <Grid xs={0} md={4}>
               <Stack direction="row">
                 <Divider orientation="vertical" sx={{ height: '100dvh' }} />
                 <Box
