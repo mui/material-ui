@@ -16,11 +16,13 @@ const Root = styled('div')(
       position: 'relative',
       textDecoration: 'none',
       marginBottom: '12px',
+      lineHeight: '18px',
+      fontFamily: theme.typography.fontFamilyCode,
       '& .MuiApi-item-link-visual': {
         display: 'none',
         border: 'solid 1px',
         borderRadius: '4px',
-        borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+        borderColor: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
         width: '24px',
         height: '24px',
         textAlign: 'center',
@@ -28,13 +30,16 @@ const Root = styled('div')(
         position: 'absolute',
         left: '-32px',
         '& svg': {
+          borderColor: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
           fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
           height: '11px',
           width: '11px',
         },
       },
       span: {
+        color: '#2D3843',
         borderBottom: 'solid 1px',
+        fontWeight: 400,
         borderColor: `var(--muidocs-palette-grey-200, ${darkTheme.palette.grey[200]})`,
         padding: '2px 6px',
       },
@@ -50,14 +55,15 @@ const Root = styled('div')(
       },
       '& .MuiApi-item-description': {
         flexGrow: 1,
-        color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
       },
       '& .MuiApi-item-note': {
         padding: '2px 6px',
         color: `var(--muidocs-palette-green-800, ${green[800]})`,
       },
       '&:hover, &:target': {
-        '.MuiApi-item-link-visual': { display: 'inline-block' },
+        '.MuiApi-item-link-visual': {
+          display: 'inline-block',
+        },
       },
       '&:hover': {
         cursor: 'pointer',
@@ -67,14 +73,44 @@ const Root = styled('div')(
         '.MuiApi-item-title': {
           backgroundColor: alpha(lightBlue[100], 0.5),
         },
-        '& .MuiApi-item-link-visual': {},
+        '& .MuiApi-item-link-visual': {
+          backgroundColor: alpha(lightBlue[100], 0.5),
+          borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+          '& svg': {
+            fill: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+          },
+        },
+      },
+    },
+    '& .MuiAlert-standardWarning': {
+      border: 'solid #FFF3C1 1px',
+      backgroundColor: '#FFF9EBB2',
+      color: '#5A3600',
+
+      fontFamily: theme.typography.fontFamilyCode,
+      '.MuiAlert-icon': {
+        display: 'flex',
+        alignItems: 'center',
+        fill: '#AB6800',
+      },
+    },
+    '& .default-props': {
+      display: 'flex',
+      alignItems: 'center',
+      span: {
+        marginRight: 8,
+        whiteSpace: 'nowrap',
+      },
+      code: {
+        border: 'solid #E0E3E7 1px',
+        backgroundColor: '#F3F6F9',
+        padding: '2px 6px',
       },
     },
     marginBottom: 32,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
-      color: 'rgb(255, 255, 255)',
       '& .MuiApi-item-header': {
         '& span': {
           borderColor: '#2F3A46',
@@ -92,14 +128,18 @@ const Root = styled('div')(
         },
         '&:hover': {
           span: {
-            borderColor: `var(--muidocs-palette-blue-700, ${lightTheme.palette.primary[700]})`,
+            borderColor: `#3399FF`,
           },
           '.MuiApi-item-title': {
-            backgroundColor: `var(--muidocs-palette-primary-light-200, #0059B24D) / 30%`,
+            color: '#99CCF3',
+            backgroundColor: `#0059B24D`,
           },
           '& .MuiApi-item-link-visual': {
-            borderColor: `var(--muidocs-palette-primary-400, ${lightTheme.palette.primary[400]})`,
-            backgroundColor: `var(--muidocs-palette-primary-light-200, #0059B24D) / 30%`,
+            borderColor: `#3399FF`,
+            backgroundColor: `#0059B24D`,
+            '& svg': {
+              fill: '#99CCF3',
+            },
           },
         },
         '&:hover, &:target': {
@@ -111,7 +151,22 @@ const Root = styled('div')(
           color: '#B2BAC2',
         },
         '& .MuiApi-item-note': {
-          color: `var(--muidocs-palette-green-400, ${green[400]})`,
+          color: `var(--muidocs-palette-green-400, #3EE07F)`,
+        },
+      },
+      '& .MuiAlert-standardWarning': {
+        borderColor: '#5A3600',
+        backgroundColor: '#F4C0001A',
+        color: '#FFDC48',
+        '.MuiAlert-icon svg': {
+          fill: '#FFDC48',
+        },
+      },
+      '& .default-props': {
+        color: '#A0AAB4',
+        code: {
+          borderColor: '#1F262E',
+          backgroundColor: '#141A1F',
         },
       },
     },

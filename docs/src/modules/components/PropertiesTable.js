@@ -38,23 +38,43 @@ export default function PropertiesTable(props) {
                   __html: propertiesDescriptions[propName] || '',
                 }}
               />
-              {propDefault && (
-                <p>
-                  {t('api-docs.default')}: <code>{propDefault}</code>
-                </p>
-              )}
+
               {propData.deprecated && (
-                <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                  <strong>{t('api-docs.deprecated')}</strong>
+                <Alert
+                  severity="warning"
+                  sx={{ mb: 1, py: 0 }}
+                  iconMapping={{
+                    warning: (
+                      <svg
+                        width="14"
+                        height="12"
+                        viewBox="0 0 14 12"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M1.98012 11.9997H12.0201C13.0468 11.9997 13.6868 10.8864 13.1735 9.99971L8.15345 1.32638C7.64012 0.43971 6.36012 0.43971 5.84679 1.32638L0.826788 9.99971C0.313455 10.8864 0.953455 11.9997 1.98012 11.9997ZM7.00012 7.33304C6.63345 7.33304 6.33345 7.03304 6.33345 6.66638V5.33304C6.33345 4.96638 6.63345 4.66638 7.00012 4.66638C7.36679 4.66638 7.66679 4.96638 7.66679 5.33304V6.66638C7.66679 7.03304 7.36679 7.33304 7.00012 7.33304ZM7.66679 9.99971H6.33345V8.66638H7.66679V9.99971Z" />
+                      </svg>
+                    ),
+                  }}
+                >
+                  {t('api-docs.deprecated')}
                   {propData.deprecationInfo && ' - '}
                   {propData.deprecationInfo && (
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: propData.deprecationInfo,
+                        __html: propData.deprecationInfo
+                          .replace(/<code>/g, '<span>')
+                          .replace(/<\/code>/g, '</span>'),
                       }}
                     />
                   )}
                 </Alert>
+              )}
+
+              {propDefault && (
+                <p className="default-props">
+                  <span>{t('api-docs.default')}: </span>
+                  <code>{propDefault}</code>
+                </p>
               )}
             </ApiItem>
           );
