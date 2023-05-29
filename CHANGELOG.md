@@ -6,7 +6,8 @@
 
 _May 29, 2023_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible.
+This release focuses primarily on 🐛 bug fixes and 📚 documentation improvements.
 
 TODO INSERT HIGHLIGHTS
 
@@ -19,7 +20,7 @@ TODO INSERT HIGHLIGHTS
 
 - &#8203;<!-- 20 -->[base] Maintain nodes document order in compound components (#36857) @michaldudak
 - &#8203;<!-- 19 -->[base][joy] prevent persisting hover state styles onclick on mobile (#36704) @gitstart
-- &#8203;<!-- 18 -->[Menu][base] MenuItem as a link does not work  (#37242) @nicolas-ot
+- &#8203;<!-- 18 -->[Menu][base] MenuItem as a link does not work (#37242) @nicolas-ot
 - &#8203;<!-- 17 -->[MenuItem][Base] Pass idGenerator function (#37364) @sai6855
 - &#8203;<!-- 16 -->[Slider][Base] Add Vertical slider demo (#37357) @sai6855
 
