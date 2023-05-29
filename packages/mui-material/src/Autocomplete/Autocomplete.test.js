@@ -3010,7 +3010,9 @@ describe('<Autocomplete />', () => {
           getOptionLabel={(option) => option.name}
           renderInput={(params) => <TextField {...params} autoFocus />}
           renderOption={(props, option, optionState, ownerState) => (
-            <li data-id="option">{ownerState.getOptionLabel(option)}</li>
+            <li key={option.name} data-testid="option">
+              {ownerState.getOptionLabel(option)}
+            </li>
           )}
         />,
       );
