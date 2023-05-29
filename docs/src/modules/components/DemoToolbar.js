@@ -500,6 +500,9 @@ export default function DemoToolbar(props) {
     /* eslint-enable material-ui/no-hardcoded-labels */
   }
 
+  const [stylingAnchorEl, setStylingAnchorEl] = React.useState(null);
+  const stylingMenuOpen = Boolean(stylingAnchorEl);
+
   const handleStylingButtonClose = () => {
     setStylingAnchorEl(null);
   };
@@ -517,8 +520,6 @@ export default function DemoToolbar(props) {
     [CODE_STYLING.CSS]: t('demoStylingSelectCSS'),
   };
 
-  const [stylingAnchorEl, setStylingAnchorEl] = React.useState(null);
-  const open = Boolean(stylingAnchorEl);
   const handleStylingButtonClick = (event) => {
     setStylingAnchorEl(event.currentTarget);
   };
@@ -529,9 +530,9 @@ export default function DemoToolbar(props) {
         {hasNonSystemDemos && (
           <Button
             id="styling-solution"
-            aria-controls={open ? 'demo-styling-menu' : undefined}
+            aria-controls={stylingMenuOpen ? 'demo-styling-menu' : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={stylingMenuOpen ? 'true' : undefined}
             onClick={handleStylingButtonClick}
             {...getControlProps(0)}
           >
@@ -682,7 +683,7 @@ export default function DemoToolbar(props) {
       <Menu
         id="demo-styling-menu"
         anchorEl={stylingAnchorEl}
-        open={open}
+        open={stylingMenuOpen}
         onClose={handleStylingButtonClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
