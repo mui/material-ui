@@ -132,6 +132,7 @@ const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
 
 const Button = styled(MDButton)(({ theme }) => ({
   height: 24,
+  flexShrink: 0,
   borderRadius: 999,
   border: 'none',
   paddingLeft: theme.spacing(1),
@@ -594,7 +595,6 @@ export default function DemoToolbar(props) {
             placement="bottom"
           >
             <IconButton
-              size="large"
               aria-controls={openDemoSource ? demoSourceId : null}
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
@@ -610,7 +610,6 @@ export default function DemoToolbar(props) {
             <React.Fragment>
               <DemoTooltip title={t('codesandbox')} placement="bottom">
                 <IconButton
-                  size="large"
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
@@ -624,7 +623,6 @@ export default function DemoToolbar(props) {
               </DemoTooltip>
               <DemoTooltip title={t('stackblitz')} placement="bottom">
                 <IconButton
-                  size="large"
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
@@ -640,7 +638,6 @@ export default function DemoToolbar(props) {
           )}
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
-              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
@@ -652,7 +649,6 @@ export default function DemoToolbar(props) {
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
-              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
@@ -664,7 +660,6 @@ export default function DemoToolbar(props) {
           </DemoTooltip>
           <DemoTooltip title={t('resetDemo')} placement="bottom">
             <IconButton
-              size="large"
               aria-controls={demoId}
               data-ga-event-category="demo"
               data-ga-event-label={demo.gaLabel}
@@ -676,7 +671,6 @@ export default function DemoToolbar(props) {
             </IconButton>
           </DemoTooltip>
           <IconButton
-            size="large"
             onClick={handleMoreClick}
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
