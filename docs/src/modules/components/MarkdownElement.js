@@ -144,7 +144,9 @@ const Root = styled('div')(
         cursor: 'pointer',
         display: 'inline-block',
         '&:hover': {
-          color: `var(--muidocs-palette-text-primary, ${lightTheme.palette.text.primary})`,
+          backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+          borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
+          color: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
         },
         '& svg': {
           width: '0.875rem',
@@ -488,11 +490,13 @@ const Root = styled('div')(
       },
       '& h1, & h2, & h3, & h4': {
         '&:hover .anchor-link, & .comment-link': {
-          color: `var(--muidocs-palette-text-secondary, ${darkTheme.palette.text.secondary})`,
-          backgroundColor: alpha(darkTheme.palette.primaryDark[800], 0.3),
-          borderColor: `var(--muidocs-palette-primaryDark-500, ${darkTheme.palette.primaryDark[500]})`,
+          color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+          backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
           '&:hover': {
-            color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
+            borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
+            backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
+            color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
           },
         },
       },

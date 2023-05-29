@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { green, lightBlue } from '@mui/material/colors';
 import {
   brandingDarkTheme as darkTheme,
   brandingLightTheme as lightTheme,
@@ -11,66 +10,71 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     '& .MuiApi-item-header': {
-      ...theme.typography.caption,
+      fontSize: 13,
       fontFamily: theme.typography.fontFamilyCode,
       display: 'flex',
+      alignItems: 'flex-end',
       position: 'relative',
       marginBottom: 12,
       marginLeft: -32,
       '& .MuiApi-item-link-visual': {
         display: 'none',
+        flexShrink: 0,
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-primary-200, ${lightTheme.palette.primary[200]})`,
-        borderRadius: '6px',
+        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderRadius: 8,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
-        width: '24px',
-        height: '24px',
-        lineHeight: '24px',
+        height: 26,
+        width: 26,
+        lineHeight: '30px',
         textAlign: 'center',
         '& svg': {
-          borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.primary[500]})`,
-          fill: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
-          height: '11px',
-          width: '11px',
+          fill: `var(--muidocs-palette-text-secondary, ${lightTheme.palette.text.secondary})`,
+          height: '14px',
+          width: '14px',
         },
       },
       span: {
-        padding: '2px 6px',
         fontWeight: theme.typography.fontWeightRegular,
         borderBottom: 'solid 1px',
         borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       },
       '& .MuiApi-item-title': {
+        flexShrink: 0,
+        padding: '2px 6px',
+        height: 'fit-content',
         marginLeft: 32,
         borderWidth: '1px',
         borderStyle: 'solid',
-        borderTopLeftRadius: '6px',
-        borderTopRightRadius: '6px',
-        borderBottomLeftRadius: '6px',
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        borderBottomLeftRadius: 8,
         fontWeight: theme.typography.fontWeightSemiBold,
         color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
       },
       '& .MuiApi-item-description': {
+        padding: 6,
+        paddingBottom: 3,
         flexGrow: 1,
       },
       '& .MuiApi-item-note': {
         padding: '2px 6px',
-        color: `var(--muidocs-palette-green-800, ${green[800]})`,
+        color: `var(--muidocs-palette-success-800, ${lightTheme.palette.success[800]})`,
       },
       '&:hover, &:target': {
         '.MuiApi-item-link-visual': {
           display: 'inline-block',
         },
         '.MuiApi-item-title': {
-          marginLeft: 8,
+          marginLeft: 6,
         },
         '.MuiApi-item-link-visual:hover': {
           cursor: 'pointer',
-          backgroundColor: alpha(lightBlue[100], 0.5),
-          borderColor: `var(--muidocs-palette-primary-500, ${lightTheme.palette.primary[500]})`,
+          backgroundColor: alpha(lightTheme.palette.primary[100], 0.4),
+          borderColor: `var(--muidocs-palette-primary-100, ${lightTheme.palette.primary[100]})`,
           '& svg': {
-            fill: `var(--muidocs-palette-primary-500, ${lightTheme.palette.primary[500]})`,
+            fill: `var(--muidocs-palette-primary-main, ${lightTheme.palette.primary.main})`,
           },
         },
       },
@@ -81,7 +85,7 @@ const Root = styled('div')(
       borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
       backgroundColor: `var(--muidocs-palette-warning-50, ${lightTheme.palette.warning[50]})`,
       color: `var(--muidocs-palette-warning-800, ${lightTheme.palette.warning[800]})`,
-      marginBottom: '16px',
+      marginBottom: 16,
       '.MuiAlert-icon': {
         display: 'flex',
         alignItems: 'center',
@@ -101,13 +105,13 @@ const Root = styled('div')(
         ...theme.typography.caption,
         fontFamily: theme.typography.fontFamilyCode,
         fontWeight: theme.typography.fontWeightRegular,
-        padding: '2px 6px',
+        padding: '2px 4px',
         border: '1px solid',
         borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
         backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       },
     },
-    marginBottom: 40,
+    marginBottom: 32,
   }),
   ({ theme }) => ({
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
@@ -120,7 +124,7 @@ const Root = styled('div')(
           backgroundColor: `var(--muidocs-palette-primaryDark-800, ${darkTheme.palette.primaryDark[800]})`,
         },
         '& .MuiApi-item-link-visual': {
-          borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
+          borderColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
           backgroundColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
           '& svg': {
             fill: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
@@ -128,7 +132,7 @@ const Root = styled('div')(
         },
         '&:hover, &:target': {
           '.MuiApi-item-link-visual:hover': {
-            borderColor: `var(--muidocs-palette-primary-300, ${darkTheme.palette.primary[300]})`,
+            borderColor: `var(--muidocs-palette-primaryDark-400, ${darkTheme.palette.primaryDark[400]})`,
             backgroundColor: `var(--muidocs-palette-primaryDark-600, ${darkTheme.palette.primaryDark[600]})`,
             '& svg': {
               fill: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
