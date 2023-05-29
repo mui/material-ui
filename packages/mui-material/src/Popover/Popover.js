@@ -1,7 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, useSlotProps } from '@mui/base';
+import {
+  unstable_composeClasses as composeClasses,
+  useSlotProps,
+  isHostComponent,
+} from '@mui/base';
 import {
   chainPropTypes,
   integerPropType,
@@ -381,7 +385,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     className: clsx(classes.paper, providedPaperProps?.className),
   });
 
-  const rootProps = useSlotProps({
+  const { slotProps: rootSlotPropsProp, ...rootProps } = useSlotProps({
     elementType: Root,
     externalSlotProps: slotProps?.root || {},
     externalForwardedProps: other,
@@ -396,7 +400,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   });
 
   return (
-    <Root {...rootProps}>
+    <Root {...rootProps} {...(!isHostComponent(Root) && { slotProps: rootSlotPropsProp })}>
       <TransitionComponent
         appear
         in={open}
