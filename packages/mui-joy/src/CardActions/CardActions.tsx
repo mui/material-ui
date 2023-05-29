@@ -48,7 +48,7 @@ const CardActionsRoot = styled('div', {
  *
  * API:
  *
- * - [CardActions API](https://mui.com/joy-ui/api/card-content/)
+ * - [CardActions API](https://mui.com/joy-ui/api/card-actions/)
  */
 const CardActions = React.forwardRef(function CardActions(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardActionsProps>({
@@ -91,6 +91,11 @@ CardActions.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
+  /**
+   * The CSS `flex` for the Button and its wrapper.
+   * @default 'initial'
+   */
+  buttonFlex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Used to render icon or text elements inside the CardActions if `src` is not set.
    * This can be an element, or just a string.

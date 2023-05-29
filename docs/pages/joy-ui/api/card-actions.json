@@ -1,0 +1,42 @@
+{
+  "props": {
+    "buttonFlex": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "'initial'"
+    },
+    "children": { "type": { "name": "node" } },
+    "component": { "type": { "name": "elementType" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      }
+    }
+  },
+  "name": "CardActions",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": ".MuiCardActions-root"
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "JoyCardActions",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-joy/src/CardActions/CardActions.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/joy-ui/react-card/\">Card</a></li></ul>",
+  "cssComponent": false
+}
