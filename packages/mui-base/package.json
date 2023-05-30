@@ -55,7 +55,7 @@
     "@emotion/is-prop-valid": "^1.2.1",
     "@mui/types": "^7.2.4",
     "@mui/utils": "^5.13.1",
-    "@popperjs/core": "^2.11.7",
+    "@popperjs/core": "^2.11.8",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "react-is": "^18.2.0"
