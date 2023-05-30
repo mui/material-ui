@@ -84,48 +84,7 @@ export default function PropertiesTable(props) {
               )}
             </ApiItem>
           );
-          // <tr key={propName}>
-          //   <td align="left">
-          //     <span
-          //       className={clsx('prop-name', {
-          //         required: propData.required && !showOptionalAbbr,
-          //         optional: !propData.required && showOptionalAbbr,
-          //       })}
-          //     >
-          //       {propName}
-          //       {propData.required && !showOptionalAbbr && (
-          //         <sup>
-          //           <Asterisk title="required">*</Asterisk>
-          //         </sup>
-          //       )}
-          //       {!propData.required && showOptionalAbbr && (
-          //         <sup>
-          //           <abbr title="optional">?</abbr>
-          //         </sup>
-          //       )}
-          //     </span>
-          //   </td>
-          //   <td align="left">
-          //     <span className="prop-type" dangerouslySetInnerHTML={{ __html: typeName }} />
-          //   </td>
-          //   {showDefaultPropColumn && (
-          //     <td align="left">
-          //       {propDefault && <span className="prop-default">{propDefault}</span>}
-          //     </td>
-          //   )}
-          //   <td align="left">
-
-          //     <div
-          //       dangerouslySetInnerHTML={{
-          //         __html: propertiesDescriptions[propName] || '',
-          //       }}
-          //     />
-          //   </td>
-          // </tr>
-          // );
         })}
-      {/* </tbody>
-      </Table> */}
     </Wrapper>
   );
 }
