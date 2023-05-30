@@ -132,7 +132,7 @@ describe('buildApiUtils', () => {
         apiPathname: '/base-ui/react-button/components-api/#button',
         muiName: 'MuiButton',
         apiPagesDirectory: sinon.match((value) =>
-          value.endsWith(path.join('docs', 'pages', 'base', 'api')),
+          value.endsWith(path.join('docs', 'pages', 'base-ui', 'api')),
         ),
       });
 
