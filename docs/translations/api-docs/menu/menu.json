@@ -1,19 +1,87 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "anchorEl": "An HTML element, or a function that returns one. It&#39;s used to set the position of the menu.",
-    "autoFocus": "If <code>true</code> (Default) will focus the <code>[role=&quot;menu&quot;]</code> if no focusable child is found. Disabled children are not focusable. If you set this prop to <code>false</code> focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise.",
-    "children": "Menu contents, normally <code>MenuItem</code>s.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "disableAutoFocusItem": "When opening the menu will not focus the active item but the <code>[role=&quot;menu&quot;]</code> unless <code>autoFocus</code> is also set to <code>false</code>. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications.",
-    "MenuListProps": "Props applied to the <a href=\"/material-ui/api/menu-list/\"><code>MenuList</code></a> element.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>, <code>&quot;tabKeyDown&quot;</code>.</li></ul>",
-    "open": "If <code>true</code>, the component is shown.",
-    "PopoverClasses": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/popover/\"><code>Popover</code></a> element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "transitionDuration": "The length of the transition in <code>ms</code>, or &#39;auto&#39;",
-    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
-    "variant": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus."
+    "anchorEl": {
+      "description": "An HTML element, or a function that returns one. It&#39;s used to set the position of the menu.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "autoFocus": {
+      "description": "If <code>true</code> (Default) will focus the <code>[role=&quot;menu&quot;]</code> if no focusable child is found. Disabled children are not focusable. If you set this prop to <code>false</code> focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "Menu contents, normally <code>MenuItem</code>s.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableAutoFocusItem": {
+      "description": "When opening the menu will not focus the active item but the <code>[role=&quot;menu&quot;]</code> unless <code>autoFocus</code> is also set to <code>false</code>. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "MenuListProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/menu-list/\"><code>MenuList</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "reason": "Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>, <code>&quot;tabKeyDown&quot;</code>."
+      }
+    },
+    "open": {
+      "description": "If <code>true</code>, the component is shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "PopoverClasses": {
+      "description": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/popover/\"><code>Popover</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "transitionDuration": {
+      "description": "The length of the transition in <code>ms</code>, or &#39;auto&#39;",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionProps": {
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

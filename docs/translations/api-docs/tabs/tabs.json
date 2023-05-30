@@ -1,29 +1,147 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "action": "Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: <code>updateIndicator()</code> and <code>updateScrollButtons()</code>",
-    "allowScrollButtonsMobile": "If <code>true</code>, the scroll buttons aren&#39;t forced hidden on mobile. By default the scroll buttons are hidden on mobile and takes precedence over <code>scrollButtons</code>.",
-    "aria-label": "The label for the Tabs as a string.",
-    "aria-labelledby": "An id or list of ids separated by a space that label the Tabs.",
-    "centered": "If <code>true</code>, the tabs are centered. This prop is intended for large views.",
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "indicatorColor": "Determines the color of the indicator.",
-    "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, value: any) =&gt; void</code><br><ul><li>event: The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.</li><li>value: We default to the index of the child (number)</li></ul>",
-    "orientation": "The component orientation (layout flow direction).",
-    "ScrollButtonComponent": "The component used to render the scroll buttons.",
-    "scrollButtons": "Determine behavior of scroll buttons when tabs are set to scroll:<br>- <code>auto</code> will only present them when not all the items are visible. - <code>true</code> will always present them. - <code>false</code> will never present them.<br>By default the scroll buttons are hidden on mobile. This behavior can be disabled with <code>allowScrollButtonsMobile</code>.",
-    "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
-    "slotProps": "The extra props for the slot components. You can override the existing props or add new ones.",
-    "slots": "The components used for each slot inside.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "TabIndicatorProps": "Props applied to the tab indicator element.",
-    "TabScrollButtonProps": "Props applied to the <a href=\"/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element.",
-    "textColor": "Determines the color of the <code>Tab</code>.",
-    "value": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>false</code>.",
-    "variant": "Determines additional display behavior of the tabs:<br> - <code>scrollable</code> will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -<code>fullWidth</code> will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - <code>standard</code> will render the default state.",
-    "visibleScrollbar": "If <code>true</code>, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs."
+    "action": {
+      "description": "Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: <code>updateIndicator()</code> and <code>updateScrollButtons()</code>",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "allowScrollButtonsMobile": {
+      "description": "If <code>true</code>, the scroll buttons aren&#39;t forced hidden on mobile. By default the scroll buttons are hidden on mobile and takes precedence over <code>scrollButtons</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-label": {
+      "description": "The label for the Tabs as a string.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "aria-labelledby": {
+      "description": "An id or list of ids separated by a space that label the Tabs.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "centered": {
+      "description": "If <code>true</code>, the tabs are centered. This prop is intended for large views.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "indicatorColor": {
+      "description": "Determines the color of the indicator.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onChange": {
+      "description": "Callback fired when the value changes.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.",
+        "value": "We default to the index of the child (number)"
+      }
+    },
+    "orientation": {
+      "description": "The component orientation (layout flow direction).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "ScrollButtonComponent": {
+      "description": "The component used to render the scroll buttons.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "scrollButtons": {
+      "description": "Determine behavior of scroll buttons when tabs are set to scroll:<br>- <code>auto</code> will only present them when not all the items are visible. - <code>true</code> will always present them. - <code>false</code> will never present them.<br>By default the scroll buttons are hidden on mobile. This behavior can be disabled with <code>allowScrollButtonsMobile</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "selectionFollowsFocus": {
+      "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The extra props for the slot components. You can override the existing props or add new ones.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TabIndicatorProps": {
+      "description": "Props applied to the tab indicator element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TabScrollButtonProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/tab-scroll-button/\"><code>TabScrollButton</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "textColor": {
+      "description": "Determines the color of the <code>Tab</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "value": {
+      "description": "The value of the currently selected <code>Tab</code>. If you don&#39;t want any selected <code>Tab</code>, you can set this prop to <code>false</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "Determines additional display behavior of the tabs:<br> - <code>scrollable</code> will invoke scrolling properties and allow for horizontally  scrolling (or swiping) of the tab bar.  -<code>fullWidth</code> will make the tabs grow to use all the available space,  which should be used for small views, like on mobile.  - <code>standard</code> will render the default state.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "visibleScrollbar": {
+      "description": "If <code>true</code>, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

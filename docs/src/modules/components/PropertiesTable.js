@@ -1,27 +1,38 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiPage/ApiItem';
 
-const Wrapper = styled('div')({
-  // overflow: 'hidden',
-});
+const additionalPropsInfoText = {
+  cssApi: 'See <a href="#css">CSS API</a> below for more details.',
+  sx: 'See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.',
+  slotsApi: 'See <a href="#slots">Slots API</a> below for more details.',
+  'joy-size':
+    'To learn how to add custom sizes to the component, check out <a href="/joy-ui/customization/themed-components/#extend-sizes">Themed components—Extend sizes</a>.',
+  'joy-color':
+    'To learn how to add your own colors, check out <a href="/joy-ui/customization/themed-components/#extend-colors">Themed components—Extend colors</a>.',
+  'joy-variant':
+    'To learn how to add your own variants, check out <a href="/joy-ui/customization/themed-components/#extend-variants">Themed components—Extend variants</a>.',
+};
 
 export default function PropertiesTable(props) {
   const { properties, propertiesDescriptions, showOptionalAbbr = false } = props;
+
   const t = useTranslate();
 
   return (
-    <Wrapper>
+    <div>
       {Object.entries(properties)
         .filter(([, propData]) => propData.description !== '@ignore')
         .map(([propName, propData]) => {
           // ApiItem
           const typeName = propData.type.description || propData.type.name;
           const propDefault = propData.default;
+
+          const signature = propData.signature?.type;
+
           return (
             <ApiItem
               key={propName}
@@ -30,15 +41,33 @@ export default function PropertiesTable(props) {
               description={typeName}
               note={
                 (propData.required && !showOptionalAbbr && 'Required') ||
-                (!propData.required && showOptionalAbbr && 'Optional')
+                (!propData.required && showOptionalAbbr && 'Optional') ||
+                ''
               }
             >
               <p
                 dangerouslySetInnerHTML={{
-                  __html: propertiesDescriptions[propName] || '',
+                  __html: propertiesDescriptions[propName].description || '',
                 }}
               />
+              {propertiesDescriptions[propName].notes && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: propertiesDescriptions[propName].notes || '',
+                  }}
+                />
+              )}
 
+              {Object.keys(additionalPropsInfoText)
+                .filter((key) => propData.additionalInfo?.[key])
+                .map((key) => (
+                  <p
+                    key={key}
+                    dangerouslySetInnerHTML={{
+                      __html: additionalPropsInfoText[key],
+                    }}
+                  />
+                ))}
               {propData.deprecated && (
                 <Alert
                   severity="warning"
@@ -76,51 +105,51 @@ export default function PropertiesTable(props) {
                   <code>{propDefault}</code>
                 </p>
               )}
+
+              {signature && (
+                <div className="signature">
+                  <p>
+                    <span>Signature: </span>
+                    <code
+                      dangerouslySetInnerHTML={{
+                        __html: signature,
+                      }}
+                    />
+                  </p>
+                  {propData.signature.describedArgs && (
+                    <React.Fragment>
+                      <p>Args:</p>
+                      <ul>
+                        {propData.signature.describedArgs.map((argName) => (
+                          <li
+                            key={argName}
+                            dangerouslySetInnerHTML={{
+                              __html: propertiesDescriptions[propName].typeDescriptions[argName],
+                            }}
+                          />
+                        ))}
+                      </ul>
+                    </React.Fragment>
+                  )}
+                  {propData.signature.returned && (
+                    <p>
+                      Return:{' '}
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            propertiesDescriptions[propName].typeDescriptions[
+                              propData.signature.returned
+                            ],
+                        }}
+                      />
+                    </p>
+                  )}
+                </div>
+              )}
             </ApiItem>
           );
-          // <tr key={propName}>
-          //   <td align="left">
-          //     <span
-          //       className={clsx('prop-name', {
-          //         required: propData.required && !showOptionalAbbr,
-          //         optional: !propData.required && showOptionalAbbr,
-          //       })}
-          //     >
-          //       {propName}
-          //       {propData.required && !showOptionalAbbr && (
-          //         <sup>
-          //           <Asterisk title="required">*</Asterisk>
-          //         </sup>
-          //       )}
-          //       {!propData.required && showOptionalAbbr && (
-          //         <sup>
-          //           <abbr title="optional">?</abbr>
-          //         </sup>
-          //       )}
-          //     </span>
-          //   </td>
-          //   <td align="left">
-          //     <span className="prop-type" dangerouslySetInnerHTML={{ __html: typeName }} />
-          //   </td>
-          //   {showDefaultPropColumn && (
-          //     <td align="left">
-          //       {propDefault && <span className="prop-default">{propDefault}</span>}
-          //     </td>
-          //   )}
-          //   <td align="left">
-
-          //     <div
-          //       dangerouslySetInnerHTML={{
-          //         __html: propertiesDescriptions[propName] || '',
-          //       }}
-          //     />
-          //   </td>
-          // </tr>
-          // );
         })}
-      {/* </tbody>
-      </Table> */}
-    </Wrapper>
+    </div>
   );
 }
 

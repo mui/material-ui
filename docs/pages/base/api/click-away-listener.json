@@ -1,21 +1,31 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
-    "onClickAway": { "type": { "name": "func" }, "required": true },
-    "disableReactTree": { "type": { "name": "bool" }, "default": "false" },
+    "children": {
+      "type": { "name": "custom", "description": "element" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "onClickAway": { "type": { "name": "func" }, "required": true, "additionalPropsInfo": {} },
+    "disableReactTree": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "mouseEvent": {
       "type": {
         "name": "enum",
         "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false"
       },
-      "default": "'onClick'"
+      "default": "'onClick'",
+      "additionalPropsInfo": {}
     },
     "touchEvent": {
       "type": {
         "name": "enum",
         "description": "'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false"
       },
-      "default": "'onTouchEnd'"
+      "default": "'onTouchEnd'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "ClickAwayListener",

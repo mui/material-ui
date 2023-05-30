@@ -1,21 +1,102 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "ariaLabel": "The aria-label of the button element. Also used to provide the <code>id</code> for the <code>SpeedDial</code> element and its children.",
-    "children": "SpeedDialActions to display when the SpeedDial is <code>open</code>.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "direction": "The direction the actions open relative to the floating action button.",
-    "FabProps": "Props applied to the <a href=\"/material-ui/api/fab/\"><code>Fab</code></a> element.",
-    "hidden": "If <code>true</code>, the SpeedDial is hidden.",
-    "icon": "The icon to display in the SpeedDial Fab. The <code>SpeedDialIcon</code> component provides a default Icon with animation.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;toggle&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;mouseLeave&quot;</code>, <code>&quot;escapeKeyDown&quot;</code>.</li></ul>",
-    "onOpen": "Callback fired when the component requests to be open.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><ul><li>event: The event source of the callback.</li><li>reason: Can be: <code>&quot;toggle&quot;</code>, <code>&quot;focus&quot;</code>, <code>&quot;mouseEnter&quot;</code>.</li></ul>",
-    "open": "If <code>true</code>, the component is shown.",
-    "openIcon": "The icon to display in the SpeedDial Fab when the SpeedDial is open.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
-    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
+    "ariaLabel": {
+      "description": "The aria-label of the button element. Also used to provide the <code>id</code> for the <code>SpeedDial</code> element and its children.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "SpeedDialActions to display when the SpeedDial is <code>open</code>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "direction": {
+      "description": "The direction the actions open relative to the floating action button.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "FabProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/fab/\"><code>Fab</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "hidden": {
+      "description": "If <code>true</code>, the SpeedDial is hidden.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "icon": {
+      "description": "The icon to display in the SpeedDial Fab. The <code>SpeedDialIcon</code> component provides a default Icon with animation.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "reason": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;mouseLeave&quot;</code>, <code>&quot;escapeKeyDown&quot;</code>."
+      }
+    },
+    "onOpen": {
+      "description": "Callback fired when the component requests to be open.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {
+        "event": "The event source of the callback.",
+        "reason": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;focus&quot;</code>, <code>&quot;mouseEnter&quot;</code>."
+      }
+    },
+    "open": {
+      "description": "If <code>true</code>, the component is shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "openIcon": {
+      "description": "The icon to display in the SpeedDial Fab when the SpeedDial is open.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionComponent": {
+      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "transitionDuration": {
+      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "TransitionProps": {
+      "description": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

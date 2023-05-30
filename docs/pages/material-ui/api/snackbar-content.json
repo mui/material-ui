@@ -1,14 +1,15 @@
 {
   "props": {
-    "action": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "message": { "type": { "name": "node" } },
-    "role": { "type": { "name": "string" }, "default": "'alert'" },
+    "action": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "message": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "role": { "type": { "name": "string" }, "default": "'alert'", "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "SnackbarContent",

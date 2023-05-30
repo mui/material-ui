@@ -1,15 +1,20 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    }
   },
   "name": "TabPanel",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

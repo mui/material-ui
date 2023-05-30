@@ -1,61 +1,69 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'"
+      "default": "'standard'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "components": {
       "type": {
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "page": { "type": { "name": "node" } },
-    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "page": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "selected": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
-      "default": "'circular'"
+      "default": "'circular'",
+      "additionalPropsInfo": {}
     },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "type": {
       "type": {
         "name": "enum",
         "description": "'end-ellipsis'<br>&#124;&nbsp;'first'<br>&#124;&nbsp;'last'<br>&#124;&nbsp;'next'<br>&#124;&nbsp;'page'<br>&#124;&nbsp;'previous'<br>&#124;&nbsp;'start-ellipsis'"
       },
-      "default": "'page'"
+      "default": "'page'",
+      "additionalPropsInfo": {}
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'"
+      "default": "'text'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "PaginationItem",

@@ -1,30 +1,41 @@
 {
   "props": {
-    "steps": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
-    "backButton": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "LinearProgressProps": { "type": { "name": "object" } },
-    "nextButton": { "type": { "name": "node" } },
+    "steps": {
+      "type": { "name": "custom", "description": "integer" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "activeStep": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "0",
+      "additionalPropsInfo": {}
+    },
+    "backButton": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "LinearProgressProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "nextButton": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "position": {
       "type": {
         "name": "enum",
         "description": "'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'"
       },
-      "default": "'bottom'"
+      "default": "'bottom'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'"
       },
-      "default": "'dots'"
+      "default": "'dots'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "MobileStepper",

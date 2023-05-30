@@ -1,13 +1,15 @@
 {
   "props": {
-    "label": { "type": { "name": "string" } },
+    "label": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "MenuItem",

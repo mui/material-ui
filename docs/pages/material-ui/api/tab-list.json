@@ -1,5 +1,5 @@
 {
-  "props": { "children": { "type": { "name": "node" } } },
+  "props": { "children": { "type": { "name": "node" }, "additionalPropsInfo": {} } },
   "name": "TabList",
   "styles": {
     "classes": [

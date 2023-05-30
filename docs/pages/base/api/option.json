@@ -1,15 +1,17 @@
 {
   "props": {
-    "value": { "type": { "name": "any" }, "required": true },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "label": { "type": { "name": "string" } },
+    "value": { "type": { "name": "any" }, "required": true, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "label": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Option",

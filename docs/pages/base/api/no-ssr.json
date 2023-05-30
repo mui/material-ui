@@ -1,8 +1,8 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "defer": { "type": { "name": "bool" }, "default": "false" },
-    "fallback": { "type": { "name": "node" }, "default": "null" }
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "defer": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "fallback": { "type": { "name": "node" }, "default": "null", "additionalPropsInfo": {} }
   },
   "name": "NoSsr",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

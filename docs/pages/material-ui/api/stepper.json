@@ -1,21 +1,35 @@
 {
   "props": {
-    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
-    "alternativeLabel": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
-    "nonLinear": { "type": { "name": "bool" }, "default": "false" },
+    "activeStep": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "0",
+      "additionalPropsInfo": {}
+    },
+    "alternativeLabel": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "connector": {
+      "type": { "name": "element" },
+      "default": "<StepConnector />",
+      "additionalPropsInfo": {}
+    },
+    "nonLinear": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'"
+      "default": "'horizontal'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "Stepper",

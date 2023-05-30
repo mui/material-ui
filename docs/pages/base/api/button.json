@@ -4,17 +4,24 @@
       "type": {
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
-      }
+      },
+      "additionalPropsInfo": {}
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "focusableWhenDisabled": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Button",

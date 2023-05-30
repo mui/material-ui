@@ -1,13 +1,48 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "actionIcon": "An IconButton element to be used as secondary action target (primary action target is the item itself).",
-    "actionPosition": "Position of secondary action IconButton.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "position": "Position of the title bar.",
-    "subtitle": "String or element serving as subtitle (support text).",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "title": "Title to be displayed."
+    "actionIcon": {
+      "description": "An IconButton element to be used as secondary action target (primary action target is the item itself).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "actionPosition": {
+      "description": "Position of secondary action IconButton.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "position": {
+      "description": "Position of the title bar.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "subtitle": {
+      "description": "String or element serving as subtitle (support text).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "title": {
+      "description": "Title to be displayed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

@@ -1,19 +1,84 @@
 {
   "componentDescription": "The props of the [Modal](/material-ui/api/modal/) component are available\nwhen `variant=\"temporary\"` is set.",
   "propDescriptions": {
-    "anchor": "Side from which the drawer will appear.",
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "elevation": "The elevation of the drawer.",
-    "hideBackdrop": "If <code>true</code>, the backdrop is not rendered.",
-    "ModalProps": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><ul><li>event: The event source of the callback.</li></ul>",
-    "open": "If <code>true</code>, the component is shown.",
-    "PaperProps": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
-    "SlideProps": "Props applied to the <a href=\"/material-ui/api/slide/\"><code>Slide</code></a> element.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
-    "variant": "The variant to use."
+    "anchor": {
+      "description": "Side from which the drawer will appear.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "The content of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "classes": {
+      "description": "Override or extend the styles applied to the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "elevation": {
+      "description": "The elevation of the drawer.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "hideBackdrop": {
+      "description": "If <code>true</code>, the backdrop is not rendered.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "ModalProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/modal/\"><code>Modal</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "open": {
+      "description": "If <code>true</code>, the component is shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "PaperProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/paper/\"><code>Paper</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "SlideProps": {
+      "description": "Props applied to the <a href=\"/material-ui/api/slide/\"><code>Slide</code></a> element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "transitionDuration": {
+      "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The variant to use.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },

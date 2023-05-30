@@ -1,14 +1,15 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "enableColorScheme": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "enableColorScheme": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "ScopedCssBaseline",

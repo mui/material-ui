@@ -1,31 +1,48 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true },
-    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "autoFocus": { "type": { "name": "bool" }, "default": "true" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "disableAutoFocusItem": { "type": { "name": "bool" }, "default": "false" },
-    "MenuListProps": { "type": { "name": "object" }, "default": "{}" },
-    "onClose": { "type": { "name": "func" } },
-    "PopoverClasses": { "type": { "name": "object" } },
+    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
+    "anchorEl": {
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
+    "autoFocus": { "type": { "name": "bool" }, "default": "true", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "disableAutoFocusItem": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "MenuListProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "PopoverClasses": { "type": { "name": "object" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "'auto'"
+      "default": "'auto'",
+      "additionalPropsInfo": {}
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}" },
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
-      "default": "'selectedMenu'"
+      "default": "'selectedMenu'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Menu",

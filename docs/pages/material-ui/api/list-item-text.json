@@ -1,18 +1,23 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
-    "inset": { "type": { "name": "bool" }, "default": "false" },
-    "primary": { "type": { "name": "node" } },
-    "primaryTypographyProps": { "type": { "name": "object" } },
-    "secondary": { "type": { "name": "node" } },
-    "secondaryTypographyProps": { "type": { "name": "object" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "disableTypography": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "inset": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "primary": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "primaryTypographyProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "secondary": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "secondaryTypographyProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "ListItemText",

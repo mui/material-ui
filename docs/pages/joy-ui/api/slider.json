@@ -1,94 +1,137 @@
 {
   "props": {
-    "aria-label": { "type": { "name": "string" } },
-    "aria-valuetext": { "type": { "name": "string" } },
-    "classes": { "type": { "name": "object" } },
+    "aria-label": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "aria-valuetext": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "defaultValue": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
     },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableSwap": { "type": { "name": "bool" }, "default": "false" },
-    "getAriaLabel": { "type": { "name": "func" } },
-    "getAriaValueText": { "type": { "name": "func" } },
-    "isRtl": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableSwap": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "getAriaLabel": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(index: number) => string", "describedArgs": ["index"] },
+      "additionalPropsInfo": {}
+    },
+    "getAriaValueText": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: number, index: number) => string",
+        "describedArgs": ["value", "index"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "isRtl": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "marks": {
       "type": {
         "name": "union",
         "description": "Array&lt;{ label?: node, value: number }&gt;<br>&#124;&nbsp;bool"
       },
-      "default": "false"
+      "default": "false",
+      "additionalPropsInfo": {}
     },
-    "max": { "type": { "name": "number" }, "default": "100" },
-    "min": { "type": { "name": "number" }, "default": "0" },
-    "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "onChangeCommitted": { "type": { "name": "func" } },
+    "max": { "type": { "name": "number" }, "default": "100", "additionalPropsInfo": {} },
+    "min": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
+    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "describedArgs": ["event", "value", "activeThumb"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "onChangeCommitted": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "describedArgs": ["event", "value"]
+      },
+      "additionalPropsInfo": {}
+    },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
-      "default": "'horizontal'"
+      "default": "'horizontal'",
+      "additionalPropsInfo": {}
     },
-    "scale": { "type": { "name": "func" }, "default": "function Identity(x) {\n  return x;\n}" },
+    "scale": {
+      "type": { "name": "func" },
+      "default": "function Identity(x) {\n  return x;\n}",
+      "signature": { "type": "function(x: any) => any", "describedArgs": [] },
+      "additionalPropsInfo": {}
+    },
     "size": {
       "type": {
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
       },
-      "default": "'md'"
+      "default": "'md'",
+      "additionalPropsInfo": { "joy-size": true }
     },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, mark?: func<br>&#124;&nbsp;object, markLabel?: func<br>&#124;&nbsp;object, rail?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object, valueLabel?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ input?: elementType, mark?: elementType, markLabel?: elementType, rail?: elementType, root?: elementType, thumb?: elementType, track?: elementType, valueLabel?: elementType }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
-    "step": { "type": { "name": "number" }, "default": "1" },
+    "step": { "type": { "name": "number" }, "default": "1", "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "tabIndex": { "type": { "name": "number" } },
+    "tabIndex": { "type": { "name": "number" }, "additionalPropsInfo": {} },
     "track": {
       "type": {
         "name": "enum",
         "description": "'inverted'<br>&#124;&nbsp;'normal'<br>&#124;&nbsp;false"
       },
-      "default": "'normal'"
+      "default": "'normal'",
+      "additionalPropsInfo": {}
     },
     "value": {
-      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
+      "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" },
+      "additionalPropsInfo": {}
     },
     "valueLabelDisplay": {
       "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on'" },
-      "default": "'off'"
+      "default": "'off'",
+      "additionalPropsInfo": {}
     },
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
-      "default": "function Identity(x) {\n  return x;\n}"
+      "default": "function Identity(x) {\n  return x;\n}",
+      "additionalPropsInfo": {}
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Slider",

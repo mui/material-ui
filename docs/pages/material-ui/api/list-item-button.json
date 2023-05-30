@@ -2,23 +2,25 @@
   "props": {
     "alignItems": {
       "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
-      "default": "'center'"
+      "default": "'center'",
+      "additionalPropsInfo": {}
     },
-    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
-    "dense": { "type": { "name": "bool" }, "default": "false" },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
-    "divider": { "type": { "name": "bool" }, "default": "false" },
-    "focusVisibleClassName": { "type": { "name": "string" } },
-    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "dense": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "divider": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "focusVisibleClassName": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "selected": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "ListItemButton",

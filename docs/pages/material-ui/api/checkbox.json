@@ -1,40 +1,62 @@
 {
   "props": {
-    "checked": { "type": { "name": "bool" } },
-    "checkedIcon": { "type": { "name": "node" }, "default": "<CheckBoxIcon />" },
-    "classes": { "type": { "name": "object" } },
+    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "checkedIcon": {
+      "type": { "name": "node" },
+      "default": "<CheckBoxIcon />",
+      "additionalPropsInfo": {}
+    },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": {}
     },
-    "defaultChecked": { "type": { "name": "bool" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
-    "icon": { "type": { "name": "node" }, "default": "<CheckBoxOutlineBlankIcon />" },
-    "id": { "type": { "name": "string" } },
-    "indeterminate": { "type": { "name": "bool" }, "default": "false" },
-    "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
-    "inputProps": { "type": { "name": "object" } },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "onChange": { "type": { "name": "func" } },
-    "required": { "type": { "name": "bool" }, "default": "false" },
+    "defaultChecked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "icon": {
+      "type": { "name": "node" },
+      "default": "<CheckBoxOutlineBlankIcon />",
+      "additionalPropsInfo": {}
+    },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "indeterminate": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "indeterminateIcon": {
+      "type": { "name": "node" },
+      "default": "<IndeterminateCheckBoxIcon />",
+      "additionalPropsInfo": {}
+    },
+    "inputProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "inputRef": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "required": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "value": { "type": { "name": "any" } }
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} }
   },
   "name": "Checkbox",
   "styles": {

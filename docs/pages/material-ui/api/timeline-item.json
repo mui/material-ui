@@ -1,13 +1,17 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "position": { "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "position": {
+      "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
+      "additionalPropsInfo": {}
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "TimelineItem",

@@ -1,38 +1,48 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
+    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "invisible": { "type": { "name": "bool" }, "default": "false" },
+    "invisible": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Fade",
+      "additionalPropsInfo": {}
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
-      }
+      },
+      "additionalPropsInfo": {}
     }
   },
   "name": "Backdrop",

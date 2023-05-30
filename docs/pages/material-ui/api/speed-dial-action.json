@@ -1,27 +1,29 @@
 {
   "props": {
-    "classes": { "type": { "name": "object" } },
-    "delay": { "type": { "name": "number" }, "default": "0" },
-    "FabProps": { "type": { "name": "object" }, "default": "{}" },
-    "icon": { "type": { "name": "node" } },
-    "id": { "type": { "name": "string" } },
-    "open": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "delay": { "type": { "name": "number" }, "default": "0", "additionalPropsInfo": {} },
+    "FabProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
+    "icon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "open": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "TooltipClasses": { "type": { "name": "object" } },
-    "tooltipOpen": { "type": { "name": "bool" }, "default": "false" },
+    "TooltipClasses": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "tooltipOpen": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "tooltipPlacement": {
       "type": {
         "name": "enum",
         "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'left'"
+      "default": "'left'",
+      "additionalPropsInfo": {}
     },
-    "tooltipTitle": { "type": { "name": "node" } }
+    "tooltipTitle": { "type": { "name": "node" }, "additionalPropsInfo": {} }
   },
   "name": "SpeedDialAction",
   "styles": {

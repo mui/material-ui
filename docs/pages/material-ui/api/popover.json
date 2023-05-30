@@ -1,57 +1,78 @@
 {
   "props": {
-    "open": { "type": { "name": "bool" }, "required": true },
-    "action": { "type": { "name": "custom", "description": "ref" } },
-    "anchorEl": { "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
+    "action": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "anchorEl": {
+      "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
     "anchorOrigin": {
       "type": {
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}",
+      "additionalPropsInfo": {}
     },
     "anchorPosition": {
-      "type": { "name": "shape", "description": "{ left: number, top: number }" }
+      "type": { "name": "shape", "description": "{ left: number, top: number }" },
+      "additionalPropsInfo": {}
     },
     "anchorReference": {
       "type": {
         "name": "enum",
         "description": "'anchorEl'<br>&#124;&nbsp;'anchorPosition'<br>&#124;&nbsp;'none'"
       },
-      "default": "'anchorEl'"
+      "default": "'anchorEl'",
+      "additionalPropsInfo": {}
     },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
-    "marginThreshold": { "type": { "name": "number" }, "default": "16" },
-    "onClose": { "type": { "name": "func" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "container": {
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
+    "elevation": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "8",
+      "additionalPropsInfo": {}
+    },
+    "marginThreshold": { "type": { "name": "number" }, "default": "16", "additionalPropsInfo": {} },
+    "onClose": { "type": { "name": "func" }, "additionalPropsInfo": {} },
     "PaperProps": {
       "type": { "name": "shape", "description": "{ component?: element type }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "transformOrigin": {
       "type": {
         "name": "shape",
         "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;number, vertical: 'bottom'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;number }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}",
+      "additionalPropsInfo": {}
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Grow",
+      "additionalPropsInfo": {}
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "'auto'"
+      "default": "'auto'",
+      "additionalPropsInfo": {}
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
+    "TransitionProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} }
   },
   "name": "Popover",
   "styles": { "classes": ["root", "paper"], "globalClasses": {}, "name": "MuiPopover" },

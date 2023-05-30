@@ -1,19 +1,25 @@
 {
   "props": {
-    "active": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "active": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "direction": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'" },
-      "default": "'asc'"
+      "default": "'asc'",
+      "additionalPropsInfo": {}
     },
-    "hideSortIcon": { "type": { "name": "bool" }, "default": "false" },
-    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
+    "hideSortIcon": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "IconComponent": {
+      "type": { "name": "elementType" },
+      "default": "ArrowDownwardIcon",
+      "additionalPropsInfo": {}
+    },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "TableSortLabel",

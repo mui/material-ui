@@ -1,42 +1,54 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableElevation": { "type": { "name": "bool" }, "default": "false" },
-    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
-    "endIcon": { "type": { "name": "node" } },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "href": { "type": { "name": "string" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableElevation": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableFocusRipple": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "endIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "href": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
-    "startIcon": { "type": { "name": "node" } },
+    "startIcon": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
-      "default": "'text'"
+      "default": "'text'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Button",

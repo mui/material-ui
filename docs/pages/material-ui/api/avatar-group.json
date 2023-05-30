@@ -1,37 +1,50 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "max": { "type": { "name": "custom", "description": "number" }, "default": "5" },
+    "max": {
+      "type": { "name": "custom", "description": "number" },
+      "default": "5",
+      "additionalPropsInfo": {}
+    },
     "slotProps": {
       "type": { "name": "shape", "description": "{ additionalAvatar?: object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "spacing": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;number"
       },
-      "default": "'medium'"
+      "default": "'medium'",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "total": { "type": { "name": "number" }, "default": "children.length" },
+    "total": {
+      "type": { "name": "number" },
+      "default": "children.length",
+      "additionalPropsInfo": {}
+    },
     "variant": {
       "type": {
         "name": "union",
         "description": "'circular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'<br>&#124;&nbsp;string"
       },
-      "default": "'circular'"
+      "default": "'circular'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "AvatarGroup",

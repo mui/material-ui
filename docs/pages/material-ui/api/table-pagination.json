@@ -1,39 +1,83 @@
 {
   "props": {
-    "count": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "onPageChange": { "type": { "name": "func" }, "required": true },
-    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
-    "backIconButtonProps": { "type": { "name": "object" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "elementType" } },
+    "count": {
+      "type": { "name": "custom", "description": "integer" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "onPageChange": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void",
+        "describedArgs": ["event", "page"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "page": {
+      "type": { "name": "custom", "description": "integer" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "rowsPerPage": {
+      "type": { "name": "custom", "description": "integer" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "ActionsComponent": {
+      "type": { "name": "elementType" },
+      "default": "TablePaginationActions",
+      "additionalPropsInfo": {}
+    },
+    "backIconButtonProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "getItemAriaLabel": {
       "type": { "name": "func" },
-      "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
+      "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}",
+      "signature": { "type": "function(type: string) => string", "describedArgs": ["type"] },
+      "additionalPropsInfo": {}
     },
     "labelDisplayedRows": {
       "type": { "name": "func" },
-      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}",
+      "additionalPropsInfo": {}
     },
-    "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
-    "nextIconButtonProps": { "type": { "name": "object" } },
-    "onRowsPerPageChange": { "type": { "name": "func" } },
+    "labelRowsPerPage": {
+      "type": { "name": "node" },
+      "default": "'Rows per page:'",
+      "additionalPropsInfo": {}
+    },
+    "nextIconButtonProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "onRowsPerPageChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
     "rowsPerPageOptions": {
       "type": {
         "name": "arrayOf",
         "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
       },
-      "default": "[10, 25, 50, 100]"
+      "default": "[10, 25, 50, 100]",
+      "additionalPropsInfo": {}
     },
-    "SelectProps": { "type": { "name": "object" }, "default": "{}" },
-    "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
-    "showLastButton": { "type": { "name": "bool" }, "default": "false" },
+    "SelectProps": { "type": { "name": "object" }, "default": "{}", "additionalPropsInfo": {} },
+    "showFirstButton": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "showLastButton": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     }
   },
   "name": "TablePagination",

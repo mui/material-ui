@@ -1,36 +1,41 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "component": { "type": { "name": "elementType" } },
-    "disabled": { "type": { "name": "bool" } },
-    "onDelete": { "type": { "name": "func" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "onDelete": { "type": { "name": "func" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
       },
-      "default": "'solid'"
+      "default": "'solid'",
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "ChipDelete",

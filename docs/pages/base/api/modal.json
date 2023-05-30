@@ -1,33 +1,74 @@
 {
   "props": {
-    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
-    "open": { "type": { "name": "bool" }, "required": true },
-    "closeAfterTransition": { "type": { "name": "bool" }, "default": "false" },
-    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
-    "disableEscapeKeyDown": { "type": { "name": "bool" }, "default": "false" },
-    "disablePortal": { "type": { "name": "bool" }, "default": "false" },
-    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
-    "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
-    "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
-    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "children": {
+      "type": { "name": "custom", "description": "element" },
+      "required": true,
+      "additionalPropsInfo": {}
+    },
+    "open": { "type": { "name": "bool" }, "required": true, "additionalPropsInfo": {} },
+    "closeAfterTransition": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "container": {
+      "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" },
+      "additionalPropsInfo": {}
+    },
+    "disableAutoFocus": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableEnforceFocus": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableEscapeKeyDown": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disablePortal": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableRestoreFocus": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "disableScrollLock": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "hideBackdrop": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "onBackdropClick": {
       "type": { "name": "func" },
       "deprecated": true,
-      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
+      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events.",
+      "additionalPropsInfo": {}
     },
-    "onClose": { "type": { "name": "func" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      },
+      "additionalPropsInfo": {}
+    },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ backdrop?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Modal",

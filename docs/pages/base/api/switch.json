@@ -1,24 +1,33 @@
 {
   "props": {
-    "checked": { "type": { "name": "bool" } },
-    "defaultChecked": { "type": { "name": "bool" } },
-    "disabled": { "type": { "name": "bool" } },
-    "onChange": { "type": { "name": "func" } },
-    "readOnly": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } },
+    "checked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "defaultChecked": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      },
+      "additionalPropsInfo": {}
+    },
+    "readOnly": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": {
         "name": "shape",
         "description": "{ input?: elementType, root?: elementType, thumb?: elementType, track?: elementType<br>&#124;&nbsp;null }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": { "slotsApi": true }
     }
   },
   "name": "Switch",

@@ -1,29 +1,42 @@
 {
   "props": {
-    "action": { "type": { "name": "custom", "description": "ref" } },
-    "centerRipple": { "type": { "name": "bool" }, "default": "false" },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
-    "component": { "type": { "name": "custom", "description": "element type" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
-    "disableTouchRipple": { "type": { "name": "bool" }, "default": "false" },
-    "focusRipple": { "type": { "name": "bool" }, "default": "false" },
-    "focusVisibleClassName": { "type": { "name": "string" } },
-    "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
-    "onFocusVisible": { "type": { "name": "func" } },
+    "action": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "centerRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
+    "component": {
+      "type": { "name": "custom", "description": "element type" },
+      "additionalPropsInfo": {}
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "disableTouchRipple": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "additionalPropsInfo": {}
+    },
+    "focusRipple": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "focusVisibleClassName": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "LinkComponent": {
+      "type": { "name": "elementType" },
+      "default": "'a'",
+      "additionalPropsInfo": {}
+    },
+    "onFocusVisible": { "type": { "name": "func" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "TouchRippleProps": { "type": { "name": "object" } },
+    "TouchRippleProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
     "touchRippleRef": {
       "type": {
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
-      }
+      },
+      "additionalPropsInfo": {}
     }
   },
   "name": "ButtonBase",

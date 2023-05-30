@@ -1,33 +1,37 @@
 {
   "props": {
-    "className": { "type": { "name": "string" } },
+    "className": { "type": { "name": "string" }, "additionalPropsInfo": {} },
     "color": {
       "type": {
         "name": "union",
         "description": "'danger'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'neutral'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": { "joy-color": true }
     },
-    "endDecorator": { "type": { "name": "node" } },
-    "error": { "type": { "name": "bool" } },
-    "fullWidth": { "type": { "name": "bool" } },
+    "endDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "error": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
+    "fullWidth": { "type": { "name": "bool" }, "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": { "joy-size": true }
     },
-    "startDecorator": { "type": { "name": "node" } },
+    "startDecorator": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'outlined'<br>&#124;&nbsp;'plain'<br>&#124;&nbsp;'soft'<br>&#124;&nbsp;'solid'<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": { "joy-variant": true }
     }
   },
   "name": "Input",

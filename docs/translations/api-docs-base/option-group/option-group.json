@@ -1,10 +1,30 @@
 {
   "componentDescription": "An unstyled option group to be used within a Select.",
   "propDescriptions": {
-    "disabled": "If <code>true</code> all the options in the group will be disabled.",
-    "label": "The human-readable description of the group.",
-    "slotProps": "The props used for each slot inside the Input.",
-    "slots": "The components used for each slot inside the OptionGroup. Either a string to use a HTML element or a component. See <a href=\"#slots\">Slots API</a> below for more details."
+    "disabled": {
+      "description": "If <code>true</code> all the options in the group will be disabled.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "label": {
+      "description": "The human-readable description of the group.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside the Input.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside the OptionGroup. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

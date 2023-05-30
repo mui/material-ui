@@ -1,36 +1,186 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "arrow": "If <code>true</code>, adds an arrow to the tooltip.",
-    "children": "Tooltip reference element.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component. To learn how to add your own colors, check out <a href=\"/joy-ui/customization/themed-components/#extend-colors\">Themed components—Extend colors</a>.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
-    "direction": "Direction of the text.",
-    "disableFocusListener": "Do not respond to focus-visible events.",
-    "disableHoverListener": "Do not respond to hover events.",
-    "disableInteractive": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
-    "disablePortal": "The <code>children</code> will be under the DOM hierarchy of the parent component.",
-    "disableTouchListener": "Do not respond to long press touch events.",
-    "enterDelay": "The number of milliseconds to wait before showing the tooltip. This prop won&#39;t impact the enter touch delay (<code>enterTouchDelay</code>).",
-    "enterNextDelay": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
-    "enterTouchDelay": "The number of milliseconds a user must touch the element before showing the tooltip.",
-    "followCursor": "If <code>true</code>, the tooltip follow the cursor over the wrapped element.",
-    "id": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id.",
-    "keepMounted": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Popper.",
-    "leaveDelay": "The number of milliseconds to wait before hiding the tooltip. This prop won&#39;t impact the leave touch delay (<code>leaveTouchDelay</code>).",
-    "leaveTouchDelay": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
-    "modifiers": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>.",
-    "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><ul><li>event: The event source of the callback.</li></ul>",
-    "onOpen": "Callback fired when the component requests to be open.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent) =&gt; void</code><br><ul><li>event: The event source of the callback.</li></ul>",
-    "open": "If <code>true</code>, the component is shown.",
-    "placement": "Tooltip placement.",
-    "size": "The size of the component. To learn how to add custom sizes to the component, check out <a href=\"/joy-ui/customization/themed-components/#extend-sizes\">Themed components—Extend sizes</a>.",
-    "slotProps": "The props used for each slot inside.",
-    "slots": "The components used for each slot inside. See <a href=\"#slots\">Slots API</a> below for more details.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "title": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
-    "variant": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use. To learn how to add your own variants, check out <a href=\"/joy-ui/customization/themed-components/#extend-variants\">Themed components—Extend variants</a>."
+    "arrow": {
+      "description": "If <code>true</code>, adds an arrow to the tooltip.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "children": {
+      "description": "Tooltip reference element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "color": {
+      "description": "The color of the component. It supports those theme colors that make sense for this component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "component": {
+      "description": "The component used for the root node. Either a string to use a HTML element or a component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "describeChild": {
+      "description": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "direction": {
+      "description": "Direction of the text.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableFocusListener": {
+      "description": "Do not respond to focus-visible events.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableHoverListener": {
+      "description": "Do not respond to hover events.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableInteractive": {
+      "description": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disablePortal": {
+      "description": "The <code>children</code> will be under the DOM hierarchy of the parent component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "disableTouchListener": {
+      "description": "Do not respond to long press touch events.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "enterDelay": {
+      "description": "The number of milliseconds to wait before showing the tooltip. This prop won&#39;t impact the enter touch delay (<code>enterTouchDelay</code>).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "enterNextDelay": {
+      "description": "The number of milliseconds to wait before showing the tooltip when one was already recently opened.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "enterTouchDelay": {
+      "description": "The number of milliseconds a user must touch the element before showing the tooltip.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "followCursor": {
+      "description": "If <code>true</code>, the tooltip follow the cursor over the wrapped element.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "id": {
+      "description": "This prop is used to help implement the accessibility logic. If you don&#39;t provide this prop. It falls back to a randomly generated id.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "keepMounted": {
+      "description": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Popper.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "leaveDelay": {
+      "description": "The number of milliseconds to wait before hiding the tooltip. This prop won&#39;t impact the leave touch delay (<code>leaveTouchDelay</code>).",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "leaveTouchDelay": {
+      "description": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "modifiers": {
+      "description": "Popper.js is based on a &quot;plugin-like&quot; architecture, most of its features are fully encapsulated &quot;modifiers&quot;.<br>A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, <a href=\"https://popper.js.org/docs/v2/modifiers/\">read the modifiers documentation</a>.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "onClose": {
+      "description": "Callback fired when the component requests to be closed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "onOpen": {
+      "description": "Callback fired when the component requests to be open.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": { "event": "The event source of the callback." }
+    },
+    "open": {
+      "description": "If <code>true</code>, the component is shown.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "placement": {
+      "description": "Tooltip placement.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "size": {
+      "description": "The size of the component.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slotProps": {
+      "description": "The props used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "slots": {
+      "description": "The components used for each slot inside.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "title": {
+      "description": "Tooltip title. Zero-length titles string, undefined, null and false are never displayed.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    },
+    "variant": {
+      "description": "The <a href=\"https://mui.com/joy-ui/main-features/global-variants/\">global variant</a> to use.",
+      "notes": "",
+      "deprecated": "",
+      "typeDescriptions": {}
+    }
   },
   "classDescriptions": {
     "root": { "description": "Class name applied to the root element." },

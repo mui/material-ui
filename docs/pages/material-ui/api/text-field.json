@@ -1,64 +1,82 @@
 {
   "props": {
-    "autoComplete": { "type": { "name": "string" } },
-    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
-    "classes": { "type": { "name": "object" } },
+    "autoComplete": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'primary'"
+      "default": "'primary'",
+      "additionalPropsInfo": {}
     },
-    "defaultValue": { "type": { "name": "any" } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "error": { "type": { "name": "bool" }, "default": "false" },
-    "FormHelperTextProps": { "type": { "name": "object" } },
-    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
-    "helperText": { "type": { "name": "node" } },
-    "id": { "type": { "name": "string" } },
-    "InputLabelProps": { "type": { "name": "object" } },
-    "inputProps": { "type": { "name": "object" } },
-    "InputProps": { "type": { "name": "object" } },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
-    "label": { "type": { "name": "node" } },
+    "defaultValue": { "type": { "name": "any" }, "additionalPropsInfo": {} },
+    "disabled": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "error": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "FormHelperTextProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "helperText": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "id": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "InputLabelProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "inputProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "InputProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
+    "inputRef": { "type": { "name": "custom", "description": "ref" }, "additionalPropsInfo": {} },
+    "label": { "type": { "name": "node" }, "additionalPropsInfo": {} },
     "margin": {
       "type": {
         "name": "enum",
         "description": "'dense'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
-      "default": "'none'"
+      "default": "'none'",
+      "additionalPropsInfo": {}
     },
-    "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "multiline": { "type": { "name": "bool" }, "default": "false" },
-    "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
-    "placeholder": { "type": { "name": "string" } },
-    "required": { "type": { "name": "bool" }, "default": "false" },
-    "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "select": { "type": { "name": "bool" }, "default": "false" },
-    "SelectProps": { "type": { "name": "object" } },
+    "maxRows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
+    "minRows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
+    "multiline": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "name": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(event: object) => void", "describedArgs": ["event"] },
+      "additionalPropsInfo": {}
+    },
+    "placeholder": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "required": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "rows": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "additionalPropsInfo": {}
+    },
+    "select": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "SelectProps": { "type": { "name": "object" }, "additionalPropsInfo": {} },
     "size": {
       "type": {
         "name": "union",
         "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
-      }
+      },
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
-    "type": { "type": { "name": "string" } },
-    "value": { "type": { "name": "any" } },
+    "type": { "type": { "name": "string" }, "additionalPropsInfo": {} },
+    "value": { "type": { "name": "any" }, "additionalPropsInfo": {} },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'outlined'"
+      "default": "'outlined'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "TextField",

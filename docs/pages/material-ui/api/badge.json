@@ -5,60 +5,69 @@
         "name": "shape",
         "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
       },
-      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
+      "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}",
+      "additionalPropsInfo": {}
     },
-    "badgeContent": { "type": { "name": "node" } },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "badgeContent": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "children": { "type": { "name": "node" }, "additionalPropsInfo": {} },
+    "classes": { "type": { "name": "object" }, "additionalPropsInfo": { "cssApi": true } },
     "color": {
       "type": {
         "name": "union",
         "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'default'"
+      "default": "'default'",
+      "additionalPropsInfo": {}
     },
-    "component": { "type": { "name": "elementType" } },
+    "component": { "type": { "name": "elementType" }, "additionalPropsInfo": {} },
     "components": {
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "componentsProps": {
       "type": {
         "name": "shape",
         "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
-    "invisible": { "type": { "name": "bool" }, "default": "false" },
-    "max": { "type": { "name": "number" }, "default": "99" },
+    "invisible": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
+    "max": { "type": { "name": "number" }, "default": "99", "additionalPropsInfo": {} },
     "overlap": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rectangular'" },
-      "default": "'rectangular'"
+      "default": "'rectangular'",
+      "additionalPropsInfo": {}
     },
-    "showZero": { "type": { "name": "bool" }, "default": "false" },
+    "showZero": { "type": { "name": "bool" }, "default": "false", "additionalPropsInfo": {} },
     "slotProps": {
       "type": {
         "name": "shape",
         "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "slots": {
       "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "additionalPropsInfo": {}
     },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalPropsInfo": { "sx": true }
     },
     "variant": {
       "type": {
         "name": "union",
         "description": "'dot'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
-      "default": "'standard'"
+      "default": "'standard'",
+      "additionalPropsInfo": {}
     }
   },
   "name": "Badge",
