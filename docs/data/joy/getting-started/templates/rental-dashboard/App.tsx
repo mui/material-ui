@@ -78,7 +78,6 @@ export default function RentalDashboard() {
                   sx={{
                     width: '100%',
                     height: 360,
-                    // backgroundColor: 'orange',
                     backgroundSize: 'cover',
                     backgroundImage:
                       'url("https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700")',

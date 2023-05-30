@@ -33,18 +33,17 @@ export default function RentalCard() {
         direction={{
           xs: 'column',
           sm: 'row',
-          // md: 'column',
-          // lg: 'row',
         }}
         width="100%"
         spacing={2.5}
       >
-        <CardOverflow
+        <Box
           sx={{
             width: {
               xs: '100%',
               sm: 200,
             },
+            // position: 'relative',
           }}
         >
           <AspectRatio
@@ -62,24 +61,37 @@ export default function RentalCard() {
               src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=400"
               style={{ display: 'block' }}
             />
+            <Chip
+              variant="soft"
+              startDecorator={<i data-feather="award" />}
+              size="sm"
+              sx={{ position: 'absolute', bottom: 8, left: 8 }}
+            >
+              Rare find
+            </Chip>
           </AspectRatio>
-          <Chip
+
+          <IconButton
             variant="soft"
-            startDecorator={<i data-feather="award" />}
-            size="sm"
-            sx={{ position: 'absolute', bottom: 8, left: 8 }}
+            sx={{
+              position: 'absolute',
+              bottom: 8,
+              right: 8,
+              display: { xs: 'block', sm: 'none' },
+            }}
           >
-            Rare find
-          </Chip>
-        </CardOverflow>
-        <Box
-          sx={{
-            flex: 1,
-            padding: {
-              xs: 2,
-              sm: 0,
-            },
-          }}
+            <i data-feather="star" />
+          </IconButton>
+        </Box>
+        <Stack
+          // sx={{
+          //   flex: 1,
+          //   padding: {
+          //     xs: 2,
+          //     sm: 0,
+          //   },
+          // }}
+          spacing={2}
         >
           <Stack
             spacing={1}
@@ -103,7 +115,12 @@ export default function RentalCard() {
               </Typography>
             </div>
             {/* todo: use toggle when its ready */}
-            <IconButton variant="soft">
+            <IconButton
+              variant="soft"
+              sx={{
+                display: { xs: 'none', sm: 'block' },
+              }}
+            >
               <i data-feather="star" />
             </IconButton>
           </Stack>
@@ -123,7 +140,7 @@ export default function RentalCard() {
               <strong>$540</strong> <Typography>total</Typography>
             </Typography>
           </Stack>
-        </Box>
+        </Stack>
       </Stack>
     </Card>
   );
