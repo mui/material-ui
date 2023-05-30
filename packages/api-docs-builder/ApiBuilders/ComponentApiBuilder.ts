@@ -244,17 +244,19 @@ function extractClassConditions(descriptions: any) {
 
       if (conditions && conditions[6]) {
         classConditions[className] = {
-          description: description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
-          nodeName: conditions[3],
-          conditions: conditions[6].replace(/`(.*?)`/g, '<code>$1</code>'),
+          description: renderMarkdownInline(
+            description.replace(stylesRegex, '$1{{nodeName}}$5{{conditions}}.'),
+          ),
+          nodeName: renderMarkdownInline(conditions[3]),
+          conditions: renderMarkdownInline(conditions[6].replace(/`(.*?)`/g, '<code>$1</code>')),
         };
       } else if (conditions && conditions[3] && conditions[3] !== 'the root element') {
         classConditions[className] = {
-          description: description.replace(stylesRegex, '$1{{nodeName}}$5.'),
-          nodeName: conditions[3],
+          description: renderMarkdownInline(description.replace(stylesRegex, '$1{{nodeName}}$5.')),
+          nodeName: renderMarkdownInline(conditions[3]),
         };
       } else {
-        classConditions[className] = { description };
+        classConditions[className] = { description: renderMarkdownInline(description) };
       }
     }
   });
