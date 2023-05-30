@@ -12,116 +12,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import { sxChip } from './AppNavDrawerItem';
 import CSSList from './ApiPage/CSSList';
-
-function CSSTable(props) {
-  const { componentStyles, classDescriptions } = props;
-  const t = useTranslate();
-
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th align="left">{t('api-docs.ruleName')}</th>
-          <th align="left">{t('api-docs.globalClass')}</th>
-          <th align="left">{t('api-docs.description')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {componentStyles.classes.map((className) => {
-          const isGlobalStateClass = !!componentStyles.globalClasses[className];
-          return (
-            <tr key={className}>
-              <td align="left">
-                <span className="prop-name">
-                  {isGlobalStateClass ? (
-                    <React.Fragment>
-                      {className}
-                      <Chip size="small" label={t('api-docs.state')} sx={sxChip('primary')} />
-                    </React.Fragment>
-                  ) : (
-                    className
-                  )}
-                </span>
-              </td>
-              <td align="left">
-                <span className="prop-name">
-                  .
-                  {componentStyles.globalClasses[className] ||
-                    `${componentStyles.name}-${className}`}
-                </span>
-              </td>
-              <td
-                align="left"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    classDescriptions[className] &&
-                    classDescriptions[className].description
-                      .replace(/{{conditions}}/, classDescriptions[className].conditions)
-                      .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
-                }}
-              />
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-}
-
-CSSTable.propTypes = {
-  classDescriptions: PropTypes.object.isRequired,
-  componentStyles: PropTypes.object.isRequired,
-};
-
-export function SlotsTable(props) {
-  const { componentSlots, slotDescriptions } = props;
-  const t = useTranslate();
-
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th align="left">{t('api-docs.name')}</th>
-          <th align="left">{t('api-docs.defaultClass')}</th>
-          <th align="left">{t('api-docs.defaultHTMLTag')}</th>
-          <th align="left">{t('api-docs.description')}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {componentSlots.map(({ class: className, name, default: defaultValue }) => {
-          return (
-            <tr key={name}>
-              <td align="left" width="15%">
-                <span className="slot-name">{name}</span>
-              </td>
-              <td align="left" width="25%">
-                <span
-                  className="slot-defaultClass"
-                  dangerouslySetInnerHTML={{ __html: className }}
-                />
-              </td>
-              <td align="left" width="25%">
-                {defaultValue && <span className="slot-default">{defaultValue}</span>}
-              </td>
-              <td
-                align="left"
-                width="35%"
-                dangerouslySetInnerHTML={{
-                  __html: slotDescriptions[name] || '',
-                }}
-              />
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-}
-
-SlotsTable.propTypes = {
-  componentSlots: PropTypes.array.isRequired,
-  slotDescriptions: PropTypes.object.isRequired,
-};
+import { SlotsList } from './ApiPage/SlotsList';
 
 export function ClassesTable(props) {
   const { componentClasses, classDescriptions, componentName } = props;
@@ -450,7 +341,7 @@ import { ${pageContent.name} } from '${source}';`}
                 }}
               />
             )}
-            <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+            <SlotsList componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
             <br />
             <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
             <span

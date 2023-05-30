@@ -5,12 +5,13 @@ import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { SlotsTable, ClassesTable } from 'docs/src/modules/components/ApiPage';
+import { ClassesTable } from 'docs/src/modules/components/ApiPage';
 import Divider from 'docs/src/modules/components/ApiDivider';
 import PropertiesTable from 'docs/src/modules/components/PropertiesTable';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CSSList from './ApiPage/CSSList';
+import SlotsList from './ApiPage/SlotsList';
 
 function getTranslatedHeader(t, header, text) {
   const translations = {
@@ -238,7 +239,11 @@ import { ${pageContent.name} } from '${source}';`}
                   }}
                 />
               )}
-              <SlotsTable componentSlots={componentSlots} slotDescriptions={slotDescriptions} />
+              <SlotsList
+                componentSlots={componentSlots}
+                slotDescriptions={slotDescriptions}
+                componentName={componentName}
+              />
               <br />
               <p dangerouslySetInnerHTML={{ __html: t('api-docs.overrideStyles') }} />
               <span
