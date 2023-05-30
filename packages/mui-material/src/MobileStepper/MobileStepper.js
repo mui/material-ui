@@ -123,10 +123,12 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
   };
 
   let value;
-  if (steps === 1) {
-    value = 100;
-  } else {
-    value = Math.ceil((activeStep / (steps - 1)) * 100);
+  if (variant === 'progress') {
+    if (steps === 1) {
+      value = 100;
+    } else {
+      value = Math.ceil((activeStep / (steps - 1)) * 100);
+    }
   }
 
   const classes = useUtilityClasses(ownerState);
