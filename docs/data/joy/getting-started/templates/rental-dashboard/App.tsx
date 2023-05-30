@@ -83,6 +83,7 @@ export default function RentalDashboard() {
                     backgroundImage:
                       'url("https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700")',
                   }}
+                  display={{ xs: 'block', md: 'none' }}
                 />
                 <Filters />
                 <Search />

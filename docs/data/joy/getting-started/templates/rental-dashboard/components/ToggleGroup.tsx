@@ -64,7 +64,7 @@ export default function ToggleGroup({ options }: ToggleGroupProps) {
               action: {
                 sx: { borderRadius: 0, transition: 'none' },
               },
-              label: { sx: { lineHeight: 0 } },
+              label: { sx: { lineHeight: 0, fontSize: 'sm', fontWeight: 'lg' } },
             }}
           />
         </Box>
