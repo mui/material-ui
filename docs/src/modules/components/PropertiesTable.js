@@ -1,14 +1,9 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import ApiItem from './ApiPage/ApiItem';
-
-const Wrapper = styled('div')({
-  // overflow: 'hidden',
-});
 
 export default function PropertiesTable(props) {
   const {
@@ -21,7 +16,7 @@ export default function PropertiesTable(props) {
 
   const hashPrefix = componentName ? `${componentName}-` : '';
   return (
-    <Wrapper>
+    <div>
       {Object.entries(properties)
         .filter(([, propData]) => propData.description !== '@ignore')
         .map(([propName, propData]) => {
@@ -85,7 +80,7 @@ export default function PropertiesTable(props) {
             </ApiItem>
           );
         })}
-    </Wrapper>
+    </div>
   );
 }
 
