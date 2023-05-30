@@ -42,7 +42,7 @@ export interface ReactApi extends ReactDocgenApi {
   /**
    * If `true`, the component supports theme default props customization.
    * If `null`, we couldn't infer this information.
-   * If `undefined`, it's not applicable in this context, e.g. unstyled components.
+   * If `undefined`, it's not applicable in this context, e.g. Base UI components.
    */
   themeDefaultProps: boolean | undefined | null;
   /**
@@ -313,6 +313,7 @@ const generateApiPage = (
   reactApi: ReactApi,
   onlyJsonFile: boolean = false,
 ) => {
+  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
   /**
    * Gather the metadata needed for the component's API page.
    */
@@ -351,7 +352,7 @@ const generateApiPage = (
     }),
     spread: reactApi.spread,
     themeDefaultProps: reactApi.themeDefaultProps,
-    muiName: reactApi.apiPathname.startsWith('/joy-ui')
+    muiName: normalizedApiPathname.startsWith('/joy-ui')
       ? reactApi.muiName.replace('Mui', 'Joy')
       : reactApi.muiName,
     forwardsRefTo: reactApi.forwardsRefTo,
@@ -421,14 +422,16 @@ const attachTranslations = (reactApi: ReactApi) => {
       let description = generatePropDescription(prop, propName);
       description = renderMarkdownInline(description);
 
+      const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
         description +=
           ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
-      } else if (propName === 'slots' && !reactApi.apiPathname.startsWith('/material-ui')) {
+      } else if (propName === 'slots' && !normalizedApiPathname.startsWith('/material-ui')) {
         description += ' See <a href="#slots">Slots API</a> below for more details.';
-      } else if (reactApi.apiPathname.startsWith('/joy-ui')) {
+      } else if (normalizedApiPathname.startsWith('/joy-ui')) {
         switch (propName) {
           case 'size':
             description +=
@@ -657,7 +660,7 @@ export default async function generateComponentApi(
 
   reactApi.styles = parseStyles({ project, componentName: reactApi.name });
 
-  if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+  if (reactApi.styles.classes.length > 0 && !filename.includes('mui-base')) {
     reactApi.styles.name = reactApi.muiName;
   }
   reactApi.styles.classes.forEach((key) => {
@@ -682,16 +685,25 @@ export default async function generateComponentApi(
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);
 
+  const normalizedApiPathname = reactApi.apiPathname.replace(/\\/g, '/');
+  const normalizedFilename = reactApi.filename.replace(/\\/g, '/');
+
   if (!skipApiGeneration) {
     // Generate pages, json and translations
-    const translationPagesDirectory =
-      reactApi.apiPathname.indexOf('/joy-ui/') === 0
-        ? 'docs/translations/api-docs-joy'
-        : 'docs/translations/api-docs';
+    let translationPagesDirectory = 'docs/translations/api-docs';
+    if (normalizedApiPathname.startsWith('/joy-ui') && normalizedFilename.includes('mui-joy/src')) {
+      translationPagesDirectory = 'docs/translations/api-docs-joy';
+    } else if (
+      normalizedApiPathname.startsWith('/base') &&
+      normalizedFilename.includes('mui-base/src')
+    ) {
+      translationPagesDirectory = 'docs/translations/api-docs-base';
+    }
+
     generateApiTranslations(path.join(process.cwd(), translationPagesDirectory), reactApi);
 
     // Once we have the tabs API in all projects, we can make this default
-    const generateOnlyJsonFile = reactApi.apiPathname.startsWith('/base');
+    const generateOnlyJsonFile = normalizedApiPathname.startsWith('/base');
     generateApiPage(apiPagesDirectory, translationPagesDirectory, reactApi, generateOnlyJsonFile);
 
     // Add comment about demo & api links (including inherited component) to the component file

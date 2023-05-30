@@ -11,18 +11,22 @@ import {
 import { useListItem } from '../useList';
 import { useCompoundItem } from '../utils/useCompoundItem';
 
+function idGenerator(existingKeys: Set<string>) {
+  return `menu-item-${existingKeys.size}`;
+}
+
 /**
  *
  * Demos:
  *
- * - [Unstyled Menu](https://mui.com/base/react-menu/#hooks)
+ * - [Menu](https://mui.com/base/react-menu/#hooks)
  *
  * API:
  *
  * - [useMenuItem API](https://mui.com/base/react-menu/hooks-api/#use-menu-item)
  */
 export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemReturnValue {
-  const { disabled = false, id: idParam, ref: externalRef, label } = params;
+  const { disabled = false, id: idParam, rootRef: externalRef, label } = params;
 
   const id = useId(idParam);
   const itemRef = React.useRef<HTMLElement>(null);
@@ -35,17 +39,17 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
   const {
     getRootProps: getListRootProps,
     highlighted,
-    ref: listItemRefHandler,
+    rootRef: listItemRefHandler,
   } = useListItem({
     item: id,
   });
 
-  const { index, totalItemCount } = useCompoundItem(id, itemMetadata);
+  const { index, totalItemCount } = useCompoundItem(id ?? idGenerator, itemMetadata);
 
   const {
     getRootProps: getButtonProps,
     focusVisible,
-    ref: buttonRefHandler,
+    rootRef: buttonRefHandler,
   } = useButton({
     disabled,
     focusableWhenDisabled: true,
@@ -71,7 +75,7 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
       highlighted: false,
       index: -1,
       totalItemCount: 0,
-      ref: handleRef,
+      rootRef: handleRef,
     };
   }
 
@@ -104,6 +108,6 @@ export default function useMenuItem(params: UseMenuItemParameters): UseMenuItemR
     highlighted,
     index,
     totalItemCount,
-    ref: handleRef,
+    rootRef: handleRef,
   };
 }

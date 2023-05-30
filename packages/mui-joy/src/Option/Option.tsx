@@ -73,7 +73,7 @@ const Option = React.forwardRef(function Option(inProps, ref: React.ForwardedRef
     disabled,
     label: computedLabel,
     value,
-    optionRef: combinedRef,
+    rootRef: combinedRef,
   });
 
   const { getColor } = useColorInversion(variant);

@@ -140,7 +140,7 @@
       "name": "input",
       "description": "The component that renders the input.",
       "default": "'input'",
-      "class": null
+      "class": ".MuiSlider-input"
     }
   ],
   "classes": {

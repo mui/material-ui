@@ -1,9 +1,8 @@
 import * as React from 'react';
-import MenuUnstyled from '@mui/base/MenuUnstyled';
-import MenuItemUnstyled, {
-  menuItemUnstyledClasses,
-} from '@mui/base/MenuItemUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import Menu from '@mui/base/Menu';
+import MenuItem, { menuItemClasses } from '@mui/base/MenuItem';
+import Button, { buttonClasses } from '@mui/base/Button';
+import Popper from '@mui/base/Popper';
 import { styled } from '@mui/system';
 import { ListActionTypes } from '@mui/base/useList';
 
@@ -74,14 +73,14 @@ export default function UnstyledMenuSimple() {
         Dashboard
       </TriggerButton>
 
-      <MenuUnstyled
+      <Menu
         actions={menuActions}
         open={isOpen}
         onOpenChange={(open) => {
           setOpen(open);
         }}
         anchorEl={buttonElement}
-        slots={{ root: Popper, listbox: StyledListbox }}
+        slots={{ root: StyledPopper, listbox: StyledListbox }}
         slotProps={{ listbox: { id: 'simple-menu' } }}
       >
         <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
@@ -93,7 +92,7 @@ export default function UnstyledMenuSimple() {
         <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
           Log out
         </StyledMenuItem>
-      </MenuUnstyled>
+      </Menu>
     </div>
   );
 }
@@ -134,11 +133,11 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  box-shadow: 0px 2px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
 
-const StyledMenuItem = styled(MenuItemUnstyled)(
+const StyledMenuItem = styled(MenuItem)(
   ({ theme }) => `
   list-style: none;
   padding: 8px;
@@ -150,31 +149,31 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
     border-bottom: none;
   }
 
-  &.${menuItemUnstyledClasses.focusVisible} {
+  &.${menuItemClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
 
-  &.${menuItemUnstyledClasses.disabled} {
+  &.${menuItemClasses.disabled} {
     color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
   }
 
-  &:hover:not(.${menuItemUnstyledClasses.disabled}) {
+  &:hover:not(.${menuItemClasses.disabled}) {
     background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
 );
 
-const TriggerButton = styled('button')(
+const TriggerButton = styled(Button)(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 8px 14px;
   line-height: 1.5;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
@@ -189,13 +188,13 @@ const TriggerButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
-  &:focus {
+  &.${buttonClasses.focusVisible} {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
   `,
 );
 
-const Popper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;

@@ -1,9 +1,5 @@
 {
   "parameters": {
-    "ref": {
-      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
-      "required": true
-    },
     "aria-labelledby": { "type": { "name": "string", "description": "string" } },
     "defaultValue": { "type": { "name": "number | number[]", "description": "number | number[]" } },
     "disabled": { "type": { "name": "boolean", "description": "boolean" }, "default": "false" },
@@ -35,6 +31,9 @@
       },
       "default": "'horizontal'"
     },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" }
+    },
     "scale": {
       "type": {
         "name": "(value: number) =&gt; number",
@@ -47,16 +46,8 @@
     "value": { "type": { "name": "number | number[]", "description": "number | number[]" } }
   },
   "returnValue": {
-    "active": {
-      "type": { "name": "number", "description": "number" },
-      "default": "-1",
-      "required": true
-    },
-    "axis": {
-      "type": { "name": "Axis", "description": "Axis" },
-      "default": "horizontal",
-      "required": true
-    },
+    "active": { "type": { "name": "number", "description": "number" }, "required": true },
+    "axis": { "type": { "name": "Axis", "description": "Axis" }, "required": true },
     "axisProps": {
       "type": {
         "name": "{ [key in Axis]: AxisProps&lt;key&gt; }",
@@ -64,11 +55,7 @@
       },
       "required": true
     },
-    "dragging": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "dragging": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "focusedThumbIndex": {
       "type": { "name": "number", "description": "number" },
       "required": true
@@ -95,17 +82,20 @@
       "required": true
     },
     "marks": { "type": { "name": "Mark[]", "description": "Mark[]" }, "required": true },
-    "open": {
-      "type": { "name": "number", "description": "number" },
-      "default": "-1",
+    "open": { "type": { "name": "number", "description": "number" }, "required": true },
+    "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "rootRef": {
+      "type": {
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
+      },
       "required": true
     },
-    "range": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "trackLeap": { "type": { "name": "number", "description": "number" }, "required": true },
     "trackOffset": { "type": { "name": "number", "description": "number" }, "required": true },
     "values": { "type": { "name": "number[]", "description": "number[]" }, "required": true }
   },
   "name": "useSlider",
   "filename": "/packages/mui-base/src/useSlider/useSlider.ts",
-  "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Unstyled Slider</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-slider/#hook\">Slider</a></li></ul>"
 }

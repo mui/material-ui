@@ -1,7 +1,7 @@
 {
   "parameters": {
-    "ref": {
-      "type": { "name": "React.Ref&lt;any&gt;", "description": "React.Ref&lt;any&gt;" },
+    "rootRef": {
+      "type": { "name": "React.Ref&lt;Element&gt;", "description": "React.Ref&lt;Element&gt;" },
       "required": true
     },
     "disabled": { "type": { "name": "boolean", "description": "boolean" } },
@@ -26,10 +26,10 @@
     },
     "highlighted": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "index": { "type": { "name": "number", "description": "number" }, "required": true },
-    "ref": {
+    "rootRef": {
       "type": {
-        "name": "((instance: unknown) =&gt; void) | null",
-        "description": "((instance: unknown) =&gt; void) | null"
+        "name": "React.RefCallback&lt;Element&gt; | null",
+        "description": "React.RefCallback&lt;Element&gt; | null"
       },
       "required": true
     },
@@ -37,5 +37,5 @@
   },
   "name": "useMenuItem",
   "filename": "/packages/mui-base/src/useMenuItem/useMenuItem.ts",
-  "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Unstyled Menu</a></li></ul>"
+  "demos": "<ul><li><a href=\"/base/react-menu/#hooks\">Menu</a></li></ul>"
 }

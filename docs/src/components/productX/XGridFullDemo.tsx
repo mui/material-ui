@@ -63,6 +63,7 @@ function SettingsPanel(props: GridToolbarContainerProps) {
       sx={{
         flexDirection: { xs: 'column', sm: 'row' },
         alignContent: { xs: 'start', sm: 'center' },
+        alignItems: { xs: 'start', sm: 'center' },
         '& > *': {
           '&:not(:first-child)': { ml: { xs: 0, sm: 1 } },
           '&:last-child': { ml: 'auto' },
@@ -102,7 +103,11 @@ function SettingsPanel(props: GridToolbarContainerProps) {
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
         </Select>
       </FormControl>
-      <Button onClick={handleApplyChanges} sx={{ mt: { xs: 2, sm: 0 } }}>
+      <Button
+        variant="outlined"
+        onClick={handleApplyChanges}
+        sx={{ mt: { xs: 2, sm: 0 }, color: 'primary.300', height: 'fit-content' }}
+      >
         Apply changes
       </Button>
     </FormGroup>
@@ -222,7 +227,7 @@ export default function XGridFullDemo() {
           />
         </Paper>
       </Frame.Demo>
-      <Frame.Info data-mui-color-scheme="dark" sx={{ p: 1 }}>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ pl: 1, pr: 2, py: 2 }}>
         <SettingsPanel onApply={handleApplyClick} size={size} type={type} />
       </Frame.Info>
     </Frame>

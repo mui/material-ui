@@ -2,6 +2,7 @@ import * as React from 'react';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
 import { useCompoundParent } from '../utils/useCompound';
+import { TabPanelMetadata } from './TabsProvider';
 
 export interface TabMetadata {
   disabled: boolean;
@@ -15,7 +16,7 @@ type IdLookupFunction = (id: string | number) => string | undefined;
  *
  * Demos:
  *
- * - [Unstyled Tabs](https://mui.com/base/react-tabs/#hooks)
+ * - [Tabs](https://mui.com/base/react-tabs/#hooks)
  *
  * API:
  *
@@ -48,14 +49,14 @@ function useTabs(parameters: UseTabsParameters): UseTabsReturnValue {
 
   const { subitems: tabPanels, contextValue: compoundComponentContextValue } = useCompoundParent<
     string | number,
-    string | undefined
+    TabPanelMetadata
   >();
 
   const tabIdLookup = React.useRef<IdLookupFunction>(() => undefined);
 
   const getTabPanelId = React.useCallback(
     (tabValue: string | number) => {
-      return tabPanels.get(tabValue);
+      return tabPanels.get(tabValue)?.id;
     },
     [tabPanels],
   );
