@@ -11,9 +11,15 @@ const Wrapper = styled('div')({
 });
 
 export default function PropertiesTable(props) {
-  const { properties, propertiesDescriptions, showOptionalAbbr = false } = props;
+  const {
+    properties,
+    propertiesDescriptions,
+    componentName = '',
+    showOptionalAbbr = false,
+  } = props;
   const t = useTranslate();
 
+  const hashPrefix = componentName ? `${componentName}-` : '';
   return (
     <Wrapper>
       {Object.entries(properties)
@@ -25,7 +31,7 @@ export default function PropertiesTable(props) {
           return (
             <ApiItem
               key={propName}
-              id={`prop-${propName}`}
+              id={`${hashPrefix}prop-${propName}`}
               title={propName}
               description={typeName}
               note={
@@ -125,6 +131,7 @@ export default function PropertiesTable(props) {
 }
 
 PropertiesTable.propTypes = {
+  componentName: PropTypes.string,
   properties: PropTypes.object.isRequired,
   propertiesDescriptions: PropTypes.object.isRequired,
   showOptionalAbbr: PropTypes.bool,

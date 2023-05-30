@@ -16,19 +16,21 @@ export type CSSListProps = {
       conditions?: string;
     };
   };
+  componentName?: string;
 };
 
 export default function CSSList(props: CSSListProps) {
-  const { componentStyles, classDescriptions } = props;
+  const { componentStyles, classDescriptions, componentName } = props;
   // const t = useTranslate();
 
+  const hashPrefix = componentName ? `${componentName}-` : '';
   return (
     <React.Fragment>
       {componentStyles.classes.map((className) => {
         const isGlobalStateClass = !!componentStyles.globalClasses[className];
         return (
           <ApiItem
-            id={`classes-${className}`}
+            id={`${hashPrefix}classes-${className}`}
             key={className}
             description={`${className}${isGlobalStateClass ? ' (State)' : ''}`}
             title={`.${
