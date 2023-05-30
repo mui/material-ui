@@ -15,7 +15,17 @@ import {
 
 import Rating from './Rating';
 
-export default function RentalCard() {
+type RentalCardProps = {
+  title: React.ReactNode;
+  category: React.ReactNode;
+  rareFind?: boolean;
+};
+
+export default function RentalCard({
+  category,
+  title,
+  rareFind = false,
+}: RentalCardProps) {
   return (
     <Card
       variant="outlined"
@@ -36,6 +46,7 @@ export default function RentalCard() {
         }}
         width="100%"
         spacing={2.5}
+        // flexGrow={1}
       >
         <Box
           sx={{
@@ -61,14 +72,16 @@ export default function RentalCard() {
               src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=400"
               style={{ display: 'block' }}
             />
-            <Chip
-              variant="soft"
-              startDecorator={<i data-feather="award" />}
-              size="sm"
-              sx={{ position: 'absolute', bottom: 8, left: 8 }}
-            >
-              Rare find
-            </Chip>
+            {rareFind && (
+              <Chip
+                variant="soft"
+                startDecorator={<i data-feather="award" />}
+                size="sm"
+                sx={{ position: 'absolute', bottom: 8, left: 8 }}
+              >
+                Rare find
+              </Chip>
+            )}
           </AspectRatio>
 
           <IconButton
@@ -84,14 +97,15 @@ export default function RentalCard() {
           </IconButton>
         </Box>
         <Stack
-          // sx={{
-          //   flex: 1,
-          //   padding: {
-          //     xs: 2,
-          //     sm: 0,
-          //   },
-          // }}
+          sx={{
+            padding: {
+              // padding top on mobile needs to be zero or remove margin
+              xs: 2,
+              sm: 0,
+            },
+          }}
           spacing={2}
+          flex={1}
         >
           <Stack
             spacing={1}
@@ -101,7 +115,7 @@ export default function RentalCard() {
           >
             <div>
               <Typography color="primary" fontSize="sm" fontWeight="lg">
-                Entire apartment rental in Collingwood
+                {category}
               </Typography>
               <Typography fontWeight="md" fontSize="lg">
                 <Link
@@ -110,7 +124,7 @@ export default function RentalCard() {
                   href="#interactive-card"
                   sx={{ color: 'text.primary' }}
                 >
-                  A Stylish Apt, 5 min walk to Queen Victoria Market
+                  {title}
                 </Link>
               </Typography>
             </div>

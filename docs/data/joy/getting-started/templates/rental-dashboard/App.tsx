@@ -87,13 +87,23 @@ export default function RentalDashboard() {
                 <Filters />
                 <Search />
                 <Toggles />
-                <RentalCard />
-                <RentalCard />
-                <RentalCard />
-                <RentalCard />
-                <RentalCard />
-                <RentalCard />
-                <RentalCard />
+                <RentalCard
+                  title="A Stylish Apt, 5 min walk to Queen Victoria Market"
+                  category="Entire apartment rental in Collingwood"
+                  rareFind
+                />
+                <RentalCard
+                  title="Designer NY style loft"
+                  category="Entire loft in central business district"
+                />
+                <RentalCard
+                  title="Designer NY style loft"
+                  category="Entire loft in central business district"
+                />
+                <RentalCard
+                  title="Designer NY style loft"
+                  category="Entire loft in central business district"
+                />
                 <Divider />
                 Pagination
               </Stack>

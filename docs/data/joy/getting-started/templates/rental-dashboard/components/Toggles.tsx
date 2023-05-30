@@ -4,7 +4,7 @@ import ToggleGroup from './ToggleGroup';
 
 export default function Toggles() {
   return (
-    <Stack spacing={1.5} direction="row" justifyContent="space-between">
+    <Stack spacing={1.5} direction="row" justifyContent="space-between" pt={2}>
       <ToggleGroup
         options={[
           { label: 'Sort by date', value: 'date' },
