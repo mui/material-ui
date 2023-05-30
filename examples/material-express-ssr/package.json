@@ -9,7 +9,6 @@
   "dependencies": {
     "@babel/core": "latest",
     "@babel/node": "latest",
-    "@babel/plugin-proposal-class-properties": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
     "@emotion/cache": "latest",

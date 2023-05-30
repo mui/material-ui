@@ -33,6 +33,7 @@ export default function SelectGroupedOptions() {
               maxHeight: 240,
               overflow: 'auto',
               '--List-padding': '0px',
+              '--ListItem-radius': '0px',
             },
           },
         }}
@@ -56,11 +57,7 @@ export default function SelectGroupedOptions() {
                   value={anim}
                   label={
                     <React.Fragment>
-                      <Chip
-                        size="sm"
-                        color={colors[name]}
-                        sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
-                      >
+                      <Chip size="sm" color={colors[name]} sx={{ borderRadius: 'xs', mr: 1 }}>
                         {name}
                       </Chip>{' '}
                       {anim}

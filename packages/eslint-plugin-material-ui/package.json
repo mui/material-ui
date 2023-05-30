@@ -8,8 +8,8 @@
     "emoji-regex": "^10.2.1"
   },
   "devDependencies": {
-    "@types/eslint": "^8.37.0",
-    "@typescript-eslint/parser": "^5.53.0"
+    "@types/eslint": "^8.40.0",
+    "@typescript-eslint/parser": "^5.59.8"
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/eslint-plugin-material-ui/**/*.test.js'"

@@ -258,9 +258,9 @@ export default function ApiPage(props) {
     : '/material-ui/customization/theme-components/#theme-style-overrides';
   let slotGuideLink = '';
   if (isJoyComponent) {
-    slotGuideLink = '/joy-ui/customization/themed-components/#component-identifier';
+    slotGuideLink = '/joy-ui/guides/overriding-component-structure/';
   } else if (isBaseComponent) {
-    slotGuideLink = '/base/getting-started/customization/#overriding-subcomponent-slots';
+    slotGuideLink = '/base/guides/overriding-component-structure/';
   }
 
   const {

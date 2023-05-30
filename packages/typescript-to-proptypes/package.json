@@ -21,12 +21,12 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.20.0",
+    "@types/babel__core": "^7.20.1",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.194",
-    "@types/node": "^16.18.25",
+    "@types/lodash": "^4.14.195",
+    "@types/node": "^16.18.34",
     "@types/prettier": "^2.7.2",
-    "@types/react": "^18.0.26",
+    "@types/react": "^18.2.7",
     "@types/uuid": "^8.3.4",
     "fast-glob": "^3.2.12",
     "prettier": "^2.8.8",

@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "5.12.3",
+  "version": "5.13.2",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.21.0",
-    "@emotion/cache": "^11.10.8",
+    "@emotion/cache": "^11.11.0",
     "csstype": "^3.1.2",
     "prop-types": "^15.8.1"
   },

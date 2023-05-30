@@ -135,7 +135,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         backdrop: () => ({
           ...BackdropProps,
           ...resolveComponentProps(backdropSlotProps, ownerState),
-          className: clsx(backdropSlotProps?.className, classes?.backdrop),
+          className: clsx(
+            backdropSlotProps?.className,
+            BackdropProps?.className,
+            classes?.backdrop,
+          ),
         }),
       }}
       onTransitionEnter={() => setExited(false)}

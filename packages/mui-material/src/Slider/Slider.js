@@ -349,7 +349,7 @@ const StyledSliderValueLabel = styled(SliderValueLabel, {
       height: 8,
       transform: 'translate(-50%, -50%) rotate(45deg)',
       backgroundColor: 'inherit',
-      right: '-20%',
+      right: -8,
       top: '50%',
     },
   }),

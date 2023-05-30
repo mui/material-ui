@@ -170,12 +170,10 @@ export interface AxisProps<T extends Axis> {
 export interface UseSliderReturnValue {
   /**
    * The active index of the slider.
-   * @default -1
    */
   active: number;
   /**
    * The orientation of the slider.
-   * @default horizontal
    */
   axis: Axis;
   /**
@@ -184,7 +182,6 @@ export interface UseSliderReturnValue {
   axisProps: { [key in Axis]: AxisProps<key> };
   /**
    * If `true`, the slider is being dragged.
-   * @default false
    */
   dragging: boolean;
   /**
@@ -221,7 +218,6 @@ export interface UseSliderReturnValue {
   marks: Mark[];
   /**
    * The thumb index for the current value when in hover state.
-   * @default -1
    */
   open: number;
   /**

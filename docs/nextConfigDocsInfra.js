@@ -60,6 +60,7 @@ function withDocsInfra(nextConfig) {
     },
     experimental: {
       scrollRestoration: true,
+      esmExternals: false,
       ...nextConfig.experimental,
     },
     eslint: {
