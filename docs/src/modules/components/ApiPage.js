@@ -12,7 +12,7 @@ import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import Ad from 'docs/src/modules/components/Ad';
 import { sxChip } from './AppNavDrawerItem';
 import CSSList from './ApiPage/CSSList';
-import { SlotsList } from './ApiPage/SlotsList';
+import SlotsList from './ApiPage/SlotsList';
 
 export function ClassesTable(props) {
   const { componentClasses, classDescriptions, componentName } = props;
