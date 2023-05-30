@@ -26,7 +26,7 @@
     "missingOppositeContent": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "TimelineOppositeContent isn't provided"
+      "conditions": "TimelineOppositeContent isn&#39;t provided"
     }
   }
 }

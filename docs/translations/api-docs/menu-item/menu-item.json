@@ -36,7 +36,7 @@
     },
     "gutters": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>disableGutters={true}</code>"
     },
     "selected": {

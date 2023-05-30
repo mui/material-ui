@@ -13,11 +13,11 @@
     "root": { "description": "Class name applied to the root element." },
     "badge": {
       "description": "Class name applied to {{nodeName}}.",
-      "nodeName": "the badge `span` element"
+      "nodeName": "the badge <code>span</code> element"
     },
     "invisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the badge `span` element",
+      "nodeName": "the badge <code>span</code> element",
       "conditions": "<code>invisible={true}</code>"
     }
   },

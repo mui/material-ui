@@ -80,7 +80,7 @@
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
-      "conditions": "it's active"
+      "conditions": "it&#39;s active"
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
@@ -129,15 +129,15 @@
     "valueLabelOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb label element",
-      "conditions": "it's open"
+      "conditions": "it&#39;s open"
     },
     "valueLabelCircle": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the thumb label's circle element"
+      "nodeName": "the thumb label&#39;s circle element"
     },
     "valueLabelLabel": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the thumb label's label element"
+      "nodeName": "the thumb label&#39;s label element"
     }
   }
 }

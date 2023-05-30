@@ -12,7 +12,7 @@
     "root": { "description": "Styles applied to the root element." },
     "img": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "an `img` element to ensure it covers the item"
+      "nodeName": "an <code>img</code> element to ensure it covers the item"
     },
     "standard": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

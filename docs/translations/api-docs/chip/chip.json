@@ -171,16 +171,16 @@
     },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label `span` element"
+      "nodeName": "the label <code>span</code> element"
     },
     "labelSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label `span` element",
+      "nodeName": "the label <code>span</code> element",
       "conditions": "<code>size=\"small\"</code>"
     },
     "labelMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the label `span` element",
+      "nodeName": "the label <code>span</code> element",
       "conditions": "<code>size=\"medium\"</code>"
     },
     "deleteIcon": {

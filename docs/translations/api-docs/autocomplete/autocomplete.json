@@ -156,11 +156,11 @@
     },
     "groupLabel": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the group's label elements"
+      "nodeName": "the group&#39;s label elements"
     },
     "groupUl": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the group's ul elements"
+      "nodeName": "the group&#39;s ul elements"
     }
   }
 }

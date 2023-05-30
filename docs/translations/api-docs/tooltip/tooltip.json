@@ -69,22 +69,22 @@
     "tooltipPlacementLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"left\""
+      "conditions": "<code>placement</code> contains &quot;left&quot;"
     },
     "tooltipPlacementRight": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"right\""
+      "conditions": "<code>placement</code> contains &quot;right&quot;"
     },
     "tooltipPlacementTop": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"top\""
+      "conditions": "<code>placement</code> contains &quot;top&quot;"
     },
     "tooltipPlacementBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",
-      "conditions": "<code>placement</code> contains \"bottom\""
+      "conditions": "<code>placement</code> contains &quot;bottom&quot;"
     }
   }
 }

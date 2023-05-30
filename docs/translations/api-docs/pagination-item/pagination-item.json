@@ -75,12 +75,12 @@
     "firstLast": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>type=\"first\"</code> or type=\"last\""
+      "conditions": "<code>type=\"first\"</code> or type=&quot;last&quot;"
     },
     "previousNext": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>type=\"previous\"</code> or type=\"next\""
+      "conditions": "<code>type=\"previous\"</code> or type=&quot;next&quot;"
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

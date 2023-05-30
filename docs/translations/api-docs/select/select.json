@@ -29,7 +29,7 @@
   "classDescriptions": {
     "select": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the select component `select` class"
+      "nodeName": "the select component <code>select</code> class"
     },
     "multiple": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -53,7 +53,7 @@
     },
     "disabled": {
       "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the select component `disabled` class"
+      "nodeName": "the select component <code>disabled</code> class"
     },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconOpen": {

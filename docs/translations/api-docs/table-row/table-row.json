@@ -23,12 +23,12 @@
     "head": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "table variant=\"head\""
+      "conditions": "table variant=&quot;head&quot;"
     },
     "footer": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "table variant=\"footer\""
+      "conditions": "table variant=&quot;footer&quot;"
     }
   }
 }

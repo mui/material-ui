@@ -40,7 +40,7 @@
     },
     "expandIconWrapper": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the `expandIcon`'s wrapper element"
+      "nodeName": "the <code>expandIcon</code>&#39;s wrapper element"
     }
   }
 }

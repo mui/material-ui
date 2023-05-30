@@ -62,12 +62,12 @@
     "barColorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the bar elements",
-      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant</code> not \"buffer\""
+      "conditions": "<code>color=\"primary\"</code>; bar2 if <code>variant</code> not &quot;buffer&quot;"
     },
     "barColorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the bar elements",
-      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant</code> not \"buffer\""
+      "conditions": "<code>color=\"secondary\"</code>; bar2 if <code>variant</code> not &quot;buffer&quot;"
     },
     "bar1Indeterminate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

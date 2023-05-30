@@ -64,11 +64,11 @@
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}}.",
-      "nodeName": "the `component`'s `focusVisibleClassName` prop"
+      "nodeName": "the <code>component</code>&#39;s <code>focusVisibleClassName</code> prop"
     },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the inner `component` element",
+      "nodeName": "the inner <code>component</code> element",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {

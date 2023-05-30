@@ -21,7 +21,7 @@
     },
     "touchRipple": {
       "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the `ButtonBase` touch-ripple"
+      "nodeName": "the <code>ButtonBase</code> touch-ripple"
     }
   }
 }

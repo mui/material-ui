@@ -95,7 +95,7 @@
     },
     "inputHiddenLabel": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the `input`",
+      "nodeName": "the <code>input</code>",
       "conditions": "in <code><FormControl hiddenLabel /></code>"
     },
     "inputMultiline": {

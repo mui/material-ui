@@ -12,9 +12,15 @@
   "classDescriptions": {
     "root": { "description": "Classname applied to the root element." },
     "hidden": { "description": "Classname applied to the root element if the tab is not active." },
-    "sizeSm": { "description": "Classname applied to the root element if `size=\"sm\"`." },
-    "sizeMd": { "description": "Classname applied to the root element if `size=\"md\"`." },
-    "sizeLg": { "description": "Classname applied to the root element if `size=\"lg\"`." },
+    "sizeSm": {
+      "description": "Classname applied to the root element if <code>size=&quot;sm&quot;</code>."
+    },
+    "sizeMd": {
+      "description": "Classname applied to the root element if <code>size=&quot;md&quot;</code>."
+    },
+    "sizeLg": {
+      "description": "Classname applied to the root element if <code>size=&quot;lg&quot;</code>."
+    },
     "horizontal": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

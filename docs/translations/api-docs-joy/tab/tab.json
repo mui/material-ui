@@ -15,32 +15,36 @@
   },
   "classDescriptions": {
     "root": { "description": "Classname applied to the root element." },
-    "disabled": { "description": "Classname applied to the root element if `disabled={true}`." },
+    "disabled": {
+      "description": "Classname applied to the root element if <code>disabled={true}</code>."
+    },
     "focusVisible": {
       "description": "Classname applied to the root element when its focus is visible."
     },
     "selected": { "description": "Classname applied to the root element when it is selected." },
     "horizontal": {
-      "description": "Classname applied to the root element if `orientation=\"horizontal\"`."
+      "description": "Classname applied to the root element if <code>orientation=&quot;horizontal&quot;</code>."
     },
     "vertical": {
-      "description": "Classname applied to the root element if `orientation=\"vertical\"`."
+      "description": "Classname applied to the root element if <code>orientation=&quot;vertical&quot;</code>."
     },
     "colorPrimary": {
-      "description": "Classname applied to the root element if `color=\"primary\"`."
+      "description": "Classname applied to the root element if <code>color=&quot;primary&quot;</code>."
     },
     "colorNeutral": {
-      "description": "Classname applied to the root element if `color=\"neutral\"`."
+      "description": "Classname applied to the root element if <code>color=&quot;neutral&quot;</code>."
     },
     "colorDanger": {
-      "description": "Classname applied to the root element if `color=\"danger\"`."
+      "description": "Classname applied to the root element if <code>color=&quot;danger&quot;</code>."
     },
-    "colorInfo": { "description": "Classname applied to the root element if `color=\"info\"`." },
+    "colorInfo": {
+      "description": "Classname applied to the root element if <code>color=&quot;info&quot;</code>."
+    },
     "colorSuccess": {
-      "description": "Classname applied to the root element if `color=\"success\"`."
+      "description": "Classname applied to the root element if <code>color=&quot;success&quot;</code>."
     },
     "colorWarning": {
-      "description": "Classname applied to the root element if `color=\"warning\"`."
+      "description": "Classname applied to the root element if <code>color=&quot;warning&quot;</code>."
     },
     "colorContext": {
       "description": "Class name applied to {{nodeName}} when {{conditions}}.",
@@ -48,16 +52,16 @@
       "conditions": "color inversion is triggered"
     },
     "variantPlain": {
-      "description": "Classname applied to the root element if `variant=\"plain\"`."
+      "description": "Classname applied to the root element if <code>variant=&quot;plain&quot;</code>."
     },
     "variantOutlined": {
-      "description": "Classname applied to the root element if `variant=\"outlined\"`."
+      "description": "Classname applied to the root element if <code>variant=&quot;outlined&quot;</code>."
     },
     "variantSoft": {
-      "description": "Classname applied to the root element if `variant=\"soft\"`."
+      "description": "Classname applied to the root element if <code>variant=&quot;soft&quot;</code>."
     },
     "variantSolid": {
-      "description": "Classname applied to the root element if `variant=\"solid\"`."
+      "description": "Classname applied to the root element if <code>variant=&quot;solid&quot;</code>."
     }
   },
   "slotDescriptions": { "root": "The component that renders the root." }

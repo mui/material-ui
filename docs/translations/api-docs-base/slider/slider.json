@@ -73,7 +73,7 @@
     "active": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the thumb element",
-      "conditions": "it's active"
+      "conditions": "it&#39;s active"
     },
     "focusVisible": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
