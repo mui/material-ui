@@ -147,6 +147,11 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         el: scrollContainer,
       },
       {
+        value: scrollContainer.style.touchAction,
+        property: 'touch-action',
+        el: scrollContainer,
+      },
+      {
         value: scrollContainer.style.overflowX,
         property: 'overflow-x',
         el: scrollContainer,
@@ -157,8 +162,8 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         el: scrollContainer,
       },
     );
-
     scrollContainer.style.overflow = 'hidden';
+    scrollContainer.style.touchAction = 'none';
   }
 
   const restore = () => {
