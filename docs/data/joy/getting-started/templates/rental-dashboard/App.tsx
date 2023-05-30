@@ -67,7 +67,7 @@ export default function RentalDashboard() {
                 overflowY: 'scroll',
                 height: '100%',
                 px: { xs: 2, md: 4 },
-                pt: 4,
+                pt: { xs: 8, md: 4 },
                 pb: 5,
               }}
             >

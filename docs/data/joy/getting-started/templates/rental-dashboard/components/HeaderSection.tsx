@@ -1,19 +1,34 @@
 import * as React from 'react';
-import { Box, Button, Divider, Typography } from '@mui/joy';
+import { Box, Button, Divider, Stack, Typography } from '@mui/joy';
 
 export default function HeaderSection() {
   return (
-    <div>
+    <Stack
+      direction={{
+        xs: 'column',
+        sm: 'row',
+      }}
+      justifyContent="space-between"
+      alignItems="flex-start"
+      spacing={2}
+    >
       <div>
-        <Typography level="h1" fontSize="xl4">
+        <Typography
+          level="h1"
+          // fontSize="xl4"
+          fontSize={{
+            xs: 'xl2',
+            md: 'xl4',
+          }}
+        >
           232 stays in Melbourne
         </Typography>
         <Typography level="body1" color="neutral">
           Book your next stay at one of our properties.
         </Typography>
       </div>
-      <Box sx={{ flex: 999 }} />
-      <Box sx={{ display: 'flex', gap: 1, '& > *': { flexGrow: 1 } }}>
+
+      <Stack direction="row" spacing={1.5}>
         <Button variant="outlined" color="neutral">
           Shared
         </Button>
@@ -24,8 +39,8 @@ export default function HeaderSection() {
         >
           Save search
         </Button>
-      </Box>
+      </Stack>
       {/* <Divider /> */}
-    </div>
+    </Stack>
   );
 }
