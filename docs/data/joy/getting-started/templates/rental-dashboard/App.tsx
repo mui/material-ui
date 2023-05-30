@@ -71,13 +71,14 @@ export default function RentalDashboard() {
                 pb: 5,
               }}
             >
-              <React.Fragment>
+              <Stack spacing={2}>
                 <HeaderSection />
+                <Divider />
                 <Box
                   sx={{
                     width: '100%',
                     height: 360,
-                    backgroundColor: 'orange',
+                    // backgroundColor: 'orange',
                     backgroundSize: 'cover',
                     backgroundImage:
                       'url("https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700")',
@@ -95,7 +96,7 @@ export default function RentalDashboard() {
                 <RentalCard />
                 <Divider />
                 Pagination
-              </React.Fragment>
+              </Stack>
             </Grid>
             <Grid xs={0} md={4}>
               <Stack direction="row">

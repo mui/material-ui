@@ -25,7 +25,7 @@ export default function HeaderSection() {
           Save search
         </Button>
       </Box>
-      <Divider />
+      {/* <Divider /> */}
     </div>
   );
 }

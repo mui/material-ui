@@ -20,37 +20,38 @@ export default function RentalCard() {
     <Card
       variant="outlined"
       orientation="horizontal"
-      sx={(theme) => ({
+      sx={{
         transition: '250ms all',
-        '--Card-padding': '0',
-
-        [theme.breakpoints.up('md')]: {
-          '--Card-padding': '16px',
+        padding: {
+          xs: 0,
+          sm: 2,
         },
         '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
-      })}
+      }}
     >
       <Stack
         direction={{
           xs: 'column',
           sm: 'row',
-          md: 'column',
-          lg: 'row',
+          // md: 'column',
+          // lg: 'row',
         }}
         width="100%"
         spacing={2.5}
       >
-        <Box
-          width={{
-            xs: '100%',
-            sm: 200,
+        <CardOverflow
+          sx={{
+            width: {
+              xs: '100%',
+              sm: 200,
+            },
           }}
         >
           <AspectRatio
             ratio={200 / 144}
             sx={(theme) => ({
               borderRadius: 'md',
-              [theme.breakpoints.down('md')]: {
+              [theme.breakpoints.down('sm')]: {
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0,
               },
@@ -62,15 +63,23 @@ export default function RentalCard() {
               style={{ display: 'block' }}
             />
           </AspectRatio>
-        </Box>
+          <Chip
+            variant="soft"
+            startDecorator={<i data-feather="award" />}
+            size="sm"
+            sx={{ position: 'absolute', bottom: 8, left: 8 }}
+          >
+            Rare find
+          </Chip>
+        </CardOverflow>
         <Box
-          sx={(theme) => ({
+          sx={{
             flex: 1,
             padding: {
               xs: 2,
               sm: 0,
             },
-          })}
+          }}
         >
           <Stack
             spacing={1}
