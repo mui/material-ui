@@ -228,11 +228,11 @@ export default function SwitchComparison() {
           >
             <JoySwitch
               sx={{
-                '--Switch-trackWidth': `${joyTrack.width}px`,
-                '--Switch-trackHeight': `${joyTrack.height}px`,
-                '--Switch-trackRadius': `${joyTrack.radius}px`,
-                '--Switch-thumbSize': `${joyThumb.height}px`,
-                '--Switch-thumbWidth': `${joyThumb.width}px`,
+                ...(joyTrack.width && { '--Switch-trackWidth': `${joyTrack.width}px` }),
+                ...(joyTrack.height && { '--Switch-trackHeight': `${joyTrack.height}px` }),
+                ...(joyTrack.radius && { '--Switch-trackRadius': `${joyTrack.radius}px` }),
+                ...(joyThumb.width && { '--Switch-thumbSize': `${joyThumb.height}px` }),
+                ...(joyThumb.height && { '--Switch-thumbWidth': `${joyThumb.width}px` }),
               }}
             />
           </Box>
