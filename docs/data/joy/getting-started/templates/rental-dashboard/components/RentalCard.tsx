@@ -57,11 +57,15 @@ export default function RentalCard({
               xs: '100%',
               sm: 200,
             },
+            marginBottom: {
+              xs: -2.5,
+              sm: 0,
+            },
             // position: 'relative',
           }}
         >
           <AspectRatio
-            ratio={200 / 144}
+            ratio={16 / 9}
             sx={(theme) => ({
               borderRadius: 'md',
               [theme.breakpoints.down('sm')]: {
@@ -107,7 +111,7 @@ export default function RentalCard({
               sm: 0,
             },
           }}
-          spacing={2}
+          spacing={1}
           flex={1}
         >
           <Stack
