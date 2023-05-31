@@ -113,20 +113,31 @@ export default function RentalDashboard() {
                 <Pagination />
               </Stack>
             </Grid>
-            <Grid xs={0} lg={4}>
-              <Stack direction="row">
-                <Divider orientation="vertical" sx={{ height: '100dvh' }} />
+            <Grid
+              xs={4}
+              sx={{
+                display: { xs: 'none', lg: 'block' },
+              }}
+            >
+              <Box
+                sx={{
+                  borderLeft: '1px solid',
+                  borderColor: 'divider',
+                  padding: 1.5,
+                  height: '100dvh',
+                }}
+              >
                 <Box
                   sx={{
-                    width: '100%',
-                    m: 1,
+                    backgroundColor: 'orange',
+                    height: '100%',
                     borderRadius: 'sm',
                     backgroundSize: 'cover',
                     backgroundImage:
                       'url("https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80")',
                   }}
                 />
-              </Stack>
+              </Box>
             </Grid>
           </Grid>
         </Main>
