@@ -51,10 +51,6 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
-  'rental-dashboard': {
-    name: 'Steve Ernstberger',
-    link: 'https://twitter.com/steveeberger',
-  },
   'profile-dashboard': {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
@@ -62,6 +58,10 @@ const AUTHORS = {
   'framesx-web-blocks': {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
+  },
+  'rental-dashboard': {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/steveeberger',
   },
 };
 const DESIGNS = {
@@ -73,21 +73,21 @@ const DESIGNS = {
     name: 'Untitled UI',
     link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
   },
-  'rental-dashboard': {
-    name: 'Untitled UI',
-    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
-  },
   'framesx-web-blocks': {
     name: 'Frames X',
     link: 'https://framesxfigma.buninux.com/',
+  },
+  'rental-dashboard': {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
   },
 };
 
 export default function TemplateCollection() {
   const newTemplates = [
+    'rental-dashboard',
     'framesx-web-blocks',
     'profile-dashboard',
-    'order-dashboard',
   ]; // Stay at the top of the page with `new` badge
   const { names: templateNames, map: templateMap } = sourceJoyTemplates();
   const names = [
@@ -264,7 +264,7 @@ export default function TemplateCollection() {
                   </SvgIcon>
                 </IconButton>
               </Box>
-              <Box sx={{ width: '100%', display: 'flex', alignItems: 'baseline' }}>
+              <Box sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                 {author && (
                   <Typography level="body2" fontWeight="md">
                     Built by{' '}
