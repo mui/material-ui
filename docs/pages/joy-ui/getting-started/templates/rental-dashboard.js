@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import OrderDashboardTemplate from 'docs/data/joy/getting-started/templates/rental-dashboard/App';
+import RentalDashboardTemplate from 'docs/data/joy/getting-started/templates/rental-dashboard/App';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
-export default function OrderDashboard() {
+export default function RentalDashboard() {
   return (
     <React.Fragment>
       <Head>
@@ -16,7 +16,7 @@ export default function OrderDashboard() {
         />
       </Head>
       <NextNProgressBar />
-      <OrderDashboardTemplate />
+      <RentalDashboardTemplate />
     </React.Fragment>
   );
 }
