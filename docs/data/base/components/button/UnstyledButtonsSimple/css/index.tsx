@@ -47,10 +47,11 @@ function Styles() {
         cursor: pointer;
         border: none;
       }
-      .CustomButton:hover {
+
+      .CustomButton:hover:not(.${buttonClasses.disabled}) {
         background-color: ${cyan[600]};
       }
-      .CustomButton:active {
+      .CustomButton:active:not(.${buttonClasses.disabled}) {
         background-color: ${cyan[700]};
       }
       .${buttonClasses.disabled} {
@@ -60,6 +61,7 @@ function Styles() {
       .${buttonClasses.disabled}:hover {
         background-color: ${cyan[500]};
       }
+
       `}
     </style>
   );
