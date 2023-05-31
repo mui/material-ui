@@ -22,7 +22,7 @@ const Root = styled('div')(
         display: 'none',
         flexShrink: 0,
         border: '1px solid',
-        borderColor: `var(--muidocs-palette-grey-200, ${lightTheme.palette.grey[200]})`,
+        borderColor: `var(--muidocs-palette-divider, ${lightTheme.palette.divider})`,
         borderRadius: 8,
         backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
         height: 26,
@@ -118,7 +118,7 @@ const Root = styled('div')(
     [`:where(${theme.vars ? '[data-mui-color-scheme="dark"]' : '.mode-dark'}) &`]: {
       '& .MuiApi-item-header': {
         '& span': {
-          borderColor: `var(--muidocs-palette-primaryDark-700, ${darkTheme.palette.primaryDark[700]})`,
+          borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         },
         '& .MuiApi-item-title': {
           color: `var(--muidocs-palette-primary-100, ${darkTheme.palette.primary[100]})`,
