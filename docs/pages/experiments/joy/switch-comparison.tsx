@@ -65,7 +65,7 @@ export default function SwitchComparison() {
               sx={{
                 width: materialTrack.width,
                 height: materialTrack.height,
-                '& .MuiSwitch-track': { borderRadius: materialTrack.radius },
+                '& .MuiSwitch-track': { borderRadius: `${materialTrack.radius}px` },
                 '& .MuiSwitch-thumb': {
                   width: materialThumb.width,
                   height: materialThumb.height,
@@ -130,11 +130,11 @@ export default function SwitchComparison() {
                 color="secondary"
                 defaultValue={7}
                 min={0}
-                max={40}
+                max={20}
                 valueLabelDisplay="auto"
                 marks={[
                   { value: 0, label: '0px' },
-                  { value: 40, label: '40px' },
+                  { value: 20, label: '20px' },
                 ]}
                 onChange={(_, value) => {
                   setMaterialTrack((prev) => ({ ...prev, radius: value as number }));
@@ -293,11 +293,11 @@ export default function SwitchComparison() {
                 color="success"
                 defaultValue={7}
                 min={0}
-                max={40}
+                max={20}
                 valueLabelDisplay="auto"
                 marks={[
                   { value: 0, label: '0px' },
-                  { value: 40, label: '40px' },
+                  { value: 20, label: '20px' },
                 ]}
                 onChange={(_, value) => {
                   setJoyTrack((prev) => ({ ...prev, radius: value as number }));
