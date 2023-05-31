@@ -88,7 +88,6 @@ export default function AppFooter() {
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
             <Link href={ROUTES.roadmap}>Roadmap</Link>
-            <Link href={ROUTES.languages}>Languages</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
