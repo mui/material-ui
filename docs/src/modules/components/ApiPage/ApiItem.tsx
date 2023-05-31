@@ -10,6 +10,7 @@ import {
 const Root = styled('div')(
   ({ theme }) => ({
     '& .MuiApi-item-header': {
+      ...theme.typography.caption,
       fontSize: 13,
       fontFamily: theme.typography.fontFamilyCode,
       display: 'flex',
