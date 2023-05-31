@@ -32,7 +32,7 @@ import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
 import CakeRounded from '@mui/icons-material/CakeRounded';
 import CelebrationRounded from '@mui/icons-material/CelebrationRounded';
 import AttractionsRounded from '@mui/icons-material/AttractionsRounded';
-import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
+import DownloadIcon from '@mui/icons-material/Download';
 import LocalFireDepartment from '@mui/icons-material/LocalFireDepartment';
 import AcUnitRounded from '@mui/icons-material/AcUnitRounded';
 import FavoriteBorderRounded from '@mui/icons-material/FavoriteBorderRounded';
@@ -112,6 +112,7 @@ function BadgeVisibilityDemo() {
       variant="outlined"
       elevation={0}
       sx={{
+        width: '100%',
         color: 'action.active',
         p: 2,
         display: 'flex',
@@ -124,7 +125,7 @@ function BadgeVisibilityDemo() {
     >
       <div>
         <Badge color="primary" badgeContent={count}>
-          <ShoppingCartRounded fontSize="small" />
+          <DownloadIcon fontSize="small" />
         </Badge>
         <ButtonGroup>
           <Button
@@ -265,10 +266,10 @@ export default function Hero() {
                 <StepLabel>Search for React UI libraries</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Spot MUI</StepLabel>
+                <StepLabel>Spot Material UI</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Choose MUI</StepLabel>
+                <StepLabel>Choose Material UI</StepLabel>
               </Step>
             </Stepper>
           </Paper>
@@ -299,8 +300,8 @@ export default function Hero() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography variant="body2">
-                      MUI components work in isolation. They are self-supporting, and will only
-                      inject the styles they need to display.
+                      Material UI components work in isolation. They are self-supporting, and will
+                      only inject the styles they need to display.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -314,8 +315,8 @@ export default function Hero() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography variant="body2">
-                      MUI usage experience can be improved with a handful of important globals that
-                      you&apos;ll need to be aware of.
+                      Material UI usage experience can be improved with a handful of important
+                      globals that you&apos;ll need to be aware of.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
@@ -384,12 +385,12 @@ export default function Hero() {
               </Paper>
             </Stack>
             <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="contained" startIcon={<ShoppingCartRounded fontSize="small" />}>
-                  Add to Cart
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+                <Button variant="contained" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
+                  Install library
                 </Button>
-                <Button variant="outlined" startIcon={<ShoppingCartRounded fontSize="small" />}>
-                  Add to Cart
+                <Button variant="outlined" startIcon={<DownloadIcon fontSize="small" />} fullWidth>
+                  Install library
                 </Button>
               </Box>
               <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
@@ -403,13 +404,25 @@ export default function Hero() {
                 </Typography>
                 <SlideDemo />
               </Paper>
-              <TextField id="core-hero-input" defaultValue="Ultraviolet" label="Basement" />
-              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <TextField
+                id="core-hero-input"
+                defaultValue="Material UI"
+                label="Component library"
+              />
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  gap: 2,
+                }}
+              >
                 <BadgeVisibilityDemo />
                 <Paper
                   variant="outlined"
                   elevation={0}
                   sx={{
+                    width: '100%',
                     py: 2,
                     px: 2,
                     display: 'flex',
