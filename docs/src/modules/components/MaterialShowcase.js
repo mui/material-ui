@@ -513,6 +513,7 @@ export default function Showcase() {
             {app.image ? (
               <Card
                 sx={(theme) => ({
+                  height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
                   p: 2,
