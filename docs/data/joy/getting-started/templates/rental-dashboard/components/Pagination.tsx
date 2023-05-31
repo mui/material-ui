@@ -45,7 +45,7 @@ export default function Pagination() {
       <Box
         className="Pagination-laptopUp"
         sx={{
-          pt: 4,
+          pt: 0.5,
           gap: 1,
           [`& .${iconButtonClasses.root}`]: { borderRadius: '50%' },
           display: {

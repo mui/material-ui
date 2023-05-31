@@ -1,25 +1,16 @@
 import * as React from 'react';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import {
-  AspectRatio,
-  Box,
-  Card,
-  CardContent,
-  CardOverflow,
-  Chip,
-  Grid,
-  IconButton,
-  Stack,
-} from '@mui/joy';
+import { AspectRatio, Box, Card, Chip, IconButton, Stack } from '@mui/joy';
 
 import Rating from './Rating';
 
 type RentalCardProps = {
-  title: React.ReactNode;
   category: React.ReactNode;
-  rareFind?: boolean;
+  image: string;
   liked?: boolean;
+  rareFind?: boolean;
+  title: React.ReactNode;
 };
 
 export default function RentalCard({
@@ -27,6 +18,7 @@ export default function RentalCard({
   title,
   rareFind = false,
   liked = false,
+  image,
 }: RentalCardProps) {
   const [isLiked, setIsLiked] = React.useState(liked);
   return (
@@ -74,11 +66,7 @@ export default function RentalCard({
               },
             })}
           >
-            <img
-              alt=""
-              src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=400"
-              style={{ display: 'block' }}
-            />
+            <img alt="" src={image} style={{ display: 'block' }} />
             {rareFind && (
               <Chip
                 variant="soft"
@@ -106,7 +94,6 @@ export default function RentalCard({
         <Stack
           sx={{
             padding: {
-              // padding top on mobile needs to be zero or remove margin
               xs: 2,
               sm: 0,
             },
@@ -135,7 +122,6 @@ export default function RentalCard({
                 </Link>
               </Typography>
             </div>
-            {/* todo: use toggle when its ready */}
             <IconButton
               variant={isLiked ? 'solid' : 'soft'}
               onClick={() => setIsLiked((prev) => !prev)}
