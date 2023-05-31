@@ -19,13 +19,16 @@ type RentalCardProps = {
   title: React.ReactNode;
   category: React.ReactNode;
   rareFind?: boolean;
+  liked?: boolean;
 };
 
 export default function RentalCard({
   category,
   title,
   rareFind = false,
+  liked = false,
 }: RentalCardProps) {
+  const [isLiked, setIsLiked] = React.useState(liked);
   return (
     <Card
       variant="outlined"
@@ -82,19 +85,19 @@ export default function RentalCard({
                 Rare find
               </Chip>
             )}
+            <IconButton
+              variant={isLiked ? 'solid' : 'soft'}
+              onClick={() => setIsLiked((prev) => !prev)}
+              sx={{
+                position: 'absolute',
+                bottom: 8,
+                right: 8,
+                display: { xs: 'block', sm: 'none' },
+              }}
+            >
+              <i data-feather="star" />
+            </IconButton>
           </AspectRatio>
-
-          <IconButton
-            variant="soft"
-            sx={{
-              position: 'absolute',
-              bottom: 8,
-              right: 8,
-              display: { xs: 'block', sm: 'none' },
-            }}
-          >
-            <i data-feather="star" />
-          </IconButton>
         </Box>
         <Stack
           sx={{
@@ -130,7 +133,8 @@ export default function RentalCard({
             </div>
             {/* todo: use toggle when its ready */}
             <IconButton
-              variant="soft"
+              variant={isLiked ? 'solid' : 'soft'}
+              onClick={() => setIsLiked((prev) => !prev)}
               sx={{
                 display: { xs: 'none', sm: 'block' },
               }}
@@ -148,8 +152,24 @@ export default function RentalCard({
             <Typography startDecorator={<i data-feather="map-pin" />}>
               Collingwood VIC
             </Typography>
-            <Typography startDecorator={<i data-feather="box" />}>1 bed</Typography>
-            <Typography startDecorator={<i data-feather="wifi" />}>Wi-Fi</Typography>
+            <Typography
+              startDecorator={<i data-feather="box" />}
+              display={{
+                xs: 'none',
+                md: 'flex',
+              }}
+            >
+              1 bed
+            </Typography>
+            <Typography
+              startDecorator={<i data-feather="wifi" />}
+              display={{
+                xs: 'none',
+                md: 'flex',
+              }}
+            >
+              Wi-Fi
+            </Typography>
             <Typography>
               <strong>$540</strong> <Typography>total</Typography>
             </Typography>

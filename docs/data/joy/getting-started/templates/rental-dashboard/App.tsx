@@ -15,6 +15,7 @@ import HeaderSection from './components/HeaderSection';
 import Search from './components/Search';
 import Filters from './components/Filters';
 import Toggles from './components/Toggles';
+import Pagination from './components/Pagination';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -61,7 +62,7 @@ export default function RentalDashboard() {
           >
             <Grid
               xs={12}
-              md={8}
+              lg={8}
               sx={{
                 // backgroundColor: 'blue',
                 overflowY: 'scroll',
@@ -105,16 +106,15 @@ export default function RentalDashboard() {
                   category="Entire loft in central business district"
                 />
                 <Divider />
-                Pagination
+                <Pagination />
               </Stack>
             </Grid>
-            <Grid xs={0} md={4}>
+            <Grid xs={0} lg={4}>
               <Stack direction="row">
                 <Divider orientation="vertical" sx={{ height: '100dvh' }} />
                 <Box
                   sx={{
                     width: '100%',
-                    backgroundColor: 'orange',
                     m: 1.5,
                     backgroundSize: 'cover',
                     backgroundImage:
