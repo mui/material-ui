@@ -2,6 +2,7 @@
   "hookDescription": "",
   "parametersDescriptions": {
     "id": "The id of the TabPanel.",
+    "rootRef": "The ref of the TabPanel.",
     "value": "The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected."
   },
   "returnValueDescriptions": {

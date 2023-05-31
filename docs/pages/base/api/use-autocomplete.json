@@ -151,26 +151,10 @@
       "type": { "name": "null | HTMLElement", "description": "null | HTMLElement" },
       "required": true
     },
-    "dirty": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "expanded": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focused": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
-    "focusedTag": {
-      "type": { "name": "number", "description": "number" },
-      "default": "-1",
-      "required": true
-    },
+    "dirty": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "expanded": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focused": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
+    "focusedTag": { "type": { "name": "number", "description": "number" }, "required": true },
     "getClearProps": {
       "type": {
         "name": "() =&gt; React.HTMLAttributes&lt;HTMLButtonElement&gt;",
@@ -233,11 +217,7 @@
     },
     "id": { "type": { "name": "string", "description": "string" }, "required": true },
     "inputValue": { "type": { "name": "string", "description": "string" }, "required": true },
-    "popupOpen": {
-      "type": { "name": "boolean", "description": "boolean" },
-      "default": "false",
-      "required": true
-    },
+    "popupOpen": { "type": { "name": "boolean", "description": "boolean" }, "required": true },
     "setAnchorEl": {
       "type": { "name": "() =&gt; void", "description": "() =&gt; void" },
       "required": true

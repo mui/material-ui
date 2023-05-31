@@ -57,17 +57,14 @@ export type UseInputInputSlotProps<TOther = {}> = Omit<TOther, keyof UseInputInp
 export interface UseInputReturnValue {
   /**
    * If `true`, the component will be disabled.
-   * @default false
    */
   disabled: boolean;
   /**
    * If `true`, the `input` will indicate an error by setting the `aria-invalid` attribute.
-   * @default false
    */
   error: boolean;
   /**
    * If `true`, the `input` will be focused.
-   * @default false
    */
   focused: boolean;
   /**
@@ -93,7 +90,6 @@ export interface UseInputReturnValue {
   inputRef: React.RefCallback<HTMLInputElement> | null;
   /**
    * If `true`, the `input` will indicate that it's required.
-   * @default false
    */
   required: boolean;
   /**

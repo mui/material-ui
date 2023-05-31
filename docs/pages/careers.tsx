@@ -147,18 +147,6 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Tech Lead - Core',
-        description:
-          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
-        title: 'React Engineer - Core',
-        description:
-          'You will strengthen the core components team by collaborating with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
-      },
-      {
         title: 'Product Engineer - Store',
         description:
           'You will lead the technical, product, and operational development of the store.',
@@ -173,33 +161,12 @@ const openRolesData = [
     ],
   },
   {
-    title: 'Design',
-    roles: [
-      {
-        title: 'Design Engineer',
-        description: 'You will focus on design to implement great product experiences.',
-        url: '/careers/design-engineer/',
-      },
-    ],
-  },
-  {
     title: 'Marketing',
     roles: [
       {
         title: 'Product Marketing Manager',
         description: 'You will own the marketing efforts at MUI.',
         url: '/careers/product-marketing-manager/',
-      },
-    ],
-  },
-  {
-    title: 'Operations',
-    roles: [
-      {
-        title: 'Head of Operations',
-        description:
-          "You will take ownership of designing, implementing, and overseeing most of the business operations to support MUI's growth.",
-        url: '/careers/head-of-operations/',
       },
     ],
   },
@@ -226,6 +193,28 @@ const nextRolesData = [
         description:
           'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
         url: '/careers/react-engineer-x/',
+      },
+      {
+        title: 'React Tech Lead - Core',
+        description:
+          'You will lead the development of MUI Core, positioning the library as the industry standard for design teams while doubling its adoption.',
+        url: '/careers/react-tech-lead-core/',
+      },
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team by collaborating with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
+      },
+    ],
+  },
+  {
+    title: 'Design',
+    roles: [
+      {
+        title: 'Design Engineer',
+        description: 'You will focus on design to implement great product experiences.',
+        url: '/careers/design-engineer/',
       },
     ],
   },

@@ -249,7 +249,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`, `"blur"`, `"selectOption"`, `"removeOption"`
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange?: (
     event: React.SyntheticEvent,
@@ -321,13 +321,7 @@ export type AutocompleteCloseReason =
   | 'selectOption'
   | 'removeOption'
   | 'blur';
-export type AutocompleteInputChangeReason =
-  | 'input'
-  | 'reset'
-  | 'clear'
-  | 'blur'
-  | 'selectOption'
-  | 'removeOption';
+export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
@@ -418,22 +412,18 @@ export interface UseAutocompleteReturnValue<
   value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * If `true`, the component input has some values.
-   * @default false
    */
   dirty: boolean;
   /**
    * If `true`, the listbox is being displayed.
-   * @default false
    */
   expanded: boolean;
   /**
    * If `true`, the popup is open on the component.
-   * @default false
    */
   popupOpen: boolean;
   /**
    * If `true`, the component is focused.
-   * @default false
    */
   focused: boolean;
   /**
@@ -447,7 +437,6 @@ export interface UseAutocompleteReturnValue<
   setAnchorEl: () => void;
   /**
    * Index of the focused tag for the component.
-   * @default -1
    */
   focusedTag: number;
   /**

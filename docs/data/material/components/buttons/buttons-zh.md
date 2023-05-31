@@ -79,10 +79,6 @@ Note that the documentation [avoids](/material-ui/guides/api/#native-properties)
 
 {{"demo": "ButtonSizes.js"}}
 
-## Upload button 上传按钮
-
-{{"demo": "UploadButtons.js"}}
-
 ## 带有 icons（图标）和 label（标签）的按钮
 
 因为相比纯文本来说用户对图标更敏感，所以有些时候你可能希望为某些按钮设置图标，以增强应用程序的用户体验。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
