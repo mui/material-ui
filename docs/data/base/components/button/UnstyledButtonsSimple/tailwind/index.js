@@ -9,7 +9,7 @@ export default function UnstyledButtonsSimple() {
         Button
       </Button>
       <Button
-        className="cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 hover:bg-violet-600 active:bg-violet-700 text-white rounded-xl font-semibold px-6 py-3 border-none disabled:opacity-50"
+        className="cursor-pointer disabled:cursor-not-allowed text-sm bg-violet-500 text-white rounded-xl font-semibold px-6 py-3 border-none disabled:opacity-50"
         disabled
       >
         Disabled

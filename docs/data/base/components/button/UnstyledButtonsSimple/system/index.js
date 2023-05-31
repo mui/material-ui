@@ -31,11 +31,11 @@ const CustomButton = styled(Button)`
   cursor: pointer;
   border: none;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${blue[600]};
   }
 
-  &.${buttonClasses.active} {
+  &:active:not(:disabled) {
     background-color: ${blue[700]};
   }
 

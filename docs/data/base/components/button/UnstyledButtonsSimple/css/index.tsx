@@ -51,16 +51,15 @@ function Styles() {
       .CustomButton:hover:not(.${buttonClasses.disabled}) {
         background-color: ${cyan[600]};
       }
+
       .CustomButton:active:not(.${buttonClasses.disabled}) {
         background-color: ${cyan[700]};
       }
+      
       .${buttonClasses.disabled} {
         opacity: 0.5;
         cursor: not-allowed;
-      }
-      .${buttonClasses.disabled}:hover {
-        background-color: ${cyan[500]};
-      }
+
 
       `}
     </style>
