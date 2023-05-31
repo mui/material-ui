@@ -43,6 +43,10 @@ const AUTHORS = {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
   },
+  messages: {
+    name: 'Steve Ernstberger',
+    link: 'https://twitter.com/SteveEberger',
+  },
   'sign-in-side': {
     name: 'MUI',
     link: 'https://twitter.com/MUI_hq',
@@ -73,10 +77,15 @@ const DESIGNS = {
     name: 'Frames X',
     link: 'https://framesxfigma.buninux.com/',
   },
+  messages: {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  },
 };
 
 export default function TemplateCollection() {
   const newTemplates = [
+    'messages',
     'framesx-web-blocks',
     'profile-dashboard',
     'order-dashboard',
