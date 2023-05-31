@@ -439,7 +439,7 @@ const appList = [
   {
     title: 'refine FineFoods demo',
     description: 'A full-featured Admin panel app',
-    image: 'refine-finefoods.jpg',
+    image: 'refine-finefoods.png',
     link: 'https://example.mui.admin.refine.dev/',
     source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
@@ -513,6 +513,7 @@ export default function Showcase() {
           <Grid key={app.title} item xs={12} sm={6}>
             {app.image ? (
               <Card
+                variant="outlined"
                 sx={(theme) => ({
                   height: '100%',
                   display: 'flex',
@@ -527,7 +528,6 @@ export default function Showcase() {
                     borderColor: 'divider',
                   }),
                 })}
-                variant="outlined"
               >
                 <Box component="a" href={app.link} rel="noopener nofollow" target="_blank">
                   <CardMedia
@@ -545,7 +545,7 @@ export default function Showcase() {
                       borderColor: 'grey.100',
                       color: 'gray.100',
                       ...theme.applyDarkStyles({
-                        borderColor: 'grey.900',
+                        borderColor: 'grey.700',
                         color: 'gray.900',
                       }),
                     })}
