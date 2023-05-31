@@ -2,11 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/joy/Typography';
 import Star from '@mui/icons-material/Star';
 
-type RentalCardProps = {
-  value: number;
-};
-
-export default function Rating({ value }: RentalCardProps) {
+export default function Rating() {
   return (
     <Typography
       fontWeight="md"

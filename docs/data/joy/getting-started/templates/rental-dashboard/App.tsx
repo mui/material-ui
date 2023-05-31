@@ -4,7 +4,8 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
-import { Grid, Stack } from '@mui/joy';
+import Grid from '@mui/joy/Grid';
+import Stack from '@mui/joy/Stack';
 import useScript from './useScript';
 import FirstSidebar from './components/FirstSidebar';
 import Header from './components/Header';
@@ -55,16 +56,14 @@ export default function RentalDashboard() {
             sx={{
               width: '100%',
               height: '100dvh',
-              // backgroundColor: 'orange',
+
               margin: 0,
             }}
-            // flexDirection={{ xs: 'column-reverse', md: 'row' }}
           >
             <Grid
               xs={12}
               lg={8}
               sx={{
-                // backgroundColor: 'blue',
                 overflowY: 'scroll',
                 height: '100%',
                 px: { xs: 2, md: 4 },

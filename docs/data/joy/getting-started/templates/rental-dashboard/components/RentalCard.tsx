@@ -1,8 +1,12 @@
 import * as React from 'react';
+import AspectRatio from '@mui/joy/AspectRatio';
+import Box from '@mui/joy/Box';
+import Card from '@mui/joy/Card';
+import Chip from '@mui/joy/Chip';
+import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { AspectRatio, Box, Card, Chip, IconButton, Stack } from '@mui/joy';
-
 import Rating from './Rating';
 
 type RentalCardProps = {

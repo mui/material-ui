@@ -1,19 +1,8 @@
 import * as React from 'react';
-import Link from '@mui/joy/Link';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import {
-  AspectRatio,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardOverflow,
-  Chip,
-  Grid,
-  IconButton,
-  Stack,
-  iconButtonClasses,
-} from '@mui/joy';
 
 export default function Pagination() {
   return (

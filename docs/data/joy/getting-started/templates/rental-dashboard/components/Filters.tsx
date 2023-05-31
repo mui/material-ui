@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { Stack, Button, FormControl, Input, Grid, Box } from '@mui/joy';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import FormControl from '@mui/joy/FormControl';
+import Input from '@mui/joy/Input';
+import Grid from '@mui/joy/Grid';
 import CountrySelector from './CountrySelector';
 
 export default function Filters() {
@@ -10,8 +14,6 @@ export default function Filters() {
         container
         justifyContent="space-between"
         sx={{ flexGrow: 1 }}
-        // direction={{ xs: 'column', md: 'row' }}
-        // useFlexGap // todo: investigate this more - doesn't work now
       >
         <Grid xs={12} sm={6} md={3}>
           <CountrySelector />
