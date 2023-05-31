@@ -20,7 +20,7 @@ export default function ColorSchemeToggle({
     <ListItem>
       <ListItemButton
         id="toggle-mode"
-        onClick={(event) => {
+        onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
           if (mode === 'light') {
             setMode('dark');
           } else {
