@@ -16,15 +16,30 @@ export default function UnstyledButtonsSimple() {
   );
 }
 
+const cyan = {
+  50:'#E9F8FC',
+  100:'#BDEBF4',
+  200:'#99D8E5',
+  300:'#66BACC',
+  400:'#1F94AD',
+  500:'#0D5463',
+  600:'#094855',
+  700:'#063C47',
+  800:'#043039',
+  900:'#022127',
+
+};
+
 function Styles() {
   return (
     <style>
       {`
+
       .CustomButton {
         font-family: IBM Plex Sans,sans-serif;
         font-size: 0.875rem;
         line-height: 1.25rem;
-        background-color: #117286;
+        background-color: ${cyan[500]};
         color: #fff;
         border-radius: 0.75rem;
         font-weight: bold;
@@ -33,17 +48,17 @@ function Styles() {
         border: none;
       }
       .CustomButton:hover {
-        background-color: #0E5C6D;
+        background-color: ${cyan[600]};
       }
-      .CustomButton:hover {
-        background-color: #0E5C6D;
-      }
-      .${buttonClasses.active} {
-        background-color: #0c5262;
+      .CustomButton:active {
+        background-color: ${cyan[700]};
       }
       .${buttonClasses.disabled} {
         opacity: 0.5;
         cursor: not-allowed;
+      }
+      .${buttonClasses.disabled}:hover {
+        background-color: ${cyan[500]};
       }
       `}
     </style>
