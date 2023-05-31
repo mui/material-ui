@@ -225,9 +225,9 @@ export default function Sidebar() {
         <Avatar variant="outlined" src="/static/images/avatar/3.jpg" />
         <Box sx={{ minWidth: 0, flex: 1 }}>
           <Typography fontSize="sm" fontWeight="lg">
-            Siriwat K.
+            Steve E.
           </Typography>
-          <Typography level="body3">siriwatk@test.com</Typography>
+          <Typography level="body3">@steveEberger</Typography>
         </Box>
         <IconButton variant="plain" color="neutral">
           <i data-feather="log-out" />
