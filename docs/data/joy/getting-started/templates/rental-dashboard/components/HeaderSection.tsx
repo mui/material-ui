@@ -17,7 +17,6 @@ export default function HeaderSection() {
       <div>
         <Typography
           level="h1"
-          // fontSize="xl4"
           fontSize={{
             xs: 'xl2',
             md: 'xl4',
@@ -42,7 +41,6 @@ export default function HeaderSection() {
           Save search
         </Button>
       </Stack>
-      {/* <Divider /> */}
     </Stack>
   );
 }

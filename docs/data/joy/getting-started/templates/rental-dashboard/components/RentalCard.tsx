@@ -45,7 +45,6 @@ export default function RentalCard({
         }}
         width="100%"
         spacing={2.5}
-        // flexGrow={1}
       >
         <Box
           sx={{
@@ -57,7 +56,6 @@ export default function RentalCard({
               xs: -2.5,
               sm: 0,
             },
-            // position: 'relative',
           }}
         >
           <AspectRatio
@@ -137,7 +135,7 @@ export default function RentalCard({
             </IconButton>
           </Stack>
           <Stack spacing={1} direction="row">
-            <Rating value={5} />
+            <Rating />
 
             <Typography>202 reviews</Typography>
           </Stack>
