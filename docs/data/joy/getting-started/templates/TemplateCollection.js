@@ -73,6 +73,10 @@ const DESIGNS = {
     name: 'Untitled UI',
     link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
   },
+  'rental-dashboard': {
+    name: 'Untitled UI',
+    link: 'https://www.figma.com/community/file/1020079203222518115/%E2%9D%96-Untitled-UI-%E2%80%93-FREE-Figma-UI-kit-and-design-system',
+  },
   'framesx-web-blocks': {
     name: 'Frames X',
     link: 'https://framesxfigma.buninux.com/',
