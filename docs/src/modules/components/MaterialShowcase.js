@@ -521,10 +521,10 @@ export default function Showcase() {
                   gap: 2,
                   borderRadius: 1,
                   backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
-                  borderColor: 'grey.100',
+                  borderColor: 'divider',
                   ...theme.applyDarkStyles({
                     backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
-                    borderColor: `${alpha(theme.palette.grey[800], 0.4)}`,
+                    borderColor: 'divider',
                   }),
                 })}
                 variant="outlined"
