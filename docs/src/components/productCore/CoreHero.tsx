@@ -225,20 +225,28 @@ export default function Hero() {
               justifyContent: { xs: 'center', md: 'flex-start' },
               '& > *': { mr: 1 },
               ...theme.applyDarkStyles({
-                color: 'primary.400',
+                color: 'primary.300',
               }),
             })}
           >
-            <IconImage width={28} height={28} name="product-core" /> MUI Core
+            <IconImage width={28} height={28} name="product-core" /> MUI Core{' '}
+            <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
+              &nbsp;&nbsp;
+              <Typography component="span" variant="inherit" sx={{ color: 'divider' }}>
+                /
+              </Typography>
+              &nbsp;&nbsp;Material UI
+            </Typography>
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            Ready to use components, <br />
-            <GradientText>free forever</GradientText>
+            Ready to use <br />
+            <GradientText>Material Design</GradientText>
+            <br />
+            components
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of React components, ready-to-use, free forever, and with
-            accessibility always in mind. We&apos;ve built the foundational UI blocks for your
-            design system so you don&apos;t have to.
+            Material UI is beautiful by design and features a suite of customization options that
+            make it easy to implement your own custom design system on top of our components.
           </Typography>
           <GetStartedButtons />
         </Box>
