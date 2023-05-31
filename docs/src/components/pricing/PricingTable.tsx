@@ -466,7 +466,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href="/x/react-data-grid/filtering/#single-and-multi-filtering"
+      href="/x/react-data-grid/filtering/multi-filters/"
     />
   ),
   'data-grid/pagination': (
@@ -1201,6 +1201,7 @@ export default function PricingTable({
         {renderRow('data-grid/file-excel')}
         {nestedDivider}
         {renderRow('data-grid/file-clipboard-copy')}
+        {nestedDivider}
         {renderRow('data-grid/file-clipboard-paste')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
