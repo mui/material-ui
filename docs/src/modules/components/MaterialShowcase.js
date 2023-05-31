@@ -442,7 +442,7 @@ const appList = [
     link: 'https://example.mui.admin.refine.dev/',
     source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
-    dateAdded: 'June 21, 202',
+    dateAdded: 'June 21, 2022',
   },
 ];
 
