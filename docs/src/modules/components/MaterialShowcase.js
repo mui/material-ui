@@ -25,6 +25,7 @@ import { alpha } from '@mui/material/styles';
  *   dateAdded: string; // ISO 8601 format: YYYY-MM-DD
  * }
  */
+
 const appList = [
   {
     title: 'd-cide',
@@ -34,7 +35,7 @@ const appList = [
     image: 'dcide.jpg',
     link: 'https://d-cide.me/',
     source: 'https://github.com/cjoecker/d-cide',
-    dateAdded: 'July 1, 2020',
+    dateAdded: '2020-07-01',
   },
   {
     title: 'QuintoAndar',
@@ -44,7 +45,7 @@ const appList = [
     image: 'quintoandar.jpg',
     link: 'https://www.quintoandar.com.br/',
     similarWebVisits: 8500,
-    dateAdded: 'May 8, 2019',
+    dateAdded: '2019-05-08',
   },
   {
     title: 'Bethesda.net',
@@ -54,7 +55,7 @@ const appList = [
     image: 'bethesda.jpg',
     link: 'https://bethesda.net/',
     similarWebVisits: 4000,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'OpenClassrooms',
@@ -64,7 +65,7 @@ const appList = [
     image: 'openclassrooms.png',
     link: 'https://openclassrooms.com/en/',
     similarWebVisits: 6000,
-    dateAdded: 'January 24, 2018',
+    dateAdded: '2018-01-24',
   },
   {
     title: 'Codementor',
@@ -75,7 +76,7 @@ const appList = [
     image: 'codementor.jpg',
     link: 'https://www.codementor.io/',
     similarWebVisits: 1500,
-    dateAdded: 'January 24, 2018',
+    dateAdded: '2018-01-24',
   },
   {
     title: 'BARKS',
@@ -83,7 +84,7 @@ const appList = [
     image: 'barks.jpg',
     link: 'https://www.barks.jp/',
     similarWebVisits: 3000,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'GovX',
@@ -93,7 +94,7 @@ const appList = [
     image: 'govx.jpg',
     link: 'https://www.govx.com/',
     similarWebVisits: 2000,
-    dateAdded: 'January 31, 2018',
+    dateAdded: '2018-01-31',
   },
   {
     title: 'Hijup',
@@ -101,7 +102,7 @@ const appList = [
     image: 'hijup.jpg',
     link: 'https://www.hijup.com/',
     similarWebVisits: 328,
-    dateAdded: 'January 18, 2018',
+    dateAdded: '2018-01-18',
   },
   {
     title: 'iFit',
@@ -111,7 +112,7 @@ const appList = [
     image: 'ifit.jpg',
     link: 'https://www.ifit.com/',
     similarWebVisits: 304,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'EQ3',
@@ -119,7 +120,7 @@ const appList = [
     image: 'eq3.jpg',
     link: 'https://www.eq3.com/ca/en',
     similarWebVisits: 256,
-    dateAdded: 'January 24, 2018',
+    dateAdded: '2018-01-24',
   },
   {
     title: 'Housecall Pro',
@@ -130,7 +131,7 @@ const appList = [
     image: 'housecall.jpg',
     link: 'https://pro.housecallpro.com/pro/log_in',
     similarWebVisits: 1800,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'VMware CloudHealth',
@@ -141,7 +142,7 @@ const appList = [
     image: 'cloudhealth.jpg',
     link: 'https://cloudhealth.vmware.com/',
     similarWebVisits: 132,
-    dateAdded: 'January 27, 2018',
+    dateAdded: '2018-01-27',
   },
   {
     title: 'CityAds',
@@ -151,7 +152,7 @@ const appList = [
     image: 'cityads.jpg',
     link: 'https://cityads.com/main',
     similarWebVisits: 132,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'EOS Toolkit',
@@ -162,7 +163,7 @@ const appList = [
     link: 'https://eostoolkit.io/',
     source: 'https://github.com/eostoolkit/eostoolkit',
     stars: 91,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'The Media Ant',
@@ -172,7 +173,7 @@ const appList = [
     image: 'themediaant.jpg',
     link: 'https://www.themediaant.com/',
     similarWebVisits: 90,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Forex Bank',
@@ -182,7 +183,7 @@ const appList = [
     image: 'forex.jpg',
     link: 'https://www.forex.no/',
     similarWebVisits: 95,
-    dateAdded: 'January 24, 2018',
+    dateAdded: '2018-01-24',
   },
   {
     title: 'LocalMonero',
@@ -191,7 +192,7 @@ const appList = [
       'to trade their local currency for Monero, anywhere.',
     image: 'localmonero.jpg',
     link: 'https://localmonero.co/?rc=ogps',
-    dateAdded: 'January 4, 2018',
+    dateAdded: '2018-01-04',
   },
   {
     title: 'LessWrong',
@@ -199,7 +200,7 @@ const appList = [
     image: 'lesswrong.jpg',
     link: 'https://www.lesswrong.com/',
     similarWebVisits: 1000,
-    dateAdded: 'January 28, 2018',
+    dateAdded: '2018-01-28',
   },
   {
     title: 'ODIGEO Connect',
@@ -208,7 +209,7 @@ const appList = [
       'and distribute it to millions of travellers.',
     image: 'odigeo.jpg',
     link: 'https://www.odigeoconnect.com/',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'comet',
@@ -218,7 +219,7 @@ const appList = [
     image: 'comet.jpg',
     link: 'https://www.comet.com/',
     similarWebVisits: 180,
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Pointer',
@@ -227,7 +228,7 @@ const appList = [
       'A Pointer faz parte da Portobello e atua no Nordeste do Brasil. 🇧🇷',
     image: 'pointer.jpg',
     link: 'https://www.pointer.com.br/',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Oneplanetcrowd',
@@ -235,7 +236,7 @@ const appList = [
       "Oneplanetcrowd is Europe's leading sustainable crowdfunding platform for People & Planet.",
     image: 'oneplanetcrowd.jpg',
     link: 'https://www.oneplanetcrowd.com/en',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'CollegeAI',
@@ -246,7 +247,7 @@ const appList = [
       'planner, and college chance calculator.',
     image: 'collegeai.jpg',
     link: 'https://collegeai.com',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'react-admin',
@@ -257,7 +258,7 @@ const appList = [
     image: 'posters-galore.jpg',
     link: 'https://marmelab.com/react-admin-demo/',
     source: 'https://github.com/marmelab/react-admin',
-    dateAdded: 'January 21, 2018',
+    dateAdded: '2018-01-21',
     stars: 18500,
   },
   {
@@ -269,14 +270,14 @@ const appList = [
     link: 'https://builderbook.org/',
     source: 'https://github.com/async-labs/builderbook',
     stars: 3000,
-    dateAdded: 'January 5, 2018',
+    dateAdded: '2018-01-05',
   },
   {
     title: 'Commit Swimming',
     description: 'The #1 workout journal for coaches and swimmers.',
     image: 'commitswimming.jpg',
     link: 'https://commitswimming.com/',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'EventHi',
@@ -285,7 +286,7 @@ const appList = [
       'community. Use our easy ticketing system, sponsor, and sell merchandise.',
     image: 'eventhi.jpg',
     link: 'https://eventhi.io/',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'Iceberg Finder',
@@ -294,7 +295,7 @@ const appList = [
       'IcebergFinder.com is your premier place for finding bergs in Newfoundland and Labrador.',
     image: 'icebergfinder.jpg',
     link: 'https://icebergfinder.com/',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'MetaFact',
@@ -303,7 +304,7 @@ const appList = [
       "It's a platform to ask questions, learn the facts and share the truth.",
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
-    dateAdded: 'January 1, 2019',
+    dateAdded: '2019-01-01',
   },
   {
     title: 'AudioNodes',
@@ -312,14 +313,14 @@ const appList = [
       'parameter automation, MIDI editing, synthesis, cloud production, and more.',
     image: 'audionodes.jpg',
     link: 'https://www.audionodes.com/',
-    dateAdded: 'January 7, 2018',
+    dateAdded: '2018-01-07',
   },
   {
     title: 'SlidesUp',
     description: 'SlidesUp is a platform to help conference organizers plan their events.',
     image: 'slidesup.jpg',
     link: 'https://slidesup.com/',
-    dateAdded: 'January 3, 2018',
+    dateAdded: '2018-01-03',
   },
   {
     title: 'Typekev',
@@ -328,7 +329,7 @@ const appList = [
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
     stars: 10,
-    dateAdded: 'January 23, 2018',
+    dateAdded: '2018-01-23',
   },
   {
     title: 'npm registry browser',
@@ -339,7 +340,7 @@ const appList = [
     link: 'https://topheman.github.io/npm-registry-browser/',
     source: 'https://github.com/topheman/npm-registry-browser',
     stars: 90,
-    dateAdded: 'January 15, 2018',
+    dateAdded: '2018-01-15',
   },
   {
     title: 'Snippets Chrome Extension',
@@ -350,7 +351,7 @@ const appList = [
     link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 42,
-    dateAdded: 'January 19, 2018',
+    dateAdded: '2018-01-19',
   },
   {
     title: 'Tree',
@@ -360,7 +361,7 @@ const appList = [
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
     stars: 24,
-    dateAdded: 'January 25, 2018',
+    dateAdded: '2018-01-25',
   },
   {
     title: 'TagSpaces',
@@ -371,14 +372,14 @@ const appList = [
     link: 'https://www.tagspaces.org/demo/',
     source: 'https://github.com/tagspaces/tagspaces',
     stars: 2500,
-    dateAdded: 'November 1, 2019',
+    dateAdded: '2019-11-01',
   },
   {
     title: 'HiFiveWork',
     description: 'HiFiveWork, the cool tool for leave management',
     image: 'hifivework.png',
     link: 'https://hifivework.com/',
-    dateAdded: 'January 8, 2020',
+    dateAdded: '2020-01-08',
   },
   {
     title: 'FANSPO',
@@ -386,7 +387,7 @@ const appList = [
     image: 'tradenba.jpg',
     link: 'https://fanspo.com/',
     similarWebVisits: 417,
-    dateAdded: 'January 20, 2020',
+    dateAdded: '2020-01-20',
   },
   {
     title: 'Backstage',
@@ -395,14 +396,14 @@ const appList = [
     link: 'https://backstage.io',
     source: 'https://github.com/backstage/backstage',
     stars: 14300,
-    dateAdded: 'August 31, 2020',
+    dateAdded: '2020-08-31',
   },
   {
     title: 'buybags',
     description: 'buybags is a fashion shopping aggregator in Germany.',
     image: 'buybags.jpg',
     link: 'https://www.buybags.de/',
-    dateAdded: 'October 8, 2020',
+    dateAdded: '2020-10-08',
   },
   {
     title: 'react-admin CRM demo',
@@ -411,7 +412,7 @@ const appList = [
     link: 'https://marmelab.com/react-admin-crm/',
     source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
     stars: 18500,
-    dateAdded: 'May 6, 2021',
+    dateAdded: '2021-05-06',
   },
   {
     title: 'Saleor Store Dashboard',
@@ -421,7 +422,7 @@ const appList = [
     source: 'https://github.com/saleor/saleor-dashboard',
     stars: 15079,
     similarWebVisits: 62,
-    dateAdded: 'February 5, 2022',
+    dateAdded: '2022-02-05',
   },
   {
     title: 'MQTT Explorer',
@@ -433,7 +434,7 @@ const appList = [
     source: 'https://github.com/thomasnordquist/MQTT-Explorer',
     image: 'mqtt-explorer.png',
     stars: 1600,
-    dateAdded: 'March 25, 2019',
+    dateAdded: '2019-03-25',
   },
   {
     title: 'refine FineFoods demo',
@@ -442,7 +443,7 @@ const appList = [
     link: 'https://example.mui.admin.refine.dev/',
     source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
-    dateAdded: 'June 21, 2022',
+    dateAdded: '2022-06-21',
   },
 ];
 
