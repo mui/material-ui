@@ -10,6 +10,7 @@ const pages = [
       { pathname: '/base/getting-started/quickstart', title: 'Quickstart' },
       { pathname: '/base/getting-started/usage', title: 'Usage' },
       { pathname: '/base/getting-started/customization', title: 'Customization' },
+      { pathname: '/base/getting-started/supported-components', title: 'Supported Components' },
     ],
   },
   {
