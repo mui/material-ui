@@ -131,7 +131,9 @@ const ButtonRoot = styled(ButtonBase, {
           backgroundColor: theme.vars
             ? theme.vars.palette.Button.inheritContainedHoverBg
             : inheritContainedHoverBackgroundColor,
-          boxShadow: (theme.vars || theme).shadows[4],
+            '@media (hover: hover)': {
+              boxShadow: (theme.vars || theme).shadows[4]
+            },
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             boxShadow: (theme.vars || theme).shadows[2],

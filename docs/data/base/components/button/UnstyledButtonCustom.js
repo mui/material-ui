@@ -71,12 +71,14 @@ const CustomButtonRoot = styled(ButtonRoot)(
 
   &:hover,
   &.${buttonClasses.focusVisible} {
-    .borderEffect {
-      stroke-dashoffset: -600;
-    }
-
-    .bg {
-      fill: var(--hover-color);
+    @media (hover: hover) {
+      .borderEffect {
+        stroke-dashoffset: -600;
+      }
+  
+      .bg {
+        fill: var(--hover-color);
+      }
     }
   }
 

@@ -56,7 +56,9 @@ const CustomButtonRoot = styled('button')`
   border: none;
 
   &:hover {
-    background-color: ${blue[600]};
+    @media (hover: hover) {
+      background-color: ${blue[600]};
+    }
   }
 
   &.active {

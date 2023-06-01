@@ -36,7 +36,9 @@ const CustomButton = styled(Button)`
   border: none;
 
   &:hover:not(.${buttonClasses.disabled}) {
-    background-color: ${blue[600]};
+    @media (hover: hover) {
+      background-color: ${blue[600]};
+    }
   }
 
   &.${buttonClasses.active} {
