@@ -25,30 +25,29 @@ export default function MessageInput() {
         minRows={3}
         endDecorator={
           <Box
-            sx={{
-              display: 'flex',
-              gap: 'var(--Textarea-paddingBlock)',
-              pt: 'var(--Textarea-paddingBlock)',
-              // borderTop: '1px solid',
-              // borderColor: 'divider',
-              flex: 'auto',
-            }}
+            sx={
+              {
+                // display: 'flex',
+                // gap: 'var(--Textarea-paddingBlock)',
+                // pt: 'var(--Textarea-paddingBlock)',
+                // flex: 'auto',
+              }
+            }
           >
             <IconButton
               variant="plain"
               color="neutral"
               onClick={(event) => setAnchorEl(event.currentTarget)}
             >
-              <FormatBold />
-              <KeyboardArrowDown fontSize="md" />
+              kabob
             </IconButton>
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
               onClose={() => setAnchorEl(null)}
-              size="sm"
-              placement="bottom-start"
-              sx={{ '--ListItemDecorator-size': '24px' }}
+              // size="sm"
+              // placement="bottom-start"
+              // sx={{ '--ListItemDecorator-size': '24px' }}
             >
               {['200', 'normal', 'bold'].map((weight) => (
                 <MenuItem
@@ -58,31 +57,16 @@ export default function MessageInput() {
                     // setFontWeight(weight);
                     setAnchorEl(null);
                   }}
-                  sx={{ fontWeight: weight }}
+                  // sx={{ fontWeight: weight }}
                 >
-                  <ListItemDecorator>
-                    {/* {fontWeight === weight && <Check fontSize="sm" />} */}
-                  </ListItemDecorator>
                   {weight === '200' ? 'lighter' : weight}
                 </MenuItem>
               ))}
             </Menu>
-            <IconButton
-            // variant={italic ? 'soft' : 'plain'}
-            // color={italic ? 'primary' : 'neutral'}
-            // aria-pressed={italic}
-            // onClick={() => setItalic((bool) => !bool)}
-            >
-              <FormatItalic />
-            </IconButton>
+            <IconButton>emoji</IconButton>
             <Button>Send</Button>
           </Box>
         }
-        // sx={{
-        //   minWidth: 300,
-        //   fontWeight,
-        //   fontStyle: italic ? 'italic' : 'initial',
-        // }}
       />
     </FormControl>
   );

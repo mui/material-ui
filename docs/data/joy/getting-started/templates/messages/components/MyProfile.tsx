@@ -136,18 +136,54 @@ export default function MyProfile() {
         <Grid xs={12} md={8}>
           <Sheet
             sx={{
-              px: 4,
-              py: 3,
+              // px: 4,
+              // py: 3,
               height: '100dvh',
             }}
           >
-            <Typography>messages list/item - an item has a chat bubble</Typography>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              sx={{ borderBottom: '1px solid green', backgroundColor: 'yellow' }}
+            >
+              <Stack direction="row" spacing={1} alignItems="flex-start">
+                <Badge
+                  color="success"
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                >
+                  <Avatar size="lg" src="/static/images/avatar/1.jpg" />
+                </Badge>
+                <div>
+                  <Typography
+                    endDecorator={
+                      <Chip
+                        variant="outlined"
+                        size="sm"
+                        startDecorator={<Badge size="sm" />}
+                      >
+                        Online
+                      </Chip>
+                    }
+                  >
+                    Katherine Moss
+                  </Typography>
+
+                  <Typography>@kathy</Typography>
+                </div>
+              </Stack>
+              <div>
+                <Button>Call</Button>
+                <Button>View profile</Button>
+                <IconButton>kabob</IconButton>
+              </div>
+            </Stack>
             {/* todo: come back and fix the height here once top bar and textarea are done */}
             <Stack
               spacing={2}
               justifyContent="flex-end"
-              sx={{ height: 'calc(100dvh - 300px)' }}
+              sx={{ height: 'calc(100dvh - 300px)', px: 4, py: 3 }}
             >
+              {/* <Typography>messages list/item - an item has a chat bubble</Typography> */}
               {messages.map((message, index) => {
                 return (
                   <ChatBubble
