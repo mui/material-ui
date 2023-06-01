@@ -2529,7 +2529,7 @@ describe('<Autocomplete />', () => {
       expect(options.length).to.equal(2);
     });
     
-    it('should throw warning if option does not have key', () => {
+    it('should throw warning if option does not have key for duplicate labels', () => {
       expect(() =>
         render(
           <Autocomplete
