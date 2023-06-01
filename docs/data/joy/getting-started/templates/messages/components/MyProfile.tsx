@@ -6,15 +6,15 @@ import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import ChatBubble from './ChatBubble';
-import { Chip, IconButton, Input } from '@mui/joy';
+import { Badge, Chip, IconButton, Input } from '@mui/joy';
 import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
+import ChatBubble from './ChatBubble';
+import ConversationListItem from './ConversationListItem';
 
 export default function MyProfile() {
   return (
@@ -36,6 +36,7 @@ export default function MyProfile() {
               borderRight: '1px solid',
               borderColor: 'divider',
               height: '100dvh',
+              overflowY: 'auto',
             }}
           >
             <Stack
@@ -75,43 +76,15 @@ export default function MyProfile() {
                 '--ListItem-paddingRight': '1rem',
               }}
             >
-              <ListItem>
-                <ListItemButton
-                  onClick={() => alert('You clicked')}
-                  selected
-                  variant="soft"
-                  color="neutral"
-                >
-                  <div>new</div>
-                  <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                    <Avatar size="sm" src="/static/images/avatar/1.jpg" />
-                  </ListItemDecorator>
-                  <div>
-                    <Stack
-                      direction="row"
-                      spacing={2}
-                      justifyContent="space-between"
-                    >
-                      <div>
-                        <Typography>Mabel Boyle</Typography>
-                        <Typography>@mabel</Typography>
-                      </div>
-                      <Typography>5 mins ago</Typography>
-                    </Stack>
-                    <Typography>
-                      Hey Olivia, Katherine sent me over the latest doc. I just have
-                      a quick question about the...
-                    </Typography>
-                  </div>
-                </ListItemButton>
-              </ListItem>
-              <ListDivider />
-              <ListItem>
-                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                  <Avatar size="sm" src="/static/images/avatar/2.jpg" />
-                </ListItemDecorator>
-                Boyd Burt
-              </ListItem>
+              <ConversationListItem selected />
+              <ConversationListItem />
+              <ConversationListItem />
+              <ConversationListItem />
+              <ConversationListItem />
+              <ConversationListItem />
+              <ConversationListItem />
+              <ConversationListItem />
+              <ConversationListItem />
             </List>
           </Sheet>
         </Grid>
