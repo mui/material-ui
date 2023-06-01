@@ -543,10 +543,10 @@ export default function Showcase() {
                       bgcolor: 'currentColor',
                       border: '1px solid',
                       borderColor: 'grey.100',
-                      color: 'gray.100',
+                      color: 'grey.100',
                       ...theme.applyDarkStyles({
                         borderColor: 'grey.700',
-                        color: 'gray.900',
+                        color: 'primaryDark.900',
                       }),
                     })}
                   />
