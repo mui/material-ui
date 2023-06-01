@@ -679,7 +679,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({
-                      key: option?.key,
+                      key: option.key,
                       group: option.group,
                       children: option.options.map((option2, index2) =>
                         renderListOption(option2, option.index + index2),
