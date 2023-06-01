@@ -17,7 +17,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position?: 'left' | 'right' | 'alternate' | 'alternate-revert';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
   /**
    * The content of the component.
    */
