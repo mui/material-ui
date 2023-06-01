@@ -17,7 +17,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position?: 'left' | 'right' | 'alternate' | 'alternate-reverse';
+  position?: 'left' | 'right' | 'alternate' | 'alternate-revert';
   /**
    * The content of the component.
    */
@@ -35,7 +35,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
     /** Styles applied to the root element if `position="alternate"`. */
     positionAlternate?: string;
     /** Styles applied to the root element if `position="alternate-revert"`. */
-    positionAlternateReverse?: string;
+    positionAlternateRevert?: string;
   };
 
   /**
@@ -130,7 +130,7 @@ Timeline.propTypes /* remove-proptypes */ = {
    * The position where the TimelineContent should appear relative to the time axis.
    * @default 'right'
    */
-  position: PropTypes.oneOf(['alternate-reverse', 'alternate', 'left', 'right']),
+  position: PropTypes.oneOf(['alternate-revert', 'alternate', 'left', 'right']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
