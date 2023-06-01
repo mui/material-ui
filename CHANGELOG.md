@@ -1,5 +1,57 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.13.3
+
+<!-- generated comparing v5.13.2..master -->
+
+_May 29, 2023_
+
+A big thanks to the 15 contributors who made this release possible.
+This release focuses primarily on 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.13.3
+
+- &#8203;<!-- 22 -->[Autocomplete] Accept external Listbox ref (#37325) @sai6855
+- &#8203;<!-- 06 -->[Modal] Pass `className` from `BackdropProps` (#37399) @hbjORbj
+
+### `@mui/base@5.0.0-beta.3`
+
+- &#8203;<!-- 20 -->[base] Maintain nodes document order in compound components (#36857) @michaldudak
+- &#8203;<!-- 19 -->[base][joy] Prevent persisting hover state styles onclick on mobile (#36704) @gitstart
+- &#8203;<!-- 18 -->[Menu][base] MenuItem as a link does not work (#37242) @nicolas-ot
+- &#8203;<!-- 17 -->[MenuItem][Base] Pass idGenerator function (#37364) @sai6855
+- &#8203;<!-- 16 -->[Slider][Base] Add Vertical slider demo (#37357) @sai6855
+
+### `@mui/joy@5.0.0-alpha.82`
+
+- &#8203;<!-- 23 -->[Select][joy] Fix popup does not close (#37435) @siriwatknp
+- &#8203;<!-- 21 -->[Badge][Joy] Fix `slots` element type in API docs (#37329) @zignis
+- &#8203;<!-- 04 -->[Select] [joy] Handle long text content (#37289) @akash191095
+- &#8203;<!-- 07 -->[Tooltip][Joy] Interactive doesn't work (#37159) @nicolas-ot
+
+### `@mui/codemod@5.13.3
+
+- &#8203;<!-- 05 -->[mui-codemod] Add missing script to README (#37377) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 14 -->[docs] Clarify Hidden down props as exclusive (#36927) @canac
+- &#8203;<!-- 13 -->[docs] Add refine to Material UI "Related projects" and "More advanced example projects" pages (#37308) @necatiozmen
+- &#8203;<!-- 12 -->[docs] Remove todo link from sidebar (#37373) @brijeshb42
+- &#8203;<!-- 11 -->[docs] Clarify the peer dependency with react (#37360) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] Divider vertical middle prop migration (#36840) @JhonnK08
+- &#8203;<!-- 09 -->[docs] Fix branding theme tabs and navigation bar regressions (#37362) @ZeeshanTamboli
+- &#8203;<!-- 08 -->[docs-infra] Throw on incorrect internal links (#37326) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 15 -->[core] Include scoped JSX namespace when resolving props (#37404) @LukasTy
+- &#8203;<!-- 03 -->[test][useMediaQuery] Change SSR test description (#37403) @zignis
+- &#8203;<!-- 02 -->[website] Sync with Ashby @oliviertassinari
+- &#8203;<!-- 01 -->[website] Add David to about page (#37379) @DavidCnoops
+
+All contributors of this release in alphabetical order: @akash191095, @brijeshb42, @canac, @DavidCnoops, @gitstart, @hbjORbj, @JhonnK08, @LukasTy, @michaldudak, @necatiozmen, @nicolas-ot, @oliviertassinari, @sai6855, @ZeeshanTamboli, @zignis
+
 ## 5.13.2
 
 <!-- generated comparing v5.13.1..master -->

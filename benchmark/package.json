@@ -15,7 +15,7 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mdx-js/react": "^2.3.0",
-    "@mui/material": "^5.13.2",
+    "@mui/material": "^5.13.3",
     "@mui/styles": "^5.13.2",
     "@mui/system": "^5.13.2",
     "@styled-system/css": "^5.1.5",
@@ -28,7 +28,7 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
     "serve-handler": "^6.1.5",
-    "styled-components": "^5.3.10",
+    "styled-components": "^5.3.11",
     "theme-ui": "^0.15.7",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0"
