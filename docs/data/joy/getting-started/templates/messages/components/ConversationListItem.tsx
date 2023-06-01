@@ -13,7 +13,6 @@ import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton, { ListItemButtonProps } from '@mui/joy/ListItemButton';
-import ChatBubble from './ChatBubble';
 
 type ConversationListItemProps = ListItemButtonProps & {};
 
@@ -29,9 +28,14 @@ export default function ConversationListItem({
           variant={selected ? 'soft' : 'plain'}
           color="neutral"
         >
-          <Badge />
+          <Badge size="sm" />
           <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-            <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+            <Badge
+              color="success"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
+              <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+            </Badge>
           </ListItemDecorator>
           <div>
             <Stack direction="row" spacing={2} justifyContent="space-between">
