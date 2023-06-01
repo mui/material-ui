@@ -2528,6 +2528,7 @@ describe('<Autocomplete />', () => {
       const options = getAllByRole('option');
       expect(options.length).to.equal(2);
     });
+    
     it('should throw warning if option does not have key', () => {
       expect(() =>
         render(
