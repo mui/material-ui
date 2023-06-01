@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
 import { unstable_debounce as debounce } from '@mui/utils';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
@@ -11,6 +12,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 
 const Navigation = styled('nav')(({ theme }) => [
   {
@@ -21,14 +23,15 @@ const Navigation = styled('nav')(({ theme }) => [
       display: 'flex',
     },
     '& li': {
-      color: (theme.vars || theme).palette.text.primary,
       ...theme.typography.body2,
       fontWeight: theme.typography.fontWeightBold,
+      color: (theme.vars || theme).palette.text.primary,
       '& > a, & > div': {
-        display: 'inline-block',
+        display: 'flex',
         color: 'inherit',
+        alignItems: 'center',
         textDecoration: 'none',
-        padding: theme.spacing('8px', 1),
+        padding: theme.spacing('6px', 1, '8px'),
         borderRadius: (theme.vars || theme).shape.borderRadius,
         '&:hover': {
           color: (theme.vars || theme).palette.grey[700],
@@ -92,9 +95,13 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           (theme) => ({
             display: 'flex',
             alignItems: 'center',
-            py: 2,
-            pr: 3,
+            gap: 2,
+            p: 1.5,
+            borderRadius: (theme.vars || theme).shape.borderRadius,
+            border: '1px solid',
+            borderColor: 'transparent',
             '&:hover, &:focus': {
+              borderColor: 'divider',
               backgroundColor: (theme.vars || theme).palette.grey[50],
               outline: 0,
               '@media (hover: none)': {
@@ -106,6 +113,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           (theme) =>
             theme.applyDarkStyles({
               '&:hover, &:focus': {
+                borderColor: 'divider',
                 backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
               },
             }),
@@ -115,7 +123,6 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         <Box
           sx={[
             (theme) => ({
-              px: 2,
               '& circle': {
                 fill: (theme.vars || theme).palette.grey[100],
               },
@@ -262,16 +269,19 @@ export default function HeaderNavBar() {
           onMouseLeave={() => setSubMenuOpenDebounced(null)}
           onBlur={() => setSubMenuOpenUndebounce(null)}
         >
-          <div
+          <Box
+            component="div"
             role="menuitem"
             tabIndex={0}
             ref={productsMenuRef}
             aria-haspopup
             aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
             onKeyDown={handleKeyDown}
+            sx={{ pr: '6px' }}
           >
             Products
-          </div>
+            <ExpandMoreRoundedIcon fontSize="small" sx={{ ml: 0.5 }} />
+          </Box>
           <Popper
             open={subMenuOpen === 'products'}
             anchorEl={productsMenuRef.current}
@@ -288,13 +298,14 @@ export default function HeaderNavBar() {
                   variant="outlined"
                   sx={[
                     (theme) => ({
+                      p: 1,
                       minWidth: 498,
                       overflow: 'hidden',
-                      borderColor: 'grey.200',
+                      borderColor: 'divider',
                       bgcolor: 'background.paper',
                       boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
                       ...theme.applyDarkStyles({
-                        borderColor: 'primaryDark.700',
+                        borderColor: 'divider',
                         bgcolor: 'primaryDark.900',
                         boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
                       }),
@@ -303,20 +314,26 @@ export default function HeaderNavBar() {
                         padding: 0,
                         listStyle: 'none',
                       },
-                      '& li:not(:last-of-type)': {
-                        borderBottom: '1px solid',
-                        borderColor: 'grey.100',
-                      },
                       '& a': { textDecoration: 'none' },
                     }),
-                    (theme) =>
-                      theme.applyDarkStyles({
-                        '& li:not(:last-of-type)': {
-                          borderColor: 'primaryDark.700',
-                        },
-                      }),
                   ]}
                 >
+                  <Typography
+                    sx={[
+                      (theme) => ({
+                        py: 1,
+                        px: 2,
+                        fontSize: theme.typography.pxToRem(11),
+                        fontWeight: theme.typography.fontWeightBold,
+                        textTransform: 'uppercase',
+                        letterSpacing: '.08rem',
+                        color: theme.palette.grey[500],
+                      }),
+                    ]}
+                  >
+                    Core products
+                  </Typography>
+
                   <ul role="menu">
                     <li role="none">
                       <ProductSubMenu
@@ -324,23 +341,23 @@ export default function HeaderNavBar() {
                         role="menuitem"
                         href={ROUTES.productCore}
                         icon={<IconImage name="product-core" />}
-                        name="MUI Core"
+                        name="Material UI"
                         description="Ready-to-use foundational React components, free forever."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
                     <li role="none">
                       <ProductSubMenu
-                        id={PRODUCT_IDS[1]}
+                        id={PRODUCT_IDS[0]}
                         role="menuitem"
-                        href={ROUTES.productAdvanced}
-                        icon={<IconImage name="product-advanced" />}
-                        name="MUI X"
-                        description="Advanced and powerful components for complex use cases."
+                        href={ROUTES.productCore}
+                        icon={<IconImage name="product-core" />}
+                        name="Base UI"
+                        description="Ready-to-use foundational React components, free forever."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
-                    <li role="none">
+                    {/* <li role="none">
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
                         role="menuitem"
@@ -359,6 +376,38 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-designkits" />}
                         name="Design kits"
                         description="Our components available in your favorite design tool."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li> */}
+                    <li role="none">
+                      <Divider sx={{ mt: 1 }} />
+                    </li>
+                    <li role="none">
+                      <Typography
+                        sx={[
+                          (theme) => ({
+                            pt: 2,
+                            pb: 1,
+                            px: 2,
+                            fontSize: theme.typography.pxToRem(11),
+                            fontWeight: theme.typography.fontWeightBold,
+                            textTransform: 'uppercase',
+                            letterSpacing: '.08rem',
+                            color: theme.palette.grey[500],
+                          }),
+                        ]}
+                      >
+                        Advanced products
+                      </Typography>
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[1]}
+                        role="menuitem"
+                        href={ROUTES.productAdvanced}
+                        icon={<IconImage name="product-advanced" />}
+                        name="MUI X"
+                        description="Advanced and powerful components for complex use cases."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
@@ -397,6 +446,7 @@ export default function HeaderNavBar() {
             aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}
           >
             Docs
+            <ExpandMoreRoundedIcon fontSize="small" sx={{ ml: 0.5 }} />
           </div>
           <Popper
             open={subMenuOpen === 'docs'}
