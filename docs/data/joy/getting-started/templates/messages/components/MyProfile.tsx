@@ -15,6 +15,51 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ChatBubble from './ChatBubble';
 import ConversationListItem from './ConversationListItem';
+import MessageInput from './MessageInput';
+
+const messages = [
+  {
+    time: 'Thursday 10:16am',
+    sender: 'Katherine Moss',
+    message:
+      'Thanks Olivia! Almost there. I’ll work on making those changes you suggested and will shoot it over.',
+  },
+  {
+    time: 'Thursday 11:40am',
+    sender: 'Katherine Moss',
+    message:
+      'Hey Olivia, I’ve finished with the requirements doc! I made some notes in the gdoc as well for Phoenix to look over.',
+  },
+  {
+    time: 'Thursday 11:40am',
+    sender: 'Katherine Moss',
+    message: 'Tech requirements.pdf',
+    attachment: {
+      type: 'PDF',
+      size: '1.2 MB',
+    },
+  },
+  {
+    time: 'Thursday 11:41am',
+    sender: 'You',
+    message: 'Awesome! Thanks. I’ll look at this today.',
+  },
+  {
+    time: 'Thursday 11:44am',
+    sender: 'Katherine Moss',
+    message: 'No rush though — we still have to wait for Lana’s designs.',
+  },
+  {
+    time: 'Today 2:20pm',
+    sender: 'Katherine Moss',
+    message: 'Hey Olivia, can you please review the latest design when you can?',
+  },
+  {
+    time: 'Just now',
+    sender: 'You',
+    message: 'Sure thing, I’ll have a look today. They’re looking great!',
+  },
+];
 
 export default function MyProfile() {
   return (
@@ -97,18 +142,35 @@ export default function MyProfile() {
             }}
           >
             <Typography>messages list/item - an item has a chat bubble</Typography>
-
-            <Stack spacing={2}>
-              <ChatBubble variant="received" />
+            {/* todo: come back and fix the height here once top bar and textarea are done */}
+            <Stack
+              spacing={2}
+              justifyContent="flex-end"
+              sx={{ height: 'calc(100dvh - 300px)' }}
+            >
+              {messages.map((message, index) => {
+                return (
+                  <ChatBubble
+                    key={index}
+                    variant={message.sender === 'You' ? 'sent' : 'received'}
+                    message={message.message}
+                    attachment={message.attachment}
+                    time={message.time}
+                    sender={message.sender}
+                  />
+                );
+              })}
+              {/* <ChatBubble variant="received" />
               <Divider>Today</Divider>
               <ChatBubble variant="sent" />
               <ChatBubble variant="sent" />
-              <ChatBubble variant="received" />
+              <ChatBubble variant="received" /> */}
             </Stack>
-            <Textarea placeholder="Send a message" />
+            {/* <Textarea placeholder="Send a message" minRows={2} />
             <Button variant="solid" color="primary">
               Send
-            </Button>
+            </Button> */}
+            <MessageInput />
           </Sheet>
         </Grid>
       </Grid>
