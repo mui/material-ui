@@ -34,7 +34,7 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
     positionRight?: string;
     /** Styles applied to the root element if `position="alternate"`. */
     positionAlternate?: string;
-    /** Styles applied to the root element if `position="alternate-revert"`. */
+    /** Styles applied to the root element if `position="alternate-reverse"`. */
     positionAlternateReverse?: string;
   };
 

@@ -24,10 +24,10 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>position=\"alternate\"</code>"
     },
-    "positionAlternateRevert": {
+    "positionAlternateReverse": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "<code>position=\"alternate-revert\"</code>"
+      "conditions": "<code>position=\"alternate-reverse\"</code>"
     }
   }
 }

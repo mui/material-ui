@@ -6,9 +6,9 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
-export default function AlternateRevertTimeline() {
+export default function AlternateReverseTimeline() {
   return (
-    <Timeline position="alternate-revert">
+    <Timeline position="alternate-reverse">
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot />

@@ -17,7 +17,7 @@
       "positionLeft",
       "positionRight",
       "positionAlternate",
-      "positionAlternateRevert",
+      "positionAlternateReverse",
       "missingOppositeContent"
     ],
     "globalClasses": {},

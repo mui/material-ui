@@ -16,7 +16,7 @@
       "positionRight",
       "positionLeft",
       "positionAlternate",
-      "positionAlternateRevert"
+      "positionAlternateReverse"
     ],
     "globalClasses": {},
     "name": "MuiTimelineContent"

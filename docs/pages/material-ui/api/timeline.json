@@ -6,7 +6,7 @@
     "position": {
       "type": {
         "name": "enum",
-        "description": "'alternate-revert'<br>&#124;&nbsp;'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+        "description": "'alternate-reverse'<br>&#124;&nbsp;'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
       "default": "'right'"
     },
@@ -24,7 +24,7 @@
       "positionLeft",
       "positionRight",
       "positionAlternate",
-      "positionAlternateRevert"
+      "positionAlternateReverse"
     ],
     "globalClasses": {},
     "name": "MuiTimeline"

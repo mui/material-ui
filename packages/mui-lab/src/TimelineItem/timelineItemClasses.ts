@@ -10,8 +10,8 @@ export interface TimelineItemClasses {
   positionRight: string;
   /** Styles applied to the root element if `position="alternate"`. */
   positionAlternate: string;
-  /** Styles applied to the root element if `position="alternate-revert"`. */
-  positionAlternateRevert: string;
+  /** Styles applied to the root element if `position="alternate-reverse"`. */
+  positionAlternateReverse: string;
   /** Styles applied to the root element if TimelineOppositeContent isn't provided. */
   missingOppositeContent: string;
 }
@@ -27,7 +27,7 @@ const timelineItemClasses: TimelineItemClasses = generateUtilityClasses('MuiTime
   'positionLeft',
   'positionRight',
   'positionAlternate',
-  'positionAlternateRevert',
+  'positionAlternateReverse',
   'missingOppositeContent',
 ]);
 

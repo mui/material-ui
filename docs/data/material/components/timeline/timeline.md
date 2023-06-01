@@ -38,7 +38,7 @@ The timeline can display the events on alternating sides.
 
 The timeline can display the events on alternating sides in reverse order.
 
-{{"demo": "AlternateRevertTimeline.js"}}
+{{"demo": "AlternateReverseTimeline.js"}}
 
 ## Color
 

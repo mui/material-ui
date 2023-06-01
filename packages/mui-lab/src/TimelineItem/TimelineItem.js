@@ -50,7 +50,7 @@ const TimelineItemRoot = styled('li', {
       },
     },
   }),
-  ...(ownerState.position === 'alternate-revert' && {
+  ...(ownerState.position === 'alternate-reverse' && {
     '&:nth-of-type(odd)': {
       flexDirection: 'row-reverse',
       [`& .${timelineContentClasses.root}`]: {
