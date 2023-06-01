@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
@@ -18,12 +19,14 @@ export default function OverflowCard() {
           />
         </AspectRatio>
       </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-        Yosemite National Park
-      </Typography>
-      <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-        California
-      </Typography>
+      <CardContent>
+        <Typography level="h2" fontSize="md">
+          Yosemite National Park
+        </Typography>
+        <Typography level="body2" sx={{ mt: 0.5 }}>
+          California
+        </Typography>
+      </CardContent>
       <Divider />
       <CardOverflow
         variant="soft"
@@ -31,7 +34,6 @@ export default function OverflowCard() {
           display: 'flex',
           gap: 1.5,
           py: 1.5,
-          px: 'var(--Card-padding)',
           bgcolor: 'background.level1',
         }}
       >

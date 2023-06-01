@@ -62,7 +62,7 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
     className,
     component = 'div',
     children,
-    buttonFlex = 'initial',
+    buttonFlex,
     slots = {},
     slotProps = {},
     ...other
@@ -95,7 +95,6 @@ CardActions.propTypes /* remove-proptypes */ = {
   // ----------------------------------------------------------------------
   /**
    * The CSS `flex` for the Button and its wrapper.
-   * @default 'initial'
    */
   buttonFlex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**

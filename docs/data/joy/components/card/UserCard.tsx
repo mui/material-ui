@@ -9,8 +9,17 @@ import Sheet from '@mui/joy/Sheet';
 
 export default function BioCard() {
   return (
-    <Card orientation="horizontal" sx={{ maxWidth: '100%', overflow: 'hidden' }}>
-      <AspectRatio ratio="1" sx={{ minWidth: 180 }}>
+    <Card
+      orientation="horizontal"
+      stackWidth={500}
+      sx={{
+        width: '100%',
+        // make the card resizable for demo
+        overflow: 'auto',
+        resize: 'horizontal',
+      }}
+    >
+      <AspectRatio ratio="1" maxHeight={182} sx={{ minWidth: 182, flex: 1 }}>
         <img
           src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286"
           srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"

@@ -41,9 +41,6 @@ import CardOverflow from '@mui/joy/CardOverflow';
 By default, the Card component adds padding around the outer edges of its contents.
 To eliminate this white space, add the Card Overflow component inside the Card as a wrapper around the content to be expanded.
 
-Note that Card Overflow only works when it's the first and/or last child of the parent Card.
-In the demo below, the top and bottom sections are expanded to fill the edges:
-
 {{"demo": "OverflowCard.js" }}
 
 ### Card layers
@@ -175,9 +172,8 @@ The Card component and all of its supplementary components are composed of a sin
   <div class="MuiCardOverflow-root">
     <!-- optional Card Overflow utility -->
   </div>
+  <div class="MuiCardActions-root">
+    <!-- optional Card Actions layer -->
+  </div>
 </div>
 ```
-
-:::info
-Keep in mind that [Card Overflow](#expand-to-fill) must be the first or last child of a Card in order to function—accordingly, it will have a `data-first-child` or `data-last-child` attribute appended to its `<div>`.
-:::

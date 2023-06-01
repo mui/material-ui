@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getCardContentUtilityClass } from './cardContentClasses';
+import cardContentClasses, { getCardContentUtilityClass } from './cardContentClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
 import useSlot from '../utils/useSlot';
 
@@ -27,39 +27,44 @@ const CardContentRoot = styled('div', {
     'data-first-child'?: string;
     'data-last-child'?: string;
   };
-}>(({ ownerState }) => ({
+}>({
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
   zIndex: 1,
-  padding: 'var(--Card-padding)',
-  ...(ownerState['data-parent'] === 'VCard' && {
-    marginInline: 'calc(-1 * var(--Card-padding))',
-    ...(ownerState['data-first-child'] !== undefined && {
-      marginBlockStart: 'calc(-1 * var(--Card-padding))',
-      borderTopLeftRadius: 'var(--CardOverflow-radius)',
-      borderTopRightRadius: 'var(--CardOverflow-radius)',
-    }),
-    ...(ownerState['data-last-child'] !== undefined && {
-      marginBlockEnd: 'calc(-1 * var(--Card-padding))',
-      borderBottomLeftRadius: 'var(--CardOverflow-radius)',
-      borderBottomRightRadius: 'var(--CardOverflow-radius)',
-    }),
-  }),
-  ...(ownerState['data-parent'] === 'HCard' && {
-    marginBlock: 'calc(-1 * var(--Card-padding))',
-    ...(ownerState['data-first-child'] !== undefined && {
-      marginInlineStart: 'calc(-1 * var(--Card-padding))',
-      borderTopLeftRadius: 'var(--CardOverflow-radius)',
-      borderBottomLeftRadius: 'var(--CardOverflow-radius)',
-    }),
-    ...(ownerState['data-last-child'] !== undefined && {
-      marginInlineEnd: 'calc(-1 * var(--Card-padding))',
-      borderTopRightRadius: 'var(--CardOverflow-radius)',
-      borderBottomRightRadius: 'var(--CardOverflow-radius)',
-    }),
-  }),
-}));
+  // TODO: remove these lines when flexbox `gap` reaches ~95% support (https://caniuse.com/flexbox-gap)
+  marginTop: 'var(--unstable_pt, calc((1 - var(--Card-horizontal)) * var(--Card-padding)))',
+  marginLeft: 'var(--unstable_pl, calc(var(--Card-horizontal) * var(--Card-padding)))',
+  marginBottom: 'var(--unstable_pb, calc((1 - var(--Card-horizontal)) * var(--Card-padding)))',
+  marginRight: 'var(--unstable_pr, calc(var(--Card-horizontal) * var(--Card-padding)))',
+  '&[data-first-child]': {
+    '--unstable_pt': '0px',
+    '--unstable_pl': '0px',
+  },
+  '&[data-last-child]': {
+    '--unstable_pr': '0px',
+    '--unstable_pb': '0px',
+  },
+  '&:not([data-first-child])': {
+    //
+    '--unstable_pt':
+      'clamp(0px, (100% - var(--unstable_Card-stackPoint) - 1px) * -999, var(--Card-padding))',
+    '--unstable_pl':
+      'clamp(0px, (100% - var(--unstable_Card-stackPoint)) * 999, var(--Card-padding))',
+  },
+  '&:not([data-last-child])': {
+    '--unstable_pr':
+      'clamp(0px, (100% - var(--unstable_Card-stackPoint)) * 999, var(--Card-padding))',
+  },
+  [`& + .${cardContentClasses.root}`]: {
+    // support consecutive CardContent
+    '--unstable_pt':
+      'clamp(0px, (var(--unstable_Card-stackPoint, 0px) - 100%) * 999, var(--Card-padding))',
+    '--unstable_pl': '0px',
+  },
+  // ==================================================================================================
+});
+
 /**
  *
  * Demos:

@@ -1,9 +1,6 @@
 {
   "props": {
-    "buttonFlex": {
-      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
-      "default": "'initial'"
-    },
+    "buttonFlex": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "children": { "type": { "name": "node" } },
     "component": { "type": { "name": "elementType" } },
     "slotProps": {

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
+import CardActions from '@mui/joy/CardActions';
+import CardContent from '@mui/joy/CardContent';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
@@ -23,15 +24,17 @@ export default function BasicCard() {
       >
         <BookmarkAdd />
       </IconButton>
-      <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
-        <img
-          src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-          srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-          loading="lazy"
-          alt=""
-        />
-      </AspectRatio>
-      <Box sx={{ display: 'flex' }}>
+      <CardContent>
+        <AspectRatio minHeight="120px" maxHeight="200px">
+          <img
+            src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
+            srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
+            loading="lazy"
+            alt=""
+          />
+        </AspectRatio>
+      </CardContent>
+      <CardActions>
         <div>
           <Typography level="body3">Total price:</Typography>
           <Typography fontSize="lg" fontWeight="lg">
@@ -43,11 +46,11 @@ export default function BasicCard() {
           size="sm"
           color="primary"
           aria-label="Explore Bahamas Islands"
-          sx={{ ml: 'auto', fontWeight: 600 }}
+          sx={{ ml: 'auto' }}
         >
           Explore
         </Button>
-      </Box>
+      </CardActions>
     </Card>
   );
 }
