@@ -4,9 +4,10 @@ import Avatar from '@mui/joy/Avatar';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import MuiLogo from './MuiLogo';
-import { openSidebar } from '../utils';
+import { openSidebar, closeSidebar } from '../utils';
 import ColorSchemeToggle from './ColorSchemeToggle';
 
 export default function FirstSidebar() {
@@ -47,6 +48,14 @@ export default function FirstSidebar() {
           },
         }}
       />
+      <IconButton
+        variant="soft"
+        color="neutral"
+        onClick={() => closeSidebar()}
+        sx={{ display: { md: 'none' }, mt: -2, borderRadius: '50%' }}
+      >
+        <i data-feather="arrow-left" />
+      </IconButton>
       <MuiLogo />
       <List sx={{ '--ListItem-radius': '8px', '--List-gap': '12px' }}>
         <ListItem>
