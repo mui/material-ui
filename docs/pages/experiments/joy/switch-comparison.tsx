@@ -35,7 +35,7 @@ export default function SwitchComparison() {
     <Box
       sx={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(2, minmax(min(400px, 100%), 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
         height: '100vh',
         px: 3,
         rowGap: 5,
@@ -76,8 +76,9 @@ export default function SwitchComparison() {
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 4,
+              gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+              rowGap: 2,
+              columnGap: 4,
               alignItems: 'flex-start',
             }}
           >
@@ -231,16 +232,17 @@ export default function SwitchComparison() {
                 ...(joyTrack.width && { '--Switch-trackWidth': `${joyTrack.width}px` }),
                 ...(joyTrack.height && { '--Switch-trackHeight': `${joyTrack.height}px` }),
                 ...(joyTrack.radius && { '--Switch-trackRadius': `${joyTrack.radius}px` }),
-                ...(joyThumb.width && { '--Switch-thumbSize': `${joyThumb.height}px` }),
-                ...(joyThumb.height && { '--Switch-thumbWidth': `${joyThumb.width}px` }),
+                ...(joyThumb.width && { '--Switch-thumbWidth': `${joyThumb.width}px` }),
+                ...(joyThumb.height && { '--Switch-thumbSize': `${joyThumb.height}px` }),
               }}
             />
           </Box>
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 4,
+              gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+              rowGap: 2,
+              columnGap: 4,
               alignItems: 'flex-start',
             }}
           >
@@ -358,8 +360,8 @@ export default function SwitchComparison() {
   sx={{${joyTrack.width ? `\n    '--Switch-trackWidth': '${joyTrack.width}px',` : ''}${
                 joyTrack.height ? `\n    '--Switch-trackHeight': '${joyTrack.height}px',` : ''
               }${joyTrack.radius ? `\n    '--Switch-trackRadius': '${joyTrack.radius}px',` : ''}${
-                joyThumb.width ? `\n    '--Switch-thumbSize': '${joyThumb.height}px',` : ''
-              }${joyThumb.height ? `\n    '--Switch-thumbWidth': '${joyThumb.width}px',` : ''}${
+                joyThumb.width ? `\n    '--Switch-thumbWidth': '${joyThumb.width}px',` : ''
+              }${joyThumb.height ? `\n    '--Switch-thumbSize': '${joyThumb.height}px',` : ''}${
                 Object.keys({ ...joyTrack, ...joyThumb }).length ? `\n  ` : ''
               }}}
 />
