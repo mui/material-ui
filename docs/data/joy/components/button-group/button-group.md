@@ -69,15 +69,15 @@ The button group can be displayed vertically using the `orientation="horizontal"
 
 {{"demo": "GroupOrientation.js"}}
 
-## Stretching buttons
+## Stretching button
 
-Use `stretch` prop to make the buttons fill the available space of the ButtonGroup.
+Use `buttonFlex` prop to make the buttons fill the available space of the ButtonGroup.
 
 {{"demo": "FlexButtonGroup.js"}}
 
 ### Minimum width
 
-For large container, you can control the default width of the buttons by providing a valid [CSS `flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) value to the `stretch` prop.
+For large container, you can control the default width of the buttons by providing a valid [CSS `flex`](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) value to the `buttonFlex` prop.
 
 {{"demo": "MinWidthButtonGroup.js"}}
 
