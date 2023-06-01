@@ -35,6 +35,8 @@ export default function RentalCard({
           xs: 0,
           sm: 2,
         },
+        boxShadow:'none',
+        borderRadius: 'sm',
         '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
       }}
     >
@@ -61,7 +63,7 @@ export default function RentalCard({
           <AspectRatio
             ratio={16 / 9}
             sx={(theme) => ({
-              borderRadius: 'md',
+              borderRadius: 'xs',
               [theme.breakpoints.down('sm')]: {
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0,
@@ -86,7 +88,7 @@ export default function RentalCard({
                 position: 'absolute',
                 bottom: 8,
                 right: 8,
-                display: { xs: 'block', sm: 'none' },
+                display: { xs: 'flex', sm: 'none' },
               }}
             >
               <i data-feather="star" />
@@ -128,7 +130,7 @@ export default function RentalCard({
               variant={isLiked ? 'solid' : 'soft'}
               onClick={() => setIsLiked((prev) => !prev)}
               sx={{
-                display: { xs: 'none', sm: 'block' },
+                display: { xs: 'none', sm: 'flex' },
               }}
             >
               <i data-feather="star" />
