@@ -3,9 +3,7 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
-import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 export default function MinWidthButtonGroup() {
   return (
@@ -27,14 +25,11 @@ export default function MinWidthButtonGroup() {
         <ButtonGroup
           variant="soft"
           aria-label="outlined primary button group"
-          stretch="0 1 120px"
+          buttonFlex="0 1 200px"
           sx={{ width: '100%', justifyContent: 'center' }}
         >
           <Button>Buy</Button>
           <Button>Learn</Button>
-          <IconButton>
-            <FavoriteBorder />
-          </IconButton>
         </ButtonGroup>
       </CardContent>
     </Card>

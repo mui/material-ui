@@ -52,12 +52,6 @@ const ButtonGroupRoot = styled('div', {
     ownerState.orientation === 'vertical'
       ? 'var(--ButtonGroup-separatorSize) 0 0 0'
       : '0 0 0 var(--ButtonGroup-separatorSize)';
-  let buttonFlex: string | number = 'initial';
-  if (typeof ownerState.stretch === 'boolean') {
-    buttonFlex = ownerState.stretch ? 1 : 'initial';
-  } else {
-    buttonFlex = ownerState.stretch || 'initial';
-  }
   return {
     '--ButtonGroup-separatorSize': '-1px',
     '--ButtonGroup-separatorColor':
@@ -121,9 +115,14 @@ const ButtonGroupRoot = styled('div', {
           zIndex: -1,
         },
       },
-      [`& > *:not(.${iconButtonClasses.root})`]: {
-        flex: buttonFlex,
-      },
+      ...(ownerState.buttonFlex && {
+        [`& > *:not(.${iconButtonClasses.root})`]: {
+          flex: ownerState.buttonFlex,
+        },
+        [`& > :not(button) > .${buttonClasses.root}`]: {
+          width: '100%', // for button to fill its wrapper.
+        },
+      }),
     },
   };
 });
@@ -145,6 +144,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   });
 
   const {
+    buttonFlex,
     className,
     component = 'div',
     disabled = false,
@@ -154,7 +154,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     variant = 'outlined',
     children,
     orientation = 'horizontal',
-    stretch = false,
     slots = {},
     slotProps = {},
     ...other
@@ -162,13 +161,13 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const ownerState = {
     ...props,
+    buttonFlex,
     color,
     component,
     detached,
     orientation,
     size,
     variant,
-    stretch,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -226,6 +225,11 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
+  /**
+   * The flex value of the button.
+   * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).
+   */
+  buttonFlex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Used to render icon or text elements inside the ButtonGroup if `src` is not set.
    * This can be an element, or just a string.
@@ -286,11 +290,6 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
-  /**
-   * If `true`, each button stretch the width equally.
-   * @default false
-   */
-  stretch: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

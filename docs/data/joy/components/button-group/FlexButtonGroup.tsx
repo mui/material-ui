@@ -7,11 +7,11 @@ import Settings from '@mui/icons-material/Settings';
 export default function FlexButtonGroup() {
   return (
     <ButtonGroup
-      stretch
+      buttonFlex={1}
       aria-label="flex button group"
       sx={{
         p: 2,
-        width: 400,
+        width: 500,
         maxWidth: '100%',
         overflow: 'auto',
         resize: 'horizontal',

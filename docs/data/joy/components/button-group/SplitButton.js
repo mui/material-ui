@@ -36,8 +36,11 @@ export default function SplitButton() {
             // @ts-ignore
             actionRef.current = () => setOpen(!open);
           }}
+          onKeyDown={() => {
+            // @ts-ignore
+            actionRef.current = () => setOpen(!open);
+          }}
           onClick={() => {
-            console.log('actionRef.current', actionRef.current);
             actionRef.current?.();
           }}
         >

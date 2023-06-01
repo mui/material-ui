@@ -1,5 +1,6 @@
 {
   "props": {
+    "buttonFlex": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "children": { "type": { "name": "node" } },
     "color": {
       "type": {
@@ -29,13 +30,6 @@
     "slots": {
       "type": { "name": "shape", "description": "{ root?: elementType }" },
       "default": "{}"
-    },
-    "stretch": {
-      "type": {
-        "name": "union",
-        "description": "number<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
-      },
-      "default": "false"
     },
     "sx": {
       "type": {

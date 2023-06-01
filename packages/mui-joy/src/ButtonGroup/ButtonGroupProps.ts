@@ -27,6 +27,11 @@ export interface ButtonGroupPropsSizeOverrides {}
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * The flex value of the button.
+     * @example buttonFlex={1} will set flex: '1 1 auto' on each button (stretch the button to equally fill the available space).
+     */
+    buttonFlex?: number | string;
+    /**
      * Used to render icon or text elements inside the ButtonGroup if `src` is not set.
      * This can be an element, or just a string.
      */
@@ -51,11 +56,6 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
-    /**
-     * If `true`, each button stretch the width equally.
-     * @default false
-     */
-    stretch?: boolean | number | string;
     /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
