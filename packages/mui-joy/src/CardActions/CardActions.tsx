@@ -30,14 +30,16 @@ const CardActionsRoot = styled('div', {
     gap: 'calc(0.625 * var(--Card-padding))',
     padding: 'var(--unstable_CardActions-padding)',
     [`.${cardOverflowClasses.root} > &`]: {
-      '--unstable_CardActions-padding': 'calc(0.75 * var(--Card-padding))',
+      '--unstable_CardActions-padding': 'calc(0.75 * var(--Card-padding)) 0',
     },
-    [`& > :not(.${iconButtonClasses.root})`]: {
-      flex: ownerState.buttonFlex,
-    },
-    [`& > :not(button) > .${buttonClasses.root}`]: {
-      width: '100%', // for button to fill its wrapper.
-    },
+    ...(ownerState.buttonFlex && {
+      [`& > :not(.${iconButtonClasses.root})`]: {
+        flex: ownerState.buttonFlex,
+      },
+      [`& > :not(button) > .${buttonClasses.root}`]: {
+        width: '100%', // for button to fill its wrapper.
+      },
+    }),
   };
 });
 /**
