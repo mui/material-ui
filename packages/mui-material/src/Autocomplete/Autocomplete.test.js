@@ -2508,7 +2508,7 @@ describe('<Autocomplete />', () => {
       const options = getAllByRole('option');
       expect(options.length).to.equal(2);
     });
-    
+
     it('should use key property by default', () => {
       const { getAllByRole } = render(
         <Autocomplete
@@ -2528,7 +2528,7 @@ describe('<Autocomplete />', () => {
       const options = getAllByRole('option');
       expect(options.length).to.equal(2);
     });
-    
+
     it('should throw warning if option does not have key for duplicate labels', () => {
       expect(() =>
         render(
