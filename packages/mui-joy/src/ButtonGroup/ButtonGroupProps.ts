@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
 import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ButtonGroupSlot = 'root';
@@ -80,4 +80,4 @@ export type ButtonGroupProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
 
-export interface ButtonGroupOwnerState extends ButtonGroupProps {}
+export interface ButtonGroupOwnerState extends ApplyColorInversion<ButtonGroupProps> {}

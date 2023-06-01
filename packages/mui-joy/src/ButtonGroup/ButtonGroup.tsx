@@ -54,10 +54,12 @@ const ButtonGroupRoot = styled('div', {
       : '0 0 0 var(--ButtonGroup-separatorSize)';
   return {
     '--ButtonGroup-separatorSize': '-1px',
-    '--ButtonGroup-separatorColor':
-      ownerState.variant === 'solid'
-        ? `rgb(255 255 255 / 32%)`
-        : theme.vars.palette[ownerState.color!]?.outlinedBorder,
+    ...(ownerState.color !== 'context' && {
+      '--ButtonGroup-separatorColor':
+        ownerState.variant === 'solid'
+          ? `rgb(255 255 255 / 32%)`
+          : theme.vars.palette[ownerState.color!]?.outlinedBorder,
+    }),
     '--ButtonGroup-radius': theme.vars.radius.sm,
     '--Divider-inset': '0.5rem',
     display: 'flex',
@@ -190,7 +192,6 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   );
 
   return (
-    // @ts-ignore
     <SlotRoot {...rootProps}>
       <ButtonGroupContext.Provider value={buttonGroupContext}>
         {React.Children.map(children, (child, index) => {
