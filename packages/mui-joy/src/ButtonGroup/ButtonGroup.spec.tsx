@@ -3,7 +3,7 @@ import * as React from 'react';
 
 <ButtonGroup />;
 
-<ButtonGroup component="div" />;
+<ButtonGroup component="fieldset" />;
 
 // `variant`
 <ButtonGroup variant="plain" />;
