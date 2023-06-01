@@ -97,10 +97,10 @@ function Templates() {
               gap: 1.5,
               borderRadius: 1,
               backgroundColor: `${alpha(theme.palette.grey[50], 0.4)}`,
-              borderColor: 'grey.100',
+              borderColor: 'divider',
               ...theme.applyDarkStyles({
                 backgroundColor: `${alpha(theme.palette.primaryDark[700], 0.3)}`,
-                borderColor: `${alpha(theme.palette.grey[800], 0.4)}`,
+                borderColor: 'divider',
               }),
             })}
             variant="outlined"
@@ -122,7 +122,7 @@ function Templates() {
                 color: 'grey.100',
                 ...theme.applyDarkStyles({
                   borderColor: 'grey.900',
-                  color: 'grey.900',
+                  color: 'primaryDark.900',
                 }),
               })}
             />
