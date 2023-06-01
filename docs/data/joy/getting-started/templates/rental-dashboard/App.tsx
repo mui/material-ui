@@ -80,7 +80,7 @@ export default function RentalDashboard() {
                     height: 360,
                     backgroundSize: 'cover',
                     backgroundImage:
-                      'url("https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?auto=format&fit=crop&w=700")',
+                      'url("https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80")',
                   }}
                   display={{ xs: 'block', md: 'none' }}
                 />
