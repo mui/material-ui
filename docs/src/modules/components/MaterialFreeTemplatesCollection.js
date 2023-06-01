@@ -119,10 +119,10 @@ function Templates() {
                 bgcolor: 'currentColor',
                 border: '1px solid',
                 borderColor: 'grey.100',
-                color: 'gray.100',
+                color: 'grey.100',
                 ...theme.applyDarkStyles({
                   borderColor: 'grey.900',
-                  color: 'gray.900',
+                  color: 'grey.900',
                 }),
               })}
             />
