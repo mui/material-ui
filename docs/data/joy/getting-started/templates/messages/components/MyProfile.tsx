@@ -7,7 +7,14 @@ import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import ChatBubble from './ChatBubble';
-import { Box, Chip, IconButton } from '@mui/joy';
+import { Chip, IconButton, Input } from '@mui/joy';
+import Avatar from '@mui/joy/Avatar';
+import Box from '@mui/joy/Box';
+import List from '@mui/joy/List';
+import ListDivider from '@mui/joy/ListDivider';
+import ListItem from '@mui/joy/ListItem';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemButton from '@mui/joy/ListItemButton';
 
 export default function MyProfile() {
   return (
@@ -15,7 +22,7 @@ export default function MyProfile() {
       sx={{
         bgcolor: 'background.body',
         flex: 1,
-        maxWidth: 1200,
+
         width: '100%',
         mx: 'auto',
       }}
@@ -31,11 +38,15 @@ export default function MyProfile() {
               height: '100dvh',
             }}
           >
-            <Stack direction="row" spacing={2} alignItems="center">
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              justifyContent="space-between"
+            >
               <Typography
                 level="h1"
                 fontSize="xl2"
-                sx={{ mb: 1 }}
                 endDecorator={
                   <Chip variant="outlined" color="neutral" size="sm">
                     40
@@ -45,9 +56,63 @@ export default function MyProfile() {
                 Messages
               </Typography>
 
-              <IconButton variant="outlined">edit</IconButton>
+              <IconButton variant="outlined" aria-label="edit" color="neutral">
+                <i data-feather="edit" />
+              </IconButton>
             </Stack>
-            <Typography>conversations list</Typography>
+            <Input
+              startDecorator={<i data-feather="search" />}
+              placeholder="Search"
+              aria-label="Search"
+            />
+            {/* <Typography>conversations list</Typography> */}
+            <List
+              sx={{
+                // bgcolor: 'background.body',
+                minWidth: '100%',
+                '--ListItemDecorator-size': '48px',
+                '--ListItem-paddingLeft': '1.5rem',
+                '--ListItem-paddingRight': '1rem',
+              }}
+            >
+              <ListItem>
+                <ListItemButton
+                  onClick={() => alert('You clicked')}
+                  selected
+                  variant="soft"
+                  color="neutral"
+                >
+                  <div>new</div>
+                  <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                    <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                  </ListItemDecorator>
+                  <div>
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      justifyContent="space-between"
+                    >
+                      <div>
+                        <Typography>Mabel Boyle</Typography>
+                        <Typography>@mabel</Typography>
+                      </div>
+                      <Typography>5 mins ago</Typography>
+                    </Stack>
+                    <Typography>
+                      Hey Olivia, Katherine sent me over the latest doc. I just have
+                      a quick question about the...
+                    </Typography>
+                  </div>
+                </ListItemButton>
+              </ListItem>
+              <ListDivider />
+              <ListItem>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Avatar size="sm" src="/static/images/avatar/2.jpg" />
+                </ListItemDecorator>
+                Boyd Burt
+              </ListItem>
+            </List>
           </Sheet>
         </Grid>
         <Grid xs={12} md={8}>

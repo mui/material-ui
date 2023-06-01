@@ -87,7 +87,6 @@ export default function Sidebar() {
         <Typography fontWeight="xl">MUI</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
-      <Input startDecorator={<i data-feather="search" />} placeholder="Search" />
       <Box
         sx={{
           minHeight: 0,
@@ -152,22 +151,22 @@ export default function Sidebar() {
           <ListItem nested>
             <ListItemButton>
               <ListItemDecorator>
-                <i data-feather="bar-chart-2" />
+                <i data-feather="message-square" />
               </ListItemDecorator>
-              <ListItemContent>Users</ListItemContent>
+              <ListItemContent>Messages</ListItemContent>
               <i data-feather="chevron-up" />
             </ListItemButton>
             <List>
               <ListItem>
                 <ListItemButton selected variant="soft" color="primary">
-                  My Profile
+                  View all
                 </ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>New user</ListItemButton>
+                <ListItemButton>Your team</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>Role & Permission</ListItemButton>
+                <ListItemButton>Archived</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
