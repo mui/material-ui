@@ -34,9 +34,11 @@ export default function PropertiesTable(props) {
         .filter(([, propData]) => propData.description !== '@ignore')
         .map(([propName, propData]) => {
           // ApiItem
-          const typeName = propData.type.description || propData.type.name;
+          const typeName = propData.type?.description || propData.type.name;
           const propDefault = propData.default;
+          const propDescription = propertiesDescriptions[propName];
           const signature = propData.signature?.type;
+
           return (
             <ApiItem
               key={propName}
@@ -49,17 +51,19 @@ export default function PropertiesTable(props) {
                 ''
               }
             >
-              <p
-                className="description"
-                dangerouslySetInnerHTML={{
-                  __html: propertiesDescriptions[propName].description || '',
-                }}
-              />
-              {propertiesDescriptions[propName].notes && (
+              {propDescription?.description && (
+                <p
+                  className="description"
+                  dangerouslySetInnerHTML={{
+                    __html: propDescription?.description,
+                  }}
+                />
+              )}
+              {propDescription?.notes && (
                 <p
                   className="notes"
                   dangerouslySetInnerHTML={{
-                    __html: propertiesDescriptions[propName].notes || '',
+                    __html: propDescription?.notes,
                   }}
                 />
               )}
