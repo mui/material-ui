@@ -76,7 +76,7 @@ Provide these CSS variables to `sx` prop to control the focused ring appearance:
 To get full control of the focused ring, customize the `box-shadow` of the `::before` pseudo element directly
 
 ```js
-<Input sx={{ '&:focus-within(::before)': { boxShadow: '...your custom value' } }} />
+<Input sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }} />
 ```
 
 :::
@@ -86,7 +86,7 @@ To get full control of the focused ring, customize the `box-shadow` of the `::be
 To display the Input's focus ring by simulating user's focus, inspect the Input element and toggle the [pseudostate panel](https://developer.chrome.com/docs/devtools/css/#pseudostates).
 
 - If you inspect the Input's root element, with `.MuiInput-root` class, you have to toggle on the `:focus-within` state.
-- If you inspect the `<input>` element, you have to toggle on the `:focus` state.
+- If you inspect the `<input>` element, you can toggle with either `:focus` or `:focus-within` states.
 
 ### Triggering the focus ring
 

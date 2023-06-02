@@ -69,7 +69,7 @@ To get full control of the focused ring, customize the `box-shadow` of the `::be
 
 ```js
 <Textarea
-  sx={{ '&:focus-within(::before)': { boxShadow: '...your custom value' } }}
+  sx={{ '&:focus-within::before': { boxShadow: '...your custom value' } }}
 />
 ```
 
