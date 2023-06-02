@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getCardContentUtilityClass } from './cardContentClasses';
+import cardContentClasses, { getCardContentUtilityClass } from './cardContentClasses';
 import { CardContentProps, CardContentTypeMap } from './CardContentProps';
 import useSlot from '../utils/useSlot';
 
@@ -26,6 +26,39 @@ const CardContentRoot = styled('div', {
   flexDirection: 'column',
   flexGrow: 1,
   zIndex: 1,
+  // TODO: remove all of the lines below when flexbox `gap` reaches ~95% support (https://caniuse.com/flexbox-gap)
+  marginTop:
+    'var(--unstable_pt, calc((1 - var(--unstable_Card-horizontal)) * var(--Card-padding)))',
+  marginLeft: 'var(--unstable_pl, calc(var(--unstable_Card-horizontal) * var(--Card-padding)))',
+  marginBottom:
+    'var(--unstable_pb, calc((1 - var(--unstable_Card-horizontal)) * var(--Card-padding)))',
+  marginRight: 'var(--unstable_pr, calc(var(--unstable_Card-horizontal) * var(--Card-padding)))',
+  '&[data-first-child]': {
+    '--unstable_pt': '0px',
+    '--unstable_pl': '0px',
+  },
+  '&[data-last-child]': {
+    '--unstable_pr': '0px',
+    '--unstable_pb': '0px',
+  },
+  '&:not([data-first-child])': {
+    // to work with Card's stackWidth
+    '--unstable_pt':
+      'clamp(0px, (100% - var(--unstable_Card-stackPoint) - 1px) * -999, var(--Card-padding))',
+    '--unstable_pl':
+      'clamp(0px, (100% - var(--unstable_Card-stackPoint)) * 999, var(--Card-padding))',
+  },
+  '&:not([data-last-child])': {
+    // to work with Card's stackWidth
+    '--unstable_pr':
+      'clamp(0px, (100% - var(--unstable_Card-stackPoint)) * 999, var(--Card-padding))',
+  },
+  [`& + .${cardContentClasses.root}`]: {
+    // support consecutive CardContent
+    '--unstable_pt':
+      'clamp(0px, (var(--unstable_Card-stackPoint, 0px) - 100%) * 999, var(--Card-padding))',
+    '--unstable_pl': '0px',
+  },
 });
 /**
  *

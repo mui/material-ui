@@ -13,7 +13,7 @@ import { ColorInversionProvider, useColorInversion } from '../styles/ColorInvers
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { CardRowContext } from './CardContext';
+import cardCoverClasses from '../CardCover/cardCoverClasses';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
@@ -71,6 +71,7 @@ const CardRoot = styled('div', {
       '--Card-radius': theme.vars.radius.lg,
       '--Card-padding': '1.5rem',
     }),
+    '--unstable_Card-horizontal': ownerState.orientation === 'horizontal' ? 1 : 0, // internal usage, developer should rely on `orientation` prop
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.shadow.sm,
@@ -79,6 +80,17 @@ const CardRoot = styled('div', {
     position: 'relative',
     display: 'flex',
     flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    ...(ownerState.stackWidth && {
+      flexWrap: 'wrap',
+      [`& > *:not(.${cardCoverClasses.root})`]: {
+        '--unstable_Card-stackPoint': `calc(${
+          typeof ownerState.stackWidth === 'number'
+            ? `${ownerState.stackWidth}px`
+            : ownerState.stackWidth
+        } - 2 * var(--Card-padding))`,
+        minWidth: 'clamp(0px, (var(--unstable_Card-stackPoint) + 1px - 100%) * 999, 100%)',
+      },
+    }),
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   ownerState.color !== 'context' &&
@@ -113,6 +125,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation = 'vertical',
     slots = {},
     slotProps = {},
+    stackWidth,
     ...other
   } = props;
   const { getColor } = useColorInversion(variant);
@@ -125,6 +138,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     orientation,
     size,
     variant,
+    stackWidth,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -139,30 +153,36 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   });
 
   const result = (
-    <CardRowContext.Provider value={orientation === 'horizontal'}>
-      <SlotRoot {...rootProps}>
-        {React.Children.map(children, (child, index) => {
-          if (!React.isValidElement(child)) {
-            return child;
-          }
-          const extraProps: Record<string, any> = {};
-          if (isMuiElement(child, ['Divider'])) {
-            extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+    <SlotRoot {...rootProps}>
+      {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+        const extraProps: Record<string, any> = {};
+        if (isMuiElement(child, ['Divider'])) {
+          extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
 
-            const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-            extraProps.orientation =
-              'orientation' in child.props ? child.props.orientation : dividerOrientation;
+          const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
+          extraProps.orientation =
+            'orientation' in child.props ? child.props.orientation : dividerOrientation;
+        }
+        if (isMuiElement(child, ['CardOverflow'])) {
+          if (orientation === 'horizontal') {
+            extraProps['data-parent'] = 'Card-horizontal';
           }
-          if (index === 0) {
-            extraProps['data-first-child'] = '';
+          if (orientation === 'vertical') {
+            extraProps['data-parent'] = 'Card-vertical';
           }
-          if (index === React.Children.count(children) - 1) {
-            extraProps['data-last-child'] = '';
-          }
-          return React.cloneElement(child, extraProps);
-        })}
-      </SlotRoot>
-    </CardRowContext.Provider>
+        }
+        if (index === 0) {
+          extraProps['data-first-child'] = '';
+        }
+        if (index === React.Children.count(children) - 1) {
+          extraProps['data-last-child'] = '';
+        }
+        return React.cloneElement(child, extraProps);
+      })}
+    </SlotRoot>
   );
 
   if (invertedColors) {
@@ -231,6 +251,13 @@ Card.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     root: PropTypes.elementType,
   }),
+  /**
+   * For `orientation="horizontal"` only.
+   * When the Card's width is less than or equal to this value, the Card's children will stack vertically.
+   *
+   * Note: If the value is a number, it will be converted to pixels.
+   */
+  stackWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

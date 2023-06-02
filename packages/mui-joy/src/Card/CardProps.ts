@@ -53,6 +53,13 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', CardPropsSizeOverrides>;
     /**
+     * For `orientation="horizontal"` only.
+     * When the Card's width is less than or equal to this value, the Card's children will stack vertically.
+     *
+     * Note: If the value is a number, it will be converted to pixels.
+     */
+    stackWidth?: number | string;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
