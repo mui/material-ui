@@ -1000,9 +1000,10 @@ export function getThemedComponents(): ThemeOptions {
               '&.Mui-selected': {
                 color: '#fff',
                 borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
-                backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primary[900], 0.4),
                 '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  backgroundColor: alpha(theme.palette.primary[900], 0.8),
+                  borderColor: `${(theme.vars || theme).palette.primary[400]} !important`,
                 },
               },
             }),
