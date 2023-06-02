@@ -112,6 +112,19 @@ const Root = styled('div')(
         backgroundColor: `var(--muidocs-palette-grey-50, ${lightTheme.palette.grey[50]})`,
       },
     },
+    '& .prop-list-signature': {
+      marginBottom: 16,
+      p: { marginBottom: 8 },
+      '&>code': {
+        borderRadius: 8,
+        padding: 8,
+        color: '#003A75',
+        border: 'solid #C2E0FF 1px',
+        backgroundColor: '#EAEDF180',
+        width: '100%',
+        marginBottom: 8,
+      },
+    },
     marginBottom: 32,
   }),
   ({ theme }) => ({
@@ -160,6 +173,13 @@ const Root = styled('div')(
         code: {
           borderColor: `var(--muidocs-palette-grey-800, ${darkTheme.palette.grey[800]})`,
           backgroundColor: alpha(darkTheme.palette.grey[900], 0.5),
+        },
+      },
+      '& .prop-list-signature': {
+        '&>code': {
+          color: '#C2E0FF',
+          backgroundColor: '#003A7566',
+          borderColor: '#0059B24D',
         },
       },
     },
